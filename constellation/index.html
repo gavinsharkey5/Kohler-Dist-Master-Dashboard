@@ -79,6 +79,18 @@
   .acct .stat small{font-weight:500;color:var(--ink-soft);font-size:11px}
   .progtags{display:flex;gap:6px;margin:10px 0 0;flex-wrap:wrap}
   .ptag{font-size:10.5px;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:999px;color:#fff}
+  details.acct{padding:0}
+  details.acct summary{list-style:none;cursor:pointer;padding:13px 15px;display:block;position:relative}
+  details.acct summary::-webkit-details-marker{display:none}
+  details.acct summary::after{content:"";position:absolute;right:15px;top:18px;width:8px;height:8px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);transition:transform .15s}
+  details.acct[open] summary::after{transform:rotate(-135deg)}
+  details.acct summary .stat{padding-right:18px}
+  .skulist{list-style:none;margin:0;padding:4px 15px 13px;border-top:1px solid var(--line)}
+  .skulist li{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:13px;border-top:1px solid var(--line-soft)}
+  .skulist li:first-child{border-top:none}
+  .skulist .pd{width:8px;height:8px;border-radius:50%;flex:none}
+  .skulist .pn{flex:1;color:var(--ink)}
+  .skulist .pdates{font-family:"Space Grotesk";font-size:11px;color:var(--ink-soft)}
 
   .empty{max-width:560px;margin:60px auto;padding:0 24px;text-align:center;color:var(--ink-soft)}
   .empty h2{font-family:"Space Grotesk";color:var(--ink);font-size:20px}
@@ -124,7 +136,7 @@
 const FILES=["corona.csv","modelo.csv","impact.csv","innovation.csv"];
 const PROG_COLORS={"Corona Gaintain":"#F4B400","Modelo Gaintain":"#C8102E","Impact":"#8E2DE2","Innovation":"#2BB7B3"};
 const FALLBACK=["#F4B400","#C8102E","#8E2DE2","#2BB7B3","#2F6FB0","#E0457B"];
-let RECORDS=[], PROGRAMS=[], activeRep="ALL", activeProg="ALL";
+let RECORDS=[],SEEN={}, PROGRAMS=[], activeRep="ALL", activeProg="ALL";
 
 function parseCSV(text){
   const rows=[];let row=[],cur="",q=false;
@@ -142,13 +154,21 @@ const round=n=>Math.round(n);
 function ingest(text){
   const rows=parseCSV(text); if(rows.length<2) return;
   const H=rows[0];
-  const ci={rep:col(H,"sales rep","rep"),cust:col(H,"customer id","cust"),name:col(H,"customer name"),prod:col(H,"product name","product")};
+  const ci={rep:col(H,"sales rep","rep"),cust:col(H,"customer id","cust"),name:col(H,"customer name"),prodId:col(H,"product id"),prod:col(H,"product name","product"),date:col(H,"load sheet date","date")};
   let vi=col(H,"placement");
   let prog=vi>=0 ? H[vi].replace(/skus?/i,"").replace(/placements?/i,"").trim() : "Program";
   if(ci.rep<0) return;
   for(let i=1;i<rows.length;i++){
     const r=rows[i]; const rep=(r[ci.rep]||"").trim(); if(!rep) continue;
-    RECORDS.push({rep, prog, cust:(r[ci.cust]||"").trim(), name:(r[ci.name]||"").trim(), prod:(r[ci.prod]||"").trim()});
+    const cust=(r[ci.cust]||"").trim();
+    const prodId=(ci.prodId>=0?r[ci.prodId]:"")||"";
+    const prod=(r[ci.prod]||"").trim();
+    const date=(ci.date>=0?r[ci.date]:"")||"";
+    // a placement = one SKU at one account (counted once, even across multiple load-sheet dates)
+    const key=prog+"|||"+cust+"|||"+(prodId||prod);
+    let rec=SEEN[key];
+    if(!rec){ rec={rep, prog, cust, name:(r[ci.name]||"").trim(), prod, prodId, dates:[]}; SEEN[key]=rec; RECORDS.push(rec); }
+    if(date && rec.dates.indexOf(date)<0) rec.dates.push(date);
   }
 }
 function colorFor(p){return PROG_COLORS[p]||FALLBACK[PROGRAMS.indexOf(p)%FALLBACK.length];}
@@ -198,15 +218,18 @@ function renderMain(){
   } else {
     document.getElementById("mainTitle").textContent="Accounts";
     const s=scope(); const by={};
-    s.forEach(r=>{const A=by[r.cust]||(by[r.cust]={name:r.name,skus:new Set(),progs:new Set(),pl:0});A.skus.add(r.prod);A.progs.add(r.prog);A.pl++;});
+    s.forEach(r=>{const A=by[r.cust]||(by[r.cust]={name:r.name,skus:new Set(),progs:new Set(),pl:0,items:[]});A.skus.add(r.prod);A.progs.add(r.prog);A.pl++;A.items.push(r);});
     const accts=Object.values(by).sort((a,b)=>b.pl-a.pl);
-    document.getElementById("mainMeta").textContent=`${accts.length} accounts · ${activeProg==="ALL"?"all programs":activeProg}`;
+    document.getElementById("mainMeta").textContent=`${accts.length} accounts · ${activeProg==="ALL"?"all programs":activeProg} · tap an account for its products`;
     document.getElementById("mainBody").innerHTML=accts.map(a=>{
       const tags=[...a.progs].map(p=>`<span class="ptag" style="background:${colorFor(p)}">${esc(p)}</span>`).join("");
-      return `<div class="acct"><div class="top">
+      const items=a.items.slice().sort((x,y)=>x.prog.localeCompare(y.prog)||x.prod.localeCompare(y.prod)).map(it=>
+        `<li><span class="pd" style="background:${colorFor(it.prog)}"></span><span class="pn">${esc(it.prod||"—")}</span><span class="pdates">${it.dates&&it.dates.length>1?it.dates.length+" load dates":""}</span></li>`).join("");
+      return `<details class="acct"><summary><div class="top">
         <div class="nm">${esc(a.name||"—")}</div>
         <span class="stat num">${a.pl}<small> placements · ${a.skus.size} SKUs</small></span></div>
-        <div class="progtags">${tags}</div></div>`;
+        <div class="progtags">${tags}</div></summary>
+        <ul class="skulist">${items}</ul></details>`;
     }).join("");
   }
 }
@@ -236,7 +259,7 @@ async function boot(){
   PROGRAMS=[...new Set(RECORDS.map(r=>r.prog))].sort((a,b)=>RECORDS.filter(r=>r.prog===b).length-RECORDS.filter(r=>r.prog===a).length);
   renderRibbon();renderChips();refresh();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").textContent="Each row in the reports is one SKU placement at an account. Figures reflect the latest program files uploaded.";
+  document.getElementById("foot").textContent="A placement = one SKU stocked at an account, counted once even if it appears on several load-sheet dates. Tap any account to see the exact products placed. Figures reflect the latest program files uploaded.";
 }
 boot();
 </script>
