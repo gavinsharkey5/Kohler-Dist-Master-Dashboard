@@ -1,0 +1,201 @@
+Customer ID,Customer Name,Product ID,Product Name,Sales Rep Assigned,Load Sheet Date,Modelo Gaintain SKUs Placements
+408,Fredon Liquor (Fredon Deli),2814,Modelo Especial 4/6/12 oz Btl,Jayson Romine,6/8/2026,1.00
+1003,23 liquor & Tobacco,2814,Modelo Especial 4/6/12 oz Btl,Klejdi Lamo,6/9/2026,1.00
+1003,23 liquor & Tobacco,2816,Modelo Especial 1/12/24 oz Can,Klejdi Lamo,6/3/2026,1.00
+1012,Uncorked Wines & Spirits (West Milford),2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/8/2026,1.00
+1012,Uncorked Wines & Spirits (West Milford),2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/8/2026,1.00
+1012,Uncorked Wines & Spirits (West Milford),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+1012,Uncorked Wines & Spirits (West Milford),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+1015,Greenwood Lake Disc.(P),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+1029,Vault Liquors,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/3/2026,1.00
+1029,Vault Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/3/2026,1.00
+1029,Vault Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/5/2026,1.00
+1029,Vault Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/8/2026,1.00
+2002,Ringwood Discount Liquors,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/4/2026,1.00
+2002,Ringwood Discount Liquors,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+2002,Ringwood Discount Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+2002,Ringwood Discount Liquors,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+3001,Best Cellars (Wanaque),2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/8/2026,1.00
+3001,Best Cellars (Wanaque),2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/8/2026,1.00
+3001,Best Cellars (Wanaque),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/10/2026,1.00
+3001,Best Cellars (Wanaque),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/10/2026,1.00
+3001,Best Cellars (Wanaque),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/4/2026,1.00
+3006,Wine 2 Spirits (P),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+3006,Wine 2 Spirits (P),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+3006,Wine 2 Spirits (P),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+4002,Bloomingdale Discount Liq,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+4005,Turnpike Discount Liquors,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+4005,Turnpike Discount Liquors,2825,Modelo Especial 1/18/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2808,Modelo Especial 1/24/12 oz Loose Btl,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+5001,River Place Food Store,2808,Modelo Especial 1/24/12 oz Loose Btl,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2825,Modelo Especial 1/18/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+5006,Roserne Pkg Store South,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+5006,Roserne Pkg Store South,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+6002,Roserne Liquors North,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+6002,Roserne Liquors North,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+6002,Roserne Liquors North,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+6004,Kinnelon Country Wine & Liquor,2816,Modelo Especial 1/12/24 oz Can,Michael Harboy,6/10/2026,1.00
+7001,Home Wine and Liquors,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+8002,Country Convenience Store,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/5/2026,1.00
+8002,Country Convenience Store,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+8002,Country Convenience Store,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/8/2026,1.00
+8002,Country Convenience Store,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/8/2026,1.00
+8002,Country Convenience Store,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+8002,Country Convenience Store,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+8005,Empire Wine & Liquor,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/3/2026,1.00
+8005,Empire Wine & Liquor,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/10/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/8/2026,1.00
+8008,Shoppers Disc(A)Pompton,2808,Modelo Especial 1/24/12 oz Loose Btl,Anthony Palmisano,6/2/2026,1.00
+8008,Shoppers Disc(A)Pompton,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+8008,Shoppers Disc(A)Pompton,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+8009,Appio's Liquors,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/4/2026,1.00
+8010,George's Market (A),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+9003,B & B Wine&Liq,2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/9/2026,1.00
+9003,B & B Wine&Liq,2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+9003,B & B Wine&Liq,2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/4/2026,1.00
+9003,B & B Wine&Liq,2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/4/2026,1.00
+9003,B & B Wine&Liq,2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2808,Modelo Especial 1/24/12 oz Loose Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2809,Modelo Especial 1/24/12 oz Loose Can,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2811,Modelo Especial 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2814,Modelo Especial 4/6/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2815,Modelo Especial 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2816,Modelo Especial 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2825,Modelo Especial 1/18/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/2/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2814,Modelo Especial 4/6/12 oz Btl,Mike Ast,6/2/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2815,Modelo Especial 2/12/12 oz Btl,Mike Ast,6/2/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2816,Modelo Especial 1/12/24 oz Can,Mike Ast,6/8/2026,1.00
+11005,Wolfson Market,2814,Modelo Especial 4/6/12 oz Btl,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2815,Modelo Especial 2/12/12 oz Btl,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2816,Modelo Especial 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2816,Modelo Especial 1/12/24 oz Can,Michael Harboy,6/9/2026,1.00
+11014,Wayne Liquor Locker,2811,Modelo Especial 2/12/12 oz Can,Michael Harboy,6/10/2026,1.00
+11014,Wayne Liquor Locker,2814,Modelo Especial 4/6/12 oz Btl,Michael Harboy,6/3/2026,1.00
+11014,Wayne Liquor Locker,2815,Modelo Especial 2/12/12 oz Btl,Michael Harboy,6/10/2026,1.00
+12005,Shay's Liquors,2808,Modelo Especial 1/24/12 oz Loose Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2814,Modelo Especial 4/6/12 oz Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2815,Modelo Especial 2/12/12 oz Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2816,Modelo Especial 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+12011,Bottle King (A) Wayne,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/2/2026,1.00
+12011,Bottle King (A) Wayne,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/9/2026,1.00
+12011,Bottle King (A) Wayne,2815,Modelo Especial 2/12/12 oz Btl,Mike Ast,6/9/2026,1.00
+12017,Shays Liquors,2809,Modelo Especial 1/24/12 oz Loose Can,Michael Harboy,6/8/2026,1.00
+12017,Shays Liquors,2811,Modelo Especial 2/12/12 oz Can,Michael Harboy,6/8/2026,1.00
+12017,Shays Liquors,2814,Modelo Especial 4/6/12 oz Btl,Michael Harboy,6/3/2026,1.00
+12017,Shays Liquors,2814,Modelo Especial 4/6/12 oz Btl,Michael Harboy,6/10/2026,1.00
+12017,Shays Liquors,2815,Modelo Especial 2/12/12 oz Btl,Michael Harboy,6/3/2026,1.00
+12017,Shays Liquors,2815,Modelo Especial 2/12/12 oz Btl,Michael Harboy,6/10/2026,1.00
+12017,Shays Liquors,2816,Modelo Especial 1/12/24 oz Can,Michael Harboy,6/8/2026,1.00
+12060,Costco Whlse V#32366-Wayn,2809,Modelo Especial 1/24/12 oz Loose Can,John Neukum,6/1/2026,1.00
+12060,Costco Whlse V#32366-Wayn,2809,Modelo Especial 1/24/12 oz Loose Can,John Neukum,6/3/2026,1.00
+12060,Costco Whlse V#32366-Wayn,2809,Modelo Especial 1/24/12 oz Loose Can,John Neukum,6/8/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2811,Modelo Especial 2/12/12 oz Can,Derrick Laws,6/1/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2811,Modelo Especial 2/12/12 oz Can,Derrick Laws,6/10/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/1/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/10/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/1/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/3/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/10/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/3/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/10/2026,1.00
+13008,Little Falls Liq(P),2814,Modelo Especial 4/6/12 oz Btl,Jim Heaney,6/4/2026,1.00
+13008,Little Falls Liq(P),2815,Modelo Especial 2/12/12 oz Btl,Jim Heaney,6/4/2026,1.00
+13008,Little Falls Liq(P),2816,Modelo Especial 1/12/24 oz Can,Jim Heaney,6/3/2026,1.00
+13008,Little Falls Liq(P),2816,Modelo Especial 1/12/24 oz Can,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2808,Modelo Especial 1/24/12 oz Loose Btl,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2809,Modelo Especial 1/24/12 oz Loose Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2811,Modelo Especial 2/12/12 oz Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2814,Modelo Especial 4/6/12 oz Btl,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2815,Modelo Especial 2/12/12 oz Btl,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2816,Modelo Especial 1/12/24 oz Can,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2816,Modelo Especial 1/12/24 oz Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2825,Modelo Especial 1/18/12 oz Can,Jim Heaney,6/4/2026,1.00
+14007,Total Wine & More (Totowa),2808,Modelo Especial 1/24/12 oz Loose Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2808,Modelo Especial 1/24/12 oz Loose Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2809,Modelo Especial 1/24/12 oz Loose Can,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2811,Modelo Especial 2/12/12 oz Can,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2814,Modelo Especial 4/6/12 oz Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2814,Modelo Especial 4/6/12 oz Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2815,Modelo Especial 2/12/12 oz Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2815,Modelo Especial 2/12/12 oz Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2816,Modelo Especial 1/12/24 oz Can,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2816,Modelo Especial 1/12/24 oz Can,Dave Ehlers,6/5/2026,1.00
+14007,Total Wine & More (Totowa),2816,Modelo Especial 1/12/24 oz Can,Dave Ehlers,6/10/2026,1.00
+15012,Pal's Liquor,2808,Modelo Especial 1/24/12 oz Loose Btl,Derrick Laws,6/4/2026,1.00
+15012,Pal's Liquor,2808,Modelo Especial 1/24/12 oz Loose Btl,Derrick Laws,6/8/2026,1.00
+15012,Pal's Liquor,2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/4/2026,1.00
+15012,Pal's Liquor,2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/8/2026,1.00
+15012,Pal's Liquor,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/4/2026,1.00
+15012,Pal's Liquor,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/8/2026,1.00
+15012,Pal's Liquor,2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/4/2026,1.00
+15012,Pal's Liquor,2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/8/2026,1.00
+15013,El Oasis,2808,Modelo Especial 1/24/12 oz Loose Btl,Derrick Laws,6/3/2026,1.00
+15013,El Oasis,2809,Modelo Especial 1/24/12 oz Loose Can,Derrick Laws,6/3/2026,1.00
+15013,El Oasis,2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/3/2026,1.00
+15013,El Oasis,2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/3/2026,1.00
+15013,El Oasis,2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/3/2026,1.00
+15016,Gene's Liquor,2808,Modelo Especial 1/24/12 oz Loose Btl,Pablo Lopez,6/2/2026,1.00
+15016,Gene's Liquor,2808,Modelo Especial 1/24/12 oz Loose Btl,Pablo Lopez,6/8/2026,1.00
+15016,Gene's Liquor,2814,Modelo Especial 4/6/12 oz Btl,Pablo Lopez,6/2/2026,1.00
+15016,Gene's Liquor,2814,Modelo Especial 4/6/12 oz Btl,Pablo Lopez,6/8/2026,1.00
+15016,Gene's Liquor,2815,Modelo Especial 2/12/12 oz Btl,Pablo Lopez,6/2/2026,1.00
+15016,Gene's Liquor,2815,Modelo Especial 2/12/12 oz Btl,Pablo Lopez,6/8/2026,1.00
+15016,Gene's Liquor,2816,Modelo Especial 1/12/24 oz Can,Pablo Lopez,6/1/2026,1.00
+15016,Gene's Liquor,2816,Modelo Especial 1/12/24 oz Can,Pablo Lopez,6/10/2026,1.00
+15023,Santana's Sport(P)Bella,2808,Modelo Especial 1/24/12 oz Loose Btl,Derrick Laws,6/5/2026,1.00
+15031,Pete's Family Liqs,2814,Modelo Especial 4/6/12 oz Btl,Javier Melo,6/8/2026,1.00
+15034,Allen's Liquors,2808,Modelo Especial 1/24/12 oz Loose Btl,Pablo Lopez,6/1/2026,1.00
+15034,Allen's Liquors,2814,Modelo Especial 4/6/12 oz Btl,Pablo Lopez,6/1/2026,1.00
+15034,Allen's Liquors,2815,Modelo Especial 2/12/12 oz Btl,Pablo Lopez,6/1/2026,1.00
+15034,Allen's Liquors,2816,Modelo Especial 1/12/24 oz Can,Pablo Lopez,6/1/2026,1.00
+15034,Allen's Liquors,2816,Modelo Especial 1/12/24 oz Can,Pablo Lopez,6/10/2026,1.00
+15037,Liquor Gallery (Paterson),2809,Modelo Especial 1/24/12 oz Loose Can,Derrick Laws,6/1/2026,1.00
+15037,Liquor Gallery (Paterson),2811,Modelo Especial 2/12/12 oz Can,Derrick Laws,6/1/2026,1.00
+15037,Liquor Gallery (Paterson),2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/1/2026,1.00
+15037,Liquor Gallery (Paterson),2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/1/2026,1.00
+15037,Liquor Gallery (Paterson),2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/8/2026,1.00
+15040,Legacy Bar & Liquor,2814,Modelo Especial 4/6/12 oz Btl,Pablo Lopez,6/10/2026,1.00
+15040,Legacy Bar & Liquor,2815,Modelo Especial 2/12/12 oz Btl,Pablo Lopez,6/10/2026,1.00
+15040,Legacy Bar & Liquor,2816,Modelo Especial 1/12/24 oz Can,Pablo Lopez,6/2/2026,1.00
+15040,Legacy Bar & Liquor,2825,Modelo Especial 1/18/12 oz Can,Pablo Lopez,6/2/2026,1.00
+15059,Belmont Liqrs (P),2816,Modelo Especial 1/12/24 oz Can,Javier Melo,6/4/2026,1.00
+15061,Boulevard Wine & Spirits,2808,Modelo Especial 1/24/12 oz Loose Btl,Pablo Lopez,6/5/2026,1.00
+17002,Hillcrest Liqrs (A),2814,Modelo Especial 4/6/12 oz Btl,Derrick Laws,6/1/2026,1.00
+17002,Hillcrest Liqrs (A),2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/1/2026,1.00
+17002,Hillcrest Liqrs (A),2815,Modelo Especial 2/12/12 oz Btl,Derrick Laws,6/4/2026,1.00
+17002,Hillcrest Liqrs (A),2816,Modelo Especial 1/12/24 oz Can,Derrick Laws,6/4/2026,1.00
+17010,Frank's Fine Wine & Foods,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/2/2026,1.00
+17010,Frank's Fine Wine & Foods,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/9/2026,1.00
+17010,Frank's Fine Wine & Foods,2814,Modelo Especial 4/6/12 oz Btl,Mike Ast,6/2/2026,1.00
+17010,Frank's Fine Wine & Foods,2815,Modelo Especial 2/12/12 oz Btl,Mike Ast,6/9/2026,1.00
+17010,Frank's Fine Wine & Foods,2816,Modelo Especial 1/12/24 oz Can,Mike Ast,6/9/2026,1.00
+17011,Nico's Wine & Spirits,2808,Modelo Especial 1/24/12 oz Loose Btl,Mike Ast,6/3/2026,1.00

@@ -1,0 +1,201 @@
+Customer ID,Customer Name,Product ID,Product Name,Sales Rep Assigned,Load Sheet Date,Impact SKUs Placements
+408,Fredon Liquor (Fredon Deli),2415,Corona Extra 1/12/24 oz Can,Jayson Romine,6/8/2026,1.00
+408,Fredon Liquor (Fredon Deli),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Jayson Romine,6/4/2026,1.00
+1003,23 liquor & Tobacco,2415,Corona Extra 1/12/24 oz Can,Klejdi Lamo,6/3/2026,1.00
+1003,23 liquor & Tobacco,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Klejdi Lamo,6/3/2026,1.00
+1012,Uncorked Wines & Spirits (West Milford),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/11/2026,1.00
+1015,Greenwood Lake Disc.(P),2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+1015,Greenwood Lake Disc.(P),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+1015,Greenwood Lake Disc.(P),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+2002,Ringwood Discount Liquors,2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+2002,Ringwood Discount Liquors,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+2003,Ringwood W&L,2511,Corona Light 1/24/12 oz Loose Can,Anthony Palmisano,6/9/2026,1.00
+3001,Best Cellars (Wanaque),2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/4/2026,1.00
+3001,Best Cellars (Wanaque),2509,Corona Light 1/24/12 oz Loose Btl,Anthony Palmisano,6/1/2026,1.00
+3001,Best Cellars (Wanaque),2511,Corona Light 1/24/12 oz Loose Can,Anthony Palmisano,6/8/2026,1.00
+3001,Best Cellars (Wanaque),2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/1/2026,1.00
+3001,Best Cellars (Wanaque),2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/4/2026,1.00
+3001,Best Cellars (Wanaque),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/4/2026,1.00
+3005,Usa Wine Traders (Wanaque),2509,Corona Light 1/24/12 oz Loose Btl,Anthony Palmisano,6/4/2026,1.00
+3005,Usa Wine Traders (Wanaque),2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/4/2026,1.00
+3006,Wine 2 Spirits (P),2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+3006,Wine 2 Spirits (P),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+3006,Wine 2 Spirits (P),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+4002,Bloomingdale Discount Liq,2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/3/2026,1.00
+4002,Bloomingdale Discount Liq,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+4002,Bloomingdale Discount Liq,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+4005,Turnpike Discount Liquors,2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+4005,Turnpike Discount Liquors,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/5/2026,1.00
+4005,Turnpike Discount Liquors,2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+4005,Turnpike Discount Liquors,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2807,Modelito Especial 1/24/7 oz Loose Btl,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4005,Turnpike Discount Liquors,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/5/2026,1.00
+4005,Turnpike Discount Liquors,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4005,Turnpike Discount Liquors,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+4009,Usa Wine Traders Club (Bloomingdale),2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+5001,River Place Food Store,2403,Coronita Extra 2/12/7 oz Btl,Anthony Palmisano,6/9/2026,1.00
+5001,River Place Food Store,2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/5/2026,1.00
+5001,River Place Food Store,2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+5001,River Place Food Store,2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/5/2026,1.00
+5001,River Place Food Store,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/5/2026,1.00
+5001,River Place Food Store,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/12/2026,1.00
+5001,River Place Food Store,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+5006,Roserne Pkg Store South,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+6002,Roserne Liquors North,2807,Modelito Especial 1/24/7 oz Loose Btl,Anthony Palmisano,6/9/2026,1.00
+6002,Roserne Liquors North,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+6002,Roserne Liquors North,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/12/2026,1.00
+6002,Roserne Liquors North,2832,Modelo Oro 2/12/12 oz Can,Anthony Palmisano,6/3/2026,1.00
+6004,Kinnelon Country Wine & Liquor,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/10/2026,1.00
+6004,Kinnelon Country Wine & Liquor,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Michael Harboy,6/10/2026,1.00
+6004,Kinnelon Country Wine & Liquor,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Michael Harboy,6/10/2026,1.00
+6004,Kinnelon Country Wine & Liquor,2832,Modelo Oro 2/12/12 oz Can,Michael Harboy,6/10/2026,1.00
+7001,Home Wine and Liquors,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+8002,Country Convenience Store,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/8/2026,1.00
+8002,Country Convenience Store,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+8002,Country Convenience Store,2807,Modelito Especial 1/24/7 oz Loose Btl,Anthony Palmisano,6/9/2026,1.00
+8002,Country Convenience Store,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/8/2026,1.00
+8002,Country Convenience Store,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+8005,Empire Wine & Liquor,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/3/2026,1.00
+8005,Empire Wine & Liquor,2807,Modelito Especial 1/24/7 oz Loose Btl,Anthony Palmisano,6/10/2026,1.00
+8005,Empire Wine & Liquor,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/10/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/8/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/8/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/8/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/8/2026,1.00
+8007,Krauszer's Liquor Wine and Spirits,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/8/2026,1.00
+8008,Shoppers Disc(A)Pompton,2807,Modelito Especial 1/24/7 oz Loose Btl,Anthony Palmisano,6/2/2026,1.00
+8008,Shoppers Disc(A)Pompton,2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/2/2026,1.00
+8008,Shoppers Disc(A)Pompton,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+8008,Shoppers Disc(A)Pompton,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/5/2026,1.00
+8008,Shoppers Disc(A)Pompton,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/5/2026,1.00
+8009,Appio's Liquors,2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2813,Modelo Negra 2/12/12 oz Btl,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/4/2026,1.00
+8009,Appio's Liquors,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/4/2026,1.00
+8010,George's Market (A),2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2654,Victoria 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+8010,George's Market (A),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/10/2026,1.00
+8010,George's Market (A),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/10/2026,1.00
+8010,George's Market (A),2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+9003,B & B Wine&Liq,2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2415,Corona Extra 1/12/24 oz Can,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2416,Corona Familiar 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2509,Corona Light 1/24/12 oz Loose Btl,Anthony Palmisano,6/5/2026,1.00
+10003,Buy Rite W &L Pompton(P),2651,Victoria 2/12/12 oz Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2652,Victoria 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2817,Modelo Especial 1/12/32 oz Btl,Anthony Palmisano,6/9/2026,1.00
+10003,Buy Rite W &L Pompton(P),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Anthony Palmisano,6/2/2026,1.00
+10003,Buy Rite W &L Pompton(P),2832,Modelo Oro 2/12/12 oz Can,Anthony Palmisano,6/9/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2403,Coronita Extra 2/12/7 oz Btl,Mike Ast,6/1/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2415,Corona Extra 1/12/24 oz Can,Mike Ast,6/8/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2807,Modelito Especial 1/24/7 oz Loose Btl,Mike Ast,6/1/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Mike Ast,6/8/2026,1.00
+11003,Lincoln Park Fine Wines & Spirits,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Mike Ast,6/8/2026,1.00
+11005,Wolfson Market,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/9/2026,1.00
+11005,Wolfson Market,2416,Corona Familiar 1/12/32 oz Btl,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2416,Corona Familiar 1/12/32 oz Btl,Michael Harboy,6/9/2026,1.00
+11005,Wolfson Market,2817,Modelo Especial 1/12/32 oz Btl,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2817,Modelo Especial 1/12/32 oz Btl,Michael Harboy,6/9/2026,1.00
+11005,Wolfson Market,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+11005,Wolfson Market,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Michael Harboy,6/9/2026,1.00
+11014,Wayne Liquor Locker,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/10/2026,1.00
+11014,Wayne Liquor Locker,2652,Victoria 2/12/12 oz Can,Michael Harboy,6/10/2026,1.00
+12005,Shay's Liquors,2403,Coronita Extra 2/12/7 oz Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+12005,Shay's Liquors,2416,Corona Familiar 1/12/32 oz Btl,Michael Harboy,6/2/2026,1.00
+12005,Shay's Liquors,2509,Corona Light 1/24/12 oz Loose Btl,Michael Harboy,6/9/2026,1.00
+12005,Shay's Liquors,2511,Corona Light 1/24/12 oz Loose Can,Michael Harboy,6/2/2026,1.00
+12005,Shay's Liquors,2807,Modelito Especial 1/24/7 oz Loose Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2813,Modelo Negra 2/12/12 oz Btl,Michael Harboy,6/4/2026,1.00
+12005,Shay's Liquors,2817,Modelo Especial 1/12/32 oz Btl,Michael Harboy,6/2/2026,1.00
+12005,Shay's Liquors,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Michael Harboy,6/2/2026,1.00
+12011,Bottle King (A) Wayne,2509,Corona Light 1/24/12 oz Loose Btl,Mike Ast,6/2/2026,1.00
+12011,Bottle King (A) Wayne,2807,Modelito Especial 1/24/7 oz Loose Btl,Mike Ast,6/2/2026,1.00
+12017,Shays Liquors,2415,Corona Extra 1/12/24 oz Can,Michael Harboy,6/8/2026,1.00
+12017,Shays Liquors,2416,Corona Familiar 1/12/32 oz Btl,Michael Harboy,6/8/2026,1.00
+12017,Shays Liquors,2817,Modelo Especial 1/12/32 oz Btl,Michael Harboy,6/8/2026,1.00
+12017,Shays Liquors,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Michael Harboy,6/8/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2415,Corona Extra 1/12/24 oz Can,Derrick Laws,6/10/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2651,Victoria 2/12/12 oz Btl,Derrick Laws,6/1/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2807,Modelito Especial 1/24/7 oz Loose Btl,Derrick Laws,6/1/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2807,Modelito Especial 1/24/7 oz Loose Btl,Derrick Laws,6/10/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Derrick Laws,6/3/2026,1.00
+13001,Shop Rite Liq (A)Littlefl,2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Derrick Laws,6/10/2026,1.00
+13008,Little Falls Liq(P),2415,Corona Extra 1/12/24 oz Can,Jim Heaney,6/3/2026,1.00
+13008,Little Falls Liq(P),2415,Corona Extra 1/12/24 oz Can,Jim Heaney,6/8/2026,1.00
+13008,Little Falls Liq(P),2416,Corona Familiar 1/12/32 oz Btl,Jim Heaney,6/3/2026,1.00
+13008,Little Falls Liq(P),2651,Victoria 2/12/12 oz Btl,Jim Heaney,6/4/2026,1.00
+13008,Little Falls Liq(P),2807,Modelito Especial 1/24/7 oz Loose Btl,Jim Heaney,6/10/2026,1.00
+13008,Little Falls Liq(P),2813,Modelo Negra 2/12/12 oz Btl,Jim Heaney,6/4/2026,1.00
+13008,Little Falls Liq(P),2817,Modelo Especial 1/12/32 oz Btl,Jim Heaney,6/3/2026,1.00
+13008,Little Falls Liq(P),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Jim Heaney,6/3/2026,1.00
+13008,Little Falls Liq(P),2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Jim Heaney,6/8/2026,1.00
+13008,Little Falls Liq(P),2827,Modelo Chelada Pina Picante 1/12/24 oz Can,Jim Heaney,6/3/2026,1.00
+13017,On The Rocks,2415,Corona Extra 1/12/24 oz Can,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2415,Corona Extra 1/12/24 oz Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2415,Corona Extra 1/12/24 oz Can,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2416,Corona Familiar 1/12/32 oz Btl,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2416,Corona Familiar 1/12/32 oz Btl,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2652,Victoria 2/12/12 oz Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2654,Victoria 1/12/32 oz Btl,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Jim Heaney,6/2/2026,1.00
+13017,On The Rocks,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Jim Heaney,6/4/2026,1.00
+13017,On The Rocks,2821,Modelo Chelada Limon y Sal 1/12/24 oz Can,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2828,Modelo Chelada Limon y Sal 2/12/12 oz Can,Jim Heaney,6/8/2026,1.00
+13017,On The Rocks,2835,Modelo Chelada 2/12/12 oz Can,Jim Heaney,6/2/2026,1.00
+14007,Total Wine & More (Totowa),2403,Coronita Extra 2/12/7 oz Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2415,Corona Extra 1/12/24 oz Can,Dave Ehlers,6/5/2026,1.00
+14007,Total Wine & More (Totowa),2415,Corona Extra 1/12/24 oz Can,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2449,Corona Premier 1/24/12 oz Loose Can,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2509,Corona Light 1/24/12 oz Loose Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2509,Corona Light 1/24/12 oz Loose Btl,Dave Ehlers,6/5/2026,1.00
+14007,Total Wine & More (Totowa),2509,Corona Light 1/24/12 oz Loose Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2511,Corona Light 1/24/12 oz Loose Can,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2511,Corona Light 1/24/12 oz Loose Can,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2651,Victoria 2/12/12 oz Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2651,Victoria 2/12/12 oz Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2652,Victoria 2/12/12 oz Can,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2652,Victoria 2/12/12 oz Can,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2654,Victoria 1/12/32 oz Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2654,Victoria 1/12/32 oz Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2807,Modelito Especial 1/24/7 oz Loose Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2807,Modelito Especial 1/24/7 oz Loose Btl,Dave Ehlers,6/10/2026,1.00
+14007,Total Wine & More (Totowa),2813,Modelo Negra 2/12/12 oz Btl,Dave Ehlers,6/3/2026,1.00
+14007,Total Wine & More (Totowa),2813,Modelo Negra 2/12/12 oz Btl,Dave Ehlers,6/10/2026,1.00
