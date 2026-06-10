@@ -86,6 +86,11 @@
   .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:16px}
   .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px}
   .amp .v.earn{color:var(--gold-deep)}
+  .brk{margin:9px 0 2px;border-top:1px solid var(--line-soft);padding-top:9px}
+  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px;font-family:"Space Grotesk",sans-serif}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
+  .brow small{color:var(--ink-soft);font-weight:500}
 
   .empty{max-width:560px;margin:60px auto;padding:0 24px;text-align:center;color:var(--ink-soft)}
   .empty h2{font-family:"Space Grotesk";color:var(--ink)}
@@ -124,7 +129,7 @@
 
 <script>
 const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
-let DATA={}, activeRep="ALL";
+let DATA={}, activeRep="ALL", QSUP=new Set();
 
 function parseCSV(text){
   const rows=[];let row=[],cur="",q=false;
@@ -140,7 +145,7 @@ const money=n=>"$"+Math.round(n).toLocaleString();
 const rateFor=b=>/fever|mike|mxd/i.test(b)?2:1;
 
 function build(text){
-  const rows=parseCSV(text); const reps={};
+  const rows=parseCSV(text); const reps={}; QSUP=new Set();
   let curRep=null, curSup=null, curTier=null;
   for(let i=1;i<rows.length;i++){
     const r=rows[i]; if(!r.length) continue;
@@ -149,13 +154,17 @@ function build(text){
     if(a==="Total"||a==="") continue;
     if(b){
       curSup=a; curTier=/^qualifier/i.test(b)?"Q":(/^amplify/i.test(b)?"A":"?");
+      if(curTier==="Q") QSUP.add(a);
       const R=reps[curRep]; if(!R) continue;
-      if(curTier==="Q") R.qual[a]={ly,ty,goal};
+      if(curTier==="Q") R.qual[a]={ly,ty,goal,brands:[]};
       else if(curTier==="A") R.amp[a]={ly,ty,brands:[]};
     } else if(REPS.has(a)){
       curRep=a; reps[a]={name:a,qual:{},amp:{}}; curSup=null;curTier=null;
     } else {
-      if(curRep&&curSup&&curTier==="A"&&reps[curRep].amp[curSup]) reps[curRep].amp[curSup].brands.push({brand:a,ly,ty});
+      if(curRep&&curSup&&reps[curRep]){
+        if(curTier==="A"&&reps[curRep].amp[curSup]) reps[curRep].amp[curSup].brands.push({brand:a,ly,ty});
+        else if(curTier==="Q"&&reps[curRep].qual[curSup]) reps[curRep].qual[curSup].brands.push({brand:a,ly,ty});
+      }
     }
   }
   return reps;
@@ -170,16 +179,17 @@ function calc(R){
     const q=R.qual[sup], a=R.amp[sup];
     const hasGoal=q&&q.goal>0;
     const isQ = hasGoal && q.ty>=q.goal;
+    const isAmpOnly = !QSUP.has(sup);  // supplier never appears as a qualifier -> auto-unlock
     if(hasGoal){goalSups++; if(isQ)qualified++; pctSum+=Math.min(q.ty/q.goal,1);}
-    // amplify $ (gated on this supplier's qualifier)
-    let aPay=0, aInc=0, aTy=0, aLy=0, gated=hasGoal;
+    let aPay=0, aInc=0, aTy=0, aLy=0, aOpen=false;
     if(a){
       aTy=a.ty; aLy=a.ly;
-      if(a.brands.length){ a.brands.forEach(br=>{aInc+=Math.max(0,br.ty-br.ly); aPay+= (gated&&isQ)?Math.max(0,br.ty-br.ly)*rateFor(br.brand):0;}); }
-      else { aInc=Math.max(0,a.ty-a.ly); aPay=(gated&&isQ)?aInc:0; }
+      aOpen = isAmpOnly ? true : (hasGoal && isQ);
+      if(a.brands.length){ a.brands.forEach(br=>{aInc+=Math.max(0,br.ty-br.ly); aPay+= aOpen?Math.max(0,br.ty-br.ly)*rateFor(br.brand):0;}); }
+      else { aInc=Math.max(0,a.ty-a.ly); aPay=aOpen?aInc:0; }
     }
     amp+=aPay;
-    cards.push({sup,q,hasGoal,isQ,a,aPay,aInc,aTy,aLy,gated});
+    cards.push({sup,q,hasGoal,isQ,isAmpOnly,a,aPay,aInc,aTy,aLy,aOpen});
   });
   const avgPct = goalSups? (pctSum/goalSups*100):0;
   return {goalSups,qualified,avgPct,amp,cards};
@@ -230,18 +240,23 @@ function renderMain(){
       <div><div class="big num gold">${c.qualified}<span style="font-size:18px;color:#A89F8C">/${c.goalSups}</span></div><div class="lab">Suppliers qualified</div></div>
       <div><div class="big num gold">${money(c.amp)}</div><div class="lab">Amplify earned so far</div></div>
       <div><div class="big num">${c.avgPct.toFixed(0)}%</div><div class="lab">Avg progress to goal</div></div></div>`;
+    const brkList=(title,brands,rate)=> (brands&&brands.length)?`<div class="brk"><div class="cap">${title}</div>`+
+      brands.slice().sort((a,b)=>b.ty-a.ty).map(br=>`<div class="brow"><span>${esc(br.brand)}${rate&&rateFor(br.brand)===2?' · $2':''}</span><span class="num">${Math.round(br.ty)}<small> / ${Math.round(br.ly)} \u201825</small></span></div>`).join("")+`</div>`:"";
     html+=cards.map(x=>{
       const pct=x.hasGoal?Math.min(x.q.ty/x.q.goal*100,100):0;
-      const badge=x.hasGoal?(x.isQ?`<span class="badge ok">Qualified</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`):"";
+      let badge="";
+      if(x.hasGoal) badge=x.isQ?`<span class="badge ok">Qualified</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`;
+      else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">Amplify unlocked</span>`;
       let qhtml = x.hasGoal ? `
         <div class="qline"><span>Qualifier volume (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
-        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>` : `<div class="qline"><span>No qualifier goal for this supplier</span></div>`;
+        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
+        ${brkList('Qualifier brands · 2026 case equiv', x.q.brands, false)}` : (x.isAmpOnly ? "" : `<div class="qline"><span>No qualifier goal assigned</span></div>`);
       let ahtml="";
       if(x.a){
         const inc=Math.round(x.aInc);
-        if(!x.hasGoal){ ahtml=`<div class="amp"><span class="l">Amplify · 2026 ${Math.round(x.aTy)} vs 2025 ${Math.round(x.aLy)}</span><span class="v locked">gate rule TBD</span></div>`; }
-        else if(x.isQ){ ahtml=`<div class="amp"><span class="l">Amplify bonus · ${inc} cases over 2025</span><span class="v earn">${money(x.aPay)}</span></div>`; }
+        if(x.aOpen){ ahtml=`<div class="amp"><span class="l">Amplify bonus · ${inc} cases over 2025${x.hasGoal?'':' (no qualifier needed)'}</span><span class="v earn">${money(x.aPay)}</span></div>`; }
         else { ahtml=`<div class="amp"><span class="l">Amplify bonus</span><span class="v locked">🔒 unlocks when qualified</span></div>`; }
+        ahtml += brkList('Amplify brands · 2026 case equiv', x.a.brands, true);
       }
       return `<div class="scard"><div class="sup">${esc(x.sup)}${badge}</div>${qhtml}${ahtml}</div>`;
     }).join("");
@@ -258,7 +273,7 @@ async function boot(){
   if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report (rep / supplier / brand layout) saved as CSV.");return;}
   renderChips();renderKPIs();renderMain();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Qualifier</b> = your 2026 summer case-equiv vs your supplier goal. <b>Amplify</b> bonus = each Amplify brand's cases over its 2025 total, $1/case (Fever-Tree, Mike's Harder &amp; MXD pay $2), and only once that supplier's qualifier is hit. Summer just started, so figures grow through August. Tier qualifier payout pending route volumes.";
+  document.getElementById("foot").innerHTML="<b>Qualifier</b> = your 2026 summer case-equiv vs your supplier goal. <b>Amplify</b> bonus = each Amplify brand's cases over its 2025 total, $1/case (Fever-Tree, Mike's Harder &amp; MXD pay $2). Suppliers with a qualifier unlock once it's hit; Sapporo, Cape May &amp; New Belgium have no qualifier, so they're unlocked automatically. Summer just started, so figures grow through August. Tier qualifier payout pending route volumes.";
 }
 boot();
 </script>
