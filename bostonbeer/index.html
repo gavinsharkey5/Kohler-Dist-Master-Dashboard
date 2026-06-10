@@ -234,9 +234,14 @@ function renderSC(app){
       <div class="qline" style="margin-top:14px"><span>2026 pace vs 2025 total</span><span class="num">${ce0(R.ty)} / ${ce0(R.ly)}</span></div>
       <div class="bar ${R.ty>=R.ly?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
       <div class="pl" style="margin-top:9px">2026 is still filling in (May–Aug). Bar turns green once you pass last year's full total.</div></div>`;
-    const skus=R.skus.slice().sort((a,b)=>b.ty-a.ty);
-    const list=skus.map(s=>`<div class="brow"><span>${esc(s.name)} · ${esc(s.pkg)}</span><span class="num">${ce0(s.ty)}<small> / ${ce0(s.ly)} '25</small></span></div>`).join("");
-    app.innerHTML=hero+`<div class="quest"><div class="sup">Sun Cruiser SKUs<span class="badge prog">${skus.length}</span></div><div class="brk" style="border-top:none;padding-top:4px"><div class="cap">2026 cases / 2025 cases</div>${list}</div></div>`;
+    const groups={};
+    R.skus.forEach(s=>{const g=groups[s.pkg]||(groups[s.pkg]={pkg:s.pkg,ly:0,ty:0,items:[]});g.ly+=s.ly;g.ty+=s.ty;g.items.push(s);});
+    const gArr=Object.values(groups).sort((a,b)=>b.ty-a.ty);
+    const cards=gArr.map(g=>{
+      const items=g.items.slice().sort((a,b)=>b.ty-a.ty).map(s=>`<div class="brow"><span>${esc(s.name)}</span><span class="num">${ce0(s.ty)}<small> / ${ce0(s.ly)} '25</small></span></div>`).join("");
+      return `<div class="quest"><div class="sup">${esc(g.pkg||"Other")}<span class="badge prog">${ce0(g.ty)} / ${ce0(g.ly)} '25</span></div><div class="brk" style="border-top:none;padding-top:4px"><div class="cap">2026 cases / 2025 cases</div>${items}</div></div>`;
+    }).join("");
+    app.innerHTML=hero+`<div class="shead"><h2>By package</h2><span class="meta">${gArr.length} package groups</span></div>`+cards;
   }
 }
 
