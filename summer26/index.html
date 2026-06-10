@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F6F7F9; --ink-soft:#ABB2C2;
     --line:#262A35; --line-soft:#1F222B;
     --accent:#E6B23C; --accent2:#C7892A;        /* tracker accent (SoS = gold) */
     --good:#37C46B; --good-soft:#15301E;
@@ -20,7 +20,7 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16.5px;line-height:1.52;
     padding-bottom:env(safe-area-inset-bottom)}
   .wrap{max-width:860px;margin:0 auto;padding:0 18px}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
@@ -35,7 +35,7 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
   @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
-  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
+  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:15px}
   .lede b{color:var(--accent)}
   .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
 
@@ -80,7 +80,7 @@
   .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
   .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
   .who b{font-weight:600;font-size:15px}
-  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .who .sub{font-size:13px;color:var(--ink-soft);margin-top:3px}
   .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
   .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px}
   .win{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap;color:var(--accent)}
@@ -96,7 +96,7 @@
   .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
   .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
   .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
-  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
+  .hero .nm small{display:block;font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:3px;font-family:"Inter"}
   .hero .win2{margin-left:auto;text-align:right}
   .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
   .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
@@ -112,18 +112,20 @@
   .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
   .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
   .badge svg{width:11px;height:11px}
-  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
+  .qline{font-size:13.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
   .qline .num{color:var(--ink);font-weight:600}
   .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
   .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
   .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
   .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
-  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
-  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .seclabel{font-family:"Space Grotesk";font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:12px 0 9px}
+  .seclabel.div{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .brk .cap{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:4px 0}
   .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
   .brow small{color:var(--ink-soft);font-weight:500}
   .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .amp .l{color:var(--ink-soft);font-size:12.5px}
+  .amp .l{color:var(--ink-soft);font-size:13.5px}
   .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:17px}
   .amp .v.earn{color:var(--accent)}
   .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
@@ -270,15 +272,17 @@ function render(){
       let badge="";
       if(x.hasGoal) badge=x.isQ?`<span class="badge ok">${CHECK} Cleared</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`;
       else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">${CHECK} Amplify open</span>`;
-      const qh=x.hasGoal?`<div class="qline"><span>Goal progress (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
-        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Qualifier brands · 2026 ce', x.q.brands, false)}`
-        :(x.isAmpOnly?"":`<div class="qline"><span>No qualifier goal assigned</span></div>`);
+      const qh=x.hasGoal?`<div class="seclabel">Qualifier</div>
+        <div class="qline"><span>Goal progress (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
+        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Brands · 2026 ce', x.q.brands, false)}`
+        :(x.isAmpOnly?"":`<div class="seclabel">Qualifier</div><div class="qline"><span>No qualifier goal assigned</span></div>`);
       let ah="";
       if(x.a){const inc=Math.round(x.aInc);
-        ah = x.aOpen ? `<div class="amp"><span class="l">Amplify bonus · ${inc} cases over 2025${x.hasGoal?'':' (auto-open)'}</span><span class="v earn">${money(x.aPay)}</span></div>`
-          : `<div class="amp"><span class="l">Amplify bonus</span><span class="v locked">${LOCK} clear the goal to unlock</span></div>`;
-        const atot = x.aLy>0 ? `<div class="qline" style="margin-top:12px"><span>Amplify total · 2026 vs 2025 goal</span><span class="num">${Math.round(x.aTy)} / ${Math.round(x.aLy)}</span></div><div class="bar ${x.aTy>=x.aLy?'done':''}"><i style="width:${Math.min(x.aTy/x.aLy*100,100).toFixed(1)}%"></i></div>` : "";
-        ah+=atot+brk('Amplify brands · 2026 ce', x.a.brands, true);
+        const lab=`<div class="seclabel${x.hasGoal?' div':''}">Amplify</div>`;
+        const line = x.aOpen ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Bonus · ${inc} cases over 2025</span><span class="v earn">${money(x.aPay)}</span></div>`
+          : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Bonus</span><span class="v locked">${LOCK} clear the goal to unlock</span></div>`;
+        const atot = x.aLy>0 ? `<div class="qline" style="margin-top:11px"><span>Total · 2026 vs 2025 goal</span><span class="num">${Math.round(x.aTy)} / ${Math.round(x.aLy)}</span></div><div class="bar ${x.aTy>=x.aLy?'done':''}"><i style="width:${Math.min(x.aTy/x.aLy*100,100).toFixed(1)}%"></i></div>` : "";
+        ah=lab+line+atot+brk('Brands · 2026 ce', x.a.brands, true);
       }
       return `<div class="quest"><div class="sup">${esc(x.sup)}${badge}</div>${qh}${ah}</div>`;
     }).join("");
