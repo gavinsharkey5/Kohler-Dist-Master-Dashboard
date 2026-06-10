@@ -1,14 +1,37 @@
 Customer,Product,Load Sheet Date,Num Units
+191816 Vasa Park,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+32023 Redd's Rest (Z),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,2
+231302 Thirsty Farmer,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,2
+12020 Lakeside drive tavern,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+25056 Emerald Corner (Z),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
+76005 Midland Brewhouse (A),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+74012 Iron Horse,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,2
+93014 Double Tree By Hilton,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+37070 The Hive Bar & Bistro,4703 Yuengling Lager 7.75 Gal Keg,6/10/2026,1
+40005 Lazy Lanigans (A),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+190207 Liquor Outlet,4703 Yuengling Lager 7.75 Gal Keg,6/10/2026,2
+12026 WAYNE ALE HOUSE & PIZZA,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+190102 Lake Valhalla Club (P),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+4007 Karls Stumble Inn,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+191504 Jefferson House (A),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+24025 The Clif (P),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
+89002 Allendale Bar & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+93005 Mason Jar Restaurant,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+88003 W's Village Grille,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+191505 Mckenna's Pub (P),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+4011 Bloomingdale Fire Dept,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
+230422 Boomer Bar (P) & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+230306 AG Pizza & Restaurant - Newton,4703 Yuengling Lager 7.75 Gal Keg,6/11/2026,1
 231803 High Point Gc/Rest (P),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
-88002 Nellie's Place (P),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
-190108 Harrigan's Rest. (P),4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+88002 Nellie's Place (P),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+190108 Harrigan's Rest. (P),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
 191710 Shop Rite Wine & Spirits Stanhope,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
-190608 Cedar Lake Club,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
-230108 Vfw 7248 Sparta,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+190608 Cedar Lake Club,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
+230108 Vfw 7248 Sparta,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
 83005 Glen Rock Inn,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
 94013 Portobello Feasts,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
 231309 The Stuffed Olive_2,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
-92007 Brady's At(A)The Station,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
+92007 Brady's At(A)The Station,4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
 230929 Airport Pub & Pkg,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
 191507 The Windlass Rest (A),4701 Yuengling Lager 15.5 Gal Keg,6/11/2026,1
 19005 Celtic Corner,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,1
@@ -35,7 +58,7 @@ Customer,Product,Load Sheet Date,Num Units
 120002 PICNIC,4701 Yuengling Lager 15.5 Gal Keg,6/8/2026,-3
 191009 Mason Street Grille,4701 Yuengling Lager 15.5 Gal Keg,6/10/2026,2
 230103 St.Moritz Grill & Bar,4701 Yuengling Lager 15.5 Gal Keg,6/9/2026,1
-74012 Iron Horse,4701 Yuengling Lager 15.5 Gal Keg,6/9/2026,2
+74012 Iron Horse,4701 Yuengling Lager 15.5 Gal Keg,6/9/2026,0
 24019 Sharky's Wings(P),4701 Yuengling Lager 15.5 Gal Keg,6/9/2026,2
 76013 Vfw Of Saddlebrook,4701 Yuengling Lager 15.5 Gal Keg,6/8/2026,-2
 230930 Brick & Brew,4701 Yuengling Lager 15.5 Gal Keg,6/9/2026,1
@@ -144,8 +167,6 @@ Customer,Product,Load Sheet Date,Num Units
 230123 Sparta Lanes (Pino),4701 Yuengling Lager 15.5 Gal Keg,6/3/2026,2
 8 Out Of Code,4703 Yuengling Lager 7.75 Gal Keg,6/2/2026,1
 57004 River & Henley,4701 Yuengling Lager 15.5 Gal Keg,6/3/2026,1
-73003 Bottle King (A) Hillsdale,4764 Yuengling Flight Keg 15.5BBL,6/4/2026,0
-73003 Bottle King (A) Hillsdale,4764 Yuengling Flight Keg 15.5BBL,6/3/2026,1
 230911 The Right Bottle,4703 Yuengling Lager 7.75 Gal Keg,6/3/2026,2
 190108 Harrigan's Rest. (P),4701 Yuengling Lager 15.5 Gal Keg,6/3/2026,1
 231213 The Kites (P),4701 Yuengling Lager 15.5 Gal Keg,6/3/2026,1
@@ -167,24 +188,20 @@ Customer,Product,Load Sheet Date,Num Units
 71011 Marriott (P) Park Ridge,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 50006 Cozy Tavern (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,1
 191719 American Lgn Stanhope,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,1
-1017 Millers Ale House Rockawa,4764 Yuengling Flight Keg 15.5BBL,6/1/2026,1
 75004 Cork & Keg (A),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 231213 The Kites (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 230428 O'reilly Pub (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,1
 42009 Nikki's Bar & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 231211 Tony's Pizza (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
-19006 Blackjack Mulligans (Hawthorne),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 190108 Harrigan's Rest. (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
 24025 The Clif (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 231714 Mountain House Tav & Gril,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
 1010 Jimmy Geez(North)Bar/Gril,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
-4011 Bloomingdale Fire Dept,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 28027 Roma Rest. (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,1
 89002 Allendale Bar & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 71001 Peppercorn's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 36015 Wallington Lane (Bowlero),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 19006 Blackjack Mulligans (Hawthorne),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
-34016 Vfw Hasbrouck (A),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 84015 The Office 2131 Ridgewood,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 10001 cherry's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 31011 Blarney Station,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
@@ -264,9 +281,7 @@ Customer,Product,Load Sheet Date,Num Units
 13002 The Little Falls Tavern,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 73001 Lou's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
 24048 Dante's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
-191009 Mason Street Grille,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 67002 Brady's Fox Hunt Inn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
-1012 Uncorked Wines & Spirits (West Milford),4764 Yuengling Flight Keg 15.5BBL,6/1/2026,2
 92002 Anthony's CF Pizza (A) (Ramsey),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,2
 24026 Rock Bar,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,6
 31027 New Park Tav (A),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
@@ -276,7 +291,6 @@ Customer,Product,Load Sheet Date,Num Units
 11011 Sunset Pub & Grill(Z),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 52003 Cassies (A),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,3
 96007 The Original Barn,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,2
-12022 Grasshopper Too (A),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 4007 Karls Stumble Inn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,4
 13003 Maggie's Town Tav.(P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,4
 190905 Rockaway River Barn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,4
@@ -295,8 +309,6 @@ Customer,Product,Load Sheet Date,Num Units
 3002 The Celtic Knot,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,3
 1012 Uncorked Wines & Spirits (West Milford),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,2
 49076 Raku Izakaya (Z),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,2
-231209 Mt Creek Hex Lg(North) A,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
-85001 Eleven Central,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 14003 Murph's Bar & Liquor,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
 230401 The Greek's,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,3
 41010 Lenoras Bar (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,2
@@ -324,24 +336,20 @@ Customer,Product,Load Sheet Date,Num Units
 71011 Marriott (P) Park Ridge,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 50006 Cozy Tavern (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-1
 191719 American Lgn Stanhope,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-1
-1017 Millers Ale House Rockawa,4764 Yuengling Flight Keg 15.5BBL,6/1/2026,-1
 75004 Cork & Keg (A),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 231213 The Kites (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 230428 O'reilly Pub (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-1
 42009 Nikki's Bar & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 231211 Tony's Pizza (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
-19006 Blackjack Mulligans (Hawthorne),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 190108 Harrigan's Rest. (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
 24025 The Clif (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 231714 Mountain House Tav & Gril,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
 1010 Jimmy Geez(North)Bar/Gril,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
-4011 Bloomingdale Fire Dept,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 28027 Roma Rest. (P),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-1
 89002 Allendale Bar & Grill,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 71001 Peppercorn's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 36015 Wallington Lane (Bowlero),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 19006 Blackjack Mulligans (Hawthorne),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
-34016 Vfw Hasbrouck (A),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 84015 The Office 2131 Ridgewood,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 10001 cherry's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 31011 Blarney Station,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
@@ -421,9 +429,7 @@ Customer,Product,Load Sheet Date,Num Units
 13002 The Little Falls Tavern,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 73001 Lou's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
 24048 Dante's,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
-191009 Mason Street Grille,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 67002 Brady's Fox Hunt Inn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
-1012 Uncorked Wines & Spirits (West Milford),4764 Yuengling Flight Keg 15.5BBL,6/1/2026,-2
 92002 Anthony's CF Pizza (A) (Ramsey),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-2
 24026 Rock Bar,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-6
 31027 New Park Tav (A),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
@@ -433,7 +439,6 @@ Customer,Product,Load Sheet Date,Num Units
 11011 Sunset Pub & Grill(Z),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
 52003 Cassies (A),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-3
 96007 The Original Barn,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-2
-12022 Grasshopper Too (A),4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 4007 Karls Stumble Inn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-4
 13003 Maggie's Town Tav.(P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-4
 190905 Rockaway River Barn,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-4
@@ -452,8 +457,6 @@ Customer,Product,Load Sheet Date,Num Units
 3002 The Celtic Knot,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-3
 1012 Uncorked Wines & Spirits (West Milford),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-2
 49076 Raku Izakaya (Z),4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-2
-231209 Mt Creek Hex Lg(North) A,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
-85001 Eleven Central,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 14003 Murph's Bar & Liquor,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
 230401 The Greek's,4703 Yuengling Lager 7.75 Gal Keg,6/1/2026,-3
 41010 Lenoras Bar (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
@@ -465,9 +468,7 @@ Customer,Product,Load Sheet Date,Num Units
 230103 St.Moritz Grill & Bar,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-2
 50008 101 Pub (A),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-3
 230405 Sheridan Lodge (P),4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-3
-9 Fifo Adjustment,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,-1
 9 Fifo Adjustment,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,-1
-9 Fifo Adjustment,4769 Yuengling Flight Keg 7.75 Gal Keg,6/1/2026,1
 9 Fifo Adjustment,4701 Yuengling Lager 15.5 Gal Keg,6/1/2026,1
 49085 Tommy's Tavern + Tap (Edgewater),4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,2
 28008 Tavern On Ridge,4701 Yuengling Lager 15.5 Gal Keg,6/3/2026,1
@@ -478,7 +479,6 @@ Customer,Product,Load Sheet Date,Num Units
 1024 Buffalo Wild Wings (Rockaway),4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,1
 190905 Rockaway River Barn,4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,1
 34002 Heights Bar (P),4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,3
-31039 Yard House 8390,4764 Yuengling Flight Keg 15.5BBL,6/2/2026,0
 31039 Yard House 8390,4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,2
 231304 The Lamp Post Inn,4701 Yuengling Lager 15.5 Gal Keg,6/2/2026,1
 21043 Duffy's Tavern (Z),4701 Yuengling Lager 15.5 Gal Keg,6/4/2026,1
