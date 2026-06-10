@@ -8,44 +8,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --canvas:#0E1014; --card:#181B22; --card-h:#1F232C; --ink:#FFFFFF; --ink-soft:#9AA1B0;
-    --line:#2A2E38; --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 50px rgba(0,0,0,.45);
-  }
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;
-    padding:0 20px env(safe-area-inset-bottom);}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
   .wrap{max-width:720px;margin:0 auto}
   header{padding:56px 0 8px}
-  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;
-    font-weight:600;color:var(--ink-soft);margin:0 0 10px}
-  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(32px,8vw,46px);
-    line-height:1.0;margin:0}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--ink-soft);margin:0 0 10px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(32px,8vw,46px);line-height:1.0;margin:0}
   .sub{color:var(--ink-soft);margin:14px 0 0;max-width:48ch;font-size:15px}
-  .grid{display:grid;gap:14px;margin:34px 0 0}
-  a.tile{display:block;text-decoration:none;color:inherit;background:var(--card);
-    border:1px solid var(--line);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;
-    transition:transform .15s ease, background .15s ease, border-color .15s ease;}
+  .grid{display:grid;gap:14px;margin:30px 0 0}
+  a.tile{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;transition:transform .15s ease,background .15s ease,border-color .15s ease;}
   a.tile:hover{transform:translateY(-3px);background:var(--card-h);border-color:#3A3F4C}
   a.tile:focus-visible{outline:3px solid #5B8DEF;outline-offset:3px}
   .tile .accentbar{position:absolute;left:0;top:0;bottom:0;width:5px}
-  .tile .label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}
+  .tile .label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}
   .tile h2{font-family:"Space Grotesk";font-weight:700;font-size:21px;margin:0 0 5px;letter-spacing:-.01em}
   .tile p{margin:0;color:var(--ink-soft);font-size:14px;max-width:46ch}
-  .tile .go{position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--ink-soft);
-    font-size:24px;transition:transform .15s ease, color .15s ease}
+  .tile .go{position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--ink-soft);font-size:24px;transition:transform .15s ease,color .15s ease}
   a.tile:hover .go{transform:translateY(-50%) translateX(4px);color:var(--ink)}
+  a.tile.feature{background:linear-gradient(135deg,#241E0E,#15130D);border-color:#5A4A1E}
+  a.tile.feature:hover{border-color:#8A7330}
   a.tile.soon{opacity:.55}
   a.tile.soon:hover{transform:none;background:var(--card);border-color:var(--line)}
-  .tile .pill{position:absolute;right:20px;top:50%;transform:translateY(-50%);
-    font-family:"Space Grotesk";font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  .tile .pill{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:"Space Grotesk";font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
   a.tile.soon .go{display:none}
-  .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--ink-soft);margin:30px 0 0}
+  .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 0}
   footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px}
 </style>
 </head>
@@ -54,10 +42,18 @@
   <header>
     <p class="eyebrow">Kohler Distributing</p>
     <h1>Sales Trackers</h1>
-    <p class="sub">Live dashboards for the brands we're driving. Pick one to open it.</p>
+    <p class="sub">Live dashboards for the brands and programs we're driving. Pick one to open it.</p>
   </header>
 
   <nav class="grid">
+    <a class="tile feature" href="summer26/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#E8C45A,#9A7322)"></span>
+      <p class="label">Incentive Program · Jun–Aug 2026</p>
+      <h2>★ Summer of Success</h2>
+      <p>Your qualifier progress and Amplify bonus dollars, by rep and supplier.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+
     <a class="tile" href="yuengling/">
       <span class="accentbar" style="background:linear-gradient(180deg,#C8842B,#9C5E16)"></span>
       <p class="label">Retention · Summer 2026</p>
@@ -85,35 +81,13 @@
 
   <p class="section-label">More brands</p>
   <nav class="grid">
-    <a class="tile soon" href="molsoncoors/">
-      <span class="accentbar" style="background:linear-gradient(180deg,#C8102E,#6E7479)"></span>
-      <p class="label">Supplier</p><h2>Molson Coors</h2>
-      <p>Coors, Miller, Blue Moon — tracking by rep.</p>
-      <span class="pill">Setup pending</span>
-    </a>
-    <a class="tile soon" href="heineken/">
-      <span class="accentbar" style="background:linear-gradient(180deg,#00A04A,#00501F)"></span>
-      <p class="label">Supplier</p><h2>Heineken</h2>
-      <p>Heineken, Dos Equis, Amstel — tracking by rep.</p>
-      <span class="pill">Setup pending</span>
-    </a>
-    <a class="tile soon" href="markanthony/">
-      <span class="accentbar" style="background:linear-gradient(180deg,#2BB7B3,#1A6E7E)"></span>
-      <p class="label">Supplier</p><h2>Mark Anthony</h2>
-      <p>White Claw, Mike's — tracking by rep.</p>
-      <span class="pill">Setup pending</span>
-    </a>
-    <a class="tile soon" href="bostonbeer/">
-      <span class="accentbar" style="background:linear-gradient(180deg,#B22234,#8A6D1F)"></span>
-      <p class="label">Supplier</p><h2>Boston Beer</h2>
-      <p>Sam Adams, Truly, Twisted Tea — tracking by rep.</p>
-      <span class="pill">Setup pending</span>
-    </a>
+    <a class="tile soon" href="molsoncoors/"><span class="accentbar" style="background:linear-gradient(180deg,#C8102E,#6E7479)"></span><p class="label">Supplier</p><h2>Molson Coors</h2><p>Coors, Miller, Blue Moon — tracking by rep.</p><span class="pill">Setup pending</span></a>
+    <a class="tile soon" href="heineken/"><span class="accentbar" style="background:linear-gradient(180deg,#00A04A,#00501F)"></span><p class="label">Supplier</p><h2>Heineken</h2><p>Heineken, Dos Equis, Amstel — tracking by rep.</p><span class="pill">Setup pending</span></a>
+    <a class="tile soon" href="markanthony/"><span class="accentbar" style="background:linear-gradient(180deg,#2BB7B3,#1A6E7E)"></span><p class="label">Supplier</p><h2>Mark Anthony</h2><p>White Claw, Mike's — tracking by rep.</p><span class="pill">Setup pending</span></a>
+    <a class="tile soon" href="bostonbeer/"><span class="accentbar" style="background:linear-gradient(180deg,#B22234,#8A6D1F)"></span><p class="label">Supplier</p><h2>Boston Beer</h2><p>Sam Adams, Truly, Twisted Tea — tracking by rep.</p><span class="pill">Setup pending</span></a>
   </nav>
 
-  <footer>
-    Internal use. These dashboards show customer and account detail — please don't share the link outside the team.
-  </footer>
+  <footer>Internal use. These dashboards show customer and account detail — please don't share the link outside the team.</footer>
 </div>
 </body>
 </html>
