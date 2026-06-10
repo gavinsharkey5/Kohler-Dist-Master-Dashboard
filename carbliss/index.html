@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carbliss Distribution — Rep Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#F4F5F8; --card:#FFFFFF; --ink:#15171C; --ink-soft:#646A78;
+    --accent:#E5197D; --accent-deep:#B30E60; --line:#E7E9EF; --line-soft:#F0F1F5;
+    --shadow:0 1px 2px rgba(21,23,28,.05), 0 10px 30px rgba(21,23,28,.06);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:16px;line-height:1.45;padding-bottom:env(safe-area-inset-bottom);}
+  .wrap{max-width:820px;margin:0 auto}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+
+  /* header — black like the can */
+  header{background:var(--ink);color:#fff;padding:28px 20px 60px;position:relative;overflow:hidden}
+  header .wrap{position:relative;z-index:1}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11.5px;
+    font-weight:600;color:var(--accent);margin:0 0 8px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.01em;font-size:clamp(30px,8vw,46px);
+    line-height:.98;margin:0}
+  .lede{margin:12px 0 0;max-width:52ch;color:#B9BEC9;font-size:14.5px}
+  .updated{margin:12px 0 0;font-size:11.5px;color:#7C8290;font-family:"Space Grotesk";letter-spacing:.04em}
+  /* spectrum ribbon bleeding off the header bottom = signature */
+  .ribbon{position:absolute;left:0;right:0;bottom:0;height:8px;display:flex}
+  .ribbon i{flex:1;height:100%}
+
+  /* KPI tiles overlapping the header */
+  .kpis{max-width:820px;margin:-40px auto 0;padding:0 20px;position:relative;z-index:2;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 14px 13px;box-shadow:var(--shadow)}
+  .kpi .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0;font-weight:600}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:6px 0 0;line-height:1}
+  .kpi .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+
+  section.block{max-width:820px;margin:26px auto 0;padding:0 20px}
+  .h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 12px}
+  .h h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;letter-spacing:-.01em;margin:0}
+  .h .meta{font-size:12px;color:var(--ink-soft)}
+
+  /* flavor spectrum */
+  .spectrum{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .specbar{height:26px;border-radius:8px;overflow:hidden;display:flex;border:1px solid var(--line)}
+  .specbar span{height:100%;min-width:2px;transition:flex-grow .4s ease}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:13px 0 0}
+  .legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink)}
+  .legend .dot{width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+  .legend .ce{color:var(--ink-soft);font-family:"Space Grotesk"}
+
+  /* rep filter */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:all .12s ease}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  /* leaderboard */
+  .board{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;padding:12px 16px;
+    border-top:1px solid var(--line-soft);cursor:pointer;transition:background .12s}
+  .row:first-child{border-top:none}
+  .row:hover{background:#FBFAFC}
+  .row .rank{font-family:"Space Grotesk";font-weight:700;color:var(--ink-soft);font-size:14px}
+  .row .who{min-width:0}
+  .row .who b{font-weight:600;font-size:15px}
+  .row .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .row .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
+  .row .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-deep));border-radius:4px}
+  .row .big{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap}
+  .row .big small{display:block;font-size:11px;color:var(--ink-soft);font-weight:500;margin-top:2px}
+
+  /* account cards (rep view) */
+  .acct{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin:0 0 10px;box-shadow:var(--shadow)}
+  .acct .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .acct .nm{font-weight:600;font-size:14.5px}
+  .acct .loc{font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .acct .tag{font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+  .acct .tag.off{background:#EAF3FF;color:#1E62C7}
+  .acct .tag.on{background:#FFF0E9;color:#C7521E}
+  .acct .stat{font-family:"Space Grotesk";font-weight:700;font-size:15px;text-align:right;white-space:nowrap}
+  .acct .stat small{font-weight:500;color:var(--ink-soft);font-size:11px}
+  .finger{display:flex;gap:4px;margin:11px 0 0;align-items:center;flex-wrap:wrap}
+  .finger .pip{width:14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.06)}
+  .finger .pip.off{background:var(--line)}
+  .finger .lab{font-size:11.5px;color:var(--ink-soft);font-family:"Space Grotesk";margin-left:4px}
+
+  /* premise split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+  .pcard .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0;font-weight:600}
+  .pcard .v{font-family:"Space Grotesk";font-weight:700;font-size:24px;margin:5px 0 0}
+  .pcard .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+
+  .empty{max-width:560px;margin:60px auto;padding:0 24px;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink);font-size:20px}
+
+  footer{max-width:820px;margin:30px auto 0;padding:0 20px 44px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+
+  @media (max-width:540px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Kohler Distributing · Carbliss</p>
+    <h1>Distribution<br>Scorecard</h1>
+    <p class="lede">Where Carbliss is placed, how broadly, and how deep — by rep. Volume is measured in case equivalents; depth is how many of the 10 flavors an account carries. Tap a rep to drill in.</p>
+    <p class="updated" id="updated"></p>
+  </div>
+  <div class="ribbon" id="ribbon"></div>
+</header>
+
+<div id="app">
+  <section class="kpis" id="kpis"></section>
+
+  <section class="block">
+    <div class="h"><h2 id="specTitle">Flavor mix</h2><span class="meta" id="specMeta"></span></div>
+    <div class="spectrum">
+      <div class="specbar" id="specbar"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="h"><h2>View by rep</h2></div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section class="block" id="mainBlock">
+    <div class="h"><h2 id="mainTitle">Rep leaderboard</h2><span class="meta" id="mainMeta"></span></div>
+    <div id="mainBody"></div>
+  </section>
+
+  <section class="block" id="premiseBlock">
+    <div class="h"><h2>On vs Off premise</h2><span class="meta">by case equivalents</span></div>
+    <div class="split" id="premise"></div>
+  </section>
+
+  <footer><hr><p id="foot"></p></footer>
+</div>
+
+<script>
+/* ---- flavor palette (maps each Carbliss flavor to a color for the spectrum) ---- */
+const FLAVOR_COLORS = {
+  "Black Raspberry":"#8E2DE2", "Pineapple":"#F4B400", "Lemon Lime":"#7CB518",
+  "Peach":"#FF9F68", "Black Cherry":"#6A040F", "Cranberry":"#D00000",
+  "Blood Orange":"#F48C06", "Watermelon":"#FF5DA2", "Lemon Tea":"#B07D3C",
+  "Grapefruit":"#E0457B"
+};
+const FALLBACK_COLORS=["#8E2DE2","#F4B400","#7CB518","#FF9F68","#6A040F","#D00000","#F48C06","#FF5DA2","#B07D3C","#E0457B","#2D9CDB","#27AE60"];
+// shorten "Carbliss Black Raspberry 6/4/12 oz Can" -> "Black Raspberry"
+function flavorOf(productName){
+  let s=productName.replace(/carbliss/i,"").replace(/\d.*$/,"").trim();
+  return s || productName;
+}
+function colorFor(flavor, idx){ return FLAVOR_COLORS[flavor] || FALLBACK_COLORS[idx%FALLBACK_COLORS.length]; }
+
+/* ---- CSV parsing ---- */
+function parseCSV(text){
+  const rows=[];let row=[],cur="",q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+    else{ if(c==='"')q=true; else if(c===','){row.push(cur);cur="";} else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur="";} else if(c==='\r'){} else cur+=c; }
+  }
+  if(cur.length||row.length){row.push(cur);rows.push(row);}
+  return rows.filter(r=>r.some(x=>x.trim()!==""));
+}
+function col(head,...needles){const h=head.map(x=>x.toLowerCase().trim());
+  for(const n of needles){const i=h.findIndex(x=>x.includes(n));if(i>=0)return i;} return -1;}
+
+let DATA=null, FLAVORS=[], activeRep="ALL";
+
+function buildData(text){
+  const rows=parseCSV(text);
+  if(rows.length<2) return null;
+  const H=rows[0];
+  const ci={ rep:col(H,"sales rep","rep"), cust:col(H,"customer id","cust id"),
+    name:col(H,"customer name"), city:col(H,"city"), prem:col(H,"premise"),
+    prod:col(H,"product name"), pl:col(H,"placement"), ce:col(H,"case equiv","case","equiv") };
+  if(ci.rep<0||ci.ce<0) return null;
+  const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
+  const reps={}; const flavorSet=new Set();
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i]; const rep=(r[ci.rep]||"").trim(); if(!rep) continue;
+    const cust=(r[ci.cust]||"").trim();
+    const flavor=flavorOf((r[ci.prod]||"").trim()); flavorSet.add(flavor);
+    const ce=num(r[ci.ce]); const pl=ci.pl>=0?num(r[ci.pl]):1;
+    const prem=(r[ci.prem]||"").trim();
+    const R=reps[rep]||(reps[rep]={name:rep, ce:0, pl:0, accounts:{}, flavors:{}, on:0, off:0});
+    R.ce+=ce; R.pl+=pl; R.flavors[flavor]=(R.flavors[flavor]||0)+ce;
+    if(/on/i.test(prem)&&!/off/i.test(prem)) R.on+=ce; else if(/off/i.test(prem)) R.off+=ce;
+    const A=R.accounts[cust]||(R.accounts[cust]={id:cust, name:(r[ci.name]||"").trim(), city:(r[ci.city]||"").trim(), premise:prem, ce:0, pl:0, flavors:new Set()});
+    A.ce+=ce; A.pl+=pl; A.flavors.add(flavor);
+  }
+  // order flavors by total case equiv (desc) for a stable, meaningful legend
+  const totals={}; Object.values(reps).forEach(R=>Object.entries(R.flavors).forEach(([f,v])=>totals[f]=(totals[f]||0)+v));
+  FLAVORS=Object.keys(totals).sort((a,b)=>totals[b]-totals[a]);
+  return {reps, totals};
+}
+
+/* ---- scope helpers ---- */
+function scopeReps(){ return activeRep==="ALL" ? Object.values(DATA.reps) : [DATA.reps[activeRep]]; }
+function scopeAccounts(){ const out=[]; scopeReps().forEach(R=>Object.values(R.accounts).forEach(a=>out.push(a))); return out; }
+function scopeFlavorTotals(){ const t={}; scopeReps().forEach(R=>Object.entries(R.flavors).forEach(([f,v])=>t[f]=(t[f]||0)+v)); return t; }
+const round=n=>Math.round(n);
+
+function renderKPIs(){
+  const accts=scopeAccounts();
+  const ce=accts.reduce((s,a)=>s+a.ce,0);
+  const pl=accts.reduce((s,a)=>s+a.pl,0);
+  const depth=accts.length? accts.reduce((s,a)=>s+a.flavors.size,0)/accts.length : 0;
+  const repCount=activeRep==="ALL"?Object.keys(DATA.reps).length:1;
+  const tiles=[
+    ["Case equiv", round(ce), ""],
+    ["Placements", round(pl), ""],
+    ["Accounts", accts.length, ""],
+    [activeRep==="ALL"?"Active reps":"Avg flavors", activeRep==="ALL"?repCount:depth.toFixed(1), activeRep==="ALL"?"":" / 10"]
+  ];
+  document.getElementById("kpis").innerHTML=tiles.map(([k,v,s])=>
+    `<div class="kpi"><p class="k">${k}</p><p class="v num">${v}<small>${s}</small></p></div>`).join("");
+}
+
+function renderSpectrum(){
+  const t=scopeFlavorTotals();
+  const total=Object.values(t).reduce((a,b)=>a+b,0)||1;
+  const ordered=FLAVORS.filter(f=>t[f]>0);
+  document.getElementById("specbar").innerHTML=ordered.map((f,i)=>
+    `<span style="flex-grow:${t[f]};background:${colorFor(f,FLAVORS.indexOf(f))}" title="${f}: ${round(t[f])}"></span>`).join("");
+  document.getElementById("legend").innerHTML=ordered.map(f=>
+    `<span class="item"><span class="dot" style="background:${colorFor(f,FLAVORS.indexOf(f))}"></span>${f} <span class="ce">${round(t[f])}</span></span>`).join("");
+  document.getElementById("specTitle").textContent = activeRep==="ALL"?"Flavor mix — team":"Flavor mix — "+activeRep;
+  document.getElementById("specMeta").textContent = `${ordered.length} flavors · ${round(total)} case equiv`;
+}
+
+function renderRibbon(){
+  const t=DATA.totals; const total=Object.values(t).reduce((a,b)=>a+b,0)||1;
+  document.getElementById("ribbon").innerHTML=FLAVORS.map(f=>
+    `<i style="flex-grow:${t[f]};background:${colorFor(f,FLAVORS.indexOf(f))}"></i>`).join("");
+}
+
+function renderMain(){
+  const block=document.getElementById("mainBlock"), prem=document.getElementById("premiseBlock");
+  if(activeRep==="ALL"){
+    prem.style.display="";
+    document.getElementById("mainTitle").textContent="Rep leaderboard";
+    const reps=Object.values(DATA.reps).sort((a,b)=>b.ce-a.ce);
+    const max=reps[0]?reps[0].ce:1;
+    document.getElementById("mainMeta").textContent=`${reps.length} reps · ranked by case equiv`;
+    document.getElementById("mainBody").innerHTML=`<div class="board">`+reps.map((R,i)=>{
+      const accts=Object.keys(R.accounts).length;
+      return `<div class="row" role="button" tabindex="0" data-rep="${esc(R.name)}">
+        <span class="rank num">${i+1}</span>
+        <span class="who"><b>${esc(R.name)}</b><div class="sub">${accts} accounts · ${round(R.pl)} placements</div>
+          <div class="track"><i style="width:${(R.ce/max*100).toFixed(1)}%"></i></div></span>
+        <span class="big num">${round(R.ce)}<small>case equiv</small></span></div>`;
+    }).join("")+`</div>`;
+    bindRows();
+  } else {
+    prem.style.display="";
+    document.getElementById("mainTitle").textContent="Accounts";
+    const R=DATA.reps[activeRep];
+    const accts=Object.values(R.accounts).sort((a,b)=>b.ce-a.ce);
+    document.getElementById("mainMeta").textContent=`${accts.length} accounts`;
+    document.getElementById("mainBody").innerHTML=accts.map(a=>{
+      const pips=FLAVORS.map(f=>{const on=a.flavors.has(f);
+        return `<span class="pip ${on?'':'off'}" title="${f}${on?'':' — not carried'}" style="${on?('background:'+colorFor(f,FLAVORS.indexOf(f))):''}"></span>`;}).join("");
+      const cls=/on/i.test(a.premise)&&!/off/i.test(a.premise)?'on':'off';
+      return `<div class="acct"><div class="top">
+        <div><div class="nm">${esc(a.name||a.id)}</div><div class="loc">${esc(a.city)}</div></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span class="tag ${cls}">${esc(a.premise||'—')}</span>
+          <span class="stat num">${round(a.ce)}<small> ce</small></span></div></div>
+        <div class="finger">${pips}<span class="lab">${a.flavors.size}/10 flavors</span></div></div>`;
+    }).join("");
+  }
+}
+
+function renderPremise(){
+  const accts=scopeAccounts();
+  let on=0,off=0; scopeReps().forEach(R=>{on+=R.on;off+=R.off;});
+  const tot=on+off||1;
+  document.getElementById("premise").innerHTML=
+    `<div class="pcard"><p class="k">Off premise</p><p class="v num">${round(off)}<small> ce · ${Math.round(off/tot*100)}%</small></p></div>
+     <div class="pcard"><p class="k">On premise</p><p class="v num">${round(on)}<small> ce · ${Math.round(on/tot*100)}%</small></p></div>`;
+}
+
+function renderChips(){
+  const reps=Object.values(DATA.reps).sort((a,b)=>b.ce-a.ce).map(r=>r.name);
+  const all=["ALL",...reps];
+  document.getElementById("chips").innerHTML=all.map(v=>
+    `<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
+}
+function bindRows(){
+  document.querySelectorAll(".row[data-rep]").forEach(el=>{
+    const go=()=>setRep(el.dataset.rep);
+    el.addEventListener("click",go);
+    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+  });
+}
+function setRep(v){
+  activeRep=v;
+  document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));
+  renderKPIs(); renderSpectrum(); renderMain(); renderPremise();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function renderAll(lastMod){
+  renderRibbon(); renderChips(); renderKPIs(); renderSpectrum(); renderMain(); renderPremise();
+  document.getElementById("updated").textContent = lastMod ? "Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : "";
+  document.getElementById("foot").textContent="Case equiv = case equivalents (volume). Depth = how many of the 10 Carbliss flavors an account carries. Figures reflect the latest data.csv uploaded.";
+}
+function showEmpty(msg){
+  document.getElementById("app").innerHTML=
+    `<div class="empty"><h2>No data yet</h2><p>${msg}</p></div>`;
+}
+
+async function boot(){
+  const url=new URLSearchParams(location.search).get("data")||"data.csv";
+  let text=null,lastMod=null;
+  try{ const res=await fetch(url,{cache:"no-store"}); if(res.ok){ lastMod=res.headers.get("last-modified"); text=await res.text(); } }catch(e){}
+  if(!text){ showEmpty("Upload a <b>data.csv</b> next to this page (same columns as the Carbliss export) and refresh."); return; }
+  DATA=buildData(text);
+  if(!DATA){ showEmpty("Couldn't read that data.csv. Make sure it has the Carbliss export columns (Sales Rep Assigned, Case Equiv, etc.)."); return; }
+  renderAll(lastMod);
+}
+boot();
+</script>
+</body>
+</html>

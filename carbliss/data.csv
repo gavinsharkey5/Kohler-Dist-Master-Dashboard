@@ -1,0 +1,944 @@
+Customer ID,Customer Name,City,Premise,Sales Rep Assigned,Product ID,Product Name,Brand Family,Placement Count,Case Equiv
+1012,Uncorked Wines & Spirits (West Milford),West Milford,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+1012,Uncorked Wines & Spirits (West Milford),West Milford,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+1012,Uncorked Wines & Spirits (West Milford),West Milford,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+1012,Uncorked Wines & Spirits (West Milford),West Milford,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+1012,Uncorked Wines & Spirits (West Milford),West Milford,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+1015,Greenwood Lake Disc.(P),Hewitt,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,3.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+2003,Ringwood W&L,Ringwood,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+2009,Frungillo Caterers,Ringwood,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+3001,Best Cellars (Wanaque),Wanaque,Off Premise,Anthony Palmisano,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+3002,The Celtic Knot,Haskell,On Premise,Allison Scott,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+3002,The Celtic Knot,Haskell,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+3002,The Celtic Knot,Haskell,On Premise,Allison Scott,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+3002,The Celtic Knot,Haskell,On Premise,Allison Scott,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+3002,The Celtic Knot,Haskell,On Premise,Allison Scott,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+3006,Wine 2 Spirits (P),Wanaque,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+3006,Wine 2 Spirits (P),Wanaque,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+3006,Wine 2 Spirits (P),Wanaque,Off Premise,Anthony Palmisano,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+4011,Bloomingdale Fire Dept,Bloomingdale,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+5006,Roserne Pkg Store South,Butler,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+5006,Roserne Pkg Store South,Butler,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+5006,Roserne Pkg Store South,Butler,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+5006,Roserne Pkg Store South,Butler,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+5006,Roserne Pkg Store South,Butler,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,3.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,3.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,3.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,3.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,3.00
+5008,Celtic Crossings,Butler,On Premise,Allison Scott,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,5.00
+6002,Roserne Liquors North,Kinnelon,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+6002,Roserne Liquors North,Kinnelon,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,3.00
+6002,Roserne Liquors North,Kinnelon,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+6002,Roserne Liquors North,Kinnelon,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+7001,Home Wine and Liquors,Riverdale,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+7001,Home Wine and Liquors,Riverdale,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+7001,Home Wine and Liquors,Riverdale,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,3.00
+7001,Home Wine and Liquors,Riverdale,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+7003,Blu Ale House,Riverdale,On Premise,Allison Scott,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+7003,Blu Ale House,Riverdale,On Premise,Allison Scott,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+8004,The Side Door (P),Pompton Lakes,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+8004,The Side Door (P),Pompton Lakes,On Premise,Allison Scott,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+8004,The Side Door (P),Pompton Lakes,On Premise,Allison Scott,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+8005,Empire Wine & Liquor,Pompton Lakes,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+8005,Empire Wine & Liquor,Pompton Lakes,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+8005,Empire Wine & Liquor,Pompton Lakes,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+8005,Empire Wine & Liquor,Pompton Lakes,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+8005,Empire Wine & Liquor,Pompton Lakes,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,3.00
+8007,Krauszer's Liquor Wine and Spirits,Pompton Lakes,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+8007,Krauszer's Liquor Wine and Spirits,Pompton Lakes,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+8007,Krauszer's Liquor Wine and Spirits,Pompton Lakes,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+8007,Krauszer's Liquor Wine and Spirits,Pompton Lakes,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+8007,Krauszer's Liquor Wine and Spirits,Pompton Lakes,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+8008,Shoppers Disc(A)Pompton,Pompton Lakes,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+10003,Buy Rite W &L Pompton(P),Pompton Plains,Off Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+10003,Buy Rite W &L Pompton(P),Pompton Plains,Off Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+10003,Buy Rite W &L Pompton(P),Pompton Plains,Off Premise,Anthony Palmisano,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+10003,Buy Rite W &L Pompton(P),Pompton Plains,Off Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+10003,Buy Rite W &L Pompton(P),Pompton Plains,Off Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+11007,Meadows Golf Club(P),Lincoln Park,On Premise,Allison Scott,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+11007,Meadows Golf Club(P),Lincoln Park,On Premise,Allison Scott,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+11007,Meadows Golf Club(P),Lincoln Park,On Premise,Allison Scott,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+11007,Meadows Golf Club(P),Lincoln Park,On Premise,Allison Scott,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+11007,Meadows Golf Club(P),Lincoln Park,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+11011,Sunset Pub & Grill(Z),Lincoln Park,On Premise,Allison Scott,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+11011,Sunset Pub & Grill(Z),Lincoln Park,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+12005,Shay's Liquors,Wayne,Off Premise,Michael Harboy,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+12017,Shays Liquors,Wayne,Off Premise,Michael Harboy,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+12023,The Village Inn,Wayne,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+12023,The Village Inn,Wayne,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+12023,The Village Inn,Wayne,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+12023,The Village Inn,Wayne,On Premise,Robin Feldman,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+12023,The Village Inn,Wayne,On Premise,Robin Feldman,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+12047,American Lgn 174 Wayne,Wayne,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+13008,Little Falls Liq(P),Little Falls,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+13017,On The Rocks,Little Falls,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,4.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+14007,Total Wine & More (Totowa),Totowa,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,4.00
+14008,The Barnyard and Carriage House,Totowa,On Premise,Allison Scott,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+14008,The Barnyard and Carriage House,Totowa,On Premise,Allison Scott,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+14008,The Barnyard and Carriage House,Totowa,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+14008,The Barnyard and Carriage House,Totowa,On Premise,Allison Scott,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+15061,Boulevard Wine & Spirits,Paterson,Off Premise,Pablo Lopez,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+15061,Boulevard Wine & Spirits,Paterson,Off Premise,Pablo Lopez,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+15081,Evolution Restaurant & Bar,Woodland Park,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+15081,Evolution Restaurant & Bar,Woodland Park,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+17011,Nico's Wine & Spirits,Haledon,Off Premise,Mike Ast,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+17019,La Neves (P),Haledon,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+17019,La Neves (P),Haledon,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+17019,La Neves (P),Haledon,On Premise,Robin Feldman,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+19006,Blackjack Mulligans (Hawthorne),Hawthorne,On Premise,Nick Melissari,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+19006,Blackjack Mulligans (Hawthorne),Hawthorne,On Premise,Nick Melissari,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+19006,Blackjack Mulligans (Hawthorne),Hawthorne,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+19006,Blackjack Mulligans (Hawthorne),Hawthorne,On Premise,Nick Melissari,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+19008,Hawthorne Liq (A),Hawthorne,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+19008,Hawthorne Liq (A),Hawthorne,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+19008,Hawthorne Liq (A),Hawthorne,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+19008,Hawthorne Liq (A),Hawthorne,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+19008,Hawthorne Liq (A),Hawthorne,Off Premise,Mike Ast,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+19027,Goffle Road Wine and More,Hawthorne,Off Premise,Mike Ast,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+19027,Goffle Road Wine and More,Hawthorne,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+19027,Goffle Road Wine and More,Hawthorne,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+19027,Goffle Road Wine and More,Hawthorne,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+19027,Goffle Road Wine and More,Hawthorne,Off Premise,Mike Ast,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+20069,Segundo's (P),Paterson,Off Premise,Javier Melo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+20069,Segundo's (P),Paterson,Off Premise,Javier Melo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+20069,Segundo's (P),Paterson,Off Premise,Javier Melo,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+20069,Segundo's (P),Paterson,Off Premise,Javier Melo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+20069,Segundo's (P),Paterson,Off Premise,Javier Melo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+21001,Rocky's Liquor Store,Paterson,Off Premise,Derrick Laws,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+21001,Rocky's Liquor Store,Paterson,Off Premise,Derrick Laws,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+21001,Rocky's Liquor Store,Paterson,Off Premise,Derrick Laws,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+21026,C Town Supermarket(P),Paterson,Off Premise,Javier Melo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+21026,C Town Supermarket(P),Paterson,Off Premise,Javier Melo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+21026,C Town Supermarket(P),Paterson,Off Premise,Javier Melo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+21026,C Town Supermarket(P),Paterson,Off Premise,Javier Melo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+21026,C Town Supermarket(P),Paterson,Off Premise,Javier Melo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+23002,Valley Liquors (A),Clifton,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+23002,Valley Liquors (A),Clifton,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+23002,Valley Liquors (A),Clifton,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+23002,Valley Liquors (A),Clifton,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+23002,Valley Liquors (A),Clifton,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+23004,Shop Rite Wines/Spirits,Clifton,Off Premise,Derrick Laws,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+23006,46 Discount Liquor Store,Clifton,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+23006,46 Discount Liquor Store,Clifton,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+23006,46 Discount Liquor Store,Clifton,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+23006,46 Discount Liquor Store,Clifton,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+23006,46 Discount Liquor Store,Clifton,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+24016,Broad Liquors (A),Clifton,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+24016,Broad Liquors (A),Clifton,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+24016,Broad Liquors (A),Clifton,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+24019,Sharky's Wings(P),Clifton,On Premise,Allison Scott,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+24019,Sharky's Wings(P),Clifton,On Premise,Allison Scott,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+25008,Clifton Commons S & W,Clifton,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+25008,Clifton Commons S & W,Clifton,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+25008,Clifton Commons S & W,Clifton,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+25008,Clifton Commons S & W,Clifton,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+25008,Clifton Commons S & W,Clifton,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+25017,Savers Club Liquor Locker,Clifton,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+25045,Clifton Disc Liq (A),Clifton,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+25056,Emerald Corner (Z),Clifton,On Premise,Allison Scott,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+28015,K Of C N Arlington (Z),North Arlington,On Premise,Robin Feldman,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+29009,Quick Buy,Lyndhurst,Off Premise,Jim Heaney,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+29011,World of Wine & Liquor,Lyndhurst,Off Premise,Jim Heaney,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+30010,Krauser Food & Liq(A),Rutherford,Off Premise,Jim Heaney,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+30010,Krauser Food & Liq(A),Rutherford,Off Premise,Jim Heaney,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,4.00
+30010,Krauser Food & Liq(A),Rutherford,Off Premise,Jim Heaney,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,3.00
+30010,Krauser Food & Liq(A),Rutherford,Off Premise,Jim Heaney,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+31008,Metro Wine And Liq(A),East Rutherford,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+32017,Wine Grand (Carlstadt),Carlstadt,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+32023,Redd's Rest (Z),Carlstadt,On Premise,Nick Melissari,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+32023,Redd's Rest (Z),Carlstadt,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+32023,Redd's Rest (Z),Carlstadt,On Premise,Nick Melissari,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+32023,Redd's Rest (Z),Carlstadt,On Premise,Nick Melissari,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+32023,Redd's Rest (Z),Carlstadt,On Premise,Nick Melissari,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+34009,The Wine Rack Hasbrouck Hts,Hasbrouck Hts,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+34009,The Wine Rack Hasbrouck Hts,Hasbrouck Hts,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+34009,The Wine Rack Hasbrouck Hts,Hasbrouck Hts,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+34009,The Wine Rack Hasbrouck Hts,Hasbrouck Hts,Off Premise,Chris Payton,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+34009,The Wine Rack Hasbrouck Hts,Hasbrouck Hts,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+35002,Woodridge Wines & Liq(A),Woodridge,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+35002,Woodridge Wines & Liq(A),Woodridge,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+35002,Woodridge Wines & Liq(A),Woodridge,Off Premise,Chris Payton,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+35002,Woodridge Wines & Liq(A),Woodridge,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+35002,Woodridge Wines & Liq(A),Woodridge,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+37002,Garfield Bar & Liq (P),Garfield,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+37006,Garfield Discount Liquors,Garfield,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+37006,Garfield Discount Liquors,Garfield,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+37006,Garfield Discount Liquors,Garfield,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+37006,Garfield Discount Liquors,Garfield,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37006,Garfield Discount Liquors,Garfield,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37010,Vfw Outwater (Z) Lane,Garfield,On Premise,Robin Feldman,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37010,Vfw Outwater (Z) Lane,Garfield,On Premise,Robin Feldman,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+37034,Blackjack Mulligans(P) (Garfield),Garfield,On Premise,Nick Melissari,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+37034,Blackjack Mulligans(P) (Garfield),Garfield,On Premise,Nick Melissari,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+37034,Blackjack Mulligans(P) (Garfield),Garfield,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+37044,Riverview Liquors & Bar,Garfield,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+37068,Whoopee Liq (A),Garfield,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+38007,Garden Liquors (P),Lodi,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+38007,Garden Liquors (P),Lodi,Off Premise,Chris Payton,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+38007,Garden Liquors (P),Lodi,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+38007,Garden Liquors (P),Lodi,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+38007,Garden Liquors (P),Lodi,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+38020,Lodi Lanes (A),Lodi,On Premise,Nick Melissari,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+38020,Lodi Lanes (A),Lodi,On Premise,Nick Melissari,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+38020,Lodi Lanes (A),Lodi,On Premise,Nick Melissari,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+38020,Lodi Lanes (A),Lodi,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+38020,Lodi Lanes (A),Lodi,On Premise,Nick Melissari,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+39001,Home Wines & Liq 75 (A) (South Hackensack),South Hackensac,Off Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+39012,Wine And Liq Depot(A),South Hackensac,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+39012,Wine And Liq Depot(A),South Hackensac,Off Premise,Dave Ehlers,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+39012,Wine And Liq Depot(A),South Hackensac,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+39012,Wine And Liq Depot(A),South Hackensac,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+39012,Wine And Liq Depot(A),South Hackensac,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+40001,Bottle & Cork,Hackensack,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+40001,Bottle & Cork,Hackensack,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+40001,Bottle & Cork,Hackensack,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+40001,Bottle & Cork,Hackensack,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+40001,Bottle & Cork,Hackensack,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+40010,Hackensack Liquors,Hackensack,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+40010,Hackensack Liquors,Hackensack,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+40010,Hackensack Liquors,Hackensack,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+40010,Hackensack Liquors,Hackensack,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+40010,Hackensack Liquors,Hackensack,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+40022,Buy Rite Of Hackensack,Hackensack,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+42007,Vfw 809 (P),Little Ferry,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+42007,Vfw 809 (P),Little Ferry,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+43004,Boulevard Liq.(Fairview),Fairview,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+43004,Boulevard Liq.(Fairview),Fairview,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+43004,Boulevard Liq.(Fairview),Fairview,Off Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+43004,Boulevard Liq.(Fairview),Fairview,Off Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+43004,Boulevard Liq.(Fairview),Fairview,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+44010,Garden State Food&Liq (P),Cliffside Park,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+44010,Garden State Food&Liq (P),Cliffside Park,Off Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44010,Garden State Food&Liq (P),Cliffside Park,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+44010,Garden State Food&Liq (P),Cliffside Park,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44010,Garden State Food&Liq (P),Cliffside Park,Off Premise,Dan Lagala,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+44012,690 Park,Cliffside Park,On Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44012,690 Park,Cliffside Park,On Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+44012,690 Park,Cliffside Park,On Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+44012,690 Park,Cliffside Park,On Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+44016,Liquor City(A)Cliffside,Cliffside Park,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+44025,Rudys (A),Cliffside Park,On Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+44025,Rudys (A),Cliffside Park,On Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+44025,Rudys (A),Cliffside Park,On Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44025,Rudys (A),Cliffside Park,On Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44025,Rudys (A),Cliffside Park,On Premise,Dan Lagala,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+44028,512 Bar,Cliffside Park,On Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44028,512 Bar,Cliffside Park,On Premise,Dan Lagala,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+44028,512 Bar,Cliffside Park,On Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+44028,512 Bar,Cliffside Park,On Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+44028,512 Bar,Cliffside Park,On Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44047,Sedona Tap House,Cliffside Park,On Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+44047,Sedona Tap House,Cliffside Park,On Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+44047,Sedona Tap House,Cliffside Park,On Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44047,Sedona Tap House,Cliffside Park,On Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+44047,Sedona Tap House,Cliffside Park,On Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+45004,Ridgefield Liq (Z),Ridgefield,Off Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+45004,Ridgefield Liq (Z),Ridgefield,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+45004,Ridgefield Liq (Z),Ridgefield,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+45004,Ridgefield Liq (Z),Ridgefield,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+45004,Ridgefield Liq (Z),Ridgefield,Off Premise,Dan Lagala,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+46012,Jay Cee (P) Deli & Liq.,Palisades Park,Off Premise,Dan Lagala,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+46012,Jay Cee (P) Deli & Liq.,Palisades Park,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+46012,Jay Cee (P) Deli & Liq.,Palisades Park,Off Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+46012,Jay Cee (P) Deli & Liq.,Palisades Park,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+46012,Jay Cee (P) Deli & Liq.,Palisades Park,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+47005,Exquisite W & L (A),Ridgefield Park,Off Premise,Chris Payton,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+47005,Exquisite W & L (A),Ridgefield Park,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+47005,Exquisite W & L (A),Ridgefield Park,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+47005,Exquisite W & L (A),Ridgefield Park,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+47005,Exquisite W & L (A),Ridgefield Park,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+49027,Linwood Wine-Linwood Plaza,Fort Lee,Off Premise,Dan Lagala,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+49031,Top Shelf Liquors,Fort Lee,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+49031,Top Shelf Liquors,Fort Lee,Off Premise,Dan Lagala,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+49031,Top Shelf Liquors,Fort Lee,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+49033,Banner Liquor Iii,Fort Lee,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+49033,Banner Liquor Iii,Fort Lee,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+49033,Banner Liquor Iii,Fort Lee,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+49033,Banner Liquor Iii,Fort Lee,Off Premise,Dan Lagala,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+49033,Banner Liquor Iii,Fort Lee,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+49035,Gulf Express Fort Lee,Fort Lee,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+49035,Gulf Express Fort Lee,Fort Lee,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+49035,Gulf Express Fort Lee,Fort Lee,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+50036,Moose Lodge 961 (Z),Teaneck,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+50036,Moose Lodge 961 (Z),Teaneck,On Premise,Robin Feldman,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+50036,Moose Lodge 961 (Z),Teaneck,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+50036,Moose Lodge 961 (Z),Teaneck,On Premise,Robin Feldman,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+51018,Teaneck Discount Liquor,Teaneck,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+51018,Teaneck Discount Liquor,Teaneck,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+51018,Teaneck Discount Liquor,Teaneck,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+52015,Shop Rite Liq (A)Englewd,Englewood,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+52015,Shop Rite Liq (A)Englewd,Englewood,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+52015,Shop Rite Liq (A)Englewd,Englewood,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+54006,Tenafly Fine Wine & Spirits,Tenafly,Off Premise,Dan Lagala,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+54006,Tenafly Fine Wine & Spirits,Tenafly,Off Premise,Dan Lagala,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+54006,Tenafly Fine Wine & Spirits,Tenafly,Off Premise,Dan Lagala,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+54006,Tenafly Fine Wine & Spirits,Tenafly,Off Premise,Dan Lagala,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+54006,Tenafly Fine Wine & Spirits,Tenafly,Off Premise,Dan Lagala,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+55001,Coasters Liquors,Cresskill,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+56008,Bergenfield Liq & Fw,Bergenfield,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+56008,Bergenfield Liq & Fw,Bergenfield,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+56008,Bergenfield Liq & Fw,Bergenfield,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+56008,Bergenfield Liq & Fw,Bergenfield,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+56008,Bergenfield Liq & Fw,Bergenfield,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+57003,Joes Beer Wine & Spirits,New Milford,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+57006,New Milford Liquors,New Milford,Off Premise,Dave Ehlers,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+58001,Total Wine & More (River Edge),River Edge,Off Premise,Dave Ehlers,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+59004,Royal Wine & Spirits II,Oradell,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+59004,Royal Wine & Spirits II,Oradell,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+59004,Royal Wine & Spirits II,Oradell,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+59004,Royal Wine & Spirits II,Oradell,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+59004,Royal Wine & Spirits II,Oradell,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+62009,Gary's Wine & Marketplace (Closter),Closter,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+70008,Hearth & Tap Co.,Montvale,On Premise,Paul Mclaughlin,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+70008,Hearth & Tap Co.,Montvale,On Premise,Paul Mclaughlin,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+70008,Hearth & Tap Co.,Montvale,On Premise,Paul Mclaughlin,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+70008,Hearth & Tap Co.,Montvale,On Premise,Paul Mclaughlin,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+70008,Hearth & Tap Co.,Montvale,On Premise,Paul Mclaughlin,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+73003,Bottle King (A) Hillsdale,Hillsdale,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+73003,Bottle King (A) Hillsdale,Hillsdale,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+73003,Bottle King (A) Hillsdale,Hillsdale,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+73008,Shop Rite Liq (A)Hillsdal,Hillsdale,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+74002,Elks Post 1562,Westwood,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+74002,Elks Post 1562,Westwood,On Premise,Robin Feldman,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+74005,Winemart Discount,Westwood,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+74009,Westwood Wine and Liquors,Westwood,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+75001,Emerson Hotel,Emerson,On Premise,Paul Mclaughlin,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+75001,Emerson Hotel,Emerson,On Premise,Paul Mclaughlin,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+75001,Emerson Hotel,Emerson,On Premise,Paul Mclaughlin,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+75001,Emerson Hotel,Emerson,On Premise,Paul Mclaughlin,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+75001,Emerson Hotel,Emerson,On Premise,Paul Mclaughlin,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+75004,Cork & Keg (A),Emerson,Off Premise,Shane Barreca,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+76010,Usa Wine Traders Club (Saddle Brook),Saddle Brook,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+76021,Saddle Brook Liquor & Bar,Saddle Brook,On Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+76021,Saddle Brook Liquor & Bar,Saddle Brook,On Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+77007,Wine Land,Elmwood Park,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+77009,M & M Wine & Spirits,Elmwood Park,Off Premise,Matt Powierski,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+77013,William J. Mulligan VFW Post 281,Elmwood Park,On Premise,Robin Feldman,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+77013,William J. Mulligan VFW Post 281,Elmwood Park,On Premise,Robin Feldman,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+77016,Metro Liquor (Elmwood Park),Elmwood Park,Off Premise,Matt Powierski,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+77016,Metro Liquor (Elmwood Park),Elmwood Park,Off Premise,Matt Powierski,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+77016,Metro Liquor (Elmwood Park),Elmwood Park,Off Premise,Matt Powierski,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+77016,Metro Liquor (Elmwood Park),Elmwood Park,Off Premise,Matt Powierski,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+77016,Metro Liquor (Elmwood Park),Elmwood Park,Off Premise,Matt Powierski,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+78003,Ani Service Station Inc,Rochelle Park,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+78003,Ani Service Station Inc,Rochelle Park,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+78003,Ani Service Station Inc,Rochelle Park,Off Premise,Chris Payton,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+78003,Ani Service Station Inc,Rochelle Park,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+78003,Ani Service Station Inc,Rochelle Park,Off Premise,Chris Payton,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+79001,Victor's Maywood Inn,Maywood,On Premise,Nick Melissari,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+79001,Victor's Maywood Inn,Maywood,On Premise,Nick Melissari,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,5.00
+79001,Victor's Maywood Inn,Maywood,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,5.00
+79001,Victor's Maywood Inn,Maywood,On Premise,Nick Melissari,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+79001,Victor's Maywood Inn,Maywood,On Premise,Nick Melissari,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+79002,Hollywd Liq&Deli (A),Maywood,Off Premise,Chris Payton,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+79002,Hollywd Liq&Deli (A),Maywood,Off Premise,Chris Payton,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,4.00
+79002,Hollywd Liq&Deli (A),Maywood,Off Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+79002,Hollywd Liq&Deli (A),Maywood,Off Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+80005,Shop Rite Liq (Paramus),Paramus,Off Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+80007,The Orange Lantern,Paramus,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+80007,The Orange Lantern,Paramus,On Premise,Nick Melissari,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+80007,The Orange Lantern,Paramus,On Premise,Nick Melissari,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+80007,The Orange Lantern,Paramus,On Premise,Nick Melissari,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+80007,The Orange Lantern,Paramus,On Premise,Nick Melissari,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80026,Stew Leonard's(A) Paramus Wine,Paramus,Off Premise,Phil Ernst,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+80027,Ridgewood Country Club,Paramus,On Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,3.00
+80027,Ridgewood Country Club,Paramus,On Premise,Chris Payton,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,3.00
+80027,Ridgewood Country Club,Paramus,On Premise,Chris Payton,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,4.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+80040,Biagio's,Paramus,On Premise,Nick Melissari,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+81012,Dutch House,Fair Lawn,On Premise,Chris Payton,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+81012,Dutch House,Fair Lawn,On Premise,Chris Payton,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+81012,Dutch House,Fair Lawn,On Premise,Chris Payton,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+81014,Shop Rite Liq(A) Fair Lwn,Fair Lawn,Off Premise,Phil Ernst,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,10.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,10.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,0.00
+83010,Bottle King (A) Glen Rock,Glen Rock,Off Premise,Phil Ernst,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,10.00
+84010,Ridgewood Super Cellar,Ridgewood,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+84010,Ridgewood Super Cellar,Ridgewood,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+84010,Ridgewood Super Cellar,Ridgewood,Off Premise,Mike Ast,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+84010,Ridgewood Super Cellar,Ridgewood,Off Premise,Mike Ast,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+84010,Ridgewood Super Cellar,Ridgewood,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+84015,The Office 2131 Ridgewood,Ridgewood,On Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+84015,The Office 2131 Ridgewood,Ridgewood,On Premise,Mike Ast,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+84015,The Office 2131 Ridgewood,Ridgewood,On Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+92011,Bottle King (A) Ramsey,Ramsey,Off Premise,Shane Barreca,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,4.00
+92011,Bottle King (A) Ramsey,Ramsey,Off Premise,Shane Barreca,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,4.00
+92011,Bottle King (A) Ramsey,Ramsey,Off Premise,Shane Barreca,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,4.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+93003,Mahwah Liqrs (P),Mahwah,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+94008,Oakland Wine (A),Oakland,Off Premise,Mike Ast,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+96002,Wine & Spirit World(W),Wyckoff,Off Premise,Mike Ast,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+96002,Wine & Spirit World(W),Wyckoff,Off Premise,Mike Ast,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+96002,Wine & Spirit World(W),Wyckoff,Off Premise,Mike Ast,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+96002,Wine & Spirit World(W),Wyckoff,Off Premise,Mike Ast,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+96002,Wine & Spirit World(W),Wyckoff,Off Premise,Mike Ast,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+190207,Liquor Outlet,Boonton,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190207,Liquor Outlet,Boonton,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+190207,Liquor Outlet,Boonton,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+190207,Liquor Outlet,Boonton,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+190207,Liquor Outlet,Boonton,Off Premise,Klejdi Lamo,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190214,Johnnie's Tavern,Boonton,On Premise,Brian Sengebush,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+190214,Johnnie's Tavern,Boonton,On Premise,Brian Sengebush,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+190304,Shoppers Disc Liquor,Lake Hiawatha,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+190304,Shoppers Disc Liquor,Lake Hiawatha,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+190304,Shoppers Disc Liquor,Lake Hiawatha,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+190304,Shoppers Disc Liquor,Lake Hiawatha,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190304,Shoppers Disc Liquor,Lake Hiawatha,Off Premise,Klejdi Lamo,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+190603,Denville W & L,Denville,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+190603,Denville W & L,Denville,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+190603,Denville W & L,Denville,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+190603,Denville W & L,Denville,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+190603,Denville W & L,Denville,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190705,Rockaway W/L,Rockaway,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+190705,Rockaway W/L,Rockaway,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190705,Rockaway W/L,Rockaway,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+190705,Rockaway W/L,Rockaway,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+190705,Rockaway W/L,Rockaway,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+190804,Midtown Liq,Rockaway,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+190913,Main Street Liquor,Wharton,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+190913,Main Street Liquor,Wharton,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+190913,Main Street Liquor,Wharton,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+190913,Main Street Liquor,Wharton,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190913,Main Street Liquor,Wharton,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+190917,Shop Rite Liq (A)Wharton,Wharton,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+190917,Shop Rite Liq (A)Wharton,Wharton,Off Premise,Klejdi Lamo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+190917,Shop Rite Liq (A)Wharton,Wharton,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+190917,Shop Rite Liq (A)Wharton,Wharton,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+190917,Shop Rite Liq (A)Wharton,Wharton,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+191003,Chabons Ii Liq/Bar (A),Lake Hopatcong,Off Premise,Brian Sengebush,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+191003,Chabons Ii Liq/Bar (A),Lake Hopatcong,Off Premise,Brian Sengebush,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+191003,Chabons Ii Liq/Bar (A),Lake Hopatcong,Off Premise,Brian Sengebush,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+191003,Chabons Ii Liq/Bar (A),Lake Hopatcong,Off Premise,Brian Sengebush,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191003,Chabons Ii Liq/Bar (A),Lake Hopatcong,Off Premise,Brian Sengebush,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+191007,Charley's Tavern,Lake Hopatcong,On Premise,Brian Sengebush,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+191007,Charley's Tavern,Lake Hopatcong,On Premise,Brian Sengebush,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191007,Charley's Tavern,Lake Hopatcong,On Premise,Brian Sengebush,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+191007,Charley's Tavern,Lake Hopatcong,On Premise,Brian Sengebush,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+191007,Charley's Tavern,Lake Hopatcong,On Premise,Brian Sengebush,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+191010,Liquor Factory II Jefferson,Lake Hopatcong,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+191103,Whistle Stop (P),Newfoundland,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+191207,Daily Planet (A),Oak Ridge,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191207,Daily Planet (A),Oak Ridge,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+191213,Island Of Spirits (P),Oak Ridge,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+191213,Island Of Spirits (P),Oak Ridge,Off Premise,Klejdi Lamo,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+191213,Island Of Spirits (P),Oak Ridge,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+191408,Super Saver Liq,Mt Arlington,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191606,Quick Check Liquor (A),Netcong,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+191606,Quick Check Liquor (A),Netcong,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+191606,Quick Check Liquor (A),Netcong,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+191606,Quick Check Liquor (A),Netcong,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+191608,Shop-Rite(A) Netcong,Netcong,Off Premise,Klejdi Lamo,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+191702,Liquor Factory VI Byram,Byram,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+191710,Shop Rite Wine & Spirits Stanhope,Stanhope,Off Premise,Klejdi Lamo,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Budd Lake,Off Premise,Klejdi Lamo,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Budd Lake,Off Premise,Klejdi Lamo,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Budd Lake,Off Premise,Klejdi Lamo,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Budd Lake,Off Premise,Klejdi Lamo,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Budd Lake,Off Premise,Klejdi Lamo,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+191815,Eastern Asian Bistro/Bar,Budd Lake,On Premise,Robin Feldman,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+191815,Eastern Asian Bistro/Bar,Budd Lake,On Premise,Robin Feldman,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+191815,Eastern Asian Bistro/Bar,Budd Lake,On Premise,Robin Feldman,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+230105,ShopRite Wines & Spirits of Sparta,Sparta,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+230105,ShopRite Wines & Spirits of Sparta,Sparta,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+230105,ShopRite Wines & Spirits of Sparta,Sparta,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230105,ShopRite Wines & Spirits of Sparta,Sparta,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+230105,ShopRite Wines & Spirits of Sparta,Sparta,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+230114,Liquor Factory III Sparta,Sparta,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230121,White Deer Inn,Sparta,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+230412,USA Wine Traders Club Of Newton (A),Newton,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+230427,ShopRite Wine & Spirits of Newton#830,Newton,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230427,ShopRite Wine & Spirits of Newton#830,Newton,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+230427,ShopRite Wine & Spirits of Newton#830,Newton,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230427,ShopRite Wine & Spirits of Newton#830,Newton,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+230427,ShopRite Wine & Spirits of Newton#830,Newton,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+230903,Black Bear Golf(A),Franklin,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+230903,Black Bear Golf(A),Franklin,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,2.00
+230905,ShopRite Wines & Spirits of Franklin,Franklin,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230911,The Right Bottle,Franklin,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230911,The Right Bottle,Franklin,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+230911,The Right Bottle,Franklin,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,2.00
+230911,The Right Bottle,Franklin,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+230911,The Right Bottle,Franklin,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,2.00
+230915,Crystal Sprs/Wild Turkey,Hamburg,On Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,3.00
+230915,Crystal Sprs/Wild Turkey,Hamburg,On Premise,Anthony Palmisano,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,3.00
+230915,Crystal Sprs/Wild Turkey,Hamburg,On Premise,Anthony Palmisano,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,3.00
+230915,Crystal Sprs/Wild Turkey,Hamburg,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+230929,Airport Pub & Pkg,Sussex,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+230929,Airport Pub & Pkg,Sussex,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+230929,Airport Pub & Pkg,Sussex,On Premise,Anthony Palmisano,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+231210,Bally Owen Golf Club,Hamburg,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+231210,Bally Owen Golf Club,Hamburg,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,2.00
+231215,Mac & Lindy's W & S (A),Vernon,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+231307,Skylands Wine& Beer Garden,Wantage,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,2.00
+231307,Skylands Wine& Beer Garden,Wantage,On Premise,Anthony Palmisano,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,2.00
+231307,Skylands Wine& Beer Garden,Wantage,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,2.00
+231309,The Stuffed Olive_2,Wantage,On Premise,Anthony Palmisano,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+231309,The Stuffed Olive_2,Wantage,On Premise,Anthony Palmisano,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200881,Carbliss Black Cherry 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200883,Carbliss Blood Orange 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200892,Carbliss Watermelon 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200890,Carbliss Peach 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200891,Carbliss Pineapple 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200886,Carbliss Lemon Tea 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200884,Carbliss Cranberry 6/4/12 oz Can,Carbliss,1.00,1.00
+231316,Patricks Wine Barn,Sussex,Off Premise,Jayson Romine,200885,Carbliss Grapefruit 6/4/12 oz Can,Carbliss,1.00,1.00
+231701,George's Wine & Spirits,Branchville,Off Premise,Jayson Romine,200887,Carbliss Lemon Lime 6/4/12 oz Can,Carbliss,1.00,1.00
+231701,George's Wine & Spirits,Branchville,Off Premise,Jayson Romine,200882,Carbliss Black Raspberry 6/4/12 oz Can,Carbliss,1.00,1.00
