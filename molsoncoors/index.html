@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Boston Beer — Conversion & Sun Cruiser</title>
+<title>Molson Coors — Retention Rewards</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F6F7F9; --ink-soft:#ABB2C2;
     --line:#262A35; --line-soft:#1F222B;
-    --accent:#C8472E; --accent2:#9A2E1C;        /* Sam Adams red */
+    --accent:#F2A900; --accent2:#B5790A;        /* Constellation gold */
     --good:#37C46B; --good-soft:#15301E;
     --lock:#565E72;
     --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
@@ -136,180 +136,88 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
 <div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Boston Beer · Summer 2026</p>
-  <h1>Boston Beer Programs</h1>
-  <p class="lede">Two plays this summer: convert <b>Cold Snap → Summer Ale</b> draft lines, and grow <b>Sun Cruiser</b> volume over last year. Switch programs below, then tap your name.</p>
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Molson Coors · Off-Premise</p>
+  <h1>Retention Rewards</h1>
+  <p class="lede">Off-premise placement goals for <b>Coors, Peroni &amp; Fever Tree</b> (May–July). Tap your name to see how each brand is tracking to goal.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 <div id="app"><div class="wrap">
-  <div class="seg"><p class="lbl">Program</p><div class="chips" id="progTabs"></div></div>
   <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
 <script>
-
-const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
-let CONV=[], SC={}, activeProgram="conv", activeRep="ALL";
+const FOOT="<b>Placements</b> are counted against each rep's <b>goal</b> by brand. % of goal drives the leaderboard; a brand bar turns green when it hits 100%. Coors, Peroni and Fever Tree. Re-export the report (with the Goals and % columns) as data.csv to refresh.";
+const ON_COLORS=["#C8102E","#F2A900","#2BB7B3","#8E2DE2","#2F6FB0","#E0457B","#5BA84A","#E07B39"];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const ce0=n=>Math.round(n).toLocaleString();
+const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
 function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
 function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
-const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
 function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
-const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
 const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
 const medalColor=r=>r===1?"var(--gold)":r===2?"var(--silver)":"var(--bronze)";
+let GP={},GP_BRANDS=[],GP_DM={},activeRep="ALL";
 
-/* ============ CONVERSION (Cold Snap -> Summer Ale) ============ */
-function ingestConv(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
-  const ci={rep:col(H,"sales rep","rep"),name:col(H,"customer name","customer"),cold:col(H,"cold snap"),summer:col(H,"summer ale"),ind:col(H,"conversion indicator","indicator")};
-  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ci.rep]||"").trim();if(!rep)continue;
-    const cold=(r[ci.cold]||"").trim()==="1", summer=(r[ci.summer]||"").trim()==="1", ind=(r[ci.ind]||"").trim();
-    let cat=cold&&summer?"Converted":(cold&&!summer?"Opportunity":(!cold&&summer?"Gained":(/opportun/i.test(ind)?"Opportunity":(/gain/i.test(ind)?"Gained":"Converted"))));
-    CONV.push({rep,name:(r[ci.name]||"").trim(),cold,summer,cat});}}
-function convScope(){return activeRep==="ALL"?CONV:CONV.filter(r=>r.rep===activeRep);}
-function convMetrics(rows){const conv=rows.filter(r=>r.cat==="Converted").length,opp=rows.filter(r=>r.cat==="Opportunity").length,gained=rows.filter(r=>r.cat==="Gained").length;const base=conv+opp;return {conv,opp,gained,base,rate:base?conv/base*100:0};}
-function acctRow(name,kind){const icon=kind==="Converted"?'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':(kind==="Opportunity"?'→':'+');
-  const box=kind==="Converted"?'background:var(--good);color:#06210f':(kind==="Opportunity"?'border:1.5px dashed var(--accent);color:var(--accent)':'background:#2B6CB0;color:#fff');
-  const tag=kind==="Converted"?"Converted":(kind==="Opportunity"?"Go convert":"New");
-  return `<div class="brow" style="align-items:center;padding:6px 0"><span style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;font-weight:700;font-size:12px;${box}">${icon}</span>${esc(name)}</span><span class="num" style="font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:${kind==='Opportunity'?'var(--accent)':'var(--ink-soft)'}">${tag}</span></div>`;}
-function renderConv(app){
-  if(activeRep==="ALL"){
-    const m=convMetrics(CONV);
-    const stats=`<div class="stats">${statTile("Converted",m.conv,"")}${statTile("Conversion rate",m.rate.toFixed(0)+"%","")}${statTile("Opportunities",m.opp,"")}${statTile("Gained new",m.gained,"")}</div>`;
-    const by={};CONV.forEach(r=>{const R=by[r.rep]||(by[r.rep]={rep:r.rep,conv:0,opp:0});if(r.cat==="Converted")R.conv++;else if(r.cat==="Opportunity")R.opp++;});
-    const reps=Object.values(by).map(R=>({...R,base:R.conv+R.opp,rate:(R.conv+R.opp)?R.conv/(R.conv+R.opp)*100:0})).filter(R=>R.base>0).sort((a,b)=>b.conv-a.conv||b.rate-a.rate).map((R,i)=>({...R,rank:i+1}));
-    const max=reps[0]?reps[0].conv:1;
-    const rows=reps.map(R=>`<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.rate.toFixed(0)}% of ${R.base} · ${R.opp} to go</div><div class="track"><i style="width:${(R.conv/max*100).toFixed(1)}%"></i></div></span><span class="win">${R.conv}<small>converted</small></span></div>`).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Conversion leaderboard</h2><span class="meta">${reps.length} reps · by accounts converted</span></div><div class="board">${rows}</div>`;
-    bindRows(app);
-  } else {
-    const rows=convScope(),m=convMetrics(rows);
-    const by={};CONV.forEach(r=>{if(r.cat==="Converted")by[r.rep]=(by[r.rep]||0)+1;});
-    const rank=Object.entries(by).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).indexOf(activeRep)+1;
-    const pips=rows.filter(r=>r.cat!=="Gained").map(r=>`<span class="pip ${r.cat==="Converted"?'on':''}"></span>`).join("")||'<span class="pl">No Cold Snap accounts</span>';
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${m.conv} of ${m.base} Cold Snap accounts converted${m.gained?` · ${m.gained} new`:''}</small></div><div class="win2"><div class="b num">${m.rate.toFixed(0)}%</div><div class="l">Conversion rate</div></div></div><div class="pips">${pips}</div><div class="pl">Each pip is a Cold Snap account — green once it's flipped to Summer Ale.</div></div>`;
-    const opp=rows.filter(r=>r.cat==="Opportunity"),conv=rows.filter(r=>r.cat==="Converted"),gain=rows.filter(r=>r.cat==="Gained");
-    const oppCard=`<div class="quest" style="border-color:color-mix(in srgb,var(--accent) 40%,var(--line))"><div class="sup">Go convert these${opp.length?`<span class="badge prog">${opp.length} open</span>`:`<span class="badge ok">${CHECK} all done</span>`}</div><div class="pl" style="margin:8px 0 4px">Had Cold Snap, no Summer Ale yet — your hit list.</div><div class="brk" style="border-top:none;padding-top:4px">${opp.length?opp.map(r=>acctRow(r.name,"Opportunity")).join(""):'<div class="pl">Every Cold Snap account converted.</div>'}</div></div>`;
-    const convCard=conv.length?`<div class="quest"><div class="sup">Converted<span class="badge ok">${CHECK} ${conv.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${conv.map(r=>acctRow(r.name,"Converted")).join("")}</div></div>`:"";
-    const gainCard=gain.length?`<div class="quest"><div class="sup">Gained — new Summer Ale<span class="badge" style="background:#1B3A5B;color:#9CC4EE">+${gain.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${gain.map(r=>acctRow(r.name,"Gained")).join("")}</div></div>`:"";
-    app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+oppCard+convCard+gainCard;
-  }
-}
-
-/* ============ SUN CRUISER (YoY volume) ============ */
-function ingestSC(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
-  const ri=col(H,"sales rep","rep"), pri=col(H,"product name","product"), pki=col(H,"package"), li=col(H,"2025"), ti=col(H,"2026");
-  if(pri>=0 && ri>=0 && pri!==ri){
-    // FLAT layout: one row per rep / package / product
-    for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ri]||"").trim();if(!rep||rep==="Total")continue;
-      SC[rep]=SC[rep]||{ly:0,ty:0,skus:[]};const ly=num(r[li]),ty=num(r[ti]);
-      SC[rep].ly+=ly;SC[rep].ty+=ty;SC[rep].skus.push({name:(r[pri]||"").trim(),pkg:(pki>=0?r[pki]:"").trim(),ly,ty});}
-  } else {
-    // NESTED fallback: rep -> package group -> SKU (package id in col B)
-    let cur=null;
-    for(let i=1;i<rows.length;i++){const r=rows[i];const a=(r[0]||"").trim(),b=(r[1]||"").trim();
-      if(a==="Total"||a==="")continue;
-      if(b){ if(cur){SC[cur].ly+=num(r[2]);SC[cur].ty+=num(r[3]);SC[cur].skus.push({name:a,pkg:b,ly:num(r[2]),ty:num(r[3])});} }
-      else if(REPS.has(a)){cur=a;SC[cur]=SC[cur]||{ly:0,ty:0,skus:[]};}}
-  }}
-function renderSC(app){
-  const reps=Object.entries(SC).map(([n,v])=>({name:n,ly:v.ly,ty:v.ty,skus:v.skus})).filter(r=>r.ty>0||r.ly>0);
-  if(activeRep==="ALL"){
-    const ty=reps.reduce((s,r)=>s+r.ty,0),ly=reps.reduce((s,r)=>s+r.ly,0);
-    const yoy=ly?((ty-ly)/ly*100):0;
-    const stats=`<div class="stats">${statTile("Reps",reps.length,"")}${statTile("2026 cases",ce0(ty),"")}${statTile("2025 cases",ce0(ly),"")}${statTile("vs 2025",(yoy>=0?"+":"")+yoy.toFixed(0)+"%","")}</div>`;
-    const ranked=reps.slice().sort((a,b)=>b.ty-a.ty).map((R,i)=>({...R,rank:i+1}));
-    const max=ranked[0]?ranked[0].ty:1;
-    const rows=ranked.map(R=>{const d=R.ty-R.ly;return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.name)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.name)}</b><div class="sub">2025 ${ce0(R.ly)} → 2026 ${ce0(R.ty)} · ${d>=0?'+':''}${ce0(d)}</div><div class="track"><i style="width:${(R.ty/max*100).toFixed(1)}%"></i></div></span><span class="win">${ce0(R.ty)}<small>2026 cases</small></span></div>`;}).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Volume leaderboard</h2><span class="meta">${ranked.length} reps · by 2026 cases (May–Aug)</span></div><div class="board">${rows}</div>`;
-    bindRows(app);
-  } else {
-    const R=SC[activeRep]||{ly:0,ty:0,skus:[]};
-    const ranked=reps.slice().sort((a,b)=>b.ty-a.ty).map(x=>x.name);const rank=ranked.indexOf(activeRep)+1;
-    const d=R.ty-R.ly, yoy=R.ly?((R.ty-R.ly)/R.ly*100):0;
-    const pct=R.ly?Math.min(R.ty/R.ly*100,100):0;
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${ce0(R.ty)} cases in 2026 · ${d>=0?'+':''}${ce0(d)} vs 2025 (${yoy>=0?'+':''}${yoy.toFixed(0)}%)</small></div><div class="win2"><div class="b num">${ce0(R.ty)}</div><div class="l">2026 cases</div></div></div>
-      <div class="qline" style="margin-top:14px"><span>2026 pace vs 2025 total</span><span class="num">${ce0(R.ty)} / ${ce0(R.ly)}</span></div>
-      <div class="bar ${R.ty>=R.ly?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
-      <div class="pl" style="margin-top:9px">2026 is still filling in (May–Aug). Bar turns green once you pass last year's full total.</div></div>`;
-    const groups={};
-    R.skus.forEach(s=>{const g=groups[s.pkg]||(groups[s.pkg]={pkg:s.pkg,ly:0,ty:0,items:[]});g.ly+=s.ly;g.ty+=s.ty;g.items.push(s);});
-    const gArr=Object.values(groups).sort((a,b)=>b.ty-a.ty);
-    const cards=gArr.map(g=>{
-      const items=g.items.slice().sort((a,b)=>b.ty-a.ty).map(s=>`<div class="brow"><span>${esc(s.name)}</span><span class="num">${ce0(s.ty)}<small> / ${ce0(s.ly)} '25</small></span></div>`).join("");
-      return `<div class="quest"><div class="sup">${esc(g.pkg||"Other")}<span class="badge prog">${ce0(g.ty)} / ${ce0(g.ly)} '25</span></div><div class="brk" style="border-top:none;padding-top:4px"><div class="cap">2026 cases / 2025 cases</div>${items}</div></div>`;
-    }).join("");
-    app.innerHTML=hero+`<div class="shead"><h2>By package</h2><span class="meta">${gArr.length} package groups</span></div>`+cards;
-  }
-}
-
-/* ============ shell ============ */
-function bindRows(app){app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});}
-/* ============ BASE DISTRIBUTION (placements vs brand goals) ============ */
-const BASE_COLORS=["#C8472E","#F2A900","#2BB7B3","#8E2DE2","#2F6FB0","#E0457B","#5BA84A","#E07B39"];
-let GPB={},GPB_BRANDS=[];
-function ingestBase(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
-  const ri=col(H,"sales rep","rep"), bi=col(H,"brand family","brand");
+function ingestGP(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const ri=col(H,"sales rep","rep"), bi=col(H,"brand family","brand"), dmi=col(H,"district manager","district");
   let pi=H.findIndex(h=>h.trim().toLowerCase()==="placements"); if(pi<0)pi=H.findIndex(h=>/placement/i.test(h)&&!h.includes("(")&&!/goal/i.test(h));
-  const gi=H.findIndex(h=>/goal/i.test(h)&&!/%/.test(h)),brands=new Set();
+  const gi=H.findIndex(h=>/goal/i.test(h)&&!/%/.test(h)), brands=new Set();
   for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ri]||"").trim(),brand=(r[bi]||"").trim();if(!rep||!brand)continue;
-    GPB[rep]=GPB[rep]||{};GPB[rep][brand]=GPB[rep][brand]||{p:0,g:0};
-    GPB[rep][brand].p+=num(r[pi]);GPB[rep][brand].g+=(gi>=0?num(r[gi]):0);brands.add(brand);}
-  GPB_BRANDS=[...brands].sort((a,b)=>baseTot(b).p-baseTot(a).p);}
-function baseTot(b){let p=0,g=0;Object.values(GPB).forEach(d=>{if(d[b]){p+=d[b].p;g+=d[b].g;}});return{p,g};}
-function baseAgg(rep){const d=GPB[rep]||{};let p=0,gp=0,g=0;GPB_BRANDS.forEach(b=>{if(d[b]){p+=d[b].p;if(d[b].g>0){gp+=d[b].p;g+=d[b].g;}}});return{p,gp,g,pct:g?gp/g*100:null};}
-const bcolorB=b=>BASE_COLORS[GPB_BRANDS.indexOf(b)%BASE_COLORS.length];
-function renderBase(app){
-  const reps=Object.keys(GPB);
+    GP[rep]=GP[rep]||{}; GP[rep][brand]=GP[rep][brand]||{p:0,g:0};
+    GP[rep][brand].p+=num(r[pi]); GP[rep][brand].g+=(gi>=0?num(r[gi]):0); brands.add(brand);
+    if(dmi>=0&&r[dmi]&&r[dmi].trim()&&r[dmi].trim()!=="None")GP_DM[rep]=r[dmi].trim();}
+  GP_BRANDS=[...brands];
+  // order brands by total placements
+  GP_BRANDS.sort((a,b)=>tot(b).p-tot(a).p);
+}
+function tot(brand){let p=0,g=0;Object.values(GP).forEach(d=>{if(d[brand]){p+=d[brand].p;g+=d[brand].g;}});return {p,g};}
+function repAgg(rep){const d=GP[rep]||{};let p=0,gp=0,g=0;GP_BRANDS.forEach(b=>{if(d[b]){p+=d[b].p;if(d[b].g>0){gp+=d[b].p;g+=d[b].g;}}});return {p,gp,g,pct:g?gp/g*100:null};}
+const bcolor=b=>ON_COLORS[GP_BRANDS.indexOf(b)%ON_COLORS.length];
+
+function renderGP(app){
+  const reps=Object.keys(GP);
   if(activeRep==="ALL"){
-    let tp=0,tgp=0,tg=0;reps.forEach(r=>{const a=baseAgg(r);tp+=a.p;tgp+=a.gp;tg+=a.g;});
+    let tp=0,tgp=0,tg=0;reps.forEach(r=>{const a=repAgg(r);tp+=a.p;tgp+=a.gp;tg+=a.g;});
     const opct=tg?(tgp/tg*100):0;
     const stats=`<div class="stats">${statTile("Reps",reps.length,"")}${statTile("Placements",tp.toLocaleString(),"")}${statTile("Goal",tg.toLocaleString(),"")}${statTile("% of goal",opct.toFixed(0)+"%","")}</div>`;
-    const ranked=reps.map(r=>({rep:r,...baseAgg(r)})).sort((a,b)=>{if(a.pct===null&&b.pct===null)return b.p-a.p;if(a.pct===null)return 1;if(b.pct===null)return -1;return b.pct-a.pct||b.p-a.p;}).map((r,i)=>({...r,rank:i+1}));
-    const rows=ranked.map(R=>{const hit=R.pct!==null&&R.pct>=100;const win=R.pct===null?`${R.p}<small>placed</small>`:`${R.pct.toFixed(0)}%<small>of goal</small>`;
-      const sub=R.pct===null?`${R.p} placed · no goal set`:`${R.gp} / ${R.g} goal`;
+    const ranked=reps.map(r=>({rep:r,...repAgg(r)})).sort((a,b)=>{
+        const ap=a.pct,bp=b.pct; if(ap===null&&bp===null)return b.p-a.p; if(ap===null)return 1; if(bp===null)return -1; return bp-ap||b.p-a.p;
+      }).map((r,i)=>({...r,rank:i+1}));
+    const rows=ranked.map(R=>{const hit=R.pct!==null&&R.pct>=100;
+      const win=R.pct===null?`${R.p}<small>placed</small>`:`${R.pct.toFixed(0)}%<small>of goal</small>`;
+      const sub=R.pct===null?`${R.p} placed · no goal set`:`${R.gp} / ${R.g} goal${GP_DM[R.rep]?' · '+esc(GP_DM[R.rep]):''}`;
       return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(R.pct||0,100).toFixed(1)}%"></i></div></span><span class="win" style="${hit?'color:var(--good)':''}">${win}</span></div>`;}).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Distro goal leaderboard</h2><span class="meta">${ranked.length} reps · by % of goal</span></div><div class="board">${rows}</div>`;
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Goal leaderboard</h2><span class="meta">${ranked.length} reps · by % of goal</span></div><div class="board">${rows}</div>`;
     bindRows(app);
   } else {
-    const a=baseAgg(activeRep),d=GPB[activeRep]||{};
-    const rank=reps.map(r=>({rep:r,...baseAgg(r)})).sort((x,y)=>{if(x.pct===null&&y.pct===null)return y.p-x.p;if(x.pct===null)return 1;if(y.pct===null)return -1;return y.pct-x.pct;}).map(x=>x.rep).indexOf(activeRep)+1;
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${a.p} placements${a.g?` · ${a.gp} of ${a.g} toward goal`:''}</small></div><div class="win2"><div class="b num">${a.pct===null?a.p:a.pct.toFixed(0)+'%'}</div><div class="l">${a.pct===null?'Placed':'of goal'}</div></div></div></div>`;
-    const items=GPB_BRANDS.filter(b=>d[b]).map(b=>({b,p:d[b].p,g:d[b].g})).sort((x,y)=>(y.g?y.p/Math.max(y.g,1):0)-(x.g?x.p/Math.max(x.g,1):0)||y.p-x.p);
+    const a=repAgg(activeRep),d=GP[activeRep]||{};
+    const ranked=reps.map(r=>({rep:r,...repAgg(r)})).sort((x,y)=>{if(x.pct===null&&y.pct===null)return y.p-x.p;if(x.pct===null)return 1;if(y.pct===null)return -1;return y.pct-x.pct;}).map(x=>x.rep);
+    const rank=ranked.indexOf(activeRep)+1;
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${a.p} placements${a.g?` · ${a.gp} of ${a.g} toward goal`:''}${GP_DM[activeRep]?' · '+esc(GP_DM[activeRep]):''}</small></div><div class="win2"><div class="b num">${a.pct===null?a.p:a.pct.toFixed(0)+'%'}</div><div class="l">${a.pct===null?'Placed':'of goal'}</div></div></div></div>`;
+    const items=GP_BRANDS.filter(b=>d[b]).map(b=>({b,p:d[b].p,g:d[b].g})).sort((x,y)=>(y.g?y.p/Math.max(y.g,1):0)-(x.g?x.p/Math.max(x.g,1):0)||y.p-x.p);
     const rows=items.map(x=>{const pct=x.g?Math.min(x.p/x.g*100,100):0;const hit=x.g&&x.p>=x.g;
       const right=x.g?`${x.p} / ${x.g} <small>${(x.p/x.g*100).toFixed(0)}%</small>`:`${x.p} <small>no goal</small>`;
-      return `<div class="brow" style="flex-direction:column;align-items:stretch;gap:5px"><div style="display:flex;justify-content:space-between"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bcolorB(x.b)};margin-right:8px"></span>${esc(x.b)}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${right}</span></div><div class="bar ${hit?'done':''}" style="height:7px"><i style="width:${pct.toFixed(1)}%"></i></div></div>`;}).join("");
+      return `<div class="brow" style="flex-direction:column;align-items:stretch;gap:5px"><div style="display:flex;justify-content:space-between"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bcolor(x.b)};margin-right:8px"></span>${esc(x.b)}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${right}</span></div><div class="bar ${hit?'done':''}" style="height:7px"><i style="width:${pct.toFixed(1)}%"></i></div></div>`;}).join("");
     app.innerHTML=hero+`<div class="quest"><div class="sup">Placements vs goal by brand</div><div class="brk" style="border-top:none;padding-top:6px">${rows}</div></div>`;
   }
 }
-
-function currentReps(){if(activeProgram==="conv")return [...new Set(CONV.map(r=>r.rep))].sort();if(activeProgram==="sc")return Object.keys(SC).filter(n=>SC[n].ty>0||SC[n].ly>0).sort();return Object.keys(GPB).filter(r=>baseAgg(r).p>0).sort();}
-function render(){const app=document.getElementById("body");(activeProgram==="conv"?renderConv:activeProgram==="sc"?renderSC:renderBase)(app);}
+function bindRows(app){app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});}
 function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
-function setProgram(p){if(p===activeProgram)return;activeProgram=p;activeRep="ALL";renderTabs();renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
-function renderTabs(){const t=[["conv","Cold Snap → Summer Ale"],["sc","Sun Cruiser Volume"],["base","Base Distro"]];
-  document.getElementById("progTabs").innerHTML=t.map(([v,l])=>`<button class="chip" aria-pressed="${v===activeProgram}" data-v="${v}">${l}</button>`).join("");
-  document.querySelectorAll("#progTabs .chip").forEach(b=>b.addEventListener("click",()=>setProgram(b.dataset.v)));}
-function renderChips(){const reps=currentReps();
+function renderChips(){const reps=Object.keys(GP).filter(r=>repAgg(r).p>0||repAgg(r).g>0).sort();
   document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function render(){renderGP(document.getElementById("body"));}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  let convText=null,scText=null,lastMod=null;
-  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");convText=await r.text();}}catch(e){}
-  try{const r=await fetch("suncruiser.csv",{cache:"no-store"});if(r.ok){scText=await r.text();}}catch(e){}
-  let baseText=null;
-  try{const r=await fetch("base_distro.csv",{cache:"no-store"});if(r.ok){baseText=await r.text();}}catch(e){}
-  if(convText)ingestConv(convText);
-  if(scText)ingestSC(scText);
-  if(baseText)ingestBase(baseText);
-  if(!CONV.length&&!Object.keys(SC).length&&!Object.keys(GPB).length){showEmpty("Upload <code>data.csv</code> (Cold Snap → Summer Ale conversion), <code>suncruiser.csv</code> (Sun Cruiser volume) and <code>base_distro.csv</code> (base distribution) next to this page.");return;}
-  if(!CONV.length)activeProgram=Object.keys(SC).length?"sc":"base";
-  renderTabs();renderChips();render();
+  let text=null,lastMod=null;
+  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");text=await r.text();}}catch(e){}
+  if(!text){showEmpty("Upload the report (with the Placements / Goals / % of Goals columns) as <code>data.csv</code> next to this page.");return;}
+  ingestGP(text);
+  if(!Object.keys(GP).length){showEmpty("Couldn't read that file — make sure it has Sales Rep, Brand Family, Placements and Goals columns.");return;}
+  renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Cold Snap → Summer Ale:</b> Converted = had Cold Snap (Jan–Mar) and now has Summer Ale (Apr–Jun); Opportunity = had Cold Snap, no Summer Ale yet; Gained = new Summer Ale. <b>Sun Cruiser Volume:</b> cases this year (5/1–8/31/2026, in progress) vs last year's full window. <b>Base Distro:</b> placements vs each brand's goal — % of goal drives the board. Re-export each report as data.csv / suncruiser.csv / base_distro.csv to refresh.";
+  document.getElementById("foot").innerHTML=FOOT;
 }
 boot();
 
