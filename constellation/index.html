@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F6F7F9; --ink-soft:#ABB2C2;
     --line:#262A35; --line-soft:#1F222B;
     --accent:#F2A900; --accent2:#B5790A;        /* Constellation gold */
     --good:#37C46B; --good-soft:#15301E;
@@ -17,7 +17,7 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16.5px;line-height:1.52;
     padding-bottom:env(safe-area-inset-bottom)}
   .wrap{max-width:860px;margin:0 auto;padding:0 18px}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
@@ -116,7 +116,7 @@
   .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
   .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
   .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
-  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:4px 0}
   .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
   .brow small{color:var(--ink-soft);font-weight:500}
   .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -136,18 +136,20 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
 <div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Placement Scorecard</p>
-  <h1>Constellation Placements</h1>
-  <p class="lede">SKU placements by rep across <b>Corona Gaintain, Modelo, Impact &amp; Innovation</b>. Filter by program, then tap a rep to drill into accounts and products.</p>
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Constellation</p>
+  <h1>Constellation Tracker</h1>
+  <p class="lede">Off-premise package placements plus the three on-premise draft programs. Flip the <b>premise</b> toggle, pick a program, then tap your name.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 <div id="app"><div class="wrap">
+  <div class="seg"><p class="lbl">Premise</p><div class="chips" id="premiseChips"></div></div>
   <div class="seg"><p class="lbl">Program</p><div class="chips" id="progChips"></div></div>
   <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
 <script>
+
 
 const FILES=["corona.csv","modelo.csv","impact.csv","innovation.csv"];
 const PROG_COLORS={"Corona Gaintain":"#F4B400","Modelo Gaintain":"#C8102E","Impact":"#8E2DE2","Innovation":"#2BB7B3"};
@@ -193,10 +195,8 @@ function distinct(arr,key){return new Set(arr.map(x=>x[key])).size;}
 
 
 
-function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
-const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
 
-function render(){
+function renderOff(){
   const app=document.getElementById("body");
   const s=scope();
   if(activeRep==="ALL"){
@@ -233,25 +233,132 @@ function render(){
     app.innerHTML=hero+`<div class="brk" style="border:none;padding:0;margin:0 0 6px"><div class="cap">Program mix</div></div><div class="quest">${legend}</div>`+`<div class="shead"><h2>Accounts</h2><span class="meta">${m.acc} · tap for products</span></div>${list}`;
   }
 }
-function setRep(v){activeRep=v;syncChips();render();window.scrollTo({top:0,behavior:"smooth"});}
-function setProg(v){activeProg=v;syncChips();render();}
-function syncChips(){document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));document.querySelectorAll("#progChips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeProg));}
-function renderChips(){
-  document.getElementById("progChips").innerHTML=["ALL",...PROGRAMS].map(v=>`<button class="chip" aria-pressed="${v===activeProg}" data-v="${esc(v)}">${v==="ALL"?"All programs":esc(v)}</button>`).join("");
-  const reps=[...new Set(RECORDS.map(r=>r.rep))].sort();
-  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
-  document.querySelectorAll("#progChips .chip").forEach(b=>b.addEventListener("click",()=>setProg(b.dataset.v)));
-  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
+
+
+/* ============ shared helpers ============ */
+function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+const medalColor=r=>r===1?"var(--gold)":r===2?"var(--silver)":"var(--bronze)";
+const ON_COLORS=["#F2A900","#C8102E","#2BB7B3","#8E2DE2","#2F6FB0","#E0457B","#5BA84A","#E07B39"];
+const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
+const stripId=s=>String(s).replace(/^\s*\d+\s*/,"").trim();
+
+/* ============ on-premise state + data ============ */
+let premise="off", onProg="packages", PKG={}, PKG_BRANDS=[], DRF={}, DRF_BRANDS=[], DRF_HASGOAL=false, ND=[];
+
+function ingestPackages(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  PKG_BRANDS=H.slice(1).map(h=>h.split(" Buyers")[0].trim()).filter(x=>x);
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[0]||"").trim();if(!rep)continue;
+    PKG[rep]={};PKG_BRANDS.forEach((b,j)=>PKG[rep][b]=num(r[j+1]));}}
+
+function ingestDraft(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const cols=[];for(let i=1;i<H.length;i++){if(!H[i].trim().startsWith("(")&&/buyers/i.test(H[i])){cols.push({i,name:H[i].split(" Buyers")[0].trim(),g:i+1});}}
+  DRF_BRANDS=cols.map(c=>c.name);
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[0]||"").trim();if(!rep)continue;
+    DRF[rep]={};cols.forEach(c=>{const g=num(r[c.g]);if(g>0)DRF_HASGOAL=true;DRF[rep][c.name]={n:num(r[c.i]),goal:g};});}}
+
+function ingestND(text){const rows=parseCSV(text);if(rows.length<2)return;
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[0]||"").trim();if(!rep)continue;
+    ND.push({rep,brand:(r[1]||"").trim(),pkg:(r[2]||"").trim(),acct:stripId(r[3]),isNew:(r[4]||"").trim()==="1",units:num(r[5])});}}
+
+const bcolor=(brands,b)=>ON_COLORS[brands.indexOf(b)%ON_COLORS.length];
+
+/* ---- buyers-by-brand render (Packages ON / Draft ON) ---- */
+function renderBuyers(app,data,brands,hasGoal){
+  const reps=Object.keys(data);
+  const repTotal=rep=>brands.reduce((s,b)=>s+(hasGoal?(data[rep][b]?.n||0):(data[rep][b]||0)),0);
+  if(activeRep==="ALL"){
+    const ranked=reps.map(r=>({rep:r,t:repTotal(r)})).filter(r=>r.t>0).sort((a,b)=>b.t-a.t).map((r,i)=>({...r,rank:i+1}));
+    const totalBuyers=ranked.reduce((s,r)=>s+r.t,0);
+    const stats=`<div class="stats">${statTile("Reps",ranked.length,"")}${statTile("Buyers",totalBuyers.toLocaleString(),"")}${statTile("Brands",brands.length,"")}${statTile(hasGoal?"Goals":"Top brand",hasGoal?(DRF_HASGOAL?"set":"—"):topBrand(data,brands,hasGoal),"")}</div>`;
+    const max=ranked[0]?ranked[0].t:1;
+    const rows=ranked.map(R=>`<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${brands.length} brands</div><div class="track"><i style="width:${(R.t/max*100).toFixed(1)}%"></i></div></span><span class="win">${R.t}<small>buyers</small></span></div>`).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Buyers leaderboard</h2><span class="meta">${ranked.length} reps · by total buyers</span></div><div class="board">${rows}</div>`;
+    bindRows(app);
+  } else {
+    const d=data[activeRep]||{};
+    const ranked=reps.map(r=>({rep:r,t:repTotal(r)})).sort((a,b)=>b.t-a.t).map(x=>x.rep);
+    const rank=ranked.indexOf(activeRep)+1;
+    const tot=repTotal(activeRep);
+    const items=brands.map(b=>({b,n:hasGoal?(d[b]?.n||0):(d[b]||0),goal:hasGoal?(d[b]?.goal||0):0})).sort((a,b)=>b.n-a.n);
+    const mx=Math.max(1,...items.map(x=>x.n));
+    const spec=items.filter(x=>x.n>0).map(x=>`<span style="flex-grow:${x.n};background:${bcolor(brands,x.b)}" title="${esc(x.b)}"></span>`).join("")||'<span class="pl">No buyers yet</span>';
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${tot} buyers across ${items.filter(x=>x.n>0).length} brands</small></div><div class="win2"><div class="b num">${tot}</div><div class="l">Buyers</div></div></div><div class="pips" style="gap:3px">${spec}</div><div class="pl">Buyer mix by brand — wider band = more buyers.</div></div>`;
+    const rows=items.map(x=>{const w=(x.n/mx*100).toFixed(1);const goalTxt=hasGoal&&x.goal>0?` <small>/ ${x.goal} goal</small>`:"";
+      return `<div class="brow" style="flex-direction:column;align-items:stretch;gap:5px"><div style="display:flex;justify-content:space-between"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bcolor(brands,x.b)};margin-right:8px"></span>${esc(x.b)}</span><span class="num">${x.n}${goalTxt}</span></div><div class="bar" style="height:7px"><i style="width:${w}%"></i></div></div>`;}).join("");
+    app.innerHTML=hero+`<div class="quest"><div class="sup">Buyers by brand</div><div class="brk" style="border-top:none;padding-top:6px">${rows}</div></div>`;
+  }
 }
+function topBrand(data,brands,hasGoal){const t={};Object.values(data).forEach(d=>brands.forEach(b=>t[b]=(t[b]||0)+(hasGoal?(d[b]?.n||0):(d[b]||0))));const e=Object.entries(t).sort((a,b)=>b[1]-a[1])[0];return e?e[0].split(" ")[0]:"—";}
+
+/* ---- new draft distro render ---- */
+function renderND(app){
+  const reps=[...new Set(ND.map(r=>r.rep))];
+  const brands=[...new Set(ND.map(r=>r.brand))];
+  if(activeRep==="ALL"){
+    const newCount=ND.filter(r=>r.isNew).length;
+    const by={};ND.forEach(r=>{const R=by[r.rep]||(by[r.rep]={nu:0,lines:0});if(r.isNew)R.nu++;R.lines++;});
+    const ranked=Object.entries(by).map(([rep,v])=>({rep,nu:v.nu,lines:v.lines})).filter(r=>r.nu>0||r.lines>0).sort((a,b)=>b.nu-a.nu||b.lines-a.lines).map((r,i)=>({...r,rank:i+1}));
+    const stats=`<div class="stats">${statTile("New placements",newCount,"")}${statTile("Draft lines",ND.length.toLocaleString(),"")}${statTile("Reps",ranked.length,"")}${statTile("Brands",brands.length,"")}</div>`;
+    const max=Math.max(1,...ranked.map(r=>r.nu));
+    const rows=ranked.map(R=>`<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.lines} current draft lines</div><div class="track"><i style="width:${(R.nu/max*100).toFixed(1)}%"></i></div></span><span class="win">${R.nu}<small>new</small></span></div>`).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>New draft leaderboard</h2><span class="meta">${ranked.length} reps · by new placements (Jun–Aug)</span></div><div class="board">${rows}</div>`;
+    bindRows(app);
+  } else {
+    const mine=ND.filter(r=>r.rep===activeRep);
+    const news=mine.filter(r=>r.isNew);
+    const by={};ND.forEach(r=>{if(r.isNew)by[r.rep]=(by[r.rep]||0)+1;});
+    const rank=Object.entries(by).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).indexOf(activeRep)+1;
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${news.length} new this summer · ${mine.length} current draft lines</small></div><div class="win2"><div class="b num">${news.length}</div><div class="l">New placements</div></div></div><div class="pl" style="margin-top:4px">New = a draft line that didn't exist before this summer.</div></div>`;
+    const newList=news.length?news.sort((a,b)=>a.brand.localeCompare(b.brand)).map(r=>`<div class="brow" style="align-items:center"><span style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;background:var(--good);color:#06210f;font-weight:700;font-size:12px">+</span>${esc(r.acct)}</span><span class="num">${esc(r.brand)} · ${esc(r.pkg)}</span></div>`).join(""):'<div class="pl">No new draft placements yet — go get one.</div>';
+    const newCard=`<div class="quest" style="border-color:color-mix(in srgb,var(--good) 35%,var(--line))"><div class="sup">New draft wins<span class="badge ${news.length?'ok':'prog'}">${news.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${newList}</div></div>`;
+    const bb={};mine.forEach(r=>bb[r.brand]=(bb[r.brand]||0)+1);
+    const bbrows=Object.entries(bb).sort((a,b)=>b[1]-a[1]).map(([b,n])=>`<div class="brow"><span>${esc(b)}</span><span class="num">${n}</span></div>`).join("");
+    const footCard=`<div class="quest"><div class="sup">Current draft footprint<span class="badge prog">${mine.length} lines</span></div><div class="brk" style="border-top:none;padding-top:4px"><div class="cap">Draft lines by brand</div>${bbrows}</div></div>`;
+    app.innerHTML=hero+newCard+footCard;
+  }
+}
+
+/* ============ shell ============ */
+function bindRows(app){app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});}
+function render(){const app=document.getElementById("body");
+  if(premise==="off"){renderOff();return;}
+  if(onProg==="packages")renderBuyers(app,PKG,PKG_BRANDS,false);
+  else if(onProg==="draft")renderBuyers(app,DRF,DRF_BRANDS,true);
+  else renderND(app);}
+function currentReps(){
+  if(premise==="off")return [...new Set(RECORDS.map(r=>r.rep))].sort();
+  if(onProg==="packages")return Object.keys(PKG).filter(r=>PKG_BRANDS.some(b=>PKG[r][b]>0)).sort();
+  if(onProg==="draft")return Object.keys(DRF).filter(r=>DRF_BRANDS.some(b=>(DRF[r][b]?.n||0)>0)).sort();
+  return [...new Set(ND.map(r=>r.rep))].sort();}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function setPremise(p){if(p===premise)return;premise=p;activeRep="ALL";if(p==="off")activeProg="ALL";renderProg();renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
+function setProgOff(v){activeProg=v;activeRep="ALL";document.querySelectorAll("#progChips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeProg));renderChips();render();}
+function setProgOn(v){onProg=v;activeRep="ALL";document.querySelectorAll("#progChips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===onProg));renderChips();render();}
+function renderPremise(){document.getElementById("premiseChips").innerHTML=[["off","Off-Premise"],["on","On-Premise"]].map(([v,l])=>`<button class="chip" aria-pressed="${v===premise}" data-v="${v}">${l}</button>`).join("");
+  document.querySelectorAll("#premiseChips .chip").forEach(b=>b.addEventListener("click",()=>setPremise(b.dataset.v)));}
+function renderProg(){const el=document.getElementById("progChips");
+  if(premise==="off"){el.innerHTML=["ALL",...PROGRAMS].map(v=>`<button class="chip" aria-pressed="${v===activeProg}" data-v="${esc(v)}">${v==="ALL"?"All programs":esc(v)}</button>`).join("");
+    el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>setProgOff(b.dataset.v)));
+  }else{el.innerHTML=[["packages","Packages"],["draft","Draft"],["newdistro","New Draft Distro"]].map(([v,l])=>`<button class="chip" aria-pressed="${v===onProg}" data-v="${v}">${l}</button>`).join("");
+    el.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>setProgOn(b.dataset.v)));}}
+function renderChips(){const reps=currentReps();
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  let any=false,lastMod=null;
-  for(const f of FILES){try{const res=await fetch(f,{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified")||lastMod;ingest(await res.text());any=true;}}catch(e){}}
-  if(!any||!RECORDS.length){showEmpty("Upload the program files (<code>corona.csv</code>, <code>modelo.csv</code>, <code>impact.csv</code>, <code>innovation.csv</code>) next to this page and refresh.");return;}
-  PROGRAMS=[...new Set(RECORDS.map(r=>r.prog))].sort((a,b)=>RECORDS.filter(r=>r.prog===b).length-RECORDS.filter(r=>r.prog===a).length);
-  renderChips();render();
+  let off=false,lastMod=null;
+  for(const f of FILES){try{const res=await fetch(f,{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified")||lastMod;ingest(await res.text());off=true;}}catch(e){}}
+  if(off){PROGRAMS=[...new Set(RECORDS.map(r=>r.prog))].sort((a,b)=>RECORDS.filter(r=>r.prog===b).length-RECORDS.filter(r=>r.prog===a).length);}
+  try{const r=await fetch("packages_on.csv",{cache:"no-store"});if(r.ok)ingestPackages(await r.text());}catch(e){}
+  try{const r=await fetch("draft_on.csv",{cache:"no-store"});if(r.ok)ingestDraft(await r.text());}catch(e){}
+  try{const r=await fetch("new_distro.csv",{cache:"no-store"});if(r.ok)ingestND(await r.text());}catch(e){}
+  const haveOn=Object.keys(PKG).length||Object.keys(DRF).length||ND.length;
+  if(!off&&!haveOn){showEmpty("Upload the Constellation data files next to this page and refresh.");return;}
+  if(!off&&haveOn)premise="on";
+  renderPremise();renderProg();renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="A <b>placement</b> is one SKU stocked at an account, counted once even across multiple load-sheet dates. Tap any account to see the exact products. Modelo, Impact &amp; Innovation export at a 200-row cap — re-export those with the cap raised for full numbers.";
+  document.getElementById("foot").innerHTML="<b>Off-Premise</b> = retail/package placements (Corona, Modelo, Impact, Innovation). <b>On-Premise</b> = draft programs: Packages (package buyers by brand), Draft (draft buyers by brand, with goals when set), and New Draft Distro (new draft lines won this summer). Re-export each report as its CSV to refresh.";
 }
 boot();
 
