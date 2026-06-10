@@ -3,308 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>2026 Summer of Success</title>
+<title>Kohler Distributing — Trackers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
-    --line:#262A35; --line-soft:#1F222B;
-    --accent:#E6B23C; --accent2:#C7892A;        /* tracker accent (SoS = gold) */
-    --good:#37C46B; --good-soft:#15301E;
-    --lock:#565E72;
-    --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
-    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
-  }
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);}
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
-    padding-bottom:env(safe-area-inset-bottom)}
-  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
-  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
-
-  /* header */
-  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
-    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
-  .gx-head .wrap{position:relative;padding:30px 18px 24px}
-  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
-    color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
-  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
-  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
-  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
-  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
-  .lede b{color:var(--accent)}
-  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
-
-  .note{margin:14px 0 0}
-  .note .inner{background:color-mix(in srgb,var(--accent) 9%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));
-    border-radius:12px;padding:10px 13px;font-size:12.5px;color:color-mix(in srgb,var(--accent) 55%,var(--ink))}
-
-  /* stat tiles */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
-  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
-  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
-  .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
-  .stat .v.accent{color:var(--accent)}
-
-  /* chips */
-  .seg{margin:22px 0 0}
-  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
-    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
-  .chip:hover{border-color:var(--accent)}
-  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#15140C;font-weight:600}
-  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-
-  /* section head */
-  .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
-  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;margin:0}
-  .shead .tr{color:var(--accent)}
-  .shead .meta{margin-left:auto;font-size:12px;color:var(--ink-soft)}
-
-  /* leaderboard */
-  .board{display:flex;flex-direction:column;gap:9px}
-  .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
-    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
-  .lrow:hover{transform:translateY(-2px);border-color:#39404F}
-  .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-  .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
-  .medal{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;
-    font-size:16px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
-  .medal.m1{background:linear-gradient(160deg,#F4D06A,#C7892A);color:#1a1407;border:none}
-  .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
-  .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
-  .who b{font-weight:600;font-size:15px}
-  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
-  .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
-  .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px}
-  .win{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap;color:var(--accent)}
-  .win small{display:block;font-size:10px;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
-
-  /* hero (your standing) */
-  .hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;
-    padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:16px}
-  .hero::before{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;
-    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
-  .hero .top{display:flex;align-items:center;gap:16px;position:relative}
-  .hero .rankbox{text-align:center}
-  .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
-  .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
-  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
-  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
-  .hero .win2{margin-left:auto;text-align:right}
-  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
-  .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
-  .pips{display:flex;gap:6px;margin:16px 0 0;position:relative;flex-wrap:wrap}
-  .pip{flex:1;min-width:28px;height:8px;border-radius:5px;background:var(--line)}
-  .pip.on{background:linear-gradient(90deg,var(--good),#2aa657)}
-  .hero .pl{font-size:11px;color:var(--ink-soft);margin:9px 0 0;position:relative;letter-spacing:.02em}
-
-  /* quest cards */
-  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
-  .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-  .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
-  .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
-  .badge svg{width:11px;height:11px}
-  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
-  .qline .num{color:var(--ink);font-weight:600}
-  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
-  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
-  .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
-  .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
-  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
-  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
-  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
-  .brow small{color:var(--ink-soft);font-weight:500}
-  .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
-  .amp .l{color:var(--ink-soft);font-size:12.5px}
-  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:17px}
-  .amp .v.earn{color:var(--accent)}
-  .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
-  .amp .v.locked svg{width:13px;height:13px}
-
-  .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
-  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
-  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
-  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
-  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
-  footer b{color:var(--ink)}
-  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
+  .wrap{max-width:720px;margin:0 auto}
+  header{padding:56px 0 8px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--ink-soft);margin:0 0 10px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(32px,8vw,46px);line-height:1.0;margin:0}
+  .sub{color:var(--ink-soft);margin:14px 0 0;max-width:48ch;font-size:15px}
+  .grid{display:grid;gap:14px;margin:30px 0 0}
+  a.tile{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;transition:transform .15s ease,background .15s ease,border-color .15s ease;}
+  a.tile:hover{transform:translateY(-3px);background:var(--card-h);border-color:#3A3F4C}
+  a.tile:focus-visible{outline:3px solid #5B8DEF;outline-offset:3px}
+  .tile .accentbar{position:absolute;left:0;top:0;bottom:0;width:5px}
+  .tile .label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}
+  .tile h2{font-family:"Space Grotesk";font-weight:700;font-size:21px;margin:0 0 5px;letter-spacing:-.01em}
+  .tile p{margin:0;color:var(--ink-soft);font-size:14px;max-width:46ch}
+  .tile .go{position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--ink-soft);font-size:24px;transition:transform .15s ease,color .15s ease}
+  a.tile:hover .go{transform:translateY(-50%) translateX(4px);color:var(--ink)}
+  a.tile.feature{background:linear-gradient(135deg,#241E0E,#15130D);border-color:#5A4A1E}
+  a.tile.feature:hover{border-color:#8A7330}
+  a.tile.soon{opacity:.55}
+  a.tile.soon:hover{transform:none;background:var(--card);border-color:var(--line)}
+  .tile .pill{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-family:"Space Grotesk";font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  a.tile.soon .go{display:none}
+  .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 0}
+  footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px}
 </style>
 </head>
 <body>
-<div class="gx-head"><div class="wrap">
-  <p class="eyebrow"><span class="pulse"></span> Season · Summer 2026 · Jun–Aug</p>
-  <h1>Summer of Success</h1>
-  <p class="lede">Clear your <b>supplier goals</b> to qualify, then stack <b>Amplify</b> bonus dollars for every case over last year. Tap your name to see your board.</p>
-  <p class="updated" id="updated"></p>
-  <div class="note"><div class="inner" id="note">Tier qualifier payout ($750 / $500 / $250 by route volume) is pending — Amplify dollars below are live.</div></div>
-</div></div>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Kohler Distributing</p>
+    <h1>Sales Trackers</h1>
+    <p class="sub">Live dashboards for the brands and programs we're driving. Pick one to open it.</p>
+  </header>
 
-<div id="app"><div class="wrap">
-  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
-  <div id="body"></div>
-  <footer><hr><p id="foot"></p></footer>
-</div></div>
+  <nav class="grid">
+    <a class="tile feature" href="summer26/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#E8C45A,#9A7322)"></span>
+      <p class="label">Incentive Program · Jun–Aug 2026</p>
+      <h2>★ Summer of Success</h2>
+      <p>Your qualifier progress and Amplify bonus dollars, by rep and supplier.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
 
-<script>
-const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
-let DATA={}, activeRep="ALL", QSUP=new Set();
+    <a class="tile" href="yuengling/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#C8842B,#9C5E16)"></span>
+      <p class="label">Retention · Summer 2026</p>
+      <h2>Yuengling Draft Retention</h2>
+      <p>Which hunt-list accounts have re-ordered Lager &amp; Flight this summer, by rep.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
 
-function parseCSV(text){
-  const rows=[];let row=[],cur="",q=false;
-  for(let i=0;i<text.length;i++){const c=text[i];
-    if(q){if(c==='"'){if(text[i+1]==='"'){cur+='"';i++;}else q=false;}else cur+=c;}
-    else{if(c==='"')q=true;else if(c===','){row.push(cur);cur="";}else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur="";}else if(c==='\r'){}else cur+=c;}}
-  if(cur.length||row.length){row.push(cur);rows.push(row);}
-  return rows;
-}
-const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const money=n=>"$"+Math.round(n).toLocaleString();
-const rateFor=b=>/fever|mike|mxd/i.test(b)?2:1;
+    <a class="tile" href="carbliss/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#E5197D,#8E2DE2)"></span>
+      <p class="label">Distribution Scorecard</p>
+      <h2>Carbliss Rep Scorecard</h2>
+      <p>Volume, breadth, and flavor depth by rep — where Carbliss is placed and how deep.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
 
-function build(text){
-  const rows=parseCSV(text); const reps={}; QSUP=new Set();
-  let curRep=null, curSup=null, curTier=null;
-  for(let i=1;i<rows.length;i++){
-    const r=rows[i]; if(!r.length) continue;
-    const a=(r[0]||"").trim(), b=(r[1]||"").trim();
-    const ly=num(r[2]), ty=num(r[3]), goal=num(r[4]);
-    if(a==="Total"||a==="") continue;
-    if(b){
-      curSup=a; curTier=/^qualifier/i.test(b)?"Q":(/^amplify/i.test(b)?"A":"?");
-      if(curTier==="Q") QSUP.add(a);
-      const R=reps[curRep]; if(!R) continue;
-      if(curTier==="Q") R.qual[a]={ly,ty,goal,brands:[]};
-      else if(curTier==="A") R.amp[a]={ly,ty,brands:[]};
-    } else if(REPS.has(a)){
-      curRep=a; reps[a]={name:a,qual:{},amp:{}}; curSup=null;curTier=null;
-    } else {
-      if(curRep&&curSup&&reps[curRep]){
-        if(curTier==="A"&&reps[curRep].amp[curSup]) reps[curRep].amp[curSup].brands.push({brand:a,ly,ty});
-        else if(curTier==="Q"&&reps[curRep].qual[curSup]) reps[curRep].qual[curSup].brands.push({brand:a,ly,ty});
-      }
-    }
-  }
-  return reps;
-}
+    <a class="tile" href="constellation/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#F2A900,#0A2A66)"></span>
+      <p class="label">Placement Scorecard</p>
+      <h2>Constellation Placements</h2>
+      <p>SKU placements by rep across Corona Gaintain, Modelo Gaintain, Impact &amp; Innovation.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
 
-// payout numbers for a rep
-function calc(R){
-  const sups=new Set([...Object.keys(R.qual),...Object.keys(R.amp)]);
-  let goalSups=0, qualified=0, pctSum=0, amp=0;
-  const cards=[];
-  sups.forEach(sup=>{
-    const q=R.qual[sup], a=R.amp[sup];
-    const hasGoal=q&&q.goal>0;
-    const isQ = hasGoal && q.ty>=q.goal;
-    const isAmpOnly = !QSUP.has(sup);  // supplier never appears as a qualifier -> auto-unlock
-    if(hasGoal){goalSups++; if(isQ)qualified++; pctSum+=Math.min(q.ty/q.goal,1);}
-    let aPay=0, aInc=0, aTy=0, aLy=0, aOpen=false;
-    if(a){
-      aTy=a.ty; aLy=a.ly;
-      aOpen = isAmpOnly ? true : (hasGoal && isQ);
-      if(a.brands.length){ a.brands.forEach(br=>{aInc+=Math.max(0,br.ty-br.ly); aPay+= aOpen?Math.max(0,br.ty-br.ly)*rateFor(br.brand):0;}); }
-      else { aInc=Math.max(0,a.ty-a.ly); aPay=aOpen?aInc:0; }
-    }
-    amp+=aPay;
-    cards.push({sup,q,hasGoal,isQ,isAmpOnly,a,aPay,aInc,aTy,aLy,aOpen});
-  });
-  const avgPct = goalSups? (pctSum/goalSups*100):0;
-  return {goalSups,qualified,avgPct,amp,cards};
-}
+    <a class="tile" href="bostonbeer/">
+      <span class="accentbar" style="background:linear-gradient(180deg,#C8472E,#8A6D1F)"></span>
+      <p class="label">Conversion Program · Summer 2026</p>
+      <h2>Sam Adams Conversion</h2>
+      <p>Cold Snap → Summer Ale draft conversions by rep, with each rep's hit list.</p>
+      <span class="go">&rsaquo;</span>
+    </a>
+  </nav>
 
+  <p class="section-label">More brands</p>
+  <nav class="grid">
+    <a class="tile soon" href="molsoncoors/"><span class="accentbar" style="background:linear-gradient(180deg,#C8102E,#6E7479)"></span><p class="label">Supplier</p><h2>Molson Coors</h2><p>Coors, Miller, Blue Moon — tracking by rep.</p><span class="pill">Setup pending</span></a>
+    <a class="tile soon" href="heineken/"><span class="accentbar" style="background:linear-gradient(180deg,#00A04A,#00501F)"></span><p class="label">Supplier</p><h2>Heineken</h2><p>Heineken, Dos Equis, Amstel — tracking by rep.</p><span class="pill">Setup pending</span></a>
+    <a class="tile soon" href="markanthony/"><span class="accentbar" style="background:linear-gradient(180deg,#2BB7B3,#1A6E7E)"></span><p class="label">Supplier</p><h2>Mark Anthony</h2><p>White Claw, Mike's — tracking by rep.</p><span class="pill">Setup pending</span></a>
+  </nav>
 
-
-const LOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
-
-function standings(){
-  return Object.values(DATA).map(R=>({name:R.name,...calc(R)})).filter(r=>r.goalSups>0||r.amp>0)
-    .sort((a,b)=>b.amp-a.amp||b.qualified-a.qualified||b.avgPct-a.avgPct).map((r,i)=>({...r,rank:i+1}));
-}
-function statTile(k,v,s,accent){return `<div class="stat"><p class="k">${k}</p><p class="v num ${accent?'accent':''}">${v}${s||''}</p></div>`;}
-
-function render(){
-  const app=document.getElementById("body");
-  if(activeRep==="ALL"){
-    const S=standings();
-    let q=0,gs=0,amp=0,ps=0,n=0;
-    Object.values(DATA).forEach(R=>{const c=calc(R);q+=c.qualified;gs+=c.goalSups;amp+=c.amp;if(c.goalSups){ps+=c.avgPct;n++;}});
-    const stats=`<div class="stats">${statTile("Players",S.length,"")}${statTile("Qualifications",q,`<small> / ${gs}</small>`)}${statTile("Amplify pot",money(amp),"",true)}${statTile("Avg to goal",(n?ps/n:0).toFixed(0)+"%","")}</div>`;
-    const rows=S.map(R=>{
-      const cls=R.rank<=3?` top m${R.rank}`:"";
-      const mc=R.rank===1?"var(--gold)":R.rank===2?"var(--silver)":"var(--bronze)";
-      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.name)}">
-        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
-        <span class="who"><b>${esc(R.name)}</b><div class="sub">${R.qualified}/${R.goalSups} cleared · ${R.avgPct.toFixed(0)}% to goal</div>
-          <div class="track"><i style="width:${Math.min(R.avgPct,100).toFixed(1)}%"></i></div></span>
-        <span class="win">${money(R.amp)}<small>amplify</small></span></div>`;
-    }).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Leaderboard</h2><span class="meta">${S.length} reps · by amplify $, then progress</span></div><div class="board">${rows}</div>`;
-    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);
-      el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
-  } else {
-    const S=standings(); const me=S.find(r=>r.name===activeRep)||{rank:"–",...calc(DATA[activeRep])};
-    const c=calc(DATA[activeRep]);
-    const pips=Array.from({length:c.goalSups},(_,i)=>`<span class="pip ${i<c.qualified?'on':''}"></span>`).join("")||'<span class="pl">No supplier goals assigned</span>';
-    const hero=`<div class="hero"><div class="top">
-        <div class="rankbox"><div class="big num">${me.rank}</div><div class="lab">Rank</div></div>
-        <div class="nm">${esc(activeRep)}<small>${c.qualified} of ${c.goalSups} suppliers cleared · ${c.avgPct.toFixed(0)}% avg to goal</small></div>
-        <div class="win2"><div class="b num">${money(c.amp)}</div><div class="l">Amplify earned</div></div></div>
-      <div class="pips">${pips}</div>
-      <div class="pl">Each pip is a supplier goal — fill them all to clear the board.</div></div>`;
-    const cards=c.cards.filter(x=>x.hasGoal||x.a).sort((a,b)=>(b.hasGoal-a.hasGoal)||(b.isQ-a.isQ));
-    const brk=(title,brands,rate)=>(brands&&brands.length)?`<div class="brk"><div class="cap">${title}</div>`+
-      brands.slice().sort((a,b)=>b.ty-a.ty).map(br=>`<div class="brow"><span>${esc(br.brand)}${rate&&rateFor(br.brand)===2?' · $2':''}</span><span class="num">${Math.round(br.ty)}<small> / ${Math.round(br.ly)} \u201825</small></span></div>`).join("")+`</div>`:"";
-    const quests=cards.map(x=>{
-      const pct=x.hasGoal?Math.min(x.q.ty/x.q.goal*100,100):0;
-      let badge="";
-      if(x.hasGoal) badge=x.isQ?`<span class="badge ok">${CHECK} Cleared</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`;
-      else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">${CHECK} Amplify open</span>`;
-      const qh=x.hasGoal?`<div class="qline"><span>Goal progress (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
-        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Qualifier brands · 2026 ce', x.q.brands, false)}`
-        :(x.isAmpOnly?"":`<div class="qline"><span>No qualifier goal assigned</span></div>`);
-      let ah="";
-      if(x.a){const inc=Math.round(x.aInc);
-        ah = x.aOpen ? `<div class="amp"><span class="l">Amplify bonus · ${inc} cases over 2025${x.hasGoal?'':' (auto-open)'}</span><span class="v earn">${money(x.aPay)}</span></div>`
-          : `<div class="amp"><span class="l">Amplify bonus</span><span class="v locked">${LOCK} clear the goal to unlock</span></div>`;
-        ah+=brk('Amplify brands · 2026 ce', x.a.brands, true);
-      }
-      return `<div class="quest"><div class="sup">${esc(x.sup)}${badge}</div>${qh}${ah}</div>`;
-    }).join("");
-    app.innerHTML=hero+`<div class="shead"><h2>Your suppliers</h2></div>${quests}`;
-  }
-}
-function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
-function renderChips(){
-  const reps=Object.keys(DATA).sort();
-  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
-  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
-}
-function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
-const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
-
-async function boot(){
-  let text=null,lastMod=null;
-  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");text=await r.text();}}catch(e){}
-  if(!text){showEmpty("Upload the Summer of Success v4 export as <code>data.csv</code> next to this page and refresh.");return;}
-  DATA=build(text);
-  if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report saved as CSV.");return;}
-  renderChips();render();
-  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Clear a supplier</b> by hitting its 2026 case-equiv goal. <b>Amplify</b> then pays each of that supplier's brands' cases over 2025 — $1/case, or $2 for Fever-Tree, Mike's Harder &amp; MXD. Sapporo, Cape May &amp; New Belgium have no goal, so their Amplify is open automatically. Tier qualifier payout ($750 / $500 / $250) pending route volumes. Numbers grow through August.";
-}
-boot();
-
-</script>
+  <footer>Internal use. These dashboards show customer and account detail — please don't share the link outside the team.</footer>
+</div>
 </body>
 </html>
