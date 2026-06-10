@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sam Adams Conversion — Cold Snap → Summer Ale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#C8472E; --accent2:#9A2E1C;        /* Sam Adams red */
+    --good:#37C46B; --good-soft:#15301E;
+    --lock:#565E72;
+    --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+
+  /* header */
+  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
+  .gx-head .wrap{position:relative;padding:30px 18px 24px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
+    color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
+  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
+  .lede b{color:var(--accent)}
+  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  .note{margin:14px 0 0}
+  .note .inner{background:color-mix(in srgb,var(--accent) 9%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));
+    border-radius:12px;padding:10px 13px;font-size:12.5px;color:color-mix(in srgb,var(--accent) 55%,var(--ink))}
+
+  /* stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .stat .v.accent{color:var(--accent)}
+
+  /* chips */
+  .seg{margin:22px 0 0}
+  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#15140C;font-weight:600}
+  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  /* section head */
+  .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
+  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;margin:0}
+  .shead .tr{color:var(--accent)}
+  .shead .meta{margin-left:auto;font-size:12px;color:var(--ink-soft)}
+
+  /* leaderboard */
+  .board{display:flex;flex-direction:column;gap:9px}
+  .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
+  .lrow:hover{transform:translateY(-2px);border-color:#39404F}
+  .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+  .medal{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;
+    font-size:16px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+  .medal.m1{background:linear-gradient(160deg,#F4D06A,#C7892A);color:#1a1407;border:none}
+  .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
+  .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
+  .who b{font-weight:600;font-size:15px}
+  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+  .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px}
+  .win{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap;color:var(--accent)}
+  .win small{display:block;font-size:10px;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+
+  /* hero (your standing) */
+  .hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;
+    padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:16px}
+  .hero::before{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
+  .hero .top{display:flex;align-items:center;gap:16px;position:relative}
+  .hero .rankbox{text-align:center}
+  .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
+  .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
+  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
+  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
+  .hero .win2{margin-left:auto;text-align:right}
+  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
+  .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .pips{display:flex;gap:6px;margin:16px 0 0;position:relative;flex-wrap:wrap}
+  .pip{flex:1;min-width:28px;height:8px;border-radius:5px;background:var(--line)}
+  .pip.on{background:linear-gradient(90deg,var(--good),#2aa657)}
+  .hero .pl{font-size:11px;color:var(--ink-soft);margin:9px 0 0;position:relative;letter-spacing:.02em}
+
+  /* quest cards */
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
+  .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  .badge svg{width:11px;height:11px}
+  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
+  .qline .num{color:var(--ink);font-weight:600}
+  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
+  .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
+  .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
+  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
+  .brow small{color:var(--ink-soft);font-weight:500}
+  .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .amp .l{color:var(--ink-soft);font-size:12.5px}
+  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:17px}
+  .amp .v.earn{color:var(--accent)}
+  .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
+  .amp .v.locked svg{width:13px;height:13px}
+
+  .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="gx-head"><div class="wrap">
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Boston Beer · Draft Conversion</p>
+  <h1>Cold Snap → Summer Ale</h1>
+  <p class="lede">Flip every <b>Sam Adams Cold Snap</b> draft line into <b>Summer Ale</b> for the season. Tap your name to see what you've converted — and which accounts are still up for grabs.</p>
+  <p class="updated" id="updated"></p>
+</div></div>
+<div id="app"><div class="wrap">
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div id="body"></div>
+  <footer><hr><p id="foot"></p></footer>
+</div></div>
+<script>
+
+let RECORDS=[],activeRep="ALL";
+function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
+function ingest(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const ci={rep:col(H,"sales rep","rep"),name:col(H,"customer name","customer"),cold:col(H,"cold snap"),summer:col(H,"summer ale"),ind:col(H,"conversion indicator","indicator")};
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ci.rep]||"").trim();if(!rep)continue;
+    const cold=(r[ci.cold]||"").trim()==="1", summer=(r[ci.summer]||"").trim()==="1";
+    const ind=(r[ci.ind]||"").trim();
+    let cat = /convert/i.test(ind)&&cold&&summer ? "Converted" : (cold&&!summer ? "Opportunity" : (!cold&&summer ? "Gained" : (/opportun/i.test(ind)?"Opportunity":(/gain/i.test(ind)?"Gained":"Converted"))));
+    RECORDS.push({rep,name:(r[ci.name]||"").trim(),cold,summer,cat});}
+}
+function scope(){return activeRep==="ALL"?RECORDS:RECORDS.filter(r=>r.rep===activeRep);}
+function metrics(rows){
+  const conv=rows.filter(r=>r.cat==="Converted").length;
+  const opp=rows.filter(r=>r.cat==="Opportunity").length;
+  const gained=rows.filter(r=>r.cat==="Gained").length;
+  const base=conv+opp;
+  return {conv,opp,gained,base,rate:base?conv/base*100:0};
+}
+function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+
+function acctRow(name,kind){
+  const map={Converted:["var(--good)","#06210f","Converted"],Opportunity:["transparent","var(--accent)","Go convert"],Gained:["#2B6CB0","#fff","New"]};
+  const [bg,fg,tag]=map[kind];
+  const icon = kind==="Converted"?'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>' : (kind==="Opportunity"?'→':'+');
+  const box = kind==="Opportunity"?`border:1.5px dashed var(--accent);color:var(--accent)`:`background:${bg};color:${fg}`;
+  return `<div class="brow" style="align-items:center;padding:6px 0">
+    <span style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;font-weight:700;font-size:12px;${box}">${icon}</span>${esc(name)}</span>
+    <span class="num" style="font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:${kind==='Opportunity'?'var(--accent)':'var(--ink-soft)'}">${tag}</span></div>`;
+}
+
+function render(){
+  const app=document.getElementById("body");
+  if(activeRep==="ALL"){
+    const m=metrics(RECORDS);
+    const stats=`<div class="stats">${statTile("Converted",m.conv,"")}${statTile("Conversion rate",m.rate.toFixed(0)+"%","")}${statTile("Opportunities",m.opp,"")}${statTile("Gained new",m.gained,"")}</div>`;
+    const by={};RECORDS.forEach(r=>{const R=by[r.rep]||(by[r.rep]={rep:r.rep,conv:0,opp:0,gained:0});if(r.cat==="Converted")R.conv++;else if(r.cat==="Opportunity")R.opp++;else R.gained++;});
+    const reps=Object.values(by).map(R=>({...R,base:R.conv+R.opp,rate:(R.conv+R.opp)?R.conv/(R.conv+R.opp)*100:0})).filter(R=>R.base>0||R.gained>0)
+      .sort((a,b)=>b.conv-a.conv||b.rate-a.rate).map((R,i)=>({...R,rank:i+1}));
+    const max=reps[0]?reps[0].conv:1;
+    const rows=reps.map(R=>{const mc=R.rank===1?"var(--gold)":R.rank===2?"var(--silver)":"var(--bronze)";
+      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
+        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.rate.toFixed(0)}% of ${R.base} · ${R.opp} to go</div>
+        <div class="track"><i style="width:${(R.conv/max*100).toFixed(1)}%"></i></div></span>
+        <span class="win">${R.conv}<small>converted</small></span></div>`;}).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Conversion leaderboard</h2><span class="meta">${reps.length} reps · by accounts converted</span></div><div class="board">${rows}</div>`;
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    const rows=scope();const m=metrics(rows);
+    const by={};RECORDS.forEach(r=>{const R=by[r.rep]||(by[r.rep]={conv:0});if(r.cat==="Converted")R.conv++;});
+    const rank=Object.entries(by).sort((a,b)=>b[1].conv-a[1].conv).map(x=>x[0]).indexOf(activeRep)+1;
+    const base=m.base;const pct=Math.min(m.rate,100);
+    const pips=rows.filter(r=>r.cat!=="Gained").map(r=>`<span class="pip ${r.cat==="Converted"?'on':''}"></span>`).join("")||'<span class="pl">No Cold Snap accounts</span>';
+    const hero=`<div class="hero"><div class="top">
+        <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
+        <div class="nm">${esc(activeRep)}<small>${m.conv} of ${base} Cold Snap accounts converted${m.gained?` · ${m.gained} new`:''}</small></div>
+        <div class="win2"><div class="b num">${m.rate.toFixed(0)}%</div><div class="l">Conversion rate</div></div></div>
+      <div class="pips">${pips}</div>
+      <div class="pl">Each pip is a Cold Snap account — green once it's flipped to Summer Ale.</div></div>`;
+    const opp=rows.filter(r=>r.cat==="Opportunity");
+    const conv=rows.filter(r=>r.cat==="Converted");
+    const gain=rows.filter(r=>r.cat==="Gained");
+    const oppCard = `<div class="quest" style="border-color:color-mix(in srgb,var(--accent) 40%,var(--line))"><div class="sup">Go convert these${opp.length?`<span class="badge prog">${opp.length} open</span>`:`<span class="badge ok">${CHECK} all done</span>`}</div>
+      <div class="pl" style="margin:8px 0 4px">Had Cold Snap, no Summer Ale yet — your hit list.</div>
+      <div class="brk" style="border-top:none;padding-top:4px">${opp.length?opp.map(r=>acctRow(r.name,"Opportunity")).join(""):'<div class="pl">Nothing left — every Cold Snap account converted. 🔥</div>'}</div></div>`;
+    const convCard = conv.length?`<div class="quest"><div class="sup">Converted<span class="badge ok">${CHECK} ${conv.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${conv.map(r=>acctRow(r.name,"Converted")).join("")}</div></div>`:"";
+    const gainCard = gain.length?`<div class="quest"><div class="sup">Gained — new Summer Ale<span class="badge" style="background:#1B3A5B;color:#9CC4EE">+${gain.length}</span></div><div class="pl" style="margin:8px 0 4px">Summer Ale placed without prior Cold Snap — bonus business.</div><div class="brk" style="border-top:none;padding-top:4px">${gain.map(r=>acctRow(r.name,"Gained")).join("")}</div></div>`:"";
+    app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+oppCard+convCard+gainCard;
+  }
+}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChips(){const reps=[...new Set(RECORDS.map(r=>r.rep))].sort();
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
+async function boot(){
+  let text=null,lastMod=null;
+  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");text=await r.text();}}catch(e){}
+  if(!text){showEmpty("Upload the Cold Snap → Summer Ale conversion export as <code>data.csv</code> next to this page and refresh.");return;}
+  ingest(text);
+  if(!RECORDS.length){showEmpty("Couldn't read that file — check it's the conversion export saved as CSV.");return;}
+  renderChips();render();
+  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("foot").innerHTML="<b>Converted</b> = had Cold Snap on draft (Jan–Mar) and now has Summer Ale (Apr–Jun). <b>Opportunity</b> = had Cold Snap, no Summer Ale yet — go flip it. <b>Gained</b> = Summer Ale without prior Cold Snap (new business). Conversion rate = converted ÷ Cold Snap accounts. Re-export the conversion report as data.csv to refresh.";
+}
+boot();
+
+</script></body></html>
