@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2026 Summer of Success — Payout Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#F5F4F0; --card:#FFFFFF; --ink:#1A1813; --ink-soft:#6A6456;
+    --gold:#C79A3A; --gold-deep:#9A7322; --green:#2E9E5B; --green-soft:#E6F4EC;
+    --lock:#9AA1B0; --line:#E8E5DC; --line-soft:#F1EFE8;
+    --shadow:0 1px 2px rgba(26,24,19,.05), 0 10px 30px rgba(26,24,19,.06);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    padding-bottom:env(safe-area-inset-bottom);}
+  .wrap{max-width:840px;margin:0 auto}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+
+  header{background:#171511;color:#fff;padding:28px 20px 22px;position:relative;overflow:hidden}
+  header .wrap{position:relative;z-index:1}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;
+    font-weight:600;color:var(--gold);margin:0 0 8px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.01em;font-size:clamp(28px,7vw,42px);line-height:.98;margin:0}
+  .lede{margin:12px 0 0;max-width:58ch;color:#C4BEB0;font-size:14px}
+  .lede b{color:var(--gold)}
+  .updated{margin:11px 0 0;font-size:11.5px;color:#8A8270;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  .note{max-width:840px;margin:16px auto 0;padding:0 20px}
+  .note .inner{background:#FBF6E9;border:1px solid #EAD9A8;border-radius:12px;padding:11px 14px;font-size:12.5px;color:#7A6320}
+
+  .kpis{max-width:840px;margin:18px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+  .kpi .k{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin:0;font-weight:600}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:24px;margin:6px 0 0;line-height:1}
+  .kpi .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .kpi .v.money{color:var(--gold-deep)}
+
+  section.block{max-width:840px;margin:24px auto 0;padding:0 20px}
+  .h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 11px}
+  .h h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;letter-spacing:-.01em;margin:0}
+  .h .meta{font-size:12px;color:var(--ink-soft)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:all .12s ease}
+  .chip:hover{border-color:var(--gold)}
+  .chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+  .chip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+  .board{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;padding:13px 16px;
+    border-top:1px solid var(--line-soft);cursor:pointer;transition:background .12s}
+  .row:first-child{border-top:none}
+  .row:hover{background:#FBFAF7}
+  .row .rank{font-family:"Space Grotesk";font-weight:700;color:var(--ink-soft);font-size:14px}
+  .row .who b{font-weight:600;font-size:15px}
+  .row .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .row .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
+  .row .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));border-radius:4px}
+  .row .big{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap}
+  .row .big small{display:block;font-size:11px;color:var(--ink-soft);font-weight:500;margin-top:2px}
+
+  .repsum{background:#171511;color:#fff;border-radius:16px;padding:16px 18px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+  .repsum .big{font-family:"Space Grotesk";font-weight:700;font-size:30px;line-height:1}
+  .repsum .lab{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#A89F8C;margin-top:3px}
+  .repsum .gold{color:var(--gold)}
+
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .scard .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .badge{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+  .badge.ok{background:var(--green-soft);color:var(--green)}
+  .badge.prog{background:#FBF1DE;color:var(--gold-deep)}
+  .qline{font-size:12.5px;color:var(--ink-soft);margin:11px 0 6px;display:flex;justify-content:space-between}
+  .qline .num{color:var(--ink);font-weight:600}
+  .bar{height:9px;border-radius:6px;background:var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold),var(--gold-deep))}
+  .bar.done i{background:linear-gradient(90deg,#3FBE74,var(--green))}
+  .amp{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .amp .l{color:var(--ink-soft)}
+  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:16px}
+  .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px}
+  .amp .v.earn{color:var(--gold-deep)}
+
+  .empty{max-width:560px;margin:60px auto;padding:0 24px;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  footer{max-width:840px;margin:26px auto 0;padding:0 20px 44px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Kohler Distributing · Volume Rewards · Jun–Aug 2026</p>
+    <h1>Summer of Success</h1>
+    <p class="lede">Hit your <b>supplier volume goal</b> to qualify. Once you qualify a supplier, every case of its <b>Amplify</b> brands above your 2025 total pays a bonus ($1–$2/case). Tap your name to see where you stand.</p>
+    <p class="updated" id="updated"></p>
+  </div>
+</header>
+
+<div class="note"><div class="inner" id="note">Note: the Tier qualifier payout ($750 / $500 / $250 by route volume) isn't shown yet — route tiers pending. Amplify bonus dollars are live below.</div></div>
+
+<div id="app">
+  <section class="kpis" id="kpis"></section>
+  <section class="block">
+    <div class="h"><h2>View by rep</h2></div>
+    <div class="chips" id="chips"></div>
+  </section>
+  <section class="block" id="mainBlock">
+    <div class="h"><h2 id="mainTitle">Leaderboard</h2><span class="meta" id="mainMeta"></span></div>
+    <div id="mainBody"></div>
+  </section>
+  <footer><hr><p id="foot"></p></footer>
+</div>
+
+<script>
+const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
+let DATA={}, activeRep="ALL";
+
+function parseCSV(text){
+  const rows=[];let row=[],cur="",q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){if(c==='"'){if(text[i+1]==='"'){cur+='"';i++;}else q=false;}else cur+=c;}
+    else{if(c==='"')q=true;else if(c===','){row.push(cur);cur="";}else if(c==='\n'){row.push(cur);rows.push(row);row=[];cur="";}else if(c==='\r'){}else cur+=c;}}
+  if(cur.length||row.length){row.push(cur);rows.push(row);}
+  return rows;
+}
+const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money=n=>"$"+Math.round(n).toLocaleString();
+const rateFor=b=>/fever|mike|mxd/i.test(b)?2:1;
+
+function build(text){
+  const rows=parseCSV(text); const reps={};
+  let curRep=null, curSup=null, curTier=null;
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i]; if(!r.length) continue;
+    const a=(r[0]||"").trim(), b=(r[1]||"").trim();
+    const ly=num(r[2]), ty=num(r[3]), goal=num(r[4]);
+    if(a==="Total"||a==="") continue;
+    if(b){
+      curSup=a; curTier=/^qualifier/i.test(b)?"Q":(/^amplify/i.test(b)?"A":"?");
+      const R=reps[curRep]; if(!R) continue;
+      if(curTier==="Q") R.qual[a]={ly,ty,goal};
+      else if(curTier==="A") R.amp[a]={ly,ty,brands:[]};
+    } else if(REPS.has(a)){
+      curRep=a; reps[a]={name:a,qual:{},amp:{}}; curSup=null;curTier=null;
+    } else {
+      if(curRep&&curSup&&curTier==="A"&&reps[curRep].amp[curSup]) reps[curRep].amp[curSup].brands.push({brand:a,ly,ty});
+    }
+  }
+  return reps;
+}
+
+// payout numbers for a rep
+function calc(R){
+  const sups=new Set([...Object.keys(R.qual),...Object.keys(R.amp)]);
+  let goalSups=0, qualified=0, pctSum=0, amp=0;
+  const cards=[];
+  sups.forEach(sup=>{
+    const q=R.qual[sup], a=R.amp[sup];
+    const hasGoal=q&&q.goal>0;
+    const isQ = hasGoal && q.ty>=q.goal;
+    if(hasGoal){goalSups++; if(isQ)qualified++; pctSum+=Math.min(q.ty/q.goal,1);}
+    // amplify $ (gated on this supplier's qualifier)
+    let aPay=0, aInc=0, aTy=0, aLy=0, gated=hasGoal;
+    if(a){
+      aTy=a.ty; aLy=a.ly;
+      if(a.brands.length){ a.brands.forEach(br=>{aInc+=Math.max(0,br.ty-br.ly); aPay+= (gated&&isQ)?Math.max(0,br.ty-br.ly)*rateFor(br.brand):0;}); }
+      else { aInc=Math.max(0,a.ty-a.ly); aPay=(gated&&isQ)?aInc:0; }
+    }
+    amp+=aPay;
+    cards.push({sup,q,hasGoal,isQ,a,aPay,aInc,aTy,aLy,gated});
+  });
+  const avgPct = goalSups? (pctSum/goalSups*100):0;
+  return {goalSups,qualified,avgPct,amp,cards};
+}
+
+function renderKPIs(){
+  const k=document.getElementById("kpis");
+  if(activeRep==="ALL"){
+    let q=0,gs=0,amp=0,ps=0,n=0;
+    Object.values(DATA).forEach(R=>{const c=calc(R);q+=c.qualified;gs+=c.goalSups;amp+=c.amp;if(c.goalSups){ps+=c.avgPct;n++;}});
+    k.innerHTML=tiles([["Reps",Object.keys(DATA).length,""],["Qualifications",q,`<small> / ${gs}</small>`],["Amplify earned",money(amp),"",true],["Avg % to goal",(n?ps/n:0).toFixed(0)+"%",""]]);
+  } else {
+    const c=calc(DATA[activeRep]);
+    k.innerHTML=tiles([["Suppliers qualified",c.qualified,`<small> / ${c.goalSups}</small>`],["Amplify earned",money(c.amp),"",true],["Avg % to goal",c.avgPct.toFixed(0)+"%",""],["Suppliers",c.goalSups,""]]);
+  }
+}
+function tiles(arr){return arr.map(([k,v,s,money])=>`<div class="kpi"><p class="k">${k}</p><p class="v num ${money?'money':''}">${v}${s||""}</p></div>`).join("");}
+
+function renderChips(){
+  const reps=Object.keys(DATA).sort();
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>
+    `<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
+}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));renderKPIs();renderMain();window.scrollTo({top:0,behavior:"smooth"});}
+
+function renderMain(){
+  const body=document.getElementById("mainBody");
+  if(activeRep==="ALL"){
+    document.getElementById("mainTitle").textContent="Leaderboard";
+    const reps=Object.values(DATA).map(R=>({name:R.name,...calc(R)})).filter(r=>r.goalSups>0)
+      .sort((a,b)=>b.amp-a.amp||b.avgPct-a.avgPct);
+    document.getElementById("mainMeta").textContent=`${reps.length} reps · ranked by amplify $, then progress`;
+    body.innerHTML=`<div class="board">`+reps.map((R,i)=>
+      `<div class="row" role="button" tabindex="0" data-rep="${esc(R.name)}">
+        <span class="rank num">${i+1}</span>
+        <span class="who"><b>${esc(R.name)}</b><div class="sub">${R.qualified}/${R.goalSups} suppliers qualified · ${R.avgPct.toFixed(0)}% to goal</div>
+          <div class="track"><i style="width:${Math.min(R.avgPct,100).toFixed(1)}%"></i></div></span>
+        <span class="big num">${money(R.amp)}<small>amplify</small></span></div>`).join("")+`</div>`;
+    document.querySelectorAll(".row[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);
+      el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    document.getElementById("mainTitle").textContent="Your suppliers";
+    const c=calc(DATA[activeRep]);
+    document.getElementById("mainMeta").textContent="";
+    const cards=c.cards.filter(x=>x.hasGoal||x.a).sort((a,b)=>(b.hasGoal-a.hasGoal)||(b.isQ-a.isQ));
+    let html=`<div class="repsum">
+      <div><div class="big num gold">${c.qualified}<span style="font-size:18px;color:#A89F8C">/${c.goalSups}</span></div><div class="lab">Suppliers qualified</div></div>
+      <div><div class="big num gold">${money(c.amp)}</div><div class="lab">Amplify earned so far</div></div>
+      <div><div class="big num">${c.avgPct.toFixed(0)}%</div><div class="lab">Avg progress to goal</div></div></div>`;
+    html+=cards.map(x=>{
+      const pct=x.hasGoal?Math.min(x.q.ty/x.q.goal*100,100):0;
+      const badge=x.hasGoal?(x.isQ?`<span class="badge ok">Qualified</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`):"";
+      let qhtml = x.hasGoal ? `
+        <div class="qline"><span>Qualifier volume (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
+        <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>` : `<div class="qline"><span>No qualifier goal for this supplier</span></div>`;
+      let ahtml="";
+      if(x.a){
+        const inc=Math.round(x.aInc);
+        if(!x.hasGoal){ ahtml=`<div class="amp"><span class="l">Amplify · 2026 ${Math.round(x.aTy)} vs 2025 ${Math.round(x.aLy)}</span><span class="v locked">gate rule TBD</span></div>`; }
+        else if(x.isQ){ ahtml=`<div class="amp"><span class="l">Amplify bonus · ${inc} cases over 2025</span><span class="v earn">${money(x.aPay)}</span></div>`; }
+        else { ahtml=`<div class="amp"><span class="l">Amplify bonus</span><span class="v locked">🔒 unlocks when qualified</span></div>`; }
+      }
+      return `<div class="scard"><div class="sup">${esc(x.sup)}${badge}</div>${qhtml}${ahtml}</div>`;
+    }).join("");
+    body.innerHTML=html;
+  }
+}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
+
+async function boot(){
+  let text=null,lastMod=null;
+  try{const res=await fetch("data.csv",{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified");text=await res.text();}}catch(e){}
+  if(!text){showEmpty("Upload the Summer of Success v4 export as <code>data.csv</code> next to this page and refresh.");return;}
+  DATA=build(text);
+  if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report (rep / supplier / brand layout) saved as CSV.");return;}
+  renderChips();renderKPIs();renderMain();
+  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("foot").innerHTML="<b>Qualifier</b> = your 2026 summer case-equiv vs your supplier goal. <b>Amplify</b> bonus = each Amplify brand's cases over its 2025 total, $1/case (Fever-Tree, Mike's Harder &amp; MXD pay $2), and only once that supplier's qualifier is hit. Summer just started, so figures grow through August. Tier qualifier payout pending route volumes.";
+}
+boot();
+</script>
+</body>
+</html>
