@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yuengling Draft Retention — Summer Goals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E7CF;--foam:#FBF6EC;--ink:#2B1D10;--ink-soft:#6B5840;
+    --amber:#C8842B;--amber-deep:#9C5E16;--glass:#3C6E47;--clay:#B5532E;
+    --rule:#E0CFA6;--rule-dark:#43301C;
+    --shadow:0 1px 2px rgba(43,29,16,.08), 0 8px 24px rgba(43,29,16,.06);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:16px;line-height:1.45;padding-bottom:env(safe-area-inset-bottom);}
+  .wrap{max-width:760px;margin:0 auto}
+  header{background:var(--rule-dark);color:var(--paper);
+    border-bottom:4px solid var(--amber);padding:26px 20px 22px;}
+  .topline{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .eyebrow{font-family:"Oswald",sans-serif;letter-spacing:.22em;text-transform:uppercase;
+    font-size:12px;font-weight:500;color:var(--amber);margin:0 0 6px;}
+  h1{font-family:"Oswald",sans-serif;font-weight:700;letter-spacing:.01em;
+    font-size:clamp(28px,7vw,40px);line-height:1.02;margin:0;text-transform:uppercase;}
+  .lede{margin:12px 0 0;max-width:54ch;color:#E9DcC2;font-size:15px}
+  .lede b{color:var(--amber);font-weight:600}
+  .feed-badge{font-family:"Oswald",sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto;
+    border:1px solid rgba(255,255,255,.25);color:#E9DcC2}
+  .feed-badge.live{background:rgba(60,110,71,.25);border-color:var(--glass);color:#Bfe3c6}
+  .feed-badge.snap{background:rgba(200,132,43,.18);border-color:var(--amber);color:#F0Cf9a}
+  .updated{margin:10px 0 0;font-size:12px;color:#C9B79A;font-family:"Oswald";letter-spacing:.06em}
+  .summary{max-width:760px;margin:0 auto;padding:18px 20px 0;
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .stat{background:var(--foam);border:1px solid var(--rule);border-radius:14px;
+    padding:14px 16px;box-shadow:var(--shadow);}
+  .stat .k{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.12em;
+    font-size:12px;color:var(--ink-soft);margin:0}
+  .stat .v{font-family:"Oswald",sans-serif;font-weight:700;font-size:30px;margin:4px 0 0;line-height:1}
+  .stat .v small{font-size:15px;color:var(--ink-soft);font-weight:500}
+  .stat .v.hit{color:var(--glass)}
+  .stat .sub{font-size:12.5px;color:var(--ink-soft);margin:6px 0 0}
+  .pick{max-width:760px;margin:22px auto 0;padding:0 20px}
+  .pick .label{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.14em;
+    font-size:12px;color:var(--ink-soft);margin:0 0 8px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.02em;
+    font-size:14px;padding:8px 14px;border-radius:999px;cursor:pointer;
+    background:var(--foam);color:var(--ink);border:1px solid var(--rule);
+    transition:transform .12s ease, background .12s ease, color .12s ease, border-color .12s ease;}
+  .chip:hover{transform:translateY(-1px)}
+  .chip[aria-pressed="true"]{background:var(--amber);border-color:var(--amber-deep);color:#fff}
+  .chip:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+  main{max-width:760px;margin:0 auto;padding:18px 20px 56px}
+  .card{background:var(--foam);border:1px solid var(--rule);border-radius:16px;
+    box-shadow:var(--shadow);padding:18px 18px 8px;margin:0 0 16px;}
+  .card h2{font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+    font-size:20px;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .met-pill{font-family:"Inter";font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;}
+  .met-pill.ok{background:rgba(60,110,71,.14);color:var(--glass)}
+  .met-pill.behind{background:rgba(181,83,46,.14);color:var(--clay)}
+  .brand{padding:16px 0;border-top:1px solid var(--rule)}
+  .brand:first-of-type{border-top:none}
+  .brand-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 10px}
+  .brand-name{font-family:"Oswald",sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.08em}
+  .brand-count{font-family:"Oswald",sans-serif;font-weight:700;font-size:15px}
+  .brand-count small{color:var(--ink-soft);font-weight:500}
+  .meter{position:relative;height:12px;border-radius:7px;background:#EADFC4;overflow:visible;border:1px solid var(--rule)}
+  .meter .fill{display:block;height:100%;border-radius:6px 0 0 6px;
+    background:linear-gradient(90deg,var(--amber),var(--amber-deep));transition:width .5s ease}
+  .meter.hit .fill{background:linear-gradient(90deg,#4C8A5A,var(--glass))}
+  .meter .goalmark{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--rule-dark);opacity:.55}
+  .goal-note{font-size:12px;color:var(--ink-soft);margin:7px 0 14px}
+  .goal-note b{color:var(--ink)}
+  ul.accts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+  li.acct{display:flex;align-items:center;gap:11px;
+    padding:10px 12px;border:1px solid var(--rule);border-radius:11px;background:#fff;font-size:14.5px;}
+  li.acct .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--ink-soft);flex:0 0 auto;
+    display:grid;place-items:center;background:#fff;}
+  li.acct .box svg{width:12px;height:12px;opacity:0}
+  li.acct .name{flex:1 1 auto}
+  li.acct .tag{font-family:"Oswald";font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);flex:0 0 auto}
+  li.acct.yes{background:rgba(60,110,71,.08);border-color:var(--glass)}
+  li.acct.yes .box{background:var(--glass);border-color:var(--glass)}
+  li.acct.yes .box svg{opacity:1}
+  li.acct.yes .tag{color:var(--glass);font-weight:600}
+  footer{max-width:760px;margin:0 auto;padding:0 20px 40px;color:var(--ink-soft);font-size:12.5px}
+  footer hr{border:none;border-top:1px solid var(--rule);margin:0 0 14px}
+  @media (max-width:480px){.summary{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topline">
+      <div>
+        <p class="eyebrow">Kohler Distributing · Summer 2026</p>
+        <h1>Yuengling Draft<br>Retention</h1>
+      </div>
+      <span class="feed-badge" id="feedBadge">Loading…</span>
+    </div>
+    <p class="lede">Goal: <b>hold 90% of your current Lager &amp; Flight accounts</b> through summer. Green means the account has <b>re-ordered</b> in the 6/1–8/31 window. Tap your name to see just your accounts.</p>
+    <p class="updated" id="updated"></p>
+  </div>
+</header>
+
+<section class="summary" aria-label="Team totals">
+  <div class="stat"><p class="k">Lager Retained</p><p class="v" id="sumLager">—</p><p class="sub" id="sumLagerSub">across 6 reps</p></div>
+  <div class="stat"><p class="k">Flight Retained</p><p class="v" id="sumFlight">—</p><p class="sub" id="sumFlightSub">across 6 reps</p></div>
+</section>
+
+<section class="pick"><p class="label">Show accounts for</p><div class="chips" id="chips" role="group" aria-label="Filter by rep"></div></section>
+<main id="cards"></main>
+<footer><hr><p id="footnote"></p></footer>
+
+<script>
+/* ===== The full hunt list lives here (names by rep). The CSV only tells the
+   page WHO bought and HOW MUCH; everything else stays "not yet". ===== */
+const HUNT = [
+  {name:"Allison Scott",
+    lager:[{name:"Anthonys CF Pizza (Wayne)",id:12048},{name:"In The Drink@Passaic Gc",id:12064},{name:"Lakeside drive tavern",id:12020},{name:"Meadows Golf Club(P)",id:11007},{name:"Outback",id:5004},{name:"cherry's",id:10001}],
+    flight:[{name:"Grasshopper Too (A)",id:12022},{name:"YARD HOUSE 8384",id:12057}]},
+  {name:"Anthony Palmisano",
+    lager:[{name:"Bally Owen Golf Club",id:231210},{name:"Best Cellars (Wanaque)",id:3001},{name:"High Point Gc/Rest (P)",id:231803},{name:"The River Of Beer",id:4004},{name:"Uncorked Wines & Spirits (West Milford)",id:1012},{name:"Whiskey Wolf Tavern (P)",id:1214}],
+    flight:[{name:"Mt Creek Hex Lg(North) A",id:231209},{name:"Uncorked Wines & Spirits (West Milford)",id:1012}]},
+  {name:"Brian Sengebush",
+    lager:[{name:"Bearbrook Valley",id:230406},{name:"Club 15(P)",id:191004},{name:"Farmstead Golf (P)",id:231601},{name:"Jefferson House (A)",id:191504},{name:"Lake Mohawk Country Club",id:230116},{name:"Newton Country Club",id:230307},{name:"Patricks Pub (P)",id:191521},{name:"Peace Pipe Cc (P)",id:190606},{name:"Sam Adam's Pub (NAFIB4-22-A-0036)",id:190815},{name:"Skyview Golf Course (A)",id:230109},{name:"The Club (NAFIB4-22-A-0036)",id:190807},{name:"The Knoll Country Club & Catering",id:190312},{name:"Vasa Park",id:191816}],
+    flight:[{name:"Charley's Tavern",id:191007},{name:"Mason Street Grille",id:191009}]},
+  {name:"Nick Melissari",
+    lager:[{name:"Anthony's CF Pizza (A) (Ramsey)",id:92002},{name:"Outback Steakhouse(Z)Edg",id:49059},{name:"Whiskey Roads",id:42003}],
+    flight:[{name:"Blackjack Mulligans (Hawthorne)",id:19006},{name:"The Orange Lantern",id:80007}]},
+  {name:"Paul Mclaughlin",
+    lager:[{name:"CAJUN SEAFOOD AND BAR",id:52009},{name:"Cosmo Club (Z)",id:81029},{name:"Cubby's (P)",id:41027},{name:"Haworth Golf Club(A)",id:61002},{name:"Landmark Closter",id:62012},{name:"Rivervale Country Club",id:69009},{name:"Straphanger Saloon (A)",id:41006}],
+    flight:[{name:"101 Pub (A)",id:50008},{name:"Eleven Central",id:85001}]},
+  {name:"Robin Feldman",
+    lager:[{name:"American Lgn Elmwood Park",id:77034},{name:"American Lgn Lyndhurst #139",id:29044},{name:"American Lgn Totowa",id:15079},{name:"Arca",id:11004},{name:"Cedar Lake Club",id:190608},{name:"K Of C Maywood",id:79011},{name:"Montvale Fire Company",id:70009},{name:"Moose Lodge (Z)",id:23012},{name:"Stillwater Area Vol Fire",id:230433}],
+    flight:[{name:"Bloomingdale Fire Dept",id:4011},{name:"Masonic (A) Club",id:29041},{name:"Vfw Hasbrouck (A)",id:34016}]},
+];
+
+/* How to count a re-order:
+   "positive" = any positive order this summer counts (recommended; ignores same-day reversals)
+   "net"      = only net units kept (a fully-reversed order does NOT count) */
+const COUNT_MODE = "net";
+
+let MODEL=null, activeRep="ALL";
+const check=`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const goalFor=t=>Math.round(t*0.9);
+const keyName=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,""); // forgiving match: ignores spaces/punctuation/case
+
+/* --- tiny CSV parser (handles quotes & commas inside quotes) --- */
+function parseCSV(text){
+  const rows=[]; let row=[], cur="", q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c;
+    }else{
+      if(c==='"') q=true;
+      else if(c===','){ row.push(cur); cur=""; }
+      else if(c==='\n'){ row.push(cur); rows.push(row); row=[]; cur=""; }
+      else if(c==='\r'){ /* skip */ }
+      else cur+=c;
+    }
+  }
+  if(cur.length||row.length){ row.push(cur); rows.push(row); }
+  return rows.filter(r=>r.some(x=>x.trim()!==""));
+}
+
+function pickCol(headers, ...needles){
+  const h=headers.map(x=>x.toLowerCase().trim());
+  for(const n of needles){ const i=h.findIndex(x=>x.includes(n)); if(i>=0) return i; }
+  return -1;
+}
+function pickColExcept(headers, exclude, ...needles){
+  const h=headers.map(x=>x.toLowerCase().trim());
+  for(const n of needles){ for(let i=0;i<h.length;i++){ if(exclude.includes(i)) continue; if(h[i].includes(n)) return i; } }
+  for(let i=0;i<h.length;i++){ if(!exclude.includes(i)) return i; }
+  return -1;
+}
+/* Read CSV -> {byId, byName}; each entry = {pos, net}. Customer cell looks like "231803 High Point Gc/Rest (P)". */
+function csvToLookup(text){
+  const rows=parseCSV(text);
+  if(rows.length<2) return null;
+  const head=rows[0];
+  const bi=pickCol(head,"product","brand","line");
+  const ui=pickCol(head,"numunits","unit","cases","qty","quantity");
+  const ai=pickColExcept(head,[bi,ui],"account","customer","name");
+  const byId={}, byName={}; let n=0;
+  const bump=(obj,k,u)=>{ const e=obj[k]||(obj[k]={pos:0,net:0}); e.net+=u; if(u>0) e.pos+=u; };
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i];
+    const cell=(ai>=0?r[ai]:"").trim(); if(!cell) continue;
+    const m=cell.match(/^\s*(\d+)\s+(.*)$/);
+    const id=m?m[1]:""; const name=m?m[2]:cell;
+    let brand=""; const bv=(bi>=0?r[bi]:"").toLowerCase();
+    if(bv.includes("flight")||/476[49]/.test(bv)) brand="Flight";
+    else if(bv.includes("lager")||/470[13]/.test(bv)) brand="Lager";
+    let units; if(ui>=0){ units=parseFloat(String(r[ui]).replace(/[^0-9.\-]/g,""))||0; } else units=1;
+    const put=b=>{ if(id) bump(byId,b+"|"+id,units); bump(byName,b+"|"+keyName(name),units); n++; };
+    if(brand){ put(brand); } else { put("Lager"); put("Flight"); }
+  }
+  return n ? {byId, byName} : null;
+}
+function buildModel(lookup){
+  const live=!!lookup;
+  const val=e=> e ? (COUNT_MODE==="net" ? e.net : e.pos) : 0;
+  const make=(brand,arr)=>arr.map(a=>{
+    let u=0;
+    if(live){
+      const e=lookup.byId[brand+"|"+a.id] || lookup.byName[brand+"|"+keyName(a.name)];
+      u=val(e);
+    }
+    return {name:a.name, retained:u>=1, units:Math.round(u)};
+  });
+  const reps=HUNT.map(r=>({name:r.name, lager:make("Lager",r.lager), flight:make("Flight",r.flight)}));
+  return {live, reps};
+}
+
+
+function brandBlock(brand,accts){
+  const total=accts.length, goal=goalFor(total);
+  const retained=accts.filter(a=>a.retained).length;
+  const fillPct=total?Math.round((retained/total)*100):0;
+  const goalPct=total?(goal/total)*100:0;
+  const hit=retained>=goal;
+  const items=accts.map(a=>{
+    const u=a.retained?`${a.units} ${a.units===1?'unit':'units'}`:'not yet';
+    return `<li class="acct ${a.retained?'yes':''}"><span class="box">${check}</span><span class="name">${esc(a.name)}</span><span class="tag">${u}</span></li>`;
+  }).join("");
+  return `<div class="brand"><div class="brand-head"><span class="brand-name">Yuengling ${brand}</span>
+    <span class="brand-count">${retained}<small> / ${total} re-ordered</small></span></div>
+    <div class="meter ${hit?'hit':''}"><span class="fill" style="width:${fillPct}%"></span><span class="goalmark" style="left:${goalPct}%"></span></div>
+    <p class="goal-note">Goal: keep <b>${goal} of ${total}</b>. ${hit?'Goal met ✓':`${Math.max(0,goal-retained)} more to hit goal`}.</p>
+    <ul class="accts">${items}</ul></div>`;
+}
+function card(rep){
+  const goal=goalFor(rep.lager.length)+goalFor(rep.flight.length);
+  const ret=rep.lager.filter(a=>a.retained).length+rep.flight.filter(a=>a.retained).length;
+  const hit=ret>=goal;
+  return `<article class="card"><h2>${esc(rep.name)}<span class="met-pill ${hit?'ok':'behind'}">${ret} of ${goal} goal</span></h2>
+    ${brandBlock("Lager",rep.lager)}${brandBlock("Flight",rep.flight)}</article>`;
+}
+function render(){
+  const list=activeRep==="ALL"?MODEL.reps:MODEL.reps.filter(r=>r.name===activeRep);
+  document.getElementById("cards").innerHTML=list.map(card).join("");
+}
+function buildChips(){
+  const chips=document.getElementById("chips");
+  const all=[{name:"All reps",v:"ALL"},...MODEL.reps.map(r=>{const p=r.name.split(" ");return{name:p[0]+" "+(p[1]?p[1][0]:""),v:r.name};})];
+  chips.innerHTML=all.map(c=>`<button class="chip" aria-pressed="${c.v===activeRep}" data-v="${esc(c.v)}">${esc(c.name)}</button>`).join("");
+  chips.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+    activeRep=b.dataset.v;
+    chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===activeRep));
+    render(); window.scrollTo({top:document.getElementById("cards").offsetTop-12,behavior:"smooth"});
+  }));
+}
+function totals(){
+  let lr=0,lt=0,fr=0,ft=0;
+  MODEL.reps.forEach(r=>{lt+=r.lager.length;lr+=r.lager.filter(a=>a.retained).length;ft+=r.flight.length;fr+=r.flight.filter(a=>a.retained).length;});
+  const lg=MODEL.reps.reduce((s,r)=>s+goalFor(r.lager.length),0);
+  const fg=MODEL.reps.reduce((s,r)=>s+goalFor(r.flight.length),0);
+  const L=document.getElementById("sumLager"),F=document.getElementById("sumFlight");
+  L.innerHTML=`${lr} <small>/ ${lg} goal</small>`; L.classList.toggle("hit",lr>=lg);
+  F.innerHTML=`${fr} <small>/ ${fg} goal</small>`; F.classList.toggle("hit",fr>=fg);
+  document.getElementById("sumLagerSub").textContent=`of ${lt} hunt-list accounts`;
+  document.getElementById("sumFlightSub").textContent=`of ${ft} hunt-list accounts`;
+}
+function paintMeta(lastMod){
+  const badge=document.getElementById("feedBadge"),upd=document.getElementById("updated"),foot=document.getElementById("footnote");
+  if(MODEL.live){
+    badge.textContent="Live";badge.className="feed-badge live";
+    upd.textContent=lastMod?`Updated ${new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} · window 6/1 – 8/31`:"Window 6/1 – 8/31";
+    foot.textContent="Green = the account re-ordered Lager/Flight this summer, from the latest data.csv you uploaded.";
+  }else{
+    badge.textContent="Snapshot";badge.className="feed-badge snap";
+    upd.textContent="No data.csv uploaded yet — showing the hunt list with no re-orders.";
+    foot.textContent="Upload a data.csv to the same folder and this page flips to Live automatically.";
+  }
+}
+async function boot(){
+  const url=new URLSearchParams(location.search).get("data")||"data.csv";
+  let lookup=null,lastMod=null;
+  try{
+    const res=await fetch(url,{cache:"no-store"});
+    if(res.ok){ lastMod=res.headers.get("last-modified"); lookup=csvToLookup(await res.text()); }
+  }catch(e){/* not uploaded yet -> snapshot */}
+  MODEL=buildModel(lookup);
+  buildChips(); render(); totals(); paintMeta(lastMod);
+}
+boot();
+</script>
+</body>
+</html>
