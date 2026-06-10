@@ -247,11 +247,49 @@ function renderSC(app){
 
 /* ============ shell ============ */
 function bindRows(app){app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});}
-function currentReps(){return activeProgram==="conv"?[...new Set(CONV.map(r=>r.rep))].sort():Object.keys(SC).filter(n=>SC[n].ty>0||SC[n].ly>0).sort();}
-function render(){const app=document.getElementById("body");(activeProgram==="conv"?renderConv:renderSC)(app);}
+/* ============ BASE DISTRIBUTION (placements vs brand goals) ============ */
+const BASE_COLORS=["#C8472E","#F2A900","#2BB7B3","#8E2DE2","#2F6FB0","#E0457B","#5BA84A","#E07B39"];
+let GPB={},GPB_BRANDS=[];
+function ingestBase(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const ri=col(H,"sales rep","rep"), bi=col(H,"brand family","brand");
+  let pi=H.findIndex(h=>h.trim().toLowerCase()==="placements"); if(pi<0)pi=H.findIndex(h=>/placement/i.test(h)&&!h.includes("(")&&!/goal/i.test(h));
+  const gi=H.findIndex(h=>/goal/i.test(h)&&!/%/.test(h)),brands=new Set();
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ri]||"").trim(),brand=(r[bi]||"").trim();if(!rep||!brand)continue;
+    GPB[rep]=GPB[rep]||{};GPB[rep][brand]=GPB[rep][brand]||{p:0,g:0};
+    GPB[rep][brand].p+=num(r[pi]);GPB[rep][brand].g+=(gi>=0?num(r[gi]):0);brands.add(brand);}
+  GPB_BRANDS=[...brands].sort((a,b)=>baseTot(b).p-baseTot(a).p);}
+function baseTot(b){let p=0,g=0;Object.values(GPB).forEach(d=>{if(d[b]){p+=d[b].p;g+=d[b].g;}});return{p,g};}
+function baseAgg(rep){const d=GPB[rep]||{};let p=0,gp=0,g=0;GPB_BRANDS.forEach(b=>{if(d[b]){p+=d[b].p;if(d[b].g>0){gp+=d[b].p;g+=d[b].g;}}});return{p,gp,g,pct:g?gp/g*100:null};}
+const bcolorB=b=>BASE_COLORS[GPB_BRANDS.indexOf(b)%BASE_COLORS.length];
+function renderBase(app){
+  const reps=Object.keys(GPB);
+  if(activeRep==="ALL"){
+    let tp=0,tgp=0,tg=0;reps.forEach(r=>{const a=baseAgg(r);tp+=a.p;tgp+=a.gp;tg+=a.g;});
+    const opct=tg?(tgp/tg*100):0;
+    const stats=`<div class="stats">${statTile("Reps",reps.length,"")}${statTile("Placements",tp.toLocaleString(),"")}${statTile("Goal",tg.toLocaleString(),"")}${statTile("% of goal",opct.toFixed(0)+"%","")}</div>`;
+    const ranked=reps.map(r=>({rep:r,...baseAgg(r)})).sort((a,b)=>{if(a.pct===null&&b.pct===null)return b.p-a.p;if(a.pct===null)return 1;if(b.pct===null)return -1;return b.pct-a.pct||b.p-a.p;}).map((r,i)=>({...r,rank:i+1}));
+    const rows=ranked.map(R=>{const hit=R.pct!==null&&R.pct>=100;const win=R.pct===null?`${R.p}<small>placed</small>`:`${R.pct.toFixed(0)}%<small>of goal</small>`;
+      const sub=R.pct===null?`${R.p} placed · no goal set`:`${R.gp} / ${R.g} goal`;
+      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(R.pct||0,100).toFixed(1)}%"></i></div></span><span class="win" style="${hit?'color:var(--good)':''}">${win}</span></div>`;}).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Distro goal leaderboard</h2><span class="meta">${ranked.length} reps · by % of goal</span></div><div class="board">${rows}</div>`;
+    bindRows(app);
+  } else {
+    const a=baseAgg(activeRep),d=GPB[activeRep]||{};
+    const rank=reps.map(r=>({rep:r,...baseAgg(r)})).sort((x,y)=>{if(x.pct===null&&y.pct===null)return y.p-x.p;if(x.pct===null)return 1;if(y.pct===null)return -1;return y.pct-x.pct;}).map(x=>x.rep).indexOf(activeRep)+1;
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${a.p} placements${a.g?` · ${a.gp} of ${a.g} toward goal`:''}</small></div><div class="win2"><div class="b num">${a.pct===null?a.p:a.pct.toFixed(0)+'%'}</div><div class="l">${a.pct===null?'Placed':'of goal'}</div></div></div></div>`;
+    const items=GPB_BRANDS.filter(b=>d[b]).map(b=>({b,p:d[b].p,g:d[b].g})).sort((x,y)=>(y.g?y.p/Math.max(y.g,1):0)-(x.g?x.p/Math.max(x.g,1):0)||y.p-x.p);
+    const rows=items.map(x=>{const pct=x.g?Math.min(x.p/x.g*100,100):0;const hit=x.g&&x.p>=x.g;
+      const right=x.g?`${x.p} / ${x.g} <small>${(x.p/x.g*100).toFixed(0)}%</small>`:`${x.p} <small>no goal</small>`;
+      return `<div class="brow" style="flex-direction:column;align-items:stretch;gap:5px"><div style="display:flex;justify-content:space-between"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bcolorB(x.b)};margin-right:8px"></span>${esc(x.b)}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${right}</span></div><div class="bar ${hit?'done':''}" style="height:7px"><i style="width:${pct.toFixed(1)}%"></i></div></div>`;}).join("");
+    app.innerHTML=hero+`<div class="quest"><div class="sup">Placements vs goal by brand</div><div class="brk" style="border-top:none;padding-top:6px">${rows}</div></div>`;
+  }
+}
+
+function currentReps(){if(activeProgram==="conv")return [...new Set(CONV.map(r=>r.rep))].sort();if(activeProgram==="sc")return Object.keys(SC).filter(n=>SC[n].ty>0||SC[n].ly>0).sort();return Object.keys(GPB).filter(r=>baseAgg(r).p>0).sort();}
+function render(){const app=document.getElementById("body");(activeProgram==="conv"?renderConv:activeProgram==="sc"?renderSC:renderBase)(app);}
 function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
 function setProgram(p){if(p===activeProgram)return;activeProgram=p;activeRep="ALL";renderTabs();renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
-function renderTabs(){const t=[["conv","Cold Snap → Summer Ale"],["sc","Sun Cruiser Volume"]];
+function renderTabs(){const t=[["conv","Cold Snap → Summer Ale"],["sc","Sun Cruiser Volume"],["base","Base Distro"]];
   document.getElementById("progTabs").innerHTML=t.map(([v,l])=>`<button class="chip" aria-pressed="${v===activeProgram}" data-v="${v}">${l}</button>`).join("");
   document.querySelectorAll("#progTabs .chip").forEach(b=>b.addEventListener("click",()=>setProgram(b.dataset.v)));}
 function renderChips(){const reps=currentReps();
@@ -262,13 +300,16 @@ async function boot(){
   let convText=null,scText=null,lastMod=null;
   try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");convText=await r.text();}}catch(e){}
   try{const r=await fetch("suncruiser.csv",{cache:"no-store"});if(r.ok){scText=await r.text();}}catch(e){}
+  let baseText=null;
+  try{const r=await fetch("base_distro.csv",{cache:"no-store"});if(r.ok){baseText=await r.text();}}catch(e){}
   if(convText)ingestConv(convText);
   if(scText)ingestSC(scText);
-  if(!CONV.length&&!Object.keys(SC).length){showEmpty("Upload <code>data.csv</code> (Cold Snap → Summer Ale conversion) and <code>suncruiser.csv</code> (Sun Cruiser volume) next to this page.");return;}
-  if(!CONV.length)activeProgram="sc";
+  if(baseText)ingestBase(baseText);
+  if(!CONV.length&&!Object.keys(SC).length&&!Object.keys(GPB).length){showEmpty("Upload <code>data.csv</code> (Cold Snap → Summer Ale conversion), <code>suncruiser.csv</code> (Sun Cruiser volume) and <code>base_distro.csv</code> (base distribution) next to this page.");return;}
+  if(!CONV.length)activeProgram=Object.keys(SC).length?"sc":"base";
   renderTabs();renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Cold Snap → Summer Ale:</b> Converted = had Cold Snap (Jan–Mar) and now has Summer Ale (Apr–Jun); Opportunity = had Cold Snap, no Summer Ale yet; Gained = new Summer Ale. <b>Sun Cruiser Volume:</b> cases this year (5/1–8/31/2026, in progress) vs last year's full window. Re-export each report as data.csv / suncruiser.csv to refresh.";
+  document.getElementById("foot").innerHTML="<b>Cold Snap → Summer Ale:</b> Converted = had Cold Snap (Jan–Mar) and now has Summer Ale (Apr–Jun); Opportunity = had Cold Snap, no Summer Ale yet; Gained = new Summer Ale. <b>Sun Cruiser Volume:</b> cases this year (5/1–8/31/2026, in progress) vs last year's full window. <b>Base Distro:</b> placements vs each brand's goal — % of goal drives the board. Re-export each report as data.csv / suncruiser.csv / base_distro.csv to refresh.";
 }
 boot();
 
