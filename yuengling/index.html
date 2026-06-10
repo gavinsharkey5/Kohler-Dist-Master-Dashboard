@@ -1,302 +1,253 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Yuengling Draft Retention — Summer Goals</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Yuengling Draft Retention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F2E7CF;--foam:#FBF6EC;--ink:#2B1D10;--ink-soft:#6B5840;
-    --amber:#C8842B;--amber-deep:#9C5E16;--glass:#3C6E47;--clay:#B5532E;
-    --rule:#E0CFA6;--rule-dark:#43301C;
-    --shadow:0 1px 2px rgba(43,29,16,.08), 0 8px 24px rgba(43,29,16,.06);
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#D08A2E; --accent2:#9C5E16;        /* Yuengling amber */
+    --good:#37C46B; --good-soft:#15301E;
+    --lock:#565E72;
+    --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--paper);color:var(--ink);
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    font-size:16px;line-height:1.45;padding-bottom:env(safe-area-inset-bottom);}
-  .wrap{max-width:760px;margin:0 auto}
-  header{background:var(--rule-dark);color:var(--paper);
-    border-bottom:4px solid var(--amber);padding:26px 20px 22px;}
-  .topline{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-  .eyebrow{font-family:"Oswald",sans-serif;letter-spacing:.22em;text-transform:uppercase;
-    font-size:12px;font-weight:500;color:var(--amber);margin:0 0 6px;}
-  h1{font-family:"Oswald",sans-serif;font-weight:700;letter-spacing:.01em;
-    font-size:clamp(28px,7vw,40px);line-height:1.02;margin:0;text-transform:uppercase;}
-  .lede{margin:12px 0 0;max-width:54ch;color:#E9DcC2;font-size:15px}
-  .lede b{color:var(--amber);font-weight:600}
-  .feed-badge{font-family:"Oswald",sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;
-    text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto;
-    border:1px solid rgba(255,255,255,.25);color:#E9DcC2}
-  .feed-badge.live{background:rgba(60,110,71,.25);border-color:var(--glass);color:#Bfe3c6}
-  .feed-badge.snap{background:rgba(200,132,43,.18);border-color:var(--amber);color:#F0Cf9a}
-  .updated{margin:10px 0 0;font-size:12px;color:#C9B79A;font-family:"Oswald";letter-spacing:.06em}
-  .summary{max-width:760px;margin:0 auto;padding:18px 20px 0;
-    display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .stat{background:var(--foam);border:1px solid var(--rule);border-radius:14px;
-    padding:14px 16px;box-shadow:var(--shadow);}
-  .stat .k{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.12em;
-    font-size:12px;color:var(--ink-soft);margin:0}
-  .stat .v{font-family:"Oswald",sans-serif;font-weight:700;font-size:30px;margin:4px 0 0;line-height:1}
-  .stat .v small{font-size:15px;color:var(--ink-soft);font-weight:500}
-  .stat .v.hit{color:var(--glass)}
-  .stat .sub{font-size:12.5px;color:var(--ink-soft);margin:6px 0 0}
-  .pick{max-width:760px;margin:22px auto 0;padding:0 20px}
-  .pick .label{font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.14em;
-    font-size:12px;color:var(--ink-soft);margin:0 0 8px}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+
+  /* header */
+  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
+  .gx-head .wrap{position:relative;padding:30px 18px 24px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
+    color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
+  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
+  .lede b{color:var(--accent)}
+  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  .note{margin:14px 0 0}
+  .note .inner{background:color-mix(in srgb,var(--accent) 9%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));
+    border-radius:12px;padding:10px 13px;font-size:12.5px;color:color-mix(in srgb,var(--accent) 55%,var(--ink))}
+
+  /* stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .stat .v.accent{color:var(--accent)}
+
+  /* chips */
+  .seg{margin:22px 0 0}
+  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.02em;
-    font-size:14px;padding:8px 14px;border-radius:999px;cursor:pointer;
-    background:var(--foam);color:var(--ink);border:1px solid var(--rule);
-    transition:transform .12s ease, background .12s ease, color .12s ease, border-color .12s ease;}
-  .chip:hover{transform:translateY(-1px)}
-  .chip[aria-pressed="true"]{background:var(--amber);border-color:var(--amber-deep);color:#fff}
-  .chip:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-  main{max-width:760px;margin:0 auto;padding:18px 20px 56px}
-  .card{background:var(--foam);border:1px solid var(--rule);border-radius:16px;
-    box-shadow:var(--shadow);padding:18px 18px 8px;margin:0 0 16px;}
-  .card h2{font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;
-    font-size:20px;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-  .met-pill{font-family:"Inter";font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-    padding:3px 9px;border-radius:999px;}
-  .met-pill.ok{background:rgba(60,110,71,.14);color:var(--glass)}
-  .met-pill.behind{background:rgba(181,83,46,.14);color:var(--clay)}
-  .brand{padding:16px 0;border-top:1px solid var(--rule)}
-  .brand:first-of-type{border-top:none}
-  .brand-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 10px}
-  .brand-name{font-family:"Oswald",sans-serif;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.08em}
-  .brand-count{font-family:"Oswald",sans-serif;font-weight:700;font-size:15px}
-  .brand-count small{color:var(--ink-soft);font-weight:500}
-  .meter{position:relative;height:12px;border-radius:7px;background:#EADFC4;overflow:visible;border:1px solid var(--rule)}
-  .meter .fill{display:block;height:100%;border-radius:6px 0 0 6px;
-    background:linear-gradient(90deg,var(--amber),var(--amber-deep));transition:width .5s ease}
-  .meter.hit .fill{background:linear-gradient(90deg,#4C8A5A,var(--glass))}
-  .meter .goalmark{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--rule-dark);opacity:.55}
-  .goal-note{font-size:12px;color:var(--ink-soft);margin:7px 0 14px}
-  .goal-note b{color:var(--ink)}
-  ul.accts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
-  li.acct{display:flex;align-items:center;gap:11px;
-    padding:10px 12px;border:1px solid var(--rule);border-radius:11px;background:#fff;font-size:14.5px;}
-  li.acct .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--ink-soft);flex:0 0 auto;
-    display:grid;place-items:center;background:#fff;}
-  li.acct .box svg{width:12px;height:12px;opacity:0}
-  li.acct .name{flex:1 1 auto}
-  li.acct .tag{font-family:"Oswald";font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--ink-soft);flex:0 0 auto}
-  li.acct.yes{background:rgba(60,110,71,.08);border-color:var(--glass)}
-  li.acct.yes .box{background:var(--glass);border-color:var(--glass)}
-  li.acct.yes .box svg{opacity:1}
-  li.acct.yes .tag{color:var(--glass);font-weight:600}
-  footer{max-width:760px;margin:0 auto;padding:0 20px 40px;color:var(--ink-soft);font-size:12.5px}
-  footer hr{border:none;border-top:1px solid var(--rule);margin:0 0 14px}
-  @media (max-width:480px){.summary{grid-template-columns:1fr}}
-  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
-</style>
-</head>
-<body>
-<header>
-  <div class="wrap">
-    <div class="topline">
-      <div>
-        <p class="eyebrow">Kohler Distributing · Summer 2026</p>
-        <h1>Yuengling Draft<br>Retention</h1>
-      </div>
-      <span class="feed-badge" id="feedBadge">Loading…</span>
-    </div>
-    <p class="lede">Goal: <b>hold 90% of your current Lager &amp; Flight accounts</b> through summer. Green means the account has <b>re-ordered</b> in the 6/1–8/31 window. Tap your name to see just your accounts.</p>
-    <p class="updated" id="updated"></p>
-  </div>
-</header>
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#15140C;font-weight:600}
+  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
-<section class="summary" aria-label="Team totals">
-  <div class="stat"><p class="k">Lager Retained</p><p class="v" id="sumLager">—</p><p class="sub" id="sumLagerSub">across 6 reps</p></div>
-  <div class="stat"><p class="k">Flight Retained</p><p class="v" id="sumFlight">—</p><p class="sub" id="sumFlightSub">across 6 reps</p></div>
-</section>
+  /* section head */
+  .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
+  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;margin:0}
+  .shead .tr{color:var(--accent)}
+  .shead .meta{margin-left:auto;font-size:12px;color:var(--ink-soft)}
 
-<section class="pick"><p class="label">Show accounts for</p><div class="chips" id="chips" role="group" aria-label="Filter by rep"></div></section>
-<main id="cards"></main>
-<footer><hr><p id="footnote"></p></footer>
+  /* leaderboard */
+  .board{display:flex;flex-direction:column;gap:9px}
+  .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
+  .lrow:hover{transform:translateY(-2px);border-color:#39404F}
+  .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+  .medal{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;
+    font-size:16px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+  .medal.m1{background:linear-gradient(160deg,#F4D06A,#C7892A);color:#1a1407;border:none}
+  .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
+  .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
+  .who b{font-weight:600;font-size:15px}
+  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+  .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px}
+  .win{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap;color:var(--accent)}
+  .win small{display:block;font-size:10px;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
 
+  /* hero (your standing) */
+  .hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;
+    padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:16px}
+  .hero::before{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
+  .hero .top{display:flex;align-items:center;gap:16px;position:relative}
+  .hero .rankbox{text-align:center}
+  .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
+  .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
+  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
+  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
+  .hero .win2{margin-left:auto;text-align:right}
+  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
+  .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .pips{display:flex;gap:6px;margin:16px 0 0;position:relative;flex-wrap:wrap}
+  .pip{flex:1;min-width:28px;height:8px;border-radius:5px;background:var(--line)}
+  .pip.on{background:linear-gradient(90deg,var(--good),#2aa657)}
+  .hero .pl{font-size:11px;color:var(--ink-soft);margin:9px 0 0;position:relative;letter-spacing:.02em}
+
+  /* quest cards */
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
+  .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  .badge svg{width:11px;height:11px}
+  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
+  .qline .num{color:var(--ink);font-weight:600}
+  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
+  .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
+  .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
+  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
+  .brow small{color:var(--ink-soft);font-weight:500}
+  .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .amp .l{color:var(--ink-soft);font-size:12.5px}
+  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:17px}
+  .amp .v.earn{color:var(--accent)}
+  .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
+  .amp .v.locked svg{width:13px;height:13px}
+
+  .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="gx-head"><div class="wrap">
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Retention · Summer 2026</p>
+  <h1>Yuengling Draft Retention</h1>
+  <p class="lede">Hold <b>90% of your draft accounts</b> through the summer. A pip turns green when an account <b>re-orders</b> Lager or Flight. Tap your name for your hunt list.</p>
+  <p class="updated" id="updated"></p>
+</div></div>
+<div id="app"><div class="wrap">
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div id="body"></div>
+  <footer><hr><p id="foot"></p></footer>
+</div></div>
 <script>
-/* ===== The full hunt list lives here (names by rep). The CSV only tells the
-   page WHO bought and HOW MUCH; everything else stays "not yet". ===== */
-const HUNT = [
-  {name:"Allison Scott",
-    lager:[{name:"Anthonys CF Pizza (Wayne)",id:12048},{name:"In The Drink@Passaic Gc",id:12064},{name:"Lakeside drive tavern",id:12020},{name:"Meadows Golf Club(P)",id:11007},{name:"Outback",id:5004},{name:"cherry's",id:10001}],
-    flight:[{name:"Grasshopper Too (A)",id:12022},{name:"YARD HOUSE 8384",id:12057}]},
-  {name:"Anthony Palmisano",
-    lager:[{name:"Bally Owen Golf Club",id:231210},{name:"Best Cellars (Wanaque)",id:3001},{name:"High Point Gc/Rest (P)",id:231803},{name:"The River Of Beer",id:4004},{name:"Uncorked Wines & Spirits (West Milford)",id:1012},{name:"Whiskey Wolf Tavern (P)",id:1214}],
-    flight:[{name:"Mt Creek Hex Lg(North) A",id:231209},{name:"Uncorked Wines & Spirits (West Milford)",id:1012}]},
-  {name:"Brian Sengebush",
-    lager:[{name:"Bearbrook Valley",id:230406},{name:"Club 15(P)",id:191004},{name:"Farmstead Golf (P)",id:231601},{name:"Jefferson House (A)",id:191504},{name:"Lake Mohawk Country Club",id:230116},{name:"Newton Country Club",id:230307},{name:"Patricks Pub (P)",id:191521},{name:"Peace Pipe Cc (P)",id:190606},{name:"Sam Adam's Pub (NAFIB4-22-A-0036)",id:190815},{name:"Skyview Golf Course (A)",id:230109},{name:"The Club (NAFIB4-22-A-0036)",id:190807},{name:"The Knoll Country Club & Catering",id:190312},{name:"Vasa Park",id:191816}],
-    flight:[{name:"Charley's Tavern",id:191007},{name:"Mason Street Grille",id:191009}]},
-  {name:"Nick Melissari",
-    lager:[{name:"Anthony's CF Pizza (A) (Ramsey)",id:92002},{name:"Outback Steakhouse(Z)Edg",id:49059},{name:"Whiskey Roads",id:42003}],
-    flight:[{name:"Blackjack Mulligans (Hawthorne)",id:19006},{name:"The Orange Lantern",id:80007}]},
-  {name:"Paul Mclaughlin",
-    lager:[{name:"CAJUN SEAFOOD AND BAR",id:52009},{name:"Cosmo Club (Z)",id:81029},{name:"Cubby's (P)",id:41027},{name:"Haworth Golf Club(A)",id:61002},{name:"Landmark Closter",id:62012},{name:"Rivervale Country Club",id:69009},{name:"Straphanger Saloon (A)",id:41006}],
-    flight:[{name:"101 Pub (A)",id:50008},{name:"Eleven Central",id:85001}]},
-  {name:"Robin Feldman",
-    lager:[{name:"American Lgn Elmwood Park",id:77034},{name:"American Lgn Lyndhurst #139",id:29044},{name:"American Lgn Totowa",id:15079},{name:"Arca",id:11004},{name:"Cedar Lake Club",id:190608},{name:"K Of C Maywood",id:79011},{name:"Montvale Fire Company",id:70009},{name:"Moose Lodge (Z)",id:23012},{name:"Stillwater Area Vol Fire",id:230433}],
-    flight:[{name:"Bloomingdale Fire Dept",id:4011},{name:"Masonic (A) Club",id:29041},{name:"Vfw Hasbrouck (A)",id:34016}]},
+
+const HUNT=[
+ {name:"Allison Scott",lager:["Anthonys CF Pizza (Wayne)","In The Drink@Passaic Gc","Lakeside drive tavern","Meadows Golf Club(P)","Outback","cherry's"],flight:["Grasshopper Too (A)","YARD HOUSE 8384"]},
+ {name:"Anthony Palmisano",lager:["Bally Owen Golf Club","Best Cellars (Wanaque)","High Point Gc/Rest (P)","The River Of Beer","Uncorked Wines & Spirits (West Milford)","Whiskey Wolf Tavern (P)"],flight:["Mt Creek Hex Lg(North) A","Uncorked Wines & Spirits (West Milford)"]},
+ {name:"Brian Sengebush",lager:["Bearbrook Valley","Club 15(P)","Farmstead Golf (P)","Jefferson House (A)","Lake Mohawk Country Club","Newton Country Club","Patricks Pub (P)","Peace Pipe Cc (P)","Sam Adam's Pub (NAFIB4-22-A-0036)","Skyview Golf Course (A)","The Club (NAFIB4-22-A-0036)","The Knoll Country Club & Catering","Vasa Park"],flight:["Charley's Tavern","Mason Street Grille"]},
+ {name:"Nick Melissari",lager:["Anthony's CF Pizza (A) (Ramsey)","Outback Steakhouse(Z)Edg","Whiskey Roads"],flight:["Blackjack Mulligans (Hawthorne)","The Orange Lantern"]},
+ {name:"Paul Mclaughlin",lager:["CAJUN SEAFOOD AND BAR","Cosmo Club (Z)","Cubby's (P)","Haworth Golf Club(A)","Landmark Closter","Rivervale Country Club","Straphanger Saloon (A)"],flight:["101 Pub (A)","Eleven Central"]},
+ {name:"Robin Feldman",lager:["American Lgn Elmwood Park","American Lgn Lyndhurst #139","American Lgn Totowa","Arca","Cedar Lake Club","K Of C Maywood","Montvale Fire Company","Moose Lodge (Z)","Stillwater Area Vol Fire"],flight:["Bloomingdale Fire Dept","Masonic (A) Club","Vfw Hasbrouck (A)"]}
 ];
-
-/* How to count a re-order:
-   "positive" = any positive order this summer counts (recommended; ignores same-day reversals)
-   "net"      = only net units kept (a fully-reversed order does NOT count) */
-const COUNT_MODE = "net";
-
-let MODEL=null, activeRep="ALL";
-const check=`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 10 18 20 6"/></svg>`;
+let MODEL=null,activeRep="ALL";
+function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const goalFor=t=>Math.round(t*0.9);
-const keyName=s=>String(s).toLowerCase().replace(/[^a-z0-9]/g,""); // forgiving match: ignores spaces/punctuation/case
+const keyName=s=>String(s).replace(/^\s*\d+\s*/,"").toLowerCase().replace(/[^a-z0-9]/g,"");  // strip leading id, normalize
+function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
 
-/* --- tiny CSV parser (handles quotes & commas inside quotes) --- */
-function parseCSV(text){
-  const rows=[]; let row=[], cur="", q=false;
-  for(let i=0;i<text.length;i++){
-    const c=text[i];
-    if(q){
-      if(c==='"'){ if(text[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c;
-    }else{
-      if(c==='"') q=true;
-      else if(c===','){ row.push(cur); cur=""; }
-      else if(c==='\n'){ row.push(cur); rows.push(row); row=[]; cur=""; }
-      else if(c==='\r'){ /* skip */ }
-      else cur+=c;
-    }
+/* NET units per brand|account from the live export */
+function buildLookup(text){
+  const rows=parseCSV(text); if(rows.length<2) return null;
+  const H=rows[0];
+  const ci=col(H,"customer"), pi=col(H,"product"), ui=col(H,"num unit","units","qty"), di=col(H,"load sheet","date");
+  const map={};
+  for(let i=1;i<rows.length;i++){const r=rows[i];
+    const cust=ci>=0?r[ci]:""; const prod=pi>=0?r[pi]:"";
+    const pid=(prod.match(/^\s*(\d+)/)||[])[1]||"";
+    const brand = (pid==="4701"||pid==="4703")?"Lager":((pid==="4764"||pid==="4769")?"Flight":(/flight/i.test(prod)?"Flight":(/lager/i.test(prod)?"Lager":"")));
+    if(!brand) continue;
+    const u=parseFloat(String(ui>=0?r[ui]:"0").replace(/[^0-9.\-]/g,""))||0;
+    const k=brand+"|"+keyName(cust);
+    map[k]=(map[k]||0)+u;   // NET: sum (includes negatives / reversals)
   }
-  if(cur.length||row.length){ row.push(cur); rows.push(row); }
-  return rows.filter(r=>r.some(x=>x.trim()!==""));
+  return map;
 }
+function buildModel(map){
+  const live=!!(map&&Object.keys(map).length);
+  const make=(brand,arr)=>arr.map(name=>{const net=live?(map[brand+"|"+keyName(name)]||0):0;return {name,retained:net>0,units:net};});
+  return {live,reps:HUNT.map(r=>({name:r.name,lager:make("Lager",r.lager),flight:make("Flight",r.flight)}))};
+}
+function repStats(r){const tot=r.lager.length+r.flight.length;const goal=goalFor(r.lager.length)+goalFor(r.flight.length);
+  const ret=r.lager.filter(a=>a.retained).length+r.flight.filter(a=>a.retained).length;
+  return {tot,goal,ret,pct:tot?ret/tot*100:0};}
+function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
 
-function pickCol(headers, ...needles){
-  const h=headers.map(x=>x.toLowerCase().trim());
-  for(const n of needles){ const i=h.findIndex(x=>x.includes(n)); if(i>=0) return i; }
-  return -1;
-}
-function pickColExcept(headers, exclude, ...needles){
-  const h=headers.map(x=>x.toLowerCase().trim());
-  for(const n of needles){ for(let i=0;i<h.length;i++){ if(exclude.includes(i)) continue; if(h[i].includes(n)) return i; } }
-  for(let i=0;i<h.length;i++){ if(!exclude.includes(i)) return i; }
-  return -1;
-}
-/* Read CSV -> {byId, byName}; each entry = {pos, net}. Customer cell looks like "231803 High Point Gc/Rest (P)". */
-function csvToLookup(text){
-  const rows=parseCSV(text);
-  if(rows.length<2) return null;
-  const head=rows[0];
-  const bi=pickCol(head,"product","brand","line");
-  const ui=pickCol(head,"numunits","unit","cases","qty","quantity");
-  const ai=pickColExcept(head,[bi,ui],"account","customer","name");
-  const byId={}, byName={}; let n=0;
-  const bump=(obj,k,u)=>{ const e=obj[k]||(obj[k]={pos:0,net:0}); e.net+=u; if(u>0) e.pos+=u; };
-  for(let i=1;i<rows.length;i++){
-    const r=rows[i];
-    const cell=(ai>=0?r[ai]:"").trim(); if(!cell) continue;
-    const m=cell.match(/^\s*(\d+)\s+(.*)$/);
-    const id=m?m[1]:""; const name=m?m[2]:cell;
-    let brand=""; const bv=(bi>=0?r[bi]:"").toLowerCase();
-    if(bv.includes("flight")||/476[49]/.test(bv)) brand="Flight";
-    else if(bv.includes("lager")||/470[13]/.test(bv)) brand="Lager";
-    let units; if(ui>=0){ units=parseFloat(String(r[ui]).replace(/[^0-9.\-]/g,""))||0; } else units=1;
-    const put=b=>{ if(id) bump(byId,b+"|"+id,units); bump(byName,b+"|"+keyName(name),units); n++; };
-    if(brand){ put(brand); } else { put("Lager"); put("Flight"); }
-  }
-  return n ? {byId, byName} : null;
-}
-function buildModel(lookup){
-  const live=!!lookup;
-  const val=e=> e ? (COUNT_MODE==="net" ? e.net : e.pos) : 0;
-  const make=(brand,arr)=>arr.map(a=>{
-    let u=0;
-    if(live){
-      const e=lookup.byId[brand+"|"+a.id] || lookup.byName[brand+"|"+keyName(a.name)];
-      u=val(e);
-    }
-    return {name:a.name, retained:u>=1, units:Math.round(u)};
-  });
-  const reps=HUNT.map(r=>({name:r.name, lager:make("Lager",r.lager), flight:make("Flight",r.flight)}));
-  return {live, reps};
-}
-
-
-function brandBlock(brand,accts){
-  const total=accts.length, goal=goalFor(total);
-  const retained=accts.filter(a=>a.retained).length;
-  const fillPct=total?Math.round((retained/total)*100):0;
-  const goalPct=total?(goal/total)*100:0;
-  const hit=retained>=goal;
-  const items=accts.map(a=>{
-    const u=a.retained?`${a.units} ${a.units===1?'unit':'units'}`:'not yet';
-    return `<li class="acct ${a.retained?'yes':''}"><span class="box">${check}</span><span class="name">${esc(a.name)}</span><span class="tag">${u}</span></li>`;
-  }).join("");
-  return `<div class="brand"><div class="brand-head"><span class="brand-name">Yuengling ${brand}</span>
-    <span class="brand-count">${retained}<small> / ${total} re-ordered</small></span></div>
-    <div class="meter ${hit?'hit':''}"><span class="fill" style="width:${fillPct}%"></span><span class="goalmark" style="left:${goalPct}%"></span></div>
-    <p class="goal-note">Goal: keep <b>${goal} of ${total}</b>. ${hit?'Goal met ✓':`${Math.max(0,goal-retained)} more to hit goal`}.</p>
-    <ul class="accts">${items}</ul></div>`;
-}
-function card(rep){
-  const goal=goalFor(rep.lager.length)+goalFor(rep.flight.length);
-  const ret=rep.lager.filter(a=>a.retained).length+rep.flight.filter(a=>a.retained).length;
-  const hit=ret>=goal;
-  return `<article class="card"><h2>${esc(rep.name)}<span class="met-pill ${hit?'ok':'behind'}">${ret} of ${goal} goal</span></h2>
-    ${brandBlock("Lager",rep.lager)}${brandBlock("Flight",rep.flight)}</article>`;
+function brandCard(brand,accts){
+  const total=accts.length,goal=goalFor(total),ret=accts.filter(a=>a.retained).length;
+  const pct=total?Math.min(ret/goal*100,100):0,hit=ret>=goal;
+  const items=accts.slice().sort((a,b)=>b.retained-a.retained).map(a=>
+    `<div class="brow" style="align-items:center;padding:6px 0">
+       <span style="display:flex;align-items:center;gap:9px;color:${a.retained?'var(--ink)':'var(--ink-soft)'}">
+         <span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;${a.retained?'background:var(--good);color:#06210f':'border:1.5px solid var(--line);color:transparent'}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>
+         ${esc(a.name)}</span>
+       <span class="num" style="color:${a.retained?'var(--good)':'var(--ink-soft)'};font-weight:600">${a.retained?(a.units+' net'):'not yet'}</span></div>`).join("");
+  return `<div class="quest"><div class="sup">Yuengling ${brand}${hit?`<span class="badge ok">${CHECK} Goal met</span>`:`<span class="badge prog">${ret}/${goal}</span>`}</div>
+    <div class="qline"><span>Re-ordered this summer</span><span class="num">${ret} / ${total} · keep ${goal}</span></div>
+    <div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
+    <div class="brk"><div class="cap">Hunt accounts</div>${items}</div></div>`;
 }
 function render(){
-  const list=activeRep==="ALL"?MODEL.reps:MODEL.reps.filter(r=>r.name===activeRep);
-  document.getElementById("cards").innerHTML=list.map(card).join("");
-}
-function buildChips(){
-  const chips=document.getElementById("chips");
-  const all=[{name:"All reps",v:"ALL"},...MODEL.reps.map(r=>{const p=r.name.split(" ");return{name:p[0]+" "+(p[1]?p[1][0]:""),v:r.name};})];
-  chips.innerHTML=all.map(c=>`<button class="chip" aria-pressed="${c.v===activeRep}" data-v="${esc(c.v)}">${esc(c.name)}</button>`).join("");
-  chips.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
-    activeRep=b.dataset.v;
-    chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===activeRep));
-    render(); window.scrollTo({top:document.getElementById("cards").offsetTop-12,behavior:"smooth"});
-  }));
-}
-function totals(){
-  let lr=0,lt=0,fr=0,ft=0;
-  MODEL.reps.forEach(r=>{lt+=r.lager.length;lr+=r.lager.filter(a=>a.retained).length;ft+=r.flight.length;fr+=r.flight.filter(a=>a.retained).length;});
-  const lg=MODEL.reps.reduce((s,r)=>s+goalFor(r.lager.length),0);
-  const fg=MODEL.reps.reduce((s,r)=>s+goalFor(r.flight.length),0);
-  const L=document.getElementById("sumLager"),F=document.getElementById("sumFlight");
-  L.innerHTML=`${lr} <small>/ ${lg} goal</small>`; L.classList.toggle("hit",lr>=lg);
-  F.innerHTML=`${fr} <small>/ ${fg} goal</small>`; F.classList.toggle("hit",fr>=fg);
-  document.getElementById("sumLagerSub").textContent=`of ${lt} hunt-list accounts`;
-  document.getElementById("sumFlightSub").textContent=`of ${ft} hunt-list accounts`;
-}
-function paintMeta(lastMod){
-  const badge=document.getElementById("feedBadge"),upd=document.getElementById("updated"),foot=document.getElementById("footnote");
-  if(MODEL.live){
-    badge.textContent="Live";badge.className="feed-badge live";
-    upd.textContent=lastMod?`Updated ${new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})} · window 6/1 – 8/31`:"Window 6/1 – 8/31";
-    foot.textContent="Green = the account re-ordered Lager/Flight this summer, from the latest data.csv you uploaded.";
-  }else{
-    badge.textContent="Snapshot";badge.className="feed-badge snap";
-    upd.textContent="No data.csv uploaded yet — showing the hunt list with no re-orders.";
-    foot.textContent="Upload a data.csv to the same folder and this page flips to Live automatically.";
+  const app=document.getElementById("body");
+  if(activeRep==="ALL"){
+    let lt=0,lr=0,ft=0,fr=0;MODEL.reps.forEach(r=>{lt+=r.lager.length;lr+=r.lager.filter(a=>a.retained).length;ft+=r.flight.length;fr+=r.flight.filter(a=>a.retained).length;});
+    const lg=MODEL.reps.reduce((s,r)=>s+goalFor(r.lager.length),0),fg=MODEL.reps.reduce((s,r)=>s+goalFor(r.flight.length),0);
+    const stats=`<div class="stats">${statTile("Reps",MODEL.reps.length,"")}${statTile("Lager kept",lr,`<small> / ${lg}</small>`)}${statTile("Flight kept",fr,`<small> / ${fg}</small>`)}${statTile("Accounts",lt+ft,"")}</div>`;
+    const reps=MODEL.reps.map(r=>({name:r.name,...repStats(r)})).sort((a,b)=>b.pct-a.pct||b.ret-a.ret).map((r,i)=>({...r,rank:i+1}));
+    const rows=reps.map(R=>{const mc=R.rank===1?"var(--gold)":R.rank===2?"var(--silver)":"var(--bronze)";
+      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.name)}">
+        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
+        <span class="who"><b>${esc(R.name)}</b><div class="sub">${R.ret}/${R.tot} kept · goal ${R.goal}</div>
+        <div class="track"><i style="width:${Math.min(R.pct,100).toFixed(1)}%"></i></div></span>
+        <span class="win">${R.pct.toFixed(0)}%<small>retained</small></span></div>`;}).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Retention leaderboard</h2><span class="meta">${reps.length} reps · by % kept</span></div><div class="board">${rows}</div>`;
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    const r=MODEL.reps.find(x=>x.name===activeRep);const st=repStats(r);
+    const ranked=MODEL.reps.map(x=>({name:x.name,...repStats(x)})).sort((a,b)=>b.pct-a.pct||b.ret-a.ret).map(x=>x.name);
+    const rank=ranked.indexOf(activeRep)+1;
+    const all=[...r.lager,...r.flight];
+    const pips=all.map(a=>`<span class="pip ${a.retained?'on':''}"></span>`).join("");
+    const hero=`<div class="hero"><div class="top">
+        <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
+        <div class="nm">${esc(activeRep)}<small>${st.ret} of ${st.tot} accounts kept · goal ${st.goal}</small></div>
+        <div class="win2"><div class="b num">${st.pct.toFixed(0)}%</div><div class="l">Retained</div></div></div>
+      <div class="pips">${pips}</div>
+      <div class="pl">Each pip is a hunt account — turns green when they re-order this summer.</div></div>`;
+    app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+brandCard("Lager",r.lager)+brandCard("Flight",r.flight);
   }
 }
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChips(){document.getElementById("chips").innerHTML=["ALL",...MODEL.reps.map(r=>r.name)].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  const url=new URLSearchParams(location.search).get("data")||"data.csv";
-  let lookup=null,lastMod=null;
-  try{
-    const res=await fetch(url,{cache:"no-store"});
-    if(res.ok){ lastMod=res.headers.get("last-modified"); lookup=csvToLookup(await res.text()); }
-  }catch(e){/* not uploaded yet -> snapshot */}
-  MODEL=buildModel(lookup);
-  buildChips(); render(); totals(); paintMeta(lastMod);
+  let map=null,lastMod=null;
+  try{const res=await fetch("data.csv",{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified");map=buildLookup(await res.text());}}catch(e){}
+  MODEL=buildModel(map);
+  renderChips();render();
+  document.getElementById("updated").textContent=MODEL.live?(lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+" · window 6/1–8/31":"Window 6/1–8/31"):"No data.csv yet — showing the hunt list with nothing re-ordered.";
+  document.getElementById("foot").innerHTML="<b>Kept</b> = the account re-ordered Lager/Flight this summer on <b>net</b> units (a same-day return cancels the order). Goal is to hold 90% of each rep's accounts. Update by exporting the InvoiceTransReport for 6/1–8/31 as <code>data.csv</code>.";
 }
 boot();
-</script>
-</body>
-</html>
+
+</script></body></html>
