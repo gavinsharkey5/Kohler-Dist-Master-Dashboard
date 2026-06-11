@@ -138,7 +138,7 @@
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Molson Coors · Off-Premise</p>
   <h1>Retention Rewards</h1>
-  <p class="lede">Off-premise placement goals for <b>Coors, Peroni &amp; Fever Tree</b> (May–July). Tap your name to see how each brand is tracking to goal.</p>
+  <p class="lede">Off-premise placement goals for <b>Coors, Peroni &amp; Fever Tree</b> (May–July). Tap your name, then a brand, to see which accounts are placed.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 <div id="app"><div class="wrap">
@@ -147,8 +147,8 @@
   <footer><hr><p id="foot"></p></footer>
 </div></div>
 <script>
-const FOOT="<b>Placements</b> are counted against each rep's <b>goal</b> by brand. % of goal drives the leaderboard; a brand bar turns green when it hits 100%. Coors, Peroni and Fever Tree. Re-export the report (with the Goals and % columns) as data.csv to refresh.";
-const ON_COLORS=["#C8102E","#F2A900","#2BB7B3","#8E2DE2","#2F6FB0","#E0457B","#5BA84A","#E07B39"];
+
+const BR_COLORS=["#C8102E","#F2A900","#2BB7B3","#8E2DE2","#2F6FB0"];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
 function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
@@ -157,67 +157,64 @@ function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class
 const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
 const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
 const medalColor=r=>r===1?"var(--gold)":r===2?"var(--silver)":"var(--bronze)";
-let GP={},GP_BRANDS=[],GP_DM={},activeRep="ALL";
+let PL={}, GOAL={}, DM={}, BRANDS=[], activeRep="ALL";
 
-function ingestGP(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
-  const ri=col(H,"sales rep","rep"), bi=col(H,"brand family","brand"), dmi=col(H,"district manager","district");
-  let pi=H.findIndex(h=>h.trim().toLowerCase()==="placements"); if(pi<0)pi=H.findIndex(h=>/placement/i.test(h)&&!h.includes("(")&&!/goal/i.test(h));
-  const gi=H.findIndex(h=>/goal/i.test(h)&&!/%/.test(h)), brands=new Set();
+function ingestPlacements(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const ci=col(H,"customer"), bi=col(H,"brand family","brand"), ri=col(H,"sales rep","rep"), pi=col(H,"placement");
+  const seen=new Set();
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ri]||"").trim(),brand=(r[bi]||"").trim(),cust=(r[ci]||"").trim();if(!rep||!brand)continue;
+    const p=num(r[pi]); PL[rep]=PL[rep]||{}; PL[rep][brand]=PL[rep][brand]||{p:0,accts:[]};
+    PL[rep][brand].p+=p; if(p>0)PL[rep][brand].accts.push({name:cust,p}); seen.add(brand);}
+  seen.forEach(b=>{if(!BRANDS.includes(b))BRANDS.push(b);});}
+function ingestGoals(text){const rows=parseCSV(text);if(rows.length<2)return;const H=rows[0];
+  const ri=col(H,"sales rep","rep"), bi=col(H,"brand family","brand"), dmi=col(H,"district"), gi=H.findIndex(h=>/goal/i.test(h)&&!/%/.test(h));
   for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(r[ri]||"").trim(),brand=(r[bi]||"").trim();if(!rep||!brand)continue;
-    GP[rep]=GP[rep]||{}; GP[rep][brand]=GP[rep][brand]||{p:0,g:0};
-    GP[rep][brand].p+=num(r[pi]); GP[rep][brand].g+=(gi>=0?num(r[gi]):0); brands.add(brand);
-    if(dmi>=0&&r[dmi]&&r[dmi].trim()&&r[dmi].trim()!=="None")GP_DM[rep]=r[dmi].trim();}
-  GP_BRANDS=[...brands];
-  // order brands by total placements
-  GP_BRANDS.sort((a,b)=>tot(b).p-tot(a).p);
-}
-function tot(brand){let p=0,g=0;Object.values(GP).forEach(d=>{if(d[brand]){p+=d[brand].p;g+=d[brand].g;}});return {p,g};}
-function repAgg(rep){const d=GP[rep]||{};let p=0,gp=0,g=0;GP_BRANDS.forEach(b=>{if(d[b]){p+=d[b].p;if(d[b].g>0){gp+=d[b].p;g+=d[b].g;}}});return {p,gp,g,pct:g?gp/g*100:null};}
-const bcolor=b=>ON_COLORS[GP_BRANDS.indexOf(b)%ON_COLORS.length];
+    GOAL[rep]=GOAL[rep]||{}; GOAL[rep][brand]=(GOAL[rep][brand]||0)+(gi>=0?num(r[gi]):0);
+    if(dmi>=0&&r[dmi]&&r[dmi].trim()&&r[dmi].trim()!=="None")DM[rep]=r[dmi].trim();}}
+function sortBrands(){BRANDS.sort((a,b)=>brandTot(b)-brandTot(a));}
+function brandTot(b){let t=0;Object.values(PL).forEach(d=>{if(d[b])t+=d[b].p;});return t;}
+const bcolor=b=>BR_COLORS[BRANDS.indexOf(b)%BR_COLORS.length];
+function repAgg(rep){const d=PL[rep]||{},g=GOAL[rep]||{};let p=0,gp=0,gg=0;BRANDS.forEach(b=>{const bp=d[b]?d[b].p:0;p+=bp;if(g[b]>0){gp+=bp;gg+=g[b];}});return {p,gp,g:gg,pct:gg?gp/gg*100:null};}
 
-function renderGP(app){
-  const reps=Object.keys(GP);
+function render(){const app=document.getElementById("body");const reps=Object.keys(PL);
   if(activeRep==="ALL"){
     let tp=0,tgp=0,tg=0;reps.forEach(r=>{const a=repAgg(r);tp+=a.p;tgp+=a.gp;tg+=a.g;});
-    const opct=tg?(tgp/tg*100):0;
-    const stats=`<div class="stats">${statTile("Reps",reps.length,"")}${statTile("Placements",tp.toLocaleString(),"")}${statTile("Goal",tg.toLocaleString(),"")}${statTile("% of goal",opct.toFixed(0)+"%","")}</div>`;
-    const ranked=reps.map(r=>({rep:r,...repAgg(r)})).sort((a,b)=>{
-        const ap=a.pct,bp=b.pct; if(ap===null&&bp===null)return b.p-a.p; if(ap===null)return 1; if(bp===null)return -1; return bp-ap||b.p-a.p;
-      }).map((r,i)=>({...r,rank:i+1}));
-    const rows=ranked.map(R=>{const hit=R.pct!==null&&R.pct>=100;
-      const win=R.pct===null?`${R.p}<small>placed</small>`:`${R.pct.toFixed(0)}%<small>of goal</small>`;
-      const sub=R.pct===null?`${R.p} placed · no goal set`:`${R.gp} / ${R.g} goal${GP_DM[R.rep]?' · '+esc(GP_DM[R.rep]):''}`;
+    const stats=`<div class="stats">${statTile("Reps",reps.length,"")}${statTile("Placements",tp.toLocaleString(),"")}${statTile("Goal",tg.toLocaleString(),"")}${statTile("% of goal",(tg?tgp/tg*100:0).toFixed(0)+"%","")}</div>`;
+    const ranked=reps.map(r=>({rep:r,...repAgg(r)})).sort((a,b)=>{if(a.pct===null&&b.pct===null)return b.p-a.p;if(a.pct===null)return 1;if(b.pct===null)return -1;return b.pct-a.pct||b.p-a.p;}).map((r,i)=>({...r,rank:i+1}));
+    const rows=ranked.map(R=>{const hit=R.pct!==null&&R.pct>=100;const win=R.pct===null?`${R.p}<small>placed</small>`:`${R.pct.toFixed(0)}%<small>of goal</small>`;
+      const sub=R.pct===null?`${R.p} placed · no goal set`:`${R.gp} / ${R.g} goal${DM[R.rep]?' · '+esc(DM[R.rep]):''}`;
       return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(R.pct||0,100).toFixed(1)}%"></i></div></span><span class="win" style="${hit?'color:var(--good)':''}">${win}</span></div>`;}).join("");
     app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Goal leaderboard</h2><span class="meta">${ranked.length} reps · by % of goal</span></div><div class="board">${rows}</div>`;
-    bindRows(app);
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
-    const a=repAgg(activeRep),d=GP[activeRep]||{};
-    const ranked=reps.map(r=>({rep:r,...repAgg(r)})).sort((x,y)=>{if(x.pct===null&&y.pct===null)return y.p-x.p;if(x.pct===null)return 1;if(y.pct===null)return -1;return y.pct-x.pct;}).map(x=>x.rep);
-    const rank=ranked.indexOf(activeRep)+1;
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${a.p} placements${a.g?` · ${a.gp} of ${a.g} toward goal`:''}${GP_DM[activeRep]?' · '+esc(GP_DM[activeRep]):''}</small></div><div class="win2"><div class="b num">${a.pct===null?a.p:a.pct.toFixed(0)+'%'}</div><div class="l">${a.pct===null?'Placed':'of goal'}</div></div></div></div>`;
-    const items=GP_BRANDS.filter(b=>d[b]).map(b=>({b,p:d[b].p,g:d[b].g})).sort((x,y)=>(y.g?y.p/Math.max(y.g,1):0)-(x.g?x.p/Math.max(x.g,1):0)||y.p-x.p);
-    const rows=items.map(x=>{const pct=x.g?Math.min(x.p/x.g*100,100):0;const hit=x.g&&x.p>=x.g;
-      const right=x.g?`${x.p} / ${x.g} <small>${(x.p/x.g*100).toFixed(0)}%</small>`:`${x.p} <small>no goal</small>`;
-      return `<div class="brow" style="flex-direction:column;align-items:stretch;gap:5px"><div style="display:flex;justify-content:space-between"><span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${bcolor(x.b)};margin-right:8px"></span>${esc(x.b)}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${right}</span></div><div class="bar ${hit?'done':''}" style="height:7px"><i style="width:${pct.toFixed(1)}%"></i></div></div>`;}).join("");
-    app.innerHTML=hero+`<div class="quest"><div class="sup">Placements vs goal by brand</div><div class="brk" style="border-top:none;padding-top:6px">${rows}</div></div>`;
+    const a=repAgg(activeRep),d=PL[activeRep]||{},g=GOAL[activeRep]||{};
+    const rank=reps.map(r=>({rep:r,...repAgg(r)})).sort((x,y)=>{if(x.pct===null&&y.pct===null)return y.p-x.p;if(x.pct===null)return 1;if(y.pct===null)return -1;return y.pct-x.pct;}).map(x=>x.rep).indexOf(activeRep)+1;
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${a.p} placements${a.g?` · ${a.gp} of ${a.g} toward goal`:''}${DM[activeRep]?' · '+esc(DM[activeRep]):''}</small></div><div class="win2"><div class="b num">${a.pct===null?a.p:a.pct.toFixed(0)+'%'}</div><div class="l">${a.pct===null?'Placed':'of goal'}</div></div></div></div>`;
+    const cards=BRANDS.filter(b=>d[b]||g[b]).map(b=>{
+      const p=d[b]?d[b].p:0, goal=g[b]||0, pct=goal?Math.min(p/goal*100,100):0, hit=goal&&p>=goal;
+      const accts=(d[b]?d[b].accts:[]).slice().sort((x,y)=>y.p-x.p);
+      const right=goal?`${p} / ${goal} <small>${(p/goal*100).toFixed(0)}%</small>`:`${p} <small>no goal</small>`;
+      const list=accts.length?accts.map(ac=>`<div class="brow"><span>${esc(ac.name)}</span><span class="num">${ac.p}</span></div>`).join(""):'<div class="pl">No placements yet.</div>';
+      return `<details class="quest"><summary style="cursor:pointer;list-style:none"><div style="display:flex;justify-content:space-between;align-items:center"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${bcolor(b)};margin-right:8px"></span>${esc(b)}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${right}</span></div><div class="bar ${hit?'done':''}" style="height:7px;margin-top:7px"><i style="width:${pct.toFixed(1)}%"></i></div></summary><div class="brk"><div class="cap">${accts.length} account${accts.length===1?'':'s'} placed</div>${list}</div></details>`;
+    }).join("");
+    app.innerHTML=hero+`<div class="shead"><h2>Placements vs goal by brand</h2><span class="meta">tap a brand for accounts</span></div>`+cards;
   }
 }
-function bindRows(app){app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});}
 function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
-function renderChips(){const reps=Object.keys(GP).filter(r=>repAgg(r).p>0||repAgg(r).g>0).sort();
+function renderChips(){const reps=Object.keys(PL).filter(r=>repAgg(r).p>0).sort();
   document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
-function render(){renderGP(document.getElementById("body"));}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  let text=null,lastMod=null;
-  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");text=await r.text();}}catch(e){}
-  if(!text){showEmpty("Upload the report (with the Placements / Goals / % of Goals columns) as <code>data.csv</code> next to this page.");return;}
-  ingestGP(text);
-  if(!Object.keys(GP).length){showEmpty("Couldn't read that file — make sure it has Sales Rep, Brand Family, Placements and Goals columns.");return;}
+  let pText=null,gText=null,lastMod=null;
+  try{const r=await fetch("placements.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");pText=await r.text();}}catch(e){}
+  try{const r=await fetch("goals.csv",{cache:"no-store"});if(r.ok)gText=await r.text();}catch(e){}
+  if(!pText){showEmpty("Upload <code>placements.csv</code> (the RDE customer/brand/rep export) and <code>goals.csv</code> next to this page.");return;}
+  ingestPlacements(pText); if(gText)ingestGoals(gText); sortBrands();
+  if(!Object.keys(PL).length){showEmpty("Couldn't read the placements file — check it has Customer, Brand Family, Sales Rep and Placements columns.");return;}
   renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML=FOOT;
+  document.getElementById("foot").innerHTML="Each rep's <b>placements</b> by brand (from the full RDE account list) measured against their <b>goal</b> (Coors, Peroni, Fever Tree). % of goal drives the board; a brand turns green at 100%. Tap a brand to see which accounts are placed. Refresh by re-exporting the uncapped RDE as placements.csv and the goals report as goals.csv.";
 }
 boot();
 
