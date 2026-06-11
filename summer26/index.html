@@ -337,7 +337,7 @@ function renderBoard(app){
   const card=(sup)=>{
     const g=supAgg(sup), br=supBrands(sup);
     const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span></div>${bchips(br.q)}</div>` : "";
-    const aLock = g.isQ ? `<span class="lockmini" aria-label="locked until qualifier">${LOCK}</span>` : "";
+    const aLock = "";
     const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span>${aLock}</div>${bchips(br.a)}</div>`;
     return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span><span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
@@ -352,7 +352,7 @@ function renderBreakdown(app){
   const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
     (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}`:"")+
     `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}`+
-    `<div class="pl">${g.isQ?(LOCK+' Amplify unlocks per rep once they clear the qualifier.'):(CHECK+' No qualifier — amplify open from the start.')}</div></div>`;
+    `<div class="pl">${g.isQ?('Amplify unlocks per rep once they clear the qualifier.'):(CHECK+' No qualifier — amplify open from the start.')}</div></div>`;
   const rows=reps.map(r=>({r,p:repSup(r,sup)})).sort((x,y)=>{
     if(g.isQ){const xc=x.p.qCleared?1:0,yc=y.p.qCleared?1:0; if(xc!==yc)return yc-xc;}
     return (g.isQ?(y.p.qPct||0)-(x.p.qPct||0):(y.p.aPct||0)-(x.p.aPct||0));
@@ -363,10 +363,10 @@ function renderBreakdown(app){
     const qStand=p.hasQ?`${Math.round(p.q.ty)} / ${Math.round(p.q.goal)}`:(p.q?`${Math.round(p.q.ty)} ce`:`—`);
     const aStand=p.a?`${Math.round(p.aTy)}${p.aGoal>0?(' / '+Math.round(p.aGoal)):''}`:`—`;
     const barPct=g.isQ?(p.qPct||0):(p.aPct||0);
-    const sub=g.isQ?`Qual ${qStand} · Amp ${aStand} ${p.aOpen?'':LOCK}`:`Amplify ${aStand}`;
+    const sub=g.isQ?`Qual ${qStand} · Amp ${aStand}`:`Amplify ${aStand}`;
     const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal</span><span class="num">${Math.round(p.q.goal)}</span></div>`:''}`:'';
     const aoff=g.isQ&&!p.qCleared;
-    const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE ${aoff?LOCK:''}</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal</span><span class="num">${Math.round(p.aGoal)}</span></div>`:''}`:'';
+    const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal</span><span class="num">${Math.round(p.aGoal)}</span></div>`:''}`:'';
     return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
@@ -400,9 +400,9 @@ function renderRep(app){
       const lab=`<div class="seclabel${x.hasGoal?' div':''}">Amplify</div>`;
       const status = x.aOpen
         ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">${CHECK} Unlocked</span></div>`
-        : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">${LOCK} Clear qualifier to unlock</span></div>`;
+        : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">Clear qualifier to unlock</span></div>`;
       const gate = ag>0 ? `<div class="qline" style="margin-top:11px"><span>Amplify goal (case equiv)</span><span class="num">${aty.toLocaleString()} / ${ag.toLocaleString()}</span></div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
-      ah=lab+status+gate+brk('Brands · 2026 ce', x.a.brands);
+      const alck=x.a&&!x.aOpen; ah=lab+status+gate+(alck?'<div style="opacity:.45">':'')+brk('Brands · 2026 ce', x.a.brands)+(alck?'</div>':'');
     }
     return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
   }).join("");
