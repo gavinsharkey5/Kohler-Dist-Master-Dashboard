@@ -46,6 +46,26 @@
   .backbtn{background:none;border:1px solid var(--line);color:var(--ink-soft);font:inherit;font-weight:600;font-size:14.5px;padding:8px 15px;border-radius:11px;cursor:pointer;margin:0 0 15px}
   .backbtn:hover{color:var(--ink);border-color:var(--ink-soft)}
   .amp .v.open{color:var(--good);text-shadow:0 0 14px color-mix(in srgb,var(--good) 45%,transparent)}
+  .bchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+  .bchip{font-size:12.5px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+  .bchip.muted{opacity:.45}
+  .pgrow .pglabel{display:flex;align-items:center;gap:0;margin-bottom:0}
+  .lockmini{display:inline-flex;align-items:center;color:var(--lock);margin-left:7px}
+  .lockmini svg{width:11px;height:11px}
+  .repx{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 11px;overflow:hidden;box-shadow:var(--shadow)}
+  .repx>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:13px;padding:14px 15px}
+  .repx>summary::-webkit-details-marker{display:none}
+  .repx>summary:hover{background:var(--card2)}
+  .repx .exptog{font-size:24px;line-height:1;color:var(--ink-soft);font-weight:700;transition:transform .15s}
+  .repx[open] .exptog{transform:rotate(90deg)}
+  .repx-detail{padding:2px 16px 16px;border-top:1px solid var(--line)}
+  .repx-detail .seclabel{margin-top:14px}
+  .brow.off{opacity:.4}
+  .qline.off{opacity:.4}
+  .seclabel.muted{color:var(--lock)}
+  .seclabel.muted svg{width:12px;height:12px;vertical-align:-1px}
+  .linkbtn{margin-top:15px;background:color-mix(in srgb,var(--accent) 16%,transparent);border:1px solid color-mix(in srgb,var(--accent) 42%,transparent);color:var(--accent);font:inherit;font-weight:700;font-size:14.5px;padding:10px 14px;border-radius:12px;cursor:pointer;width:100%}
+  .linkbtn:hover{background:color-mix(in srgb,var(--accent) 26%,transparent)}
   .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
     background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
   .gx-head .wrap{position:relative;padding:30px 18px 24px}
@@ -176,7 +196,8 @@
 </div></div>
 
 <div id="app"><div class="wrap">
-  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div class="seg"><p class="lbl">Programs</p><div class="chips" id="progchips"></div></div>
+  <div class="seg"><p class="lbl">Reps</p><div class="chips" id="chips"></div></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
@@ -282,6 +303,14 @@ function supAgg(sup){
   });
   return {isQ,qTy,qGoal,qPct:qGoal?qTy/qGoal*100:0,cleared,nQ,aTy,aGoal,aPct:aGoal?aTy/aGoal*100:0,nA,aUnlocked};
 }
+function supBrands(sup){
+  const q=new Map(),a=new Map();
+  Object.values(DATA).forEach(R=>{
+    if(R.qual[sup])R.qual[sup].brands.forEach(b=>q.set(b.brand,(q.get(b.brand)||0)+b.ty));
+    if(R.amp[sup])R.amp[sup].brands.forEach(b=>a.set(b.brand,(a.get(b.brand)||0)+b.ty));
+  });
+  return {q:[...q.keys()],a:[...a.keys()]};
+}
 function repSup(rep,sup){
   const R=DATA[rep]; const q=R.qual[sup],a=R.amp[sup]; const isQ=QSUP.has(sup);
   const hasQ=!!(q&&q.goal>0); const qCleared=hasQ&&q.ty>=q.goal;
@@ -300,54 +329,50 @@ function render(){
 
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
-  const qsups=qual.slice().sort((a,b)=>supAgg(b).qPct-supAgg(a).qPct);
-  const asups=amp.filter(s=>!QSUP.has(s)).sort((a,b)=>supAgg(b).aPct-supAgg(a).aPct);
+  const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
+  const asups=amp.filter(s=>!QSUP.has(s)).sort((a,b)=>a.localeCompare(b));
   const total=new Set([...qual,...amp]).size;
   const stats=`<div class="stats">${statTile("Suppliers",total,"")}${statTile("Qualifier programs",qsups.length,"")}${statTile("Amplify programs",amp.length,"")}${statTile("Players",Object.keys(DATA).length,"")}</div>`;
+  const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const card=(sup)=>{
-    const g=supAgg(sup);
-    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgval">${g.cleared}/${g.nQ} cleared · ${g.qPct.toFixed(0)}%</span></div><div class="bar ${g.nQ>0&&g.cleared===g.nQ?'done':''}"><i style="width:${Math.min(g.qPct,100).toFixed(1)}%"></i></div></div>` : "";
-    const aLock = g.isQ ? `<span class="amini">${LOCK} unlocks at qualifier</span>` : `<span class="amini open">${CHECK} open</span>`;
-    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgval">${aLock}${g.aGoal>0?(' · '+g.aPct.toFixed(0)+'%'):''}</span></div>${g.aGoal>0?`<div class="bar ${g.aPct>=100?'done':''}"><i style="width:${Math.min(g.aPct,100).toFixed(1)}%"></i></div>`:''}</div>`;
+    const g=supAgg(sup), br=supBrands(sup);
+    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span></div>${bchips(br.q)}</div>` : "";
+    const aLock = g.isQ ? `<span class="lockmini" aria-label="locked until qualifier">${LOCK}</span>` : "";
+    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span>${aLock}</div>${bchips(br.a)}</div>`;
     return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span><span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
   const ahtml=asups.length?`<div class="seclabel" style="margin-top:20px">Amplify only · no qualifier</div>`+asups.map(card).join(""):"";
   app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Supplier programs</h2><span class="meta">tap a program for the rep breakdown</span></div>${qsups.map(card).join("")}${ahtml}`;
   app.querySelectorAll(".srow[data-sup]").forEach(el=>el.addEventListener("click",()=>setSupplier(el.dataset.sup)));
 }
-
 function renderBreakdown(app){
-  const sup=activeSupplier, g=supAgg(sup);
+  const sup=activeSupplier, g=supAgg(sup), br=supBrands(sup);
   const reps=Object.keys(DATA).filter(r=>DATA[r].qual[sup]||DATA[r].amp[sup]);
+  const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
+  const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
+    (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}`:"")+
+    `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}`+
+    `<div class="pl">${g.isQ?(LOCK+' Amplify unlocks per rep once they clear the qualifier.'):(CHECK+' No qualifier — amplify open from the start.')}</div></div>`;
   const rows=reps.map(r=>({r,p:repSup(r,sup)})).sort((x,y)=>{
     if(g.isQ){const xc=x.p.qCleared?1:0,yc=y.p.qCleared?1:0; if(xc!==yc)return yc-xc;}
-    const xv=g.isQ?(x.p.qPct||0):(x.p.aPct||0), yv=g.isQ?(y.p.qPct||0):(y.p.aPct||0); return yv-xv;
+    return (g.isQ?(y.p.qPct||0)-(x.p.qPct||0):(y.p.aPct||0)-(x.p.aPct||0));
   });
+  const detRows=(brands,off)=>brands.slice().sort((a,b)=>b.ty-a.ty).map(b=>`<div class="brow${off?' off':''}"><span>${esc(b.brand)}</span><span class="num">${Math.round(b.ty)}<small> ce</small></span></div>`).join("");
   const list=rows.map((o,i)=>{
-    const p=o.p, rank=i+1; let sub,win,bar;
-    if(g.isQ){
-      const qv=p.qPct===null?0:p.qPct;
-      bar=`<div class="track"><i style="width:${Math.min(qv,100).toFixed(1)}%"></i></div>`;
-      sub=p.qCleared?`${CHECK} Qualifier cleared · amplify unlocked`:(p.hasQ?`${Math.round(p.q.ty)} / ${Math.round(p.q.goal)} to qualifier · amplify locked`:`No qualifier goal assigned`);
-      win=p.qCleared?`<span style="color:var(--good)">${CHECK}</span>`:(p.qPct===null?`–`:`${p.qPct.toFixed(0)}%<small>qualifier</small>`);
-    } else {
-      const av=p.aPct===null?0:p.aPct;
-      bar=`<div class="track"><i style="width:${Math.min(av,100).toFixed(1)}%"></i></div>`;
-      sub=p.aGoal>0?`${Math.round(p.aTy)} / ${Math.round(p.aGoal)} amplify CE`:`Tracking amplify`;
-      win=p.aPct===null?`${Math.round(p.aTy)}<small>CE</small>`:`${p.aPct.toFixed(0)}%<small>amplify</small>`;
-    }
-    return `<div class="lrow${rank<=3?' top':''}" style="--mc:${medalColor(rank)}" role="button" tabindex="0" data-rep="${esc(o.r)}"><span class="medal ${rank<=3?'m'+rank:''}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub}</div>${bar}</span><span class="win">${win}</span></div>`;
+    const p=o.p, rank=i+1;
+    const qStand=p.hasQ?`${Math.round(p.q.ty)} / ${Math.round(p.q.goal)}`:(p.q?`${Math.round(p.q.ty)} ce`:`—`);
+    const aStand=p.a?`${Math.round(p.aTy)}${p.aGoal>0?(' / '+Math.round(p.aGoal)):''}`:`—`;
+    const barPct=g.isQ?(p.qPct||0):(p.aPct||0);
+    const sub=g.isQ?`Qual ${qStand} · Amp ${aStand} ${p.aOpen?'':LOCK}`:`Amplify ${aStand}`;
+    const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal</span><span class="num">${Math.round(p.q.goal)}</span></div>`:''}`:'';
+    const aoff=g.isQ&&!p.qCleared;
+    const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE ${aoff?LOCK:''}</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal</span><span class="num">${Math.round(p.aGoal)}</span></div>`:''}`:'';
+    return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
-  const hero = g.isQ
-    ? `<div class="qline"><span>Qualifier · reps cleared</span><span class="num">${g.cleared} / ${g.nQ}</span></div><div class="bar ${g.nQ>0&&g.cleared===g.nQ?'done':''}"><i style="width:${Math.min(g.qPct,100).toFixed(1)}%"></i></div><div class="seclabel div">Amplify</div><div class="pl">${LOCK} Unlocks for each rep once they clear the qualifier.</div>`
-    : `<div class="qline"><span>Amplify · open program</span><span class="num">${Math.round(g.aTy)}${g.aGoal>0?(' / '+Math.round(g.aGoal)):''}</span></div>${g.aGoal>0?`<div class="bar ${g.aPct>=100?'done':''}"><i style="width:${Math.min(g.aPct,100).toFixed(1)}%"></i></div>`:''}<div class="pl">${CHECK} No qualifier — open from the start.</div>`;
-  app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+
-    `<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}</div><div class="snm">${esc(sup)}</div></div>${hero}</div>`+
-    `<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap a name for their full board</span></div><div class="board">${list}</div>`;
+  app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
   document.getElementById("back").addEventListener("click",()=>setSupplier(null));
-  app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  app.querySelectorAll(".linkbtn[data-rep]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();setRep(el.dataset.rep);}));
 }
-
 function renderRep(app){
   const c=calc(DATA[activeRep]);
   const unlocked=c.cards.filter(x=>x.aOpen&&x.a).length, ampTotal=c.cards.filter(x=>x.a).length;
@@ -385,12 +410,20 @@ function renderRep(app){
   const b=document.getElementById("back"); if(b)b.addEventListener("click",()=>setRep("ALL"));
 }
 
-function setRep(v){activeRep=v;activeSupplier=null;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
-function setSupplier(s){activeSupplier=s;render();window.scrollTo({top:0,behavior:"smooth"});}
+function setRep(v){activeRep=v;activeSupplier=null;renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
+function setSupplier(s){activeSupplier=s;activeRep="ALL";renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
 
 function renderChips(){
   const reps=Object.keys(DATA).sort();
-  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All programs":esc(v)}</button>`).join("");
+  const {qual,amp}=allSuppliers();
+  const sups=[...qual.slice().sort((a,b)=>a.localeCompare(b)), ...amp.filter(s=>!QSUP.has(s)).sort((a,b)=>a.localeCompare(b))];
+  const pg=document.getElementById("progchips");
+  if(pg){
+    pg.innerHTML=`<button class="chip" data-prog="ALL" aria-pressed="${activeRep==="ALL"&&!activeSupplier}">All programs</button>`+
+      sups.map(s=>`<button class="chip" data-prog="${esc(s)}" aria-pressed="${activeSupplier===s}">${esc(s)}</button>`).join("");
+    pg.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{const v=b.dataset.prog;if(v==="ALL"){activeRep="ALL";setSupplier(null);}else{setSupplier(v);}}));
+  }
+  document.getElementById("chips").innerHTML=reps.map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
 }
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
