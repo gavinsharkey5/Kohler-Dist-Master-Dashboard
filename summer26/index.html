@@ -11,7 +11,7 @@
   :root{
     --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F8F9FB; --ink-soft:#BAC0CE;
     --line:#262A35; --line-soft:#1F222B;
-    --accent:#E6B23C; --accent2:#C7892A;        /* tracker accent (SoS = gold) */
+    --accent:#F4B83E; --accent2:#D98A2B;        /* tracker accent (SoS = gold) */
     --good:#37C46B; --good-soft:#15301E;
     --lock:#565E72;
     --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
@@ -20,7 +20,7 @@
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
   body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:17.5px;line-height:1.6;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:18px;line-height:1.62;
     padding-bottom:env(safe-area-inset-bottom)}
   .wrap{max-width:860px;margin:0 auto;padding:0 18px}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
@@ -47,7 +47,8 @@
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
-  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:27px;margin:6px 0 0;line-height:1}
+  .stat .v.accent{text-shadow:0 0 16px color-mix(in srgb,var(--accent) 55%,transparent)}
   .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
   .stat .v.accent{color:var(--accent)}
 
@@ -70,7 +71,7 @@
   /* leaderboard */
   .board{display:flex;flex-direction:column;gap:9px}
   .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
-    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
+    border:1px solid var(--line);border-radius:17px;padding:14px 16px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
   .lrow:hover{transform:translateY(-2px);border-color:#39404F}
   .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
@@ -98,7 +99,7 @@
   .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
   .hero .nm small{display:block;font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:3px;font-family:"Inter"}
   .hero .win2{margin-left:auto;text-align:right}
-  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
+  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:31px;color:var(--accent);text-shadow:0 0 20px color-mix(in srgb,var(--accent) 50%,transparent)}
   .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
   .pips{display:flex;gap:6px;margin:16px 0 0;position:relative;flex-wrap:wrap}
   .pip{flex:1;min-width:28px;height:8px;border-radius:5px;background:var(--line)}
@@ -106,10 +107,10 @@
   .hero .pl{font-size:11px;color:var(--ink-soft);margin:9px 0 0;position:relative;letter-spacing:.02em}
 
   /* quest cards */
-  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;margin:0 0 13px;box-shadow:var(--shadow)}
   .quest .sup{font-family:"Space Grotesk";font-weight:600;display:flex;flex-direction:column;align-items:stretch;gap:10px}
   .suptop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-  .snm{font-family:"Space Grotesk";font-weight:600;font-size:17px;color:var(--ink);line-height:1.2}
+  .snm{font-family:"Space Grotesk";font-weight:700;font-size:18.5px;color:var(--ink);line-height:1.2}
   .suplogo{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;padding:9px 15px;height:64px;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.92)}
   .suplogo img{height:100%;width:auto;max-width:190px;object-fit:contain;display:block}
   .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
@@ -130,8 +131,8 @@
   .brow small{color:var(--ink-soft);font-weight:500}
   .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
   .amp .l{color:var(--ink-soft);font-size:13.5px}
-  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:17px}
-  .amp .v.earn{color:var(--accent)}
+  .amp .v{font-family:"Space Grotesk";font-weight:700;font-size:20px}
+  .amp .v.earn{color:var(--accent);text-shadow:0 0 16px color-mix(in srgb,var(--accent) 55%,transparent)}
   .amp .v.locked{color:var(--lock);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px}
   .amp .v.locked svg{width:13px;height:13px}
 
@@ -194,7 +195,7 @@ function build(text){
       if(curTier==="Q") QSUP.add(a);
       const R=reps[curRep]; if(!R) continue;
       if(curTier==="Q") R.qual[a]={ly,ty,goal,brands:[]};
-      else if(curTier==="A") R.amp[a]={ly,ty,brands:[]};
+      else if(curTier==="A") R.amp[a]={ly,ty,goal,brands:[]};
     } else if(REPS.has(a)){
       curRep=a; reps[a]={name:a,qual:{},amp:{}}; curSup=null;curTier=null;
     } else {
@@ -218,15 +219,15 @@ function calc(R){
     const isQ = hasGoal && q.ty>=q.goal;
     const isAmpOnly = !QSUP.has(sup);  // supplier never appears as a qualifier -> auto-unlock
     if(hasGoal){goalSups++; if(isQ)qualified++; pctSum+=Math.min(q.ty/q.goal,1);}
-    let aPay=0, aInc=0, aTy=0, aLy=0, aOpen=false;
+    let aPay=0, aInc=0, aTy=0, aLy=0, aOpen=false, aGoal=0;
     if(a){
-      aTy=a.ty; aLy=a.ly;
-      aOpen = isAmpOnly ? true : (hasGoal && isQ);
+      aTy=a.ty; aLy=a.ly; aGoal=a.goal||0;
+      aOpen = aGoal>0 ? (aTy>=aGoal) : (isAmpOnly ? true : (hasGoal && isQ));
       if(a.brands.length){ a.brands.forEach(br=>{aInc+=Math.max(0,br.ty-br.ly); aPay+= aOpen?Math.max(0,br.ty-br.ly)*rateFor(br.brand):0;}); }
       else { aInc=Math.max(0,a.ty-a.ly); aPay=aOpen?aInc:0; }
     }
     amp+=aPay;
-    cards.push({sup,q,hasGoal,isQ,isAmpOnly,a,aPay,aInc,aTy,aLy,aOpen});
+    cards.push({sup,q,hasGoal,isQ,isAmpOnly,a,aPay,aInc,aTy,aLy,aOpen,aGoal});
   });
   const avgPct = goalSups? (pctSum/goalSups*100):0;
   return {goalSups,qualified,avgPct,amp,cards};
@@ -287,10 +288,11 @@ function render(){
       let ah="";
       if(x.a){const inc=Math.round(x.aInc);
         const lab=`<div class="seclabel${x.hasGoal?' div':''}">Amplify</div>`;
+        const ag=Math.round(x.aGoal||0), aty=Math.round(x.aTy);
         const line = x.aOpen ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Bonus · ${inc} cases over 2025</span><span class="v earn">${money(x.aPay)}</span></div>`
-          : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Bonus</span><span class="v locked">${LOCK} clear the goal to unlock</span></div>`;
-        const atot = x.aLy>0 ? `<div class="qline" style="margin-top:11px"><span>Total · 2026 vs 2025 goal</span><span class="num">${Math.round(x.aTy)} / ${Math.round(x.aLy)}</span></div><div class="bar ${x.aTy>=x.aLy?'done':''}"><i style="width:${Math.min(x.aTy/x.aLy*100,100).toFixed(1)}%"></i></div>` : "";
-        ah=lab+line+atot+brk('Brands · 2026 ce', x.a.brands, true);
+          : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Bonus</span><span class="v locked">${LOCK} ${ag>0?('unlock at '+ag.toLocaleString()+' CE'):'clear the goal to unlock'}</span></div>`;
+        const gate = ag>0 ? `<div class="qline" style="margin-top:11px"><span>Unlock goal · combined 2026 CE</span><span class="num">${aty.toLocaleString()} / ${ag.toLocaleString()}</span></div><div class="bar ${x.aOpen?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
+        ah=lab+line+gate+brk('Brands · 2026 ce', x.a.brands, true);
       }
       return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
     }).join("");
@@ -313,12 +315,12 @@ function _fmt(v){return Math.abs(v-Math.round(v))<1e-9?String(Math.round(v)):v.t
 function buildNestedFromFlat(salesText,goalsText){
   const G={}, gr=parseCSV(goalsText), gH=gr[0].map(h=>h.toLowerCase());
   const gRep=gH.findIndex(h=>h.includes("rep")),gType=gH.findIndex(h=>h.includes("type")),gBr=gH.findIndex(h=>h.includes("brand")),gGoal=gH.findIndex(h=>h.includes("goal"));
-  for(let i=1;i<gr.length;i++){const r=gr[i];if(!r[gRep])continue;G[_norm(r[gRep])+"|"+_norm(r[gType]).toLowerCase()+"|"+_key(r[gBr])]=_n(r[gGoal]);}
+  for(let i=1;i<gr.length;i++){const r=gr[i];if(!r[gRep])continue;var gk=_norm(r[gRep])+"|"+_norm(r[gType]).toLowerCase()+"|"+_key(r[gBr]);G[gk]=(G[gk]||0)+_n(r[gGoal]);}
   const sr=parseCSV(salesText), sH=sr[0].map(h=>h.toLowerCase());
   const sRep=sH.findIndex(h=>h.includes("rep")),sSeg=sH.findIndex(h=>h.includes("qualifier brands")||h.includes("segment")),sSup=sH.findIndex(h=>h.includes("supplier")),sBr=sH.findIndex(h=>h.includes("brand family")),s25=sH.findIndex(h=>h.includes("2025")),s26=sH.findIndex(h=>h.includes("2026"));
   const reps=new Map();
   for(let i=1;i<sr.length;i++){const r=sr[i];const rep=_norm(r[sRep]);if(!rep||rep==="Total")continue;
-    const seg=_norm(r[sSeg]),sup=_norm(r[sSup]),brand=_norm(r[sBr]),c25=_n(r[s25]),c26=_n(r[s26]);
+    const seg=_norm(r[sSeg]);let sup=_norm(r[sSup]);if(sup==="Bell's")sup="New Belgium Brewing Company";const brand=_norm(r[sBr]),c25=_n(r[s25]),c26=_n(r[s26]);
     if(!reps.has(rep))reps.set(rep,new Map());
     const segs=reps.get(rep);if(!segs.has(seg))segs.set(seg,{sup:sup,brands:new Map()});
     const bm=segs.get(seg).brands,ex=bm.get(brand)||[0,0];bm.set(brand,[ex[0]+c25,ex[1]+c26]);}
@@ -328,7 +330,7 @@ function buildNestedFromFlat(salesText,goalsText){
     for(const s of segs.values())for(const b of s.brands.values()){r25+=b[0];r26+=b[1];}
     T25+=r25;T26+=r26;body.push([rep,"",_fmt(r25),_fmt(r26),"","0%",_fmt(r26-r25)]);
     for(const [seg,info] of segs){let v25=0,v26=0;for(const b of info.brands.values()){v25+=b[0];v26+=b[1];}
-      let goal=0;if(/^qualifier/i.test(seg)){const br=seg.split(":").slice(1).join(":");goal=G[rep+"|qualifier|"+_key(br)]||0;}
+      let goal=0;{const br=seg.split(":").slice(1).join(":");if(/^qualifier/i.test(seg))goal=G[rep+"|qualifier|"+_key(br)]||0;else if(/^amplify/i.test(seg))goal=G[rep+"|amplify|"+_key(br)]||0;}
       const gc=goal>0?_fmt(goal):"",pc=goal>0?(v26/goal*100).toFixed(1)+"%":"0%";
       body.push([info.sup,seg,_fmt(v25),_fmt(v26),gc,pc,_fmt(v26-v25)]);
       for(const [brand,b] of info.brands)body.push([brand,"",_fmt(b[0]),_fmt(b[1]),"","0%",_fmt(b[1]-b[0])]);}}
