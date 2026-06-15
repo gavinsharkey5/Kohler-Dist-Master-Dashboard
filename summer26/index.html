@@ -48,6 +48,12 @@
   .amp .v.open{color:var(--good);text-shadow:0 0 14px color-mix(in srgb,var(--good) 45%,transparent)}
   .bchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
   .pgtot{margin-left:auto;font-family:"Space Grotesk";font-weight:600;font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  .trend{display:inline-flex;align-items:center;gap:4px;font-family:"Space Grotesk";font-weight:700;font-size:12.5px;white-space:nowrap;margin-left:10px}
+  .trend.sm{font-size:11.5px;margin-left:7px}
+  .trend i{font-style:normal;font-weight:600;font-size:10px;opacity:.7;letter-spacing:.03em}
+  .trend::before{font-size:9px;line-height:1}
+  .trend.up{color:var(--good)} .trend.up::before{content:"\25B2"}
+  .trend.down{color:#E5604D} .trend.down::before{content:"\25BC"}
   .bchip{font-size:12.5px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
   .bchip.muted{opacity:.45}
   .pgrow .pglabel{display:flex;align-items:center;gap:0;margin-bottom:0}
@@ -289,7 +295,7 @@ function standings(){
 }
 function statTile(k,v,s,accent){return `<div class="stat"><p class="k">${k}</p><p class="v num ${accent?'accent':''}">${v}${s||''}</p></div>`;}
 
-let activeSupplier=null, lastUpdated="";
+let activeSupplier=null, lastUpdated="", TRENDsup={}, TRENDrepsup={}, hasTrend=false;
 const medalColor=r=>r===1?"var(--gold)":r===2?"var(--silver)":"var(--bronze)";
 function allSuppliers(){
   const q=new Set(),a=new Set();
@@ -331,6 +337,25 @@ function render(){
   renderBoard(app);
 }
 
+function buildTrend(text){
+  const rows=parseCSV(text); if(rows.length<2) return; const H=rows[0].map(x=>x.toLowerCase());
+  const ri=H.findIndex(h=>h.includes("rep")), bi=H.findIndex(h=>h.includes("brand family")), i25=H.findIndex(h=>h.includes("2025")), i26=H.findIndex(h=>h.includes("2026"));
+  const bsup={};
+  Object.keys(DATA).forEach(rep=>{const R=DATA[rep];bsup[rep]={};["qual","amp"].forEach(t=>Object.keys(R[t]).forEach(sup=>R[t][sup].brands.forEach(b=>{bsup[rep][b.brand]=sup;})));});
+  for(let i=1;i<rows.length;i++){const r=rows[i]; const rep=_norm(r[ri]), brand=_norm(r[bi]); if(!rep||!brand) continue;
+    const m25=_n(r[i25]), m26=_n(r[i26]); const sup=bsup[rep]&&bsup[rep][brand]; if(!sup) continue;
+    TRENDsup[sup]=TRENDsup[sup]||[0,0]; TRENDsup[sup][0]+=m25; TRENDsup[sup][1]+=m26;
+    const k=rep+"|"+sup; TRENDrepsup[k]=TRENDrepsup[k]||[0,0]; TRENDrepsup[k][0]+=m25; TRENDrepsup[k][1]+=m26;}
+  hasTrend=Object.keys(TRENDsup).length>0;
+}
+function trendChip(m25,m26,small){
+  if(!hasTrend) return ""; if(!m25&&!m26) return "";
+  const up=m26>=m25; const pct=m25>0?(m26-m25)/m25*100:(m26>0?100:0);
+  return `<span class="trend ${up?'up':'down'}${small?' sm':''}">${(pct>=0?'+':'')}${pct.toFixed(0)}%${small?'':' <i>vs \u201925 MTD</i>'}</span>`;
+}
+const trendSup=sup=>{const t=TRENDsup[sup];return t?trendChip(t[0],t[1],false):"";};
+const trendRepSup=(rep,sup)=>{const t=TRENDrepsup[rep+"|"+sup];return t?trendChip(t[0],t[1],true):"";};
+
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -342,7 +367,7 @@ function renderBoard(app){
     const g=supAgg(sup), br=supBrands(sup);
     const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgtot">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()} CE</span></div>${bchips(br.q)}</div>` : "";
     const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgtot">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()} CE</span></div>${bchips(br.a)}</div>`;
-    return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span><span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
+    return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span>${trendSup(sup)}<span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
   const ahtml=asups.length?`<div class="seclabel" style="margin-top:20px">Amplify only · no qualifier</div>`+asups.map(card).join(""):"";
   const fresh=lastUpdated?`<div class="freshline"><span class="livedot"></span> Data refreshed ${lastUpdated}</div>`:"";
@@ -353,7 +378,7 @@ function renderBreakdown(app){
   const sup=activeSupplier, g=supAgg(sup), br=supBrands(sup);
   const reps=Object.keys(DATA).filter(r=>DATA[r].qual[sup]||DATA[r].amp[sup]);
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
-  const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
+  const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}${trendSup(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
     (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}<div class="qline"><span>Qualifier total · CE</span><span class="num">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()}</span></div>`:"")+
     `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}<div class="qline"><span>Amplify total · CE</span><span class="num">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()}</span></div>`+
     `<div class="pl">${g.isQ?('Amplify unlocks per rep once they clear the qualifier.'):('No qualifier — amplify open from the start.')}</div></div>`;
@@ -371,7 +396,7 @@ function renderBreakdown(app){
     const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal</span><span class="num">${Math.round(p.q.goal)}</span></div>`:''}`:'';
     const aoff=g.isQ&&!p.qCleared;
     const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal</span><span class="num">${Math.round(p.aGoal)}</span></div>`:''}`:'';
-    return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
+    return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub} ${trendRepSup(o.r,sup)}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
   document.getElementById("back").addEventListener("click",()=>setSupplier(null));
@@ -467,8 +492,10 @@ async function boot(){
   try{const rs=await fetch("sales.csv",{cache:"no-store"}),rg=await fetch("goals.csv",{cache:"no-store"});
     if(rs.ok&&rg.ok){lastMod=rs.headers.get("last-modified");text=buildNestedFromFlat(await rs.text(),await rg.text());}}catch(e){}
   if(!text){try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=lastMod||r.headers.get("last-modified");text=await r.text();}}catch(e){}}
+  let trendText=null;try{const rt=await fetch("trend.csv",{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}
   if(!text){showEmpty("Upload <code>sales.csv</code> (the RDE sales export) and <code>goals.csv</code> (your Rep Goals) next to this page and refresh.");return;}
   DATA=build(text);
+  if(trendText)buildTrend(trendText);
   if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report saved as CSV.");return;}
   lastUpdated=lastMod?new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):"";
   renderChips();render();
