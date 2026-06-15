@@ -77,7 +77,10 @@
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
   .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:16.5px}
   .lede b{color:var(--accent)}
-  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+  .updated{margin:12px 0 0;font-size:12.5px;color:var(--ink-soft);font-family:"Space Grotesk";letter-spacing:.03em;display:flex;align-items:center;gap:7px}
+  .freshline{display:inline-flex;align-items:center;gap:7px;margin:0 0 14px;padding:7px 13px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;font-family:"Space Grotesk";font-size:13px;color:var(--ink-soft)}
+  .livedot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 60%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
   .note{margin:14px 0 0}
   .note .inner{background:color-mix(in srgb,var(--accent) 9%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 26%,var(--line));
@@ -286,7 +289,7 @@ function standings(){
 }
 function statTile(k,v,s,accent){return `<div class="stat"><p class="k">${k}</p><p class="v num ${accent?'accent':''}">${v}${s||''}</p></div>`;}
 
-let activeSupplier=null;
+let activeSupplier=null, lastUpdated="";
 const medalColor=r=>r===1?"var(--gold)":r===2?"var(--silver)":"var(--bronze)";
 function allSuppliers(){
   const q=new Set(),a=new Set();
@@ -342,7 +345,8 @@ function renderBoard(app){
     return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span><span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
   const ahtml=asups.length?`<div class="seclabel" style="margin-top:20px">Amplify only · no qualifier</div>`+asups.map(card).join(""):"";
-  app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Supplier programs</h2><span class="meta">tap a program for the rep breakdown</span></div>${qsups.map(card).join("")}${ahtml}`;
+  const fresh=lastUpdated?`<div class="freshline"><span class="livedot"></span> Data refreshed ${lastUpdated}</div>`:"";
+  app.innerHTML=stats+fresh+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Supplier programs</h2><span class="meta">tap a program for the rep breakdown</span></div>${qsups.map(card).join("")}${ahtml}`;
   app.querySelectorAll(".srow[data-sup]").forEach(el=>el.addEventListener("click",()=>setSupplier(el.dataset.sup)));
 }
 function renderBreakdown(app){
@@ -466,8 +470,9 @@ async function boot(){
   if(!text){showEmpty("Upload <code>sales.csv</code> (the RDE sales export) and <code>goals.csv</code> (your Rep Goals) next to this page and refresh.");return;}
   DATA=build(text);
   if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report saved as CSV.");return;}
+  lastUpdated=lastMod?new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):"";
   renderChips();render();
-  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("updated").innerHTML=lastUpdated?('<span class="livedot"></span> Data refreshed '+lastUpdated):"";
   document.getElementById("foot").innerHTML="<b>Clear a supplier</b> by hitting its 2026 case-equiv goal. <b>Amplify</b> then pays each of that supplier's brands' cases over 2025 — $1/case, or $2 for Fever-Tree, Mike's Harder &amp; MXD. Sapporo, Cape May &amp; New Belgium have no goal, so their Amplify is open automatically. Tier qualifier payout ($750 / $500 / $250) pending route volumes. <b>To refresh:</b> re-export the RDE sales report, save as sales.csv, and drop it in this folder — goals.csv stays put. Numbers grow through August.";
 }
 boot();
