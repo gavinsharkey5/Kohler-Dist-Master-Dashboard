@@ -170,6 +170,19 @@
   .qline .num{color:var(--ink);font-weight:700;font-size:20px;line-height:1.1}
   .num .sold{color:var(--ink)}
   .num .gp{color:var(--ink-soft);font-weight:600;font-size:.72em}
+  /* stacked number + label */
+  .sgstack{display:flex;align-items:flex-start;gap:20px;margin:14px 0 10px}
+  .sgcol{display:flex;flex-direction:column;gap:3px}
+  .sgnum{font-family:"Space Grotesk";font-weight:700;font-size:27px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+  .sgnum.goal{color:var(--ink-soft)}
+  .sglab{font-family:"Space Grotesk";font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .sgsep{font-size:26px;line-height:1;color:var(--lock);font-weight:300;margin-top:1px}
+  /* per-rep pill lines */
+  .repprog{display:flex;flex-direction:column;gap:6px;margin:7px 0 9px}
+  .ppair{display:flex;align-items:center;gap:10px}
+  .ppair.off{opacity:.5}
+  .pv{font-family:"Space Grotesk";font-weight:700;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .pv .sl{color:var(--ink-soft);font-weight:600;font-size:.82em}
   .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
   .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
   .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
@@ -359,6 +372,7 @@ const trendSup=sup=>{const t=TRENDsup[sup];return t?trendChip(t[0],t[1],false):"
 const trendRepSup=(rep,sup)=>{const t=TRENDrepsup[rep+"|"+sup];return t?trendChip(t[0],t[1],true):"";};
 
 function sg(sold,goal){return `<b class="sold">${Math.round(sold).toLocaleString()}</b> <span class="gp">/ ${Math.round(goal).toLocaleString()} goal</span>`;}
+function sgStack(sold,goal){return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div></div>`;}
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -382,8 +396,8 @@ function renderBreakdown(app){
   const reps=Object.keys(DATA).filter(r=>DATA[r].qual[sup]||DATA[r].amp[sup]);
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}${trendSup(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
-    (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}<div class="qline"><span>Cases sold vs goal · all reps</span><span class="num">${sg(g.qTy,g.qGoal)}</span></div>`:"")+
-    `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}<div class="qline"><span>Cases sold vs goal · all reps</span><span class="num">${sg(g.aTy,g.aGoal)}</span></div>`+
+    (g.isQ?`<div class="seclabel"><span class="tag q">Qualifier brands</span></div>${bchips(br.q)}${sgStack(g.qTy,g.qGoal)}`:"")+
+    `<div class="seclabel ${g.isQ?'div':''}"><span class="tag a">Amplify brands</span></div>${bchips(br.a)}${sgStack(g.aTy,g.aGoal)}`+
     `<div class="pl">${g.isQ?('Amplify unlocks per rep once they clear the qualifier.'):('No qualifier — amplify open from the start.')}</div></div>`;
   const rows=reps.map(r=>({r,p:repSup(r,sup)})).sort((x,y)=>{
     if(g.isQ){const xc=x.p.qCleared?1:0,yc=y.p.qCleared?1:0; if(xc!==yc)return yc-xc;}
@@ -399,7 +413,10 @@ function renderBreakdown(app){
     const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal (all brands)</span><span class="num">${Math.round(p.q.goal).toLocaleString()}</span></div>`:''}`:'';
     const aoff=g.isQ&&!p.qCleared;
     const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal (all brands)</span><span class="num">${Math.round(p.aGoal).toLocaleString()}</span></div>`:''}`:'';
-    return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub} ${trendRepSup(o.r,sup)}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
+    const qvR=p.hasQ?`${Math.round(p.q.ty).toLocaleString()} <span class="sl">/ ${Math.round(p.q.goal).toLocaleString()}</span>`:(p.q?`${Math.round(p.q.ty).toLocaleString()} ce`:'\u2014');
+    const avR=p.a?`${Math.round(p.aTy).toLocaleString()}${p.aGoal>0?` <span class="sl">/ ${Math.round(p.aGoal).toLocaleString()}</span>`:' ce'}`:'\u2014';
+    const repprog=`<div class="repprog">`+(g.isQ?`<div class="ppair"><span class="tag q">Qualifier</span><span class="pv">${qvR}</span></div>`:'')+(p.a?`<div class="ppair${aoff?' off':''}"><span class="tag a">Amplify</span><span class="pv">${avR}</span></div>`:'')+`</div>`;
+    return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b> ${trendRepSup(o.r,sup)}${repprog}<div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
   document.getElementById("back").addEventListener("click",()=>setSupplier(null));
@@ -423,7 +440,7 @@ function renderRep(app){
     if(x.hasGoal) badge=x.isQ?`<span class="badge ok">${CHECK} Cleared</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`;
     else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">Open</span>`;
     const qh=x.hasGoal?`<div class="seclabel">Qualifier</div>
-      <div class="qline"><span>Cases sold vs goal</span><span class="num">${sg(x.q.ty,x.q.goal)}</span></div>
+      ${sgStack(x.q.ty,x.q.goal)}
       <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Brands · 2026 ce', x.q.brands)}`
       :(x.isAmpOnly?"":`<div class="seclabel">Qualifier</div><div class="qline"><span>No qualifier goal assigned</span></div>`);
     let ah="";
@@ -433,7 +450,7 @@ function renderRep(app){
       const status = x.aOpen
         ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">Unlocked</span></div>`
         : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">Clear qualifier to unlock</span></div>`;
-      const gate = ag>0 ? `<div class="qline" style="margin-top:11px"><span>Cases sold vs goal</span><span class="num">${sg(aty,ag)}</span></div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
+      const gate = ag>0 ? `<div style="margin-top:13px">${sgStack(aty,ag)}</div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
       const alck=x.a&&!x.aOpen; ah=lab+status+gate+(alck?'<div style="opacity:.45">':'')+brk('Brands · 2026 ce', x.a.brands)+(alck?'</div>':'');
     }
     return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
