@@ -47,7 +47,7 @@
   .backbtn:hover{color:var(--ink);border-color:var(--ink-soft)}
   .amp .v.open{color:var(--good);text-shadow:0 0 14px color-mix(in srgb,var(--good) 45%,transparent)}
   .bchips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
-  .pgtot{margin-left:auto;font-family:"Space Grotesk";font-weight:600;font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  .pgtot{margin-left:auto;font-family:"Space Grotesk";font-weight:700;font-size:14.5px;color:var(--ink);white-space:nowrap}
   .trend{display:inline-flex;align-items:center;gap:4px;font-family:"Space Grotesk";font-weight:700;font-size:12.5px;white-space:nowrap;margin-left:10px}
   .trend.sm{font-size:11.5px;margin-left:7px}
   .trend i{font-style:normal;font-weight:600;font-size:10px;opacity:.7;letter-spacing:.03em}
@@ -166,8 +166,10 @@
   .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
   .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
   .badge svg{width:11px;height:11px}
-  .qline{font-size:14.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
-  .qline .num{color:var(--ink);font-weight:600}
+  .qline{font-size:15px;color:var(--ink-soft);margin:15px 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .qline .num{color:var(--ink);font-weight:700;font-size:20px;line-height:1.1}
+  .num .sold{color:var(--ink)}
+  .num .gp{color:var(--ink-soft);font-weight:600;font-size:.72em}
   .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
   .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
   .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good));box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
@@ -175,8 +177,8 @@
   .seclabel{font-family:"Space Grotesk";font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:13px 0 9px}
   .seclabel.div{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
   .brk .cap{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
-  .brow{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;color:var(--ink-soft);padding:5px 0}
-  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;color:var(--ink-soft);padding:6px 0}
+  .brow .num{color:var(--ink);font-weight:600;font-size:15.5px;white-space:nowrap}
   .brow small{color:var(--ink-soft);font-weight:500}
   .amp{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
   .amp .l{color:var(--ink-soft);font-size:13.5px}
@@ -356,6 +358,7 @@ function trendChip(m25,m26,small){
 const trendSup=sup=>{const t=TRENDsup[sup];return t?trendChip(t[0],t[1],false):"";};
 const trendRepSup=(rep,sup)=>{const t=TRENDrepsup[rep+"|"+sup];return t?trendChip(t[0],t[1],true):"";};
 
+function sg(sold,goal){return `<b class="sold">${Math.round(sold).toLocaleString()}</b> <span class="gp">/ ${Math.round(goal).toLocaleString()} goal</span>`;}
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -379,8 +382,8 @@ function renderBreakdown(app){
   const reps=Object.keys(DATA).filter(r=>DATA[r].qual[sup]||DATA[r].amp[sup]);
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}${trendSup(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
-    (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}<div class="qline"><span>Qualifier total · CE</span><span class="num">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()}</span></div>`:"")+
-    `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}<div class="qline"><span>Amplify total · CE</span><span class="num">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()}</span></div>`+
+    (g.isQ?`<div class="seclabel">Qualifier brands</div>${bchips(br.q)}<div class="qline"><span>Cases sold vs goal · all reps</span><span class="num">${sg(g.qTy,g.qGoal)}</span></div>`:"")+
+    `<div class="seclabel ${g.isQ?'div':''}">Amplify brands</div>${bchips(br.a)}<div class="qline"><span>Cases sold vs goal · all reps</span><span class="num">${sg(g.aTy,g.aGoal)}</span></div>`+
     `<div class="pl">${g.isQ?('Amplify unlocks per rep once they clear the qualifier.'):('No qualifier — amplify open from the start.')}</div></div>`;
   const rows=reps.map(r=>({r,p:repSup(r,sup)})).sort((x,y)=>{
     if(g.isQ){const xc=x.p.qCleared?1:0,yc=y.p.qCleared?1:0; if(xc!==yc)return yc-xc;}
@@ -393,9 +396,9 @@ function renderBreakdown(app){
     const aStand=p.a?`${Math.round(p.aTy)}${p.aGoal>0?(' / '+Math.round(p.aGoal)):''}`:`—`;
     const barPct=g.isQ?(p.qPct||0):(p.aPct||0);
     const sub=g.isQ?`Qual ${qStand} · Amp ${aStand}`:`Amplify ${aStand}`;
-    const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal</span><span class="num">${Math.round(p.q.goal)}</span></div>`:''}`:'';
+    const qd=(p.q&&p.q.brands.length)?`<div class="seclabel">Qualifier · 2026 CE</div>${detRows(p.q.brands,false)}${p.hasQ?`<div class="qline"><span>Program goal (all brands)</span><span class="num">${Math.round(p.q.goal).toLocaleString()}</span></div>`:''}`:'';
     const aoff=g.isQ&&!p.qCleared;
-    const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal</span><span class="num">${Math.round(p.aGoal)}</span></div>`:''}`:'';
+    const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal (all brands)</span><span class="num">${Math.round(p.aGoal).toLocaleString()}</span></div>`:''}`:'';
     return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b><div class="sub">${sub} ${trendRepSup(o.r,sup)}</div><div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
@@ -420,7 +423,7 @@ function renderRep(app){
     if(x.hasGoal) badge=x.isQ?`<span class="badge ok">${CHECK} Cleared</span>`:`<span class="badge prog">${(x.q.ty/x.q.goal*100).toFixed(0)}% to goal</span>`;
     else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">Open</span>`;
     const qh=x.hasGoal?`<div class="seclabel">Qualifier</div>
-      <div class="qline"><span>Goal progress (case equiv)</span><span class="num">${Math.round(x.q.ty)} / ${Math.round(x.q.goal)}</span></div>
+      <div class="qline"><span>Cases sold vs goal</span><span class="num">${sg(x.q.ty,x.q.goal)}</span></div>
       <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Brands · 2026 ce', x.q.brands)}`
       :(x.isAmpOnly?"":`<div class="seclabel">Qualifier</div><div class="qline"><span>No qualifier goal assigned</span></div>`);
     let ah="";
@@ -430,7 +433,7 @@ function renderRep(app){
       const status = x.aOpen
         ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">Unlocked</span></div>`
         : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">Clear qualifier to unlock</span></div>`;
-      const gate = ag>0 ? `<div class="qline" style="margin-top:11px"><span>Amplify goal (case equiv)</span><span class="num">${aty.toLocaleString()} / ${ag.toLocaleString()}</span></div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
+      const gate = ag>0 ? `<div class="qline" style="margin-top:11px"><span>Cases sold vs goal</span><span class="num">${sg(aty,ag)}</span></div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
       const alck=x.a&&!x.aOpen; ah=lab+status+gate+(alck?'<div style="opacity:.45">':'')+brk('Brands · 2026 ce', x.a.brands)+(alck?'</div>':'');
     }
     return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
