@@ -233,6 +233,7 @@ LOGOS["Bell's"]=LOGOS["New Belgium Brewing Company"];
 function logoChip(s){return LOGOS[s]?'<span class="suplogo"><img src="'+LOGOS[s]+'" alt=""></span>':'';}
 
 const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
+const EXCLUDE=new Set(["Default","Office Tell Sell"]);
 let DATA={}, activeRep="ALL", QSUP=new Set();
 
 function parseCSV(text){
@@ -263,6 +264,7 @@ function build(text){
       if(curTier==="Q") R.qual[a]={ly,ty,goal,brands:[]};
       else if(curTier==="A") R.amp[a]={ly,ty,goal,brands:[]};
     } else if(REPS.has(a)){
+      if(EXCLUDE.has(a)){curRep=null;curSup=null;curTier=null;continue;}
       curRep=a; reps[a]={name:a,qual:{},amp:{}}; curSup=null;curTier=null;
     } else {
       if(curRep&&curSup&&reps[curRep]){
@@ -489,7 +491,7 @@ function buildNestedFromFlat(salesText,goalsText){
   const sr=parseCSV(salesText), sH=sr[0].map(h=>h.toLowerCase());
   const sRep=sH.findIndex(h=>h.includes("rep")),sSeg=sH.findIndex(h=>h.includes("qualifier brands")||h.includes("segment")),sSup=sH.findIndex(h=>h.includes("supplier")),sBr=sH.findIndex(h=>h.includes("brand family")),s25=sH.findIndex(h=>h.includes("2025")),s26=sH.findIndex(h=>h.includes("2026"));
   const reps=new Map();
-  for(let i=1;i<sr.length;i++){const r=sr[i];const rep=_norm(r[sRep]);if(!rep||rep==="Total")continue;
+  for(let i=1;i<sr.length;i++){const r=sr[i];const rep=_norm(r[sRep]);if(!rep||rep==="Total"||EXCLUDE.has(rep))continue;
     const seg=_norm(r[sSeg]);let sup=_norm(r[sSup]);if(/^bell/i.test(sup))sup="New Belgium Brewing Company";const brand=_norm(r[sBr]),c25=_n(r[s25]),c26=_n(r[s26]);
     if(!reps.has(rep))reps.set(rep,new Map());
     const segs=reps.get(rep);if(!segs.has(seg))segs.set(seg,{sup:sup,brands:new Map()});
