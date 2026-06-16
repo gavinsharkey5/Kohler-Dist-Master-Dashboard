@@ -163,27 +163,30 @@ const goalFor=t=>Math.round(t*0.9);
 const keyName=s=>String(s).replace(/^\s*\d+\s*/,"").toLowerCase().replace(/[^a-z0-9]/g,"");  // strip leading id, normalize
 function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
 
-/* NET units per brand|account from the live export */
-function buildLookup(text){
-  const rows=parseCSV(text); if(rows.length<2) return null;
+/* The hunt list above is now used ONLY as a brand dictionary (which accounts are Lager vs Flight). */
+const BRANDOF={};HUNT.forEach(r=>{r.lager.forEach(n=>BRANDOF[keyName(n)]="Lager");r.flight.forEach(n=>BRANDOF[keyName(n)]="Flight");});
+const yes=v=>/^\s*y/i.test(String(v||""));
+const numu=v=>parseFloat(String(v).replace(/[^0-9.\-]/g,""))||0;
+/* Build the model straight from the pre-computed retention report:
+   the report defines the hunt accounts AND whether each re-ordered. */
+function buildModel(text){
+  if(!text){return {live:false,reps:HUNT.map(r=>({name:r.name,lager:r.lager.map(n=>({name:n,retained:false,units:0})),flight:r.flight.map(n=>({name:n,retained:false,units:0}))}))};}
+  const rows=parseCSV(text); if(rows.length<2) return {live:false,reps:[]};
   const H=rows[0];
-  const ci=col(H,"customer"), pi=col(H,"product"), ui=col(H,"num unit","units","qty"), di=col(H,"load sheet","date");
-  const map={};
-  for(let i=1;i<rows.length;i++){const r=rows[i];
-    const cust=ci>=0?r[ci]:""; const prod=pi>=0?r[pi]:"";
-    const pid=(prod.match(/^\s*(\d+)/)||[])[1]||"";
-    const brand = (pid==="4701"||pid==="4703")?"Lager":((pid==="4764"||pid==="4769")?"Flight":(/flight/i.test(prod)?"Flight":(/lager/i.test(prod)?"Lager":"")));
-    if(!brand) continue;
-    const u=parseFloat(String(ui>=0?r[ui]:"0").replace(/[^0-9.\-]/g,""))||0;
-    const k=brand+"|"+keyName(cust);
-    map[k]=(map[k]||0)+u;   // NET: sum (includes negatives / reversals)
+  const ri=col(H,"sales rep","rep"), ai=col(H,"retention customer","customer"),
+        lp=col(H,"lager draft retention placements"), lu=col(H,"lager draft retention units"), ly=col(H,"purchased lager"),
+        fp=col(H,"flight draft retention placements"), fu=col(H,"flight draft retention units"), fy=col(H,"purchased flight");
+  const byRep={};
+  for(let i=1;i<rows.length;i++){const r=rows[i]; const rep=(ri>=0?r[ri]:"").trim(); const acct=(ai>=0?r[ai]:"").trim();
+    if(!rep||rep==="Total"||!acct) continue;
+    const lYes=yes(r[ly]), fYes=yes(r[fy]), lPlac=numu(r[lp]), fPlac=numu(r[fp]);
+    const brand=BRANDOF[keyName(acct)] || ((lYes||lPlac>0)?"Lager":((fYes||fPlac>0)?"Flight":"Lager"));
+    const retained = brand==="Lager"?lYes:fYes;
+    const units = brand==="Lager"?numu(r[lu]):numu(r[fu]);
+    const R=(byRep[rep]=byRep[rep]||{name:rep,lager:[],flight:[]});
+    R[brand==="Lager"?"lager":"flight"].push({name:acct,retained,units});
   }
-  return map;
-}
-function buildModel(map){
-  const live=!!(map&&Object.keys(map).length);
-  const make=(brand,arr)=>arr.map(name=>{const net=live?(map[brand+"|"+keyName(name)]||0):0;return {name,retained:net>0,units:net};});
-  return {live,reps:HUNT.map(r=>({name:r.name,lager:make("Lager",r.lager),flight:make("Flight",r.flight)}))};
+  return {live:true, reps:Object.values(byRep)};
 }
 function repStats(r){const tot=r.lager.length+r.flight.length;const goal=goalFor(r.lager.length)+goalFor(r.flight.length);
   const ret=r.lager.filter(a=>a.retained).length+r.flight.filter(a=>a.retained).length;
@@ -241,12 +244,12 @@ function renderChips(){document.getElementById("chips").innerHTML=["ALL",...MODE
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  let map=null,lastMod=null;
-  try{const res=await fetch("data.csv",{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified");map=buildLookup(await res.text());}}catch(e){}
-  MODEL=buildModel(map);
+  let text=null,lastMod=null;
+  try{const res=await fetch("data.csv",{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified");text=await res.text();}}catch(e){}
+  MODEL=buildModel(text);
   renderChips();render();
   document.getElementById("updated").textContent=MODEL.live?(lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+" · window 6/1–8/31":"Window 6/1–8/31"):"No data.csv yet — showing the hunt list with nothing re-ordered.";
-  document.getElementById("foot").innerHTML="<b>Kept</b> = the account re-ordered Lager/Flight this summer on <b>net</b> units (a same-day return cancels the order). Goal is to hold 90% of each rep's accounts. Update by exporting the InvoiceTransReport for 6/1–8/31 as <code>data.csv</code>.";
+  document.getElementById("foot").innerHTML="<b>Kept</b> = the account re-ordered its Yuengling draft brand this summer. Goal is to hold 90% of each rep's accounts. Update by exporting the Summer Rewards Yuengling Retention report for 6/1–8/31 and saving it as <code>data.csv</code>.";
 }
 boot();
 
