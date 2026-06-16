@@ -1,33 +1,53 @@
-Sales Rep Name,Retention Customers,Lager Draft Retention Placements,Lager Draft Retention Units Sold,Purchased Lager Draft and Unit Present?,Flight Draft Retention Placements,Flight Draft Retention Units Sold,Purchased Flight Draft and Unit Present?
-Allison Scott,cherry's,1,1,Yes,0,0,No
-Allison Scott,Lakeside drive tavern,1,1,Yes,0,0,No
-Allison Scott,In The Drink@Passaic Gc,1,1,Yes,0,0,No
-Allison Scott,Grasshopper Too (A),0,0,No,0,0,No
-Allison Scott,YARD HOUSE 8384,0,0,No,0,0,No
-Anthony Palmisano,The River Of Beer,1,1,Yes,0,0,No
-Anthony Palmisano,Whiskey Wolf Tavern (P),1,1,Yes,0,0,No
-Anthony Palmisano,Mt Creek Hex Lg(North) A,0,0,No,1,1,Yes
-Anthony Palmisano,High Point Gc/Rest (P),1,4,Yes,0,0,No
-Anthony Palmisano,Bally Owen Golf Club,1,1,Yes,0,0,No
-Brian Sengebush,Lake Mohawk Country Club,1,1,Yes,0,0,No
-Brian Sengebush,Mason Street Grille,0,0,No,0,0,No
-Brian Sengebush,Charley's Tavern,0,0,No,0,0,No
-Brian Sengebush,Jefferson House (A),1,3,Yes,0,0,No
-Brian Sengebush,Skyview Golf Course (A),1,1,Yes,0,0,No
-Brian Sengebush,Vasa Park,1,1,Yes,0,0,No
-Brian Sengebush,Farmstead Golf (P),2,5,Yes,0,0,No
-Nick Melissari,Whiskey Roads,1,1,Yes,0,0,No
-Nick Melissari,Anthony's CF Pizza (A) (Ramsey),1,1,Yes,0,0,No
-Nick Melissari,Blackjack Mulligans (Hawthorne),0,0,No,1,1,Yes
-Nick Melissari,Outback Steakhouse(Z)Edg,1,1,Yes,0,0,No
-Nick Melissari,The Orange Lantern,0,0,No,1,1,Yes
-Paul Mclaughlin,Haworth Golf Club(A),1,1,Yes,0,0,No
-Paul Mclaughlin,101 Pub (A),0,0,No,0,0,No
-Paul Mclaughlin,Rivervale Country Club,1,1,Yes,0,0,No
-Robin Feldman,American Lgn Totowa,1,1,Yes,0,0,No
-Robin Feldman,Arca,1,1,Yes,0,0,No
-Robin Feldman,Cedar Lake Club,1,1,Yes,0,0,No
-Robin Feldman,Masonic (A) Club,0,0,No,0,0,No
-Robin Feldman,Vfw Hasbrouck (A),0,0,No,1,1,Yes
-Robin Feldman,Stillwater Area Vol Fire,1,1,Yes,0,0,No
-Robin Feldman,Bloomingdale Fire Dept,0,0,No,1,1,Yes
+Sales Rep Name,Retention Customers,Load Sheet Date,Lager Draft Retention Units Sold,Flight Draft Retention Units Sold
+Allison Scott,In The Drink@Passaic Gc,2026-06-05,1,0
+Allison Scott,cherry's,2026-06-01,0,0
+Allison Scott,In The Drink@Passaic Gc,2026-06-01,0,0
+Allison Scott,cherry's,2026-06-16,1,0
+Allison Scott,Grasshopper Too (A),2026-06-01,0,0
+Allison Scott,YARD HOUSE 8384,2026-06-01,0,0
+Allison Scott,YARD HOUSE 8384,2026-06-02,0,0
+Allison Scott,Lakeside drive tavern,2026-06-11,1,0
+Allison Scott,Grasshopper Too (A),2026-06-08,0,0
+Anthony Palmisano,The River Of Beer,2026-06-03,1,0
+Anthony Palmisano,High Point Gc/Rest (P),2026-06-10,2,0
+Anthony Palmisano,Mt Creek Hex Lg(North) A,2026-06-01,0,0
+Anthony Palmisano,Uncorked Wines & Spirits (West Milford),2026-06-01,0,0
+Anthony Palmisano,The River Of Beer,2026-06-01,0,0
+Anthony Palmisano,Bally Owen Golf Club,2026-06-01,0,0
+Anthony Palmisano,Whiskey Wolf Tavern (P),2026-06-05,1,0
+Brian Sengebush,Mason Street Grille,2026-06-01,0,0
+Brian Sengebush,Charley's Tavern,2026-06-15,0,0
+Brian Sengebush,Charley's Tavern,2026-06-02,0,0
+Brian Sengebush,Vasa Park,2026-06-11,1,0
+Brian Sengebush,Farmstead Golf (P),2026-06-01,0,0
+Brian Sengebush,Charley's Tavern,2026-06-01,0,0
+Brian Sengebush,Mason Street Grille,2026-06-10,0,0
+Brian Sengebush,Lake Mohawk Country Club,2026-06-11,1,0
+Brian Sengebush,Mason Street Grille,2026-06-03,0,0
+Brian Sengebush,Jefferson House (A),2026-06-03,1,0
+Brian Sengebush,Farmstead Golf (P),2026-06-05,4,0
+Brian Sengebush,Charley's Tavern,2026-06-08,0,0
+Brian Sengebush,Skyview Golf Course (A),2026-06-04,1,0
+Brian Sengebush,Jefferson House (A),2026-06-11,1,0
+Nick Melissari,Outback Steakhouse(Z)Edg,2026-06-01,0,0
+Nick Melissari,Blackjack Mulligans (Hawthorne),2026-06-01,0,0
+Nick Melissari,The Orange Lantern,2026-06-01,0,0
+Nick Melissari,The Orange Lantern,2026-06-04,0,0
+Nick Melissari,Whiskey Roads,2026-06-05,1,0
+Nick Melissari,Blackjack Mulligans (Hawthorne),2026-06-12,0,0
+Nick Melissari,Anthony's CF Pizza (A) (Ramsey),2026-06-01,0,0
+Paul Mclaughlin,Rivervale Country Club,2026-06-01,0,0
+Paul Mclaughlin,101 Pub (A),2026-06-01,0,0
+Paul Mclaughlin,Haworth Golf Club(A),2026-06-02,1,0
+Paul Mclaughlin,101 Pub (A),2026-06-15,0,0
+Paul Mclaughlin,Rivervale Country Club,2026-06-11,0,0
+Paul Mclaughlin,Cubby's (P),2026-06-01,0,0
+Paul Mclaughlin,Eleven Central,2026-06-01,0,0
+Paul Mclaughlin,101 Pub (A),2026-06-08,0,0
+Robin Feldman,Arca,2026-06-01,0,0
+Robin Feldman,American Lgn Totowa,2026-06-01,0,0
+Robin Feldman,Vfw Hasbrouck (A),2026-06-01,0,0
+Robin Feldman,Cedar Lake Club,2026-06-11,1,0
+Robin Feldman,Bloomingdale Fire Dept,2026-06-10,0,0
+Robin Feldman,Arca,2026-06-12,0,0
+Robin Feldman,Bloomingdale Fire Dept,2026-06-01,0,0

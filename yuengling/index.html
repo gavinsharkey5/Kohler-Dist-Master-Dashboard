@@ -174,18 +174,21 @@ function buildModel(text){
   const rows=parseCSV(text); if(rows.length<2) return {live:false,reps:[]};
   const H=rows[0];
   const ri=col(H,"sales rep","rep"), ai=col(H,"retention customer","customer"),
-        lp=col(H,"lager draft retention placements"), lu=col(H,"lager draft retention units"), ly=col(H,"purchased lager"),
-        fp=col(H,"flight draft retention placements"), fu=col(H,"flight draft retention units"), fy=col(H,"purchased flight");
-  const byRep={};
+        lu=col(H,"lager draft retention units","lager"), fu=col(H,"flight draft retention units","flight");
+  /* transaction-level rows: sum NET units per (rep, account) per brand (a return cancels an order) */
+  const acc={};
   for(let i=1;i<rows.length;i++){const r=rows[i]; const rep=(ri>=0?r[ri]:"").trim(); const acct=(ai>=0?r[ai]:"").trim();
     if(!rep||rep==="Total"||!acct) continue;
-    const lYes=yes(r[ly]), fYes=yes(r[fy]), lPlac=numu(r[lp]), fPlac=numu(r[fp]);
-    const brand=BRANDOF[keyName(acct)] || ((lYes||lPlac>0)?"Lager":((fYes||fPlac>0)?"Flight":"Lager"));
-    const retained = brand==="Lager"?lYes:fYes;
-    const units = brand==="Lager"?numu(r[lu]):numu(r[fu]);
-    const R=(byRep[rep]=byRep[rep]||{name:rep,lager:[],flight:[]});
-    R[brand==="Lager"?"lager":"flight"].push({name:acct,retained,units});
+    const k=rep+"||"+acct; const a=acc[k]||{rep,acct,L:0,F:0};
+    a.L+=numu(r[lu]); a.F+=numu(r[fu]); acc[k]=a;
   }
+  const byRep={};
+  Object.values(acc).forEach(a=>{
+    const brand=BRANDOF[keyName(a.acct)] || (a.L!==0?"Lager":(a.F!==0?"Flight":"Lager"));
+    const net = brand==="Lager"?a.L:a.F;
+    const R=(byRep[a.rep]=byRep[a.rep]||{name:a.rep,lager:[],flight:[]});
+    R[brand==="Lager"?"lager":"flight"].push({name:a.acct,retained:net>0,units:net});
+  });
   return {live:true, reps:Object.values(byRep)};
 }
 function repStats(r){const tot=r.lager.length+r.flight.length;const goal=goalFor(r.lager.length)+goalFor(r.flight.length);
@@ -249,7 +252,7 @@ async function boot(){
   MODEL=buildModel(text);
   renderChips();render();
   document.getElementById("updated").textContent=MODEL.live?(lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+" · window 6/1–8/31":"Window 6/1–8/31"):"No data.csv yet — showing the hunt list with nothing re-ordered.";
-  document.getElementById("foot").innerHTML="<b>Kept</b> = the account re-ordered its Yuengling draft brand this summer. Goal is to hold 90% of each rep's accounts. Update by exporting the Summer Rewards Yuengling Retention report for 6/1–8/31 and saving it as <code>data.csv</code>.";
+  document.getElementById("foot").innerHTML="<b>Kept</b> = the account re-ordered its Yuengling draft brand this summer on <b>net</b> units (a same-day return cancels the order). Goal is to hold 90% of each rep's accounts. Update by exporting the Summer Rewards Yuengling Retention (RDE) report for 6/1–8/31 and saving it as <code>data.csv</code>.";
 }
 boot();
 
