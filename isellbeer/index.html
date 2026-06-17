@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iSellBeer App Utilization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#3D7DF6; --accent2:#2456C9;          /* iSellBeer app blue */
+    --disp:#E6B23C;   /* Display photos - amber */
+    --tap:#22C0A6;    /* Tap surveys - teal */
+    --pods:#A879F0;   /* PODs - purple */
+    --good:#37C46B; --warn:#E6B23C; --bad:#E5614E;
+    --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+  a.back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:13px;margin:18px 0 0;font-family:"Space Grotesk"}
+  a.back:hover{color:var(--ink)}
+
+  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
+  .gx-head .wrap{position:relative;padding:18px 18px 24px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
+    color:var(--accent);margin:14px 0 9px;display:flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
+  .lede{margin:13px 0 0;max-width:62ch;color:var(--ink-soft);font-size:14px}
+  .lede b{color:var(--accent)}
+  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v small{font-size:12px;color:var(--ink-soft);font-weight:500}
+  .stat .v.accent{color:var(--accent)}
+  .stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:11px 0 0}
+  .stat .v.disp{color:var(--disp)} .stat .v.tap{color:var(--tap)} .stat .v.pods{color:var(--pods)}
+
+  /* highlights */
+  .hl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 0}
+  .hlc{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:12px 13px}
+  .hlc .l{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .hlc .nm{font-family:"Space Grotesk";font-weight:700;font-size:15px;margin-top:6px}
+  .hlc .vv{font-family:"Space Grotesk";font-weight:600;font-size:12.5px;color:var(--accent);margin-top:2px}
+
+  .seg{margin:22px 0 0}
+  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#06101F;font-weight:600}
+  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
+  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;margin:0}
+  .shead .tr{color:var(--accent);display:inline-flex}
+  .shead .meta{margin-left:auto;font-size:12px;color:var(--ink-soft)}
+
+  .board{display:flex;flex-direction:column;gap:9px}
+  .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
+  .lrow:hover{transform:translateY(-2px);border-color:#39404F}
+  .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+  .medal{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;
+    font-size:16px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+  .medal.m1{background:linear-gradient(160deg,#F4D06A,#C7892A);color:#1a1407;border:none}
+  .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
+  .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
+  .who b{font-weight:600;font-size:15px}
+  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden;display:flex}
+  .who .track i{display:block;height:100%}
+  .who .track i.d{background:var(--disp)} .who .track i.t{background:var(--tap)} .who .track i.p{background:var(--pods)}
+  .win{font-family:"Space Grotesk";font-weight:700;font-size:20px;text-align:right;white-space:nowrap;color:var(--accent)}
+  .win small{display:block;font-size:10px;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+  .win.cov{color:var(--tap)}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-soft);margin:0 0 4px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .dot.d{background:var(--disp)} .dot.t{background:var(--tap)} .dot.p{background:var(--pods)}
+
+  .hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;
+    padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:16px}
+  .hero::before{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
+  .hero .top{display:flex;align-items:center;gap:16px;position:relative}
+  .hero .rankbox{text-align:center}
+  .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
+  .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
+  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
+  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
+  .hero .win2{margin-left:auto;text-align:right}
+  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--accent)}
+  .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .pill{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:999px;display:inline-block;margin-top:12px;position:relative}
+  .pill.m3{background:color-mix(in srgb,var(--good) 14%,transparent);color:#5fdc8c;border:1px solid color-mix(in srgb,var(--good) 38%,transparent)}
+  .pill.m2{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+  .pill.m1{background:color-mix(in srgb,var(--warn) 13%,transparent);color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 38%,transparent)}
+
+  .splits{display:flex;gap:9px;margin:14px 0 0;flex-wrap:wrap}
+  .split{flex:1;min-width:96px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .split .l{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:600}
+  .split .v{font-family:"Space Grotesk";font-weight:700;font-size:19px;margin-top:4px}
+  .split.d .v{color:var(--disp)} .split.t .v{color:var(--tap)} .split.p .v{color:var(--pods)}
+
+  .cov{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px}
+  .cov .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .cov .ch .t{font-family:"Space Grotesk";font-weight:600;font-size:15px}
+  .cov .ch .pc{font-family:"Space Grotesk";font-weight:700;font-size:20px;color:var(--tap)}
+  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;margin:11px 0 7px}
+  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--tap),#1a9683)}
+  .covrow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);padding:2px 0}
+  .covrow .num{color:var(--ink);font-weight:600}
+
+  .arow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:8px}
+  .arow .nm{font-weight:600;font-size:14px}
+  .arow .bk{height:6px;background:var(--line);border-radius:4px;margin-top:7px;overflow:hidden}
+  .arow .bk i{display:block;height:100%;background:var(--disp);border-radius:4px}
+  .arow .v{font-family:"Space Grotesk";font-weight:700;font-size:16px;color:var(--disp);white-space:nowrap}
+
+  .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:620px){.hl{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="gx-head"><div class="wrap">
+  <a class="back" href="../">&lsaquo; All trackers</a>
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · App Utilization</p>
+  <h1>iSellBeer Activity</h1>
+  <p class="lede">Who's using the <b>iSellBeer</b> app and how — Display photos, Tap surveys, and PODs by rep, plus on-premise tap-survey coverage. Tap a name for that rep's module breakdown and coverage.</p>
+  <p class="updated" id="updated"></p>
+</div></div>
+<div id="app"><div class="wrap">
+  <div id="top"></div>
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div id="body"></div>
+  <footer><hr><p id="foot"></p></footer>
+</div></div>
+<script>
+let REPS=[],ASSOC=[],SYN={},HL=[];
+function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R;}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const n0=v=>Math.round(+v||0).toLocaleString();
+const pct=v=>(v===""||v==null||isNaN(v))?"—":(v*100).toFixed(1)+"%";
+let activeRep="ALL";
+
+function ingest(act,assoc,syn,hl){
+  const A=parseCSV(act),H=A[0];
+  const num=v=>parseFloat(String(v||"0").replace(/[^0-9.\-]/g,""))||0;
+  for(let i=1;i<A.length;i++){const r=A[i];if(!r[0])continue;
+    REPS.push({rep:r[0],disp:num(r[1]),tap:num(r[2]),pods:num(r[3]),total:num(r[4]),mods:num(r[5]),status:(r[6]||"").trim(),
+      onprem:num(r[7]),surv:num(r[8]),pct:(r[9]===""||r[9]==null)?"":parseFloat(r[9]),notsurv:num(r[10])});}
+  const S=parseCSV(assoc);for(let i=1;i<S.length;i++){if(S[i][0])ASSOC.push({nm:S[i][0],disp:num(S[i][1])});}
+  const Y=parseCSV(syn);for(let i=1;i<Y.length;i++){if(Y[i][0])SYN[Y[i][0]]=Y[i][1];}
+  const L=parseCSV(hl);for(let i=1;i<L.length;i++){if(L[i][0])HL.push({l:L[i][0],nm:L[i][1],v:L[i][2]});}
+}
+function rankByTotal(){return REPS.slice().sort((a,b)=>b.total-a.total).map((r,i)=>({rep:r.rep,rank:i+1}));}
+
+function renderTop(){
+  const s=SYN, g=k=>s[k]!=null?+s[k]:0;
+  const stats=`<div class="stats">
+    ${tile("Total app actions",n0(g("Total app actions logged")),"accent")}
+    ${tile("Reps active",g("Reps active in app (any module)")+" <small>/ "+g("Assigned sales reps on roster")+"</small>","")}
+    ${tile("Using all 3 modules",g("Reps using all 3 modules"),"")}
+    ${tile("On-prem tap coverage",pct(+s["% On-Prem accounts SURVEYED"])+" <small>"+n0(g("On-Prem accounts surveyed for taps"))+" of "+n0(g("On-Premise accounts (tap survey universe)"))+"</small>","accent")}
+  </div>
+  <div class="stats3">
+    ${tile("Display photos","<span class='num'>"+n0(g("Display photos logged (all users)"))+"</span>","disp")}
+    ${tile("Tap survey entries","<span class='num'>"+n0(g("Tap survey entries logged (all)"))+"</span>","tap")}
+    ${tile("PODs logged","<span class='num'>"+n0(g("PODs logged (all)"))+"</span>","pods")}
+  </div>`;
+  const hl=`<div class="hl">${HL.map(h=>{
+    const isPc=/coverage/i.test(h.l);
+    const val=isPc?pct(+h.v):n0(h.v)+" "+(/photo|display/i.test(h.l)?"photos":/surveyor|tap/i.test(h.l)?"surveys":"actions");
+    return `<div class="hlc"><div class="l">${esc(h.l)}</div><div class="nm">${esc(h.nm)}</div><div class="vv num">${val}</div></div>`;}).join("")}</div>`;
+  document.getElementById("top").innerHTML=stats+hl;
+}
+function tile(k,v,cls){return `<div class="stat"><p class="k">${k}</p><p class="v ${cls||""}">${v}</p></div>`;}
+
+function render(){
+  const app=document.getElementById("body");
+  if(activeRep==="ALL"){
+    const ranked=REPS.slice().sort((a,b)=>b.total-a.total);
+    const max=ranked[0]?ranked[0].total:1;
+    const rows=ranked.map((R,i)=>{const rank=i+1;const mc=rank===1?"var(--gold)":rank===2?"var(--silver)":"var(--bronze)";
+      const seg=t=>R.total?((R[t]/R.total*100).toFixed(1)+"%"):"0%";
+      return `<div class="lrow${rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
+        <span class="medal ${rank<=3?'m'+rank:''}">${rank}</span>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.disp)} display · ${n0(R.tap)} tap · ${n0(R.pods)} PODs · ${R.mods}/3 modules</div>
+        <div class="track"><i class="d" style="width:${seg('disp')}"></i><i class="t" style="width:${seg('tap')}"></i><i class="p" style="width:${seg('pods')}"></i></div></span>
+        <span class="win">${n0(R.total)}<small>actions</small></span></div>`;}).join("");
+    const cov=REPS.filter(r=>r.onprem>0).sort((a,b)=>(b.pct||0)-(a.pct||0));
+    const covRows=cov.map((R,i)=>{const rank=i+1;
+      return `<div class="lrow" role="button" tabindex="0" data-rep="${esc(R.rep)}">
+        <span class="medal ${rank<=3?'m'+rank:''}">${rank}</span>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${n0(R.surv)} of ${n0(R.onprem)} on-prem surveyed · ${n0(R.notsurv)} open</div>
+        <div class="track" style="background:var(--line)"><i class="t" style="width:${((R.pct||0)*100).toFixed(1)}%"></i></div></span>
+        <span class="win cov">${pct(R.pct)}<small>surveyed</small></span></div>`;}).join("");
+    const aMax=ASSOC[0]?ASSOC[0].disp:1;
+    const aRows=ASSOC.slice().sort((a,b)=>b.disp-a.disp).map(a=>`<div class="arow"><div><div class="nm">${esc(a.nm)}</div><div class="bk"><i style="width:${(a.disp/aMax*100).toFixed(0)}%"></i></div></div><div class="v num">${n0(a.disp)}</div></div>`).join("");
+    app.innerHTML=
+      `<div class="legend"><span><i class="dot d"></i>Display</span><span><i class="dot t"></i>Tap survey</span><span><i class="dot p"></i>PODs</span></div>`+
+      `<div class="shead"><span class="tr">${TROPHY}</span><h2>Activity leaderboard</h2><span class="meta">${ranked.length} reps · by total actions</span></div><div class="board">${rows}</div>`+
+      `<div class="shead"><span class="tr">${TAPI}</span><h2>Tap-survey coverage</h2><span class="meta">on-premise accounts · by % surveyed</span></div><div class="board">${covRows}</div>`+
+      `<div class="shead"><span class="tr">${CAM}</span><h2>Sales associates</h2><span class="meta">display photos · not on rep roster</span></div>${aRows}`;
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    const R=REPS.find(r=>r.rep===activeRep);if(!R){app.innerHTML="";return;}
+    const rank=rankByTotal().find(x=>x.rep===activeRep).rank;
+    const pcls=R.mods>=3?"m3":R.mods===2?"m2":"m1";
+    const hero=`<div class="hero"><div class="top">
+        <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
+        <div class="nm">${esc(R.rep)}<small>${R.mods} of 3 modules used</small></div>
+        <div class="win2"><div class="b num">${n0(R.total)}</div><div class="l">Total actions</div></div></div>
+      <span class="pill ${pcls}">${esc(R.status)}</span>
+      <div class="splits">
+        <div class="split d"><div class="l">Display photos</div><div class="v num">${n0(R.disp)}</div></div>
+        <div class="split t"><div class="l">Tap surveys</div><div class="v num">${n0(R.tap)}</div></div>
+        <div class="split p"><div class="l">PODs logged</div><div class="v num">${n0(R.pods)}</div></div>
+      </div></div>`;
+    let covHTML;
+    if(R.onprem>0){
+      covHTML=`<div class="cov"><div class="ch"><span class="t">On-premise tap-survey coverage</span><span class="pc num">${pct(R.pct)}</span></div>
+        <div class="bar"><i style="width:${((R.pct||0)*100).toFixed(1)}%"></i></div>
+        <div class="covrow"><span>On-prem accounts assigned</span><span class="num">${n0(R.onprem)}</span></div>
+        <div class="covrow"><span>Surveyed for taps</span><span class="num">${n0(R.surv)}</span></div>
+        <div class="covrow"><span>Not yet surveyed</span><span class="num">${n0(R.notsurv)}</span></div></div>`;
+    } else {
+      covHTML=`<div class="cov"><div class="ch"><span class="t">On-premise tap-survey coverage</span></div>
+        <div class="covrow"><span>No on-premise accounts assigned to this rep — outside the tap-survey universe.</span></div></div>`;
+    }
+    app.innerHTML=hero+`<div class="shead"><h2>Tap coverage</h2><span class="meta">on-premise accounts only</span></div>`+covHTML;
+  }
+}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChips(){const reps=REPS.slice().sort((a,b)=>b.total-a.total).map(r=>r.rep);
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>No data yet</h2><p>${m}</p></div></div>`;}
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+const TAPI='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
+const CAM='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
+async function get(f){try{const r=await fetch(f,{cache:"no-store"});if(r.ok)return{t:await r.text(),m:r.headers.get("last-modified")};}catch(e){}return null;}
+async function boot(){
+  const [a,s,y,h]=await Promise.all([get("activity.csv"),get("associates.csv"),get("synopsis.csv"),get("highlights.csv")]);
+  if(!a){showEmpty("Upload the iSellBeer summary exports (<code>activity.csv</code>, <code>synopsis.csv</code>, <code>highlights.csv</code>, <code>associates.csv</code>) next to this page and refresh.");return;}
+  ingest(a.t,(s||{}).t||"Sales Associate,Display Photos\n",(y||{}).t||"Metric,Value\n",(h||{}).t||"Label,Name,Value\n");
+  if(!REPS.length){showEmpty("Couldn't read the activity export — check it's saved as CSV.");return;}
+  renderTop();renderChips();render();
+  document.getElementById("updated").textContent=a.m?"Updated "+new Date(a.m).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("foot").innerHTML="<b>Total actions</b> = Display photos + Tap surveys + PODs credited to the user who used the app (not the assigned route). <b>Tap coverage</b> is measured against on-premise accounts only — off-premise (liquor stores) aren't surveyed for taps. Sales associates log Display photos only. Figures reflect the latest export uploaded.";
+}
+boot();
+</script></body></html>
