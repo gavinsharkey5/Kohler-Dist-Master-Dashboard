@@ -131,7 +131,7 @@
   <a class="back" href="../">&lsaquo; All trackers</a>
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Upsell Opportunities</p>
   <h1>Garage Beer 24-Pack Targets</h1>
-  <p class="lede">Accounts that have bought at least <b>5 CEs</b> of 12-pack Lager or Lime are prime targets to drive an increase in <b>24-pack cans</b> of that brand. If an account has sold more 12-pack Light Lager than Lime, the suggestion is to upsell the <b>24-pack Light Lager</b>; otherwise upsell <b>Lime</b>. Tap your name for your account list and the recommended pack to sell. Window: 4/1/2026–6/16/2026.</p>
+  <p class="lede">Accounts that have bought at least <b>10 CEs</b> of 12-pack Lager or Lime are prime targets to drive an increase in <b>24-pack cans</b> of that brand. If an account has sold more 12-pack Light Lager than Lime, the suggestion is to upsell the <b>24-pack Light Lager</b>; otherwise upsell <b>Lime</b>. Tap your name for your account list and the recommended pack to sell. Window: 4/1/2026–6/16/2026.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 <div id="app"><div class="wrap">
@@ -218,7 +218,7 @@ async function boot(){
   if(!RECORDS.length){showEmpty("Couldn't read that file — check it's the Garage Beer 24-pack upsell export saved as CSV.");return;}
   renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="<b>Targets</b> are accounts buying Light Lager 12-packs but no 24-packs that also stock Lime. The recommendation leans <b>Lime 24pk</b> where Lime volume is strong, otherwise <b>Light Lager 24pk</b>. Priority tiers reflect Light Lager 12pk volume at risk. Figures reflect the latest export uploaded.";
+  document.getElementById("foot").innerHTML="<b>Targets</b> are accounts that bought at least 10 12-pack cases of a brand (Light Lager or Lime) but don't yet buy that brand's 24-pack. The recommendation is the 24-pack of whichever brand the account sells more of — <b>Lime 24pk</b> where Lime leads, otherwise <b>Light Lager 24pk</b>. Priority tiers reflect 12-pack volume of the recommended brand. Figures reflect the latest export uploaded.";
 }
 boot();
 </script></body></html>

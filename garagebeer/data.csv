@@ -1,71 +1,51 @@
 Rank,Tier,Customer ID,Customer Name,Sales Rep Name,Light Lager 12pk Cases,Lime Cases,Total Garage Cases,Last Order Date,Recommendation
-1,4,191210,Milton Inn,Klejdi Lamo,44,18,62,2026-06-16,Sell Light Lager 24pk
-2,4,58001,Total Wine & More (River Edge),Dave Ehlers,25,26,51,2026-06-16,Sell Lime 24pk
-3,4,150002,Shoprite Wine & Spirits,Michael Harboy,21,18,39,2026-06-15,Sell Light Lager 24pk
-4,4,14007,Total Wine & More (Totowa),Dave Ehlers,21,20,41,2026-05-13,Sell Light Lager 24pk
-5,4,230114,Liquor Factory III Sparta,Jayson Romine,20,13,33,2026-06-15,Sell Light Lager 24pk
-6,4,250803,Witty's Fine Wine & Spirt,Andrew Lundy,20,17,37,2026-06-12,Sell Light Lager 24pk
-7,3,250012,Peterson's Wine Unltd,Andrew Lundy,19,6,25,2026-06-11,Sell Light Lager 24pk
-8,3,2003,Ringwood W&L,Anthony Palmisano,19,7,26,2026-05-14,Sell Light Lager 24pk
-9,3,190711,Shop Rite Liquors,John O'Donoghue,19,17,36,2026-06-08,Sell Light Lager 24pk
-10,3,250071,Total Wine & More (Union),Andrew Lundy,18,18,36,2026-06-12,Sell Light Lager 24pk
-11,3,11003,Lincoln Park Fine Wines & Spirits,Mike Ast,17,4,21,2026-06-16,Sell Light Lager 24pk
-12,3,230312,Skyland Baseball,Brian Sengebush,17,21,38,2026-06-16,Sell Lime 24pk
-13,3,5001,River Place Food Store,Anthony Palmisano,16,11,27,2026-06-16,Sell Light Lager 24pk
-14,3,191826,Bottle King (Z) Chatham,John O'Donoghue,15,10,25,2026-06-09,Sell Light Lager 24pk
-15,3,231717,Culver Liquor and Bar,Brian Sengebush,15,6,21,2026-06-16,Sell Light Lager 24pk
-16,3,190207,Liquor Outlet,Klejdi Lamo,15,5,20,2026-06-03,Sell Light Lager 24pk
-17,3,230427,ShopRite Wine & Spirits of Newton#830,Jayson Romine,15,15,30,2026-06-16,Sell Light Lager 24pk
-18,2,150008,Total Wine & More (West Orange),Michael Harboy,14,11,25,2026-06-11,Sell Light Lager 24pk
-19,2,230412,USA Wine Traders Club Of Newton (A),Jayson Romine,14,16,30,2026-06-03,Sell Lime 24pk
-20,2,190001,Gary's Wine & Marketplace (Madison),John O'Donoghue,12,2,14,2026-05-29,Sell Light Lager 24pk
-21,2,190650,Shop Rite Wines & Spirits of Roxbury#832,John O'Donoghue,12,14,26,2026-06-02,Sell Lime 24pk
-22,2,201048,ShopRite of West Caldwell,Michael Harboy,12,16,28,2026-06-09,Sell Lime 24pk
-23,2,4009,Usa Wine Traders Club (Bloomingdale),Anthony Palmisano,12,14,26,2026-06-09,Sell Lime 24pk
-24,2,70001,Montvale Wine/Liq & Beer,Shane Barreca,11,13,24,2026-06-16,Sell Lime 24pk
-25,2,231316,Patricks Wine Barn,Jayson Romine,11,14,25,2026-06-05,Sell Lime 24pk
-26,2,13001,Shop Rite Liq (A)Littlefl,Derrick Laws,11,20,31,2026-06-10,Sell Lime 24pk
-27,2,24011,Shoppers Vineyard (A),Jim Heaney,11,5,16,2026-06-12,Sell Light Lager 24pk
-28,2,3005,Usa Wine Traders (Wanaque),Anthony Palmisano,11,7,18,2026-06-04,Sell Light Lager 24pk
-29,2,230902,Buy Rite Liquors Franklin,Jayson Romine,10,8,18,2026-06-02,Sell Light Lager 24pk
-30,2,231701,George's Wine & Spirits,Jayson Romine,10,13,23,2026-06-04,Sell Lime 24pk
-31,2,170021,Jersey City Buy Rite (A),Jaime Colonna,10,5,15,2026-06-09,Sell Light Lager 24pk
-32,2,93006,Mahwah Wine & Liquor (A),Mike Ast,10,8,18,2026-06-16,Sell Light Lager 24pk
-33,2,1012,Uncorked Wines & Spirits (West Milford),Anthony Palmisano,10,7,17,2026-06-11,Sell Light Lager 24pk
-34,2,191838,Village Wine & Liquors,John O'Donoghue,10,5,15,2026-06-05,Sell Light Lager 24pk
-35,1,190111,Bottle King Morris Plains,John O'Donoghue,9,5,14,2026-05-21,Sell Light Lager 24pk
-36,1,191302,Liquor Factory I Landing,Jayson Romine,9,6,15,2026-06-15,Sell Light Lager 24pk
-37,1,230314,Liquor Factory V Andover,Jayson Romine,9,11,20,2026-05-26,Sell Lime 24pk
-38,1,250011,Shop Rite of Westfield,Andrew Lundy,9,4,13,2026-06-05,Sell Light Lager 24pk
-39,1,190027,Wegmans,John O'Donoghue,9,8,17,2026-06-02,Sell Light Lager 24pk
-40,1,190651,Bottle King (A) Ledgewood,John O'Donoghue,8,8,16,2026-05-28,Sell Light Lager 24pk
-41,1,1015,Greenwood Lake Disc.(P),Anthony Palmisano,8,3,11,2026-05-27,Sell Light Lager 24pk
-42,1,191702,Liquor Factory VI Byram,Jayson Romine,8,7,15,2026-06-01,Sell Light Lager 24pk
-43,1,230431,Seplow's Liquors,Jayson Romine,8,7,15,2026-06-04,Sell Light Lager 24pk
-44,1,191608,Shop-Rite(A) Netcong,Klejdi Lamo,8,7,15,2026-06-10,Sell Light Lager 24pk
-45,1,25010,Stew Leonard's Wines & Spirits of Clifton,Phil Ernst,8,5,13,2026-05-21,Sell Light Lager 24pk
-46,1,28012,Lucky 7 (A),Jim Heaney,7,5,12,2026-06-10,Sell Light Lager 24pk
-47,1,190705,Rockaway W/L,Klejdi Lamo,7,15,22,2026-06-10,Sell Lime 24pk
-48,1,12005,Shay's Liquors,Michael Harboy,7,6,13,2026-06-02,Sell Light Lager 24pk
-49,1,29004,Shop-Rite Liq Lyndhurst,Phil Ernst,7,5,12,2026-05-19,Sell Light Lager 24pk
-50,1,173032,Sparrows Wine & Liq (P) (126 Hoboken),Jaime Colonna,7,15,22,2026-05-14,Sell Lime 24pk
-51,1,150248,The Wine Rack North Caldwell,Michael Harboy,7,3,10,2026-06-04,Sell Light Lager 24pk
-52,1,88005,Waldwick Wine/Spirits,Mike Ast,7,3,10,2026-06-12,Sell Light Lager 24pk
-53,1,60001,Bottle King (A) Dumont,Shane Barreca,6,5,11,2026-06-01,Sell Light Lager 24pk
-54,1,25008,Clifton Commons S & W,Jim Heaney,6,7,13,2026-06-15,Sell Lime 24pk
-55,1,173055,Hoboken Vine (A),Jaime Colonna,6,3,9,2026-05-06,Sell Light Lager 24pk
-56,1,250087,House of Wine & Liquor Westfield,Andrew Lundy,6,2,8,2026-05-29,Sell Light Lager 24pk
-57,1,190657,Shay's Liquors_2,John O'Donoghue,6,4,10,2026-05-29,Sell Light Lager 24pk
-58,1,78008,Shop Rite Liq(A) Roch Pk,Phil Ernst,6,9,15,2026-06-15,Sell Lime 24pk
-59,1,170050,Acme Markets (Hoboken),Jaime Colonna,5,13,18,2026-06-02,Sell Lime 24pk
-60,1,3001,Best Cellars (Wanaque),Anthony Palmisano,5,3,8,2026-05-20,Sell Light Lager 24pk
-61,1,191827,Best Cellars(Ledgewood),John O'Donoghue,5,3,8,2026-06-10,Sell Light Lager 24pk
-62,1,150055,Bottle King Livingston,Hakan Sadik,5,5,10,2026-06-11,Sell Light Lager 24pk
-63,1,170205,Buy-Rite Liquors,Alisa Acciardi,5,4,9,2026-05-20,Sell Light Lager 24pk
-64,1,171117,Delite Market,Jaime Colonna,5,5,10,2026-06-12,Sell Light Lager 24pk
-65,1,150110,Mountain Ridge Cc,Michael Harboy,5,5,10,2026-04-10,Sell Light Lager 24pk
-66,1,191812,Patel Liqr & Gro(P),Klejdi Lamo,5,2,7,2026-05-26,Sell Light Lager 24pk
-67,1,5006,Roserne Pkg Store South,Anthony Palmisano,5,10,15,2026-04-28,Sell Lime 24pk
-68,1,190655,Sandy's Wine & Spirits (Flanders),John O'Donoghue,5,13,18,2026-06-05,Sell Lime 24pk
-69,1,190309,Shop Rite Liq Parsippany,John O'Donoghue,5,6,11,2026-05-28,Sell Lime 24pk
-70,1,81014,Shop Rite Liq(A) Fair Lwn,Phil Ernst,5,4,9,2026-06-15,Sell Light Lager 24pk
+1,4,170151,Cool Vines,Dylan Rubino,47,0,47,2026-06-16,Sell Light Lager 24pk
+2,4,191210,Milton Inn,Klejdi Lamo,44,18,62,2026-06-16,Sell Light Lager 24pk
+3,4,170053,Bbb Liquors(Costco),Alisa Acciardi,35,0,35,2026-06-10,Sell Light Lager 24pk
+4,4,58001,Total Wine & More (River Edge),Dave Ehlers,25,26,51,2026-06-16,Sell Lime 24pk
+5,4,150002,Shoprite Wine & Spirits,Michael Harboy,21,18,39,2026-06-15,Sell Light Lager 24pk
+6,4,230312,Skyland Baseball,Brian Sengebush,17,21,38,2026-06-16,Sell Lime 24pk
+7,4,14007,Total Wine & More (Totowa),Dave Ehlers,21,20,41,2026-05-13,Sell Light Lager 24pk
+8,4,230114,Liquor Factory III Sparta,Jayson Romine,20,13,33,2026-06-15,Sell Light Lager 24pk
+9,4,13001,Shop Rite Liq (A)Littlefl,Derrick Laws,11,20,31,2026-06-10,Sell Lime 24pk
+10,4,250803,Witty's Fine Wine & Spirt,Andrew Lundy,20,17,37,2026-06-12,Sell Light Lager 24pk
+11,3,250012,Peterson's Wine Unltd,Andrew Lundy,19,6,25,2026-06-11,Sell Light Lager 24pk
+12,3,2003,Ringwood W&L,Anthony Palmisano,19,7,26,2026-05-14,Sell Light Lager 24pk
+13,3,190711,Shop Rite Liquors,John O'Donoghue,19,17,36,2026-06-08,Sell Light Lager 24pk
+14,3,250044,Vine Republic (Berkeley Height),John O'Donoghue,19,0,19,2026-06-11,Sell Light Lager 24pk
+15,3,250071,Total Wine & More (Union),Andrew Lundy,18,18,36,2026-06-12,Sell Light Lager 24pk
+16,3,11003,Lincoln Park Fine Wines & Spirits,Mike Ast,17,4,21,2026-06-16,Sell Light Lager 24pk
+17,3,5001,River Place Food Store,Anthony Palmisano,16,11,27,2026-06-16,Sell Light Lager 24pk
+18,3,201048,ShopRite of West Caldwell,Michael Harboy,12,16,28,2026-06-09,Sell Lime 24pk
+19,3,230412,USA Wine Traders Club Of Newton (A),Jayson Romine,14,16,30,2026-06-03,Sell Lime 24pk
+20,3,67004,Beverage Barn (A),Shane Barreca,2,15,17,2026-06-15,Sell Lime 24pk
+21,3,191826,Bottle King (Z) Chatham,John O'Donoghue,15,10,25,2026-06-09,Sell Light Lager 24pk
+22,3,231717,Culver Liquor and Bar,Brian Sengebush,15,6,21,2026-06-16,Sell Light Lager 24pk
+23,3,191526,Liquor Factory IV Hopatcong,Jayson Romine,13,15,30,2026-06-15,Sell Lime 24pk
+24,3,190207,Liquor Outlet,Klejdi Lamo,15,5,20,2026-06-03,Sell Light Lager 24pk
+25,3,190705,Rockaway W/L,Klejdi Lamo,7,15,22,2026-06-10,Sell Lime 24pk
+26,3,230427,ShopRite Wine & Spirits of Newton#830,Jayson Romine,15,15,30,2026-06-16,Sell Light Lager 24pk
+27,3,173032,Sparrows Wine & Liq (P) (126 Hoboken),Jaime Colonna,7,15,22,2026-05-14,Sell Lime 24pk
+28,3,11014,Wayne Liquor Locker,Michael Harboy,15,0,15,2026-06-10,Sell Light Lager 24pk
+29,2,231316,Patricks Wine Barn,Jayson Romine,11,14,25,2026-06-05,Sell Lime 24pk
+30,2,190650,Shop Rite Wines & Spirits of Roxbury#832,John O'Donoghue,12,14,26,2026-06-02,Sell Lime 24pk
+31,2,150008,Total Wine & More (West Orange),Michael Harboy,14,11,25,2026-06-11,Sell Light Lager 24pk
+32,2,4009,Usa Wine Traders Club (Bloomingdale),Anthony Palmisano,12,14,26,2026-06-09,Sell Lime 24pk
+33,2,170050,Acme Markets (Hoboken),Jaime Colonna,5,13,18,2026-06-02,Sell Lime 24pk
+34,2,231701,George's Wine & Spirits,Jayson Romine,10,13,23,2026-06-04,Sell Lime 24pk
+35,2,70001,Montvale Wine/Liq & Beer,Shane Barreca,11,13,24,2026-06-16,Sell Lime 24pk
+36,2,190655,Sandy's Wine & Spirits (Flanders),John O'Donoghue,5,13,18,2026-06-05,Sell Lime 24pk
+37,2,190001,Gary's Wine & Marketplace (Madison),John O'Donoghue,12,2,14,2026-05-29,Sell Light Lager 24pk
+38,2,190216,House of Wine & Liquor,Klejdi Lamo,3,12,15,2026-05-29,Sell Lime 24pk
+39,2,230314,Liquor Factory V Andover,Jayson Romine,9,11,20,2026-05-26,Sell Lime 24pk
+40,2,24011,Shoppers Vineyard (A),Jim Heaney,11,5,16,2026-06-12,Sell Light Lager 24pk
+41,2,3005,Usa Wine Traders (Wanaque),Anthony Palmisano,11,7,18,2026-06-04,Sell Light Lager 24pk
+42,2,250027,Wine Anthology (A),Andrew Lundy,6,11,19,2026-06-04,Sell Lime 24pk
+43,2,230902,Buy Rite Liquors Franklin,Jayson Romine,10,8,18,2026-06-02,Sell Light Lager 24pk
+44,2,170030,International Liqs (P),Dylan Rubino,0,10,10,2026-05-19,Sell Lime 24pk
+45,2,170021,Jersey City Buy Rite (A),Jaime Colonna,10,5,15,2026-06-09,Sell Light Lager 24pk
+46,2,93006,Mahwah Wine & Liquor (A),Mike Ast,10,8,18,2026-06-16,Sell Light Lager 24pk
+47,2,5006,Roserne Pkg Store South,Anthony Palmisano,5,10,15,2026-04-28,Sell Lime 24pk
+48,2,230905,ShopRite Wines & Spirits of Franklin,Jayson Romine,4,10,14,2026-06-03,Sell Lime 24pk
+49,2,1012,Uncorked Wines & Spirits (West Milford),Anthony Palmisano,10,7,17,2026-06-11,Sell Light Lager 24pk
+50,2,191838,Village Wine & Liquors,John O'Donoghue,10,5,15,2026-06-05,Sell Light Lager 24pk
