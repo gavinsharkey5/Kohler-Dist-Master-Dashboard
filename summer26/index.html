@@ -180,6 +180,12 @@
   .v.achieved{color:var(--good);font-weight:700;display:inline-flex;align-items:center;gap:6px}
   .v.achieved svg{width:15px;height:15px}
   .ppair{flex-wrap:wrap}
+  .pctline{display:flex;align-items:center;gap:9px;margin:9px 0 2px}
+  .pctbig{font-family:"Space Grotesk";font-weight:700;font-size:21px;line-height:1;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .pctbig.hit{color:var(--good)}
+  .pctlab{font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .reppct{font-family:"Space Grotesk";font-weight:700;font-size:13px;color:var(--ink-soft);margin:3px 0 8px 2px}
+  .reppct.hit{color:var(--good)} .reppct.off{opacity:.5}
   /* stacked number + label */
   .sgstack{display:flex;align-items:flex-start;gap:20px;margin:14px 0 10px}
   .sgcol{display:flex;flex-direction:column;gap:3px}
@@ -386,8 +392,9 @@ const trendRepSup=(rep,sup)=>{const t=TRENDrepsup[rep+"|"+sup];return t?trendChi
 function sg(sold,goal){return `<b class="sold">${Math.round(sold).toLocaleString()}</b> <span class="gp">/ ${Math.round(goal).toLocaleString()} goal</span>`;}
 function achvBadge(sz){return `<span class="badge achv${sz?' '+sz:''}">${TROPHY} Achieved!</span>`;}
 function pctChip(sold,goal){if(!(goal>0))return '';const p=sold/goal*100;return ` <span class="pct ${p>=100?'hit':''}">${p.toFixed(0)}%</span>`;}
-function sgStack(sold,goal,active){active=active!==false;const p=goal>0?sold/goal*100:0;const hit=active&&goal>0&&sold>=goal;
-  return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div>${goal>0?`<div class="sgsep">=</div><div class="sgcol"><div class="sgnum pct ${hit?'hit':''}">${p.toFixed(0)}%</div><div class="sglab">To Goal</div></div>`:''}</div>${hit?`<div class="achvrow">${achvBadge()}</div>`:''}`;}
+function sgStack(sold,goal){return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div></div>`;}
+function goalBar(sold,goal){const hit=goal>0&&sold>=goal;const w=goal>0?Math.min(sold/goal*100,100):0;return `<div class="bar ${hit?'done':''}" style="margin-top:10px"><i style="width:${w.toFixed(1)}%"></i></div>`;}
+function pctUnder(sold,goal,active){if(!(goal>0))return '';active=active!==false;const p=sold/goal*100;const hit=sold>=goal;return `<div class="pctline"><span class="pctbig ${hit?'hit':''}">${p.toFixed(0)}%</span><span class="pctlab">To Goal</span>${hit&&active?achvBadge('sm'):''}</div>`;}
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -411,8 +418,8 @@ function renderBreakdown(app){
   const reps=Object.keys(DATA).filter(r=>DATA[r].qual[sup]||DATA[r].amp[sup]);
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const defs=`<div class="quest"><div class="sup"><div class="suptop">${logoChip(sup)}${trendSup(sup)}</div><div class="snm">${esc(sup)}</div></div>`+
-    (g.isQ?`<div class="seclabel"><span class="tag q">Qualifier brands</span></div>${bchips(br.q)}${sgStack(g.qTy,g.qGoal)}`:"")+
-    `<div class="seclabel ${g.isQ?'div':''}"><span class="tag a">Amplify brands</span></div>${bchips(br.a)}${sgStack(g.aTy,g.aGoal)}`+
+    (g.isQ?`<div class="seclabel"><span class="tag q">Qualifier brands</span></div>${bchips(br.q)}${sgStack(g.qTy,g.qGoal)}${goalBar(g.qTy,g.qGoal)}${pctUnder(g.qTy,g.qGoal,true)}`:"")+
+    `<div class="seclabel ${g.isQ?'div':''}"><span class="tag a">Amplify brands</span></div>${bchips(br.a)}${sgStack(g.aTy,g.aGoal)}${goalBar(g.aTy,g.aGoal)}${pctUnder(g.aTy,g.aGoal,true)}`+
     `<div class="pl">${g.isQ?('Amplify unlocks per rep once they clear the qualifier.'):('No qualifier — amplify open from the start.')}</div></div>`;
   const rows=reps.map(r=>({r,p:repSup(r,sup)})).sort((x,y)=>{
     if(g.isQ){const xc=x.p.qCleared?1:0,yc=y.p.qCleared?1:0; if(xc!==yc)return yc-xc;}
@@ -430,11 +437,14 @@ function renderBreakdown(app){
     const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal (all brands)</span><span class="num">${Math.round(p.aGoal).toLocaleString()}</span></div>`:''}`:'';
     const qvR=p.hasQ?`${Math.round(p.q.ty).toLocaleString()} <span class="sl">/ ${Math.round(p.q.goal).toLocaleString()}</span>`:(p.q?`${Math.round(p.q.ty).toLocaleString()} ce`:'\u2014');
     const avR=p.a?`${Math.round(p.aTy).toLocaleString()}${p.aGoal>0?` <span class="sl">/ ${Math.round(p.aGoal).toLocaleString()}</span>`:' ce'}`:'\u2014';
-    const qPctR=(p.hasQ&&p.q.goal>0)?` <span class="pct ${p.q.ty>=p.q.goal?'hit':''}">${(p.q.ty/p.q.goal*100).toFixed(0)}%</span>`:'';
-    const aPctR=(p.a&&p.aGoal>0)?` <span class="pct ${(p.aOpen&&p.aTy>=p.aGoal)?'hit':''}">${(p.aTy/p.aGoal*100).toFixed(0)}%</span>`:'';
+    const qPctV=(p.hasQ&&p.q.goal>0)?(p.q.ty/p.q.goal*100):null;
+    const aPctV=(p.a&&p.aGoal>0)?(p.aTy/p.aGoal*100):null;
     const qHitR=p.hasQ&&p.q.goal>0&&p.q.ty>=p.q.goal;
     const aHitR=p.a&&p.aOpen&&p.aGoal>0&&p.aTy>=p.aGoal;
-    const repprog=`<div class="repprog">`+(g.isQ?`<div class="ppair"><span class="tag q">Qualifier</span><span class="pv">${qvR}${qPctR}</span>${qHitR?achvBadge('sm'):''}</div>`:'')+(p.a?`<div class="ppair${aoff?' off':''}"><span class="tag a">Amplify</span><span class="pv">${avR}${aPctR}</span>${aHitR?achvBadge('sm'):''}</div>`:'')+`</div>`;
+    const repprog=`<div class="repprog">`
+      +(g.isQ?`<div class="ppair"><span class="tag q">Qualifier</span><span class="pv">${qvR}</span>${qHitR?achvBadge('sm'):''}</div>${qPctV!==null?`<div class="reppct ${qHitR?'hit':''}">${qPctV.toFixed(0)}% to goal</div>`:''}`:'')
+      +(p.a?`<div class="ppair${aoff?' off':''}"><span class="tag a">Amplify</span><span class="pv">${avR}</span>${aHitR?achvBadge('sm'):''}</div>${aPctV!==null?`<div class="reppct ${aHitR?'hit':''}${aoff?' off':''}">${aPctV.toFixed(0)}% to goal</div>`:''}`:'')
+      +`</div>`;
     return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b> ${trendRepSup(o.r,sup)}${repprog}<div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
@@ -460,7 +470,7 @@ function renderRep(app){
     else if(x.isAmpOnly&&x.a) badge=`<span class="badge ok">Open</span>`;
     const qh=x.hasGoal?`<div class="seclabel">Qualifier</div>
       ${sgStack(x.q.ty,x.q.goal)}
-      <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${brk('Brands · 2026 ce', x.q.brands)}`
+      <div class="bar ${x.isQ?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>${pctUnder(x.q.ty,x.q.goal,true)}${brk('Brands · 2026 ce', x.q.brands)}`
       :(x.isAmpOnly?"":`<div class="seclabel">Qualifier</div><div class="qline"><span>No qualifier goal assigned</span></div>`);
     let ah="";
     if(x.a){
@@ -471,7 +481,7 @@ function renderRep(app){
             ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v achieved">${TROPHY} Achieved!</span></div>`
             : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">Unlocked</span></div>`)
         : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">Clear qualifier to unlock</span></div>`;
-      const gate = ag>0 ? `<div style="margin-top:13px">${sgStack(aty,ag,x.aOpen)}</div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
+      const gate = ag>0 ? `<div style="margin-top:13px">${sgStack(aty,ag)}</div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>${pctUnder(aty,ag,x.aOpen)}` : "";
       const alck=x.a&&!x.aOpen; ah=lab+status+gate+(alck?'<div style="opacity:.45">':'')+brk('Brands · 2026 ce', x.a.brands)+(alck?'</div>':'');
     }
     return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
