@@ -170,6 +170,16 @@
   .qline .num{color:var(--ink);font-weight:700;font-size:20px;line-height:1.1}
   .num .sold{color:var(--ink)}
   .num .gp{color:var(--ink-soft);font-weight:600;font-size:.72em}
+  .sgnum.pct{color:var(--ink-soft)} .sgnum.pct.hit{color:var(--good)}
+  .pct{font-family:"Space Grotesk";font-weight:700;font-size:.8em;color:var(--ink-soft)} .pct.hit{color:var(--good)}
+  .achvrow{margin:11px 0 2px}
+  .badge.achv{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good);border:1px solid color-mix(in srgb,var(--good) 45%,transparent);font-family:"Space Grotesk";font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .badge.achv svg{width:14px;height:14px}
+  .badge.achv.sm{font-size:11px;padding:2px 9px;gap:5px}
+  .badge.achv.sm svg{width:12px;height:12px}
+  .v.achieved{color:var(--good);font-weight:700;display:inline-flex;align-items:center;gap:6px}
+  .v.achieved svg{width:15px;height:15px}
+  .ppair{flex-wrap:wrap}
   /* stacked number + label */
   .sgstack{display:flex;align-items:flex-start;gap:20px;margin:14px 0 10px}
   .sgcol{display:flex;flex-direction:column;gap:3px}
@@ -374,7 +384,10 @@ const trendSup=sup=>{const t=TRENDsup[sup];return t?trendChip(t[0],t[1],false):"
 const trendRepSup=(rep,sup)=>{const t=TRENDrepsup[rep+"|"+sup];return t?trendChip(t[0],t[1],true):"";};
 
 function sg(sold,goal){return `<b class="sold">${Math.round(sold).toLocaleString()}</b> <span class="gp">/ ${Math.round(goal).toLocaleString()} goal</span>`;}
-function sgStack(sold,goal){return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div></div>`;}
+function achvBadge(sz){return `<span class="badge achv${sz?' '+sz:''}">${TROPHY} Achieved!</span>`;}
+function pctChip(sold,goal){if(!(goal>0))return '';const p=sold/goal*100;return ` <span class="pct ${p>=100?'hit':''}">${p.toFixed(0)}%</span>`;}
+function sgStack(sold,goal,active){active=active!==false;const p=goal>0?sold/goal*100:0;const hit=active&&goal>0&&sold>=goal;
+  return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div>${goal>0?`<div class="sgsep">=</div><div class="sgcol"><div class="sgnum pct ${hit?'hit':''}">${p.toFixed(0)}%</div><div class="sglab">To Goal</div></div>`:''}</div>${hit?`<div class="achvrow">${achvBadge()}</div>`:''}`;}
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -384,8 +397,8 @@ function renderBoard(app){
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const card=(sup)=>{
     const g=supAgg(sup), br=supBrands(sup);
-    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgtot">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()} CE</span></div>${bchips(br.q)}</div>` : "";
-    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgtot">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()} CE</span></div>${bchips(br.a)}</div>`;
+    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgtot">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()} CE</span>${pctChip(g.qTy,g.qGoal)}${g.qGoal>0&&g.qTy>=g.qGoal?achvBadge("sm"):""}</div>${bchips(br.q)}</div>` : "";
+    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgtot">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()} CE</span>${pctChip(g.aTy,g.aGoal)}${g.aGoal>0&&g.aTy>=g.aGoal?achvBadge("sm"):""}</div>${bchips(br.a)}</div>`;
     return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span>${trendSup(sup)}<span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
   const ahtml=asups.length?`<div class="seclabel" style="margin-top:20px">Amplify only · no qualifier</div>`+asups.map(card).join(""):"";
@@ -417,7 +430,11 @@ function renderBreakdown(app){
     const ad=(p.a&&p.a.brands.length)?`<div class="seclabel div ${aoff?'muted':''}">Amplify · 2026 CE</div>${detRows(p.a.brands,aoff)}${p.aGoal>0?`<div class="qline ${aoff?'off':''}"><span>Program goal (all brands)</span><span class="num">${Math.round(p.aGoal).toLocaleString()}</span></div>`:''}`:'';
     const qvR=p.hasQ?`${Math.round(p.q.ty).toLocaleString()} <span class="sl">/ ${Math.round(p.q.goal).toLocaleString()}</span>`:(p.q?`${Math.round(p.q.ty).toLocaleString()} ce`:'\u2014');
     const avR=p.a?`${Math.round(p.aTy).toLocaleString()}${p.aGoal>0?` <span class="sl">/ ${Math.round(p.aGoal).toLocaleString()}</span>`:' ce'}`:'\u2014';
-    const repprog=`<div class="repprog">`+(g.isQ?`<div class="ppair"><span class="tag q">Qualifier</span><span class="pv">${qvR}</span></div>`:'')+(p.a?`<div class="ppair${aoff?' off':''}"><span class="tag a">Amplify</span><span class="pv">${avR}</span></div>`:'')+`</div>`;
+    const qPctR=(p.hasQ&&p.q.goal>0)?` <span class="pct ${p.q.ty>=p.q.goal?'hit':''}">${(p.q.ty/p.q.goal*100).toFixed(0)}%</span>`:'';
+    const aPctR=(p.a&&p.aGoal>0)?` <span class="pct ${(p.aOpen&&p.aTy>=p.aGoal)?'hit':''}">${(p.aTy/p.aGoal*100).toFixed(0)}%</span>`:'';
+    const qHitR=p.hasQ&&p.q.goal>0&&p.q.ty>=p.q.goal;
+    const aHitR=p.a&&p.aOpen&&p.aGoal>0&&p.aTy>=p.aGoal;
+    const repprog=`<div class="repprog">`+(g.isQ?`<div class="ppair"><span class="tag q">Qualifier</span><span class="pv">${qvR}${qPctR}</span>${qHitR?achvBadge('sm'):''}</div>`:'')+(p.a?`<div class="ppair${aoff?' off':''}"><span class="tag a">Amplify</span><span class="pv">${avR}${aPctR}</span>${aHitR?achvBadge('sm'):''}</div>`:'')+`</div>`;
     return `<details class="repx"><summary><span class="medal ${rank<=3?'m'+rank:''}" style="--mc:${medalColor(rank)}">${rank}</span><span class="who"><b>${esc(o.r)}</b> ${trendRepSup(o.r,sup)}${repprog}<div class="track"><i style="width:${Math.min(barPct,100).toFixed(1)}%"></i></div></span><span class="exptog">&rsaquo;</span></summary><div class="repx-detail">${qd}${ad}<button class="linkbtn" data-rep="${esc(o.r)}">View ${esc(o.r)}&rsquo;s full board &rsaquo;</button></div></details>`;
   }).join("");
   app.innerHTML=`<button class="backbtn" id="back">&lsaquo; All programs</button>`+defs+`<div class="shead"><h2>Rep progress</h2><span class="meta">${reps.length} reps · tap to expand</span></div><div class="board">${list}</div>`;
@@ -450,9 +467,11 @@ function renderRep(app){
       const ag=Math.round(x.aGoal||0), aty=Math.round(x.aTy);
       const lab=`<div class="seclabel${x.hasGoal?' div':''}">Amplify</div>`;
       const status = x.aOpen
-        ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">Unlocked</span></div>`
+        ? ((ag>0&&aty>=ag)
+            ? `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v achieved">${TROPHY} Achieved!</span></div>`
+            : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v open">Unlocked</span></div>`)
         : `<div class="amp" style="margin-top:0;padding-top:0;border-top:none"><span class="l">Status</span><span class="v locked">Clear qualifier to unlock</span></div>`;
-      const gate = ag>0 ? `<div style="margin-top:13px">${sgStack(aty,ag)}</div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
+      const gate = ag>0 ? `<div style="margin-top:13px">${sgStack(aty,ag,x.aOpen)}</div><div class="bar ${aty>=ag?'done':''}"><i style="width:${Math.min(aty/ag*100,100).toFixed(1)}%"></i></div>` : "";
       const alck=x.a&&!x.aOpen; ah=lab+status+gate+(alck?'<div style="opacity:.45">':'')+brk('Brands · 2026 ce', x.a.brands)+(alck?'</div>':'');
     }
     return `<div class="quest"><div class="sup"><div class="suptop">${logoChip(x.sup)}${badge}</div><div class="snm">${esc(x.sup)}</div></div>${qh}${ah}</div>`;
