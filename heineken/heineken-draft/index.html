@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heineken Draft Retention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#0E8A3C; --accent2:#0A5E29;        /* Heineken green */
+    --good:#37C46B; --good-soft:#15301E;
+    --lock:#565E72;
+    --gold:#E6B23C; --silver:#C3CAD6; --bronze:#C07B43;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.45;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+
+  /* header */
+  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
+  .gx-head .wrap{position:relative;padding:30px 18px 24px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-family:"Space Grotesk";font-size:12px;font-weight:600;
+    color:var(--ink-soft);text-decoration:none;margin:0 0 14px;letter-spacing:.03em}
+  .back:hover{color:var(--accent)}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
+    color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
+  .lede{margin:13px 0 0;max-width:62ch;color:var(--ink-soft);font-size:14px}
+  .lede b{color:var(--accent)}
+  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  /* window strip */
+  .windows{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}
+  .winpill{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:9px 13px;font-size:12px;color:var(--ink-soft)}
+  .winpill b{color:var(--ink);font-family:"Space Grotesk";display:block;font-size:13px;margin-bottom:1px}
+  .winpill .tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+
+  /* stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .stat .v.accent{color:var(--accent)}
+  .stat .v.good{color:var(--good)}
+
+  /* chips */
+  .seg{margin:22px 0 0}
+  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  /* section head */
+  .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
+  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:17px;margin:0}
+  .shead .tr{color:var(--accent)}
+  .shead .meta{margin-left:auto;font-size:12px;color:var(--ink-soft)}
+
+  /* leaderboard */
+  .board{display:flex;flex-direction:column;gap:9px}
+  .lrow{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:13px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer;transition:.13s;position:relative;overflow:hidden}
+  .lrow:hover{transform:translateY(-2px);border-color:#39404F}
+  .lrow:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .lrow.top::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+  .medal{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:"Space Grotesk";font-weight:700;
+    font-size:16px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+  .medal.m1{background:linear-gradient(160deg,#F4D06A,#C7892A);color:#1a1407;border:none}
+  .medal.m2{background:linear-gradient(160deg,#E2E7EF,#A7AFBE);color:#1a1d24;border:none}
+  .medal.m3{background:linear-gradient(160deg,#D79A63,#9B5E32);color:#1a1107;border:none}
+  .who b{font-weight:600;font-size:15px}
+  .who .sub{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .who .sub .np{color:var(--accent);font-weight:600}
+  .who .track{height:6px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+  .who .track i{display:block;height:100%;background:linear-gradient(90deg,var(--good),#2aa657);border-radius:4px}
+  .win{font-family:"Space Grotesk";font-weight:700;font-size:18px;text-align:right;white-space:nowrap;color:var(--good)}
+  .win small{display:block;font-size:10px;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+
+  /* hero (your standing) */
+  .hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:18px;
+    padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:16px}
+  .hero::before{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;
+    background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
+  .hero .top{display:flex;align-items:center;gap:16px;position:relative}
+  .hero .rankbox{text-align:center}
+  .hero .rankbox .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;line-height:1;color:var(--accent)}
+  .hero .rankbox .lab{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:2px}
+  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:21px}
+  .hero .nm small{display:block;font-size:12px;color:var(--ink-soft);font-weight:500;margin-top:2px;font-family:"Inter"}
+  .hero .win2{margin-left:auto;text-align:right}
+  .hero .win2 .b{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--good)}
+  .hero .win2 .l{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+  .pips{display:flex;gap:6px;margin:16px 0 0;position:relative;flex-wrap:wrap}
+  .pip{flex:1;min-width:28px;height:8px;border-radius:5px;background:var(--line)}
+  .pip.on{background:linear-gradient(90deg,var(--good),#2aa657)}
+  .hero .pl{font-size:11px;color:var(--ink-soft);margin:9px 0 0;position:relative;letter-spacing:.02em}
+
+  /* cards */
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .quest.bonus{border-color:color-mix(in srgb,var(--accent) 30%,var(--line));
+    background:color-mix(in srgb,var(--accent) 5%,var(--card))}
+  .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
+  .badge.prog{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+  .badge.new{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+  .badge svg{width:11px;height:11px}
+  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
+  .qline .num{color:var(--ink);font-weight:600}
+  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--good),#2aa657);position:relative}
+  .bar.done i{box-shadow:0 0 12px color-mix(in srgb,var(--good) 60%,transparent)}
+  .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
+  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--ink-soft);padding:3px 0}
+  .brow .num{color:var(--ink);font-weight:600;white-space:nowrap}
+  .brow small{color:var(--ink-soft);font-weight:500}
+
+  .empty{max-width:560px;margin:60px auto;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  .empty .steps{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:18px 0 0}
+  .empty .steps li{margin:7px 0}
+  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="gx-head"><div class="wrap">
+  <a class="back" href="../">&lsaquo; Heineken USA trackers</a>
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Heineken USA · Retention · Summer 2026</p>
+  <h1>Heineken Draft Retention</h1>
+  <p class="lede">Hold <b>90% of the Heineken draft lines you won in Mar–Apr</b> through the summer. A pip turns green when a retention account <b>re-orders</b> Heineken draft. A draft line won in a new account counts as a <b>Non-Retention Customer</b> — bonus business, not a retain. Tap your name for your accounts.</p>
+  <div class="windows">
+    <div class="winpill"><span class="tag">Achievement</span><b>Mar 1 – Apr 30</b>where the line was won</div>
+    <div class="winpill"><span class="tag">Retention</span><b>Jun 1 – Aug 31</b>where we hold it</div>
+  </div>
+  <p class="updated" id="updated"></p>
+</div></div>
+<div id="app"><div class="wrap">
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div id="body"></div>
+  <footer><hr><p id="foot"></p></footer>
+</div></div>
+<script>
+
+let MODEL=null,activeRep="ALL";
+function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const goalFor=t=>Math.round(t*0.9);
+const numu=v=>parseFloat(String(v).replace(/[^0-9.\-]/g,""))||0;
+function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
+
+/* Reads the pre-shaped data.csv (one row per rep+account):
+   Sales Rep, Account, Qualification Units, Retention Units, Category
+   - Retention account  = won a draft line Mar 1–Apr 30 (qualification units > 0); kept if retention units > 0
+   - Non-Retention Customer = draft line in the summer (retention units > 0) in an account that was NOT a Mar–Apr line */
+function buildModel(text){
+  if(!text){return {live:false,reps:[]};}
+  const rows=parseCSV(text); if(rows.length<2) return {live:false,reps:[]};
+  const H=rows[0];
+  const ri=col(H,"sales rep","rep"), ai=col(H,"account","customer","dba"),
+        qi=col(H,"qualification","qual","achievement"), si=col(H,"retention unit","retention","summer"),
+        ci=col(H,"category","status");
+  const byRep={};
+  for(let i=1;i<rows.length;i++){const r=rows[i];const rep=(ri>=0?r[ri]:"").trim();const acct=(ai>=0?r[ai]:"").trim();
+    if(!rep||rep==="Total"||!acct) continue;
+    const qu=numu(r[qi]), su=numu(r[si]);
+    let cat=(ci>=0?(r[ci]||"").trim():"");
+    if(!cat) cat = qu>0 ? "Retention" : (su>0?"Non-Retention Customer":"");
+    if(!cat) continue;
+    const R=(byRep[rep]=byRep[rep]||{name:rep,ret:[],non:[]});
+    if(cat.toLowerCase().startsWith("non")) R.non.push({name:acct,units:su});
+    else R.ret.push({name:acct,retained:su>0,units:su,qual:qu});
+  }
+  return {live:true, reps:Object.values(byRep)};
+}
+function repStats(r){const tot=r.ret.length;const goal=goalFor(tot);
+  const kept=r.ret.filter(a=>a.retained).length;
+  return {tot,goal,kept,np:r.non.length,pct:tot?kept/tot*100:0};}
+function statTile(k,v,s,cls){return `<div class="stat"><p class="k">${k}</p><p class="v num ${cls||""}">${v}${s||""}</p></div>`;}
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+const PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14"/></svg>';
+
+function retentionCard(accts){
+  const total=accts.length,goal=goalFor(total),kept=accts.filter(a=>a.retained).length;
+  const pct=total?Math.min(kept/goal*100,100):0,hit=kept>=goal;
+  const items=accts.slice().sort((a,b)=>b.retained-a.retained||b.units-a.units).map(a=>
+    `<div class="brow" style="align-items:center;padding:6px 0">
+       <span style="display:flex;align-items:center;gap:9px;color:${a.retained?'var(--ink)':'var(--ink-soft)'}">
+         <span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;${a.retained?'background:var(--good);color:#06210f':'border:1.5px solid var(--line);color:transparent'}">${CHECK}</span>
+         ${esc(a.name)}</span>
+       <span class="num" style="color:${a.retained?'var(--good)':'var(--ink-soft)'};font-weight:600">${a.retained?(a.units+' net'):'not yet'}</span></div>`).join("");
+  return `<div class="quest"><div class="sup">Retention accounts${hit?`<span class="badge ok">${CHECK} Goal met</span>`:`<span class="badge prog">${kept}/${goal}</span>`}</div>
+    <div class="qline"><span>Re-ordered Heineken draft this summer</span><span class="num">${kept} / ${total} · keep ${goal}</span></div>
+    <div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
+    <div class="brk"><div class="cap">Your Mar–Apr draft lines</div>${items||'<div class="brow">No retention accounts in this window.</div>'}</div></div>`;
+}
+function bonusCard(accts){
+  if(!accts.length) return "";
+  const items=accts.slice().sort((a,b)=>b.units-a.units).map(a=>
+    `<div class="brow" style="align-items:center;padding:6px 0">
+       <span style="display:flex;align-items:center;gap:9px;color:var(--ink)">
+         <span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent)">${PLUS}</span>
+         ${esc(a.name)}</span>
+       <span class="num" style="color:var(--accent);font-weight:600">${a.units} net</span></div>`).join("");
+  return `<div class="quest bonus"><div class="sup">Non-Retention Customers<span class="badge new">${PLUS} ${accts.length} new</span></div>
+    <div class="qline"><span>New summer draft lines (not a Mar–Apr account)</span><span class="num">${accts.length}</span></div>
+    <div class="brk"><div class="cap">Bonus placements — fresh business this summer</div>${items}</div></div>`;
+}
+function render(){
+  const app=document.getElementById("body");
+  if(activeRep==="ALL"){
+    let tot=0,kept=0,np=0;MODEL.reps.forEach(r=>{const s=repStats(r);tot+=s.tot;kept+=s.kept;np+=s.np;});
+    const goal=MODEL.reps.reduce((s,r)=>s+goalFor(r.ret.length),0);
+    const stats=`<div class="stats">${statTile("Reps",MODEL.reps.length,"")}${statTile("Lines kept",kept,`<small> / ${goal}</small>`,"good")}${statTile("Retention accts",tot,"")}${statTile("New placements",np,"","accent")}</div>`;
+    const reps=MODEL.reps.map(r=>({name:r.name,...repStats(r)})).sort((a,b)=>b.pct-a.pct||b.kept-a.kept).map((r,i)=>({...r,rank:i+1}));
+    const rows=reps.map(R=>{const mc=R.rank===1?"var(--gold)":R.rank===2?"var(--silver)":"var(--bronze)";
+      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.name)}">
+        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
+        <span class="who"><b>${esc(R.name)}</b><div class="sub">${R.kept}/${R.tot} kept · goal ${R.goal}${R.np?` · <span class="np">+${R.np} new</span>`:''}</div>
+        <div class="track"><i style="width:${Math.min(R.pct,100).toFixed(1)}%"></i></div></span>
+        <span class="win">${R.pct.toFixed(0)}%<small>retained</small></span></div>`;}).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Retention leaderboard</h2><span class="meta">${reps.length} reps · by % kept</span></div><div class="board">${rows}</div>`;
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    const r=MODEL.reps.find(x=>x.name===activeRep);if(!r){app.innerHTML="";return;}
+    const st=repStats(r);
+    const ranked=MODEL.reps.map(x=>({name:x.name,...repStats(x)})).sort((a,b)=>b.pct-a.pct||b.kept-a.kept).map(x=>x.name);
+    const rank=ranked.indexOf(activeRep)+1;
+    const pips=r.ret.map(a=>`<span class="pip ${a.retained?'on':''}"></span>`).join("");
+    const hero=`<div class="hero"><div class="top">
+        <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
+        <div class="nm">${esc(activeRep)}<small>${st.kept} of ${st.tot} draft lines kept · goal ${st.goal}${st.np?` · +${st.np} new`:''}</small></div>
+        <div class="win2"><div class="b num">${st.pct.toFixed(0)}%</div><div class="l">Retained</div></div></div>
+      <div class="pips">${pips||'<span class="pl">No Mar–Apr draft lines on file.</span>'}</div>
+      <div class="pl">Each pip is a draft line you won in Mar–Apr — turns green when that account re-orders Heineken draft this summer.</div></div>`;
+    app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+retentionCard(r.ret)+bonusCard(r.non);
+  }
+}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChips(){document.getElementById("chips").innerHTML=["ALL",...MODEL.reps.map(r=>r.name).sort()].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function showEmpty(){
+  document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>Awaiting the Heineken draft export</h2>
+    <p>This tracker turns a Dos&nbsp;Equis draft transaction report into a retention scoreboard. To load it:</p>
+    <ol class="steps">
+      <li>In Encompass, export Dos&nbsp;Equis <b>draft</b> sales for <b>3/1/2026 – 8/31/2026</b> with columns: Customer Name, Product, Sales Rep, Date, Units.</li>
+      <li>Send it over — it gets split into the <b>Mar–Apr</b> achievement window and the <b>Jun–Aug</b> retention window, then saved here as <code>data.csv</code>.</li>
+      <li>Commit <code>data.csv</code> into the <code>heineken/heineken-draft</code> folder and refresh.</li>
+    </ol></div></div>`;
+}
+async function boot(){
+  let text=null,lastMod=null;
+  try{const res=await fetch("data.csv",{cache:"no-store"});if(res.ok){lastMod=res.headers.get("last-modified");text=await res.text();}}catch(e){}
+  MODEL=buildModel(text);
+  if(!MODEL.live){showEmpty();return;}
+  renderChips();render();
+  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+" · retention window 6/1–8/31":"Retention window 6/1–8/31";
+  document.getElementById("foot").innerHTML="<b>Retention account</b> = an account where the rep won a Heineken <b>draft line</b> between 3/1 and 4/30. <b>Kept</b> = that account re-ordered Heineken draft between 6/1 and 8/31 on <b>net</b> units (a return cancels the order). Goal is to hold 90% of each rep's Mar–Apr draft lines. A <b>Non-Retention Customer</b> is a summer draft line in an account that wasn't a Mar–Apr line — counted separately as new business. Update by exporting the Heineken draft transaction report for 3/1–8/31 and saving it as <code>data.csv</code>.";
+}
+boot();
+
+</script></body></html>
