@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dos Equis Draft Retention</title>
+<title>Dos Equis Package Retention Buyers (On)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -144,10 +144,10 @@
 <div class="gx-head"><div class="wrap">
   <a class="back" href="../">&lsaquo; Heineken USA trackers</a>
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Heineken USA · Retention · Summer 2026</p>
-  <h1>Dos Equis Draft Retention</h1>
-  <p class="lede">Hold <b>90% of the Dos Equis draft lines you won in Mar–Apr</b> through the summer. A pip turns green when a retention account <b>re-orders</b> Dos Equis draft. A draft line won in a new account counts as a <b>Non-Retention Customer</b> — bonus business, not a retain. Tap your name for your accounts.</p>
+  <h1>Dos Equis: Package Retention Buyers (On)</h1>
+  <p class="lede">Hold <b>90% of the on-premise accounts that bought Dos Equis packages in the Mar 1 – Apr 1 window</b> through the summer. A pip turns green when a retention account <b>re-orders</b> Dos Equis packages. A package buyer in a new account counts as a <b>Non-Retention Customer</b> — bonus business, not a retain. Tap your name for your accounts.</p>
   <div class="windows">
-    <div class="winpill"><span class="tag">Achievement</span><b>Mar 1 – Apr 30</b>where the line was won</div>
+    <div class="winpill"><span class="tag">Achievement</span><b>Mar 1 – Apr 1</b>where the buyer was won</div>
     <div class="winpill"><span class="tag">Retention</span><b>Jun 1 – Aug 31</b>where we hold it</div>
   </div>
   <p class="updated" id="updated"></p>
@@ -168,8 +168,8 @@ function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){
 
 /* Reads the pre-shaped data.csv (one row per rep+account):
    Sales Rep, Account, Qualification Units, Retention Units, Category
-   - Retention account  = won a draft line Mar 1–Apr 30 (qualification units > 0); kept if retention units > 0
-   - Non-Retention Customer = draft line in the summer (retention units > 0) in an account that was NOT a Mar–Apr line */
+   - Retention account  = bought Dos Equis packages Mar 1–Apr 1 (qualification units > 0); kept if retention units > 0
+   - Non-Retention Customer = bought packages in the summer (retention units > 0) in an account that was NOT a Mar 1–Apr 1 buyer */
 function buildModel(text){
   if(!text){return {live:false,reps:[]};}
   const rows=parseCSV(text); if(rows.length<2) return {live:false,reps:[]};
@@ -208,9 +208,9 @@ function retentionCard(accts){
          ${esc(a.name)}</span>
        <span class="num" style="color:${a.retained?'var(--good)':'var(--ink-soft)'};font-weight:600">${a.retained?(a.units+' net'):'not yet'}</span></div>`).join("");
   return `<div class="quest"><div class="sup">Retention accounts${hit?`<span class="badge ok">${CHECK} Goal met</span>`:`<span class="badge prog">${kept}/${goal}</span>`}</div>
-    <div class="qline"><span>Re-ordered Dos Equis draft this summer</span><span class="num">${kept} / ${total} · keep ${goal}</span></div>
+    <div class="qline"><span>Re-ordered Dos Equis packages this summer</span><span class="num">${kept} / ${total} · keep ${goal}</span></div>
     <div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>
-    <div class="brk"><div class="cap">Your Mar–Apr draft lines</div>${items||'<div class="brow">No retention accounts in this window.</div>'}</div></div>`;
+    <div class="brk"><div class="cap">Your Mar 1–Apr 1 package accounts</div>${items||'<div class="brow">No retention accounts in this window.</div>'}</div></div>`;
 }
 function bonusCard(accts){
   if(!accts.length) return "";
@@ -221,15 +221,15 @@ function bonusCard(accts){
          ${esc(a.name)}</span>
        <span class="num" style="color:var(--accent);font-weight:600">${a.units} net</span></div>`).join("");
   return `<div class="quest bonus"><div class="sup">Non-Retention Customers<span class="badge new">${PLUS} ${accts.length} new</span></div>
-    <div class="qline"><span>New summer draft lines (not a Mar–Apr account)</span><span class="num">${accts.length}</span></div>
-    <div class="brk"><div class="cap">Bonus placements — fresh business this summer</div>${items}</div></div>`;
+    <div class="qline"><span>New summer package buyers (not a Mar 1–Apr 1 account)</span><span class="num">${accts.length}</span></div>
+    <div class="brk"><div class="cap">Bonus package buyers — fresh business this summer</div>${items}</div></div>`;
 }
 function render(){
   const app=document.getElementById("body");
   if(activeRep==="ALL"){
     let tot=0,kept=0,np=0;MODEL.reps.forEach(r=>{const s=repStats(r);tot+=s.tot;kept+=s.kept;np+=s.np;});
     const goal=MODEL.reps.reduce((s,r)=>s+goalFor(r.ret.length),0);
-    const stats=`<div class="stats">${statTile("Reps",MODEL.reps.length,"")}${statTile("Lines kept",kept,`<small> / ${goal}</small>`,"good")}${statTile("Retention accts",tot,"")}${statTile("New placements",np,"","accent")}</div>`;
+    const stats=`<div class="stats">${statTile("Reps",MODEL.reps.length,"")}${statTile("Accounts kept",kept,`<small> / ${goal}</small>`,"good")}${statTile("Retention accts",tot,"")}${statTile("New buyers",np,"","accent")}</div>`;
     const reps=MODEL.reps.map(r=>({name:r.name,...repStats(r)})).sort((a,b)=>b.pct-a.pct||b.kept-a.kept).map((r,i)=>({...r,rank:i+1}));
     const rows=reps.map(R=>{const mc=R.rank===1?"var(--gold)":R.rank===2?"var(--silver)":"var(--bronze)";
       return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${mc}" role="button" tabindex="0" data-rep="${esc(R.name)}">
@@ -247,10 +247,10 @@ function render(){
     const pips=r.ret.map(a=>`<span class="pip ${a.retained?'on':''}"></span>`).join("");
     const hero=`<div class="hero"><div class="top">
         <div class="rankbox"><div class="big num">${rank}</div><div class="lab">Rank</div></div>
-        <div class="nm">${esc(activeRep)}<small>${st.kept} of ${st.tot} draft lines kept · goal ${st.goal}${st.np?` · +${st.np} new`:''}</small></div>
+        <div class="nm">${esc(activeRep)}<small>${st.kept} of ${st.tot} accounts kept · goal ${st.goal}${st.np?` · +${st.np} new`:''}</small></div>
         <div class="win2"><div class="b num">${st.pct.toFixed(0)}%</div><div class="l">Retained</div></div></div>
-      <div class="pips">${pips||'<span class="pl">No Mar–Apr draft lines on file.</span>'}</div>
-      <div class="pl">Each pip is a draft line you won in Mar–Apr — turns green when that account re-orders Dos Equis draft this summer.</div></div>`;
+      <div class="pips">${pips||'<span class="pl">No Mar 1–Apr 1 package accounts on file.</span>'}</div>
+      <div class="pl">Each pip is a package account you won Mar 1–Apr 1 — turns green when that account re-orders Dos Equis packages this summer.</div></div>`;
     app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+retentionCard(r.ret)+bonusCard(r.non);
   }
 }
@@ -258,12 +258,12 @@ function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach
 function renderChips(){document.getElementById("chips").innerHTML=["ALL",...MODEL.reps.map(r=>r.name).sort()].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
 function showEmpty(){
-  document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>Awaiting the Dos Equis draft export</h2>
-    <p>This tracker turns a Dos&nbsp;Equis draft transaction report into a retention scoreboard. To load it:</p>
+  document.getElementById("app").innerHTML=`<div class="wrap"><div class="empty"><h2>Awaiting the Dos Equis package export</h2>
+    <p>This tracker turns a Dos&nbsp;Equis package transaction report into a retention scoreboard. To load it:</p>
     <ol class="steps">
-      <li>In Encompass, export Dos&nbsp;Equis <b>draft</b> sales for <b>3/1/2026 – 8/31/2026</b> with columns: Sales Rep, Account, Load Sheet Date, Units.</li>
-      <li>Send it over — it gets split into the <b>Mar–Apr</b> achievement window and the <b>Jun–Aug</b> retention window, then saved here as <code>data.csv</code>.</li>
-      <li>Commit <code>data.csv</code> into the <code>heineken/dosequis</code> folder and refresh.</li>
+      <li>In Encompass, export Dos&nbsp;Equis <b>package</b> sales for <b>3/1/2026 – 8/31/2026</b> with columns: Customer Name, Product, Sales Rep, Date, Cases.</li>
+      <li>Send it over — it gets split into the <b>Mar 1–Apr 1</b> achievement window and the <b>Jun–Aug</b> retention window, then saved here as <code>data.csv</code>.</li>
+      <li>Commit <code>data.csv</code> into the <code>heineken/dosequis-packages</code> folder and refresh.</li>
     </ol></div></div>`;
 }
 async function boot(){
@@ -273,7 +273,7 @@ async function boot(){
   if(!MODEL.live){showEmpty();return;}
   renderChips();render();
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+" · retention window 6/1–8/31":"Retention window 6/1–8/31";
-  document.getElementById("foot").innerHTML="<b>Retention account</b> = an account where the rep won a Dos Equis <b>draft line</b> between 3/1 and 4/30. <b>Kept</b> = that account re-ordered Dos Equis draft between 6/1 and 8/31 on <b>net</b> units (a return cancels the order). Goal is to hold 90% of each rep's Mar–Apr draft lines. A <b>Non-Retention Customer</b> is a summer draft line in an account that wasn't a Mar–Apr line — counted separately as new business. Update by exporting the Dos Equis draft transaction report for 3/1–8/31 and saving it as <code>data.csv</code>.";
+  document.getElementById("foot").innerHTML="<b>Retention account</b> = an account where the rep sold Dos Equis <b>packages</b> between 3/1 and 4/1. <b>Kept</b> = that account re-ordered Dos Equis packages between 6/1 and 8/31 on <b>net</b> cases (a return cancels the order). Goal is to hold 90% of each rep's Mar 1–Apr 1 package accounts. A <b>Non-Retention Customer</b> is a summer package buyer in an account that wasn't a Mar 1–Apr 1 account — counted separately as new business. Update by exporting the Dos Equis package transaction report for 3/1–8/31 and saving it as <code>data.csv</code>.";
 }
 boot();
 

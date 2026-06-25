@@ -1,27 +1,40 @@
 Sales Rep,Account,Qualification Units,Retention Units,Category
-Allison Scott,"12034 Dave & Buster's Nj, Inc",1,1,Retention
-Allison Scott,12057 YARD HOUSE 8384,1,0,Retention
-Allison Scott,13018 Chili's Little Falls,2,0,Retention
-Allison Scott,14002 Applebee's (Totowa) (A),2,0,Retention
-Allison Scott,15074 Bask 46,2,0,Retention
-Allison Scott,17006 The Yard,1,0,Retention
-Allison Scott,24019 Sharky's Wings(P),1,0,Retention
-Allison Scott,24022 Applebee's Clifton,1,2,Retention
-Allison Scott,24031 Tommy's Tavern & Tap (Clifton),0,1,Non-Retention Customer
-Mike Ast,83009 Jalapeno Mex. Grille(A),5,2,Retention
-Nick Melissari,31020 Chili's B & G E Rutherfor,1,0,Retention
-Nick Melissari,31023 Applebee's Garfield (A),1,0,Retention
-Nick Melissari,31039 Yard House 8390,2,1,Retention
-Nick Melissari,31043 House of Que (East Rutherford),0,1,Non-Retention Customer
-Nick Melissari,36014 Viva Margarita Wallington,3,1,Retention
-Nick Melissari,37034 Blackjack Mulligans(P) (Garfield),1,0,Retention
-Nick Melissari,39017 Bj's Rest & Brewhouse(A),1,0,Retention
-Nick Melissari,41033 Applebee's (A) Hackensack,2,0,Retention
-Nick Melissari,42003 Whiskey Roads,1,0,Retention
-Nick Melissari,49085 Tommy's Tavern + Tap (Edgewater),0,1,Non-Retention Customer
-Nick Melissari,80018 Millers Paramus Ale House,3,1,Retention
-Nick Melissari,80024 Applebee's Paramus,2,0,Retention
-Nick Melissari,80054 Chili's Paramus,2,0,Retention
-Paul Mclaughlin,50029 La Tequilera Restaurant,1,0,Retention
-Paul Mclaughlin,57009 Pancho Burrito's (A),4,2,Retention
-Paul Mclaughlin,60004 La Taberna Steak House,1,0,Retention
+Allison Scott,Casa Don Manuel,5,1,Retention
+Allison Scott,Chevy's Fresh Mex (A)Clif,1,1,Retention
+Allison Scott,Chili's Little Falls,1,0,Retention
+Allison Scott,Jalapenos Mexican Grill,3,3,Retention
+Allison Scott,Las Maravillas Restaurant,0,1,Non-Retention Customer
+Anthony Palmisano,Cinco De Mayo (Z),2,0,Retention
+Dan Lagala,Ventana's Restaurant,2,0,Retention
+Dan Lagala,Viva La Margarita Cliffside Park,2,1,Retention
+Derrick Laws,Mexico Bar & Grill,2,2,Retention
+Javier Melo,La Fortaleza (Carlstadt),5,5,Retention
+Javier Melo,La Fortaleza (Clifton),2,0,Retention
+Javier Melo,La Fortaleza (Lodi),3,0,Retention
+Javier Melo,La Fortaleza (Passaic),1,0,Retention
+Javier Melo,La Posada,5,0,Retention
+Javier Melo,Seguidilla 56 Lounge & Liquors,10,10,Retention
+Javier Melo,The Cathedral Restaurant,1,0,Retention
+Matt Powierski,Asu Mare Peru Restobar,3,0,Retention
+Mike Ast,Cinco De Mayo,1,0,Retention
+Nick Melissari,Blue Moon Mexican Cafe,2,2,Retention
+Nick Melissari,Cantina 46,2,3,Retention
+Nick Melissari,Chile,1,1,Retention
+Nick Melissari,Chili's B & G E Rutherfor,2,0,Retention
+Nick Melissari,El Asadero Mexican Grill (Rochelle Park),4,4,Retention
+Nick Melissari,H Mart Inc (Space A103),2,2,Retention
+Nick Melissari,Longhorn Steak Rochele Pk,1,0,Retention
+Nick Melissari,Los Cantaritos Cantina,2,0,Retention
+Nick Melissari,Texas Roadhouse,1,1,Retention
+Nick Melissari,Viva Margarita Hackensack,1,1,Retention
+Nick Melissari,Viva Margarita Wallington,0,3,Non-Retention Customer
+Pablo Lopez,Noches De Colombia (Clifton),2,5,Retention
+Pablo Lopez,Noches De Colombia (S. Hackensack)),0,1,Non-Retention Customer
+Pablo Lopez,Noches De Colombia(Englewood)),0,2,Non-Retention Customer
+Paul Mclaughlin,Blue Akai,2,1,Retention
+Paul Mclaughlin,La Tequilera Restaurant,5,0,Retention
+Paul Mclaughlin,Lolitas Mexican Cantina,6,2,Retention
+Paul Mclaughlin,Vida Garden,0,7,Non-Retention Customer
+Phil Ernst,Saddle Brook Liquor & Bar,0,4,Non-Retention Customer
+Robin Feldman,Homewood Suites By Hilton,1,1,Retention
+Robin Feldman,Vila Verde (P) Rest.,0,5,Non-Retention Customer
