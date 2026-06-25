@@ -35,6 +35,12 @@
   .srow-head .snm{flex:1;font-family:"Space Grotesk";font-weight:700;font-size:18.5px;color:var(--ink)}
   .srow-head .chev{font-size:26px;line-height:1;color:var(--ink-soft);font-weight:700}
   .pgrow{margin:11px 0 0}
+  .pgprog{margin:8px 0 2px}
+  .pgpct{display:block;font-family:"Space Grotesk";font-weight:700;font-size:13px;color:var(--ink-soft);margin:0 0 6px 2px}
+  .pgpct.hit{color:var(--good)}
+  .pgbar{height:6px;background:var(--line);border-radius:4px;overflow:hidden}
+  .pgbar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px}
+  .pgbar.done i{background:linear-gradient(90deg,#3FD074,var(--good))}
   .pglabel{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:7px}
   .tag{font-family:"Space Grotesk";font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:7px;flex:none}
   .tag.q{background:color-mix(in srgb,var(--good) 22%,transparent);color:var(--good)}
@@ -395,6 +401,7 @@ function pctChip(sold,goal){if(!(goal>0))return '';const p=sold/goal*100;return 
 function sgStack(sold,goal){return `<div class="sgstack"><div class="sgcol"><div class="sgnum">${Math.round(sold).toLocaleString()}</div><div class="sglab">CEs Sold</div></div><div class="sgsep">/</div><div class="sgcol"><div class="sgnum goal">${Math.round(goal).toLocaleString()}</div><div class="sglab">Program Goal</div></div></div>`;}
 function goalBar(sold,goal){const hit=goal>0&&sold>=goal;const w=goal>0?Math.min(sold/goal*100,100):0;return `<div class="bar ${hit?'done':''}" style="margin-top:10px"><i style="width:${w.toFixed(1)}%"></i></div>`;}
 function pctUnder(sold,goal,active){if(!(goal>0))return '';active=active!==false;const p=sold/goal*100;const hit=sold>=goal;return `<div class="pctline"><span class="pctbig ${hit?'hit':''}">${p.toFixed(0)}%</span><span class="pctlab">To Goal</span>${hit&&active?achvBadge('sm'):''}</div>`;}
+function progUnder(sold,goal){if(!(goal>0))return '';const p=sold/goal*100;const hit=sold>=goal;return `<div class="pgprog"><span class="pgpct ${hit?'hit':''}">${p.toFixed(0)}% to goal</span><div class="pgbar ${hit?'done':''}"><i style="width:${Math.min(p,100).toFixed(1)}%"></i></div></div>`;}
 function renderBoard(app){
   const {qual,amp}=allSuppliers();
   const qsups=qual.slice().sort((a,b)=>a.localeCompare(b));
@@ -404,8 +411,8 @@ function renderBoard(app){
   const bchips=(arr)=>`<div class="bchips">${arr.length?arr.map(b=>`<span class="bchip">${esc(b)}</span>`).join(""):'<span class="bchip muted">—</span>'}</div>`;
   const card=(sup)=>{
     const g=supAgg(sup), br=supBrands(sup);
-    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgtot">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()} CE</span>${pctChip(g.qTy,g.qGoal)}${g.qGoal>0&&g.qTy>=g.qGoal?achvBadge("sm"):""}</div>${bchips(br.q)}</div>` : "";
-    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgtot">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()} CE</span>${pctChip(g.aTy,g.aGoal)}${g.aGoal>0&&g.aTy>=g.aGoal?achvBadge("sm"):""}</div>${bchips(br.a)}</div>`;
+    const qpart = g.isQ ? `<div class="pgrow"><div class="pglabel"><span class="tag q">Qualifier</span><span class="pgtot">${Math.round(g.qTy).toLocaleString()} / ${Math.round(g.qGoal).toLocaleString()} CE</span>${g.qGoal>0&&g.qTy>=g.qGoal?achvBadge("sm"):""}</div>${bchips(br.q)}${progUnder(g.qTy,g.qGoal)}</div>` : "";
+    const apart = `<div class="pgrow"><div class="pglabel"><span class="tag a">Amplify</span><span class="pgtot">${Math.round(g.aTy).toLocaleString()} / ${Math.round(g.aGoal).toLocaleString()} CE</span>${g.aGoal>0&&g.aTy>=g.aGoal?achvBadge("sm"):""}</div>${bchips(br.a)}${progUnder(g.aTy,g.aGoal)}</div>`;
     return `<button class="srow" data-sup="${esc(sup)}"><div class="srow-head">${logoChip(sup)}<span class="snm">${esc(sup)}</span>${trendSup(sup)}<span class="chev">&rsaquo;</span></div>${qpart}${apart}</button>`;
   };
   const ahtml=asups.length?`<div class="seclabel" style="margin-top:20px">Amplify only · no qualifier</div>`+asups.map(card).join(""):"";
