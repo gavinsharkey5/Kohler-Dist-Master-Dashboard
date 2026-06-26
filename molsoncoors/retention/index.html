@@ -1,21 +1,302 @@
-‹ Molson Coors
-Kohler Distributing · Molson Coors · Post-Program Retention
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molson Coors Retention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11;--card:#15171E;--card2:#1B1E27;--line:#262A35;--line-soft:#20232D;
+    --ink:#F6F7F9;--ink-soft:#B9BFCC;--ink-dim:#7C8395;
+    --accent:#F2A900;--accent2:#B5790A;--good:#37C46B;--bad:#E0524A;--blue:#4C8DD6;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+  a{color:inherit}
+  .back{display:inline-block;margin:18px 0 0;font-family:"Space Grotesk";font-weight:600;font-size:13px;color:var(--ink-soft);text-decoration:none}
+  .back:hover{color:var(--accent)}
+  .eyebrow{font-family:"Space Grotesk";font-weight:600;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:18px 0 4px}
+  h1{font-family:"Space Grotesk";font-weight:700;font-size:clamp(30px,7vw,46px);line-height:1.02;margin:0 0 10px}
+  .lede{font-size:16px;color:var(--ink-soft);max-width:760px;margin:0 0 16px;line-height:1.5}
+  .lede b{color:var(--ink)}
+  /* partial-window banner */
+  .pw{display:flex;gap:11px;align-items:flex-start;background:color-mix(in srgb,var(--accent) 11%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 34%,var(--line));border-radius:14px;padding:13px 15px;margin:0 0 16px}
+  .pw .ic{font-size:18px;line-height:1.2}
+  .pw .tx{font-size:13.5px;color:color-mix(in srgb,var(--accent) 58%,var(--ink));line-height:1.45}
+  .pw .tx b{color:var(--accent)}
+  .windows{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 4px}
+  .winpill{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 14px;font-size:12px;color:var(--ink-dim)}
+  .winpill .tag{display:block;font-family:"Space Grotesk";font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
+  .winpill b{display:block;font-family:"Space Grotesk";font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.25}
+  .updated{font-size:11.5px;color:var(--ink-dim);margin:9px 0 0}
+  hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
+  /* controls */
+  .ctl{margin:18px 0 4px}
+  .ctl .cl{font-family:"Space Grotesk";font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin:0 0 8px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:"Space Grotesk";font-weight:600;font-size:13px;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;transition:.12s}
+  .chip:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#231700}
+  .thr .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#03101e}
+  /* KPIs */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:var(--shadow)}
+  .kpi .k{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-dim);font-weight:700}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:27px;margin-top:5px;line-height:1}
+  .kpi .v small{font-size:14px;color:var(--ink-dim);font-weight:600}
+  .kpi .s{font-size:11px;color:var(--ink-soft);margin-top:4px}
+  .kpi.hl .v{color:var(--accent)}
+  .kpi.gd .v{color:var(--good)}
+  /* sections */
+  .sec{margin:26px 0 0}
+  .sec h2{font-family:"Space Grotesk";font-weight:700;font-size:18px;margin:0 0 3px;display:flex;align-items:center;gap:9px}
+  .sec .sub{font-size:12.5px;color:var(--ink-dim);margin:0 0 13px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow)}
+  .panel h3{font-family:"Space Grotesk";font-weight:600;font-size:14px;margin:0 0 12px;color:var(--ink)}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font-family:"Space Grotesk";font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;text-align:right;padding:0 0 8px;border-bottom:1px solid var(--line)}
+  th:first-child{text-align:left}
+  td{padding:9px 0;border-bottom:1px solid var(--line-soft);text-align:right;font-variant-numeric:tabular-nums}
+  td:first-child{text-align:left;font-weight:600;font-family:"Space Grotesk"}
+  tr:last-child td{border-bottom:none}
+  .rate{font-family:"Space Grotesk";font-weight:700}
+  .ratebar{display:inline-block;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));vertical-align:middle;margin-left:7px}
+  .muted{color:var(--ink-dim)}
+  .vsgoal.over{color:var(--good)} .vsgoal.under{color:var(--ink-soft)}
+  /* bars chart */
+  .bars{display:flex;flex-direction:column;gap:9px}
+  .barrow{display:grid;grid-template-columns:108px 1fr 60px;align-items:center;gap:10px;font-size:12.5px}
+  .barrow .lbl{font-family:"Space Grotesk";font-weight:600;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .barrow .track{height:18px;background:var(--card2);border-radius:5px;overflow:hidden}
+  .barrow .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:5px}
+  .barrow .track i.bl{background:linear-gradient(90deg,var(--blue),#2E5F94)}
+  .barrow .val{text-align:right;font-family:"Space Grotesk";font-weight:700;font-variant-numeric:tabular-nums}
+  .foot{font-size:12px;color:var(--ink-dim);margin:26px 0 40px;line-height:1.55;border-top:1px solid var(--line);padding-top:14px}
+  .foot b{color:var(--ink-soft)}
+  code{background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px}
+  @media(max-width:760px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid2{grid-template-columns:1fr}
+    .barrow{grid-template-columns:92px 1fr 52px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">&lsaquo; Molson Coors</a>
+  <p class="eyebrow"><span></span>Kohler Distributing · Molson Coors · Post-Program Retention</p>
+  <h1>Molson Coors Retention</h1>
+  <p class="lede">Of the accounts placed during the <b>Spring Distribution Program (Jan–Apr 2026)</b>, who is re-buying in the post-program window — by brand, package, premise, location and rep. A placement is one account buying one product during the program; it counts as <b>retained</b> once that account re-buys that product.</p>
 
-Molson Coors Retention
-Of the accounts placed during the Spring Distribution Program (Jan–Apr 2026), who is re-buying in the post-program window — by brand, package, premise, location and rep. A placement is one account buying one product during the program; it counts as retained once that account re-buys that product.
+  <div class="pw">
+    <span class="ic">⏳</span>
+    <span class="tx"><b>Partial window.</b> Data runs through <b>Jun 26, 2026</b> — about <b>57 of the 90</b> post-program days (~63%). This is retention <b>to date</b>, not full 90-day retention. Figures will rise as the remaining ~33 days post; volume is shown as cases/account/week for fair comparison.</span>
+  </div>
 
-⏳
-Partial window. Data runs through Jun 26, 2026 — about 57 of the 90 post-program days (~63%). This is retention to date, not full 90-day retention. Figures will rise as the remaining ~33 days post; volume is shown as cases/account/week for fair comparison.
-Program
-Jan 1 – Apr 30
-where placed
-Retention (partial)
-May 1 – Jun 26
-~57 of 90 days
-Loading…
+  <div class="windows">
+    <div class="winpill"><span class="tag">Program</span><b>Jan 1 – Apr 30</b>where placed</div>
+    <div class="winpill"><span class="tag">Retention (partial)</span><b>May 1 – Jun 26</b>~57 of 90 days</div>
+  </div>
+  <p class="updated" id="updated">Loading…</p>
 
-Brand
-Premise
-Retained = re-buy of at least…
-Could not load data.csv. Make sure data.csv and goals.csv are in this folder.
+  <div class="ctl"><div class="cl">Brand</div><div class="chips" id="brandChips"></div></div>
+  <div class="ctl"><div class="cl">Premise</div><div class="chips" id="premChips"></div></div>
+  <div class="ctl thr"><div class="cl">Retained = re-buy of at least…</div><div class="chips" id="thrChips"></div></div>
 
+  <div id="app"></div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+const POST_DAYS=57, POST_WEEKS=57/7;            // May 1 – Jun 26
+const BRANDS=["Coors","Coors Light","Lite","Peroni"];
+let ROWS=[], GOALS=[], stBrand="All", stPrem="All", stThr=3;
+
+function parseCSV(t){
+  const lines=t.replace(/\r/g,"").split("\n").filter(x=>x.length);
+  const head=splitLine(lines[0]);
+  return lines.slice(1).map(l=>{const c=splitLine(l);const o={};head.forEach((h,i)=>o[h]=c[i]);return o;});
+}
+function splitLine(l){const out=[];let cur="",q=false;for(let i=0;i<l.length;i++){const ch=l[i];
+  if(ch=='"'){q=!q;} else if(ch==','&&!q){out.push(cur);cur="";} else cur+=ch;}out.push(cur);return out;}
+const n=x=>{const v=parseFloat(x);return isNaN(v)?0:v;};
+const fmt=x=>Math.round(x).toLocaleString();
+const pct=(a,b)=>b>0?(a/b*100):0;
+
+async function load(){
+  try{
+    const [rd,gd]=await Promise.all([fetch("data.csv",{cache:"no-store"}),fetch("goals.csv",{cache:"no-store"})]);
+    const rt=await rd.text();
+    ROWS=parseCSV(rt).map(r=>({cust:r.cust,rep:r.rep,premise:r.premise,city:r.city,brand:r.brand,
+      package:r.package,prog:n(r.prog_cases),post:n(r.post_cases),rebuys:n(r.rebuys)}));
+    if(gd.ok){GOALS=parseCSV(await gd.text()).map(g=>({rep:g.rep,premise:g.premise,brand:g.brand,goal:n(g.goal)}));}
+    const lm=rd.headers.get("last-modified");
+    document.getElementById("updated").textContent="Updated "+(lm?new Date(lm).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}):"Jun 26, 2026")+" · "+fmt(ROWS.length)+" placements · program Jan–Apr 2026";
+    buildChips(); render(); writeFoot();
+  }catch(e){
+    document.getElementById("app").innerHTML='<p class="lede">Could not load <code>data.csv</code>. Make sure <code>data.csv</code> and <code>goals.csv</code> are in this folder.</p>';
+    console.error(e);
+  }
+}
+
+function buildChips(){
+  const bc=document.getElementById("brandChips"); bc.innerHTML="";
+  ["All",...BRANDS].forEach(b=>bc.appendChild(chip(b,()=>{stBrand=b;render();},()=>stBrand===b)));
+  const pc=document.getElementById("premChips"); pc.innerHTML="";
+  ["All","Off Premise","On Premise"].forEach(p=>pc.appendChild(chip(p,()=>{stPrem=p;render();},()=>stPrem===p)));
+  const tc=document.getElementById("thrChips"); tc.innerHTML="";
+  [1,3,5,10].forEach(t=>tc.appendChild(chip("≥ "+t+" case"+(t>1?"s":""),()=>{stThr=t;render();},()=>stThr===t)));
+}
+function chip(label,onClick,isOn){
+  const b=document.createElement("button");b.className="chip";b.textContent=label;
+  b.setAttribute("aria-pressed",isOn());b.onclick=()=>{onClick();[...b.parentNode.children].forEach(c=>c.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");};
+  return b;
+}
+
+function filtered(){
+  return ROWS.filter(r=>(stBrand==="All"||r.brand===stBrand)&&(stPrem==="All"||r.premise===stPrem));
+}
+// retained = re-bought at least stThr cases
+const isRet=r=>r.post>=stThr;
+
+function render(){
+  const rows=filtered();
+  const ret=rows.filter(isRet);
+  const placedAccts=new Set(rows.map(r=>r.cust));
+  const rebuyAccts=new Set(ret.map(r=>r.cust));
+  const regular=ret.filter(r=>r.rebuys>=4);
+  const postCases=ret.reduce((s,r)=>s+r.post,0);
+  const avgCase=ret.length?postCases/ret.length:0;
+
+  const kpis=`<div class="kpis">
+    ${kpi("Placement accounts",fmt(placedAccts.size),"placed Jan–Apr")}
+    ${kpi("Re-buying accounts",fmt(rebuyAccts.size),"≥1 product retained","gd")}
+    ${kpi("Account re-buy rate",pct(rebuyAccts.size,placedAccts.size).toFixed(0)+"%","of placed accounts","hl")}
+    ${kpi("Placements",fmt(rows.length),"account × product")}
+    ${kpi("Retained placements",fmt(ret.length),"<small> / "+fmt(rows.length)+"</small>","gd")}
+    ${kpi("Placement retention",pct(ret.length,rows.length).toFixed(0)+"%","at ≥"+stThr+" cases","hl")}
+    ${kpi("Avg cases / retained",avgCase.toFixed(1),"per re-bought product")}
+    ${kpi("Regular re-buyers",fmt(regular.length),"≥4 re-buys")}
+  </div>`;
+
+  // by brand
+  const byBrand=groupStat(rows,r=>r.brand,BRANDS);
+  const brandTable=statTable(byBrand,"Brand");
+  // by premise
+  const byPrem=groupStat(rows,r=>r.premise,["Off Premise","On Premise","Unknown"]);
+  const premTable=statTable(byPrem,"Premise");
+  // by package (top 10 by placements)
+  const byPkg=groupStat(rows,r=>r.package).sort((a,b)=>b.placements-a.placements).slice(0,10);
+  const pkgTable=statTable(byPkg,"Package");
+  // by rep vs goal
+  const repTable=buildRepTable(rows);
+  // threshold sensitivity (independent of stThr — shows all floors on current filter)
+  const thr=[1,3,5,10].map(t=>{const r=rows.filter(x=>x.post>=t);return{t,cnt:r.length,cases:r.reduce((s,x)=>s+x.post,0)};});
+  const thrTable=`<table><thead><tr><th>Floor</th><th>Retained placements</th><th>Cases kept</th></tr></thead><tbody>${
+    thr.map(x=>`<tr${x.t===stThr?' style="color:var(--blue)"':''}><td>≥ ${x.t} case${x.t>1?'s':''}</td><td>${fmt(x.cnt)}</td><td>${fmt(x.cases)}</td></tr>`).join("")}</tbody></table>`;
+
+  // charts
+  const depth=depthHisto(ret);
+  const rateBrand=byBrand.map(b=>({lbl:b.key,val:b.rate,disp:b.rate.toFixed(0)+"%"}));
+  const cadence=cadenceTiers(rows);
+  const velCity=cityVelocity(ret);
+
+  document.getElementById("app").innerHTML=`
+    ${kpis}
+    <div class="sec"><h2>Re-buy by brand &amp; premise</h2><div class="sub">Retention measured at ≥${stThr} cases re-bought. Bar = retention rate.</div>
+      <div class="grid2"><div class="panel"><h3>By brand</h3>${brandTable}</div><div class="panel"><h3>By premise</h3>${premTable}</div></div></div>
+
+    <div class="sec"><h2>Package mix &amp; case threshold</h2><div class="sub">Which packages re-buy, and how the retained count shifts as you raise the case floor.</div>
+      <div class="grid2"><div class="panel"><h3>Top packages by placements</h3>${pkgTable}</div>
+      <div class="panel"><h3>Minimum-case sensitivity</h3>${thrTable}<p class="updated" style="margin-top:10px">Recommended floor: <b style="color:var(--accent)">≥3 cases</b> — drops trivial 1–2 case re-buys while keeping ~99% of volume.</p></div></div></div>
+
+    <div class="sec"><h2>Re-buy depth &amp; cadence</h2><div class="sub">How big are the re-buys, and how often do retained products re-order. <b>Partial window.</b></div>
+      <div class="grid2">
+        <div class="panel"><h3>Re-buy depth (cases per retained product)</h3><div class="bars">${depth}</div></div>
+        <div class="panel"><h3>Cadence — # of re-buys in the window</h3><div class="bars">${cadence}</div></div>
+      </div></div>
+
+    <div class="sec"><h2>Velocity by location</h2><div class="sub">Top 10 cities by case velocity — cases per retained product per week (over the ~8.1-week partial window).</div>
+      <div class="panel"><div class="bars">${velCity}</div></div></div>
+
+    <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file).</div>
+      <div class="panel">${repTable}</div></div>
+  `;
+}
+
+function kpi(k,v,s,cls){return `<div class="kpi ${cls||''}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;}
+
+function groupStat(rows,keyfn,order){
+  const m=new Map();
+  rows.forEach(r=>{const k=keyfn(r);if(!m.has(k))m.set(k,{key:k,placements:0,retained:0,post:0});
+    const o=m.get(k);o.placements++;if(isRet(r)){o.retained++;o.post+=r.post;}});
+  let arr=[...m.values()];
+  arr.forEach(o=>{o.rate=pct(o.retained,o.placements);o.casesWk=o.retained?o.post/o.retained/POST_WEEKS:0;});
+  if(order)arr.sort((a,b)=>order.indexOf(a.key)-order.indexOf(b.key));
+  else arr.sort((a,b)=>b.placements-a.placements);
+  return arr.filter(o=>o.placements>0);
+}
+function statTable(arr,label){
+  const maxRate=Math.max(...arr.map(a=>a.rate),1);
+  return `<table><thead><tr><th>${label}</th><th>Plac.</th><th>Ret.</th><th>Rate</th><th>Cases</th></tr></thead><tbody>${
+    arr.map(o=>`<tr><td>${o.key}</td><td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td>
+      <td><span class="rate">${o.rate.toFixed(0)}%</span><span class="ratebar" style="width:${(o.rate/maxRate*46).toFixed(0)}px"></span></td>
+      <td>${fmt(o.post)}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function buildRepTable(rows){
+  const m=new Map();
+  rows.forEach(r=>{if(!m.has(r.rep))m.set(r.rep,{rep:r.rep,placements:0,retained:0,post:0});
+    const o=m.get(r.rep);o.placements++;if(isRet(r)){o.retained++;o.post+=r.post;}});
+  // goal per rep (sum across brands+premise on the 4 sales brands, matching current brand filter if set)
+  const gm=new Map();
+  GOALS.forEach(g=>{if(stBrand!=="All"&&g.brand!==stBrand)return;if(stPrem!=="All"&&g.premise!==stPrem)return;
+    gm.set(g.rep,(gm.get(g.rep)||0)+g.goal);});
+  let arr=[...m.values()];
+  arr.forEach(o=>{o.rate=pct(o.retained,o.placements);o.goal=gm.get(o.rep)||0;});
+  arr.sort((a,b)=>b.retained-a.retained);
+  return `<table><thead><tr><th>Rep</th><th>Placements</th><th>Retained</th><th>Rate</th><th>Cases</th><th>Distro goal</th></tr></thead><tbody>${
+    arr.map(o=>`<tr><td>${o.rep}</td><td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td>
+      <td class="rate">${o.rate.toFixed(0)}%</td><td>${fmt(o.post)}</td>
+      <td class="${o.goal>0?'muted':''}">${o.goal>0?fmt(o.goal):'—'}</td></tr>`).join("")}</tbody></table>`;
+}
+
+function barChart(items,blue){
+  const max=Math.max(...items.map(i=>i.val),1);
+  return items.map(i=>`<div class="barrow"><div class="lbl">${i.lbl}</div>
+    <div class="track"><i class="${blue?'bl':''}" style="width:${(i.val/max*100).toFixed(1)}%"></i></div>
+    <div class="val">${i.disp}</div></div>`).join("");
+}
+function depthHisto(ret){
+  const buckets=[["1–2",1,2],["3–5",3,5],["6–10",6,10],["11–20",11,20],["21–50",21,50],["50+",51,1e9]];
+  const items=buckets.map(([lbl,lo,hi])=>{const c=ret.filter(r=>r.post>=lo&&r.post<=hi).length;return{lbl:lbl+" cs",val:c,disp:fmt(c)};});
+  return barChart(items,false);
+}
+function cadenceTiers(rows){
+  const ret=rows.filter(isRet);
+  const t1=ret.filter(r=>r.rebuys<=1).length, t2=ret.filter(r=>r.rebuys>=2&&r.rebuys<=3).length, t3=ret.filter(r=>r.rebuys>=4).length;
+  return barChart([{lbl:"1 re-buy",val:t1,disp:fmt(t1)},{lbl:"2–3 re-buys",val:t2,disp:fmt(t2)},{lbl:"4+ (regular)",val:t3,disp:fmt(t3)}],true);
+}
+function cityVelocity(ret){
+  const m=new Map();
+  ret.forEach(r=>{if(!m.has(r.city))m.set(r.city,{n:0,post:0});const o=m.get(r.city);o.n++;o.post+=r.post;});
+  let arr=[...m.entries()].map(([city,o])=>({city,vel:o.post/o.n/POST_WEEKS,n:o.n}))
+    .filter(o=>o.n>=15).sort((a,b)=>b.vel-a.vel).slice(0,10);
+  return barChart(arr.map(o=>({lbl:o.city,val:o.vel,disp:o.vel.toFixed(1)})),false);
+}
+
+function writeFoot(){
+  document.getElementById("foot").innerHTML=`<b>Definitions.</b> A <b>placement</b> = one account buying one product during the Spring Program (Jan 1–Apr 30, 2026); each is <b>retained</b> when that account re-buys that product in the post window (May 1–Jun 26, 2026) at the selected case floor. <b>Account re-buy rate</b> = share of placed accounts with ≥1 retained product. <b>Regular re-buyer</b> = a retained product re-bought on ≥4 separate dates. Volume in <b>cases</b>; velocity is cases per retained product per week over the ~8.1-week partial window. <b>This is retention to date — ~57 of the 90 post-program days — and will rise as the window completes.</b> Rep goals are Spring Distribution Program placement goals from the supplied goals file.`;
+}
+load();
+</script>
+</body>
+</html>
