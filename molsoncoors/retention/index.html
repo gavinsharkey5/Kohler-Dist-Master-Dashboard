@@ -85,6 +85,20 @@
   table.mini th{padding:0 0 6px;font-size:9.5px}
   table.mini td{padding:6px 0;border-bottom:1px solid var(--line-soft)}
   table.mini td:first-child{font-family:Inter;font-weight:600;max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  /* level-2 clickable -> level-3 itemized re-buys */
+  table.mini tr.l2row{cursor:pointer}
+  table.mini tr.l2row:hover{background:var(--card)}
+  table.mini tr.l2row.open{background:var(--card)}
+  .caret2{display:inline-block;width:8px;margin-right:6px;color:var(--ink-dim);transition:transform .15s;font-weight:700}
+  table.mini tr.l2row.open .caret2{transform:rotate(90deg);color:var(--accent)}
+  tr.l3det>td{padding:0 0 8px}
+  .l3wrap{background:var(--canvas);border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin:2px 0 4px}
+  .l3h{font-family:"Space Grotesk";font-size:11px;font-weight:600;color:var(--ink-soft);margin:0 0 6px}
+  table.l3{width:auto;min-width:200px}
+  table.l3 th{font-size:9px;padding:0 22px 5px 0}
+  table.l3 th:last-child{padding-right:0}
+  table.l3 td{padding:4px 22px 4px 0;border-bottom:1px solid var(--line-soft);font-size:12px;text-align:left;font-variant-numeric:tabular-nums}
+  table.l3 td:last-child{padding-right:0;text-align:right;font-family:"Space Grotesk";font-weight:600}
   /* bars chart */
   .bars{display:flex;flex-direction:column;gap:9px}
   .barrow{display:grid;grid-template-columns:108px 1fr 60px;align-items:center;gap:10px;font-size:12.5px}
@@ -115,12 +129,12 @@
 
   <div class="pw">
     <span class="ic">⏳</span>
-    <span class="tx"><b>Partial window.</b> Data runs through <b>Jun 26, 2026</b> — about <b>57 of the 90</b> post-program days (~63%). This is retention <b>to date</b>, not full 90-day retention. Figures will rise as the remaining ~33 days post; volume is shown as cases/account/week for fair comparison.</span>
+    <span class="tx"><b>Partial window.</b> Data runs through <b id="pwEnd">Jun 29</b> — about <b><span id="pwDays">59</span> of the 90</b> post-program days. This is retention <b>to date</b>, not full 90-day retention. Figures will rise as the remaining days post; volume is shown as cases/account/week for fair comparison.</span>
   </div>
 
   <div class="windows">
     <div class="winpill"><span class="tag">Program</span><b>Jan 1 – Apr 30</b>where placed</div>
-    <div class="winpill"><span class="tag">Retention (partial)</span><b>May 1 – Jun 26</b>~57 of 90 days</div>
+    <div class="winpill"><span class="tag">Retention (partial)</span><b id="winRet">May 1 – Jun 29</b><span id="winDays">59 of 90 days</span></div>
   </div>
   <p class="updated" id="updated">Loading…</p>
 
@@ -134,7 +148,9 @@
 </div>
 
 <script>
-const POST_DAYS=57, POST_WEEKS=57/7;            // May 1 – Jun 26
+let POST_DAYS=57, POST_WEEKS=57/7;              // recomputed from data after load
+let MAXDATE=null; const REBUYS={};               // itemized re-buys keyed by cust|prod
+const RET_START=new Date(2026,4,1);              // May 1, 2026
 const BRANDS=["Coors","Coors Light","Lite","Peroni"];
 let ROWS=[], GOALS=[], stBrand="All", stPrem="All", stThr=3;
 
@@ -152,11 +168,22 @@ function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"
 
 async function load(){
   try{
-    const [rd,gd]=await Promise.all([fetch("data.csv",{cache:"no-store"}),fetch("goals.csv",{cache:"no-store"})]);
+    const [rd,gd,bd]=await Promise.all([fetch("data.csv",{cache:"no-store"}),fetch("goals.csv",{cache:"no-store"}),fetch("rebuys.csv",{cache:"no-store"})]);
     const rt=await rd.text();
     ROWS=parseCSV(rt).map(r=>({cust:r.cust,name:r.name,rep:r.rep,premise:r.premise,city:r.city,brand:r.brand,
-      package:r.package,prog:n(r.prog_cases),post:n(r.post_cases),rebuys:n(r.rebuys)}));
+      package:r.package,prod:r.prod,prog:n(r.prog_cases),post:n(r.post_cases),rebuys:n(r.rebuys),last:r.last||""}));
     if(gd.ok){GOALS=parseCSV(await gd.text()).map(g=>({rep:g.rep,premise:g.premise,brand:g.brand,goal:n(g.goal)}));}
+    if(bd.ok){parseCSV(await bd.text()).forEach(x=>{const k=x.cust+"|"+x.prod;(REBUYS[k]=REBUYS[k]||[]).push({date:x.date,cases:n(x.cases)});});
+      Object.values(REBUYS).forEach(a=>a.sort((p,q)=>q.date.localeCompare(p.date)));}   // newest first
+    // window end = latest re-buy date in the data; partial-window math derived from it
+    let maxs=ROWS.map(r=>r.last).filter(Boolean).sort(); MAXDATE=maxs.length?maxs[maxs.length-1]:"2026-06-29";
+    const md=new Date(MAXDATE+"T00:00:00");
+    POST_DAYS=Math.round((md-RET_START)/86400000)+1; POST_WEEKS=POST_DAYS/7;
+    const endTxt=md.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+    const wr=document.getElementById("winRet"); if(wr)wr.textContent="May 1 – "+endTxt;
+    const wd=document.getElementById("winDays"); if(wd)wd.textContent=POST_DAYS+" of 90 days";
+    const pb=document.getElementById("pwEnd"); if(pb)pb.textContent=endTxt;
+    const pd2=document.getElementById("pwDays"); if(pd2)pd2.textContent=POST_DAYS;
     const lm=rd.headers.get("last-modified");
     document.getElementById("updated").textContent="Updated "+(lm?new Date(lm).toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"}):"Jun 26, 2026")+" · "+fmt(ROWS.length)+" placements · program Jan–Apr 2026";
     buildChips(); render(); writeFoot();
@@ -246,7 +273,7 @@ function render(){
     <div class="sec"><h2>Velocity by location</h2><div class="sub">Top 10 cities by case velocity — cases per retained product per week (over the ~8.1-week partial window).</div>
       <div class="panel"><div class="bars">${velCity}</div></div></div>
 
-    <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file). <b style="color:var(--accent)">Tap a rep</b> to see their top 25 retained customers.</div>
+    <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file). <b style="color:var(--accent)">Tap a rep</b> for their accounts, then <b style="color:var(--accent)">tap an account</b> to see each re-buy (date &amp; cases, newest first).</div>
       <div class="panel">${repTable}</div></div>
   `;
 }
@@ -285,8 +312,8 @@ function buildRepTable(rows){
   const body=arr.map((o,i)=>{
     const top=o.custs.slice().sort((a,b)=>b.rebuys-a.rebuys||b.post-a.post).slice(0,25);
     const detail=top.length
-      ? `<table class="mini"><thead><tr><th>Customer</th><th>Brand</th><th>Package</th><th>Re-buys</th><th>Cases</th></tr></thead><tbody>${
-          top.map(c=>`<tr><td>${esc(c.name||c.cust)}</td><td>${c.brand}</td><td>${c.package}</td><td>${fmt(c.rebuys)}</td><td>${fmt(c.post)}</td></tr>`).join("")}</tbody></table>`
+      ? `<table class="mini"><thead><tr><th>Customer</th><th>Brand</th><th>Package</th><th>Last buy</th><th>Re-buys</th><th>Cases</th></tr></thead><tbody>${
+          top.map((c,j)=>`<tr class="l2row" id="l2-${i}-${j}" onclick="toggleL2(${i},${j},'${c.cust}','${c.prod}')"><td><span class="caret2">&rsaquo;</span>${esc(c.name||c.cust)}</td><td>${c.brand}</td><td>${c.package}</td><td>${fmtDate(c.last)}</td><td>${fmt(c.rebuys)}</td><td>${fmt(c.post)}</td></tr>`).join("")}</tbody></table>`
       : '<p class="muted" style="margin:6px 2px">No retained customers in this view.</p>';
     return `<tr class="reprow" id="rep-${i}" onclick="toggleRep(${i})"><td><span class="caret">&rsaquo;</span>${esc(o.rep)}</td>
         <td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td><td class="rate">${o.rate.toFixed(0)}%</td>
@@ -303,6 +330,20 @@ function toggleRep(i){
   if(det.hasAttribute("hidden")){det.removeAttribute("hidden");row.classList.add("open");}
   else{det.setAttribute("hidden","");row.classList.remove("open");}
 }
+function toggleL2(i,j,cust,prod){
+  const row=document.getElementById("l2-"+i+"-"+j); if(!row)return;
+  const nx=row.nextElementSibling;
+  if(nx && nx.classList.contains("l3det")){nx.remove();row.classList.remove("open");return;}
+  const lines=REBUYS[cust+"|"+prod]||[];
+  const body=lines.length
+    ? lines.map(x=>`<tr><td>${fmtDate(x.date)}</td><td>${fmt(x.cases)} case${x.cases==1?"":"s"}</td></tr>`).join("")
+    : `<tr><td colspan="2" class="muted">No itemized re-buys in this window.</td></tr>`;
+  const tr=document.createElement("tr"); tr.className="l3det";
+  tr.innerHTML=`<td colspan="6"><div class="l3wrap"><div class="l3h">Re-buys · newest first <span class="muted">(${lines.length} purchase${lines.length==1?"":"s"})</span></div>`+
+    `<table class="l3"><thead><tr><th>Date</th><th>Cases bought</th></tr></thead><tbody>${body}</tbody></table></div></td>`;
+  row.after(tr); row.classList.add("open");
+}
+function fmtDate(s){if(!s)return "—";const d=new Date(s+"T00:00:00");return d.toLocaleDateString(undefined,{month:"short",day:"numeric"});}
 
 function barChart(items,blue){
   const max=Math.max(...items.map(i=>i.val),1);
