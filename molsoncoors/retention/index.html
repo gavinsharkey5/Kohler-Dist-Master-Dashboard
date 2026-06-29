@@ -70,6 +70,21 @@
   .ratebar{display:inline-block;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));vertical-align:middle;margin-left:7px}
   .muted{color:var(--ink-dim)}
   .vsgoal.over{color:var(--good)} .vsgoal.under{color:var(--ink-soft)}
+  /* expandable rep rows */
+  tr.reprow{cursor:pointer;transition:background .12s}
+  tr.reprow:hover{background:var(--card2)}
+  tr.reprow td:first-child{display:flex;align-items:center;gap:8px}
+  .caret{display:inline-block;width:9px;color:var(--ink-dim);transition:transform .15s;font-weight:700}
+  tr.reprow.open{background:var(--card2)}
+  tr.reprow.open .caret{transform:rotate(90deg);color:var(--accent)}
+  tr.rd>td{padding:0;border-bottom:1px solid var(--line)}
+  tr.rd .inner{background:var(--card2);padding:12px 14px 16px;border-left:3px solid var(--accent)}
+  tr.rd .dh{font-family:"Space Grotesk";font-weight:600;font-size:12.5px;margin:0 0 10px;color:var(--ink)}
+  tr.rd .dh .muted{font-weight:400}
+  table.mini{font-size:12.5px}
+  table.mini th{padding:0 0 6px;font-size:9.5px}
+  table.mini td{padding:6px 0;border-bottom:1px solid var(--line-soft)}
+  table.mini td:first-child{font-family:Inter;font-weight:600;max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   /* bars chart */
   .bars{display:flex;flex-direction:column;gap:9px}
   .barrow{display:grid;grid-template-columns:108px 1fr 60px;align-items:center;gap:10px;font-size:12.5px}
@@ -85,6 +100,9 @@
     .kpis{grid-template-columns:repeat(2,1fr)}
     .grid2{grid-template-columns:1fr}
     .barrow{grid-template-columns:92px 1fr 52px}
+    tr.rd .inner{padding:10px 8px 12px}
+    table.mini{font-size:11px}
+    table.mini td:first-child{max-width:104px}
   }
 </style>
 </head>
@@ -130,12 +148,13 @@ function splitLine(l){const out=[];let cur="",q=false;for(let i=0;i<l.length;i++
 const n=x=>{const v=parseFloat(x);return isNaN(v)?0:v;};
 const fmt=x=>Math.round(x).toLocaleString();
 const pct=(a,b)=>b>0?(a/b*100):0;
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
 async function load(){
   try{
     const [rd,gd]=await Promise.all([fetch("data.csv",{cache:"no-store"}),fetch("goals.csv",{cache:"no-store"})]);
     const rt=await rd.text();
-    ROWS=parseCSV(rt).map(r=>({cust:r.cust,rep:r.rep,premise:r.premise,city:r.city,brand:r.brand,
+    ROWS=parseCSV(rt).map(r=>({cust:r.cust,name:r.name,rep:r.rep,premise:r.premise,city:r.city,brand:r.brand,
       package:r.package,prog:n(r.prog_cases),post:n(r.post_cases),rebuys:n(r.rebuys)}));
     if(gd.ok){GOALS=parseCSV(await gd.text()).map(g=>({rep:g.rep,premise:g.premise,brand:g.brand,goal:n(g.goal)}));}
     const lm=rd.headers.get("last-modified");
@@ -227,7 +246,7 @@ function render(){
     <div class="sec"><h2>Velocity by location</h2><div class="sub">Top 10 cities by case velocity — cases per retained product per week (over the ~8.1-week partial window).</div>
       <div class="panel"><div class="bars">${velCity}</div></div></div>
 
-    <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file).</div>
+    <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file). <b style="color:var(--accent)">Tap a rep</b> to see their top 25 retained customers.</div>
       <div class="panel">${repTable}</div></div>
   `;
 }
@@ -254,8 +273,8 @@ function statTable(arr,label){
 
 function buildRepTable(rows){
   const m=new Map();
-  rows.forEach(r=>{if(!m.has(r.rep))m.set(r.rep,{rep:r.rep,placements:0,retained:0,post:0});
-    const o=m.get(r.rep);o.placements++;if(isRet(r)){o.retained++;o.post+=r.post;}});
+  rows.forEach(r=>{if(!m.has(r.rep))m.set(r.rep,{rep:r.rep,placements:0,retained:0,post:0,custs:[]});
+    const o=m.get(r.rep);o.placements++;if(isRet(r)){o.retained++;o.post+=r.post;o.custs.push(r);}});
   // goal per rep (sum across brands+premise on the 4 sales brands, matching current brand filter if set)
   const gm=new Map();
   GOALS.forEach(g=>{if(stBrand!=="All"&&g.brand!==stBrand)return;if(stPrem!=="All"&&g.premise!==stPrem)return;
@@ -263,10 +282,26 @@ function buildRepTable(rows){
   let arr=[...m.values()];
   arr.forEach(o=>{o.rate=pct(o.retained,o.placements);o.goal=gm.get(o.rep)||0;});
   arr.sort((a,b)=>b.retained-a.retained);
-  return `<table><thead><tr><th>Rep</th><th>Placements</th><th>Retained</th><th>Rate</th><th>Cases</th><th>Distro goal</th></tr></thead><tbody>${
-    arr.map(o=>`<tr><td>${o.rep}</td><td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td>
-      <td class="rate">${o.rate.toFixed(0)}%</td><td>${fmt(o.post)}</td>
-      <td class="${o.goal>0?'muted':''}">${o.goal>0?fmt(o.goal):'—'}</td></tr>`).join("")}</tbody></table>`;
+  const body=arr.map((o,i)=>{
+    const top=o.custs.slice().sort((a,b)=>b.rebuys-a.rebuys||b.post-a.post).slice(0,25);
+    const detail=top.length
+      ? `<table class="mini"><thead><tr><th>Customer</th><th>Brand</th><th>Package</th><th>Re-buys</th><th>Cases</th></tr></thead><tbody>${
+          top.map(c=>`<tr><td>${esc(c.name||c.cust)}</td><td>${c.brand}</td><td>${c.package}</td><td>${fmt(c.rebuys)}</td><td>${fmt(c.post)}</td></tr>`).join("")}</tbody></table>`
+      : '<p class="muted" style="margin:6px 2px">No retained customers in this view.</p>';
+    return `<tr class="reprow" id="rep-${i}" onclick="toggleRep(${i})"><td><span class="caret">&rsaquo;</span>${esc(o.rep)}</td>
+        <td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td><td class="rate">${o.rate.toFixed(0)}%</td>
+        <td>${fmt(o.post)}</td><td class="${o.goal>0?'muted':''}">${o.goal>0?fmt(o.goal):'—'}</td></tr>
+      <tr class="rd" id="rd-${i}" hidden><td colspan="6"><div class="inner">
+        <div class="dh">Top ${Math.min(25,top.length)} retained customers · ${esc(o.rep)} <span class="muted">— customer × product, ranked by re-buys (≥${stThr} cases)</span></div>
+        ${detail}</div></td></tr>`;
+  }).join("");
+  return `<table class="reptable"><thead><tr><th>Rep</th><th>Placements</th><th>Retained</th><th>Rate</th><th>Cases</th><th>Distro goal</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+function toggleRep(i){
+  const row=document.getElementById("rep-"+i), det=document.getElementById("rd-"+i);
+  if(!det)return;
+  if(det.hasAttribute("hidden")){det.removeAttribute("hidden");row.classList.add("open");}
+  else{det.setAttribute("hidden","");row.classList.remove("open");}
 }
 
 function barChart(items,blue){
