@@ -1,37 +1,33 @@
 Sales Rep,Account,Qualification Units,Retention Units,Category
-Allison Scott,Applebee's (A)Butler,3,0,Retention
+Allison Scott,Applebee's (A)Butler,2,0,Retention
 Allison Scott,Applebee's (Totowa) (A),2,2,Retention
-Allison Scott,Applebee's Clifton,9,4,Retention
+Allison Scott,Applebee's Clifton,5,2,Retention
 Allison Scott,Bask 46,1,0,Retention
-Allison Scott,Blackjack Mulligan's Public House,19,8,Retention
-Allison Scott,"Buffalo Wild Wings - Wayne, NJ",0,1,Non-Retention Customer
+Allison Scott,Blackjack Mulligan's Public House,17,7,Retention
 Allison Scott,D'CARBON BAR AND GRILL haledon,0,1,Non-Retention Customer
-Allison Scott,Feathers (A),9,0,Retention
-Allison Scott,Sharky's Wings(P),1,0,Retention
-Allison Scott,Tommy's Tavern & Tap (Clifton),0,2,Non-Retention Customer
-Allison Scott,YARD HOUSE 8384,8,4,Retention
+Allison Scott,Feathers (A),7,0,Retention
+Allison Scott,YARD HOUSE 8384,4,3,Retention
 Dan Lagala,365 BBQ,2,0,Retention
 Dan Lagala,Brazeiro Churrascaria,4,2,Retention
-Javier Melo,Mambo Lounge (P),0,6,Non-Retention Customer
+Javier Melo,Mambo Lounge (P),0,1,Non-Retention Customer
 Matt Powierski,Karol's Pub (A),6,6,Retention
-Nick Melissari,Applebee's (A) Hackensack,3,2,Retention
-Nick Melissari,Applebee's Garfield (A),6,4,Retention
+Nick Melissari,Applebee's (A) Hackensack,2,0,Retention
+Nick Melissari,Applebee's Garfield (A),3,2,Retention
 Nick Melissari,Applebee's Paramus,3,2,Retention
-Nick Melissari,Biggies (A),3,2,Retention
-Nick Melissari,Bj's Rest & Brewhouse(A),6,2,Retention
-Nick Melissari,Blackjack Mulligans (Hawthorne),7,6,Retention
-Nick Melissari,Blackjack Mulligans(P) (Garfield),6,7,Retention
+Nick Melissari,Biggies (A),3,1,Retention
+Nick Melissari,Bj's Rest & Brewhouse(A),3,1,Retention
+Nick Melissari,Blackjack Mulligans (Hawthorne),4,3,Retention
+Nick Melissari,Blackjack Mulligans(P) (Garfield),5,4,Retention
 Nick Melissari,Cjd 2l Corp(Sofive),6,3,Retention
 Nick Melissari,El Asadero Mexican Grill (Rochelle Park),0,1,Non-Retention Customer
 Nick Melissari,El asadero Mexican Grill (Fort Lee),1,1,Retention
 Nick Melissari,Holiday Bowl,2,0,Retention
 Nick Melissari,Marcus Live Bar & Grille,2,0,Retention
-Nick Melissari,Millers Paramus Ale House,10,4,Retention
+Nick Melissari,Millers Paramus Ale House,5,3,Retention
 Nick Melissari,Mozzarella Bar,0,4,Non-Retention Customer
-Nick Melissari,Roxanne's A),3,0,Retention
-Nick Melissari,Yard House 8390,7,13,Retention
-Pablo Lopez,Hacienda (P),4,2,Retention
+Nick Melissari,Roxanne's A),1,0,Retention
+Nick Melissari,Yard House 8390,6,11,Retention
+Pablo Lopez,Hacienda (P),3,1,Retention
 Pablo Lopez,Portuguese Tavern Steak House,2,2,Retention
 Paul Mclaughlin,Cresskill Tavern,3,3,Retention
-Paul Mclaughlin,Cubby's (P),0,1,Non-Retention Customer
-Paul Mclaughlin,Tommy Fox's Pub Hse(P),1,1,Retention
+Paul Mclaughlin,Tommy Fox's Pub Hse(P),1,0,Retention
