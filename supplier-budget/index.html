@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kohler Distributing — Supplier Budget Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--good:#34B45A;--warn:#E8C45A;--over:#E5564E;--accent:#3FB68B;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
+  .wrap{max-width:1120px;margin:0 auto}
+  a.back{display:inline-block;color:var(--ink-soft);text-decoration:none;font-family:"Space Grotesk";font-size:13px;font-weight:500;margin:26px 0 0;letter-spacing:.02em}
+  a.back:hover{color:var(--ink)}
+  header{padding:14px 0 8px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--ink-soft);margin:0 0 10px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(30px,7vw,44px);line-height:1.0;margin:0}
+  .sub{color:var(--ink-soft);margin:14px 0 0;max-width:62ch;font-size:15px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+  .kpi .k{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .kpi .v small{font-size:14px;color:var(--ink-soft);font-weight:500}
+  .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 14px}
+  .search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--ink);font-family:"Inter";font-size:14px}
+  .search::placeholder{color:var(--ink-soft)}
+  .search:focus{outline:2px solid #3A3F4C;outline-offset:0}
+  .toggle{display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-size:13.5px;font-family:"Space Grotesk";font-weight:500;cursor:pointer;user-select:none}
+  .toggle input{accent-color:var(--accent);width:16px;height:16px}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+  table{width:100%;border-collapse:collapse;min-width:760px}
+  thead th{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-align:right;padding:14px 12px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th:first-child{text-align:left}
+  thead th .arr{opacity:.5;font-size:10px;margin-left:3px}
+  thead th.sorted .arr{opacity:1;color:var(--ink)}
+  tbody td{padding:13px 12px;text-align:right;font-size:14px;border-bottom:1px solid rgba(42,46,56,.55);white-space:nowrap}
+  tbody td:first-child{text-align:left;font-weight:500}
+  tbody tr.sup{cursor:pointer;transition:background .12s ease}
+  tbody tr.sup:hover{background:var(--card-h)}
+  .caret{display:inline-block;width:14px;color:var(--ink-soft);transition:transform .15s ease;font-size:11px}
+  tr.sup.open .caret{transform:rotate(90deg);color:var(--ink)}
+  .nm{font-family:"Space Grotesk";font-weight:600}
+  .barcell{min-width:160px}
+  .bar{position:relative;height:8px;border-radius:999px;background:#23272F;overflow:hidden;width:88px;display:inline-block;vertical-align:middle;margin-right:8px}
+  .bar span{position:absolute;left:0;top:0;bottom:0;border-radius:999px}
+  .pctnum{font-family:"Space Grotesk";font-weight:600;font-size:13px}
+  .muted{color:var(--ink-soft)}
+  .dash{color:#5b616e}
+  tr.detail td{padding:0;border-bottom:1px solid rgba(42,46,56,.55);background:#13161C}
+  .acc{padding:6px 16px 12px 40px}
+  .acc table{min-width:0;width:100%}
+  .acc thead th{font-size:10px;padding:8px 12px;border:none;cursor:default;letter-spacing:.08em}
+  .acc tbody td{padding:7px 12px;font-size:13px;border-bottom:1px dashed rgba(42,46,56,.5);color:var(--ink-soft)}
+  .acc tbody tr:last-child td{border-bottom:none}
+  .acc tbody td:first-child{color:var(--ink);font-weight:400;font-family:"Inter"}
+  .nobud{font-size:11px;color:var(--warn);font-family:"Space Grotesk";font-weight:600;letter-spacing:.04em}
+  .totrow td{border-top:2px solid var(--line);font-family:"Space Grotesk";font-weight:700;background:#1B1F27}
+  .empty{padding:30px 16px;text-align:center;color:var(--ink-soft);font-size:14px}
+  footer{color:var(--ink-soft);font-size:12.5px;margin:30px 0 48px;border-top:1px solid var(--line);padding-top:16px}
+  footer .src{display:block;margin-top:6px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">&lsaquo; All Trackers</a>
+  <header>
+    <p class="eyebrow">Supplier Marketing Budgets · 2026</p>
+    <h1>Supplier Budget Tracker</h1>
+    <p class="sub">Every supplier's marketing budget, what Kohler has spent against it, and where billback dollars stand — received vs. still owed to us. Tap any supplier to see its account lines.</p>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="controls">
+    <input class="search" id="search" type="text" placeholder="Search a supplier…" autocomplete="off">
+    <label class="toggle"><input type="checkbox" id="hidezero"> Hide $0-budget suppliers</label>
+  </div>
+
+  <div class="tablewrap">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th data-k="supplier" class="sorted">Supplier <span class="arr">▲</span></th>
+          <th data-k="budget">Budget <span class="arr"></span></th>
+          <th data-k="spend">Kohler Spend <span class="arr"></span></th>
+          <th data-k="pct" class="barcell">% to Budget <span class="arr"></span></th>
+          <th data-k="bb_received">Received <span class="arr"></span></th>
+          <th data-k="bb_outstanding">Outstanding <span class="arr"></span></th>
+        </tr>
+      </thead>
+      <tbody id="body"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Internal use. Shows supplier-level spend and billback detail — please don't share outside the team.
+    <span class="src">Calculated live from the raw 2026 expense ledger and budget sheet. "Kohler Spend" is out-of-pocket spend; "% to Budget" is spend ÷ budget. Suppliers tagged <span class="nobud">NO BUDGET</span> have spend but no allocated budget in the budget sheet.</span>
+  </footer>
+</div>
+
+<script>
+const DATA = {"suppliers":[{"supplier":"Molson Coors","budget":1525568.0,"spend":327625.0,"pct":21.5,"bb_received":85762.34,"bb_outstanding":72163.67,"accounts":[{"account":"ADVERTISING- COORS","spend":191921.13,"bb_received":0.0,"bb_outstanding":22222.22},{"account":"COORS- TACTICAL","spend":135703.79,"bb_received":85762.34,"bb_outstanding":49941.45}]},{"supplier":"Constellation","budget":658388.0,"spend":565834.0,"pct":85.9,"bb_received":0.0,"bb_outstanding":25476.13,"accounts":[{"account":"CROWN- TACTICAL","spend":565834.07,"bb_received":0.0,"bb_outstanding":25476.13}]},{"supplier":"Heineken","budget":171178.0,"spend":118112.0,"pct":69.0,"bb_received":81318.02,"bb_outstanding":5495.22,"accounts":[{"account":"HEINEKEN-LBDF(LOCAL BUS.FUND)","spend":66643.98,"bb_received":65095.83,"bb_outstanding":0.0},{"account":"HEINEKEN TACTICAL","spend":51467.74,"bb_received":16222.19,"bb_outstanding":5495.22}]},{"supplier":"Yuengling","budget":112769.0,"spend":26622.0,"pct":23.6,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[{"account":"YUENGLING- TACTICAL","spend":26622.47,"bb_received":0.0,"bb_outstanding":0.0}]},{"supplier":"Mark Anthony","budget":106232.0,"spend":37537.0,"pct":35.3,"bb_received":17831.86,"bb_outstanding":19704.93,"accounts":[{"account":"ADVERTISING- MIKE'S","spend":37536.79,"bb_received":17831.86,"bb_outstanding":19704.93}]},{"supplier":"Lagunitas","budget":63769.0,"spend":1192.0,"pct":1.9,"bb_received":1192.0,"bb_outstanding":0.0,"accounts":[{"account":"Lagunitas Brewing Company","spend":1192.0,"bb_received":1192.0,"bb_outstanding":0.0}]},{"supplier":"Pabst","budget":37500.0,"spend":2207.0,"pct":5.9,"bb_received":850.51,"bb_outstanding":0.0,"accounts":[{"account":"PABST BREWING CO(PAB/ST/BALL)","spend":2207.32,"bb_received":850.51,"bb_outstanding":0.0}]},{"supplier":"Hofbrau","budget":31000.0,"spend":614.0,"pct":2.0,"bb_received":613.65,"bb_outstanding":0.0,"accounts":[{"account":"ADVERTISING- HOFBRAU","spend":613.65,"bb_received":613.65,"bb_outstanding":0.0}]},{"supplier":"Sierra Nevada","budget":22800.0,"spend":22017.0,"pct":96.6,"bb_received":10064.37,"bb_outstanding":9928.42,"accounts":[{"account":"SIERRA NEVADA","spend":22016.65,"bb_received":10064.37,"bb_outstanding":9928.42}]},{"supplier":"Paulaner","budget":16172.0,"spend":2008.0,"pct":12.4,"bb_received":57.1,"bb_outstanding":1068.0,"accounts":[{"account":"PAULANER USA TACTICAL","spend":2007.8,"bb_received":57.1,"bb_outstanding":1068.0}]},{"supplier":"Radeberger","budget":15000.0,"spend":1014.0,"pct":6.8,"bb_received":1013.7,"bb_outstanding":0.0,"accounts":[{"account":"RADEBERGER GRUPPE USA","spend":1013.7,"bb_received":1013.7,"bb_outstanding":0.0}]},{"supplier":"FX Matt","budget":15000.0,"spend":0.0,"pct":0.0,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Athletic","budget":12500.0,"spend":5492.0,"pct":43.9,"bb_received":2978.07,"bb_outstanding":1680.0,"accounts":[{"account":"Athletic Brewing Company","spend":5109.8,"bb_received":2978.07,"bb_outstanding":1680.0},{"account":"ATHletic Brewing Company","spend":382.55,"bb_received":0.0,"bb_outstanding":0.0}]},{"supplier":"Great Lakes","budget":4000.0,"spend":877.0,"pct":21.9,"bb_received":315.75,"bb_outstanding":315.75,"accounts":[{"account":"ADV. GREAT LAKES BREWING CO.","spend":877.02,"bb_received":315.75,"bb_outstanding":315.75}]},{"supplier":"Global Beer","budget":3735.0,"spend":0.0,"pct":0.0,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Victory Brewing Company","budget":0.0,"spend":66582.0,"pct":null,"bb_received":236.33,"bb_outstanding":0.0,"accounts":[{"account":"VICTORY BREWING COMPANY","spend":66581.56,"bb_received":236.33,"bb_outstanding":0.0}]},{"supplier":"Boston Beer","budget":0.0,"spend":51933.0,"pct":null,"bb_received":46035.95,"bb_outstanding":5897.47,"accounts":[{"account":"SAM ADAMS- TACTICAL","spend":51933.42,"bb_received":46035.95,"bb_outstanding":5897.47}]},{"supplier":"Total Beverage","budget":0.0,"spend":47486.0,"pct":null,"bb_received":1903.0,"bb_outstanding":902.5,"accounts":[{"account":"TOTAL BEVERAGE SOLUTION","spend":47485.5,"bb_received":1903.0,"bb_outstanding":902.5}]},{"supplier":"Garage Beer","budget":0.0,"spend":33490.0,"pct":null,"bb_received":1958.02,"bb_outstanding":15000.0,"accounts":[{"account":"GARAGE BEER","spend":33392.45,"bb_received":1958.02,"bb_outstanding":15000.0},{"account":"GarAGE BEER","spend":97.5,"bb_received":0.0,"bb_outstanding":0.0}]},{"supplier":"Sixpoint","budget":0.0,"spend":29258.0,"pct":null,"bb_received":1022.44,"bb_outstanding":0.0,"accounts":[{"account":"SIXPOINT","spend":29257.5,"bb_received":1022.44,"bb_outstanding":0.0}]},{"supplier":"Montauk","budget":0.0,"spend":16430.0,"pct":null,"bb_received":13922.75,"bb_outstanding":0.0,"accounts":[{"account":"Montauk Brewing Company","spend":16429.65,"bb_received":13922.75,"bb_outstanding":0.0}]},{"supplier":"Sapporo","budget":0.0,"spend":7939.0,"pct":null,"bb_received":7113.96,"bb_outstanding":0.0,"accounts":[{"account":"SAPPORO","spend":7939.04,"bb_received":7113.96,"bb_outstanding":0.0}]},{"supplier":"Central Beer","budget":0.0,"spend":7646.0,"pct":null,"bb_received":7646.35,"bb_outstanding":0.0,"accounts":[{"account":"Central Beer Tactical","spend":7646.35,"bb_received":7646.35,"bb_outstanding":0.0}]},{"supplier":"Flying Fish","budget":0.0,"spend":5107.0,"pct":null,"bb_received":252.63,"bb_outstanding":0.0,"accounts":[{"account":"FLYING FISH","spend":5106.63,"bb_received":252.63,"bb_outstanding":0.0}]},{"supplier":"Four Loko","budget":0.0,"spend":3778.0,"pct":null,"bb_received":1888.93,"bb_outstanding":1888.93,"accounts":[{"account":"ADV. FOUR LOKO","spend":3777.86,"bb_received":1888.93,"bb_outstanding":1888.93}]},{"supplier":"Encore Talkhouse","budget":0.0,"spend":3704.0,"pct":null,"bb_received":1439.0,"bb_outstanding":0.0,"accounts":[{"account":"ENCORE TALKHOUSE","spend":3704.0,"bb_received":1439.0,"bb_outstanding":0.0}]},{"supplier":"New Belgium","budget":0.0,"spend":3285.0,"pct":null,"bb_received":3285.14,"bb_outstanding":0.0,"accounts":[{"account":"NEW BELGIUM","spend":2970.87,"bb_received":2970.87,"bb_outstanding":0.0},{"account":"New Belgium","spend":314.27,"bb_received":314.27,"bb_outstanding":0.0}]},{"supplier":"Carvalier Ventures","budget":0.0,"spend":2330.0,"pct":null,"bb_received":2330.0,"bb_outstanding":0.0,"accounts":[{"account":"Carvalier Ventures","spend":2330.0,"bb_received":2330.0,"bb_outstanding":0.0}]},{"supplier":"Famosa","budget":0.0,"spend":1317.0,"pct":null,"bb_received":1316.64,"bb_outstanding":0.0,"accounts":[{"account":"FAMOSA","spend":1316.64,"bb_received":1316.64,"bb_outstanding":0.0}]},{"supplier":"Barn Brew","budget":0.0,"spend":1230.0,"pct":null,"bb_received":1230.32,"bb_outstanding":0.0,"accounts":[{"account":"THE BARN (BARN BREW CO)","spend":1230.32,"bb_received":1230.32,"bb_outstanding":0.0}]},{"supplier":"Modern Infusion","budget":0.0,"spend":1177.0,"pct":null,"bb_received":2253.36,"bb_outstanding":0.0,"accounts":[{"account":"TILRAY ALTERNATIVE BEVERAGE","spend":953.06,"bb_received":953.06,"bb_outstanding":0.0},{"account":"Modern Infusions","spend":224.3,"bb_received":1300.3,"bb_outstanding":0.0}]},{"supplier":"Adv.Prestige Wine Group","budget":0.0,"spend":1037.0,"pct":null,"bb_received":1037.4,"bb_outstanding":0.0,"accounts":[{"account":"(none)","spend":1037.4,"bb_received":1037.4,"bb_outstanding":0.0}]},{"supplier":"Southern Tier","budget":0.0,"spend":931.0,"pct":null,"bb_received":930.53,"bb_outstanding":0.0,"accounts":[{"account":"SOUTHERN TIER","spend":862.17,"bb_received":862.17,"bb_outstanding":0.0},{"account":"SOUTHERN TIER DISTILLING","spend":68.36,"bb_received":68.36,"bb_outstanding":0.0}]},{"supplier":"Cape May","budget":0.0,"spend":765.0,"pct":null,"bb_received":765.21,"bb_outstanding":0.0,"accounts":[{"account":"CAPE MAY TACTICAL","spend":765.21,"bb_received":765.21,"bb_outstanding":0.0}]},{"supplier":"Narragansett","budget":0.0,"spend":667.0,"pct":null,"bb_received":667.08,"bb_outstanding":0.0,"accounts":[{"account":"NARRAGANSETT","spend":667.08,"bb_received":667.08,"bb_outstanding":0.0}]},{"supplier":"US Beverage","budget":0.0,"spend":611.0,"pct":null,"bb_received":339.29,"bb_outstanding":0.0,"accounts":[{"account":"ADV. USBEVERAGE","spend":339.29,"bb_received":339.29,"bb_outstanding":0.0},{"account":"Vermont Cider Company","spend":271.33,"bb_received":0.0,"bb_outstanding":0.0}]},{"supplier":"Bold Rock","budget":0.0,"spend":503.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[{"account":"BOLD ROCK","spend":503.0,"bb_received":0.0,"bb_outstanding":0.0}]},{"supplier":"Viva Beverages","budget":0.0,"spend":446.0,"pct":null,"bb_received":445.5,"bb_outstanding":0.0,"accounts":[{"account":"Viva Beverages","spend":445.5,"bb_received":445.5,"bb_outstanding":0.0}]},{"supplier":"Crescent","budget":0.0,"spend":444.0,"pct":null,"bb_received":444.0,"bb_outstanding":0.0,"accounts":[{"account":"Crescent Distributing","spend":444.0,"bb_received":444.0,"bb_outstanding":0.0}]},{"supplier":"Passion Tree Co","budget":0.0,"spend":400.0,"pct":null,"bb_received":400.5,"bb_outstanding":0.0,"accounts":[{"account":"Passion Tree Co","spend":400.5,"bb_received":400.5,"bb_outstanding":0.0}]},{"supplier":"Evil Genius","budget":0.0,"spend":375.0,"pct":null,"bb_received":375.0,"bb_outstanding":0.0,"accounts":[{"account":"EVIL GENIUS BREWING","spend":375.0,"bb_received":375.0,"bb_outstanding":0.0}]},{"supplier":"Tilray Alternative Beverage","budget":0.0,"spend":366.0,"pct":null,"bb_received":365.63,"bb_outstanding":0.0,"accounts":[{"account":"TILRAY ALTERNATIVE BEVERAGE","spend":365.63,"bb_received":365.63,"bb_outstanding":0.0}]},{"supplier":"Emergent Beverage","budget":0.0,"spend":252.0,"pct":null,"bb_received":252.12,"bb_outstanding":0.0,"accounts":[{"account":"EMERGENT BEVERAGES LLC","spend":252.12,"bb_received":252.12,"bb_outstanding":0.0}]},{"supplier":"LODO","budget":0.0,"spend":219.0,"pct":null,"bb_received":218.61,"bb_outstanding":0.0,"accounts":[{"account":"Lodo Brands","spend":218.61,"bb_received":218.61,"bb_outstanding":0.0}]},{"supplier":"Forged Irish Stout","budget":0.0,"spend":211.0,"pct":null,"bb_received":211.25,"bb_outstanding":0.0,"accounts":[{"account":"FORGED IRISH STOUT","spend":211.25,"bb_received":211.25,"bb_outstanding":0.0}]},{"supplier":"Bardstown","budget":0.0,"spend":144.0,"pct":null,"bb_received":143.99,"bb_outstanding":0.0,"accounts":[{"account":"THE BARDSTOWN BOURBON COMPANY","spend":143.99,"bb_received":143.99,"bb_outstanding":0.0}]},{"supplier":"Vinaio Imports","budget":0.0,"spend":130.0,"pct":null,"bb_received":130.02,"bb_outstanding":0.0,"accounts":[{"account":"Vinaio Imports","spend":130.02,"bb_received":130.02,"bb_outstanding":0.0}]},{"supplier":"Stone Brewing Co","budget":0.0,"spend":128.0,"pct":null,"bb_received":127.9,"bb_outstanding":0.0,"accounts":[{"account":"STONE BREWING CO","spend":127.9,"bb_received":127.9,"bb_outstanding":0.0}]},{"supplier":"Delta Beverages","budget":0.0,"spend":117.0,"pct":null,"bb_received":117.0,"bb_outstanding":0.0,"accounts":[{"account":"Delta","spend":117.0,"bb_received":117.0,"bb_outstanding":0.0}]},{"supplier":"Saratoga","budget":0.0,"spend":97.0,"pct":null,"bb_received":97.32,"bb_outstanding":0.0,"accounts":[{"account":"Saratoga","spend":97.32,"bb_received":97.32,"bb_outstanding":0.0}]},{"supplier":"Hop Wtr","budget":0.0,"spend":87.0,"pct":null,"bb_received":0.0,"bb_outstanding":86.98,"accounts":[{"account":"HOP WTR","spend":86.98,"bb_received":0.0,"bb_outstanding":86.98}]},{"supplier":"Hornell Brewing","budget":0.0,"spend":70.0,"pct":null,"bb_received":70.0,"bb_outstanding":0.0,"accounts":[{"account":"Hornell Brewing","spend":70.0,"bb_received":70.0,"bb_outstanding":0.0}]},{"supplier":"Plaid Duck","budget":0.0,"spend":51.0,"pct":null,"bb_received":51.0,"bb_outstanding":0.0,"accounts":[{"account":"Plaid Duck","spend":51.0,"bb_received":51.0,"bb_outstanding":0.0}]},{"supplier":"Caravella","budget":0.0,"spend":50.0,"pct":null,"bb_received":50.0,"bb_outstanding":0.0,"accounts":[{"account":"Caravella","spend":50.0,"bb_received":50.0,"bb_outstanding":0.0}]},{"supplier":"Binding","budget":0.0,"spend":49.0,"pct":null,"bb_received":48.6,"bb_outstanding":0.0,"accounts":[{"account":"BINDING","spend":48.6,"bb_received":48.6,"bb_outstanding":0.0}]},{"supplier":"Bell's","budget":0.0,"spend":46.0,"pct":null,"bb_received":45.54,"bb_outstanding":0.0,"accounts":[{"account":"Bell's","spend":45.54,"bb_received":45.54,"bb_outstanding":0.0}]},{"supplier":"Alias Brewing","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Duclaw","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Doc's Cider","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Brewt'S Mixers","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Green River","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Nan","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Little Water","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Long Trail","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Primos Imports LLC","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Shiner","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]},{"supplier":"Vermont Hard Cider","budget":0.0,"spend":0.0,"pct":null,"bb_received":0.0,"bb_outstanding":0.0,"accounts":[]}]};
+const S = DATA.suppliers;
+
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+const usdc = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+function barColor(p){ if(p===null) return 'var(--dash)'; if(p>100) return 'var(--over)'; if(p>=85) return 'var(--warn)'; return 'var(--good)'; }
+
+function renderKPIs(){
+  const tb=S.reduce((a,x)=>a+x.budget,0);
+  const ts=S.reduce((a,x)=>a+x.spend,0);
+  const tr=S.reduce((a,x)=>a+x.bb_received,0);
+  const to=S.reduce((a,x)=>a+x.bb_outstanding,0);
+  const pct=tb>0?(ts/tb*100):0;
+  const rem=tb-ts;
+  const cards=[
+    ['Total Budget', usd(tb)],
+    ['Kohler Spend', usd(ts)],
+    ['% to Budget', pct.toFixed(1)+'%'],
+    ['Remaining Budget', usd(rem)],
+    ['Billback Received', usd(tr)],
+    ['Billback Outstanding', usd(to)],
+  ];
+  document.getElementById('kpis').innerHTML = cards.map(c=>
+    `<div class="kpi"><p class="k">${c[0]}</p><div class="v">${c[1]}</div></div>`).join('');
+}
+
+let sortKey='supplier', sortDir=1; // 1 asc, -1 desc
+function sortRows(rows){
+  return rows.slice().sort((a,b)=>{
+    let va=a[sortKey], vb=b[sortKey];
+    if(sortKey==='supplier'){ return va.localeCompare(vb)*sortDir; }
+    // numeric; nulls (no-budget pct) sort last
+    if(va===null) va = sortDir===1 ? Infinity : -Infinity;
+    if(vb===null) vb = sortDir===1 ? Infinity : -Infinity;
+    return (va-vb)*sortDir;
+  });
+}
+
+function accTable(accts){
+  if(!accts.length) return '';
+  const head='<thead><tr><th style="text-align:left">Account line</th><th>Spend</th><th>Received</th><th>Outstanding</th></tr></thead>';
+  const body=accts.map(a=>`<tr><td>${a.account}</td><td>${usd(a.spend)}</td><td>${usd(a.bb_received)}</td><td>${usd(a.bb_outstanding)}</td></tr>`).join('');
+  return `<div class="acc"><table>${head}<tbody>${body}</tbody></table></div>`;
+}
+
+function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const hideZero=document.getElementById('hidezero').checked;
+  let rows=S.filter(x=>x.supplier.toLowerCase().includes(q));
+  if(hideZero) rows=rows.filter(x=>x.budget>0);
+  rows=sortRows(rows);
+  const body=document.getElementById('body');
+  if(!rows.length){ body.innerHTML='<tr><td colspan="6" class="empty">No suppliers match.</td></tr>'; return; }
+  let html='';
+  rows.forEach((x,i)=>{
+    const pctTxt = x.pct===null
+      ? '<span class="nobud">NO BUDGET</span>'
+      : `<span class="bar"><span style="width:${Math.min(x.pct,100)}%;background:${barColor(x.pct)}"></span></span><span class="pctnum" style="color:${barColor(x.pct)}">${x.pct.toFixed(1)}%</span>`;
+    const budTxt = x.budget>0 ? usd(x.budget) : '<span class="dash">—</span>';
+    html+=`<tr class="sup" data-i="${i}">
+      <td><span class="caret">&rsaquo;</span> <span class="nm">${x.supplier}</span></td>
+      <td>${budTxt}</td>
+      <td>${usd(x.spend)}</td>
+      <td class="barcell">${pctTxt}</td>
+      <td>${x.bb_received>0?usd(x.bb_received):'<span class="dash">—</span>'}</td>
+      <td>${x.bb_outstanding>0?usd(x.bb_outstanding):'<span class="dash">—</span>'}</td>
+    </tr>
+    <tr class="detail" data-d="${i}" style="display:none"><td colspan="6">${accTable(x.accounts)}</td></tr>`;
+  });
+  // totals row (reflects current filter)
+  const tb=rows.reduce((a,x)=>a+x.budget,0), ts=rows.reduce((a,x)=>a+x.spend,0);
+  const tr=rows.reduce((a,x)=>a+x.bb_received,0), to=rows.reduce((a,x)=>a+x.bb_outstanding,0);
+  const tpct=tb>0?(ts/tb*100).toFixed(1)+'%':'—';
+  html+=`<tr class="totrow"><td>Total (${rows.length})</td><td>${usd(tb)}</td><td>${usd(ts)}</td><td>${tpct}</td><td>${usd(tr)}</td><td>${usd(to)}</td></tr>`;
+  body.innerHTML=html;
+  // expand handlers
+  body.querySelectorAll('tr.sup').forEach(r=>{
+    r.addEventListener('click',()=>{
+      const i=r.getAttribute('data-i');
+      const d=body.querySelector(`tr.detail[data-d="${i}"]`);
+      const open=d.style.display!=='none';
+      d.style.display=open?'none':'table-row';
+      r.classList.toggle('open',!open);
+    });
+  });
+}
+
+// header sorting
+document.querySelectorAll('thead th').forEach(th=>{
+  th.addEventListener('click',()=>{
+    const k=th.getAttribute('data-k');
+    if(sortKey===k){ sortDir*=-1; } else { sortKey=k; sortDir = (k==='supplier')?1:-1; }
+    document.querySelectorAll('thead th').forEach(t=>{t.classList.remove('sorted'); t.querySelector('.arr').textContent='';});
+    th.classList.add('sorted');
+    th.querySelector('.arr').textContent = sortDir===1?'▲':'▼';
+    render();
+  });
+});
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('hidezero').addEventListener('change',render);
+
+// default: budget descending
+sortKey='budget'; sortDir=-1;
+document.querySelectorAll('thead th').forEach(t=>{t.classList.remove('sorted');t.querySelector('.arr').textContent='';});
+const bth=document.querySelector('thead th[data-k="budget"]'); bth.classList.add('sorted'); bth.querySelector('.arr').textContent='▼';
+
+renderKPIs();
+render();
+</script>
+</body>
+</html>
