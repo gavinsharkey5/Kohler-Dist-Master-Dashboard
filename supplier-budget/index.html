@@ -70,9 +70,12 @@
   .sel:focus{outline:2px solid #3A3F4C;outline-offset:0}
   .lisum{color:var(--ink-soft);font-size:13.5px;font-family:"Space Grotesk";font-weight:500;margin:2px 2px 12px}
   .lisum b{color:var(--ink);font-weight:700}
-  table#ltbl{min-width:1560px}
-  #ltbl tbody td.li-txt{text-align:left;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  #ltbl tbody td.li-txt.sm{max-width:160px}
+  #panel-lineitems{position:relative;left:50%;transform:translateX(-50%);width:min(97vw,1480px)}
+  table#ltbl{width:100%;table-layout:fixed}
+  #ltbl thead th{white-space:normal;padding:11px 9px;font-size:10px}
+  #ltbl tbody td{padding:9px 9px;font-size:12.5px;vertical-align:top;white-space:normal;overflow-wrap:anywhere}
+  #ltbl tbody td.li-txt{text-align:left}
+  #ltbl tbody td:first-child,#ltbl tbody td:nth-child(7),#ltbl tbody td:nth-child(8),#ltbl tbody td:nth-child(9),#ltbl tbody td:nth-child(10),#ltbl tbody td:nth-child(12){white-space:nowrap}
   #ltbl tbody td.rec-y{color:var(--good);font-weight:600}
   #ltbl tbody td.rec-n{color:var(--warn);font-weight:600}
 </style>
@@ -125,6 +128,9 @@
     <p class="lisum" id="lisum"></p>
     <div class="tablewrap">
       <table id="ltbl">
+        <colgroup>
+          <col style="width:7%"><col style="width:9%"><col style="width:8%"><col style="width:12%"><col style="width:12%"><col style="width:8%"><col style="width:6.5%"><col style="width:7%"><col style="width:6.5%"><col style="width:4%"><col style="width:6%"><col style="width:5%"><col style="width:9%">
+        </colgroup>
         <thead>
           <tr>
             <th data-k="ts" class="sorted">Date <span class="arr">▼</span></th>
