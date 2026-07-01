@@ -1,661 +1,684 @@
-Sales Rep Assigned,Supplier,Qualifier Brands,Brand Family,Case Equiv   6/1/2025 - 6/30/2025,Case Equiv   6/1/2026 - 6/30/2026,Case Equiv Unit Difference,Case Equiv Percentage Difference
-Alex Rodriguez,Sapporo,Amplify: Sapporo,Sapporo,235,358,123,52.5%
+Sales Rep Assigned,Supplier,Qualifier Brands,Brand Family,Case Equiv   6/1/2025 - 7/1/2025,Case Equiv   6/1/2026 - 7/1/2026,Case Equiv Unit Difference,Case Equiv Percentage Difference
+Alex Rodriguez,Sapporo,Amplify: Sapporo,Sapporo,254,377,123,48.6%
 Alisa Acciardi,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,5,9,4,80.0%
 Alisa Acciardi,Cape May,Amplify: Cape May,Cape May,5,,-5,-100.0%
 Alisa Acciardi,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,13,14,1,10.3%
 Alisa Acciardi,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,8,4,-4,-55.2%
 Alisa Acciardi,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,,1,1,0.0%
-Alisa Acciardi,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,91,43,-48,-52.6%
+Alisa Acciardi,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,91,59,-32,-35.2%
 Alisa Acciardi,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,67,87,20,30.0%
-Alisa Acciardi,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,12,6,-6,-53.7%
-Alisa Acciardi,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,3,,-3,-100.0%
+Alisa Acciardi,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,12,7,-5,-45.3%
+Alisa Acciardi,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,3,3,0,0.0%
 Alisa Acciardi,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,10,5,-5,-50.0%
 Alisa Acciardi,Heineken USA,Qualifier: Heineken USA,Heineken USA,76,36,-41,-53.2%
 Alisa Acciardi,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,,3,3,0.0%
-Alisa Acciardi,Mark Anthony,Qualifier: White Claw,White Claw,16,16,1,5.1%
-Alisa Acciardi,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,15,3,-12,-80.0%
-Alisa Acciardi,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,8,10,1,15.9%
+Alisa Acciardi,Mark Anthony,Qualifier: White Claw,White Claw,16,30,15,94.9%
+Alisa Acciardi,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,15,3,-12,-80.0%
+Alisa Acciardi,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,8,10,1,15.9%
 Alisa Acciardi,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,2,6,4,275.0%
-Alisa Acciardi,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,89,21,-68,-76.5%
+Alisa Acciardi,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,89,28,-62,-69.1%
 Alisa Acciardi,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,25,39,14,53.9%
 Alisa Acciardi,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,2,,-2,-100.0%
-Alisa Acciardi,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,11,6,-5,-45.5%
+Alisa Acciardi,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,11,9,-2,-18.2%
 Alisa Acciardi,Sapporo,Amplify: Sapporo,Sapporo,591,548,-42,-7.2%
-Allison Scott,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,153,157,4,2.9%
-Allison Scott,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,2,2,0,0.0%
-Allison Scott,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,0,65,65,0.0%
-Allison Scott,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,80,61,-19,-23.8%
-Allison Scott,Cape May,Amplify: Cape May,Cape May,130,119,-11,-8.3%
+Allison Scott,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,156,159,3,2.2%
+Allison Scott,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,7,2,-5,-71.4%
+Allison Scott,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,0,70,70,0.0%
+Allison Scott,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,89,62,-27,-30.2%
+Allison Scott,Cape May,Amplify: Cape May,Cape May,144,126,-18,-12.3%
 Allison Scott,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,,4,4,0.0%
-Allison Scott,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,37,50,13,35.5%
-Allison Scott,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,21,20,-1,-3.2%
-Allison Scott,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1529,1658,130,8.5%
-Allison Scott,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,927,1040,113,12.1%
+Allison Scott,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,37,54,17,44.8%
+Allison Scott,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,21,22,1,6.3%
+Allison Scott,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1628,1835,207,12.7%
+Allison Scott,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,961,1211,250,26.0%
 Allison Scott,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,3,3,0,-12.9%
-Allison Scott,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,949,1119,169,17.8%
-Allison Scott,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,80,86,6,7.0%
-Allison Scott,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,75,50,-25,-33.3%
-Allison Scott,Heineken USA,Qualifier: Heineken USA,Heineken USA,684,667,-17,-2.5%
-Allison Scott,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,,3,3,0.0%
-Allison Scott,Mark Anthony,Qualifier: White Claw,White Claw,381,307,-74,-19.5%
-Allison Scott,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,57,54,-4,-6.3%
-Allison Scott,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,153,254,101,65.7%
-Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1028,1079,51,5.0%
-Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1665,1694,29,1.7%
-Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1939,2017,78,4.0%
-Allison Scott,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,38,32,-5,-14.2%
+Allison Scott,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1010,1237,228,22.6%
+Allison Scott,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,85,100,15,17.6%
+Allison Scott,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,75,53,-22,-29.3%
+Allison Scott,Heineken USA,Qualifier: Heineken USA,Heineken USA,740,722,-18,-2.4%
+Allison Scott,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,,7,7,0.0%
+Allison Scott,Mark Anthony,Qualifier: White Claw,White Claw,394,348,-46,-11.7%
+Allison Scott,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,57,54,-4,-6.3%
+Allison Scott,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,4,46,42,939.4%
+Allison Scott,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,170,298,128,75.6%
+Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1092,1168,76,6.9%
+Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1819,1806,-14,-0.8%
+Allison Scott,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2021,2124,103,5.1%
+Allison Scott,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,43,32,-10,-24.2%
 Allison Scott,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,14,,-14,-100.0%
-Allison Scott,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,113,140,27,23.8%
+Allison Scott,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,143,157,13,9.2%
 Allison Scott,Sapporo,Amplify: Sapporo,Sapporo,53,83,30,56.5%
+Andrew Lundy,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,9,,-9,-100.0%
 Andrew Lundy,Sapporo,Amplify: Sapporo,Sapporo,714,848,134,18.8%
 Anthony Palmisano,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,11,2,-9,-81.8%
-Anthony Palmisano,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,365,353,-12,-3.2%
+Anthony Palmisano,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,378,392,14,3.6%
 Anthony Palmisano,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,107,82,-25,-23.4%
-Anthony Palmisano,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,225,190,-35,-15.5%
-Anthony Palmisano,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1438,1437,-1,-0.1%
-Anthony Palmisano,Cape May,Amplify: Cape May,Cape May,264,331,67,25.3%
-Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,318,411,93,29.2%
-Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,207,287,80,38.5%
-Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,379,438,59,15.7%
-Anthony Palmisano,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,2621,3179,559,21.3%
-Anthony Palmisano,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3119,3696,577,18.5%
+Anthony Palmisano,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,240,228,-12,-4.9%
+Anthony Palmisano,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1511,1509,-3,-0.2%
+Anthony Palmisano,Cape May,Amplify: Cape May,Cape May,301,354,53,17.4%
+Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,350,442,92,26.3%
+Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,212,314,102,48.1%
+Anthony Palmisano,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,406,485,79,19.4%
+Anthony Palmisano,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,2744,3341,597,21.7%
+Anthony Palmisano,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3267,3896,628,19.2%
 Anthony Palmisano,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,73,68,-5,-6.9%
-Anthony Palmisano,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,100,82,-18,-18.0%
-Anthony Palmisano,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1598,1630,32,2.0%
-Anthony Palmisano,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,93,141,48,51.0%
-Anthony Palmisano,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,153,81,-72,-47.1%
-Anthony Palmisano,Heineken USA,Qualifier: Heineken USA,Heineken USA,925,1024,99,10.7%
-Anthony Palmisano,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,220,226,6,2.8%
-Anthony Palmisano,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,75,62,-14,-18.0%
-Anthony Palmisano,Mark Anthony,Qualifier: White Claw,White Claw,2473,3230,757,30.6%
-Anthony Palmisano,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,801,1014,213,26.7%
-Anthony Palmisano,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,192,262,70,36.4%
-Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,756,681,-75,-10.0%
-Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4134,3722,-412,-10.0%
-Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5403,5819,415,7.7%
-Anthony Palmisano,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,46,47,1,1.4%
+Anthony Palmisano,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,102,83,-19,-18.6%
+Anthony Palmisano,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1615,1672,57,3.5%
+Anthony Palmisano,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,112,147,35,30.8%
+Anthony Palmisano,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,162,87,-75,-46.3%
+Anthony Palmisano,Heineken USA,Qualifier: Heineken USA,Heineken USA,949,1092,142,15.0%
+Anthony Palmisano,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,256,255,-1,-0.6%
+Anthony Palmisano,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,78,74,-5,-6.2%
+Anthony Palmisano,Mark Anthony,Qualifier: White Claw,White Claw,2621,3420,799,30.5%
+Anthony Palmisano,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,810,1083,272,33.6%
+Anthony Palmisano,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,9,33,24,268.5%
+Anthony Palmisano,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,209,297,88,42.4%
+Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,778,716,-62,-7.9%
+Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4232,4008,-224,-5.3%
+Anthony Palmisano,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5463,6027,564,10.3%
+Anthony Palmisano,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,46,48,2,3.6%
 Anthony Palmisano,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,2,5,3,150.0%
-Anthony Palmisano,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,318,333,15,4.7%
+Anthony Palmisano,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,339,357,18,5.3%
 Anthony Palmisano,Sapporo,Amplify: Sapporo,Sapporo,45,61,16,36.3%
-Brian Sengebush,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,126,122,-4,-3.4%
+Brian Sengebush,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,126,132,6,5.0%
 Brian Sengebush,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,72,19,-53,-73.8%
-Brian Sengebush,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,479,387,-92,-19.2%
+Brian Sengebush,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,489,393,-96,-19.7%
 Brian Sengebush,Cape May,Amplify: Cape May,Cape May,82,106,24,28.8%
 Brian Sengebush,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,14,24,10,71.4%
-Brian Sengebush,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,72,80,8,10.5%
+Brian Sengebush,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,74,80,6,7.5%
 Brian Sengebush,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,11,13,2,18.2%
-Brian Sengebush,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1055,1237,182,17.3%
-Brian Sengebush,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,478,628,150,31.4%
+Brian Sengebush,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1130,1393,263,23.3%
+Brian Sengebush,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,541,629,88,16.3%
 Brian Sengebush,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,27,5,-22,-81.6%
-Brian Sengebush,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,17,28,11,64.7%
-Brian Sengebush,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1569,1476,-92,-5.9%
+Brian Sengebush,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,19,28,9,47.4%
+Brian Sengebush,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1615,1522,-93,-5.8%
 Brian Sengebush,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,5,11,6,123.6%
 Brian Sengebush,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,3,3,0,0.0%
-Brian Sengebush,Mark Anthony,Qualifier: White Claw,White Claw,522,463,-59,-11.3%
-Brian Sengebush,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,165,224,59,36.0%
-Brian Sengebush,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,5,61,56,1059.0%
-Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,561,531,-30,-5.4%
-Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1579,1651,73,4.6%
-Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,3012,2990,-21,-0.7%
+Brian Sengebush,Mark Anthony,Qualifier: White Claw,White Claw,591,469,-122,-20.7%
+Brian Sengebush,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,165,224,59,36.0%
+Brian Sengebush,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,11,22,10,91.0%
+Brian Sengebush,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,5,61,56,1059.0%
+Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,585,536,-49,-8.3%
+Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1754,1739,-15,-0.9%
+Brian Sengebush,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,3351,3053,-299,-8.9%
 Brian Sengebush,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,30,29,-1,-3.4%
 Brian Sengebush,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,84,114,30,35.3%
 Brian Sengebush,Sapporo,Amplify: Sapporo,Sapporo,10,,-10,-100.0%
 Chris Payton,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,,10,10,0.0%
-Chris Payton,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,122,119,-3,-2.2%
+Chris Payton,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,126,132,6,4.6%
 Chris Payton,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,20,43,23,115.0%
-Chris Payton,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,225,215,-10,-4.4%
-Chris Payton,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,644,519,-126,-19.5%
-Chris Payton,Cape May,Amplify: Cape May,Cape May,79,61,-18,-22.3%
-Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,524,781,257,49.1%
-Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,248,410,163,65.7%
-Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,342,405,63,18.5%
-Chris Payton,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,9303,9708,406,4.4%
-Chris Payton,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,6625,7919,1293,19.5%
-Chris Payton,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,22,30,8,36.4%
-Chris Payton,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,9,12,3,33.3%
-Chris Payton,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,650,678,28,4.2%
-Chris Payton,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,177,219,42,23.7%
-Chris Payton,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,293,256,-37,-12.6%
-Chris Payton,Heineken USA,Qualifier: Heineken USA,Heineken USA,3334,3550,217,6.5%
-Chris Payton,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,306,427,121,39.4%
+Chris Payton,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,230,255,25,10.9%
+Chris Payton,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,658,550,-109,-16.5%
+Chris Payton,Cape May,Amplify: Cape May,Cape May,82,68,-14,-16.6%
+Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,569,815,246,43.3%
+Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,281,430,150,53.4%
+Chris Payton,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,358,426,68,19.0%
+Chris Payton,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,9502,10372,870,9.2%
+Chris Payton,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,7586,8570,984,13.0%
+Chris Payton,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,22,32,10,46.6%
+Chris Payton,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,9,13,4,44.4%
+Chris Payton,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,678,724,46,6.7%
+Chris Payton,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,193,232,38,19.8%
+Chris Payton,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,302,283,-19,-6.3%
+Chris Payton,Heineken USA,Qualifier: Heineken USA,Heineken USA,3516,3890,374,10.6%
+Chris Payton,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,325,465,140,43.0%
 Chris Payton,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,75,72,-3,-4.0%
 Chris Payton,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,,5,5,0.0%
-Chris Payton,Mark Anthony,Qualifier: White Claw,White Claw,1564,1530,-34,-2.2%
-Chris Payton,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,468,521,53,11.3%
-Chris Payton,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,264,396,131,49.7%
-Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,548,550,2,0.4%
-Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4487,4017,-471,-10.5%
-Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1712,1769,57,3.4%
+Chris Payton,Mark Anthony,Qualifier: White Claw,White Claw,1671,1649,-21,-1.3%
+Chris Payton,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,470,539,69,14.6%
+Chris Payton,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,21,46,25,117.8%
+Chris Payton,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,297,449,152,51.1%
+Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,578,591,14,2.3%
+Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4647,4287,-359,-7.7%
+Chris Payton,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1760,1901,141,8.0%
 Chris Payton,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,14,16,2,14.3%
-Chris Payton,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,11,11,0.0%
-Chris Payton,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,261,344,82,31.5%
-Chris Payton,Sapporo,Amplify: Sapporo,Sapporo,265,309,44,16.8%
+Chris Payton,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,16,16,0.0%
+Chris Payton,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,266,364,97,36.5%
+Chris Payton,Sapporo,Amplify: Sapporo,Sapporo,274,346,72,26.2%
 Dan Lagala,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,,8,8,0.0%
-Dan Lagala,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,88,95,7,7.5%
+Dan Lagala,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,93,112,19,20.0%
 Dan Lagala,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,,3,3,0.0%
-Dan Lagala,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,72,77,5,6.9%
-Dan Lagala,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,264,196,-68,-25.8%
-Dan Lagala,Cape May,Amplify: Cape May,Cape May,36,30,-6,-17.5%
-Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,890,1402,512,57.6%
-Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,72,142,70,96.5%
-Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,85,73,-13,-14.8%
-Dan Lagala,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,8093,7492,-601,-7.4%
-Dan Lagala,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,6976,8063,1087,15.6%
-Dan Lagala,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,12,9,-3,-25.2%
+Dan Lagala,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,75,77,2,2.7%
+Dan Lagala,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,264,211,-53,-20.2%
+Dan Lagala,Cape May,Amplify: Cape May,Cape May,36,35,-1,-3.8%
+Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,961,1508,547,57.0%
+Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,78,157,79,100.6%
+Dan Lagala,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,88,96,8,8.7%
+Dan Lagala,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,8543,8471,-71,-0.8%
+Dan Lagala,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,7283,9106,1823,25.0%
+Dan Lagala,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,12,11,-1,-8.1%
 Dan Lagala,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,1,3,2,200.0%
-Dan Lagala,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,382,428,46,12.2%
-Dan Lagala,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,111,149,38,34.5%
-Dan Lagala,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,76,94,18,23.7%
-Dan Lagala,Heineken USA,Qualifier: Heineken USA,Heineken USA,3567,3406,-162,-4.5%
-Dan Lagala,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,41,62,21,52.4%
+Dan Lagala,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,383,446,64,16.7%
+Dan Lagala,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,112,169,57,50.8%
+Dan Lagala,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,93,110,17,18.3%
+Dan Lagala,Heineken USA,Qualifier: Heineken USA,Heineken USA,3833,3830,-3,-0.1%
+Dan Lagala,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,41,82,41,101.6%
 Dan Lagala,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,22,7,-15,-68.1%
-Dan Lagala,Mark Anthony,Qualifier: White Claw,White Claw,818,976,157,19.2%
-Dan Lagala,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,283,334,52,18.2%
-Dan Lagala,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,233,332,99,42.4%
-Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,497,547,50,10.1%
-Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5062,4191,-872,-17.2%
-Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,636,760,124,19.6%
-Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,12,20,8,68.2%
-Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,214,182,-32,-15.0%
-Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,167,179,12,7.1%
-Dan Lagala,Sapporo,Amplify: Sapporo,Sapporo,597,951,354,59.4%
-Dave Ehlers,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,5,5,0,0.0%
-Dave Ehlers,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,167,261,93,55.8%
-Dave Ehlers,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,44,60,16,36.4%
-Dave Ehlers,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,231,393,162,70.1%
-Dave Ehlers,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,788,911,123,15.6%
-Dave Ehlers,Cape May,Amplify: Cape May,Cape May,83,235,152,183.0%
-Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,953,1406,453,47.5%
-Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,340,534,194,57.0%
-Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,519,771,251,48.4%
-Dave Ehlers,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,10777,12532,1755,16.3%
-Dave Ehlers,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,7829,9421,1592,20.3%
-Dave Ehlers,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,52,72,19,36.8%
-Dave Ehlers,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,81,117,36,44.4%
-Dave Ehlers,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,760,1140,380,50.0%
-Dave Ehlers,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,189,287,98,52.0%
-Dave Ehlers,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,258,276,18,7.0%
-Dave Ehlers,Heineken USA,Qualifier: Heineken USA,Heineken USA,3934,4484,550,14.0%
-Dave Ehlers,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,418,668,250,59.7%
-Dave Ehlers,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,114,155,41,36.1%
+Dan Lagala,Mark Anthony,Qualifier: White Claw,White Claw,843,1062,219,25.9%
+Dan Lagala,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,283,355,73,25.6%
+Dan Lagala,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,17,24,7,37.9%
+Dan Lagala,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,236,372,136,57.9%
+Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,515,600,85,16.5%
+Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5099,4565,-534,-10.5%
+Dan Lagala,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,640,811,171,26.7%
+Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,12,21,9,76.6%
+Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,214,195,-19,-8.9%
+Dan Lagala,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,173,194,21,12.0%
+Dan Lagala,Sapporo,Amplify: Sapporo,Sapporo,598,1061,463,77.5%
+Dave Ehlers,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,8,5,-3,-37.5%
+Dave Ehlers,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,195,287,92,47.2%
+Dave Ehlers,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,54,60,6,11.1%
+Dave Ehlers,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,290,455,165,56.7%
+Dave Ehlers,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,911,1025,114,12.5%
+Dave Ehlers,Cape May,Amplify: Cape May,Cape May,100,260,159,158.9%
+Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,1078,1537,459,42.6%
+Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,379,578,199,52.5%
+Dave Ehlers,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,593,810,217,36.6%
+Dave Ehlers,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,11591,13513,1922,16.6%
+Dave Ehlers,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,8635,10276,1641,19.0%
+Dave Ehlers,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,58,77,18,31.3%
+Dave Ehlers,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,88,130,42,47.7%
+Dave Ehlers,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,841,1218,377,44.8%
+Dave Ehlers,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,214,313,99,46.3%
+Dave Ehlers,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,279,321,42,15.1%
+Dave Ehlers,Heineken USA,Qualifier: Heineken USA,Heineken USA,4332,4943,610,14.1%
+Dave Ehlers,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,452,732,280,61.9%
+Dave Ehlers,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,115,163,48,41.7%
 Dave Ehlers,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,4,3,-1,-33.3%
-Dave Ehlers,Mark Anthony,Qualifier: White Claw,White Claw,1661,2805,1145,68.9%
-Dave Ehlers,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,757,977,220,29.0%
-Dave Ehlers,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,350,690,340,97.1%
-Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,973,956,-17,-1.7%
-Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4685,5208,522,11.1%
-Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2771,2992,221,8.0%
-Dave Ehlers,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,58,69,11,18.5%
+Dave Ehlers,Mark Anthony,Qualifier: White Claw,White Claw,1808,2903,1094,60.5%
+Dave Ehlers,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,769,1013,244,31.7%
+Dave Ehlers,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,5,21,16,308.6%
+Dave Ehlers,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,404,734,330,81.6%
+Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1045,1023,-21,-2.0%
+Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5027,5486,459,9.1%
+Dave Ehlers,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2952,3112,160,5.4%
+Dave Ehlers,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,61,74,13,20.8%
 Dave Ehlers,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,7,59,52,742.9%
-Dave Ehlers,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,308,496,189,61.3%
-Dave Ehlers,Sapporo,Amplify: Sapporo,Sapporo,408,763,354,86.8%
+Dave Ehlers,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,354,543,190,53.7%
+Dave Ehlers,Sapporo,Amplify: Sapporo,Sapporo,492,783,291,59.2%
 Derrick Laws,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,46,52,6,13.2%
-Derrick Laws,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,10,5,-5,-50.0%
+Derrick Laws,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,10,8,-2,-20.0%
 Derrick Laws,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,97,36,-61,-62.9%
-Derrick Laws,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,263,182,-82,-31.0%
-Derrick Laws,Cape May,Amplify: Cape May,Cape May,14,45,31,221.4%
-Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,734,833,99,13.4%
-Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,126,246,120,95.2%
-Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,337,499,162,48.1%
-Derrick Laws,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,14438,14478,40,0.3%
-Derrick Laws,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,8733,8911,179,2.0%
-Derrick Laws,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,12,15,3,25.0%
+Derrick Laws,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,291,204,-88,-30.1%
+Derrick Laws,Cape May,Amplify: Cape May,Cape May,14,49,35,250.0%
+Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,823,878,55,6.6%
+Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,138,264,126,91.3%
+Derrick Laws,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,381,552,171,45.0%
+Derrick Laws,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,15360,15840,480,3.1%
+Derrick Laws,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,9418,9584,167,1.8%
+Derrick Laws,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,12,20,8,66.7%
 Derrick Laws,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,2,2,0,0.0%
-Derrick Laws,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,172,235,64,37.0%
-Derrick Laws,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,164,145,-20,-11.9%
-Derrick Laws,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,677,486,-191,-28.2%
-Derrick Laws,Heineken USA,Qualifier: Heineken USA,Heineken USA,4660,4273,-387,-8.3%
-Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,175,245,70,40.2%
-Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,53,35,-18,-33.7%
-Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,85,155,70,82.0%
-Derrick Laws,Mark Anthony,Qualifier: White Claw,White Claw,495,479,-17,-3.4%
-Derrick Laws,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,657,704,47,7.1%
-Derrick Laws,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,159,207,48,30.2%
-Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,230,228,-2,-0.9%
-Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5823,5288,-535,-9.2%
-Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,809,753,-56,-6.9%
+Derrick Laws,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,172,255,83,48.5%
+Derrick Laws,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,171,150,-21,-12.0%
+Derrick Laws,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,713,505,-208,-29.2%
+Derrick Laws,Heineken USA,Qualifier: Heineken USA,Heineken USA,4989,4515,-474,-9.5%
+Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,175,265,90,51.2%
+Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,56,41,-15,-26.7%
+Derrick Laws,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,85,186,101,118.0%
+Derrick Laws,Mark Anthony,Qualifier: White Claw,White Claw,515,511,-4,-0.8%
+Derrick Laws,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,679,740,61,9.0%
+Derrick Laws,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,2,9,7,361.0%
+Derrick Laws,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,159,223,64,40.2%
+Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,241,247,5,2.2%
+Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,6054,5651,-404,-6.7%
+Derrick Laws,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,843,783,-60,-7.1%
 Derrick Laws,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,,3,3,0.0%
-Derrick Laws,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,68,57,-11,-16.2%
-Derrick Laws,Sapporo,Amplify: Sapporo,Sapporo,116,73,-44,-37.4%
-Dylan Rubino,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,,1,1,0.0%
+Derrick Laws,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,68,66,-2,-2.9%
+Derrick Laws,Sapporo,Amplify: Sapporo,Sapporo,119,98,-22,-18.0%
+Dylan Rubino,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,,3,3,0.0%
 Dylan Rubino,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,3,3,0,0.0%
 Dylan Rubino,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,5,,-5,-100.0%
 Dylan Rubino,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,3,2,-1,-33.3%
 Dylan Rubino,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,,4,4,0.0%
 Dylan Rubino,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,8,3,-5,-62.5%
-Dylan Rubino,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,74,39,-36,-47.9%
-Dylan Rubino,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,53,53,0,-0.3%
-Dylan Rubino,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,3,,-3,-100.0%
-Dylan Rubino,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,14,,-14,-100.0%
+Dylan Rubino,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,74,51,-24,-31.7%
+Dylan Rubino,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,53,64,11,20.4%
+Dylan Rubino,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,3,1,-1,-50.0%
+Dylan Rubino,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,14,4,-10,-73.2%
 Dylan Rubino,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,3,3,0,0.0%
 Dylan Rubino,Heineken USA,Qualifier: Heineken USA,Heineken USA,3,27,24,797.2%
 Dylan Rubino,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,1,,-1,-100.0%
 Dylan Rubino,Mark Anthony,Qualifier: White Claw,White Claw,15,14,0,-1.4%
-Dylan Rubino,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,3,,-3,-100.0%
-Dylan Rubino,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,,3,3,0.0%
+Dylan Rubino,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,3,,-3,-100.0%
+Dylan Rubino,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,,5,5,0.0%
 Dylan Rubino,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,37,40,3,8.2%
-Dylan Rubino,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5,14,9,180.0%
+Dylan Rubino,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5,18,13,260.0%
 Dylan Rubino,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,3,7,4,133.3%
-Dylan Rubino,Sapporo,Amplify: Sapporo,Sapporo,1307,1725,418,32.0%
+Dylan Rubino,Sapporo,Amplify: Sapporo,Sapporo,1307,1737,430,32.9%
+Hakan Sadik,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,3,,-3,-100.0%
 Hakan Sadik,Sapporo,Amplify: Sapporo,Sapporo,325,356,32,9.8%
 Jaime Colonna,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,1,1,0,0.0%
 Jaime Colonna,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,5,,-5,-100.0%
-Jaime Colonna,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,8,11,3,37.5%
+Jaime Colonna,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,8,16,8,100.0%
 Jaime Colonna,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,4,3,-1,-25.0%
 Jaime Colonna,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,,1,1,0.0%
-Jaime Colonna,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,71,94,24,33.6%
-Jaime Colonna,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,33,78,45,138.2%
+Jaime Colonna,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,117,136,20,16.9%
+Jaime Colonna,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,48,93,45,94.8%
 Jaime Colonna,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,1,,-1,-100.0%
-Jaime Colonna,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,16,,-16,-100.0%
+Jaime Colonna,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,25,,-25,-100.0%
 Jaime Colonna,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,,3,3,0.0%
-Jaime Colonna,Heineken USA,Qualifier: Heineken USA,Heineken USA,10,23,13,129.2%
-Jaime Colonna,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,2,3,1,50.0%
-Jaime Colonna,Mark Anthony,Qualifier: White Claw,White Claw,24,21,-3,-12.5%
-Jaime Colonna,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,,5,5,0.0%
-Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,10,5,-5,-48.1%
-Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,41,39,-2,-4.8%
-Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,15,5,-10,-65.6%
-Jaime Colonna,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,1,5,4,400.0%
-Jaime Colonna,Sapporo,Amplify: Sapporo,Sapporo,646,640,-5,-0.8%
+Jaime Colonna,Heineken USA,Qualifier: Heineken USA,Heineken USA,13,34,21,162.6%
+Jaime Colonna,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,2,6,4,200.0%
+Jaime Colonna,Mark Anthony,Qualifier: White Claw,White Claw,24,33,9,39.2%
+Jaime Colonna,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,,2,2,0.0%
+Jaime Colonna,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,,5,5,0.0%
+Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,11,8,-3,-28.7%
+Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,42,42,0,0.0%
+Jaime Colonna,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,15,10,-5,-32.8%
+Jaime Colonna,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,2,6,4,200.0%
+Jaime Colonna,Sapporo,Amplify: Sapporo,Sapporo,648,663,15,2.3%
 Javier Melo,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,10,2,-8,-76.0%
-Javier Melo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,138,121,-17,-12.3%
-Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,818,1156,338,41.3%
-Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,315,530,215,68.4%
-Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,1107,1251,143,12.9%
-Javier Melo,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,11879,14936,3056,25.7%
-Javier Melo,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,10693,12474,1782,16.7%
-Javier Melo,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,1,,-1,-100.0%
-Javier Melo,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,50,50,0,-0.3%
-Javier Melo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,173,191,19,10.8%
-Javier Melo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,249,267,18,7.2%
-Javier Melo,Heineken USA,Qualifier: Heineken USA,Heineken USA,3406,3628,222,6.5%
-Javier Melo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,243,328,86,35.3%
+Javier Melo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,146,130,-16,-11.0%
+Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,921,1321,400,43.4%
+Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,374,607,233,62.4%
+Javier Melo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,1150,1419,269,23.4%
+Javier Melo,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,12488,16505,4017,32.2%
+Javier Melo,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,11567,14014,2447,21.2%
+Javier Melo,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,3,,-3,-100.0%
+Javier Melo,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,54,60,6,11.3%
+Javier Melo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,188,245,57,30.3%
+Javier Melo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,249,302,53,21.3%
+Javier Melo,Heineken USA,Qualifier: Heineken USA,Heineken USA,3620,4155,536,14.8%
+Javier Melo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,270,385,115,42.6%
 Javier Melo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,11,27,16,145.9%
-Javier Melo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,76,69,-7,-8.8%
-Javier Melo,Mark Anthony,Qualifier: White Claw,White Claw,346,490,144,41.6%
-Javier Melo,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,640,820,180,28.2%
-Javier Melo,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,21,30,9,43.6%
-Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,77,144,67,88.0%
-Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4673,4508,-164,-3.5%
-Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,280,179,-101,-36.1%
-Javier Melo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,13,6,-7,-53.8%
-Javier Melo,Sapporo,Amplify: Sapporo,Sapporo,70,78,8,11.3%
+Javier Melo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,83,76,-7,-8.1%
+Javier Melo,Mark Anthony,Qualifier: White Claw,White Claw,381,563,182,47.8%
+Javier Melo,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,672,856,184,27.4%
+Javier Melo,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,22,37,16,71.8%
+Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,87,166,79,91.2%
+Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4833,4955,121,2.5%
+Javier Melo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,292,208,-84,-28.8%
+Javier Melo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,13,11,-2,-15.4%
+Javier Melo,Sapporo,Amplify: Sapporo,Sapporo,79,81,1,1.9%
 Jayson Romine,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,9,5,-4,-44.4%
-Jayson Romine,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,387,410,23,6.0%
-Jayson Romine,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,233,145,-88,-37.8%
-Jayson Romine,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,613,447,-166,-27.1%
-Jayson Romine,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,2155,1874,-281,-13.0%
-Jayson Romine,Cape May,Amplify: Cape May,Cape May,409,459,49,12.0%
-Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,271,334,63,23.1%
-Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,95,141,47,49.2%
-Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,87,53,-34,-38.9%
-Jayson Romine,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,3085,3943,858,27.8%
-Jayson Romine,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3022,3351,329,10.9%
-Jayson Romine,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,271,255,-16,-6.0%
-Jayson Romine,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,225,260,35,15.6%
-Jayson Romine,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,2505,2470,-35,-1.4%
-Jayson Romine,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,253,235,-18,-6.9%
-Jayson Romine,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,196,179,-18,-9.0%
-Jayson Romine,Mark Anthony,Qualifier: White Claw,White Claw,4412,3717,-695,-15.8%
-Jayson Romine,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,1390,1807,418,30.1%
-Jayson Romine,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,198,221,23,11.5%
-Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,756,649,-107,-14.1%
-Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5876,5729,-147,-2.5%
-Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,7307,7614,307,4.2%
-Jayson Romine,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,115,88,-26,-23.0%
-Jayson Romine,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,412,551,138,33.5%
-Jayson Romine,Sapporo,Amplify: Sapporo,Sapporo,76,85,9,11.7%
-Jim Heaney,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,5,,-5,-100.0%
-Jim Heaney,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,93,74,-19,-20.4%
-Jim Heaney,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,50,48,-2,-4.0%
-Jim Heaney,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,200,259,58,29.2%
-Jim Heaney,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,838,787,-51,-6.1%
-Jim Heaney,Cape May,Amplify: Cape May,Cape May,152,183,31,20.6%
-Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,536,833,297,55.4%
-Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,253,379,126,49.8%
-Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,406,649,243,59.9%
-Jim Heaney,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,6090,7068,977,16.0%
-Jim Heaney,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,5748,7226,1478,25.7%
-Jim Heaney,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,19,22,3,13.0%
+Jayson Romine,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,402,454,52,12.9%
+Jayson Romine,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,245,155,-90,-36.7%
+Jayson Romine,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,699,565,-134,-19.2%
+Jayson Romine,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,2296,2072,-224,-9.7%
+Jayson Romine,Cape May,Amplify: Cape May,Cape May,456,487,31,6.9%
+Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,272,408,136,49.9%
+Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,96,170,75,77.9%
+Jayson Romine,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,90,73,-17,-19.0%
+Jayson Romine,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,3376,4189,813,24.1%
+Jayson Romine,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3162,3838,676,21.4%
+Jayson Romine,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,299,291,-8,-2.7%
+Jayson Romine,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,242,296,54,22.3%
+Jayson Romine,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,2675,2636,-39,-1.4%
+Jayson Romine,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,268,267,-1,-0.4%
+Jayson Romine,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,210,204,-6,-2.8%
+Jayson Romine,Mark Anthony,Qualifier: White Claw,White Claw,4583,4085,-498,-10.9%
+Jayson Romine,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,1427,1926,499,35.0%
+Jayson Romine,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,67,67,0,-0.3%
+Jayson Romine,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,226,254,28,12.5%
+Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,805,720,-85,-10.5%
+Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,6004,6034,30,0.5%
+Jayson Romine,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,7599,8041,441,5.8%
+Jayson Romine,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,117,92,-24,-20.8%
+Jayson Romine,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,437,590,152,34.8%
+Jayson Romine,Sapporo,Amplify: Sapporo,Sapporo,76,95,19,24.9%
+Jim Heaney,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,6,,-6,-100.0%
+Jim Heaney,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,105,80,-25,-23.4%
+Jim Heaney,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,58,48,-10,-17.2%
+Jim Heaney,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,200,269,68,34.2%
+Jim Heaney,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,953,838,-115,-12.1%
+Jim Heaney,Cape May,Amplify: Cape May,Cape May,167,195,28,17.0%
+Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,639,933,294,46.0%
+Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,295,409,114,38.7%
+Jim Heaney,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,456,725,269,59.1%
+Jim Heaney,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,6518,7791,1273,19.5%
+Jim Heaney,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,6535,7808,1273,19.5%
+Jim Heaney,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,20,22,2,7.4%
 Jim Heaney,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,39,27,-12,-30.8%
-Jim Heaney,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,698,666,-31,-4.5%
-Jim Heaney,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,127,197,70,55.1%
-Jim Heaney,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,321,255,-66,-20.6%
-Jim Heaney,Heineken USA,Qualifier: Heineken USA,Heineken USA,2534,2711,178,7.0%
-Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,312,400,87,28.0%
-Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,20,43,24,122.4%
-Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,-7,-1,5,-80.0%
-Jim Heaney,Mark Anthony,Qualifier: White Claw,White Claw,1643,1733,90,5.5%
-Jim Heaney,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,667,701,34,5.0%
-Jim Heaney,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,293,434,141,48.0%
-Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,439,510,71,16.1%
-Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4411,3850,-561,-12.7%
-Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2264,2233,-31,-1.4%
-Jim Heaney,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,19,23,4,21.1%
+Jim Heaney,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,739,690,-50,-6.7%
+Jim Heaney,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,145,219,75,51.6%
+Jim Heaney,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,342,274,-68,-19.9%
+Jim Heaney,Heineken USA,Qualifier: Heineken USA,Heineken USA,2900,2979,79,2.7%
+Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,353,453,100,28.3%
+Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,33,43,10,30.7%
+Jim Heaney,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,-7,3,9,-140.0%
+Jim Heaney,Mark Anthony,Qualifier: White Claw,White Claw,1914,1878,-37,-1.9%
+Jim Heaney,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,757,726,-31,-4.1%
+Jim Heaney,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,7,11,5,66.4%
+Jim Heaney,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,333,445,112,33.7%
+Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,485,540,55,11.4%
+Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4787,4010,-777,-16.2%
+Jim Heaney,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2528,2311,-217,-8.6%
+Jim Heaney,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,22,26,4,18.2%
 Jim Heaney,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,2,2,0,0.0%
-Jim Heaney,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,174,319,145,83.3%
-Jim Heaney,Sapporo,Amplify: Sapporo,Sapporo,117,219,102,86.9%
+Jim Heaney,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,188,341,153,81.4%
+Jim Heaney,Sapporo,Amplify: Sapporo,Sapporo,122,227,105,86.0%
 John Neukum,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,696,96,-600,-86.2%
-John Neukum,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,325,100,-225,-69.2%
-John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,377,722,345,91.5%
-John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,243,344,101,41.6%
-John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,825,1338,513,62.2%
-John Neukum,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,18844,18936,92,0.5%
-John Neukum,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,19009,20979,1970,10.4%
-John Neukum,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1547,1466,-81,-5.2%
-John Neukum,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,144,61,-83,-57.8%
-John Neukum,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,168,168,0,0.0%
-John Neukum,Heineken USA,Qualifier: Heineken USA,Heineken USA,5527,4781,-746,-13.5%
-John Neukum,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,495,323,-172,-34.7%
-John Neukum,Mark Anthony,Qualifier: White Claw,White Claw,1846,1014,-832,-45.1%
-John Neukum,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,392,392,0,0.0%
-John Neukum,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,641,579,-62,-9.6%
-John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1089,314,-775,-71.2%
-John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4639,3882,-757,-16.3%
-John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1422,1880,458,32.2%
+John Neukum,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,325,200,-125,-38.5%
+John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,377,902,525,139.3%
+John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,243,434,191,78.6%
+John Neukum,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,825,1536,711,86.2%
+John Neukum,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,20236,19470,-766,-3.8%
+John Neukum,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,19109,21397,2288,12.0%
+John Neukum,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1597,1529,-68,-4.3%
+John Neukum,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,149,89,-60,-40.3%
+John Neukum,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,168,252,84,50.0%
+John Neukum,Heineken USA,Qualifier: Heineken USA,Heineken USA,6271,5051,-1220,-19.5%
+John Neukum,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,495,414,-81,-16.4%
+John Neukum,Mark Anthony,Qualifier: White Claw,White Claw,1937,1014,-923,-47.7%
+John Neukum,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,490,490,0,0.0%
+John Neukum,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,702,598,-105,-14.9%
+John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1089,378,-711,-65.3%
+John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5859,4409,-1450,-24.8%
+John Neukum,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1527,1880,353,23.1%
 John Neukum,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,20,30,10,50.0%
-John Neukum,Sapporo,Amplify: Sapporo,Sapporo,1074,1900,826,76.9%
+John Neukum,Sapporo,Amplify: Sapporo,Sapporo,1174,1900,726,61.8%
 John O'Donoghue,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,,10,10,0.0%
 John O'Donoghue,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,5,3,-2,-40.0%
 John O'Donoghue,Cape May,Amplify: Cape May,Cape May,,2,2,0.0%
 John O'Donoghue,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,2,9,7,350.0%
 John O'Donoghue,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,1,22,21,2100.0%
 John O'Donoghue,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,1,17,16,1633.3%
-John O'Donoghue,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,37,66,29,79.2%
-John O'Donoghue,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,46,96,51,111.0%
-John O'Donoghue,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,5,,-5,-100.0%
+John O'Donoghue,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,37,71,34,92.8%
+John O'Donoghue,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,46,103,58,126.4%
+John O'Donoghue,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,5,1,-4,-80.0%
 John O'Donoghue,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,3,3,0,0.0%
 John O'Donoghue,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,,2,2,0.0%
-John O'Donoghue,Heineken USA,Qualifier: Heineken USA,Heineken USA,8,56,48,626.1%
+John O'Donoghue,Heineken USA,Qualifier: Heineken USA,Heineken USA,8,57,49,639.1%
 John O'Donoghue,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,,3,3,0.0%
 John O'Donoghue,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,,5,5,0.0%
 John O'Donoghue,Mark Anthony,Qualifier: White Claw,White Claw,,11,11,0.0%
-John O'Donoghue,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,2,5,3,125.0%
-John O'Donoghue,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,,4,4,0.0%
+John O'Donoghue,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,2,5,3,125.0%
+John O'Donoghue,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,4,,-4,-100.0%
+John O'Donoghue,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,,7,7,0.0%
 John O'Donoghue,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,,5,5,0.0%
-John O'Donoghue,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,19,31,12,61.0%
-John O'Donoghue,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,22,14,-8,-36.4%
+John O'Donoghue,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,19,47,28,145.2%
+John O'Donoghue,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,22,16,-6,-27.3%
 John O'Donoghue,Sapporo,Amplify: Sapporo,Sapporo,373,312,-62,-16.5%
 Klejdi Lamo,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,18,8,-10,-55.6%
-Klejdi Lamo,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,410,549,139,34.0%
-Klejdi Lamo,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,154,126,-28,-18.2%
-Klejdi Lamo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,487,409,-78,-15.9%
-Klejdi Lamo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1249,1050,-199,-15.9%
-Klejdi Lamo,Cape May,Amplify: Cape May,Cape May,453,537,84,18.6%
-Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,582,724,142,24.4%
-Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,113,204,91,80.2%
-Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,161,275,114,70.7%
-Klejdi Lamo,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4741,4760,19,0.4%
-Klejdi Lamo,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3918,4319,401,10.2%
-Klejdi Lamo,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,191,184,-7,-3.4%
+Klejdi Lamo,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,447,579,132,29.4%
+Klejdi Lamo,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,157,126,-31,-19.7%
+Klejdi Lamo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,523,432,-91,-17.3%
+Klejdi Lamo,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1418,1084,-334,-23.6%
+Klejdi Lamo,Cape May,Amplify: Cape May,Cape May,473,545,72,15.2%
+Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,637,757,120,18.8%
+Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,127,219,92,72.1%
+Klejdi Lamo,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,192,275,83,43.2%
+Klejdi Lamo,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4920,4894,-26,-0.5%
+Klejdi Lamo,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,4347,4482,135,3.1%
+Klejdi Lamo,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,193,194,2,0.8%
 Klejdi Lamo,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,115,152,37,32.2%
-Klejdi Lamo,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1576,1535,-41,-2.6%
+Klejdi Lamo,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1630,1609,-21,-1.3%
 Klejdi Lamo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,7,14,7,87.5%
 Klejdi Lamo,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,3,9,6,200.0%
 Klejdi Lamo,Heineken USA,Qualifier: Heineken USA,Heineken USA,72,16,-56,-77.8%
-Klejdi Lamo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,203,305,102,50.6%
-Klejdi Lamo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,149,155,6,4.1%
+Klejdi Lamo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,223,316,93,42.0%
+Klejdi Lamo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,160,165,5,3.2%
 Klejdi Lamo,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,,2,2,0.0%
-Klejdi Lamo,Mark Anthony,Qualifier: White Claw,White Claw,3317,3023,-294,-8.9%
-Klejdi Lamo,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,999,1051,52,5.2%
-Klejdi Lamo,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,223,250,26,11.7%
-Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,771,756,-15,-1.9%
-Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4841,4626,-215,-4.4%
-Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5607,5582,-25,-0.4%
-Klejdi Lamo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,50,58,8,16.0%
+Klejdi Lamo,Mark Anthony,Qualifier: White Claw,White Claw,3450,3144,-306,-8.9%
+Klejdi Lamo,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,1039,1087,48,4.6%
+Klejdi Lamo,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,11,31,20,179.2%
+Klejdi Lamo,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,223,287,64,28.4%
+Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,799,798,-1,-0.2%
+Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5019,4761,-258,-5.1%
+Klejdi Lamo,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5800,5667,-133,-2.3%
+Klejdi Lamo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,50,62,12,24.0%
 Klejdi Lamo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,0,5,5,0.0%
-Klejdi Lamo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,344,403,59,17.1%
-Klejdi Lamo,Sapporo,Amplify: Sapporo,Sapporo,74,167,93,126.6%
-Matt Powierski,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,63,100,37,57.9%
+Klejdi Lamo,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,363,431,68,18.7%
+Klejdi Lamo,Sapporo,Amplify: Sapporo,Sapporo,74,191,118,159.9%
+Matt Powierski,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,72,108,35,48.9%
 Matt Powierski,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,15,9,-6,-40.0%
-Matt Powierski,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,259,179,-80,-30.9%
-Matt Powierski,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,647,619,-28,-4.4%
-Matt Powierski,Cape May,Amplify: Cape May,Cape May,75,109,34,45.5%
-Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,540,698,158,29.2%
-Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,225,354,129,57.3%
-Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,356,458,102,28.6%
-Matt Powierski,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,6199,7352,1153,18.6%
-Matt Powierski,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,4696,5392,696,14.8%
+Matt Powierski,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,259,184,-75,-29.0%
+Matt Powierski,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,661,654,-7,-1.1%
+Matt Powierski,Cape May,Amplify: Cape May,Cape May,75,112,37,49.5%
+Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,583,786,203,34.8%
+Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,230,371,141,61.3%
+Matt Powierski,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,377,489,112,29.7%
+Matt Powierski,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,6536,8013,1477,22.6%
+Matt Powierski,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,4913,5914,1002,20.4%
 Matt Powierski,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,38,43,6,15.3%
-Matt Powierski,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,13,12,-1,-7.7%
-Matt Powierski,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,441,533,92,20.9%
-Matt Powierski,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,224,166,-58,-25.8%
-Matt Powierski,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,129,164,35,27.1%
-Matt Powierski,Heineken USA,Qualifier: Heineken USA,Heineken USA,2687,2699,12,0.4%
-Matt Powierski,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,270,357,87,32.3%
-Matt Powierski,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,65,68,3,4.5%
+Matt Powierski,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,18,17,-1,-5.6%
+Matt Powierski,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,464,612,148,31.9%
+Matt Powierski,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,237,169,-68,-28.7%
+Matt Powierski,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,138,177,39,28.3%
+Matt Powierski,Heineken USA,Qualifier: Heineken USA,Heineken USA,2808,2780,-28,-1.0%
+Matt Powierski,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,270,366,96,35.8%
+Matt Powierski,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,69,68,-1,-1.5%
 Matt Powierski,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,3,21,19,700.0%
-Matt Powierski,Mark Anthony,Qualifier: White Claw,White Claw,1379,1786,407,29.5%
-Matt Powierski,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,631,767,137,21.7%
-Matt Powierski,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,281,441,160,56.7%
-Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,408,532,123,30.2%
-Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4408,3968,-440,-10.0%
-Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1702,1643,-59,-3.5%
+Matt Powierski,Mark Anthony,Qualifier: White Claw,White Claw,1494,1869,375,25.1%
+Matt Powierski,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,646,774,129,19.9%
+Matt Powierski,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,13,10,-3,-25.8%
+Matt Powierski,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,298,484,186,62.5%
+Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,446,547,101,22.5%
+Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4578,4075,-503,-11.0%
+Matt Powierski,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1734,1712,-23,-1.3%
 Matt Powierski,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,15,7,-8,-53.3%
-Matt Powierski,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,5,26,21,420.0%
-Matt Powierski,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,161,222,61,37.7%
-Matt Powierski,Sapporo,Amplify: Sapporo,Sapporo,249,268,19,7.7%
-Michael Harboy,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,35,69,34,97.1%
+Matt Powierski,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,20,26,6,30.0%
+Matt Powierski,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,168,222,54,32.0%
+Matt Powierski,Sapporo,Amplify: Sapporo,Sapporo,258,294,37,14.2%
+Michael Harboy,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,37,69,31,84.4%
 Michael Harboy,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,20,7,-13,-65.0%
 Michael Harboy,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,64,21,-43,-67.2%
-Michael Harboy,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,195,193,-2,-1.1%
-Michael Harboy,Cape May,Amplify: Cape May,Cape May,41,60,19,45.4%
+Michael Harboy,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,195,198,3,1.4%
+Michael Harboy,Cape May,Amplify: Cape May,Cape May,52,61,9,16.5%
 Michael Harboy,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,80,132,52,64.6%
-Michael Harboy,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,14,42,28,200.0%
-Michael Harboy,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,57,53,-4,-6.5%
-Michael Harboy,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,694,807,113,16.2%
-Michael Harboy,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,675,844,169,25.1%
-Michael Harboy,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,1,16,15,1500.0%
-Michael Harboy,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,22,13,-9,-40.9%
+Michael Harboy,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,15,54,39,260.0%
+Michael Harboy,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,57,55,-2,-2.9%
+Michael Harboy,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,742,810,68,9.1%
+Michael Harboy,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,712,863,151,21.2%
+Michael Harboy,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,1,20,19,1900.0%
+Michael Harboy,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,22,17,-5,-22.7%
 Michael Harboy,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,161,201,40,24.7%
 Michael Harboy,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,20,37,18,90.5%
 Michael Harboy,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,34,14,-20,-58.8%
-Michael Harboy,Heineken USA,Qualifier: Heineken USA,Heineken USA,307,229,-78,-25.3%
+Michael Harboy,Heineken USA,Qualifier: Heineken USA,Heineken USA,308,229,-79,-25.7%
 Michael Harboy,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,49,49,1,1.7%
 Michael Harboy,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,16,21,5,32.0%
-Michael Harboy,Mark Anthony,Qualifier: White Claw,White Claw,232,572,341,147.1%
-Michael Harboy,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,121,161,40,32.9%
-Michael Harboy,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,48,156,108,227.1%
-Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,108,118,10,9.0%
-Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,820,714,-106,-13.0%
-Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,763,576,-186,-24.4%
+Michael Harboy,Mark Anthony,Qualifier: White Claw,White Claw,232,582,351,151.4%
+Michael Harboy,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,126,164,38,30.0%
+Michael Harboy,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,6,6,1,10.0%
+Michael Harboy,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,48,156,108,227.1%
+Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,118,118,0,-0.2%
+Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,863,764,-99,-11.5%
+Michael Harboy,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,789,629,-160,-20.3%
 Michael Harboy,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,6,4,-2,-33.3%
 Michael Harboy,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,5,5,0.0%
 Michael Harboy,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,76,69,-7,-9.2%
 Michael Harboy,Sapporo,Amplify: Sapporo,Sapporo,152,188,37,24.0%
-Mike Ast,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,4,8,4,100.0%
-Mike Ast,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,234,333,99,42.3%
-Mike Ast,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,54,46,-8,-14.8%
-Mike Ast,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,303,125,-178,-58.8%
-Mike Ast,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,802,501,-301,-37.5%
-Mike Ast,Cape May,Amplify: Cape May,Cape May,356,366,10,2.8%
-Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,187,391,204,109.1%
-Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,208,333,125,60.0%
-Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,92,112,20,22.2%
-Mike Ast,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4499,5092,593,13.2%
-Mike Ast,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3436,4840,1404,40.9%
-Mike Ast,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,36,43,7,19.4%
-Mike Ast,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,48,38,-10,-20.8%
-Mike Ast,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1166,1149,-17,-1.4%
-Mike Ast,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,203,237,35,17.1%
-Mike Ast,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,238,234,-4,-1.7%
-Mike Ast,Heineken USA,Qualifier: Heineken USA,Heineken USA,1520,2046,526,34.6%
-Mike Ast,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,135,196,61,45.0%
-Mike Ast,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,39,53,14,35.3%
+Mike Ast,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,4,9,5,125.0%
+Mike Ast,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,259,358,100,38.5%
+Mike Ast,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,61,46,-15,-24.6%
+Mike Ast,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,303,127,-176,-58.1%
+Mike Ast,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,890,515,-375,-42.1%
+Mike Ast,Cape May,Amplify: Cape May,Cape May,385,374,-11,-2.8%
+Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,221,425,204,92.3%
+Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,213,344,131,61.4%
+Mike Ast,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,103,122,19,18.8%
+Mike Ast,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4673,5345,672,14.4%
+Mike Ast,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,3589,5039,1450,40.4%
+Mike Ast,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,47,43,-4,-8.5%
+Mike Ast,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,48,40,-8,-16.7%
+Mike Ast,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1255,1191,-64,-5.1%
+Mike Ast,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,215,265,50,23.5%
+Mike Ast,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,272,236,-36,-13.2%
+Mike Ast,Heineken USA,Qualifier: Heineken USA,Heineken USA,1677,2071,394,23.5%
+Mike Ast,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,151,196,45,30.2%
+Mike Ast,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,48,56,8,16.5%
 Mike Ast,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,7,,-7,-100.0%
-Mike Ast,Mark Anthony,Qualifier: White Claw,White Claw,2040,2973,933,45.7%
-Mike Ast,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,646,875,228,35.3%
-Mike Ast,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,422,585,163,38.6%
-Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,737,781,44,6.0%
-Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4470,4743,272,6.1%
-Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,3928,4503,575,14.6%
-Mike Ast,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,54,34,-20,-37.3%
+Mike Ast,Mark Anthony,Qualifier: White Claw,White Claw,2179,3076,897,41.2%
+Mike Ast,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,684,905,221,32.3%
+Mike Ast,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,42,93,51,121.1%
+Mike Ast,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,448,637,189,42.2%
+Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,789,812,23,2.9%
+Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4676,4907,231,4.9%
+Mike Ast,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,4132,4705,574,13.9%
+Mike Ast,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,59,34,-25,-42.6%
 Mike Ast,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,14,14,0.0%
-Mike Ast,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,218,244,26,12.0%
-Mike Ast,Sapporo,Amplify: Sapporo,Sapporo,174,158,-16,-9.1%
-Nick Melissari,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,220,236,16,7.1%
+Mike Ast,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,236,275,39,16.6%
+Mike Ast,Sapporo,Amplify: Sapporo,Sapporo,179,170,-8,-4.6%
+Nick Melissari,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,236,246,9,4.0%
 Nick Melissari,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,2,114,112,5600.0%
-Nick Melissari,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,12,29,17,143.0%
-Nick Melissari,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,66,96,30,45.3%
-Nick Melissari,Cape May,Amplify: Cape May,Cape May,94,108,15,15.5%
-Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,3,10,7,233.3%
-Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,57,186,130,229.3%
-Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,13,41,28,215.4%
-Nick Melissari,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1705,2575,870,51.0%
-Nick Melissari,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,1003,1626,623,62.1%
+Nick Melissari,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,12,31,19,159.8%
+Nick Melissari,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,81,98,17,20.9%
+Nick Melissari,Cape May,Amplify: Cape May,Cape May,120,108,-12,-9.7%
+Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,6,11,5,83.3%
+Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,63,200,137,215.4%
+Nick Melissari,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,13,43,30,230.8%
+Nick Melissari,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1847,2857,1010,54.7%
+Nick Melissari,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,1034,1721,688,66.5%
 Nick Melissari,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,1,7,6,588.9%
 Nick Melissari,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,,2,2,0.0%
-Nick Melissari,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,870,1090,220,25.3%
-Nick Melissari,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,87,136,50,57.0%
-Nick Melissari,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,40,72,32,80.0%
-Nick Melissari,Heineken USA,Qualifier: Heineken USA,Heineken USA,882,1244,362,41.0%
+Nick Melissari,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,989,1154,165,16.7%
+Nick Melissari,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,100,141,41,41.1%
+Nick Melissari,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,43,74,31,72.1%
+Nick Melissari,Heineken USA,Qualifier: Heineken USA,Heineken USA,928,1302,374,40.3%
 Nick Melissari,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,,2,2,0.0%
 Nick Melissari,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,3,,-3,-100.0%
 Nick Melissari,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,4,1,-3,-66.7%
-Nick Melissari,Mark Anthony,Qualifier: White Claw,White Claw,244,207,-37,-15.2%
-Nick Melissari,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,76,47,-29,-38.0%
-Nick Melissari,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,272,505,234,86.0%
-Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1195,1301,105,8.8%
-Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1678,1671,-7,-0.4%
-Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1927,2402,475,24.6%
-Nick Melissari,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,58,69,11,19.3%
+Nick Melissari,Mark Anthony,Qualifier: White Claw,White Claw,272,229,-43,-15.7%
+Nick Melissari,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,76,47,-29,-38.0%
+Nick Melissari,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,40,67,27,68.6%
+Nick Melissari,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,284,647,364,128.2%
+Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,1319,1330,12,0.9%
+Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1827,1794,-33,-1.8%
+Nick Melissari,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,2141,2544,403,18.8%
+Nick Melissari,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,61,73,12,20.5%
 Nick Melissari,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,20,21,1,5.1%
-Nick Melissari,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,99,206,107,108.3%
-Nick Melissari,Sapporo,Amplify: Sapporo,Sapporo,21,117,96,465.0%
+Nick Melissari,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,134,221,87,65.3%
+Nick Melissari,Sapporo,Amplify: Sapporo,Sapporo,33,117,84,258.7%
 Pablo Lopez,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,15,5,-10,-66.7%
 Pablo Lopez,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,23,6,-17,-73.9%
-Pablo Lopez,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,108,87,-21,-19.4%
+Pablo Lopez,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,112,92,-20,-17.9%
 Pablo Lopez,Cape May,Amplify: Cape May,Cape May,2,,-2,-100.0%
-Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,984,934,-50,-5.1%
-Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,345,301,-44,-12.7%
-Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,1005,871,-134,-13.3%
-Pablo Lopez,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,10335,11095,760,7.4%
-Pablo Lopez,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,7804,7862,58,0.7%
+Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,984,980,-4,-0.4%
+Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,345,389,44,12.8%
+Pablo Lopez,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,1005,967,-38,-3.8%
+Pablo Lopez,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,10422,12125,1703,16.3%
+Pablo Lopez,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,7825,8747,922,11.8%
 Pablo Lopez,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,,7,7,0.0%
 Pablo Lopez,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,46,51,5,11.8%
-Pablo Lopez,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,122,222,100,81.7%
-Pablo Lopez,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,409,287,-122,-29.8%
-Pablo Lopez,Heineken USA,Qualifier: Heineken USA,Heineken USA,3234,3134,-99,-3.1%
-Pablo Lopez,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,170,199,28,16.6%
+Pablo Lopez,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,122,265,143,116.8%
+Pablo Lopez,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,409,300,-109,-26.7%
+Pablo Lopez,Heineken USA,Qualifier: Heineken USA,Heineken USA,3245,3470,225,6.9%
+Pablo Lopez,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,170,221,51,29.9%
 Pablo Lopez,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,12,20,8,66.7%
 Pablo Lopez,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,97,131,33,34.2%
-Pablo Lopez,Mark Anthony,Qualifier: White Claw,White Claw,285,297,13,4.5%
-Pablo Lopez,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,387,481,94,24.4%
-Pablo Lopez,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,17,20,3,17.5%
-Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,107,158,51,47.2%
-Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4230,3655,-574,-13.6%
-Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,199,189,-10,-5.1%
+Pablo Lopez,Mark Anthony,Qualifier: White Claw,White Claw,300,314,15,4.9%
+Pablo Lopez,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,387,481,94,24.4%
+Pablo Lopez,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,,1,1,0.0%
+Pablo Lopez,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,17,20,3,17.5%
+Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,112,158,46,41.1%
+Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,4279,3786,-492,-11.5%
+Pablo Lopez,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,199,216,17,8.5%
 Pablo Lopez,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,4,4,0.0%
-Pablo Lopez,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,24,15,-9,-37.5%
+Pablo Lopez,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,24,18,-6,-25.0%
 Pablo Lopez,Sapporo,Amplify: Sapporo,Sapporo,35,75,40,114.1%
 Paul Mclaughlin,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,0,,0,0.0%
-Paul Mclaughlin,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,150,184,34,23.0%
+Paul Mclaughlin,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,170,193,23,13.3%
 Paul Mclaughlin,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,,5,5,0.0%
-Paul Mclaughlin,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,10,13,3,30.3%
-Paul Mclaughlin,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,31,41,11,34.9%
-Paul Mclaughlin,Cape May,Amplify: Cape May,Cape May,41,76,35,84.4%
-Paul Mclaughlin,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,33,74,42,127.6%
+Paul Mclaughlin,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,10,14,4,40.4%
+Paul Mclaughlin,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,31,44,13,42.4%
+Paul Mclaughlin,Cape May,Amplify: Cape May,Cape May,44,101,58,132.7%
+Paul Mclaughlin,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,34,85,52,153.1%
 Paul Mclaughlin,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,12,24,12,100.0%
-Paul Mclaughlin,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1176,1363,187,15.9%
-Paul Mclaughlin,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,669,956,288,43.1%
+Paul Mclaughlin,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,1202,1516,314,26.2%
+Paul Mclaughlin,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,692,1149,456,65.9%
 Paul Mclaughlin,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,,0,0,0.0%
-Paul Mclaughlin,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,602,500,-102,-16.9%
-Paul Mclaughlin,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,86,75,-11,-13.0%
-Paul Mclaughlin,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,70,58,-12,-17.1%
-Paul Mclaughlin,Heineken USA,Qualifier: Heineken USA,Heineken USA,550,471,-79,-14.4%
-Paul Mclaughlin,Mark Anthony,Qualifier: White Claw,White Claw,180,119,-61,-33.9%
-Paul Mclaughlin,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,37,22,-15,-40.1%
-Paul Mclaughlin,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,353,361,8,2.1%
-Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,498,463,-35,-7.1%
-Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1228,1190,-38,-3.1%
-Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1053,1100,47,4.5%
-Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,32,31,-1,-2.9%
-Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,7,1,-6,-85.5%
-Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,143,106,-37,-26.0%
-Paul Mclaughlin,Sapporo,Amplify: Sapporo,Sapporo,19,20,0,1.9%
+Paul Mclaughlin,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,615,565,-50,-8.2%
+Paul Mclaughlin,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,89,80,-8,-9.5%
+Paul Mclaughlin,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,70,65,-5,-7.1%
+Paul Mclaughlin,Heineken USA,Qualifier: Heineken USA,Heineken USA,568,510,-58,-10.2%
+Paul Mclaughlin,Mark Anthony,Qualifier: White Claw,White Claw,180,141,-39,-21.7%
+Paul Mclaughlin,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,37,23,-14,-37.4%
+Paul Mclaughlin,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,34,35,1,2.8%
+Paul Mclaughlin,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,358,386,28,7.7%
+Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,505,535,30,5.8%
+Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,1260,1259,-2,-0.1%
+Paul Mclaughlin,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1086,1158,73,6.7%
+Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,39,45,6,15.3%
+Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,7,2,-5,-71.0%
+Paul Mclaughlin,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,150,115,-35,-23.3%
+Paul Mclaughlin,Sapporo,Amplify: Sapporo,Sapporo,19,27,7,37.4%
 Phil Ernst,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,7,7,0,0.0%
-Phil Ernst,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,251,295,44,17.4%
-Phil Ernst,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,32,30,-2,-6.3%
-Phil Ernst,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,527,353,-174,-33.0%
-Phil Ernst,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,783,578,-204,-26.1%
-Phil Ernst,Cape May,Amplify: Cape May,Cape May,186,228,41,22.2%
-Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,325,543,218,67.2%
-Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,134,193,59,44.0%
-Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,124,168,44,35.8%
-Phil Ernst,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,7270,8763,1494,20.5%
-Phil Ernst,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,4786,5553,767,16.0%
-Phil Ernst,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,86,80,-6,-7.0%
+Phil Ernst,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,276,297,22,7.9%
+Phil Ernst,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,33,30,-3,-9.1%
+Phil Ernst,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,581,434,-147,-25.3%
+Phil Ernst,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,804,724,-79,-9.9%
+Phil Ernst,Cape May,Amplify: Cape May,Cape May,205,228,23,11.0%
+Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,372,554,182,49.0%
+Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,143,205,62,43.4%
+Phil Ernst,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,151,170,19,12.6%
+Phil Ernst,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,7861,8963,1102,14.0%
+Phil Ernst,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,5360,5803,443,8.3%
+Phil Ernst,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,87,84,-3,-3.5%
 Phil Ernst,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,82,62,-20,-24.4%
-Phil Ernst,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,842,1007,165,19.7%
-Phil Ernst,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,218,252,35,15.9%
-Phil Ernst,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,529,391,-138,-26.1%
-Phil Ernst,Heineken USA,Qualifier: Heineken USA,Heineken USA,3054,4069,1015,33.2%
-Phil Ernst,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,234,353,119,50.7%
+Phil Ernst,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,892,1099,206,23.1%
+Phil Ernst,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,230,266,36,15.9%
+Phil Ernst,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,546,391,-155,-28.4%
+Phil Ernst,Heineken USA,Qualifier: Heineken USA,Heineken USA,3457,4113,656,19.0%
+Phil Ernst,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,241,353,112,46.6%
 Phil Ernst,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,71,65,-6,-8.5%
 Phil Ernst,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,8,,-8,-100.0%
-Phil Ernst,Mark Anthony,Qualifier: White Claw,White Claw,2190,1622,-568,-25.9%
-Phil Ernst,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,789,911,122,15.4%
-Phil Ernst,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,504,585,80,15.9%
-Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,724,753,29,4.0%
-Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5639,5576,-63,-1.1%
-Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,3329,3184,-145,-4.4%
-Phil Ernst,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,45,31,-14,-31.1%
+Phil Ernst,Mark Anthony,Qualifier: White Claw,White Claw,2271,1695,-576,-25.4%
+Phil Ernst,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,816,937,121,14.8%
+Phil Ernst,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,62,122,61,98.7%
+Phil Ernst,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,549,623,74,13.4%
+Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,775,820,46,5.9%
+Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,5925,5710,-215,-3.6%
+Phil Ernst,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,3476,3362,-114,-3.3%
+Phil Ernst,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,46,31,-15,-32.6%
 Phil Ernst,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,2,13,11,550.0%
-Phil Ernst,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,258,284,26,10.0%
-Phil Ernst,Sapporo,Amplify: Sapporo,Sapporo,267,293,26,9.8%
-Robin Feldman,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,103,148,45,43.5%
+Phil Ernst,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,275,309,34,12.3%
+Phil Ernst,Sapporo,Amplify: Sapporo,Sapporo,291,298,7,2.5%
+Robin Feldman,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,112,169,57,50.5%
 Robin Feldman,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,1,,-1,-100.0%
-Robin Feldman,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,22,13,-9,-40.0%
-Robin Feldman,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,46,75,29,62.9%
-Robin Feldman,Cape May,Amplify: Cape May,Cape May,22,34,12,54.8%
+Robin Feldman,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,22,14,-8,-35.4%
+Robin Feldman,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,50,78,28,56.5%
+Robin Feldman,Cape May,Amplify: Cape May,Cape May,22,40,19,86.7%
 Robin Feldman,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,6,,-6,-100.0%
-Robin Feldman,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,1,0,-1,-100.0%
+Robin Feldman,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,1,3,2,244.4%
 Robin Feldman,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,,8,8,0.0%
-Robin Feldman,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,480,507,27,5.6%
-Robin Feldman,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,185,227,42,22.7%
-Robin Feldman,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,23,17,-6,-25.4%
+Robin Feldman,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,500,543,43,8.7%
+Robin Feldman,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,190,254,64,33.6%
+Robin Feldman,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,23,20,-2,-10.2%
 Robin Feldman,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,,1,1,0.0%
-Robin Feldman,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,365,358,-8,-2.1%
-Robin Feldman,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,50,33,-18,-35.2%
-Robin Feldman,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,21,21,0,0.0%
-Robin Feldman,Heineken USA,Qualifier: Heineken USA,Heineken USA,193,218,25,12.9%
-Robin Feldman,Mark Anthony,Qualifier: White Claw,White Claw,125,183,58,46.4%
-Robin Feldman,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,31,37,6,19.8%
-Robin Feldman,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,140,209,68,48.5%
-Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,204,206,2,1.0%
-Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,960,905,-55,-5.7%
-Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1017,1037,20,2.0%
-Robin Feldman,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,27,27,0,1.0%
+Robin Feldman,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,376,439,63,16.7%
+Robin Feldman,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,48,33,-15,-31.4%
+Robin Feldman,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,23,23,0,0.0%
+Robin Feldman,Heineken USA,Qualifier: Heineken USA,Heineken USA,208,231,23,11.2%
+Robin Feldman,Mark Anthony,Qualifier: White Claw,White Claw,127,195,68,53.5%
+Robin Feldman,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,34,37,3,9.2%
+Robin Feldman,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,,8,8,0.0%
+Robin Feldman,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,144,213,69,47.7%
+Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,207,222,15,7.2%
+Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,991,1073,82,8.2%
+Robin Feldman,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,1056,1106,50,4.7%
+Robin Feldman,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,29,27,-2,-7.0%
 Robin Feldman,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,,103,103,0.0%
-Robin Feldman,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,18,12,-6,-34.1%
-Robin Feldman,Sapporo,Amplify: Sapporo,Sapporo,68,46,-22,-32.3%
-Shane Barreca,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,12,20,8,66.7%
-Shane Barreca,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,403,479,75,18.7%
-Shane Barreca,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,34,68,34,100.0%
+Robin Feldman,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,41,12,-29,-70.6%
+Robin Feldman,Sapporo,Amplify: Sapporo,Sapporo,68,50,-17,-25.6%
+Shane Barreca,Bell's,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,18,20,2,11.1%
+Shane Barreca,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Beer,462,485,22,4.8%
+Shane Barreca,Boston Beer Company,Amplify: Dogfish Head,Dogfish Head Spirits,39,68,29,74.4%
 Shane Barreca,Boston Beer Company,Qualifier: Truly / Twisted Tea,Truly,401,274,-127,-31.7%
-Shane Barreca,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1078,738,-340,-31.5%
-Shane Barreca,Cape May,Amplify: Cape May,Cape May,301,334,34,11.2%
-Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,603,1233,630,104.5%
-Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,401,646,245,61.2%
-Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,307,287,-20,-6.4%
-Shane Barreca,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4557,5364,807,17.7%
-Shane Barreca,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,5328,7000,1672,31.4%
+Shane Barreca,Boston Beer Company,Qualifier: Truly / Twisted Tea,Twisted Tea,1091,770,-321,-29.4%
+Shane Barreca,Cape May,Amplify: Cape May,Cape May,343,337,-5,-1.6%
+Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Modelo Chelada,629,1263,634,100.8%
+Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Pacifico,431,666,235,54.6%
+Shane Barreca,Constellation Brands,Amplify: Chelada / Victoria / Pacifico,Victoria,310,295,-15,-4.8%
+Shane Barreca,Constellation Brands,Qualifier: Modelo/Corona,Corona Extra,4938,5447,509,10.3%
+Shane Barreca,Constellation Brands,Qualifier: Modelo/Corona,Modelo Especial,5502,7188,1686,30.6%
 Shane Barreca,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Flight,128,110,-18,-14.3%
-Shane Barreca,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,98,64,-34,-34.7%
-Shane Barreca,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1431,1340,-92,-6.4%
-Shane Barreca,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,255,300,45,17.6%
-Shane Barreca,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,369,313,-56,-15.2%
-Shane Barreca,Heineken USA,Qualifier: Heineken USA,Heineken USA,2375,2188,-187,-7.9%
-Shane Barreca,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,149,200,51,34.7%
-Shane Barreca,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,107,108,1,0.9%
+Shane Barreca,DG Yuengling Inc,Amplify: Yuengling Light / Yuengling Flight,Yuengling Light Lager,83,64,-19,-22.9%
+Shane Barreca,DG Yuengling Inc,Qualifier: Yuengling Lager,Yuengling Lager,1459,1346,-113,-7.7%
+Shane Barreca,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken 0.0,274,308,35,12.6%
+Shane Barreca,Heineken USA,Amplify: Heineken Light / Heineken 0.0,Heineken Light,369,319,-50,-13.6%
+Shane Barreca,Heineken USA,Qualifier: Heineken USA,Heineken USA,2378,2205,-173,-7.3%
+Shane Barreca,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Cayman Jack,157,200,43,27.3%
+Shane Barreca,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mike's Harder,115,108,-7,-5.9%
 Shane Barreca,Mark Anthony,Amplify: Cayman Jack / Mike's Harder / MXD,Mxd Cocktails,,-1,-1,0.0%
-Shane Barreca,Mark Anthony,Qualifier: White Claw,White Claw,2309,3200,891,38.6%
-Shane Barreca,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Coors,1272,1597,324,25.5%
-Shane Barreca,MolsonCoors Beverage Company,Amplify: Coors / Peroni,Peroni,818,1067,250,30.5%
-Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,825,994,168,20.4%
-Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,6853,7193,340,5.0%
-Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5687,5988,301,5.3%
-Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,92,78,-14,-14.9%
-Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,13,22,9,69.2%
-Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,430,489,59,13.7%
-Shane Barreca,Sapporo,Amplify: Sapporo,Sapporo,398,443,45,11.4%
+Shane Barreca,Mark Anthony,Qualifier: White Claw,White Claw,2501,3250,749,29.9%
+Shane Barreca,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Coors,1302,1625,323,24.8%
+Shane Barreca,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Fever Tree,32,151,118,364.0%
+Shane Barreca,MolsonCoors Beverage Company,Amplify: Coors / Peroni / Fever Tree,Peroni,879,1076,197,22.4%
+Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Blue Moon,919,1008,89,9.7%
+Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Coors Light,6987,7300,313,4.5%
+Shane Barreca,MolsonCoors Beverage Company,Qualifier: Coors Light/Miller Lite/Blue Moon,Lite,5834,6083,249,4.3%
+Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Fat Tire Family,107,78,-29,-26.8%
+Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Kirin Ichiban,13,37,24,184.6%
+Shane Barreca,New Belgium Brewing Company,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Voodoo Family,443,497,54,12.1%
+Shane Barreca,Sapporo,Amplify: Sapporo,Sapporo,417,453,36,8.7%
