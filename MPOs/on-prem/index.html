@@ -19,7 +19,7 @@
   .crumb{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
   .crumb a{color:var(--text-dim);text-decoration:none;}
   .crumb a:hover{color:var(--accent);}
-  header{max-width:1200px;margin:0 auto;padding:0 32px 28px;border-bottom:1px solid var(--border);}
+  header{max-width:1200px;margin:0 auto;padding:0 32px 20px;border-bottom:1px solid var(--border);}
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
   h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
   .sub{color:var(--text-dim);font-size:14.5px;}
@@ -33,11 +33,27 @@
   .kpi-val.good{color:var(--accent);}
   .kpi-sub{font-size:12px;color:var(--text-dim);margin-top:4px;}
 
-  main{max-width:1200px;margin:36px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
+  .repbar-wrap{max-width:1200px;margin:24px auto 0;padding:0 32px;}
+  .repbar-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+  .repbar{display:flex;flex-wrap:wrap;gap:8px;}
+  .repchip{background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+  .repchip:hover{border-color:var(--accent);color:var(--text);}
+  .repchip.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+
+  main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
+
+  .backbtn{background:none;border:1px solid var(--border);color:var(--text-dim);font:inherit;font-weight:600;font-size:14px;padding:8px 15px;border-radius:11px;cursor:pointer;margin-bottom:4px;}
+  .backbtn:hover{color:var(--text);border-color:var(--text-dim);}
+  .rep-hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+  .rep-hero h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
+  .rep-hero-stat{font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--text-dim);}
+  .rep-hero-stat b{color:var(--accent);}
 
   .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
   .obj-head{padding:22px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;}
   .obj-head:hover{background:var(--card-alt);}
+  .obj-head.static{cursor:default;}
+  .obj-head.static:hover{background:none;}
   .obj-left{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
   .obj-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .obj-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
@@ -52,6 +68,7 @@
   .obj-card.open .chev{transform:rotate(90deg);}
   .obj-body{max-height:0;overflow:hidden;transition:max-height .25s ease;border-top:1px solid transparent;}
   .obj-card.open .obj-body{max-height:6000px;border-top:1px solid var(--border);}
+  .obj-card.static-open .obj-body{max-height:6000px;border-top:1px solid var(--border);}
   .obj-body-inner{padding:20px 24px 26px;}
 
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
@@ -77,6 +94,7 @@
   .rep-sub-inner th{padding:6px 10px;}
   .rep-sub-inner td{padding:6px 10px;}
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
+  .empty-state{color:var(--text-dim);font-size:13px;padding:6px 2px 2px;}
 
   .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
   .empty-tag{font-size:11px;background:#20242D;border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
@@ -94,10 +112,15 @@
 <header>
   <div class="eyebrow">On-Premise · July 2026</div>
   <h1>On-Prem MPO Tracker</h1>
-  <p class="sub">20% of Total Commission Eligibility — weighted across 4 objectives. Every numeric goal below is a <strong>per-rep</strong> target. Click a rep to see their line items.</p>
+  <p class="sub">20% of Total Commission Eligibility — weighted across 4 objectives. Every numeric goal below is a <strong>per-rep</strong> target.</p>
 </header>
 
 <div class="kpi-strip" id="kpi-strip"></div>
+
+<div class="repbar-wrap">
+  <div class="repbar-label">Jump to a rep</div>
+  <div class="repbar" id="repbar"></div>
+</div>
 
 <main id="objectives"></main>
 
@@ -136,111 +159,194 @@ function renderKPIs(){
 }
 renderKPIs();
 
+// ---- collect full rep roster across all objectives ----
+function allReps(){
+  const s = new Set();
+  OBJECTIVES.forEach(o=>{ if(o.hasData) DATA[o.key].reps.forEach(r=>s.add(r.rep)); });
+  return [...s].sort();
+}
+function repFind(objKey, rep){
+  return DATA[objKey].reps.find(r=>r.rep===rep);
+}
+
+let activeRep = null;
 const container = document.getElementById('objectives');
 let uid = 0;
 
-OBJECTIVES.forEach(o=>{
-  const card = document.createElement('div');
-  card.className='obj-card';
+function renderRepBar(){
+  const bar = document.getElementById('repbar');
+  const reps = allReps();
+  bar.innerHTML = reps.map(r=>`<button class="repchip" data-rep="${r}">${r}</button>`).join('');
+  bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click',()=>{activeRep=b.dataset.rep;renderMain();window.scrollTo({top:0,behavior:'smooth'});}));
+}
+renderRepBar();
 
-  if(!o.hasData){
-    card.innerHTML = `
-      <div class="empty-obj">
-        <div><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div></div>
-        <div class="empty-tag">No data yet</div>
-      </div>`;
-    container.appendChild(card);
-    return;
-  }
+function lineTableNewAccounts(lines){
+  if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
+  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ New Buyer</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function lineTablePlacements(lines){
+  if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
+  const rows = lines.map(l=>`<tr><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th><th>Customer</th><th>Date</th><th class="num">Count</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
 
-  const d = DATA[o.key];
-  const pct = objPct(o);
-  const target = d.target_per_rep;
+function renderRepView(){
+  container.innerHTML = '';
+  const backWrap = document.createElement('div');
+  backWrap.innerHTML = `<button class="backbtn" id="backbtn">‹ All reps</button>`;
+  container.appendChild(backWrap);
+  document.getElementById('backbtn').addEventListener('click',()=>{activeRep=null;renderMain();});
 
-  const head = document.createElement('div');
-  head.className='obj-head';
-  head.innerHTML = `
-    <div class="obj-left">
-      <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} per rep</span></div>
-      <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${pct}%"></div></div>
-    </div>
-    <div class="obj-right">
-      <div>
-        <div class="obj-progress-txt">${d.reps_at_goal} / ${d.reps_total}</div>
-        <div class="obj-progress-sub">reps at goal</div>
+  const hero = document.createElement('div');
+  hero.className='rep-hero';
+  hero.innerHTML = `<h2>${activeRep}</h2>`;
+  container.appendChild(hero);
+
+  OBJECTIVES.forEach(o=>{
+    const card = document.createElement('div');
+    card.className='obj-card static-open';
+    if(!o.hasData){
+      card.innerHTML = `<div class="empty-obj"><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div><div class="empty-tag">No data yet</div></div>`;
+      container.appendChild(card);
+      return;
+    }
+    const d = DATA[o.key];
+    const target = d.target_per_rep;
+    const r = repFind(o.key, activeRep);
+    const val = o.type==='new_accounts' ? (r?r.qualifying:0) : (r?r.count:0);
+    const pct = Math.min(val/target,1)*100;
+    const hit = val>=target;
+    const head = document.createElement('div');
+    head.className='obj-head static';
+    head.innerHTML = `
+      <div class="obj-left">
+        <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} per rep</span></div>
+        <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${pct}%"></div></div>
       </div>
-      <div class="chev">▶</div>
-    </div>`;
-  head.addEventListener('click',()=>card.classList.toggle('open'));
-  card.appendChild(head);
+      <div class="obj-right">
+        <div><div class="obj-progress-txt">${val} / ${target}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'}</div></div>
+      </div>`;
+    card.appendChild(head);
+    const body = document.createElement('div');
+    body.className='obj-body';
+    const inner = document.createElement('div');
+    inner.className='obj-body-inner';
+    inner.style.paddingTop='0';
+    if(!r){
+      inner.innerHTML = '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>';
+    } else if(o.type==='new_accounts'){
+      inner.innerHTML = lineTableNewAccounts(r.lines);
+    } else {
+      inner.innerHTML = lineTablePlacements(r.lines);
+    }
+    body.appendChild(inner);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
+}
 
-  const body = document.createElement('div');
-  body.className='obj-body';
-  const inner = document.createElement('div');
-  inner.className='obj-body-inner';
+function renderObjectiveView(){
+  container.innerHTML = '';
+  OBJECTIVES.forEach(o=>{
+    const card = document.createElement('div');
+    card.className='obj-card';
 
-  const table = document.createElement('table');
-  let headHtml, bodyRows = '';
+    if(!o.hasData){
+      card.innerHTML = `
+        <div class="empty-obj">
+          <div><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div></div>
+          <div class="empty-tag">No data yet</div>
+        </div>`;
+      container.appendChild(card);
+      return;
+    }
 
-  if(o.type==='new_accounts'){
-    headHtml = `<thead><tr><th>Rep</th><th class="num">New Accounts</th><th>Status</th></tr></thead>`;
-    d.reps.forEach(r=>{
-      const rowId = 'row'+(uid++);
-      const rp = Math.min(r.qualifying/target,1)*100;
-      const hit = r.qualifying>=target;
-      bodyRows += `<tr class="rep-row" data-target="${rowId}">
-        <td><span class="rep-chev">▶</span>${r.rep}</td>
-        <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.qualifying} / ${target}</td>
-        <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
-      </tr>`;
-      let subContent;
-      if(r.lines.length===0){
-        subContent = `<div class="no-lines">No activity recorded for ${r.rep} this month.</div>`;
-      } else {
-        const lineRows = r.lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ New Buyer</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
-        subContent = `<div class="rep-sub-inner"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${lineRows}</tbody></table></div>`;
+    const d = DATA[o.key];
+    const pct = objPct(o);
+    const target = d.target_per_rep;
+
+    const head = document.createElement('div');
+    head.className='obj-head';
+    head.innerHTML = `
+      <div class="obj-left">
+        <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} per rep</span></div>
+        <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="obj-right">
+        <div>
+          <div class="obj-progress-txt">${d.reps_at_goal} / ${d.reps_total}</div>
+          <div class="obj-progress-sub">reps at goal</div>
+        </div>
+        <div class="chev">▶</div>
+      </div>`;
+    head.addEventListener('click',()=>card.classList.toggle('open'));
+    card.appendChild(head);
+
+    const body = document.createElement('div');
+    body.className='obj-body';
+    const inner = document.createElement('div');
+    inner.className='obj-body-inner';
+
+    const table = document.createElement('table');
+    let headHtml, bodyRows = '';
+
+    if(o.type==='new_accounts'){
+      headHtml = `<thead><tr><th>Rep</th><th class="num">New Accounts</th><th>Status</th></tr></thead>`;
+      d.reps.forEach(r=>{
+        const rowId = 'row'+(uid++);
+        const rp = Math.min(r.qualifying/target,1)*100;
+        const hit = r.qualifying>=target;
+        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+          <td><span class="rep-chev">▶</span>${r.rep}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.qualifying} / ${target}</td>
+          <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+        </tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTableNewAccounts(r.lines)}</td></tr>`;
+      });
+    } else if(o.type==='placements'){
+      headHtml = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead>`;
+      if(d.reps.length===0){
+        bodyRows = `<tr><td colspan="3" class="empty-state">No data yet for this program.</td></tr>`;
       }
-      bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${subContent}</td></tr>`;
-    });
-  } else if(o.type==='placements'){
-    headHtml = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead>`;
-    d.reps.forEach(r=>{
-      const rowId = 'row'+(uid++);
-      const rp = Math.min(r.count/target,1)*100;
-      const hit = r.count>=target;
-      bodyRows += `<tr class="rep-row" data-target="${rowId}">
-        <td><span class="rep-chev">▶</span>${r.rep}</td>
-        <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.count} / ${target}</td>
-        <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
-      </tr>`;
-      let subContent;
-      if(r.lines.length===0){
-        subContent = `<div class="no-lines">No activity recorded for ${r.rep} this month.</div>`;
-      } else {
-        const lineRows = r.lines.map(l=>`<tr><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
-        subContent = `<div class="rep-sub-inner"><table><thead><tr><th>Product</th><th>Customer</th><th>Date</th><th class="num">Count</th></tr></thead><tbody>${lineRows}</tbody></table></div>`;
-      }
-      bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${subContent}</td></tr>`;
-    });
-  }
+      d.reps.forEach(r=>{
+        const rowId = 'row'+(uid++);
+        const rp = Math.min(r.count/target,1)*100;
+        const hit = r.count>=target;
+        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+          <td><span class="rep-chev">▶</span>${r.rep}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.count} / ${target}</td>
+          <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+        </tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePlacements(r.lines)}</td></tr>`;
+      });
+    }
 
-  table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
-  inner.appendChild(table);
+    table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
+    inner.appendChild(table);
 
-  table.querySelectorAll('.rep-row').forEach(row=>{
-    row.addEventListener('click',()=>{
-      const sub = document.getElementById(row.dataset.target);
-      sub.classList.toggle('open');
-      row.classList.toggle('expanded');
+    table.querySelectorAll('.rep-row').forEach(row=>{
+      row.addEventListener('click',()=>{
+        const sub = document.getElementById(row.dataset.target);
+        sub.classList.toggle('open');
+        row.classList.toggle('expanded');
+      });
     });
+
+    body.appendChild(inner);
+    card.appendChild(body);
+    container.appendChild(card);
   });
 
-  body.appendChild(inner);
-  card.appendChild(body);
-  container.appendChild(card);
-});
+  document.querySelectorAll('.obj-card')[0]?.classList.add('open');
+}
 
-document.querySelectorAll('.obj-card')[0]?.classList.add('open');
+function renderMain(){
+  document.querySelectorAll('.repchip').forEach(c=>c.classList.toggle('active', c.dataset.rep===activeRep));
+  if(activeRep) renderRepView(); else renderObjectiveView();
+}
+renderMain();
 </script>
 </body>
 </html>
