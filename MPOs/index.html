@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPO Tracker | Kohler Distributing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0E1014;
+    --card:#181B22;
+    --card-hover:#1F232C;
+    --border:#2A2E38;
+    --text:#E9ECF1;
+    --text-dim:#9AA1AD;
+    --accent:#3FB68B;
+    --accent-soft:rgba(63,182,139,0.12);
+    --amber:#E0A93E;
+    --red:#E0603E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--canvas);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding:48px 24px 80px;
+  }
+  .wrap{max-width:980px;margin:0 auto;}
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(32px,5vw,48px);
+    letter-spacing:-0.01em;
+    margin-bottom:10px;
+  }
+  .sub{color:var(--text-dim);font-size:16px;margin-bottom:44px;max-width:560px;}
+  .month-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border:1px solid rgba(63,182,139,0.3);
+    padding:6px 14px;border-radius:20px;
+    font-size:13px;font-weight:600;
+    margin-bottom:28px;
+  }
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:720px){.tiles{grid-template-columns:1fr;}}
+  a.tile{
+    display:block;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:32px;
+    text-decoration:none;
+    color:var(--text);
+    transition:all .18s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  a.tile:hover{
+    background:var(--card-hover);
+    border-color:var(--accent);
+    transform:translateY(-2px);
+  }
+  .tile-tag{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-bottom:16px;
+  }
+  .tile h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:26px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .tile p{color:var(--text-dim);font-size:14px;margin-bottom:24px;line-height:1.5;}
+  .score-row{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+  .score{font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;color:var(--accent);}
+  .score-label{font-size:13px;color:var(--text-dim);}
+  .bar-track{
+    width:100%;height:8px;background:#252932;border-radius:4px;overflow:hidden;margin-bottom:18px;
+  }
+  .bar-fill{height:100%;background:var(--accent);border-radius:4px;}
+  .obj-mini{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-dim);padding:6px 0;border-top:1px solid var(--border);}
+  .obj-mini span:last-child{color:var(--text);font-weight:600;}
+  .arrow{position:absolute;top:28px;right:28px;color:var(--text-dim);font-size:20px;transition:transform .18s;}
+  a.tile:hover .arrow{transform:translateX(4px);color:var(--accent);}
+  footer{margin-top:44px;color:var(--text-dim);font-size:12.5px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Kohler Distributing</div>
+  <h1>MPO Tracker</h1>
+  <p class="sub">Monthly Performance Objectives, live from raw report exports. Click into a track to see the objective breakdown, rep-level progress, and line-item detail.</p>
+  <div class="month-pill">● July 2026</div>
+
+  <div class="tiles">
+    <a class="tile" href="on-prem/index.html">
+      <div class="arrow">→</div>
+      <div class="tile-tag">On-Premise</div>
+      <h2>On-Prem MPO</h2>
+      <p>Carbliss new accounts, Sapporo NA new accounts, Wine &amp; Spirits placements, iSellBeer execution.</p>
+      <div class="score-row"><div class="score" id="onprem-score">–</div><div class="score-label">weighted<br>complete</div></div>
+      <div class="bar-track"><div class="bar-fill" id="onprem-bar" style="width:0%"></div></div>
+      <div id="onprem-mini"></div>
+    </a>
+
+    <a class="tile" href="off-prem/index.html">
+      <div class="arrow">→</div>
+      <div class="tile-tag">Off-Premise</div>
+      <h2>Off-Prem MPO</h2>
+      <p>New Belgium distribution goal, Wine &amp; Spirits placements, Sapporo Light &amp; Famosa, Disruptors.</p>
+      <div class="score-row"><div class="score" id="offprem-score">–</div><div class="score-label">weighted<br>complete</div></div>
+      <div class="bar-track"><div class="bar-fill" id="offprem-bar" style="width:0%"></div></div>
+      <div id="offprem-mini"></div>
+    </a>
+  </div>
+
+  <footer>Data pulled from July 2026 RDE / Encompass exports. Objectives without a report attached show as no data yet until a file is added.</footer>
+</div>
+
+<script>
+// ---- Weighted scores ----
+// Every numeric goal is a PER-REP target. Objective % complete = reps at their individual goal / reps tracked.
+// Carbliss: 0 of 11 reps at 15   |  Sapporo NA: 0 of 5 reps at 2   |  W&S: 0 of 3 reps at 3
+const onprem = [
+  {name:'Carbliss – New Accounts (15/rep)', weight:0.60, pct: (0/11)*100, hasData:true},
+  {name:'Sapporo NA – New Accounts (2/rep)', weight:0.20, pct: (0/5)*100, hasData:true},
+  {name:'Wine & Spirits – Placements (3/rep)', weight:0.10, pct: (0/3)*100, hasData:true},
+  {name:'iSellBeer – Photos (4/rep)', weight:0.10, pct: 0, hasData:false},
+];
+// New Belgium stays a per-rep % of distribution goal (company-wide aggregate %), not a headcount ratio.
+// Sapporo Light: 0 of 3 reps at 5  |  Famosa: 1 of 2 reps at 5
+const offprem = [
+  {name:'New Belgium – 90% Dist. Goal', weight:0.30, pct: 77.6, hasData:true},
+  {name:'W&S – 2XO/Le Grand/Yave', weight:0.30, pct: 0, hasData:false},
+  {name:'Sapporo Light + Famosa (5/rep each)', weight:0.20, pct: ((0/3)*100 + (1/2)*100)/2, hasData:true},
+  {name:'Disruptors – Bin Stackers', weight:0.20, pct: 0, hasData:false},
+];
+
+function render(list, scoreId, barId, miniId){
+  const weighted = list.reduce((sum,o)=>sum + o.weight*o.pct, 0);
+  document.getElementById(scoreId).textContent = weighted.toFixed(0)+'%';
+  document.getElementById(barId).style.width = weighted.toFixed(1)+'%';
+  const mini = document.getElementById(miniId);
+  list.forEach(o=>{
+    const row = document.createElement('div');
+    row.className='obj-mini';
+    row.innerHTML = `<span>${o.name} (${(o.weight*100).toFixed(0)}%)</span><span>${o.hasData ? o.pct.toFixed(0)+'%' : 'No data'}</span>`;
+    mini.appendChild(row);
+  });
+}
+render(onprem,'onprem-score','onprem-bar','onprem-mini');
+render(offprem,'offprem-score','offprem-bar','offprem-mini');
+</script>
+</body>
+</html>

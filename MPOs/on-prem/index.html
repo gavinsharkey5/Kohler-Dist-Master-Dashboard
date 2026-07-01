@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On-Prem MPO Tracker | July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0E1014; --card:#181B22; --card-alt:#14171D; --border:#2A2E38;
+    --text:#E9ECF1; --text-dim:#9AA1AD; --accent:#3FB68B; --accent-soft:rgba(63,182,139,0.12);
+    --amber:#E0A93E; --red:#E0603E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+  a{color:var(--accent);}
+  .topbar{padding:24px 32px 0;max-width:1200px;margin:0 auto;}
+  .crumb{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
+  .crumb a{color:var(--text-dim);text-decoration:none;}
+  .crumb a:hover{color:var(--accent);}
+  header{max-width:1200px;margin:0 auto;padding:0 32px 28px;border-bottom:1px solid var(--border);}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
+  .sub{color:var(--text-dim);font-size:14.5px;}
+
+  .kpi-strip{max-width:1200px;margin:28px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media(max-width:900px){.kpi-strip{grid-template-columns:repeat(2,1fr);}}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+  .kpi-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+  .kpi-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
+  .kpi-val.warn{color:var(--amber);}
+  .kpi-val.good{color:var(--accent);}
+  .kpi-sub{font-size:12px;color:var(--text-dim);margin-top:4px;}
+
+  main{max-width:1200px;margin:36px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
+
+  .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .obj-head{padding:22px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .obj-head:hover{background:var(--card-alt);}
+  .obj-left{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
+  .obj-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .obj-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .weight-tag{font-size:11px;color:var(--text-dim);background:#20242D;border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
+  .goal-tag{font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(63,182,139,0.3);padding:2px 8px;border-radius:20px;}
+  .obj-bar-track{width:100%;max-width:420px;height:7px;background:#252932;border-radius:4px;overflow:hidden;margin-top:2px;}
+  .obj-bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+  .obj-right{display:flex;align-items:center;gap:18px;flex-shrink:0;}
+  .obj-progress-txt{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-align:right;}
+  .obj-progress-sub{font-size:11.5px;color:var(--text-dim);text-align:right;}
+  .chev{transition:transform .18s;color:var(--text-dim);font-size:14px;}
+  .obj-card.open .chev{transform:rotate(90deg);}
+  .obj-body{max-height:0;overflow:hidden;transition:max-height .25s ease;border-top:1px solid transparent;}
+  .obj-card.open .obj-body{max-height:2400px;border-top:1px solid var(--border);}
+  .obj-body-inner{padding:20px 24px 26px;}
+
+  .tabbar{display:flex;gap:6px;margin-bottom:16px;}
+  .tabbtn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:6px 14px;border-radius:8px;font-size:12.5px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:600;}
+  .tabbtn.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 12px;border-bottom:1px solid var(--border);cursor:pointer;white-space:nowrap;}
+  th:hover{color:var(--text);}
+  td{padding:9px 12px;border-bottom:1px solid #1E222B;}
+  tr:last-child td{border-bottom:none;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;}
+  .flag-hit{color:var(--accent);font-weight:600;}
+  .flag-miss{color:var(--text-dim);}
+  .mini-bar-track{display:inline-block;width:80px;height:6px;background:#252932;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
+  .mini-bar-fill{height:100%;background:var(--accent);}
+  .accounts-list{font-size:12.5px;color:var(--text-dim);}
+
+  .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
+  .empty-tag{font-size:11px;background:#20242D;border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
+
+  ::-webkit-scrollbar{height:8px;width:8px;}
+  ::-webkit-scrollbar-thumb{background:#2A2E38;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="crumb"><a href="../index.html">MPO Tracker</a> &nbsp;/&nbsp; On-Premise</div>
+</div>
+
+<header>
+  <div class="eyebrow">On-Premise · July 2026</div>
+  <h1>On-Prem MPO Tracker</h1>
+  <p class="sub">20% of Total Commission Eligibility — weighted across 4 objectives. Every numeric goal below is a <strong>per-rep</strong> target.</p>
+</header>
+
+<div class="kpi-strip" id="kpi-strip"></div>
+
+<main id="objectives"></main>
+
+<script>
+const DATA = {"carbliss":{"target_per_rep":15,"reps":[{"rep":"Robin Feldman","qualifying":7,"accounts":["Moose Lodge (Z)","Valley Regency (A)","Home2 Suites by Hilton","K Of C 2229 (Z)","American Lgn (Z) (Westwood)","Courtyard Mahwah","Davy's Dogs"]},{"rep":"Mike Ast","qualifying":2,"accounts":["Glen Rock Inn","Stone & Rail"]},{"rep":"Brian Sengebush","qualifying":1,"accounts":["Sharky's West (P)"]},{"rep":"Phil Ernst","qualifying":0,"accounts":[]},{"rep":"Anthony Palmisano","qualifying":0,"accounts":[]},{"rep":"Nick Melissari","qualifying":0,"accounts":[]},{"rep":"Chris Payton","qualifying":0,"accounts":[]},{"rep":"Paul Mclaughlin","qualifying":0,"accounts":[]},{"rep":"Allison Scott","qualifying":0,"accounts":[]},{"rep":"Dan Lagala","qualifying":0,"accounts":[]},{"rep":"Javier Melo","qualifying":0,"accounts":[]}],"reps_at_goal":0,"reps_total":11,"lines":[{"rep":"Brian Sengebush","customer":"Sharky's West (P)","date":"7/1/2026","new_buyer":"1"},{"rep":"Mike Ast","customer":"Glen Rock Inn","date":"7/1/2026","new_buyer":"1"},{"rep":"Mike Ast","customer":"Stone & Rail","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"Moose Lodge (Z)","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"Valley Regency (A)","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"Home2 Suites by Hilton","date":"7/2/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"K Of C 2229 (Z)","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"American Lgn (Z) (Westwood)","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"Courtyard Mahwah","date":"7/1/2026","new_buyer":"1"},{"rep":"Robin Feldman","customer":"Davy's Dogs","date":"7/1/2026","new_buyer":"1"},{"rep":"Allison Scott","customer":"The Celtic Knot","date":"6/5/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Kitchen & Beer Bar","date":"6/12/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Celtic Crossings","date":"6/5/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Celtic Crossings","date":"6/9/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Blu Ale House","date":"6/9/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"The Side Door (P)","date":"6/10/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"pompton crafthouse","date":"6/15/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Meadows Golf Club(P)","date":"6/4/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Meadows Golf Club(P)","date":"6/30/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Sunset Pub & Grill(Z)","date":"6/8/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Sunset Pub & Grill(Z)","date":"6/24/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"The Barnyard and Carriage House","date":"6/10/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"The Barnyard and Carriage House","date":"6/19/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Uncorked (P)","date":"6/11/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Vfw 7165 (P)","date":"6/18/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Sharky's Wings(P)","date":"6/9/2026","new_buyer":"0"},{"rep":"Allison Scott","customer":"Emerald Corner (Z)","date":"6/5/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Whistle Stop (P)","date":"6/3/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Daily Planet (A)","date":"6/4/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Black Bear Golf(A)","date":"6/4/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Black Bear Golf(A)","date":"6/18/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/5/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/11/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/16/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/22/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/25/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Airport Pub & Pkg","date":"6/4/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Bally Owen Golf Club","date":"6/4/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Bally Owen Golf Club","date":"6/18/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Bally Owen Golf Club","date":"6/25/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Skylands Wine& Beer Garden","date":"6/4/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"The Stuffed Olive_2","date":"6/10/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Boonton Lanes","date":"6/11/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Johnnie's Tavern","date":"6/8/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Charley's Tavern","date":"6/4/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Mason Street Grille","date":"6/17/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Jefferson House (A)","date":"6/11/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Jefferson House (A)","date":"6/17/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Jefferson House (A)","date":"6/26/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Mckenna's Pub (P)","date":"6/11/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Sheridan Lodge (P)","date":"6/25/2026","new_buyer":"0"},{"rep":"Brian Sengebush","customer":"Lakeside Pub (P)","date":"6/18/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Fiesta (A)","date":"6/24/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Colombia Bakery Factory & Restaurant","date":"6/24/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"La Nota Restaurant Bar","date":"6/27/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Colonial Bar","date":"6/11/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Colonial Bar","date":"6/25/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Westside Village (A)","date":"6/24/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Hilton Garden Inn Ridgefield Park","date":"6/26/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Que Pasta (A)","date":"6/27/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Ridgewood Country Club","date":"6/3/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"El Cid","date":"6/23/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"Dutch House","date":"6/10/2026","new_buyer":"0"},{"rep":"Chris Payton","customer":"JJ's Pub","date":"6/17/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"690 Park","date":"6/5/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"690 Park","date":"6/26/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"Rudys (A)","date":"6/5/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"354 Steakhouse (A)","date":"6/25/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"512 Bar","date":"6/4/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"512 Bar","date":"6/18/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"Sedona Tap House","date":"6/4/2026","new_buyer":"0"},{"rep":"Dan Lagala","customer":"Clubhouse Cafe (P)","date":"6/11/2026","new_buyer":"0"},{"rep":"Javier Melo","customer":"Paruta's (A)","date":"6/16/2026","new_buyer":"0"},{"rep":"Javier Melo","customer":"Agave Cantina Mexicana","date":"6/12/2026","new_buyer":"0"},{"rep":"Javier Melo","customer":"Agave Cantina Mexicana","date":"6/23/2026","new_buyer":"0"},{"rep":"Mike Ast","customer":"The Office 2131 Ridgewood","date":"6/4/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Blackjack Mulligans (Hawthorne)","date":"6/5/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Redd's Rest (Z)","date":"6/4/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Blackjack Mulligans(P) (Garfield)","date":"6/5/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Blackjack Mulligans(P) (Garfield)","date":"6/26/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Lodi Lanes (A)","date":"6/8/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Victor's Maywood Inn","date":"6/4/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"The Orange Lantern","date":"6/4/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"Biagio's","date":"6/4/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Fat Bastard & Sons","date":"6/26/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Players Club (Z)","date":"6/30/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Straphanger Saloon (A)","date":"6/19/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Tenafly Pizza (Z)","date":"6/29/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Tommy Fox's Pub Hse(P)","date":"6/12/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Edgewood Country Club","date":"6/18/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Hearth & Tap Co.","date":"6/5/2026","new_buyer":"0"},{"rep":"Paul Mclaughlin","customer":"Emerson Hotel","date":"6/4/2026","new_buyer":"0"},{"rep":"Phil Ernst","customer":"Saddle Brook Liquor & Bar","date":"6/2/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Frungillo Caterers","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Bloomingdale Fire Dept","date":"6/10/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"The Village Inn","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"American Lgn 174 Wayne","date":"6/2/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"American Lgn Totowa","date":"6/12/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Evolution Restaurant & Bar","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Moose Lodge (Z)","date":"6/19/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"K Of C N Arlington (Z)","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Elks Post 1992 (Z)","date":"6/18/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Vfw Hasbrouck (A)","date":"6/12/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Vfw Outwater (Z) Lane","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Vfw 809 (P)","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Moose Lodge 961 (Z)","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Elks Post 2271 (Z)","date":"6/25/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"American Lgn Park Ridge","date":"6/17/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Elks Post 1562","date":"6/3/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"William J. Mulligan VFW Post 281","date":"6/2/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Amer Lgn Of Wharton 91","date":"6/24/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Eastern Asian Bistro/Bar","date":"6/5/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Hapgoods Restaurant","date":"6/11/2026","new_buyer":"0"},{"rep":"Robin Feldman","customer":"Vfw 7248 Sparta","date":"6/11/2026","new_buyer":"0"}]},"sapporo_na":{"target_per_rep":2,"reps":[{"rep":"Dylan Rubino","qualifying":0,"accounts":[]},{"rep":"Allison Scott","qualifying":0,"accounts":[]},{"rep":"Michael Harboy","qualifying":0,"accounts":[]},{"rep":"Nick Melissari","qualifying":0,"accounts":[]},{"rep":"Anthony Palmisano","qualifying":0,"accounts":[]}],"reps_at_goal":0,"reps_total":5,"lines":[{"rep":"Allison Scott","customer":"Double Ai Asian Bistro","date":"5/29/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/22/2026","new_buyer":"0"},{"rep":"Anthony Palmisano","customer":"Crystal Sprs/Wild Turkey","date":"6/25/2026","new_buyer":"0"},{"rep":"Dylan Rubino","customer":"Asian Grill & Sushi","date":"4/10/2026","new_buyer":"0"},{"rep":"Michael Harboy","customer":"Nikko Hibachi Steakhouse","date":"4/22/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"PYEONGANDONG","date":"4/22/2026","new_buyer":"0"},{"rep":"Nick Melissari","customer":"PYEONGANDONG","date":"6/12/2026","new_buyer":"0"}]},"wine_spirits":{"target_per_rep":3,"reps":[{"rep":"Paul Mclaughlin","count":2.0},{"rep":"Mike Ast","count":1.0},{"rep":"Nick Melissari","count":1.0}],"reps_at_goal":0,"reps_total":3,"lines":[{"rep":"Mike Ast","product":"OVO Vodka 1/12/750 mL Btl","customer":"Park West Tavern","date":"7/1/2026","count":1.0},{"rep":"Nick Melissari","product":"Pride & Clarke Vodka 12/1 L Btl","customer":"Brazilian Spices Steakhouse & Pizza","date":"7/1/2026","count":1.0},{"rep":"Paul Mclaughlin","product":"Green River Honey 1/750 mL Btl","customer":"Lou's","date":"7/1/2026","count":1.0},{"rep":"Paul Mclaughlin","product":"Traveler's Club Vodka 6/1.75 L Btl","customer":"Andiamo","date":"7/1/2026","count":1.0}]}}
+
+;
+
+const OBJECTIVES = [
+  {key:'carbliss', name:'Carbliss – (15) New Buying Accounts per Rep', weight:0.60, type:'new_accounts', hasData:true},
+  {key:'sapporo_na', name:'Sapporo – (2) New Buying Accounts Sapporo NA per Rep', weight:0.20, type:'new_accounts', hasData:true},
+  {key:'wine_spirits', name:'Wine & Spirits – (3) Placements per Rep', weight:0.10, type:'placements', hasData:true},
+  {key:'isellbeer', name:'iSellBeer Execution – (4) Qualifying Photos per Rep', weight:0.10, type:'photos', hasData:false},
+];
+
+function objPct(o){
+  if(!o.hasData) return 0;
+  const d = DATA[o.key];
+  return d.reps_total ? (d.reps_at_goal/d.reps_total)*100 : 0;
+}
+
+function renderKPIs(){
+  const strip = document.getElementById('kpi-strip');
+  const weighted = OBJECTIVES.reduce((s,o)=>s+o.weight*objPct(o),0);
+  const kpis = [
+    {label:'Weighted MPO Complete', val: weighted.toFixed(0)+'%', cls: weighted>=90?'good':(weighted>=50?'':'warn'), sub:'across all 4 objectives'},
+    {label:'Carbliss – Reps at Goal', val: DATA.carbliss.reps_at_goal+' / '+DATA.carbliss.reps_total, cls:'warn', sub:'15 new accounts each'},
+    {label:'Sapporo NA – Reps at Goal', val: DATA.sapporo_na.reps_at_goal+' / '+DATA.sapporo_na.reps_total, cls:'warn', sub:'2 new accounts each'},
+    {label:'W&S – Reps at Goal', val: DATA.wine_spirits.reps_at_goal+' / '+DATA.wine_spirits.reps_total, cls:'warn', sub:'3 placements each'},
+  ];
+  kpis.forEach(k=>{
+    const el = document.createElement('div');
+    el.className='kpi';
+    el.innerHTML = `<div class="kpi-label">${k.label}</div><div class="kpi-val ${k.cls}">${k.val}</div><div class="kpi-sub">${k.sub}</div>`;
+    strip.appendChild(el);
+  });
+}
+renderKPIs();
+
+function makeSortable(table){
+  const ths = table.querySelectorAll('th[data-key]');
+  ths.forEach(th=>{
+    th.addEventListener('click',()=>{
+      const key = th.dataset.key;
+      const type = th.dataset.type || 'string';
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const asc = th.dataset.asc !== 'true';
+      ths.forEach(t=>t.dataset.asc='');
+      th.dataset.asc = asc;
+      rows.sort((a,b)=>{
+        let av = a.dataset[key], bv = b.dataset[key];
+        if(type==='num'){ av=parseFloat(av)||0; bv=parseFloat(bv)||0; return asc? av-bv : bv-av; }
+        return asc ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+      });
+      rows.forEach(r=>tbody.appendChild(r));
+    });
+  });
+}
+
+const container = document.getElementById('objectives');
+
+OBJECTIVES.forEach(o=>{
+  const card = document.createElement('div');
+  card.className='obj-card';
+
+  if(!o.hasData){
+    card.innerHTML = `
+      <div class="empty-obj">
+        <div><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div></div>
+        <div class="empty-tag">No data yet</div>
+      </div>`;
+    container.appendChild(card);
+    return;
+  }
+
+  const d = DATA[o.key];
+  const pct = objPct(o);
+  const target = d.target_per_rep;
+
+  const head = document.createElement('div');
+  head.className='obj-head';
+  head.innerHTML = `
+    <div class="obj-left">
+      <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} per rep</span></div>
+      <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="obj-right">
+      <div>
+        <div class="obj-progress-txt">${d.reps_at_goal} / ${d.reps_total}</div>
+        <div class="obj-progress-sub">reps at goal</div>
+      </div>
+      <div class="chev">▶</div>
+    </div>`;
+  head.addEventListener('click',()=>card.classList.toggle('open'));
+  card.appendChild(head);
+
+  const body = document.createElement('div');
+  body.className='obj-body';
+  const inner = document.createElement('div');
+  inner.className='obj-body-inner';
+
+  const tabbar = document.createElement('div');
+  tabbar.className='tabbar';
+  const byRepBtn = document.createElement('button'); byRepBtn.className='tabbtn active'; byRepBtn.textContent='By Rep';
+  const lineBtn = document.createElement('button'); lineBtn.className='tabbtn'; lineBtn.textContent='Line Items ('+d.lines.length+')';
+  tabbar.appendChild(byRepBtn); tabbar.appendChild(lineBtn);
+  inner.appendChild(tabbar);
+
+  const repView = document.createElement('div');
+  const lineView = document.createElement('div');
+  lineView.style.display='none';
+
+  if(o.type==='new_accounts'){
+    const rows = d.reps.map(r=>{
+      const rp = Math.min(r.qualifying/target,1)*100;
+      const hit = r.qualifying>=target;
+      return `<tr data-rep="${r.rep}" data-qualifying="${r.qualifying}">
+        <td>${r.rep}</td>
+        <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.qualifying} / ${target}</td>
+        <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+        <td class="accounts-list">${r.accounts.length?r.accounts.join(', '):'—'}</td>
+      </tr>`;
+    }).join('');
+    repView.innerHTML = `<table><thead><tr><th data-key="rep">Rep</th><th data-key="qualifying" data-type="num">New Accounts</th><th>Status</th><th>Accounts</th></tr></thead><tbody>${rows}</tbody></table>`;
+  } else if(o.type==='placements'){
+    const rows = d.reps.map(r=>{
+      const rp = Math.min(r.count/target,1)*100;
+      const hit = r.count>=target;
+      return `<tr data-rep="${r.rep}" data-count="${r.count}">
+        <td>${r.rep}</td>
+        <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill" style="width:${rp}%"></span></span>${r.count} / ${target}</td>
+        <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+      </tr>`;
+    }).join('');
+    repView.innerHTML = `<table><thead><tr><th data-key="rep">Rep</th><th data-key="count" data-type="num">Placements</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  inner.appendChild(repView);
+
+  if(o.type==='new_accounts'){
+    const rows = d.lines.map(l=>`<tr data-rep="${l.rep}" data-customer="${l.customer}" data-date="${l.date}" data-qual="${l.new_buyer}"><td>${l.rep}</td><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ New Buyer</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
+    lineView.innerHTML = `<table><thead><tr><th data-key="rep">Rep</th><th data-key="customer">Customer</th><th data-key="date">Date</th><th data-key="qual">Qualifies</th></tr></thead><tbody>${rows}</tbody></table>`;
+  } else if(o.type==='placements'){
+    const rows = d.lines.map(l=>`<tr data-rep="${l.rep}" data-product="${l.product}" data-customer="${l.customer}" data-date="${l.date}" data-count="${l.count}"><td>${l.rep}</td><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
+    lineView.innerHTML = `<table><thead><tr><th data-key="rep">Rep</th><th data-key="product">Product</th><th data-key="customer">Customer</th><th data-key="date">Date</th><th data-key="count" data-type="num">Count</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  inner.appendChild(lineView);
+
+  byRepBtn.addEventListener('click',()=>{byRepBtn.classList.add('active'); lineBtn.classList.remove('active'); repView.style.display=''; lineView.style.display='none';});
+  lineBtn.addEventListener('click',()=>{lineBtn.classList.add('active'); byRepBtn.classList.remove('active'); lineView.style.display=''; repView.style.display='none';});
+
+  makeSortable(repView.querySelector('table'));
+  makeSortable(lineView.querySelector('table'));
+
+  body.appendChild(inner);
+  card.appendChild(body);
+  container.appendChild(card);
+});
+
+document.querySelectorAll('.obj-card')[0]?.classList.add('open');
+</script>
+</body>
+</html>
