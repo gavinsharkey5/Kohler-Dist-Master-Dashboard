@@ -110,6 +110,28 @@
   .foot{font-size:12px;color:var(--ink-dim);margin:26px 0 40px;line-height:1.55;border-top:1px solid var(--line);padding-top:14px}
   .foot b{color:var(--ink-soft)}
   code{background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px}
+  /* tooltips */
+  .tip-ic{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;
+    background:var(--accent);color:#231700;font-size:9px;font-weight:800;cursor:help;position:relative;margin-left:5px;flex:none;vertical-align:middle}
+  .tip-ic:hover::after,th[data-tip]:hover::after{
+    content:attr(data-tip);position:absolute;z-index:200;background:#05060a;color:var(--ink);
+    font-size:11.5px;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.42;
+    padding:9px 11px;border-radius:8px;width:215px;white-space:normal;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .tip-ic:hover::after{left:50%;transform:translateX(-50%);top:130%}
+  th[data-tip]{position:relative;cursor:help}
+  th[data-tip]:hover::after{left:0;top:100%;margin-top:6px}
+  th[data-tip]:last-child:hover::after{left:auto;right:0}
+  /* glossary */
+  .glossary{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:16px 0 0;overflow:hidden}
+  .glossary summary{padding:12px 15px;font-family:"Space Grotesk";font-weight:600;font-size:13px;color:var(--accent);
+    cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px}
+  .glossary summary::-webkit-details-marker{display:none}
+  .glossary summary::before{content:"\24D8";font-size:15px}
+  .glossary summary::after{content:"Click to see plain-English definitions";margin-left:auto;font-size:11px;font-weight:400;color:var(--ink-dim)}
+  .glossary[open] summary::after{content:"Click to collapse"}
+  .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;padding:2px 15px 16px;margin:0}
+  .gitem dt{font-family:"Space Grotesk";font-size:12.5px;font-weight:700;color:var(--ink)}
+  .gitem dd{font-size:12px;color:var(--ink-soft);margin:3px 0 0;line-height:1.45}
   @media(max-width:760px){
     .kpis{grid-template-columns:repeat(2,1fr)}
     .grid2{grid-template-columns:1fr}
@@ -138,9 +160,24 @@
   </div>
   <p class="updated" id="updated">Loading…</p>
 
-  <div class="ctl"><div class="cl">Brand</div><div class="chips" id="brandChips"></div></div>
-  <div class="ctl"><div class="cl">Premise</div><div class="chips" id="premChips"></div></div>
-  <div class="ctl thr"><div class="cl">Retained = re-buy of at least…</div><div class="chips" id="thrChips"></div></div>
+  <details class="glossary">
+    <summary>What am I looking at? (plain-English glossary)</summary>
+    <dl class="glossary-grid">
+      <div class="gitem"><dt>Placement</dt><dd>One account buying one Molson Coors product during the Spring Program (Jan 1&ndash;Apr 30, 2026). An account that bought 3 different products counts as 3 placements.</dd></div>
+      <div class="gitem"><dt>Retained</dt><dd>A placement counts as retained once that same account buys that same product again after the program, at or above the case floor selected below.</dd></div>
+      <div class="gitem"><dt>Retention rate</dt><dd>Retained placements &divide; total placements. The share of what got placed that's actually sticking.</dd></div>
+      <div class="gitem"><dt>Case floor</dt><dd>The "Retained = re-buy of at least&hellip;" control below. Sets the minimum cases an account must re-buy for it to count as a real re-buy, not just a token top-off.</dd></div>
+      <div class="gitem"><dt>Re-buy</dt><dd>Any purchase of a placed product that happens after the program ended (May 1 onward).</dd></div>
+      <div class="gitem"><dt>Regular re-buyer</dt><dd>A retained placement that's been re-ordered on 4 or more separate dates &mdash; a habitual, sticky customer for that product.</dd></div>
+      <div class="gitem"><dt>Velocity</dt><dd>How fast a retained product is selling, in cases per week. Higher = moving off the shelf/tap faster.</dd></div>
+      <div class="gitem"><dt>Distro goal</dt><dd>The rep's original Spring Distribution Program placement goal, from the goals file &mdash; shown for context next to what's actually sticking.</dd></div>
+      <div class="gitem"><dt>Partial window</dt><dd>We're only partway through the 90-day retention window, so these numbers will keep climbing as more time passes. Today's figures are a floor, not the final result.</dd></div>
+    </dl>
+  </details>
+
+  <div class="ctl"><div class="cl">Brand<span class="tip-ic" data-tip="Filter everything below to one Molson Coors brand family, or leave on All to see them combined.">i</span></div><div class="chips" id="brandChips"></div></div>
+  <div class="ctl"><div class="cl">Premise<span class="tip-ic" data-tip="On Premise = bars, restaurants, hotels. Off Premise = liquor/retail stores. Filter to one, or leave on All.">i</span></div><div class="chips" id="premChips"></div></div>
+  <div class="ctl thr"><div class="cl">Retained = re-buy of at least&hellip;<span class="tip-ic" data-tip="The minimum cases an account must re-buy for it to count as retained. A 1-case reorder might just be a leftover top-off; 3+ cases is a more meaningful repeat purchase.">i</span></div><div class="chips" id="thrChips"></div></div>
 
   <div id="app"></div>
 
@@ -223,30 +260,30 @@ function render(){
   const avgCase=ret.length?postCases/ret.length:0;
 
   const kpis=`<div class="kpis">
-    ${kpi("Placement accounts",fmt(placedAccts.size),"placed Jan–Apr")}
-    ${kpi("Re-buying accounts",fmt(rebuyAccts.size),"≥1 product retained","gd")}
-    ${kpi("Account re-buy rate",pct(rebuyAccts.size,placedAccts.size).toFixed(0)+"%","of placed accounts","hl")}
-    ${kpi("Placements",fmt(rows.length),"account × product")}
-    ${kpi("Retained placements",fmt(ret.length),"<small> / "+fmt(rows.length)+"</small>","gd")}
-    ${kpi("Placement retention",pct(ret.length,rows.length).toFixed(0)+"%","at ≥"+stThr+" cases","hl")}
-    ${kpi("Avg cases / retained",avgCase.toFixed(1),"per re-bought product")}
-    ${kpi("Regular re-buyers",fmt(regular.length),"≥4 re-buys")}
+    ${kpi("Placement accounts",fmt(placedAccts.size),"placed Jan–Apr","","Number of distinct accounts that received at least one placement during the Spring Program (Jan–Apr 2026).")}
+    ${kpi("Re-buying accounts",fmt(rebuyAccts.size),"≥1 product retained","gd","Of those placement accounts, how many have re-bought at least one product since the program ended.")}
+    ${kpi("Account re-buy rate",pct(rebuyAccts.size,placedAccts.size).toFixed(0)+"%","of placed accounts","hl","Re-buying accounts \u00f7 Placement accounts. The share of accounts that placed product who have come back to buy at least one of them again.")}
+    ${kpi("Placements",fmt(rows.length),"account × product","","Total account \u00d7 product combinations placed during the Spring Program. One account buying 3 products = 3 placements.")}
+    ${kpi("Retained placements",fmt(ret.length),"<small> / "+fmt(rows.length)+"</small>","gd","Of all placements, how many have been re-bought at or above the case floor selected below.")}
+    ${kpi("Placement retention",pct(ret.length,rows.length).toFixed(0)+"%","at ≥"+stThr+" cases","hl","Retained placements \u00f7 Placements. The headline retention rate for whatever brand/premise filter is set above.")}
+    ${kpi("Avg cases / retained",avgCase.toFixed(1),"per re-bought product","","Average number of cases re-bought, per retained placement, in the post-program window so far.")}
+    ${kpi("Regular re-buyers",fmt(regular.length),"≥4 re-buys","","Retained placements that have been re-ordered on 4 or more separate dates \u2014 accounts buying this product on a habitual, recurring basis.")}
   </div>`;
 
   // by brand
   const byBrand=groupStat(rows,r=>r.brand,BRANDS);
-  const brandTable=statTable(byBrand,"Brand");
+  const brandTable=statTable(byBrand,"Brand","Which Molson Coors brand family was placed.");
   // by premise
   const byPrem=groupStat(rows,r=>r.premise,["Off Premise","On Premise","Unknown"]);
-  const premTable=statTable(byPrem,"Premise");
+  const premTable=statTable(byPrem,"Premise","On Premise = bars/restaurants/hotels. Off Premise = liquor/retail stores.");
   // by package (top 10 by placements)
   const byPkg=groupStat(rows,r=>r.package).sort((a,b)=>b.placements-a.placements).slice(0,10);
-  const pkgTable=statTable(byPkg,"Package");
+  const pkgTable=statTable(byPkg,"Package","The specific pack size/format placed, e.g. \"4/6/12oz NR\" = four 6-packs of 12oz non-returnable bottles.");
   // by rep vs goal
   const repTable=buildRepTable(rows);
   // threshold sensitivity (independent of stThr — shows all floors on current filter)
   const thr=[1,3,5,10].map(t=>{const r=rows.filter(x=>x.post>=t);return{t,cnt:r.length,cases:r.reduce((s,x)=>s+x.post,0)};});
-  const thrTable=`<table><thead><tr><th>Floor</th><th>Retained placements</th><th>Cases kept</th></tr></thead><tbody>${
+  const thrTable=`<table><thead><tr><th data-tip="The minimum cases an account must re-buy for that placement to count as retained. Raising the floor filters out trivial 1\u20132 case top-offs.">Floor</th><th data-tip="How many placements qualify as retained at this floor.">Retained placements</th><th data-tip="Total cases re-bought by the placements that qualify at this floor.">Cases kept</th></tr></thead><tbody>${
     thr.map(x=>`<tr${x.t===stThr?' style="color:var(--blue)"':''}><td>≥ ${x.t} case${x.t>1?'s':''}</td><td>${fmt(x.cnt)}</td><td>${fmt(x.cases)}</td></tr>`).join("")}</tbody></table>`;
 
   // charts
@@ -262,15 +299,15 @@ function render(){
 
     <div class="sec"><h2>Package mix &amp; case threshold</h2><div class="sub">Which packages re-buy, and how the retained count shifts as you raise the case floor.</div>
       <div class="grid2"><div class="panel"><h3>Top packages by placements</h3>${pkgTable}</div>
-      <div class="panel"><h3>Minimum-case sensitivity</h3>${thrTable}<p class="updated" style="margin-top:10px">Recommended floor: <b style="color:var(--accent)">≥3 cases</b> — drops trivial 1–2 case re-buys while keeping ~99% of volume.</p></div></div></div>
+      <div class="panel"><h3>Minimum-case sensitivity<span class="tip-ic" data-tip="Shows how many placements would count as retained, and how many cases, at each possible case floor \u2014 so you can see what raising or lowering the floor above does before you move it.">i</span></h3>${thrTable}<p class="updated" style="margin-top:10px">Recommended floor: <b style="color:var(--accent)">≥3 cases</b> — drops trivial 1–2 case re-buys while keeping ~99% of volume.</p></div></div></div>
 
     <div class="sec"><h2>Re-buy depth &amp; cadence</h2><div class="sub">How big are the re-buys, and how often do retained products re-order. <b>Partial window.</b></div>
       <div class="grid2">
-        <div class="panel"><h3>Re-buy depth (cases per retained product)</h3><div class="bars">${depth}</div></div>
-        <div class="panel"><h3>Cadence — # of re-buys in the window</h3><div class="bars">${cadence}</div></div>
+        <div class="panel"><h3>Re-buy depth (cases per retained product)<span class="tip-ic" data-tip="For each retained placement, how many total cases has that account re-bought so far? Grouped into buckets so you can see whether re-buys are small top-offs or full restocks.">i</span></h3><div class="bars">${depth}</div></div>
+        <div class="panel"><h3>Cadence — # of re-buys in the window<span class="tip-ic" data-tip="How many separate times has a retained placement been re-ordered so far? More re-buys on separate dates = a more habitual, sticky customer, not just one big one-time order.">i</span></h3><div class="bars">${cadence}</div></div>
       </div></div>
 
-    <div class="sec"><h2>Velocity by location</h2><div class="sub">Top 10 cities by case velocity — cases per retained product per week (over the ~8.1-week partial window).</div>
+    <div class="sec"><h2>Velocity by location<span class="tip-ic" data-tip="How fast retained products are selling in each city, measured as cases per retained placement per week. Higher = moving off the shelf/tap faster in that city.">i</span></h2><div class="sub">Top 10 cities by case velocity — cases per retained product per week (over the ~8.1-week partial window). East Rutherford is excluded — its volume is skewed by MetLife Stadium and isn't representative of typical account velocity.</div>
       <div class="panel"><div class="bars">${velCity}</div></div></div>
 
     <div class="sec"><h2>By rep — retention vs. distribution goal</h2><div class="sub">Retained placements per rep at ≥${stThr} cases, against their Spring Program distro goal (per the goals file). <b style="color:var(--accent)">Tap a rep</b> for their accounts, then <b style="color:var(--accent)">tap an account</b> to see each re-buy (date &amp; cases, newest first).</div>
@@ -278,7 +315,7 @@ function render(){
   `;
 }
 
-function kpi(k,v,s,cls){return `<div class="kpi ${cls||''}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;}
+function kpi(k,v,s,cls,tip){return `<div class="kpi ${cls||''}"><div class="k">${k}${tip?`<span class="tip-ic" data-tip="${esc(tip)}">i</span>`:''}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;}
 
 function groupStat(rows,keyfn,order){
   const m=new Map();
@@ -290,9 +327,13 @@ function groupStat(rows,keyfn,order){
   else arr.sort((a,b)=>b.placements-a.placements);
   return arr.filter(o=>o.placements>0);
 }
-function statTable(arr,label){
+function statTable(arr,label,labelTip){
   const maxRate=Math.max(...arr.map(a=>a.rate),1);
-  return `<table><thead><tr><th>${label}</th><th>Plac.</th><th>Ret.</th><th>Rate</th><th>Cases</th></tr></thead><tbody>${
+  const tPlac="Number of account \u00d7 product placements made during the Spring Program in this group.";
+  const tRet="Of those placements, how many have been re-bought since, at the case floor selected above.";
+  const tRate="Retained \u00f7 Placements. The share of this group's placements that have come back to buy again.";
+  const tCases="Total cases re-bought across all retained placements in this group, in the post-program window so far.";
+  return `<table><thead><tr><th${labelTip?` data-tip="${esc(labelTip)}"`:''}>${label}</th><th data-tip="${esc(tPlac)}">Plac.</th><th data-tip="${esc(tRet)}">Ret.</th><th data-tip="${esc(tRate)}">Rate</th><th data-tip="${esc(tCases)}">Cases</th></tr></thead><tbody>${
     arr.map(o=>`<tr><td>${o.key}</td><td>${fmt(o.placements)}</td><td>${fmt(o.retained)}</td>
       <td><span class="rate">${o.rate.toFixed(0)}%</span><span class="ratebar" style="width:${(o.rate/maxRate*46).toFixed(0)}px"></span></td>
       <td>${fmt(o.post)}</td></tr>`).join("")}</tbody></table>`;
@@ -312,7 +353,7 @@ function buildRepTable(rows){
   const body=arr.map((o,i)=>{
     const top=o.custs.slice().sort((a,b)=>b.rebuys-a.rebuys||b.post-a.post).slice(0,25);
     const detail=top.length
-      ? `<table class="mini"><thead><tr><th>Customer</th><th>Brand</th><th>Package</th><th>Last buy</th><th>Re-buys</th><th>Cases</th></tr></thead><tbody>${
+      ? `<table class="mini"><thead><tr><th data-tip="Account name. Click a row to see every itemized re-buy for that account/product.">Customer</th><th data-tip="Molson Coors brand family for this placement.">Brand</th><th data-tip="Pack size/format for this placement.">Package</th><th data-tip="Most recent re-buy date recorded in the post-program window.">Last buy</th><th data-tip="Number of separate dates this account has re-bought this exact product.">Re-buys</th><th data-tip="Total cases re-bought for this product, across all re-buy dates.">Cases</th></tr></thead><tbody>${
           top.map((c,j)=>`<tr class="l2row" id="l2-${i}-${j}" onclick="toggleL2(${i},${j},'${c.cust}','${c.prod}')"><td><span class="caret2">&rsaquo;</span>${esc(c.name||c.cust)}</td><td>${c.brand}</td><td>${c.package}</td><td>${fmtDate(c.last)}</td><td>${fmt(c.rebuys)}</td><td>${fmt(c.post)}</td></tr>`).join("")}</tbody></table>`
       : '<p class="muted" style="margin:6px 2px">No retained customers in this view.</p>';
     return `<tr class="reprow" id="rep-${i}" onclick="toggleRep(${i})"><td><span class="caret">&rsaquo;</span>${esc(o.rep)}</td>
@@ -322,7 +363,7 @@ function buildRepTable(rows){
         <div class="dh">Top ${Math.min(25,top.length)} retained customers · ${esc(o.rep)} <span class="muted">— customer × product, ranked by re-buys (≥${stThr} cases)</span></div>
         ${detail}</div></td></tr>`;
   }).join("");
-  return `<table class="reptable"><thead><tr><th>Rep</th><th>Placements</th><th>Retained</th><th>Rate</th><th>Cases</th><th>Distro goal</th></tr></thead><tbody>${body}</tbody></table>`;
+  return `<table class="reptable"><thead><tr><th data-tip="The sales rep who owns this account book.">Rep</th><th data-tip="Account \u00d7 product placements this rep made during the Spring Program.">Placements</th><th data-tip="Of this rep's placements, how many have been re-bought since, at the case floor selected above.">Retained</th><th data-tip="Retained \u00f7 Placements for this rep.">Rate</th><th data-tip="Total cases re-bought across this rep's retained placements, in the post-program window so far.">Cases</th><th data-tip="This rep's Spring Distribution Program placement goal from the goals file. Matches the Brand/Premise filters above if one is set.">Distro goal</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 function toggleRep(i){
   const row=document.getElementById("rep-"+i), det=document.getElementById("rd-"+i);
@@ -362,8 +403,9 @@ function cadenceTiers(rows){
   return barChart([{lbl:"1 re-buy",val:t1,disp:fmt(t1)},{lbl:"2–3 re-buys",val:t2,disp:fmt(t2)},{lbl:"4+ (regular)",val:t3,disp:fmt(t3)}],true);
 }
 function cityVelocity(ret){
+  const EXCLUDED_CITIES=["East Rutherford"]; // MetLife Stadium skews volume here, not representative of typical account velocity
   const m=new Map();
-  ret.forEach(r=>{if(!m.has(r.city))m.set(r.city,{n:0,post:0});const o=m.get(r.city);o.n++;o.post+=r.post;});
+  ret.forEach(r=>{if(EXCLUDED_CITIES.includes(r.city))return;if(!m.has(r.city))m.set(r.city,{n:0,post:0});const o=m.get(r.city);o.n++;o.post+=r.post;});
   let arr=[...m.entries()].map(([city,o])=>({city,vel:o.post/o.n/POST_WEEKS,n:o.n}))
     .filter(o=>o.n>=15).sort((a,b)=>b.vel-a.vel).slice(0,10);
   return barChart(arr.map(o=>({lbl:o.city,val:o.vel,disp:o.vel.toFixed(1)})),false);
