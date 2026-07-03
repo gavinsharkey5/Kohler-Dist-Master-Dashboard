@@ -119,7 +119,7 @@
 <script>
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
-function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
+function parseCSV(t){const firstLine=t.split(/\r?\n/,1)[0]||"";const delim=(firstLine.split("\t").length>firstLine.split(",").length)?"\t":",";const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===delim){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
 function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
 function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
 const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
