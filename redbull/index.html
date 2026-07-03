@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Red Bull — Distribution Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F6F7F9; --ink-soft:#ABB2C2;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#E30613; --accent2:#9C0410;
+    --blue:#1B2A6B; --gold:#FFC906;
+    --good:#37C46B; --good-soft:#15301E;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16.5px;line-height:1.52;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+
+  .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:240px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%);pointer-events:none}
+  .gx-head .wrap{position:relative;padding:30px 18px 24px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:600;
+    color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
+  .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
+  .lede b{color:var(--accent)}
+  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .stat .v small{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .stat .v.accent{color:var(--accent)}
+
+  .seg{margin:22px 0 0}
+  .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+    background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
+  .chip:hover{border-color:var(--accent)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+  .shead{display:flex;align-items:center;gap:9px;margin:24px 0 10px}
+  .shead h2{font-family:"Space Grotesk";font-size:15px;margin:0}
+  .shead .meta{margin-left:auto;font-size:11.5px;color:var(--ink-soft)}
+  .shead .tr{color:var(--gold)}
+
+  .board{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow)}
+  .lrow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line-soft);cursor:pointer;transition:.12s}
+  .lrow:last-child{border-bottom:none}
+  .lrow:hover{background:var(--card2)}
+  .lrow .medal{font-family:"Space Grotesk";font-weight:700;font-size:13px;color:var(--ink-soft);width:22px;text-align:center}
+  .lrow.top .medal.m1{color:var(--gold)}.lrow.top .medal.m2{color:#C3CAD6}.lrow.top .medal.m3{color:#C07B43}
+  .lrow .who{flex:1;min-width:0}
+  .lrow .who b{font-size:14.5px}
+  .lrow .sub{font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .lrow .track{height:5px;border-radius:4px;background:var(--line);margin-top:7px;overflow:hidden}
+  .lrow .track i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold))}
+  .lrow .win{font-family:"Space Grotesk";font-weight:700;font-size:16px;text-align:right;white-space:nowrap}
+  .lrow .win small{display:block;font-size:10.5px;color:var(--ink-soft);font-weight:500}
+
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:16px;margin:0 0 14px;box-shadow:var(--shadow)}
+  .hero .top{display:flex;align-items:center;gap:14px}
+  .hero .rankbox{text-align:center}
+  .hero .rankbox .big{font-size:26px;font-weight:700}
+  .hero .rankbox .lab{font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .hero .nm{font-family:"Space Grotesk";font-weight:700;font-size:19px;flex:1}
+  .hero .nm small{display:block;font-family:"Inter";font-weight:500;font-size:12.5px;color:var(--ink-soft);margin-top:3px}
+  .hero .win2{text-align:right}
+  .hero .win2 .b{font-size:24px;font-weight:700;color:var(--accent)}
+  .hero .win2 .l{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase}
+
+  .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
+  .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
+  .qline{font-size:12.5px;color:var(--ink-soft);margin:13px 0 7px;display:flex;justify-content:space-between}
+  .qline .num{color:var(--ink);font-weight:600}
+  .bar{height:11px;border-radius:7px;background:var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--accent),var(--gold))}
+  .bar.done i{background:linear-gradient(90deg,#3FD074,var(--good))}
+  .brk{margin:11px 0 2px;border-top:1px solid var(--line-soft);padding-top:10px}
+  .brk .cap{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;font-family:"Space Grotesk"}
+  .brow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:5px 0;border-bottom:1px solid var(--line-soft)}
+  .brow:last-child{border-bottom:none}
+  .brow b{color:var(--ink);font-weight:600}
+  .brow .tag{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:600;margin-left:6px}
+  .brow .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+  .brow .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+
+  .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
+  .empty h2{font-family:"Space Grotesk";color:var(--ink)}
+  .empty code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
+  footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
+  footer b{color:var(--ink)}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="gx-head"><div class="wrap">
+  <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
+  <h1>Distribution Tracker</h1>
+  <p class="lede">Team goal of <b>239 buying accounts</b> — <b>155 Core</b> (Regular / Sugar Free) and <b>84 Core+</b> (all other Red Bull flavors). Tap your name to see your accounts.</p>
+  <p class="updated" id="updated"></p>
+</div></div>
+<div id="app"><div class="wrap">
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div id="body"></div>
+  <footer><hr><p id="foot"></p></footer>
+</div></div>
+<script>
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=x=>{const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;};
+function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
+function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
+function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
+const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+const medalColor=r=>r===1?"var(--gold)":r===2?"#C3CAD6":"#C07B43";
+
+let REPS={}, GOAL={Core:155,'Core+':84,Overall:239}, activeRep="ALL";
+
+function ingestData(text){
+  const rows=parseCSV(text); if(rows.length<2) return;
+  const H=rows[0];
+  const ci=col(H,"customer"), cati=col(H,"category"), ri=col(H,"sales rep","rep");
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i]; const rep=(r[ri]||"").trim(), cat=(r[cati]||"").trim(), cust=(r[ci]||"").trim();
+    if(!rep||!cat||!cust) continue;
+    REPS[rep]=REPS[rep]||{accounts:{}};
+    REPS[rep].accounts[cust]=REPS[rep].accounts[cust]||{Core:false,'Core+':false};
+    REPS[rep].accounts[cust][cat]=true;
+  }
+}
+function ingestGoals(text){
+  const rows=parseCSV(text); if(rows.length<2) return;
+  const H=rows[0]; const cati=col(H,"category"), gi=col(H,"goal");
+  for(let i=1;i<rows.length;i++){const r=rows[i]; const cat=(r[cati]||"").trim(); if(!cat) continue; if(gi>=0) GOAL[cat]=num(r[gi]);}
+}
+function repStats(rep){
+  const accts=REPS[rep]?REPS[rep].accounts:{};
+  let core=0, plus=0, total=0;
+  Object.values(accts).forEach(a=>{ if(a.Core)core++; if(a['Core+'])plus++; total++; });
+  return {core,plus,total};
+}
+function teamStats(){
+  let core=0, plus=0, total=0;
+  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); core+=s.core; plus+=s.plus; total+=s.total; });
+  return {core,plus,total};
+}
+
+function render(){
+  const app=document.getElementById("body"); const reps=Object.keys(REPS);
+  if(activeRep==="ALL"){
+    const t=teamStats();
+    const pct=GOAL.Overall? (t.total/GOAL.Overall*100):0;
+    const stats=`<div class="stats">${statTile("Team Total",t.total,"")}${statTile("Core",t.core+"<small>/"+GOAL.Core+"</small>","")}${statTile("Core+",t.plus+"<small>/"+GOAL['Core+']+"</small>","")}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
+    const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map((r,i)=>({...r,rank:i+1}));
+    const rows=ranked.map(R=>{
+      const share=t.total? (R.total/t.total*100):0;
+      return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
+        <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.core} Core · ${R.plus} Core+ · ${R.total} total accounts</div>
+        <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
+        <span class="win">${R.total}<small>accounts</small></span></div>`;
+    }).join("");
+    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${ranked.length} reps · by total accounts</span></div><div class="board">${rows}</div>`;
+    app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
+  } else {
+    const s=repStats(activeRep);
+    const t=teamStats();
+    const rank=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map(x=>x.rep).indexOf(activeRep)+1;
+    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
+      <div class="nm">${esc(activeRep)}<small>${s.total} buying accounts · ${s.core} Core · ${s.plus} Core+</small></div>
+      <div class="win2"><div class="b num">${s.total}</div><div class="l">accounts</div></div></div></div>`;
+
+    function catCard(catKey,label){
+      const goal=GOAL[catKey]||0;
+      const teamActual=catKey==='Core'?t.core:t.plus;
+      const mine=catKey==='Core'?s.core:s.plus;
+      const pct=goal?Math.min(teamActual/goal*100,100):0;
+      const hit=goal&&teamActual>=goal;
+      const accts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).filter(([n,f])=>f[catKey]).map(([n])=>n).sort();
+      const list=accts.length?accts.map(n=>`<div class="brow">${esc(n)}<span class="tag ${catKey==='Core'?'core':'plus'}">${mine} of my ${accts.length}</span></div>`).join(""):'<div class="brow">No accounts yet.</div>';
+      return `<details class="quest"><summary style="cursor:pointer;list-style:none"><div class="sup"><span>${label}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">Team: ${teamActual} / ${goal}</span></div>
+        <div class="qline"><span>My accounts in this category</span><span class="num">${mine}</span></div>
+        <div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div></summary>
+        <div class="brk"><div class="cap">${accts.length} of my accounts bought this category</div>${list}</div></details>`;
+    }
+    const cards=catCard('Core','Core (Regular / Sugar Free)')+catCard('Core+','Core+ (all other flavors)');
+
+    const allAccts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).sort((a,b)=>a[0].localeCompare(b[0]));
+    const fullList=allAccts.map(([n,f])=>`<div class="brow"><b>${esc(n)}</b><span>${f.Core?'<span class="tag core">Core</span>':''}${f['Core+']?'<span class="tag plus">Core+</span>':''}</span></div>`).join("");
+
+    app.innerHTML=hero+`<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
+      `<div class="shead"><h2>My buying accounts</h2><span class="meta">${allAccts.length} total</span></div><div class="board" style="padding:6px 14px">${fullList}</div>`;
+  }
+}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function renderChips(){const reps=Object.keys(REPS).sort();
+  document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
+async function boot(){
+  let dText=null,gText=null,lastMod=null;
+  try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");dText=await r.text();}}catch(e){}
+  try{const r=await fetch("goals.csv",{cache:"no-store"});if(r.ok)gText=await r.text();}catch(e){}
+  if(!dText){showEmpty("Upload <code>data.csv</code> (Customer Name, Category, Sales Rep, Bought) and <code>goals.csv</code> next to this page.");return;}
+  ingestData(dText); if(gText)ingestGoals(gText);
+  if(!Object.keys(REPS).length){showEmpty("Couldn't read the data file — check it has Customer Name, Category and Sales Rep columns.");return;}
+  renderChips();render();
+  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("foot").innerHTML="Team goal: <b>239 buying accounts</b> (155 Core, 84 Core+). Each rep's tally is unique buying accounts (Customer Num) that ordered any Core or Core+ Red Bull SKU. Refresh by re-exporting the Encompass comparison report as <b>data.csv</b> (Customer Name, Category, Sales Rep, Bought).";
+}
+boot();
+</script></body></html>
