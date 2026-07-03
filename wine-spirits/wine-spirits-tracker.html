@@ -107,6 +107,42 @@ thead th{
 thead th:hover{color:var(--wine);}
 thead th.sorted::after{content:" \25BE"; color:var(--wine);}
 thead th.sorted-asc::after{content:" \25B4"; color:var(--wine);}
+
+/* header definition tooltips */
+th[data-tip]{position:relative;}
+.th-label{display:inline-flex; align-items:center; gap:4px;}
+.th-info{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:13px; height:13px; border-radius:50%; background:var(--gold);
+  color:#fff; font-size:9.5px; font-weight:700; font-style:normal;
+  text-transform:none; letter-spacing:0; cursor:help; flex:none;
+}
+th[data-tip]:hover .th-info, th[data-tip]:hover{color:var(--wine);}
+th[data-tip]::before{
+  content:attr(data-tip);
+  position:absolute; left:0; top:100%; margin-top:6px; z-index:100;
+  background:var(--ink); color:#fff; font-size:11.5px; font-weight:400; text-transform:none;
+  letter-spacing:0; line-height:1.4; padding:9px 12px; border-radius:7px; width:230px; white-space:normal;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  opacity:0; pointer-events:none; transform:translateY(-4px); transition:opacity .12s ease, transform .12s ease;
+}
+th[data-tip]:hover::before{opacity:1; transform:translateY(0);}
+
+/* glossary box */
+.glossary{
+  background:#FCFAF6; border:1px solid var(--line); border-radius:8px; margin-bottom:14px; overflow:hidden;
+}
+.glossary summary{
+  padding:10px 14px; font-size:12.5px; font-weight:700; color:var(--wine-dark); cursor:pointer;
+  display:flex; align-items:center; gap:6px; list-style:none;
+}
+.glossary summary::-webkit-details-marker{display:none;}
+.glossary summary::before{content:"\24D8"; font-size:14px; color:var(--gold);}
+.glossary summary::after{content:"Click to expand definitions"; margin-left:auto; font-size:11px; font-weight:400; color:var(--ink-soft);}
+.glossary[open] summary::after{content:"Click to collapse";}
+.glossary-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; padding:4px 14px 14px;}
+.glossary-item dt{font-size:12px; font-weight:700; color:var(--wine-dark);}
+.glossary-item dd{font-size:12px; color:var(--ink-soft); margin:2px 0 0; line-height:1.45;}
 tbody td{padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
 tbody tr:hover{background:#FBF6EE;}
 .num{text-align:right; font-variant-numeric:tabular-nums;}
@@ -181,6 +217,19 @@ tbody tr:hover{background:#FBF6EE;}
       <div class="result-count" id="rep-count"></div>
     </div>
     <div class="panel-body">
+      <details class="glossary">
+        <summary>What do these columns mean?</summary>
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>Eligible Accts</dt><dd>Accounts on this rep's book that are known to carry wine &amp; spirits (they had W&amp;S activity in FY25 or FY26). This is the rep's realistic, addressable universe &mdash; not every account they're assigned, just the ones that can actually buy W&amp;S.</dd></div>
+          <div class="glossary-item"><dt>Activated FY26</dt><dd>Of those eligible accounts, how many have bought at least one W&amp;S item so far in FY26.</dd></div>
+          <div class="glossary-item"><dt>% Activated</dt><dd>Activated FY26 &divide; Eligible Accts. The share of the rep's addressable book that's currently buying W&amp;S.</dd></div>
+          <div class="glossary-item"><dt>New Buyers</dt><dd>Accounts that bought W&amp;S in FY26 but did NOT buy any in FY25 &mdash; brand new to the category this year.</dd></div>
+          <div class="glossary-item"><dt>Lapsed</dt><dd>Accounts that bought W&amp;S in FY25 but have not bought anything yet in FY26 &mdash; at risk of being lost.</dd></div>
+          <div class="glossary-item"><dt>FY25 $Vol</dt><dd>Total wine &amp; spirits dollar sales for the full 2025 calendar year.</dd></div>
+          <div class="glossary-item"><dt>FY26 $Vol (YTD)</dt><dd>Total wine &amp; spirits dollar sales so far in 2026. This is year-to-date, not a full year, so it will naturally be smaller than FY25.</dd></div>
+          <div class="glossary-item"><dt>YoY %</dt><dd>% change from FY25 $Vol to FY26 $Vol. Because FY25 is a full year and FY26 is only YTD, this will read negative even for a rep who's pacing fine &mdash; use it directionally, not as a final verdict.</dd></div>
+        </dl>
+      </details>
       <div class="controls">
         <input type="text" id="rep-search" placeholder="Search rep name...">
       </div>
@@ -188,14 +237,14 @@ tbody tr:hover{background:#FBF6EE;}
         <table id="rep-table">
           <thead><tr>
             <th data-key="rep">Rep</th>
-            <th data-key="eligibleAccounts" class="num">Eligible Accts</th>
-            <th data-key="activated26" class="num">Activated FY26</th>
-            <th data-key="pctActivated26" class="num">% Activated</th>
-            <th data-key="newBuyers" class="num">New Buyers</th>
-            <th data-key="lapsedBuyers" class="num">Lapsed</th>
-            <th data-key="vol25" class="num">FY25 $Vol</th>
-            <th data-key="vol26" class="num">FY26 $Vol (YTD)</th>
-            <th data-key="yoy" class="num">YoY %</th>
+            <th data-key="eligibleAccounts" class="num" data-tip="Accounts on this rep's book with known W&S activity in FY25 or FY26 &mdash; the addressable universe for this rep."><span class="th-label">Eligible Accts <span class="th-info">i</span></span></th>
+            <th data-key="activated26" class="num" data-tip="Of the eligible accounts, how many have bought W&S at least once so far in FY26."><span class="th-label">Activated FY26 <span class="th-info">i</span></span></th>
+            <th data-key="pctActivated26" class="num" data-tip="Activated FY26 divided by Eligible Accts. Share of the addressable book currently buying."><span class="th-label">% Activated <span class="th-info">i</span></span></th>
+            <th data-key="newBuyers" class="num" data-tip="Accounts that bought W&S in FY26 but not in FY25 &mdash; brand new to the category this year."><span class="th-label">New Buyers <span class="th-info">i</span></span></th>
+            <th data-key="lapsedBuyers" class="num" data-tip="Accounts that bought W&S in FY25 but have not bought yet in FY26 &mdash; at risk of being lost."><span class="th-label">Lapsed <span class="th-info">i</span></span></th>
+            <th data-key="vol25" class="num" data-tip="Total W&S dollar sales for the full FY2025 calendar year."><span class="th-label">FY25 $Vol <span class="th-info">i</span></span></th>
+            <th data-key="vol26" class="num" data-tip="Total W&S dollar sales so far in FY2026 (year-to-date, not a full year)."><span class="th-label">FY26 $Vol (YTD) <span class="th-info">i</span></span></th>
+            <th data-key="yoy" class="num" data-tip="% change from FY25 to FY26 $Vol. FY25 is a full year vs. FY26 YTD, so this reads negative by default &mdash; use directionally."><span class="th-label">YoY % <span class="th-info">i</span></span></th>
           </tr></thead>
           <tbody id="rep-tbody"></tbody>
         </table>
@@ -229,6 +278,19 @@ tbody tr:hover{background:#FBF6EE;}
       <div class="result-count" id="account-count"></div>
     </div>
     <div class="panel-body">
+      <details class="glossary">
+        <summary>What do these columns mean?</summary>
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>Channel</dt><dd>On Premise = bars, restaurants, hotels (drink on site). Off Premise = liquor/retail stores (take home).</dd></div>
+          <div class="glossary-item"><dt>Status: Active</dt><dd>Bought W&amp;S in both FY25 and FY26.</dd></div>
+          <div class="glossary-item"><dt>Status: New</dt><dd>Bought W&amp;S in FY26 but had no FY25 purchases &mdash; a brand-new W&amp;S buyer this year.</dd></div>
+          <div class="glossary-item"><dt>Status: Lapsed</dt><dd>Bought W&amp;S in FY25 but hasn't bought anything yet in FY26 &mdash; a buyer we're losing.</dd></div>
+          <div class="glossary-item"><dt>Status: Non-Buyer</dt><dd>On the eligible list but shows no W&amp;S purchases in either year &mdash; an untapped account.</dd></div>
+          <div class="glossary-item"><dt>FY25 $Vol / FY26 $Vol (YTD)</dt><dd>Total W&amp;S dollar sales at this account for the full FY2025 year vs. FY2026 so far (year-to-date).</dd></div>
+          <div class="glossary-item"><dt>YoY %</dt><dd>% change from FY25 to FY26 $Vol. Since FY26 is YTD only, this reads negative by default even for accounts pacing normally.</dd></div>
+          <div class="glossary-item"><dt>Brands (FY26)</dt><dd>Which brand families this account has actually purchased so far this year &mdash; use this to spot placement gaps.</dd></div>
+        </dl>
+      </details>
       <div class="controls">
         <select id="account-rep-filter"><option value="">All Reps</option></select>
         <div class="pill-toggle" id="account-status-filter">
@@ -246,12 +308,12 @@ tbody tr:hover{background:#FBF6EE;}
             <th data-key="name">Account</th>
             <th data-key="rep">Rep</th>
             <th data-key="city">City</th>
-            <th data-key="onOff">Channel</th>
-            <th data-key="status">Status</th>
-            <th data-key="vol25" class="num">FY25 $Vol</th>
-            <th data-key="vol26" class="num">FY26 $Vol (YTD)</th>
-            <th data-key="yoy" class="num">YoY %</th>
-            <th>Brands (FY26)</th>
+            <th data-key="onOff" data-tip="On Premise = bars/restaurants (drink on site). Off Premise = retail stores (take home)."><span class="th-label">Channel <span class="th-info">i</span></span></th>
+            <th data-key="status" data-tip="Active = bought both years. New = FY26 only. Lapsed = FY25 only, not yet FY26. Non-Buyer = eligible but no purchases either year."><span class="th-label">Status <span class="th-info">i</span></span></th>
+            <th data-key="vol25" class="num" data-tip="Total W&S dollar sales at this account for the full FY2025 calendar year."><span class="th-label">FY25 $Vol <span class="th-info">i</span></span></th>
+            <th data-key="vol26" class="num" data-tip="Total W&S dollar sales at this account so far in FY2026 (year-to-date, not a full year)."><span class="th-label">FY26 $Vol (YTD) <span class="th-info">i</span></span></th>
+            <th data-key="yoy" class="num" data-tip="% change from FY25 to FY26 $Vol. FY26 is YTD only, so this reads negative by default &mdash; use directionally."><span class="th-label">YoY % <span class="th-info">i</span></span></th>
+            <th data-tip="Which brand families this account has actually bought so far in FY26.">Brands (FY26) <span class="th-info">i</span></th>
           </tr></thead>
           <tbody id="account-tbody"></tbody>
         </table>
@@ -268,6 +330,16 @@ tbody tr:hover{background:#FBF6EE;}
       <div class="result-count" id="brand-count"></div>
     </div>
     <div class="panel-body">
+      <details class="glossary">
+        <summary>What do these columns mean?</summary>
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>Buyers FY25 / FY26</dt><dd>The number of distinct accounts that purchased this brand family during that year, for that rep.</dd></div>
+          <div class="glossary-item"><dt>New Buyers</dt><dd>Accounts buying this brand family in FY26 that didn't buy it in FY25 &mdash; new placements.</dd></div>
+          <div class="glossary-item"><dt>Lost Buyers</dt><dd>Accounts that bought this brand family in FY25 but have not bought it in FY26 &mdash; dropped placements.</dd></div>
+          <div class="glossary-item"><dt>FY25 $Vol / FY26 $Vol (YTD)</dt><dd>Total dollar sales of this brand family for the full FY2025 year vs. FY2026 so far (year-to-date).</dd></div>
+          <div class="glossary-item"><dt>YoY %</dt><dd>% change from FY25 to FY26 $Vol. FY26 is YTD only, so this reads negative by default &mdash; use directionally.</dd></div>
+        </dl>
+      </details>
       <div class="controls">
         <select id="brand-rep-filter"><option value="">All Reps</option></select>
         <select id="brand-name-filter"><option value="">All Brand Families</option></select>
@@ -278,13 +350,13 @@ tbody tr:hover{background:#FBF6EE;}
           <thead><tr>
             <th data-key="brand">Brand Family</th>
             <th data-key="rep">Rep</th>
-            <th data-key="buyers25" class="num">Buyers FY25</th>
-            <th data-key="buyers26" class="num">Buyers FY26</th>
-            <th data-key="newBuyers" class="num">New Buyers</th>
-            <th data-key="lostBuyers" class="num">Lost Buyers</th>
-            <th data-key="vol25" class="num">FY25 $Vol</th>
-            <th data-key="vol26" class="num">FY26 $Vol (YTD)</th>
-            <th data-key="yoy" class="num">YoY %</th>
+            <th data-key="buyers25" class="num" data-tip="Distinct accounts that bought this brand family in FY2025, for this rep."><span class="th-label">Buyers FY25 <span class="th-info">i</span></span></th>
+            <th data-key="buyers26" class="num" data-tip="Distinct accounts that bought this brand family in FY2026 (YTD), for this rep."><span class="th-label">Buyers FY26 <span class="th-info">i</span></span></th>
+            <th data-key="newBuyers" class="num" data-tip="Accounts buying this brand in FY26 that didn't buy it in FY25 &mdash; new placements."><span class="th-label">New Buyers <span class="th-info">i</span></span></th>
+            <th data-key="lostBuyers" class="num" data-tip="Accounts that bought this brand in FY25 but not in FY26 &mdash; dropped placements."><span class="th-label">Lost Buyers <span class="th-info">i</span></span></th>
+            <th data-key="vol25" class="num" data-tip="Total dollar sales of this brand family for the full FY2025 calendar year."><span class="th-label">FY25 $Vol <span class="th-info">i</span></span></th>
+            <th data-key="vol26" class="num" data-tip="Total dollar sales of this brand family so far in FY2026 (year-to-date, not a full year)."><span class="th-label">FY26 $Vol (YTD) <span class="th-info">i</span></span></th>
+            <th data-key="yoy" class="num" data-tip="% change from FY25 to FY26 $Vol. FY26 is YTD only, so this reads negative by default &mdash; use directionally."><span class="th-label">YoY % <span class="th-info">i</span></span></th>
           </tr></thead>
           <tbody id="brand-tbody"></tbody>
         </table>
@@ -301,6 +373,16 @@ tbody tr:hover{background:#FBF6EE;}
       <div class="result-count" id="area-count"></div>
     </div>
     <div class="panel-body">
+      <details class="glossary">
+        <summary>What do these columns mean?</summary>
+        <dl class="glossary-grid">
+          <div class="glossary-item"><dt>Eligible Accts</dt><dd>Accounts in this city, on this rep's book, that are known to carry W&amp;S (had activity in FY25 or FY26).</dd></div>
+          <div class="glossary-item"><dt>Activated FY26</dt><dd>Of those eligible accounts in this city, how many have bought W&amp;S so far in FY26.</dd></div>
+          <div class="glossary-item"><dt>% Activated</dt><dd>Activated FY26 &divide; Eligible Accts for this city. Share of the local addressable book currently buying.</dd></div>
+          <div class="glossary-item"><dt>FY25 $Vol / FY26 $Vol (YTD)</dt><dd>Total W&amp;S dollar sales in this city for the full FY2025 year vs. FY2026 so far (year-to-date).</dd></div>
+          <div class="glossary-item"><dt>YoY %</dt><dd>% change from FY25 to FY26 $Vol. FY26 is YTD only, so this reads negative by default &mdash; use directionally.</dd></div>
+        </dl>
+      </details>
       <div class="controls">
         <select id="area-rep-filter"><option value="">All Reps</option></select>
         <input type="text" id="area-search" placeholder="Search city...">
@@ -310,12 +392,12 @@ tbody tr:hover{background:#FBF6EE;}
           <thead><tr>
             <th data-key="city">City</th>
             <th data-key="rep">Rep</th>
-            <th data-key="eligibleAccounts" class="num">Eligible Accts</th>
-            <th data-key="activated26" class="num">Activated FY26</th>
-            <th data-key="pctActivated26" class="num">% Activated</th>
-            <th data-key="vol25" class="num">FY25 $Vol</th>
-            <th data-key="vol26" class="num">FY26 $Vol (YTD)</th>
-            <th data-key="yoy" class="num">YoY %</th>
+            <th data-key="eligibleAccounts" class="num" data-tip="Accounts in this city, on this rep's book, known to carry W&S (had activity in FY25 or FY26)."><span class="th-label">Eligible Accts <span class="th-info">i</span></span></th>
+            <th data-key="activated26" class="num" data-tip="Of the eligible accounts in this city, how many have bought W&S so far in FY26."><span class="th-label">Activated FY26 <span class="th-info">i</span></span></th>
+            <th data-key="pctActivated26" class="num" data-tip="Activated FY26 divided by Eligible Accts for this city."><span class="th-label">% Activated <span class="th-info">i</span></span></th>
+            <th data-key="vol25" class="num" data-tip="Total W&S dollar sales in this city for the full FY2025 calendar year."><span class="th-label">FY25 $Vol <span class="th-info">i</span></span></th>
+            <th data-key="vol26" class="num" data-tip="Total W&S dollar sales in this city so far in FY2026 (year-to-date, not a full year)."><span class="th-label">FY26 $Vol (YTD) <span class="th-info">i</span></span></th>
+            <th data-key="yoy" class="num" data-tip="% change from FY25 to FY26 $Vol. FY26 is YTD only, so this reads negative by default &mdash; use directionally."><span class="th-label">YoY % <span class="th-info">i</span></span></th>
           </tr></thead>
           <tbody id="area-tbody"></tbody>
         </table>
