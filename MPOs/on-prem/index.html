@@ -98,6 +98,7 @@
   .rep-sub-inner td{padding:6px 10px;}
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
   .empty-state{color:var(--text-dim);font-size:13px;padding:6px 2px 2px;}
+  .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
 
   .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
   .empty-tag{font-size:11px;background:#20242D;border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
@@ -141,6 +142,11 @@ const OBJECTIVES = [
   {key:'isellbeer', name:'iSellBeer Execution – (4) Qualifying Photos per Rep', weight:0.10, type:'photos', hasData:false},
 ];
 
+const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+DATA.carbliss.reps_total = ROSTER.length;
+DATA.sapporo_na.reps_total = ROSTER.length;
+DATA.wine_spirits.reps_total = ROSTER.length;
+
 function objPct(o){
   if(!o.hasData) return 0;
   const d = DATA[o.key];
@@ -167,9 +173,7 @@ renderKPIs();
 
 // ---- collect full rep roster across all objectives ----
 function allReps(){
-  const s = new Set();
-  OBJECTIVES.forEach(o=>{ if(o.hasData) DATA[o.key].reps.forEach(r=>s.add(r.rep)); });
-  return [...s].sort();
+  return ROSTER.slice().sort();
 }
 function repFind(objKey, rep){
   return DATA[objKey].reps.find(r=>r.rep===rep);
@@ -301,7 +305,12 @@ function renderObjectiveView(){
 
     if(o.type==='new_accounts'){
       headHtml = `<thead><tr><th>Rep</th><th class="num">New Accounts</th><th>Status</th></tr></thead>`;
-      d.reps.forEach(r=>{
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        if(!r){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
         const rowId = 'row'+(uid++);
         const rp = Math.min(r.qualifying/target,1)*100;
         const hit = r.qualifying>=target;
@@ -315,10 +324,12 @@ function renderObjectiveView(){
       });
     } else if(o.type==='placements'){
       headHtml = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead>`;
-      if(d.reps.length===0){
-        bodyRows = `<tr><td colspan="3" class="empty-state">No data yet for this program.</td></tr>`;
-      }
-      d.reps.forEach(r=>{
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        if(!r){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
         const rowId = 'row'+(uid++);
         const rp = Math.min(r.count/target,1)*100;
         const hit = r.count>=target;
