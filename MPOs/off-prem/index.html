@@ -104,6 +104,7 @@
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
   .complete-tag{color:var(--accent);font-weight:600;}
   .focus-row{background:rgba(224,169,62,0.06);}
+  .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:#2A2E38;border-radius:4px;}
@@ -147,6 +148,12 @@ const OBJECTIVES = [
   {key:'disruptors', name:'Disruptors – (3) Bin Stackers/Racks in iSellBeer', weight:0.20, type:'placeholder', hasData:false},
 ];
 
+const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+DATA.new_belgium.reps_total = ROSTER.length;
+DATA.sapporo_light.reps_total = ROSTER.length;
+DATA.famosa.reps_total = ROSTER.length;
+DATA.ws_2xo.reps_total = ROSTER.length;
+
 function repGoalPct(d){ return d.reps_total ? (d.reps_at_goal/d.reps_total)*100 : 0; }
 function pctOf(o){
   if(!o.hasData) return 0;
@@ -175,12 +182,7 @@ function renderKPIs(){
 renderKPIs();
 
 function allReps(){
-  const s = new Set();
-  DATA.new_belgium.reps.forEach(r=>s.add(r.rep));
-  DATA.sapporo_light.reps.forEach(r=>s.add(r.rep));
-  DATA.famosa.reps.forEach(r=>s.add(r.rep));
-  DATA.ws_2xo.reps.forEach(r=>s.add(r.rep));
-  return [...s].sort();
+  return ROSTER.slice().sort();
 }
 function repFind(objKey, rep){ return DATA[objKey].reps.find(r=>r.rep===rep); }
 
@@ -350,7 +352,11 @@ function renderObjectiveView(){
     inner.className='obj-body-inner';
 
     if(o.key==='new_belgium'){
-      const rows = DATA.new_belgium.reps.map((r,i)=>{
+      const rows = ROSTER.map(repName=>{
+        const r = DATA.new_belgium.reps.find(x=>x.rep===repName);
+        if(!r){
+          return `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+        }
         const rowId = 'nbrow'+(uid++);
         return `
           <tr class="rep-row" data-target="${rowId}">
@@ -381,10 +387,12 @@ function renderObjectiveView(){
       const target = d.target_per_rep;
       const table = document.createElement('table');
       let bodyRows = '';
-      if(d.reps.length===0){
-        bodyRows = `<tr><td colspan="3" class="empty-state">No data yet for this program.</td></tr>`;
-      }
-      d.reps.forEach(r=>{
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        if(!r){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
         const rowId = 'row'+(uid++);
         const rp = Math.min(r.count/target,1)*100;
         const hit = r.count>=target;
