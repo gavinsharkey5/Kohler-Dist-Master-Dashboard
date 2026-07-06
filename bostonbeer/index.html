@@ -134,6 +134,53 @@
   footer b{color:var(--ink)}
   @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.hero .win2{margin-left:0;width:100%;text-align:left;margin-top:6px}.hero .top{flex-wrap:wrap}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* ===== Cold Snap -> Summer Ale (table/KPI rebuild) ===== */
+  .cx-kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:18px 0 0}
+  @media(max-width:900px){.cx-kpi-strip{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.cx-kpi-strip{grid-template-columns:repeat(2,1fr)}}
+  .cx-kpi{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
+  .cx-kpi-label{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
+  .cx-kpi-val{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
+  .cx-kpi-val.good{color:var(--good)}
+  .cx-kpi-val.risk{color:var(--accent)}
+  .cx-kpi-val.info{color:#9CC4EE}
+  .cx-kpi-sub{font-size:11.5px;color:var(--ink-soft);margin-top:4px}
+
+  .cx-card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-top:22px;box-shadow:var(--shadow)}
+  .cx-table-scroll{max-height:640px;overflow-y:auto}
+  .cx-table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .cx-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--card)}
+  .cx-table td{padding:10px 14px;border-bottom:1px solid var(--line-soft)}
+  .cx-table tr:last-child td{border-bottom:none}
+  .cx-num{text-align:right;font-variant-numeric:tabular-nums;font-family:"Space Grotesk",sans-serif}
+  .cx-mini-track{display:inline-block;width:64px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px}
+  .cx-mini-fill{height:100%;background:var(--good)}
+  .cx-mini-fill.warn{background:var(--gold)}
+  .cx-mini-fill.risk{background:var(--accent)}
+  .cx-rep-row{cursor:pointer}
+  .cx-rep-row:hover{background:var(--card2)}
+  .cx-rep-row td:first-child{display:flex;align-items:center;gap:8px}
+  .cx-chev{font-size:10px;color:var(--ink-soft);transition:transform .15s;display:inline-block}
+  .cx-rep-row.expanded .cx-chev{transform:rotate(90deg)}
+  .cx-sub{display:none}
+  .cx-sub.open{display:table-row}
+  .cx-sub td{background:var(--card2);padding:0}
+  .cx-sub-inner{padding:12px 24px 16px 38px}
+  .cx-sub-inner table{font-size:12.5px;width:100%;border-collapse:collapse}
+  .cx-sub-inner th{padding:6px 10px;text-align:left;color:var(--ink-soft);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line)}
+  .cx-sub-inner td{padding:6px 10px;border-bottom:1px solid var(--line-soft)}
+  .cx-status{font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;display:inline-block;white-space:nowrap}
+  .cx-status-converted{color:var(--good);background:var(--good-soft)}
+  .cx-status-gained{color:#9CC4EE;background:#1B3A5B}
+  .cx-status-opportunity{color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  .cx-rate.good{color:var(--good);font-weight:600}
+  .cx-rate.warn{color:var(--gold);font-weight:600}
+  .cx-rate.risk{color:var(--accent);font-weight:600}
+  .cx-rate.na{color:var(--ink-soft)}
+  .cx-hero-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+  .cx-hero-stat{font-family:"Space Grotesk",sans-serif;font-size:13.5px;color:var(--ink-soft)}
+  .cx-hero-stat b{color:var(--ink)}
 </style></head><body>
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Boston Beer · Summer 2026</p>
@@ -150,7 +197,7 @@
 <script>
 
 const REPS=new Set(["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Chris Politano","Dan Lagala","Dave Ehlers","Default","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John Neukum","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Office Tell Sell","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]);
-let CONV=[], SC={}, activeProgram="conv", activeRep="ALL";
+let CONV=[], SC={}, activeProgram="conv", activeRep="ALL", uid=0;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ce0=n=>Math.round(n).toLocaleString();
 function parseCSV(t){const R=[];let row=[],c="",q=false;for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++;}else q=false;}else c+=ch;}else{if(ch==='"')q=true;else if(ch===','){row.push(c);c="";}else if(ch==='\n'){row.push(c);R.push(row);row=[];c="";}else if(ch==='\r'){}else c+=ch;}}if(c.length||row.length){row.push(c);R.push(row);}return R.filter(r=>r.some(x=>x.trim()!==""));}
@@ -170,31 +217,104 @@ function ingestConv(text){const rows=parseCSV(text);if(rows.length<2)return;cons
     CONV.push({rep,name:(r[ci.name]||"").trim(),cold,summer,cat});}}
 function convScope(){return activeRep==="ALL"?CONV:CONV.filter(r=>r.rep===activeRep);}
 function convMetrics(rows){const conv=rows.filter(r=>r.cat==="Converted").length,opp=rows.filter(r=>r.cat==="Opportunity").length,gained=rows.filter(r=>r.cat==="Gained").length;const base=conv+opp;return {conv,opp,gained,base,rate:base?conv/base*100:0};}
-function acctRow(name,kind){const icon=kind==="Converted"?'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>':(kind==="Opportunity"?'→':'+');
-  const box=kind==="Converted"?'background:var(--good);color:#06210f':(kind==="Opportunity"?'border:1.5px dashed var(--accent);color:var(--accent)':'background:#2B6CB0;color:#fff');
-  const tag=kind==="Converted"?"Converted":(kind==="Opportunity"?"Go convert":"New");
-  return `<div class="brow" style="align-items:center;padding:6px 0"><span style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:6px;display:grid;place-items:center;flex:none;font-weight:700;font-size:12px;${box}">${icon}</span>${esc(name)}</span><span class="num" style="font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:${kind==='Opportunity'?'var(--accent)':'var(--ink-soft)'}">${tag}</span></div>`;}
+function cxStatusTag(cat){
+  if(cat==="Converted") return '<span class="cx-status cx-status-converted">✓ Converted</span>';
+  if(cat==="Gained") return '<span class="cx-status cx-status-gained">+ Gained</span>';
+  if(cat==="Opportunity") return '<span class="cx-status cx-status-opportunity">⚠ Opportunity</span>';
+  return cat;
+}
+function cxRateClass(rate){
+  if(rate===null) return 'na';
+  if(rate>=90) return 'good';
+  if(rate>=70) return 'warn';
+  return 'risk';
+}
+function cxRepAgg(){
+  const by={};
+  CONV.forEach(r=>{
+    const R=by[r.rep]||(by[r.rep]={rep:r.rep,converted:0,opportunity:0,gained:0});
+    if(r.cat==="Converted")R.converted++;else if(r.cat==="Opportunity")R.opportunity++;else if(r.cat==="Gained")R.gained++;
+  });
+  return Object.values(by).map(R=>{
+    const base=R.converted+R.opportunity;
+    return {...R,cold_snap_base:base,summer_total:R.converted+R.gained,conv_rate:base?Math.round(R.converted/base*1000)/10:null};
+  });
+}
+function cxAcctTable(accounts){
+  if(!accounts||accounts.length===0) return '<div class="cx-sub-inner">No accounts recorded.</div>';
+  const order={Opportunity:0,Gained:1,Converted:2};
+  const sorted=accounts.slice().sort((a,b)=>order[a.cat]-order[b.cat]);
+  const rows=sorted.map(a=>`<tr>
+    <td>${esc(a.name)}</td>
+    <td class="cx-num">${a.cold?'✓':'—'}</td>
+    <td class="cx-num">${a.summer?'✓':'—'}</td>
+    <td>${cxStatusTag(a.cat)}</td>
+  </tr>`).join("");
+  return `<div class="cx-sub-inner"><table><thead><tr><th>Customer</th><th class="cx-num">Cold Snap</th><th class="cx-num">Summer Ale</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function bindCxRows(app){
+  app.querySelectorAll('.cx-rep-row').forEach(row=>{
+    row.addEventListener('click',()=>{
+      document.getElementById(row.dataset.target).classList.toggle('open');
+      row.classList.toggle('expanded');
+    });
+  });
+}
 function renderConv(app){
+  const t=convMetrics(CONV);
+
   if(activeRep==="ALL"){
-    const m=convMetrics(CONV);
-    const stats=`<div class="stats">${statTile("Converted",m.conv,"")}${statTile("Conversion rate",m.rate.toFixed(0)+"%","")}${statTile("Opportunities",m.opp,"")}${statTile("Gained new",m.gained,"")}</div>`;
-    const by={};CONV.forEach(r=>{const R=by[r.rep]||(by[r.rep]={rep:r.rep,conv:0,opp:0});if(r.cat==="Converted")R.conv++;else if(r.cat==="Opportunity")R.opp++;});
-    const reps=Object.values(by).map(R=>({...R,base:R.conv+R.opp,rate:(R.conv+R.opp)?R.conv/(R.conv+R.opp)*100:0})).filter(R=>R.base>0).sort((a,b)=>b.conv-a.conv||b.rate-a.rate).map((R,i)=>({...R,rank:i+1}));
-    const max=reps[0]?reps[0].conv:1;
-    const rows=reps.map(R=>`<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}"><span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span><span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.rate.toFixed(0)}% of ${R.base} · ${R.opp} to go</div><div class="track"><i style="width:${(R.conv/max*100).toFixed(1)}%"></i></div></span><span class="win">${R.conv}<small>converted</small></span></div>`).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Conversion leaderboard</h2><span class="meta">${reps.length} reps · by accounts converted</span></div><div class="board">${rows}</div>`;
-    bindRows(app);
+    const kpis=[
+      {label:'Overall Conversion Rate', val:t.rate.toFixed(1)+'%', cls:cxRateClass(t.rate)==='good'?'good':(cxRateClass(t.rate)==='warn'?'':'risk'), sub:t.conv+' / '+t.base+' Cold Snap accounts converted'},
+      {label:'Cold Snap Base (Jan–Mar)', val:t.base, cls:'', sub:'accounts with a Cold Snap line'},
+      {label:'Converted', val:t.conv, cls:'good', sub:'held both seasonal lines'},
+      {label:'Opportunities', val:t.opp, cls:'risk', sub:'Cold Snap, no Summer Ale — follow up'},
+      {label:'Gained Not from Conversion', val:t.gained, cls:'info', sub:'net-new Summer Ale placements'},
+    ];
+    const stripHtml=kpis.map(k=>`<div class="cx-kpi"><div class="cx-kpi-label">${k.label}</div><div class="cx-kpi-val ${k.cls}">${k.val}</div><div class="cx-kpi-sub">${k.sub}</div></div>`).join("");
+
+    const reps=cxRepAgg().sort((a,b)=>{
+      const ra=a.conv_rate===null?-1:a.conv_rate, rb=b.conv_rate===null?-1:b.conv_rate;
+      return ra-rb;
+    });
+    const rows=reps.map(R=>{
+      const rowId='cxrow'+(uid++);
+      const rateTxt=R.conv_rate===null?'—':R.conv_rate.toFixed(1)+'%';
+      const barW=R.conv_rate===null?0:R.conv_rate;
+      const barCls=cxRateClass(R.conv_rate)==='good'?'':cxRateClass(R.conv_rate);
+      const accounts=CONV.filter(r=>r.rep===R.rep);
+      return `<tr class="cx-rep-row" data-target="${rowId}">
+        <td><span class="cx-chev">▶</span>${esc(R.rep)}</td>
+        <td class="cx-num">${R.cold_snap_base}</td>
+        <td class="cx-num">${R.converted}</td>
+        <td class="cx-num"><span class="cx-mini-track"><span class="cx-mini-fill ${barCls}" style="width:${barW}%"></span></span><span class="cx-rate ${cxRateClass(R.conv_rate)}">${rateTxt}</span></td>
+        <td class="cx-num">${R.opportunity}</td>
+        <td class="cx-num">${R.gained}</td>
+        <td class="cx-num">${R.summer_total}</td>
+      </tr>
+      <tr class="cx-sub" id="${rowId}"><td colspan="7">${cxAcctTable(accounts)}</td></tr>`;
+    }).join("");
+
+    app.innerHTML=`<div class="cx-kpi-strip">${stripHtml}</div>
+      <div class="cx-card"><div class="cx-table-scroll"><table class="cx-table">
+        <thead><tr><th>Rep</th><th class="cx-num">Cold Snap Base</th><th class="cx-num">Converted</th><th class="cx-num">Conversion Rate</th><th class="cx-num">Opportunities</th><th class="cx-num">Gained</th><th class="cx-num">Summer Ale Total</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div></div>`;
+    bindCxRows(app);
   } else {
-    const rows=convScope(),m=convMetrics(rows);
-    const by={};CONV.forEach(r=>{if(r.cat==="Converted")by[r.rep]=(by[r.rep]||0)+1;});
-    const rank=Object.entries(by).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).indexOf(activeRep)+1;
-    const pips=rows.filter(r=>r.cat!=="Gained").map(r=>`<span class="pip ${r.cat==="Converted"?'on':''}"></span>`).join("")||'<span class="pl">No Cold Snap accounts</span>';
-    const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div><div class="nm">${esc(activeRep)}<small>${m.conv} of ${m.base} Cold Snap accounts converted${m.gained?` · ${m.gained} new`:''}</small></div><div class="win2"><div class="b num">${m.rate.toFixed(0)}%</div><div class="l">Conversion rate</div></div></div><div class="pips">${pips}</div><div class="pl">Each pip is a Cold Snap account — green once it's flipped to Summer Ale.</div></div>`;
-    const opp=rows.filter(r=>r.cat==="Opportunity"),conv=rows.filter(r=>r.cat==="Converted"),gain=rows.filter(r=>r.cat==="Gained");
-    const oppCard=`<div class="quest" style="border-color:color-mix(in srgb,var(--accent) 40%,var(--line))"><div class="sup">Go convert these${opp.length?`<span class="badge prog">${opp.length} open</span>`:`<span class="badge ok">${CHECK} all done</span>`}</div><div class="pl" style="margin:8px 0 4px">Had Cold Snap, no Summer Ale yet — your hit list.</div><div class="brk" style="border-top:none;padding-top:4px">${opp.length?opp.map(r=>acctRow(r.name,"Opportunity")).join(""):'<div class="pl">Every Cold Snap account converted.</div>'}</div></div>`;
-    const convCard=conv.length?`<div class="quest"><div class="sup">Converted<span class="badge ok">${CHECK} ${conv.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${conv.map(r=>acctRow(r.name,"Converted")).join("")}</div></div>`:"";
-    const gainCard=gain.length?`<div class="quest"><div class="sup">Gained — new Summer Ale<span class="badge" style="background:#1B3A5B;color:#9CC4EE">+${gain.length}</span></div><div class="brk" style="border-top:none;padding-top:4px">${gain.map(r=>acctRow(r.name,"Gained")).join("")}</div></div>`:"";
-    app.innerHTML=hero+`<div class="shead"><h2>Your accounts</h2></div>`+oppCard+convCard+gainCard;
+    const rows=convScope();
+    const m=convMetrics(rows);
+    const rateTxt=m.base?m.rate.toFixed(1)+'%':'—';
+    app.innerHTML=`<div class="hero"><div class="nm">${esc(activeRep)}</div>
+      <div class="cx-hero-stats">
+        <div class="cx-hero-stat">Cold Snap base: <b>${m.base}</b></div>
+        <div class="cx-hero-stat">Converted: <b>${m.conv}</b></div>
+        <div class="cx-hero-stat">Conversion rate: <b class="cx-rate ${cxRateClass(m.base?m.rate:null)}">${rateTxt}</b></div>
+        <div class="cx-hero-stat">Opportunities: <b>${m.opp}</b></div>
+        <div class="cx-hero-stat">Gained: <b>${m.gained}</b></div>
+        <div class="cx-hero-stat">Summer Ale total: <b>${m.conv+m.gained}</b></div>
+      </div></div>
+      <div class="cx-card">${cxAcctTable(rows)}</div>`;
   }
 }
 
