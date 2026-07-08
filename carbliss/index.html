@@ -79,14 +79,14 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 
 /* ---- table ---- */
 .table-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}
-.table-scroll{max-height:640px;overflow:auto}
+.table-scroll{overflow:visible}
 table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:10px 12px;font-size:10.5px;text-transform:uppercase;
-  letter-spacing:.05em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
+thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:9px 10px;font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
 thead th:hover{color:var(--accent)}
 thead th.sorted::after{content:" \25BE";color:var(--accent)}
 thead th.sorted-asc::after{content:" \25B4";color:var(--accent)}
-tbody td{padding:9px 12px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tbody td{padding:9px 10px;border-bottom:1px solid var(--line-soft);white-space:normal;word-break:break-word}
 tbody tr:hover{background:#191B23}
 .num-cell{text-align:right;font-variant-numeric:tabular-nums}
 .chan-badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:3px 9px;border-radius:999px;display:inline-block}
@@ -97,7 +97,7 @@ tbody tr:hover{background:#191B23}
 .status-badge.no{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
 .gap-pill{font-family:"Space Grotesk";font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
   background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent);white-space:nowrap}
-.rtd-bar{display:flex;height:7px;width:88px;border-radius:4px;overflow:hidden;background:var(--line-soft)}
+.rtd-bar{display:flex;height:7px;width:60px;border-radius:4px;overflow:hidden;background:var(--line-soft)}
 .rtd-bar i{display:block;height:100%}
 .rtd-bar .b-sc{background:var(--sc)}
 .rtd-bar .b-wc{background:var(--wc)}
