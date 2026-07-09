@@ -18,3 +18,10 @@ index.html embeds a processed JSON snapshot of the CSV (see the
 calls. To refresh with a new report export: replace
 DisplayPhotoReport.csv, then regenerate the embedded JSON and re-save
 index.html.
+
+Note: each display's "View Photo" link comes from the hyperlink on the
+Photo column in the original iSellBeer .xlsx export, not from
+DisplayPhotoReport.csv — a plain CSV can't carry a hyperlink separate
+from its cell text ("Photo"). When refreshing, regenerate from the
+source .xlsx (not just this CSV) if you want photo links to keep
+working.
