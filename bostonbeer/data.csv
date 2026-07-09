@@ -42,6 +42,7 @@ Allison Scott,Thatcher Mc Ghees (A),1,1,Converted
 Allison Scott,The Barnyard and Carriage House,0,1,Gained Not from Conversion
 Allison Scott,The Celtic Knot,1,1,Converted
 Allison Scott,The Clif (P),1,1,Converted
+Allison Scott,The Grand Saloon,0,1,Gained Not from Conversion
 Allison Scott,The Little Falls Tavern,1,1,Converted
 Allison Scott,The Shannon Rose (A),1,1,Converted
 Allison Scott,Tommy's Tavern & Tap (Clifton),1,1,Converted
@@ -59,10 +60,12 @@ Anthony Palmisano,Black Bear Golf(A),1,1,Converted
 Anthony Palmisano,Brick & Brew,1,1,Converted
 Anthony Palmisano,Country Cottage Rest (P),1,1,Converted
 Anthony Palmisano,Crystal Sprs/Wild Turkey,1,1,Converted
+Anthony Palmisano,D'Boathaus Restaurant,1,1,Converted
 Anthony Palmisano,Daily Planet (A),1,1,Converted
 Anthony Palmisano,Early American Tavern,1,1,Converted
 Anthony Palmisano,Flip's Bar (P),1,1,Converted
 Anthony Palmisano,Irish Cottage Inn,1,1,Converted
+Anthony Palmisano,Jimmy Geez(North)Bar/Gril,1,1,Converted
 Anthony Palmisano,Mt Creek Hex Lg(North) A,1,1,Converted
 Anthony Palmisano,Old School Pub P),0,1,Gained Not from Conversion
 Anthony Palmisano,Shoppers Disc(A)Pompton,0,1,Gained Not from Conversion
@@ -210,6 +213,7 @@ Nick Melissari,Lodi Lanes (A),0,1,Gained Not from Conversion
 Nick Melissari,Longhorn Steak Rochele Pk,1,1,Converted
 Nick Melissari,Mahwah B & G (A),1,1,Converted
 Nick Melissari,Marcus Live Bar & Grille,1,1,Converted
+Nick Melissari,Marty Gra's (A),0,1,Gained Not from Conversion
 Nick Melissari,Millers Paramus Ale House,1,1,Converted
 Nick Melissari,Mozzarella Bar,1,1,Converted
 Nick Melissari,Mr.Bruno's,1,1,Converted
@@ -245,6 +249,7 @@ Nick Melissari,Tommy's Tavern + Tap (Edgewater),1,1,Converted
 Nick Melissari,Trovato's Due (Z),1,1,Converted
 Nick Melissari,Victor's Maywood Inn,1,1,Converted
 Nick Melissari,W's Village Grille,1,1,Converted
+Nick Melissari,Whiskey Roads,1,1,Converted
 Nick Melissari,Woodstone Pizza B & G,1,1,Converted
 Nick Melissari,Yard House 8390,1,1,Converted
 Office Tell Sell,Columbian Club (Z),1,1,Converted
@@ -328,8 +333,6 @@ Allison Scott,Bottagra Rest (P),1,0,Opportunity
 Allison Scott,Celtic Crossings,1,0,Opportunity
 Allison Scott,T Bowl Tavern (Z),1,0,Opportunity
 Allison Scott,THE TIES,1,0,Opportunity
-Anthony Palmisano,D'Boathaus Restaurant,1,0,Opportunity
-Anthony Palmisano,Jimmy Geez(North)Bar/Gril,1,0,Opportunity
 Anthony Palmisano,Mt Creek Kink (So)A,1,0,Opportunity
 Anthony Palmisano,The New Jessies Kettle(P),1,0,Opportunity
 Chris Payton,Arcola Country C.,1,0,Opportunity
@@ -341,7 +344,6 @@ Nick Melissari,Hansil's Bar (P),1,0,Opportunity
 Nick Melissari,House of Que (East Rutherford),1,0,Opportunity
 Nick Melissari,Mason Jar Restaurant,1,0,Opportunity
 Nick Melissari,The Firehouse,1,0,Opportunity
-Nick Melissari,Whiskey Roads,1,0,Opportunity
 Paul Mclaughlin,QB's Bar and Grill,1,0,Opportunity
 Robin Feldman,4 Seasons Restaurant,1,0,Opportunity
 Robin Feldman,Cypress,1,0,Opportunity
