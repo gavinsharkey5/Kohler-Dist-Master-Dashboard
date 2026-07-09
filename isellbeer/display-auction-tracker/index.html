@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Display Auction Tracker · iSellBeer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+  --line:#262A35; --line-soft:#1F222B;
+  --accent:#3D7DF6; --accent2:#2456C9;
+  --gold:#E8C45A; --gold-soft:#332B12;
+  --amber:#E6B23C; --amber-soft:#332711;
+  --green:#37C46B; --green-soft:#15301E;
+  --gray:#7C8394; --gray-soft:#1D2029;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent}
+.num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:inherit}
+
+.gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:260px;
+  background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);pointer-events:none}
+.gx-head .wrap{position:relative;padding:24px 16px 18px}
+.eyebrow{font-family:"Space Grotesk";letter-spacing:.16em;text-transform:uppercase;font-size:11px;font-weight:600;
+  color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+.eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:p 2s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-family:"Space Grotesk";font-weight:700;font-size:24px;margin:0}
+.lede{color:var(--ink-soft);font-size:13.5px;max-width:640px;margin:8px 0 0}
+.updated{color:var(--ink-soft);font-size:11.5px;margin:10px 0 0}
+.back{font-size:12px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:5px;margin-bottom:4px}
+.back:hover{color:var(--ink)}
+
+.tabs{display:flex;gap:6px;margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px}
+.tab{flex:1;text-align:center;padding:10px 8px;border-radius:9px;font-family:"Space Grotesk";font-weight:600;font-size:13px;
+  color:var(--ink-soft);cursor:pointer;user-select:none;border:none;background:transparent}
+.tab.active{background:linear-gradient(150deg,var(--accent2),var(--accent));color:#fff;box-shadow:var(--shadow)}
+
+main{padding:18px 0 60px}
+.tabpanel{display:none}
+.tabpanel.active{display:block}
+.panel-lede{color:var(--ink-soft);font-size:12.5px;margin:0 0 16px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.scard{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;
+  padding:13px 14px;box-shadow:var(--shadow)}
+.scard .slabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);font-weight:600;margin-bottom:8px}
+.scard .sval{font-family:"Space Grotesk";font-weight:700;font-size:24px;line-height:1}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px;align-items:center}
+.toolbar select{flex:0 1 220px;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:10px;
+  padding:11px 12px;font-size:13.5px;font-family:"Inter";min-width:0}
+
+.list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.row{border-bottom:1px solid var(--line-soft)}
+.row:last-child{border-bottom:none}
+.row summary{display:flex;align-items:center;gap:12px;padding:14px;cursor:pointer;list-style:none}
+.row summary::-webkit-details-marker{display:none}
+.row summary::marker{content:""}
+.row summary:active{background:var(--card2)}
+.rank{flex:0 0 auto;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:"Space Grotesk";font-weight:700;font-size:12.5px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.rank.r1{background:linear-gradient(150deg,#F4D97A,var(--gold));color:#3A2E05;border-color:transparent}
+.rank.r2{background:linear-gradient(150deg,#E4E7EC,#B9C0CC);color:#2A2E38;border-color:transparent}
+.rank.r3{background:linear-gradient(150deg,#D8A272,#9C6B3E);color:#2E1B08;border-color:transparent}
+.row .info{flex:1 1 auto;min-width:0}
+.row .pname{font-weight:600;font-size:14.5px}
+.row .pmeta{font-size:11px;color:var(--ink-soft);margin-top:3px}
+.row .metric{flex:0 0 auto;text-align:right}
+.row .metric b{display:block;font-family:"Space Grotesk";font-weight:700;font-size:18px;line-height:1}
+.row .metric small{display:block;font-size:9.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;
+  letter-spacing:.04em;margin-top:3px}
+.row .chev{flex:0 0 auto;color:var(--ink-soft);font-size:16px;transition:transform .15s}
+.row[open] .chev{transform:rotate(90deg)}
+
+.detail{padding:0 14px 16px 54px;font-size:12.5px}
+.dnote{color:var(--ink-soft);font-size:11.5px;margin:0 0 10px}
+.dlist{border-top:1px solid var(--line-soft)}
+.ditem{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.ditem:last-child{border-bottom:none}
+.ditem .dinfo{flex:1 1 auto;min-width:0}
+.ditem .dacct{font-weight:600;font-size:13px}
+.ditem .dsub{font-size:11px;color:var(--ink-soft);margin-top:2px}
+.ditem .dcases{flex:0 0 auto;text-align:right;font-family:"Space Grotesk";font-weight:700;font-size:13px}
+.ditem .dcases small{display:block;font-size:9px;font-weight:500;color:var(--ink-soft);text-transform:uppercase}
+.ditem .dpts{flex:0 0 auto;text-align:right;min-width:64px}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px}
+.badge.b-priority{background:var(--gold-soft);color:var(--gold)}
+.badge.b-allother{background:var(--green-soft);color:#5fdc8c}
+.badge.b-none{background:var(--gray-soft);color:var(--gray)}
+
+.empty{padding:40px 20px;text-align:center;color:var(--ink-soft);font-size:13.5px}
+footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center;border-top:1px solid var(--line);margin-top:30px}
+footer p{max-width:640px;margin:6px auto}
+
+@media (max-width:520px){
+  .toolbar select{flex:1 1 100%}
+  .detail{padding-left:44px}
+}
+</style>
+</head>
+<body>
+
+<div class="gx-head"><div class="wrap">
+  <a class="back" href="../">&larr; iSellBeer</a>
+  <p class="eyebrow"><span class="pulse"></span>iSellBeer · Display Incentive</p>
+  <h1>Display Auction Tracker</h1>
+  <p class="lede">Points earned for display photos logged through iSellBeer — Priority Brands and All Other Brands, tiered by case count.</p>
+  <p class="updated" id="updated-line"></p>
+</div></div>
+
+<div class="wrap">
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="rep">Sales Reps</button>
+    <button class="tab" data-tab="assoc">Sales Associates</button>
+  </div>
+
+  <main>
+    <section class="tabpanel active" id="panel-rep">
+      <p class="panel-lede">Points accumulated by Sales Reps this period.</p>
+      <div class="stats" id="stats-rep"></div>
+      <div class="toolbar">
+        <select id="sort-rep"></select>
+      </div>
+      <div class="list" id="list-rep"></div>
+    </section>
+
+    <section class="tabpanel" id="panel-assoc">
+      <p class="panel-lede">Points accumulated by Sales Associates this period.</p>
+      <div class="stats" id="stats-assoc"></div>
+      <div class="toolbar">
+        <select id="sort-assoc"></select>
+      </div>
+      <div class="list" id="list-assoc"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Priority Brands</strong> — Tier 1 (10–19 cases): 200 pts · Tier 2 (20–39): 300 pts · Tier 3 (40–69): 500 pts · Tier 4 (70+): 1,000 pts.</p>
+    <p><strong>All Other Brands</strong> — Tier 1 (10–19 cases): 100 pts · Tier 2 (20–39): 200 pts · Tier 3 (40–69): 300 pts · Tier 4 (70+): 600 pts. Sales Reps and Sales Associates earn on the same scale.</p>
+    <p>One display = one photo submission (same rep, account, and timestamp); case totals are summed across every SKU logged in that photo before the tier is applied. Displays under 10 cases don't qualify. Brand classification is matched automatically against the Priority/All Other brand lists — flag anything that looks off for a manual check.</p>
+  </footer>
+</div>
+
+<script id="da-data" type="application/json">{"meta":{"startDate":"07/01/2026","endDate":"07/09/2026","totalDisplays":111,"totalPoints":65100},"people":[{"name":"Mike Ast","role":"Sales Rep","points":13300,"qualifying":17,"total":17,"priorityQualifying":17,"otherQualifying":0,"displays":[{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/01/2026 02:26 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/01/2026 02:27 PM","cases":90,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISERS RTD"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/01/2026 02:29 PM","cases":115,"classification":"priority","tier":4,"points":1000,"brands":["WHITE CLAW ORIGINAL HARD SELTZER"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/01/2026 02:49 PM","cases":105,"classification":"priority","tier":4,"points":1000,"brands":["TWISTED TEA"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"12011","dba":"BOTTLE KING (A) WAYNE","city":"WAYNE","dt":"07/06/2026 02:52 PM","cases":75,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/06/2026 09:49 AM","cases":80,"classification":"priority","tier":4,"points":1000,"brands":["MILLER LITE"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/06/2026 09:53 AM","cases":70,"classification":"priority","tier":4,"points":1000,"brands":["HEINEKEN"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"96002","dba":"WINE & SPIRIT WORLD(W)","city":"WYCKOFF","dt":"07/07/2026 02:04 PM","cases":77,"classification":"priority","tier":4,"points":1000,"brands":["WHITE CLAW ORIGINAL HARD SELTZER","WHITE CLAW SURF HARD SELTZER"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"96002","dba":"WINE & SPIRIT WORLD(W)","city":"WYCKOFF","dt":"07/07/2026 02:06 PM","cases":70,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISERS RTD"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"94001","dba":"LONG HILL LIQUORS (A)","city":"OAKLAND","dt":"07/07/2026 12:39 PM","cases":70,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA","MODELO ORO","PACIFICO"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"94001","dba":"LONG HILL LIQUORS (A)","city":"OAKLAND","dt":"07/07/2026 12:41 PM","cases":73,"classification":"priority","tier":4,"points":1000,"brands":["CORONA","CORONA EXTRA"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"12011","dba":"BOTTLE KING (A) WAYNE","city":"WAYNE","dt":"07/06/2026 02:54 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["HEINEKEN"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"11003","dba":"LINCOLN PARK FINE WINES & SPIRITS","city":"LINCOLN PARK","dt":"07/06/2026 09:52 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"94001","dba":"LONG HILL LIQUORS (A)","city":"OAKLAND","dt":"07/07/2026 12:37 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"12011","dba":"BOTTLE KING (A) WAYNE","city":"WAYNE","dt":"07/06/2026 02:55 PM","cases":20,"classification":"priority","tier":2,"points":300,"brands":["CORONA","CORONA EXTRA"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"17010","dba":"FRANK'S FINE WINE & FOODS","city":"HALEDON","dt":"07/06/2026 11:27 AM","cases":20,"classification":"priority","tier":2,"points":300,"brands":["SAMUEL ADAMS"]},{"taker":"Mike Ast","role":"Sales Rep","acct":"17010","dba":"FRANK'S FINE WINE & FOODS","city":"HALEDON","dt":"07/06/2026 11:25 AM","cases":18,"classification":"priority","tier":1,"points":200,"brands":["DOS EQUIS"]}]},{"name":"Mickey Obrien","role":"Sales Associate","points":11900,"qualifying":16,"total":17,"priorityQualifying":15,"otherQualifying":1,"displays":[{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/01/2026 04:24 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["TRULY HARD SELTZER"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/02/2026 09:32 AM","cases":200,"classification":"priority","tier":4,"points":1000,"brands":["WHITE CLAW SURF HARD SELTZER"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:41 AM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["HEINEKEN"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:42 AM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:18 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["CORONA EXTRA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:23 PM","cases":160,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISERS RTD"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:26 PM","cases":90,"classification":"priority","tier":4,"points":1000,"brands":["TRULY HARD SELTZER"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:30 PM","cases":140,"classification":"priority","tier":4,"points":1000,"brands":["TWISTED TEA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:48 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["CORONA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:54 AM","cases":100,"classification":"allother","tier":4,"points":600,"brands":["KIRIN ICHIBAN"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"14007","dba":"TOTAL WINE & MORE (TOTOWA)","city":"TOTOWA","dt":"07/08/2026 01:30 PM","cases":60,"classification":"priority","tier":3,"points":500,"brands":["WHITE CLAW VODKA + SODA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"43013","dba":"BUY RITE OF FAIRVIEW","city":"FAIRVIEW","dt":"07/08/2026 12:19 PM","cases":65,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"43013","dba":"BUY RITE OF FAIRVIEW","city":"FAIRVIEW","dt":"07/08/2026 12:26 PM","cases":65,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"21033","dba":"THE LIQUOR SHOP","city":"PATERSON","dt":"07/01/2026 01:23 PM","cases":32,"classification":"priority","tier":2,"points":300,"brands":["MODELO ORO"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"49027","dba":"LINWOOD WINE-LINWOOD PLAZA","city":"FORT LEE","dt":"07/08/2026 10:21 AM","cases":26,"classification":"priority","tier":2,"points":300,"brands":["CORONA EXTRA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/02/2026 09:30 AM","cases":10,"classification":"priority","tier":1,"points":200,"brands":["TWISTED TEA"]},{"taker":"mickey obrien","role":"Sales Associate","acct":"51013","dba":"G & G LIQUORS","city":"TEANECK","dt":"07/06/2026 03:53 PM","cases":0,"classification":"priority","tier":0,"points":0,"brands":["HEINEKEN"]}]},{"name":"Phil Ernst","role":"Sales Rep","points":11600,"qualifying":20,"total":21,"priorityQualifying":19,"otherQualifying":1,"displays":[{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:48 PM","cases":90,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISER ICED TEA VODKA","SUN CRUISERS RTD"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:52 PM","cases":110,"classification":"priority","tier":4,"points":1000,"brands":["TRULY"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"80005","dba":"SHOP RITE LIQ (PARAMUS)","city":"PARAMUS","dt":"07/02/2026 08:33 AM","cases":75,"classification":"priority","tier":4,"points":1000,"brands":["SAM ADAMS SEASONAL"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 09:09 AM","cases":115,"classification":"priority","tier":4,"points":1000,"brands":["TRULY","WHITE CLAW SURF HARD SELTZER"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"46019","dba":"PALISADES WINE AND LIQUOR","city":"PALISADES PARK","dt":"07/06/2026 02:35 PM","cases":190,"classification":"priority","tier":4,"points":1000,"brands":["COORS","COORS LIGHT"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:44 PM","cases":60,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:51 PM","cases":54,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:56 PM","cases":60,"classification":"priority","tier":3,"points":500,"brands":["COORS LIGHT"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 02:25 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TWISTED TEA"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 02:29 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TRULY HARD SELTZER"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"80005","dba":"SHOP RITE LIQ (PARAMUS)","city":"PARAMUS","dt":"07/02/2026 08:39 AM","cases":45,"classification":"priority","tier":3,"points":500,"brands":["TWISTED TEA"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"80005","dba":"SHOP RITE LIQ (PARAMUS)","city":"PARAMUS","dt":"07/02/2026 08:47 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["TRULY"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 09:10 AM","cases":45,"classification":"priority","tier":3,"points":500,"brands":["SUN CRUISERS RTD"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 09:30 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"29004","dba":"SHOP-RITE LIQ LYNDHURST","city":"LYNDHURST","dt":"07/02/2026 10:33 AM","cases":68,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"46019","dba":"PALISADES WINE AND LIQUOR","city":"PALISADES PARK","dt":"07/06/2026 02:39 PM","cases":44,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA","MODELO ORO"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:55 PM","cases":26,"classification":"priority","tier":2,"points":300,"brands":["TWISTED TEA"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 02:27 PM","cases":38,"classification":"priority","tier":2,"points":300,"brands":["CAYMAN JACK"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"80005","dba":"SHOP RITE LIQ (PARAMUS)","city":"PARAMUS","dt":"07/02/2026 08:48 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["SUN CRUISERS RTD"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/08/2026 09:50 AM","cases":30,"classification":"allother","tier":2,"points":200,"brands":["ATHLETIC BREWING COMPANY"]},{"taker":"phil Ernst","role":"Sales Rep","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/02/2026 01:49 PM","cases":8,"classification":"priority","tier":0,"points":0,"brands":["SINLESS RTD"]}]},{"name":"Nicholas Micco","role":"Sales Associate","points":5400,"qualifying":12,"total":12,"priorityQualifying":12,"otherQualifying":0,"displays":[{"taker":"Nicholas Micco","role":"Sales Associate","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/06/2026 03:38 PM","cases":111,"classification":"priority","tier":4,"points":1000,"brands":["CORONA","CORONA EXTRA"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"38040","dba":"BUY RITE DISCOUNT LIQUOR","city":"LODI","dt":"07/02/2026 10:19 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["COORS LIGHT"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:42 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["SUN CRUISER LEMONADE","SUN CRUISERS RTD"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 11:59 AM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["WHITE CLAW SURF HARD SELTZER"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:01 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TWISTED TEA"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:02 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["CAYMAN JACK"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:03 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TRULY"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"38040","dba":"BUY RITE DISCOUNT LIQUOR","city":"LODI","dt":"07/02/2026 10:20 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["TRULY"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"38040","dba":"BUY RITE DISCOUNT LIQUOR","city":"LODI","dt":"07/02/2026 10:21 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["TWISTED TEA"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:43 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["TRULY"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:48 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["TWISTED TEA"]},{"taker":"Nicholas Micco","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:45 AM","cases":10,"classification":"priority","tier":1,"points":200,"brands":["TRULY"]}]},{"name":"David Fletcher","role":"Sales Associate","points":5300,"qualifying":11,"total":12,"priorityQualifying":11,"otherQualifying":0,"displays":[{"taker":"David Fletcher","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:00 PM","cases":75,"classification":"priority","tier":4,"points":1000,"brands":["WHITE CLAW CLAWTAILS","WHITE CLAW ORIGINAL HARD SELTZER","WHITE CLAW SURF HARD SELTZER"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"83010","dba":"BOTTLE KING (A) GLEN ROCK","city":"GLEN ROCK","dt":"07/01/2026 02:33 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"29004","dba":"SHOP-RITE LIQ LYNDHURST","city":"LYNDHURST","dt":"07/01/2026 05:50 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TRULY HARD SELTZER"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"38040","dba":"BUY RITE DISCOUNT LIQUOR","city":"LODI","dt":"07/02/2026 10:22 AM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["TRULY"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:43 AM","cases":45,"classification":"priority","tier":3,"points":500,"brands":["SUN CRUISERS RTD"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:02 PM","cases":42,"classification":"priority","tier":3,"points":500,"brands":["TWISTED TEA"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:03 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["CAYMAN JACK"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"20106","dba":"SUPER WINE WAREHSE(P)PATE","city":"PATERSON","dt":"07/02/2026 12:04 PM","cases":50,"classification":"priority","tier":3,"points":500,"brands":["TRULY SEASONAL HARD SELTZER"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"38040","dba":"BUY RITE DISCOUNT LIQUOR","city":"LODI","dt":"07/02/2026 10:23 AM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["TWISTED TEA"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:42 AM","cases":35,"classification":"priority","tier":2,"points":300,"brands":["TRULY"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:47 AM","cases":15,"classification":"priority","tier":1,"points":200,"brands":["TWISTED TEA"]},{"taker":"David Fletcher","role":"Sales Associate","acct":"76010","dba":"USA WINE TRADERS CLUB (SADDLE BROOK)","city":"SADDLE BROOK","dt":"07/02/2026 10:44 AM","cases":6,"classification":"priority","tier":0,"points":0,"brands":["TRULY SEASONAL HARD SELTZER"]}]},{"name":"Dave Ehlers","role":"Sales Rep","points":4300,"qualifying":5,"total":5,"priorityQualifying":5,"otherQualifying":0,"displays":[{"taker":"Dave Ehlers","role":"Sales Rep","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:17 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["CORONA EXTRA"]},{"taker":"Dave Ehlers","role":"Sales Rep","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:23 PM","cases":160,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISERS RTD"]},{"taker":"Dave Ehlers","role":"Sales Rep","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:48 PM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["CORONA"]},{"taker":"Dave Ehlers","role":"Sales Rep","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:51 PM","cases":140,"classification":"priority","tier":4,"points":1000,"brands":["TWISTED TEA"]},{"taker":"Dave Ehlers","role":"Sales Rep","acct":"58001","dba":"TOTAL WINE & MORE (RIVER EDGE)","city":"RIVER EDGE","dt":"07/08/2026 02:47 PM","cases":30,"classification":"priority","tier":2,"points":300,"brands":["SINLESS SPIRITS"]}]},{"name":"Patrick Infante","role":"Sales Associate","points":4000,"qualifying":7,"total":8,"priorityQualifying":6,"otherQualifying":1,"displays":[{"taker":"patrick infante","role":"Sales Associate","acct":"21033","dba":"THE LIQUOR SHOP","city":"PATERSON","dt":"07/01/2026 01:14 PM","cases":81,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA","MODELO CHELADA"]},{"taker":"patrick infante","role":"Sales Associate","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:42 AM","cases":200,"classification":"priority","tier":4,"points":1000,"brands":["HEINEKEN","MODELO CERVEZA"]},{"taker":"patrick infante","role":"Sales Associate","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:54 AM","cases":100,"classification":"allother","tier":4,"points":600,"brands":["KIRIN ICHIBAN"]},{"taker":"patrick infante","role":"Sales Associate","acct":"21026","dba":"C TOWN SUPERMARKET(P)","city":"PATERSON","dt":"07/03/2026 01:11 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA"]},{"taker":"patrick infante","role":"Sales Associate","acct":"21033","dba":"THE LIQUOR SHOP","city":"PATERSON","dt":"07/01/2026 01:17 PM","cases":25,"classification":"priority","tier":2,"points":300,"brands":["COORS LIGHT"]},{"taker":"patrick infante","role":"Sales Associate","acct":"21033","dba":"THE LIQUOR SHOP","city":"PATERSON","dt":"07/01/2026 01:23 PM","cases":32,"classification":"priority","tier":2,"points":300,"brands":["MODELO CERVEZA"]},{"taker":"patrick infante","role":"Sales Associate","acct":"21033","dba":"THE LIQUOR SHOP","city":"PATERSON","dt":"07/02/2026 11:29 AM","cases":24,"classification":"priority","tier":2,"points":300,"brands":["MODELO CERVEZA"]},{"taker":"patrick infante","role":"Sales Associate","acct":"51013","dba":"G & G LIQUORS","city":"TEANECK","dt":"07/06/2026 03:55 PM","cases":0,"classification":"priority","tier":0,"points":0,"brands":["YUENGLING BREWERY"]}]},{"name":"Michael Harboy","role":"Sales Rep","points":2900,"qualifying":6,"total":6,"priorityQualifying":6,"otherQualifying":0,"displays":[{"taker":"Michael Harboy","role":"Sales Rep","acct":"12005","dba":"SHAY'S LIQUORS","city":"WAYNE","dt":"07/02/2026 09:29 AM","cases":77,"classification":"priority","tier":4,"points":1000,"brands":["SUN CRUISERS RTD"]},{"taker":"Michael Harboy","role":"Sales Rep","acct":"12005","dba":"SHAY'S LIQUORS","city":"WAYNE","dt":"07/02/2026 09:35 AM","cases":52,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA","MODELO ORO","PACIFICO"]},{"taker":"Michael Harboy","role":"Sales Rep","acct":"12005","dba":"SHAY'S LIQUORS","city":"WAYNE","dt":"07/02/2026 09:51 AM","cases":47,"classification":"priority","tier":3,"points":500,"brands":["SAM ADAMS SEASONAL","SAMUEL ADAMS"]},{"taker":"Michael Harboy","role":"Sales Rep","acct":"11014","dba":"WAYNE LIQUOR LOCKER","city":"WAYNE","dt":"07/02/2026 12:51 PM","cases":66,"classification":"priority","tier":3,"points":500,"brands":["SUN CRUISERS RTD"]},{"taker":"Michael Harboy","role":"Sales Rep","acct":"12005","dba":"SHAY'S LIQUORS","city":"WAYNE","dt":"07/02/2026 09:31 AM","cases":12,"classification":"priority","tier":1,"points":200,"brands":["CARBLISS"]},{"taker":"Michael Harboy","role":"Sales Rep","acct":"12005","dba":"SHAY'S LIQUORS","city":"WAYNE","dt":"07/02/2026 09:37 AM","cases":14,"classification":"priority","tier":1,"points":200,"brands":["GARAGE BEER - CONTRACT BREWING"]}]},{"name":"Daniel La Gala","role":"Sales Rep","points":2600,"qualifying":3,"total":3,"priorityQualifying":2,"otherQualifying":1,"displays":[{"taker":"Daniel La Gala","role":"Sales Rep","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:41 AM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["MODELO CERVEZA"]},{"taker":"Daniel La Gala","role":"Sales Rep","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:42 AM","cases":100,"classification":"priority","tier":4,"points":1000,"brands":["HEINEKEN"]},{"taker":"Daniel La Gala","role":"Sales Rep","acct":"49066","dba":"MITSUWA MARKET (A)","city":"EDGEWATER","dt":"07/07/2026 11:48 AM","cases":100,"classification":"allother","tier":4,"points":600,"brands":["KIRIN ICHIBAN"]}]},{"name":"John Neukum","role":"Sales Rep","points":1700,"qualifying":3,"total":3,"priorityQualifying":3,"otherQualifying":0,"displays":[{"taker":"John Neukum","role":"Sales Rep","acct":"12060","dba":"COSTCO WHLSE V#32366-WAYN","city":"WAYNE","dt":"07/01/2026 03:03 PM","cases":70,"classification":"priority","tier":4,"points":1000,"brands":["CORONA EXTRA"]},{"taker":"John Neukum","role":"Sales Rep","acct":"31019","dba":"BJ'S WAREHOUSE E RUTHERFO","city":"EAST RUTHERFORD","dt":"07/06/2026 08:49 AM","cases":60,"classification":"priority","tier":3,"points":500,"brands":["TWISTED TEA"]},{"taker":"John Neukum","role":"Sales Rep","acct":"12060","dba":"COSTCO WHLSE V#32366-WAYN","city":"WAYNE","dt":"07/01/2026 03:04 PM","cases":10,"classification":"priority","tier":1,"points":200,"brands":["MODELO CERVEZA"]}]},{"name":"Chris Payton","role":"Sales Rep","points":1000,"qualifying":2,"total":2,"priorityQualifying":2,"otherQualifying":0,"displays":[{"taker":"Chris Payton","role":"Sales Rep","acct":"38008","dba":"SHOP RITE LIQ.(A)LODI","city":"LODI","dt":"07/07/2026 01:52 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["CORONA","CORONA EXTRA"]},{"taker":"Chris Payton","role":"Sales Rep","acct":"38008","dba":"SHOP RITE LIQ.(A)LODI","city":"LODI","dt":"07/07/2026 01:57 PM","cases":45,"classification":"priority","tier":3,"points":500,"brands":["HEINEKEN"]}]},{"name":"Javier Melo","role":"Sales Rep","points":700,"qualifying":2,"total":2,"priorityQualifying":1,"otherQualifying":1,"displays":[{"taker":"Javier Melo","role":"Sales Rep","acct":"21026","dba":"C TOWN SUPERMARKET(P)","city":"PATERSON","dt":"07/03/2026 01:13 PM","cases":40,"classification":"priority","tier":3,"points":500,"brands":["MODELO CERVEZA"]},{"taker":"Javier Melo","role":"Sales Rep","acct":"21044","dba":"FARM BOY","city":"PATERSON","dt":"07/08/2026 01:39 PM","cases":20,"classification":"allother","tier":2,"points":200,"brands":["FAMOSA"]}]},{"name":"Jay Tabasco","role":"Sales Associate","points":200,"qualifying":1,"total":1,"priorityQualifying":1,"otherQualifying":0,"displays":[{"taker":"Jay Tabasco","role":"Sales Associate","acct":"96002","dba":"WINE & SPIRIT WORLD(W)","city":"WYCKOFF","dt":"07/09/2026 12:41 PM","cases":10,"classification":"priority","tier":1,"points":200,"brands":["SUN CRUISERS RTD"]}]},{"name":"Matthew Powierski","role":"Sales Rep","points":200,"qualifying":1,"total":2,"priorityQualifying":1,"otherQualifying":0,"displays":[{"taker":"Matthew Powierski","role":"Sales Rep","acct":"31060","dba":"BOTTLE REPUBLIC (RUTHERFORD)","city":"RUTHERFORD","dt":"07/09/2026 11:40 AM","cases":10,"classification":"priority","tier":1,"points":200,"brands":["MODELO ORO"]},{"taker":"Matthew Powierski","role":"Sales Rep","acct":"77009","dba":"M & M WINE & SPIRITS","city":"ELMWOOD PARK","dt":"07/07/2026 11:02 AM","cases":8,"classification":"priority","tier":0,"points":0,"brands":["FEVER TREE"]}]}]}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('da-data').textContent);
+
+function fmtNum(n){ n = Math.round(n) || 0; return n.toLocaleString('en-US'); }
+function esc(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtDate(s){
+  const d = new Date(s);
+  if (isNaN(d)) return s;
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric'}) + ' ' +
+         d.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'});
+}
+
+const rangeStart = new Date(DATA.meta.startDate).toLocaleDateString('en-US', {month:'short', day:'numeric'});
+const rangeEnd = new Date(DATA.meta.endDate).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+document.getElementById('updated-line').textContent =
+  `${rangeStart} – ${rangeEnd} · ${fmtNum(DATA.meta.totalPoints)} total points issued across ${DATA.meta.totalDisplays} logged displays`;
+
+const TABS = {
+  rep: { role: 'Sales Rep', people: DATA.people.filter(p => p.role === 'Sales Rep') },
+  assoc: { role: 'Sales Associate', people: DATA.people.filter(p => p.role === 'Sales Associate') },
+};
+
+const SORTERS = {
+  pointsDesc: {label:'Points: High → Low', cmp:(a,b)=> b.points - a.points || a.name.localeCompare(b.name)},
+  pointsAsc: {label:'Points: Low → High', cmp:(a,b)=> a.points - b.points || a.name.localeCompare(b.name)},
+  displays: {label:'Most Qualifying Displays', cmp:(a,b)=> b.qualifying - a.qualifying || b.points - a.points},
+  az: {label:'Name: A → Z', cmp:(a,b)=> a.name.localeCompare(b.name)},
+};
+
+const state = { rep: {sort:'pointsDesc'}, assoc: {sort:'pointsDesc'} };
+
+function classBadge(cls){
+  if (cls === 'priority') return '<span class="badge b-priority">Priority</span>';
+  if (cls === 'allother') return '<span class="badge b-allother">All Other</span>';
+  return '<span class="badge b-none">Unclassified</span>';
+}
+
+function renderStats(key){
+  const people = TABS[key].people;
+  const totalPoints = people.reduce((s,p) => s + p.points, 0);
+  const qualifying = people.reduce((s,p) => s + p.qualifying, 0);
+  const totalDisplays = people.reduce((s,p) => s + p.total, 0);
+  const cards = [
+    {label:'Total Points Issued', val: fmtNum(totalPoints)},
+    {label:'People Earning Points', val: fmtNum(people.filter(p=>p.points>0).length) + ' / ' + fmtNum(people.length)},
+    {label:'Qualifying Displays', val: fmtNum(qualifying)},
+    {label:'Total Photos Logged', val: fmtNum(totalDisplays)},
+  ];
+  document.getElementById('stats-' + key).innerHTML = cards.map(c =>
+    `<div class="scard"><div class="slabel">${esc(c.label)}</div><div class="sval num">${c.val}</div></div>`
+  ).join('');
+}
+
+function renderList(key){
+  const cfg = TABS[key];
+  const st = state[key];
+  const people = [...cfg.people].sort(SORTERS[st.sort].cmp);
+  const listEl = document.getElementById('list-' + key);
+  if (people.length === 0){
+    listEl.innerHTML = '<div class="empty">No one in this role yet.</div>';
+    return;
+  }
+  listEl.innerHTML = people.map((p, i) => {
+    const rankIdx = st.sort === 'pointsDesc' ? i + 1 : null;
+    const rankClass = rankIdx === 1 ? 'r1' : rankIdx === 2 ? 'r2' : rankIdx === 3 ? 'r3' : '';
+    const rankLabel = rankIdx ? rankIdx : '–';
+    const displaysHtml = p.displays.map(d => `
+      <div class="ditem">
+        <div class="dinfo">
+          <div class="dacct">${esc(d.dba || 'Account #' + d.acct)}</div>
+          <div class="dsub">${esc(d.city || '')} · ${esc(d.brands.join(', '))} · ${fmtDate(d.dt)}</div>
+        </div>
+        <div class="dcases num">${fmtNum(d.cases)}<small>cases</small></div>
+        <div class="dpts">
+          ${d.points > 0 ? classBadge(d.classification) : '<span class="badge b-none">Below min.</span>'}
+          <div class="num" style="font-weight:700;margin-top:4px">${d.points > 0 ? '+' + fmtNum(d.points) : '0'}</div>
+        </div>
+      </div>
+    `).join('');
+    return `<details class="row">
+      <summary>
+        <span class="rank ${rankClass}">${rankLabel}</span>
+        <span class="info">
+          <span class="pname">${esc(p.name)}</span>
+          <span class="pmeta">${p.qualifying} of ${p.total} displays qualified · ${p.priorityQualifying} priority / ${p.otherQualifying} all other</span>
+        </span>
+        <span class="metric"><b class="num">${fmtNum(p.points)}</b><small>points</small></span>
+        <span class="chev">&rsaquo;</span>
+      </summary>
+      <div class="detail">
+        <p class="dnote">Every display logged this period, highest-earning first.</p>
+        <div class="dlist">${displaysHtml}</div>
+      </div>
+    </details>`;
+  }).join('');
+}
+
+function init(){
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.tabpanel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + btn.dataset.tab));
+    });
+  });
+
+  for (const key of Object.keys(TABS)){
+    renderStats(key);
+    const sortSel = document.getElementById('sort-' + key);
+    sortSel.innerHTML = Object.entries(SORTERS).map(([k,s]) => `<option value="${k}">${esc(s.label)}</option>`).join('');
+    sortSel.addEventListener('change', () => { state[key].sort = sortSel.value; renderList(key); });
+    renderList(key);
+  }
+}
+
+init();
+</script>
+</body></html>
