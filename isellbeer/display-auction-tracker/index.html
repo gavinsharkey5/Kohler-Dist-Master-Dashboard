@@ -190,6 +190,8 @@ function classBadge(cls){
   return '<span class="badge b-none">Unclassified</span>';
 }
 
+const ROSTER_SIZE = { rep: 27, assoc: 8 };
+
 function renderStats(key){
   const people = TABS[key].people;
   const totalPoints = people.reduce((s,p) => s + p.points, 0);
@@ -197,7 +199,7 @@ function renderStats(key){
   const totalDisplays = people.reduce((s,p) => s + p.total, 0);
   const cards = [
     {label:'Total Points Issued', val: fmtNum(totalPoints)},
-    {label:'People Earning Points', val: fmtNum(people.filter(p=>p.points>0).length) + ' / ' + fmtNum(people.length)},
+    {label:'People Earning Points', val: fmtNum(people.filter(p=>p.points>0).length) + ' / ' + fmtNum(ROSTER_SIZE[key])},
     {label:'Qualifying Displays', val: fmtNum(qualifying)},
     {label:'Total Photos Logged', val: fmtNum(totalDisplays)},
   ];
