@@ -155,6 +155,7 @@ footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:cen
       <div class="toolbar">
         <input type="search" id="search-status" placeholder="Search product name or SKU…">
         <select id="supplier-status"></select>
+        <select id="sort-status"></select>
       </div>
       <label class="check"><input type="checkbox" id="dead-status"> Include discontinued / zero-activity SKUs</label>
       <p class="result-count" id="count-status"></p>
@@ -168,6 +169,7 @@ footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:cen
       <div class="toolbar">
         <input type="search" id="search-proj" placeholder="Search product name or SKU…">
         <select id="supplier-proj"></select>
+        <select id="sort-proj"></select>
       </div>
       <label class="check"><input type="checkbox" id="dead-proj"> Include discontinued / zero-activity SKUs</label>
       <p class="result-count" id="count-proj"></p>
@@ -180,6 +182,7 @@ footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:cen
       <div class="stats" id="stats-watch"></div>
       <div class="toolbar">
         <input type="search" id="search-watch" placeholder="Search product name…">
+        <select id="sort-watch"></select>
       </div>
       <p class="result-count" id="count-watch"></p>
       <div class="list" id="list-watch"></div>
@@ -203,7 +206,7 @@ function fmtDate(iso){
   return new Date(y, m-1, d).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
 }
 function fmtNum(n){
-  n = Math.round(n);
+  n = Math.round(n) || 0;
   return n.toLocaleString('en-US');
 }
 function esc(s){
@@ -231,6 +234,7 @@ const TABS = {
     ],
     defaultActive: ['out','low','in'],
     sortRank: {out:0, low:1, in:2, inactive:3},
+    sortField: 'avail', sortFieldLabel: 'Available',
     metric(p){ return p.avail; },
     metricSort(p){ return p.avail; },
     rowRight(p){ return {val: fmtNum(p.avail), label:'available'}; },
@@ -260,9 +264,10 @@ const TABS = {
     ],
     defaultActive: ['backordered','out','critical','watch','healthy'],
     sortRank: {backordered:0, out:1, critical:2, watch:3, healthy:4, inactive:5},
+    sortField: 'doi', sortFieldLabel: 'Days of Inventory',
     metricSort(p){ return p.st==='backordered' ? -p.backordered : p.doi; },
-    rowRight(p){
-      if (p.st==='backordered') return {val: fmtNum(p.backordered), label:'backordered'};
+    rowRight(p, sortMode){
+      if (sortMode === 'urgent' && p.st==='backordered') return {val: fmtNum(p.backordered), label:'backordered'};
       return {val: fmtNum(p.doi), label:'days of inv.'};
     },
     rowMeta(p){ return esc(p.s) + (p.c ? ' · #' + esc(p.c) : ''); },
@@ -301,6 +306,7 @@ const TABS = {
     ],
     defaultActive: ['out','partial','in'],
     sortRank: {out:0, partial:1, in:2},
+    sortField: 'avail', sortFieldLabel: 'Available',
     metricSort(p){ return p.avail; },
     rowRight(p){ return {val: fmtNum(p.avail), label:'available'}; },
     rowMeta(p){ return 'Received ' + (p.recv || '—'); },
@@ -315,6 +321,26 @@ const TABS = {
   },
 };
 
+for (const key of Object.keys(TABS)){
+  const cfg = TABS[key];
+  const field = cfg.sortField;
+  cfg.sorters = {
+    urgent: {label:'Most Urgent First', cmp(a,b){
+      const ra = cfg.sortRank[a.st] ?? 9, rb = cfg.sortRank[b.st] ?? 9;
+      if (ra !== rb) return ra - rb;
+      const ma = cfg.metricSort(a), mb = cfg.metricSort(b);
+      if (ma !== mb) return ma - mb;
+      return a.n.localeCompare(b.n);
+    }},
+    desc: {label: cfg.sortFieldLabel + ': High → Low', cmp(a,b){
+      return (b[field] - a[field]) || a.n.localeCompare(b.n);
+    }},
+    asc: {label: cfg.sortFieldLabel + ': Low → High', cmp(a,b){
+      return (a[field] - b[field]) || a.n.localeCompare(b.n);
+    }},
+  };
+}
+
 function dgrid(pairs){
   return '<div class="dgrid">' + pairs.map(([l,v]) =>
     '<div><span class="dl">'+esc(l)+'</span><span class="dv num">'+esc(String(v))+'</span></div>'
@@ -325,7 +351,7 @@ function dgrid(pairs){
 
 const state = {};
 for (const key of Object.keys(TABS)){
-  state[key] = {search:'', supplier:'', active: new Set(TABS[key].defaultActive), includeDead:false, shown:0};
+  state[key] = {search:'', supplier:'', sortMode:'urgent', active: new Set(TABS[key].defaultActive), includeDead:false, shown:0};
 }
 let currentTab = 'status';
 
@@ -346,6 +372,11 @@ function init(){
     }
     const search = document.getElementById('search-' + key);
     search.addEventListener('input', () => { state[key].search = search.value.trim().toLowerCase(); renderTab(key); });
+
+    const sortSel = document.getElementById('sort-' + key);
+    sortSel.innerHTML = Object.entries(cfg.sorters)
+      .map(([k,s]) => `<option value="${k}">${esc(s.label)}</option>`).join('');
+    sortSel.addEventListener('change', () => { state[key].sortMode = sortSel.value; renderTab(key); });
 
     const deadBox = document.getElementById('dead-' + key);
     if (deadBox){
@@ -408,13 +439,7 @@ function filteredSorted(key){
     }
     return true;
   });
-  items.sort((a,b) => {
-    const ra = cfg.sortRank[a.st] ?? 9, rb = cfg.sortRank[b.st] ?? 9;
-    if (ra !== rb) return ra - rb;
-    const ma = cfg.metricSort(a), mb = cfg.metricSort(b);
-    if (ma !== mb) return ma - mb;
-    return a.n.localeCompare(b.n);
-  });
+  items.sort(cfg.sorters[st.sortMode].cmp);
   return items;
 }
 
@@ -449,15 +474,15 @@ function loadMore(key){
   const st = state[key];
   if (!st.filtered || st.shown >= st.filtered.length) return;
   const next = st.filtered.slice(st.shown, st.shown + BATCH);
-  const html = next.map(p => rowHtml(cfg, p)).join('');
+  const html = next.map(p => rowHtml(cfg, p, st.sortMode)).join('');
   document.getElementById('list-' + key).insertAdjacentHTML('beforeend', html);
   st.shown += next.length;
   document.getElementById('count-' + key).textContent =
     `Showing ${st.shown.toLocaleString()} of ${st.filtered.length.toLocaleString()}`;
 }
 
-function rowHtml(cfg, p){
-  const right = cfg.rowRight(p);
+function rowHtml(cfg, p, sortMode){
+  const right = cfg.rowRight(p, sortMode);
   const thumb = cfg.thumb ? cfg.thumb(p) : null;
   return `<details class="row">
     <summary>
