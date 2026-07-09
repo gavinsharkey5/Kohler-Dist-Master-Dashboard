@@ -105,6 +105,63 @@
 
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:#2A2E38;border-radius:4px;}
+
+  /* ===== Mobile / tablet responsiveness ===== */
+  html, body{overflow-x:hidden;}
+  * { -webkit-tap-highlight-color: transparent; }
+
+  @media (max-width: 820px){
+    .topbar{padding:18px 16px 0;}
+    header{padding:0 16px 16px;}
+    .kpi-strip{padding:0 16px;gap:10px;margin-top:20px;}
+    .repbar-wrap{padding:0 16px;margin-top:18px;}
+    main{padding:0 16px;margin:20px auto;gap:14px;}
+    h1{font-size:clamp(22px,6vw,30px);}
+    .sub{font-size:13.5px;}
+
+    .kpi{padding:14px 14px;}
+    .kpi-val{font-size:21px;}
+    .kpi-label{font-size:10.5px;}
+
+    .repchip{padding:9px 14px;font-size:13px;min-height:38px;display:inline-flex;align-items:center;}
+
+    .obj-head{padding:16px 16px;flex-wrap:wrap;gap:12px;}
+    .obj-name{font-size:15.5px;}
+    .obj-right{gap:12px;width:100%;justify-content:space-between;}
+    .obj-progress-txt{font-size:18px;}
+    .obj-body-inner{padding:14px 12px 18px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+
+    .rep-hero{gap:10px;}
+    .rep-hero h2{font-size:21px;}
+
+    table{font-size:13px;}
+    th, td{padding:10px 8px;}
+    .mini-bar-track{width:46px;margin-right:6px;}
+
+    .rep-sub-inner{padding:8px 10px 12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .rep-sub-inner table{min-width:540px;font-size:12.5px;}
+    .rep-sub-inner th, .rep-sub-inner td{padding:8px 9px;white-space:nowrap;}
+
+    .table-scroll{max-height:400px;}
+  }
+
+  @media (max-width: 480px){
+    .topbar{padding:14px 12px 0;}
+    header{padding:0 12px 14px;}
+    .kpi-strip{padding:0 12px;grid-template-columns:repeat(2,1fr)!important;gap:8px;}
+    .repbar-wrap{padding:0 12px;}
+    main{padding:0 12px;}
+    .kpi{padding:12px 12px;}
+    .kpi-val{font-size:19px;}
+    .obj-head{padding:14px 12px;}
+    .obj-name{font-size:14.5px;}
+    .weight-tag, .goal-tag{font-size:10px;padding:2px 7px;}
+    .obj-progress-txt{font-size:16px;}
+    table{font-size:12.5px;}
+    th, td{padding:9px 7px;}
+    .rep-row td:first-child{gap:6px;}
+  }
+
 </style>
 </head>
 <body>
