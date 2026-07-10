@@ -48,6 +48,23 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .scard .sub{font-size:11.5px;color:var(--ink-soft);margin-top:6px}
 .scard.us .big{color:var(--us)} .scard.them .big{color:var(--them)} .scard.flip .big{color:var(--accent)}
 
+.rep-donut-panel{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px;margin:0 0 14px;box-shadow:var(--shadow);display:none;align-items:center;gap:22px;flex-wrap:wrap}
+.rep-donut-title{width:100%;font-family:"Space Grotesk";font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.rep-donut-title b{color:var(--ink);letter-spacing:normal;text-transform:none}
+.rep-donut-chart{position:relative;width:118px;height:118px;flex:none}
+.rd-seg{fill:none;stroke-width:14;transition:stroke-dasharray .25s,stroke-dashoffset .25s}
+.rd-bg{fill:none;stroke:var(--line-soft);stroke-width:14}
+.rd-us{stroke:var(--us)} .rd-them{stroke:var(--them)} .rd-unv{stroke:var(--unv)}
+.rd-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.rd-center .num{font-family:"Space Grotesk";font-weight:700;font-size:22px;line-height:1}
+.rd-center .lbl{font-size:9.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.rep-donut-legend{display:flex;flex-direction:column;gap:7px;font-size:12.5px;min-width:170px}
+.rdl-row{display:flex;align-items:center;gap:8px}
+.rdl-row .sw{width:10px;height:10px;border-radius:3px;flex:none}
+.rdl-row .sw.us{background:var(--us)} .rdl-row .sw.them{background:var(--them)} .rdl-row .sw.unv{background:var(--unv)}
+.rdl-row .rdl-pct{font-family:"Space Grotesk";font-weight:700;margin-left:auto}
+
 .toolbar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 14px;
   display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow)}
 .tgroup{display:flex;flex-direction:column;gap:5px}
@@ -144,6 +161,20 @@ footer .rlist{margin:8px 0 0;padding-left:18px}
       <label class="check"><input type="checkbox" id="flippedOnly"> Corrected rows only</label>
     </div>
     <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div class="rep-donut-panel" id="repDonutPanel">
+    <div class="rep-donut-title" id="repDonutTitle"></div>
+    <div class="rep-donut-chart">
+      <svg viewBox="0 0 120 120" width="118" height="118">
+        <circle class="rd-bg" cx="60" cy="60" r="50"></circle>
+        <circle class="rd-seg rd-us" id="rdUs" cx="60" cy="60" r="50" transform="rotate(-90 60 60)"></circle>
+        <circle class="rd-seg rd-them" id="rdThem" cx="60" cy="60" r="50" transform="rotate(-90 60 60)"></circle>
+        <circle class="rd-seg rd-unv" id="rdUnv" cx="60" cy="60" r="50" transform="rotate(-90 60 60)"></circle>
+      </svg>
+      <div class="rd-center"><div class="num" id="rdTotal">0</div><div class="lbl">taps</div></div>
+    </div>
+    <div class="rep-donut-legend" id="repDonutLegend"></div>
   </div>
 
   <div class="table-panel">
@@ -341,6 +372,40 @@ footer .rlist{margin:8px 0 0;padding-left:18px}
         renderTable();
       });
     });
+
+    renderRepDonut();
+  }
+
+  var RD_C = 2*Math.PI*50;
+
+  function renderRepDonut(){
+    var panel = document.getElementById('repDonutPanel');
+    if(!state.rep){ panel.style.display='none'; return; }
+    panel.style.display='flex';
+
+    var rows = filteredRows();
+    var total = rows.length;
+    var us = rows.filter(function(r){return r.corrected==='US';}).length;
+    var them = rows.filter(function(r){return r.corrected==='THEM';}).length;
+    var unv = total - us - them;
+
+    function setSeg(el, count, priorCount){
+      var len = total ? (count/total)*RD_C : 0;
+      el.setAttribute('stroke-dasharray', len.toFixed(2)+' '+(RD_C-len).toFixed(2));
+      el.setAttribute('stroke-dashoffset', total ? (-(priorCount/total)*RD_C).toFixed(2) : 0);
+    }
+    setSeg(document.getElementById('rdUs'), us, 0);
+    setSeg(document.getElementById('rdThem'), them, us);
+    setSeg(document.getElementById('rdUnv'), unv, us+them);
+
+    document.getElementById('rdTotal').textContent = ce0(total);
+    document.getElementById('repDonutTitle').innerHTML = '<b>'+esc(state.rep)+'</b> &mdash; brand mix across '+ce0(total)+' surveyed taps'+(state.county||state.status||state.search||state.flippedOnly ? ' (current filters applied)' : '');
+
+    function pct(n){ return total ? Math.round(n/total*100) : 0; }
+    document.getElementById('repDonutLegend').innerHTML =
+      '<div class="rdl-row"><span class="sw us"></span> Ours &mdash; '+ce0(us)+'<span class="rdl-pct">'+pct(us)+'%</span></div>'+
+      '<div class="rdl-row"><span class="sw them"></span> Competitor &mdash; '+ce0(them)+'<span class="rdl-pct">'+pct(them)+'%</span></div>'+
+      '<div class="rdl-row"><span class="sw unv"></span> Unverified &mdash; '+ce0(unv)+'<span class="rdl-pct">'+pct(unv)+'%</span></div>';
   }
 
   function renderAll(){ renderSummary(); renderTable(); }
