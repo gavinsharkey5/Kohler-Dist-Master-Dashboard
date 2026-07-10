@@ -67,37 +67,50 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 
 .toolbar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 14px;
   display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow)}
-.tgroup{display:flex;flex-direction:column;gap:5px}
+.tgroup{display:flex;flex-direction:column;gap:5px;flex:1 1 auto}
 .tgroup label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
 .tgroup input, .tgroup select{background:var(--canvas);border:1px solid var(--line);color:var(--ink);border-radius:8px;
-  padding:7px 10px;font-size:13px;font-family:"Inter";min-width:130px}
+  padding:10px 12px;font-size:16px;font-family:"Inter";min-width:130px;min-height:44px;width:100%}
+.tgroup select{-webkit-appearance:none;appearance:none;padding-right:32px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%239097A6'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5' stroke='%239097A6' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:16px}
 .tgroup input[type=search]{min-width:220px}
 .tgroup input:focus, .tgroup select:focus{outline:2px solid var(--accent);outline-offset:1px}
-.check{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);cursor:pointer;user-select:none}
-.check input{accent-color:var(--accent);width:15px;height:15px}
-.result-count{margin-left:auto;font-size:12px;color:var(--ink-soft);align-self:center}
+.check{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;user-select:none;
+  min-height:44px;padding:4px 2px}
+.check input{accent-color:var(--accent);width:20px;height:20px;flex:none}
+.result-count{margin-left:auto;font-size:12.5px;color:var(--ink-soft);align-self:center}
+@media (max-width:680px){
+  .toolbar{align-items:stretch}
+  .tgroup{flex-basis:100%}
+  .tgroup input[type=search]{min-width:0}
+  .result-count{margin-left:0;align-self:flex-start}
+}
 
 .table-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;font-size:13px}
-thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:10px 10px;font-size:10px;text-transform:uppercase;
-  letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
+thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:13px 10px;font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2;
+  -webkit-tap-highlight-color:transparent}
 thead th:hover{color:var(--accent)}
 thead th.sorted::after{content:" \25BE";color:var(--accent)}
 thead th.sorted-asc::after{content:" \25B4";color:var(--accent)}
 tbody td{padding:9px 10px;border-bottom:1px solid var(--line-soft);white-space:normal;word-break:break-word}
 tbody tr:hover{background:#191B23}
 .num-cell{text-align:right}
-.acct-row{cursor:pointer}
-.acct-row td{font-weight:600}
+.acct-row{cursor:pointer;-webkit-tap-highlight-color:color-mix(in srgb,var(--accent) 20%,transparent)}
+.acct-row td{font-weight:600;padding-top:13px;padding-bottom:13px}
+.acct-row:active{background:#191B23}
 .acct-row .chev{display:inline-block;transition:transform .15s;color:var(--ink-soft);margin-right:8px;font-size:11px}
 .acct-row.open .chev{transform:rotate(90deg);color:var(--accent)}
 .mix-bar{display:flex;height:8px;width:120px;border-radius:4px;overflow:hidden;background:var(--line-soft)}
 .mix-bar i{display:block;height:100%}
 .mix-bar .m-us{background:var(--us)} .mix-bar .m-them{background:var(--them)} .mix-bar .m-unv{background:var(--unv)}
 .detail-row td{background:#12141A;padding:0}
-.detail-inner{padding:6px 14px 14px 34px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.detail-inner{padding:6px 10px 14px 22px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .detail-inner table{width:100%;min-width:620px;font-size:12.5px}
-.photo-link{color:var(--accent);text-decoration:none;font-size:12px;font-weight:600;white-space:nowrap}
+.photo-link{color:var(--accent);text-decoration:none;font-size:12px;font-weight:600;white-space:nowrap;display:inline-block;padding:6px 2px}
 .photo-link:hover{text-decoration:underline}
 .detail-inner th{position:static;background:transparent;padding:6px 8px;font-size:9.5px;border-bottom:1px solid var(--line)}
 .detail-inner td{padding:7px 8px;font-size:12.5px}
@@ -107,6 +120,7 @@ tbody tr:hover{background:#191B23}
 .status-badge.UNVERIFIED{background:var(--unv-soft);color:var(--unv)}
 .brand-cell b{color:var(--ink)}
 .brand-cell .sub{display:block;font-size:11px;color:var(--ink-soft);margin-top:1px}
+.reason-sub{display:block;font-size:10.5px;color:var(--ink-soft);margin-top:3px}
 
 .legend{display:flex;gap:16px;flex-wrap:wrap;padding:10px 16px;font-size:11.5px;color:var(--ink-soft);border-top:1px solid var(--line-soft)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
@@ -338,9 +352,11 @@ footer .rlist{margin:8px 0 0;padding-left:18px}
       var detailRow = '';
       if(isOpen){
         var detailRows = g.rows.map(function(r){
-          var flipHtml = r.flipped
-            ? '<span class="flip-badge" title="Raw export said '+r.rawDistributor+', corrected to '+r.corrected+' &#8212; '+esc(REASON_LABELS[r.reason]||r.reason)+'">&#8646; was '+r.rawDistributor+'</span>'
-            : '<span style="color:var(--ink-soft);font-size:12px" title="'+esc(REASON_LABELS[r.reason]||r.reason)+'">matches raw</span>';
+          var reasonText = esc(REASON_LABELS[r.reason]||r.reason);
+          var flipHtml = (r.flipped
+            ? '<span class="flip-badge">&#8646; was '+esc(r.rawDistributor)+'</span>'
+            : '<span style="color:var(--ink-soft);font-size:12px">matches raw</span>')
+            + '<span class="reason-sub">'+reasonText+'</span>';
           var photoHtml = r.photo
             ? '<a href="'+esc(r.photo)+'" target="_blank" rel="noopener" class="photo-link">&#128247; Photo</a>'
             : '<span style="color:var(--ink-soft);font-size:12px">&mdash;</span>';
