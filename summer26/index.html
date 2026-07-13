@@ -405,13 +405,26 @@ function supAgg(sup){
   });
   return {isQ,qTy,qGoal,qPct:qGoal?qTy/qGoal*100:0,cleared,nQ,aTy,aGoal,aPct:aGoal?aTy/aGoal*100:0,nA,aUnlocked};
 }
+// Explicit display-order overrides for brand chips, independent of data insertion order.
+// Add more suppliers/tiers here as needed; 'q' = qualifier brands, 'a' = amplify brands.
+const BRAND_ORDER = {
+  "Constellation Brands": { a: ["Modelo Chelada"] }
+};
+function applyBrandOrder(sup, tier, arr){
+  const pri = BRAND_ORDER[sup] && BRAND_ORDER[sup][tier];
+  if(!pri || !pri.length) return arr;
+  const priSet = new Set(pri);
+  const front = pri.filter(b=>arr.includes(b));
+  const rest = arr.filter(b=>!priSet.has(b));
+  return [...front, ...rest];
+}
 function supBrands(sup){
   const q=new Map(),a=new Map();
   Object.values(DATA).forEach(R=>{
     if(R.qual[sup])R.qual[sup].brands.forEach(b=>q.set(b.brand,(q.get(b.brand)||0)+b.ty));
     if(R.amp[sup])R.amp[sup].brands.forEach(b=>a.set(b.brand,(a.get(b.brand)||0)+b.ty));
   });
-  return {q:[...q.keys()],a:[...a.keys()]};
+  return {q:applyBrandOrder(sup,'q',[...q.keys()]), a:applyBrandOrder(sup,'a',[...a.keys()])};
 }
 function repSup(rep,sup){
   const R=DATA[rep]; const q=R.qual[sup],a=R.amp[sup]; const isQ=QSUP.has(sup);
