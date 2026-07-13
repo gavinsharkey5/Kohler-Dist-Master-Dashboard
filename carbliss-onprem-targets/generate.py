@@ -188,66 +188,63 @@ for (cid, prod), agg in prod_agg.items():
 
 
 def build_pitch(r):
+    """Short, bite-sized talking points a rep can relay out loud to a store owner —
+    each bullet is one breath, not a paragraph."""
     name = r['name']
-    parts = []
+    bullets = []
 
     if r['lapsed']:
         prod, agg = r['primary'] if r['primary'] else (None, None)
         if prod:
             brand = brand_of(prod)
             sku = strip_brand(prod, brand)
-            parts.append(
-                f"{name} bought {fmt_cases(agg['cases25'])} cases of {brand} ({sku}) last year but hasn't reordered "
-                f"in 2026 — worth a check-in before this account goes quiet on RTDs/seltzers entirely."
-            )
+            bullets.append({'label': 'Heads up', 'text': f"{fmt_cases(agg['cases25'])} cs of {brand} ({sku}) moved last year — nothing on file so far in 2026. Worth a check-in before this account goes quiet on RTDs/seltzers for good."})
         else:
-            parts.append(f"{name} shows up on the radar but has no meaningful Sun Cruiser/White Claw volume on file — a cold read, worth a quick account visit to confirm what's actually on shelf.")
+            bullets.append({'label': 'Heads up', 'text': "No meaningful Sun Cruiser/White Claw volume on file — confirm what's actually on shelf before pitching a flavor."})
     elif r['primary']:
         prod, agg = r['primary']
         brand = brand_of(prod)
         sku = strip_brand(prod, brand)
         new_habit = agg['cases25'] <= 0
         if new_habit:
-            habit_clause = "this wasn't moving here at all last year — it's a new habit forming, worth catching early."
+            tail = "brand new this year, nothing moved here in 2025."
         else:
-            habit_clause = f"and it's not new — {fmt_cases(agg['cases25'])} cases moved last year too, so this is a proven seller, not a blip."
-        parts.append(f"{name} moved {fmt_cases(agg['cases26'])} cases of {brand} ({sku}) this year (~${fmt_money(agg['vol26'])}) — {habit_clause}")
+            tail = f"steady seller — {fmt_cases(agg['cases25'])} cs moved last year too."
+        bullets.append({'label': 'Top mover', 'text': f"{fmt_cases(agg['cases26'])} cs of {brand} ({sku}) this year (~${fmt_money(agg['vol26'])}) — {tail}"})
 
         if r['breadth'] > 1:
-            parts.append(f"It's not one SKU either — {r['breadth']} different Sun Cruiser/White Claw items move through this account.")
-        else:
-            parts.append("It's just the one item moving through this account so far, so there's real room to build out the RTD/seltzer set.")
+            bullets.append({'label': 'Not a one-off', 'text': f"{r['breadth']} different Sun Cruiser/White Claw SKUs move through this account."})
     else:
-        parts.append(f"{name} doesn't show meaningful Sun Cruiser/White Claw volume on file — worth confirming what's actually pouring here before pitching a specific flavor.")
+        bullets.append({'label': 'Heads up', 'text': "No meaningful Sun Cruiser/White Claw volume on file — confirm what's actually pouring here before pitching a flavor."})
 
     if r['primary_flavor']:
         pf = r['primary_flavor']
-        parts.append(f"The natural first SKU to pitch is Carbliss {pf}, since it lines up directly with the flavor already selling.")
+        bullets.append({'label': 'Lead with', 'text': f"Carbliss {pf} — matches their best-selling flavor directly."})
         ref_price = flavor_ref_price.get(pf)
         sku_prod, sku_agg = r['primary_sku_for_flavor']
         onshelf_price = (sku_agg['vol26'] / sku_agg['cases26']) if sku_agg['cases26'] > 0 else None
         onshelf_brand = brand_of(sku_prod)
         if ref_price and onshelf_price:
             if ref_price > onshelf_price * 1.05:
-                framing = "Carbliss is meaningfully higher than what's already selling — this is a flavor-and-differentiation sell, not a price-parity one."
+                framing = "sell the flavor difference, not the price."
             elif ref_price < onshelf_price * 0.95:
-                framing = "Carbliss actually undercuts what's already on shelf — flavor and margin both work in its favor here."
+                framing = "actually cheaper than what's on shelf — flavor and margin both work here."
             else:
-                framing = "Carbliss lands about the same price as what's already selling — an easy swap-in, no price objection to overcome."
-            parts.append(f"At ~${fmt_price(ref_price)}/case vs ${fmt_price(onshelf_price)}/case for the {onshelf_brand} SKU already on shelf, {framing}")
-    elif not r['gap_flavor']:
-        parts.append("Their volume runs almost entirely through variety packs, so there's no single flavor lead to key off of here.")
+                framing = "about the same price — easy swap-in, no price objection."
+            bullets.append({'label': 'Price', 'text': f"Carbliss runs ~${fmt_price(ref_price)}/cs vs ${fmt_price(onshelf_price)}/cs on the {onshelf_brand} SKU — {framing}"})
+    elif not r['gap_flavor'] and r['primary']:
+        bullets.append({'label': 'Note', 'text': "Volume runs almost entirely through variety packs — no single flavor lead to key off of."})
 
     if r['gap_flavor']:
         gf = r['gap_flavor']
-        parts.append(f"Across every RTD/seltzer item on their menu, nothing covers {gf} — that's the gap Carbliss {gf} fills, distinct from whatever's already popular there.")
+        bullets.append({'label': 'Gap', 'text': f"Nothing on their menu covers {gf} — clean white space for Carbliss {gf}."})
     elif r['existing_carbliss']:
-        parts.append("Their flavor lineup already lines up closely with the current Carbliss range — the opening here is share of shelf, not a new flavor.")
+        bullets.append({'label': 'Note', 'text': "Their flavor mix already lines up with Carbliss — this is about shelf share, not a new flavor."})
 
-    prem_clause = f"On-premise in {r['city']}" if r['city'] else "On-premise account"
-    parts.append(f"{prem_clause} — the ask here is a menu or tap-list slot, sized for social-pour occasions.")
+    ask_place = f"in {r['city']}" if r['city'] else "here"
+    bullets.append({'label': 'The ask', 'text': f"A menu or tap-list slot {ask_place} — sized for social-pour occasions."})
 
-    return ' '.join(parts)
+    return bullets
 
 
 results = []
@@ -323,7 +320,7 @@ for cid, acct in accounts.items():
     })
 
 for r in results:
-    r['pitch'] = build_pitch(r)
+    r['pitch_bullets'] = build_pitch(r)
 
 final_accounts = []
 for r in results:
@@ -336,9 +333,13 @@ for r in results:
         'sunCruiser': {'cases25': sc.get('cases25', 0), 'cases26': sc.get('cases26', 0)},
         'whiteClaw': {'cases25': wc.get('cases25', 0), 'cases26': wc.get('cases26', 0)},
         'total25': total25, 'total26': total26, 'breadth': r['breadth'],
-        'existingCarbliss': r['existing_carbliss'], 'lapsed': r['lapsed'],
+        'existingCarbliss': r['existing_carbliss'],
+        # "without Sun Cruiser/White Claw" tab = zero volume so far in 2026, straight
+        # from the account-level export (authoritative), not the SKU-level 'lapsed' flag.
+        'lapsed': total26 == 0,
         'isNew': total25 == 0 and total26 > 0,
-        'primaryFlavor': r['primary_flavor'], 'gapFlavor': r['gap_flavor'], 'pitch': r['pitch'],
+        'primaryFlavor': r['primary_flavor'], 'gapFlavor': r['gap_flavor'],
+        'pitchBullets': r['pitch_bullets'],
     })
 final_accounts.sort(key=lambda a: -a['total26'])
 
