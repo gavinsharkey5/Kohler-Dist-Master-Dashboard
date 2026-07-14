@@ -230,8 +230,28 @@ const PRODUCT_COLS=[["product","name"],["product","desc"],["product"],["brand"],
 const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
 const PACKAGE_COLS=[["package","group"],["package"],["pack"]];
 const PLACEMENTS_COLS=[["placement"]];
-const PRODUCT_NUM_COLS=[["product","num"],["product","number"],["product","no"],["product","code"],["sku"],["item","num"],["item","number"],["item","code"]];
 const GOAL_COLS=[["goal"]];
+
+// Header-name matching breaks down for columns like "Product #" — the "#"
+// is stripped by tokens(), leaving just "product", indistinguishable from
+// a product-NAME column by name alone. Classify by sampled VALUES instead:
+// a "product"/"item"/"sku"-tokened column whose values are mostly numeric
+// is the number column; a same-topic column with mostly non-numeric values
+// is the name column. Sidesteps header-spelling guesswork entirely.
+function isNumericValue(v){if(v==null) return false; const s=String(v).trim(); return s!==""&&/^-?\d+(\.\d+)?$/.test(s);}
+function findProductNumNameCols(rows){
+  const keys=Object.keys(rows[0]);
+  const candidates=keys.filter(k=>{const t=tokens(k);return t.some(tok=>wordMatches(tok,"product")||wordMatches(tok,"item")||wordMatches(tok,"sku"));});
+  const sample=rows.slice(0,Math.min(25,rows.length));
+  let numCol=null, nameCol=null;
+  candidates.forEach(k=>{
+    const vals=sample.map(r=>r[k]).filter(v=>v!=null&&String(v).trim()!=="");
+    const numericCount=vals.filter(isNumericValue).length;
+    const mostlyNumeric=vals.length>0&&numericCount>=Math.ceil(vals.length*0.8);
+    if(mostlyNumeric){ if(!numCol) numCol=k; } else { if(!nameCol) nameCol=k; }
+  });
+  return {numCol, nameCol};
+}
 
 function buildPlacementsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
@@ -266,8 +286,8 @@ function buildNewBelgiumDataset(actualRows, goalRows){
   if(!Array.isArray(actualRows)||!actualRows.length||!Array.isArray(goalRows)||!goalRows.length) return null;
   const aRepCol=findCol(actualRows[0],REP_COLS), aPkgCol=findCol(actualRows[0],PACKAGE_COLS),
         aProdCol=findCol(actualRows[0],PRODUCT_COLS), aPlaceCol=findCol(actualRows[0],PLACEMENTS_COLS);
-  const gRepCol=findCol(goalRows[0],REP_COLS), gNumCol=findCol(goalRows[0],PRODUCT_NUM_COLS),
-        gNameCol=findCol(goalRows[0],PRODUCT_COLS), gPkgCol=findCol(goalRows[0],PACKAGE_COLS),
+  const {numCol:gNumCol, nameCol:gNameCol}=findProductNumNameCols(goalRows);
+  const gRepCol=findCol(goalRows[0],REP_COLS), gPkgCol=findCol(goalRows[0],PACKAGE_COLS),
         gGoalCol=findCol(goalRows[0],GOAL_COLS);
   if(!aRepCol||!aProdCol||!aPlaceCol||!gRepCol||!gGoalCol||(!gNumCol&&!gNameCol)) return null;
 
