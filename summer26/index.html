@@ -324,6 +324,16 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const money=n=>"$"+Math.round(n).toLocaleString();
 const rateFor=b=>/fever|mike|mxd/i.test(b)?2:1;
 
+// Converts the row-objects written by sync_snowflake_data.py (one JSON object
+// per Snowflake row, keys in column order) back into the CSV text the
+// existing parseCSV/build/buildTrend pipeline already knows how to read.
+function jsonRowsToCSV(rows){
+  if(!Array.isArray(rows)||!rows.length) return "";
+  const headers=Object.keys(rows[0]);
+  const q=v=>{const s=v==null?"":String(v);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
+  return [headers.map(q).join(","),...rows.map(row=>headers.map(h=>q(row[h])).join(","))].join("\n");
+}
+
 function build(text){
   const rows=parseCSV(text); const reps={}; QSUP=new Set();
   let curRep=null, curSup=null, curTier=null;
@@ -443,8 +453,8 @@ function render(){
 }
 
 function buildTrend(text){
-  const rows=parseCSV(text); if(rows.length<2) return; const H=rows[0].map(x=>x.toLowerCase());
-  const ri=H.findIndex(h=>h.includes("rep")), bi=H.findIndex(h=>h.includes("brand family")), i25=H.findIndex(h=>h.includes("2025")), i26=H.findIndex(h=>h.includes("2026"));
+  const rows=parseCSV(text); if(rows.length<2) return; const H=rows[0].map(x=>x.toLowerCase().replace(/[^a-z0-9]/g,""));
+  const ri=H.findIndex(h=>h.includes("rep")), bi=H.findIndex(h=>h.includes("brandfamily")), i25=H.findIndex(h=>h.includes("2025")), i26=H.findIndex(h=>h.includes("2026"));
   const bsup={};
   Object.keys(DATA).forEach(rep=>{const R=DATA[rep];bsup[rep]={};["qual","amp"].forEach(t=>Object.keys(R[t]).forEach(sup=>R[t][sup].brands.forEach(b=>{bsup[rep][b.brand]=sup;})));});
   for(let i=1;i<rows.length;i++){const r=rows[i]; const rep=_norm(r[ri]), brand=_norm(r[bi]); if(!rep||!brand) continue;
@@ -613,18 +623,22 @@ function buildNestedFromFlat(salesText,goalsText){
 }
 async function boot(){
   let text=null,lastMod=null;
-  try{const rs=await fetch("sales.csv",{cache:"no-store"}),rg=await fetch("goals.csv",{cache:"no-store"});
-    if(rs.ok&&rg.ok){lastMod=rs.headers.get("last-modified");text=buildNestedFromFlat(await rs.text(),await rg.text());}}catch(e){}
+  try{const rj=await fetch("data/summer_of_success_full.json",{cache:"no-store"});
+    if(rj.ok){lastMod=rj.headers.get("last-modified");text=jsonRowsToCSV(await rj.json());}}catch(e){}
+  if(!text){try{const rs=await fetch("sales.csv",{cache:"no-store"}),rg=await fetch("goals.csv",{cache:"no-store"});
+    if(rs.ok&&rg.ok){lastMod=lastMod||rs.headers.get("last-modified");text=buildNestedFromFlat(await rs.text(),await rg.text());}}catch(e){}}
   if(!text){try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=lastMod||r.headers.get("last-modified");text=await r.text();}}catch(e){}}
-  let trendText=null;try{const rt=await fetch("trend.csv",{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}
-  if(!text){showEmpty("Upload <code>sales.csv</code> (the RDE sales export) and <code>goals.csv</code> (your Rep Goals) next to this page and refresh.");return;}
+  let trendText=null;
+  try{const rtj=await fetch("data/summer_of_success_mtd_trend.json",{cache:"no-store"});if(rtj.ok)trendText=jsonRowsToCSV(await rtj.json());}catch(e){}
+  if(!trendText){try{const rt=await fetch("trend.csv",{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}}
+  if(!text){showEmpty("Couldn't load synced data. Make sure the Snowflake sync workflow has run (check the Actions tab), or upload <code>sales.csv</code> and <code>goals.csv</code> next to this page.");return;}
   DATA=build(text);
   if(trendText)buildTrend(trendText);
-  if(!Object.keys(DATA).length){showEmpty("Couldn't read that file — make sure it's the v4 report saved as CSV.");return;}
+  if(!Object.keys(DATA).length){showEmpty("Couldn't read that data — make sure the SUMMER_OF_SUCCESS_FULL table's columns are in the same order as the original v4 report.");return;}
   lastUpdated=lastMod?new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):"";
   renderChips();render();
   document.getElementById("updated").innerHTML=lastUpdated?('<span class="livedot"></span> Data refreshed '+lastUpdated):"";
-  document.getElementById("foot").innerHTML="<b>Clear a supplier</b> by hitting its 2026 case-equiv goal. <b>Amplify</b> then pays each of that supplier's brands' cases over 2025 — $1/case, or $2 for Fever-Tree, Mike's Harder &amp; MXD. Sapporo, Cape May &amp; New Belgium have no goal, so their Amplify is open automatically. Tier qualifier payout ($750 / $500 / $250) pending route volumes. <b>To refresh:</b> re-export the RDE sales report, save as sales.csv, and drop it in this folder — goals.csv stays put. Numbers grow through August.";
+  document.getElementById("foot").innerHTML="<b>Clear a supplier</b> by hitting its 2026 case-equiv goal. <b>Amplify</b> then pays each of that supplier's brands' cases over 2025 — $1/case, or $2 for Fever-Tree, Mike's Harder &amp; MXD. Sapporo, Cape May &amp; New Belgium have no goal, so their Amplify is open automatically. Tier qualifier payout ($750 / $500 / $250) pending route volumes. <b>Data</b> now syncs automatically from Snowflake once a day. Numbers grow through August.";
 }
 boot();
 

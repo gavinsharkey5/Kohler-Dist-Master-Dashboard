@@ -1,0 +1,43 @@
+name: Sync Snowflake Data
+
+on:
+  schedule:
+    # Runs every day at 10:00 UTC (adjust as you like)
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+    # Lets you trigger this manually from the Actions tab, no waiting for the schedule
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install snowflake-connector-python
+
+      - name: Run Snowflake sync script
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+        run: python sync_snowflake_data.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add summer26/data/*.json
+          git diff --quiet --cached || git commit -m "Auto-sync Snowflake data $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
