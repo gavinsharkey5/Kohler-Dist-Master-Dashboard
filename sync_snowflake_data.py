@@ -33,6 +33,11 @@ TABLES_TO_EXPORT = [
     ("KOHLER_DASH.PUBLIC.MPO_CARBLISS_NEW_BUYERS", "MPOs/on-prem/data", "mpo_carbliss_new_buyers.json"),
     ("KOHLER_DASH.PUBLIC.MPO_SAPPORO_NA_NEW_BUYERS_ON", "MPOs/on-prem/data", "mpo_sapporo_na_new_buyers.json"),
     ("KOHLER_DASH.PUBLIC.MPO_WINE_SPIRITS_PLACEMENTS_ON", "MPOs/on-prem/data", "mpo_wine_spirits_placements.json"),
+    ("KOHLER_DASH.PUBLIC.MPO_NEW_BELGIUM_ACTUALS_OFF", "MPOs/off-prem/data", "mpo_new_belgium_actuals.json"),
+    ("KOHLER_DASH.PUBLIC.MPO_NEW_BELGIUM_90GOALS_OFF", "MPOs/off-prem/data", "mpo_new_belgium_90goals.json"),
+    ("KOHLER_DASH.PUBLIC.MPO_WINE_SPIRITS_2XO_OFF", "MPOs/off-prem/data", "mpo_wine_spirits_2xo.json"),
+    ("KOHLER_DASH.PUBLIC.MPO_SAPPORO_LIGHT_OFF", "MPOs/off-prem/data", "mpo_sapporo_light.json"),
+    ("KOHLER_DASH.PUBLIC.MPO_FAMOSA_OFF", "MPOs/off-prem/data", "mpo_famosa.json"),
 ]
 
 
