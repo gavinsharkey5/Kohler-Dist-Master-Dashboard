@@ -2,8 +2,11 @@ name: Sync Snowflake Data
 
 on:
   schedule:
-    # Runs every day at 10:00 UTC (adjust as you like)
-    - cron: '0 10 * * *'
+    # Runs every 2 hours, 8am-4pm Eastern (12:00-20:00 UTC during EDT/summer).
+    # GitHub Actions cron is always UTC and does not adjust for DST — if this
+    # workflow is still running past early November, shift these hours back
+    # by 1 (11:00-19:00 UTC) to stay on 8am-4pm EST.
+    - cron: '0 12,14,16,18,20 * * *'
   workflow_dispatch:
     # Lets you trigger this manually from the Actions tab, no waiting for the schedule
 
