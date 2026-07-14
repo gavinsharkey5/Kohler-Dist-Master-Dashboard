@@ -201,10 +201,15 @@ const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy"
 // Column names in the synced tables aren't guaranteed, so match by
 // tokenized header words instead of position/exact-name.
 function tokens(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g," ").trim().split(/\s+/).filter(Boolean);}
+// Tolerates simple plural/singular drift (buyer/buyers, count/counts) via a
+// prefix match, but only for words long enough that the prefix stays
+// specific (short words like "rep"/"new" require an exact token match, so
+// "rep" doesn't prefix-match an unrelated column like "REPORT_ID").
+function wordMatches(tok,w){return tok===w||(w.length>=4&&tok.startsWith(w))||(tok.length>=4&&w.startsWith(tok));}
 function findCol(row, candidateWordSets){
   const keys=Object.keys(row);
   for(const words of candidateWordSets){
-    const hit=keys.find(k=>{const t=tokens(k);return words.every(w=>t.includes(w));});
+    const hit=keys.find(k=>{const t=tokens(k);return words.every(w=>t.some(tok=>wordMatches(tok,w)));});
     if(hit) return hit;
   }
   return null;
@@ -212,11 +217,14 @@ function findCol(row, candidateWordSets){
 function parseDateMs(s){const d=new Date(s);return isNaN(d)?0:d.getTime();}
 function truthyFlag(v){const s=String(v==null?"":v).trim().toLowerCase();return s==="1"||s==="true"||s==="y"||s==="yes";}
 
-const REP_COLS=[["rep"]];
-const CUSTOMER_COLS=[["customer"],["account"],["location"]];
+// Multi-word candidates (e.g. ["customer","name"]) are tried before bare
+// single-word ones, so a "*_NAME" column is preferred over a same-topic
+// "*_ID"/"*_NUM" column that would otherwise match first.
+const REP_COLS=[["rep","name"],["rep"]];
+const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["account"],["location"]];
 const DATE_COLS=[["date"]];
 const NEWBUYER_COLS=[["new","buyer"],["is","new"]];
-const PRODUCT_COLS=[["product"],["brand"],["item"]];
+const PRODUCT_COLS=[["product","name"],["product","desc"],["product"],["brand"],["item"]];
 const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
 
 function buildNewAccountsDataset(rows, target){
