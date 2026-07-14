@@ -1,0 +1,74 @@
+[
+  {
+    "SALES_REP_NAME": "Paul Mclaughlin",
+    "CUSTOMER_ID": 65007,
+    "CUSTOMER_NAME": "86 and Vine",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-07-13",
+    "NEW_BUYERS": 1
+  },
+  {
+    "SALES_REP_NAME": "Allison Scott",
+    "CUSTOMER_ID": 12031,
+    "CUSTOMER_NAME": "Double Ai Asian Bistro",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-05-29",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "CUSTOMER_ID": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-06-22",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "CUSTOMER_ID": 230915,
+    "CUSTOMER_NAME": "Crystal Sprs/Wild Turkey",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-06-25",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Dylan Rubino",
+    "CUSTOMER_ID": 178104,
+    "CUSTOMER_NAME": "Asian Grill & Sushi",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-04-10",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "CUSTOMER_ID": 150501,
+    "CUSTOMER_NAME": "Nikko Hibachi Steakhouse",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-04-22",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "CUSTOMER_ID": 49015,
+    "CUSTOMER_NAME": "PYEONGANDONG",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-04-22",
+    "NEW_BUYERS": 0
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "CUSTOMER_ID": 49015,
+    "CUSTOMER_NAME": "PYEONGANDONG",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-06-12",
+    "NEW_BUYERS": 0
+  }
+]
