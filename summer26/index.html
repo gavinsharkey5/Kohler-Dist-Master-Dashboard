@@ -597,11 +597,12 @@ function _key(s){return _norm(s).toLowerCase().replace(/ /g,"");}
 function _n(x){const v=parseFloat(String(x).replace(/[^0-9.\-]/g,""));return isNaN(v)?0:v;}
 function _fmt(v){return Math.abs(v-Math.round(v))<1e-9?String(Math.round(v)):v.toFixed(2).replace(/0+$/,"").replace(/\.$/,"");}
 function buildNestedFromFlat(salesText,goalsText){
-  const G={}, gr=parseCSV(goalsText), gH=gr[0].map(h=>h.toLowerCase());
+  const norm=h=>h.toLowerCase().replace(/[^a-z0-9]/g,"");
+  const G={}, gr=parseCSV(goalsText), gH=gr[0].map(norm);
   const gRep=gH.findIndex(h=>h.includes("rep")),gType=gH.findIndex(h=>h.includes("type")),gBr=gH.findIndex(h=>h.includes("brand")),gGoal=gH.findIndex(h=>h.includes("goal"));
   for(let i=1;i<gr.length;i++){const r=gr[i];if(!r[gRep])continue;var gk=_norm(r[gRep])+"|"+_norm(r[gType]).toLowerCase()+"|"+_key(r[gBr]);G[gk]=(G[gk]||0)+_n(r[gGoal]);}
-  const sr=parseCSV(salesText), sH=sr[0].map(h=>h.toLowerCase());
-  const sRep=sH.findIndex(h=>h.includes("rep")),sSeg=sH.findIndex(h=>h.includes("qualifier brands")||h.includes("segment")),sSup=sH.findIndex(h=>h.includes("supplier")),sBr=sH.findIndex(h=>h.includes("brand family")),s25=sH.findIndex(h=>h.includes("2025")),s26=sH.findIndex(h=>h.includes("2026"));
+  const sr=parseCSV(salesText), sH=sr[0].map(norm);
+  const sRep=sH.findIndex(h=>h.includes("rep")),sSeg=sH.findIndex(h=>h.includes("qualifierbrands")||h.includes("segment")),sSup=sH.findIndex(h=>h.includes("supplier")),sBr=sH.findIndex(h=>h.includes("brandfamily")),s25=sH.findIndex(h=>h.includes("2025")),s26=sH.findIndex(h=>h.includes("2026"));
   const reps=new Map();
   for(let i=1;i<sr.length;i++){const r=sr[i];const rep=_norm(r[sRep]);if(!rep||rep==="Total"||EXCLUDE.has(rep))continue;
     const seg=_norm(r[sSeg]);let sup=_norm(r[sSup]);if(/^bell/i.test(sup))sup="New Belgium Brewing Company";const brand=_norm(r[sBr]),c25=_n(r[s25]),c26=_n(r[s26]);
@@ -623,18 +624,21 @@ function buildNestedFromFlat(salesText,goalsText){
 }
 async function boot(){
   let text=null,lastMod=null;
-  try{const rj=await fetch("data/summer_of_success_full.json",{cache:"no-store"});
-    if(rj.ok){lastMod=rj.headers.get("last-modified");text=jsonRowsToCSV(await rj.json());}}catch(e){}
+  // SUMMER_OF_SUCCESS_FULL is a flat per-rep/supplier/brand sales export (same shape
+  // as sales.csv) — it carries no goal data, so it still needs goals.csv merged in
+  // via buildNestedFromFlat, same as the manual sales.csv+goals.csv upload path.
+  try{const rj=await fetch("data/summer_of_success_full.json",{cache:"no-store"}),rg0=await fetch("goals.csv",{cache:"no-store"});
+    if(rj.ok&&rg0.ok){lastMod=rj.headers.get("last-modified");text=buildNestedFromFlat(jsonRowsToCSV(await rj.json()),await rg0.text());}}catch(e){}
   if(!text){try{const rs=await fetch("sales.csv",{cache:"no-store"}),rg=await fetch("goals.csv",{cache:"no-store"});
     if(rs.ok&&rg.ok){lastMod=lastMod||rs.headers.get("last-modified");text=buildNestedFromFlat(await rs.text(),await rg.text());}}catch(e){}}
   if(!text){try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=lastMod||r.headers.get("last-modified");text=await r.text();}}catch(e){}}
   let trendText=null;
   try{const rtj=await fetch("data/summer_of_success_mtd_trend.json",{cache:"no-store"});if(rtj.ok)trendText=jsonRowsToCSV(await rtj.json());}catch(e){}
   if(!trendText){try{const rt=await fetch("trend.csv",{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}}
-  if(!text){showEmpty("Couldn't load synced data. Make sure the Snowflake sync workflow has run (check the Actions tab), or upload <code>sales.csv</code> and <code>goals.csv</code> next to this page.");return;}
+  if(!text){showEmpty("Couldn't load synced data. Make sure the Snowflake sync workflow has run (check the Actions tab) and that <code>goals.csv</code> is still present, or upload <code>sales.csv</code> and <code>goals.csv</code> next to this page.");return;}
   DATA=build(text);
   if(trendText)buildTrend(trendText);
-  if(!Object.keys(DATA).length){showEmpty("Couldn't read that data — make sure the SUMMER_OF_SUCCESS_FULL table's columns are in the same order as the original v4 report.");return;}
+  if(!Object.keys(DATA).length){showEmpty("Couldn't read that data — make sure SUMMER_OF_SUCCESS_FULL has rep/supplier/brand/case-equiv columns and that goals.csv is present.");return;}
   lastUpdated=lastMod?new Date(lastMod).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):"";
   renderChips();render();
   document.getElementById("updated").innerHTML=lastUpdated?('<span class="livedot"></span> Data refreshed '+lastUpdated):"";
