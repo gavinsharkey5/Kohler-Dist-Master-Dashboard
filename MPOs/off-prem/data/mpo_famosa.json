@@ -1,0 +1,62 @@
+[
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "CUSTOMER_NUM": 170101,
+    "CUSTOMER_NAME": "High Spirits Of Bayonne",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 178005,
+    "CUSTOMER_NAME": "Best Liquors & Deli",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 170023,
+    "CUSTOMER_NAME": "Corks & Bottles (P)",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 17027,
+    "CUSTOMER_NAME": "FOOD BAZAAR",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 21044,
+    "CUSTOMER_NAME": "Farm Boy",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-07",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 21023,
+    "CUSTOMER_NAME": "Luna Liquors",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  }
+]

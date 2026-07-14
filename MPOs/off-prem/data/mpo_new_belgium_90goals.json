@@ -1,0 +1,2095 @@
+[
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 12
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 21
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 21
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 19
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 0
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 20
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 12
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 17
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 22
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 22
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 17
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 15
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 18
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 0
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 12
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 16
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 12
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 10
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 6
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 7
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 107007,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10704,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 16702,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Tropic Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 16726,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger G-Force",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 20207,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 1
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6728,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6731,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6778,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6790,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Fruit Force IPA",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6791,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "1/15/19.2 oz Can",
+    "GOAL90": 2
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10702,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 9
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 16712,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Hoppy Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 14
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 20204,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6729,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Imperial IPA",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 11
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6764,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juicy Haze",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 4
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 6792,
+    "PRODUCT_NAME": "New Belgium Voodoo Ranger Juice Force",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10755,
+    "PRODUCT_NAME": "Bell's Variety",
+    "PACKAGE_TYPE": "2/12/12 oz Can",
+    "GOAL90": 3
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 107006,
+    "PRODUCT_NAME": "Bell's Big Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10701,
+    "PRODUCT_NAME": "Bell's Two Hearted",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 13
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10730,
+    "PRODUCT_NAME": "Bell's Hazy Hearted IPA",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 10731,
+    "PRODUCT_NAME": "Bell's Light Hearted Ale",
+    "PACKAGE_TYPE": "4/6/12 oz Can",
+    "GOAL90": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 20201,
+    "PRODUCT_NAME": "Kirin Ichiban",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 8
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "Product #": 20211,
+    "PRODUCT_NAME": "Kirin Light",
+    "PACKAGE_TYPE": "4/6/12 oz Btl",
+    "GOAL90": 4
+  }
+]
