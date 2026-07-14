@@ -21,6 +21,7 @@ also run it locally to test:
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 import snowflake.connector
 
@@ -77,6 +78,17 @@ def export_table_to_json(cursor, table_name, output_path):
     print(f"  -> wrote {len(rows)} rows to {output_path}")
 
 
+def write_sync_meta():
+    """Record when this sync actually ran, so the dashboard doesn't have to
+    rely on HTTP Last-Modified headers (which GitHub Pages' CDN can serve
+    stale)."""
+    meta_path = os.path.join(OUTPUT_DIR, "sync_meta.json")
+    synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    with open(meta_path, "w") as f:
+        json.dump({"synced_at": synced_at}, f, indent=2)
+    print(f"  -> wrote sync timestamp ({synced_at}) to {meta_path}")
+
+
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -89,6 +101,7 @@ def main():
     finally:
         conn.close()
 
+    write_sync_meta()
     print("Done.")
 
 

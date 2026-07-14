@@ -624,17 +624,28 @@ function buildNestedFromFlat(salesText,goalsText){
 }
 async function boot(){
   let text=null,lastMod=null;
+  // Cache-buster: GitHub Pages is served through a CDN that can serve a stale
+  // cached response even when the client sends cache:"no-store", so append a
+  // unique query string to force a real fetch of the latest committed file.
+  const cb="?_="+Date.now();
   // SUMMER_OF_SUCCESS_FULL is a flat per-rep/supplier/brand sales export (same shape
   // as sales.csv) — it carries no goal data, so it still needs goals.csv merged in
   // via buildNestedFromFlat, same as the manual sales.csv+goals.csv upload path.
-  try{const rj=await fetch("data/summer_of_success_full.json",{cache:"no-store"}),rg0=await fetch("goals.csv",{cache:"no-store"});
-    if(rj.ok&&rg0.ok){lastMod=rj.headers.get("last-modified");text=buildNestedFromFlat(jsonRowsToCSV(await rj.json()),await rg0.text());}}catch(e){}
-  if(!text){try{const rs=await fetch("sales.csv",{cache:"no-store"}),rg=await fetch("goals.csv",{cache:"no-store"});
+  try{const rj=await fetch("data/summer_of_success_full.json"+cb,{cache:"no-store"}),rg0=await fetch("goals.csv"+cb,{cache:"no-store"});
+    if(rj.ok&&rg0.ok){
+      text=buildNestedFromFlat(jsonRowsToCSV(await rj.json()),await rg0.text());
+      // Prefer the sync script's own timestamp over the HTTP Last-Modified
+      // header — the header reflects the CDN's cache state, not when the
+      // Snowflake sync actually ran, and can lag behind real syncs.
+      try{const rm=await fetch("data/sync_meta.json"+cb,{cache:"no-store"});if(rm.ok){const meta=await rm.json();if(meta.synced_at)lastMod=meta.synced_at;}}catch(e){}
+      if(!lastMod)lastMod=rj.headers.get("last-modified");
+    }}catch(e){}
+  if(!text){try{const rs=await fetch("sales.csv"+cb,{cache:"no-store"}),rg=await fetch("goals.csv"+cb,{cache:"no-store"});
     if(rs.ok&&rg.ok){lastMod=lastMod||rs.headers.get("last-modified");text=buildNestedFromFlat(await rs.text(),await rg.text());}}catch(e){}}
-  if(!text){try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=lastMod||r.headers.get("last-modified");text=await r.text();}}catch(e){}}
+  if(!text){try{const r=await fetch("data.csv"+cb,{cache:"no-store"});if(r.ok){lastMod=lastMod||r.headers.get("last-modified");text=await r.text();}}catch(e){}}
   let trendText=null;
-  try{const rtj=await fetch("data/summer_of_success_mtd_trend.json",{cache:"no-store"});if(rtj.ok)trendText=jsonRowsToCSV(await rtj.json());}catch(e){}
-  if(!trendText){try{const rt=await fetch("trend.csv",{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}}
+  try{const rtj=await fetch("data/summer_of_success_mtd_trend.json"+cb,{cache:"no-store"});if(rtj.ok)trendText=jsonRowsToCSV(await rtj.json());}catch(e){}
+  if(!trendText){try{const rt=await fetch("trend.csv"+cb,{cache:"no-store"});if(rt.ok)trendText=await rt.text();}catch(e){}}
   if(!text){showEmpty("Couldn't load synced data. Make sure the Snowflake sync workflow has run (check the Actions tab) and that <code>goals.csv</code> is still present, or upload <code>sales.csv</code> and <code>goals.csv</code> next to this page.");return;}
   DATA=build(text);
   if(trendText)buildTrend(trendText);
