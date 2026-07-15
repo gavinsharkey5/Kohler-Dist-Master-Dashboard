@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Forecast &amp; Inventory Tracker · Boston Beer</title>
+<title>Online Ordering Tracker · Boston Beer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@ footer p{max-width:720px;margin:6px auto}
 <div class="wrap">
 <header>
   <p class="eyebrow">Boston Beer &middot; Forecast vs. Inventory</p>
-  <h1>Forecast &amp; Inventory Tracker</h1>
-  <p class="sub">Cross-references your Boston Beer portal forecast against Encompass sell-through and available inventory, flags SKUs you're likely over- or under-ordering, and exports a corrected forecast in the portal's upload format.</p>
+  <h1>Online Ordering Tracker</h1>
+  <p class="sub">Cross-references your Boston Beer portal forecast against Encompass sell-through, available inventory, package/case-pack data, and 52 weeks of order history. Flags SKUs you're likely over- or under-ordering and exports a corrected forecast in the portal's upload format.</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
@@ -210,26 +210,56 @@ let state = { target: 4, tolerance: 1, search: "", sort: "wosAsc", statusFilter:
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
 function fmt1(n){ if(n==null||isNaN(n)) return "—"; return n.toFixed(1); }
+// Recommended-quantity values can be non-integer case-equivalents for
+// case-pack-rounded SKUs (e.g. 6.94 = exactly 3 kegs) -- shown with up to
+// 2 decimals so what's displayed always matches what gets exported,
+// instead of silently rounding away the achievability info.
+function fmtRec(n){ if(n==null||isNaN(n)) return "—"; return (Math.abs(n-Math.round(n))<0.005) ? Math.round(n).toLocaleString('en-US') : n.toFixed(2); }
 
 // Mirrors the Python build script's formula exactly, so the UI recomputes
 // live when the target/tolerance sliders change instead of only reflecting
 // whatever was baked in at export time.
+// (a) Rounds a case-equivalent quantity to the nearest whole number of
+// physically-orderable wholesale units (e.g. whole kegs, not fractional
+// case-equivalents of a keg), then converts back to case-equivalents.
+// Falls back to plain rounding if we don't have package data for this SKU.
+function roundToOrderable(qty, pkg){
+  if(qty == null) return null;
+  if(!pkg || !pkg.caseEquiv || pkg.caseEquiv <= 0) return Math.max(0, Math.round(qty));
+  const physical = qty / pkg.caseEquiv;
+  const roundedPhysical = Math.max(0, Math.round(physical));
+  return Math.round(roundedPhysical * pkg.caseEquiv * 100) / 100;
+}
+
+// Mirrors the Python build script's velocity-based formula exactly, so the
+// UI recomputes live when the target-weeks slider changes. SKUs with no
+// recent velocity use (c) a seasonal same-week-last-year baseline computed
+// server-side at build time (doesn't depend on the target-weeks slider at
+// all, so there's nothing to recompute live for those) -- see
+// recMethod on each SKU for which path was used.
 function computeRecommended(sku, targetWeeks){
   const l4 = sku.l4Avg, avail = sku.available;
-  const hisFcst = sku.weeks.map(w => w.forecast || 0);
-  const hasHistory = l4 != null && l4 > 0 && avail != null;
-  if(!hasHistory){
-    return sku.weeks.map(w => w.forecast != null ? Math.round(w.forecast) : null);
+  const hasVelocity = l4 != null && l4 > 0 && avail != null;
+  if(!hasVelocity){
+    // seasonal fallback / pure passthrough -- already computed at build time
+    return sku.weeks.map(w => w.recommended);
   }
+  const hisFcst = sku.weeks.map(w => w.forecast || 0);
+  // (b) spread the inventory-position correction across the actual order
+  // lead time instead of dumping it all into the nearest week.
+  const leadDays = sku.leadTimeDays || 21;
+  const correctionWeeks = Math.max(1, Math.round(leadDays / 7));
   const gap = targetWeeks * l4 - avail;
+  const perWeekCorrection = gap / correctionWeeks;
   const sum = hisFcst.reduce((a,b)=>a+b,0);
   const meanShape = sum > 0 ? sum/hisFcst.length : l4;
-  return hisFcst.map((f,idx) => {
+  const raw = hisFcst.map((f,idx) => {
     const ratio = meanShape > 0 ? f/meanShape : 1.0;
     let base = l4 * ratio;
-    if(idx === 0) base += gap;
-    return Math.max(0, Math.round(base));
+    if(idx < correctionWeeks) base += perWeekCorrection;
+    return Math.max(0, base);
   });
+  return raw.map(v => roundToOrderable(v, sku.packageInfo));
 }
 
 function computeStatus(sku, targetWeeks, toleranceWeeks){
@@ -285,6 +315,11 @@ function renderKPIs(enriched){
   }));
 }
 
+const METHOD_LABEL = {
+  velocity: 'data-driven from your sell-through', seasonal: "same week last year (no current sales history)",
+  passthrough: 'your forecast, unchanged (no sell-through or seasonal history)',
+};
+
 function detailTable(e){
   const rows = e.sku.weeks.map((w,i) => {
     const rec = e.rec[i];
@@ -293,15 +328,20 @@ function detailTable(e){
       <td>${esc(w.weekEnding)}</td>
       <td class="num">${fmtNum(w.onFile)}</td>
       <td class="num">${fmtNum(w.forecast)}</td>
-      <td class="num"><b>${fmtNum(rec)}</b></td>
-      <td class="num ${delta>0?'delta-pos':delta<0?'delta-neg':''}">${delta==null?'—':(delta>0?'+':'')+fmtNum(delta)}</td>
+      <td class="num"><b>${fmtRec(rec)}</b></td>
+      <td class="num ${delta>0?'delta-pos':delta<0?'delta-neg':''}">${delta==null?'—':(delta>0?'+':'')+fmtRec(delta)}</td>
     </tr>`;
   }).join('');
+  const pkg = e.sku.packageInfo;
   return `<div class="detail-inner">
     <table>
       <thead><tr><th>Week Ending</th><th class="num">On File</th><th class="num">Your Forecast</th><th class="num">Recommended</th><th class="num">&Delta;</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
+    <p class="trend-note">Recommended via: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}
+      ${e.sku.leadTimeDays ? ` &middot; lead time ${fmtNum(e.sku.leadTimeDays)} days (correction spread over ${e.sku.correctionWeeks} wk)` : ''}
+      ${pkg && pkg.caseEquiv && pkg.caseEquiv!==1 ? ` &middot; rounded to whole ${esc(pkg.sellingUnit||'units')} (1 = ${pkg.caseEquiv} case-equiv)` : ''}
+    </p>
     <p class="trend-note">Last 5 weeks sold (oldest&rarr;newest): ${(e.sku.recentWeeks||[]).map(fmtNum).join(' &middot; ')}
       ${e.sku.lastReceiveDate ? ` &middot; Last receive: ${esc(e.sku.lastReceiveDate)} (${fmtNum(e.sku.lastReceiveQty)} cases)` : ''}
       ${e.sku.matchType==='prefix' ? ` &middot; matched to inventory SKU ${esc(e.sku.inventorySku)} by prefix, not exact match — verify this is the right item` : ''}
@@ -346,8 +386,8 @@ function render(){
       <td class="num">${fmt1(e.wos)}</td>
       <td><span class="badge ${e.status}">${STATUS_LABEL[e.status]}</span></td>
       <td class="num">${fmtNum(e.curTotal8)}</td>
-      <td class="num">${fmtNum(e.recTotal8)}</td>
-      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${e.gap==0?'—':(e.gap>0?'+':'')+fmtNum(e.gap)}</td>
+      <td class="num">${fmtRec(e.recTotal8)}</td>
+      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${e.gap==0?'—':(e.gap>0?'+':'')+fmtRec(e.gap)}</td>
       <td><span class="chev">&rsaquo;</span></td>
     </tr>
     <tr class="detailrow" id="${rowId}"><td colspan="10">${detailTable(e)}</td></tr>`;
@@ -377,9 +417,12 @@ function renderOrphans(){
 
 function renderMethodBox(){
   document.getElementById('methodbox').innerHTML = `
-    <b>How "Recommended" is computed:</b> for each SKU with sell-through history, we take your average weekly cases sold over the last 4 weeks as the demand signal, size available inventory to your target weeks-of-supply, and apply the full correction to the nearest week (so an over-stocked item gets a $0 recommendation until it draws down, and an under-stocked one gets a bump to catch up). Weeks after that follow your own forecast's week-to-week <i>shape</i> &mdash; so seasonal ramps you already know about (like an Octoberfest launch) carry through &mdash; just rescaled to the corrected level.
-    <br><br><b>SKUs with no recent sales</b> (new/seasonal items not yet shipping) fall back to your own forecast unchanged, since there's no sell-through data to correct against.
-    <br><br><b>Not accounted for yet:</b> Boston Beer's order lead time, case-pack/minimum order rounding, and upcoming promotions or feature placements aren't reflected &mdash; see the chat for a list of reports that would improve this.`;
+    <b>How "Recommended" is computed</b> (3 cases, shown per-SKU in the detail view as "Recommended via"):
+    <br><br><b>1. SKUs with recent sell-through</b> (most of them): your average weekly cases sold over the last 4 weeks is the demand signal, sized to your target weeks-of-supply. The correction needed to get from current inventory to target is spread evenly across Boston Beer's actual <b>21-day order lead time</b> (&asymp;3 weeks) instead of dumped into a single week &mdash; an over-stocked item draws down gradually rather than getting a cliff-edge $0 week. Weeks after the correction window follow your own forecast's week-to-week <i>shape</i>, rescaled to the corrected level, so seasonal ramps you already know about still carry through.
+    <br><br><b>2. SKUs with no recent sales</b> but a matching week from a year ago (new-season items like an Octoberfest launch that hasn't started shipping yet): recommendation uses <b>last year's actual volume for the same calendar week</b> instead of guessing from zero.
+    <br><br><b>3. SKUs with neither</b> (genuinely new items): passes your own forecast through unchanged &mdash; there's nothing to correct against.
+    <br><br><b>Case-pack aware:</b> every recommendation is rounded to a whole number of physically-orderable units (whole kegs, whole cases) using the Boston Beer package reference table, not just rounded case-equivalents &mdash; so a keg SKU won't recommend an unorderable fraction of a keg. Non-integer values you see (e.g. 6.94) represent an exact whole-unit multiple (here, 3 kegs at 2.3125 case-equiv each), not imprecision.
+    <br><br><b>Still not accounted for:</b> upcoming promotions/feature placements aren't reflected, and the lead-time correction assumes it applies uniformly rather than modeling exact receipt timing per order.`;
 }
 
 function csvEscape(v){
