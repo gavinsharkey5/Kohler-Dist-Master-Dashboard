@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forecast &amp; Inventory Tracker · Boston Beer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#100C0B; --card:#1C1512; --card2:#231A16; --ink:#F5F1EE; --ink-soft:#A89A92;
+  --line:#332721; --line-soft:#241C18;
+  --accent:#D9713C; --accent2:#8A6D1F; --accent-soft:rgba(217,113,60,0.14);
+  --good:#3FB68B; --good-soft:#12241D;
+  --amber:#E0A93E; --amber-soft:#2B2113;
+  --red:#DB5A46; --red-soft:#2B1613;
+  --gray:#79706A; --gray-soft:#201A17;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent}
+.num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+a{color:var(--accent)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px}
+
+.topbar{padding:18px 0 0}
+.crumb{font-size:12.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.crumb:hover{color:var(--ink)}
+
+header{padding:14px 0 20px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"Space Grotesk";letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--accent);margin:0 0 8px}
+h1{font-family:"Space Grotesk";font-weight:700;font-size:clamp(24px,4vw,32px);margin:0 0 8px}
+.sub{color:var(--ink-soft);font-size:13.5px;max-width:760px;margin:0}
+.updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);font-family:"Space Grotesk";letter-spacing:.02em;display:flex;align-items:center;gap:7px}
+.livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
+@keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+.kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0}
+@media(max-width:900px){.kpi-strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow);cursor:pointer;transition:.12s}
+.kpi:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.kpi.active{border-color:var(--accent);background:var(--accent-soft)}
+.kpi .klabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600;margin-bottom:7px}
+.kpi .kval{font-family:"Space Grotesk";font-weight:700;font-size:22px;line-height:1}
+.kpi .kval.over{color:var(--red)}
+.kpi .kval.under{color:var(--amber)}
+.kpi .kval.stockout{color:var(--red)}
+.kpi .kval.good{color:var(--good)}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
+.panel h2{font-family:"Space Grotesk";font-size:16px;margin:0 0 4px}
+.panel .phint{font-size:12px;color:var(--ink-soft);margin:0 0 14px}
+
+.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
+.ctl{display:flex;flex-direction:column;gap:5px}
+.ctl label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
+.ctl input[type=number]{width:74px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-family:"Space Grotesk";font-size:14px}
+.ctl input[type=text]{width:220px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
+.ctl select{background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
+.btn{background:linear-gradient(150deg,var(--accent2),var(--accent));color:#fff;border:none;border-radius:9px;padding:9px 16px;font-family:"Space Grotesk";font-weight:600;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
+.btn:hover{filter:brightness(1.08)}
+.btn.secondary{background:var(--card2);border:1px solid var(--line);color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+th:hover{color:var(--ink)}
+th.num,td.num{text-align:right}
+td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+tr.row:hover{background:var(--card2)}
+tr.row{cursor:pointer}
+.pname{font-weight:600;font-size:13px}
+.pmeta{font-size:11px;color:var(--ink-soft);margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.badge.over{background:var(--red-soft);color:var(--red)}
+.badge.under{background:var(--amber-soft);color:var(--amber)}
+.badge.stockout{background:var(--red-soft);color:var(--red)}
+.badge.on-target{background:var(--good-soft);color:var(--good)}
+.badge.dead-stock{background:var(--gray-soft);color:var(--gray)}
+.badge.no-data{background:var(--gray-soft);color:var(--gray)}
+.chev{color:var(--ink-soft);font-size:13px;transition:transform .15s;display:inline-block}
+tr.row.open .chev{transform:rotate(90deg)}
+.detailrow{display:none}
+.detailrow.open{display:table-row}
+.detailrow td{background:var(--card2);padding:0}
+.detail-inner{padding:14px 18px 18px}
+.detail-inner table{font-size:12px}
+.detail-inner th,.detail-inner td{padding:6px 9px}
+.delta-pos{color:var(--good)}
+.delta-neg{color:var(--red)}
+.sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:22px;vertical-align:middle}
+.sparkline i{display:block;width:4px;background:var(--accent);border-radius:1px;opacity:.85}
+.trend-note{font-size:11px;color:var(--ink-soft);margin-top:10px}
+
+.table-scroll{overflow-x:auto;border-radius:10px}
+.empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
+
+details.orphans{margin-top:6px}
+details.orphans summary{cursor:pointer;font-family:"Space Grotesk";font-weight:600;font-size:13.5px;color:var(--ink);list-style:none;display:flex;align-items:center;gap:8px}
+details.orphans summary::-webkit-details-marker{display:none}
+details.orphans summary::before{content:"\203A";display:inline-block;transition:transform .15s;color:var(--ink-soft)}
+details.orphans[open] summary::before{transform:rotate(90deg)}
+
+.methodbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink-soft);line-height:1.6}
+.methodbox b{color:var(--ink)}
+
+footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center}
+footer p{max-width:720px;margin:6px auto}
+
+@media (max-width:640px){
+  .wrap{padding:0 14px}
+  .kpi-strip{gap:8px}
+  th,td{padding:8px 6px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar wrap">
+  <a class="crumb" href="../">&larr; Boston Beer</a>
+</div>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Boston Beer &middot; Forecast vs. Inventory</p>
+  <h1>Forecast &amp; Inventory Tracker</h1>
+  <p class="sub">Cross-references your Boston Beer portal forecast against Encompass sell-through and available inventory, flags SKUs you're likely over- or under-ordering, and exports a corrected forecast in the portal's upload format.</p>
+  <p class="updated" id="updated-line"></p>
+</header>
+
+<div class="kpi-strip" id="kpi-strip"></div>
+
+<div class="panel">
+  <h2>Target inventory position</h2>
+  <p class="phint">Drives every "over/under" flag and the recommended order quantities below. Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know about lead time.</p>
+  <div class="controls">
+    <div class="ctl">
+      <label>Target weeks of supply</label>
+      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4">
+    </div>
+    <div class="ctl">
+      <label>&plusmn; Tolerance (weeks)</label>
+      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1">
+    </div>
+    <div class="ctl">
+      <label>Search product / SKU</label>
+      <input type="text" id="ctl-search" placeholder="e.g. Twisted Tea, OA9163">
+    </div>
+    <div class="ctl">
+      <label>Sort by</label>
+      <select id="ctl-sort">
+        <option value="wosAsc">Weeks of supply: low &rarr; high</option>
+        <option value="wosDesc">Weeks of supply: high &rarr; low</option>
+        <option value="gapDesc">Order gap: largest first</option>
+        <option value="name">Product name</option>
+      </select>
+    </div>
+    <button class="btn" id="btn-export">Export upload CSV</button>
+  </div>
+  <div class="methodbox" id="methodbox"></div>
+</div>
+
+<div class="panel">
+  <h2>SKUs (<span id="count-visible">0</span> of <span id="count-total">0</span>)</h2>
+  <p class="phint">Tap a row to see the week-by-week breakdown: what's on file, what you forecasted, and what the model recommends.</p>
+  <div class="table-scroll">
+    <table id="sku-table">
+      <thead>
+        <tr>
+          <th data-sort="name">Product</th>
+          <th class="num" data-sort="avail">Available</th>
+          <th class="num" data-sort="l4">4-wk Avg</th>
+          <th>Recent trend</th>
+          <th class="num" data-sort="wos">Weeks of Supply</th>
+          <th>Status</th>
+          <th class="num" data-sort="cur">Your Fcst (next 8wk)</th>
+          <th class="num" data-sort="rec">Recommended</th>
+          <th class="num" data-sort="gap">&Delta;</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="sku-tbody"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty-state" style="display:none">No SKUs match this filter.</div>
+</div>
+
+<div class="panel">
+  <details class="orphans" id="orphans-details">
+    <summary>SKUs with Encompass sales history but <span id="orphan-count">0</span> no forecast entry &mdash; check these aren't being missed</summary>
+    <div class="table-scroll" style="margin-top:12px">
+      <table id="orphan-table">
+        <thead><tr><th>Product</th><th>Brand</th><th class="num">Available</th><th class="num">4-wk Avg</th><th>Last Receive</th></tr></thead>
+        <tbody id="orphan-tbody"></tbody>
+      </table>
+    </div>
+  </details>
+</div>
+
+<footer>
+  <p>Data refreshed manually from Boston Beer portal + Encompass exports &mdash; see README in this folder for how to update.</p>
+</footer>
+</div>
+
+<script>
+let DATA = null;
+let state = { target: 4, tolerance: 1, search: "", sort: "wosAsc", statusFilter: null };
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
+function fmt1(n){ if(n==null||isNaN(n)) return "—"; return n.toFixed(1); }
+
+// Mirrors the Python build script's formula exactly, so the UI recomputes
+// live when the target/tolerance sliders change instead of only reflecting
+// whatever was baked in at export time.
+function computeRecommended(sku, targetWeeks){
+  const l4 = sku.l4Avg, avail = sku.available;
+  const hisFcst = sku.weeks.map(w => w.forecast || 0);
+  const hasHistory = l4 != null && l4 > 0 && avail != null;
+  if(!hasHistory){
+    return sku.weeks.map(w => w.forecast != null ? Math.round(w.forecast) : null);
+  }
+  const gap = targetWeeks * l4 - avail;
+  const sum = hisFcst.reduce((a,b)=>a+b,0);
+  const meanShape = sum > 0 ? sum/hisFcst.length : l4;
+  return hisFcst.map((f,idx) => {
+    const ratio = meanShape > 0 ? f/meanShape : 1.0;
+    let base = l4 * ratio;
+    if(idx === 0) base += gap;
+    return Math.max(0, Math.round(base));
+  });
+}
+
+function computeStatus(sku, targetWeeks, toleranceWeeks){
+  const l4 = sku.l4Avg, avail = sku.available;
+  if(avail != null && avail < 0) return {status:'stockout', wos:null};
+  if(l4 == null || avail == null) return {status:'no-data', wos:null};
+  if(l4 === 0) return {status: avail > 0 ? 'dead-stock' : 'no-data', wos:null};
+  const wos = avail / l4;
+  if(wos < targetWeeks - toleranceWeeks) return {status:'under', wos};
+  if(wos > targetWeeks + toleranceWeeks) return {status:'over', wos};
+  return {status:'on-target', wos};
+}
+
+const STATUS_LABEL = {
+  'over':'Over-indexed', 'under':'Under-indexed', 'stockout':'Stockout risk',
+  'on-target':'On target', 'dead-stock':'No recent velocity', 'no-data':'No inventory match',
+};
+
+function sparkline(weeks){
+  const vals = (weeks||[]).map(v => v==null?0:v);
+  const max = Math.max(1, ...vals);
+  return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*20))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
+}
+
+function enrich(sku){
+  const rec = computeRecommended(sku, state.target);
+  const st = computeStatus(sku, state.target, state.tolerance);
+  const curTotal8 = sku.weeks.slice(0,8).reduce((s,w)=>s+(w.forecast||0),0);
+  const recTotal8 = rec.slice(0,8).reduce((s,v)=>s+(v||0),0);
+  return { sku, rec, status: st.status, wos: st.wos, curTotal8, recTotal8, gap: recTotal8 - curTotal8 };
+}
+
+function renderKPIs(enriched){
+  const counts = {over:0, under:0, stockout:0, 'on-target':0, 'dead-stock':0, 'no-data':0};
+  enriched.forEach(e => counts[e.status]++);
+  const cards = [
+    {key:'over', label:'Over-indexed', val:counts.over, cls:'over'},
+    {key:'under', label:'Under-indexed', val:counts.under, cls:'under'},
+    {key:'stockout', label:'Stockout risk', val:counts.stockout, cls:'stockout'},
+    {key:'on-target', label:'On target', val:counts['on-target'], cls:'good'},
+    {key:null, label:'Total SKUs', val:enriched.length, cls:''},
+  ];
+  document.getElementById('kpi-strip').innerHTML = cards.map(c =>
+    `<div class="kpi ${state.statusFilter===c.key?'active':''}" data-key="${c.key||''}">
+      <div class="klabel">${esc(c.label)}</div>
+      <div class="kval num ${c.cls}">${fmtNum(c.val)}</div>
+    </div>`
+  ).join('');
+  document.querySelectorAll('.kpi').forEach(el => el.addEventListener('click', () => {
+    const k = el.dataset.key || null;
+    state.statusFilter = state.statusFilter === k ? null : k;
+    render();
+  }));
+}
+
+function detailTable(e){
+  const rows = e.sku.weeks.map((w,i) => {
+    const rec = e.rec[i];
+    const delta = (rec!=null && w.forecast!=null) ? rec - w.forecast : null;
+    return `<tr>
+      <td>${esc(w.weekEnding)}</td>
+      <td class="num">${fmtNum(w.onFile)}</td>
+      <td class="num">${fmtNum(w.forecast)}</td>
+      <td class="num"><b>${fmtNum(rec)}</b></td>
+      <td class="num ${delta>0?'delta-pos':delta<0?'delta-neg':''}">${delta==null?'—':(delta>0?'+':'')+fmtNum(delta)}</td>
+    </tr>`;
+  }).join('');
+  return `<div class="detail-inner">
+    <table>
+      <thead><tr><th>Week Ending</th><th class="num">On File</th><th class="num">Your Forecast</th><th class="num">Recommended</th><th class="num">&Delta;</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p class="trend-note">Last 5 weeks sold (oldest&rarr;newest): ${(e.sku.recentWeeks||[]).map(fmtNum).join(' &middot; ')}
+      ${e.sku.lastReceiveDate ? ` &middot; Last receive: ${esc(e.sku.lastReceiveDate)} (${fmtNum(e.sku.lastReceiveQty)} cases)` : ''}
+      ${e.sku.matchType==='prefix' ? ` &middot; matched to inventory SKU ${esc(e.sku.inventorySku)} by prefix, not exact match — verify this is the right item` : ''}
+    </p>
+  </div>`;
+}
+
+function render(){
+  const q = state.search.trim().toLowerCase();
+  let enriched = DATA.skus.map(enrich);
+  if(state.statusFilter) enriched = enriched.filter(e => e.status === state.statusFilter);
+  if(q) enriched = enriched.filter(e => e.sku.product.toLowerCase().includes(q) || e.sku.sku.toLowerCase().includes(q));
+
+  const sorters = {
+    wosAsc: (a,b) => (a.wos==null?999:a.wos) - (b.wos==null?999:b.wos),
+    wosDesc: (a,b) => (b.wos==null?-1:b.wos) - (a.wos==null?-1:a.wos),
+    gapDesc: (a,b) => Math.abs(b.gap) - Math.abs(a.gap),
+    name: (a,b) => a.sku.product.localeCompare(b.sku.product),
+  };
+  enriched.sort(sorters[state.sort]);
+
+  renderKPIs(DATA.skus.map(enrich));
+  document.getElementById('count-visible').textContent = enriched.length;
+  document.getElementById('count-total').textContent = DATA.skus.length;
+
+  const tbody = document.getElementById('sku-tbody');
+  if(!enriched.length){
+    tbody.innerHTML = '';
+    document.getElementById('empty-state').style.display = 'block';
+    return;
+  }
+  document.getElementById('empty-state').style.display = 'none';
+
+  tbody.innerHTML = enriched.map((e,i) => {
+    const s = e.sku;
+    const rowId = 'r'+i;
+    return `<tr class="row" data-target="${rowId}">
+      <td><div class="pname">${esc(s.product)}</div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
+      <td class="num">${fmtNum(s.available)}</td>
+      <td class="num">${fmtNum(s.l4Avg)}</td>
+      <td>${sparkline(s.recentWeeks)}</td>
+      <td class="num">${fmt1(e.wos)}</td>
+      <td><span class="badge ${e.status}">${STATUS_LABEL[e.status]}</span></td>
+      <td class="num">${fmtNum(e.curTotal8)}</td>
+      <td class="num">${fmtNum(e.recTotal8)}</td>
+      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${e.gap==0?'—':(e.gap>0?'+':'')+fmtNum(e.gap)}</td>
+      <td><span class="chev">&rsaquo;</span></td>
+    </tr>
+    <tr class="detailrow" id="${rowId}"><td colspan="10">${detailTable(e)}</td></tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('tr.row').forEach(row => {
+    row.addEventListener('click', () => {
+      const detail = document.getElementById(row.dataset.target);
+      detail.classList.toggle('open');
+      row.classList.toggle('open');
+    });
+  });
+}
+
+function renderOrphans(){
+  const orphans = DATA.orphanInventory || [];
+  document.getElementById('orphan-count').textContent = orphans.length;
+  document.getElementById('orphan-tbody').innerHTML = orphans.map(o => `
+    <tr>
+      <td><div class="pname">${esc(o.product)}</div><div class="pmeta">${esc(o.sku)}</div></td>
+      <td>${esc(o.brandFamily||'')}</td>
+      <td class="num">${fmtNum(o.available)}</td>
+      <td class="num">${fmtNum(o.l4Avg)}</td>
+      <td>${esc(o.lastReceiveDate||'—')}</td>
+    </tr>`).join('');
+}
+
+function renderMethodBox(){
+  document.getElementById('methodbox').innerHTML = `
+    <b>How "Recommended" is computed:</b> for each SKU with sell-through history, we take your average weekly cases sold over the last 4 weeks as the demand signal, size available inventory to your target weeks-of-supply, and apply the full correction to the nearest week (so an over-stocked item gets a $0 recommendation until it draws down, and an under-stocked one gets a bump to catch up). Weeks after that follow your own forecast's week-to-week <i>shape</i> &mdash; so seasonal ramps you already know about (like an Octoberfest launch) carry through &mdash; just rescaled to the corrected level.
+    <br><br><b>SKUs with no recent sales</b> (new/seasonal items not yet shipping) fall back to your own forecast unchanged, since there's no sell-through data to correct against.
+    <br><br><b>Not accounted for yet:</b> Boston Beer's order lead time, case-pack/minimum order rounding, and upcoming promotions or feature placements aren't reflected &mdash; see the chat for a list of reports that would improve this.`;
+}
+
+function csvEscape(v){
+  const s = v==null ? "" : String(v);
+  return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
+}
+
+function exportCSV(){
+  const weekDates = DATA.meta.weekDates.slice(0, 8);
+  const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
+  const lines = [header.map(csvEscape).join(',')];
+  DATA.skus.forEach(sku => {
+    const rec = computeRecommended(sku, state.target);
+    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...rec.slice(0,8).map(v => v==null?'':v)];
+    lines.push(row.map(csvEscape).join(','));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `boston_beer_forecast_recommended_target${state.target}wk.csv`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function boot(){
+  const cb = "?_="+Date.now();
+  const res = await fetch('data/forecast.json'+cb, {cache:"no-store"});
+  DATA = await res.json();
+
+  state.target = DATA.meta.defaultTargetWeeks || 4;
+  state.tolerance = DATA.meta.defaultToleranceWeeks || 1;
+  document.getElementById('ctl-target').value = state.target;
+  document.getElementById('ctl-tolerance').value = state.tolerance;
+
+  if(DATA.meta.generatedAt){
+    const d = new Date(DATA.meta.generatedAt);
+    const f = d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+    document.getElementById('updated-line').innerHTML = `<span class="livedot"></span> Data refreshed ${f}`;
+  }
+
+  document.getElementById('ctl-target').addEventListener('input', e => { state.target = parseFloat(e.target.value)||0; render(); renderMethodBox(); });
+  document.getElementById('ctl-tolerance').addEventListener('input', e => { state.tolerance = parseFloat(e.target.value)||0; render(); });
+  document.getElementById('ctl-search').addEventListener('input', e => { state.search = e.target.value; render(); });
+  document.getElementById('ctl-sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  document.getElementById('btn-export').addEventListener('click', exportCSV);
+
+  renderMethodBox();
+  renderOrphans();
+  render();
+}
+boot();
+</script>
+</body></html>
