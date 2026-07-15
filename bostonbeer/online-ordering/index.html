@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Online Ordering Tracker · Boston Beer</title>
+<title>Online Ordering Dashboard · Boston Beer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -57,6 +57,8 @@ h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--nav
 .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
 .ctl{display:flex;flex-direction:column;gap:5px}
 .ctl label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:700}
+.ctl label[title]{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
+.ctl label[title]:hover{color:var(--navy)}
 .ctl input[type=number]{width:74px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:14px;font-weight:600}
 .ctl input[type=text]{width:220px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
 .btn{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
@@ -107,6 +109,17 @@ details.orphans summary::-webkit-details-marker{display:none}
 details.orphans summary::before{content:"\203A";display:inline-block;transition:transform .15s;color:var(--ink-soft)}
 details.orphans[open] summary::before{transform:rotate(90deg)}
 
+.sources-body{margin-top:14px;font-size:13px;color:var(--ink-soft);line-height:1.6}
+.sources-body h3{font-size:12.5px;color:var(--navy);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+.sources-body h3:first-child{margin-top:0}
+.sources-body b{color:var(--ink)}
+.sources-body ol{margin:0;padding-left:20px}
+.sources-body ol li{margin-bottom:8px}
+.sources-body code{background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:var(--navy)}
+table.refs{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
+table.refs td{padding:7px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-soft)}
+table.refs td:first-child{width:170px;white-space:nowrap}
+
 .methodbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink-soft);line-height:1.6}
 .methodbox b{color:var(--navy)}
 .methodbox ul{margin:8px 0 0;padding-left:18px}
@@ -135,7 +148,7 @@ footer p{max-width:720px;margin:6px auto}
 <div class="wrap">
 <header>
   <p class="eyebrow">Boston Beer &middot; Forecast vs. Inventory</p>
-  <h1>Online Ordering Tracker</h1>
+  <h1>Online Ordering Dashboard</h1>
   <p class="sub">Cross-references your Boston Beer portal forecast against Encompass sell-through, available inventory, package/case-pack data, and 52 weeks of order history. Flags SKUs you're likely over- or under-ordering and exports a corrected forecast in the portal's upload format.</p>
   <p class="updated" id="updated-line"></p>
 </header>
@@ -147,12 +160,12 @@ footer p{max-width:720px;margin:6px auto}
   <p class="phint">Drives every "over/under" flag and the recommended order quantities below. Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know about lead time.</p>
   <div class="controls">
     <div class="ctl">
-      <label>Target weeks of supply</label>
-      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4">
+      <label title="How many weeks of sales you want on hand at any time, e.g. 4 = enough stock to cover 4 weeks at the recent sales pace. Multiplied by 4-wk Avg to get each SKU's target inventory position, which drives both the Status badge and the Recommended math.">Target weeks of supply</label>
+      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4" title="How many weeks of sales you want on hand at any time. Drives the Status badge and the Recommended quantities for every SKU.">
     </div>
     <div class="ctl">
-      <label>&plusmn; Tolerance (weeks)</label>
-      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1">
+      <label title="A buffer zone around Target weeks of supply so normal week-to-week wobble doesn't flip a SKU's status back and forth. E.g. Target 4 ± 1 means Weeks of Supply anywhere from 3–5 counts as On target; below 3 is Under-indexed, above 5 is Over-indexed.">&plusmn; Tolerance (weeks)</label>
+      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1" title="Buffer around Target weeks of supply before a SKU is flagged Over- or Under-indexed.">
     </div>
     <div class="ctl">
       <label>Search product / SKU</label>
@@ -170,15 +183,15 @@ footer p{max-width:720px;margin:6px auto}
     <table id="sku-table">
       <thead>
         <tr>
-          <th data-key="name" title="Product name, SKU, and package type">Product<span class="sort-ind"></span></th>
-          <th class="num" data-key="avail" title="Cases currently sitting in our warehouse right now">Available<span class="sort-ind"></span></th>
-          <th class="num" data-key="l4" title="Average cases sold per week over the last 4 weeks">4-wk Avg<span class="sort-ind"></span></th>
-          <th title="Cases sold each of the last 5 weeks — taller bar means more sold">Recent Trend</th>
-          <th class="num" data-key="wos" title="How many weeks the current stock would last at the recent sales pace (Available ÷ 4-wk Avg)">Weeks of Supply<span class="sort-ind"></span></th>
-          <th data-key="status" title="Quick read on stock health — hover a badge below for details">Status<span class="sort-ind"></span></th>
-          <th class="num" data-key="cur" id="th-cur" title="Boston Beer's own system-generated forecast for the upcoming open weeks (not your team's number)"><span class="th-label">Boston Beer Forecast</span><span class="sort-ind"></span></th>
-          <th class="num" data-key="rec" id="th-rec" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size"><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
-          <th class="num" data-key="gap" title="Recommended minus your current plan (your confirmed order where you've entered one, Boston Beer's forecast otherwise) — green means order more, red means order less">Difference<span class="sort-ind"></span></th>
+          <th data-key="name" title="Your Boston Beer forecast export's Product/BBC SKU, renamed to the clean product name from Encompass's Products export (Supplier Product Num → Product Name). SKUs with no Products match keep the raw forecast-file name and are flagged with a †.">Product<span class="sort-ind"></span></th>
+          <th class="num" data-key="avail" title="Source: Encompass 'Boston Beer Inventory Report' export, 'Available' column — cases physically sitting in the warehouse as of the report date.">Available<span class="sort-ind"></span></th>
+          <th class="num" data-key="l4" title="Source: Encompass Inventory Report, 'L4 Average' column — that SKU's average weekly case sales over the trailing 4 weeks, as calculated by Encompass.">4-wk Avg<span class="sort-ind"></span></th>
+          <th title="Source: Encompass Inventory Report's 'Cases -3 Weeks' through 'Cases This Week' columns — actual case sales for each of the last 5 weeks. Taller bar means more sold; hover a bar for the exact number.">Recent Trend</th>
+          <th class="num" data-key="wos" title="Calculated: Available ÷ 4-wk Avg. Compared against the Target weeks of supply (± Tolerance) sliders above to set the Status badge — under target−tolerance is Under-indexed, over target+tolerance is Over-indexed.">Weeks of Supply<span class="sort-ind"></span></th>
+          <th data-key="status" title="Derived from Weeks of Supply vs. your Target ± Tolerance sliders: Stockout risk (Available < 0), Under-indexed (WoS below target), Over-indexed (WoS above target), On target (within tolerance), or No inventory match / No recent velocity if Available or 4-wk Avg is missing or zero. Hover a badge below for its exact definition.">Status<span class="sort-ind"></span></th>
+          <th class="num" data-key="cur" id="th-cur" title="Source: your Boston Beer forecast export's '<date> F' columns, summed across the open (unlocked) weeks. This is Boston Beer's own system-generated forecast, not a number your team entered."><span class="th-label">Boston Beer Forecast</span><span class="sort-ind"></span></th>
+          <th class="num" data-key="rec" id="th-rec" title="Calculated per week from 4-wk Avg, Available, your Target/Tolerance sliders, the SKU's lead time and 52-week history (Encompass ForecastReport), and its case-pack size (Encompass Packages) — see the 'Data sources &amp; methodology' section below the table for the exact formula, then summed across the open weeks."><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
+          <th class="num" data-key="gap" title="Calculated: Recommended minus your current plan (your confirmed order — the '<date> A' column — where you've entered one, Boston Beer's '<date> F' forecast otherwise), summed across the open weeks. Green means order more, red means order less.">Difference<span class="sort-ind"></span></th>
           <th></th>
         </tr>
       </thead>
@@ -186,6 +199,52 @@ footer p{max-width:720px;margin:6px auto}
     </table>
   </div>
   <div class="empty" id="empty-state" style="display:none">No SKUs match this filter.</div>
+</div>
+
+<div class="panel">
+  <details class="orphans" id="sources-details">
+    <summary>Data sources &amp; methodology &mdash; exactly how every column is calculated</summary>
+    <div class="sources-body">
+      <h3>Source files</h3>
+      <ol>
+        <li><b>Boston Beer forecast export</b> (from the Boston Beer online ordering portal) &mdash; Product, Distributor, BBC SKU, Customer SKU, then a pair of columns per week: "&lt;date&gt; F" is Boston Beer's own system-generated forecast, "&lt;date&gt; A" is your manager's confirmed order for that week (blank until entered). Feeds: Product/SKU, Boston Beer Forecast, On File.</li>
+        <li><b>Encompass "Boston Beer Inventory Report"</b> &mdash; Supplier Product ID, Available, L4 Average, L8 Average, the last 5 weeks of case sales, Last Receive Date/Quantity. Feeds: Available, 4-wk Avg, Recent Trend, and (with the Target/Tolerance sliders) Weeks of Supply and Status.</li>
+        <li><b>Encompass "Packages" reference export</b> &mdash; maps each package description (e.g. "1/6 BBL Keg") to a Case Equiv conversion factor. Feeds: the whole-unit rounding on Recommended (e.g. why a keg SKU recommends "3", not "6.94").</li>
+        <li><b>Encompass "ForecastReport"</b> &mdash; per SKU, the actual Boston Beer order lead time in days plus 52 weeks of trailing sell-through history. Feeds: the lead-time-based correction window on Recommended, and the same-week-last-year fallback for SKUs with no current sales.</li>
+        <li><b>Encompass "Products" export</b> &mdash; maps each Supplier Product Num to its clean Encompass product name. Feeds: the Product column display name.</li>
+      </ol>
+
+      <h3>Column-by-column</h3>
+      <table class="refs">
+        <tbody>
+          <tr><td><b>Available</b></td><td>Inventory Report, "Available" column. As-of the report date, no adjustment.</td></tr>
+          <tr><td><b>4-wk Avg</b></td><td>Inventory Report, "L4 Average" column, calculated by Encompass from the SKU's trailing 4 weeks of case sales.</td></tr>
+          <tr><td><b>Recent Trend</b></td><td>Inventory Report, "Cases -3 Weeks" through "Cases This Week" columns &mdash; 5 raw weekly totals, unmodified.</td></tr>
+          <tr><td><b>Weeks of Supply</b></td><td><code>Available &divide; 4-wk Avg</code>.</td></tr>
+          <tr><td><b>Status</b></td><td>Stockout risk if Available &lt; 0. No inventory match if Available or 4-wk Avg is missing. No recent velocity if 4-wk Avg = 0 but Available &gt; 0. Otherwise: Under-indexed if Weeks of Supply &lt; Target &minus; Tolerance, Over-indexed if &gt; Target + Tolerance, On target in between.</td></tr>
+          <tr><td><b>Boston Beer Forecast</b></td><td>Sum of the "&lt;date&gt; F" columns from the forecast export, open weeks only.</td></tr>
+          <tr><td><b>On File</b> (detail view)</td><td>The "&lt;date&gt; A" column from the forecast export &mdash; blank until your manager enters a value.</td></tr>
+          <tr><td><b>Recommended</b></td><td>See formula below.</td></tr>
+          <tr><td><b>Difference</b></td><td><code>Recommended &minus; (On File if entered, else Boston Beer Forecast)</code>, summed across open weeks.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The Recommended formula</h3>
+      <p>Every SKU uses exactly one of three methods, shown per-row as "Recommended via":</p>
+      <p><b>1. Velocity-based</b> (SKUs with 4-wk Avg &gt; 0 and a matched Available figure &mdash; most SKUs):</p>
+      <ol>
+        <li>Target inventory position = Target weeks of supply &times; 4-wk Avg.</li>
+        <li>Gap = Target inventory position &minus; Available.</li>
+        <li>Correction weeks = Lead time in days (from ForecastReport) &divide; 7, rounded, minimum 1 (21 days &rarr; 3 weeks for this data set).</li>
+        <li>Per-week correction = Gap &divide; Correction weeks.</li>
+        <li>Shape = that week's Boston Beer Forecast &divide; the average Boston Beer Forecast across all open weeks &mdash; this preserves known seasonal ramps (e.g. Octoberfest) instead of flattening every week to the same number.</li>
+        <li>Each week's raw recommendation = (4-wk Avg &times; Shape) + Per-week correction (correction only applied to the first Correction-weeks weeks), floored at 0.</li>
+        <li>Rounded to the nearest whole physically-orderable unit using the SKU's Case Equiv from the Packages export (e.g. nearest whole keg), then converted back to case-equivalents for display/export.</li>
+      </ol>
+      <p><b>2. Seasonal fallback</b> (no current velocity, but ForecastReport history exists): uses the actual volume from the same calendar week one year earlier (&plusmn;5 days), case-pack rounded the same way.</p>
+      <p><b>3. Passthrough</b> (no velocity and no usable history): Boston Beer's own forecast, unchanged.</p>
+    </div>
+  </details>
 </div>
 
 <div class="panel">
@@ -299,12 +358,12 @@ const STATUS_LABEL = {
   'on-target':'On target', 'dead-stock':'No recent velocity', 'no-data':'No inventory match',
 };
 const STATUS_TIP = {
-  'over':'Stock is higher than your target — consider ordering less',
-  'under':'Stock is lower than your target — may need to order more soon',
-  'stockout':'Available inventory is zero or negative right now',
-  'on-target':'Stock level matches your target — no action needed',
-  'dead-stock':'No sales in the last 4 weeks, so a recommendation can’t be calculated reliably',
-  'no-data':'Not enough matching inventory data to evaluate this SKU',
+  'over':'Weeks of Supply is above your Target + Tolerance — stock is higher than needed, consider ordering less',
+  'under':'Weeks of Supply is below your Target − Tolerance — stock is lower than needed, may need to order more soon',
+  'stockout':'Available (from the Inventory Report) is negative right now',
+  'on-target':'Weeks of Supply falls within Target ± Tolerance — stock level is right where it should be',
+  'dead-stock':'4-wk Avg is 0 but Available is positive — no recent sales, so Weeks of Supply can’t be calculated',
+  'no-data':'This SKU has no Available or 4-wk Avg figure in the Inventory Report, so status can’t be evaluated',
 };
 const STATUS_RANK = {'stockout':0, 'under':1, 'over':2, 'on-target':3, 'dead-stock':4, 'no-data':5};
 
@@ -425,11 +484,11 @@ function detailTable(e){
   return `<div class="detail-inner">
     <table>
       <thead><tr>
-        <th title="The date this order week wraps up">Week Ending</th>
-        <th class="num" title="Your confirmed order for this week, if you've entered one">On File</th>
-        <th class="num" title="Boston Beer's own system-generated forecast for this week">Boston Beer Forecast</th>
-        <th class="num" title="What we suggest ordering this week">Recommended</th>
-        <th class="num" title="Recommended minus your current plan for this week (On File if entered, Boston Beer Forecast otherwise)">Difference</th>
+        <th title="The date this order week wraps up, from your Boston Beer forecast export's week-ending column headers">Week Ending</th>
+        <th class="num" title="Source: the '<date> A' column in your Boston Beer forecast export — your confirmed order for this week, if you've entered one. Blank means not yet entered.">On File</th>
+        <th class="num" title="Source: the '<date> F' column in your Boston Beer forecast export — Boston Beer's own system-generated forecast for this week.">Boston Beer Forecast</th>
+        <th class="num" title="Calculated for this week — see the 'Data sources &amp; methodology' section below the table for the exact formula.">Recommended</th>
+        <th class="num" title="Calculated: this week's Recommended minus its current plan (On File if entered, Boston Beer Forecast otherwise).">Difference</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>

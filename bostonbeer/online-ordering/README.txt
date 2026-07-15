@@ -1,5 +1,5 @@
-Online Ordering Tracker (Boston Beer)
-======================================
+Online Ordering Dashboard (Boston Beer)
+========================================
 
 Cross-references your Boston Beer portal forecast against Encompass
 sell-through/inventory data, flags SKUs you're likely over- or
