@@ -23,6 +23,9 @@
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
   h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
   .sub{color:var(--text-dim);font-size:14.5px;}
+  .updated{margin:10px 0 0;font-size:12px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
+  .livedot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
   .kpi-strip{max-width:1200px;margin:28px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
   @media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr);}}
@@ -177,6 +180,7 @@
   <div class="eyebrow">Off-Premise · July 2026</div>
   <h1>Off-Prem MPO Tracker</h1>
   <p class="sub">20% of Total Commission Eligibility — weighted across objectives. New Belgium targets are the <strong>90%-of-goal</strong> figures per rep/product; Sapporo Light and Famosa are <strong>per-rep</strong> targets.</p>
+  <p class="updated" id="updated-line"></p>
 </header>
 
 <div class="kpi-strip" id="kpi-strip"></div>
@@ -371,6 +375,13 @@ async function boot(){
   if(!DATA.new_belgium||!DATA.ws_2xo||!DATA.sapporo_light||!DATA.famosa){
     showDataError("Couldn't load synced MPO data. Check that the Snowflake sync workflow has run and that data/mpo_*.json files exist with recognizable rep/product/goal columns.");
     return;
+  }
+
+  const meta=await loadJSON('data/sync_meta.json');
+  if(meta && meta.synced_at){
+    const d=new Date(meta.synced_at);
+    const fmt=d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+    document.getElementById('updated-line').innerHTML=`<span class="livedot"></span> Data refreshed ${fmt}`;
   }
 
   renderKPIs();
