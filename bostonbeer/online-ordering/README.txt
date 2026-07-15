@@ -36,6 +36,15 @@ Inputs
    velocity, the same week from a year ago as a seasonal reference
    point.
 
+5. Encompass "Products" export. Maps each Supplier Product Num (BBC SKU)
+   to the clean product name stored in Encompass -- this replaces the
+   raw, inconsistently-abbreviated names from the Boston Beer forecast
+   file (e.g. "Sun Cruiser Half & Half 12oz 6/4pk SK" becomes "Sun
+   Cruiser Lemonade & Iced Tea 6/4/12 oz Can") everywhere on the page
+   and in the CSV export. SKUs with no match (shown with a "†" marker
+   and an "Unmatched product name" tag in the detail view) fall back to
+   the raw forecast-file name.
+
 How the joins work
 -------------------
 Forecast rows are matched to inventory by BBC SKU == Supplier Product
@@ -103,14 +112,15 @@ the number that actually matters: it tells you whether to adjust what's
 already been typed in, not just how the tool disagrees with Boston
 Beer's forecast.
 
-A note on precision: recommended quantities for non-1:1 packaging
-(kegs) are shown and exported to 2 decimal places because that's the
-exact case-equivalent value of a whole number of physical units --
-it is NOT a fractional order. If the Boston Beer portal wants whole
-keg counts instead of case-equivalents in that column, divide the
-exported value by the SKU's Case Equiv (from the Packages file) before
-upload. This hasn't been confirmed against the portal's actual keg
-input format yet.
+A note on precision: on screen, quantities are always shown as whole
+orderable units (e.g. "3" kegs, never "6.94"). The exported CSV,
+though, still carries the raw case-equivalent value (6.94) since that's
+the unit the upload format is believed to expect -- that number is
+still an exact whole-keg multiple, not a rounding artifact. If the
+Boston Beer portal actually wants a whole keg count instead of a
+case-equivalent in that column, divide the exported value by the SKU's
+Case Equiv (from the Packages file) before upload. This hasn't been
+confirmed against the portal's actual keg input format yet.
 
 Exporting
 ---------
@@ -123,10 +133,13 @@ week, since that one can't be changed anyway).
 
 To refresh with new exports
 ----------------------------
-Replace the four source files and re-run the build script (ask Claude
+Replace the five source files and re-run the build script (ask Claude
 to regenerate, or re-run build_forecast_data.py against the new CSVs)
 to regenerate data/forecast.json, then reload the page -- no HTML
 changes needed for a routine data refresh.
+
+Click any column header in the SKU table to sort by it; click again to
+reverse direction.
 
 Known gaps -- see the chat conversation that built this for the full
 list of reports that would fortify this further (promo calendar, code

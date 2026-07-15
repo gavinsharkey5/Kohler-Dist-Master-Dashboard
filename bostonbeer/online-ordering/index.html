@@ -3,77 +3,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Online Ordering Tracker · Boston Beer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --canvas:#100C0B; --card:#1C1512; --card2:#231A16; --ink:#F5F1EE; --ink-soft:#A89A92;
-  --line:#332721; --line-soft:#241C18;
-  --accent:#D9713C; --accent2:#8A6D1F; --accent-soft:rgba(217,113,60,0.14);
-  --good:#3FB68B; --good-soft:#12241D;
-  --amber:#E0A93E; --amber-soft:#2B2113;
-  --red:#DB5A46; --red-soft:#2B1613;
-  --gray:#79706A; --gray-soft:#201A17;
-  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+  --canvas:#F5F8FB; --card:#FFFFFF; --card2:#EEF3F8; --ink:#12253B; --ink-soft:#5B6B7E;
+  --line:#DCE5EE; --line-soft:#E9EFF5;
+  --navy:#0C2D4E; --blue:#1E6FB8; --blue-soft:#E6F0FA;
+  --accent:var(--blue); --accent2:var(--navy); --accent-soft:var(--blue-soft);
+  --good:#1E8E5A; --good-soft:#E4F6EC;
+  --amber:#AD7209; --amber-soft:#FBF1DC;
+  --red:#C23B30; --red-soft:#FBEAE8;
+  --gray:#6B7684; --gray-soft:#EEF1F5;
+  --shadow:0 1px 2px rgba(12,45,78,.05),0 10px 28px rgba(12,45,78,.06);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
-  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.45;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.5;
   -webkit-tap-highlight-color:transparent}
-.num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
-a{color:var(--accent)}
+.num{font-variant-numeric:tabular-nums}
+a{color:var(--blue)}
 .wrap{max-width:1240px;margin:0 auto;padding:0 18px}
 
 .topbar{padding:18px 0 0}
-.crumb{font-size:12.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
-.crumb:hover{color:var(--ink)}
+.crumb{font-size:12.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-weight:500}
+.crumb:hover{color:var(--navy)}
 
 header{padding:14px 0 20px;border-bottom:1px solid var(--line)}
-.eyebrow{font-family:"Space Grotesk";letter-spacing:.14em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--accent);margin:0 0 8px}
-h1{font-family:"Space Grotesk";font-weight:700;font-size:clamp(24px,4vw,32px);margin:0 0 8px}
+.eyebrow{letter-spacing:.1em;text-transform:uppercase;font-size:11px;font-weight:700;color:var(--blue);margin:0 0 8px}
+h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--navy);letter-spacing:-.01em}
 .sub{color:var(--ink-soft);font-size:13.5px;max-width:760px;margin:0}
-.updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);font-family:"Space Grotesk";letter-spacing:.02em;display:flex;align-items:center;gap:7px}
+.updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);letter-spacing:.01em;display:flex;align-items:center;gap:7px;font-weight:500}
 .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
 @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
 .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0}
 @media(max-width:900px){.kpi-strip{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
-.kpi{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow);cursor:pointer;transition:.12s}
-.kpi:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
-.kpi.active{border-color:var(--accent);background:var(--accent-soft)}
-.kpi .klabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600;margin-bottom:7px}
-.kpi .kval{font-family:"Space Grotesk";font-weight:700;font-size:22px;line-height:1}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow);cursor:pointer;transition:.12s}
+.kpi:hover{border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
+.kpi.active{border-color:var(--blue);background:var(--accent-soft)}
+.kpi .klabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:700;margin-bottom:7px}
+.kpi .kval{font-weight:800;font-size:22px;line-height:1;color:var(--navy)}
 .kpi .kval.over{color:var(--red)}
 .kpi .kval.under{color:var(--amber)}
 .kpi .kval.stockout{color:var(--red)}
 .kpi .kval.good{color:var(--good)}
 
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
-.panel h2{font-family:"Space Grotesk";font-size:16px;margin:0 0 4px}
+.panel h2{font-size:16px;margin:0 0 4px;color:var(--navy);font-weight:700}
 .panel .phint{font-size:12px;color:var(--ink-soft);margin:0 0 14px}
 
 .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
 .ctl{display:flex;flex-direction:column;gap:5px}
-.ctl label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
-.ctl input[type=number]{width:74px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-family:"Space Grotesk";font-size:14px}
+.ctl label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:700}
+.ctl input[type=number]{width:74px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:14px;font-weight:600}
 .ctl input[type=text]{width:220px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
-.ctl select{background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
-.btn{background:linear-gradient(150deg,var(--accent2),var(--accent));color:#fff;border:none;border-radius:9px;padding:9px 16px;font-family:"Space Grotesk";font-weight:600;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
-.btn:hover{filter:brightness(1.08)}
-.btn.secondary{background:var(--card2);border:1px solid var(--line);color:var(--ink)}
+.btn{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
+.btn:hover{background:var(--blue)}
 
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
-th[title]{border-bottom-color:var(--line);text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
-th[title]:hover{color:var(--ink)}
+#sku-table{min-width:1080px}
+#sku-table td:first-child,#sku-table th:first-child{min-width:250px}
+th{text-align:left;color:var(--ink-soft);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap;user-select:none}
+th[data-key]{cursor:pointer}
+th[title]{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
+th[data-key][title]{cursor:pointer}
+th[title]:hover{color:var(--navy)}
+.sort-ind{margin-left:3px;color:var(--blue);font-size:9px}
 th.num,td.num{text-align:right}
 td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
 tr.row:hover{background:var(--card2)}
 tr.row{cursor:pointer}
-.pname{font-weight:600;font-size:13px}
+.pname{font-weight:600;font-size:13px;color:var(--ink)}
 .pmeta{font-size:11px;color:var(--ink-soft);margin-top:2px}
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .badge.over{background:var(--red-soft);color:var(--red)}
 .badge.under{background:var(--amber-soft);color:var(--amber)}
 .badge.stockout{background:var(--red-soft);color:var(--red)}
@@ -91,26 +95,26 @@ tr.row.open .chev{transform:rotate(90deg)}
 .delta-pos{color:var(--good)}
 .delta-neg{color:var(--red)}
 .sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:22px;vertical-align:middle}
-.sparkline i{display:block;width:4px;background:var(--accent);border-radius:1px;opacity:.85}
+.sparkline i{display:block;width:4px;background:var(--blue);border-radius:1px;opacity:.85}
 .trend-note{font-size:11px;color:var(--ink-soft);margin-top:10px}
 
 .table-scroll{overflow-x:auto;border-radius:10px}
 .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
 
 details.orphans{margin-top:6px}
-details.orphans summary{cursor:pointer;font-family:"Space Grotesk";font-weight:600;font-size:13.5px;color:var(--ink);list-style:none;display:flex;align-items:center;gap:8px}
+details.orphans summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--navy);list-style:none;display:flex;align-items:center;gap:8px}
 details.orphans summary::-webkit-details-marker{display:none}
 details.orphans summary::before{content:"\203A";display:inline-block;transition:transform .15s;color:var(--ink-soft)}
 details.orphans[open] summary::before{transform:rotate(90deg)}
 
 .methodbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink-soft);line-height:1.6}
-.methodbox b{color:var(--ink)}
+.methodbox b{color:var(--navy)}
 .methodbox ul{margin:8px 0 0;padding-left:18px}
 .methodbox li{margin-bottom:6px}
 
 .chiprow{margin-top:10px}
 .chip{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--ink-soft);margin:2px 6px 2px 0;cursor:help}
-.chip.warn{color:var(--amber);border-color:var(--amber-soft)}
+.chip.warn{color:var(--amber);border-color:var(--amber-soft);background:var(--amber-soft)}
 
 footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center}
 footer p{max-width:720px;margin:6px auto}
@@ -154,15 +158,6 @@ footer p{max-width:720px;margin:6px auto}
       <label>Search product / SKU</label>
       <input type="text" id="ctl-search" placeholder="e.g. Twisted Tea, OA9163">
     </div>
-    <div class="ctl">
-      <label>Sort by</label>
-      <select id="ctl-sort">
-        <option value="wosAsc">Weeks of supply: low &rarr; high</option>
-        <option value="wosDesc">Weeks of supply: high &rarr; low</option>
-        <option value="gapDesc">Order gap: largest first</option>
-        <option value="name">Product name</option>
-      </select>
-    </div>
     <button class="btn" id="btn-export">Export upload CSV</button>
   </div>
   <div class="methodbox" id="methodbox"></div>
@@ -170,20 +165,20 @@ footer p{max-width:720px;margin:6px auto}
 
 <div class="panel">
   <h2>SKUs (<span id="count-visible">0</span> of <span id="count-total">0</span>)</h2>
-  <p class="phint">Tap a row to see the week-by-week breakdown: your confirmed order (where entered), Boston Beer's own forecast, and what we recommend.</p>
+  <p class="phint">Tap a row to see the week-by-week breakdown. Click any column header to sort.</p>
   <div class="table-scroll">
     <table id="sku-table">
       <thead>
         <tr>
-          <th title="Product name, SKU, and package type">Product</th>
-          <th class="num" title="Cases currently sitting in our warehouse right now">Available</th>
-          <th class="num" title="Average cases sold per week over the last 4 weeks">4-wk Avg</th>
+          <th data-key="name" title="Product name, SKU, and package type">Product<span class="sort-ind"></span></th>
+          <th class="num" data-key="avail" title="Cases currently sitting in our warehouse right now">Available<span class="sort-ind"></span></th>
+          <th class="num" data-key="l4" title="Average cases sold per week over the last 4 weeks">4-wk Avg<span class="sort-ind"></span></th>
           <th title="Cases sold each of the last 5 weeks — taller bar means more sold">Recent Trend</th>
-          <th class="num" title="How many weeks the current stock would last at the recent sales pace (Available ÷ 4-wk Avg)">Weeks of Supply</th>
-          <th title="Quick read on stock health — hover a badge below for details">Status</th>
-          <th class="num" id="th-cur" title="Boston Beer's own system-generated forecast for the upcoming open weeks (not your team's number)">Boston Beer Forecast</th>
-          <th class="num" id="th-rec" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size">Recommended</th>
-          <th class="num" title="Recommended minus your current plan (your confirmed order where you've entered one, Boston Beer's forecast otherwise) — green means order more, red means order less">Difference</th>
+          <th class="num" data-key="wos" title="How many weeks the current stock would last at the recent sales pace (Available ÷ 4-wk Avg)">Weeks of Supply<span class="sort-ind"></span></th>
+          <th data-key="status" title="Quick read on stock health — hover a badge below for details">Status<span class="sort-ind"></span></th>
+          <th class="num" data-key="cur" id="th-cur" title="Boston Beer's own system-generated forecast for the upcoming open weeks (not your team's number)"><span class="th-label">Boston Beer Forecast</span><span class="sort-ind"></span></th>
+          <th class="num" data-key="rec" id="th-rec" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size"><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
+          <th class="num" data-key="gap" title="Recommended minus your current plan (your confirmed order where you've entered one, Boston Beer's forecast otherwise) — green means order more, red means order less">Difference<span class="sort-ind"></span></th>
           <th></th>
         </tr>
       </thead>
@@ -212,7 +207,7 @@ footer p{max-width:720px;margin:6px auto}
 
 <script>
 let DATA = null;
-let state = { target: 4, tolerance: 1, search: "", sort: "wosAsc", statusFilter: null };
+let state = { target: 4, tolerance: 1, search: "", sortKey: "wos", sortDir: "asc", statusFilter: null };
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
@@ -311,6 +306,7 @@ const STATUS_TIP = {
   'dead-stock':'No sales in the last 4 weeks, so a recommendation can’t be calculated reliably',
   'no-data':'Not enough matching inventory data to evaluate this SKU',
 };
+const STATUS_RANK = {'stockout':0, 'under':1, 'over':2, 'on-target':3, 'dead-stock':4, 'no-data':5};
 
 // The portal shows two numbers per week: "F" (Boston Beer's own system
 // forecast) and "A" (what's actually been confirmed/entered so far, blank
@@ -337,6 +333,38 @@ function enrich(sku){
     recTotal += rec[i] || 0;
   });
   return { sku, rec, status: st.status, wos: st.wos, curTotal, recTotal, effTotal, gap: recTotal - effTotal };
+}
+
+const SORT_ACCESSORS = {
+  name: e => e.sku.product,
+  avail: e => e.sku.available,
+  l4: e => e.sku.l4Avg,
+  wos: e => e.wos,
+  status: e => STATUS_RANK[e.status],
+  cur: e => e.curTotal,
+  rec: e => e.recTotal,
+  gap: e => e.gap,
+};
+
+// Missing values always sort to the bottom regardless of direction --
+// "no data" isn't meaningfully high or low, it's just unknown.
+function compareEnriched(a, b){
+  const acc = SORT_ACCESSORS[state.sortKey];
+  const av = acc(a), bv = acc(b);
+  const aMissing = av==null, bMissing = bv==null;
+  if(aMissing && bMissing) return 0;
+  if(aMissing) return 1;
+  if(bMissing) return -1;
+  const cmp = (typeof av === 'string') ? av.localeCompare(bv) : (av<bv?-1:av>bv?1:0);
+  return state.sortDir === 'asc' ? cmp : -cmp;
+}
+
+function updateSortIndicators(){
+  document.querySelectorAll('#sku-table thead th[data-key]').forEach(th => {
+    const ind = th.querySelector('.sort-ind');
+    if(!ind) return;
+    ind.textContent = th.dataset.key === state.sortKey ? (state.sortDir==='asc' ? '▲' : '▼') : '';
+  });
 }
 
 function renderKPIs(enriched){
@@ -373,8 +401,9 @@ function detailMeta(e){
   const chips = [];
   chips.push(`<span class="chip" title="Which of the 3 methods (see box above) was used for this product">Method: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}</span>`);
   if(e.sku.leadTimeDays) chips.push(`<span class="chip" title="How long it takes Boston Beer to fulfill an order once placed — corrections are spread across this window">Lead time: ${fmtNum(e.sku.leadTimeDays)} days</span>`);
-  if(pkg && pkg.caseEquiv && pkg.caseEquiv!==1 && ul) chips.push(`<span class="chip" title="Recommended quantities round to whole ${esc(ul.toLowerCase())}s, never a fraction of one">1 ${esc(ul)} = ${pkg.caseEquiv} cases</span>`);
+  if(pkg && pkg.caseEquiv && pkg.caseEquiv!==1 && ul) chips.push(`<span class="chip" title="Recommended quantities round to whole ${esc(ul.toLowerCase())}s, never a fraction of one">1 ${esc(ul)} = ${(Math.round(pkg.caseEquiv*100)/100).toLocaleString('en-US')} standard cases</span>`);
   if(e.sku.matchType==='prefix') chips.push(`<span class="chip warn" title="This SKU was matched to inventory data by a similar code, not an exact match — worth double-checking">Verify SKU match (${esc(e.sku.inventorySku)})</span>`);
+  if(!e.sku.cleanName) chips.push(`<span class="chip warn" title="No matching product record was found in the Encompass product list — showing the raw name from the Boston Beer portal instead">Unmatched product name</span>`);
   return chips.join('');
 }
 
@@ -417,13 +446,8 @@ function render(){
   if(state.statusFilter) enriched = enriched.filter(e => e.status === state.statusFilter);
   if(q) enriched = enriched.filter(e => e.sku.product.toLowerCase().includes(q) || e.sku.sku.toLowerCase().includes(q));
 
-  const sorters = {
-    wosAsc: (a,b) => (a.wos==null?999:a.wos) - (b.wos==null?999:b.wos),
-    wosDesc: (a,b) => (b.wos==null?-1:b.wos) - (a.wos==null?-1:a.wos),
-    gapDesc: (a,b) => Math.abs(b.gap) - Math.abs(a.gap),
-    name: (a,b) => a.sku.product.localeCompare(b.sku.product),
-  };
-  enriched.sort(sorters[state.sort]);
+  enriched.sort(compareEnriched);
+  updateSortIndicators();
 
   renderKPIs(DATA.skus.map(enrich));
   document.getElementById('count-visible').textContent = enriched.length;
@@ -440,8 +464,9 @@ function render(){
   tbody.innerHTML = enriched.map((e,i) => {
     const s = e.sku;
     const rowId = 'r'+i;
+    const unmatchedTag = !s.cleanName ? ` <span title="No matching product record found in Encompass — showing the raw portal name" style="cursor:help">†</span>` : '';
     return `<tr class="row" data-target="${rowId}">
-      <td><div class="pname">${esc(s.product)}</div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
+      <td><div class="pname">${esc(s.product)}${unmatchedTag}</div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
       <td class="num">${fmtNum(s.available)}</td>
       <td class="num">${fmtNum(s.l4Avg)}</td>
       <td>${sparkline(s.recentWeeks)}</td>
@@ -535,13 +560,21 @@ async function boot(){
   }
 
   const openCount = DATA.meta.weekDates.length - (DATA.meta.lockedWeeks || 0);
-  document.getElementById('th-cur').textContent = `Boston Beer Forecast (${openCount}wk)`;
-  document.getElementById('th-rec').textContent = `Recommended (${openCount}wk)`;
+  document.querySelector('#th-cur .th-label').textContent = `Boston Beer Forecast (${openCount}wk)`;
+  document.querySelector('#th-rec .th-label').textContent = `Recommended (${openCount}wk)`;
+
+  document.querySelectorAll('#sku-table thead th[data-key]').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.key;
+      if(state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+      else { state.sortKey = key; state.sortDir = 'asc'; }
+      render();
+    });
+  });
 
   document.getElementById('ctl-target').addEventListener('input', e => { state.target = parseFloat(e.target.value)||0; render(); renderMethodBox(); });
   document.getElementById('ctl-tolerance').addEventListener('input', e => { state.tolerance = parseFloat(e.target.value)||0; render(); });
   document.getElementById('ctl-search').addEventListener('input', e => { state.search = e.target.value; render(); });
-  document.getElementById('ctl-sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
   document.getElementById('btn-export').addEventListener('click', exportCSV);
 
   renderMethodBox();

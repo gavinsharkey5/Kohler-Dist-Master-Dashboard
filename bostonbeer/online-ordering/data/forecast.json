@@ -10,7 +10,7 @@
       "08/29/2026"
     ],
     "distributor": "076KOH",
-    "generatedAt": "2026-07-15T19:09:12Z",
+    "generatedAt": "2026-07-15T19:26:57Z",
     "defaultTargetWeeks": 4.0,
     "defaultToleranceWeeks": 1.0,
     "defaultLeadDays": 21.0,
@@ -19,7 +19,9 @@
   "skus": [
     {
       "sku": "AJ0153",
-      "product": "Hard Mountain Dew Original 24oz 12pk CN",
+      "product": "Hard Mountain Dew Original 1/12/24 oz Can",
+      "rawProduct": "Hard Mountain Dew Original 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "83004",
       "weeks": [
@@ -101,7 +103,9 @@
     },
     {
       "sku": "AJ0253",
-      "product": "Hard Mountain Dew Baja Blast 24oz 12pk CN",
+      "product": "Hard Mountain Dew Baja Blast 1/12/24 oz Can",
+      "rawProduct": "Hard Mountain Dew Baja Blast 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "83001",
       "weeks": [
@@ -183,7 +187,9 @@
     },
     {
       "sku": "AJ0563",
-      "product": "Hard Mountain Dew Everyday Variety Pack 12oz 2/12pk CN",
+      "product": "Hard Mountain Dew Mix 2/12/12 oz Can",
+      "rawProduct": "Hard Mountain Dew Everyday Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "83003",
       "weeks": [
@@ -265,7 +271,9 @@
     },
     {
       "sku": "AJ0E63",
-      "product": "Hard Mountain Dew Baja Blast Variety Pack LTO 12oz 2/12pk CN",
+      "product": "Hard Mountain Dew Baja Blast Mix 2/12/12 oz Can",
+      "rawProduct": "Hard Mountain Dew Baja Blast Variety Pack LTO 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "83002",
       "weeks": [
@@ -347,7 +355,9 @@
     },
     {
       "sku": "AW114S",
-      "product": "Sun Cruiser Classic Iced Tea 12oz 6/4pk SK",
+      "product": "Sun Cruiser Classic Iced Tea 6/4/12 oz Can",
+      "rawProduct": "Sun Cruiser Classic Iced Tea 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200632",
       "weeks": [
@@ -429,7 +439,9 @@
     },
     {
       "sku": "AW1157",
-      "product": "Sun Cruiser Classic Iced Tea 570ml 12pk CN",
+      "product": "Sun Cruiser Classic Iced Tea 1/12/19.2 oz Can",
+      "rawProduct": "Sun Cruiser Classic Iced Tea 570ml 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200672",
       "weeks": [
@@ -511,7 +523,9 @@
     },
     {
       "sku": "AW1177",
-      "product": "Sun Cruiser Classic Iced Tea 12oz 24pk SK",
+      "product": "Sun Cruiser Classic Iced Tea 1/24/12 oz Loose Can",
+      "rawProduct": "Sun Cruiser Classic Iced Tea 12oz 24pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200634",
       "weeks": [
@@ -593,7 +607,9 @@
     },
     {
       "sku": "AW1178",
-      "product": "Sun Cruiser Classic Iced Tea 12oz 3/8pk SK",
+      "product": "Sun Cruiser Classic Iced Tea 3/8/12oz Can",
+      "rawProduct": "Sun Cruiser Classic Iced Tea 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200636",
       "weeks": [
@@ -675,7 +691,9 @@
     },
     {
       "sku": "AW124S",
-      "product": "Sun Cruiser Half & Half 12oz 6/4pk SK",
+      "product": "Sun Cruiser Lemonade & Iced Tea 6/4/12 oz Can",
+      "rawProduct": "Sun Cruiser Half & Half 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200633",
       "weeks": [
@@ -757,7 +775,9 @@
     },
     {
       "sku": "AW1257",
-      "product": "Sun Cruiser Half & Half 570ml 12pk CN",
+      "product": "Sun Cruiser Lemonade Iced Tea 1/12/19.2 oz Can",
+      "rawProduct": "Sun Cruiser Half & Half 570ml 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200675",
       "weeks": [
@@ -839,7 +859,9 @@
     },
     {
       "sku": "AW1277",
-      "product": "Sun Cruiser Half & Half 12oz 24pk SK",
+      "product": "Sun Cruiser Lemonade & Ice Tea 1/24/12 oz Can",
+      "rawProduct": "Sun Cruiser Half & Half 12oz 24pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200678",
       "weeks": [
@@ -921,7 +943,9 @@
     },
     {
       "sku": "AW1278",
-      "product": "Sun Cruiser Half & Half 12oz 3/8pk SK",
+      "product": "Sun Cruiser Half & Half Lemonade Iced Tea 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser Half & Half 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200637",
       "weeks": [
@@ -1003,7 +1027,9 @@
     },
     {
       "sku": "AW1573",
-      "product": "Sun Cruiser Iced Tea Variety Pack 12oz 2/12pk SK",
+      "product": "Sun Cruiser Iced Tea Variety 2/12/12 oz Can",
+      "rawProduct": "Sun Cruiser Iced Tea Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200665",
       "weeks": [
@@ -1085,7 +1111,9 @@
     },
     {
       "sku": "AW1578",
-      "product": "Sun Cruiser Iced Tea Variety Pack 12oz 3/8pk SK",
+      "product": "Sun Cruiser Iced Tea Variety 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser Iced Tea Variety Pack 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200631",
       "weeks": [
@@ -1167,7 +1195,9 @@
     },
     {
       "sku": "AW1581",
-      "product": "Sun Cruiser Iced Tea Variety Pack 12oz 18pk SK",
+      "product": "Sun Cruiser Iced Tea Vodka Variety 1/18/12 oz Can",
+      "rawProduct": "Sun Cruiser Iced Tea Variety Pack 12oz 18pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200666",
       "weeks": [
@@ -1249,7 +1279,9 @@
     },
     {
       "sku": "AW1673",
-      "product": "Sun Cruiser Vodka Lemonade Variety Pack  12oz 2/12pk SK",
+      "product": "Sun Cruiser Lemonade Variety Pack 2/12/12 oz Can",
+      "rawProduct": "Sun Cruiser Vodka Lemonade Variety Pack  12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200668",
       "weeks": [
@@ -1331,7 +1363,9 @@
     },
     {
       "sku": "AW1678",
-      "product": "Sun Cruiser Vodka Lemonade Variety Pack  12oz 3/8pk SK",
+      "product": "Sun Cruiser Lemonade Variety 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser Vodka Lemonade Variety Pack  12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200664",
       "weeks": [
@@ -1413,7 +1447,9 @@
     },
     {
       "sku": "AW174S",
-      "product": "Sun Cruiser Classic Lemonade 12oz 6/4pk SK",
+      "product": "Sun Cruiser Classic Lemonade 6/4/12 oz Can",
+      "rawProduct": "Sun Cruiser Classic Lemonade 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200669",
       "weeks": [
@@ -1495,7 +1531,9 @@
     },
     {
       "sku": "AW1757",
-      "product": "Sun Cruiser Classic Lemonade 570ml 12pk CN",
+      "product": "Sun Cruiser Classic Lemonade 1/12/19.2 oz Can",
+      "rawProduct": "Sun Cruiser Classic Lemonade 570ml 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200674",
       "weeks": [
@@ -1577,7 +1615,9 @@
     },
     {
       "sku": "AW1777",
-      "product": "Sun Cruiser Classic Lemonade 12oz 24pk SK",
+      "product": "Sun Cruiser Lemonade 1/12/24 oz Can",
+      "rawProduct": "Sun Cruiser Classic Lemonade 12oz 24pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200640",
       "weeks": [
@@ -1660,6 +1700,8 @@
     {
       "sku": "AW184S",
       "product": "Sun Cruiser Pink Lemonade 12oz 6/4pk SK",
+      "rawProduct": "Sun Cruiser Pink Lemonade 12oz 6/4pk SK",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "200670",
       "weeks": [
@@ -1731,7 +1773,9 @@
     },
     {
       "sku": "AW1857",
-      "product": "Sun Cruiser Pink Lemonade 570ml 12pk CN",
+      "product": "Sun Cruiser Pink Lemonade 1/12/19.2 oz Can",
+      "rawProduct": "Sun Cruiser Pink Lemonade 570ml 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200673",
       "weeks": [
@@ -1813,7 +1857,9 @@
     },
     {
       "sku": "AW1877",
-      "product": "Sun Cruiser Pink Lemonade 12oz 24pk SK",
+      "product": "Sun Cruiser Pink Lemonade 1/24/12 oz Can",
+      "rawProduct": "Sun Cruiser Pink Lemonade 12oz 24pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200679",
       "weeks": [
@@ -1895,7 +1941,9 @@
     },
     {
       "sku": "AW1878",
-      "product": "Sun Cruiser Pink Lemonade 12oz 3/8pk SK",
+      "product": "Sun Cruiser Vodka Pink Lemonade 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser Pink Lemonade 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200641",
       "weeks": [
@@ -1977,7 +2025,9 @@
     },
     {
       "sku": "AW1F57",
-      "product": "Sun Cruiser Blueberry Lemonade 570ml 12pk CN",
+      "product": "Sun Cruiser Blueberry Lemonade 1/12/19.2 oz Can",
+      "rawProduct": "Sun Cruiser Blueberry Lemonade 570ml 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200677",
       "weeks": [
@@ -2059,7 +2109,9 @@
     },
     {
       "sku": "AW1F78",
-      "product": "Sun Cruiser Blueberry Lemonade 12oz 3/8pk SK",
+      "product": "Sun Cruiser Blueberry Lemonade 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser Blueberry Lemonade 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2141,7 +2193,9 @@
     },
     {
       "sku": "AW1N73",
-      "product": "Sun Cruiser Sampler Variety Pack 12oz 2/12pk SK",
+      "product": "Sun Cruiser Sampler Variety Pack 2/12/12 oz Can",
+      "rawProduct": "Sun Cruiser Sampler Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200671",
       "weeks": [
@@ -2223,7 +2277,9 @@
     },
     {
       "sku": "AW1V78",
-      "product": "Sun Cruiser White Tea Variety Pack 12oz 3/8pk SK",
+      "product": "Sun Cruiser White Tea Variety 3/8/12 oz Can",
+      "rawProduct": "Sun Cruiser White Tea Variety Pack 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2305,7 +2361,9 @@
     },
     {
       "sku": "AY1178",
-      "product": "Sinless Spirits Variety Pack 12oz 3/8pk SK",
+      "product": "Sinless Vodka Variety Pack 3/8/12 oz Can",
+      "rawProduct": "Sinless Spirits Variety Pack 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2387,7 +2445,9 @@
     },
     {
       "sku": "AY124S",
-      "product": "Sinless Spirits Black Cherry 12oz 6/4pk SK",
+      "product": "Sinless Vodka Black Cherry 6/4/12 oz Can",
+      "rawProduct": "Sinless Spirits Black Cherry 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2469,7 +2529,9 @@
     },
     {
       "sku": "AY134S",
-      "product": "Sinless Spirits Cranberry 12oz 6/4pk SK",
+      "product": "Sinless Vodka Cranberry 6/4/12 oz Can",
+      "rawProduct": "Sinless Spirits Cranberry 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2551,7 +2613,9 @@
     },
     {
       "sku": "AY154S",
-      "product": "Sinless Spirits Pineapple 12oz 6/4pk SK",
+      "product": "Sinless Vodka Pineapple 6/4/12 oz Can",
+      "rawProduct": "Sinless Spirits Pineapple 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -2633,7 +2697,9 @@
     },
     {
       "sku": "DB0012",
-      "product": "Dogfish Head 60 Minute IPA 12oz 4/6pk BT",
+      "product": "Dogfish Head 60 Minute IPA 4/6/12 oz Btl",
+      "rawProduct": "Dogfish Head 60 Minute IPA 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12010",
       "weeks": [
@@ -2715,7 +2781,9 @@
     },
     {
       "sku": "DB0054",
-      "product": "Dogfish Head 60 Minute IPA 19.2oz 12pk CN",
+      "product": "Dogfish Head 60 Minute IPA 1/12/19.2 oz Can",
+      "rawProduct": "Dogfish Head 60 Minute IPA 19.2oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12014",
       "weeks": [
@@ -2797,7 +2865,9 @@
     },
     {
       "sku": "DB0060",
-      "product": "Dogfish Head 60 Minute IPA 1/6 BBL KEG",
+      "product": "Dogfish 60 Minute IPA 5.2 Gal Keg",
+      "rawProduct": "Dogfish Head 60 Minute IPA 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12012",
       "weeks": [
@@ -2879,7 +2949,9 @@
     },
     {
       "sku": "DB0063",
-      "product": "Dogfish Head 60 Minute IPA 12oz 2/12pk CN",
+      "product": "Dogfish Head 60 Minute IPA 2/12/12 oz Can",
+      "rawProduct": "Dogfish Head 60 Minute IPA 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12011",
       "weeks": [
@@ -2961,7 +3033,9 @@
     },
     {
       "sku": "DB0090",
-      "product": "Dogfish Head 60 Minute IPA 1/2 BBL KEG",
+      "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
+      "rawProduct": "Dogfish Head 60 Minute IPA 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12013",
       "weeks": [
@@ -3043,7 +3117,9 @@
     },
     {
       "sku": "DB0112",
-      "product": "Dogfish Head 90 Minute IPA 12oz 4/6pk BT",
+      "product": "Dogfish Head 90 Minute IPA 4/6/12 oz Btl",
+      "rawProduct": "Dogfish Head 90 Minute IPA 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12040",
       "weeks": [
@@ -3125,7 +3201,9 @@
     },
     {
       "sku": "DB0154",
-      "product": "Dogfish Head 90 Minute IPA 19.2oz 12pk CN",
+      "product": "Dogfish Head 90 Minute IPA 1/12/19.2 oz Can",
+      "rawProduct": "Dogfish Head 90 Minute IPA 19.2oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12048",
       "weeks": [
@@ -3207,7 +3285,9 @@
     },
     {
       "sku": "DB0466",
-      "product": "Dogfish Head SeaQuench Ale 12oz 4/6pk CN",
+      "product": "Dogfish Head Seaquench Ale 4/6/12 oz Can",
+      "rawProduct": "Dogfish Head SeaQuench Ale 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12015",
       "weeks": [
@@ -3289,7 +3369,9 @@
     },
     {
       "sku": "DB1566",
-      "product": "Dogfish Head Punkin Ale 12oz 4/6pk CN",
+      "product": "Dogfish Head Punkin Ale 4/6/12 oz Can",
+      "rawProduct": "Dogfish Head Punkin Ale 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -3372,6 +3454,8 @@
     {
       "sku": "DB7766",
       "product": "Dogfish Head Festina Peche 12oz 4/6pk CN",
+      "rawProduct": "Dogfish Head Festina Peche 12oz 4/6pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -3444,6 +3528,8 @@
     {
       "sku": "DB8N63",
       "product": "Dogfish Head Fall Variety Pack 12oz 2/12pk CN",
+      "rawProduct": "Dogfish Head Fall Variety Pack 12oz 2/12pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -3515,7 +3601,9 @@
     },
     {
       "sku": "DBAE63",
-      "product": "Dogfish Head Summer Variety Pack 12oz 2/12pk CN",
+      "product": "Dogfish Head Groovy Summer Variety 2/12/12 oz Can",
+      "rawProduct": "Dogfish Head Summer Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12137",
       "weeks": [
@@ -3597,7 +3685,9 @@
     },
     {
       "sku": "DBBG63",
-      "product": "Dogfish Head Got A Minute IPA VP  12oz 2/12pk CN",
+      "product": "Dogfish Head All IPA Variety 2/12/12 oz Can",
+      "rawProduct": "Dogfish Head Got A Minute IPA VP  12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12144",
       "weeks": [
@@ -3679,7 +3769,9 @@
     },
     {
       "sku": "DBCK54",
-      "product": "Dogfish Head x Grateful Dead Juicy Pale Ale 19.2oz 12pk CN",
+      "product": "Dogfish Head Grateful Dead Juicy Pale Ale 1/12/19.2 oz Can",
+      "rawProduct": "Dogfish Head x Grateful Dead Juicy Pale Ale 19.2oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12152",
       "weeks": [
@@ -3761,7 +3853,9 @@
     },
     {
       "sku": "DBCK60",
-      "product": "Dogfish Head x Grateful Dead Juicy Pale Ale 1/6 BBL KEG",
+      "product": "Dogfish Head Grateful Dead Juicy Pale Ale 5.2 Gal Keg",
+      "rawProduct": "Dogfish Head x Grateful Dead Juicy Pale Ale 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12151",
       "weeks": [
@@ -3843,7 +3937,9 @@
     },
     {
       "sku": "DBCK63",
-      "product": "Dogfish Head x Grateful Dead Juicy Pale Ale 12oz 2/12pk CN",
+      "product": "Dogfish Head Grateful Dead Juicy Pale Ale 2/12/12 oz Can",
+      "rawProduct": "Dogfish Head x Grateful Dead Juicy Pale Ale 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12155",
       "weeks": [
@@ -3925,7 +4021,9 @@
     },
     {
       "sku": "DBCK66",
-      "product": "Dogfish Head x Grateful Dead Juicy Pale Ale 12oz 4/6pk CN",
+      "product": "Dogfish Head Grateful Dead Juicy Pale Ale 4/6/12 oz Can",
+      "rawProduct": "Dogfish Head x Grateful Dead Juicy Pale Ale 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12149",
       "weeks": [
@@ -4007,7 +4105,9 @@
     },
     {
       "sku": "DBCK90",
-      "product": "Dogfish Head x Grateful Dead Juicy Pale Ale 1/2 BBL KEG",
+      "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
+      "rawProduct": "Dogfish Head x Grateful Dead Juicy Pale Ale 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12151",
       "weeks": [
@@ -4089,7 +4189,9 @@
     },
     {
       "sku": "DBCT63",
-      "product": "Dogfish Head 30 Minute Light IPA 12oz 2/12pk CN",
+      "product": "Dogfish Head 30 Minute Light IPA 2/12/12 oz Can",
+      "rawProduct": "Dogfish Head 30 Minute Light IPA 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12148",
       "weeks": [
@@ -4171,7 +4273,9 @@
     },
     {
       "sku": "DBCT66",
-      "product": "Dogfish Head 30 Minute Light IPA 12oz 4/6pk CN",
+      "product": "Dogfish Head 30 Minute IPA 4/6/12 oz Can",
+      "rawProduct": "Dogfish Head 30 Minute Light IPA 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "12147",
       "weeks": [
@@ -4253,7 +4357,9 @@
     },
     {
       "sku": "DBDV66",
-      "product": "Dogfish Head Beer Grateful Dead Citrus Daydream Lager 12oz 4/6pk CN",
+      "product": "Dogfish Head Citrus Day Dream 4/6/12 oz Can",
+      "rawProduct": "Dogfish Head Beer Grateful Dead Citrus Daydream Lager 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -4335,7 +4441,9 @@
     },
     {
       "sku": "DS174S",
-      "product": "Dogfish Head Spirit Strawberry Honeyberry Vodka Lemonade 12oz 6/4pk SK",
+      "product": "Dogfish Head Strawberry Honeyberry Vodka Lemonade 6/4/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Strawberry Honeyberry Vodka Lemonade 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200606",
       "weeks": [
@@ -4417,7 +4525,9 @@
     },
     {
       "sku": "DS1N4S",
-      "product": "Dogfish Head Spirit Strawberry & Key Lime Tequila Margarita 7% 12oz 6/4pk SK",
+      "product": "Dogfish Head Tequila Margarita 6/4/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Strawberry & Key Lime Tequila Margarita 7% 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -4489,7 +4599,9 @@
     },
     {
       "sku": "DS1S78",
-      "product": "Dogfish Head Spirit Tropical Cocktail Mix Pack  12oz 3/8pk SK",
+      "product": "Dogfish Head Tropical Crush Variety 3/8/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Tropical Cocktail Mix Pack  12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200615",
       "weeks": [
@@ -4571,7 +4683,9 @@
     },
     {
       "sku": "DS264S",
-      "product": "Dogfish Head Spirit Blood Orange&Mango Vodka Crush  12oz 6/4pk SK",
+      "product": "Dogfish Head Blood Orange & Mango Vodka Crush 6/4/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Blood Orange&Mango Vodka Crush  12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200610",
       "weeks": [
@@ -4653,7 +4767,9 @@
     },
     {
       "sku": "DS2C4S",
-      "product": "Dogfish Head Spirit Blueberry Lemon Vodka Lemon Drop 12oz 6/4pk SK",
+      "product": "Dogfish Head Blueberry Lemondrop 6/4/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Blueberry Lemon Vodka Lemon Drop 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -4735,7 +4851,9 @@
     },
     {
       "sku": "DS2D4S",
-      "product": "Dogfish Head Spirit Peach Mango Rum Punch 12oz 6/4pk SK",
+      "product": "Dogfish Head Peach Mango Rum Punch 6/4/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Peach Mango Rum Punch 12oz 6/4pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -4817,7 +4935,9 @@
     },
     {
       "sku": "DS3178",
-      "product": "Dogfish Head Spirit Vodka Cocktail Mix Pack 12oz 3/8pk SK",
+      "product": "Dogfish Head Bar Cart Variety 3/8/12 oz Can",
+      "rawProduct": "Dogfish Head Spirit Vodka Cocktail Mix Pack 12oz 3/8pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "200608",
       "weeks": [
@@ -4899,7 +5019,9 @@
     },
     {
       "sku": "OA1Z63",
-      "product": "Angry Orchard Fall Variety Pack 12oz 2/12pk CN",
+      "product": "Angry Orchard Thriller Variety 2/12/12 oz Can",
+      "rawProduct": "Angry Orchard Fall Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -4981,7 +5103,9 @@
     },
     {
       "sku": "OA2G53",
-      "product": "Twisted Tea Black Cherry 24oz 12pk CN",
+      "product": "Twisted Tea Black Cherry 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Black Cherry 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8378",
       "weeks": [
@@ -5063,7 +5187,9 @@
     },
     {
       "sku": "OA2N53",
-      "product": "Twisted Tea Pineapple 24oz 12pk CN",
+      "product": "Twisted Tea Pineapple 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Pineapple 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8377",
       "weeks": [
@@ -5145,7 +5271,9 @@
     },
     {
       "sku": "OA2V63",
-      "product": "Angry Orchard Summer Variety Pack 12oz 2/12pk CN",
+      "product": "Angry Orchard Summer Crush Variety Pack 2/12/12 oz Can",
+      "rawProduct": "Angry Orchard Summer Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8145",
       "weeks": [
@@ -5227,7 +5355,9 @@
     },
     {
       "sku": "OA3Z53",
-      "product": "Twisted Tea Extreme Lemon 24oz 12pk CN",
+      "product": "Twisted Tea Extreme Lemon 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Extreme Lemon 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8384",
       "weeks": [
@@ -5309,7 +5439,9 @@
     },
     {
       "sku": "OA4853",
-      "product": "Twisted Tea Extreme Blue Razz 24oz 12pk CN",
+      "product": "Twisted Tea Extreme Blue Razz 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Extreme Blue Razz 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8383",
       "weeks": [
@@ -5391,7 +5523,9 @@
     },
     {
       "sku": "OA4A12",
-      "product": "Angry Orchard Crisp Imperial 12oz 4/6pk BT",
+      "product": "Angry Orchard Crisp Imperial 4/6/12 oz Btl",
+      "rawProduct": "Angry Orchard Crisp Imperial 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8148",
       "weeks": [
@@ -5474,6 +5608,8 @@
     {
       "sku": "OA4A56",
       "product": "Angry Orchard Crisp Imperial 568ml 12pk CN",
+      "rawProduct": "Angry Orchard Crisp Imperial 568ml 12pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "8513",
       "weeks": [
@@ -5545,7 +5681,9 @@
     },
     {
       "sku": "OA4C12",
-      "product": "Angry Orchard Green Apple 12oz 4/6pk BT",
+      "product": "Angry Orchard Green Apple 4/6/12 oz Btl",
+      "rawProduct": "Angry Orchard Green Apple 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8124",
       "weeks": [
@@ -5627,7 +5765,9 @@
     },
     {
       "sku": "OA5512",
-      "product": "Angry Orchard Rose 12oz 4/6pk BT",
+      "product": "Angry Orchard Rose 4/6/12 oz Btl",
+      "rawProduct": "Angry Orchard Rose 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8134",
       "weeks": [
@@ -5709,7 +5849,9 @@
     },
     {
       "sku": "OA7812",
-      "product": "Angry Orchard Crisp Apple 12oz 4/6pk BT",
+      "product": "Angry Orchard Crisp Apple 4/6/12 oz Btl",
+      "rawProduct": "Angry Orchard Crisp Apple 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8110",
       "weeks": [
@@ -5791,7 +5933,9 @@
     },
     {
       "sku": "OA7813",
-      "product": "Angry Orchard Crisp Apple 12oz 2/12pk BT",
+      "product": "Angry Orchard Crisp Apple 2/12/12 oz Btl",
+      "rawProduct": "Angry Orchard Crisp Apple 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8111",
       "weeks": [
@@ -5874,6 +6018,8 @@
     {
       "sku": "OA7856",
       "product": "Angry Orchard Crisp Apple 568ml 12pk CN",
+      "rawProduct": "Angry Orchard Crisp Apple 568ml 12pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "8154",
       "weeks": [
@@ -5945,7 +6091,9 @@
     },
     {
       "sku": "OA7860",
-      "product": "Angry Orchard Crisp Apple 1/6 BBL KEG",
+      "product": "Angry Orchard Crisp Apple 5.2 Gal Keg",
+      "rawProduct": "Angry Orchard Crisp Apple 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8102",
       "weeks": [
@@ -6027,7 +6175,9 @@
     },
     {
       "sku": "OA7863",
-      "product": "Angry Orchard Crisp Apple 12oz 2/12pk CN",
+      "product": "Angry Orchard Crisp 2/12/12 oz Can",
+      "rawProduct": "Angry Orchard Crisp Apple 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8121",
       "weeks": [
@@ -6109,7 +6259,9 @@
     },
     {
       "sku": "OA7890",
-      "product": "Angry Orchard Crisp Apple 1/2 BBL KEG",
+      "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
+      "rawProduct": "Angry Orchard Crisp Apple 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8101",
       "weeks": [
@@ -6191,7 +6343,9 @@
     },
     {
       "sku": "OA7R53",
-      "product": "Twisted Tea Extreme Tropical Peach  24oz 12pk CN",
+      "product": "Twisted Tea Extreme Tropical Peach 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Extreme Tropical Peach  24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8390",
       "weeks": [
@@ -6273,7 +6427,9 @@
     },
     {
       "sku": "OA7T63",
-      "product": "Twisted Tea Extreme Variety Pack 12oz 2/12pk CN",
+      "product": "Twisted Tea Extreme Variety Pack 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Extreme Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8387",
       "weeks": [
@@ -6355,7 +6511,9 @@
     },
     {
       "sku": "OA9112",
-      "product": "Twisted Tea Original 12oz 4/6pk BT",
+      "product": "Twisted Tea 4/6/12 oz Btl",
+      "rawProduct": "Twisted Tea Original 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8330",
       "weeks": [
@@ -6437,7 +6595,9 @@
     },
     {
       "sku": "OA9113",
-      "product": "Twisted Tea Original 12oz 2/12pk BT",
+      "product": "Twisted Tea 2/12/12 oz Btl",
+      "rawProduct": "Twisted Tea Original 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8332",
       "weeks": [
@@ -6519,7 +6679,9 @@
     },
     {
       "sku": "OA9115",
-      "product": "Twisted Tea Original 16oz 4pk CN",
+      "product": "Twisted Tea Original 6/4/16 oz Can",
+      "rawProduct": "Twisted Tea Original 16oz 4pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8389",
       "weeks": [
@@ -6601,7 +6763,9 @@
     },
     {
       "sku": "OA9124",
-      "product": "Twisted Tea Original 16oz 24pk CN",
+      "product": "Twisted Tea 1/24/16 oz Loose Can",
+      "rawProduct": "Twisted Tea Original 16oz 24pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8370",
       "weeks": [
@@ -6683,7 +6847,9 @@
     },
     {
       "sku": "OA9153",
-      "product": "Twisted Tea Original 24oz 12pk CN",
+      "product": "Twisted Tea 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Original 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8340",
       "weeks": [
@@ -6765,7 +6931,9 @@
     },
     {
       "sku": "OA9160",
-      "product": "Twisted Tea Original 1/6 BBL KEG",
+      "product": "Twisted Tea Orig 5.2 Gal Keg",
+      "rawProduct": "Twisted Tea Original 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8326",
       "weeks": [
@@ -6847,7 +7015,9 @@
     },
     {
       "sku": "OA9163",
-      "product": "Twisted Tea Original 12oz 2/12pk CN",
+      "product": "Twisted Tea 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Original 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8333",
       "weeks": [
@@ -6929,7 +7099,9 @@
     },
     {
       "sku": "OA9170",
-      "product": "Twisted Tea Original 5L BiB",
+      "product": "Twisted Tea Original Cardboard Bag n' Box 4/5 L Btl",
+      "rawProduct": "Twisted Tea Original 5L BiB",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8339",
       "weeks": [
@@ -7011,7 +7183,9 @@
     },
     {
       "sku": "OA9190",
-      "product": "Twisted Tea Original 1/2 BBL KEG",
+      "product": "Twisted Tea Original 15.5 Gal Keg",
+      "rawProduct": "Twisted Tea Original 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8371",
       "weeks": [
@@ -7093,7 +7267,9 @@
     },
     {
       "sku": "OA9253",
-      "product": "Twisted Tea Raspberry 24oz 12pk CN",
+      "product": "Twisted Tea Raspberry 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Raspberry 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8348",
       "weeks": [
@@ -7175,7 +7351,9 @@
     },
     {
       "sku": "OA9312",
-      "product": "Twisted Tea Half Half 12oz 4/6pk BT",
+      "product": "Twisted Tea Half & Half 4/6/12 oz Btl",
+      "rawProduct": "Twisted Tea Half Half 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8336",
       "weeks": [
@@ -7257,7 +7435,9 @@
     },
     {
       "sku": "OA9353",
-      "product": "Twisted Tea Half Half 24oz 12pk CN",
+      "product": "Twisted Tea Half & Half 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Half Half 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8329",
       "weeks": [
@@ -7339,7 +7519,9 @@
     },
     {
       "sku": "OA9363",
-      "product": "Twisted Tea Half Half 12oz 2/12pk CN",
+      "product": "Twisted Tea Half & Half 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Half Half 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8349",
       "weeks": [
@@ -7421,7 +7603,9 @@
     },
     {
       "sku": "OA9433",
-      "product": "Twisted Tea Party Pack 12oz 24pk CN",
+      "product": "Twisted Tea Party Pack Variety 1/24/12 oz Loose Can",
+      "rawProduct": "Twisted Tea Party Pack 12oz 24pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8375",
       "weeks": [
@@ -7503,7 +7687,9 @@
     },
     {
       "sku": "OA9463",
-      "product": "Twisted Tea Party Pack 12oz 2/12pk CN",
+      "product": "Twisted Tea Party Pack 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Party Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8341",
       "weeks": [
@@ -7585,7 +7771,9 @@
     },
     {
       "sku": "OA9553",
-      "product": "Twisted Tea Peach 24oz 12pk CN",
+      "product": "Twisted Tea Peach 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Peach 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8360",
       "weeks": [
@@ -7667,7 +7855,9 @@
     },
     {
       "sku": "OA9712",
-      "product": "Twisted Tea Light 12oz 4/6pk BT",
+      "product": "Twisted Tea Light 4/6/12 oz Btl",
+      "rawProduct": "Twisted Tea Light 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8343",
       "weeks": [
@@ -7749,7 +7939,9 @@
     },
     {
       "sku": "OA9715",
-      "product": "Twisted Tea Light 16oz 4pk CN",
+      "product": "Twisted Tea Light 6/4/16 oz Can",
+      "rawProduct": "Twisted Tea Light 16oz 4pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8388",
       "weeks": [
@@ -7831,7 +8023,9 @@
     },
     {
       "sku": "OA9753",
-      "product": "Twisted Tea Light 24oz 12pk CN",
+      "product": "Twisted Tea Light 1/12/24 oz Can",
+      "rawProduct": "Twisted Tea Light 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8344",
       "weeks": [
@@ -7913,7 +8107,9 @@
     },
     {
       "sku": "OA9763",
-      "product": "Twisted Tea Light 12oz 2/12pk CN",
+      "product": "Twisted Tea Light 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Light 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8345",
       "weeks": [
@@ -7995,7 +8191,9 @@
     },
     {
       "sku": "OABM63",
-      "product": "Twisted Tea Light Party Pack 12oz 2/12pk CN",
+      "product": "Twisted Tea Light Party Pack 2/12/12 oz Can",
+      "rawProduct": "Twisted Tea Light Party Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8373",
       "weeks": [
@@ -8077,7 +8275,9 @@
     },
     {
       "sku": "PD0824",
-      "product": "Truly Wild Berry 16oz 24pk CN",
+      "product": "Truly Hard Seltzer Wild Berry 1/24/16 oz",
+      "rawProduct": "Truly Wild Berry 16oz 24pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -8159,7 +8359,9 @@
     },
     {
       "sku": "PD0853",
-      "product": "Truly Wild Berry 24oz 12pk CN",
+      "product": "Truly Hard Seltzer Wild Berry 1/12/24 oz Can",
+      "rawProduct": "Truly Wild Berry 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8677",
       "weeks": [
@@ -8241,7 +8443,9 @@
     },
     {
       "sku": "PD0860",
-      "product": "Truly Wild Berry 1/6 BBL KEG",
+      "product": "Truly Hard Seltzer Wild Berry 5.2 Gal Keg",
+      "rawProduct": "Truly Wild Berry 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8671",
       "weeks": [
@@ -8323,7 +8527,9 @@
     },
     {
       "sku": "PD0861",
-      "product": "Truly Wild Berry 12oz 4/6pk SK",
+      "product": "Truly Hard Seltzer Wild Berry 4/6/12 oz Can",
+      "rawProduct": "Truly Wild Berry 12oz 4/6pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8691",
       "weeks": [
@@ -8405,7 +8611,9 @@
     },
     {
       "sku": "PD0890",
-      "product": "Truly Wild Berry 1/2 BBL KEG",
+      "product": "Truly Hard Seltzer Wild Berry Keg 15.5 Gal Keg",
+      "rawProduct": "Truly Wild Berry 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8672",
       "weeks": [
@@ -8487,7 +8695,9 @@
     },
     {
       "sku": "PD1073",
-      "product": "Truly Citrus Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Citrus Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Citrus Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8684",
       "weeks": [
@@ -8569,7 +8779,9 @@
     },
     {
       "sku": "PD1173",
-      "product": "Truly Berry Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Berry Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Berry Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8692",
       "weeks": [
@@ -8651,7 +8863,9 @@
     },
     {
       "sku": "PD1653",
-      "product": "Truly Pineapple 24oz 12pk CN",
+      "product": "Truly Hard Seltzer Pineapple 1/12/24 oz Can",
+      "rawProduct": "Truly Pineapple 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8676",
       "weeks": [
@@ -8733,7 +8947,9 @@
     },
     {
       "sku": "PD2573",
-      "product": "Truly Lemonade Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Lemonade Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Lemonade Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8674",
       "weeks": [
@@ -8815,7 +9031,9 @@
     },
     {
       "sku": "PD2F73",
-      "product": "Truly Party Pack VP 12oz 2/12pk SK",
+      "product": "Truly Party 2/12/12 oz Can",
+      "rawProduct": "Truly Party Pack VP 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8648",
       "weeks": [
@@ -8897,7 +9115,9 @@
     },
     {
       "sku": "PD2R73",
-      "product": "Truly Unruly Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Unruly Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Unruly Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8647",
       "weeks": [
@@ -8979,7 +9199,9 @@
     },
     {
       "sku": "PD2S53",
-      "product": "Truly Unruly Tropical Twist 24oz 12pk CN",
+      "product": "Truly Hard Seltzer Unruly Tropical Twist 1/12/24 oz Can",
+      "rawProduct": "Truly Unruly Tropical Twist 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -9061,7 +9283,9 @@
     },
     {
       "sku": "PD4253",
-      "product": "Truly Citrus Squeeze 24oz 12pk CN",
+      "product": "Truly Hard Seltzer Citrus Squeeze 1/12/24 oz Can",
+      "rawProduct": "Truly Citrus Squeeze 24oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8649",
       "weeks": [
@@ -9143,7 +9367,9 @@
     },
     {
       "sku": "PD4473",
-      "product": "Truly Punch Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Fruit Punch Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Punch Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8666",
       "weeks": [
@@ -9225,7 +9451,9 @@
     },
     {
       "sku": "PD4G73",
-      "product": "Truly Unruly Lemonade Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Unruly Lemonade Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Unruly Lemonade Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8651",
       "weeks": [
@@ -9307,7 +9535,9 @@
     },
     {
       "sku": "PD5673",
-      "product": "Truly Fall LTO Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Celebrations Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Fall LTO Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -9389,7 +9619,9 @@
     },
     {
       "sku": "PD5G73",
-      "product": "Truly Paradise Variety Pack  12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Paradise Pack 2/12/12 oz Can",
+      "rawProduct": "Truly Paradise Variety Pack  12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -9472,6 +9704,8 @@
     {
       "sku": "PD5Z76",
       "product": "Truly Daydreamer Variety Pack 12oz 24pk SK",
+      "rawProduct": "Truly Daydreamer Variety Pack 12oz 24pk SK",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -9543,7 +9777,9 @@
     },
     {
       "sku": "PD7435",
-      "product": "Truly Summer Variety Pack 12oz 30pk SK",
+      "product": "Truly Red White & Tru Variety 1/30/12 oz Can",
+      "rawProduct": "Truly Summer Variety Pack 12oz 30pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8668",
       "weeks": [
@@ -9625,7 +9861,9 @@
     },
     {
       "sku": "PD7473",
-      "product": "Truly Summer Variety Pack 12oz 2/12pk SK",
+      "product": "Truly Hard Seltzer Poolside Variety 2/12/12 oz Can",
+      "rawProduct": "Truly Summer Variety Pack 12oz 2/12pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "8664",
       "weeks": [
@@ -9707,7 +9945,9 @@
     },
     {
       "sku": "PD7476",
-      "product": "Truly Summer Variety Pack 12oz 24pk SK",
+      "product": "Truly Star Squad Summer Variety 1/24/12 oz Can",
+      "rawProduct": "Truly Summer Variety Pack 12oz 24pk SK",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -9779,7 +10019,9 @@
     },
     {
       "sku": "SA1012",
-      "product": "Samuel Adams Boston Lager 12oz 4/6pk BT",
+      "product": "Sam Adams Boston Lager 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Boston Lager 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3818",
       "weeks": [
@@ -9861,7 +10103,9 @@
     },
     {
       "sku": "SA1013",
-      "product": "Samuel Adams Boston Lager 12oz 2/12pk BT",
+      "product": "Sam Adams Boston Lager 2/12/12 oz Btl",
+      "rawProduct": "Samuel Adams Boston Lager 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3817",
       "weeks": [
@@ -9943,7 +10187,9 @@
     },
     {
       "sku": "SA1060",
-      "product": "Samuel Adams Boston Lager 1/6 BBL KEG",
+      "product": "Sam Adams Boston Lager 5.2 Gal Keg",
+      "rawProduct": "Samuel Adams Boston Lager 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3802",
       "weeks": [
@@ -10025,7 +10271,9 @@
     },
     {
       "sku": "SA1063",
-      "product": "Samuel Adams Boston Lager 12oz 2/12pk CN",
+      "product": "Sam Adams Boston Lager 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Boston Lager 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3829",
       "weeks": [
@@ -10107,7 +10355,9 @@
     },
     {
       "sku": "SA1090",
-      "product": "Samuel Adams Boston Lager 1/2 BBL KEG",
+      "product": "Sam Adams Boston Lager 15.5 Gal Keg",
+      "rawProduct": "Samuel Adams Boston Lager 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3804",
       "weeks": [
@@ -10189,7 +10439,9 @@
     },
     {
       "sku": "SA1312",
-      "product": "Samuel Adams Octoberfest 12oz 4/6pk BT",
+      "product": "Sam Adams Octoberfest 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Octoberfest 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3919",
       "weeks": [
@@ -10271,7 +10523,9 @@
     },
     {
       "sku": "SA1313",
-      "product": "Samuel Adams Octoberfest 12oz 2/12pk BT",
+      "product": "Sam Adams Octoberfest 2/12/12 oz Btl",
+      "rawProduct": "Samuel Adams Octoberfest 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3918",
       "weeks": [
@@ -10353,7 +10607,9 @@
     },
     {
       "sku": "SA1328",
-      "product": "Samuel Adams Octoberfest 12oz 28pk BT",
+      "product": "Sam Adams Octoberfest 1/28/12oz Btl",
+      "rawProduct": "Samuel Adams Octoberfest 12oz 28pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3923",
       "weeks": [
@@ -10425,7 +10681,9 @@
     },
     {
       "sku": "SA1360",
-      "product": "Samuel Adams Octoberfest 1/6 BBL KEG",
+      "product": "Sam Adams Octoberfest 5.2 Gal Keg",
+      "rawProduct": "Samuel Adams Octoberfest 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3862",
       "weeks": [
@@ -10497,7 +10755,9 @@
     },
     {
       "sku": "SA1363",
-      "product": "Samuel Adams Octoberfest 12oz 2/12pk CN",
+      "product": "Sam Adams Octoberfest 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Octoberfest 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3921",
       "weeks": [
@@ -10579,7 +10839,9 @@
     },
     {
       "sku": "SA1390",
-      "product": "Samuel Adams Octoberfest 1/2 BBL KEG",
+      "product": "Sam Adams Octoberfest 15.5 Gal Keg",
+      "rawProduct": "Samuel Adams Octoberfest 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3813",
       "weeks": [
@@ -10651,7 +10913,9 @@
     },
     {
       "sku": "SA2712",
-      "product": "Samuel Adams Cherry Wheat 12oz 4/6pk BT",
+      "product": "Sam Adams Cherry Wheat 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Cherry Wheat 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3821",
       "weeks": [
@@ -10733,7 +10997,9 @@
     },
     {
       "sku": "SA2790",
-      "product": "Samuel Adams Cherry Wheat 1/2 BBL KEG",
+      "product": "Sam Adams Cherry Wheat 15.5 Gal Keg",
+      "rawProduct": "Samuel Adams Cherry Wheat 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3812",
       "weeks": [
@@ -10815,7 +11081,9 @@
     },
     {
       "sku": "SA2K12",
-      "product": "Samuel Adams Porch Rocker 12oz 4/6pk BT",
+      "product": "Sam Adams Porch Rocker 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Porch Rocker 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3907",
       "weeks": [
@@ -10897,7 +11165,9 @@
     },
     {
       "sku": "SA2K13",
-      "product": "Samuel Adams Porch Rocker 12oz 2/12pk BT",
+      "product": "Sam Adams Porch Rocker 2/12/12 oz Btl",
+      "rawProduct": "Samuel Adams Porch Rocker 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3908",
       "weeks": [
@@ -10979,7 +11249,9 @@
     },
     {
       "sku": "SA2K63",
-      "product": "Samuel Adams Porch Rocker 12oz 2/12pk CN",
+      "product": "Sam Adams Porch Rocker 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Porch Rocker 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4021",
       "weeks": [
@@ -11061,7 +11333,9 @@
     },
     {
       "sku": "SA3512",
-      "product": "Samuel Adams Summer Ale 12oz 4/6pk BT",
+      "product": "Sam Adams Summer Ale 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Summer Ale 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3844",
       "weeks": [
@@ -11143,7 +11417,9 @@
     },
     {
       "sku": "SA3513",
-      "product": "Samuel Adams Summer Ale 12oz 2/12pk BT",
+      "product": "Sam Adams Summer Ale 2/12/12 oz Btl",
+      "rawProduct": "Samuel Adams Summer Ale 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3843",
       "weeks": [
@@ -11225,7 +11501,9 @@
     },
     {
       "sku": "SA3560",
-      "product": "Samuel Adams Summer Ale 1/6 BBL KEG",
+      "product": "Sam Adams Summer Ale 5.2 Gal Keg",
+      "rawProduct": "Samuel Adams Summer Ale 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3860",
       "weeks": [
@@ -11307,7 +11585,9 @@
     },
     {
       "sku": "SA3563",
-      "product": "Samuel Adams Summer Ale 12oz 2/12pk CN",
+      "product": "Sam Adams Summer Ale 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Summer Ale 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3842",
       "weeks": [
@@ -11389,7 +11669,9 @@
     },
     {
       "sku": "SA3590",
-      "product": "Samuel Adams Summer Ale 1/2 BBL KEG",
+      "product": "Sam Adams Summer Ale 15.5 Gal Keg",
+      "rawProduct": "Samuel Adams Summer Ale 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3807",
       "weeks": [
@@ -11471,7 +11753,9 @@
     },
     {
       "sku": "SA7X33",
-      "product": "Samuel Adams Summer Variety Pack 12oz 24pk CN",
+      "product": "Sam Adams Star Spangled Summer Variety 1/24/12 oz Can",
+      "rawProduct": "Samuel Adams Summer Variety Pack 12oz 24pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4028",
       "weeks": [
@@ -11553,7 +11837,9 @@
     },
     {
       "sku": "SA7X63",
-      "product": "Samuel Adams Summer Variety Pack 12oz 2/12pk CN",
+      "product": "Sam Adams Star Spangled Summer Variety 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Summer Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4016",
       "weeks": [
@@ -11635,7 +11921,9 @@
     },
     {
       "sku": "SA8Z66",
-      "product": "Samuel Adams Golden NA 12oz 4/6pk CN",
+      "product": "Sam Adams Golden Non-Alcoholic 4/6/12 oz Can",
+      "rawProduct": "Samuel Adams Golden NA 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4027",
       "weeks": [
@@ -11718,6 +12006,8 @@
     {
       "sku": "SACK33",
       "product": "Samuel Adams Fall Variety Pack 12oz 24pk CN",
+      "rawProduct": "Samuel Adams Fall Variety Pack 12oz 24pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -11789,7 +12079,9 @@
     },
     {
       "sku": "SACK63",
-      "product": "Samuel Adams Fall Variety Pack 12oz 2/12pk CN",
+      "product": "Sam Adams Fall Legends Variety 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Fall Variety Pack 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3854",
       "weeks": [
@@ -11871,7 +12163,9 @@
     },
     {
       "sku": "SAT960",
-      "product": "Samuel Adams Juicy IPA 1/6 BBL KEG",
+      "product": "Sam Adams Juicy 5.2 Gal Keg",
+      "rawProduct": "Samuel Adams Juicy IPA 1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4033",
       "weeks": [
@@ -11953,7 +12247,9 @@
     },
     {
       "sku": "SAT963",
-      "product": "Samuel Adams Juicy IPA 12oz 2/12pk CN",
+      "product": "Sam Adams Juicy IPA 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Juicy IPA 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4031",
       "weeks": [
@@ -12035,7 +12331,9 @@
     },
     {
       "sku": "SAT966",
-      "product": "Samuel Adams Juicy IPA 12oz 4/6pk CN",
+      "product": "Sam Adams Juicy IPA 4/6/12 oz Can",
+      "rawProduct": "Samuel Adams Juicy IPA 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4030",
       "weeks": [
@@ -12117,7 +12415,9 @@
     },
     {
       "sku": "SAT990",
-      "product": "Samuel Adams Juicy IPA 1/2 BBL KEG",
+      "product": "Sam Adams Juicy IPA 15.5 Gal Keg",
+      "rawProduct": "Samuel Adams Juicy IPA 1/2 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4032",
       "weeks": [
@@ -12199,7 +12499,9 @@
     },
     {
       "sku": "SAVP12",
-      "product": "Samuel Adams Jack-O Pumpkin Ale 12oz 4/6pk BT",
+      "product": "Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams Jack-O Pumpkin Ale 12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3953",
       "weeks": [
@@ -12281,7 +12583,9 @@
     },
     {
       "sku": "SAVP13",
-      "product": "Samuel Adams Jack-O Pumpkin Ale 12oz 2/12pk BT",
+      "product": "Sam Adams Jack-O Pumpkin Ale 2/12/12 oz Btl",
+      "rawProduct": "Samuel Adams Jack-O Pumpkin Ale 12oz 2/12pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "3954",
       "weeks": [
@@ -12353,7 +12657,9 @@
     },
     {
       "sku": "SAVP63",
-      "product": "Samuel Adams Jack-O Pumpkin Ale 12oz 2/12pk CN",
+      "product": "Sam Adams Jack-O Pumpkin 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams Jack-O Pumpkin Ale 12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "",
       "weeks": [
@@ -12426,6 +12732,8 @@
     {
       "sku": "SAWC63",
       "product": "Samuel Adams Non-Alcoholic Hazy IPA 12oz 2/12pk CN",
+      "rawProduct": "Samuel Adams Non-Alcoholic Hazy IPA 12oz 2/12pk CN",
+      "cleanName": false,
       "distributor": "076KOH",
       "customerSku": "4026",
       "weeks": [
@@ -12497,7 +12805,9 @@
     },
     {
       "sku": "SAWC66",
-      "product": "Samuel Adams Non-Alcoholic Hazy IPA 12oz 4/6pk CN",
+      "product": "Sam Adams Just the Haze NA 4/6/12 oz Can",
+      "rawProduct": "Samuel Adams Non-Alcoholic Hazy IPA 12oz 4/6pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4012",
       "weeks": [
@@ -12579,7 +12889,9 @@
     },
     {
       "sku": "SAX712",
-      "product": "Samuel Adams American Light  12oz 4/6pk BT",
+      "product": "Sam Adams American Light 4/6/12 oz Btl",
+      "rawProduct": "Samuel Adams American Light  12oz 4/6pk BT",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4039",
       "weeks": [
@@ -12661,7 +12973,9 @@
     },
     {
       "sku": "SAX760",
-      "product": "Samuel Adams American Light  1/6 BBL KEG",
+      "product": "Sam Adams American Light 5.2 Gal Keg",
+      "rawProduct": "Samuel Adams American Light  1/6 BBL KEG",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4043",
       "weeks": [
@@ -12743,7 +13057,9 @@
     },
     {
       "sku": "SAX763",
-      "product": "Samuel Adams American Light  12oz 2/12pk CN",
+      "product": "Sam Adams American Light 2/12/12 oz Can",
+      "rawProduct": "Samuel Adams American Light  12oz 2/12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4040",
       "weeks": [
@@ -12825,7 +13141,9 @@
     },
     {
       "sku": "SB5M54",
-      "product": "Samuel Adams High Alc Cherry Bomb 19.2oz 12pk CN",
+      "product": "Sam Adams Cherry Bomb 1/12/19.2 oz Can",
+      "rawProduct": "Samuel Adams High Alc Cherry Bomb 19.2oz 12pk CN",
+      "cleanName": true,
       "distributor": "076KOH",
       "customerSku": "4054",
       "weeks": [
@@ -12909,7 +13227,7 @@
   "orphanInventory": [
     {
       "sku": "OA7854",
-      "product": "8154 Angry Orchard Crisp Apple 1/12/19.2 oz Can",
+      "product": "Angry Orchard Crisp Apple 1/12/19.2 oz Can",
       "brandFamily": "Angry Orchard",
       "package": "1/12/19.2oz",
       "available": 278.0,
@@ -12918,7 +13236,7 @@
     },
     {
       "sku": "734889",
-      "product": "200670 Sun Cruiser Pink Lemonade 6/4/12 oz Can",
+      "product": "Sun Cruiser Pink Lemonade 6/4/12 oz Can",
       "brandFamily": "Sun Cruiser",
       "package": "6/4/12oz Can",
       "available": 107.0,
@@ -12927,7 +13245,7 @@
     },
     {
       "sku": "28831",
-      "product": "8153 Angry Orchard Crisp Imperial 1/12/19.2 oz Can",
+      "product": "Angry Orchard Crisp Imperial 1/12/19.2 oz Can",
       "brandFamily": "Angry Orchard",
       "package": "1/12/19.2 oz Can",
       "available": 73.0,
@@ -12936,7 +13254,7 @@
     },
     {
       "sku": "DB7712",
-      "product": "12059 Dogfish Head Festina Peche 4/6/12 oz Can",
+      "product": "Dogfish Head Festina Peche 4/6/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "4/6/12oz Can",
       "available": 22.0,
@@ -12945,7 +13263,7 @@
     },
     {
       "sku": "OA8653",
-      "product": "8351 Twisted Tea Mango 1/12/24 oz Can",
+      "product": "Twisted Tea Mango 1/12/24 oz Can",
       "brandFamily": "Twisted Tea",
       "package": "1/12/24oz Can",
       "available": 0.0,
@@ -12954,7 +13272,7 @@
     },
     {
       "sku": "OA9212",
-      "product": "8334 Twisted Tea Raspberry 4/6/12 oz Btl",
+      "product": "Twisted Tea Raspberry 4/6/12 oz Btl",
       "brandFamily": "Twisted Tea",
       "package": "4/6/12oz NR",
       "available": 0.0,
@@ -12963,7 +13281,7 @@
     },
     {
       "sku": "OA9512",
-      "product": "8342 Twisted Tea Peach 4/6/12 oz Btl",
+      "product": "Twisted Tea Peach 4/6/12 oz Btl",
       "brandFamily": "Twisted Tea",
       "package": "4/6/12oz NR",
       "available": 0.0,
@@ -12972,7 +13290,7 @@
     },
     {
       "sku": "AW1777AT",
-      "product": "200640 Sun Cruiser Vodka Lemonade 1/24/12 oz Loose Can",
+      "product": "Sun Cruiser Vodka Lemonade 1/24/12 oz Loose Can",
       "brandFamily": "Sun Cruiser",
       "package": "1/24/12oz Can",
       "available": 214.0,
@@ -12981,7 +13299,7 @@
     },
     {
       "sku": "DS1M4S",
-      "product": "200619 Dogfish Head Tequila Margarita Strawberry Lime 6/4/12 oz Can",
+      "product": "Dogfish Head Tequila Margarita Strawberry Lime 6/4/12 oz Can",
       "brandFamily": "Dogfish Head Spirits",
       "package": "6/4/12oz Can",
       "available": 456.0,
@@ -12990,7 +13308,7 @@
     },
     {
       "sku": "25728",
-      "product": "4026 Sam Adams Just the Haze NA 2/12/12 oz Can",
+      "product": "Sam Adams Just the Haze NA 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 10.0,
@@ -12999,7 +13317,7 @@
     },
     {
       "sku": "OA9313",
-      "product": "8337 Twisted Tea Half & Half 2/12/12 oz Btl",
+      "product": "Twisted Tea Half & Half 2/12/12 oz Btl",
       "brandFamily": "Twisted Tea",
       "package": "2/12/12oz NR",
       "available": 0.0,
@@ -13008,7 +13326,7 @@
     },
     {
       "sku": "SAU112A1",
-      "product": "3832 Sam Adams Breakaway Blonde Ale 4/6/12 oz Btl",
+      "product": "Sam Adams Breakaway Blonde Ale 4/6/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "4/6/12oz NR",
       "available": -1.0,
@@ -13017,7 +13335,7 @@
     },
     {
       "sku": "DB3414",
-      "product": "12077 Dogfish Head 120 Minute IPA 6/4/12 oz Btl",
+      "product": "Dogfish Head 120 Minute IPA 6/4/12 oz Btl",
       "brandFamily": "Dogfish Head Beer",
       "package": "6/4/12oz NR",
       "available": 41.0,
@@ -13026,7 +13344,7 @@
     },
     {
       "sku": "OA2U53AT",
-      "product": "8323 Twisted Tea Mangonada 1/12/24 oz Can",
+      "product": "Twisted Tea Mangonada 1/12/24 oz Can",
       "brandFamily": "Twisted Tea",
       "package": "1/12/24oz Can",
       "available": 63.0,
@@ -13035,7 +13353,7 @@
     },
     {
       "sku": "1701A",
-      "product": "12062 Dogfish Head Worldwide Stout 6/4/12 oz Btl",
+      "product": "Dogfish Head Worldwide Stout 6/4/12 oz Btl",
       "brandFamily": "Dogfish Head Beer",
       "package": "6/4/12oz NR",
       "available": 83.0,
@@ -13044,7 +13362,7 @@
     },
     {
       "sku": "DS1G4S",
-      "product": "200617 Dogfish Head Rum Mai Tai Pineapple Orange 6/4/12 oz Can",
+      "product": "Dogfish Head Rum Mai Tai Pineapple Orange 6/4/12 oz Can",
       "brandFamily": "Dogfish Head Spirits",
       "package": "6/4/12oz Can",
       "available": 0.0,
@@ -13053,7 +13371,7 @@
     },
     {
       "sku": "AW1253",
-      "product": "200639 Sun Cruiser Lemonade Iced Tea 1/12/24 oz Can",
+      "product": "Sun Cruiser Lemonade Iced Tea 1/12/24 oz Can",
       "brandFamily": "Sun Cruiser",
       "package": "1/12/24oz Can",
       "available": 18.0,
@@ -13062,7 +13380,7 @@
     },
     {
       "sku": "DBDR66",
-      "product": "12157 Dogfish Head Czech Spresso 4/6/12 oz Can",
+      "product": "Dogfish Head Czech Spresso 4/6/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "4/6/12oz Can",
       "available": 16.0,
@@ -13071,7 +13389,7 @@
     },
     {
       "sku": "SA4H60",
-      "product": "3866 Sam Adams Cold Snap 5.2 Gal Keg",
+      "product": "Sam Adams Cold Snap 5.2 Gal Keg",
       "brandFamily": "Samuel Adams",
       "package": "1/6 BBL Keg (5.2 Gal)",
       "available": 1.0,
@@ -13080,7 +13398,7 @@
     },
     {
       "sku": "AW187M",
-      "product": "200642 Sun Cruiser Vodka Pink Lemonade 1/12/24 oz Can",
+      "product": "Sun Cruiser Vodka Pink Lemonade 1/12/24 oz Can",
       "brandFamily": "Sun Cruiser",
       "package": "1/12/24oz Can",
       "available": 13.0,
@@ -13089,7 +13407,7 @@
     },
     {
       "sku": "DB6C63",
-      "product": "12130 Dogfish Head Off-Centered Fall Variety 2/12/12 oz Can",
+      "product": "Dogfish Head Off-Centered Fall Variety 2/12/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13098,7 +13416,7 @@
     },
     {
       "sku": "SA1413",
-      "product": "3827 Sam Adams Winter Lager 2/12/12 oz Btl",
+      "product": "Sam Adams Winter Lager 2/12/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz NR",
       "available": 0.0,
@@ -13107,7 +13425,7 @@
     },
     {
       "sku": "SA1412",
-      "product": "3826 Sam Adams Winter Lager 4/6/12 oz Btl",
+      "product": "Sam Adams Winter Lager 4/6/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "4/6/12oz NR",
       "available": 0.0,
@@ -13116,7 +13434,7 @@
     },
     {
       "sku": "OA7S24",
-      "product": "8391 Twisted Tea Extreme Long Island Iced Tea 1/24/16 oz Can",
+      "product": "Twisted Tea Extreme Long Island Iced Tea 1/24/16 oz Can",
       "brandFamily": "Twisted Tea",
       "package": "1/24/16.00 oz",
       "available": 108.0,
@@ -13125,7 +13443,7 @@
     },
     {
       "sku": "OA1S63",
-      "product": "8151 Angry orchard The Knotty Bunch Variety 2/12/12 oz Can",
+      "product": "Angry orchard The Knotty Bunch Variety 2/12/12 oz Can",
       "brandFamily": "Angry Orchard",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13134,7 +13452,7 @@
     },
     {
       "sku": "SA3263A1",
-      "product": "4035 Sam Adams Spring Favorites Variety 2/12/12 oz Can",
+      "product": "Sam Adams Spring Favorites Variety 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13143,7 +13461,7 @@
     },
     {
       "sku": "SA2X63",
-      "product": "4049 Sam Adams Winter White Ale 2/12/12 oz Can",
+      "product": "Sam Adams Winter White Ale 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13152,7 +13470,7 @@
     },
     {
       "sku": "SA2X13",
-      "product": "4048 Sam Adams Winter White Ale 2/12/12 oz Btl",
+      "product": "Sam Adams Winter White Ale 2/12/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz NR",
       "available": 0.0,
@@ -13161,7 +13479,7 @@
     },
     {
       "sku": "DB0566",
-      "product": "12020 Dogfish Head Liquid Truth Serum 4/6/12 oz Can",
+      "product": "Dogfish Head Liquid Truth Serum 4/6/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13170,7 +13488,7 @@
     },
     {
       "sku": "SA4H90",
-      "product": "3808 Sam Adams Cold Snap 15.5 Gal Keg",
+      "product": "Sam Adams Cold Snap 15.5 Gal Keg",
       "brandFamily": "Samuel Adams",
       "package": "15.5 Gal Keg",
       "available": 3.0,
@@ -13179,7 +13497,7 @@
     },
     {
       "sku": "SA3063",
-      "product": "4013 Sam Adams Winter Break Variety 2/12/12 oz Can",
+      "product": "Sam Adams Winter Break Variety 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13188,7 +13506,7 @@
     },
     {
       "sku": "OA7866",
-      "product": "8142 Angry Orchard Crisp Apple 4/6/12 oz Can",
+      "product": "Angry Orchard Crisp Apple 4/6/12 oz Can",
       "brandFamily": "Angry Orchard",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13197,7 +13515,7 @@
     },
     {
       "sku": "OA3U66",
-      "product": "8152 Angry Orchard Crisp Light 4/6/12 oz Can",
+      "product": "Angry Orchard Crisp Light 4/6/12 oz Can",
       "brandFamily": "Angry Orchard",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13206,7 +13524,7 @@
     },
     {
       "sku": "DB0463",
-      "product": "12019 Dogfish Head Seaquench Ale 2/12/12 oz Can",
+      "product": "Dogfish Head Seaquench Ale 2/12/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "2/12/12oz Can",
       "available": 1.0,
@@ -13215,7 +13533,7 @@
     },
     {
       "sku": "DBBN6641",
-      "product": "12069 Dogfish Head Covered in Nuggs 4/6/12 oz Can",
+      "product": "Dogfish Head Covered in Nuggs 4/6/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13224,7 +13542,7 @@
     },
     {
       "sku": "DBBF66",
-      "product": "12153 Dogfish Head Tropical Squall 4/6/12 oz Can",
+      "product": "Dogfish Head Tropical Squall 4/6/12 oz Can",
       "brandFamily": "Dogfish Head Beer",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13233,7 +13551,7 @@
     },
     {
       "sku": "DS0319",
-      "product": "200600 Dogfish Head Analog Vodka 1/12/750 mL Btl",
+      "product": "Dogfish Head Analog Vodka 750 ML Bottle",
       "brandFamily": "Dogfish Head Spirits",
       "package": "1/12/750 mL (BO)",
       "available": 270.0,
@@ -13242,7 +13560,7 @@
     },
     {
       "sku": "SAX790",
-      "product": "4042 Sam Adams American Light 15.5 Gal Keg",
+      "product": "Sam Adams American Light 15.5 Gal Keg",
       "brandFamily": "Samuel Adams",
       "package": "15.5 Gal Keg",
       "available": 0.0,
@@ -13251,7 +13569,7 @@
     },
     {
       "sku": "SA1463",
-      "product": "3944 Sam Adams Winter Lager 2/12/12 oz Can",
+      "product": "Sam Adams Winter Lager 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 13.0,
@@ -13260,7 +13578,7 @@
     },
     {
       "sku": "SA4H63",
-      "product": "3952 Sam Adams Cold Snap 2/12/12 oz Can",
+      "product": "Sam Adams Cold Snap 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 41.0,
@@ -13269,7 +13587,7 @@
     },
     {
       "sku": "SAUA163A1",
-      "product": "4037 Sam Adams Breakaway Blonde Ale 2/12/12 oz Can",
+      "product": "Sam Adams Breakaway Blonde Ale 2/12/12 oz Can",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz Can",
       "available": 9.0,
@@ -13278,7 +13596,7 @@
     },
     {
       "sku": "SA4H13",
-      "product": "3841 Sam Adams Cold Snap 2/12/12 oz Btl",
+      "product": "Sam Adams Cold Snap 2/12/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "2/12/12oz NR",
       "available": 0.0,
@@ -13287,7 +13605,7 @@
     },
     {
       "sku": "SA2X12",
-      "product": "4047 Sam Adams Winter White Ale 4/6/12 oz Btl",
+      "product": "Sam Adams Winter White Ale 4/6/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13296,7 +13614,7 @@
     },
     {
       "sku": "SA4H12",
-      "product": "3840 Sam Adams Cold Snap 4/6/12 oz Btl",
+      "product": "Sam Adams Cold Snap 4/6/12 oz Btl",
       "brandFamily": "Samuel Adams",
       "package": "4/6/12oz NR",
       "available": 1.0,
@@ -13305,7 +13623,7 @@
     },
     {
       "sku": "AW1153",
-      "product": "200638 Sun Cruiser Classic Iced Tea 1/12/24 oz Can",
+      "product": "Sun Cruiser Classic Iced Tea 1/12/24 oz Can",
       "brandFamily": "Sun Cruiser",
       "package": "1/12/24oz Can",
       "available": 0.0,
@@ -13314,7 +13632,7 @@
     },
     {
       "sku": "PD4C53",
-      "product": "8657 Truly Hard Seltzer Unruly Blue Razz Lemonade 1/12/24 oz Can",
+      "product": "Truly Hard Seltzer Unruly Blue Razz Lemonade 1/12/24 oz Can",
       "brandFamily": "Truly",
       "package": "1/12/24oz Can",
       "available": 0.0,
@@ -13323,7 +13641,7 @@
     },
     {
       "sku": "PD1C73",
-      "product": "8646 Truly Hard Seltzer Dream Variety 2/12/12 oz Can",
+      "product": "Truly Getaway 2/12/12 oz Can",
       "brandFamily": "Truly",
       "package": "2/12/12oz Can",
       "available": 0.0,
@@ -13332,7 +13650,7 @@
     },
     {
       "sku": "PD2761",
-      "product": "8670 Truly Hard Seltzer Strawberry Lemonade 4/6/12 oz Can",
+      "product": "Truly Hard Seltzer Strawberry Lemonade 4/6/12 oz Can",
       "brandFamily": "Truly",
       "package": "4/6/12oz Can",
       "available": 0.0,
@@ -13341,7 +13659,7 @@
     },
     {
       "sku": "OA8753",
-      "product": "8376 Twisted Tea Blueberry 1/12/24 oz Can",
+      "product": "Twisted Tea Blueberry 1/12/24 oz Can",
       "brandFamily": "Twisted Tea",
       "package": "1/12/24oz Can",
       "available": 0.0,
@@ -13350,7 +13668,7 @@
     },
     {
       "sku": "OA2S53",
-      "product": "8385 Twisted Tea Rocket Pop 1/12/24 oz Can",
+      "product": "Twisted Tea Rocket Pop 1/12/24 oz Can",
       "brandFamily": "Twisted Tea",
       "package": "1/12/24oz Can",
       "available": 0.0,
@@ -13359,7 +13677,7 @@
     },
     {
       "sku": "OA2S12",
-      "product": "8386 Twisted Tea Rocket Pop 4/6/12 oz Btl",
+      "product": "Twisted Tea Rocket Pop 4/6/12 oz Btl",
       "brandFamily": "Twisted Tea",
       "package": "4/6/12oz NR",
       "available": 0.0,
