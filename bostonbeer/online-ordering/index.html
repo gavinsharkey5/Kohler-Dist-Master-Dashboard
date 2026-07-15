@@ -160,12 +160,12 @@ footer p{max-width:720px;margin:6px auto}
   <p class="phint">Drives every "over/under" flag and the recommended order quantities below. Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know about lead time.</p>
   <div class="controls">
     <div class="ctl">
-      <label title="How many weeks of sales you want on hand at any time, e.g. 4 = enough stock to cover 4 weeks at the recent sales pace. Multiplied by 4-wk Avg to get each SKU's target inventory position, which drives both the Status badge and the Recommended math.">Target weeks of supply</label>
-      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4" title="How many weeks of sales you want on hand at any time. Drives the Status badge and the Recommended quantities for every SKU.">
+      <label title="How many weeks of sales you want on hand at any time, e.g. 4 = enough stock to cover 4 weeks at the recent sales pace. Multiplied by 4-wk Avg to get each SKU's target inventory position, which drives both the Status badge and the Recommended math.&#10;&#10;In plain terms: how many weeks' worth of beer do you want sitting in the warehouse at all times? If a product sells 1 case a week and you set this to 4, you want 4 cases on hand — like always keeping a month's worth of snacks in the kitchen instead of running out.">Target weeks of supply</label>
+      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4" title="How many weeks of sales you want on hand at any time. Drives the Status badge and the Recommended quantities for every SKU.&#10;&#10;In plain terms: how many weeks' worth of beer do you want on hand at all times — like always keeping a month's worth of snacks in the kitchen instead of running out.">
     </div>
     <div class="ctl">
-      <label title="A buffer zone around Target weeks of supply so normal week-to-week wobble doesn't flip a SKU's status back and forth. E.g. Target 4 ± 1 means Weeks of Supply anywhere from 3–5 counts as On target; below 3 is Under-indexed, above 5 is Over-indexed.">&plusmn; Tolerance (weeks)</label>
-      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1" title="Buffer around Target weeks of supply before a SKU is flagged Over- or Under-indexed.">
+      <label title="A buffer zone around Target weeks of supply so normal week-to-week wobble doesn't flip a SKU's status back and forth. E.g. Target 4 ± 1 means Weeks of Supply anywhere from 3–5 counts as On target; below 3 is Under-indexed, above 5 is Over-indexed.&#10;&#10;In plain terms: how much wiggle room before we panic? Stock is never exactly on target every single week, and that's fine. Tolerance is the 'don't freak out yet' zone around your target so normal week-to-week wobble doesn't get flagged as a problem.">&plusmn; Tolerance (weeks)</label>
+      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1" title="Buffer around Target weeks of supply before a SKU is flagged Over- or Under-indexed.&#10;&#10;In plain terms: how much wiggle room before we panic? Being a little above or below target is normal — tolerance is the 'don't freak out yet' zone so normal wobble doesn't get flagged as a problem.">
     </div>
     <div class="ctl">
       <label>Search product / SKU</label>
