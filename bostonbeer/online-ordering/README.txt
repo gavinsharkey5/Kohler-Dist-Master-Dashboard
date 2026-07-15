@@ -8,10 +8,14 @@ Boston Beer online ordering system accepts as a CSV upload.
 
 Inputs
 ------
-1. Forecast file exported from the Boston Beer portal (your current
-   order plan). Columns: Product, Distributor, BBC SKU, Customer SKU,
-   then a pair of columns per week ("<date> F" = your forecast,
-   "<date> A" = what's currently on file in the portal for that week).
+1. Forecast file exported from the Boston Beer portal. Columns: Product,
+   Distributor, BBC SKU, Customer SKU, then a pair of columns per week:
+   "<date> F" is Boston Beer's OWN system-generated forecast (not your
+   team's number), and "<date> A" is your confirmed order for that
+   week, entered by your manager -- blank until he's reviewed/adjusted
+   it. On the live portal, only the nearest week is locked (grey, can't
+   be changed -- it's already committed to ship); every week after that
+   is open to edit whether or not it already has a value in it.
 
 2. Encompass "Boston Beer Inventory Report" export. Columns include
    Supplier Product ID (joins to BBC SKU), Package, Available, L4
@@ -82,6 +86,23 @@ for the live version)
 Target weeks of supply and tolerance are adjustable live on the page
 (default 4 weeks +/- 1).
 
+Date range and the locked week
+-------------------------------
+The dashboard only tracks weeks through the end of August -- September
+and October are far enough out to just be noise for ordering decisions
+right now (edit CUTOFF in build_forecast_data.py to change this). The
+nearest week is tagged "Locked" in the detail view: it's already
+committed with Boston Beer and can't be changed, so it's shown for
+reference only and excluded from the KPI totals, the Difference column,
+and the CSV export. Every week after that is still open.
+
+"Difference" compares Recommended against whatever's the CURRENT plan
+for that week -- your confirmed order (the "A" column) if one's been
+entered, Boston Beer's own forecast (the "F" column) if not. That's
+the number that actually matters: it tells you whether to adjust what's
+already been typed in, not just how the tool disagrees with Boston
+Beer's forecast.
+
 A note on precision: recommended quantities for non-1:1 packaging
 (kegs) are shown and exported to 2 decimal places because that's the
 exact case-equivalent value of a whole number of physical units --
@@ -96,10 +117,9 @@ Exporting
 The "Export upload CSV" button generates a CSV using the CURRENT
 slider settings, with columns Product / Distributor / BBC SKU /
 Customer (populated from Customer SKU -- adjust if the portal expects
-something different there) followed by the first 8 week-ending date
-columns present in the source forecast file (the upload format wants
-8 weeks; the source file tracks 13 weeks further out for your own
-reference, visible in the on-page detail view but not exported).
+something different there) followed by the open week-ending date
+columns (everything through end of August except the locked nearest
+week, since that one can't be changed anyway).
 
 To refresh with new exports
 ----------------------------

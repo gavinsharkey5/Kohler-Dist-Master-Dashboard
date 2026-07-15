@@ -170,7 +170,7 @@ footer p{max-width:720px;margin:6px auto}
 
 <div class="panel">
   <h2>SKUs (<span id="count-visible">0</span> of <span id="count-total">0</span>)</h2>
-  <p class="phint">Tap a row to see the week-by-week breakdown: what's on file, what you forecasted, and what the model recommends.</p>
+  <p class="phint">Tap a row to see the week-by-week breakdown: your confirmed order (where entered), Boston Beer's own forecast, and what we recommend.</p>
   <div class="table-scroll">
     <table id="sku-table">
       <thead>
@@ -181,9 +181,9 @@ footer p{max-width:720px;margin:6px auto}
           <th title="Cases sold each of the last 5 weeks — taller bar means more sold">Recent Trend</th>
           <th class="num" title="How many weeks the current stock would last at the recent sales pace (Available ÷ 4-wk Avg)">Weeks of Supply</th>
           <th title="Quick read on stock health — hover a badge below for details">Status</th>
-          <th class="num" title="What you currently have planned to order over the next 8 weeks">Your Forecast (8wk)</th>
-          <th class="num" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size">Recommended (8wk)</th>
-          <th class="num" title="Recommended minus Your Forecast — green means order more, red means order less">Difference</th>
+          <th class="num" id="th-cur" title="Boston Beer's own system-generated forecast for the upcoming open weeks (not your team's number)">Boston Beer Forecast</th>
+          <th class="num" id="th-rec" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size">Recommended</th>
+          <th class="num" title="Recommended minus your current plan (your confirmed order where you've entered one, Boston Beer's forecast otherwise) — green means order more, red means order less">Difference</th>
           <th></th>
         </tr>
       </thead>
@@ -312,18 +312,31 @@ const STATUS_TIP = {
   'no-data':'Not enough matching inventory data to evaluate this SKU',
 };
 
+// The portal shows two numbers per week: "F" (Boston Beer's own system
+// forecast) and "A" (what's actually been confirmed/entered so far, blank
+// until acted on). The number that will really ship if nothing else
+// changes is the confirmed one when it exists, otherwise BBC's forecast.
+function effectivePlan(w){ return w.onFile != null ? w.onFile : w.forecast; }
+
 function sparkline(weeks){
   const vals = (weeks||[]).map(v => v==null?0:v);
   const max = Math.max(1, ...vals);
   return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*20))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
 }
 
+// Totals only cover the still-open weeks -- the nearest week is already
+// locked with Boston Beer, so it's excluded from "what should change" math.
 function enrich(sku){
   const rec = computeRecommended(sku, state.target);
   const st = computeStatus(sku, state.target, state.tolerance);
-  const curTotal8 = sku.weeks.slice(0,8).reduce((s,w)=>s+(w.forecast||0),0);
-  const recTotal8 = rec.slice(0,8).reduce((s,v)=>s+(v||0),0);
-  return { sku, rec, status: st.status, wos: st.wos, curTotal8, recTotal8, gap: recTotal8 - curTotal8 };
+  let curTotal = 0, recTotal = 0, effTotal = 0;
+  sku.weeks.forEach((w,i) => {
+    if(w.locked) return;
+    curTotal += w.forecast || 0;
+    effTotal += effectivePlan(w) || 0;
+    recTotal += rec[i] || 0;
+  });
+  return { sku, rec, status: st.status, wos: st.wos, curTotal, recTotal, effTotal, gap: recTotal - effTotal };
 }
 
 function renderKPIs(enriched){
@@ -369,23 +382,25 @@ function detailTable(e){
   const pkg = e.sku.packageInfo;
   const rows = e.sku.weeks.map((w,i) => {
     const rec = e.rec[i];
-    const deltaCE = (rec!=null && w.forecast!=null) ? rec - w.forecast : null;
+    const eff = effectivePlan(w);
+    const deltaCE = (rec!=null && eff!=null) ? rec - eff : null;
+    const lockedTag = w.locked ? ` <span class="chip warn" title="This week is already committed with Boston Beer and can't be changed — shown for reference only">Locked</span>` : '';
     return `<tr>
-      <td>${esc(w.weekEnding)}</td>
+      <td>${esc(w.weekEnding)}${lockedTag}</td>
       <td class="num">${fmtNum(w.onFile)}</td>
       <td class="num">${fmtNum(w.forecast)}</td>
       <td class="num"><b>${fmtQty(rec, pkg)}</b></td>
-      <td class="num ${deltaCE>0?'delta-pos':deltaCE<0?'delta-neg':''}">${fmtQtyDelta(deltaCE, pkg)}</td>
+      <td class="num ${deltaCE>0?'delta-pos':deltaCE<0?'delta-neg':''}">${w.locked ? '—' : fmtQtyDelta(deltaCE, pkg)}</td>
     </tr>`;
   }).join('');
   return `<div class="detail-inner">
     <table>
       <thead><tr>
         <th title="The date this order week wraps up">Week Ending</th>
-        <th class="num" title="What's already locked in with Boston Beer for this week">On File</th>
-        <th class="num" title="What you currently have planned to order this week">Your Forecast</th>
+        <th class="num" title="Your confirmed order for this week, if you've entered one">On File</th>
+        <th class="num" title="Boston Beer's own system-generated forecast for this week">Boston Beer Forecast</th>
         <th class="num" title="What we suggest ordering this week">Recommended</th>
-        <th class="num" title="Recommended minus Your Forecast for this week">Difference</th>
+        <th class="num" title="Recommended minus your current plan for this week (On File if entered, Boston Beer Forecast otherwise)">Difference</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>
@@ -432,8 +447,8 @@ function render(){
       <td>${sparkline(s.recentWeeks)}</td>
       <td class="num">${fmt1(e.wos)}</td>
       <td><span class="badge ${e.status}" title="${esc(STATUS_TIP[e.status]||'')}">${STATUS_LABEL[e.status]}</span></td>
-      <td class="num">${fmtNum(e.curTotal8)}</td>
-      <td class="num">${fmtQty(e.recTotal8, s.packageInfo)}</td>
+      <td class="num">${fmtNum(e.curTotal)}</td>
+      <td class="num">${fmtQty(e.recTotal, s.packageInfo)}</td>
       <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${fmtQtyDelta(e.gap, s.packageInfo)}</td>
       <td><span class="chev">&rsaquo;</span></td>
     </tr>
@@ -463,14 +478,17 @@ function renderOrphans(){
 }
 
 function renderMethodBox(){
+  const lockedWeeks = DATA.meta.lockedWeeks || 0;
+  const openCount = DATA.meta.weekDates.length - lockedWeeks;
   document.getElementById('methodbox').innerHTML = `
     <b>How "Recommended" is worked out</b> — one of 3 methods per product (shown in each row's detail view):
     <ul>
-      <li><b>Most products</b> use your last 4 weeks of actual sales as the demand signal, sized to your target weeks of supply. Any correction needed is spread evenly across Boston Beer's ~3-week order lead time instead of dumped into a single week, and follows your own forecast's week-to-week pattern so known seasonal ramps still carry through.</li>
+      <li><b>Most products</b> use your last 4 weeks of actual sales as the demand signal, sized to your target weeks of supply. Any correction needed is spread evenly across Boston Beer's ~3-week order lead time instead of dumped into a single week, and follows Boston Beer's own forecast's week-to-week pattern so known seasonal ramps still carry through.</li>
       <li><b>New or seasonal items with no recent sales</b> (e.g. an Octoberfest launch that hasn't started shipping yet) use last year's actual volume for the same calendar week instead of guessing from zero.</li>
-      <li><b>Brand new items</b> with no sales history at all pass your own forecast through unchanged.</li>
+      <li><b>Brand new items</b> with no sales history at all pass Boston Beer's own forecast through unchanged.</li>
     </ul>
     <p style="margin:10px 0 0">Every recommendation is rounded to a whole orderable unit &mdash; whole cases, or whole kegs for keg products &mdash; using Boston Beer's package reference table, so you'll never see an order for a fraction of a keg.</p>
+    <p style="margin:10px 0 0">Tracks the ${openCount + lockedWeeks} weeks through end of August &mdash; September/October are far enough out to just be noise right now. The nearest week is already locked with Boston Beer (tagged "Locked" below) so it's shown for reference only; the ${openCount} weeks after that are still open to adjust in the portal, and "Difference" compares Recommended against whatever's the current plan for that week &mdash; your confirmed order if you've entered one, Boston Beer's forecast if you haven't gotten to it yet.</p>
     <p style="margin:10px 0 0"><b>Not yet accounted for:</b> upcoming promotions or feature placements, and exact per-order receipt timing.</p>`;
 }
 
@@ -480,12 +498,15 @@ function csvEscape(v){
 }
 
 function exportCSV(){
-  const weekDates = DATA.meta.weekDates.slice(0, 8);
+  // The locked (nearest) week can't be changed in the portal, so there's
+  // no point exporting a recommendation for it -- only open weeks go out.
+  const lockedWeeks = DATA.meta.lockedWeeks || 0;
+  const weekDates = DATA.meta.weekDates.slice(lockedWeeks);
   const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
   const lines = [header.map(csvEscape).join(',')];
   DATA.skus.forEach(sku => {
-    const rec = computeRecommended(sku, state.target);
-    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...rec.slice(0,8).map(v => v==null?'':v)];
+    const rec = computeRecommended(sku, state.target).slice(lockedWeeks);
+    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...rec.map(v => v==null?'':v)];
     lines.push(row.map(csvEscape).join(','));
   });
   const blob = new Blob([lines.join('\n')], {type:'text/csv'});
@@ -512,6 +533,10 @@ async function boot(){
     const f = d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
     document.getElementById('updated-line').innerHTML = `<span class="livedot"></span> Data refreshed ${f}`;
   }
+
+  const openCount = DATA.meta.weekDates.length - (DATA.meta.lockedWeeks || 0);
+  document.getElementById('th-cur').textContent = `Boston Beer Forecast (${openCount}wk)`;
+  document.getElementById('th-rec').textContent = `Recommended (${openCount}wk)`;
 
   document.getElementById('ctl-target').addEventListener('input', e => { state.target = parseFloat(e.target.value)||0; render(); renderMethodBox(); });
   document.getElementById('ctl-tolerance').addEventListener('input', e => { state.tolerance = parseFloat(e.target.value)||0; render(); });
