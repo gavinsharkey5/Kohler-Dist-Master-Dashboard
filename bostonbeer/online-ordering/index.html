@@ -157,7 +157,7 @@ footer p{max-width:720px;margin:6px auto}
 
 <div class="panel">
   <h2>Target inventory position</h2>
-  <p class="phint">Drives every "over/under" flag and the recommended order quantities below. Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know about lead time.</p>
+  <p class="phint">Drives the Weeks of Supply / Status "over-under" flags below. (Recommended is a separate sales-trend projection and isn't affected by these sliders — see the methodology box below the table.) Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know.</p>
   <div class="controls">
     <div class="ctl">
       <label title="How many weeks of sales you want on hand at any time, e.g. 4 = enough stock to cover 4 weeks at the recent sales pace. Multiplied by 4-wk Avg to get each SKU's target inventory position, which drives both the Status badge and the Recommended math.&#10;&#10;In plain terms: how many weeks' worth of beer do you want sitting in the warehouse at all times? If a product sells 1 case a week and you set this to 4, you want 4 cases on hand — like always keeping a month's worth of snacks in the kitchen instead of running out.">Target weeks of supply</label>
@@ -190,7 +190,7 @@ footer p{max-width:720px;margin:6px auto}
           <th class="num" data-key="wos" title="Calculated: Available ÷ 4-wk Avg. Compared against the Target weeks of supply (± Tolerance) sliders above to set the Status badge — under target−tolerance is Under-indexed, over target+tolerance is Over-indexed.">Weeks of Supply<span class="sort-ind"></span></th>
           <th data-key="status" title="Derived from Weeks of Supply vs. your Target ± Tolerance sliders: Stockout risk (Available < 0), Under-indexed (WoS below target), Over-indexed (WoS above target), On target (within tolerance), or No inventory match / No recent velocity if Available or 4-wk Avg is missing or zero. Hover a badge below for its exact definition.">Status<span class="sort-ind"></span></th>
           <th class="num" data-key="cur" id="th-cur" title="Source: your Boston Beer forecast export's '<date> F' columns, summed across the open (unlocked) weeks. This is Boston Beer's own system-generated forecast, not a number your team entered."><span class="th-label">Boston Beer Forecast</span><span class="sort-ind"></span></th>
-          <th class="num" data-key="rec" id="th-rec" title="Calculated per week from 4-wk Avg, Available, your Target/Tolerance sliders, the SKU's lead time and 52-week history (Encompass ForecastReport), and its case-pack size (Encompass Packages) — see the 'Data sources &amp; methodology' section below the table for the exact formula, then summed across the open weeks."><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
+          <th class="num" data-key="rec" id="th-rec" title="Calculated: a trend line through your last 5 weeks of actual case sales (Encompass Inventory Report), extrapolated forward and rounded to a whole orderable unit — a pure sales projection, NOT adjusted for how much stock is currently on hand. See the 'Data sources &amp; methodology' section below the table for the exact formula, then summed across the open weeks."><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
           <th class="num" data-key="gap" title="Calculated: Recommended minus your current plan (your confirmed order — the '<date> A' column — where you've entered one, Boston Beer's '<date> F' forecast otherwise), summed across the open weeks. Green means order more, red means order less.">Difference<span class="sort-ind"></span></th>
           <th></th>
         </tr>
@@ -208,9 +208,9 @@ footer p{max-width:720px;margin:6px auto}
       <h3>Source files</h3>
       <ol>
         <li><b>Boston Beer forecast export</b> (from the Boston Beer online ordering portal) &mdash; Product, Distributor, BBC SKU, Customer SKU, then a pair of columns per week: "&lt;date&gt; F" is Boston Beer's own system-generated forecast, "&lt;date&gt; A" is your manager's confirmed order for that week (blank until entered). Feeds: Product/SKU, Boston Beer Forecast, On File.</li>
-        <li><b>Encompass "Boston Beer Inventory Report"</b> &mdash; Supplier Product ID, Available, L4 Average, L8 Average, the last 5 weeks of case sales, Last Receive Date/Quantity. Feeds: Available, 4-wk Avg, Recent Trend, and (with the Target/Tolerance sliders) Weeks of Supply and Status.</li>
+        <li><b>Encompass "Boston Beer Inventory Report"</b> &mdash; Supplier Product ID, Available, L4 Average, L8 Average, the last 5 weeks of case sales (Cases -3/-2/-1 Weeks, Cases Last Week, Cases This Week), Last Receive Date/Quantity. Feeds: Available, 4-wk Avg, Recent Trend, the trend line behind Recommended, and (with the Target/Tolerance sliders) Weeks of Supply and Status.</li>
         <li><b>Encompass "Packages" reference export</b> &mdash; maps each package description (e.g. "1/6 BBL Keg") to a Case Equiv conversion factor. Feeds: the whole-unit rounding on Recommended (e.g. why a keg SKU recommends "3", not "6.94").</li>
-        <li><b>Encompass "ForecastReport"</b> &mdash; per SKU, the actual Boston Beer order lead time in days plus 52 weeks of trailing sell-through history. Feeds: the lead-time-based correction window on Recommended, and the same-week-last-year fallback for SKUs with no current sales.</li>
+        <li><b>Encompass "ForecastReport"</b> &mdash; per SKU, the actual Boston Beer order lead time in days (shown for reference only) plus 52 weeks of trailing sell-through history. Feeds: the same-week-last-year fallback for SKUs with fewer than 2 weeks of recent sales data.</li>
         <li><b>Encompass "Products" export</b> &mdash; maps each Supplier Product Num to its clean Encompass product name. Feeds: the Product column display name.</li>
       </ol>
 
@@ -230,19 +230,16 @@ footer p{max-width:720px;margin:6px auto}
       </table>
 
       <h3>The Recommended formula</h3>
-      <p>Every SKU uses exactly one of three methods, shown per-row as "Recommended via":</p>
-      <p><b>1. Velocity-based</b> (SKUs with 4-wk Avg &gt; 0 and a matched Available figure &mdash; most SKUs):</p>
+      <p>Every SKU uses exactly one of three methods, shown per-row as "Recommended via". <b>Recommended is a pure sales projection &mdash; it is not adjusted for Available inventory, Target weeks of supply, or Tolerance.</b> Those sliders only affect Weeks of Supply / Status, a separate, independent read on whether current stock looks high or low relative to this projection.</p>
+      <p><b>1. Trend-based</b> (SKUs with at least 2 of the 5 recent weeks reported &mdash; most SKUs):</p>
       <ol>
-        <li>Target inventory position = Target weeks of supply &times; 4-wk Avg.</li>
-        <li>Gap = Target inventory position &minus; Available.</li>
-        <li>Correction weeks = Lead time in days (from ForecastReport) &divide; 7, rounded, minimum 1 (21 days &rarr; 3 weeks for this data set).</li>
-        <li>Per-week correction = Gap &divide; Correction weeks.</li>
-        <li>Shape = that week's Boston Beer Forecast &divide; the average Boston Beer Forecast across all open weeks &mdash; this preserves known seasonal ramps (e.g. Octoberfest) instead of flattening every week to the same number.</li>
-        <li>Each week's raw recommendation = (4-wk Avg &times; Shape) + Per-week correction (correction only applied to the first Correction-weeks weeks), floored at 0.</li>
-        <li>Rounded to the nearest whole physically-orderable unit using the SKU's Case Equiv from the Packages export (e.g. nearest whole keg), then converted back to case-equivalents for display/export.</li>
+        <li>Take the Inventory Report's 5 weekly case-sales figures &mdash; Cases -3 Weeks, Cases -2 Weeks, Cases -1 Week, Cases Last Week, Cases This Week &mdash; as points 0 through 4 on a timeline. Weeks with no reported value are skipped, not treated as zero.</li>
+        <li>Fit a least-squares straight line through those points (slope + intercept) &mdash; the same trend-line math as Excel's TREND/LINEST.</li>
+        <li>For each open forecast week, continue that line forward (week 5, 6, 7, ... right after "This Week") to get a raw projected quantity, floored at 0.</li>
+        <li>Round to the nearest whole physically-orderable unit using the SKU's Case Equiv from the Packages export (e.g. nearest whole keg), then convert back to case-equivalents for display/export.</li>
       </ol>
-      <p><b>2. Seasonal fallback</b> (no current velocity, but ForecastReport history exists): uses the actual volume from the same calendar week one year earlier (&plusmn;5 days), case-pack rounded the same way.</p>
-      <p><b>3. Passthrough</b> (no velocity and no usable history): Boston Beer's own forecast, unchanged.</p>
+      <p><b>2. Seasonal fallback</b> (fewer than 2 recent weeks reported, but ForecastReport history exists): uses the actual volume from the same calendar week one year earlier (&plusmn;5 days), case-pack rounded the same way. This takes priority over a single stray recent data point (e.g. a return showing up as "-2" in one week) since one number can't establish a real trend, and last year's actual seasonal volume is far more reliable for an item that hasn't started shipping yet.</p>
+      <p><b>3. Passthrough</b> (fewer than 2 recent weeks and no usable history, or exactly 1 recent week with no seasonal history to fall back on): Boston Beer's own forecast, unchanged (or that single data point flatlined forward, if that's all there is).</p>
     </div>
   </details>
 </div>
@@ -311,34 +308,44 @@ function roundToOrderable(qty, pkg){
   return Math.round(roundedPhysical * pkg.caseEquiv * 100) / 100;
 }
 
-// Mirrors the Python build script's velocity-based formula exactly, so the
-// UI recomputes live when the target-weeks slider changes. SKUs with no
-// recent velocity use (c) a seasonal same-week-last-year baseline computed
-// server-side at build time (doesn't depend on the target-weeks slider at
-// all, so there's nothing to recompute live for those) -- see
-// recMethod on each SKU for which path was used.
-function computeRecommended(sku, targetWeeks){
-  const l4 = sku.l4Avg, avail = sku.available;
-  const hasVelocity = l4 != null && l4 > 0 && avail != null;
-  if(!hasVelocity){
-    // seasonal fallback / pure passthrough -- already computed at build time
+// Least-squares line through (x, y) points, skipping any week with no
+// reported value. Mirrors the Python build script's trend_projection().
+function trendProjection(pairs){
+  const n = pairs.length;
+  if(n === 0) return null;
+  if(n === 1) return {slope:0, intercept:pairs[0][1]};
+  const sumX = pairs.reduce((s,[x])=>s+x,0);
+  const sumY = pairs.reduce((s,[,y])=>s+y,0);
+  const sumXY = pairs.reduce((s,[x,y])=>s+x*y,0);
+  const sumXX = pairs.reduce((s,[x])=>s+x*x,0);
+  const denom = n*sumXX - sumX*sumX;
+  if(denom === 0) return {slope:0, intercept:sumY/n};
+  const slope = (n*sumXY - sumX*sumY) / denom;
+  const intercept = (sumY - slope*sumX) / n;
+  return {slope, intercept};
+}
+
+// Mirrors the Python build script's formula exactly, so the UI recomputes
+// live if the underlying data changes. Recommended is a pure sales
+// projection now -- it does NOT get adjusted for how much stock is
+// currently on hand (Available). Weeks of Supply / Status tell you that
+// separately. (b) A trend line through the Inventory Report's last 5 weeks
+// of actual case sales (Cases -3/-2/-1 Weeks, Last Week, This Week),
+// extrapolated forward -- needs at least 2 real data points to count as a
+// trend, otherwise (c) falls back to the same week last year from
+// ForecastReport history, or a single stray data point / Boston Beer's own
+// forecast as a last resort. See recMethod on each SKU for which path was
+// used.
+function computeRecommended(sku){
+  const recent = sku.recentWeeks;
+  const pairs = (recent || []).map((v,i)=>[i,v]).filter(([,v]) => v != null);
+  if(pairs.length < 2){
+    // seasonal fallback / single-point flatline / passthrough -- already
+    // computed at build time using the same priority order as the script.
     return sku.weeks.map(w => w.recommended);
   }
-  const hisFcst = sku.weeks.map(w => w.forecast || 0);
-  // (b) spread the inventory-position correction across the actual order
-  // lead time instead of dumping it all into the nearest week.
-  const leadDays = sku.leadTimeDays || 21;
-  const correctionWeeks = Math.max(1, Math.round(leadDays / 7));
-  const gap = targetWeeks * l4 - avail;
-  const perWeekCorrection = gap / correctionWeeks;
-  const sum = hisFcst.reduce((a,b)=>a+b,0);
-  const meanShape = sum > 0 ? sum/hisFcst.length : l4;
-  const raw = hisFcst.map((f,idx) => {
-    const ratio = meanShape > 0 ? f/meanShape : 1.0;
-    let base = l4 * ratio;
-    if(idx < correctionWeeks) base += perWeekCorrection;
-    return Math.max(0, base);
-  });
+  const {slope, intercept} = trendProjection(pairs);
+  const raw = sku.weeks.map((w,idx) => Math.max(0, slope*(5+idx) + intercept));
   return raw.map(v => roundToOrderable(v, sku.packageInfo));
 }
 
@@ -382,7 +389,7 @@ function sparkline(weeks){
 // Totals only cover the still-open weeks -- the nearest week is already
 // locked with Boston Beer, so it's excluded from "what should change" math.
 function enrich(sku){
-  const rec = computeRecommended(sku, state.target);
+  const rec = computeRecommended(sku);
   const st = computeStatus(sku, state.target, state.tolerance);
   let curTotal = 0, recTotal = 0, effTotal = 0;
   sku.weeks.forEach((w,i) => {
@@ -450,8 +457,8 @@ function renderKPIs(enriched){
 }
 
 const METHOD_LABEL = {
-  velocity: 'data-driven from your sell-through', seasonal: "same week last year (no current sales history)",
-  passthrough: 'your forecast, unchanged (no sell-through or seasonal history)',
+  trend: 'trend line through your last 5 weeks of actual sales', seasonal: "same week last year (no current sales trend)",
+  passthrough: 'Boston Beer’s own forecast, unchanged (no sales trend or seasonal history)',
 };
 
 function detailMeta(e){
@@ -459,7 +466,7 @@ function detailMeta(e){
   const ul = unitLabel(pkg);
   const chips = [];
   chips.push(`<span class="chip" title="Which of the 3 methods (see box above) was used for this product">Method: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}</span>`);
-  if(e.sku.leadTimeDays) chips.push(`<span class="chip" title="How long it takes Boston Beer to fulfill an order once placed — corrections are spread across this window">Lead time: ${fmtNum(e.sku.leadTimeDays)} days</span>`);
+  if(e.sku.leadTimeDays) chips.push(`<span class="chip" title="Boston Beer's typical order lead time for this SKU, from ForecastReport. Shown for reference only — it no longer changes the Recommended number.">Lead time: ${fmtNum(e.sku.leadTimeDays)} days</span>`);
   if(pkg && pkg.caseEquiv && pkg.caseEquiv!==1 && ul) chips.push(`<span class="chip" title="Recommended quantities round to whole ${esc(ul.toLowerCase())}s, never a fraction of one">1 ${esc(ul)} = ${(Math.round(pkg.caseEquiv*100)/100).toLocaleString('en-US')} standard cases</span>`);
   if(e.sku.matchType==='prefix') chips.push(`<span class="chip warn" title="This SKU was matched to inventory data by a similar code, not an exact match — worth double-checking">Verify SKU match (${esc(e.sku.inventorySku)})</span>`);
   if(!e.sku.cleanName) chips.push(`<span class="chip warn" title="No matching product record was found in the Encompass product list — showing the raw name from the Boston Beer portal instead">Unmatched product name</span>`);
@@ -487,7 +494,7 @@ function detailTable(e){
         <th title="The date this order week wraps up, from your Boston Beer forecast export's week-ending column headers">Week Ending</th>
         <th class="num" title="Source: the '<date> A' column in your Boston Beer forecast export — your confirmed order for this week, if you've entered one. Blank means not yet entered.">On File</th>
         <th class="num" title="Source: the '<date> F' column in your Boston Beer forecast export — Boston Beer's own system-generated forecast for this week.">Boston Beer Forecast</th>
-        <th class="num" title="Calculated for this week — see the 'Data sources &amp; methodology' section below the table for the exact formula.">Recommended</th>
+        <th class="num" title="Calculated: the trend line through your last 5 weeks of actual case sales, extrapolated to this week — see the 'Data sources &amp; methodology' section below the table for the exact formula.">Recommended</th>
         <th class="num" title="Calculated: this week's Recommended minus its current plan (On File if entered, Boston Beer Forecast otherwise).">Difference</th>
       </tr></thead>
       <tbody>${rows}</tbody>
@@ -567,11 +574,12 @@ function renderMethodBox(){
   document.getElementById('methodbox').innerHTML = `
     <b>How "Recommended" is worked out</b> — one of 3 methods per product (shown in each row's detail view):
     <ul>
-      <li><b>Most products</b> use your last 4 weeks of actual sales as the demand signal, sized to your target weeks of supply. Any correction needed is spread evenly across Boston Beer's ~3-week order lead time instead of dumped into a single week, and follows Boston Beer's own forecast's week-to-week pattern so known seasonal ramps still carry through.</li>
-      <li><b>New or seasonal items with no recent sales</b> (e.g. an Octoberfest launch that hasn't started shipping yet) use last year's actual volume for the same calendar week instead of guessing from zero.</li>
-      <li><b>Brand new items</b> with no sales history at all pass Boston Beer's own forecast through unchanged.</li>
+      <li><b>Most products</b> get a trend line fit through the last 5 weeks of actual case sales from the Encompass Inventory Report (Cases -3/-2/-1 Weeks, Last Week, This Week), then extrapolated forward week by week. If sales are climbing, the recommendation climbs with it; if they're tapering off, it tapers too — it's not just a flat average.</li>
+      <li><b>New or seasonal items with fewer than 2 weeks of recent sales</b> (e.g. an Octoberfest launch that hasn't started shipping yet) use last year's actual volume for the same calendar week instead, when 52-week history is available.</li>
+      <li><b>Everything else</b> (no sales trend and no usable history) passes Boston Beer's own forecast through unchanged.</li>
     </ul>
     <p style="margin:10px 0 0">Every recommendation is rounded to a whole orderable unit &mdash; whole cases, or whole kegs for keg products &mdash; using Boston Beer's package reference table, so you'll never see an order for a fraction of a keg.</p>
+    <p style="margin:10px 0 0"><b>Recommended is a pure sales projection</b> &mdash; it is NOT adjusted for how much stock you currently have on hand. If a SKU is sitting on way more or less than it needs, that shows up separately in Weeks of Supply and the Status badge, using your Target/Tolerance sliders above; it's on you to weigh that against the projection when deciding what to actually order.</p>
     <p style="margin:10px 0 0">Tracks the ${openCount + lockedWeeks} weeks through end of August &mdash; September/October are far enough out to just be noise right now. The nearest week is already locked with Boston Beer (tagged "Locked" below) so it's shown for reference only; the ${openCount} weeks after that are still open to adjust in the portal, and "Difference" compares Recommended against whatever's the current plan for that week &mdash; your confirmed order if you've entered one, Boston Beer's forecast if you haven't gotten to it yet.</p>
     <p style="margin:10px 0 0"><b>Not yet accounted for:</b> upcoming promotions or feature placements, and exact per-order receipt timing.</p>`;
 }
@@ -589,7 +597,7 @@ function exportCSV(){
   const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
   const lines = [header.map(csvEscape).join(',')];
   DATA.skus.forEach(sku => {
-    const rec = computeRecommended(sku, state.target).slice(lockedWeeks);
+    const rec = computeRecommended(sku).slice(lockedWeeks);
     const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...rec.map(v => v==null?'':v)];
     lines.push(row.map(csvEscape).join(','));
   });

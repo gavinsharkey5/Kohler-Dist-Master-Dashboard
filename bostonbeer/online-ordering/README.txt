@@ -30,11 +30,9 @@ Inputs
    whole keg) instead of an arbitrary case-equivalent fraction.
 
 4. Encompass "ForecastReport" export. Per SKU, this carries the actual
-   Boston Beer lead time (days) plus 52 weeks of trailing sell-through
-   history. Two things come from this file: the real lead time (used
-   instead of a guessed default) and, for SKUs with no current
-   velocity, the same week from a year ago as a seasonal reference
-   point.
+   Boston Beer lead time (days, shown for reference only) plus 52 weeks
+   of trailing sell-through history -- used for the same-week-last-year
+   seasonal fallback below.
 
 5. Encompass "Products" export. Maps each Supplier Product Num (BBC SKU)
    to the clean product name stored in Encompass -- this replaces the
@@ -61,7 +59,21 @@ inventory-based recommendations.
 Recommendation math (see the in-page "How Recommended is computed" box
 for the live version)
 ------------------------------------------------------------------
-(a) Case-pack-aware rounding -- every recommended quantity is converted
+Recommended is a pure sales projection. It is NOT adjusted for how much
+stock is currently on hand -- Weeks of Supply / Status (below) are a
+separate, independent read on whether current inventory looks high or
+low relative to this projection, driven by the Target/Tolerance
+sliders. Recommended itself ignores those sliders entirely.
+
+(a) Trend-line projection -- for SKUs with at least 2 of the last 5
+    weeks' case sales reported in the Inventory Report (Cases -3/-2/-1
+    Weeks, Cases Last Week, Cases This Week), a least-squares trend
+    line is fit through those points (weeks with no reported value are
+    skipped, not treated as a zero-sales week) and extrapolated forward
+    week by week. A climbing trend produces a climbing recommendation;
+    a tapering one tapers off -- it's not a flat average.
+
+(b) Case-pack-aware rounding -- every recommended quantity is converted
     from case-equivalents to physical orderable units using that SKU's
     Case Equiv (from Packages), rounded to the nearest whole unit (e.g.
     nearest whole keg), then converted back to case-equivalents for
@@ -71,29 +83,22 @@ for the live version)
     values like 6.94 case-equivalents on keg SKUs -- that's exactly 3
     kegs, not a rounding artifact.
 
-(b) Lead-time-aware correction spreading -- for SKUs with sell-through
-    history, the gap between target inventory position (target weeks
-    of supply x 4-week average weekly sales) and current Available is
-    no longer dumped entirely into the nearest week. It's spread evenly
-    across however many weeks correspond to Boston Beer's actual lead
-    time for that SKU (from ForecastReport; correction weeks = lead
-    time in days / 7, rounded, minimum 1). All weeks keep your own
-    forecast's relative week-to-week shape (so a known seasonal ramp
-    like Octoberfest carries through) but rescaled to the corrected
-    level.
-
-(c) Seasonal fallback -- for SKUs with no recent sell-through velocity
-    (new/seasonal items not yet shipping this cycle, or between
-    seasons) but with 52-week history available, the recommendation
-    uses the same week from a year ago (+/- 5 days) as a reference
-    point instead of just passing your forecast through unchanged.
-    SKUs with neither velocity nor a usable historical match fall back
-    to passing your own forecast through as-is. The in-page detail view
-    for each SKU shows which of the three methods (velocity / seasonal
-    / passthrough) was used.
+(c) Seasonal fallback -- for SKUs with fewer than 2 of the last 5 weeks
+    reported (new/seasonal items not yet shipping this cycle, or
+    between seasons) but with 52-week ForecastReport history available,
+    the recommendation uses the same week from a year ago (+/- 5 days)
+    instead. This takes priority over a single stray recent data point
+    (e.g. a return showing up as "-2" in one week) since one number
+    can't establish a real trend, and last year's actual seasonal
+    volume is a far more reliable signal for an item that hasn't
+    started shipping yet. SKUs with neither a usable trend nor a
+    seasonal match fall back to Boston Beer's own forecast unchanged
+    (or a single data point flatlined forward, if that's all there is).
+    The in-page detail view for each SKU shows which of the three
+    methods (trend / seasonal / passthrough) was used.
 
 Target weeks of supply and tolerance are adjustable live on the page
-(default 4 weeks +/- 1).
+(default 4 weeks +/- 1) and drive Weeks of Supply / Status only.
 
 Date range and the locked week
 -------------------------------
