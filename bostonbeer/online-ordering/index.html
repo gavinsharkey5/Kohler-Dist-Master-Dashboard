@@ -64,8 +64,9 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:clamp(24px,4vw,32px);ma
 .btn.secondary{background:var(--card2);border:1px solid var(--line);color:var(--ink)}
 
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
-th:hover{color:var(--ink)}
+th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+th[title]{border-bottom-color:var(--line);text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
+th[title]:hover{color:var(--ink)}
 th.num,td.num{text-align:right}
 td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
 tr.row:hover{background:var(--card2)}
@@ -104,6 +105,12 @@ details.orphans[open] summary::before{transform:rotate(90deg)}
 
 .methodbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink-soft);line-height:1.6}
 .methodbox b{color:var(--ink)}
+.methodbox ul{margin:8px 0 0;padding-left:18px}
+.methodbox li{margin-bottom:6px}
+
+.chiprow{margin-top:10px}
+.chip{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--ink-soft);margin:2px 6px 2px 0;cursor:help}
+.chip.warn{color:var(--amber);border-color:var(--amber-soft)}
 
 footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center}
 footer p{max-width:720px;margin:6px auto}
@@ -168,15 +175,15 @@ footer p{max-width:720px;margin:6px auto}
     <table id="sku-table">
       <thead>
         <tr>
-          <th data-sort="name">Product</th>
-          <th class="num" data-sort="avail">Available</th>
-          <th class="num" data-sort="l4">4-wk Avg</th>
-          <th>Recent trend</th>
-          <th class="num" data-sort="wos">Weeks of Supply</th>
-          <th>Status</th>
-          <th class="num" data-sort="cur">Your Fcst (next 8wk)</th>
-          <th class="num" data-sort="rec">Recommended</th>
-          <th class="num" data-sort="gap">&Delta;</th>
+          <th title="Product name, SKU, and package type">Product</th>
+          <th class="num" title="Cases currently sitting in our warehouse right now">Available</th>
+          <th class="num" title="Average cases sold per week over the last 4 weeks">4-wk Avg</th>
+          <th title="Cases sold each of the last 5 weeks — taller bar means more sold">Recent Trend</th>
+          <th class="num" title="How many weeks the current stock would last at the recent sales pace (Available ÷ 4-wk Avg)">Weeks of Supply</th>
+          <th title="Quick read on stock health — hover a badge below for details">Status</th>
+          <th class="num" title="What you currently have planned to order over the next 8 weeks">Your Forecast (8wk)</th>
+          <th class="num" title="What we suggest ordering instead, based on sell-through, lead time, and case-pack size">Recommended (8wk)</th>
+          <th class="num" title="Recommended minus Your Forecast — green means order more, red means order less">Difference</th>
           <th></th>
         </tr>
       </thead>
@@ -210,11 +217,30 @@ let state = { target: 4, tolerance: 1, search: "", sort: "wosAsc", statusFilter:
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
 function fmt1(n){ if(n==null||isNaN(n)) return "—"; return n.toFixed(1); }
-// Recommended-quantity values can be non-integer case-equivalents for
-// case-pack-rounded SKUs (e.g. 6.94 = exactly 3 kegs) -- shown with up to
-// 2 decimals so what's displayed always matches what gets exported,
-// instead of silently rounding away the achievability info.
-function fmtRec(n){ if(n==null||isNaN(n)) return "—"; return (Math.abs(n-Math.round(n))<0.005) ? Math.round(n).toLocaleString('en-US') : n.toFixed(2); }
+
+// Internally every quantity is tracked in "case-equivalents" (CE) so the
+// math works the same regardless of package type. But CE math produces
+// decimals for anything that isn't sold in standard cases (e.g. a keg is
+// 2.3125 CE, so 3 kegs = 6.94 CE) which reads as a confusing fraction on
+// screen. For display we always convert back to whole physical units --
+// e.g. "3" (kegs), never "6.94". The precise CE value is still what's used
+// under the hood and in the export file.
+function unitLabel(pkg){
+  if(!pkg || !pkg.sellingUnit) return null;
+  const m = pkg.sellingUnit.match(/\)\s*([A-Za-z][A-Za-z /]*?)\s*\(/);
+  return m ? m[1].trim() : pkg.sellingUnit;
+}
+function fmtQty(ceValue, pkg){
+  if(ceValue==null||isNaN(ceValue)) return "—";
+  if(!pkg || !pkg.caseEquiv) return fmtNum(ceValue);
+  return fmtNum(ceValue / pkg.caseEquiv);
+}
+function fmtQtyDelta(ceValue, pkg){
+  if(ceValue==null||isNaN(ceValue)) return "—";
+  const v = (!pkg || !pkg.caseEquiv) ? ceValue : ceValue / pkg.caseEquiv;
+  const r = Math.round(v);
+  return r===0 ? "—" : (r>0?'+':'')+r.toLocaleString('en-US');
+}
 
 // Mirrors the Python build script's formula exactly, so the UI recomputes
 // live when the target/tolerance sliders change instead of only reflecting
@@ -277,6 +303,14 @@ const STATUS_LABEL = {
   'over':'Over-indexed', 'under':'Under-indexed', 'stockout':'Stockout risk',
   'on-target':'On target', 'dead-stock':'No recent velocity', 'no-data':'No inventory match',
 };
+const STATUS_TIP = {
+  'over':'Stock is higher than your target — consider ordering less',
+  'under':'Stock is lower than your target — may need to order more soon',
+  'stockout':'Available inventory is zero or negative right now',
+  'on-target':'Stock level matches your target — no action needed',
+  'dead-stock':'No sales in the last 4 weeks, so a recommendation can’t be calculated reliably',
+  'no-data':'Not enough matching inventory data to evaluate this SKU',
+};
 
 function sparkline(weeks){
   const vals = (weeks||[]).map(v => v==null?0:v);
@@ -296,14 +330,14 @@ function renderKPIs(enriched){
   const counts = {over:0, under:0, stockout:0, 'on-target':0, 'dead-stock':0, 'no-data':0};
   enriched.forEach(e => counts[e.status]++);
   const cards = [
-    {key:'over', label:'Over-indexed', val:counts.over, cls:'over'},
-    {key:'under', label:'Under-indexed', val:counts.under, cls:'under'},
-    {key:'stockout', label:'Stockout risk', val:counts.stockout, cls:'stockout'},
-    {key:'on-target', label:'On target', val:counts['on-target'], cls:'good'},
-    {key:null, label:'Total SKUs', val:enriched.length, cls:''},
+    {key:'over', label:'Over-indexed', val:counts.over, cls:'over', tip:STATUS_TIP.over},
+    {key:'under', label:'Under-indexed', val:counts.under, cls:'under', tip:STATUS_TIP.under},
+    {key:'stockout', label:'Stockout risk', val:counts.stockout, cls:'stockout', tip:STATUS_TIP.stockout},
+    {key:'on-target', label:'On target', val:counts['on-target'], cls:'good', tip:STATUS_TIP['on-target']},
+    {key:null, label:'Total SKUs', val:enriched.length, cls:'', tip:'Total number of products tracked on this page'},
   ];
   document.getElementById('kpi-strip').innerHTML = cards.map(c =>
-    `<div class="kpi ${state.statusFilter===c.key?'active':''}" data-key="${c.key||''}">
+    `<div class="kpi ${state.statusFilter===c.key?'active':''}" data-key="${c.key||''}" title="${esc(c.tip)} — click to filter the table">
       <div class="klabel">${esc(c.label)}</div>
       <div class="kval num ${c.cls}">${fmtNum(c.val)}</div>
     </div>`
@@ -320,31 +354,44 @@ const METHOD_LABEL = {
   passthrough: 'your forecast, unchanged (no sell-through or seasonal history)',
 };
 
+function detailMeta(e){
+  const pkg = e.sku.packageInfo;
+  const ul = unitLabel(pkg);
+  const chips = [];
+  chips.push(`<span class="chip" title="Which of the 3 methods (see box above) was used for this product">Method: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}</span>`);
+  if(e.sku.leadTimeDays) chips.push(`<span class="chip" title="How long it takes Boston Beer to fulfill an order once placed — corrections are spread across this window">Lead time: ${fmtNum(e.sku.leadTimeDays)} days</span>`);
+  if(pkg && pkg.caseEquiv && pkg.caseEquiv!==1 && ul) chips.push(`<span class="chip" title="Recommended quantities round to whole ${esc(ul.toLowerCase())}s, never a fraction of one">1 ${esc(ul)} = ${pkg.caseEquiv} cases</span>`);
+  if(e.sku.matchType==='prefix') chips.push(`<span class="chip warn" title="This SKU was matched to inventory data by a similar code, not an exact match — worth double-checking">Verify SKU match (${esc(e.sku.inventorySku)})</span>`);
+  return chips.join('');
+}
+
 function detailTable(e){
+  const pkg = e.sku.packageInfo;
   const rows = e.sku.weeks.map((w,i) => {
     const rec = e.rec[i];
-    const delta = (rec!=null && w.forecast!=null) ? rec - w.forecast : null;
+    const deltaCE = (rec!=null && w.forecast!=null) ? rec - w.forecast : null;
     return `<tr>
       <td>${esc(w.weekEnding)}</td>
       <td class="num">${fmtNum(w.onFile)}</td>
       <td class="num">${fmtNum(w.forecast)}</td>
-      <td class="num"><b>${fmtRec(rec)}</b></td>
-      <td class="num ${delta>0?'delta-pos':delta<0?'delta-neg':''}">${delta==null?'—':(delta>0?'+':'')+fmtRec(delta)}</td>
+      <td class="num"><b>${fmtQty(rec, pkg)}</b></td>
+      <td class="num ${deltaCE>0?'delta-pos':deltaCE<0?'delta-neg':''}">${fmtQtyDelta(deltaCE, pkg)}</td>
     </tr>`;
   }).join('');
-  const pkg = e.sku.packageInfo;
   return `<div class="detail-inner">
     <table>
-      <thead><tr><th>Week Ending</th><th class="num">On File</th><th class="num">Your Forecast</th><th class="num">Recommended</th><th class="num">&Delta;</th></tr></thead>
+      <thead><tr>
+        <th title="The date this order week wraps up">Week Ending</th>
+        <th class="num" title="What's already locked in with Boston Beer for this week">On File</th>
+        <th class="num" title="What you currently have planned to order this week">Your Forecast</th>
+        <th class="num" title="What we suggest ordering this week">Recommended</th>
+        <th class="num" title="Recommended minus Your Forecast for this week">Difference</th>
+      </tr></thead>
       <tbody>${rows}</tbody>
     </table>
-    <p class="trend-note">Recommended via: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}
-      ${e.sku.leadTimeDays ? ` &middot; lead time ${fmtNum(e.sku.leadTimeDays)} days (correction spread over ${e.sku.correctionWeeks} wk)` : ''}
-      ${pkg && pkg.caseEquiv && pkg.caseEquiv!==1 ? ` &middot; rounded to whole ${esc(pkg.sellingUnit||'units')} (1 = ${pkg.caseEquiv} case-equiv)` : ''}
-    </p>
+    <div class="chiprow">${detailMeta(e)}</div>
     <p class="trend-note">Last 5 weeks sold (oldest&rarr;newest): ${(e.sku.recentWeeks||[]).map(fmtNum).join(' &middot; ')}
       ${e.sku.lastReceiveDate ? ` &middot; Last receive: ${esc(e.sku.lastReceiveDate)} (${fmtNum(e.sku.lastReceiveQty)} cases)` : ''}
-      ${e.sku.matchType==='prefix' ? ` &middot; matched to inventory SKU ${esc(e.sku.inventorySku)} by prefix, not exact match — verify this is the right item` : ''}
     </p>
   </div>`;
 }
@@ -384,10 +431,10 @@ function render(){
       <td class="num">${fmtNum(s.l4Avg)}</td>
       <td>${sparkline(s.recentWeeks)}</td>
       <td class="num">${fmt1(e.wos)}</td>
-      <td><span class="badge ${e.status}">${STATUS_LABEL[e.status]}</span></td>
+      <td><span class="badge ${e.status}" title="${esc(STATUS_TIP[e.status]||'')}">${STATUS_LABEL[e.status]}</span></td>
       <td class="num">${fmtNum(e.curTotal8)}</td>
-      <td class="num">${fmtRec(e.recTotal8)}</td>
-      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${e.gap==0?'—':(e.gap>0?'+':'')+fmtRec(e.gap)}</td>
+      <td class="num">${fmtQty(e.recTotal8, s.packageInfo)}</td>
+      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${fmtQtyDelta(e.gap, s.packageInfo)}</td>
       <td><span class="chev">&rsaquo;</span></td>
     </tr>
     <tr class="detailrow" id="${rowId}"><td colspan="10">${detailTable(e)}</td></tr>`;
@@ -417,12 +464,14 @@ function renderOrphans(){
 
 function renderMethodBox(){
   document.getElementById('methodbox').innerHTML = `
-    <b>How "Recommended" is computed</b> (3 cases, shown per-SKU in the detail view as "Recommended via"):
-    <br><br><b>1. SKUs with recent sell-through</b> (most of them): your average weekly cases sold over the last 4 weeks is the demand signal, sized to your target weeks-of-supply. The correction needed to get from current inventory to target is spread evenly across Boston Beer's actual <b>21-day order lead time</b> (&asymp;3 weeks) instead of dumped into a single week &mdash; an over-stocked item draws down gradually rather than getting a cliff-edge $0 week. Weeks after the correction window follow your own forecast's week-to-week <i>shape</i>, rescaled to the corrected level, so seasonal ramps you already know about still carry through.
-    <br><br><b>2. SKUs with no recent sales</b> but a matching week from a year ago (new-season items like an Octoberfest launch that hasn't started shipping yet): recommendation uses <b>last year's actual volume for the same calendar week</b> instead of guessing from zero.
-    <br><br><b>3. SKUs with neither</b> (genuinely new items): passes your own forecast through unchanged &mdash; there's nothing to correct against.
-    <br><br><b>Case-pack aware:</b> every recommendation is rounded to a whole number of physically-orderable units (whole kegs, whole cases) using the Boston Beer package reference table, not just rounded case-equivalents &mdash; so a keg SKU won't recommend an unorderable fraction of a keg. Non-integer values you see (e.g. 6.94) represent an exact whole-unit multiple (here, 3 kegs at 2.3125 case-equiv each), not imprecision.
-    <br><br><b>Still not accounted for:</b> upcoming promotions/feature placements aren't reflected, and the lead-time correction assumes it applies uniformly rather than modeling exact receipt timing per order.`;
+    <b>How "Recommended" is worked out</b> — one of 3 methods per product (shown in each row's detail view):
+    <ul>
+      <li><b>Most products</b> use your last 4 weeks of actual sales as the demand signal, sized to your target weeks of supply. Any correction needed is spread evenly across Boston Beer's ~3-week order lead time instead of dumped into a single week, and follows your own forecast's week-to-week pattern so known seasonal ramps still carry through.</li>
+      <li><b>New or seasonal items with no recent sales</b> (e.g. an Octoberfest launch that hasn't started shipping yet) use last year's actual volume for the same calendar week instead of guessing from zero.</li>
+      <li><b>Brand new items</b> with no sales history at all pass your own forecast through unchanged.</li>
+    </ul>
+    <p style="margin:10px 0 0">Every recommendation is rounded to a whole orderable unit &mdash; whole cases, or whole kegs for keg products &mdash; using Boston Beer's package reference table, so you'll never see an order for a fraction of a keg.</p>
+    <p style="margin:10px 0 0"><b>Not yet accounted for:</b> upcoming promotions or feature placements, and exact per-order receipt timing.</p>`;
 }
 
 function csvEscape(v){
