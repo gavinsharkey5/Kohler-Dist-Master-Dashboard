@@ -16,14 +16,13 @@ To refresh with a new export:
   3. Commit and push.
 
 IMPORTANT — budgets are not in expenses.csv:
-Per-supplier budget targets live on a separate tab of the workbook that
-isn't part of this export. They're hardcoded in SUPPLIER_BUDGETS at the top
-of generate.py and must be updated by hand there when a budget changes.
-(There's a known ~$225k gap between the sum of SUPPLIER_BUDGETS here and the
-"Total Budget" figure printed in the expenses export's own pivot-summary
-header — that gap predates this script and likely means the source workbook's
-Budget tab has one or more supplier rows this tracker doesn't carry yet.
-Worth reconciling directly against the workbook if that total matters.)
+Per-supplier budget targets live on a separate "Budget" tab of the workbook
+that isn't part of this export. They're hardcoded in SUPPLIER_BUDGETS at the
+top of generate.py and must be updated by hand there when a budget changes.
+Reconciled against the Budget tab on 2026-07-16 (sum of SUPPLIER_BUDGETS now
+matches its $3,020,611.00 Total Budget exactly). If a future expenses.csv
+Total Budget header no longer matches the sum this script prints, re-export
+the Budget tab and reconcile SUPPLIER_BUDGETS against it again the same way.
 
 ACCOUNT_SUPPLIER_MAP (also in generate.py) maps each raw "Account" column
 value — or, when Account is blank, "DESC::<Description>" — to the supplier
