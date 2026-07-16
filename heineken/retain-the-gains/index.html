@@ -42,20 +42,20 @@
   .rate{font-family:"Space Grotesk";font-weight:700;font-size:30px;margin:2px 0 10px}
 
   .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 4px}
-  select, input[type=search]{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:11px 14px;font-family:"Inter";font-size:14px;min-height:44px}
+  select, input[type=search]{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 14px;font-family:"Inter";font-size:16px;min-height:46px}
   select{min-width:200px}
   input[type=search]{flex:1;min-width:180px}
 
   .scroll-hint{display:none;font-size:12px;color:var(--ink-soft);margin:0 0 8px}
-  @media (max-width:700px){.scroll-hint{display:block}}
+  @media (max-width:900px){.scroll-hint{display:block}}
 
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:var(--card)}
-  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
-  th,td{text-align:left;padding:11px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+  th,td{text-align:center;padding:13px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
   th{font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);position:sticky;top:0;background:var(--card)}
   tr:last-child td{border-bottom:none}
   tr:hover td{background:var(--card-h)}
-  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  td.num{font-variant-numeric:tabular-nums}
   .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;font-family:"Space Grotesk"}
   .pill.hi{background:rgba(200,16,46,.16);color:#FF8FA3}
   .pill.mid{background:rgba(230,178,60,.16);color:var(--gold)}
@@ -79,7 +79,20 @@
     </div>
   </header>
 
-  <p class="section-label">Overall — On Premise vs Off Premise</p>
+  <p class="section-label">HUSA T2 Retainment — EP's / DB's vs. Goal</p>
+  <p class="sub" style="margin:0 0 12px">Heineken's own top-line distribution metric from the T2 slide &mdash; current point-of-distribution counts against their fixed goal. Off Premise (EP's) counts Large-format outlets only; On Premise (DB's) counts all tracked outlets. Goal is a fixed HUSA target, not something we calculate.</p>
+  <div class="channel-cards" id="epDbCards"></div>
+
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="epDbRepTable">
+      <thead><tr><th>Rep</th><th class="num">On Premise DB's</th><th class="num">Off Premise EP's</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="section-label" style="margin-top:44px">Overall — On Premise vs Off Premise</p>
+  <p class="sub" style="margin:0 0 12px">Retained/Unretained detail for the June&ndash;August POD cohort &mdash; the actionable breakdown behind the EP's/DB's numbers above.</p>
   <div class="channel-cards" id="channelCards"></div>
 
   <p class="section-label">By SKU / SKU Family</p>
@@ -134,7 +147,8 @@
     Kohler Distributing &middot; Heineken USA &middot; Retain the Gains tracker.<br>
     Source of truth: HUSA's official Retained-PODs export (ON PREMISE + OFF PREMISE), refreshed manually as HUSA sends new files.
     Rep attribution is matched against Kohler's own customer roster (address/city), since HUSA and Kohler use different outlet ID systems (VIP vs. Encompass) — outlets that couldn't be matched are grouped under &ldquo;Unmatched &mdash; Needs Review&rdquo; rather than guessed.
-    Retention rate = Retained &divide; (Retained + Unretained); New Placements are POD wins from the program window and aren't counted against the rate.
+    Retention rate = Retained &divide; (Retained + Unretained); New Placements are POD wins from the program window and aren't counted against the rate.<br>
+    EP's / DB's come from a separate HUSA current-state POD export (not the retained/unretained file) &mdash; Off Premise (EP's) sums Large-format outlets only, which matched HUSA's reported 645 almost exactly (650); On Premise (DB's) sums all tracked outlets (382 vs. HUSA's 374). Goal figures are fixed HUSA targets, not calculated from any file we have.
   </footer>
 </div>
 
@@ -5737,7 +5751,137 @@
       "husaRep": "Chris Payton",
       "rosterRep": "Javier Melo"
     }
-  ]
+  ],
+  "epDbSummary": {
+    "Off Premise": {
+      "goal": 794,
+      "current": 650,
+      "diff": 144,
+      "pct": 81.9,
+      "byRep": [
+        {
+          "rep": "Dan Lagala",
+          "total": 73
+        },
+        {
+          "rep": "Mike Ast",
+          "total": 71
+        },
+        {
+          "rep": "Chris Payton",
+          "total": 64
+        },
+        {
+          "rep": "Javier Melo",
+          "total": 64
+        },
+        {
+          "rep": "Jim Heaney",
+          "total": 59
+        },
+        {
+          "rep": "Matt Powierski",
+          "total": 59
+        },
+        {
+          "rep": "Dave Ehlers",
+          "total": 55
+        },
+        {
+          "rep": "Derrick Laws",
+          "total": 52
+        },
+        {
+          "rep": "Shane Barreca",
+          "total": 41
+        },
+        {
+          "rep": "Pablo Lopez",
+          "total": 40
+        },
+        {
+          "rep": "Phil Ernst",
+          "total": 39
+        },
+        {
+          "rep": "Michael Harboy",
+          "total": 18
+        },
+        {
+          "rep": "Anthony Palmisano",
+          "total": 15
+        },
+        {
+          "rep": "Alex Rodriguez",
+          "total": 0
+        },
+        {
+          "rep": "John Neukum",
+          "total": 0
+        }
+      ]
+    },
+    "On Premise": {
+      "goal": 873,
+      "current": 382,
+      "diff": 491,
+      "pct": 43.8,
+      "byRep": [
+        {
+          "rep": "Nick Melissari",
+          "total": 85
+        },
+        {
+          "rep": "Allison Scott",
+          "total": 76
+        },
+        {
+          "rep": "Paul Mclaughlin",
+          "total": 66
+        },
+        {
+          "rep": "Pablo Lopez",
+          "total": 38
+        },
+        {
+          "rep": "Javier Melo",
+          "total": 28
+        },
+        {
+          "rep": "Robin Feldman",
+          "total": 19
+        },
+        {
+          "rep": "Dan Lagala",
+          "total": 18
+        },
+        {
+          "rep": "Derrick Laws",
+          "total": 17
+        },
+        {
+          "rep": "Matt Powierski",
+          "total": 11
+        },
+        {
+          "rep": "Chris Payton",
+          "total": 10
+        },
+        {
+          "rep": "Mike Ast",
+          "total": 7
+        },
+        {
+          "rep": "Anthony Palmisano",
+          "total": 6
+        },
+        {
+          "rep": "Jaime Colonna",
+          "total": 1
+        }
+      ]
+    }
+  }
 }</script>
 <script>
 const DATA = JSON.parse(document.getElementById('retain-gains-data').textContent);
@@ -5748,6 +5892,51 @@ function ratePillClass(rate){
   if (rate < 50) return 'hi';
   if (rate < 75) return 'mid';
   return 'lo';
+}
+
+function renderEpDbCards(){
+  const wrap = document.getElementById('epDbCards');
+  wrap.innerHTML = '';
+  const rows = [
+    { channel: 'Off Premise', label: "EP's", data: DATA.epDbSummary['Off Premise'] },
+    { channel: 'On Premise', label: "DB's", data: DATA.epDbSummary['On Premise'] },
+  ];
+  rows.forEach(({ channel, label, data }) => {
+    const div = document.createElement('div');
+    div.className = 'chcard';
+    const pctToGoal = data.pct;
+    div.innerHTML = `
+      <h3>${channel}</h3>
+      <div class="rate" style="color:${pctToGoal<50?'var(--red)':pctToGoal<75?'var(--gold)':'var(--green)'}">${pct(pctToGoal)}</div>
+      <div class="bar-track">
+        <div class="seg-retained" style="width:${Math.min(100, 100*data.current/data.goal)}%"></div>
+      </div>
+      <div class="bar-legend"><span>Current ${label} <b>${data.current}</b></span><span>Goal <b>${data.goal}</b></span></div>
+      <div class="bar-legend" style="margin-top:4px"><span>Diff <b style="color:var(--red)">${data.diff}</b></span><span>&nbsp;</span></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function renderEpDbRepTable(){
+  const tbody = document.querySelector('#epDbRepTable tbody');
+  tbody.innerHTML = '';
+  const onByRep = Object.fromEntries(DATA.epDbSummary['On Premise'].byRep.map(r => [r.rep, r.total]));
+  const offByRep = Object.fromEntries(DATA.epDbSummary['Off Premise'].byRep.map(r => [r.rep, r.total]));
+  const reps = [...new Set([...Object.keys(onByRep), ...Object.keys(offByRep)])].sort((a,b) => {
+    if (a === 'Unmatched — Needs Review') return 1;
+    if (b === 'Unmatched — Needs Review') return -1;
+    return (offByRep[b]||0) + (onByRep[b]||0) - ((offByRep[a]||0) + (onByRep[a]||0));
+  });
+  reps.forEach(rep => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${rep}</td>
+      <td class="num">${onByRep[rep] || 0}</td>
+      <td class="num">${offByRep[rep] || 0}</td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
 function renderChannelCards(){
@@ -5874,6 +6063,8 @@ const ms = DATA.matchStats || {};
 const matched = (ms.exact||0) + (ms.fuzzy||0) + (ms.husa_fallback||0);
 document.getElementById('matchBadge').textContent = `${matched} of ${DATA.outletCount} attributed to a rep`;
 
+renderEpDbCards();
+renderEpDbRepTable();
 renderChannelCards();
 renderSkuTable();
 renderRepTable();

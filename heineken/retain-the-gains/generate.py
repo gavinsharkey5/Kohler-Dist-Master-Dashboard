@@ -42,7 +42,15 @@ HERE = Path(__file__).parent
 ON_XLSX = HERE / "HUSA_Retained_PODS_ON.xlsx"
 OFF_XLSX = HERE / "HUSA_Retained_PODS_OFF.xlsx"
 CUSTOMER_CSV = HERE / "Kohler_Customer_Data.csv"
+CURRENT_ON_XLSX = HERE / "HUSA_CurrentPOD_ON.xlsx"
+CURRENT_OFF_XLSX = HERE / "HUSA_CurrentPOD_OFF.xlsx"
 OUT_HTML = HERE / "index.html"
+
+# HUSA's own goal figures from the T2 "Retain the Gains" slide. Not
+# derivable from any export we have — these are fixed distributor-level
+# targets Heineken set independently, so they're hardcoded here the same
+# way SUPPLIER_BUDGETS is hardcoded in supplier-budget/generate.py.
+EP_DB_GOAL = {"Off Premise": 794, "On Premise": 873}
 
 RETAINED, NEW_PLACEMENT, UNRETAINED = 3, 2, 1
 
@@ -133,6 +141,71 @@ def parse_sheet(xlsx_path, sheet_name, sku_cols, channel):
             rec["skus"] = skus
             outlets.append(rec)
     return outlets
+
+
+def parse_current_pod_on(path):
+    """HUSA_CurrentPOD_ON.xlsx: simple current-state POD flags (0/1) per
+    SKU family, with a per-outlet Total column — this is what sums to
+    HUSA's "DB's" (On Premise) figure."""
+    wb = openpyxl.load_workbook(path, data_only=True)
+    ws = wb["Export"]
+    total_col = next(c for c in range(1, ws.max_column + 1) if ws.cell(row=1, column=c).value == "Total")
+    outlets = []
+    for row in range(3, ws.max_row + 1):
+        outlet_name = ws.cell(row=row, column=6).value
+        if not outlet_name or not str(outlet_name).strip():
+            continue
+        total = ws.cell(row=row, column=total_col).value
+        if total is None:
+            continue
+        rep = (ws.cell(row=row, column=11).value or "").strip().title()
+        outlets.append({"outlet": outlet_name, "rep": rep or "Unmatched — Needs Review", "total": total})
+    return outlets
+
+
+def parse_current_pod_off(path):
+    """HUSA_CurrentPOD_OFF.xlsx: same idea as the ON file, but split by
+    outlet Format (Large/Small) with a separate Total column per format.
+    Confirmed against HUSA's own PDF that "EP's" (Off Premise) sums only
+    the Large-format Total column (650 vs. HUSA's reported 645) — Large +
+    Small combined overshoots (657)."""
+    wb = openpyxl.load_workbook(path, data_only=True)
+    ws = wb["Export"]
+    fmt_by_col = {}
+    current_fmt = None
+    for c in range(1, ws.max_column + 1):
+        label = ws.cell(row=1, column=c).value
+        if label:
+            current_fmt = label
+        fmt_by_col[c] = current_fmt
+    large_total_col = next(
+        c for c in range(1, ws.max_column + 1)
+        if ws.cell(row=2, column=c).value == "Total" and fmt_by_col[c] == "Large"
+    )
+    outlets = []
+    for row in range(4, ws.max_row + 1):
+        outlet_name = ws.cell(row=row, column=5).value
+        if not outlet_name or not str(outlet_name).strip():
+            continue
+        total = ws.cell(row=row, column=large_total_col).value
+        if total is None:
+            continue
+        rep = (ws.cell(row=row, column=10).value or "").strip().title()
+        outlets.append({"outlet": outlet_name, "rep": rep or "Unmatched — Needs Review", "total": total})
+    return outlets
+
+
+def current_pod_summary(outlets, channel):
+    goal = EP_DB_GOAL[channel]
+    current = sum(o["total"] for o in outlets)
+    diff = goal - current
+    pct = round(100 * current / goal, 1) if goal else None
+    by_rep = defaultdict(int)
+    for o in outlets:
+        by_rep[o["rep"]] += o["total"]
+    rep_rows = [{"rep": rep, "total": total} for rep, total in by_rep.items()]
+    rep_rows.sort(key=lambda r: (r["rep"] == "Unmatched — Needs Review", -r["total"]))
+    return {"goal": goal, "current": current, "diff": diff, "pct": pct, "byRep": rep_rows}
 
 
 def main():
@@ -246,6 +319,15 @@ def main():
 
     gap_list.sort(key=lambda g: (g["rep"] == "Unmatched — Needs Review", g["rep"], g["channel"], g["sku"]))
 
+    current_on = parse_current_pod_on(CURRENT_ON_XLSX)
+    current_off = parse_current_pod_off(CURRENT_OFF_XLSX)
+    ep_db_summary = {
+        "Off Premise": current_pod_summary(current_off, "Off Premise"),
+        "On Premise": current_pod_summary(current_on, "On Premise"),
+    }
+    print(f"EP's (Off Premise, Large format): {ep_db_summary['Off Premise']['current']} vs. goal {EP_DB_GOAL['Off Premise']}")
+    print(f"DB's (On Premise): {ep_db_summary['On Premise']['current']} vs. goal {EP_DB_GOAL['On Premise']}")
+
     data = {
         "overall": overall,
         "overallByChannel": overall_by_channel,
@@ -256,17 +338,19 @@ def main():
         "matchStats": dict(match_stats),
         "outletCount": len(all_outlets),
         "repDiscrepancies": rep_discrepancies,
+        "epDbSummary": ep_db_summary,
     }
 
     html = OUT_HTML.read_text()
+    tag_open = '<script id="retain-gains-data" type="application/json">'
+    if tag_open not in html:
+        raise SystemExit("Could not find retain-gains-data script tag in index.html")
     new_html = re.sub(
         r'(<script id="retain-gains-data" type="application/json">).*?(</script>)',
         lambda m: m.group(1) + json.dumps(data, indent=2) + m.group(2),
         html,
         flags=re.DOTALL,
     )
-    if new_html == html:
-        raise SystemExit("Could not find retain-gains-data script tag in index.html")
     OUT_HTML.write_text(new_html)
     print(f"Wrote {len(all_outlets)} outlets, {len(gap_list)} open gaps, {len(rep_summary)} reps.")
 
