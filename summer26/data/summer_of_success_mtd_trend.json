@@ -25,7 +25,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 6,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -6,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -205,7 +205,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 5,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -294,7 +294,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Modelo Chelada",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 4,
     "CASE_EQUIV_UNIT_DIFFERENCE": 4,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -394,7 +394,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Cayman Jack",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 7,
     "CASE_EQUIV_UNIT_DIFFERENCE": 7,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -485,7 +485,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Kirin Ichiban",
     "CASE_EQUIV_2025": 15,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -15,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -515,7 +515,7 @@
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 19,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -19,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -1094,7 +1094,7 @@
     "SUPPLIER": "Bell's",
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 10,
     "CASE_EQUIV_UNIT_DIFFERENCE": 10,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -1294,7 +1294,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mxd Cocktails",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 7,
     "CASE_EQUIV_UNIT_DIFFERENCE": 7,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -1384,7 +1384,7 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Kirin Ichiban",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 17,
     "CASE_EQUIV_UNIT_DIFFERENCE": 17,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -1434,7 +1434,7 @@
     "SUPPLIER": "Boston Beer Company",
     "QUALIFIER_BRANDS": "Amplify: Dogfish Head",
     "BRAND_FAMILY": "Dogfish Head Spirits",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 8,
     "CASE_EQUIV_UNIT_DIFFERENCE": 8,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2365,7 +2365,7 @@
     "QUALIFIER_BRANDS": "Qualifier: Truly / Twisted Tea",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 5,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2374,7 +2374,7 @@
     "SUPPLIER": "Cape May",
     "QUALIFIER_BRANDS": "Amplify: Cape May",
     "BRAND_FAMILY": "Cape May",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2384,7 +2384,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Corona Premier",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 8,
     "CASE_EQUIV_UNIT_DIFFERENCE": 8,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2404,7 +2404,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Pacifico",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 7,
     "CASE_EQUIV_UNIT_DIFFERENCE": 7,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2485,7 +2485,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2505,7 +2505,7 @@
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2565,7 +2565,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 2,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2575,7 +2575,7 @@
     "QUALIFIER_BRANDS": "Amplify: Dogfish Head",
     "BRAND_FAMILY": "Dogfish Head Spirits",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2585,7 +2585,7 @@
     "QUALIFIER_BRANDS": "Qualifier: Yuengling Lager",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2595,7 +2595,7 @@
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 10,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -10,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2605,7 +2605,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2635,7 +2635,7 @@
     "QUALIFIER_BRANDS": "Qualifier: Truly / Twisted Tea",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 5,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2654,7 +2654,7 @@
     "SUPPLIER": "Cape May",
     "QUALIFIER_BRANDS": "Amplify: Cape May",
     "BRAND_FAMILY": "Cape May",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 4,
     "CASE_EQUIV_UNIT_DIFFERENCE": 4,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2715,7 +2715,7 @@
     "QUALIFIER_BRANDS": "Amplify: Yuengling Light / Yuengling Flight",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2734,7 +2734,7 @@
     "SUPPLIER": "Heineken USA",
     "QUALIFIER_BRANDS": "Amplify: Heineken Light / Heineken 0.0",
     "BRAND_FAMILY": "Heineken 0.0",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 3,
     "CASE_EQUIV_UNIT_DIFFERENCE": 3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2745,7 +2745,7 @@
     "QUALIFIER_BRANDS": "Amplify: Heineken Light / Heineken 0.0",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -2784,7 +2784,7 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Coors",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 2,
     "CASE_EQUIV_UNIT_DIFFERENCE": 2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -2935,7 +2935,7 @@
     "QUALIFIER_BRANDS": "Amplify: Yuengling Light / Yuengling Flight",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -3034,7 +3034,7 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -3355,7 +3355,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Kirin Ichiban",
     "CASE_EQUIV_2025": 2,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -3385,7 +3385,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 9,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -9,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -3914,7 +3914,7 @@
     "SUPPLIER": "Boston Beer Company",
     "QUALIFIER_BRANDS": "Amplify: Dogfish Head",
     "BRAND_FAMILY": "Dogfish Head Beer",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 10,
     "CASE_EQUIV_UNIT_DIFFERENCE": 10,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -3944,7 +3944,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Corona Premier",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4024,7 +4024,7 @@
     "SUPPLIER": "Heineken USA",
     "QUALIFIER_BRANDS": "Amplify: Heineken Light / Heineken 0.0",
     "BRAND_FAMILY": "Heineken Light",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 2,
     "CASE_EQUIV_UNIT_DIFFERENCE": 2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4044,7 +4044,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Cayman Jack",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 3,
     "CASE_EQUIV_UNIT_DIFFERENCE": 3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4054,7 +4054,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mike's Harder",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 5,
     "CASE_EQUIV_UNIT_DIFFERENCE": 5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4064,7 +4064,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Qualifier: White Claw",
     "BRAND_FAMILY": "White Claw",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 15,
     "CASE_EQUIV_UNIT_DIFFERENCE": 15,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4085,7 +4085,7 @@
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 4,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -4,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -4104,7 +4104,7 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "QUALIFIER_BRANDS": "Qualifier: Coors Light/Miller Lite/Blue Moon",
     "BRAND_FAMILY": "Blue Moon",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 5,
     "CASE_EQUIV_UNIT_DIFFERENCE": 5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4134,7 +4134,7 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Kirin Ichiban",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4354,7 +4354,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mxd Cocktails",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 2,
     "CASE_EQUIV_UNIT_DIFFERENCE": 2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -4475,7 +4475,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -5295,7 +5295,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mxd Cocktails",
     "CASE_EQUIV_2025": 12,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -12,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -5534,7 +5534,7 @@
     "SUPPLIER": "DG Yuengling Inc",
     "QUALIFIER_BRANDS": "Amplify: Yuengling Light / Yuengling Flight",
     "BRAND_FAMILY": "Yuengling Light Lager",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 2,
     "CASE_EQUIV_UNIT_DIFFERENCE": 2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -5584,7 +5584,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Cayman Jack",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 2,
     "CASE_EQUIV_UNIT_DIFFERENCE": 2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -5595,7 +5595,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -3,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -5755,7 +5755,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 2,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -5824,7 +5824,7 @@
     "SUPPLIER": "DG Yuengling Inc",
     "QUALIFIER_BRANDS": "Amplify: Yuengling Light / Yuengling Flight",
     "BRAND_FAMILY": "Yuengling Flight",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 7,
     "CASE_EQUIV_UNIT_DIFFERENCE": 7,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -5924,7 +5924,7 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -5974,7 +5974,7 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Kirin Ichiban",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 4,
     "CASE_EQUIV_UNIT_DIFFERENCE": 4,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -6005,7 +6005,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 0,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": 0,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
   },
@@ -6024,7 +6024,7 @@
     "SUPPLIER": "Boston Beer Company",
     "QUALIFIER_BRANDS": "Amplify: Dogfish Head",
     "BRAND_FAMILY": "Dogfish Head Spirits",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 5,
     "CASE_EQUIV_UNIT_DIFFERENCE": 5,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -6074,7 +6074,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Modelo Chelada",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 1,
     "CASE_EQUIV_UNIT_DIFFERENCE": 1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -6124,7 +6124,7 @@
     "SUPPLIER": "DG Yuengling Inc",
     "QUALIFIER_BRANDS": "Amplify: Yuengling Light / Yuengling Flight",
     "BRAND_FAMILY": "Yuengling Flight",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": 0,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -6175,7 +6175,7 @@
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 2,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -2,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -6615,7 +6615,7 @@
     "QUALIFIER_BRANDS": "Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -6635,7 +6635,7 @@
     "QUALIFIER_BRANDS": "Amplify: Dogfish Head",
     "BRAND_FAMILY": "Dogfish Head Spirits",
     "CASE_EQUIV_2025": 1,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -6685,7 +6685,7 @@
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 6,
-    "CASE_EQUIV_2026": null,
+    "CASE_EQUIV_2026": 0,
     "CASE_EQUIV_UNIT_DIFFERENCE": -6,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "-100.0%"
   },
@@ -6704,7 +6704,7 @@
     "SUPPLIER": "Constellation Brands",
     "QUALIFIER_BRANDS": "Amplify: Premier / Chelada / Victoria / Pacifico",
     "BRAND_FAMILY": "Victoria",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 8,
     "CASE_EQUIV_UNIT_DIFFERENCE": 8,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -6814,7 +6814,7 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "QUALIFIER_BRANDS": "Amplify: Coors / Peroni / Fever Tree",
     "BRAND_FAMILY": "Fever Tree",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": 8,
     "CASE_EQUIV_UNIT_DIFFERENCE": 8,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
@@ -7104,7 +7104,7 @@
     "SUPPLIER": "Mark Anthony",
     "QUALIFIER_BRANDS": "Amplify: Cayman Jack / Mike's Harder / MXD",
     "BRAND_FAMILY": "Mxd Cocktails",
-    "CASE_EQUIV_2025": null,
+    "CASE_EQUIV_2025": 0,
     "CASE_EQUIV_2026": -1,
     "CASE_EQUIV_UNIT_DIFFERENCE": -1,
     "CASE_EQUIV_PERCENTAGE_DIFFERENCE": "0.0%"
