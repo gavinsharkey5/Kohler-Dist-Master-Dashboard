@@ -50,6 +50,15 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 .stat-val.up{color:var(--green)}
 .stat-sub{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
 
+.goalbar{max-width:1080px;margin:12px auto 0;padding:0 16px}
+.goalbar-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.goalbar-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px 14px;margin-bottom:8px}
+.goalbar-label{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+.goalbar-count{font-family:"Space Grotesk";font-size:15px;font-weight:700}
+.goalbar-count .of{font-size:12px;font-weight:600;color:var(--ink-soft)}
+.goalbar-track{height:8px;border-radius:99px;background:var(--card2);overflow:hidden}
+.goalbar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:99px}
+
 .toolbar{max-width:1080px;margin:20px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:12px}
 .repbar{display:flex;flex-wrap:wrap;gap:8px}
 .chip{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);padding:7px 14px;border-radius:20px;
@@ -87,6 +96,7 @@ main{max-width:1080px;margin:18px auto 60px;padding:0 16px}
 .acct-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
 .acct-name{font-family:"Space Grotesk";font-weight:600;font-size:15.5px}
 .acct-meta{font-size:12px;color:var(--ink-soft)}
+.acct-carb-flavors{font-size:11.5px;color:var(--gold);margin-top:3px}
 .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:20px}
 .badge.new{background:var(--green-soft);color:var(--green)}
 .badge.lapsed{background:var(--red-soft);color:var(--red)}
@@ -142,6 +152,7 @@ footer b{color:var(--ink)}
 </div>
 
 <div class="stats" id="stats"></div>
+<div class="goalbar" id="goalbar"></div>
 
 <div class="toolbar">
   <div class="tabs" id="tabs"></div>
@@ -190,6 +201,29 @@ function renderStats(){
     {label:'Without SC/WC in 2026', val: fmt(m.lapsed), sub:'zero cases so far this year'},
   ];
   el.innerHTML = tiles.map(t=>`<div class="stat"><div class="stat-label">${t.label}</div><div class="stat-val ${t.cls||''}">${t.val}</div><div class="stat-sub">${t.sub}</div></div>`).join('');
+}
+
+// Company-wide on-premise Carbliss goal (matches the /carbliss/ tracker's
+// fixed target of 331 on-premise accounts carrying Carbliss). withCarbliss
+// here counts accounts with real 2026 Carbliss volume within this file's
+// Sun Cruiser/White Claw-evaluated account set, not every on-premise
+// account company-wide -- so this progress bar is a lower bound on true
+// company-wide progress toward 331, not the authoritative count.
+const ONPREM_CARBLISS_GOAL = 331;
+
+function renderGoal(){
+  const count = DATA.meta.withCarbliss;
+  const goal = ONPREM_CARBLISS_GOAL;
+  const pct = Math.min(100, (count/goal*100));
+  document.getElementById('goalbar').innerHTML = `
+    <div class="goalbar-card">
+      <div class="goalbar-head">
+        <div class="goalbar-label">On-Premise Carbliss Goal</div>
+        <div class="goalbar-count">${fmt(count)}<span class="of"> / ${goal} accounts carrying Carbliss</span></div>
+      </div>
+      <div class="goalbar-track"><div class="goalbar-fill" style="width:${pct.toFixed(1)}%"></div></div>
+      <div class="stat-sub" style="margin-top:8px">Counts accounts carrying Carbliss within this file's ${fmt(DATA.meta.totalAccounts)} Sun Cruiser/White Claw-evaluated accounts — the full on-premise universe (tracked separately in the /carbliss/ page) may be higher.</div>
+    </div>`;
 }
 
 function baseFiltered(){
@@ -262,6 +296,7 @@ function acctCard(a, idx){
           ${badges.join('')}
         </div>
         <div class="acct-meta">${esc(a.rep)}${a.city?' · '+esc(a.city):''} · ${a.breadth} SKU${a.breadth===1?'':'s'} moving</div>
+        ${a.existingCarbliss.length ? `<div class="acct-carb-flavors">Carbliss on menu: ${a.existingCarbliss.map(esc).join(', ')}</div>` : ''}
       </div>
       <div class="acct-right">
         <div class="acct-total num">${fmt(a.total26)}<span class="unit">cs SC+WC</span></div>
@@ -309,6 +344,7 @@ document.getElementById('carblessToggle').addEventListener('click', function(){
 document.getElementById('updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 
 renderStats();
+renderGoal();
 renderTabs();
 renderRepBar();
 renderList();
