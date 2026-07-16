@@ -103,7 +103,10 @@ ACCOUNT_SUPPLIER_MAP = {'ADV. FOUR LOKO': 'Four Loko',
  'Vermont Cider Company': 'US Beverage',
  'Vinaio Imports': 'Vinaio Imports',
  'Viva Beverages': 'Viva Beverages',
- 'YUENGLING- TACTICAL': 'Yuengling'}
+ 'YUENGLING- TACTICAL': 'Yuengling',
+ 'STRIPED PIG DIST': 'Striped Pig Distilling',
+ 'FIFCO': 'FIFCO USA',
+ 'PIO IMPORTS': 'Pio Imports'}
 
 SUPPLIER_BUDGETS = {'Adv.Prestige Wine Group': 0.0,
  'Alias Brewing': 0.0,
@@ -176,7 +179,10 @@ SUPPLIER_BUDGETS = {'Adv.Prestige Wine Group': 0.0,
  'Victory Brewing Company': 0.0,
  'Vinaio Imports': 0.0,
  'Viva Beverages': 0.0,
- 'Yuengling': 112769.0}
+ 'Yuengling': 112769.0,
+ 'Striped Pig Distilling': 0.0,
+ 'FIFCO USA': 0.0,
+ 'Pio Imports': 0.0}
 
 SUPPLIER_ORDER = ['Molson Coors',
  'Constellation',
