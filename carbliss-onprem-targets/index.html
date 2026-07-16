@@ -61,10 +61,17 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 
 .toolbar{max-width:1080px;margin:20px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:12px}
 .repbar{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);padding:7px 14px;border-radius:20px;
+.chip{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);padding:7px 14px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;border-radius:20px;
   font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
 .chip:hover{border-color:var(--accent);color:var(--ink)}
 .chip.active{background:color-mix(in srgb,var(--accent) 16%,transparent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent)}
+.rep-select{display:none}
+@media(max-width:700px){
+  .repbar{display:none}
+  .rep-select{display:block;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;font-size:15px;font-family:"Inter";min-height:44px}
+}
 
 .tabs{display:flex;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:5px}
 .tab{flex:1;min-width:180px;text-align:center;background:transparent;border:none;color:var(--ink-soft);
@@ -157,6 +164,7 @@ footer b{color:var(--ink)}
 <div class="toolbar">
   <div class="tabs" id="tabs"></div>
   <div class="repbar" id="repbar"></div>
+  <select class="rep-select" id="repSelect"></select>
   <div class="controls">
     <input class="search" id="search" type="text" placeholder="Search account or city…">
     <div class="switch-row" id="carblessToggle"><span class="switch"><i></i></span><span class="switch-label">Without Carbliss only</span></div>
@@ -256,6 +264,9 @@ function renderRepBar(){
   bar.querySelectorAll('.chip').forEach(b=>b.addEventListener('click', ()=>{
     activeRep = b.dataset.rep; renderRepBar(); renderTabs(); renderList();
   }));
+  const sel = document.getElementById('repSelect');
+  sel.innerHTML = reps.map(r=>`<option value="${esc(r)}"${r===activeRep?' selected':''}>${esc(r)}</option>`).join('');
+  sel.onchange = () => { activeRep = sel.value; renderRepBar(); renderTabs(); renderList(); };
 }
 
 function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }

@@ -52,11 +52,18 @@
   .seg{margin:22px 0 0}
   .seg .lbl{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;border-radius:999px;cursor:pointer;
+  .chip{font-family:"Space Grotesk";font-weight:500;font-size:13.5px;padding:7px 13px;min-height:44px;border-radius:999px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
     background:var(--card);color:var(--ink);border:1px solid var(--line);transition:.12s}
   .chip:hover{border-color:var(--accent)}
   .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#15140C;font-weight:600}
   .chip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .rep-select{display:none}
+  @media(max-width:700px){
+    #chips{display:none}
+    .rep-select{display:block;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
+      border-radius:12px;padding:12px 14px;font-size:15px;font-family:"Inter";min-height:44px}
+  }
 
   /* section head */
   .shead{display:flex;align-items:center;gap:9px;margin:26px 0 12px}
@@ -148,7 +155,9 @@
   .cx-kpi-sub{font-size:11.5px;color:var(--ink-soft);margin-top:4px}
 
   .cx-card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-top:22px;box-shadow:var(--shadow)}
-  .cx-table-scroll{max-height:640px;overflow-y:auto}
+  .cx-table-scroll{max-height:640px;overflow-y:auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cx-scroll-hint{display:none;font-size:11.5px;color:var(--ink-soft);margin:10px 2px 0}
+  @media(max-width:1000px){.cx-scroll-hint{display:block}}
   .cx-table{width:100%;border-collapse:collapse;font-size:13.5px}
   .cx-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--card)}
   .cx-table td{padding:10px 14px;border-bottom:1px solid var(--line-soft)}
@@ -190,7 +199,7 @@
 </div></div>
 <div id="app"><div class="wrap">
   <div class="seg"><p class="lbl">Program</p><div class="chips" id="progTabs"></div></div>
-  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
+  <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div><select class="rep-select" id="repSelect"></select></div>
   <div id="body"></div>
   <footer><hr><p id="foot"></p></footer>
 </div></div>
@@ -296,6 +305,7 @@ function renderConv(app){
     }).join("");
 
     app.innerHTML=`<div class="cx-kpi-strip">${stripHtml}</div>
+      <p class="cx-scroll-hint">Swipe table sideways to see all columns &rarr;</p>
       <div class="cx-card"><div class="cx-table-scroll"><table class="cx-table">
         <thead><tr><th>Rep</th><th class="cx-num">Cold Snap Base</th><th class="cx-num">Converted</th><th class="cx-num">Conversion Rate</th><th class="cx-num">Opportunities</th><th class="cx-num">Gained</th><th class="cx-num">Summer Ale Total</th></tr></thead>
         <tbody>${rows}</tbody>
@@ -407,14 +417,17 @@ function renderBase(app){
 
 function currentReps(){if(activeProgram==="conv")return [...new Set(CONV.map(r=>r.rep))].sort();if(activeProgram==="sc")return Object.keys(SC).filter(n=>SC[n].ty>0||SC[n].ly>0).sort();return Object.keys(GPB).filter(r=>baseAgg(r).p>0).sort();}
 function render(){const app=document.getElementById("body");(activeProgram==="conv"?renderConv:activeProgram==="sc"?renderSC:renderBase)(app);}
-function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
+function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));const sel=document.getElementById("repSelect");if(sel)sel.value=activeRep;render();window.scrollTo({top:0,behavior:"smooth"});}
 function setProgram(p){if(p===activeProgram)return;activeProgram=p;activeRep="ALL";renderTabs();renderChips();render();window.scrollTo({top:0,behavior:"smooth"});}
 function renderTabs(){const t=[["conv","Cold Snap → Summer Ale"],["sc","Sun Cruiser Volume"],["base","Base Distro"]];
   document.getElementById("progTabs").innerHTML=t.map(([v,l])=>`<button class="chip" aria-pressed="${v===activeProgram}" data-v="${v}">${l}</button>`).join("");
   document.querySelectorAll("#progTabs .chip").forEach(b=>b.addEventListener("click",()=>setProgram(b.dataset.v)));}
 function renderChips(){const reps=currentReps();
   document.getElementById("chips").innerHTML=["ALL",...reps].map(v=>`<button class="chip" aria-pressed="${v===activeRep}" data-v="${esc(v)}">${v==="ALL"?"All reps":esc(v)}</button>`).join("");
-  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
+  document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));
+  const sel=document.getElementById("repSelect");
+  sel.innerHTML=["ALL",...reps].map(v=>`<option value="${esc(v)}"${v===activeRep?" selected":""}>${v==="ALL"?"All reps":esc(v)}</option>`).join("");
+  sel.onchange=()=>setRep(sel.value);}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
   let convText=null,scText=null,lastMod=null;
