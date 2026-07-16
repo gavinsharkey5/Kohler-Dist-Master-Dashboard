@@ -1,0 +1,5888 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Retain the Gains · Heineken USA · Kohler Trackers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+    --green:#0E8A3C;--red:#C8102E;--gold:#E6B23C;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
+  .wrap{max-width:980px;margin:0 auto}
+  header{padding:30px 0 8px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-family:"Space Grotesk";font-size:12px;font-weight:600;color:var(--ink-soft);text-decoration:none;letter-spacing:.04em;margin:0 0 18px}
+  .back:hover{color:var(--green)}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--green);margin:0 0 10px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(28px,7vw,42px);line-height:1.0;margin:0}
+  .sub{color:var(--ink-soft);margin:14px 0 0;max-width:64ch;font-size:15px}
+  .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+  .badge{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+
+  .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 12px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+  .kpi .n{font-family:"Space Grotesk";font-weight:700;font-size:28px;letter-spacing:-.01em}
+  .kpi .l{font-size:12px;color:var(--ink-soft);margin-top:4px}
+  .kpi.retained .n{color:var(--green)}
+  .kpi.unretained .n{color:var(--red)}
+  .kpi.new .n{color:var(--gold)}
+
+  .channel-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:560px){.channel-cards{grid-template-columns:1fr}}
+  .chcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .chcard h3{font-family:"Space Grotesk";margin:0 0 12px;font-size:17px}
+  .bar-track{height:10px;border-radius:999px;background:#2A2E38;overflow:hidden;display:flex}
+  .bar-track .seg-retained{background:var(--green)}
+  .bar-track .seg-unretained{background:var(--red)}
+  .bar-legend{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);margin-top:8px}
+  .bar-legend b{color:var(--ink);font-weight:600}
+  .rate{font-family:"Space Grotesk";font-weight:700;font-size:30px;margin:2px 0 10px}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 4px}
+  select, input[type=search]{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:11px 14px;font-family:"Inter";font-size:14px;min-height:44px}
+  select{min-width:200px}
+  input[type=search]{flex:1;min-width:180px}
+
+  .scroll-hint{display:none;font-size:12px;color:var(--ink-soft);margin:0 0 8px}
+  @media (max-width:700px){.scroll-hint{display:block}}
+
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px}
+  th,td{text-align:left;padding:11px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
+  th{font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);position:sticky;top:0;background:var(--card)}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--card-h)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;font-family:"Space Grotesk"}
+  .pill.hi{background:rgba(200,16,46,.16);color:#FF8FA3}
+  .pill.mid{background:rgba(230,178,60,.16);color:var(--gold)}
+  .pill.lo{background:rgba(14,138,60,.16);color:#5FDB8C}
+  .pill.unmatched{background:rgba(154,161,176,.16);color:var(--ink-soft)}
+  .mini-rate{font-variant-numeric:tabular-nums}
+
+  .empty{padding:28px;text-align:center;color:var(--ink-soft);font-size:14px}
+  footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
+</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../">&lsaquo; Heineken USA Trackers</a>
+    <p class="eyebrow">T2 Margin Incentive · Official HUSA Data</p>
+    <h1>Retain the Gains</h1>
+    <p class="sub">POD retention status straight from HUSA's own June&ndash;August tracking file &mdash; the book of record for the T2 incentive. Use this to see exactly which accounts still need action to close the gap.</p>
+    <div class="badge-row">
+      <span class="badge" id="outletCountBadge">&mdash; outlets</span>
+      <span class="badge" id="matchBadge">&mdash;</span>
+    </div>
+  </header>
+
+  <p class="section-label">Overall — On Premise vs Off Premise</p>
+  <div class="channel-cards" id="channelCards"></div>
+
+  <p class="section-label">By SKU / SKU Family</p>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="skuTable">
+      <thead><tr><th>Channel</th><th>SKU / Family</th><th class="num">Retained</th><th class="num">Unretained</th><th class="num">New Placement</th><th class="num">Retention Rate</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="section-label">By Rep</p>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="repTable">
+      <thead><tr><th>Rep</th><th class="num">Retained</th><th class="num">Unretained</th><th class="num">New Placement</th><th class="num">Retention Rate</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="discrepancySection" style="display:none">
+    <p class="section-label">Rep Assignment Discrepancies</p>
+    <p class="sub" style="margin:0 0 12px">Accounts where HUSA's file and Kohler's own customer roster disagree on which rep owns them &mdash; worth a quick check, since this is exactly the kind of mismatch that causes &ldquo;our numbers vs. their numbers&rdquo; gaps.</p>
+    <div class="table-scroll">
+      <table id="discrepancyTable">
+        <thead><tr><th>Account</th><th>Channel</th><th>City</th><th>HUSA says</th><th>Kohler roster says</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="section-label">Close the Gap — Open Accounts</p>
+  <div class="controls">
+    <select id="repFilter"><option value="">All reps</option></select>
+    <select id="channelFilter">
+      <option value="">Both channels</option>
+      <option value="On Premise">On Premise</option>
+      <option value="Off Premise">Off Premise</option>
+    </select>
+    <input type="search" id="searchBox" placeholder="Search account, SKU, city...">
+  </div>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="gapTable">
+      <thead><tr><th>Rep</th><th>Channel</th><th>Account</th><th>City</th><th>SKU / Family</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="gapEmpty" style="display:none">No open gaps match this filter.</div>
+  </div>
+
+  <footer>
+    Kohler Distributing &middot; Heineken USA &middot; Retain the Gains tracker.<br>
+    Source of truth: HUSA's official Retained-PODs export (ON PREMISE + OFF PREMISE), refreshed manually as HUSA sends new files.
+    Rep attribution is matched against Kohler's own customer roster (address/city), since HUSA and Kohler use different outlet ID systems (VIP vs. Encompass) — outlets that couldn't be matched are grouped under &ldquo;Unmatched &mdash; Needs Review&rdquo; rather than guessed.
+    Retention rate = Retained &divide; (Retained + Unretained); New Placements are POD wins from the program window and aren't counted against the rate.
+  </footer>
+</div>
+
+<script id="retain-gains-data" type="application/json">{
+  "overall": {
+    "retained": 119,
+    "unretained": 225,
+    "newPlacement": 1757,
+    "base": 344,
+    "rate": 34.6
+  },
+  "overallByChannel": {
+    "On Premise": {
+      "retained": 48,
+      "unretained": 76,
+      "newPlacement": 441,
+      "base": 124,
+      "rate": 38.7
+    },
+    "Off Premise": {
+      "retained": 71,
+      "unretained": 149,
+      "newPlacement": 1316,
+      "base": 220,
+      "rate": 32.3
+    }
+  },
+  "skuSummary": [
+    {
+      "retained": 20,
+      "unretained": 23,
+      "newPlacement": 53,
+      "base": 43,
+      "rate": 46.5,
+      "channel": "Off Premise",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+    },
+    {
+      "retained": 2,
+      "unretained": 20,
+      "newPlacement": 74,
+      "base": 22,
+      "rate": 9.1,
+      "channel": "Off Premise",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+    },
+    {
+      "retained": 4,
+      "unretained": 15,
+      "newPlacement": 77,
+      "base": 19,
+      "rate": 21.1,
+      "channel": "Off Premise",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+    },
+    {
+      "retained": 4,
+      "unretained": 13,
+      "newPlacement": 79,
+      "base": 17,
+      "rate": 23.5,
+      "channel": "Off Premise",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+    },
+    {
+      "retained": 6,
+      "unretained": 11,
+      "newPlacement": 79,
+      "base": 17,
+      "rate": 35.3,
+      "channel": "Off Premise",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+    },
+    {
+      "retained": 2,
+      "unretained": 11,
+      "newPlacement": 83,
+      "base": 13,
+      "rate": 15.4,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Bottle 7 oz 24 loose"
+    },
+    {
+      "retained": 5,
+      "unretained": 10,
+      "newPlacement": 81,
+      "base": 15,
+      "rate": 33.3,
+      "channel": "Off Premise",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+    },
+    {
+      "retained": 3,
+      "unretained": 9,
+      "newPlacement": 84,
+      "base": 12,
+      "rate": 25.0,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Bottle 12 oz 24 loose"
+    },
+    {
+      "retained": 2,
+      "unretained": 7,
+      "newPlacement": 87,
+      "base": 9,
+      "rate": 22.2,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Bottle 12 oz 6-pack"
+    },
+    {
+      "retained": 1,
+      "unretained": 7,
+      "newPlacement": 88,
+      "base": 8,
+      "rate": 12.5,
+      "channel": "Off Premise",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+    },
+    {
+      "retained": 2,
+      "unretained": 7,
+      "newPlacement": 87,
+      "base": 9,
+      "rate": 22.2,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Can 12 oz 24 loose"
+    },
+    {
+      "retained": 6,
+      "unretained": 5,
+      "newPlacement": 85,
+      "base": 11,
+      "rate": 54.5,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+    },
+    {
+      "retained": 7,
+      "unretained": 5,
+      "newPlacement": 84,
+      "base": 12,
+      "rate": 58.3,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Can 16 oz 4-pack"
+    },
+    {
+      "retained": 3,
+      "unretained": 2,
+      "newPlacement": 91,
+      "base": 5,
+      "rate": 60.0,
+      "channel": "Off Premise",
+      "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+    },
+    {
+      "retained": 2,
+      "unretained": 2,
+      "newPlacement": 92,
+      "base": 4,
+      "rate": 50.0,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Can 12 oz 2x12-pack"
+    },
+    {
+      "retained": 2,
+      "unretained": 2,
+      "newPlacement": 92,
+      "base": 4,
+      "rate": 50.0,
+      "channel": "Off Premise",
+      "sku": "Heineken Original Can 24 oz 1x12-pack"
+    },
+    {
+      "retained": 17,
+      "unretained": 38,
+      "newPlacement": 58,
+      "base": 55,
+      "rate": 30.9,
+      "channel": "On Premise",
+      "sku": "Heineken H00 Package"
+    },
+    {
+      "retained": 25,
+      "unretained": 23,
+      "newPlacement": 65,
+      "base": 48,
+      "rate": 52.1,
+      "channel": "On Premise",
+      "sku": "Heineken Original Package"
+    },
+    {
+      "retained": 2,
+      "unretained": 9,
+      "newPlacement": 102,
+      "base": 11,
+      "rate": 18.2,
+      "channel": "On Premise",
+      "sku": "Dos Equis Lager Package"
+    },
+    {
+      "retained": 0,
+      "unretained": 4,
+      "newPlacement": 109,
+      "base": 4,
+      "rate": 0.0,
+      "channel": "On Premise",
+      "sku": "Dos Equis Lager Draft"
+    },
+    {
+      "retained": 4,
+      "unretained": 2,
+      "newPlacement": 107,
+      "base": 6,
+      "rate": 66.7,
+      "channel": "On Premise",
+      "sku": "Heineken Original Draft"
+    }
+  ],
+  "repSummary": [
+    {
+      "retained": 8,
+      "unretained": 37,
+      "newPlacement": 213,
+      "base": 45,
+      "rate": 17.8,
+      "rep": "Dan Lagala"
+    },
+    {
+      "retained": 14,
+      "unretained": 31,
+      "newPlacement": 182,
+      "base": 45,
+      "rate": 31.1,
+      "rep": "Pablo Lopez"
+    },
+    {
+      "retained": 5,
+      "unretained": 20,
+      "newPlacement": 90,
+      "base": 25,
+      "rate": 20.0,
+      "rep": "Robin Feldman"
+    },
+    {
+      "retained": 10,
+      "unretained": 18,
+      "newPlacement": 105,
+      "base": 28,
+      "rate": 35.7,
+      "rep": "Chris Payton"
+    },
+    {
+      "retained": 12,
+      "unretained": 16,
+      "newPlacement": 169,
+      "base": 28,
+      "rate": 42.9,
+      "rep": "Mike Ast"
+    },
+    {
+      "retained": 6,
+      "unretained": 15,
+      "newPlacement": 75,
+      "base": 21,
+      "rate": 28.6,
+      "rep": "Phil Ernst"
+    },
+    {
+      "retained": 9,
+      "unretained": 14,
+      "newPlacement": 161,
+      "base": 23,
+      "rate": 39.1,
+      "rep": "Javier Melo"
+    },
+    {
+      "retained": 9,
+      "unretained": 12,
+      "newPlacement": 75,
+      "base": 21,
+      "rate": 42.9,
+      "rep": "Allison Scott"
+    },
+    {
+      "retained": 5,
+      "unretained": 12,
+      "newPlacement": 116,
+      "base": 17,
+      "rate": 29.4,
+      "rep": "Dave Ehlers"
+    },
+    {
+      "retained": 9,
+      "unretained": 11,
+      "newPlacement": 105,
+      "base": 20,
+      "rate": 45.0,
+      "rep": "Matt Powierski"
+    },
+    {
+      "retained": 5,
+      "unretained": 9,
+      "newPlacement": 162,
+      "base": 14,
+      "rate": 35.7,
+      "rep": "Jim Heaney"
+    },
+    {
+      "retained": 11,
+      "unretained": 8,
+      "newPlacement": 76,
+      "base": 19,
+      "rate": 57.9,
+      "rep": "Paul Mclaughlin"
+    },
+    {
+      "retained": 4,
+      "unretained": 8,
+      "newPlacement": 43,
+      "base": 12,
+      "rate": 33.3,
+      "rep": "Nick Melissari"
+    },
+    {
+      "retained": 5,
+      "unretained": 5,
+      "newPlacement": 96,
+      "base": 10,
+      "rate": 50.0,
+      "rep": "Derrick Laws"
+    },
+    {
+      "retained": 3,
+      "unretained": 3,
+      "newPlacement": 31,
+      "base": 6,
+      "rate": 50.0,
+      "rep": "Anthony Palmisano"
+    },
+    {
+      "retained": 2,
+      "unretained": 2,
+      "newPlacement": 16,
+      "base": 4,
+      "rate": 50.0,
+      "rep": "Office Tell Sell"
+    },
+    {
+      "retained": 1,
+      "unretained": 2,
+      "newPlacement": 13,
+      "base": 3,
+      "rate": 33.3,
+      "rep": "Shane Barreca"
+    },
+    {
+      "retained": 1,
+      "unretained": 2,
+      "newPlacement": 29,
+      "base": 3,
+      "rate": 33.3,
+      "rep": "Michael Harboy"
+    }
+  ],
+  "repSkuSummary": {
+    "Paul Mclaughlin": [
+      {
+        "retained": 3,
+        "unretained": 7,
+        "newPlacement": 9,
+        "base": 10,
+        "rate": 30.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 7,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 8,
+        "rate": 87.5,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 19,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 19,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 18,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Robin Feldman": [
+      {
+        "retained": 0,
+        "unretained": 12,
+        "newPlacement": 11,
+        "base": 12,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 5,
+        "unretained": 8,
+        "newPlacement": 10,
+        "base": 13,
+        "rate": 38.5,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 23,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 23,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 23,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Allison Scott": [
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 3,
+        "newPlacement": 13,
+        "base": 3,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 5,
+        "unretained": 3,
+        "newPlacement": 8,
+        "base": 8,
+        "rate": 62.5,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 3,
+        "newPlacement": 13,
+        "base": 3,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 4,
+        "unretained": 2,
+        "newPlacement": 10,
+        "base": 6,
+        "rate": 66.7,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 16,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Nick Melissari": [
+      {
+        "retained": 1,
+        "unretained": 3,
+        "newPlacement": 7,
+        "base": 4,
+        "rate": 25.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 8,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 2,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 3,
+        "rate": 66.7,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Pablo Lopez": [
+      {
+        "retained": 0,
+        "unretained": 7,
+        "newPlacement": 5,
+        "base": 7,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 3,
+        "newPlacement": 8,
+        "base": 4,
+        "rate": 25.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 3,
+        "newPlacement": 8,
+        "base": 4,
+        "rate": 25.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 10,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 1,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 66.7,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 1,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 66.7,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 4,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 5,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 2,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 2,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Derrick Laws": [
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 4,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 0,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Office Tell Sell": [
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 2,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 4,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 3,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 4,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 3,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Matt Powierski": [
+      {
+        "retained": 2,
+        "unretained": 2,
+        "newPlacement": 1,
+        "base": 4,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 3,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 4,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 4,
+        "unretained": 2,
+        "newPlacement": 3,
+        "base": 6,
+        "rate": 66.7,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Javier Melo": [
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 6,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 2,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 9,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 4,
+        "newPlacement": 3,
+        "base": 5,
+        "rate": 20.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 5,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Dan Lagala": [
+      {
+        "retained": 0,
+        "unretained": 7,
+        "newPlacement": 6,
+        "base": 7,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 5,
+        "newPlacement": 8,
+        "base": 5,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 4,
+        "newPlacement": 8,
+        "base": 5,
+        "rate": 20.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 4,
+        "newPlacement": 8,
+        "base": 5,
+        "rate": 20.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 11,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 11,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 13,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 13,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 13,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 4,
+        "newPlacement": 4,
+        "base": 6,
+        "rate": 33.3,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 9,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 8,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 10,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      }
+    ],
+    "Anthony Palmisano": [
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 1,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 1,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 0,
+        "newPlacement": 0,
+        "base": 2,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Mike Ast": [
+      {
+        "retained": 3,
+        "unretained": 4,
+        "newPlacement": 5,
+        "base": 7,
+        "rate": 42.9,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 3,
+        "newPlacement": 7,
+        "base": 5,
+        "rate": 40.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 1,
+        "newPlacement": 9,
+        "base": 3,
+        "rate": 66.7,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 12,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Chris Payton": [
+      {
+        "retained": 0,
+        "unretained": 5,
+        "newPlacement": 3,
+        "base": 5,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 3,
+        "newPlacement": 5,
+        "base": 3,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 2,
+        "newPlacement": 5,
+        "base": 3,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 2,
+        "newPlacement": 4,
+        "base": 4,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 6,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 6,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 6,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Dave Ehlers": [
+      {
+        "retained": 0,
+        "unretained": 5,
+        "newPlacement": 3,
+        "base": 5,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 6,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 7,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 3,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 4,
+        "rate": 75.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 1,
+        "newPlacement": 5,
+        "base": 3,
+        "rate": 66.7,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 8,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken H00 Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "On Premise",
+        "sku": "Heineken Original Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Draft"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Dos Equis Lager Package"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "On Premise",
+        "sku": "Heineken Original Draft"
+      }
+    ],
+    "Jim Heaney": [
+      {
+        "retained": 2,
+        "unretained": 4,
+        "newPlacement": 5,
+        "base": 6,
+        "rate": 33.3,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 11,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 10,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      }
+    ],
+    "Shane Barreca": [
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 0,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 1,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      }
+    ],
+    "Michael Harboy": [
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 1,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 0,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 2,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      }
+    ],
+    "Phil Ernst": [
+      {
+        "retained": 0,
+        "unretained": 4,
+        "newPlacement": 2,
+        "base": 4,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 3,
+        "newPlacement": 1,
+        "base": 5,
+        "rate": 40.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 4,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 2,
+        "newPlacement": 4,
+        "base": 2,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Dos Equis Lager Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 2,
+        "unretained": 2,
+        "newPlacement": 2,
+        "base": 4,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 1,
+        "newPlacement": 4,
+        "base": 2,
+        "rate": 50.0,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Can 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 1,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 0.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 7 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 6-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 2x12-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack"
+      },
+      {
+        "retained": 1,
+        "unretained": 0,
+        "newPlacement": 5,
+        "base": 1,
+        "rate": 100.0,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Bottle 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 12 oz 24 loose"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 16 oz 4-pack"
+      },
+      {
+        "retained": 0,
+        "unretained": 0,
+        "newPlacement": 6,
+        "base": 0,
+        "rate": null,
+        "channel": "Off Premise",
+        "sku": "Heineken Original Can 24 oz 1x12-pack"
+      }
+    ]
+  },
+  "gapList": [
+    {
+      "rep": "Allison Scott",
+      "channel": "Off Premise",
+      "outlet": "STEW LEONARDS WINES",
+      "address": "345 ALLWOOD RD",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "SHARKEYS WINGS & RAWBAR",
+      "address": "545 HIGHLAND AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Draft",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "THE YARD",
+      "address": "289 BELMONT AVE",
+      "city": "HALEDON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Draft",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "BASK 46",
+      "address": "1530 US RTE 46 W",
+      "city": "WOODLAND PARKS",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Draft",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "SIDE DOOR",
+      "address": "33 COLFAX AVE",
+      "city": "POMPTON LAKES",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "DINGOS DEN",
+      "address": "615 VAN HOUTEN AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "BLACKJACK MULLIGANS PUBLIC HOUSE",
+      "address": "1145 MCBRIDE AVE",
+      "city": "LITTLE FALLS",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "FEATHERS",
+      "address": "77 KINDERKAMACK RD",
+      "city": "RIVER EDGE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "MEADOWS GOLF CLUB",
+      "address": "79 TWO BRIDGES RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "LAS MARAVILLAS BAR & RESTAURANT",
+      "address": "410 WAGARAW RD",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "ELKS LODGE",
+      "address": "775 CLIFTON AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Allison Scott",
+      "channel": "On Premise",
+      "outlet": "SUNSET PUB & GRILL",
+      "address": "425 BEAVERBROOK RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken Original Package",
+      "husaRep": "ALLISON SCOTT",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "channel": "Off Premise",
+      "outlet": "UNCORKED WINES & SPIRITS",
+      "address": "9 MARSHALL HILL RD",
+      "city": "WEST MILFORD",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "ANTHONY PALMISANO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "channel": "Off Premise",
+      "outlet": "UNCORKED WINES & SPIRITS",
+      "address": "9 MARSHALL HILL RD",
+      "city": "WEST MILFORD",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 16 oz 4-pack",
+      "husaRep": "ANTHONY PALMISANO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "channel": "On Premise",
+      "outlet": "CINCO DE MAYO",
+      "address": "125 HAMBURG TPKE",
+      "city": "BLOOMINGDALE",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "ANTHONY PALMISANO",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WOODRIDGE WINES & LIQUOR",
+      "address": "206 HACKENSACK STREET",
+      "city": "WOOD RIDGE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WOODRIDGE WINES & LIQUOR",
+      "address": "206 HACKENSACK STREET",
+      "city": "WOOD RIDGE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "HIGH SPIRITS WINE & LIQUOR",
+      "address": "215 MAIN ST",
+      "city": "RIDGEFIELD PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "GARDEN LIQUORS",
+      "address": "300 HARRISON AVE",
+      "city": "LODI",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WINE LAND & LIQUORS",
+      "address": "247 DEGRAW AVE",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "USA WINE TRADERS CLUB",
+      "address": "66 MARKET ST",
+      "city": "SADDLE BROOK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "HIGH SPIRITS WINE & LIQUOR",
+      "address": "215 MAIN ST",
+      "city": "RIDGEFIELD PARK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "USA WINE TRADERS CLUB",
+      "address": "66 MARKET ST",
+      "city": "SADDLE BROOK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "HIGH SPIRITS WINE & LIQUOR",
+      "address": "215 MAIN ST",
+      "city": "RIDGEFIELD PARK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 6-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "GARDEN LIQUORS",
+      "address": "300 HARRISON AVE",
+      "city": "LODI",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "HOLLYWOOD LIQUORS",
+      "address": "40 W PLEASANT AVE",
+      "city": "MAYWOOD",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WOODRIDGE WINES & LIQUOR",
+      "address": "206 HACKENSACK STREET",
+      "city": "WOOD RIDGE",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "CEDAR LIQUORS",
+      "address": "725 CEDAR LN",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "CEDAR LIQUORS",
+      "address": "725 CEDAR LN",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WOODRIDGE WINES & LIQUOR",
+      "address": "206 HACKENSACK STREET",
+      "city": "WOOD RIDGE",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "CEDAR LIQUORS",
+      "address": "725 CEDAR LN",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "Off Premise",
+      "outlet": "WINE LAND & LIQUORS",
+      "address": "247 DEGRAW AVE",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Chris Payton",
+      "channel": "On Premise",
+      "outlet": "LA NOTA RESTAURANT",
+      "address": "2 MERCER ST",
+      "city": "LODI",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "JAY CEE DELI & LIQUORS",
+      "address": "246 BROAD AVE",
+      "city": "PALISADES PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LIQUOR CITY",
+      "address": "494 ANDERSON AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "BOULEVARD LIQUOR",
+      "address": "153 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "FAIRVIEW LIQ & GROCERY",
+      "address": "36 ANDERSON AVENUE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "ROME LIQUORS OF FAIRVIEW",
+      "address": "174 ANDERSON AVE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "JAY CEE DELI & LIQUORS",
+      "address": "246 BROAD AVE",
+      "city": "PALISADES PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "BANNER LIQUORS III",
+      "address": "1175 PALISADE AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LIQUOR WORLD",
+      "address": "1475 BERGEN BLVD",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "STOP N GO CONVIENCE STORE",
+      "address": "81 PALISADE AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "JAY CEE DELI & LIQUORS",
+      "address": "246 BROAD AVE",
+      "city": "PALISADES PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LIQUOR CITY",
+      "address": "494 ANDERSON AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "BOULEVARD LIQUOR",
+      "address": "153 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "FAIRVIEW LIQ & GROCERY",
+      "address": "36 ANDERSON AVENUE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "BANNER LIQUORS III",
+      "address": "1175 PALISADE AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "FAIRVIEW LIQ & GROCERY",
+      "address": "36 ANDERSON AVENUE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "CHECO SUPERMARKET",
+      "address": "210 ANDERSON AVE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "KIKOS LIQUORS II",
+      "address": "321 ANDERSON AVE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "STOP N GO CONVIENCE STORE",
+      "address": "81 PALISADE AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LIQUOR CITY",
+      "address": "494 ANDERSON AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "FAIRVIEW LIQ & GROCERY",
+      "address": "36 ANDERSON AVENUE",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "BANNER LIQUORS III",
+      "address": "1175 PALISADE AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "MANOR WINE & LIQUOR",
+      "address": "430 BROAD AVE",
+      "city": "LEONIA",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "WINE AND FOOD MART",
+      "address": "589 ANDERSON AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "LINWOOD WINES & LIQUORS",
+      "address": "102 LINWOOD PLAZA FORT LEE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "Off Premise",
+      "outlet": "WINE AND FOOD MART",
+      "address": "589 ANDERSON AVE",
+      "city": "CLIFFSIDE PARK",
+      "county": "Bergen",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "VENTANAS RESTAURANT",
+      "address": "200 PARK AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "BADA STORY",
+      "address": "799 ABBOTT BLVD 1ST FL",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "MEAT BROS",
+      "address": "176 A MAIN ST",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Draft",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "PHO 32 & SHA BU",
+      "address": "1645 LEMOINE AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "BADA STORY",
+      "address": "799 ABBOTT BLVD 1ST FL",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "EXIT 201",
+      "address": "15 GRAND AVE STE 2",
+      "city": "PALISADES PARK",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "DAN LAGALA",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dan Lagala",
+      "channel": "On Premise",
+      "outlet": "PATSYS BISTRO",
+      "address": "344 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "OFFICE TELL SELL",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "SIMPLE SIMON SUPER DELI",
+      "address": "337 ESSEX ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "SIMPLE SIMON SUPER DELI",
+      "address": "337 ESSEX ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "HACKENSACK LIQUORS",
+      "address": "500 S RIVER ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "BOTTLE & CORK",
+      "address": "380 W PLEASANTVIEW AVE",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "BERGENFIELD LIQUOR SHOP",
+      "address": "5 S WASHINGTON AVE",
+      "city": "BERGENFIELD",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "GEORGES LIQUORS",
+      "address": "130 ANDERSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "TIME LOUNGE & LIQUORS",
+      "address": "487 S WASHINGTON AVE",
+      "city": "BERGENFIELD",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "WINE & LIQUOR DEPOT",
+      "address": "310 HUYLER ST",
+      "city": "SOUTH HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "BOTTLE & CORK",
+      "address": "380 W PLEASANTVIEW AVE",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "Off Premise",
+      "outlet": "SIMPLE SIMON SUPER DELI",
+      "address": "337 ESSEX ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken Original Can 16 oz 4-pack",
+      "husaRep": "DAVE EHLERS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "On Premise",
+      "outlet": "CIGARRO BAR & LOUNGE",
+      "address": "91 MAIN ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Dave Ehlers",
+      "channel": "On Premise",
+      "outlet": "CIGARRO BAR & LOUNGE",
+      "address": "91 MAIN ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Derrick Laws",
+      "channel": "Off Premise",
+      "outlet": "EL OASIS MONTESINO LIQUOR",
+      "address": "450 UNION AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "DERRICK LAWS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Derrick Laws",
+      "channel": "Off Premise",
+      "outlet": "MO S LOW COST LIQUORS",
+      "address": "620 MAIN ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "DERRICK LAWS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Derrick Laws",
+      "channel": "Off Premise",
+      "outlet": "FERRAROS LIQUORS",
+      "address": "423 E 21ST ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "DERRICK LAWS",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Derrick Laws",
+      "channel": "On Premise",
+      "outlet": "PATSYS TAVERN",
+      "address": "72 7TH AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "DERRICK LAWS",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Derrick Laws",
+      "channel": "On Premise",
+      "outlet": "CARLETTOS BAR",
+      "address": "402 MAIN ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "DERRICK LAWS",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "PRESIDENT LIQUORS",
+      "address": "158 PRESIDENT ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "DISCOUNT LIQUORS",
+      "address": "519 PIAGET AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "PRESIDENT LIQUORS",
+      "address": "158 PRESIDENT ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "SEGUNDO LIQUORS",
+      "address": "293 MADISON AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "PARKER LIQUORS",
+      "address": "203 PARKER AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "LUNA LIQUORS",
+      "address": "291 PARK AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "LUNA LIQUORS",
+      "address": "291 PARK AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 2x12-pack",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "Off Premise",
+      "outlet": "DISCOUNT LIQUORS",
+      "address": "519 PIAGET AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 16 oz 4-pack",
+      "husaRep": "CHRIS PAYTON",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "LA FORTALEZA",
+      "address": "335 PATERSON PLANK RD",
+      "city": "CARLSTADT",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "LA FORTALEZA",
+      "address": "10 RTE 46 E",
+      "city": "LODI",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "ROSE BAR",
+      "address": "102 MARKET ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "CLARYS RESTAURANT & BAR",
+      "address": "196 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "LOS ACROS RESTAURANT & PIZZA",
+      "address": "305 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Javier Melo",
+      "channel": "On Premise",
+      "outlet": "LATIN BAR RESTAURANT",
+      "address": "410 MAIN ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "BROAD LIQUORS",
+      "address": "1187 BROAD ST",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "METRO LIQUORS N ARLING",
+      "address": "17 SCHUYLER AVE",
+      "city": "NORTH ARLINGTON",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "FOREST DAIRY",
+      "address": "10 SPRING DELL RD",
+      "city": "RUTHERFORD",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "QUICK STOP CONV & LIQUOR",
+      "address": "261 CLIFTON AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "RAINBOW LIQUOR",
+      "address": "292 LAKEVIEW AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "CLIFTON COMMONS SPIRITS",
+      "address": "132 KINGSLAND RD STE 4",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "METRO LIQUORS N ARLING",
+      "address": "17 SCHUYLER AVE",
+      "city": "NORTH ARLINGTON",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "RAINBOW LIQUOR",
+      "address": "292 LAKEVIEW AVE",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Jim Heaney",
+      "channel": "Off Premise",
+      "outlet": "FIELD LIQUORS",
+      "address": "1006 W RTE 46",
+      "city": "CLIFTON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 24 oz 1x12-pack",
+      "husaRep": "JIM HEANEY",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "WHOOPEE LIQUOR & SODA",
+      "address": "194 VAN WINKLE AVE",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "WINE GRAND",
+      "address": "675 PATERSON AVE STE 2",
+      "city": "CARLSTADT",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "M & M WINE & SPIRITS",
+      "address": "429 MARKET ST",
+      "city": "ELMWOOD PARK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "WINE GRAND",
+      "address": "675 PATERSON AVE STE 2",
+      "city": "CARLSTADT",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "M & M WINE & SPIRITS",
+      "address": "429 MARKET ST",
+      "city": "ELMWOOD PARK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "WHOOPEE LIQUOR & SODA",
+      "address": "194 VAN WINKLE AVE",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "Off Premise",
+      "outlet": "WHOOPEE LIQUOR & SODA",
+      "address": "194 VAN WINKLE AVE",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "On Premise",
+      "outlet": "ASU MARE PERU RESTOBAR",
+      "address": "430 MARKET ST STE 3",
+      "city": "ELMWOOD PARK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "On Premise",
+      "outlet": "BAZZARELLIS PIZZERIA",
+      "address": "117 MOONACHIE RD",
+      "city": "MOONACHIE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "On Premise",
+      "outlet": "RIVER DRIVE BAR (ON)",
+      "address": "85 RIVER DR",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Matt Powierski",
+      "channel": "On Premise",
+      "outlet": "ASU MARE PERU RESTOBAR",
+      "address": "430 MARKET ST STE 3",
+      "city": "ELMWOOD PARK",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "MATT POWIERSKI",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Michael Harboy",
+      "channel": "Off Premise",
+      "outlet": "LINCOLN CENTER LIQUORS",
+      "address": "261 COMLY RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MICHAEL HARBOY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Michael Harboy",
+      "channel": "Off Premise",
+      "outlet": "LINCOLN CENTER LIQUORS",
+      "address": "261 COMLY RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "MICHAEL HARBOY",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "WINE & SPIRIT WORLD WYCK",
+      "address": "303 FRANKLIN AVE",
+      "city": "WYCKOFF",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "FRANKS WINE & LIQUORS",
+      "address": "431 BELMONT AVE",
+      "city": "HALEDON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "DIAMOND LIQUORS",
+      "address": "203 DIAMOND BRIDGE AVE",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "ALLENDALE WINE SHOP",
+      "address": "101 W ALLENDALE AVE",
+      "city": "ALLENDALE",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "LINCOLN PARK FINE WINE SPIRITS",
+      "address": "60 BEAVERBROOK RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "FAIR LAWN WINE & SPIRITS",
+      "address": "21 00 MAPLE AVE",
+      "city": "FAIR LAWN",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "DIAMOND LIQUORS",
+      "address": "203 DIAMOND BRIDGE AVE",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "LINCOLN PARK FINE WINE SPIRITS",
+      "address": "60 BEAVERBROOK RD",
+      "city": "LINCOLN PARK",
+      "county": "Morris",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "FAIR LAWN WINE & SPIRITS",
+      "address": "21 00 MAPLE AVE",
+      "city": "FAIR LAWN",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "FRANKS WINE & LIQUORS",
+      "address": "431 BELMONT AVE",
+      "city": "HALEDON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "GOFFLE ROAD WINE & MORE",
+      "address": "1100 GOFFLE RD",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "GOFFLE ROAD WINE & MORE",
+      "address": "1100 GOFFLE RD",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "WALDWICK WINE & SPIRITS",
+      "address": "23 WYCKOFF AVE",
+      "city": "WALDWICK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "DIAMOND LIQUORS",
+      "address": "203 DIAMOND BRIDGE AVE",
+      "city": "HAWTHORNE",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 16 oz 4-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "Off Premise",
+      "outlet": "GRAND OPENING LIQUOR",
+      "address": "1068 HIGH MOUNTAIN RD",
+      "city": "HALEDON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 24 oz 1x12-pack",
+      "husaRep": "MIKE AST",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Mike Ast",
+      "channel": "On Premise",
+      "outlet": "STONE & RAIL",
+      "address": "175 ROCK RD",
+      "city": "GLEN ROCK",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "MIKE AST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "BLACK JACK MULLIGANS",
+      "address": "279 PASSAIC ST",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Draft",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "ORANGE LANTERN",
+      "address": "15 E FIREHOUSE LN",
+      "city": "PARAMUS",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "LOS CANTARITOS CANTINA",
+      "address": "791 MIDLAND AVE",
+      "city": "GARFIELD",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "PARKWAY LANES",
+      "address": "200 US HWY 46",
+      "city": "ELMWOOD PARK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "KUBA 57",
+      "address": "2139 HUDSON TERRACE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "VIVA MARGARITA",
+      "address": "774 MAIN ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "HOLIDAY BOWL",
+      "address": "29 SPRUCE ST",
+      "city": "OAKLAND",
+      "county": "Bergen",
+      "sku": "Heineken Original Draft",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Nick Melissari",
+      "channel": "On Premise",
+      "outlet": "CARUCCIS RESTAURANT & PUB",
+      "address": "440 RIDGE RD",
+      "city": "NORTH ARLINGTON",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "NICK MELISSARI",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Office Tell Sell",
+      "channel": "On Premise",
+      "outlet": "EL RINCON CRIOLLO RESTAURANT",
+      "address": "715 E 18TH ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "OFFICE TELL SELL",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Office Tell Sell",
+      "channel": "On Premise",
+      "outlet": "FORT LEE ATHLETIC CLUB",
+      "address": "2029 LEMOINE AVE",
+      "city": "FORT LEE",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "OFFICE TELL SELL",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "1 LIQUORS",
+      "address": "126 HOWE AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "BOMBOLON LIQUORS",
+      "address": "192 E 16TH ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SUNNYS LIQUORS",
+      "address": "413 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "1 LIQUORS",
+      "address": "126 HOWE AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "BOMBOLON LIQUORS",
+      "address": "192 E 16TH ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SUNNYS LIQUORS",
+      "address": "413 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "1 LIQUORS",
+      "address": "126 HOWE AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "REGALADO LIQUOR",
+      "address": "168 MARKET ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "YOSKAR LIQUORS",
+      "address": "493 MARKET ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "CARISMA LIQS & GROC",
+      "address": "234 VREELAND AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "BROADWAY WINE & LIQUOR",
+      "address": "62 BROADWAY",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Bottle 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "BROADWAY WINE & LIQUOR",
+      "address": "62 BROADWAY",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "1 LIQUORS",
+      "address": "126 HOWE AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "BOMBOLON LIQUORS",
+      "address": "192 E 16TH ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "MONROE WINE & LIQUOR",
+      "address": "199 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "JOHNNYS LIQUORS",
+      "address": "370 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SUNNYS LIQUORS",
+      "address": "413 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SCHULMANS LIQUORS & DELI",
+      "address": "521 PARK AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SUNNYS LIQUORS",
+      "address": "413 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "CARISMA LIQS & GROC",
+      "address": "234 VREELAND AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "YOSKAR LIQUORS",
+      "address": "493 MARKET ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "YOSKAR LIQUORS",
+      "address": "493 MARKET ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 12 oz 6-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "REGALADO LIQUOR",
+      "address": "168 MARKET ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "CARISMA LIQS & GROC",
+      "address": "234 VREELAND AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "SUNNYS LIQUORS",
+      "address": "413 MONROE ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "REGALADO LIQUOR",
+      "address": "168 MARKET ST",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 24 loose",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "CARISMA LIQS & GROC",
+      "address": "234 VREELAND AVE",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 12 oz 2x12-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "Off Premise",
+      "outlet": "1 LIQUORS",
+      "address": "126 HOWE AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken Original Can 16 oz 4-pack",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "On Premise",
+      "outlet": "LA HAVANA",
+      "address": "110 MOONACHIE AVE",
+      "city": "MOONACHIE",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Package",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "On Premise",
+      "outlet": "CABARET",
+      "address": "50 CIANCI ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PABLO LOPEZ",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Pablo Lopez",
+      "channel": "On Premise",
+      "outlet": "EL ALAMO BAR",
+      "address": "90 LEXINGTON AVE",
+      "city": "PASSAIC",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "JAVIER MELO",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "EMERSON HOTEL",
+      "address": "31 EMERSON PLZ E",
+      "city": "EMERSON",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "LOUS TAVERN",
+      "address": "74 BROADWAY",
+      "city": "HILLSDALE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "NEW MILFORD ATHLETIC ASSO",
+      "address": "126 BOULEVARD",
+      "city": "NEW MILFORD",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "KNICKERBOCKER COUNTRY CLUB",
+      "address": "188 KNICKERBOCKER RD",
+      "city": "TENAFLY",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "REGINAS STEAKHOUSE",
+      "address": "827 TEANECK RD",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "HILL",
+      "address": "252 SCHRAALENBURGH RD",
+      "city": "CLOSTER",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "MYKOS",
+      "address": "416 TAPPAN RD",
+      "city": "NORTHVALE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "channel": "On Premise",
+      "outlet": "CZEN",
+      "address": "36 N VAN BRUNT ST",
+      "city": "ENGLEWOOD",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "PAUL MCLAUGHLIN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BUDDYS WINES & LIQUORS",
+      "address": "139 HUDSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "CITY SUPERMARKET",
+      "address": "289 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BUDDYS WINES & LIQUORS",
+      "address": "139 HUDSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "CITY SUPERMARKET",
+      "address": "289 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Bottle 12 oz 6-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BUDDYS WINES & LIQUORS",
+      "address": "139 HUDSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "SUPER WINE WAREHOUSE",
+      "address": "42 E 30TH ST",
+      "city": "PATERSON",
+      "county": "Passaic",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BOTTLE KING",
+      "address": "909 PROSPECT ST",
+      "city": "GLEN ROCK",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "CITY SUPERMARKET",
+      "address": "289 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Dos Equis Lager Can 12 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "GARYS WINE & MARKETPLACE",
+      "address": "1308 SR 23",
+      "city": "WAYNE",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "CITY SUPERMARKET",
+      "address": "289 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "GARYS WINE & MARKETPLACE",
+      "address": "1308 SR 23",
+      "city": "WAYNE",
+      "county": "Passaic",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BUDDYS WINES & LIQUORS",
+      "address": "139 HUDSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "CITY SUPERMARKET",
+      "address": "289 BERGEN BLVD",
+      "city": "FAIRVIEW",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Can 11.2 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BUDDYS WINES & LIQUORS",
+      "address": "139 HUDSON ST",
+      "city": "HACKENSACK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Can 11.2 oz 2x12-pack",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Phil Ernst",
+      "channel": "Off Premise",
+      "outlet": "BOTTLE KING",
+      "address": "909 PROSPECT ST",
+      "city": "GLEN ROCK",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "PHIL ERNST",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "TREE TAVERN",
+      "address": "17 PARK ST",
+      "city": "WANAQUE",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "SPORTS FRIENDS SOCCER",
+      "address": "31 BOULEVARD",
+      "city": "WAYNE",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "KNIGHTS OF COLUMBUS",
+      "address": "106 BERGEN AVE",
+      "city": "RIDGEFIELD PARK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "NORTHVALE DINER",
+      "address": "247 LIVINGSTON ST",
+      "city": "NORTHVALE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "IVY INN",
+      "address": "268 TERRACE AVE",
+      "city": "HASBROUCK HEIGHTS",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "BENSI",
+      "address": "387 WASHINGTON AVE",
+      "city": "HILLSDALE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "VETERANS OF FOREIGN WARS",
+      "address": "513 SPRINGFIELD AVE",
+      "city": "HASBROUCK HEIGHTS",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "KNIGHTS OF COLUMBUS",
+      "address": "829 WINDSOR RD",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "MONTAMMY GOLF CLUB",
+      "address": "ROUTE 9 W",
+      "city": "ALPINE",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "ELKS LODGE",
+      "address": "1 FOXWOOD LN",
+      "city": "MAHWAH",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "LASSONI RISTTORANTE",
+      "address": "602 RIDGE RD",
+      "city": "NORTH ARLINGTON",
+      "county": "Bergen",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "IN THE CREASE",
+      "address": "10 NEVINS RD",
+      "city": "WAYNE",
+      "county": "Passaic",
+      "sku": "Heineken H00 Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "FRUNGILLO CATERERS",
+      "address": "7 MORRIS RD",
+      "city": "RINGWOOD",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "SPORTS FRIENDS SOCCER",
+      "address": "31 BOULEVARD",
+      "city": "WAYNE",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "ELKS LODGE",
+      "address": "148 RAILROAD AVE",
+      "city": "CLOSTER",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "fuzzy"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "VETERANS OF FOREIGN WARS",
+      "address": "260 WANAQUE AVE",
+      "city": "POMPTON LAKES",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "AMERICAN LEGION",
+      "address": "424 CARMITA AVE",
+      "city": "RUTHERFORD",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "AMERICAN LEGION",
+      "address": "650 AMERICAN LEGION DR",
+      "city": "TEANECK",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "MONTAMMY GOLF CLUB",
+      "address": "ROUTE 9 W",
+      "city": "ALPINE",
+      "county": "Bergen",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Robin Feldman",
+      "channel": "On Premise",
+      "outlet": "PRIME 374",
+      "address": "374 MORSETOWN RD",
+      "city": "WEST MILFORD",
+      "county": "Passaic",
+      "sku": "Heineken Original Package",
+      "husaRep": "ROBIN FELDMAN",
+      "matchMethod": "husa_fallback"
+    },
+    {
+      "rep": "Shane Barreca",
+      "channel": "Off Premise",
+      "outlet": "BEVERAGE BARN",
+      "address": "224 LIVINGSTON ST",
+      "city": "NORTHVALE",
+      "county": "Bergen",
+      "sku": "Heineken 00 Ultimate Bottle 11.2 oz 6-pack",
+      "husaRep": "SHANE BARRECA",
+      "matchMethod": "exact"
+    },
+    {
+      "rep": "Shane Barreca",
+      "channel": "Off Premise",
+      "outlet": "BEVERAGE BARN",
+      "address": "224 LIVINGSTON ST",
+      "city": "NORTHVALE",
+      "county": "Bergen",
+      "sku": "Heineken Original Bottle 7 oz 24 loose",
+      "husaRep": "SHANE BARRECA",
+      "matchMethod": "exact"
+    }
+  ],
+  "matchStats": {
+    "exact": 137,
+    "fuzzy": 41,
+    "husa_fallback": 31
+  },
+  "outletCount": 209,
+  "repDiscrepancies": [
+    {
+      "outlet": "AMERICAN LEGION",
+      "channel": "On Premise",
+      "city": "LITTLE FERRY",
+      "husaRep": "Robin Feldman",
+      "rosterRep": "Office Tell Sell"
+    },
+    {
+      "outlet": "ELKS LODGE",
+      "channel": "On Premise",
+      "city": "CLIFTON",
+      "husaRep": "Robin Feldman",
+      "rosterRep": "Allison Scott"
+    },
+    {
+      "outlet": "LATIN BAR RESTAURANT",
+      "channel": "On Premise",
+      "city": "PATERSON",
+      "husaRep": "Pablo Lopez",
+      "rosterRep": "Javier Melo"
+    },
+    {
+      "outlet": "PATSYS BISTRO",
+      "channel": "On Premise",
+      "city": "FAIRVIEW",
+      "husaRep": "Office Tell Sell",
+      "rosterRep": "Dan Lagala"
+    },
+    {
+      "outlet": "EL ASADERO MEXICAN GRILL",
+      "channel": "On Premise",
+      "city": "FORT LEE",
+      "husaRep": "Nick Melissari",
+      "rosterRep": "Dan Lagala"
+    },
+    {
+      "outlet": "EL ALAMO BAR",
+      "channel": "On Premise",
+      "city": "PASSAIC",
+      "husaRep": "Javier Melo",
+      "rosterRep": "Pablo Lopez"
+    },
+    {
+      "outlet": "CIGARRO BAR & LOUNGE",
+      "channel": "On Premise",
+      "city": "HACKENSACK",
+      "husaRep": "Robin Feldman",
+      "rosterRep": "Dave Ehlers"
+    },
+    {
+      "outlet": "CLIFTON DISCOUNT LIQUORS",
+      "channel": "Off Premise",
+      "city": "CLIFTON",
+      "husaRep": "Chris Payton",
+      "rosterRep": "Javier Melo"
+    },
+    {
+      "outlet": "STEW LEONARDS WINES",
+      "channel": "Off Premise",
+      "city": "CLIFTON",
+      "husaRep": "Phil Ernst",
+      "rosterRep": "Allison Scott"
+    },
+    {
+      "outlet": "DISCOUNT LIQUORS",
+      "channel": "Off Premise",
+      "city": "CLIFTON",
+      "husaRep": "Chris Payton",
+      "rosterRep": "Javier Melo"
+    }
+  ]
+}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('retain-gains-data').textContent);
+
+function pct(n){ return n === null || n === undefined ? '&mdash;' : n.toFixed(1) + '%'; }
+function ratePillClass(rate){
+  if (rate === null || rate === undefined) return 'unmatched';
+  if (rate < 50) return 'hi';
+  if (rate < 75) return 'mid';
+  return 'lo';
+}
+
+function renderChannelCards(){
+  const wrap = document.getElementById('channelCards');
+  wrap.innerHTML = '';
+  const order = ['On Premise', 'Off Premise'];
+  order.forEach(ch => {
+    const s = DATA.overallByChannel[ch];
+    if (!s) return;
+    const div = document.createElement('div');
+    div.className = 'chcard';
+    const rate = s.rate;
+    div.innerHTML = `
+      <h3>${ch}</h3>
+      <div class="rate" style="color:${rate===null?'var(--ink-soft)':(rate<50?'var(--red)':rate<75?'var(--gold)':'var(--green)')}">${pct(rate)}</div>
+      <div class="bar-track">
+        <div class="seg-retained" style="width:${s.base? (100*s.retained/s.base):0}%"></div>
+        <div class="seg-unretained" style="width:${s.base? (100*s.unretained/s.base):0}%"></div>
+      </div>
+      <div class="bar-legend"><span>Retained <b>${s.retained}</b></span><span>Unretained <b>${s.unretained}</b></span></div>
+      <div class="bar-legend" style="margin-top:4px"><span>New Placements <b style="color:var(--gold)">${s.newPlacement}</b></span><span>Base <b>${s.base}</b></span></div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function renderSkuTable(){
+  const tbody = document.querySelector('#skuTable tbody');
+  tbody.innerHTML = '';
+  DATA.skuSummary.forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${s.channel}</td>
+      <td>${s.sku}</td>
+      <td class="num">${s.retained}</td>
+      <td class="num">${s.unretained}</td>
+      <td class="num">${s.newPlacement}</td>
+      <td class="num"><span class="pill ${ratePillClass(s.rate)} mini-rate">${pct(s.rate)}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderRepTable(){
+  const tbody = document.querySelector('#repTable tbody');
+  tbody.innerHTML = '';
+  DATA.repSummary.forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${s.rep}</td>
+      <td class="num">${s.retained}</td>
+      <td class="num">${s.unretained}</td>
+      <td class="num">${s.newPlacement}</td>
+      <td class="num"><span class="pill ${ratePillClass(s.rate)} mini-rate">${pct(s.rate)}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderDiscrepancies(){
+  const rows = DATA.repDiscrepancies || [];
+  if (!rows.length) return;
+  document.getElementById('discrepancySection').style.display = '';
+  const tbody = document.querySelector('#discrepancyTable tbody');
+  tbody.innerHTML = '';
+  rows.forEach(d => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${d.outlet}</td>
+      <td>${d.channel}</td>
+      <td>${d.city}</td>
+      <td>${d.husaRep}</td>
+      <td>${d.rosterRep}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function populateRepFilter(){
+  const sel = document.getElementById('repFilter');
+  const reps = [...new Set(DATA.gapList.map(g => g.rep))].sort((a,b) => {
+    if (a === 'Unmatched — Needs Review') return 1;
+    if (b === 'Unmatched — Needs Review') return -1;
+    return a.localeCompare(b);
+  });
+  reps.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = r;
+    sel.appendChild(opt);
+  });
+}
+
+function renderGapTable(){
+  const rep = document.getElementById('repFilter').value;
+  const channel = document.getElementById('channelFilter').value;
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const tbody = document.querySelector('#gapTable tbody');
+  tbody.innerHTML = '';
+  let rows = DATA.gapList;
+  if (rep) rows = rows.filter(g => g.rep === rep);
+  if (channel) rows = rows.filter(g => g.channel === channel);
+  if (q) rows = rows.filter(g =>
+    g.outlet.toLowerCase().includes(q) ||
+    g.sku.toLowerCase().includes(q) ||
+    g.city.toLowerCase().includes(q) ||
+    g.rep.toLowerCase().includes(q)
+  );
+  document.getElementById('gapEmpty').style.display = rows.length ? 'none' : 'block';
+  rows.forEach(g => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${g.rep}</td>
+      <td>${g.channel}</td>
+      <td>${g.outlet}</td>
+      <td>${g.city}</td>
+      <td>${g.sku}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById('outletCountBadge').textContent = `${DATA.outletCount} outlets tracked`;
+const ms = DATA.matchStats || {};
+const matched = (ms.exact||0) + (ms.fuzzy||0) + (ms.husa_fallback||0);
+document.getElementById('matchBadge').textContent = `${matched} of ${DATA.outletCount} attributed to a rep`;
+
+renderChannelCards();
+renderSkuTable();
+renderRepTable();
+renderDiscrepancies();
+populateRepFilter();
+renderGapTable();
+
+document.getElementById('repFilter').addEventListener('change', renderGapTable);
+document.getElementById('channelFilter').addEventListener('change', renderGapTable);
+document.getElementById('searchBox').addEventListener('input', renderGapTable);
+</script>
+</body></html>
