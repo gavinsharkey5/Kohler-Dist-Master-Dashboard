@@ -58,9 +58,11 @@
   .detail-row td{padding:0;background:#12141A}
   .detail-row .detail-wrap{display:none;padding:18px 20px 22px;text-align:left}
   .detail-row.open .detail-wrap{display:block}
-  .detail-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
-  @media (max-width:820px){.detail-cols{grid-template-columns:1fr 1fr}}
-  @media (max-width:520px){.detail-cols{grid-template-columns:1fr}}
+  .detail-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:640px){.detail-cols{grid-template-columns:1fr}}
+  .opps-link{background:none;border:none;padding:2px 9px;cursor:pointer;font:inherit}
+  .opps-link .pill{transition:transform .1s ease}
+  .opps-link:hover .pill{transform:translateY(-1px)}
   .detail-col h4{font-family:"Space Grotesk";font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--ink-soft)}
   .acct-list{list-style:none;margin:0;padding:0}
   .acct-list li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -90,7 +92,7 @@
   </div>
 
   <p class="section-label">By Rep</p>
-  <p class="sub" style="margin:0 0 12px">Click a rep to see their new buyers, repeat buyers, and open opportunities.</p>
+  <p class="sub" style="margin:0 0 12px">Click a rep to see their new and repeat buying accounts. Click their Opportunities number to jump to that rep's target account list below.</p>
   <div class="scroll-hint" style="margin-bottom:8px">&larr; scroll for more &rarr;</div>
   <div class="table-scroll">
     <table id="repTable">
@@ -99,11 +101,26 @@
     </table>
   </div>
 
+  <p class="section-label" id="opportunitiesSection">Opportunities</p>
+  <p class="sub" style="margin:0 0 12px">Target accounts with no Carbliss purchase history at all in 2026 &mdash; true whitespace to work.</p>
+  <div class="controls">
+    <select id="oppRepFilter"><option value="">All reps</option></select>
+    <input type="search" id="oppSearchBox" placeholder="Search account name or rep...">
+  </div>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="oppTable">
+      <thead><tr><th>Rep</th><th>Account #</th><th>Account</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="oppEmpty" style="display:none">No opportunities match this filter.</div>
+  </div>
+
   <footer>
     Kohler Distributing &middot; Carbliss &middot; New Buying Accounts tracker.<br>
-    Source: RDE Carbliss New Buying Accounts export, comparing Buyer Count for 4/1&ndash;6/30/2026 against 7/1&ndash;7/31/2026 per account, plus each rep's full 2026 account list (Fusion export) for Opportunities.
+    Source: RDE Carbliss New Buying Accounts export, comparing Buyer Count for 4/1&ndash;6/30/2026 against 7/1&ndash;7/31/2026 per account, plus each rep's curated target-account list (Fusion export) for Opportunities.
     New = bought in July but not the Apr&ndash;Jun baseline. Repeat = bought in both.
-    Opportunities = accounts on a rep's full account list with no Carbliss purchase history at all this year &mdash; true whitespace, not the same as a churned account that used to buy and stopped.
+    Opportunities = target accounts with no Carbliss purchase history at all this year &mdash; true whitespace, not the same as a churned account that used to buy and stopped.
   </footer>
 </div>
 
@@ -112,7 +129,7 @@
     "new": 50,
     "repeat": 13,
     "churned": 73,
-    "opportunities": 1159,
+    "opportunities": 849,
     "totalAccounts": 136
   },
   "repSummary": [
@@ -122,7 +139,7 @@
       "repeat": 2,
       "churned": 19,
       "neither": 0,
-      "opportunities": 172,
+      "opportunities": 166,
       "newAccounts": [
         {
           "name": "Amer Lgn (Z) Little Ferry",
@@ -287,10 +304,6 @@
           "acct": "190908"
         },
         {
-          "name": "82 OAK BAR & BISTRO",
-          "acct": "37055"
-        },
-        {
           "name": "Amarone (P)",
           "acct": "50028"
         },
@@ -437,10 +450,6 @@
         {
           "name": "Chun Bo (P) Restaurant",
           "acct": "230429"
-        },
-        {
-          "name": "Cigarro Bar and Lounge",
-          "acct": "40027"
         },
         {
           "name": "Cosmopolitan",
@@ -763,10 +772,6 @@
           "acct": "231005"
         },
         {
-          "name": "Ooka Sushi Hibachi",
-          "acct": "25043"
-        },
-        {
           "name": "Osso Buco",
           "acct": "73004"
         },
@@ -785,10 +790,6 @@
         {
           "name": "Park Wayne Diner",
           "acct": "12024"
-        },
-        {
-          "name": "Park West Diner",
-          "acct": "13014"
         },
         {
           "name": "Perona Farms",
@@ -887,20 +888,12 @@
           "acct": "52017"
         },
         {
-          "name": "Taverna Veranda",
-          "acct": "49067"
-        },
-        {
           "name": "Te Min Quan (P) Rest.",
           "acct": "46022"
         },
         {
           "name": "Tenafly Classic Diner",
           "acct": "54017"
-        },
-        {
-          "name": "The Craftsman",
-          "acct": "81005"
         },
         {
           "name": "The Ivy Inn",
@@ -978,7 +971,7 @@
       "repeat": 2,
       "churned": 11,
       "neither": 0,
-      "opportunities": 93,
+      "opportunities": 87,
       "newAccounts": [
         {
           "name": "Bask 46",
@@ -1191,10 +1184,6 @@
           "acct": "17003"
         },
         {
-          "name": "D'Carbon Restaurant Hawthorne",
-          "acct": "19028"
-        },
-        {
           "name": "D'carbon Restaurant",
           "acct": "15048"
         },
@@ -1207,20 +1196,12 @@
           "acct": "12034"
         },
         {
-          "name": "Double Ai Asian Bistro",
-          "acct": "12031"
-        },
-        {
           "name": "Duffy's Tavern (Z)",
           "acct": "21043"
         },
         {
           "name": "Feathers (A)",
           "acct": "58005"
-        },
-        {
-          "name": "Fogo de Chao (Wayne)",
-          "acct": "12010"
         },
         {
           "name": "Great Notch Inn(Z)",
@@ -1331,10 +1312,6 @@
           "acct": "12051"
         },
         {
-          "name": "Platinum Dollz",
-          "acct": "27035"
-        },
-        {
           "name": "Preakness Hills (A) cc",
           "acct": "12035"
         },
@@ -1393,10 +1370,6 @@
         {
           "name": "T Bowl Tavern (Z)",
           "acct": "12001"
-        },
-        {
-          "name": "THE TIES",
-          "acct": "13016"
         },
         {
           "name": "Tavern 5_2",
@@ -1463,10 +1436,6 @@
           "acct": "12026"
         },
         {
-          "name": "YARD HOUSE 8384",
-          "acct": "12057"
-        },
-        {
           "name": "Yesterdays (P)",
           "acct": "25049"
         }
@@ -1478,7 +1447,7 @@
       "repeat": 1,
       "churned": 7,
       "neither": 0,
-      "opportunities": 96,
+      "opportunities": 92,
       "newAccounts": [
         {
           "name": "Farmstead Golf (P)",
@@ -1607,10 +1576,6 @@
           "acct": "191104"
         },
         {
-          "name": "Chapala Mexican Grill 4",
-          "acct": "191305"
-        },
-        {
           "name": "Club 15(P)",
           "acct": "191004"
         },
@@ -1661,14 +1626,6 @@
         {
           "name": "Hyde-Away Rest & Tap Room",
           "acct": "230702"
-        },
-        {
-          "name": "Industry",
-          "acct": "230113"
-        },
-        {
-          "name": "JJ's Bar and Package Goods LLC",
-          "acct": "231607"
         },
         {
           "name": "Jefferson Diner & Tav(P)",
@@ -1815,10 +1772,6 @@
           "acct": "191609"
         },
         {
-          "name": "Rustic Texmex & Sports Bar",
-          "acct": "191523"
-        },
-        {
           "name": "Sabor Latino",
           "acct": "191603"
         },
@@ -1942,7 +1895,7 @@
       "repeat": 0,
       "churned": 1,
       "neither": 0,
-      "opportunities": 10,
+      "opportunities": 8,
       "newAccounts": [
         {
           "name": "Bareburger (Ridgewood)",
@@ -1986,10 +1939,6 @@
           "acct": "83009"
         },
         {
-          "name": "Joe's pub",
-          "acct": "17013"
-        },
-        {
           "name": "Mac Murphy",
           "acct": "84009"
         },
@@ -2004,10 +1953,6 @@
         {
           "name": "Steel Wheel Tavern",
           "acct": "84007"
-        },
-        {
-          "name": "The Madison Rose",
-          "acct": "84011"
         }
       ]
     },
@@ -2017,7 +1962,7 @@
       "repeat": 2,
       "churned": 6,
       "neither": 0,
-      "opportunities": 118,
+      "opportunities": 105,
       "newAccounts": [
         {
           "name": "Club Flamingo (A)",
@@ -2082,10 +2027,6 @@
           "acct": "69012"
         },
         {
-          "name": "86 and Vine",
-          "acct": "65007"
-        },
-        {
           "name": "Alpine C.C. (Z)",
           "acct": "63002"
         },
@@ -2104,10 +2045,6 @@
         {
           "name": "Aumm Aumm @The Brownstone",
           "acct": "52018"
-        },
-        {
-          "name": "Aurora Restaurant",
-          "acct": "68003"
         },
         {
           "name": "Axia Taverna",
@@ -2138,10 +2075,6 @@
           "acct": "67010"
         },
         {
-          "name": "Bistro Taino",
-          "acct": "50004"
-        },
-        {
           "name": "Blue Akai",
           "acct": "52033"
         },
@@ -2160,10 +2093,6 @@
         {
           "name": "Brooklyn's (A)",
           "acct": "40026"
-        },
-        {
-          "name": "CAJUN SEAFOOD AND BAR",
-          "acct": "52009"
         },
         {
           "name": "CZEN Restaurant",
@@ -2256,10 +2185,6 @@
         {
           "name": "Forte Ristorante",
           "acct": "40038"
-        },
-        {
-          "name": "Four Leaves",
-          "acct": "71004"
         },
         {
           "name": "Gerry's Place",
@@ -2382,20 +2307,12 @@
           "acct": "50035"
         },
         {
-          "name": "ORA",
-          "acct": "59001"
-        },
-        {
           "name": "Oceanos Osyter Bar Grill",
           "acct": "81019"
         },
         {
           "name": "Olar Noso",
           "acct": "67001"
-        },
-        {
-          "name": "Old Tappan Golf Course",
-          "acct": "68011"
         },
         {
           "name": "Old Tappan Manor (P)",
@@ -2430,10 +2347,6 @@
           "acct": "60014"
         },
         {
-          "name": "QB's Bar and Grill",
-          "acct": "60002"
-        },
-        {
           "name": "RP Prime Steakhouse",
           "acct": "81027"
         },
@@ -2454,24 +2367,12 @@
           "acct": "62002"
         },
         {
-          "name": "Samdan Mediterranean Restaurant And Bar",
-          "acct": "55009"
-        },
-        {
           "name": "Sear House (A)",
           "acct": "62011"
         },
         {
           "name": "Seasons Catering (A)",
           "acct": "86006"
-        },
-        {
-          "name": "Shoti Bread House",
-          "acct": "81002"
-        },
-        {
-          "name": "Side Bar",
-          "acct": "40032"
         },
         {
           "name": "Sini Bistro",
@@ -2514,14 +2415,6 @@
           "acct": "41023"
         },
         {
-          "name": "Tierney's Tavern(A)",
-          "acct": "150014"
-        },
-        {
-          "name": "Tony's Italian Cuisine",
-          "acct": "56001"
-        },
-        {
           "name": "Verana",
           "acct": "65003"
         },
@@ -2549,7 +2442,7 @@
       "repeat": 1,
       "churned": 6,
       "neither": 0,
-      "opportunities": 170,
+      "opportunities": 153,
       "newAccounts": [
         {
           "name": "Blue 42 Restaurant & Bar",
@@ -2662,10 +2555,6 @@
           "acct": "37019"
         },
         {
-          "name": "Bar 503",
-          "acct": "29014"
-        },
-        {
           "name": "Bar Boutique",
           "acct": "92003"
         },
@@ -2698,10 +2587,6 @@
           "acct": "92007"
         },
         {
-          "name": "Brazilian Spices Steakhouse & Pizza",
-          "acct": "28021"
-        },
-        {
           "name": "Brothers Smokehouse",
           "acct": "92004"
         },
@@ -2718,14 +2603,6 @@
           "acct": "80012"
         },
         {
-          "name": "Cantina 46",
-          "acct": "45007"
-        },
-        {
-          "name": "Capon's Chophouse",
-          "acct": "40015"
-        },
-        {
           "name": "Casa De Montecristo",
           "acct": "80011"
         },
@@ -2736,10 +2613,6 @@
         {
           "name": "Cenzino's (P)",
           "acct": "94005"
-        },
-        {
-          "name": "Ceviche Peruvian Cuisine",
-          "acct": "37022"
         },
         {
           "name": "Charlie's Place",
@@ -2802,10 +2675,6 @@
           "acct": "31045"
         },
         {
-          "name": "Eddie V's",
-          "acct": "80063"
-        },
-        {
           "name": "El Asadero Mexican Grill (Rochelle Park)",
           "acct": "78017"
         },
@@ -2824,10 +2693,6 @@
         {
           "name": "Eros Cafe",
           "acct": "31036"
-        },
-        {
-          "name": "Fogo de Chao (Paramus)",
-          "acct": "80008"
         },
         {
           "name": "Franco's Metro Rest (P)",
@@ -2852,10 +2717,6 @@
         {
           "name": "Hansil's Bar (P)",
           "acct": "94004"
-        },
-        {
-          "name": "Harvest and Ale",
-          "acct": "94006"
         },
         {
           "name": "Healing Karaoke",
@@ -2902,10 +2763,6 @@
           "acct": "28016"
         },
         {
-          "name": "JINYA Ramen Bar (Hackensack)",
-          "acct": "40030"
-        },
-        {
           "name": "Jarana",
           "acct": "31047"
         },
@@ -2928,10 +2785,6 @@
         {
           "name": "Kumade",
           "acct": "46007"
-        },
-        {
-          "name": "LaNoma Italian Steakhouse",
-          "acct": "49047"
         },
         {
           "name": "Legends (P)",
@@ -3012,10 +2865,6 @@
         {
           "name": "Nonna's Pizza",
           "acct": "93008"
-        },
-        {
-          "name": "Nordstrom Garden Court",
-          "acct": "80015"
         },
         {
           "name": "Oakland Diner",
@@ -3106,10 +2955,6 @@
           "acct": "89001"
         },
         {
-          "name": "Season's 52",
-          "acct": "80017"
-        },
-        {
           "name": "Segovia Meson",
           "acct": "32010"
         },
@@ -3138,14 +2983,6 @@
           "acct": "32008"
         },
         {
-          "name": "TRUE FOOD",
-          "acct": "41009"
-        },
-        {
-          "name": "Tavern On Ridge",
-          "acct": "28008"
-        },
-        {
           "name": "Tejo Bar & Rest",
           "acct": "28020"
         },
@@ -3164,10 +3001,6 @@
         {
           "name": "The Capital Grille (A)",
           "acct": "80003"
-        },
-        {
-          "name": "The Concourse #728",
-          "acct": "35006"
         },
         {
           "name": "The Firehouse",
@@ -3230,10 +3063,6 @@
           "acct": "28019"
         },
         {
-          "name": "Tutto A Modo Mio",
-          "acct": "45020"
-        },
-        {
           "name": "Uncle Vinnys Bar & Grill",
           "acct": "29021"
         },
@@ -3264,10 +3093,6 @@
         {
           "name": "Woodstone Pizza B & G",
           "acct": "78007"
-        },
-        {
-          "name": "Wyckoff Tavern Kitchen and Bar",
-          "acct": "96001"
         },
         {
           "name": "Yard House 8390",
@@ -3380,522 +3205,12 @@
       ]
     },
     {
-      "rep": "Jaime Colonna",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 68,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "10th & Willow Bar & Grill",
-          "acct": "173054"
-        },
-        {
-          "name": "8th Street Tavern",
-          "acct": "173060"
-        },
-        {
-          "name": "Abbey's Pub",
-          "acct": "170332"
-        },
-        {
-          "name": "American Legion Hoboken Post107",
-          "acct": "170241"
-        },
-        {
-          "name": "Ani Ramen House",
-          "acct": "170129"
-        },
-        {
-          "name": "Antique Bar And Bakery",
-          "acct": "171118"
-        },
-        {
-          "name": "Astor Bar & Grill",
-          "acct": "170313"
-        },
-        {
-          "name": "BRICK LANE CURRY HOUSE",
-          "acct": "170166"
-        },
-        {
-          "name": "Bangalore Kitchen",
-          "acct": "170155"
-        },
-        {
-          "name": "Boots and Bones",
-          "acct": "170264"
-        },
-        {
-          "name": "Buddy's",
-          "acct": "170275"
-        },
-        {
-          "name": "Canopy Jersey City",
-          "acct": "170288"
-        },
-        {
-          "name": "Carpe Diem",
-          "acct": "170126"
-        },
-        {
-          "name": "Cheese+Wine",
-          "acct": "173078"
-        },
-        {
-          "name": "City Bistro (A)",
-          "acct": "170156"
-        },
-        {
-          "name": "Cork City Pub",
-          "acct": "170132"
-        },
-        {
-          "name": "Curry On",
-          "acct": "173069"
-        },
-        {
-          "name": "Dear Maud",
-          "acct": "170128"
-        },
-        {
-          "name": "Don Coqui",
-          "acct": "49001"
-        },
-        {
-          "name": "EMPYREAN INDIAN KITCHEN",
-          "acct": "173042"
-        },
-        {
-          "name": "Empyrean Bistro & Bar",
-          "acct": "178107"
-        },
-        {
-          "name": "Finnegans",
-          "acct": "173053"
-        },
-        {
-          "name": "Grand Vin",
-          "acct": "170170"
-        },
-        {
-          "name": "Green Rock Tap & Grill",
-          "acct": "171413"
-        },
-        {
-          "name": "Halifax Restaurant",
-          "acct": "170294"
-        },
-        {
-          "name": "Hudson & Co. Bar & Grill",
-          "acct": "170065"
-        },
-        {
-          "name": "Hudson Golf",
-          "acct": "173037"
-        },
-        {
-          "name": "Hudson Hall(A)",
-          "acct": "170221"
-        },
-        {
-          "name": "Hyatt House Jersey City",
-          "acct": "170278"
-        },
-        {
-          "name": "Hyatt Regency",
-          "acct": "170231"
-        },
-        {
-          "name": "Karma Kafe",
-          "acct": "172016"
-        },
-        {
-          "name": "LegendsFC",
-          "acct": "170177"
-        },
-        {
-          "name": "Lucky 7 Tavern",
-          "acct": "170235"
-        },
-        {
-          "name": "Madison Bar & Grill",
-          "acct": "170118"
-        },
-        {
-          "name": "Molos Rest",
-          "acct": "170153"
-        },
-        {
-          "name": "Mulligan's (P)",
-          "acct": "170059"
-        },
-        {
-          "name": "O'nieal's (A)",
-          "acct": "170042"
-        },
-        {
-          "name": "Ohara's Downtown",
-          "acct": "170223"
-        },
-        {
-          "name": "Pier 13",
-          "acct": "170469"
-        },
-        {
-          "name": "Pint (Z)",
-          "acct": "170204"
-        },
-        {
-          "name": "Plank Road Inn (A)",
-          "acct": "179012"
-        },
-        {
-          "name": "Rasoi Restaurant",
-          "acct": "173072"
-        },
-        {
-          "name": "Saku (P)",
-          "acct": "170104"
-        },
-        {
-          "name": "Schmitty's",
-          "acct": "170260"
-        },
-        {
-          "name": "Shepherd/Knucklehead Hobo",
-          "acct": "171012"
-        },
-        {
-          "name": "Snack Bar",
-          "acct": "173079"
-        },
-        {
-          "name": "South House",
-          "acct": "170167"
-        },
-        {
-          "name": "Stingray Lounge",
-          "acct": "170280"
-        },
-        {
-          "name": "Surf City",
-          "acct": "170141"
-        },
-        {
-          "name": "Taphaus",
-          "acct": "170236"
-        },
-        {
-          "name": "Texas-Arizona (A)",
-          "acct": "170032"
-        },
-        {
-          "name": "The Ainsworth",
-          "acct": "170133"
-        },
-        {
-          "name": "The Ashford/Six 26",
-          "acct": "170268"
-        },
-        {
-          "name": "The Brass Rail Restaurant",
-          "acct": "173039"
-        },
-        {
-          "name": "The Corner Pho",
-          "acct": "170025"
-        },
-        {
-          "name": "The Ferryman On 1st",
-          "acct": "170468"
-        },
-        {
-          "name": "The Highwood",
-          "acct": "178011"
-        },
-        {
-          "name": "The Hoboken Biergarten",
-          "acct": "170282"
-        },
-        {
-          "name": "The Hutten Tavern",
-          "acct": "173068"
-        },
-        {
-          "name": "The Shannon",
-          "acct": "173043"
-        },
-        {
-          "name": "The Stewed Cow",
-          "acct": "173059"
-        },
-        {
-          "name": "Union Hall",
-          "acct": "170471"
-        },
-        {
-          "name": "Urban Coal House",
-          "acct": "171018"
-        },
-        {
-          "name": "White Eagle Hall",
-          "acct": "170249"
-        },
-        {
-          "name": "White Star Bar",
-          "acct": "170147"
-        },
-        {
-          "name": "White Star Harbor Bar(P)",
-          "acct": "170154"
-        },
-        {
-          "name": "Willie Mcbride's Pub/Rest",
-          "acct": "170463"
-        },
-        {
-          "name": "Zeppelin Hall (Z)",
-          "acct": "170008"
-        }
-      ]
-    },
-    {
-      "rep": "Pablo Lopez",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 53,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "412 Lounge & Latin Bar",
-          "acct": "20130"
-        },
-        {
-          "name": "5th Avenue (P) Tavern",
-          "acct": "20108"
-        },
-        {
-          "name": "Arepa Express",
-          "acct": "27118"
-        },
-        {
-          "name": "Aruba Lounge (P)",
-          "acct": "25073"
-        },
-        {
-          "name": "Bacchus Sport Bar & Grill",
-          "acct": "15045"
-        },
-        {
-          "name": "Bocaditos Bistro",
-          "acct": "20004"
-        },
-        {
-          "name": "Bonfire Mofongo House (P)",
-          "acct": "21030"
-        },
-        {
-          "name": "Buenaaazo",
-          "acct": "27100"
-        },
-        {
-          "name": "Circle Cafe (A)",
-          "acct": "20046"
-        },
-        {
-          "name": "Colombia Kaliente",
-          "acct": "52037"
-        },
-        {
-          "name": "Con Sabor A Peru (A)",
-          "acct": "25086"
-        },
-        {
-          "name": "Costa Marina Lounge(A)",
-          "acct": "21022"
-        },
-        {
-          "name": "D'classico (P)",
-          "acct": "20090"
-        },
-        {
-          "name": "Diana's Bar (Z)",
-          "acct": "15018"
-        },
-        {
-          "name": "Dona Maria Rest",
-          "acct": "27015"
-        },
-        {
-          "name": "Dulce Patria",
-          "acct": "22025"
-        },
-        {
-          "name": "El Dorado Rest (Z)",
-          "acct": "24032"
-        },
-        {
-          "name": "El Mexicano Rest (P)",
-          "acct": "24030"
-        },
-        {
-          "name": "Family Association",
-          "acct": "25041"
-        },
-        {
-          "name": "Freddie's Dugout",
-          "acct": "21038"
-        },
-        {
-          "name": "Galleria",
-          "acct": "27093"
-        },
-        {
-          "name": "Grand Rodeo Night Club(Z)",
-          "acct": "27050"
-        },
-        {
-          "name": "Hacienda (P)",
-          "acct": "20081"
-        },
-        {
-          "name": "Hi-Beams (P)",
-          "acct": "22013"
-        },
-        {
-          "name": "Hornitos Bakery",
-          "acct": "24049"
-        },
-        {
-          "name": "Jaimito's Crtside(Z)",
-          "acct": "25071"
-        },
-        {
-          "name": "Jay Aldo's (Z) Bar & Pizz",
-          "acct": "25046"
-        },
-        {
-          "name": "LOTUS",
-          "acct": "27145"
-        },
-        {
-          "name": "La Fiesta",
-          "acct": "20102"
-        },
-        {
-          "name": "La Havana 59",
-          "acct": "33005"
-        },
-        {
-          "name": "Lena Y Carbon Restaurant",
-          "acct": "22001"
-        },
-        {
-          "name": "Lena y Carbon Restaurant & Bar (Passaic)",
-          "acct": "27142"
-        },
-        {
-          "name": "Los Cristales (Z)",
-          "acct": "22044"
-        },
-        {
-          "name": "Mama Sushi Rest & Lounge",
-          "acct": "27099"
-        },
-        {
-          "name": "Marcet Cafe",
-          "acct": "21042"
-        },
-        {
-          "name": "Noches De Colombia (Clifton)",
-          "acct": "24063"
-        },
-        {
-          "name": "Noches De Colombia (Hackensack)",
-          "acct": "41008"
-        },
-        {
-          "name": "Noches De Colombia (Passaic)",
-          "acct": "27073"
-        },
-        {
-          "name": "Noches De Colombia (Paterson)",
-          "acct": "22019"
-        },
-        {
-          "name": "Noches De Colombia (S. Hackensack))",
-          "acct": "39004"
-        },
-        {
-          "name": "Noches De Colombia(Englewood))",
-          "acct": "52005"
-        },
-        {
-          "name": "Palenque Bar & Grill(A)",
-          "acct": "25040"
-        },
-        {
-          "name": "Portuguese Tavern Steak House",
-          "acct": "25051"
-        },
-        {
-          "name": "Ragtime Gentlemen's Club",
-          "acct": "15062"
-        },
-        {
-          "name": "Ranchito Mi Peru",
-          "acct": "21014"
-        },
-        {
-          "name": "Romo Restaurant",
-          "acct": "15046"
-        },
-        {
-          "name": "Roxxie's (P)",
-          "acct": "22031"
-        },
-        {
-          "name": "Sarina Bar",
-          "acct": "25087"
-        },
-        {
-          "name": "Saritas Mexican Rest(A)",
-          "acct": "27070"
-        },
-        {
-          "name": "Serie 92 Bar & Liquor",
-          "acct": "20100"
-        },
-        {
-          "name": "Super Korona (Z) Bar",
-          "acct": "22021"
-        },
-        {
-          "name": "Tease (P)",
-          "acct": "22036"
-        },
-        {
-          "name": "Ukranian (Z) Center",
-          "acct": "27067"
-        }
-      ]
-    },
-    {
       "rep": "Dan Lagala",
       "new": 0,
       "repeat": 2,
       "churned": 4,
       "neither": 0,
-      "opportunities": 51,
+      "opportunities": 48,
       "newAccounts": [],
       "repeatAccounts": [
         {
@@ -3937,10 +3252,6 @@
         {
           "name": "Brass Rail Pub_2",
           "acct": "44033"
-        },
-        {
-          "name": "Brazeiro Churrascaria",
-          "acct": "44001"
         },
         {
           "name": "Brownstone Pancake Factor",
@@ -4059,10 +3370,6 @@
           "acct": "53002"
         },
         {
-          "name": "Mythos Greek Taverna",
-          "acct": "44043"
-        },
-        {
           "name": "O'Malleys Pub LLC DBA Blackbird Pub",
           "acct": "44035"
         },
@@ -4107,10 +3414,6 @@
           "acct": "46014"
         },
         {
-          "name": "Third Floor Cafe",
-          "acct": "46020"
-        },
-        {
           "name": "Tivoli Restaurant",
           "acct": "45015"
         },
@@ -4133,187 +3436,195 @@
       ]
     },
     {
-      "rep": "John O'Donoghue",
+      "rep": "Pablo Lopez",
       "new": 0,
       "repeat": 0,
       "churned": 0,
       "neither": 0,
-      "opportunities": 43,
+      "opportunities": 45,
       "newAccounts": [],
       "repeatAccounts": [],
       "churnedAccounts": [],
       "opportunityAccounts": [
         {
-          "name": "12 Islands Greek Taverna",
-          "acct": "190016"
+          "name": "5th Avenue (P) Tavern",
+          "acct": "20108"
         },
         {
-          "name": "54 Main Cafe",
-          "acct": "190004"
+          "name": "Aruba Lounge (P)",
+          "acct": "25073"
         },
         {
-          "name": "Antik Greek Kitchens",
-          "acct": "150228"
+          "name": "Bacchus Sport Bar & Grill",
+          "acct": "15045"
         },
         {
-          "name": "Archer Hotel-Florham Pk.",
-          "acct": "190080"
+          "name": "Bocaditos Bistro",
+          "acct": "20004"
         },
         {
-          "name": "Arirang Hibachi Steakhous",
-          "acct": "250900"
+          "name": "Bonfire Mofongo House (P)",
+          "acct": "21030"
         },
         {
-          "name": "At The Hop",
-          "acct": "192008"
+          "name": "Circle Cafe (A)",
+          "acct": "20046"
         },
         {
-          "name": "Bar Cilento",
-          "acct": "192009"
+          "name": "Con Sabor A Peru (A)",
+          "acct": "25086"
         },
         {
-          "name": "Bernays Appgar Post 342 American Legion",
-          "acct": "192160"
+          "name": "Costa Marina Lounge(A)",
+          "acct": "21022"
         },
         {
-          "name": "Big Ed's (Circle Bowl)",
-          "acct": "190018"
+          "name": "D'classico (P)",
+          "acct": "20090"
         },
         {
-          "name": "Chrones Tavern",
-          "acct": "250901"
+          "name": "Diana's Bar (Z)",
+          "acct": "15018"
         },
         {
-          "name": "Columbus Club of Morristown NJ",
-          "acct": "191848"
+          "name": "Dona Maria Rest",
+          "acct": "27015"
         },
         {
-          "name": "Dublin Pub (A)",
-          "acct": "190042"
+          "name": "Dulce Patria",
+          "acct": "22025"
         },
         {
-          "name": "Grasshopper Off The Green",
-          "acct": "191824"
+          "name": "El Dorado Rest (Z)",
+          "acct": "24032"
         },
         {
-          "name": "Hoovers Tavern",
-          "acct": "190112"
+          "name": "El Mexicano Rest (P)",
+          "acct": "24030"
         },
         {
-          "name": "Jt Mcq's Sports Bar (P)",
-          "acct": "190024"
+          "name": "Family Association",
+          "acct": "25041"
         },
         {
-          "name": "Laundromat",
-          "acct": "190072"
+          "name": "Freddie's Dugout",
+          "acct": "21038"
         },
         {
-          "name": "Liquor Point",
-          "acct": "190721"
+          "name": "Grand Rodeo Night Club(Z)",
+          "acct": "27050"
         },
         {
-          "name": "Margarita's Bar & Grill",
-          "acct": "192141"
+          "name": "Hacienda (P)",
+          "acct": "20081"
         },
         {
-          "name": "Noches de Columbia (Randolph)",
-          "acct": "250313"
+          "name": "Hi-Beams (P)",
+          "acct": "22013"
         },
         {
-          "name": "Old Mill Tavern",
-          "acct": "190505"
+          "name": "Jaimito's Crtside(Z)",
+          "acct": "25071"
         },
         {
-          "name": "Omg Burger & Brew",
-          "acct": "190512"
+          "name": "Jay Aldo's (Z) Bar & Pizz",
+          "acct": "25046"
         },
         {
-          "name": "Pancho Villa Rodeo",
-          "acct": "192161"
+          "name": "LOTUS",
+          "acct": "27145"
         },
         {
-          "name": "Par 440 Restaurant",
-          "acct": "150250"
+          "name": "La Fiesta",
+          "acct": "20102"
         },
         {
-          "name": "Parkside Tavern",
-          "acct": "190330"
+          "name": "La Havana 59",
+          "acct": "33005"
         },
         {
-          "name": "Prime 94 Steakhouse & Grill",
-          "acct": "150099"
+          "name": "Lena Y Carbon Restaurant",
+          "acct": "22001"
         },
         {
-          "name": "Pulse Gentleman's Club",
-          "acct": "32033"
+          "name": "Los Cristales (Z)",
+          "acct": "22044"
         },
         {
-          "name": "Randolph Diner",
-          "acct": "190021"
+          "name": "Mama Sushi Rest & Lounge",
+          "acct": "27099"
         },
         {
-          "name": "Redwoods Bar & Grill",
-          "acct": "190513"
+          "name": "Marcet Cafe",
+          "acct": "21042"
         },
         {
-          "name": "Revolution Bar",
-          "acct": "190035"
+          "name": "Noches De Colombia (Clifton)",
+          "acct": "24063"
         },
         {
-          "name": "River Grille",
-          "acct": "190068"
+          "name": "Noches De Colombia (Hackensack)",
+          "acct": "41008"
         },
         {
-          "name": "Rosie''''s Trattoria",
-          "acct": "192157"
+          "name": "Noches De Colombia (Passaic)",
+          "acct": "27073"
         },
         {
-          "name": "SOCIAL HUB BY DHABA",
-          "acct": "190431"
+          "name": "Noches De Colombia (Paterson)",
+          "acct": "22019"
         },
         {
-          "name": "Sheraton Parsippany Hotel",
-          "acct": "190429"
+          "name": "Noches De Colombia (S. Hackensack))",
+          "acct": "39004"
         },
         {
-          "name": "Sidelines Bar And Grill",
-          "acct": "150104"
+          "name": "Noches De Colombia(Englewood))",
+          "acct": "52005"
         },
         {
-          "name": "Sogo",
-          "acct": "190618"
+          "name": "Palenque Bar & Grill(A)",
+          "acct": "25040"
         },
         {
-          "name": "Stirling Hotel",
-          "acct": "190230"
+          "name": "Portuguese Tavern Steak House",
+          "acct": "25051"
         },
         {
-          "name": "Swim And Sports Club",
-          "acct": "192052"
+          "name": "Ragtime Gentlemen's Club",
+          "acct": "15062"
         },
         {
-          "name": "Tavern Off The Green",
-          "acct": "190045"
+          "name": "Ranchito Mi Peru",
+          "acct": "21014"
         },
         {
-          "name": "The Office Bar/Los Arrieros",
-          "acct": "190796"
+          "name": "Romo Restaurant",
+          "acct": "15046"
         },
         {
-          "name": "The Thirsty Turtle (Florham Park)",
-          "acct": "190032"
+          "name": "Roxxie's (P)",
+          "acct": "22031"
         },
         {
-          "name": "Tiff's Grill & Ale House",
-          "acct": "190328"
+          "name": "Sarina Bar",
+          "acct": "25087"
         },
         {
-          "name": "Valley Rest & Pub",
-          "acct": "192147"
+          "name": "Saritas Mexican Rest(A)",
+          "acct": "27070"
         },
         {
-          "name": "Vintage Tavern",
-          "acct": "190299"
+          "name": "Super Korona (Z) Bar",
+          "acct": "22021"
+        },
+        {
+          "name": "Tease (P)",
+          "acct": "22036"
+        },
+        {
+          "name": "Ukranian (Z) Center",
+          "acct": "27067"
         }
       ]
     },
@@ -4323,7 +3634,7 @@
       "repeat": 2,
       "churned": 6,
       "neither": 0,
-      "opportunities": 41,
+      "opportunities": 37,
       "newAccounts": [],
       "repeatAccounts": [
         {
@@ -4363,10 +3674,6 @@
       ],
       "opportunityAccounts": [
         {
-          "name": "ACQUAVIVA RESTAURANT",
-          "acct": "230921"
-        },
-        {
           "name": "Atlantic Man Rodozio Stk",
           "acct": "231001"
         },
@@ -4399,10 +3706,6 @@
           "acct": "1002"
         },
         {
-          "name": "Coyote Cocina Mexicana",
-          "acct": "230909"
-        },
-        {
           "name": "D'Boathaus Restaurant",
           "acct": "1033"
         },
@@ -4429,10 +3732,6 @@
         {
           "name": "Il Palazzo (Z)",
           "acct": "3014"
-        },
-        {
-          "name": "Indian Spice Route 23",
-          "acct": "231311"
         },
         {
           "name": "Irish Cottage Inn",
@@ -4499,10 +3798,6 @@
           "acct": "4004"
         },
         {
-          "name": "The Sussex Saloon",
-          "acct": "231303"
-        },
-        {
           "name": "The Vreeland Store",
           "acct": "1004"
         },
@@ -4534,7 +3829,7 @@
       "repeat": 0,
       "churned": 2,
       "neither": 0,
-      "opportunities": 38,
+      "opportunities": 31,
       "newAccounts": [],
       "repeatAccounts": [],
       "churnedAccounts": [
@@ -4577,20 +3872,12 @@
           "acct": "27055"
         },
         {
-          "name": "El Alamo Bar",
-          "acct": "26020"
-        },
-        {
           "name": "El Anochecer",
           "acct": "27094"
         },
         {
           "name": "El Asadero Mexican Grill (Passaic)",
           "acct": "27076"
-        },
-        {
-          "name": "El Camaron Mazatleco",
-          "acct": "27110"
         },
         {
           "name": "El Chever (P)",
@@ -4613,16 +3900,8 @@
           "acct": "27102"
         },
         {
-          "name": "La Bonita",
-          "acct": "24051"
-        },
-        {
           "name": "La Casona Cafe Restaurant Bar",
           "acct": "26003"
-        },
-        {
-          "name": "La Fortaleza (Carlstadt)",
-          "acct": "32011"
         },
         {
           "name": "La Fortaleza (Clifton)",
@@ -4645,16 +3924,8 @@
           "acct": "21005"
         },
         {
-          "name": "La Posada",
-          "acct": "27106"
-        },
-        {
           "name": "La Rancherita",
           "acct": "27009"
-        },
-        {
-          "name": "Lamayoria Bar Restaurant",
-          "acct": "25053"
         },
         {
           "name": "Los Arcos (P) Rest.",
@@ -4695,288 +3966,6 @@
         {
           "name": "Venus Bar & Restaurant",
           "acct": "27039"
-        },
-        {
-          "name": "Voraz Fuision",
-          "acct": "37065"
-        }
-      ]
-    },
-    {
-      "rep": "Alisa Acciardi",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 33,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "Bacchanal Junction",
-          "acct": "150244"
-        },
-        {
-          "name": "Bello's",
-          "acct": "150146"
-        },
-        {
-          "name": "Burke's Tavern",
-          "acct": "150187"
-        },
-        {
-          "name": "Cowans Public",
-          "acct": "150123"
-        },
-        {
-          "name": "Donegal Saloon",
-          "acct": "171004"
-        },
-        {
-          "name": "Eddy's Bar & Liquor",
-          "acct": "174151"
-        },
-        {
-          "name": "Fitzgerald 1928",
-          "acct": "150050"
-        },
-        {
-          "name": "Fornos Of Spain (A)",
-          "acct": "150142"
-        },
-        {
-          "name": "Guys & Dolls Billiards & Sports Bar",
-          "acct": "150252"
-        },
-        {
-          "name": "Hendrick's Corner",
-          "acct": "170243"
-        },
-        {
-          "name": "Hook And Reel",
-          "acct": "171308"
-        },
-        {
-          "name": "Jim Dandy's",
-          "acct": "150611"
-        },
-        {
-          "name": "Joia Restaurant",
-          "acct": "170229"
-        },
-        {
-          "name": "KPot Korean BBQ & Hot Pot",
-          "acct": "171309"
-        },
-        {
-          "name": "Keeper's",
-          "acct": "171360"
-        },
-        {
-          "name": "Michael Roscommon Hs(A)",
-          "acct": "150015"
-        },
-        {
-          "name": "Mighty Quinns Bbq",
-          "acct": "24057"
-        },
-        {
-          "name": "Mompou Restaurant",
-          "acct": "150139"
-        },
-        {
-          "name": "O'Donnell's (P)",
-          "acct": "170061"
-        },
-        {
-          "name": "OTS BY LLC (Aqua)",
-          "acct": "174153"
-        },
-        {
-          "name": "Obals Inn",
-          "acct": "150300"
-        },
-        {
-          "name": "Otaiko Hibachi & Sushi",
-          "acct": "173900"
-        },
-        {
-          "name": "Shorty's",
-          "acct": "174001"
-        },
-        {
-          "name": "Six Points Pub",
-          "acct": "150305"
-        },
-        {
-          "name": "Tankys Bar & Grill",
-          "acct": "250171"
-        },
-        {
-          "name": "Thai O'brien (P)",
-          "acct": "170117"
-        },
-        {
-          "name": "The Blue Steel Pizza Co.",
-          "acct": "150302"
-        },
-        {
-          "name": "The Deep Inn",
-          "acct": "152037"
-        },
-        {
-          "name": "The Greenroom",
-          "acct": "170240"
-        },
-        {
-          "name": "The Oakley Kitchen",
-          "acct": "150085"
-        },
-        {
-          "name": "The Old Canal Inn",
-          "acct": "150112"
-        },
-        {
-          "name": "Town Pub Of Bloomfeild",
-          "acct": "150199"
-        },
-        {
-          "name": "Urban Tandoor",
-          "acct": "171352"
-        }
-      ]
-    },
-    {
-      "rep": "Dylan Rubino",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 30,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "Aramark at Liberty Science Center",
-          "acct": "170263"
-        },
-        {
-          "name": "Asian Grill & Sushi",
-          "acct": "178104"
-        },
-        {
-          "name": "Bar Sagua",
-          "acct": "172050"
-        },
-        {
-          "name": "Bareburger (Jersey City)",
-          "acct": "170277"
-        },
-        {
-          "name": "Chili's Secaucus",
-          "acct": "170914"
-        },
-        {
-          "name": "Corkscrew Bar",
-          "acct": "173073"
-        },
-        {
-          "name": "Courtyard Secaucus Meadowlands",
-          "acct": "170916"
-        },
-        {
-          "name": "Dagda",
-          "acct": "170293"
-        },
-        {
-          "name": "Dorrian's Restaurant",
-          "acct": "170157"
-        },
-        {
-          "name": "Dublin Yard",
-          "acct": "179013"
-        },
-        {
-          "name": "Fork Hill Kitchen",
-          "acct": "171353"
-        },
-        {
-          "name": "Franklin Social Club",
-          "acct": "170430"
-        },
-        {
-          "name": "Grace O'malleys",
-          "acct": "170267"
-        },
-        {
-          "name": "Greene Hook Resturant",
-          "acct": "170192"
-        },
-        {
-          "name": "Harrys Daughter",
-          "acct": "170257"
-        },
-        {
-          "name": "Hudson Blue",
-          "acct": "178013"
-        },
-        {
-          "name": "IKOS Greek Mediterranean",
-          "acct": "170291"
-        },
-        {
-          "name": "Left Bank Burger Bar (A)",
-          "acct": "171412"
-        },
-        {
-          "name": "Light Horse Tavern (A)",
-          "acct": "170138"
-        },
-        {
-          "name": "Lira Ii Liquor",
-          "acct": "170113"
-        },
-        {
-          "name": "Mamak House",
-          "acct": "170276"
-        },
-        {
-          "name": "Mcginley Square Pub",
-          "acct": "170193"
-        },
-        {
-          "name": "PF Changs China Bistro (West NY)",
-          "acct": "171340"
-        },
-        {
-          "name": "Park Tavern",
-          "acct": "170254"
-        },
-        {
-          "name": "Punjab Meet House",
-          "acct": "170367"
-        },
-        {
-          "name": "Rancho Mateo",
-          "acct": "178018"
-        },
-        {
-          "name": "San Patricios Jersey City",
-          "acct": "170266"
-        },
-        {
-          "name": "Te-Amo",
-          "acct": "179018"
-        },
-        {
-          "name": "The Brightside Tavern",
-          "acct": "170314"
-        },
-        {
-          "name": "The Franklin Bar & Restaurant",
-          "acct": "170915"
         }
       ]
     },
@@ -4986,7 +3975,7 @@
       "repeat": 0,
       "churned": 0,
       "neither": 0,
-      "opportunities": 28,
+      "opportunities": 27,
       "newAccounts": [],
       "repeatAccounts": [],
       "churnedAccounts": [],
@@ -5026,10 +4015,6 @@
         {
           "name": "Ga Yeon Restaurant",
           "acct": "49006"
-        },
-        {
-          "name": "Gopchang Story",
-          "acct": "49051"
         },
         {
           "name": "Grissini's Restaurant",
@@ -5102,111 +4087,6 @@
         {
           "name": "Wrights Tavern(Z)",
           "acct": "15053"
-        }
-      ]
-    },
-    {
-      "rep": "Michael Harboy",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 23,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "460 BISTRO",
-          "acct": "150235"
-        },
-        {
-          "name": "Avenue Bistro",
-          "acct": "150232"
-        },
-        {
-          "name": "Cloverleaf Tavern",
-          "acct": "150010"
-        },
-        {
-          "name": "DOUGH",
-          "acct": "150195"
-        },
-        {
-          "name": "Danahers",
-          "acct": "150137"
-        },
-        {
-          "name": "Dillon's",
-          "acct": "150205"
-        },
-        {
-          "name": "Egan & Sons",
-          "acct": "151022"
-        },
-        {
-          "name": "Essex County Cc (A)",
-          "acct": "150161"
-        },
-        {
-          "name": "Faubourg Montclair",
-          "acct": "151028"
-        },
-        {
-          "name": "Franklin Steakhouse Tvrn",
-          "acct": "150196"
-        },
-        {
-          "name": "Garden State Tavern",
-          "acct": "150499"
-        },
-        {
-          "name": "Glen Ridge Country Club",
-          "acct": "150260"
-        },
-        {
-          "name": "Grasshopper Cedar Grove",
-          "acct": "150619"
-        },
-        {
-          "name": "Halcyon Seafood Brasserie",
-          "acct": "151027"
-        },
-        {
-          "name": "Just Jakes",
-          "acct": "150124"
-        },
-        {
-          "name": "Mountain Ridge Cc",
-          "acct": "150110"
-        },
-        {
-          "name": "Nikko Hibachi Steakhouse",
-          "acct": "150501"
-        },
-        {
-          "name": "Pineapple Express Barbecue",
-          "acct": "150084"
-        },
-        {
-          "name": "Porta",
-          "acct": "151020"
-        },
-        {
-          "name": "Ringside Pub",
-          "acct": "150450"
-        },
-        {
-          "name": "The Wellmont Theater",
-          "acct": "151024"
-        },
-        {
-          "name": "Verona Inn(Z)",
-          "acct": "150049"
-        },
-        {
-          "name": "Whole Foods Market (Wayne)",
-          "acct": "12003"
         }
       ]
     },
@@ -5304,170 +4184,12 @@
       ]
     },
     {
-      "rep": "Andrew Lundy",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 17,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "387 Oyster House & Bar",
-          "acct": "250172"
-        },
-        {
-          "name": "Abigails Cafe (Z)",
-          "acct": "250025"
-        },
-        {
-          "name": "Baltusrol Golf Club",
-          "acct": "250121"
-        },
-        {
-          "name": "Blue Sunday Bar & Grill",
-          "acct": "250445"
-        },
-        {
-          "name": "Crossroads Bar/Rest (Z)",
-          "acct": "250105"
-        },
-        {
-          "name": "Darby Road",
-          "acct": "250094"
-        },
-        {
-          "name": "Deutscher Club Of Clark",
-          "acct": "250013"
-        },
-        {
-          "name": "Echo Lake Country Club",
-          "acct": "250168"
-        },
-        {
-          "name": "Fujiyama Mama",
-          "acct": "250164"
-        },
-        {
-          "name": "Garwood Restaurant",
-          "acct": "250221"
-        },
-        {
-          "name": "Kpot Korean BBQ",
-          "acct": "251006"
-        },
-        {
-          "name": "Linwood Inn Tap House",
-          "acct": "250077"
-        },
-        {
-          "name": "Millburn Standard",
-          "acct": "150249"
-        },
-        {
-          "name": "Office Beer Bar&Grill(A)",
-          "acct": "250116"
-        },
-        {
-          "name": "Riverside Inn",
-          "acct": "250097"
-        },
-        {
-          "name": "The Station Bar & Grill",
-          "acct": "250033"
-        },
-        {
-          "name": "World Famous Waiting Room",
-          "acct": "250100"
-        }
-      ]
-    },
-    {
-      "rep": "Hakan Sadik",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 16,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "American Whiskey Newark",
-          "acct": "150125"
-        },
-        {
-          "name": "Castaway Restaurant",
-          "acct": "150215"
-        },
-        {
-          "name": "Gaslight Brewery & Rest.",
-          "acct": "150009"
-        },
-        {
-          "name": "Levy @ Sports Illustrated Stadium",
-          "acct": "170070"
-        },
-        {
-          "name": "Levy @ The Prudential Center",
-          "acct": "150245"
-        },
-        {
-          "name": "Lufthansa Business Lounge",
-          "acct": "150655"
-        },
-        {
-          "name": "Mad For Chicken Newark",
-          "acct": "150054"
-        },
-        {
-          "name": "Marriott @Newark Liberty",
-          "acct": "150165"
-        },
-        {
-          "name": "Mcgovern's Tavern(A)",
-          "acct": "150024"
-        },
-        {
-          "name": "Prudential Center",
-          "acct": "150096"
-        },
-        {
-          "name": "Pub At Njit",
-          "acct": "150626"
-        },
-        {
-          "name": "Qxt's Nightclub",
-          "acct": "152034"
-        },
-        {
-          "name": "Redds Biergarten",
-          "acct": "150185"
-        },
-        {
-          "name": "Shillelagh Club",
-          "acct": "150092"
-        },
-        {
-          "name": "St.James Gate Public House",
-          "acct": "150148"
-        },
-        {
-          "name": "Village Hall",
-          "acct": "150231"
-        }
-      ]
-    },
-    {
       "rep": "Derrick Laws",
       "new": 0,
       "repeat": 0,
       "churned": 0,
       "neither": 0,
-      "opportunities": 14,
+      "opportunities": 13,
       "newAccounts": [],
       "repeatAccounts": [],
       "churnedAccounts": [],
@@ -5483,10 +4205,6 @@
         {
           "name": "Downtown Cafe (P)",
           "acct": "20048"
-        },
-        {
-          "name": "El Escondite Bar and Restaurant",
-          "acct": "20125"
         },
         {
           "name": "El Fogon Rest",
@@ -5531,81 +4249,7 @@
       ]
     },
     {
-      "rep": "Alex Rodriguez",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 10,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "Colonial Liquor Store",
-          "acct": "260002"
-        },
-        {
-          "name": "Frenchys Bar & Grill",
-          "acct": "250190"
-        },
-        {
-          "name": "Golden Anchor Bar",
-          "acct": "253002"
-        },
-        {
-          "name": "Nugents Tavern (P)",
-          "acct": "250043"
-        },
-        {
-          "name": "Olga's Place",
-          "acct": "250303"
-        },
-        {
-          "name": "Otg Management Ewr",
-          "acct": "150641"
-        },
-        {
-          "name": "Rancho Mateo Asadero Colombian",
-          "acct": "250316"
-        },
-        {
-          "name": "Rancho Mateo Colombian Steakhouse",
-          "acct": "250310"
-        },
-        {
-          "name": "Tequila Club",
-          "acct": "253003"
-        },
-        {
-          "name": "Tiki Mojito",
-          "acct": "250197"
-        }
-      ]
-    },
-    {
-      "rep": "Jim Heaney",
-      "new": 0,
-      "repeat": 0,
-      "churned": 0,
-      "neither": 0,
-      "opportunities": 2,
-      "newAccounts": [],
-      "repeatAccounts": [],
-      "churnedAccounts": [],
-      "opportunityAccounts": [
-        {
-          "name": "Sonoma Bistro",
-          "acct": "30030"
-        },
-        {
-          "name": "Tiny Tijuana",
-          "acct": "26013"
-        }
-      ]
-    },
-    {
-      "rep": "Dave Ehlers",
+      "rep": "Alisa Acciardi",
       "new": 0,
       "repeat": 0,
       "churned": 0,
@@ -5616,8 +4260,25 @@
       "churnedAccounts": [],
       "opportunityAccounts": [
         {
-          "name": "Lulu Lounge",
-          "acct": "52013"
+          "name": "Mighty Quinns Bbq",
+          "acct": "24057"
+        }
+      ]
+    },
+    {
+      "rep": "Jim Heaney",
+      "new": 0,
+      "repeat": 0,
+      "churned": 0,
+      "neither": 0,
+      "opportunities": 1,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [],
+      "opportunityAccounts": [
+        {
+          "name": "Sonoma Bistro",
+          "acct": "30030"
         }
       ]
     },
@@ -5639,6 +4300,40 @@
       ]
     },
     {
+      "rep": "Michael Harboy",
+      "new": 0,
+      "repeat": 0,
+      "churned": 0,
+      "neither": 0,
+      "opportunities": 1,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [],
+      "opportunityAccounts": [
+        {
+          "name": "Whole Foods Market (Wayne)",
+          "acct": "12003"
+        }
+      ]
+    },
+    {
+      "rep": "Jaime Colonna",
+      "new": 0,
+      "repeat": 0,
+      "churned": 0,
+      "neither": 0,
+      "opportunities": 1,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [],
+      "opportunityAccounts": [
+        {
+          "name": "Don Coqui",
+          "acct": "49001"
+        }
+      ]
+    },
+    {
       "rep": "Klejdi Lamo",
       "new": 0,
       "repeat": 0,
@@ -5652,6 +4347,23 @@
         {
           "name": "Smith's Tavern",
           "acct": "190702"
+        }
+      ]
+    },
+    {
+      "rep": "Dave Ehlers",
+      "new": 0,
+      "repeat": 0,
+      "churned": 0,
+      "neither": 0,
+      "opportunities": 1,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [],
+      "opportunityAccounts": [
+        {
+          "name": "Lulu Lounge",
+          "acct": "52013"
         }
       ]
     },
@@ -6007,7 +4719,7 @@ function renderRepTable(){
       <td>${r.rep}</td>
       <td class="num"><span class="pill new">${r.new}</span></td>
       <td class="num">${r.repeat}</td>
-      <td class="num"><span class="pill opportunities">${r.opportunities}</span></td>
+      <td class="num"><button type="button" class="opps-link" data-rep="${r.rep}"><span class="pill opportunities">${r.opportunities}</span></button></td>
     `;
     tbody.appendChild(tr);
 
@@ -6026,10 +4738,6 @@ function renderRepTable(){
               <h4>Repeat Buyers (${r.repeat})</h4>
               ${acctList(r.repeatAccounts)}
             </div>
-            <div class="detail-col">
-              <h4>Opportunities (${r.opportunities})</h4>
-              ${acctList(r.opportunityAccounts)}
-            </div>
           </div>
         </div>
       </td>
@@ -6040,10 +4748,58 @@ function renderRepTable(){
       tr.classList.toggle('open');
       detailTr.classList.toggle('open');
     });
+
+    const oppsBtn = tr.querySelector('.opps-link');
+    oppsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('oppRepFilter').value = r.rep;
+      renderOppTable();
+      document.getElementById('opportunitiesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function populateOppRepFilter(){
+  const sel = document.getElementById('oppRepFilter');
+  const reps = [...DATA.repSummary].sort((a,b) => a.rep.localeCompare(b.rep));
+  reps.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r.rep; opt.textContent = r.rep;
+    sel.appendChild(opt);
+  });
+}
+
+function renderOppTable(){
+  const rep = document.getElementById('oppRepFilter').value;
+  const q = document.getElementById('oppSearchBox').value.trim().toLowerCase();
+  const tbody = document.querySelector('#oppTable tbody');
+  tbody.innerHTML = '';
+  let rows = DATA.repSummary.flatMap(r => r.opportunityAccounts.map(a => ({ ...a, rep: r.rep })));
+  if (rep) rows = rows.filter(a => a.rep === rep);
+  if (q) rows = rows.filter(a =>
+    a.name.toLowerCase().includes(q) ||
+    a.rep.toLowerCase().includes(q) ||
+    a.acct.toLowerCase().includes(q)
+  );
+  rows.sort((a,b) => a.rep.localeCompare(b.rep) || a.name.localeCompare(b.name));
+  document.getElementById('oppEmpty').style.display = rows.length ? 'none' : 'block';
+  rows.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${a.rep}</td>
+      <td>${a.acct}</td>
+      <td>${a.name}</td>
+    `;
+    tbody.appendChild(tr);
   });
 }
 
 renderKpis();
 renderRepTable();
+populateOppRepFilter();
+renderOppTable();
+
+document.getElementById('oppRepFilter').addEventListener('change', renderOppTable);
+document.getElementById('oppSearchBox').addEventListener('input', renderOppTable);
 </script>
 </body></html>

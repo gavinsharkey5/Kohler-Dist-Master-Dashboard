@@ -6,9 +6,11 @@ Rebuilds the embedded DATA in index.html from:
                       Apr-Jun 2026 baseline period, Buyer Count for the
                       July 2026 window. Carbliss buyers only.
   full_accounts.csv  Fusion export: Sales Rep Assigned, Customer Num,
-                      Customer Name, Buyer Count 2026 -- every account
-                      that bought ANYTHING in 2026, i.e. each rep's full
-                      book, not Carbliss-specific.
+                      Customer Name, Buyer Count 2026 -- each rep's
+                      curated list of true Carbliss target accounts
+                      (not their whole book -- an earlier, wrong version
+                      of this file had every account that bought
+                      anything in 2026, which overstated Opportunities).
 
 New buyer logic (per Kohler, 2026-07-17):
   - Bought in both periods -> NOT a new buyer (repeat).
