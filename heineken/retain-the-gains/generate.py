@@ -9,17 +9,30 @@ Inputs:
   HUSA_Retained_PODS_OFF.xlsx  'OFF PREMISE' sheet, 16 individual-SKU columns
   Kohler_Customer_Data.csv     Kohler's Encompass customer/rep roster
 
-Cell code convention in the SKU columns (confirmed against HUSA's own
-"T2 Retain the Gains" reference PDF):
-  1 = Unretained   (had it, lost it — this is the gap reps need to close)
-  2 = New Placement (won during the program window, not part of the
-                      original retention base)
-  3 = Retained      (had it, kept it)
+Cell code convention in the SKU columns — confirmed directly with a
+HUSA rep on 2026-07-17 (do not re-derive this from the PDF chart
+numbers alone; an earlier guess based purely on numeric pattern-matching
+had codes 2 and 3 backwards in spirit, even though the raw counts
+matched):
+  1 = Unretained        had this SKU at some point, doesn't currently.
+                         A generic, longstanding gap.
+  2 = Open Opportunity  never filled in Mar-Apr AND still not filled in
+                         Jun-Aug. NOT a loss — just untouched whitespace
+                         that was never won in the first place.
+  3 = Lost New Gain     WAS gained as a new placement in Mar-Apr, but
+                         has not been (re-)gained in Jun-Aug — i.e. also
+                         a loss, just a higher-priority one since it's a
+                         recently-won POD that slipped, not a
+                         longstanding gap.
   blank = not applicable (outlet was never eligible/distributed for that SKU)
 
-Retention rate = Retained / (Retained + Unretained). New Placements are
-tracked separately and don't count toward the rate, since they were never
-part of the base being measured for retention.
+There is NO code in this file representing "currently, successfully
+held" — every non-blank cell is some flavor of gap or open whitespace.
+The column is literally headered "UnRetained" for exactly this reason:
+this file is a problem list, not a status report. Do not build a
+"retention rate" % metric from it — there's no positive state to rate
+against. "Total gaps to close" = count of codes 1 + 3. Code 2 is a
+separate "open opportunity" list, not part of the gap count.
 
 Rep attribution: HUSA identifies outlets by VIP ID / TDLinx / Dist SAP;
 Kohler's own system (Encompass) uses its own Customer Num. There's no
@@ -52,7 +65,7 @@ OUT_HTML = HERE / "index.html"
 # way SUPPLIER_BUDGETS is hardcoded in supplier-budget/generate.py.
 EP_DB_GOAL = {"Off Premise": 794, "On Premise": 873}
 
-RETAINED, NEW_PLACEMENT, UNRETAINED = 3, 2, 1
+LOST_NEW_GAIN, OPEN_OPPORTUNITY, UNRETAINED = 3, 2, 1
 
 OUTLET_COLS = {
     "vip_id": 1, "tdlinx": 2, "dist_sap": 3, "outlet_name": 4,
@@ -135,7 +148,7 @@ def parse_sheet(xlsx_path, sheet_name, sku_cols, channel):
         skus = {}
         for col, sku_name in sku_cols.items():
             v = ws.cell(row=row, column=col).value
-            if v in (RETAINED, NEW_PLACEMENT, UNRETAINED):
+            if v in (LOST_NEW_GAIN, OPEN_OPPORTUNITY, UNRETAINED):
                 skus[sku_name] = v
         if skus:
             rec["skus"] = skus
@@ -250,9 +263,10 @@ def main():
     # ---- rollups ----
     # by SKU (within channel)
     sku_totals = defaultdict(lambda: Counter())  # (channel, sku) -> Counter
-    rep_totals = defaultdict(lambda: Counter())  # rep -> Counter over retained/unretained/new
+    rep_totals = defaultdict(lambda: Counter())  # rep -> Counter over unretained/lostNewGain/openOpportunity
     rep_sku = defaultdict(lambda: defaultdict(lambda: Counter()))  # rep -> sku -> Counter
-    gap_list = []  # outlet-level rows still Unretained, for the close-the-gap view
+    gap_list = []  # outlet-level rows still a gap (Unretained or Lost New Gain), for the close-the-gap view
+    opportunity_list = []  # outlet-level rows that are Open Opportunities (never filled), separate from gaps
 
     for o in all_outlets:
         for sku, code in o["skus"].items():
@@ -260,40 +274,42 @@ def main():
             sku_totals[key][code] += 1
             rep_totals[o["rep"]][code] += 1
             rep_sku[o["rep"]][(o["channel"], sku)][code] += 1
-            if code == UNRETAINED:
-                gap_list.append({
-                    "rep": o["rep"],
-                    "channel": o["channel"],
-                    "outlet": o["outlet_name"],
-                    "address": o["address"],
-                    "city": o["city"],
-                    "county": o["county"],
-                    "sku": sku,
-                    "husaRep": o["husa_sales_person"],
-                    "matchMethod": o["match_method"],
-                })
+            row = {
+                "rep": o["rep"],
+                "channel": o["channel"],
+                "outlet": o["outlet_name"],
+                "address": o["address"],
+                "city": o["city"],
+                "county": o["county"],
+                "sku": sku,
+                "husaRep": o["husa_sales_person"],
+                "matchMethod": o["match_method"],
+            }
+            if code in (UNRETAINED, LOST_NEW_GAIN):
+                row["gapType"] = "unretained" if code == UNRETAINED else "lostNewGain"
+                gap_list.append(row)
+            elif code == OPEN_OPPORTUNITY:
+                opportunity_list.append(row)
 
     def code_summary(counter):
-        r = counter.get(RETAINED, 0)
         u = counter.get(UNRETAINED, 0)
-        n = counter.get(NEW_PLACEMENT, 0)
-        base = r + u
-        rate = round(100 * r / base, 1) if base else None
-        return {"retained": r, "unretained": u, "newPlacement": n, "base": base, "rate": rate}
+        l = counter.get(LOST_NEW_GAIN, 0)
+        o = counter.get(OPEN_OPPORTUNITY, 0)
+        return {"unretained": u, "lostNewGain": l, "totalGaps": u + l, "openOpportunity": o}
 
     sku_summary = []
     for (channel, sku), counter in sku_totals.items():
         s = code_summary(counter)
         s.update({"channel": channel, "sku": sku})
         sku_summary.append(s)
-    sku_summary.sort(key=lambda s: (s["channel"], -s["unretained"]))
+    sku_summary.sort(key=lambda s: (s["channel"], -s["totalGaps"]))
 
     rep_summary = []
     for rep, counter in rep_totals.items():
         s = code_summary(counter)
         s["rep"] = rep
         rep_summary.append(s)
-    rep_summary.sort(key=lambda s: (s["rep"] == "Unmatched — Needs Review", -s["unretained"]))
+    rep_summary.sort(key=lambda s: (s["rep"] == "Unmatched — Needs Review", -s["totalGaps"]))
 
     rep_sku_summary = defaultdict(list)
     for rep, skus in rep_sku.items():
@@ -301,23 +317,23 @@ def main():
             s = code_summary(counter)
             s.update({"channel": channel, "sku": sku})
             rep_sku_summary[rep].append(s)
-        rep_sku_summary[rep].sort(key=lambda s: (s["channel"], -s["unretained"]))
+        rep_sku_summary[rep].sort(key=lambda s: (s["channel"], -s["totalGaps"]))
 
-    overall = code_summary(Counter({
-        RETAINED: sum(s["retained"] for s in sku_summary),
-        UNRETAINED: sum(s["unretained"] for s in sku_summary),
-        NEW_PLACEMENT: sum(s["newPlacement"] for s in sku_summary),
-    }))
-    overall_by_channel = {}
-    for channel in ("On Premise", "Off Premise"):
-        rows = [s for s in sku_summary if s["channel"] == channel]
-        overall_by_channel[channel] = code_summary(Counter({
-            RETAINED: sum(s["retained"] for s in rows),
+    def rollup(rows):
+        return code_summary(Counter({
             UNRETAINED: sum(s["unretained"] for s in rows),
-            NEW_PLACEMENT: sum(s["newPlacement"] for s in rows),
+            LOST_NEW_GAIN: sum(s["lostNewGain"] for s in rows),
+            OPEN_OPPORTUNITY: sum(s["openOpportunity"] for s in rows),
         }))
 
+    overall = rollup(sku_summary)
+    overall_by_channel = {
+        channel: rollup([s for s in sku_summary if s["channel"] == channel])
+        for channel in ("On Premise", "Off Premise")
+    }
+
     gap_list.sort(key=lambda g: (g["rep"] == "Unmatched — Needs Review", g["rep"], g["channel"], g["sku"]))
+    opportunity_list.sort(key=lambda g: (g["rep"] == "Unmatched — Needs Review", g["rep"], g["channel"], g["sku"]))
 
     current_on = parse_current_pod_on(CURRENT_ON_XLSX)
     current_off = parse_current_pod_off(CURRENT_OFF_XLSX)
@@ -335,6 +351,7 @@ def main():
         "repSummary": rep_summary,
         "repSkuSummary": rep_sku_summary,
         "gapList": gap_list,
+        "opportunityList": opportunity_list,
         "matchStats": dict(match_stats),
         "outletCount": len(all_outlets),
         "repDiscrepancies": rep_discrepancies,
@@ -352,7 +369,10 @@ def main():
         flags=re.DOTALL,
     )
     OUT_HTML.write_text(new_html)
-    print(f"Wrote {len(all_outlets)} outlets, {len(gap_list)} open gaps, {len(rep_summary)} reps.")
+    print(f"Wrote {len(all_outlets)} outlets, {len(gap_list)} open gaps "
+          f"({sum(1 for g in gap_list if g['gapType']=='lostNewGain')} lost new gains, "
+          f"{sum(1 for g in gap_list if g['gapType']=='unretained')} generic), "
+          f"{len(opportunity_list)} open opportunities, {len(rep_summary)} reps.")
 
 
 if __name__ == "__main__":

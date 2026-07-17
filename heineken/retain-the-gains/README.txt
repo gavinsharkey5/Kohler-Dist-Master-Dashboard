@@ -21,6 +21,11 @@ Files:
   generate.py                  Rebuilds the embedded DATA in index.html.
   index.html                   The page itself.
 
+KNOWN GAP (as of 2026-07-17): HUSA's ON PREMISE files are missing some
+SKUs — Kohler flagged this and a corrected ON PREMISE export is expected
+soon. When it arrives, just re-run step 1-2 below; the 5-column layout
+and downstream logic don't need to change, only the file contents.
+
 To refresh with a new HUSA export:
   1. Save the new ON/OFF workbooks over HUSA_Retained_PODS_ON.xlsx /
      HUSA_Retained_PODS_OFF.xlsx (same sheet names/column layout), and the
@@ -33,19 +38,29 @@ To refresh with a new HUSA export:
      if you have one — it should track their Current figures closely.
   4. Commit and push.
 
-CELL CODE CONVENTION (confirmed against HUSA's reference PDF, and
-directly per Kohler's own correction on 2026-07-16 — do not re-derive
-this from scratch, it looks backwards if you eyeball the raw counts):
-  1 = Unretained     — had the POD, lost it. This is the actionable gap.
-  2 = New Placement  — won during the program window; not part of the
-                        original retention base, tracked separately.
-  3 = Retained       — had the POD, kept it.
+CELL CODE CONVENTION — confirmed directly with a HUSA rep on 2026-07-17.
+This SUPERSEDES an earlier interpretation (2026-07-16) that had codes 2
+and 3 backwards in spirit, even though the raw numeric counts matched
+the reference PDF either way — do not re-derive this from the PDF chart
+numbers alone, ask HUSA if in doubt:
+  1 = Unretained     — had this SKU at some point, doesn't currently.
+                        A generic, longstanding gap.
+  2 = Open Opportunity — never filled in Mar-Apr AND still not filled in
+                        Jun-Aug. NOT a loss, just untouched whitespace
+                        that was never won in the first place.
+  3 = Lost New Gain  — WAS gained as a new placement in Mar-Apr, but has
+                        not been (re-)gained in Jun-Aug. Also a loss,
+                        just higher-priority than plain Unretained since
+                        it's a recently-won POD that slipped.
   blank = not applicable (outlet was never eligible/distributed for
-                        that SKU) — excluded entirely, not counted as 0.
+                        that SKU) — excluded entirely, not counted.
 
-Retention rate = Retained / (Retained + Unretained). New Placements are
-deliberately excluded from that denominator since they were never part
-of the base being measured.
+There is NO code representing "currently, successfully held" — every
+non-blank cell is some flavor of gap or open whitespace (the column is
+literally headered "UnRetained" for exactly this reason). Do NOT build
+a retention-rate percentage from this file — there's no positive state
+to rate against. "Total gaps to close" = count of codes 1 + 3. Code 2 is
+a separate "open opportunity" list, not part of the gap count.
 
 We are NOT attempting to reproduce HUSA's Total Volume goal figures
 (May-Aug Goal 209,124 / Current 116,770) — not derivable from anything
