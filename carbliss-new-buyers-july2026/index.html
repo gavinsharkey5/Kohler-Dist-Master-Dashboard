@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carbliss New Buying Accounts &middot; July 2026 &middot; Kohler Trackers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--line:#2A2E38;--shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+    --pink:#E5197D;--purple:#8E2DE2;--green:#0E8A3C;--red:#C8102E;--gold:#E6B23C;}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;padding:0 20px env(safe-area-inset-bottom);}
+  .wrap{max-width:900px;margin:0 auto}
+  header{padding:30px 0 8px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-family:"Space Grotesk";font-size:12px;font-weight:600;color:var(--ink-soft);text-decoration:none;letter-spacing:.04em;margin:0 0 18px}
+  .back:hover{color:var(--pink)}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;background:linear-gradient(90deg,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 10px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(28px,7vw,42px);line-height:1.0;margin:0}
+  .sub{color:var(--ink-soft);margin:14px 0 0;max-width:64ch;font-size:15px}
+  .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+  .badge{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+
+  .section-label{font-family:"Space Grotesk";font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 12px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+  .kpi .n{font-family:"Space Grotesk";font-weight:700;font-size:28px;letter-spacing:-.01em}
+  .kpi .l{font-size:12px;color:var(--ink-soft);margin-top:4px}
+  .kpi.new .n{color:var(--green)}
+  .kpi.repeat .n{color:var(--ink)}
+  .kpi.churned .n{color:var(--red)}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 4px}
+  select, input[type=search]{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:12px 14px;font-family:"Inter";font-size:16px;min-height:46px}
+  select{min-width:200px}
+  input[type=search]{flex:1;min-width:180px}
+
+  .scroll-hint{display:none;font-size:12px;color:var(--ink-soft);margin:0 0 8px}
+  @media (max-width:900px){.scroll-hint{display:block}}
+
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+  th,td{text-align:center;padding:13px 14px;white-space:nowrap;border-bottom:1px solid var(--line)}
+  th{font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);position:sticky;top:0;background:var(--card)}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--card-h)}
+  td.num{font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;font-family:"Space Grotesk"}
+  .pill.new{background:rgba(14,138,60,.16);color:#5FDB8C}
+
+  .empty{padding:28px;text-align:center;color:var(--ink-soft);font-size:14px}
+  footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
+</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../">&lsaquo; All Sales Trackers</a>
+    <p class="eyebrow">Carbliss &middot; Distribution Growth</p>
+    <h1>New Buying Accounts</h1>
+    <p class="sub">Accounts that bought Carbliss for the first time in July 2026 &mdash; i.e. no purchase Apr&ndash;Jun 2026, but at least one buy in July. Accounts that bought in both windows are repeat buyers, not new.</p>
+    <div class="badge-row">
+      <span class="badge" id="totalBadge">&mdash; accounts tracked</span>
+    </div>
+  </header>
+
+  <p class="section-label">Summary</p>
+  <div class="kpi-grid">
+    <div class="kpi new"><div class="n" id="kpiNew">&mdash;</div><div class="l">New buyers (July only)</div></div>
+    <div class="kpi repeat"><div class="n" id="kpiRepeat">&mdash;</div><div class="l">Repeat buyers (both periods)</div></div>
+    <div class="kpi churned"><div class="n" id="kpiChurned">&mdash;</div><div class="l">Bought Apr&ndash;Jun, not July</div></div>
+  </div>
+
+  <p class="section-label">By Rep</p>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="repTable">
+      <thead><tr><th>Rep</th><th class="num">New</th><th class="num">Repeat</th><th class="num">Churned</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p class="section-label">New Buying Accounts</p>
+  <div class="controls">
+    <select id="repFilter"><option value="">All reps</option></select>
+    <input type="search" id="searchBox" placeholder="Search account name or rep...">
+  </div>
+  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <div class="table-scroll">
+    <table id="newTable">
+      <thead><tr><th>Rep</th><th>Account</th><th>Account #</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="newEmpty" style="display:none">No new accounts match this filter.</div>
+  </div>
+
+  <footer>
+    Kohler Distributing &middot; Carbliss &middot; New Buying Accounts tracker.<br>
+    Source: RDE Carbliss New Buying Accounts export, comparing Buyer Count for 4/1&ndash;6/30/2026 against 7/1&ndash;7/31/2026 per account.
+    New = bought in July but not the Apr&ndash;Jun baseline. Repeat = bought in both. Churned = bought in the baseline but not July (shown for context in the summary and rep table, not broken out into its own list here).
+  </footer>
+</div>
+
+<script id="carbliss-newbuyers-data" type="application/json">{
+  "totals": {
+    "new": 50,
+    "repeat": 13,
+    "churned": 73,
+    "totalAccounts": 136
+  },
+  "repSummary": [
+    {
+      "rep": "Robin Feldman",
+      "new": 17,
+      "repeat": 2,
+      "churned": 19,
+      "neither": 0
+    },
+    {
+      "rep": "Allison Scott",
+      "new": 15,
+      "repeat": 2,
+      "churned": 11,
+      "neither": 0
+    },
+    {
+      "rep": "Brian Sengebush",
+      "new": 8,
+      "repeat": 1,
+      "churned": 7,
+      "neither": 0
+    },
+    {
+      "rep": "Mike Ast",
+      "new": 4,
+      "repeat": 0,
+      "churned": 1,
+      "neither": 0
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "new": 3,
+      "repeat": 2,
+      "churned": 6,
+      "neither": 0
+    },
+    {
+      "rep": "Nick Melissari",
+      "new": 2,
+      "repeat": 1,
+      "churned": 6,
+      "neither": 0
+    },
+    {
+      "rep": "Chris Payton",
+      "new": 1,
+      "repeat": 1,
+      "churned": 10,
+      "neither": 0
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "new": 0,
+      "repeat": 2,
+      "churned": 6,
+      "neither": 0
+    },
+    {
+      "rep": "Dan Lagala",
+      "new": 0,
+      "repeat": 2,
+      "churned": 4,
+      "neither": 0
+    },
+    {
+      "rep": "Javier Melo",
+      "new": 0,
+      "repeat": 0,
+      "churned": 2,
+      "neither": 0
+    },
+    {
+      "rep": "Phil Ernst",
+      "new": 0,
+      "repeat": 0,
+      "churned": 1,
+      "neither": 0
+    }
+  ],
+  "newList": [
+    {
+      "rep": "Allison Scott",
+      "acct": "15074",
+      "name": "Bask 46",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "15004",
+      "name": "Blackjack Mulligan's Public House",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "19012",
+      "name": "Bottagra Rest (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "24061",
+      "name": "Breaker Billiards",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "25036",
+      "name": "Dingbatz (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "24029",
+      "name": "Dingo's Den (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "1005",
+      "name": "Grasshopper Irish Pub (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "12022",
+      "name": "Grasshopper Too (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "17009",
+      "name": "Jimmy Geez (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "12037",
+      "name": "Maggies Town Tavern Ii",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "19004",
+      "name": "Shortways' Barn (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "25027",
+      "name": "Sportzone B&G (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "8015",
+      "name": "Thatcher Mc Ghees (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "17001",
+      "name": "Underdog Lounge(P)",
+      "status": "new"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "10001",
+      "name": "cherry's",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "231601",
+      "name": "Farmstead Golf (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "231715",
+      "name": "Gyp's Tavern",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "190923",
+      "name": "Knotty Pine Pub (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "231719",
+      "name": "Layton Tavern",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "230428",
+      "name": "O'reilly Pub (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "191521",
+      "name": "Patricks Pub (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "190205",
+      "name": "Sharky's West (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "190601",
+      "name": "Thatcher Mcghee's (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "80035",
+      "name": "Arcola Country C.",
+      "status": "new"
+    },
+    {
+      "rep": "Mike Ast",
+      "acct": "84012",
+      "name": "Bareburger (Ridgewood)",
+      "status": "new"
+    },
+    {
+      "rep": "Mike Ast",
+      "acct": "83005",
+      "name": "Glen Rock Inn",
+      "status": "new"
+    },
+    {
+      "rep": "Mike Ast",
+      "acct": "84022",
+      "name": "Park West Tavern",
+      "status": "new"
+    },
+    {
+      "rep": "Mike Ast",
+      "acct": "83011",
+      "name": "Stone & Rail",
+      "status": "new"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "77003",
+      "name": "Blue 42 Restaurant & Bar",
+      "status": "new"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "38002",
+      "name": "Satin Dolls (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "39007",
+      "name": "Club Flamingo (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "73002",
+      "name": "The Cornerstone (P)",
+      "status": "new"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "76009",
+      "name": "The Plank Pizza And Bar",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "42015",
+      "name": "Amer Lgn (Z) Little Ferry",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "74014",
+      "name": "American Lgn (Z) (Westwood)",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "30002",
+      "name": "American Lgn 109 (P) Rutherford",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "231708",
+      "name": "American Lgn Branchville",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "230910",
+      "name": "American Lgn Franklin",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "190301",
+      "name": "American Lgn Lake Hiawath",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "191203",
+      "name": "American Lgn Oak Ridge Post 423",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "190708",
+      "name": "American Lgn Rockaway",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "93018",
+      "name": "Courtyard Mahwah",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "191403",
+      "name": "Davy's Dogs",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "47006",
+      "name": "Elks Post 1506",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "190714",
+      "name": "Green Pond Yacht Club (Z)",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "47014",
+      "name": "K Of C 2229 (Z)",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "191301",
+      "name": "Lake Hopatcong Yacht Club",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "230807",
+      "name": "North Shore House",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "24043",
+      "name": "Valley Regency (A)",
+      "status": "new"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "56018",
+      "name": "Vfw 6467 (Z)",
+      "status": "new"
+    }
+  ],
+  "churnedList": [
+    {
+      "rep": "Allison Scott",
+      "acct": "7003",
+      "name": "Blu Ale House",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "5008",
+      "name": "Celtic Crossings",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "25056",
+      "name": "Emerald Corner (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "3007",
+      "name": "Kitchen & Beer Bar",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "11007",
+      "name": "Meadows Golf Club(P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "24019",
+      "name": "Sharky's Wings(P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "11011",
+      "name": "Sunset Pub & Grill(Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "14008",
+      "name": "The Barnyard and Carriage House",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "14010",
+      "name": "Uncorked (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "23013",
+      "name": "Vfw 7165 (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Allison Scott",
+      "acct": "8006",
+      "name": "pompton crafthouse",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "230929",
+      "name": "Airport Pub & Pkg",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "231210",
+      "name": "Bally Owen Golf Club",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "230903",
+      "name": "Black Bear Golf(A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "230915",
+      "name": "Crystal Sprs/Wild Turkey",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "231307",
+      "name": "Skylands Wine& Beer Garden",
+      "status": "churned"
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "acct": "191103",
+      "name": "Whistle Stop (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "190203",
+      "name": "Boonton Lanes",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "191007",
+      "name": "Charley's Tavern",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "190214",
+      "name": "Johnnie's Tavern",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "231710",
+      "name": "Lakeside Pub (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "191009",
+      "name": "Mason Street Grille",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "191505",
+      "name": "Mckenna's Pub (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Brian Sengebush",
+      "acct": "230405",
+      "name": "Sheridan Lodge (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "38028",
+      "name": "Colombia Bakery Factory & Restaurant",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "81012",
+      "name": "Dutch House",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "80028",
+      "name": "El Cid",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "35009",
+      "name": "Fiesta (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "47019",
+      "name": "Hilton Garden Inn Ridgefield Park",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "81017",
+      "name": "JJ's Pub",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "38034",
+      "name": "La Nota Restaurant Bar",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "76014",
+      "name": "Que Pasta (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "80027",
+      "name": "Ridgewood Country Club",
+      "status": "churned"
+    },
+    {
+      "rep": "Chris Payton",
+      "acct": "47017",
+      "name": "Westside Village (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Dan Lagala",
+      "acct": "44027",
+      "name": "354 Steakhouse (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Dan Lagala",
+      "acct": "44048",
+      "name": "Clubhouse Cafe (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Dan Lagala",
+      "acct": "44025",
+      "name": "Rudys (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Dan Lagala",
+      "acct": "44047",
+      "name": "Sedona Tap House",
+      "status": "churned"
+    },
+    {
+      "rep": "Javier Melo",
+      "acct": "24018",
+      "name": "Agave Cantina Mexicana",
+      "status": "churned"
+    },
+    {
+      "rep": "Javier Melo",
+      "acct": "20055",
+      "name": "Paruta's (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Mike Ast",
+      "acct": "84015",
+      "name": "The Office 2131 Ridgewood",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "80040",
+      "name": "Biagio's",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "19006",
+      "name": "Blackjack Mulligans (Hawthorne)",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "37034",
+      "name": "Blackjack Mulligans(P) (Garfield)",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "38020",
+      "name": "Lodi Lanes (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "32023",
+      "name": "Redd's Rest (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Nick Melissari",
+      "acct": "79001",
+      "name": "Victor's Maywood Inn",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "69003",
+      "name": "Edgewood Country Club",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "39006",
+      "name": "Fat Bastard & Sons",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "70008",
+      "name": "Hearth & Tap Co.",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "41006",
+      "name": "Straphanger Saloon (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "54001",
+      "name": "Tenafly Pizza (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Paul Mclaughlin",
+      "acct": "56009",
+      "name": "Tommy Fox's Pub Hse(P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Phil Ernst",
+      "acct": "76021",
+      "name": "Saddle Brook Liquor & Bar",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "190919",
+      "name": "Amer Lgn Of Wharton 91",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "12047",
+      "name": "American Lgn 174 Wayne",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "71009",
+      "name": "American Lgn Park Ridge",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "4011",
+      "name": "Bloomingdale Fire Dept",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "191815",
+      "name": "Eastern Asian Bistro/Bar",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "74002",
+      "name": "Elks Post 1562",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "28026",
+      "name": "Elks Post 1992 (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "54014",
+      "name": "Elks Post 2271 (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "15081",
+      "name": "Evolution Restaurant & Bar",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "2009",
+      "name": "Frungillo Caterers",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "192156",
+      "name": "Hapgoods Restaurant",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "28015",
+      "name": "K Of C N Arlington (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "50036",
+      "name": "Moose Lodge 961 (Z)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "12023",
+      "name": "The Village Inn",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "230108",
+      "name": "Vfw 7248 Sparta",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "42007",
+      "name": "Vfw 809 (P)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "34016",
+      "name": "Vfw Hasbrouck (A)",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "37010",
+      "name": "Vfw Outwater (Z) Lane",
+      "status": "churned"
+    },
+    {
+      "rep": "Robin Feldman",
+      "acct": "77013",
+      "name": "William J. Mulligan VFW Post 281",
+      "status": "churned"
+    }
+  ]
+}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('carbliss-newbuyers-data').textContent);
+
+function renderKpis(){
+  document.getElementById('totalBadge').textContent = `${DATA.totals.totalAccounts} accounts tracked`;
+  document.getElementById('kpiNew').textContent = DATA.totals.new;
+  document.getElementById('kpiRepeat').textContent = DATA.totals.repeat;
+  document.getElementById('kpiChurned').textContent = DATA.totals.churned;
+}
+
+function renderRepTable(){
+  const tbody = document.querySelector('#repTable tbody');
+  tbody.innerHTML = '';
+  DATA.repSummary.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${r.rep}</td>
+      <td class="num"><span class="pill new">${r.new}</span></td>
+      <td class="num">${r.repeat}</td>
+      <td class="num">${r.churned}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function populateRepFilter(){
+  const sel = document.getElementById('repFilter');
+  const reps = [...new Set(DATA.newList.map(a => a.rep))].sort((a,b) => a.localeCompare(b));
+  reps.forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = r;
+    sel.appendChild(opt);
+  });
+}
+
+function renderNewTable(){
+  const rep = document.getElementById('repFilter').value;
+  const q = document.getElementById('searchBox').value.trim().toLowerCase();
+  const tbody = document.querySelector('#newTable tbody');
+  tbody.innerHTML = '';
+  let rows = DATA.newList;
+  if (rep) rows = rows.filter(a => a.rep === rep);
+  if (q) rows = rows.filter(a =>
+    a.name.toLowerCase().includes(q) ||
+    a.rep.toLowerCase().includes(q) ||
+    a.acct.toLowerCase().includes(q)
+  );
+  document.getElementById('newEmpty').style.display = rows.length ? 'none' : 'block';
+  rows.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${a.rep}</td>
+      <td>${a.name}</td>
+      <td>${a.acct}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+renderKpis();
+renderRepTable();
+populateRepFilter();
+renderNewTable();
+
+document.getElementById('repFilter').addEventListener('change', renderNewTable);
+document.getElementById('searchBox').addEventListener('input', renderNewTable);
+</script>
+</body></html>
