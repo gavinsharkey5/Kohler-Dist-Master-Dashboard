@@ -8,8 +8,8 @@
   {
     "SALES_REP_NAME": "Alisa Acciardi",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Alisa Acciardi",
@@ -20,20 +20,8 @@
   {
     "SALES_REP_NAME": "Alisa Acciardi",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
@@ -44,25 +32,7 @@
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
     "PLACEMENTS": 2
   },
   {
@@ -74,25 +44,19 @@
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 11
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 10
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 17
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
     "PLACEMENTS": 12
   },
   {
@@ -103,27 +67,45 @@
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
-    "PLACEMENTS": 2
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Anthony Palmisano",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
     "PLACEMENTS": 12
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 17
+    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Anthony Palmisano",
@@ -134,26 +116,26 @@
   {
     "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 3
+    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
   },
   {
-    "SALES_REP_NAME": "Brian Sengebush",
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 11
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Brian Sengebush",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Brian Sengebush",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 1
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 6
   },
   {
     "SALES_REP_NAME": "Brian Sengebush",
@@ -164,38 +146,32 @@
   {
     "SALES_REP_NAME": "Brian Sengebush",
     "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Brian Sengebush",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Brian Sengebush",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Brian Sengebush",
+    "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
     "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
   },
   {
     "SALES_REP_NAME": "Chris Payton",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 10
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 14
   },
   {
     "SALES_REP_NAME": "Chris Payton",
@@ -206,8 +182,20 @@
   {
     "SALES_REP_NAME": "Chris Payton",
     "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
     "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 14
   },
   {
     "SALES_REP_NAME": "Chris Payton",
@@ -218,8 +206,8 @@
   {
     "SALES_REP_NAME": "Chris Payton",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 1
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 12
   },
   {
     "SALES_REP_NAME": "Chris Payton",
@@ -235,21 +223,21 @@
   },
   {
     "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 14
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Chris Payton",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
     "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Chris Payton",
@@ -259,93 +247,39 @@
   },
   {
     "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 14
+  },
+  {
+    "SALES_REP_NAME": "Chris Payton",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 24
   },
   {
     "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 12
-  },
-  {
-    "SALES_REP_NAME": "Chris Payton",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 13
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 12
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 1
+    "PLACEMENTS": 13
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
     "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 12
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 5
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
@@ -361,21 +295,21 @@
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
-    "PLACEMENTS": 8
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
     "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
@@ -386,8 +320,50 @@
   {
     "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "20207 Kirin Ichiban 1/15/19.2 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Dan Lagala",
@@ -398,110 +374,44 @@
   {
     "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Dan Lagala",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "20207 Kirin Ichiban 1/15/19.2 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 25
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
     "PLACEMENTS": 2
   },
   {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
+    "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 4
+    "PLACEMENTS": 12
   },
   {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
+    "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 18
+    "PLACEMENTS": 13
   },
   {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
+    "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 3
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 5
   },
   {
-    "SALES_REP_NAME": "Dave Ehlers",
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 12
+  },
+  {
+    "SALES_REP_NAME": "Dan Lagala",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 10
+    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
+    "PLACEMENTS": 8
   },
   {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 16
-  },
-  {
-    "SALES_REP_NAME": "Dave Ehlers",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 10
+    "SALES_REP_NAME": "Dan Lagala",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 5
   },
   {
     "SALES_REP_NAME": "Dave Ehlers",
@@ -511,9 +421,33 @@
   },
   {
     "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
     "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 10
   },
   {
     "SALES_REP_NAME": "Dave Ehlers",
@@ -529,9 +463,81 @@
   },
   {
     "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
     "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
     "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 16
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 25
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Dave Ehlers",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 18
+  },
+  {
+    "SALES_REP_NAME": "Derrick Laws",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
@@ -541,20 +547,20 @@
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
     "PLACEMENTS": 2
   },
   {
@@ -566,7 +572,7 @@
   {
     "SALES_REP_NAME": "Derrick Laws",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -577,15 +583,9 @@
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Derrick Laws",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
@@ -595,15 +595,15 @@
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
     "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Derrick Laws",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 2
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Dylan Rubino",
@@ -625,32 +625,14 @@
   },
   {
     "SALES_REP_NAME": "Javier Melo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Javier Melo",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
     "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Javier Melo",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Javier Melo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Javier Melo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -661,8 +643,8 @@
   },
   {
     "SALES_REP_NAME": "Javier Melo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -680,14 +662,32 @@
   {
     "SALES_REP_NAME": "Javier Melo",
     "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Javier Melo",
+    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
     "PLACEMENTS": 3
   },
   {
-    "SALES_REP_NAME": "Jayson Romine",
+    "SALES_REP_NAME": "Javier Melo",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Javier Melo",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 3
   },
   {
     "SALES_REP_NAME": "Jayson Romine",
@@ -698,78 +698,6 @@
   {
     "SALES_REP_NAME": "Jayson Romine",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 13
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 19
-  },
-  {
-    "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
     "PLACEMENTS": 5
   },
@@ -781,9 +709,75 @@
   },
   {
     "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
     "PLACEMENTS": 19
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 6
   },
   {
     "SALES_REP_NAME": "Jayson Romine",
@@ -793,15 +787,45 @@
   },
   {
     "SALES_REP_NAME": "Jayson Romine",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 3
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 19
+  },
+  {
+    "SALES_REP_NAME": "Jayson Romine",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 10
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 2
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 11
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
@@ -812,32 +836,8 @@
   {
     "SALES_REP_NAME": "Jim Heaney",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 11
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 11
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
@@ -847,15 +847,27 @@
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 2
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 7
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
     "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Jim Heaney",
@@ -866,26 +878,20 @@
   {
     "SALES_REP_NAME": "Jim Heaney",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Jim Heaney",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 17
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Jim Heaney",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 12
   },
   {
     "SALES_REP_NAME": "John Neukum",
@@ -902,32 +908,32 @@
   {
     "SALES_REP_NAME": "Klejdi Lamo",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "20207 Kirin Ichiban 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 17
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
     "PLACEMENTS": 5
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
     "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
@@ -937,15 +943,9 @@
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 6
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 17
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
@@ -961,45 +961,9 @@
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 8
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
     "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 15
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
@@ -1009,9 +973,15 @@
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Klejdi Lamo",
@@ -1020,10 +990,52 @@
     "PLACEMENTS": 3
   },
   {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "20207 Kirin Ichiban 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 15
+  },
+  {
+    "SALES_REP_NAME": "Klejdi Lamo",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 8
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
+    "PLACEMENTS": 2
+  },
+  {
     "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 5
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 10
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
@@ -1034,26 +1046,14 @@
   {
     "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 18
-  },
-  {
-    "SALES_REP_NAME": "Matt Powierski",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 9
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 8
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Matt Powierski",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 10
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 17
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
@@ -1063,9 +1063,33 @@
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
     "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Matt Powierski",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
@@ -1076,37 +1100,13 @@
   {
     "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 8
-  },
-  {
-    "SALES_REP_NAME": "Matt Powierski",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
     "PLACEMENTS": 14
   },
   {
     "SALES_REP_NAME": "Matt Powierski",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Matt Powierski",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Matt Powierski",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
     "PLACEMENTS": 2
   },
   {
@@ -1117,8 +1117,44 @@
   },
   {
     "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Michael Harboy",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -1130,8 +1166,8 @@
   {
     "SALES_REP_NAME": "Michael Harboy",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 3
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Michael Harboy",
@@ -1140,70 +1176,10 @@
     "PLACEMENTS": 1
   },
   {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Michael Harboy",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
     "SALES_REP_NAME": "Mike Ast",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 16
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 4
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 6
   },
   {
     "SALES_REP_NAME": "Mike Ast",
@@ -1213,27 +1189,21 @@
   },
   {
     "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
     "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
     "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 10
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 8
   },
   {
     "SALES_REP_NAME": "Mike Ast",
@@ -1243,20 +1213,20 @@
   },
   {
     "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 2
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
   },
   {
     "SALES_REP_NAME": "Mike Ast",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 8
-  },
-  {
-    "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
     "PLACEMENTS": 7
   },
   {
@@ -1267,50 +1237,68 @@
   },
   {
     "SALES_REP_NAME": "Mike Ast",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 14
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Mike Ast",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 8
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
+    "PLACEMENTS": 1
   },
   {
     "SALES_REP_NAME": "Mike Ast",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 16
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
     "PLACEMENTS": 6
   },
   {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Mike Ast",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16726 New Belgium Voodoo Ranger G-Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
     "SALES_REP_NAME": "Nick Melissari",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Nick Melissari",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Nick Melissari",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Nick Melissari",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Nick Melissari",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -1322,7 +1310,31 @@
   {
     "SALES_REP_NAME": "Nick Melissari",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Nick Melissari",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 1
+  },
+  {
+    "SALES_REP_NAME": "Pablo Lopez",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
     "PLACEMENTS": 1
   },
   {
@@ -1334,80 +1346,44 @@
   {
     "SALES_REP_NAME": "Pablo Lopez",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 1
-  },
-  {
-    "SALES_REP_NAME": "Pablo Lopez",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Pablo Lopez",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Pablo Lopez",
     "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Pablo Lopez",
+    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 2
   },
   {
     "SALES_REP_NAME": "Pablo Lopez",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PLACEMENTS": 3
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
     "PLACEMENTS": 8
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 15
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 7
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 10
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 12
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
@@ -1418,38 +1394,20 @@
   {
     "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 15
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 12
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
@@ -1459,20 +1417,38 @@
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "12pk Can",
     "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
     "PLACEMENTS": 5
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 10
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PRODUCT_NUM_NAME": "10704 Bell's Two Hearted 1/15/19.2 oz Can",
     "PLACEMENTS": 3
   },
   {
@@ -1484,7 +1460,115 @@
   {
     "SALES_REP_NAME": "Phil Ernst",
     "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 7
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Phil Ernst",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 3
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 14
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 10
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
+    "PLACEMENTS": 8
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "6pk Can + Btl",
     "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
+    "PLACEMENTS": 8
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
+    "PLACEMENTS": 4
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
+    "PLACEMENTS": 2
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
+    "PLACEMENTS": 12
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
+    "PLACEMENTS": 8
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
+    "PLACEMENTS": 5
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "6pk Can + Btl",
+    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
     "PLACEMENTS": 3
   },
   {
@@ -1496,110 +1580,20 @@
   {
     "SALES_REP_NAME": "Shane Barreca",
     "PACKAGE_GROUP": "19.2oz Can",
+    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
+    "PLACEMENTS": 13
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6728 New Belgium Voodoo Ranger IPA 1/15/19.2 oz Can",
     "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10731 Bell's Light Hearted Ale 4/6/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6790 New Belgium Voodoo Ranger Fruit Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 10
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
-    "PLACEMENTS": 15
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10702 Bell's Two Hearted 2/12/12 oz Can",
-    "PLACEMENTS": 8
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10701 Bell's Two Hearted 4/6/12 oz Btl",
-    "PLACEMENTS": 12
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
-    "PLACEMENTS": 6
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "16702 New Belgium Voodoo Ranger Tropic Force 1/15/19.2 oz Can",
-    "PLACEMENTS": 9
   },
   {
     "SALES_REP_NAME": "Shane Barreca",
     "PACKAGE_GROUP": "19.2oz Can",
     "PRODUCT_NUM_NAME": "6791 New Belgium Voodoo Ranger Juicy Haze 1/15/19.2 oz Can",
     "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6731 New Belgium Voodoo Ranger Imperial IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 13
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
-    "PLACEMENTS": 9
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "10755 Bell's Variety 2/12/12 oz Can",
-    "PLACEMENTS": 4
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "10730 Bell's Hazy Hearted IPA 4/6/12 oz Can",
-    "PLACEMENTS": 5
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "107007 Bell's Big Hearted 1/15/19.2 oz Can",
-    "PLACEMENTS": 2
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "19.2oz Can",
-    "PRODUCT_NUM_NAME": "6778 New Belgium Voodoo Ranger Juice Force IPA 1/15/19.2 oz Can",
-    "PLACEMENTS": 14
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20211 Kirin Light 4/6/12 oz Btl",
-    "PLACEMENTS": 3
-  },
-  {
-    "SALES_REP_NAME": "Shane Barreca",
-    "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6764 New Belgium Voodoo Ranger Juicy Haze 2/12/12 oz Can",
-    "PLACEMENTS": 4
   },
   {
     "SALES_REP_NAME": "Shane Barreca",
@@ -1616,13 +1610,25 @@
   {
     "SALES_REP_NAME": "Shane Barreca",
     "PACKAGE_GROUP": "12pk Can",
-    "PRODUCT_NUM_NAME": "6792 New Belgium Voodoo Ranger Juice Force 2/12/12 oz Can",
-    "PLACEMENTS": 8
+    "PRODUCT_NUM_NAME": "6729 New Belgium Voodoo Ranger Imperial IPA 2/12/12 oz Can",
+    "PLACEMENTS": 9
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "16712 New Belgium Voodoo Ranger Hoppy Variety 2/12/12 oz Can",
+    "PLACEMENTS": 15
   },
   {
     "SALES_REP_NAME": "Shane Barreca",
     "PACKAGE_GROUP": "6pk Can + Btl",
-    "PRODUCT_NUM_NAME": "20201 Kirin Ichiban 4/6/12 oz Btl",
-    "PLACEMENTS": 8
+    "PRODUCT_NUM_NAME": "107006 Bell's Big Hearted 4/6/12 oz Can",
+    "PLACEMENTS": 6
+  },
+  {
+    "SALES_REP_NAME": "Shane Barreca",
+    "PACKAGE_GROUP": "12pk Can",
+    "PRODUCT_NUM_NAME": "20204 Kirin Ichiban 2/12/12 oz Can",
+    "PLACEMENTS": 3
   }
 ]
