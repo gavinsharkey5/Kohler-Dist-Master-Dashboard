@@ -49,6 +49,22 @@
   .pill.new{background:rgba(14,138,60,.16);color:#5FDB8C}
 
   .empty{padding:28px;text-align:center;color:var(--ink-soft);font-size:14px}
+
+  .rep-row{cursor:pointer}
+  .rep-row:hover td{background:var(--card-h)}
+  .rep-row .chevron{display:inline-block;transition:transform .15s ease;color:var(--ink-soft);font-size:12px}
+  .rep-row.open .chevron{transform:rotate(90deg)}
+  .detail-row td{padding:0;background:#12141A}
+  .detail-row .detail-wrap{display:none;padding:18px 20px 22px;text-align:left}
+  .detail-row.open .detail-wrap{display:block}
+  .detail-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:640px){.detail-cols{grid-template-columns:1fr}}
+  .detail-col h4{font-family:"Space Grotesk";font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--ink-soft)}
+  .acct-list{list-style:none;margin:0;padding:0}
+  .acct-list li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .acct-list li:last-child{border-bottom:none}
+  .acct-list .acct-num{color:var(--ink-soft);font-variant-numeric:tabular-nums;font-size:12.5px}
+  .detail-empty{color:var(--ink-soft);font-size:13.5px;padding:4px 0}
   footer{color:var(--ink-soft);font-size:12.5px;margin:40px 0 48px;border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
 </style></head>
 <body>
@@ -71,26 +87,13 @@
   </div>
 
   <p class="section-label">By Rep</p>
-  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
+  <p class="sub" style="margin:0 0 12px">Click a rep to see their new and repeat buying accounts.</p>
+  <div class="scroll-hint" style="margin-bottom:8px">&larr; scroll for more &rarr;</div>
   <div class="table-scroll">
     <table id="repTable">
-      <thead><tr><th>Rep</th><th class="num">New</th><th class="num">Repeat</th><th class="num">Churned</th></tr></thead>
+      <thead><tr><th></th><th>Rep</th><th class="num">New</th><th class="num">Repeat</th><th class="num">Churned</th></tr></thead>
       <tbody></tbody>
     </table>
-  </div>
-
-  <p class="section-label">New Buying Accounts</p>
-  <div class="controls">
-    <select id="repFilter"><option value="">All reps</option></select>
-    <input type="search" id="searchBox" placeholder="Search account name or rep...">
-  </div>
-  <p class="scroll-hint">&larr; scroll for more &rarr;</p>
-  <div class="table-scroll">
-    <table id="newTable">
-      <thead><tr><th>Rep</th><th>Account</th><th>Account #</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <div class="empty" id="newEmpty" style="display:none">No new accounts match this filter.</div>
   </div>
 
   <footer>
@@ -113,77 +116,680 @@
       "new": 17,
       "repeat": 2,
       "churned": 19,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Amer Lgn (Z) Little Ferry",
+          "acct": "42015"
+        },
+        {
+          "name": "American Lgn (Z) (Westwood)",
+          "acct": "74014"
+        },
+        {
+          "name": "American Lgn 109 (P) Rutherford",
+          "acct": "30002"
+        },
+        {
+          "name": "American Lgn Branchville",
+          "acct": "231708"
+        },
+        {
+          "name": "American Lgn Franklin",
+          "acct": "230910"
+        },
+        {
+          "name": "American Lgn Lake Hiawath",
+          "acct": "190301"
+        },
+        {
+          "name": "American Lgn Oak Ridge Post 423",
+          "acct": "191203"
+        },
+        {
+          "name": "American Lgn Rockaway",
+          "acct": "190708"
+        },
+        {
+          "name": "Courtyard Mahwah",
+          "acct": "93018"
+        },
+        {
+          "name": "Davy's Dogs",
+          "acct": "191403"
+        },
+        {
+          "name": "Elks Post 1506",
+          "acct": "47006"
+        },
+        {
+          "name": "Green Pond Yacht Club (Z)",
+          "acct": "190714"
+        },
+        {
+          "name": "K Of C 2229 (Z)",
+          "acct": "47014"
+        },
+        {
+          "name": "Lake Hopatcong Yacht Club",
+          "acct": "191301"
+        },
+        {
+          "name": "North Shore House",
+          "acct": "230807"
+        },
+        {
+          "name": "Valley Regency (A)",
+          "acct": "24043"
+        },
+        {
+          "name": "Vfw 6467 (Z)",
+          "acct": "56018"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "American Lgn Totowa",
+          "acct": "15079"
+        },
+        {
+          "name": "Moose Lodge (Z)",
+          "acct": "23012"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Amer Lgn Of Wharton 91",
+          "acct": "190919"
+        },
+        {
+          "name": "American Lgn 174 Wayne",
+          "acct": "12047"
+        },
+        {
+          "name": "American Lgn Park Ridge",
+          "acct": "71009"
+        },
+        {
+          "name": "Bloomingdale Fire Dept",
+          "acct": "4011"
+        },
+        {
+          "name": "Eastern Asian Bistro/Bar",
+          "acct": "191815"
+        },
+        {
+          "name": "Elks Post 1562",
+          "acct": "74002"
+        },
+        {
+          "name": "Elks Post 1992 (Z)",
+          "acct": "28026"
+        },
+        {
+          "name": "Elks Post 2271 (Z)",
+          "acct": "54014"
+        },
+        {
+          "name": "Evolution Restaurant & Bar",
+          "acct": "15081"
+        },
+        {
+          "name": "Frungillo Caterers",
+          "acct": "2009"
+        },
+        {
+          "name": "Hapgoods Restaurant",
+          "acct": "192156"
+        },
+        {
+          "name": "K Of C N Arlington (Z)",
+          "acct": "28015"
+        },
+        {
+          "name": "Moose Lodge 961 (Z)",
+          "acct": "50036"
+        },
+        {
+          "name": "The Village Inn",
+          "acct": "12023"
+        },
+        {
+          "name": "Vfw 7248 Sparta",
+          "acct": "230108"
+        },
+        {
+          "name": "Vfw 809 (P)",
+          "acct": "42007"
+        },
+        {
+          "name": "Vfw Hasbrouck (A)",
+          "acct": "34016"
+        },
+        {
+          "name": "Vfw Outwater (Z) Lane",
+          "acct": "37010"
+        },
+        {
+          "name": "William J. Mulligan VFW Post 281",
+          "acct": "77013"
+        }
+      ]
     },
     {
       "rep": "Allison Scott",
       "new": 15,
       "repeat": 2,
       "churned": 11,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Bask 46",
+          "acct": "15074"
+        },
+        {
+          "name": "Blackjack Mulligan's Public House",
+          "acct": "15004"
+        },
+        {
+          "name": "Bottagra Rest (P)",
+          "acct": "19012"
+        },
+        {
+          "name": "Breaker Billiards",
+          "acct": "24061"
+        },
+        {
+          "name": "Dingbatz (P)",
+          "acct": "25036"
+        },
+        {
+          "name": "Dingo's Den (P)",
+          "acct": "24029"
+        },
+        {
+          "name": "Grasshopper Irish Pub (A)",
+          "acct": "1005"
+        },
+        {
+          "name": "Grasshopper Too (A)",
+          "acct": "12022"
+        },
+        {
+          "name": "Jimmy Geez (P)",
+          "acct": "17009"
+        },
+        {
+          "name": "Maggies Town Tavern Ii",
+          "acct": "12037"
+        },
+        {
+          "name": "Shortways' Barn (A)",
+          "acct": "19004"
+        },
+        {
+          "name": "Sportzone B&G (P)",
+          "acct": "25027"
+        },
+        {
+          "name": "Thatcher Mc Ghees (A)",
+          "acct": "8015"
+        },
+        {
+          "name": "Underdog Lounge(P)",
+          "acct": "17001"
+        },
+        {
+          "name": "cherry's",
+          "acct": "10001"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "The Celtic Knot",
+          "acct": "3002"
+        },
+        {
+          "name": "The Side Door (P)",
+          "acct": "8004"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Blu Ale House",
+          "acct": "7003"
+        },
+        {
+          "name": "Celtic Crossings",
+          "acct": "5008"
+        },
+        {
+          "name": "Emerald Corner (Z)",
+          "acct": "25056"
+        },
+        {
+          "name": "Kitchen & Beer Bar",
+          "acct": "3007"
+        },
+        {
+          "name": "Meadows Golf Club(P)",
+          "acct": "11007"
+        },
+        {
+          "name": "Sharky's Wings(P)",
+          "acct": "24019"
+        },
+        {
+          "name": "Sunset Pub & Grill(Z)",
+          "acct": "11011"
+        },
+        {
+          "name": "The Barnyard and Carriage House",
+          "acct": "14008"
+        },
+        {
+          "name": "Uncorked (P)",
+          "acct": "14010"
+        },
+        {
+          "name": "Vfw 7165 (P)",
+          "acct": "23013"
+        },
+        {
+          "name": "pompton crafthouse",
+          "acct": "8006"
+        }
+      ]
     },
     {
       "rep": "Brian Sengebush",
       "new": 8,
       "repeat": 1,
       "churned": 7,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Farmstead Golf (P)",
+          "acct": "231601"
+        },
+        {
+          "name": "Gyp's Tavern",
+          "acct": "231715"
+        },
+        {
+          "name": "Knotty Pine Pub (P)",
+          "acct": "190923"
+        },
+        {
+          "name": "Layton Tavern",
+          "acct": "231719"
+        },
+        {
+          "name": "O'reilly Pub (P)",
+          "acct": "230428"
+        },
+        {
+          "name": "Patricks Pub (P)",
+          "acct": "191521"
+        },
+        {
+          "name": "Sharky's West (P)",
+          "acct": "190205"
+        },
+        {
+          "name": "Thatcher Mcghee's (A)",
+          "acct": "190601"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "Jefferson House (A)",
+          "acct": "191504"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Boonton Lanes",
+          "acct": "190203"
+        },
+        {
+          "name": "Charley's Tavern",
+          "acct": "191007"
+        },
+        {
+          "name": "Johnnie's Tavern",
+          "acct": "190214"
+        },
+        {
+          "name": "Lakeside Pub (P)",
+          "acct": "231710"
+        },
+        {
+          "name": "Mason Street Grille",
+          "acct": "191009"
+        },
+        {
+          "name": "Mckenna's Pub (P)",
+          "acct": "191505"
+        },
+        {
+          "name": "Sheridan Lodge (P)",
+          "acct": "230405"
+        }
+      ]
     },
     {
       "rep": "Mike Ast",
       "new": 4,
       "repeat": 0,
       "churned": 1,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Bareburger (Ridgewood)",
+          "acct": "84012"
+        },
+        {
+          "name": "Glen Rock Inn",
+          "acct": "83005"
+        },
+        {
+          "name": "Park West Tavern",
+          "acct": "84022"
+        },
+        {
+          "name": "Stone & Rail",
+          "acct": "83011"
+        }
+      ],
+      "repeatAccounts": [],
+      "churnedAccounts": [
+        {
+          "name": "The Office 2131 Ridgewood",
+          "acct": "84015"
+        }
+      ]
     },
     {
       "rep": "Paul Mclaughlin",
       "new": 3,
       "repeat": 2,
       "churned": 6,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Club Flamingo (A)",
+          "acct": "39007"
+        },
+        {
+          "name": "The Cornerstone (P)",
+          "acct": "73002"
+        },
+        {
+          "name": "The Plank Pizza And Bar",
+          "acct": "76009"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "Emerson Hotel",
+          "acct": "75001"
+        },
+        {
+          "name": "Players Club (Z)",
+          "acct": "39010"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Edgewood Country Club",
+          "acct": "69003"
+        },
+        {
+          "name": "Fat Bastard & Sons",
+          "acct": "39006"
+        },
+        {
+          "name": "Hearth & Tap Co.",
+          "acct": "70008"
+        },
+        {
+          "name": "Straphanger Saloon (A)",
+          "acct": "41006"
+        },
+        {
+          "name": "Tenafly Pizza (Z)",
+          "acct": "54001"
+        },
+        {
+          "name": "Tommy Fox's Pub Hse(P)",
+          "acct": "56009"
+        }
+      ]
     },
     {
       "rep": "Nick Melissari",
       "new": 2,
       "repeat": 1,
       "churned": 6,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Blue 42 Restaurant & Bar",
+          "acct": "77003"
+        },
+        {
+          "name": "Satin Dolls (A)",
+          "acct": "38002"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "The Orange Lantern",
+          "acct": "80007"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Biagio's",
+          "acct": "80040"
+        },
+        {
+          "name": "Blackjack Mulligans (Hawthorne)",
+          "acct": "19006"
+        },
+        {
+          "name": "Blackjack Mulligans(P) (Garfield)",
+          "acct": "37034"
+        },
+        {
+          "name": "Lodi Lanes (A)",
+          "acct": "38020"
+        },
+        {
+          "name": "Redd's Rest (Z)",
+          "acct": "32023"
+        },
+        {
+          "name": "Victor's Maywood Inn",
+          "acct": "79001"
+        }
+      ]
     },
     {
       "rep": "Chris Payton",
       "new": 1,
       "repeat": 1,
       "churned": 10,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [
+        {
+          "name": "Arcola Country C.",
+          "acct": "80035"
+        }
+      ],
+      "repeatAccounts": [
+        {
+          "name": "Colonial Bar",
+          "acct": "45005"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Colombia Bakery Factory & Restaurant",
+          "acct": "38028"
+        },
+        {
+          "name": "Dutch House",
+          "acct": "81012"
+        },
+        {
+          "name": "El Cid",
+          "acct": "80028"
+        },
+        {
+          "name": "Fiesta (A)",
+          "acct": "35009"
+        },
+        {
+          "name": "Hilton Garden Inn Ridgefield Park",
+          "acct": "47019"
+        },
+        {
+          "name": "JJ's Pub",
+          "acct": "81017"
+        },
+        {
+          "name": "La Nota Restaurant Bar",
+          "acct": "38034"
+        },
+        {
+          "name": "Que Pasta (A)",
+          "acct": "76014"
+        },
+        {
+          "name": "Ridgewood Country Club",
+          "acct": "80027"
+        },
+        {
+          "name": "Westside Village (A)",
+          "acct": "47017"
+        }
+      ]
     },
     {
       "rep": "Anthony Palmisano",
       "new": 0,
       "repeat": 2,
       "churned": 6,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [],
+      "repeatAccounts": [
+        {
+          "name": "Daily Planet (A)",
+          "acct": "191207"
+        },
+        {
+          "name": "The Stuffed Olive_2",
+          "acct": "231309"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "Airport Pub & Pkg",
+          "acct": "230929"
+        },
+        {
+          "name": "Bally Owen Golf Club",
+          "acct": "231210"
+        },
+        {
+          "name": "Black Bear Golf(A)",
+          "acct": "230903"
+        },
+        {
+          "name": "Crystal Sprs/Wild Turkey",
+          "acct": "230915"
+        },
+        {
+          "name": "Skylands Wine& Beer Garden",
+          "acct": "231307"
+        },
+        {
+          "name": "Whistle Stop (P)",
+          "acct": "191103"
+        }
+      ]
     },
     {
       "rep": "Dan Lagala",
       "new": 0,
       "repeat": 2,
       "churned": 4,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [],
+      "repeatAccounts": [
+        {
+          "name": "512 Bar",
+          "acct": "44028"
+        },
+        {
+          "name": "690 Park",
+          "acct": "44012"
+        }
+      ],
+      "churnedAccounts": [
+        {
+          "name": "354 Steakhouse (A)",
+          "acct": "44027"
+        },
+        {
+          "name": "Clubhouse Cafe (P)",
+          "acct": "44048"
+        },
+        {
+          "name": "Rudys (A)",
+          "acct": "44025"
+        },
+        {
+          "name": "Sedona Tap House",
+          "acct": "44047"
+        }
+      ]
     },
     {
       "rep": "Javier Melo",
       "new": 0,
       "repeat": 0,
       "churned": 2,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [
+        {
+          "name": "Agave Cantina Mexicana",
+          "acct": "24018"
+        },
+        {
+          "name": "Paruta's (A)",
+          "acct": "20055"
+        }
+      ]
     },
     {
       "rep": "Phil Ernst",
       "new": 0,
       "repeat": 0,
       "churned": 1,
-      "neither": 0
+      "neither": 0,
+      "newAccounts": [],
+      "repeatAccounts": [],
+      "churnedAccounts": [
+        {
+          "name": "Saddle Brook Liquor & Bar",
+          "acct": "76021"
+        }
+      ]
     }
   ],
   "newList": [
@@ -487,446 +1093,6 @@
       "name": "Vfw 6467 (Z)",
       "status": "new"
     }
-  ],
-  "churnedList": [
-    {
-      "rep": "Allison Scott",
-      "acct": "7003",
-      "name": "Blu Ale House",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "5008",
-      "name": "Celtic Crossings",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "25056",
-      "name": "Emerald Corner (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "3007",
-      "name": "Kitchen & Beer Bar",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "11007",
-      "name": "Meadows Golf Club(P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "24019",
-      "name": "Sharky's Wings(P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "11011",
-      "name": "Sunset Pub & Grill(Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "14008",
-      "name": "The Barnyard and Carriage House",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "14010",
-      "name": "Uncorked (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "23013",
-      "name": "Vfw 7165 (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Allison Scott",
-      "acct": "8006",
-      "name": "pompton crafthouse",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "230929",
-      "name": "Airport Pub & Pkg",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "231210",
-      "name": "Bally Owen Golf Club",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "230903",
-      "name": "Black Bear Golf(A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "230915",
-      "name": "Crystal Sprs/Wild Turkey",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "231307",
-      "name": "Skylands Wine& Beer Garden",
-      "status": "churned"
-    },
-    {
-      "rep": "Anthony Palmisano",
-      "acct": "191103",
-      "name": "Whistle Stop (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "190203",
-      "name": "Boonton Lanes",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "191007",
-      "name": "Charley's Tavern",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "190214",
-      "name": "Johnnie's Tavern",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "231710",
-      "name": "Lakeside Pub (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "191009",
-      "name": "Mason Street Grille",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "191505",
-      "name": "Mckenna's Pub (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Brian Sengebush",
-      "acct": "230405",
-      "name": "Sheridan Lodge (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "38028",
-      "name": "Colombia Bakery Factory & Restaurant",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "81012",
-      "name": "Dutch House",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "80028",
-      "name": "El Cid",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "35009",
-      "name": "Fiesta (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "47019",
-      "name": "Hilton Garden Inn Ridgefield Park",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "81017",
-      "name": "JJ's Pub",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "38034",
-      "name": "La Nota Restaurant Bar",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "76014",
-      "name": "Que Pasta (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "80027",
-      "name": "Ridgewood Country Club",
-      "status": "churned"
-    },
-    {
-      "rep": "Chris Payton",
-      "acct": "47017",
-      "name": "Westside Village (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Dan Lagala",
-      "acct": "44027",
-      "name": "354 Steakhouse (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Dan Lagala",
-      "acct": "44048",
-      "name": "Clubhouse Cafe (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Dan Lagala",
-      "acct": "44025",
-      "name": "Rudys (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Dan Lagala",
-      "acct": "44047",
-      "name": "Sedona Tap House",
-      "status": "churned"
-    },
-    {
-      "rep": "Javier Melo",
-      "acct": "24018",
-      "name": "Agave Cantina Mexicana",
-      "status": "churned"
-    },
-    {
-      "rep": "Javier Melo",
-      "acct": "20055",
-      "name": "Paruta's (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Mike Ast",
-      "acct": "84015",
-      "name": "The Office 2131 Ridgewood",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "80040",
-      "name": "Biagio's",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "19006",
-      "name": "Blackjack Mulligans (Hawthorne)",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "37034",
-      "name": "Blackjack Mulligans(P) (Garfield)",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "38020",
-      "name": "Lodi Lanes (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "32023",
-      "name": "Redd's Rest (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Nick Melissari",
-      "acct": "79001",
-      "name": "Victor's Maywood Inn",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "69003",
-      "name": "Edgewood Country Club",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "39006",
-      "name": "Fat Bastard & Sons",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "70008",
-      "name": "Hearth & Tap Co.",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "41006",
-      "name": "Straphanger Saloon (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "54001",
-      "name": "Tenafly Pizza (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Paul Mclaughlin",
-      "acct": "56009",
-      "name": "Tommy Fox's Pub Hse(P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Phil Ernst",
-      "acct": "76021",
-      "name": "Saddle Brook Liquor & Bar",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "190919",
-      "name": "Amer Lgn Of Wharton 91",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "12047",
-      "name": "American Lgn 174 Wayne",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "71009",
-      "name": "American Lgn Park Ridge",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "4011",
-      "name": "Bloomingdale Fire Dept",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "191815",
-      "name": "Eastern Asian Bistro/Bar",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "74002",
-      "name": "Elks Post 1562",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "28026",
-      "name": "Elks Post 1992 (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "54014",
-      "name": "Elks Post 2271 (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "15081",
-      "name": "Evolution Restaurant & Bar",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "2009",
-      "name": "Frungillo Caterers",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "192156",
-      "name": "Hapgoods Restaurant",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "28015",
-      "name": "K Of C N Arlington (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "50036",
-      "name": "Moose Lodge 961 (Z)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "12023",
-      "name": "The Village Inn",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "230108",
-      "name": "Vfw 7248 Sparta",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "42007",
-      "name": "Vfw 809 (P)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "34016",
-      "name": "Vfw Hasbrouck (A)",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "37010",
-      "name": "Vfw Outwater (Z) Lane",
-      "status": "churned"
-    },
-    {
-      "rep": "Robin Feldman",
-      "acct": "77013",
-      "name": "William J. Mulligan VFW Post 281",
-      "status": "churned"
-    }
   ]
 }</script>
 <script>
@@ -939,61 +1105,59 @@ function renderKpis(){
   document.getElementById('kpiChurned').textContent = DATA.totals.churned;
 }
 
+function acctList(accounts){
+  if (!accounts.length) return `<div class="detail-empty">None</div>`;
+  return `<ul class="acct-list">` + accounts.map(a =>
+    `<li><span>${a.name}</span><span class="acct-num">${a.acct}</span></li>`
+  ).join('') + `</ul>`;
+}
+
 function renderRepTable(){
   const tbody = document.querySelector('#repTable tbody');
   tbody.innerHTML = '';
-  DATA.repSummary.forEach(r => {
+  DATA.repSummary.forEach((r, i) => {
+    const rowId = `rep-detail-${i}`;
     const tr = document.createElement('tr');
+    tr.className = 'rep-row';
+    tr.dataset.target = rowId;
     tr.innerHTML = `
+      <td><span class="chevron">&rsaquo;</span></td>
       <td>${r.rep}</td>
       <td class="num"><span class="pill new">${r.new}</span></td>
       <td class="num">${r.repeat}</td>
       <td class="num">${r.churned}</td>
     `;
     tbody.appendChild(tr);
-  });
-}
 
-function populateRepFilter(){
-  const sel = document.getElementById('repFilter');
-  const reps = [...new Set(DATA.newList.map(a => a.rep))].sort((a,b) => a.localeCompare(b));
-  reps.forEach(r => {
-    const opt = document.createElement('option');
-    opt.value = r; opt.textContent = r;
-    sel.appendChild(opt);
-  });
-}
-
-function renderNewTable(){
-  const rep = document.getElementById('repFilter').value;
-  const q = document.getElementById('searchBox').value.trim().toLowerCase();
-  const tbody = document.querySelector('#newTable tbody');
-  tbody.innerHTML = '';
-  let rows = DATA.newList;
-  if (rep) rows = rows.filter(a => a.rep === rep);
-  if (q) rows = rows.filter(a =>
-    a.name.toLowerCase().includes(q) ||
-    a.rep.toLowerCase().includes(q) ||
-    a.acct.toLowerCase().includes(q)
-  );
-  document.getElementById('newEmpty').style.display = rows.length ? 'none' : 'block';
-  rows.forEach(a => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${a.rep}</td>
-      <td>${a.name}</td>
-      <td>${a.acct}</td>
+    const detailTr = document.createElement('tr');
+    detailTr.className = 'detail-row';
+    detailTr.id = rowId;
+    detailTr.innerHTML = `
+      <td colspan="5">
+        <div class="detail-wrap">
+          <div class="detail-cols">
+            <div class="detail-col">
+              <h4>New Buyers (${r.new})</h4>
+              ${acctList(r.newAccounts)}
+            </div>
+            <div class="detail-col">
+              <h4>Repeat Buyers (${r.repeat})</h4>
+              ${acctList(r.repeatAccounts)}
+            </div>
+          </div>
+        </div>
+      </td>
     `;
-    tbody.appendChild(tr);
+    tbody.appendChild(detailTr);
+
+    tr.addEventListener('click', () => {
+      tr.classList.toggle('open');
+      detailTr.classList.toggle('open');
+    });
   });
 }
 
 renderKpis();
 renderRepTable();
-populateRepFilter();
-renderNewTable();
-
-document.getElementById('repFilter').addEventListener('change', renderNewTable);
-document.getElementById('searchBox').addEventListener('input', renderNewTable);
 </script>
 </body></html>

@@ -22,7 +22,10 @@ To refresh with a new month's export:
   2. Run: python3 generate.py
   3. Commit and push.
 
-Note: this only builds a detailed list for New buyers, per what was
-asked for. Churned counts are shown in the summary/by-rep table for
-context but don't get their own account-level list — ask if a win-back
-list for churned accounts would be useful too.
+The "By Rep" table rows are clickable/expandable — clicking a rep opens
+a New Buyers / Repeat Buyers account list nested right under their row,
+instead of a separate flat searchable table. Churned accounts are still
+only shown as a count (not broken into their own list) since that
+wasn't asked for — the account-level detail is there in generate.py's
+output (rep_summary[i]["churnedAccounts"]) if a win-back list ever gets
+requested, just not rendered.

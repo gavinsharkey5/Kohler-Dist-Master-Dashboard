@@ -50,19 +50,28 @@ def main():
             "status": status,
         })
 
-    by_rep = defaultdict(lambda: {"new": 0, "repeat": 0, "churned": 0, "neither": 0})
+    by_rep_counts = defaultdict(lambda: {"new": 0, "repeat": 0, "churned": 0, "neither": 0})
+    by_rep_accounts = defaultdict(lambda: {"new": [], "repeat": [], "churned": []})
     for a in accounts:
-        by_rep[a["rep"]][a["status"]] += 1
+        by_rep_counts[a["rep"]][a["status"]] += 1
+        if a["status"] in ("new", "repeat", "churned"):
+            by_rep_accounts[a["rep"]][a["status"]].append({"name": a["name"], "acct": a["acct"]})
 
-    rep_summary = [{"rep": rep, **counts} for rep, counts in by_rep.items()]
+    rep_summary = []
+    for rep, counts in by_rep_counts.items():
+        accts = by_rep_accounts[rep]
+        for lst in accts.values():
+            lst.sort(key=lambda a: a["name"])
+        rep_summary.append({
+            "rep": rep, **counts,
+            "newAccounts": accts["new"],
+            "repeatAccounts": accts["repeat"],
+            "churnedAccounts": accts["churned"],
+        })
     rep_summary.sort(key=lambda r: -r["new"])
 
     new_list = sorted(
         (a for a in accounts if a["status"] == "new"),
-        key=lambda a: (a["rep"], a["name"]),
-    )
-    churned_list = sorted(
-        (a for a in accounts if a["status"] == "churned"),
         key=lambda a: (a["rep"], a["name"]),
     )
 
@@ -77,7 +86,6 @@ def main():
         "totals": totals,
         "repSummary": rep_summary,
         "newList": new_list,
-        "churnedList": churned_list,
     }
 
     html = OUT_HTML.read_text()
