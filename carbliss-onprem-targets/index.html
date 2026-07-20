@@ -16,6 +16,7 @@
   --green:#37C46B; --green-soft:#15301E;
   --red:#E0603E; --red-soft:#33170F;
   --gray:#7C8394; --gray-soft:#1D2029;
+  --sc:#F2A900; --wc:#2FC9C2;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
@@ -24,7 +25,7 @@ body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
   font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.45;
   -webkit-tap-highlight-color:transparent}
 .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
 a{color:inherit;text-decoration:none}
 
 .gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -40,7 +41,7 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 .lede{color:var(--ink-soft);font-size:14.5px;max-width:760px;margin:0}
 .updated{color:var(--ink-soft);font-size:12px;margin-top:12px}
 
-.stats{max-width:1080px;margin:20px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,240px));gap:12px}
+.stats{max-width:1200px;margin:20px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,240px));gap:12px}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .stat-label{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
 .stat-val{font-family:"Space Grotesk";font-size:22px;font-weight:700}
@@ -48,7 +49,7 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 .stat-val.up{color:var(--green)}
 .stat-sub{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
 
-.goalbar{max-width:1080px;margin:12px auto 0;padding:0 16px}
+.goalbar{max-width:1200px;margin:12px auto 0;padding:0 16px}
 .goalbar-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
 .goalbar-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px 14px;margin-bottom:8px}
 .goalbar-label{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
@@ -57,81 +58,76 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 .goalbar-track{height:8px;border-radius:99px;background:var(--card2);overflow:hidden}
 .goalbar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:99px}
 
-.toolbar{max-width:1080px;margin:20px auto 0;padding:0 16px;display:flex;flex-direction:column;gap:12px}
-.repbar{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);padding:7px 14px;min-height:44px;
-  display:inline-flex;align-items:center;justify-content:center;border-radius:20px;
-  font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-.chip:hover{border-color:var(--accent);color:var(--ink)}
-.chip.active{background:color-mix(in srgb,var(--accent) 16%,transparent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent)}
-.rep-select{display:none}
-@media(max-width:700px){
-  .repbar{display:none}
-  .rep-select{display:block;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
-    border-radius:12px;padding:12px 14px;font-size:16px;font-family:"Inter";min-height:44px}
-}
+main{max-width:1200px;margin:20px auto 60px;padding:0 16px}
 
-.tabs{display:flex;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:5px}
-.tab{flex:1;min-width:180px;text-align:center;background:transparent;border:none;color:var(--ink-soft);
-  padding:10px 14px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit}
-.tab:hover{color:var(--ink)}
-.tab.active{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
-.tab .tab-count{font-weight:400;color:var(--ink-soft);margin-left:4px}
-.tab.active .tab-count{color:color-mix(in srgb,var(--accent) 75%,var(--ink-soft))}
-
-.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);color:var(--ink);
-  border-radius:10px;padding:9px 12px;font-size:16px;font-family:inherit;min-height:44px}
-.search::placeholder{color:var(--ink-soft)}
-.count{font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
-
-.switch-row{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;flex-shrink:0;
-  min-height:44px;padding:6px 4px}
-.switch{position:relative;width:38px;height:22px;border-radius:20px;background:var(--card2);border:1px solid var(--line);flex-shrink:0;transition:background .15s,border-color .15s}
-.switch i{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--ink-soft);transition:transform .15s,background .15s}
-.switch-row.on .switch{background:color-mix(in srgb,var(--accent) 30%,transparent);border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
-.switch-row.on .switch i{transform:translateX(16px);background:var(--accent)}
-.switch-label{font-size:13px;color:var(--ink-soft);font-weight:600}
-.switch-row.on .switch-label{color:var(--ink)}
-
-main{max-width:1080px;margin:18px auto 60px;padding:0 16px}
-.acct{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
-.acct-head{padding:16px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.acct-head:hover{background:var(--card2)}
-.acct-left{min-width:0;flex:1}
-.acct-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-.acct-name{font-family:"Space Grotesk";font-weight:600;font-size:15.5px}
-.acct-meta{font-size:12px;color:var(--ink-soft)}
-.acct-carb-flavors{font-size:11.5px;color:var(--gold);margin-top:3px}
 .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:20px}
 .badge.new{background:var(--green-soft);color:var(--green)}
 .badge.lapsed{background:var(--red-soft);color:var(--red)}
 .badge.hascarb{background:var(--gold-soft);color:var(--gold)}
-.acct-right{text-align:right;flex-shrink:0}
-.acct-total{font-family:"Space Grotesk";font-size:18px;font-weight:700}
-.acct-total .unit{font-size:11px;font-weight:600;color:var(--ink-soft);margin-left:3px}
-.acct-total-sub{font-size:11px;color:var(--ink-soft);white-space:nowrap}
-.chev{color:var(--ink-soft);font-size:13px;margin-left:10px;transition:transform .15s}
-.acct.open .chev{transform:rotate(90deg)}
-.acct-body{max-height:0;overflow:hidden;transition:max-height .25s ease}
-.acct.open .acct-body{max-height:1200px}
-.acct-body-inner{padding:0 18px 18px;border-top:1px solid var(--line-soft)}
-.brandrow{display:flex;gap:20px;flex-wrap:wrap;margin:14px 0}
+
+/* ---- filter toolbar ---- */
+.toolbar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 14px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow)}
+.tgroup{display:flex;flex-direction:column;gap:5px}
+.tgroup label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
+.tgroup input[type=number], .tgroup select, .tgroup input[type=search], .tgroup input[type=text]{
+  background:var(--canvas);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 12px;font-size:16px;
+  font-family:"Inter";min-width:110px;min-height:44px}
+.tgroup input[type=search], .tgroup input[type=text]{min-width:220px}
+.tgroup input:focus, .tgroup select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.toolbar .divider{width:1px;align-self:stretch;background:var(--line);margin:0 2px}
+.check{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);cursor:pointer;user-select:none;
+  min-height:44px;padding:6px 4px}
+.check input{accent-color:var(--accent);width:17px;height:17px}
+.result-count{margin-left:auto;font-size:12.5px;color:var(--ink-soft);align-self:center}
+
+/* ---- table ---- */
+.table-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:22px}
+.table-scroll{overflow-x:auto}
+table{width:100%;min-width:820px;border-collapse:collapse;font-size:13px}
+thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:9px 10px;font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.sorted::after{content:" \25BE";color:var(--accent)}
+thead th.sorted-asc::after{content:" \25B4";color:var(--accent)}
+tbody td{padding:9px 10px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tbody td:first-child{white-space:normal;word-break:break-word;min-width:160px}
+tbody tr:hover{background:#191B23}
+.num-cell{text-align:right;font-variant-numeric:tabular-nums}
+.status-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.status-badge.yes{background:var(--gold-soft);color:var(--gold)}
+.status-badge.no{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent)}
+.gap-pill{font-family:"Space Grotesk";font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;
+  background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent);white-space:nowrap}
+.rtd-bar{display:flex;height:7px;width:56px;border-radius:4px;overflow:hidden;background:var(--line-soft)}
+.rtd-bar i{display:block;height:100%}
+.rtd-bar .b-sc{background:var(--sc)}
+.rtd-bar .b-wc{background:var(--wc)}
+.pitch-btn{font-family:"Inter";font-size:12px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:7px;padding:7px 12px;cursor:pointer;min-height:36px;white-space:nowrap}
+.pitch-btn:hover{background:color-mix(in srgb,var(--accent) 20%,transparent)}
+.pitch-row td{background:#12141A;white-space:normal!important;padding:16px 18px}
+.pitch-box{display:flex;flex-direction:column;gap:12px}
+.brandrow{display:flex;gap:20px;flex-wrap:wrap}
 .brandcell{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:150px}
 .brandcell .bl{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
 .brandcell .bv{font-family:"Space Grotesk";font-size:15px;font-weight:700}
 .brandcell .bv .arrow{color:var(--ink-soft);font-weight:400;margin:0 4px}
-.pitch-label{font-size:10.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin:14px 0 8px}
-.pitch-sub{font-size:11px;color:var(--ink-soft);font-weight:400;text-transform:none;letter-spacing:0;margin-left:6px}
+.pitch-label{font-size:10.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:700;display:flex;align-items:center;justify-content:space-between}
 .pitch-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
 .pitch-list li{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 13px;
   font-size:13.5px;color:var(--ink);line-height:1.45;display:flex;gap:8px}
 .pitch-list .plabel{flex-shrink:0;font-weight:700;color:var(--accent);white-space:nowrap}
-.flavors{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.flavors{display:flex;gap:6px;flex-wrap:wrap}
 .ftag{font-size:11px;padding:2px 9px;border-radius:20px;background:var(--gold-soft);color:var(--gold);border:1px solid rgba(232,196,90,.25)}
+.copy-btn{font-size:11.5px;font-weight:600;color:var(--ink-soft);background:var(--card2);border:1px solid var(--line);
+  border-radius:7px;padding:7px 12px;cursor:pointer;white-space:nowrap;align-self:flex-start;min-height:36px}
+.copy-btn:hover{color:var(--ink);border-color:var(--accent)}
+.copy-btn.copied{color:#5fdc8c;border-color:#245834}
 .empty{text-align:center;color:var(--ink-soft);padding:60px 20px;font-size:14px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;padding:10px 16px;font-size:11.5px;color:var(--ink-soft);border-top:1px solid var(--line-soft)}
 
-footer{max-width:1080px;margin:0 auto 60px;padding:0 16px;color:var(--ink-soft);font-size:12.5px;line-height:1.6}
+footer{max-width:1200px;margin:0 auto 60px;padding:0 16px;color:var(--ink-soft);font-size:12.5px;line-height:1.6}
 footer p{margin:0 0 8px}
 footer b{color:var(--ink)}
 
@@ -139,9 +135,9 @@ footer b{color:var(--ink)}
 ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
 
 @media(max-width:620px){
-  .acct-head{padding:14px}
-  .acct-body-inner{padding:0 14px 14px}
-  .brandcell{min-width:130px}
+  .toolbar{padding:12px}
+  .tgroup input[type=search], .tgroup input[type=text]{min-width:160px}
+  .pitch-row td{padding:14px}
 }
 </style>
 </head>
@@ -160,21 +156,60 @@ footer b{color:var(--ink)}
 <div class="stats" id="stats"></div>
 <div class="goalbar" id="goalbar"></div>
 
+<main>
+
 <div class="toolbar">
-  <div class="tabs" id="tabs"></div>
-  <div class="repbar" id="repbar"></div>
-  <select class="rep-select" id="repSelect"></select>
-  <div class="controls">
-    <input class="search" id="search" type="text" placeholder="Search account or city…">
-    <div class="switch-row" id="carblessToggle"><span class="switch"><i></i></span><span class="switch-label">Without Carbliss only</span></div>
-    <span class="count" id="count"></span>
+  <div class="tgroup">
+    <label>Search account</label>
+    <input type="search" id="search" placeholder="Account or territory…">
+  </div>
+  <div class="tgroup">
+    <label>Rep</label>
+    <select id="repFilter"><option value="">All reps</option></select>
+  </div>
+  <div class="tgroup">
+    <label>Territory</label>
+    <select id="cityFilter"><option value="">All territories</option></select>
+  </div>
+  <div class="divider"></div>
+  <div class="tgroup">
+    <label>Gap threshold (cases)</label>
+    <input type="number" id="threshOn" min="0" step="1">
+  </div>
+  <div class="tgroup" style="justify-content:center">
+    <label class="check"><input type="checkbox" id="gapOnly"> Gap accounts only</label>
+  </div>
+  <div class="result-count" id="count"></div>
+</div>
+
+<div class="table-panel">
+  <div class="table-scroll">
+    <table id="acctTable">
+      <thead><tr>
+        <th data-key="name">Account</th>
+        <th data-key="rep">Rep</th>
+        <th data-key="city">Territory</th>
+        <th data-key="sc" class="num-cell">Sun Cruiser (cs)</th>
+        <th data-key="wc" class="num-cell">White Claw (cs)</th>
+        <th data-key="total26" class="num-cell">Combined Volume</th>
+        <th data-key="hasCarbliss">Carbliss?</th>
+        <th data-key="gapVal" class="num-cell">Gap Size</th>
+        <th>Pitch</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <div class="legend">
+    <span><span style="width:9px;height:9px;border-radius:50%;background:var(--sc);display:inline-block"></span> Sun Cruiser volume</span>
+    <span><span style="width:9px;height:9px;border-radius:50%;background:var(--wc);display:inline-block"></span> White Claw volume</span>
+    <span>Gap Size = combined Sun Cruiser + White Claw cases for accounts without Carbliss at or above the threshold set above.</span>
   </div>
 </div>
 
-<main id="list"></main>
+</main>
 
 <footer>
-  <p><b>How to read this:</b> every case count on this page is Sun Cruiser + White Claw only. The <b>High-Velocity</b> tab is accounts with active 2026 volume, sorted biggest opportunity first. The <b>Without Sun Cruiser/White Claw</b> tab is accounts with zero cases so far in 2026 — sorted by what they used to buy, biggest first, so the best re-engagement targets surface. The <b>Without Carbliss only</b> toggle hides any account that already carries a Carbliss flavor.</p>
+  <p><b>How to read this:</b> every case count on this page is Sun Cruiser + White Claw only. <b>Gap account</b> = no Carbliss on the menu yet, with combined Sun Cruiser/White Claw volume at or above the threshold you set — that demand is proven, so it's the clearest place to go get it. Sort any column by clicking its header; the default sort is Combined Volume, biggest first.</p>
   <p>Each pitch is a handful of bullets, not a script: best-selling item and whether it's new or established, how many SKUs move through the account, and a Carbliss flavor recommendation. That flavor is deliberately <i>not</i> whatever's already selling well through Sun Cruiser or White Claw — that craving's already covered — it's a genuine gap on their current menu, so Carbliss adds breadth instead of competing head-on, plus a price comparison against what's already on shelf.</p>
   <p><b>New</b> = zero volume last year, all of it new in 2026. <b>Has Carbliss</b> = already carries at least one Carbliss flavor; the pitch focuses on the next flavor to add.</p>
   <p>Source: RDE Carbliss Eval vs Sun Cruiser &amp; White Claw exports (account-level cases/buyers, and SKU-level price &amp; volume). Update by re-exporting both reports into <code>accounts.csv</code> / <code>price_vol.csv</code> and running <code>generate.py</code> in this folder.</p>
@@ -186,15 +221,16 @@ const DATA = JSON.parse(document.getElementById('tg-data').textContent);
 const fmt = n => Math.round(n).toLocaleString();
 const pct = (a,b) => b>0 ? ((a-b)/b*100) : (a>0?100:0);
 
-let activeRep = 'All reps';
-let query = '';
-let activeTab = 'active';       // 'active' = high-velocity SC/WC | 'without' = zero 2026 SC/WC volume
-let carblessOnly = false;       // toggle: only accounts with no Carbliss yet
+const DEFAULT_THRESH = 10;
 
-const TABS = [
-  {key:'active', label:'High-Velocity Sun Cruiser/White Claw', test: a => !a.lapsed},
-  {key:'without', label:'Accounts Without Sun Cruiser/White Claw', test: a => a.lapsed},
-];
+const state = {
+  search:'', rep:'', city:'', gapOnly:false,
+  threshOn: DEFAULT_THRESH,
+  sortKey:'total26', sortDir:-1,
+  openPitch:null
+};
+
+function isGap(a){ return !a.existingCarbliss.length && a.total26 >= state.threshOn; }
 
 function renderStats(){
   const m = DATA.meta;
@@ -229,50 +265,44 @@ function renderGoal(){
     </div>`;
 }
 
-function baseFiltered(){
-  // rep + search + carbliss-toggle, WITHOUT the tab split — used to count each tab's size.
-  let rows = DATA.accounts.filter(a => activeRep==='All reps' || a.rep===activeRep);
-  if(query.trim()){
-    const q = query.trim().toLowerCase();
-    rows = rows.filter(a => a.name.toLowerCase().includes(q) || (a.city||'').toLowerCase().includes(q));
-  }
-  if(carblessOnly) rows = rows.filter(a => !a.existingCarbliss.length);
-  return rows;
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function populateSelects(){
+  const repSel = document.getElementById('repFilter');
+  DATA.meta.reps.forEach(r=>{
+    const opt = document.createElement('option'); opt.value=r; opt.textContent=r; repSel.appendChild(opt);
+  });
+  const cities = Array.from(new Set(DATA.accounts.map(a=>a.city).filter(Boolean))).sort();
+  const citySel = document.getElementById('cityFilter');
+  cities.forEach(c=>{
+    const opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt);
+  });
+  document.getElementById('threshOn').value = state.threshOn;
 }
 
-function renderTabs(){
-  const base = baseFiltered();
-  const bar = document.getElementById('tabs');
-  bar.innerHTML = TABS.map(t=>{
-    const n = base.filter(t.test).length;
-    return `<button class="tab${t.key===activeTab?' active':''}" data-tab="${t.key}">${t.label}<span class="tab-count">(${n.toLocaleString()})</span></button>`;
-  }).join('');
-  bar.querySelectorAll('.tab').forEach(b=>b.addEventListener('click', ()=>{
-    activeTab = b.dataset.tab; renderTabs(); renderList();
-  }));
+function sortValue(a, key){
+  if(key==='sc') return a.sunCruiser.cases26;
+  if(key==='wc') return a.whiteClaw.cases26;
+  if(key==='hasCarbliss') return a.existingCarbliss.length ? 1 : 0;
+  if(key==='gapVal') return isGap(a) ? a.total26 : -1;
+  return a[key];
 }
 
-function renderRepBar(){
-  const bar = document.getElementById('repbar');
-  const reps = ['All reps', ...DATA.meta.reps];
-  bar.innerHTML = reps.map(r=>`<button class="chip${r===activeRep?' active':''}" data-rep="${esc(r)}">${esc(r)}</button>`).join('');
-  bar.querySelectorAll('.chip').forEach(b=>b.addEventListener('click', ()=>{
-    activeRep = b.dataset.rep; renderRepBar(); renderTabs(); renderList();
-  }));
-  const sel = document.getElementById('repSelect');
-  sel.innerHTML = reps.map(r=>`<option value="${esc(r)}"${r===activeRep?' selected':''}>${esc(r)}</option>`).join('');
-  sel.onchange = () => { activeRep = sel.value; renderRepBar(); renderTabs(); renderList(); };
-}
-
-function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-function filteredSorted(){
-  const tab = TABS.find(t=>t.key===activeTab);
-  let rows = baseFiltered().filter(tab.test);
-  rows = rows.slice();
-  if(activeTab==='active') rows.sort((a,b)=>b.total26-a.total26);       // biggest current opportunity first
-  else rows.sort((a,b)=>b.total25-a.total25);                          // biggest lost volume first
-  return rows;
+function filteredRows(){
+  return DATA.accounts.filter(a=>{
+    if(state.rep && a.rep!==state.rep) return false;
+    if(state.city && a.city!==state.city) return false;
+    if(state.gapOnly && !isGap(a)) return false;
+    if(state.search){
+      const s = state.search.toLowerCase();
+      if(!a.name.toLowerCase().includes(s) && !(a.city||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  }).sort((x,y)=>{
+    const av = sortValue(x, state.sortKey), bv = sortValue(y, state.sortKey);
+    if(typeof av==='string') return av.localeCompare(bv)*state.sortDir;
+    return (av-bv)*state.sortDir;
+  });
 }
 
 function brandCell(label, brand){
@@ -284,76 +314,100 @@ function pitchList(bullets){
   return `<ul class="pitch-list">${bullets.map(b=>`<li><span class="plabel">${esc(b.label)}:</span><span>${esc(b.text)}</span></li>`).join('')}</ul>`;
 }
 
-function acctCard(a, idx){
-  const badges = [];
-  if(a.isNew) badges.push('<span class="badge new">New</span>');
-  if(a.lapsed) badges.push('<span class="badge lapsed">No SC/WC in 2026</span>');
-  if(a.existingCarbliss.length) badges.push('<span class="badge hascarb">Has Carbliss</span>');
-  const growth = pct(a.total26, a.total25);
-  const flavorTags = [];
-  if(a.primaryFlavor) flavorTags.push(`<span class="ftag">Already covered: ${esc(a.primaryFlavor)}</span>`);
-  if(a.gapFlavor) flavorTags.push(`<span class="ftag">Pitch: ${esc(a.gapFlavor)}</span>`);
-  return `
-  <div class="acct" id="acct-${idx}">
-    <div class="acct-head" data-idx="${idx}">
-      <div class="acct-left">
-        <div class="acct-name-row">
-          <span class="acct-name">${esc(a.name)}</span>
-          ${badges.join('')}
+function renderTable(){
+  const rows = filteredRows();
+  document.getElementById('count').textContent = `${rows.length.toLocaleString()} account${rows.length===1?'':'s'}`;
+  if(!rows.length){
+    document.getElementById('tbody').innerHTML = `<tr><td colspan="9"><div class="empty">No accounts match this filter.</div></td></tr>`;
+    return;
+  }
+  const maxBar = 120; // reference scale for bar width
+  const body = rows.map((a,i)=>{
+    const rowId = 'r'+i+'_'+(a.id!=null?a.id:a.name);
+    const gap = isGap(a);
+    const scW = Math.min(100, (a.sunCruiser.cases26/maxBar*100));
+    const wcW = Math.min(100, (a.whiteClaw.cases26/maxBar*100));
+    const badges = [];
+    if(a.isNew) badges.push('<span class="badge new">New</span>');
+    if(a.lapsed) badges.push('<span class="badge lapsed">No SC/WC in 2026</span>');
+    const mainRow = `<tr>
+      <td>${esc(a.name)}${badges.length?' '+badges.join(' '):''}</td>
+      <td>${esc(a.rep)}</td>
+      <td>${esc(a.city||'—')}</td>
+      <td class="num-cell">${fmt(a.sunCruiser.cases26)}</td>
+      <td class="num-cell">${fmt(a.whiteClaw.cases26)}</td>
+      <td class="num-cell">
+        <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end">
+          <div class="rtd-bar"><i class="b-sc" style="width:${scW}%"></i><i class="b-wc" style="width:${wcW}%"></i></div>
+          <span>${fmt(a.total26)}</span>
         </div>
-        <div class="acct-meta">${esc(a.rep)}${a.city?' · '+esc(a.city):''} · ${a.breadth} SKU${a.breadth===1?'':'s'} moving</div>
-        ${a.existingCarbliss.length ? `<div class="acct-carb-flavors">Carbliss on menu: ${a.existingCarbliss.map(esc).join(', ')}</div>` : ''}
-      </div>
-      <div class="acct-right">
-        <div class="acct-total num">${fmt(a.total26)} <span class="unit">cs</span></div>
-        <div class="acct-total-sub">${fmt(a.sunCruiser.cases26)} SC + ${fmt(a.whiteClaw.cases26)} WC · ${growth>=0?'+':''}${growth.toFixed(0)}% vs 2025</div>
-      </div>
-      <span class="chev">▶</span>
-    </div>
-    <div class="acct-body">
-      <div class="acct-body-inner">
+      </td>
+      <td><span class="status-badge ${a.existingCarbliss.length?'yes':'no'}">${a.existingCarbliss.length?'Yes':'No'}</span></td>
+      <td class="num-cell">${gap?`<span class="gap-pill">${fmt(a.total26)}</span>`:'—'}</td>
+      <td><button class="pitch-btn" data-row="${rowId}">${state.openPitch===rowId?'Hide':'Pitch'}</button></td>
+    </tr>`;
+    let pitchRow = '';
+    if(state.openPitch===rowId){
+      const flavorTags = [];
+      if(a.primaryFlavor) flavorTags.push(`<span class="ftag">Already covered: ${esc(a.primaryFlavor)}</span>`);
+      if(a.gapFlavor) flavorTags.push(`<span class="ftag">Pitch: ${esc(a.gapFlavor)}</span>`);
+      if(a.existingCarbliss.length) flavorTags.push(`<span class="ftag">Carbliss on menu: ${a.existingCarbliss.map(esc).join(', ')}</span>`);
+      const plainText = a.pitchBullets.map(b=>`${b.label}: ${b.text}`).join(' ');
+      pitchRow = `<tr class="pitch-row"><td colspan="9"><div class="pitch-box">
         <div class="brandrow">
           ${brandCell('Sun Cruiser cases (2025→2026)', a.sunCruiser)}
           ${brandCell('White Claw cases (2025→2026)', a.whiteClaw)}
         </div>
-        <div class="pitch-label">Pitch<span class="pitch-sub">quick talking points to relay to the owner</span></div>
+        <div class="pitch-label">Pitch</div>
         ${pitchList(a.pitchBullets)}
-        <div class="flavors">${flavorTags.join('')}</div>
-      </div>
-    </div>
-  </div>`;
-}
+        ${flavorTags.length?`<div class="flavors">${flavorTags.join('')}</div>`:''}
+        <button class="copy-btn" data-copy="${encodeURIComponent(plainText)}">Copy pitch</button>
+      </div></td></tr>`;
+    }
+    return mainRow+pitchRow;
+  }).join('');
+  document.getElementById('tbody').innerHTML = body;
 
-function renderList(){
-  const rows = filteredSorted();
-  document.getElementById('count').textContent = `${rows.length.toLocaleString()} account${rows.length===1?'':'s'}`;
-  const list = document.getElementById('list');
-  if(!rows.length){
-    list.innerHTML = '<div class="empty">No accounts match this filter.</div>';
-    return;
-  }
-  list.innerHTML = rows.map((a,i)=>acctCard(a,i)).join('');
-  list.querySelectorAll('.acct-head').forEach(h=>{
-    h.addEventListener('click', ()=>{
-      document.getElementById('acct-'+h.dataset.idx).classList.toggle('open');
+  document.querySelectorAll('.pitch-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.row;
+      state.openPitch = (state.openPitch===id) ? null : id;
+      renderTable();
+    });
+  });
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const text = decodeURIComponent(btn.dataset.copy);
+      navigator.clipboard && navigator.clipboard.writeText(text).then(()=>{
+        btn.textContent = 'Copied'; btn.classList.add('copied');
+        setTimeout(()=>{ btn.textContent='Copy pitch'; btn.classList.remove('copied'); }, 1600);
+      });
     });
   });
 }
 
-document.getElementById('search').addEventListener('input', e=>{ query = e.target.value; renderTabs(); renderList(); });
-document.getElementById('carblessToggle').addEventListener('click', function(){
-  carblessOnly = !carblessOnly;
-  this.classList.toggle('on', carblessOnly);
-  renderTabs(); renderList();
+document.getElementById('search').addEventListener('input', e=>{ state.search=e.target.value; renderTable(); });
+document.getElementById('repFilter').addEventListener('change', e=>{ state.rep=e.target.value; renderTable(); });
+document.getElementById('cityFilter').addEventListener('change', e=>{ state.city=e.target.value; renderTable(); });
+document.getElementById('gapOnly').addEventListener('change', e=>{ state.gapOnly=e.target.checked; renderTable(); });
+document.getElementById('threshOn').addEventListener('input', e=>{ state.threshOn=parseFloat(e.target.value)||0; renderTable(); });
+
+document.querySelectorAll('#acctTable thead th').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const key = th.dataset.key; if(!key) return;
+    if(state.sortKey===key) state.sortDir *= -1; else { state.sortKey=key; state.sortDir=-1; }
+    document.querySelectorAll('#acctTable thead th').forEach(x=>x.classList.remove('sorted','sorted-asc'));
+    th.classList.add(state.sortDir===1?'sorted-asc':'sorted');
+    renderTable();
+  });
 });
 
 document.getElementById('updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 
 renderStats();
 renderGoal();
-renderTabs();
-renderRepBar();
-renderList();
+populateSelects();
+renderTable();
 </script>
 </body>
 </html>

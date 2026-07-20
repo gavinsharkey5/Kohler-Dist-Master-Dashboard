@@ -15,6 +15,21 @@ space on their menu, preferring one from a different flavor family than
 whatever's already dominant, so Carbliss adds breadth to the menu
 instead of cannibalizing a proven seller.
 
+UI (updated 2026-07-20 per Kohler): the account list is a sortable,
+filterable table — the same format as the /carbliss/ "Placement Gap
+Tracker" page, minus its Channel column (every account here is
+already on-premise-only, so a Channel column would be redundant).
+Columns: Account, Rep, Territory, Sun Cruiser (cs), White Claw (cs),
+Combined Volume, Carbliss?, Gap Size, Pitch. Filters: search, Rep,
+Territory, a Gap threshold (cases) number input, and a "Gap accounts
+only" checkbox. A gap account = no Carbliss yet with combined SC+WC
+volume at or above the threshold; Gap Size shows that combined volume
+for gap accounts and an em dash otherwise. Clicking Pitch expands a
+row with the account's brand-level case counts (2025→2026) and the
+same pitch bullets/flavor tags the old card view showed, plus a copy
+button. Any column header sorts the table; default sort is Combined
+Volume, biggest first.
+
 Files:
   accounts.csv   RDE "Carbliss Eval vs Sun Cruiser & White Claw" export
                  (account-level Sun Cruiser / White Claw cases & buyers, 2025 vs 2026)
