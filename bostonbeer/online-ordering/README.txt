@@ -1,151 +1,79 @@
-Online Ordering Dashboard (Boston Beer)
-========================================
+Online Ordering Pulse Check (Boston Beer)
+===========================================
 
-Cross-references your Boston Beer portal forecast against Encompass
-sell-through/inventory data, flags SKUs you're likely over- or
-under-ordering, and exports a corrected forecast in the format the
-Boston Beer online ordering system accepts as a CSV upload.
+Simplified 2026-07-20 per Kohler: this used to run a trend-line
+projection / seasonal fallback / case-pack rounding engine and compute
+a "Recommended" order quantity. That's gone. This page is now just a
+pulse check: for each SKU, line up Boston Beer's own forecast (F) per
+week against recent actual case sales and current inventory, so it's
+easy to eyeball whether F needs adjusting -- no projection, no formula
+box, no sliders.
 
-Inputs
-------
-1. Forecast file exported from the Boston Beer portal. Columns: Product,
-   Distributor, BBC SKU, Customer SKU, then a pair of columns per week:
-   "<date> F" is Boston Beer's OWN system-generated forecast (not your
-   team's number), and "<date> A" is your confirmed order for that
-   week, entered by your manager -- blank until he's reviewed/adjusted
-   it. On the live portal, only the nearest week is locked (grey, can't
-   be changed -- it's already committed to ship); every week after that
-   is open to edit whether or not it already has a value in it.
+Files
+-----
+  076KOH_Forecasts.csv   Forecast export from the Boston Beer portal.
+                         Columns: Product, Distributor, BBC SKU,
+                         Customer SKU, then a pair of columns per week:
+                         "<date> F" is Boston Beer's own system-
+                         generated forecast, "<date> A" is your
+                         manager's confirmed order for that week
+                         (blank until entered). The nearest week is
+                         locked on the live portal (can't be changed)
+                         -- shown here for reference only, excluded
+                         from the CSV export.
+  generate.py            Rebuilds data/forecast.json from the CSV
+                         above. Run: python3 generate.py
+  data/forecast.json     The page's data. Inventory-side fields
+                         (Available, 4-wk/8-wk Average, last 5 weeks of
+                         actual case sales, Last Receive Date/Qty,
+                         brand/package, cleaned-up product name) are
+                         carried forward from whatever was last built
+                         in here -- generate.py does NOT take an
+                         Encompass Inventory Report as input, it only
+                         refreshes the forecast/on-file numbers. To
+                         refresh the inventory-side fields, ask Claude
+                         to rebuild from a fresh "Boston Beer Inventory
+                         Report" export the same way this page was
+                         originally built.
+  index.html             The page itself.
 
-2. Encompass "Boston Beer Inventory Report" export. Columns include
-   Supplier Product ID (joins to BBC SKU), Package, Available, L4
-   Average / L8 Average (average weekly cases sold over the trailing
-   4/8 weeks), the last 5 weeks of case sales, and Last Receive
-   Date/Quantity.
+To refresh with a new forecast export
+--------------------------------------
+  1. Save the new export over 076KOH_Forecasts.csv (same column
+     layout -- a Product/Distributor/BBC SKU/Customer SKU block
+     followed by "<date> F"/"<date> A" week pairs).
+  2. Run: python3 generate.py
+  3. Commit and push.
 
-3. Encompass "Packages" reference export. Maps each Package description
-   (e.g. "1/2 BBL Keg") to Case Equiv (case-equivalent conversion
-   factor) and Wholesale Units per Case -- this is what lets a
-   recommendation land on a physically orderable quantity (e.g. a
-   whole keg) instead of an arbitrary case-equivalent fraction.
-
-4. Encompass "ForecastReport" export. Per SKU, this carries the actual
-   Boston Beer lead time (days, shown for reference only) plus 52 weeks
-   of trailing sell-through history -- used for the same-week-last-year
-   seasonal fallback below.
-
-5. Encompass "Products" export. Maps each Supplier Product Num (BBC SKU)
-   to the clean product name stored in Encompass -- this replaces the
-   raw, inconsistently-abbreviated names from the Boston Beer forecast
-   file (e.g. "Sun Cruiser Half & Half 12oz 6/4pk SK" becomes "Sun
-   Cruiser Lemonade & Iced Tea 6/4/12 oz Can") everywhere on the page
-   and in the CSV export. SKUs with no match (shown with a "†" marker
-   and an "Unmatched product name" tag in the detail view) fall back to
-   the raw forecast-file name.
-
-How the joins work
+What's on the page
 -------------------
-Forecast rows are matched to inventory by BBC SKU == Supplier Product
-ID, exact match first. A small number of SKUs in the inventory export
-carry a suffix variant of the forecast SKU (e.g. forecast "AJ0153" vs
-inventory "AJ0153A1") -- those are matched by prefix and flagged in the
-row detail as "matched by prefix, not exact match" so you can
-sanity-check them. Packages and ForecastReport both join on the same
-BBC SKU / Supplier Product ID key (Packages via the inventory row's
-Package description, ForecastReport directly). SKUs that don't resolve
-against inventory still show up with their forecast data, just without
-inventory-based recommendations.
+Per SKU: Product (cleaned-up name from Encompass's Products export
+where matched, raw portal name + a dagger otherwise), Available,
+Last Receive (date + quantity), 4-wk Avg (Encompass's own trailing
+average, not something computed here), a small sparkline of the last
+5 weeks' actual case sales, then one column per forecast week.
 
-Recommendation math (see the in-page "How Recommended is computed" box
-for the live version)
-------------------------------------------------------------------
-Recommended is a pure sales projection. It is NOT adjusted for how much
-stock is currently on hand -- Weeks of Supply / Status (below) are a
-separate, independent read on whether current inventory looks high or
-low relative to this projection, driven by the Target/Tolerance
-sliders. Recommended itself ignores those sliders entirely.
+Each week shows Boston Beer's F value in an editable field, with your
+manager's confirmed order (A) underneath in small text when one's on
+file. F is tinted amber if it's 50%+ above the SKU's own 4-wk Avg, or
+teal if it's 50%+ below -- that's the entire "flag" logic, there is no
+further math behind it. Everything else (Available, Last Receive,
+Recent Sales) is raw source data, meant to be read by eye alongside
+the tint, not run through a formula.
 
-(a) Trend-line projection -- for SKUs with at least 2 of the last 5
-    weeks' case sales reported in the Inventory Report (Cases -3/-2/-1
-    Weeks, Cases Last Week, Cases This Week), a least-squares trend
-    line is fit through those points (weeks with no reported value are
-    skipped, not treated as a zero-sales week) and extrapolated forward
-    week by week. A climbing trend produces a climbing recommendation;
-    a tapering one tapers off -- it's not a flat average.
+You can edit any (non-locked) F value directly in the table -- it's
+kept in the browser only, not written back to the CSV or JSON. "Export
+upload CSV" downloads Product/Distributor/BBC SKU/Customer plus every
+open (non-locked) week, using whatever's currently in each F field
+(your edits if you made any, Boston Beer's original number otherwise)
+-- ready to re-upload to the portal. "Reset edits" clears anything
+you've typed and reverts every field to Boston Beer's original
+forecast.
 
-(b) Case-pack-aware rounding -- every recommended quantity is converted
-    from case-equivalents to physical orderable units using that SKU's
-    Case Equiv (from Packages), rounded to the nearest whole unit (e.g.
-    nearest whole keg), then converted back to case-equivalents for
-    display/export. Standard 1/1 packaging rounds to whole
-    case-equivalents as before; non-standard packaging (kegs, etc.)
-    rounds to whole physical units instead, which is why you'll see
-    values like 6.94 case-equivalents on keg SKUs -- that's exactly 3
-    kegs, not a rounding artifact.
+Click any of the first four column headers to sort; type in the
+search box to filter by product name or SKU.
 
-(c) Seasonal fallback -- for SKUs with fewer than 2 of the last 5 weeks
-    reported (new/seasonal items not yet shipping this cycle, or
-    between seasons) but with 52-week ForecastReport history available,
-    the recommendation uses the same week from a year ago (+/- 5 days)
-    instead. This takes priority over a single stray recent data point
-    (e.g. a return showing up as "-2" in one week) since one number
-    can't establish a real trend, and last year's actual seasonal
-    volume is a far more reliable signal for an item that hasn't
-    started shipping yet. SKUs with neither a usable trend nor a
-    seasonal match fall back to Boston Beer's own forecast unchanged
-    (or a single data point flatlined forward, if that's all there is).
-    The in-page detail view for each SKU shows which of the three
-    methods (trend / seasonal / passthrough) was used.
-
-Target weeks of supply and tolerance are adjustable live on the page
-(default 4 weeks +/- 1) and drive Weeks of Supply / Status only.
-
-Date range and the locked week
--------------------------------
-The dashboard only tracks weeks through the end of August -- September
-and October are far enough out to just be noise for ordering decisions
-right now (edit CUTOFF in build_forecast_data.py to change this). The
-nearest week is tagged "Locked" in the detail view: it's already
-committed with Boston Beer and can't be changed, so it's shown for
-reference only and excluded from the KPI totals, the Difference column,
-and the CSV export. Every week after that is still open.
-
-"Difference" compares Recommended against whatever's the CURRENT plan
-for that week -- your confirmed order (the "A" column) if one's been
-entered, Boston Beer's own forecast (the "F" column) if not. That's
-the number that actually matters: it tells you whether to adjust what's
-already been typed in, not just how the tool disagrees with Boston
-Beer's forecast.
-
-A note on precision: on screen, quantities are always shown as whole
-orderable units (e.g. "3" kegs, never "6.94"). The exported CSV,
-though, still carries the raw case-equivalent value (6.94) since that's
-the unit the upload format is believed to expect -- that number is
-still an exact whole-keg multiple, not a rounding artifact. If the
-Boston Beer portal actually wants a whole keg count instead of a
-case-equivalent in that column, divide the exported value by the SKU's
-Case Equiv (from the Packages file) before upload. This hasn't been
-confirmed against the portal's actual keg input format yet.
-
-Exporting
----------
-The "Export upload CSV" button generates a CSV using the CURRENT
-slider settings, with columns Product / Distributor / BBC SKU /
-Customer (populated from Customer SKU -- adjust if the portal expects
-something different there) followed by the open week-ending date
-columns (everything through end of August except the locked nearest
-week, since that one can't be changed anyway).
-
-To refresh with new exports
-----------------------------
-Replace the five source files and re-run the build script (ask Claude
-to regenerate, or re-run build_forecast_data.py against the new CSVs)
-to regenerate data/forecast.json, then reload the page -- no HTML
-changes needed for a routine data refresh.
-
-Click any column header in the SKU table to sort by it; click again to
-reverse direction.
-
-Known gaps -- see the chat conversation that built this for the full
-list of reports that would fortify this further (promo calendar, code
-dates, a running history of forecast accuracy over time).
+The "SKUs with recent sales but no current forecast row" panel at the
+bottom is unchanged from before -- SKUs Encompass has sales history for
+that don't appear in the current Boston Beer forecast export, worth a
+glance in case something's missing from the portal.

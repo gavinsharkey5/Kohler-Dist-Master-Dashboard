@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Online Ordering Dashboard · Boston Beer</title>
+<title>Online Ordering Pulse Check · Boston Beer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -9,11 +9,8 @@
   --canvas:#F5F8FB; --card:#FFFFFF; --card2:#EEF3F8; --ink:#12253B; --ink-soft:#5B6B7E;
   --line:#DCE5EE; --line-soft:#E9EFF5;
   --navy:#0C2D4E; --blue:#1E6FB8; --blue-soft:#E6F0FA;
-  --accent:var(--blue); --accent2:var(--navy); --accent-soft:var(--blue-soft);
-  --good:#1E8E5A; --good-soft:#E4F6EC;
   --amber:#AD7209; --amber-soft:#FBF1DC;
-  --red:#C23B30; --red-soft:#FBEAE8;
-  --gray:#6B7684; --gray-soft:#EEF1F5;
+  --teal:#0E7C86; --teal-soft:#E1F3F3;
   --shadow:0 1px 2px rgba(12,45,78,.05),0 10px 28px rgba(12,45,78,.06);
 }
 *{box-sizing:border-box}
@@ -23,7 +20,7 @@ body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
   -webkit-tap-highlight-color:transparent}
 .num{font-variant-numeric:tabular-nums}
 a{color:var(--blue)}
-.wrap{max-width:1240px;margin:0 auto;padding:0 18px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px}
 
 .topbar{padding:18px 0 0}
 .crumb{font-size:12.5px;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-weight:500}
@@ -33,22 +30,7 @@ header{padding:14px 0 20px;border-bottom:1px solid var(--line)}
 .eyebrow{letter-spacing:.1em;text-transform:uppercase;font-size:11px;font-weight:700;color:var(--blue);margin:0 0 8px}
 h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--navy);letter-spacing:-.01em}
 .sub{color:var(--ink-soft);font-size:13.5px;max-width:760px;margin:0}
-.updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);letter-spacing:.01em;display:flex;align-items:center;gap:7px;font-weight:500}
-.livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
-@keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
-
-.kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:20px 0}
-@media(max-width:900px){.kpi-strip{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow);cursor:pointer;transition:.12s}
-.kpi:hover{border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
-.kpi.active{border-color:var(--blue);background:var(--accent-soft)}
-.kpi .klabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:700;margin-bottom:7px}
-.kpi .kval{font-weight:800;font-size:22px;line-height:1;color:var(--navy)}
-.kpi .kval.over{color:var(--red)}
-.kpi .kval.under{color:var(--amber)}
-.kpi .kval.stockout{color:var(--red)}
-.kpi .kval.good{color:var(--good)}
+.updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);letter-spacing:.01em;font-weight:500}
 
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
 .panel h2{font-size:16px;margin:0 0 4px;color:var(--navy);font-weight:700}
@@ -57,48 +39,40 @@ h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--nav
 .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
 .ctl{display:flex;flex-direction:column;gap:5px}
 .ctl label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);font-weight:700}
-.ctl label[title]{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
-.ctl label[title]:hover{color:var(--navy)}
-.ctl input[type=number]{width:74px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:14px;font-weight:600}
-.ctl input[type=text]{width:220px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 9px;font-size:13.5px}
-.btn{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
+.ctl input[type=text]{width:240px;background:var(--card2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 10px;font-size:14px;min-height:38px}
+.btn{background:var(--navy);color:#fff;border:none;border-radius:9px;padding:9px 16px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:var(--shadow);min-height:38px}
 .btn:hover{background:var(--blue)}
+.btn.ghost{background:var(--card);color:var(--navy);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--blue)}
+.result-count{margin-left:auto;font-size:12.5px;color:var(--ink-soft);align-self:center}
+
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-soft);margin:0 0 12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
 
 table{width:100%;border-collapse:collapse;font-size:13px}
-#sku-table{min-width:1080px}
-#sku-table td:first-child,#sku-table th:first-child{min-width:250px}
-th{text-align:left;color:var(--ink-soft);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap;user-select:none}
+#sku-table{min-width:1500px}
+#sku-table td:first-child,#sku-table th:first-child{min-width:230px;position:sticky;left:0;background:var(--card);z-index:1}
+#sku-table tr:hover td:first-child{background:var(--card2)}
+th{text-align:left;color:var(--ink-soft);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 8px;border-bottom:2px solid var(--line);white-space:nowrap;user-select:none}
 th[data-key]{cursor:pointer}
-th[title]{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--ink-soft);text-underline-offset:3px;cursor:help}
-th[data-key][title]{cursor:pointer}
-th[title]:hover{color:var(--navy)}
 .sort-ind{margin-left:3px;color:var(--blue);font-size:9px}
 th.num,td.num{text-align:right}
-td{padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
-tr.row:hover{background:var(--card2)}
-tr.row{cursor:pointer}
+td{padding:7px 8px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+tr:hover td{background:var(--card2)}
 .pname{font-weight:600;font-size:13px;color:var(--ink)}
 .pmeta{font-size:11px;color:var(--ink-soft);margin-top:2px}
-.badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
-.badge.over{background:var(--red-soft);color:var(--red)}
-.badge.under{background:var(--amber-soft);color:var(--amber)}
-.badge.stockout{background:var(--red-soft);color:var(--red)}
-.badge.on-target{background:var(--good-soft);color:var(--good)}
-.badge.dead-stock{background:var(--gray-soft);color:var(--gray)}
-.badge.no-data{background:var(--gray-soft);color:var(--gray)}
-.chev{color:var(--ink-soft);font-size:13px;transition:transform .15s;display:inline-block}
-tr.row.open .chev{transform:rotate(90deg)}
-.detailrow{display:none}
-.detailrow.open{display:table-row}
-.detailrow td{background:var(--card2);padding:0}
-.detail-inner{padding:14px 18px 18px}
-.detail-inner table{font-size:12px}
-.detail-inner th,.detail-inner td{padding:6px 9px}
-.delta-pos{color:var(--good)}
-.delta-neg{color:var(--red)}
-.sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:22px;vertical-align:middle}
+.sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:20px;vertical-align:middle}
 .sparkline i{display:block;width:4px;background:var(--blue);border-radius:1px;opacity:.85}
-.trend-note{font-size:11px;color:var(--ink-soft);margin-top:10px}
+
+.wk{min-width:78px;text-align:center}
+.wk-f{width:56px;text-align:right;border:1px solid var(--line);border-radius:6px;padding:4px 5px;font-size:12.5px;
+  font-family:inherit;background:var(--blue-soft);color:var(--ink);font-weight:600}
+.wk-f:focus{outline:2px solid var(--blue);outline-offset:1px}
+.wk-f.hi-high{background:var(--amber-soft);color:var(--amber)}
+.wk-f.hi-low{background:var(--teal-soft);color:var(--teal)}
+.wk-locked{width:56px;text-align:right;padding:4px 5px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
+.wk-onfile{font-size:9.5px;color:var(--ink-soft);margin-top:2px;white-space:nowrap}
 
 .table-scroll{overflow-x:auto;border-radius:10px}
 .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
@@ -109,33 +83,12 @@ details.orphans summary::-webkit-details-marker{display:none}
 details.orphans summary::before{content:"\203A";display:inline-block;transition:transform .15s;color:var(--ink-soft)}
 details.orphans[open] summary::before{transform:rotate(90deg)}
 
-.sources-body{margin-top:14px;font-size:13px;color:var(--ink-soft);line-height:1.6}
-.sources-body h3{font-size:12.5px;color:var(--navy);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.04em}
-.sources-body h3:first-child{margin-top:0}
-.sources-body b{color:var(--ink)}
-.sources-body ol{margin:0;padding-left:20px}
-.sources-body ol li{margin-bottom:8px}
-.sources-body code{background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:var(--navy)}
-table.refs{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0}
-table.refs td{padding:7px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-soft)}
-table.refs td:first-child{width:170px;white-space:nowrap}
-
-.methodbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ink-soft);line-height:1.6}
-.methodbox b{color:var(--navy)}
-.methodbox ul{margin:8px 0 0;padding-left:18px}
-.methodbox li{margin-bottom:6px}
-
-.chiprow{margin-top:10px}
-.chip{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--ink-soft);margin:2px 6px 2px 0;cursor:help}
-.chip.warn{color:var(--amber);border-color:var(--amber-soft);background:var(--amber-soft)}
-
 footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center}
 footer p{max-width:720px;margin:6px auto}
 
 @media (max-width:640px){
   .wrap{padding:0 14px}
-  .kpi-strip{gap:8px}
-  th,td{padding:8px 6px}
+  th,td{padding:7px 6px}
 }
 </style>
 </head>
@@ -147,52 +100,38 @@ footer p{max-width:720px;margin:6px auto}
 
 <div class="wrap">
 <header>
-  <p class="eyebrow">Boston Beer &middot; Forecast vs. Inventory</p>
-  <h1>Online Ordering Dashboard</h1>
-  <p class="sub">Cross-references your Boston Beer portal forecast against Encompass sell-through, available inventory, package/case-pack data, and 52 weeks of order history. Flags SKUs you're likely over- or under-ordering and exports a corrected forecast in the portal's upload format.</p>
+  <p class="eyebrow">Boston Beer &middot; Online Ordering</p>
+  <h1>Forecast Pulse Check</h1>
+  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against Boston Beer's own forecast (F) per week, so you can eyeball whether F needs adjusting before it locks. A week's F is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it.</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
-<div class="kpi-strip" id="kpi-strip"></div>
-
 <div class="panel">
-  <h2>Target inventory position</h2>
-  <p class="phint">Drives the Weeks of Supply / Status "over-under" flags below. (Recommended is a separate sales-trend projection and isn't affected by these sliders — see the methodology box below the table.) Tune this to match Boston Beer's actual delivery cadence — there's no universal right answer, so start here and adjust to what you know.</p>
   <div class="controls">
-    <div class="ctl">
-      <label title="How many weeks of sales you want on hand at any time, e.g. 4 = enough stock to cover 4 weeks at the recent sales pace. Multiplied by 4-wk Avg to get each SKU's target inventory position, which drives both the Status badge and the Recommended math.&#10;&#10;In plain terms: how many weeks' worth of beer do you want sitting in the warehouse at all times? If a product sells 1 case a week and you set this to 4, you want 4 cases on hand — like always keeping a month's worth of snacks in the kitchen instead of running out.">Target weeks of supply</label>
-      <input type="number" id="ctl-target" min="0.5" step="0.5" value="4" title="How many weeks of sales you want on hand at any time. Drives the Status badge and the Recommended quantities for every SKU.&#10;&#10;In plain terms: how many weeks' worth of beer do you want on hand at all times — like always keeping a month's worth of snacks in the kitchen instead of running out.">
-    </div>
-    <div class="ctl">
-      <label title="A buffer zone around Target weeks of supply so normal week-to-week wobble doesn't flip a SKU's status back and forth. E.g. Target 4 ± 1 means Weeks of Supply anywhere from 3–5 counts as On target; below 3 is Under-indexed, above 5 is Over-indexed.&#10;&#10;In plain terms: how much wiggle room before we panic? Stock is never exactly on target every single week, and that's fine. Tolerance is the 'don't freak out yet' zone around your target so normal week-to-week wobble doesn't get flagged as a problem.">&plusmn; Tolerance (weeks)</label>
-      <input type="number" id="ctl-tolerance" min="0" step="0.5" value="1" title="Buffer around Target weeks of supply before a SKU is flagged Over- or Under-indexed.&#10;&#10;In plain terms: how much wiggle room before we panic? Being a little above or below target is normal — tolerance is the 'don't freak out yet' zone so normal wobble doesn't get flagged as a problem.">
-    </div>
     <div class="ctl">
       <label>Search product / SKU</label>
       <input type="text" id="ctl-search" placeholder="e.g. Twisted Tea, OA9163">
     </div>
+    <button class="btn ghost" id="btn-reset">Reset edits</button>
     <button class="btn" id="btn-export">Export upload CSV</button>
+    <span class="result-count"><span id="count-visible">0</span> of <span id="count-total">0</span> SKUs</span>
   </div>
-  <div class="methodbox" id="methodbox"></div>
-</div>
-
-<div class="panel">
-  <h2>SKUs (<span id="count-visible">0</span> of <span id="count-total">0</span>)</h2>
-  <p class="phint">Tap a row to see the week-by-week breakdown. Click any column header to sort.</p>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--blue-soft);border:1px solid var(--line)"></span> F (Boston Beer forecast) &mdash; edit directly, it feeds the export</span>
+    <span><span class="sw" style="background:var(--amber-soft)"></span> F is well above recent average weekly sales</span>
+    <span><span class="sw" style="background:var(--teal-soft)"></span> F is well below recent average weekly sales</span>
+    <span>Small text under a week = your manager's confirmed order (A), if one's on file</span>
+  </div>
   <div class="table-scroll">
     <table id="sku-table">
       <thead>
         <tr>
-          <th data-key="name" title="Your Boston Beer forecast export's Product/BBC SKU, renamed to the clean product name from Encompass's Products export (Supplier Product Num → Product Name). SKUs with no Products match keep the raw forecast-file name and are flagged with a †.">Product<span class="sort-ind"></span></th>
-          <th class="num" data-key="avail" title="Source: Encompass 'Boston Beer Inventory Report' export, 'Available' column — cases physically sitting in the warehouse as of the report date.">Available<span class="sort-ind"></span></th>
-          <th class="num" data-key="l4" title="Source: Encompass Inventory Report, 'L4 Average' column — that SKU's average weekly case sales over the trailing 4 weeks, as calculated by Encompass.">4-wk Avg<span class="sort-ind"></span></th>
-          <th title="Source: Encompass Inventory Report's 'Cases -3 Weeks' through 'Cases This Week' columns — actual case sales for each of the last 5 weeks. Taller bar means more sold; hover a bar for the exact number.">Recent Trend</th>
-          <th class="num" data-key="wos" title="Calculated: Available ÷ 4-wk Avg. Compared against the Target weeks of supply (± Tolerance) sliders above to set the Status badge — under target−tolerance is Under-indexed, over target+tolerance is Over-indexed.">Weeks of Supply<span class="sort-ind"></span></th>
-          <th data-key="status" title="Derived from Weeks of Supply vs. your Target ± Tolerance sliders: Stockout risk (Available < 0), Under-indexed (WoS below target), Over-indexed (WoS above target), On target (within tolerance), or No inventory match / No recent velocity if Available or 4-wk Avg is missing or zero. Hover a badge below for its exact definition.">Status<span class="sort-ind"></span></th>
-          <th class="num" data-key="cur" id="th-cur" title="Source: your Boston Beer forecast export's '<date> F' columns, summed across the open (unlocked) weeks. This is Boston Beer's own system-generated forecast, not a number your team entered."><span class="th-label">Boston Beer Forecast</span><span class="sort-ind"></span></th>
-          <th class="num" data-key="rec" id="th-rec" title="Calculated: a trend line through your last 5 weeks of actual case sales (Encompass Inventory Report), extrapolated forward and rounded to a whole orderable unit — a pure sales projection, NOT adjusted for how much stock is currently on hand. See the 'Data sources &amp; methodology' section below the table for the exact formula, then summed across the open weeks."><span class="th-label">Recommended</span><span class="sort-ind"></span></th>
-          <th class="num" data-key="gap" title="Calculated: Recommended minus your current plan (your confirmed order — the '<date> A' column — where you've entered one, Boston Beer's '<date> F' forecast otherwise), summed across the open weeks. Green means order more, red means order less.">Difference<span class="sort-ind"></span></th>
-          <th></th>
+          <th data-key="name">Product<span class="sort-ind"></span></th>
+          <th class="num" data-key="avail">Available<span class="sort-ind"></span></th>
+          <th data-key="lastReceive">Last Receive<span class="sort-ind"></span></th>
+          <th class="num" data-key="l4">4-wk Avg<span class="sort-ind"></span></th>
+          <th title="Encompass Inventory Report's last 5 weeks of actual case sales, oldest to newest. Hover a bar for the exact number.">Recent Sales</th>
+          <th id="week-headers-start"></th>
         </tr>
       </thead>
       <tbody id="sku-tbody"></tbody>
@@ -202,51 +141,8 @@ footer p{max-width:720px;margin:6px auto}
 </div>
 
 <div class="panel">
-  <details class="orphans" id="sources-details">
-    <summary>Data sources &amp; methodology &mdash; exactly how every column is calculated</summary>
-    <div class="sources-body">
-      <h3>Source files</h3>
-      <ol>
-        <li><b>Boston Beer forecast export</b> (from the Boston Beer online ordering portal) &mdash; Product, Distributor, BBC SKU, Customer SKU, then a pair of columns per week: "&lt;date&gt; F" is Boston Beer's own system-generated forecast, "&lt;date&gt; A" is your manager's confirmed order for that week (blank until entered). Feeds: Product/SKU, Boston Beer Forecast, On File.</li>
-        <li><b>Encompass "Boston Beer Inventory Report"</b> &mdash; Supplier Product ID, Available, L4 Average, L8 Average, the last 5 weeks of case sales (Cases -3/-2/-1 Weeks, Cases Last Week, Cases This Week), Last Receive Date/Quantity. Feeds: Available, 4-wk Avg, Recent Trend, the trend line behind Recommended, and (with the Target/Tolerance sliders) Weeks of Supply and Status.</li>
-        <li><b>Encompass "Packages" reference export</b> &mdash; maps each package description (e.g. "1/6 BBL Keg") to a Case Equiv conversion factor. Feeds: the whole-unit rounding on Recommended (e.g. why a keg SKU recommends "3", not "6.94").</li>
-        <li><b>Encompass "ForecastReport"</b> &mdash; per SKU, the actual Boston Beer order lead time in days (shown for reference only) plus 52 weeks of trailing sell-through history. Feeds: the same-week-last-year fallback for SKUs with fewer than 2 weeks of recent sales data.</li>
-        <li><b>Encompass "Products" export</b> &mdash; maps each Supplier Product Num to its clean Encompass product name. Feeds: the Product column display name.</li>
-      </ol>
-
-      <h3>Column-by-column</h3>
-      <table class="refs">
-        <tbody>
-          <tr><td><b>Available</b></td><td>Inventory Report, "Available" column. As-of the report date, no adjustment.</td></tr>
-          <tr><td><b>4-wk Avg</b></td><td>Inventory Report, "L4 Average" column, calculated by Encompass from the SKU's trailing 4 weeks of case sales.</td></tr>
-          <tr><td><b>Recent Trend</b></td><td>Inventory Report, "Cases -3 Weeks" through "Cases This Week" columns &mdash; 5 raw weekly totals, unmodified.</td></tr>
-          <tr><td><b>Weeks of Supply</b></td><td><code>Available &divide; 4-wk Avg</code>.</td></tr>
-          <tr><td><b>Status</b></td><td>Stockout risk if Available &lt; 0. No inventory match if Available or 4-wk Avg is missing. No recent velocity if 4-wk Avg = 0 but Available &gt; 0. Otherwise: Under-indexed if Weeks of Supply &lt; Target &minus; Tolerance, Over-indexed if &gt; Target + Tolerance, On target in between.</td></tr>
-          <tr><td><b>Boston Beer Forecast</b></td><td>Sum of the "&lt;date&gt; F" columns from the forecast export, open weeks only.</td></tr>
-          <tr><td><b>On File</b> (detail view)</td><td>The "&lt;date&gt; A" column from the forecast export &mdash; blank until your manager enters a value.</td></tr>
-          <tr><td><b>Recommended</b></td><td>See formula below.</td></tr>
-          <tr><td><b>Difference</b></td><td><code>Recommended &minus; (On File if entered, else Boston Beer Forecast)</code>, summed across open weeks.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>The Recommended formula</h3>
-      <p>Every SKU uses exactly one of three methods, shown per-row as "Recommended via". <b>Recommended is a pure sales projection &mdash; it is not adjusted for Available inventory, Target weeks of supply, or Tolerance.</b> Those sliders only affect Weeks of Supply / Status, a separate, independent read on whether current stock looks high or low relative to this projection.</p>
-      <p><b>1. Trend-based</b> (SKUs with at least 2 of the 5 recent weeks reported &mdash; most SKUs):</p>
-      <ol>
-        <li>Take the Inventory Report's 5 weekly case-sales figures &mdash; Cases -3 Weeks, Cases -2 Weeks, Cases -1 Week, Cases Last Week, Cases This Week &mdash; as points 0 through 4 on a timeline. Weeks with no reported value are skipped, not treated as zero.</li>
-        <li>Fit a least-squares straight line through those points (slope + intercept) &mdash; the same trend-line math as Excel's TREND/LINEST.</li>
-        <li>For each open forecast week, continue that line forward (week 5, 6, 7, ... right after "This Week") to get a raw projected quantity, floored at 0.</li>
-        <li>Round to the nearest whole physically-orderable unit using the SKU's Case Equiv from the Packages export (e.g. nearest whole keg), then convert back to case-equivalents for display/export.</li>
-      </ol>
-      <p><b>2. Seasonal fallback</b> (fewer than 2 recent weeks reported, but ForecastReport history exists): uses the actual volume from the same calendar week one year earlier (&plusmn;5 days), case-pack rounded the same way. This takes priority over a single stray recent data point (e.g. a return showing up as "-2" in one week) since one number can't establish a real trend, and last year's actual seasonal volume is far more reliable for an item that hasn't started shipping yet.</p>
-      <p><b>3. Passthrough</b> (fewer than 2 recent weeks and no usable history, or exactly 1 recent week with no seasonal history to fall back on): Boston Beer's own forecast, unchanged (or that single data point flatlined forward, if that's all there is).</p>
-    </div>
-  </details>
-</div>
-
-<div class="panel">
   <details class="orphans" id="orphans-details">
-    <summary>SKUs with Encompass sales history but <span id="orphan-count">0</span> no forecast entry &mdash; check these aren't being missed</summary>
+    <summary>SKUs with recent sales but <span id="orphan-count">0</span> no current forecast row</summary>
     <div class="table-scroll" style="margin-top:12px">
       <table id="orphan-table">
         <thead><tr><th>Product</th><th>Brand</th><th class="num">Available</th><th class="num">4-wk Avg</th><th>Last Receive</th></tr></thead>
@@ -257,165 +153,51 @@ footer p{max-width:720px;margin:6px auto}
 </div>
 
 <footer>
-  <p>Data refreshed manually from Boston Beer portal + Encompass exports &mdash; see README in this folder for how to update.</p>
+  <p>Data refreshed manually from the Boston Beer portal forecast export + Encompass Inventory Report &mdash; see README in this folder for how to update.</p>
 </footer>
 </div>
 
 <script>
 let DATA = null;
-let state = { target: 4, tolerance: 1, search: "", sortKey: "wos", sortDir: "asc", statusFilter: null };
+let edits = {}; // sku -> weekIndex -> edited forecast value
+let state = { search: "", sortKey: "name", sortDir: "asc" };
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
-function fmt1(n){ if(n==null||isNaN(n)) return "—"; return n.toFixed(1); }
-
-// Internally every quantity is tracked in "case-equivalents" (CE) so the
-// math works the same regardless of package type. But CE math produces
-// decimals for anything that isn't sold in standard cases (e.g. a keg is
-// 2.3125 CE, so 3 kegs = 6.94 CE) which reads as a confusing fraction on
-// screen. For display we always convert back to whole physical units --
-// e.g. "3" (kegs), never "6.94". The precise CE value is still what's used
-// under the hood and in the export file.
-function unitLabel(pkg){
-  if(!pkg || !pkg.sellingUnit) return null;
-  const m = pkg.sellingUnit.match(/\)\s*([A-Za-z][A-Za-z /]*?)\s*\(/);
-  return m ? m[1].trim() : pkg.sellingUnit;
-}
-function fmtQty(ceValue, pkg){
-  if(ceValue==null||isNaN(ceValue)) return "—";
-  if(!pkg || !pkg.caseEquiv) return fmtNum(ceValue);
-  return fmtNum(ceValue / pkg.caseEquiv);
-}
-function fmtQtyDelta(ceValue, pkg){
-  if(ceValue==null||isNaN(ceValue)) return "—";
-  const v = (!pkg || !pkg.caseEquiv) ? ceValue : ceValue / pkg.caseEquiv;
-  const r = Math.round(v);
-  return r===0 ? "—" : (r>0?'+':'')+r.toLocaleString('en-US');
-}
-
-// Mirrors the Python build script's formula exactly, so the UI recomputes
-// live when the target/tolerance sliders change instead of only reflecting
-// whatever was baked in at export time.
-// (a) Rounds a case-equivalent quantity to the nearest whole number of
-// physically-orderable wholesale units (e.g. whole kegs, not fractional
-// case-equivalents of a keg), then converts back to case-equivalents.
-// Falls back to plain rounding if we don't have package data for this SKU.
-function roundToOrderable(qty, pkg){
-  if(qty == null) return null;
-  if(!pkg || !pkg.caseEquiv || pkg.caseEquiv <= 0) return Math.max(0, Math.round(qty));
-  const physical = qty / pkg.caseEquiv;
-  const roundedPhysical = Math.max(0, Math.round(physical));
-  return Math.round(roundedPhysical * pkg.caseEquiv * 100) / 100;
-}
-
-// Least-squares line through (x, y) points, skipping any week with no
-// reported value. Mirrors the Python build script's trend_projection().
-function trendProjection(pairs){
-  const n = pairs.length;
-  if(n === 0) return null;
-  if(n === 1) return {slope:0, intercept:pairs[0][1]};
-  const sumX = pairs.reduce((s,[x])=>s+x,0);
-  const sumY = pairs.reduce((s,[,y])=>s+y,0);
-  const sumXY = pairs.reduce((s,[x,y])=>s+x*y,0);
-  const sumXX = pairs.reduce((s,[x])=>s+x*x,0);
-  const denom = n*sumXX - sumX*sumX;
-  if(denom === 0) return {slope:0, intercept:sumY/n};
-  const slope = (n*sumXY - sumX*sumY) / denom;
-  const intercept = (sumY - slope*sumX) / n;
-  return {slope, intercept};
-}
-
-// Mirrors the Python build script's formula exactly, so the UI recomputes
-// live if the underlying data changes. Recommended is a pure sales
-// projection now -- it does NOT get adjusted for how much stock is
-// currently on hand (Available). Weeks of Supply / Status tell you that
-// separately. (b) A trend line through the Inventory Report's last 5 weeks
-// of actual case sales (Cases -3/-2/-1 Weeks, Last Week, This Week),
-// extrapolated forward -- needs at least 2 real data points to count as a
-// trend, otherwise (c) falls back to the same week last year from
-// ForecastReport history, or a single stray data point / Boston Beer's own
-// forecast as a last resort. See recMethod on each SKU for which path was
-// used.
-function computeRecommended(sku){
-  const recent = sku.recentWeeks;
-  const pairs = (recent || []).map((v,i)=>[i,v]).filter(([,v]) => v != null);
-  if(pairs.length < 2){
-    // seasonal fallback / single-point flatline / passthrough -- already
-    // computed at build time using the same priority order as the script.
-    return sku.weeks.map(w => w.recommended);
-  }
-  const {slope, intercept} = trendProjection(pairs);
-  const raw = sku.weeks.map((w,idx) => Math.max(0, slope*(5+idx) + intercept));
-  return raw.map(v => roundToOrderable(v, sku.packageInfo));
-}
-
-function computeStatus(sku, targetWeeks, toleranceWeeks){
-  const l4 = sku.l4Avg, avail = sku.available;
-  if(avail != null && avail < 0) return {status:'stockout', wos:null};
-  if(l4 == null || avail == null) return {status:'no-data', wos:null};
-  if(l4 === 0) return {status: avail > 0 ? 'dead-stock' : 'no-data', wos:null};
-  const wos = avail / l4;
-  if(wos < targetWeeks - toleranceWeeks) return {status:'under', wos};
-  if(wos > targetWeeks + toleranceWeeks) return {status:'over', wos};
-  return {status:'on-target', wos};
-}
-
-const STATUS_LABEL = {
-  'over':'Over-indexed', 'under':'Under-indexed', 'stockout':'Stockout risk',
-  'on-target':'On target', 'dead-stock':'No recent velocity', 'no-data':'No inventory match',
-};
-const STATUS_TIP = {
-  'over':'Weeks of Supply is above your Target + Tolerance — stock is higher than needed, consider ordering less',
-  'under':'Weeks of Supply is below your Target − Tolerance — stock is lower than needed, may need to order more soon',
-  'stockout':'Available (from the Inventory Report) is negative right now',
-  'on-target':'Weeks of Supply falls within Target ± Tolerance — stock level is right where it should be',
-  'dead-stock':'4-wk Avg is 0 but Available is positive — no recent sales, so Weeks of Supply can’t be calculated',
-  'no-data':'This SKU has no Available or 4-wk Avg figure in the Inventory Report, so status can’t be evaluated',
-};
-const STATUS_RANK = {'stockout':0, 'under':1, 'over':2, 'on-target':3, 'dead-stock':4, 'no-data':5};
-
-// The portal shows two numbers per week: "F" (Boston Beer's own system
-// forecast) and "A" (what's actually been confirmed/entered so far, blank
-// until acted on). The number that will really ship if nothing else
-// changes is the confirmed one when it exists, otherwise BBC's forecast.
-function effectivePlan(w){ return w.onFile != null ? w.onFile : w.forecast; }
 
 function sparkline(weeks){
   const vals = (weeks||[]).map(v => v==null?0:v);
   const max = Math.max(1, ...vals);
-  return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*20))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
+  return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*18))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
 }
 
-// Totals only cover the still-open weeks -- the nearest week is already
-// locked with Boston Beer, so it's excluded from "what should change" math.
-function enrich(sku){
-  const rec = computeRecommended(sku);
-  const st = computeStatus(sku, state.target, state.tolerance);
-  let curTotal = 0, recTotal = 0, effTotal = 0;
-  sku.weeks.forEach((w,i) => {
-    if(w.locked) return;
-    curTotal += w.forecast || 0;
-    effTotal += effectivePlan(w) || 0;
-    recTotal += rec[i] || 0;
-  });
-  return { sku, rec, status: st.status, wos: st.wos, curTotal, recTotal, effTotal, gap: recTotal - effTotal };
+function effF(sku, i){
+  const stored = edits[sku.sku] && edits[sku.sku][i];
+  if(stored !== undefined) return stored;
+  return sku.weeks[i].forecast;
+}
+
+// Light-touch pulse check only -- no trend line, no seasonal fallback, no
+// case-pack rounding. Just: is this week's F noticeably far from the SKU's
+// own recent 4-week average sales (Encompass's own L4 Average, not
+// something we computed)? >=50% above/below is the only rule.
+function hiClass(f, l4){
+  if(f==null || l4==null || l4<=0) return '';
+  const ratio = f / l4;
+  if(ratio >= 1.5) return 'hi-high';
+  if(ratio <= 0.5) return 'hi-low';
+  return '';
 }
 
 const SORT_ACCESSORS = {
-  name: e => e.sku.product,
-  avail: e => e.sku.available,
-  l4: e => e.sku.l4Avg,
-  wos: e => e.wos,
-  status: e => STATUS_RANK[e.status],
-  cur: e => e.curTotal,
-  rec: e => e.recTotal,
-  gap: e => e.gap,
+  name: s => s.product,
+  avail: s => s.available,
+  lastReceive: s => s.lastReceiveDate ? new Date(s.lastReceiveDate) : null,
+  l4: s => s.l4Avg,
 };
 
-// Missing values always sort to the bottom regardless of direction --
-// "no data" isn't meaningfully high or low, it's just unknown.
-function compareEnriched(a, b){
-  const acc = SORT_ACCESSORS[state.sortKey];
+function compareSkus(a, b){
+  const acc = SORT_ACCESSORS[state.sortKey] || SORT_ACCESSORS.name;
   const av = acc(a), bv = acc(b);
   const aMissing = av==null, bMissing = bv==null;
   if(aMissing && bMissing) return 0;
@@ -433,124 +215,58 @@ function updateSortIndicators(){
   });
 }
 
-function renderKPIs(enriched){
-  const counts = {over:0, under:0, stockout:0, 'on-target':0, 'dead-stock':0, 'no-data':0};
-  enriched.forEach(e => counts[e.status]++);
-  const cards = [
-    {key:'over', label:'Over-indexed', val:counts.over, cls:'over', tip:STATUS_TIP.over},
-    {key:'under', label:'Under-indexed', val:counts.under, cls:'under', tip:STATUS_TIP.under},
-    {key:'stockout', label:'Stockout risk', val:counts.stockout, cls:'stockout', tip:STATUS_TIP.stockout},
-    {key:'on-target', label:'On target', val:counts['on-target'], cls:'good', tip:STATUS_TIP['on-target']},
-    {key:null, label:'Total SKUs', val:enriched.length, cls:'', tip:'Total number of products tracked on this page'},
-  ];
-  document.getElementById('kpi-strip').innerHTML = cards.map(c =>
-    `<div class="kpi ${state.statusFilter===c.key?'active':''}" data-key="${c.key||''}" title="${esc(c.tip)} — click to filter the table">
-      <div class="klabel">${esc(c.label)}</div>
-      <div class="kval num ${c.cls}">${fmtNum(c.val)}</div>
-    </div>`
-  ).join('');
-  document.querySelectorAll('.kpi').forEach(el => el.addEventListener('click', () => {
-    const k = el.dataset.key || null;
-    state.statusFilter = state.statusFilter === k ? null : k;
-    render();
-  }));
-}
-
-const METHOD_LABEL = {
-  trend: 'trend line through your last 5 weeks of actual sales', seasonal: "same week last year (no current sales trend)",
-  passthrough: 'Boston Beer’s own forecast, unchanged (no sales trend or seasonal history)',
-};
-
-function detailMeta(e){
-  const pkg = e.sku.packageInfo;
-  const ul = unitLabel(pkg);
-  const chips = [];
-  chips.push(`<span class="chip" title="Which of the 3 methods (see box above) was used for this product">Method: ${esc(METHOD_LABEL[e.sku.recMethod] || e.sku.recMethod || 'unknown')}</span>`);
-  if(e.sku.leadTimeDays) chips.push(`<span class="chip" title="Boston Beer's typical order lead time for this SKU, from ForecastReport. Shown for reference only — it no longer changes the Recommended number.">Lead time: ${fmtNum(e.sku.leadTimeDays)} days</span>`);
-  if(pkg && pkg.caseEquiv && pkg.caseEquiv!==1 && ul) chips.push(`<span class="chip" title="Recommended quantities round to whole ${esc(ul.toLowerCase())}s, never a fraction of one">1 ${esc(ul)} = ${(Math.round(pkg.caseEquiv*100)/100).toLocaleString('en-US')} standard cases</span>`);
-  if(e.sku.matchType==='prefix') chips.push(`<span class="chip warn" title="This SKU was matched to inventory data by a similar code, not an exact match — worth double-checking">Verify SKU match (${esc(e.sku.inventorySku)})</span>`);
-  if(!e.sku.cleanName) chips.push(`<span class="chip warn" title="No matching product record was found in the Encompass product list — showing the raw name from the Boston Beer portal instead">Unmatched product name</span>`);
-  return chips.join('');
-}
-
-function detailTable(e){
-  const pkg = e.sku.packageInfo;
-  const rows = e.sku.weeks.map((w,i) => {
-    const rec = e.rec[i];
-    const eff = effectivePlan(w);
-    const deltaCE = (rec!=null && eff!=null) ? rec - eff : null;
-    const lockedTag = w.locked ? ` <span class="chip warn" title="This week is already committed with Boston Beer and can't be changed — shown for reference only">Locked</span>` : '';
-    return `<tr>
-      <td>${esc(w.weekEnding)}${lockedTag}</td>
-      <td class="num">${fmtNum(w.onFile)}</td>
-      <td class="num">${fmtNum(w.forecast)}</td>
-      <td class="num"><b>${fmtQty(rec, pkg)}</b></td>
-      <td class="num ${deltaCE>0?'delta-pos':deltaCE<0?'delta-neg':''}">${w.locked ? '—' : fmtQtyDelta(deltaCE, pkg)}</td>
-    </tr>`;
-  }).join('');
-  return `<div class="detail-inner">
-    <table>
-      <thead><tr>
-        <th title="The date this order week wraps up, from your Boston Beer forecast export's week-ending column headers">Week Ending</th>
-        <th class="num" title="Source: the '<date> A' column in your Boston Beer forecast export — your confirmed order for this week, if you've entered one. Blank means not yet entered.">On File</th>
-        <th class="num" title="Source: the '<date> F' column in your Boston Beer forecast export — Boston Beer's own system-generated forecast for this week.">Boston Beer Forecast</th>
-        <th class="num" title="Calculated: the trend line through your last 5 weeks of actual case sales, extrapolated to this week — see the 'Data sources &amp; methodology' section below the table for the exact formula.">Recommended</th>
-        <th class="num" title="Calculated: this week's Recommended minus its current plan (On File if entered, Boston Beer Forecast otherwise).">Difference</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="chiprow">${detailMeta(e)}</div>
-    <p class="trend-note">Last 5 weeks sold (oldest&rarr;newest): ${(e.sku.recentWeeks||[]).map(fmtNum).join(' &middot; ')}
-      ${e.sku.lastReceiveDate ? ` &middot; Last receive: ${esc(e.sku.lastReceiveDate)} (${fmtNum(e.sku.lastReceiveQty)} cases)` : ''}
-    </p>
-  </div>`;
+function weekCell(sku, i){
+  const w = sku.weeks[i];
+  if(w.locked){
+    return `<td class="wk"><div class="wk-locked">${fmtNum(w.forecast)}</div><div class="wk-onfile">Locked</div></td>`;
+  }
+  const f = effF(sku, i);
+  const cls = hiClass(f, sku.l4Avg);
+  const title = sku.l4Avg!=null ? `Recent 4-wk avg: ${fmtNum(sku.l4Avg)}/wk` : '';
+  const onfile = w.onFile != null ? `<div class="wk-onfile">On file: ${fmtNum(w.onFile)}</div>` : '';
+  return `<td class="wk"><input class="wk-f ${cls}" type="number" min="0" step="1" title="${esc(title)}"
+    value="${f==null?'':f}" data-sku="${esc(sku.sku)}" data-week="${i}">${onfile}</td>`;
 }
 
 function render(){
   const q = state.search.trim().toLowerCase();
-  let enriched = DATA.skus.map(enrich);
-  if(state.statusFilter) enriched = enriched.filter(e => e.status === state.statusFilter);
-  if(q) enriched = enriched.filter(e => e.sku.product.toLowerCase().includes(q) || e.sku.sku.toLowerCase().includes(q));
-
-  enriched.sort(compareEnriched);
+  let skus = state.search ? DATA.skus.filter(s => s.product.toLowerCase().includes(q) || s.sku.toLowerCase().includes(q)) : DATA.skus.slice();
+  skus.sort(compareSkus);
   updateSortIndicators();
 
-  renderKPIs(DATA.skus.map(enrich));
-  document.getElementById('count-visible').textContent = enriched.length;
+  document.getElementById('count-visible').textContent = skus.length;
   document.getElementById('count-total').textContent = DATA.skus.length;
 
   const tbody = document.getElementById('sku-tbody');
-  if(!enriched.length){
+  if(!skus.length){
     tbody.innerHTML = '';
     document.getElementById('empty-state').style.display = 'block';
     return;
   }
   document.getElementById('empty-state').style.display = 'none';
 
-  tbody.innerHTML = enriched.map((e,i) => {
-    const s = e.sku;
-    const rowId = 'r'+i;
+  tbody.innerHTML = skus.map(s => {
     const unmatchedTag = !s.cleanName ? ` <span title="No matching product record found in Encompass — showing the raw portal name" style="cursor:help">†</span>` : '';
-    return `<tr class="row" data-target="${rowId}">
+    const lastReceive = s.lastReceiveDate ? `${esc(s.lastReceiveDate)}<div class="pmeta">${fmtNum(s.lastReceiveQty)} cs</div>` : '—';
+    const weekCells = s.weeks.map((w,i) => weekCell(s, i)).join('');
+    return `<tr>
       <td><div class="pname">${esc(s.product)}${unmatchedTag}</div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
       <td class="num">${fmtNum(s.available)}</td>
+      <td>${lastReceive}</td>
       <td class="num">${fmtNum(s.l4Avg)}</td>
       <td>${sparkline(s.recentWeeks)}</td>
-      <td class="num">${fmt1(e.wos)}</td>
-      <td><span class="badge ${e.status}" title="${esc(STATUS_TIP[e.status]||'')}">${STATUS_LABEL[e.status]}</span></td>
-      <td class="num">${fmtNum(e.curTotal)}</td>
-      <td class="num">${fmtQty(e.recTotal, s.packageInfo)}</td>
-      <td class="num ${e.gap>0?'delta-pos':e.gap<0?'delta-neg':''}">${fmtQtyDelta(e.gap, s.packageInfo)}</td>
-      <td><span class="chev">&rsaquo;</span></td>
-    </tr>
-    <tr class="detailrow" id="${rowId}"><td colspan="10">${detailTable(e)}</td></tr>`;
+      ${weekCells}
+    </tr>`;
   }).join('');
 
-  tbody.querySelectorAll('tr.row').forEach(row => {
-    row.addEventListener('click', () => {
-      const detail = document.getElementById(row.dataset.target);
-      detail.classList.toggle('open');
-      row.classList.toggle('open');
+  tbody.querySelectorAll('.wk-f').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const sku = inp.dataset.sku, week = parseInt(inp.dataset.week, 10);
+      const val = inp.value === '' ? null : parseFloat(inp.value);
+      if(!edits[sku]) edits[sku] = {};
+      edits[sku][week] = val;
+      const skuObj = DATA.skus.find(s => s.sku === sku);
+      inp.className = 'wk-f ' + hiClass(val, skuObj ? skuObj.l4Avg : null);
     });
   });
 }
@@ -568,20 +284,15 @@ function renderOrphans(){
     </tr>`).join('');
 }
 
-function renderMethodBox(){
+function renderWeekHeaders(){
   const lockedWeeks = DATA.meta.lockedWeeks || 0;
-  const openCount = DATA.meta.weekDates.length - lockedWeeks;
-  document.getElementById('methodbox').innerHTML = `
-    <b>How "Recommended" is worked out</b> — one of 3 methods per product (shown in each row's detail view):
-    <ul>
-      <li><b>Most products</b> get a trend line fit through the last 5 weeks of actual case sales from the Encompass Inventory Report (Cases -3/-2/-1 Weeks, Last Week, This Week), then extrapolated forward week by week. If sales are climbing, the recommendation climbs with it; if they're tapering off, it tapers too — it's not just a flat average.</li>
-      <li><b>New or seasonal items with fewer than 2 weeks of recent sales</b> (e.g. an Octoberfest launch that hasn't started shipping yet) use last year's actual volume for the same calendar week instead, when 52-week history is available.</li>
-      <li><b>Everything else</b> (no sales trend and no usable history) passes Boston Beer's own forecast through unchanged.</li>
-    </ul>
-    <p style="margin:10px 0 0">Every recommendation is rounded to a whole orderable unit &mdash; whole cases, or whole kegs for keg products &mdash; using Boston Beer's package reference table, so you'll never see an order for a fraction of a keg.</p>
-    <p style="margin:10px 0 0"><b>Recommended is a pure sales projection</b> &mdash; it is NOT adjusted for how much stock you currently have on hand. If a SKU is sitting on way more or less than it needs, that shows up separately in Weeks of Supply and the Status badge, using your Target/Tolerance sliders above; it's on you to weigh that against the projection when deciding what to actually order.</p>
-    <p style="margin:10px 0 0">Tracks the ${openCount + lockedWeeks} weeks through end of August &mdash; September/October are far enough out to just be noise right now. The nearest week is already locked with Boston Beer (tagged "Locked" below) so it's shown for reference only; the ${openCount} weeks after that are still open to adjust in the portal, and "Difference" compares Recommended against whatever's the current plan for that week &mdash; your confirmed order if you've entered one, Boston Beer's forecast if you haven't gotten to it yet.</p>
-    <p style="margin:10px 0 0"><b>Not yet accounted for:</b> upcoming promotions or feature placements, and exact per-order receipt timing.</p>`;
+  const start = document.getElementById('week-headers-start');
+  const headers = DATA.meta.weekDates.map((wd,i) => {
+    const label = wd.slice(0,5); // MM/DD
+    const tag = i < lockedWeeks ? ' (locked)' : '';
+    return `<th class="wk">${esc(label)}${tag}</th>`;
+  }).join('');
+  start.outerHTML = headers;
 }
 
 function csvEscape(v){
@@ -590,22 +301,23 @@ function csvEscape(v){
 }
 
 function exportCSV(){
-  // The locked (nearest) week can't be changed in the portal, so there's
-  // no point exporting a recommendation for it -- only open weeks go out.
+  // The locked (nearest) week can't be changed in the portal, so it's left
+  // out of the export -- only open weeks go out, using whatever's currently
+  // in each F field (edited or original).
   const lockedWeeks = DATA.meta.lockedWeeks || 0;
   const weekDates = DATA.meta.weekDates.slice(lockedWeeks);
   const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
   const lines = [header.map(csvEscape).join(',')];
   DATA.skus.forEach(sku => {
-    const rec = computeRecommended(sku).slice(lockedWeeks);
-    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...rec.map(v => v==null?'':v)];
+    const vals = weekDates.map((_, idx) => effF(sku, idx + lockedWeeks));
+    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...vals.map(v => v==null?'':v)];
     lines.push(row.map(csvEscape).join(','));
   });
   const blob = new Blob([lines.join('\n')], {type:'text/csv'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `boston_beer_forecast_recommended_target${state.target}wk.csv`;
+  a.download = `boston_beer_forecast_adjusted.csv`;
   document.body.appendChild(a); a.click(); a.remove();
   URL.revokeObjectURL(url);
 }
@@ -615,20 +327,13 @@ async function boot(){
   const res = await fetch('data/forecast.json'+cb, {cache:"no-store"});
   DATA = await res.json();
 
-  state.target = DATA.meta.defaultTargetWeeks || 4;
-  state.tolerance = DATA.meta.defaultToleranceWeeks || 1;
-  document.getElementById('ctl-target').value = state.target;
-  document.getElementById('ctl-tolerance').value = state.tolerance;
-
   if(DATA.meta.generatedAt){
     const d = new Date(DATA.meta.generatedAt);
-    const f = d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
-    document.getElementById('updated-line').innerHTML = `<span class="livedot"></span> Data refreshed ${f}`;
+    const f = d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    document.getElementById('updated-line').textContent = `Data as of ${f}`;
   }
 
-  const openCount = DATA.meta.weekDates.length - (DATA.meta.lockedWeeks || 0);
-  document.querySelector('#th-cur .th-label').textContent = `Boston Beer Forecast (${openCount}wk)`;
-  document.querySelector('#th-rec .th-label').textContent = `Recommended (${openCount}wk)`;
+  renderWeekHeaders();
 
   document.querySelectorAll('#sku-table thead th[data-key]').forEach(th => {
     th.addEventListener('click', () => {
@@ -639,12 +344,10 @@ async function boot(){
     });
   });
 
-  document.getElementById('ctl-target').addEventListener('input', e => { state.target = parseFloat(e.target.value)||0; render(); renderMethodBox(); });
-  document.getElementById('ctl-tolerance').addEventListener('input', e => { state.tolerance = parseFloat(e.target.value)||0; render(); });
   document.getElementById('ctl-search').addEventListener('input', e => { state.search = e.target.value; render(); });
   document.getElementById('btn-export').addEventListener('click', exportCSV);
+  document.getElementById('btn-reset').addEventListener('click', () => { edits = {}; render(); });
 
-  renderMethodBox();
   renderOrphans();
   render();
 }
