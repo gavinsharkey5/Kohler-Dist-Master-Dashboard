@@ -1,6 +1,16 @@
 [
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "CUSTOMER_NUM": 152039,
+    "CUSTOMER_NAME": "Cottage Liquors",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-17",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "CUSTOMER_NUM": 170101,
     "CUSTOMER_NAME": "High Spirits Of Bayonne",
     "PRODUCT_NUM": 3731,
@@ -10,9 +20,9 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Alisa Acciardi",
-    "CUSTOMER_NUM": 152039,
-    "CUSTOMER_NAME": "Cottage Liquors",
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "CUSTOMER_NUM": 250183,
+    "CUSTOMER_NAME": "Chestnut St Spirits LLC",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
@@ -27,16 +37,6 @@
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
     "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Andrew Lundy",
-    "CUSTOMER_NUM": 250183,
-    "CUSTOMER_NAME": "Chestnut St Spirits LLC",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-17",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -81,22 +81,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21044,
-    "CUSTOMER_NAME": "Farm Boy",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-07",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20021,
     "CUSTOMER_NAME": "Diamond Liquors (P)",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
     "DATE": "2026-07-16",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 21044,
+    "CUSTOMER_NAME": "Farm Boy",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-07",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
