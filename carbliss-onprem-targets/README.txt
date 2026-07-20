@@ -4,11 +4,16 @@ Turns the "Carbliss Eval vs Sun Cruiser & White Claw" RDE exports into a
 per-account sales-pitch generator: every on-premise account with real
 Sun Cruiser or White Claw volume, sized by opportunity, with a
 computed talking-point pitch (best-selling item, whether it's new or
-established, how many SKUs move through the account, the Carbliss
-flavor that lines up with what's already selling, and a second flavor
-that's a genuine gap on their menu — chosen from a different flavor
-family than the first pick so it reads as a real gap, not a repeat of
-the top seller company-wide).
+established, how many SKUs move through the account).
+
+Flavor recommendation logic (updated 2026-07-20 per Kohler): if a
+flavor already sells well through the account via Sun Cruiser/White
+Claw, the pitch does NOT recommend Carbliss in that same flavor —
+that's competing head-on with an already-satisfied craving. Instead it
+recommends a genuinely different flavor (gap_flavor) that's real white
+space on their menu, preferring one from a different flavor family than
+whatever's already dominant, so Carbliss adds breadth to the menu
+instead of cannibalizing a proven seller.
 
 Files:
   accounts.csv   RDE "Carbliss Eval vs Sun Cruiser & White Claw" export

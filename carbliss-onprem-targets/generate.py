@@ -217,29 +217,39 @@ def build_pitch(r):
     else:
         bullets.append({'label': 'Heads up', 'text': "No meaningful Sun Cruiser/White Claw volume on file — confirm what's actually pouring here before pitching a flavor."})
 
-    if r['primary_flavor']:
-        pf = r['primary_flavor']
-        bullets.append({'label': 'Lead with', 'text': f"Carbliss {pf} — matches their best-selling flavor directly."})
-        ref_price = flavor_ref_price.get(pf)
-        sku_prod, sku_agg = r['primary_sku_for_flavor']
-        onshelf_price = (sku_agg['vol26'] / sku_agg['cases26']) if sku_agg['cases26'] > 0 else None
-        onshelf_brand = brand_of(sku_prod)
-        if ref_price and onshelf_price:
-            if ref_price > onshelf_price * 1.05:
-                framing = "sell the flavor difference, not the price."
-            elif ref_price < onshelf_price * 0.95:
-                framing = "actually cheaper than what's on shelf — flavor and margin both work here."
-            else:
-                framing = "about the same price — easy swap-in, no price objection."
-            bullets.append({'label': 'Price', 'text': f"Carbliss runs ~${fmt_price(ref_price)}/cs vs ${fmt_price(onshelf_price)}/cs on the {onshelf_brand} SKU — {framing}"})
-    elif not r['gap_flavor'] and r['primary']:
-        bullets.append({'label': 'Note', 'text': "Volume runs almost entirely through variety packs — no single flavor lead to key off of."})
-
+    # Flavor recommendation: if a flavor is already proven to sell here (via Sun
+    # Cruiser/White Claw), don't pitch Carbliss in that same flavor — that's
+    # competing head-on with an already-satisfied craving. Instead pitch
+    # gap_flavor, a flavor from a different family that's genuine white space,
+    # so Carbliss adds menu breadth instead of cannibalizing a proven seller.
     if r['gap_flavor']:
         gf = r['gap_flavor']
-        bullets.append({'label': 'Gap', 'text': f"Nothing on their menu covers {gf} — clean white space for Carbliss {gf}."})
+        pf = r['primary_flavor']
+        if pf:
+            covering_brand = brand_of(r['primary_sku_for_flavor'][0])
+            bullets.append({'label': 'Diversify with', 'text': f"Their {pf} craving is already covered by {covering_brand} — pitch Carbliss {gf} instead to open a new flavor lane rather than compete head-on."})
+        else:
+            bullets.append({'label': 'Diversify with', 'text': f"Carbliss {gf} — nothing on their menu covers it yet, clean white space."})
+
+        ref_price = flavor_ref_price.get(gf)
+        anchor = r['primary']
+        if ref_price and anchor:
+            anchor_prod, anchor_agg = anchor
+            onshelf_price = (anchor_agg['vol26'] / anchor_agg['cases26']) if anchor_agg['cases26'] > 0 else None
+            if onshelf_price:
+                onshelf_brand = brand_of(anchor_prod)
+                onshelf_sku = strip_brand(anchor_prod, onshelf_brand)
+                if ref_price > onshelf_price * 1.05:
+                    framing = "a bit of a premium, but it's new territory, not a price fight."
+                elif ref_price < onshelf_price * 0.95:
+                    framing = "and it undercuts what's already on shelf — easy yes."
+                else:
+                    framing = "in line with what's already on shelf — no price objection."
+                bullets.append({'label': 'Price', 'text': f"Carbliss runs ~${fmt_price(ref_price)}/cs vs ~${fmt_price(onshelf_price)}/cs for their {onshelf_brand} ({onshelf_sku}) — {framing}"})
     elif r['existing_carbliss']:
         bullets.append({'label': 'Note', 'text': "Their flavor mix already lines up with Carbliss — this is about shelf share, not a new flavor."})
+    elif r['primary']:
+        bullets.append({'label': 'Note', 'text': "Volume runs almost entirely through variety packs or flavors Carbliss doesn't carry — no clean flavor gap to lead with; pitch on category momentum instead."})
 
     ask_place = f"in {r['city']}" if r['city'] else "here"
     bullets.append({'label': 'The ask', 'text': f"A menu or tap-list slot {ask_place} — sized for social-pour occasions."})
