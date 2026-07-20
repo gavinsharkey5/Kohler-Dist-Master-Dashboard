@@ -56,6 +56,14 @@ ALLOTHER_BRANDS = {
     'ATHLETIC BREWING COMPANY', 'FAMOSA', 'KIRIN', 'KIRIN ICHIBAN', 'POPSICLE FMB',
     'SIERRA NEVADA BREWING COMPANY',
 }
+# Brand Family aliases -- iSellBeer sometimes tags the same product with an
+# inconsistent Brand Family value (e.g. the contract brewer's name instead of
+# the beer's own brand family). Confirmed with the user 2026-07-20: BRAXTON
+# rows are Garage Beer (Supplier "GARAGE BEER CO.", Brand "GARAGE BEER
+# LAGER") mislabeled with the contract brewer's name as Brand Family.
+BRAND_FAMILY_ALIASES = {
+    'BRAXTON': 'GARAGE BEER - CONTRACT BREWING',
+}
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
     'allother': {2: 200, 3: 300, 4: 600},
@@ -78,7 +86,8 @@ def tier_for(cases):
 
 def canonical_brand(row):
     bf = (row['brand_family'] or '').strip()
-    return bf if bf else (row['brand'] or '').strip()
+    brand = bf if bf else (row['brand'] or '').strip()
+    return BRAND_FAMILY_ALIASES.get(brand, brand)
 
 
 def classify(brand):
