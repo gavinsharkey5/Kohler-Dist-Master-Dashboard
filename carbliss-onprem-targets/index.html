@@ -70,7 +70,7 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 @media(max-width:700px){
   .repbar{display:none}
   .rep-select{display:block;width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
-    border-radius:12px;padding:12px 14px;font-size:15px;font-family:"Inter";min-height:44px}
+    border-radius:12px;padding:12px 14px;font-size:16px;font-family:"Inter";min-height:44px}
 }
 
 .tabs{display:flex;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:5px}
@@ -83,11 +83,12 @@ h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4
 
 .controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--line);color:var(--ink);
-  border-radius:10px;padding:9px 12px;font-size:14px;font-family:inherit}
+  border-radius:10px;padding:9px 12px;font-size:16px;font-family:inherit;min-height:44px}
 .search::placeholder{color:var(--ink-soft)}
 .count{font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
 
-.switch-row{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;flex-shrink:0}
+.switch-row{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;flex-shrink:0;
+  min-height:44px;padding:6px 4px}
 .switch{position:relative;width:38px;height:22px;border-radius:20px;background:var(--card2);border:1px solid var(--line);flex-shrink:0;transition:background .15s,border-color .15s}
 .switch i{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--ink-soft);transition:transform .15s,background .15s}
 .switch-row.on .switch{background:color-mix(in srgb,var(--accent) 30%,transparent);border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
