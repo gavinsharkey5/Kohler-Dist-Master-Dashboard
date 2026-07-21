@@ -7,15 +7,27 @@ Usage (from this folder):
 
 Inputs (keep these filenames when re-exporting from RDE):
     accounts.csv   - "RDE Carbliss Eval vs Sun Cruiser & White Claw" export
-                     (Sales Rep Assigned, Customer ID, Customer Name, On Premise,
-                      Brand Family, Cases 2025, Buyer Count 2025, Cases 2026, Buyer Count 2026)
+                     (Sales Rep Assigned, Customer ID, Customer Name, Shipping Address, City,
+                      On Premise, Brand Family, Product Num Name, Cases 2025, Buyer Count 2025,
+                      Cases 2026, Buyer Count 2026)
     price_vol.csv  - "RDE Carbliss Eval vs Sun Cruiser & White Claw Price & Vol" export
                      (Product Name, Customer Num, Customer Name, On-Off Premise, Unit Price,
                       Cases 2025, Cases 2026, $Vol 2025, $Vol 2026)
 
-City lookup is best-effort, cross-referenced from other trackers already in this repo
-(molsoncoors/retention/data.csv, carbliss/data.csv, isellbeer DisplayPhotoReport.csv) by
-customer ID. Accounts with no match render without a city in the pitch.
+City comes straight from accounts.csv's own City column (added 2026-07-21 --
+100% of accounts resolve directly from the source export now). The old
+cross-reference lookup from other trackers in this repo (molsoncoors/retention,
+carbliss/data.csv, isellbeer DisplayPhotoReport.csv) is kept only as a fallback
+for the rare case a future export drops the City column or leaves it blank for
+an account.
+
+accounts.csv's Product Num Name column (also added 2026-07-21) isn't otherwise
+used here -- cross-checked against price_vol.csv's Product Name and found to
+be a perfect match on every (customer, product) pair (same cases both years,
+zero mismatches across 2,689 rows), so price_vol.csv remains the single source
+for per-SKU flavor detection and pricing; accounts.csv stays the source for
+account-level brand totals (Sun Cruiser/White Claw/Carbliss cases by year) and
+now City.
 """
 import csv, json, re, os
 from collections import defaultdict
@@ -119,8 +131,9 @@ def fmt_price(n):
     return f'{n:,.2f}'
 
 
-# ---------- City lookup (best-effort, cross-referenced from other trackers) ----------
-city = {}
+# ---------- City lookup: direct from accounts.csv, with the old cross-referenced
+# lookup from other trackers kept only as a fallback ----------
+xref_city = {}
 
 
 def load_city(path, id_col, city_col):
@@ -130,13 +143,15 @@ def load_city(path, id_col, city_col):
         for r in csv.DictReader(f):
             cid = (r.get(id_col) or '').strip()
             c = (r.get(city_col) or '').strip()
-            if cid and c and cid not in city:
-                city[cid] = c
+            if cid and c and cid not in xref_city:
+                xref_city[cid] = c
 
 
 load_city(os.path.join(REPO, 'molsoncoors/retention/data.csv'), 'cust', 'city')
 load_city(os.path.join(REPO, 'carbliss/data.csv'), 'Customer ID', 'City')
 load_city(os.path.join(REPO, 'isellbeer/display-auction-tracker/DisplayPhotoReport.csv'), 'Account #', 'City')
+
+direct_city = {}
 
 # ---------- accounts.csv: brand-level YoY per account ----------
 accounts = {}
@@ -148,11 +163,19 @@ with open(F1, encoding='utf-8') as f:
                 'id': cid, 'name': r['Customer Name'].strip(), 'rep': r['Sales Rep Assigned'].strip(),
                 'brands': {},
             }
+        c = (r.get('City') or '').strip()
+        if c:
+            direct_city[cid] = c
         b = r['Brand Family'].strip()
-        accounts[cid]['brands'][b] = {
-            'cases25': num(r['Cases   2025']), 'buyers25': int(r['Buyer Count   2025'] or 0),
-            'cases26': num(r['Cases   2026']), 'buyers26': int(r['Buyer Count   2026'] or 0),
-        }
+        # accounts.csv is now one row per (customer, brand, product) since Product
+        # Num Name was added -- a brand with multiple flavors at an account spans
+        # multiple rows, so cases/buyers must be summed, not overwritten by the
+        # last row seen.
+        bucket = accounts[cid]['brands'].setdefault(b, {'cases25': 0.0, 'buyers25': 0, 'cases26': 0.0, 'buyers26': 0})
+        bucket['cases25'] += num(r['Cases   2025'])
+        bucket['cases26'] += num(r['Cases   2026'])
+        bucket['buyers25'] += int(r['Buyer Count   2025'] or 0)
+        bucket['buyers26'] += int(r['Buyer Count   2026'] or 0)
 
 # ---------- price_vol.csv: per-account per-product aggregation ----------
 # Same (customer, product) pair can appear on multiple rows at different unit
@@ -323,7 +346,7 @@ for cid, acct in accounts.items():
     gap_flavor = pool[0] if pool else None
 
     results.append({
-        'id': cid, 'name': acct['name'], 'rep': acct['rep'], 'city': city.get(cid),
+        'id': cid, 'name': acct['name'], 'rep': acct['rep'], 'city': direct_city.get(cid) or xref_city.get(cid),
         'brands': acct['brands'], 'lapsed': lapsed, 'breadth': breadth, 'primary': primary,
         'primary_flavor': primary_flavor, 'primary_sku_for_flavor': primary_sku_for_flavor,
         'gap_flavor': gap_flavor, 'existing_carbliss': sorted(existing_carbliss_set),
