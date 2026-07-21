@@ -118,7 +118,7 @@ footer p{max-width:720px;margin:6px auto}
 <header>
   <p class="eyebrow">Boston Beer &middot; Online Ordering</p>
   <h1>Forecast Pulse Check</h1>
-  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against Boston Beer's own forecast (F) per week, so you can eyeball whether F needs adjusting before it locks. A week's F is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it. Click a product name to expand its last 8 weeks of case sales and Boston Beer's own forward-looking forecast, for a read on whether it's seasonal or trending up.</p>
+  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against your confirmed order (On File) per week, with Boston Beer's own forecast (F) shown just below it for reference, so you can eyeball whether On File needs adjusting before it locks. A week's On File is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it. Click a product name to expand its last 8 weeks of case sales and Encompass's own forward-looking system forecast, for a read on whether it's seasonal or trending up.</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
@@ -133,10 +133,10 @@ footer p{max-width:720px;margin:6px auto}
     <span class="result-count"><span id="count-visible">0</span> of <span id="count-total">0</span> SKUs</span>
   </div>
   <div class="legend">
-    <span><span class="sw" style="background:var(--blue-soft);border:1px solid var(--line)"></span> F (Boston Beer forecast) &mdash; edit directly, it feeds the export</span>
-    <span><span class="sw" style="background:var(--amber-soft)"></span> F is well above recent average weekly sales</span>
-    <span><span class="sw" style="background:var(--teal-soft)"></span> F is well below recent average weekly sales</span>
-    <span>Small text under a week = your manager's confirmed order (A), if one's on file</span>
+    <span><span class="sw" style="background:var(--blue-soft);border:1px solid var(--line)"></span> On File (A) &mdash; edit directly, it feeds the export</span>
+    <span><span class="sw" style="background:var(--amber-soft)"></span> On File is well above recent average weekly sales</span>
+    <span><span class="sw" style="background:var(--teal-soft)"></span> On File is well below recent average weekly sales</span>
+    <span>Small text under a week = Boston Beer's own forecast (F), for reference</span>
   </div>
   <div class="table-scroll">
     <table id="sku-table">
@@ -188,16 +188,20 @@ function sparkline(weeks){
   return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*18))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
 }
 
-function effF(sku, i){
+// The editable box holds On File (the "A" column -- your manager's
+// confirmed order), not Boston Beer's forecast. Blank stays blank until
+// a decision is actually made -- it's never silently defaulted to F.
+function effOnFile(sku, i){
   const stored = edits[sku.sku] && edits[sku.sku][i];
   if(stored !== undefined) return stored;
-  return sku.weeks[i].forecast;
+  return sku.weeks[i].onFile;
 }
 
 // Light-touch pulse check only -- no trend line, no seasonal fallback, no
-// case-pack rounding. Just: is this week's F noticeably far from the SKU's
-// own recent 4-week average sales (Encompass's own L4 Average, not
-// something we computed)? >=50% above/below is the only rule.
+// case-pack rounding. Just: is this week's On File noticeably far from the
+// SKU's own recent 4-week average sales (Encompass's own L4 Average, not
+// something we computed)? >=50% above/below is the only rule. Blank On
+// File (nothing decided yet) never gets a color -- there's nothing to flag.
 function hiClass(f, l4){
   if(f==null || l4==null || l4<=0) return '';
   const ratio = f / l4;
@@ -260,7 +264,7 @@ function detailRow(s, colspan){
       ${recentBlock}
     </div>
     <div class="detail-block">
-      <div class="detail-label">Boston Beer's system forecast<span class="detail-sub">ForecastReport export &middot; their own forward-looking model, several months out</span></div>
+      <div class="detail-label">Encompass System Forecast<span class="detail-sub">ForecastReport export &middot; Encompass's own forward-looking model, several months out</span></div>
       ${forecastBlock}
     </div>
   </div></td></tr>`;
@@ -269,14 +273,15 @@ function detailRow(s, colspan){
 function weekCell(sku, i){
   const w = sku.weeks[i];
   if(w.locked){
-    return `<td class="wk"><div class="wk-locked">${fmtNum(w.forecast)}</div><div class="wk-onfile">Locked</div></td>`;
+    const shipped = w.onFile != null ? w.onFile : w.forecast;
+    return `<td class="wk"><div class="wk-locked">${fmtNum(shipped)}</div><div class="wk-onfile">Locked</div></td>`;
   }
-  const f = effF(sku, i);
-  const cls = hiClass(f, sku.l4Avg);
+  const onFileVal = effOnFile(sku, i);
+  const cls = hiClass(onFileVal, sku.l4Avg);
   const title = sku.l4Avg!=null ? `Recent 4-wk avg: ${fmtNum(sku.l4Avg)}/wk` : '';
-  const onfile = w.onFile != null ? `<div class="wk-onfile">On file: ${fmtNum(w.onFile)}</div>` : '';
+  const forecastRef = w.forecast != null ? `<div class="wk-onfile">BBC forecast: ${fmtNum(w.forecast)}</div>` : '';
   return `<td class="wk"><input class="wk-f ${cls}" type="number" min="0" step="1" title="${esc(title)}"
-    value="${f==null?'':f}" data-sku="${esc(sku.sku)}" data-week="${i}">${onfile}</td>`;
+    value="${onFileVal==null?'':onFileVal}" data-sku="${esc(sku.sku)}" data-week="${i}">${forecastRef}</td>`;
 }
 
 function render(){
@@ -365,13 +370,14 @@ function csvEscape(v){
 function exportCSV(){
   // The locked (nearest) week can't be changed in the portal, so it's left
   // out of the export -- only open weeks go out, using whatever's currently
-  // in each F field (edited or original).
+  // on file (edited or original). A week nobody's decided on yet exports
+  // blank -- this is a snapshot of confirmed orders, not a filled-in guess.
   const lockedWeeks = DATA.meta.lockedWeeks || 0;
   const weekDates = DATA.meta.weekDates.slice(lockedWeeks);
   const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
   const lines = [header.map(csvEscape).join(',')];
   DATA.skus.forEach(sku => {
-    const vals = weekDates.map((_, idx) => effF(sku, idx + lockedWeeks));
+    const vals = weekDates.map((_, idx) => effOnFile(sku, idx + lockedWeeks));
     const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...vals.map(v => v==null?'':v)];
     lines.push(row.map(csvEscape).join(','));
   });

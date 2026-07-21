@@ -4,10 +4,11 @@ Online Ordering Pulse Check (Boston Beer)
 Simplified 2026-07-20 per Kohler: this used to run a trend-line
 projection / seasonal fallback / case-pack rounding engine and compute
 a "Recommended" order quantity. That's gone. This page is a pulse
-check: for each SKU, line up Boston Beer's own forecast (F) per week
-against recent actual case sales, current inventory, and Boston Beer's
-own forward-looking system forecast, so it's easy to eyeball whether F
-needs adjusting -- no projection, no formula box, no sliders.
+check: for each SKU, line up your confirmed order (On File) per week
+against recent actual case sales, current inventory, Boston Beer's own
+forecast (F, shown for reference), and Encompass's own forward-looking
+system forecast, so it's easy to eyeball whether On File needs
+adjusting -- no projection, no formula box, no sliders.
 
 Files
 -----
@@ -35,7 +36,7 @@ Files
                                  case sales), Available, Last Receive
                                  Date/Quantity.
   ForecastReport.xlsx            Encompass "ForecastReport" export.
-                                 Boston Beer's own forward-looking
+                                 Encompass's own forward-looking
                                  system forecast in case-equivalents,
                                  one column per week for several months
                                  out -- this is what lets you see
@@ -82,34 +83,39 @@ Available, Last Receive (date + quantity), 4-wk Avg, a small sparkline
 of the last 8 weeks' actual case sales, then one column per forecast
 week.
 
-Each week shows Boston Beer's F value in an editable field, with your
-manager's confirmed order (A) underneath in small text when one's on
-file. F is tinted amber if it's 50%+ above the SKU's own 4-wk Avg, or
+Each week shows your confirmed order (On File, the portal's "A"
+column) in an editable field -- blank until your manager actually
+enters a number, never silently defaulted to Boston Beer's forecast --
+with Boston Beer's F value underneath in small text for reference. On
+File is tinted amber if it's 50%+ above the SKU's own 4-wk Avg, or
 teal if it's 50%+ below -- that's the entire "flag" logic, there is no
-further math behind it. Everything else (Available, Last Receive,
-Recent Sales) is raw source data, meant to be read by eye alongside
-the tint, not run through a formula.
+further math behind it, and it only lights up once a number's actually
+been entered. Everything else (Available, Last Receive, Recent Sales,
+the F reference) is raw source data, meant to be read by eye alongside
+the tint, not run through a formula. The locked (nearest) week shows
+whatever actually shipped -- On File if one was entered, Boston Beer's
+forecast otherwise -- since it already happened and can't change.
 
 Click a product's name to expand a detail panel with two mini bar
 charts: "Recent actual sales" (the same 8 weeks as the Recent Sales
-sparkline, but full numbers and week labels) and "Boston Beer's system
-forecast" (their own forward-looking model from ForecastReport, several
-months out). Neither chart computes anything -- they're both raw
-numbers, side by side, so you can eyeball whether a product's recent
-run-rate and Boston Beer's own forward expectation agree, and whether
+sparkline, but full numbers and week labels) and "Encompass System
+Forecast" (Encompass's own forward-looking model from ForecastReport,
+several months out). Neither chart computes anything -- they're both
+raw numbers, side by side, so you can eyeball whether a product's
+recent run-rate and Encompass's forward expectation agree, and whether
 a seasonal ramp or a growth trend shows up in their forecast that
 recent weeks alone wouldn't tell you. A SKU with no Inventory Report or
 ForecastReport row shows a plain "not available" line in that chart's
 place instead of a broken/empty chart.
 
-You can edit any (non-locked) F value directly in the table -- it's
-kept in the browser only, not written back to the CSV or JSON. "Export
-upload CSV" downloads Product/Distributor/BBC SKU/Customer plus every
-open (non-locked) week, using whatever's currently in each F field
-(your edits if you made any, Boston Beer's original number otherwise)
--- ready to re-upload to the portal. "Reset edits" clears anything
-you've typed and reverts every field to Boston Beer's original
-forecast.
+You can edit any (non-locked) On File value directly in the table --
+it's kept in the browser only, not written back to the CSV or JSON.
+"Export upload CSV" downloads Product/Distributor/BBC SKU/Customer plus
+every open (non-locked) week, using whatever's currently on file (your
+edits if you made any, the original On File value otherwise) -- a week
+nobody's decided on yet exports blank rather than guessing at Boston
+Beer's forecast. "Reset edits" clears anything you've typed and
+reverts every field to the original On File value.
 
 Click any of the first four column headers to sort; type in the
 search box to filter by product name or SKU.
