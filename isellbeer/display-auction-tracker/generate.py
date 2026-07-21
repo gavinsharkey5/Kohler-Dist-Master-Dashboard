@@ -53,8 +53,8 @@ PRIORITY_BRANDS = {
     'WHITE CLAW SURGE HARD SELTZER', 'WHITE CLAW VODKA + SODA', 'YUENGLING BREWERY',
 }
 ALLOTHER_BRANDS = {
-    'ATHLETIC BREWING COMPANY', 'FAMOSA', 'KIRIN', 'KIRIN ICHIBAN', 'POPSICLE FMB',
-    'SIERRA NEVADA BREWING COMPANY',
+    'ATHLETIC BREWING COMPANY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN', 'KIRIN ICHIBAN',
+    'POPSICLE FMB', 'SIERRA NEVADA BREWING COMPANY',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
