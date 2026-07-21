@@ -65,6 +65,22 @@ tr:hover td{background:var(--card2)}
 .sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:20px;vertical-align:middle}
 .sparkline i{display:block;width:4px;background:var(--blue);border-radius:1px;opacity:.85}
 
+.pname-row{display:flex;align-items:center;gap:6px;cursor:pointer}
+.pname-row:hover .pname{color:var(--blue)}
+.chev{color:var(--ink-soft);font-size:10px;transition:transform .15s;flex-shrink:0;display:inline-block}
+.chev.open{transform:rotate(90deg)}
+#sku-table tr.detail-row td{position:static;background:#F5F8FB;padding:14px 18px 18px}
+.detail-inner{display:flex;flex-direction:column;gap:16px}
+.detail-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin-bottom:8px}
+.detail-sub{font-size:10.5px;font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink-soft);margin-left:8px}
+.detail-empty{font-size:12.5px;color:var(--ink-soft);padding:4px 0}
+.barrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.barcol{display:flex;flex-direction:column;align-items:center;min-width:46px;flex-shrink:0}
+.barval{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:3px;white-space:nowrap}
+.barwrap{height:48px;display:flex;align-items:flex-end}
+.bar{width:22px;border-radius:4px 4px 2px 2px}
+.barlabel{font-size:9.5px;color:var(--ink-soft);margin-top:4px;white-space:nowrap}
+
 .wk{min-width:78px;text-align:center}
 .wk-f{width:56px;text-align:right;border:1px solid var(--line);border-radius:6px;padding:4px 5px;font-size:12.5px;
   font-family:inherit;background:var(--blue-soft);color:var(--ink);font-weight:600}
@@ -102,7 +118,7 @@ footer p{max-width:720px;margin:6px auto}
 <header>
   <p class="eyebrow">Boston Beer &middot; Online Ordering</p>
   <h1>Forecast Pulse Check</h1>
-  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against Boston Beer's own forecast (F) per week, so you can eyeball whether F needs adjusting before it locks. A week's F is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it.</p>
+  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against Boston Beer's own forecast (F) per week, so you can eyeball whether F needs adjusting before it locks. A week's F is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it. Click a product name to expand its last 8 weeks of case sales and Boston Beer's own forward-looking forecast, for a read on whether it's seasonal or trending up.</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
@@ -130,7 +146,7 @@ footer p{max-width:720px;margin:6px auto}
           <th class="num" data-key="avail">Available<span class="sort-ind"></span></th>
           <th data-key="lastReceive">Last Receive<span class="sort-ind"></span></th>
           <th class="num" data-key="l4">4-wk Avg<span class="sort-ind"></span></th>
-          <th title="Encompass Inventory Report's last 5 weeks of actual case sales, oldest to newest. Hover a bar for the exact number.">Recent Sales</th>
+          <th title="Encompass Inventory Report's last 8 weeks of actual case sales, oldest to newest. Hover a bar for the exact number. Click a product name to see the full breakdown plus Boston Beer's own forward forecast.">Recent Sales</th>
           <th id="week-headers-start"></th>
         </tr>
       </thead>
@@ -160,6 +176,7 @@ footer p{max-width:720px;margin:6px auto}
 <script>
 let DATA = null;
 let edits = {}; // sku -> weekIndex -> edited forecast value
+let expanded = new Set(); // sku codes with the detail panel open
 let state = { search: "", sortKey: "name", sortDir: "asc" };
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -215,6 +232,40 @@ function updateSortIndicators(){
   });
 }
 
+function shortDate(md){ const parts=String(md).split('/'); return parts.length>=2 ? parts[0]+'/'+parts[1] : md; }
+
+function miniBars(values, labels, color){
+  const nums = (values||[]).map(v => v==null ? null : v);
+  const scale = Math.max(1, ...nums.filter(v=>v!=null).map(v=>Math.abs(v)));
+  return '<div class="barrow">' + nums.map((v,i) => `
+    <div class="barcol">
+      <div class="barval">${v==null?'—':fmtNum(v)}</div>
+      <div class="barwrap"><div class="bar" style="height:${v==null?2:Math.max(3,Math.round(Math.abs(v)/scale*44))}px;background:${color}"></div></div>
+      <div class="barlabel">${esc(labels[i]||'')}</div>
+    </div>`).join('') + '</div>';
+}
+
+function detailRow(s, colspan){
+  const hasRecent = Array.isArray(s.recentWeeks) && s.recentWeeks.some(v=>v!=null);
+  const hasForecast = Array.isArray(s.forecastReportWeeks) && s.forecastReportWeeks.length;
+  const recentBlock = hasRecent
+    ? miniBars(s.recentWeeks, s.recentWeekLabels||[], 'var(--blue)')
+    : '<div class="detail-empty">No Inventory Report row for this SKU.</div>';
+  const forecastBlock = hasForecast
+    ? miniBars(s.forecastReportWeeks.map(w=>w.cases), s.forecastReportWeeks.map(w=>shortDate(w.weekEnding)), 'var(--navy)')
+    : '<div class="detail-empty">No ForecastReport row for this SKU.</div>';
+  return `<tr class="detail-row"><td colspan="${colspan}"><div class="detail-inner">
+    <div class="detail-block">
+      <div class="detail-label">Recent actual sales<span class="detail-sub">Encompass Inventory Report &middot; last 8 weeks, oldest to newest</span></div>
+      ${recentBlock}
+    </div>
+    <div class="detail-block">
+      <div class="detail-label">Boston Beer's system forecast<span class="detail-sub">ForecastReport export &middot; their own forward-looking model, several months out</span></div>
+      ${forecastBlock}
+    </div>
+  </div></td></tr>`;
+}
+
 function weekCell(sku, i){
   const w = sku.weeks[i];
   if(w.locked){
@@ -245,18 +296,21 @@ function render(){
   }
   document.getElementById('empty-state').style.display = 'none';
 
+  const colspan = 5 + DATA.meta.weekDates.length;
   tbody.innerHTML = skus.map(s => {
     const unmatchedTag = !s.cleanName ? ` <span title="No matching product record found in Encompass — showing the raw portal name" style="cursor:help">†</span>` : '';
     const lastReceive = s.lastReceiveDate ? `${esc(s.lastReceiveDate)}<div class="pmeta">${fmtNum(s.lastReceiveQty)} cs</div>` : '—';
     const weekCells = s.weeks.map((w,i) => weekCell(s, i)).join('');
-    return `<tr>
-      <td><div class="pname">${esc(s.product)}${unmatchedTag}</div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
+    const isOpen = expanded.has(s.sku);
+    const mainRow = `<tr>
+      <td><div class="pname-row" data-toggle="${esc(s.sku)}"><span class="chev${isOpen?' open':''}">&#9656;</span><span class="pname">${esc(s.product)}${unmatchedTag}</span></div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
       <td class="num">${fmtNum(s.available)}</td>
       <td>${lastReceive}</td>
       <td class="num">${fmtNum(s.l4Avg)}</td>
       <td>${sparkline(s.recentWeeks)}</td>
       ${weekCells}
     </tr>`;
+    return mainRow + (isOpen ? detailRow(s, colspan) : '');
   }).join('');
 
   tbody.querySelectorAll('.wk-f').forEach(inp => {
@@ -267,6 +321,14 @@ function render(){
       edits[sku][week] = val;
       const skuObj = DATA.skus.find(s => s.sku === sku);
       inp.className = 'wk-f ' + hiClass(val, skuObj ? skuObj.l4Avg : null);
+    });
+  });
+
+  tbody.querySelectorAll('.pname-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const sku = el.dataset.toggle;
+      if(expanded.has(sku)) expanded.delete(sku); else expanded.add(sku);
+      render();
     });
   });
 }
