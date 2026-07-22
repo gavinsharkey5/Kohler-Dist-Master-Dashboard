@@ -87,6 +87,7 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .acct-chev{display:inline-block;transition:transform .15s;color:var(--ink-soft);font-size:10.5px;flex:none;width:10px}
 .acct-card.open .acct-chev{transform:rotate(90deg);color:var(--accent)}
 .acct-photo{width:42px;height:42px;border-radius:8px;flex:none;object-fit:cover;background:#0c0d11;border:1px solid var(--line);display:block}
+a:has(>.acct-photo){flex:none;display:block;line-height:0;cursor:pointer}
 .acct-photo-ph{width:42px;height:42px;border-radius:8px;flex:none;background:#0c0d11;border:1px solid var(--line-soft);
   display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-soft);opacity:.55}
 .acct-info{flex:1;min-width:0}
@@ -120,6 +121,8 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
   padding:2px 7px;border-radius:999px;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);
   white-space:nowrap;cursor:help;margin-left:4px}
 .acct-address{color:var(--ink-soft);font-size:11.5px;margin:0 0 8px}
+.photo-link{color:var(--accent);text-decoration:none;font-weight:600}
+.photo-link:hover{text-decoration:underline}
 .photo-empty-note{font-size:11px;color:var(--ink-soft);margin:0 0 8px}
 
 .legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 4px 0;font-size:11.5px;color:var(--ink-soft)}
@@ -152,6 +155,10 @@ footer p{margin:0 0 8px}
     <div class="tgroup">
       <label>Search account / brand</label>
       <input type="search" id="search" placeholder="Account or brand...">
+    </div>
+    <div class="tgroup">
+      <label>Rep</label>
+      <select id="repFilter"><option value="">All reps</option></select>
     </div>
     <div class="tgroup">
       <label>County</label>
@@ -196,7 +203,7 @@ footer p{margin:0 0 8px}
   var DATA = JSON.parse(document.getElementById('tap-data').textContent);
   var RECORDS = DATA.records || [];
 
-  var state = { search:'', county:'', status:'' };
+  var state = { search:'', rep:'', county:'', status:'' };
   var openReps = {};
   var openAccounts = {};
 
@@ -205,6 +212,8 @@ footer p{margin:0 0 8px}
   function filtersActive(){ return !!(state.search || state.county || state.status); }
 
   function populateSelects(){
+    var repSel = document.getElementById('repFilter');
+    (DATA.reps||[]).forEach(function(r){ var o=document.createElement('option'); o.value=r; o.textContent=r; repSel.appendChild(o); });
     var countySel = document.getElementById('countyFilter');
     (DATA.counties||[]).forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c; countySel.appendChild(o); });
   }
@@ -231,6 +240,7 @@ footer p{margin:0 0 8px}
 
   function filteredRecords(){
     return RECORDS.filter(function(r){
+      if(state.rep && r.rep!==state.rep) return false;
       if(state.county && r.county!==state.county) return false;
       if(state.status && r.status!==state.status) return false;
       if(state.search){
@@ -291,7 +301,10 @@ footer p{margin:0 0 8px}
   }
 
   function photoHtml(photo, dba){
-    if(photo) return '<img class="acct-photo" src="'+esc(photo)+'" alt="Most recent photo at '+esc(dba)+'" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;acct-photo-ph&quot;>&#128247;</div>\'">';
+    if(photo){
+      var img = '<img class="acct-photo" src="'+esc(photo)+'" alt="Most recent photo at '+esc(dba)+'" loading="lazy" onerror="this.closest(\'a\').outerHTML=\'<div class=&quot;acct-photo-ph&quot;>&#128247;</div>\'">';
+      return '<a href="'+esc(photo)+'" target="_blank" rel="noopener" title="Open most recent photo at '+esc(dba)+'" onclick="event.stopPropagation()">'+img+'</a>';
+    }
     return '<div class="acct-photo-ph">&#128247;</div>';
   }
 
@@ -324,7 +337,9 @@ footer p{margin:0 0 8px}
     var body = '';
     if(isOpen){
       body = '<div class="acct-brands">'+
-        '<p class="acct-address">'+esc(a.address)+(a.city?', '+esc(a.city):'')+'</p>'+
+        '<p class="acct-address">'+esc(a.address)+(a.city?', '+esc(a.city):'')+
+          (a.photo ? ' &middot; <a class="photo-link" href="'+esc(a.photo)+'" target="_blank" rel="noopener">&#128247; View most recent photo</a>' : '')+
+        '</p>'+
         (a.photo ? '' : '<p class="photo-empty-note">No photo on file for this account.</p>')+
         '<table><thead><tr><th>Brand</th><th>Supplier</th><th class="num-cell">Taps</th><th>Status</th></tr></thead>'+
         '<tbody>'+brandRows(a.brandsList)+'</tbody></table>'+
@@ -334,7 +349,7 @@ footer p{margin:0 0 8px}
   }
 
   function repHtml(rep){
-    var isOpen = filtersActive() ? true : !!openReps[rep.rep];
+    var isOpen = (filtersActive() || state.rep===rep.rep) ? true : !!openReps[rep.rep];
     var pct = function(n){ return rep.taps? Math.round(n/rep.taps*100):0; };
     var head = '<div class="rep-head" data-rep="'+esc(rep.rep)+'">'+
       '<span class="rep-chev">▸</span>'+
@@ -346,12 +361,20 @@ footer p{margin:0 0 8px}
     '</div>';
     var body = '';
     if(isOpen){
-      body = '<div class="rep-accounts">'+rep.accountsList.map(function(a){ return accountHtml(rep.rep, a); }).join('')+'</div>';
+      body = '<div class="rep-accounts" data-rep-scroll="'+esc(rep.rep)+'">'+rep.accountsList.map(function(a){ return accountHtml(rep.rep, a); }).join('')+'</div>';
     }
     return '<div class="rep-card'+(isOpen?' open':'')+'" data-rep-card="'+esc(rep.rep)+'">'+head+body+'</div>';
   }
 
   function render(){
+    // preserve scroll position: full innerHTML rebuild below would otherwise
+    // reset both the page scroll and any open rep's own account-list scroll
+    var pageScroll = window.scrollY;
+    var innerScrolls = {};
+    document.querySelectorAll('.rep-accounts[data-rep-scroll]').forEach(function(el){
+      innerScrolls[el.dataset.repScroll] = el.scrollTop;
+    });
+
     var records = filteredRecords();
     var reps = groupByRep(records);
     var acctCount = 0; reps.forEach(function(r){ acctCount += r.accountsList.length; });
@@ -360,6 +383,7 @@ footer p{margin:0 0 8px}
     var container = document.getElementById('reps');
     if(!reps.length){
       container.innerHTML = '<div class="empty-note">No taps match these filters.</div>';
+      window.scrollTo(0, pageScroll);
       return;
     }
     container.innerHTML = reps.map(repHtml).join('');
@@ -379,9 +403,16 @@ footer p{margin:0 0 8px}
         render();
       });
     });
+
+    document.querySelectorAll('.rep-accounts[data-rep-scroll]').forEach(function(el){
+      var saved = innerScrolls[el.dataset.repScroll];
+      if(saved) el.scrollTop = saved;
+    });
+    window.scrollTo(0, pageScroll);
   }
 
   document.getElementById('search').addEventListener('input', function(e){ state.search=e.target.value; render(); });
+  document.getElementById('repFilter').addEventListener('change', function(e){ state.rep=e.target.value; render(); });
   document.getElementById('countyFilter').addEventListener('change', function(e){ state.county=e.target.value; render(); });
   document.getElementById('statusFilter').addEventListener('change', function(e){ state.status=e.target.value; render(); });
   document.getElementById('expandAll').addEventListener('click', function(){
