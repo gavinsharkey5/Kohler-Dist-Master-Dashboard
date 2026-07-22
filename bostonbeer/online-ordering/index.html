@@ -32,6 +32,12 @@ h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--nav
 .sub{color:var(--ink-soft);font-size:13.5px;max-width:760px;margin:0}
 .updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);letter-spacing:.01em;font-weight:500}
 
+.tabs{display:flex;gap:6px;margin:16px 0 0;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:4px;max-width:420px}
+.tabbtn{flex:1;text-align:center;padding:9px 10px;border-radius:8px;font-weight:700;font-size:13px;color:var(--ink-soft);
+  cursor:pointer;user-select:none;border:none;background:transparent;font-family:inherit}
+.tabbtn.active{background:var(--navy);color:#fff;box-shadow:var(--shadow)}
+.tabpage{margin-top:16px}
+
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
 .panel h2{font-size:16px;margin:0 0 4px;color:var(--navy);font-weight:700}
 .panel .phint{font-size:12px;color:var(--ink-soft);margin:0 0 14px}
@@ -90,6 +96,16 @@ tr:hover td{background:var(--card2)}
 .wk-locked{width:56px;text-align:right;padding:4px 5px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
 .wk-onfile{font-size:9.5px;color:var(--ink-soft);margin-top:2px;white-space:nowrap}
 
+.trend-box{display:inline-block;min-width:44px;text-align:right;border:1px solid var(--line);border-radius:6px;
+  padding:4px 5px;font-size:12.5px;font-weight:700;background:var(--card2);color:var(--ink)}
+.trend-box.hi-high{background:var(--amber-soft);color:var(--amber);border-color:transparent}
+.trend-box.hi-low{background:var(--teal-soft);color:var(--teal);border-color:transparent}
+.trend-box.no-data{font-weight:500;color:var(--ink-soft);background:var(--card2)}
+.diff-tag{font-weight:700}
+.trendpct{font-weight:600}
+.trendpct.up{color:var(--teal)}
+.trendpct.down{color:var(--amber)}
+
 .table-scroll{overflow-x:auto;border-radius:10px}
 .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
 
@@ -122,6 +138,12 @@ footer p{max-width:720px;margin:6px auto}
   <p class="updated" id="updated-line"></p>
 </header>
 
+<div class="tabs" role="tablist">
+  <button class="tabbtn active" data-tab="pulse" role="tab" aria-selected="true">Pulse Check</button>
+  <button class="tabbtn" data-tab="trend" role="tab" aria-selected="false">Trend Forecast</button>
+</div>
+
+<div id="tab-pulse" class="tabpage active">
 <div class="panel">
   <div class="controls">
     <div class="ctl">
@@ -167,6 +189,40 @@ footer p{max-width:720px;margin:6px auto}
     </div>
   </details>
 </div>
+</div>
+
+<div id="tab-trend" class="tabpage" style="display:none">
+<div class="panel">
+  <h2>Trend Forecast vs. Boston Beer Forecast</h2>
+  <p class="phint" id="trend-window-line"></p>
+  <div class="controls">
+    <div class="ctl">
+      <label>Search product / SKU</label>
+      <input type="text" id="trend-search" placeholder="e.g. Twisted Tea, OA9163">
+    </div>
+    <span class="result-count"><span id="trend-count-visible">0</span> of <span id="trend-count-total">0</span> SKUs</span>
+  </div>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--card2);border:1px solid var(--line)"></span> Trend forecast &mdash; last year's actual cases that week &times; (1 + 13-wk YoY trend)</span>
+    <span><span class="sw" style="background:var(--amber-soft)"></span> Boston Beer's forecast is &gt;10% above trend</span>
+    <span><span class="sw" style="background:var(--teal-soft)"></span> Boston Beer's forecast is &gt;10% below trend</span>
+    <span>Small text under a week = Boston Beer's own forecast (F), for reference</span>
+  </div>
+  <div class="table-scroll">
+    <table id="trend-table">
+      <thead>
+        <tr>
+          <th data-key="name">Product<span class="sort-ind"></span></th>
+          <th class="num" data-key="trendPct">13-wk Trend<span class="sort-ind"></span></th>
+          <th id="trend-week-headers-start"></th>
+        </tr>
+      </thead>
+      <tbody id="trend-tbody"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="trend-empty-state" style="display:none">No SKUs match this filter.</div>
+</div>
+</div>
 
 <footer>
   <p>Data refreshed manually from the Boston Beer portal forecast export + Encompass Inventory Report &mdash; see README in this folder for how to update.</p>
@@ -175,6 +231,8 @@ footer p{max-width:720px;margin:6px auto}
 
 <script>
 let DATA = null;
+let TREND = null;
+let trendState = { search: "", sortKey: "name", sortDir: "asc" };
 let edits = {}; // sku -> weekIndex -> edited forecast value
 let expanded = new Set(); // sku codes with the detail panel open
 let state = { search: "", sortKey: "name", sortDir: "asc" };
@@ -390,6 +448,82 @@ function exportCSV(){
   URL.revokeObjectURL(url);
 }
 
+function trendWeekCell(p, i){
+  const w = p.weeks[i];
+  if(!p.hasTrend){
+    const bbc = w.bbcForecast!=null ? `BBC: ${fmtNum(w.bbcForecast)}` : 'No BBC forecast';
+    return `<td class="wk"><div class="trend-box no-data">—</div><div class="wk-onfile">${bbc}</div></td>`;
+  }
+  const cls = w.flagged ? (w.diffPct>0 ? 'hi-high' : 'hi-low') : '';
+  const diffLabel = w.diffPct!=null ? `${w.diffPct>=0?'+':''}${Math.round(w.diffPct*100)}%` : '';
+  const bbcLine = w.bbcForecast!=null
+    ? `BBC: ${fmtNum(w.bbcForecast)}${w.flagged?` <span class="diff-tag">(${diffLabel})</span>`:''}`
+    : 'No BBC forecast';
+  return `<td class="wk"><div class="trend-box ${cls}" title="Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases">${fmtNum(w.trendForecast)}</div><div class="wk-onfile">${bbcLine}</div></td>`;
+}
+
+const TREND_SORT_ACCESSORS = {
+  name: p => p.product,
+  trendPct: p => p.trendPct,
+};
+
+function compareTrend(a, b){
+  const acc = TREND_SORT_ACCESSORS[trendState.sortKey] || TREND_SORT_ACCESSORS.name;
+  const av = acc(a), bv = acc(b);
+  const aMissing = av==null, bMissing = bv==null;
+  if(aMissing && bMissing) return 0;
+  if(aMissing) return 1;
+  if(bMissing) return -1;
+  const cmp = (typeof av === 'string') ? av.localeCompare(bv) : (av<bv?-1:av>bv?1:0);
+  return trendState.sortDir === 'asc' ? cmp : -cmp;
+}
+
+function updateTrendSortIndicators(){
+  document.querySelectorAll('#trend-table thead th[data-key]').forEach(th => {
+    const ind = th.querySelector('.sort-ind');
+    if(!ind) return;
+    ind.textContent = th.dataset.key === trendState.sortKey ? (trendState.sortDir==='asc' ? '▲' : '▼') : '';
+  });
+}
+
+function renderTrendWeekHeaders(){
+  const start = document.getElementById('trend-week-headers-start');
+  if(!start) return;
+  const headers = TREND.meta.weeks.map(w => `<th class="wk">${esc(w.weekEnding.slice(0,5))}</th>`).join('');
+  start.outerHTML = headers;
+}
+
+function renderTrend(){
+  if(!TREND) return;
+  const q = trendState.search.trim().toLowerCase();
+  let products = trendState.search ? TREND.products.filter(p => p.product.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)) : TREND.products.slice();
+  products.sort(compareTrend);
+  updateTrendSortIndicators();
+
+  document.getElementById('trend-count-visible').textContent = products.length;
+  document.getElementById('trend-count-total').textContent = TREND.products.length;
+
+  const tbody = document.getElementById('trend-tbody');
+  if(!products.length){
+    tbody.innerHTML = '';
+    document.getElementById('trend-empty-state').style.display = 'block';
+    return;
+  }
+  document.getElementById('trend-empty-state').style.display = 'none';
+
+  tbody.innerHTML = products.map(p => {
+    const weekCells = p.weeks.map((w,i) => trendWeekCell(p, i)).join('');
+    const trendLabel = p.trendPct!=null
+      ? `<span class="trendpct ${p.trendPct>=0?'up':'down'}">${p.trendPct>=0?'+':''}${Math.round(p.trendPct*100)}%</span>`
+      : '<span style="color:var(--ink-soft)">No history</span>';
+    return `<tr>
+      <td><div class="pname">${esc(p.product)}</div><div class="pmeta">${esc(p.sku)}</div></td>
+      <td class="num">${trendLabel}</td>
+      ${weekCells}
+    </tr>`;
+  }).join('');
+}
+
 async function boot(){
   const cb = "?_="+Date.now();
   const res = await fetch('data/forecast.json'+cb, {cache:"no-store"});
@@ -418,6 +552,38 @@ async function boot(){
 
   renderOrphans();
   render();
+
+  try{
+    const tres = await fetch('data/trend_forecast.json'+cb, {cache:"no-store"});
+    if(tres.ok) TREND = await tres.json();
+  } catch(e){ /* trend tab just shows its empty state below */ }
+
+  if(TREND){
+    const w = TREND.meta.l13Window;
+    document.getElementById('trend-window-line').textContent =
+      `Trend = each SKU's case change over the trailing 13 weeks (${w.thisYear} vs. ${w.lastYear} a year prior), applied to last year's actuals for the matching week this year. Rows more than 10% off Boston Beer's own forecast are tinted.`;
+    renderTrendWeekHeaders();
+    document.querySelectorAll('#trend-table thead th[data-key]').forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.dataset.key;
+        if(trendState.sortKey === key) trendState.sortDir = trendState.sortDir === 'asc' ? 'desc' : 'asc';
+        else { trendState.sortKey = key; trendState.sortDir = 'asc'; }
+        renderTrend();
+      });
+    });
+    document.getElementById('trend-search').addEventListener('input', e => { trendState.search = e.target.value; renderTrend(); });
+    renderTrend();
+  } else {
+    document.getElementById('trend-window-line').textContent = 'Trend forecast data not available.';
+  }
+
+  document.querySelectorAll('.tabbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabbtn').forEach(b => { b.classList.toggle('active', b===btn); b.setAttribute('aria-selected', b===btn); });
+      document.getElementById('tab-pulse').style.display = btn.dataset.tab==='pulse' ? '' : 'none';
+      document.getElementById('tab-trend').style.display = btn.dataset.tab==='trend' ? '' : 'none';
+    });
+  });
 }
 boot();
 </script>
