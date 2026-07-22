@@ -107,6 +107,14 @@
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
   .complete-tag{color:var(--accent);font-weight:600;}
   .focus-row{background:rgba(224,169,62,0.06);}
+  .pkg-group-row{cursor:pointer;}
+  .pkg-group-row:hover td{background:#20242E;}
+  .pkg-group-row td{background:#1A1E27;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:7px 12px;}
+  .pkg-group-row:first-child td{border-top:none;}
+  .pkg-chev{display:inline-block;margin-right:7px;font-size:9px;transition:transform .15s;}
+  .pkg-group-row.collapsed .pkg-chev{transform:rotate(-90deg);}
+  .pkg-item-row.hidden{display:none;}
   .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
@@ -431,11 +439,43 @@ function sortNBLines(lines){
 function nbPctCell(pct){
   return pct>=100 ? '<span class="complete-tag">✓ Complete</span>' : pct.toFixed(1)+'%';
 }
-function nbLineTable(lines){
-  const sorted = sortNBLines(lines);
-  const rows = sorted.map(l=>`<tr class="${l.pct<100?'focus-row':''}"><td>${l.package_group}</td><td>${l.product}</td><td class="num">${l.placements}</td><td class="num">${l.goal90}</td><td class="num">${l.pct.toFixed(1)}%</td></tr>`).join('');
-  return `<table><thead><tr><th>Package Group</th><th>Product</th><th class="num">Placements</th><th class="num">90% Goal</th><th class="num">% to Goal</th></tr></thead><tbody>${rows}</tbody></table>`;
+// Groups a rep's product lines by package type, sorting each group's
+// products incomplete-first/worst-first (same rule as sortNBLines), and
+// puts groups with anything still incomplete ahead of fully-complete
+// groups so the rep's outstanding work still surfaces first overall.
+function groupNBLines(lines){
+  const groups = new Map();
+  lines.forEach(l=>{
+    const key = l.package_group || 'Other';
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(l);
+  });
+  return [...groups.entries()]
+    .map(([name, items])=>{
+      const sorted = sortNBLines(items);
+      return {name, items: sorted, hasIncomplete: sorted.some(l=>l.pct<100)};
+    })
+    .sort((a,b)=> a.hasIncomplete===b.hasIncomplete ? a.name.localeCompare(b.name) : (a.hasIncomplete?-1:1));
 }
+function nbLineTable(lines){
+  const body = groupNBLines(lines).map(g=>{
+    const gid = 'nbg'+(uid++);
+    const header = `<tr class="pkg-group-row" data-group="${gid}"><td colspan="4"><span class="pkg-chev">▼</span>${g.name}</td></tr>`;
+    const rows = g.items.map(l=>`<tr class="pkg-item-row ${gid} ${l.pct<100?'focus-row':''}"><td>${l.product}</td><td class="num">${l.placements}</td><td class="num">${l.goal90}</td><td class="num">${l.pct.toFixed(1)}%</td></tr>`).join('');
+    return header+rows;
+  }).join('');
+  return `<table><thead><tr><th>Product</th><th class="num">Placements</th><th class="num">90% Goal</th><th class="num">% to Goal</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+// Delegated once for the whole page -- covers package-group headers however
+// many times nbLineTable() re-renders (rep view, or every expanded row in
+// the objective view's New Belgium table).
+document.addEventListener('click', e=>{
+  const header = e.target.closest('.pkg-group-row');
+  if(!header) return;
+  const gid = header.dataset.group;
+  const collapsed = header.classList.toggle('collapsed');
+  document.querySelectorAll('.pkg-item-row.'+gid).forEach(row=>row.classList.toggle('hidden', collapsed));
+});
 
 let activeRep = null;
 const container = document.getElementById('objectives');
