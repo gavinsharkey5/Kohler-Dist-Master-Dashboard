@@ -5,6 +5,9 @@ dashboard covering, per brand:
   - Retention: how many separate times each account has bought each SKU
     (every row in the export is one order occasion, so counting rows per
     account x product is literally that count).
+  - Bottle vs. case: groups accounts by the size of their very first order
+    (single bottle / partial case / full case+) and checks whether that
+    predicts a 2nd order -- see "Bottle vs. case" below.
   - Velocity leaderboard: the accounts moving the most product per month,
     averaged over the full report window so accounts are compared fairly
     regardless of when they started buying.
@@ -12,6 +15,18 @@ dashboard covering, per brand:
     by Distribution Area, to see where each brand is succeeding.
   - CORE tracker: which accounts carry every SKU in the brand's CORE
     lineup, and which are one SKU away (near-CORE).
+
+Bottle vs. case (added 2026-07-22, per a manager's question about whether
+single-bottle buyers retain better than case buyers): the export's "Units"
+column is bottles (1 unit = 1 bottle; a case is 6 bottles, so 6 units = 1
+case -- matches the export's own "Cases" column, e.g. 1 unit = .17 cases).
+generate.py classifies each account by the size of its earliest order in
+the window -- single bottle (1 unit), partial case (2-5 units), or full
+case+ (6+ units in multiples of six) -- then reports what share of each
+group placed a 2nd order. Current data shows the opposite of the
+hypothesis: accounts starting with a full case (or even a partial case)
+retain noticeably BETTER than accounts starting with a single bottle, in
+both brands.
 
 CORE definitions (set by Kohler, hard-coded in generate.py):
   Green River CORE       = Bourbon, Full Proof, Rye, Wheated, Honey (5 SKUs)

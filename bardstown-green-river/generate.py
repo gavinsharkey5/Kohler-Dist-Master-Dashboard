@@ -33,6 +33,22 @@ BARDSTOWN_CORE = ['201055', '201056', '201058', '201057']
 BRANDS = ['Green River', 'Bardstown Bourbon']
 CORE_SKUS = {'Green River': GREEN_RIVER_CORE, 'Bardstown Bourbon': BARDSTOWN_CORE}
 
+# 1 unit = 1 bottle; a case is 6 bottles (1 unit = .17 cases), per Kohler, 2026-07-22.
+CASE_PACK_UNITS = 6
+FIRST_ORDER_SEGMENTS = [
+    ('bottle', 'Single bottle (1 unit)'),
+    ('partial', 'Partial case (2-5 units)'),
+    ('case', 'Full case+ (6+ units)'),
+]
+
+
+def classify_order_size(units):
+    if units == 1:
+        return 'bottle'
+    if units >= CASE_PACK_UNITS and units % CASE_PACK_UNITS == 0:
+        return 'case'
+    return 'partial'
+
 
 def brand_of(product_name):
     if product_name.startswith('Green River'):
@@ -102,7 +118,7 @@ for r in rows:
 
 # ---------- account x brand rollups ----------
 acct_brand = defaultdict(lambda: {'orders': 0, 'units': 0.0, 'revenue': 0.0, 'gp': 0.0,
-                                   'skus': set(), 'dates': []})
+                                   'skus': set(), 'dates': [], 'orderLines': []})
 for r in rows:
     o = acct_brand[(r['cust'], r['brand'])]
     o['orders'] += 1
@@ -111,6 +127,7 @@ for r in rows:
     o['gp'] += r['gp']
     o['skus'].add(r['prod'])
     o['dates'].append(r['date'])
+    o['orderLines'].append((r['date'], r['units']))
 
 
 def build_brand_payload(brand):
@@ -123,6 +140,7 @@ def build_brand_payload(brand):
         first, last = min(o['dates']), max(o['dates'])
         velocity = o['units'] / WINDOW_MONTHS if WINDOW_MONTHS > 0 else 0.0
         missing_core = sorted(core_set - o['skus'])
+        first_order_units = sorted(o['orderLines'], key=lambda ol: ol[0])[0][1]
         accounts.append({
             'id': cust, 'name': info['name'], 'rep': info['rep'], 'area': info['area'], 'city': info['city'],
             'orders': o['orders'], 'units': round(o['units'], 2), 'revenue': round(o['revenue'], 2),
@@ -132,6 +150,7 @@ def build_brand_payload(brand):
             'isCore': core_set.issubset(o['skus']),
             'missingCore': [PRODUCTS[p]['name'] for p in missing_core],
             'missingCoreCount': len(missing_core),
+            'firstOrderType': classify_order_size(first_order_units),
         })
     accounts.sort(key=lambda a: -a['revenue'])
 
@@ -215,6 +234,18 @@ def build_brand_payload(brand):
 
     velocity_leaders = sorted([a for a in accounts if a['orders'] >= 2], key=lambda a: -a['velocity'])[:25]
 
+    # bottle vs. case: does the size of an account's very first order predict whether it repeats?
+    first_order_size = []
+    for key, label in FIRST_ORDER_SEGMENTS:
+        seg_accts = [a for a in accounts if a['firstOrderType'] == key]
+        n = len(seg_accts)
+        repeat_n = sum(1 for a in seg_accts if a['orders'] >= 2)
+        first_order_size.append({
+            'key': key, 'label': label, 'accounts': n, 'repeatAccounts': repeat_n,
+            'repeatRate': round(repeat_n / n * 100, 1) if n else 0,
+            'avgOrdersPerBuyer': round(sum(a['orders'] for a in seg_accts) / n, 2) if n else 0,
+        })
+
     return {
         'name': brand,
         'coreSkus': [PRODUCTS[p]['name'] for p in CORE_SKUS[brand]],
@@ -232,6 +263,7 @@ def build_brand_payload(brand):
         'areas': areas,
         'reps': reps,
         'velocityLeaders': velocity_leaders,
+        'firstOrderSize': first_order_size,
         'coreAccounts': core_accounts,
         'nearCoreAccounts': sorted(near_core, key=lambda a: -a['revenue']),
         'accounts': accounts,
