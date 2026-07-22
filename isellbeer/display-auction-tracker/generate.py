@@ -53,16 +53,20 @@ PRIORITY_BRANDS = {
     'WHITE CLAW SURGE HARD SELTZER', 'WHITE CLAW VODKA + SODA', 'YUENGLING BREWERY',
 }
 ALLOTHER_BRANDS = {
-    'ATHLETIC BREWING COMPANY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN', 'KIRIN ICHIBAN',
-    'POPSICLE FMB', 'SIERRA NEVADA BREWING COMPANY',
+    'ATHLETIC BREWING COMPANY', 'CARIB BREWERY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN',
+    'KIRIN ICHIBAN', 'POPSICLE FMB', 'SIERRA NEVADA BREWING COMPANY',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
 # the beer's own brand family). Confirmed with the user 2026-07-20: BRAXTON
 # rows are Garage Beer (Supplier "GARAGE BEER CO.", Brand "GARAGE BEER
 # LAGER") mislabeled with the contract brewer's name as Brand Family.
+# Confirmed with the user 2026-07-22: "GARAGE BEER" and "SAM ADAMS" are
+# shorter Brand Family labels for the same already-classified brands.
 BRAND_FAMILY_ALIASES = {
     'BRAXTON': 'GARAGE BEER - CONTRACT BREWING',
+    'GARAGE BEER': 'GARAGE BEER - CONTRACT BREWING',
+    'SAM ADAMS': 'SAMUEL ADAMS',
 }
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
