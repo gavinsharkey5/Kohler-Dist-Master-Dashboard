@@ -81,6 +81,11 @@ main{padding:18px 0 60px}
 .row[open] .chev{transform:rotate(90deg)}
 
 .detail{padding:0 14px 16px 54px;font-size:12.5px}
+.dsort{display:flex;gap:6px;margin:0 0 10px}
+.dsort-btn{background:var(--card2);border:1px solid var(--line);color:var(--ink-soft);font:inherit;
+  font-family:"Space Grotesk";font-weight:600;font-size:11.5px;padding:6px 12px;border-radius:999px;cursor:pointer}
+.dsort-btn.active{background:linear-gradient(150deg,var(--accent2),var(--accent));color:#fff;border-color:transparent}
+.dsort-btn:hover:not(.active){color:var(--ink)}
 .dnote{color:var(--ink-soft);font-size:11.5px;margin:0 0 10px}
 .dlist{border-top:1px solid var(--line-soft)}
 .ditem{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-soft)}
@@ -208,6 +213,42 @@ function renderStats(key){
   ).join('');
 }
 
+const DISPLAY_SORTERS = {
+  points: {
+    label: 'Points ↓', note: 'Every display logged this period, highest-earning first.',
+    cmp: (a,b) => b.points - a.points || b.cases - a.cases || new Date(b.dt) - new Date(a.dt),
+  },
+  date: {
+    label: 'Date ↓', note: 'Every display logged this period, most recent first.',
+    cmp: (a,b) => new Date(b.dt) - new Date(a.dt) || b.points - a.points,
+  },
+};
+const DEFAULT_DISPLAY_SORT = 'points';
+
+function renderDisplaysHtml(displays, mode){
+  const sorted = [...displays].sort(DISPLAY_SORTERS[mode].cmp);
+  return sorted.map(d => {
+    const photos = d.photos || [];
+    const photoLinks = photos.map((url, i) =>
+      `<a class="dphoto" href="${esc(url)}" target="_blank" rel="noopener">${photos.length > 1 ? 'Photo ' + (i+1) : 'View Photo'}</a>`
+    ).join(' · ');
+    return `
+    <div class="ditem">
+      <div class="dinfo">
+        <div class="dacct">${esc(d.dba || 'Account #' + d.acct)}</div>
+        <div class="dsub">${esc(d.city || '')} · ${esc(d.brands.join(', '))} · ${fmtDate(d.dt)}</div>
+        ${photoLinks ? `<div class="dsub">${photoLinks}</div>` : ''}
+      </div>
+      <div class="dcases num">${fmtNum(d.cases)}<small>cases</small></div>
+      <div class="dpts">
+        ${d.points > 0 ? classBadge(d.classification) : '<span class="badge b-none">Below min.</span>'}
+        <div class="num" style="font-weight:700;margin-top:4px">${d.points > 0 ? '+' + fmtNum(d.points) : '0'}</div>
+      </div>
+    </div>
+  `;
+  }).join('');
+}
+
 function renderList(key){
   const cfg = TABS[key];
   const st = state[key];
@@ -217,31 +258,14 @@ function renderList(key){
     listEl.innerHTML = '<div class="empty">No one in this role yet.</div>';
     return;
   }
+  const sortBtnsHtml = Object.entries(DISPLAY_SORTERS).map(([mode, s]) =>
+    `<button type="button" class="dsort-btn${mode === DEFAULT_DISPLAY_SORT ? ' active' : ''}" data-mode="${mode}">${esc(s.label)}</button>`
+  ).join('');
   listEl.innerHTML = people.map((p, i) => {
     const rankIdx = st.sort === 'pointsDesc' ? i + 1 : null;
     const rankClass = rankIdx === 1 ? 'r1' : rankIdx === 2 ? 'r2' : rankIdx === 3 ? 'r3' : '';
     const rankLabel = rankIdx ? rankIdx : '–';
-    const displaysHtml = p.displays.map(d => {
-      const photos = d.photos || [];
-      const photoLinks = photos.map((url, i) =>
-        `<a class="dphoto" href="${esc(url)}" target="_blank" rel="noopener">${photos.length > 1 ? 'Photo ' + (i+1) : 'View Photo'}</a>`
-      ).join(' · ');
-      return `
-      <div class="ditem">
-        <div class="dinfo">
-          <div class="dacct">${esc(d.dba || 'Account #' + d.acct)}</div>
-          <div class="dsub">${esc(d.city || '')} · ${esc(d.brands.join(', '))} · ${fmtDate(d.dt)}</div>
-          ${photoLinks ? `<div class="dsub">${photoLinks}</div>` : ''}
-        </div>
-        <div class="dcases num">${fmtNum(d.cases)}<small>cases</small></div>
-        <div class="dpts">
-          ${d.points > 0 ? classBadge(d.classification) : '<span class="badge b-none">Below min.</span>'}
-          <div class="num" style="font-weight:700;margin-top:4px">${d.points > 0 ? '+' + fmtNum(d.points) : '0'}</div>
-        </div>
-      </div>
-    `;
-    }).join('');
-    return `<details class="row">
+    return `<details class="row" data-person="${esc(p.name)}" data-sort-mode="${DEFAULT_DISPLAY_SORT}">
       <summary>
         <span class="rank ${rankClass}">${rankLabel}</span>
         <span class="info">
@@ -252,11 +276,29 @@ function renderList(key){
         <span class="chev">&rsaquo;</span>
       </summary>
       <div class="detail">
-        <p class="dnote">Every display logged this period, highest-earning first.</p>
-        <div class="dlist">${displaysHtml}</div>
+        <div class="dsort" role="group" aria-label="Sort ${esc(p.name)}'s displays">${sortBtnsHtml}</div>
+        <p class="dnote">${esc(DISPLAY_SORTERS[DEFAULT_DISPLAY_SORT].note)}</p>
+        <div class="dlist">${renderDisplaysHtml(p.displays, DEFAULT_DISPLAY_SORT)}</div>
       </div>
     </details>`;
   }).join('');
+}
+
+// Sorting a person's own display list is purely a client-side view toggle on
+// the already-rendered row -- it must not touch the <details> open state or
+// re-render the person list (which would collapse every open row).
+function onDisplaySortClick(e, key){
+  const btn = e.target.closest('.dsort-btn');
+  if (!btn) return;
+  const row = btn.closest('.row');
+  const mode = btn.dataset.mode;
+  if (row.dataset.sortMode === mode) return;
+  row.dataset.sortMode = mode;
+  const person = TABS[key].people.find(p => p.name === row.dataset.person);
+  if (!person) return;
+  row.querySelectorAll('.dsort-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  row.querySelector('.dnote').textContent = DISPLAY_SORTERS[mode].note;
+  row.querySelector('.dlist').innerHTML = renderDisplaysHtml(person.displays, mode);
 }
 
 function init(){
@@ -272,6 +314,7 @@ function init(){
     const sortSel = document.getElementById('sort-' + key);
     sortSel.innerHTML = Object.entries(SORTERS).map(([k,s]) => `<option value="${k}">${esc(s.label)}</option>`).join('');
     sortSel.addEventListener('change', () => { state[key].sort = sortSel.value; renderList(key); });
+    document.getElementById('list-' + key).addEventListener('click', e => onDisplaySortClick(e, key));
     renderList(key);
   }
 }
