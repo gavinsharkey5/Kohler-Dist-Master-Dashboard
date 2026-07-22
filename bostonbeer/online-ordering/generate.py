@@ -42,14 +42,19 @@ from the average since it's a partial, still-in-progress week that would
 understate it -- it's still shown in the Recent Sales detail, just labeled
 as in progress.
 
-Run: python3 generate.py [forecast_csv] [inventory_csv] [forecast_report_xlsx]
-(all three default to the filenames committed in this folder)
+Also builds data/trend_forecast.json for the "Trend Forecast" tab, from two
+more (optional) inputs -- see the docstring on build_trend_forecast() below
+for the full method.
+
+Run: python3 generate.py [forecast_csv] [inventory_csv] [forecast_report_xlsx] [l13_csv] [ly_by_week_csv]
+(all five default to the filenames committed in this folder; the trend
+forecast is skipped with a message if l13_csv/ly_by_week_csv aren't found)
 """
 import csv
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import openpyxl
@@ -58,11 +63,16 @@ HERE = Path(__file__).parent
 DEFAULT_FORECAST_CSV = HERE / "076KOH_Forecasts.csv"
 DEFAULT_INVENTORY_CSV = HERE / "Boston_Beer_Inventory_Report.csv"
 DEFAULT_FORECAST_REPORT_XLSX = HERE / "ForecastReport.xlsx"
+DEFAULT_L13_CSV = HERE / "L13_Trend.csv"
+DEFAULT_LY_BY_WEEK_CSV = HERE / "LY_By_Week.csv"
 OUT_JSON = HERE / "data" / "forecast.json"
+TREND_OUT_JSON = HERE / "data" / "trend_forecast.json"
 
 WEEK_COL_RE = re.compile(r"^(\d{2}/\d{2}/\d{4}) F$")
 PRODUCT_LINK_RE = re.compile(r"^\s*\S+\s+(.*\S)\s*$")
 DATE_HEADER_RE = re.compile(r"^\d{1,2}/\d{1,2}/\d{4}$")
+L13_WINDOW_COL_RE = re.compile(r"^Cases (\d{1,2}/\d{1,2}/\d{4}) - (\d{1,2}/\d{1,2}/\d{4})$")
+LY_WEEK_COL_RE = re.compile(r"^Cases (\d{4}) (\d{2})$")
 
 # Chronological order, oldest to newest. Index 6 (Last Week) is the newest
 # *complete* week; index 7 (This Week) is still in progress.
@@ -143,10 +153,187 @@ def load_forecast_report(path):
     return out
 
 
+def to_num_rde(raw):
+    """L13_Trend.csv / LY_By_Week.csv are RDE exports: comma thousands
+    separators and parenthesized negatives (e.g. " (2,448.00)"), unlike the
+    Boston Beer portal/Encompass CSVs to_num() above handles."""
+    raw = (raw or "").strip()
+    if raw == "":
+        return None
+    neg = raw.startswith("(") and raw.endswith(")")
+    raw = raw.strip("()").replace(",", "")
+    if raw == "":
+        return None
+    val = float(raw)
+    return -val if neg else val
+
+
+def parse_mdy(s):
+    m, d, y = s.split("/")
+    return date(int(y), int(m), int(d))
+
+
+def week1_start(year):
+    """The Sunday on or before Jan 1 of `year` -- the anchor of the retail
+    week-numbering convention L13_Trend.csv / LY_By_Week.csv use (verified
+    below, not assumed)."""
+    jan1 = date(year, 1, 1)
+    offset = (jan1.weekday() + 1) % 7  # Mon=0..Sun=6 -> days back to that Sunday
+    return jan1 - timedelta(days=offset)
+
+
+def week_number(d):
+    """(year, week_num) for date d under the week1_start() convention -- week
+    N runs Sunday..Saturday, N=1 being the week containing (or ending at)
+    week1_start(d.year). Verified against L13_Trend.csv's own stated
+    windows: this reproduces 4/20/2025 as week 17's start and 7/19/2025 as
+    week 29's end exactly, for both the 2025 and 2026 windows the file
+    ships with -- that agreement (not a hardcoded week number) is why this
+    rule is trusted to project forward to arbitrary future dates too."""
+    year = d.year
+    start = week1_start(year)
+    if d < start:
+        year -= 1
+        start = week1_start(year)
+    return year, (d - start).days // 7 + 1
+
+
+def load_l13_trend(path):
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        raise SystemExit(f"{path}: no data rows")
+    windows = []
+    for h in rows[0].keys():
+        m = L13_WINDOW_COL_RE.match(h)
+        if m:
+            windows.append((parse_mdy(m.group(1)), parse_mdy(m.group(2)), h))
+    if len(windows) != 2:
+        raise SystemExit(f"{path}: expected exactly 2 'Cases <start> - <end>' window columns, found {len(windows)}")
+    windows.sort(key=lambda w: w[1])  # earlier end date = last year's window
+    ly_start, ly_end, ly_col = windows[0]
+    ty_start, ty_end, ty_col = windows[1]
+
+    out = {}
+    for r in rows:
+        sku = (r.get("Supplier Product ID") or "").strip()
+        product = (r.get("Product Name") or "").strip()
+        if not sku or not product:
+            continue
+        out[sku] = {"product": product, "lyCases": to_num_rde(r[ly_col]) or 0, "tyCases": to_num_rde(r[ty_col]) or 0}
+    windows_out = {"lyStart": ly_start, "lyEnd": ly_end, "tyStart": ty_start, "tyEnd": ty_end}
+    return out, windows_out
+
+
+def load_ly_by_week(path):
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        raise SystemExit(f"{path}: no data rows")
+    week_cols = [(int(m.group(1)), int(m.group(2)), h) for h in rows[0].keys() if (m := LY_WEEK_COL_RE.match(h))]
+    if not week_cols:
+        raise SystemExit(f"{path}: no 'Cases <year> <NN>' week columns found")
+
+    out = {}
+    for r in rows:
+        sku = (r.get("Supplier Product ID") or "").strip()
+        if not sku:
+            continue
+        weeks = {}
+        for yr, wn, col in week_cols:
+            v = to_num_rde(r[col])
+            if v is not None:
+                weeks[(yr, wn)] = v
+        out[sku] = weeks
+    return out
+
+
+def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup):
+    """For each SKU on the Boston Beer forecast (same driver list as the
+    Pulse Check tab, matched into L13/LY by the same resolve() used for
+    Inventory/ForecastReport), projects the next up-to-8 weeks two ways and
+    lines them up:
+
+      trend forecast = last year's actual cases for that same week (by
+        retail week number, see week_number() above) x (1 + that SKU's
+        13-week YoY case trend from L13_Trend.csv), floored at 0.
+      bbc forecast = Boston Beer's own "<date> F" value for that week,
+        already in forecast_rows.
+
+    A SKU with no positive last-year case volume in the L13 window (new
+    item, no trend to project) or no matching LY_By_Week row (no weekly
+    breakdown to scale) gets trendForecast=None for every week rather than
+    a fabricated number. diffPct/flagged (>10% apart) are only set when
+    both numbers exist and the trend forecast is positive.
+    """
+    fc_weeks = week_dates[:8]
+    ly_year = l13_windows["lyEnd"].year
+    week_meta = []
+    for wd in fc_weeks:
+        _, wn = week_number(parse_mdy(wd))
+        week_meta.append({"weekEnding": wd, "lyYear": ly_year, "lyWeekNum": wn})
+
+    products = []
+    unmatched_l13 = unmatched_ly = 0
+    for r in forecast_rows:
+        bbc = r["BBC SKU"].strip()
+        l13 = resolve(bbc, l13_lookup)
+        ly_weeks = resolve(bbc, ly_lookup)
+        if l13 is None:
+            unmatched_l13 += 1
+        if ly_weeks is None:
+            unmatched_ly += 1
+
+        trend_pct = (l13["tyCases"] / l13["lyCases"] - 1) if (l13 and l13["lyCases"] > 0) else None
+
+        weeks_out = []
+        for wm in week_meta:
+            f_raw = (r.get(f"{wm['weekEnding']} F") or "").strip()
+            bbc_val = float(f_raw) if f_raw != "" else None
+            ly_val = ly_weeks.get((wm["lyYear"], wm["lyWeekNum"])) if ly_weeks else None
+            trend_val = max(0, round(ly_val * (1 + trend_pct))) if (trend_pct is not None and ly_val is not None) else None
+            diff_pct = (bbc_val - trend_val) / trend_val if (trend_val and bbc_val is not None) else None
+            weeks_out.append({
+                "weekEnding": wm["weekEnding"],
+                "lyWeekNum": wm["lyWeekNum"],
+                "lyCases": ly_val,
+                "trendForecast": trend_val,
+                "bbcForecast": bbc_val,
+                "diffPct": round(diff_pct, 4) if diff_pct is not None else None,
+                "flagged": diff_pct is not None and abs(diff_pct) > 0.10,
+            })
+
+        products.append({
+            "sku": bbc,
+            "product": (l13["product"] if l13 else None) or r["Product"].strip(),
+            "trendPct": round(trend_pct, 4) if trend_pct is not None else None,
+            "l13LyCases": l13["lyCases"] if l13 else None,
+            "l13TyCases": l13["tyCases"] if l13 else None,
+            "hasTrend": trend_pct is not None and any(w["lyCases"] is not None for w in weeks_out),
+            "weeks": weeks_out,
+        })
+
+    return {
+        "meta": {
+            "l13Window": {
+                "lastYear": f"{l13_windows['lyStart'].isoformat()} - {l13_windows['lyEnd'].isoformat()}",
+                "thisYear": f"{l13_windows['tyStart'].isoformat()} - {l13_windows['tyEnd'].isoformat()}",
+            },
+            "weeks": week_meta,
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+        },
+        "products": products,
+        "unmatchedL13": unmatched_l13,
+        "unmatchedLy": unmatched_ly,
+    }
+
+
 def main():
     forecast_csv = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_FORECAST_CSV
     inventory_csv = Path(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_INVENTORY_CSV
     forecast_report_xlsx = Path(sys.argv[3]) if len(sys.argv) > 3 else DEFAULT_FORECAST_REPORT_XLSX
+    l13_csv = Path(sys.argv[4]) if len(sys.argv) > 4 else DEFAULT_L13_CSV
+    ly_by_week_csv = Path(sys.argv[5]) if len(sys.argv) > 5 else DEFAULT_LY_BY_WEEK_CSV
     for p in (forecast_csv, inventory_csv, forecast_report_xlsx):
         if not p.exists():
             raise SystemExit(f"Not found: {p}")
@@ -240,6 +427,21 @@ def main():
     if unmatched_fr:
         print(f"{unmatched_fr} SKU(s) in the forecast CSV have no matching ForecastReport row -- shown with no forward forecast.")
     print(f"{len(orphan_inventory)} Inventory Report row(s) have no matching forecast-CSV row (in inventory but not on the portal's forecast).")
+
+    if l13_csv.exists() and ly_by_week_csv.exists():
+        l13_lookup, l13_windows = load_l13_trend(l13_csv)
+        ly_lookup = load_ly_by_week(ly_by_week_csv)
+        trend = build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup)
+        TREND_OUT_JSON.write_text(json.dumps(trend))
+        wk = trend["meta"]["weeks"]
+        print(f"\nWrote trend forecast for {len(trend['products'])} SKUs, {len(wk)} weeks "
+              f"({wk[0]['weekEnding']} - {wk[-1]['weekEnding']}).")
+        if trend["unmatchedL13"]:
+            print(f"{trend['unmatchedL13']} SKU(s) have no matching L13_Trend.csv row -- no trend to project, shown BBC-forecast-only.")
+        if trend["unmatchedLy"]:
+            print(f"{trend['unmatchedLy']} SKU(s) have no matching LY_By_Week.csv row -- no weekly baseline to scale, shown BBC-forecast-only.")
+    else:
+        print(f"\nSkipping trend forecast: {l13_csv.name} and/or {ly_by_week_csv.name} not found.")
 
 
 if __name__ == "__main__":
