@@ -54,10 +54,6 @@ main{padding:18px 0 60px}
 .scard .slabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);font-weight:600;margin-bottom:8px}
 .scard .sval{font-family:"Space Grotesk";font-weight:700;font-size:24px;line-height:1}
 
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px;align-items:center}
-.toolbar select{flex:0 1 220px;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:10px;
-  padding:11px 12px;font-size:13.5px;font-family:"Inter";min-width:0}
-
 .list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .row{border-bottom:1px solid var(--line-soft)}
 .row:last-child{border-bottom:none}
@@ -109,7 +105,6 @@ footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:cen
 footer p{max-width:640px;margin:6px auto}
 
 @media (max-width:520px){
-  .toolbar select{flex:1 1 100%}
   .detail{padding-left:44px}
 }
 </style>
@@ -134,18 +129,12 @@ footer p{max-width:640px;margin:6px auto}
     <section class="tabpanel active" id="panel-rep">
       <p class="panel-lede">Points accumulated by Sales Reps this period.</p>
       <div class="stats" id="stats-rep"></div>
-      <div class="toolbar">
-        <select id="sort-rep"></select>
-      </div>
       <div class="list" id="list-rep"></div>
     </section>
 
     <section class="tabpanel" id="panel-assoc">
       <p class="panel-lede">Points accumulated by Sales Associates this period.</p>
       <div class="stats" id="stats-assoc"></div>
-      <div class="toolbar">
-        <select id="sort-assoc"></select>
-      </div>
       <div class="list" id="list-assoc"></div>
     </section>
   </main>
@@ -180,14 +169,9 @@ const TABS = {
   assoc: { role: 'Sales Associate', people: DATA.people.filter(p => p.role === 'Sales Associate') },
 };
 
-const SORTERS = {
-  pointsDesc: {label:'Points: High → Low', cmp:(a,b)=> b.points - a.points || a.name.localeCompare(b.name)},
-  pointsAsc: {label:'Points: Low → High', cmp:(a,b)=> a.points - b.points || a.name.localeCompare(b.name)},
-  displays: {label:'Most Qualifying Displays', cmp:(a,b)=> b.qualifying - a.qualifying || b.points - a.points},
-  az: {label:'Name: A → Z', cmp:(a,b)=> a.name.localeCompare(b.name)},
-};
-
-const state = { rep: {sort:'pointsDesc'}, assoc: {sort:'pointsDesc'} };
+// The leaderboard is always ranked points high -> low; there's no UI control
+// to change it.
+const rankCmp = (a,b) => b.points - a.points || a.name.localeCompare(b.name);
 
 function classBadge(cls){
   if (cls === 'priority') return '<span class="badge b-priority">Priority</span>';
@@ -251,8 +235,7 @@ function renderDisplaysHtml(displays, mode){
 
 function renderList(key){
   const cfg = TABS[key];
-  const st = state[key];
-  const people = [...cfg.people].sort(SORTERS[st.sort].cmp);
+  const people = [...cfg.people].sort(rankCmp);
   const listEl = document.getElementById('list-' + key);
   if (people.length === 0){
     listEl.innerHTML = '<div class="empty">No one in this role yet.</div>';
@@ -262,9 +245,9 @@ function renderList(key){
     `<button type="button" class="dsort-btn${mode === DEFAULT_DISPLAY_SORT ? ' active' : ''}" data-mode="${mode}">${esc(s.label)}</button>`
   ).join('');
   listEl.innerHTML = people.map((p, i) => {
-    const rankIdx = st.sort === 'pointsDesc' ? i + 1 : null;
+    const rankIdx = i + 1;
     const rankClass = rankIdx === 1 ? 'r1' : rankIdx === 2 ? 'r2' : rankIdx === 3 ? 'r3' : '';
-    const rankLabel = rankIdx ? rankIdx : '–';
+    const rankLabel = rankIdx;
     return `<details class="row" data-person="${esc(p.name)}" data-sort-mode="${DEFAULT_DISPLAY_SORT}">
       <summary>
         <span class="rank ${rankClass}">${rankLabel}</span>
@@ -311,9 +294,6 @@ function init(){
 
   for (const key of Object.keys(TABS)){
     renderStats(key);
-    const sortSel = document.getElementById('sort-' + key);
-    sortSel.innerHTML = Object.entries(SORTERS).map(([k,s]) => `<option value="${k}">${esc(s.label)}</option>`).join('');
-    sortSel.addEventListener('change', () => { state[key].sort = sortSel.value; renderList(key); });
     document.getElementById('list-' + key).addEventListener('click', e => onDisplaySortClick(e, key));
     renderList(key);
   }
