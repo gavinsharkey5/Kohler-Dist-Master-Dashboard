@@ -9,6 +9,15 @@
     "NEW_BUYERS": 1
   },
   {
+    "SALES_REP_NAME": "Brian Sengebush",
+    "CUSTOMER_ID": 191505,
+    "CUSTOMER_NAME": "Mckenna's Pub (P)",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-07-22",
+    "NEW_BUYERS": 1
+  },
+  {
     "SALES_REP_NAME": "Paul Mclaughlin",
     "CUSTOMER_ID": 52012,
     "CUSTOMER_NAME": "CZEN Restaurant",
