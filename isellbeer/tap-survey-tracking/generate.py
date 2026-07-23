@@ -14,22 +14,28 @@ Input (keep this filename when re-exporting):
     Crosswalk, Brands (Enc), Customers Table (Enc), Master Matrix View) are
     the audit engine's own reference tables -- kept in the repo for
     provenance/future use, not parsed here yet:
-      - "Sheet6": one row per surveyed tap, same 14 raw columns as a plain
-        iSellBeer export (Account #, DBA, Distribution Area, Address, City,
-        Date/Time, Photos, Route / Sales Rep, Brand, Brand Family, Supplier,
-        # of Taps, Distributor). This is also where real photo links live
-        -- the "Photos" cell's hyperlink -- which a CSV export of the same
-        report would flatten to plain display text.
+      - The raw survey sheet: one row per surveyed tap (Account #, DBA,
+        Distribution Area, Address, City, Date/Time, Photos, Route / Sales
+        Rep, District Manager, Brand, Brand Family, Supplier, # of Taps,
+        Distributor). This is also where real photo links live -- the
+        "Photos" cell's hyperlink -- which a CSV export of the same report
+        would flatten to plain display text. This sheet's own tab name has
+        changed between exports (Sheet6, then Sheet9) as Kohler edits the
+        workbook, so generate.py finds it by its header row (must contain
+        "Account #", "Route / Sales Rep" and "Photos", but not "Corrected
+        Distributor") rather than a hardcoded sheet name -- see
+        find_raw_sheet() below.
       - "iSellBeer Import Template": the same rows plus the audit engine's
         helper/output columns, notably "Distributor" (the ORIGINAL iSellBeer
         app flag, pre-audit) and "Corrected Distributor" (the engine's final
         US/THEM ruling after checking the product catalog + territory
-        tables). This is the authoritative status -- more current than
-        Sheet6's own Distributor column, which lags behind for a handful of
-        rows (an incomplete write-back, not a judgment call) as of this
-        build's source file.
+        tables). This is the authoritative status -- more current than the
+        raw sheet's own Distributor column, which has lagged behind for a
+        handful of rows in past exports (an incomplete write-back, not a
+        judgment call).
     The two sheets are joined on "#" (row number) to get: raw fields + real
-    photo (Sheet6) and corrected status + audit reasoning (Import Template).
+    photo (raw sheet) and corrected status + audit reasoning (Import
+    Template).
 
 index.html does all the rep -> account -> brand grouping client-side from
 the flat row list emitted here, the same way it re-groups after search/
@@ -48,8 +54,20 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX_PATH = os.path.join(HERE, 'iSellBeer_TAPS_US_THEM_Mediator.xlsx')
 HTML = os.path.join(HERE, 'index.html')
 
-RAW_COLUMNS = ['#', 'Account #', 'DBA', 'Distribution Area', 'Address', 'City', 'Date/Time',
-               'Photos', 'Route / Sales Rep', 'Brand', 'Brand Family', 'Supplier', '# of Taps', 'Distributor']
+RAW_COLUMNS = ['#', 'Account #', 'DBA', 'Distribution Area', 'Address', 'City', 'Date/Time', 'Photos',
+               'Route / Sales Rep', 'District Manager', 'Brand', 'Brand Family', 'Supplier', '# of Taps', 'Distributor']
+
+
+def find_raw_sheet(wb):
+    """The raw survey sheet's tab name has changed between exports (Sheet6,
+    then Sheet9) as Kohler edits the workbook -- find it by header shape
+    instead of a hardcoded name, so the next rename doesn't break this."""
+    for name in wb.sheetnames:
+        header = [c.value for c in wb[name][1]]
+        if 'Account #' in header and 'Route / Sales Rep' in header and 'Photos' in header and 'Corrected Distributor' not in header:
+            return wb[name]
+    raise SystemExit("Could not find the raw tap-survey sheet (expected a sheet with 'Account #', "
+                      "'Route / Sales Rep' and 'Photos' columns, but no 'Corrected Distributor' column)")
 
 
 def sheet_rows(ws, columns, with_photo_link=False):
@@ -97,7 +115,7 @@ def audit_reason(t_row):
 
 # ---------- load ----------
 wb = load_workbook(XLSX_PATH, data_only=True)
-raw_by_num = sheet_rows(wb['Sheet6'], RAW_COLUMNS, with_photo_link=True)
+raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS, with_photo_link=True)
 tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Audit Result', 'Canonical Brand Family'])
 
 records = []
@@ -117,6 +135,7 @@ for n, raw in raw_by_num.items():
         'visited': visited.isoformat(),
         'visitedDisplay': visited.strftime('%b %-d, %Y'),
         'rep': parse_rep(raw['Route / Sales Rep']),
+        'districtManager': raw['District Manager'].strip(),
         'brand': raw['Brand'].strip(),
         'brandFamily': raw['Brand Family'].strip(),
         'supplier': raw['Supplier'].strip(),
@@ -130,6 +149,7 @@ for n, raw in raw_by_num.items():
 
 counties = sorted(set(r['county'] for r in records))
 reps = sorted(set(r['rep'] for r in records))
+district_managers = sorted(set(r['districtManager'] for r in records if r['districtManager']))
 accounts = set((r['account'], r['dba']) for r in records)
 
 total_taps = sum(r['taps'] for r in records)
@@ -144,6 +164,7 @@ payload = {
     'photosSource': 'xlsx',
     'counties': counties,
     'reps': reps,
+    'districtManagers': district_managers,
     'summary': {
         'taps': total_taps, 'us': total_us, 'them': total_them, 'unv': total_unv,
         'usPct': round(total_us / total_taps * 100, 1) if total_taps else 0,

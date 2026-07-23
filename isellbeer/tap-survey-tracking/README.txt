@@ -4,18 +4,26 @@ Turns the iSellBeer tap survey audit workbook into a rep -> account -> brand
 drill-down: each rep's book of accounts is scored Ours vs. Competitor by
 tap handle (a pie chart, not just a count of rows), expand a rep to see
 their accounts sorted by tap count, expand an account to see its brands,
-county, most recent visit date, and most recent photo.
+county, most recent visit date, and most recent photo. A District Manager
+filter narrows the whole page to one district's reps at once.
 
 Files:
   iSellBeer_TAPS_US_THEM_Mediator.xlsx
                  The tap-audit engine's own working file (see the tap-audit
                  skill) -- a multi-sheet workbook, not a flat export.
                  generate.py only reads two of its sheets:
-                   - "Sheet6": one row per surveyed tap, raw fields (Account
-                     #, DBA, Distribution Area/county, Address, City,
-                     Date/Time, Photos, Route / Sales Rep, Brand, Brand
-                     Family, Supplier, # of Taps) plus the real photo link
-                     behind each "Photos" cell's hyperlink.
+                   - The raw survey sheet: one row per surveyed tap, raw
+                     fields (Account #, DBA, Distribution Area/county,
+                     Address, City, Date/Time, Photos, Route / Sales Rep,
+                     District Manager, Brand, Brand Family, Supplier, # of
+                     Taps) plus the real photo link behind each "Photos"
+                     cell's hyperlink. This sheet's own tab name has
+                     changed between exports as Kohler edits the workbook
+                     (it was "Sheet6", then "Sheet9") -- generate.py finds
+                     it by its header row (must have "Account #", "Route /
+                     Sales Rep" and "Photos", but not "Corrected
+                     Distributor") rather than a hardcoded sheet name, so
+                     the next rename won't break the refresh.
                    - "iSellBeer Import Template": the same rows plus the
                      audit engine's output columns -- "Distributor" (the
                      ORIGINAL iSellBeer app flag, pre-audit) and "Corrected
@@ -62,9 +70,13 @@ Notes:
     after search/county/status filtering -- so there's exactly one
     grouping implementation to keep correct, not a separate one for the
     default view vs. filtered views.
-  - As of this build's source file, Sheet6's own Distributor column lagged
-    the Import Template's Corrected Distributor for 18 of 2,527 rows (an
-    incomplete write-back, not a judgment call -- mostly one account,
-    Yard House 8390). generate.py always uses Import Template's Corrected
-    Distributor as the authoritative status, not Sheet6's, to avoid that
-    gap.
+  - Past builds' source files have had the raw sheet's own Distributor
+    column lag the Import Template's Corrected Distributor for a handful of
+    rows (an incomplete write-back, not a judgment call). generate.py
+    always uses Import Template's Corrected Distributor as the
+    authoritative status, not the raw sheet's, to avoid that gap.
+  - District Manager is a clean 1-to-1 mapping onto Route / Sales Rep (each
+    rep reports to exactly one DM) as of this build's source file --
+    generate.py doesn't enforce that, so if a future export ever gives one
+    rep two different DM values across rows, the dashboard would just show
+    whichever value each individual tap row carries rather than error.
