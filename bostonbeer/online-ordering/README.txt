@@ -82,10 +82,24 @@ The trend forecast is the bold number; Boston Beer's forecast and the
 % difference are the small text underneath. A week is tinted amber if
 Boston Beer's forecast is more than 10% ABOVE trend, teal if more than
 10% below -- purely a threshold on the two numbers already computed,
-no further logic. A SKU with no positive last-year volume in the L13
-window (new item, nothing to project) or no matching LY_By_Week row
-shows "No history" / a dash rather than a fabricated number, with
-Boston Beer's forecast still shown alongside for reference.
+no further logic. Hovering a trend forecast box shows the exact math
+behind that number (last year's cases x the trend % that was applied)
+and, if it's tinted, the BBC-vs-trend comparison that triggered it. The
+"How are the trend forecast, the 13-wk trend %, and the tint
+calculated?" details block above the table spells out both formulas
+with worked examples for a manager who doesn't want to hover every box.
+
+A SKU with no L13_Trend.csv row, or whose last-year trailing-13-week
+total is zero or negative (e.g. a mostly-returns window -- nothing
+positive to measure growth against), has no 13-week trend % to apply.
+2026-07-23: rather than show "No history" for a SKU that clearly has
+sales history, that SKU's trend forecast now falls back to carrying
+last year's actual cases forward as-is (0% applied) -- those boxes get
+a dashed border, the 13-wk Trend column shows "Flat (LY)" instead of a
+%, and the expanded detail panel explains why. Only a SKU with no
+matching LY_By_Week row at all (truly no history to project from)
+still shows a plain dash, with Boston Beer's forecast shown alongside
+for reference.
 
 The week-number matching (which calendar week this year lines up with
 which week last year) is derived from L13_Trend.csv's own stated date
