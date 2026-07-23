@@ -192,5 +192,13 @@ L13_Trend.csv/076KOH_Forecasts.csv pair re-derives the right weeks
 automatically; nothing here is hardcoded to July 2026's specific
 dates.
 
-Click the "13-wk Trend" column header to sort by trend %; search
-filters by product name or SKU same as the Pulse Check tab.
+Available and Last Receive columns (current on-hand cases and last
+delivery date, from the same Inventory Report the Pulse Check tab
+uses) sit between Product and 13-wk Trend.
+
+Click "Available", "Last Receive", or "13-wk Trend" to sort by that
+column; search filters by product name or SKU same as the Pulse Check
+tab. "Export CSV" downloads whatever's currently visible (respects the
+search filter and sort order) -- Product, SKU, Available, Last
+Receive, 13-wk Trend %, then Trend Forecast / BBC Forecast / Diff % for
+each of the 8 weeks.

@@ -1,194 +1,195 @@
-Supplier,Brand Family,Package,Product Link,Supplier Product ID,Cases -6 Weeks,Cases -5 Weeks,Cases -4 Weeks,Cases -3 Weeks,Cases -2 Weeks,Cases -1 Weeks,Cases Last Week,Cases This Week,Available,Last Receive Date,Last Receive Quantity
-Boston Beer Company,Sun Cruiser,2/12/12oz Can,200665 Sun Cruiser Iced Tea Variety 2/12/12 oz Can,AW1573,190,443,424,1034,468,370,400,155,2942,7/20/2026,208
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200631 Sun Cruiser Iced Tea Variety 3/8/12 oz Can,AW1578,173,371,255,673,313,290,277,107,2112,7/7/2026,208
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8341 Twisted Tea Party Pack 2/12/12 oz Can,OA9463,218,243,257,392,328,215,234,60,1617,7/7/2026,200
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8333 Twisted Tea 2/12/12 oz Can,OA9163,179,213,233,591,413,199,235,105,1426,7/13/2026,200
-Boston Beer Company,Sun Cruiser,1/24/12oz Can,200634 Sun Cruiser Classic Iced Tea 1/24/12 oz Loose Can,AW1177,167,112,140,191,178,96,116,36,1100,7/16/2026,312
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200637 Sun Cruiser Half & Half Lemonade Iced Tea 3/8/12 oz Can,AW1278,86,144,102,428,184,108,113,14,1096,7/16/2026,208
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200664 Sun Cruiser Lemonade Variety 3/8/12 oz Can,AW1678,147,278,259,673,351,247,257,88,1042,7/16/2026,312
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8340 Twisted Tea 1/12/24 oz Can,OA9153,209,233,227,242,293,178,214,90,979,7/13/2026,306
-Boston Beer Company,Sun Cruiser,2/12/12oz Can,200671 Sun Cruiser Sampler Variety Pack 2/12/12 oz Can,AW1N73,70,238,231,648,328,169,279,61,976,7/20/2026,312
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200636 Sun Cruiser Classic Iced Tea 3/8/12oz Can,AW1178,163,154,146,234,345,162,175,18,854,7/20/2026,104
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8373 Twisted Tea Light Party Pack 2/12/12 oz Can,OABM63,67,40,41,171,101,43,63,11,837,6/18/2026,100
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8349 Twisted Tea Half & Half 2/12/12 oz Can,OA9363,159,107,160,489,227,153,85,32,762,7/13/2026,200
-Boston Beer Company,Dogfish Head Beer,4/6/12oz NR,12010 Dogfish Head 60 Minute IPA 4/6/12 oz Btl,DB0012,231,144,183,193,205,120,148,74,753,7/15/2026,252
-Boston Beer Company,Sun Cruiser,2/12/12oz Can,200668 Sun Cruiser Lemonade Variety Pack 2/12/12 oz Can,AW1673,119,178,168,459,245,364,220,60,734,7/20/2026,728
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8345 Twisted Tea Light 2/12/12 oz Can,OA9763,72,81,91,281,103,65,108,37,709,7/13/2026,100
-Boston Beer Company,Dogfish Head Spirits,3/8/12oz Can,200608 Dogfish Head Bar Cart Variety 3/8/12 oz Can,DS3178,32,130,-23,43,62,46,85,14,651,7/20/2026,156
-Boston Beer Company,Angry Orchard,4/6/12oz NR,8110 Angry Orchard Crisp Apple 4/6/12 oz Btl,OA7812,249,263,301,320,360,297,260,111,573,7/16/2026,180
-Boston Beer Company,Truly,2/12/12oz Can,8692 Truly Hard Seltzer Berry Variety 2/12/12 oz Can,PD1173,109,107,142,177,239,137,105,46,552,7/10/2026,104
-Boston Beer Company,Sun Cruiser,1/24/12oz Can,200678 Sun Cruiser Lemonade & Ice Tea 1/24/12 oz Can,AW1277,71,73,88,143,88,70,93,9,542,7/10/2026,208
-Boston Beer Company,Truly,2/12/12oz Can,8647 Truly Hard Seltzer Unruly Variety 2/12/12 oz Can,PD2R73,60,48,72,126,107,76,49,19,497,7/13/2026,208
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12011 Dogfish Head 60 Minute IPA 2/12/12 oz Can,DB0063,119,52,115,111,129,72,70,61,485,7/20/2026,250
-Boston Beer Company,Dogfish Head Beer,4/6/12oz NR,12040 Dogfish Head 90 Minute IPA 4/6/12 oz Btl,DB0112,93,80,91,87,163,70,59,46,483,7/20/2026,360
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200676 Sun Cruiser Blueberry Lemonade 3/8/12 oz Can,AW1F78,103,61,44,113,14,82,36,11,473,7/16/2026,104
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8329 Twisted Tea Half & Half 1/12/24 oz Can,OA9353,131,143,164,160,212,110,157,51,467,7/20/2026,204
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200641 Sun Cruiser Vodka Pink Lemonade 3/8/12 oz Can,AW1878,-3,215,91,195,171,90,91,20,457,7/16/2026,104
-Boston Beer Company,Sun Cruiser,1/24/12oz Can,200679 Sun Cruiser Pink Lemonade 1/24/12 oz Can,AW1877,10,20,31,42,13,12,30,2,452,7/10/2026,104
-Boston Beer Company,Sinless Vodka Cocktail,3/8/12oz Can,200714 Sinless Vodka Variety Pack 3/8/12 oz Can,AY1178,6,39,6,13,49,12,11,3,420,6/22/2026,208
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8330 Twisted Tea 4/6/12 oz Btl,OA9112,171,208,170,205,209,187,181,53,412,7/16/2026,180
-Boston Beer Company,Twisted Tea,24/16OZ can,8370 Twisted Tea 1/24/16 oz Loose Can,OA9124,,,0,,33,,20,,402,,
-Boston Beer Company,Truly,2/12/12oz Can,8664 Truly Star Squad 2/12/12 oz Can,PD7473,47,48,113,68,146,69,16,22,377,6/8/2026,312
-Boston Beer Company,Twisted Tea,2/12/12oz Can,8387 Twisted Tea Extreme Variety Pack 2/12/12 oz Can,OA7T63,63,53,68,141,89,46,56,19,377,7/10/2026,100
-Boston Beer Company,Twisted Tea,6/4/16oz Can,8389 Twisted Tea Original 6/4/16 oz Can,OA9115,3,4,8,4,2,6,3,,371,,
-Boston Beer Company,Truly,2/12/12oz Can,8674 Truly Hard Seltzer Lemonade Variety 2/12/12 oz Can,PD2573,53,40,96,59,105,80,42,12,356,7/13/2026,104
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200619 Dogfish Head Tequila Margarita Strawberry Lime 6/4/12 oz Can,DS1M4S,6,9,16,17,6,9,9,1,350,7/15/2026,52
-Boston Beer Company,Truly,2/12/12oz Can,8684 Truly Hard Seltzer Citrus Variety 2/12/12 oz Can,PD1073,45,40,90,88,121,55,39,27,344,7/10/2026,104
-Boston Beer Company,Dogfish Head Spirits,3/8/12oz Can,200615 Dogfish Head Tropical Crush Variety 3/8/12 oz Can,DS1S78,26,117,43,45,83,41,74,30,341,7/20/2026,52
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4016 Sam Adams Star Spangled Summer Variety 2/12/12 oz Can,SA7X63,141,173,202,233,299,176,97,43,317,7/16/2026,100
-Boston Beer Company,Samuel Adams,1/24/12oz Can,4028 Sam Adams Star Spangled Summer Variety 1/24/12 oz Can,SA7X33,0,,100,100,180,100,200,,300,7/1/2026,600
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3817 Sam Adams Boston Lager 2/12/12 oz Btl,SA1013,79,169,119,151,236,115,97,27,289,7/16/2026,180
-Boston Beer Company,Sun Cruiser,6/4/12oz Can,200632 Sun Cruiser Classic Iced Tea 6/4/12 oz Can,AW114S,162,79,50,80,65,35,40,24,286,7/8/2026,104
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12148 Dogfish Head 30 Minute Light IPA 2/12/12 oz Can,DBCT63,65,52,60,43,103,61,28,24,276,7/20/2026,100
-Boston Beer Company,Dogfish Head Spirits,1/12/750 mL (BO),200600 Dogfish Head Analog Vodka 1/12/750 mL Btl,DS0319,1,,,,,,,,270,,
-Boston Beer Company,Truly,2/12/12oz Can,8666 Truly Hard Seltzer Fruit Punch Variety 2/12/12 oz Can,PD4473,35,55,89,50,96,66,38,20,264,7/10/2026,104
-Boston Beer Company,Angry Orchard,1/12/19.2oz,8154 Angry Orchard Crisp Apple 1/12/19.2 oz Can,OA7854,57,42,53,36,61,40,47,13,254,6/24/2026,100
-Boston Beer Company,Sun Cruiser,3/8/12oz Can,200680 Sun Cruiser White Tea Variety 3/8/12 oz Can,AW1V78,50,,,297,179,74,104,27,252,7/10/2026,208
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12149 Dogfish Head Grateful Dead Juicy Pale Ale 4/6/12 oz Can,DBCK66,54,54,70,66,97,24,51,24,233,7/20/2026,100
-Boston Beer Company,Angry Orchard,2/12/12oz Can,8121 Angry Orchard Crisp 2/12/12 oz Can,OA7863,84,114,113,93,193,108,121,45,232,7/16/2026,100
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12155 Dogfish Head Grateful Dead Juicy Pale Ale 2/12/12 oz Can,DBCK63,50,21,29,38,24,20,26,16,228,7/20/2026,100
-Boston Beer Company,Sun Cruiser,6/4/12oz Can,200633 Sun Cruiser Lemonade & Iced Tea 6/4/12 oz Can,AW124S,112,50,32,64,65,30,23,23,221,6/5/2026,312
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8348 Twisted Tea Raspberry 1/12/24 oz Can,OA9253,60,39,59,45,58,30,46,12,220,7/13/2026,102
-Boston Beer Company,Angry Orchard,4/6/12oz NR,8124 Angry Orchard Green Apple 4/6/12 oz Btl,OA4C12,90,75,94,117,116,97,107,40,216,7/16/2026,120
-Boston Beer Company,Twisted Tea,6/4/16oz Can,8388 Twisted Tea Light 6/4/16 oz Can,OA9715,3,3,4,9,1,,1,,211,,
-Boston Beer Company,Samuel Adams,2/12/12oz Can,3829 Sam Adams Boston Lager 2/12/12 oz Can,SA1063,40,43,44,29,65,20,47,17,202,7/8/2026,100
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8360 Twisted Tea Peach 1/12/24 oz Can,OA9553,18,43,24,28,39,26,29,21,196,7/8/2026,102
-Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12048 Dogfish Head 90 Minute IPA 1/12/19.2 oz Can,DB0154,32,25,29,21,46,16,25,17,195,7/20/2026,80
-Boston Beer Company,Sun Cruiser,1/24/12oz Can,200640 Sun Cruiser Vodka Lemonade 1/24/12 oz Loose Can,AW1777AT,-10,7,17,53,12,4,8,3,195,7/7/2026,104
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8344 Twisted Tea Light 1/12/24 oz Can,OA9753,23,26,25,27,31,15,17,12,195,6/22/2026,102
-Boston Beer Company,Truly,1/12/24oz Can,8677 Truly Hard Seltzer Wild Berry 1/12/24 oz Can,PD0853,30,26,19,34,36,34,13,15,192,7/13/2026,102
-Boston Beer Company,Sun Cruiser,6/4/12oz Can,200669 Sun Cruiser Classic Lemonade 6/4/12 oz Can,AW174S,14,8,41,43,19,8,17,2,190,7/7/2026,104
-Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200672 Sun Cruiser Classic Iced Tea 1/12/19.2 oz Can,AW1157,38,36,27,24,40,26,29,8,181,7/7/2026,100
-Boston Beer Company,Truly,2/12/12oz Can,8648 Truly Party 2/12/12 oz Can,PD2F73,11,31,49,30,68,28,39,14,178,7/8/2026,104
-Boston Beer Company,Angry Orchard,2/12/12oz NR,8111 Angry Orchard Crisp Apple 2/12/12 oz Btl,OA7813,52,84,50,63,99,47,40,23,177,7/16/2026,180
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3818 Sam Adams Boston Lager 4/6/12 oz Btl,SA1012,159,185,65,139,272,135,127,62,169,7/10/2026,180
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8390 Twisted Tea Extreme Tropical Peach 1/12/24 oz Can,OA7R53,25,32,28,16,27,16,20,8,166,7/7/2026,102
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8336 Twisted Tea Half & Half 4/6/12 oz Btl,OA9312,57,107,82,108,104,94,62,25,158,7/10/2026,120
-Boston Beer Company,Truly,30/12oz Can,8668 Truly Star Squad Variety 1/30/12 oz Can,PD7435,,77,,,,77,,154,154,6/23/2026,385
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8384 Twisted Tea Extreme Lemon 1/12/24 oz Can,OA3Z53,51,57,86,37,77,55,63,21,151,7/9/2026,102
-Boston Beer Company,Truly,2/12/12oz Can,8724 Truly Hard Seltzer Paradise Pack 2/12/12 oz Can,PD5G73,26,19,49,22,43,21,30,1,147,3/9/2026,520
-Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12014 Dogfish Head 60 Minute IPA 1/12/19.2 oz Can,DB0054,21,18,27,20,27,9,26,12,146,7/20/2026,40
-Boston Beer Company,Truly,2/12/12oz Can,8651 Truly Hard Seltzer Unruly Lemonade Variety 2/12/12 oz Can,PD4G73,21,15,63,44,62,44,23,6,146,7/7/2026,104
-Boston Beer Company,Sun Cruiser,18/12oz Can,200666 Sun Cruiser Iced Tea Vodka Variety 1/18/12 oz Can,AW1581,,138,8,200,237,3,,59,144,7/16/2026,588
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3821 Sam Adams Cherry Wheat 4/6/12 oz Btl,SA2712,53,66,49,71,83,40,40,23,142,7/10/2026,120
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200610 Dogfish Head Blood Orange & Mango Vodka Crush 6/4/12 oz Can,DS264S,5,25,22,28,16,13,29,7,140,7/20/2026,52
-Boston Beer Company,Truly,1/24/16.00 oz,8663 Truly Hard Seltzer Wild Berry 1/24/16 oz,PD0824,,15,7,,,-5,20,,131,,
-Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200674 Sun Cruiser Classic Lemonade 1/12/19.2 oz Can,AW1757,5,4,1,6,13,10,11,5,127,5/27/2026,100
-Boston Beer Company,Dogfish Head Beer,15.5 Gal Keg,12013 Dogfish 60 Minute IPA 15.5 Gal Keg,DB0090,21,12,13,9,16,11,7,3,116,7/15/2026,60
-Boston Beer Company,Angry Orchard,4/6/12oz NR,8134 Angry Orchard Rose 4/6/12 oz Btl,OA5512,39,32,56,64,38,23,76,27,115,7/13/2026,60
-Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200675 Sun Cruiser Lemonade Iced Tea 1/12/19.2 oz Can,AW1257,12,25,16,21,32,29,25,12,112,6/22/2026,100
-Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200712 Sinless Vodka Pineapple 6/4/12 oz Can,AY154S,4,6,2,6,3,1,2,,111,5/19/2026,104
-Boston Beer Company,Twisted Tea,1/24/16.00 oz,8391 Twisted Tea Extreme Long Island Iced Tea 1/24/16 oz Can,OA7S24,1,3,-1,4,7,-1,2,1,106,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12158 Dogfish Head Citrus Day Dream 4/6/12 oz Can,DBDV66,21,23,24,17,27,6,15,7,105,6/25/2026,100
-Boston Beer Company,Hard Mountain Dew,1/12/24oz Can,83001 Hard Mountain Dew Baja Blast 1/12/24 oz Can,AJ0253A1,15,8,31,17,11,22,1,10,104,6/22/2026,102
-Boston Beer Company,Sun Cruiser,6/4/12oz Can,200670 Sun Cruiser Pink Lemonade 6/4/12 oz Can,734889,14,19,35,64,35,16,10,3,103,7/7/2026,104
-Boston Beer Company,Truly,1/12/24oz Can,8676 Truly Hard Seltzer Pineapple 1/12/24 oz Can,PD1653,10,21,21,23,14,14,10,11,102,7/7/2026,102
-Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200677 Sun Cruiser Blueberry Lemonade 1/12/19.2 oz Can,AW1F57,7,15,5,9,15,15,9,6,101,6/22/2026,100
-Boston Beer Company,Angry Orchard,2/12/12oz Can,8143 Angry Orchard Thriller Variety 2/12/12 oz Can,OA1Z63,-1,-2,-3,,,,-1,,100,7/16/2026,100
-Boston Beer Company,Angry Orchard,4/6/12oz NR,8148 Angry Orchard Crisp Imperial 4/6/12 oz Btl,OA4A12,85,73,84,71,73,76,115,65,98,7/13/2026,60
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4031 Sam Adams Juicy IPA 2/12/12 oz Can,SAT9634T,6,14,9,11,18,6,2,2,98,7/20/2026,50
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12147 Dogfish Head 30 Minute IPA 4/6/12 oz Can,DBCT66,19,18,24,25,35,16,11,9,97,7/20/2026,50
-Boston Beer Company,Hard Mountain Dew,2/12/12oz Can,83003 Hard Mountain Dew Mix 2/12/12 oz Can,AJ0563A1,38,15,44,35,55,23,33,14,95,7/10/2026,100
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8377 Twisted Tea Pineapple 1/12/24 oz Can,OA2N53,10,8,13,16,12,13,8,4,95,6/16/2026,102
-Boston Beer Company,Twisted Tea,4/5 Liter Box,8339 Twisted Tea Original Cardboard Bag n' Box 4/5 L Btl,OA9170,4,17,14,10,17,15,9,3,95,7/10/2026,30
-Boston Beer Company,Twisted Tea,2/12/12oz NR,8332 Twisted Tea 2/12/12 oz Btl,OA9113,74,30,14,54,58,45,36,17,94,7/10/2026,60
-Boston Beer Company,Twisted Tea,1/24/12oz Can,8375 Twisted Tea Party Pack Variety 1/24/12 oz Loose Can,OA9433,62,158,39,84,198,24,25,20,93,6/22/2026,200
-Boston Beer Company,Dogfish Head Beer,1/6 BBL Keg (5.2 Gal),12012 Dogfish 60 Minute IPA 5.2 Gal Keg,DB0060,17,13,15,14,17,7,12,2,92,7/20/2026,48
-Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200713 Sinless Vodka Black Cherry 6/4/12 oz Can,AY124S,1,3,2,8,5,0,8,1,92,5/7/2026,104
-Boston Beer Company,Hard Mountain Dew,2/12/12oz Can,83002 Hard Mountain Dew Baja Blast Mix 2/12/12 oz Can,AJ0E63,28,21,22,24,48,7,33,-1,84,7/7/2026,100
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12144 Dogfish Head All IPA Variety 2/12/12 oz Can,DBBG63,19,10,23,33,66,12,21,17,83,6/16/2026,100
-Boston Beer Company,Dogfish Head Beer,6/4/12oz NR,12062 Dogfish Head Worldwide Stout 6/4/12 oz Btl,1701A,,,2,,1,,3,,81,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12015 Dogfish Head Seaquench Ale 4/6/12 oz Can,DB0466,12,15,35,26,26,32,14,13,80,7/20/2026,50
-Boston Beer Company,Samuel Adams,1/12/19.2oz,4054 Sam Adams Cherry Bomb 1/12/19.2 oz Can,SB5M54,11,12,14,20,8,12,3,2,80,7/7/2026,40
-Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200711 Sinless Vodka Cranberry 6/4/12 oz Can,AY134S,4,2,2,5,9,3,8,,78,3/2/2026,208
-Boston Beer Company,Angry Orchard,15.5 Gal Keg,8101 Angry Orchard Crisp Apple 15.5 Gal Keg,OA7890,10,8,10,8,13,11,9,2,77,7/10/2026,16
-Boston Beer Company,Truly,1/12/24oz Can,8649 Truly Hard Seltzer Citrus Squeeze 1/12/24 oz Can,PD4253,11,9,6,6,16,17,4,5,76,7/1/2026,102
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3907 Sam Adams Porch Rocker 4/6/12 oz Btl,SA2K12,117,137,103,122,153,88,68,20,70,7/1/2026,60
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200606 Dogfish Head Strawberry Honeyberry Vodka Lemonade 6/4/12 oz Can,DS174S,12,9,16,13,12,12,15,3,69,7/15/2026,52
-Boston Beer Company,Samuel Adams,2/12/12oz Can,3842 Sam Adams Summer Ale 2/12/12 oz Can,SA3563,154,223,187,278,313,166,204,73,69,7/13/2026,100
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8378 Twisted Tea Black Cherry 1/12/24 oz Can,OA2G53,11,17,19,20,26,9,15,4,67,6/9/2026,102
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8383 Twisted Tea Extreme Blue Razz 1/12/24 oz Can,OA4853,20,29,33,43,35,19,33,13,64,7/8/2026,102
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4040 Sam Adams American Light 2/12/12 oz Can,SAX763,11,25,10,11,18,17,2,4,63,7/10/2026,50
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8323 Twisted Tea Mangonada 1/12/24 oz Can,OA2U53AT,8,5,3,2,3,5,7,1,61,3/30/2026,102
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200630 Dogfish Head Peach Mango Rum Punch 6/4/12 oz Can,DS2D4S,5,4,12,13,15,8,17,1,52,3/6/2026,208
-Boston Beer Company,Samuel Adams,4/6/12oz Can,4030 Sam Adams Juicy IPA 4/6/12 oz Can,SAT966,,,15,30,13,8,21,8,51,7/20/2026,50
-Boston Beer Company,Dogfish Head Beer,15.5 Gal Keg,12150 Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg,DBCK90,4,8,5,4,4,5,8,3,50,7/15/2026,20
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200628 Dogfish Head Blueberry Lemondrop 6/4/12 oz Can,DS2C4S,9,9,17,15,18,8,15,4,49,7/7/2026,52
-Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3860 Sam Adams Summer Ale 5.2 Gal Keg,SA3560,48,60,55,68,63,46,53,10,48,7/13/2026,12
-Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200673 Sun Cruiser Pink Lemonade 1/12/19.2 oz Can,AW1857,16,20,18,18,30,29,17,6,48,5/27/2026,100
-Boston Beer Company,Dogfish Head Beer,5.2 Gal Keg,12151 Dogfish Head Grateful Dead Juicy Pale Ale 5.2 Gal Keg,DBCK60,5,9,6,5,9,6,2,4,43,7/15/2026,24
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8343 Twisted Tea Light 4/6/12 oz Btl,OA9712,44,38,30,40,52,12,52,11,42,7/13/2026,60
-Boston Beer Company,Angry Orchard,1/12/19.2 oz Can,8153 Angry Orchard Crisp Imperial 1/12/19.2 oz Can,28831,33,28,28,29,30,29,27,26,41,7/6/2026,100
-Boston Beer Company,Samuel Adams,4/6/12oz NR,4039 Sam Adams American Light 4/6/12 oz Btl,SAX712,20,32,16,,17,37,15,8,41,7/1/2026,120
-Boston Beer Company,Samuel Adams,2/12/12oz Can,3952 Sam Adams Cold Snap 2/12/12 oz Can,SA4H63,-2,-3,,-2,,,-1,,39,3/2/2026,50
-Boston Beer Company,Angry Orchard,1/6 BBL Keg (5.2 Gal),8102 Angry Orchard Crisp Apple 5.2 Gal Keg,OA7860,4,4,5,11,6,4,6,1,36,7/9/2026,12
-Boston Beer Company,Dogfish Head Beer,6/4/12oz NR,12077 Dogfish Head 120 Minute IPA 6/4/12 oz Btl,DB3414,3,2,4,1,1,,5,1,36,3/16/2026,144
-Boston Beer Company,Hard Mountain Dew,1/12/24oz Can,83004 Hard Mountain Dew Original 1/12/24 oz Can,AJ0153A1,11,,22,6,15,6,8,6,36,4/20/2026,102
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,3804 Sam Adams Boston Lager 15.5 Gal Keg,SA1090,5,6,5,5,5,4,9,1,35,7/16/2026,4
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,3807 Sam Adams Summer Ale 15.5 Gal Keg,SA3590,66,66,55,60,69,54,63,11,35,7/13/2026,24
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12137 Dogfish Head Groovy Summer Variety 2/12/12 oz Can,DBAE63,24,52,38,33,45,28,27,12,34,7/10/2026,50
-Boston Beer Company,Twisted Tea,1/6 BBL Keg (5.2 Gal),8326 Twisted Tea Orig 5.2 Gal Keg,OA9160,7,15,9,2,4,3,2,2,29,7/8/2026,24
-Boston Beer Company,Samuel Adams,4/6/12oz Can,4027 Sam Adams Golden Non-Alcoholic 4/6/12 oz Can,SA8Z66,6,7,17,7,6,1,11,5,28,7/10/2026,50
-Boston Beer Company,Truly,4/6/12oz Can,8691 Truly Hard Seltzer Wild Berry 4/6/12 oz Can,PD0861,9,11,8,2,2,10,2,,25,6/11/2026,50
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,3812 Sam Adams Cherry Wheat 15.5 Gal Keg,SA2790,3,1,3,,1,3,,1,23,7/16/2026,4
-Boston Beer Company,Twisted Tea,15.5 Gal Keg,8371 Twisted Tea Original 15.5 Gal Keg,OA9190,6,1,5,2,2,2,2,1,21,7/16/2026,4
-Boston Beer Company,Samuel Adams,5.2 Gal Keg,4043 Sam Adams American Light 5.2 Gal Keg,SAX760,2,,2,3,6,,,,20,7/13/2026,12
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12059 Dogfish Head Festina Peche 4/6/12 oz Can,DB7712,,,26,21,11,9,11,3,19,6/10/2026,100
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12157 Dogfish Head Czech Spresso 4/6/12 oz Can,DBDR66,-2,2,1,3,,1,-1,,18,,
-Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3802 Sam Adams Boston Lager 5.2 Gal Keg,SA1060,5,3,6,5,8,1,8,1,18,7/13/2026,12
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,4032 Sam Adams Juicy IPA 15.5 Gal Keg,SAT990,0,-1,,,0,1,1,,16,6/3/2026,4
-Boston Beer Company,Sun Cruiser,1/12/24oz Can,200639 Sun Cruiser Lemonade Iced Tea 1/12/24 oz Can,AW1253,4,3,2,5,3,2,5,2,15,,
-Boston Beer Company,Truly,1/6 BBL Keg (5.2 Gal),8671 Truly Hard Seltzer Wild Berry 5.2 Gal Keg,PD0860,17,3,,,7,12,1,,15,7/9/2026,12
-Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12152 Dogfish Head Grateful Dead Juicy Pale Ale 1/12/19.2 oz Can,DBCK54,3,2,7,5,6,7,2,,13,5/8/2026,40
-Boston Beer Company,Sun Cruiser,1/12/24oz Can,200642 Sun Cruiser Vodka Pink Lemonade 1/12/24 oz Can,AW187M,1,3,1,10,3,2,1,,13,,
-Boston Beer Company,Truly,1/12/24oz Can,8659 Truly Hard Seltzer Unruly Tropical Twist 1/12/24 oz Can,PD2S53,2,6,7,9,6,10,5,3,12,3/2/2026,102
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4037 Sam Adams Breakaway Blonde Ale 2/12/12 oz Can,SAUA163A1,,,,,,,,,9,2/24/2026,50
-Boston Beer Company,Samuel Adams,5.2 Gal Keg,4033 Sam Adams Juicy 5.2 Gal Keg,SAT960,1,1,4,3,2,4,1,2,9,6/10/2026,12
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4026 Sam Adams Just the Haze NA 2/12/12 oz Can,25728,6,8,11,16,3,12,22,10,4,7/8/2026,50
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,3808 Sam Adams Cold Snap 15.5 Gal Keg,SA4H90,,-1,-3,-3,-1,,,,3,,
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3844 Sam Adams Summer Ale 4/6/12 oz Btl,SA3512,239,322,223,350,323,216,241,76,3,7/13/2026,60
-Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3866 Sam Adams Cold Snap 5.2 Gal Keg,SA4H60,,-1,1,1,,2,,,1,3/17/2026,12
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3840 Sam Adams Cold Snap 4/6/12 oz Btl,SA4H12,,-1,,-4,-2,,-3,,1,2/25/2026,60
-Boston Beer Company,Samuel Adams,4/6/12oz NR,4034 Sam Adams Old Fezziwig 4/6/12 oz Btl,,,-8,,,,-2,,,1,,
-Boston Beer Company,Truly,15.5 Gal Keg,8672 Truly Hard Seltzer Wild Berry Keg 15.5 Gal Keg,PD0890,6,11,4,,13,3,12,-1,1,7/9/2026,16
-Boston Beer Company,Angry Orchard,2/12/12oz Can,8151 Angry orchard The Knotty Bunch Variety 2/12/12 oz Can,OA1S63,-1,-1,-2,-1,,,,-7,0,2/17/2026,50
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12019 Dogfish Head Seaquench Ale 2/12/12 oz Can,DB0463,3,,,,-1,,,,0,,
-Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12130 Dogfish Head Off-Centered Fall Variety 2/12/12 oz Can,DB6C63,,,-1,,,,,,0,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12020 Dogfish Head Liquid Truth Serum 4/6/12 oz Can,DB0566,,,-3,,,,,,0,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12069 Dogfish Head Covered in Nuggs 4/6/12 oz Can,DBBN6641,-6,,,,,,,,0,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12142 Dogfish Head Punkin Ale 4/6/12 oz Can,DB1566,-1,-1,,,,,,,0,,
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12153 Dogfish Head Tropical Squall 4/6/12 oz Can,DBBF66,-2,,,,,,,,0,2/20/2026,50
-Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12159 Dogfish Head Aprihop IPA 4/6/12 oz Can,,,,,,,,,,0,4/10/2026,100
-Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200617 Dogfish Head Rum Mai Tai Pineapple Orange 6/4/12 oz Can,DS1G4S,-1,1,2,,,1,,,0,,
-Boston Beer Company,Samuel Adams,15.5 Gal Keg,4042 Sam Adams American Light 15.5 Gal Keg,SAX790,0,,,,,,,,0,,
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4013 Sam Adams Winter Break Variety 2/12/12 oz Can,SA3063,-3,,-7,-3,,,,,0,,
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4035 Sam Adams Spring Favorites Variety 2/12/12 oz Can,SA3263A1,-2,-2,-2,,,-1,,,0,3/17/2026,50
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4049 Sam Adams Winter White Ale 2/12/12 oz Can,SA2X63,-1,-4,-2,,,,,,0,,
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3827 Sam Adams Winter Lager 2/12/12 oz Btl,SA1413,,,-1,-2,,-2,,,0,,
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3841 Sam Adams Cold Snap 2/12/12 oz Btl,SA4H13,,-3,,,-6,,,,0,3/2/2026,60
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3918 Sam Adams Octoberfest 2/12/12 oz Btl,SA1313,,,,-2,,,,,0,,
-Boston Beer Company,Samuel Adams,2/12/12oz NR,4048 Sam Adams Winter White Ale 2/12/12 oz Btl,SA2X13,,,-2,-1,,,,,0,,
-Boston Beer Company,Samuel Adams,4/6/12oz Can,4012 Sam Adams Just the Haze NA 4/6/12 oz Can,SAWC66,38,34,34,33,58,36,4,,0,6/25/2026,100
-Boston Beer Company,Samuel Adams,4/6/12oz Can,4047 Sam Adams Winter White Ale 4/6/12 oz Btl,SA2X12,,,,-1,,,,,0,,
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3826 Sam Adams Winter Lager 4/6/12 oz Btl,SA1412,-2,-1,-1,-1,,,,,0,,
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3919 Sam Adams Octoberfest 4/6/12 oz Btl,SA1312,-1,-2,,,,,,,0,,
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3953 Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl,SAVP12,,,,-1,,,,,0,,
-Boston Beer Company,Sun Cruiser,1/12/24oz Can,200638 Sun Cruiser Classic Iced Tea 1/12/24 oz Can,AW1153,1,,,,,,,,0,,
-Boston Beer Company,Sun Cruiser,1/12/24oz Can,200667 Sun Cruiser Lemonade 1/12/24 oz Can,AW1777,2,5,2,,,,,,0,,
-Boston Beer Company,Truly,1/12/24oz Can,8657 Truly Hard Seltzer Unruly Blue Razz Lemonade 1/12/24 oz Can,PD4C53,,,,,,,,,0,,
-Boston Beer Company,Truly,2/12/12oz Can,8646 Truly Hard Seltzer Dream Variety 2/12/12 oz Can,PD1C73,,,,-1,-2,,-1,,0,2/17/2026,104
-Boston Beer Company,Truly,4/6/12oz Can,8670 Truly Hard Seltzer Strawberry Lemonade 4/6/12 oz Can,PD2761,1,,,,,,,,0,,
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8351 Twisted Tea Mango 1/12/24 oz Can,OA8653,17,13,18,17,19,1,,,0,4/30/2026,102
-Boston Beer Company,Twisted Tea,1/12/24oz Can,8376 Twisted Tea Blueberry 1/12/24 oz Can,OA8753,11,,,,,,,,0,3/17/2026,102
-Boston Beer Company,Twisted Tea,2/12/12oz NR,8337 Twisted Tea Half & Half 2/12/12 oz Btl,OA9313,5,14,8,9,24,5,-2,,0,6/3/2026,60
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8334 Twisted Tea Raspberry 4/6/12 oz Btl,OA9212,13,25,18,34,9,11,,,0,5/27/2026,60
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8342 Twisted Tea Peach 4/6/12 oz Btl,OA9512,26,33,18,12,,,-1,,0,4/30/2026,60
-Boston Beer Company,Twisted Tea,4/6/12oz NR,8386 Twisted Tea Rocket Pop 4/6/12 oz Btl,OA2S12,-1,,,,,,,,0,,
-Boston Beer Company,Angry Orchard,4/6/12oz Can,8152 Angry Orchard Crisp Light 4/6/12 oz Can,OA3U66,1,,,,,,,,-1,1/27/2026,50
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3843 Sam Adams Summer Ale 2/12/12 oz Btl,SA3513,141,299,160,292,318,208,92,47,-1,7/7/2026,60
-Boston Beer Company,Samuel Adams,2/12/12oz NR,3908 Sam Adams Porch Rocker 2/12/12 oz Btl,SA2K13,40,23,68,62,68,42,,,-1,7/1/2026,60
-Boston Beer Company,Samuel Adams,4/6/12oz NR,3832 Sam Adams Breakaway Blonde Ale 4/6/12 oz Btl,SAU112A1,,-2,6,1,1,1,,,-1,3/19/2026,60
-Boston Beer Company,Angry Orchard,4/6/12oz Can,8142 Angry Orchard Crisp Apple 4/6/12 oz Can,OA7866,6,6,,,,,,,-2,3/2/2026,50
-Boston Beer Company,Samuel Adams,2/12/12oz Can,4021 Sam Adams Porch Rocker 2/12/12 oz Can,SA2K63,47,51,67,75,103,41,15,,-3,6/24/2026,100
-Boston Beer Company,Truly,2/12/12oz Can,8700 Truly Hard Seltzer Celebrations Variety 2/12/12 oz Can,PD5673,,,-1,,-4,1,,,-4,,
-Boston Beer Company,Angry Orchard,2/12/12oz Can,8145 Angry Orchard Summer Crush Variety Pack 2/12/12 oz Can,OA2V63,72,95,119,80,73,30,,,-5,7/1/2026,100
+Supplier,Brand Family,Package,Product Link,Supplier Product ID,Cases This Week,Cases Last Week,Cases -1 Weeks,Cases -2 Weeks,Cases -3 Weeks,Cases -4 Weeks,Cases -5 Weeks,Cases -6 Weeks,Cases -7 Weeks,Cases -8 Weeks,Available,Last Receive Date,Last Receive Quantity
+Boston Beer Company,Sun Cruiser,2/12/12oz Can,200665 Sun Cruiser Iced Tea Variety 2/12/12 oz Can,AW1573,296,400,370,468,1034,424,443,190,250,142,2805,7/20/2026,208
+Boston Beer Company,Angry Orchard,4/6/12oz NR,8110 Angry Orchard Crisp Apple 4/6/12 oz Btl,OA7812,188,260,297,360,320,301,263,249,265,105,512,7/16/2026,180
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8340 Twisted Tea 1/12/24 oz Can,OA9153,188,214,178,293,242,227,233,209,162,95,893,7/13/2026,306
+Boston Beer Company,Dogfish Head Beer,4/6/12oz NR,12010 Dogfish Head 60 Minute IPA 4/6/12 oz Btl,DB0012,183,148,120,205,193,183,144,231,144,92,654,7/15/2026,252
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200664 Sun Cruiser Lemonade Variety 3/8/12 oz Can,AW1678,173,257,247,351,673,259,278,147,136,95,835,7/16/2026,312
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200631 Sun Cruiser Iced Tea Variety 3/8/12 oz Can,AW1578,172,277,290,313,673,255,371,173,168,121,2028,7/7/2026,208
+Boston Beer Company,Truly,30/12oz Can,8668 Truly Star Squad Variety 1/30/12 oz Can,PD7435,154,,77,,,,77,,,,154,6/23/2026,385
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8333 Twisted Tea 2/12/12 oz Can,OA9163,142,235,199,413,591,233,213,179,252,161,1382,7/13/2026,200
+Boston Beer Company,Sun Cruiser,2/12/12oz Can,200671 Sun Cruiser Sampler Variety Pack 2/12/12 oz Can,AW1N73,124,279,169,328,648,231,238,70,105,92,912,7/20/2026,312
+Boston Beer Company,Samuel Adams,2/12/12oz Can,3842 Sam Adams Summer Ale 2/12/12 oz Can,SA3563,119,204,166,313,278,187,223,154,121,73,20,7/13/2026,100
+Boston Beer Company,Sun Cruiser,18/12oz Can,200666 Sun Cruiser Iced Tea Vodka Variety 1/18/12 oz Can,AW1581,109,,3,237,200,8,138,,,,145,7/16/2026,588
+Boston Beer Company,Sun Cruiser,2/12/12oz Can,200668 Sun Cruiser Lemonade Variety Pack 2/12/12 oz Can,AW1673,107,220,364,245,459,168,178,119,154,204,693,7/20/2026,728
+Boston Beer Company,Angry Orchard,4/6/12oz NR,8148 Angry Orchard Crisp Imperial 4/6/12 oz Btl,OA4A12,102,115,76,73,71,84,73,85,63,34,60,7/13/2026,60
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8330 Twisted Tea 4/6/12 oz Btl,OA9112,102,181,187,209,205,170,208,171,151,88,365,7/16/2026,180
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12011 Dogfish Head 60 Minute IPA 2/12/12 oz Can,DB0063,101,70,72,129,111,115,52,119,94,46,450,7/20/2026,250
+Boston Beer Company,Dogfish Head Beer,4/6/12oz NR,12040 Dogfish Head 90 Minute IPA 4/6/12 oz Btl,DB0112,100,59,70,163,87,91,80,93,63,49,434,7/20/2026,360
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8329 Twisted Tea Half & Half 1/12/24 oz Can,OA9353,98,157,110,212,160,164,143,131,123,70,418,7/20/2026,204
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8341 Twisted Tea Party Pack 2/12/12 oz Can,OA9463,98,234,215,328,392,257,243,218,231,109,1569,7/7/2026,200
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3818 Sam Adams Boston Lager 4/6/12 oz Btl,SA1012,88,127,135,272,139,65,185,159,110,61,143,7/10/2026,180
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4016 Sam Adams Star Spangled Summer Variety 2/12/12 oz Can,SA7X63,83,97,176,299,233,202,173,141,117,57,286,7/16/2026,100
+Boston Beer Company,Sun Cruiser,1/24/12oz Can,200634 Sun Cruiser Classic Iced Tea 1/24/12 oz Loose Can,AW1177,81,116,96,178,191,140,112,167,200,,1058,7/16/2026,312
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3817 Sam Adams Boston Lager 2/12/12 oz Btl,SA1013,80,97,115,236,151,119,169,79,90,82,238,7/16/2026,180
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3844 Sam Adams Summer Ale 4/6/12 oz Btl,SA3512,80,241,216,323,350,223,322,239,186,102,0,7/13/2026,60
+Boston Beer Company,Angry Orchard,2/12/12oz Can,8121 Angry Orchard Crisp 2/12/12 oz Can,OA7863,75,121,108,193,93,113,114,84,115,53,211,7/16/2026,100
+Boston Beer Company,Truly,2/12/12oz Can,8692 Truly Hard Seltzer Berry Variety 2/12/12 oz Can,PD1173,70,105,137,239,177,142,107,109,131,66,525,7/10/2026,104
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12148 Dogfish Head 30 Minute Light IPA 2/12/12 oz Can,DBCT63,66,28,61,103,43,60,52,65,42,22,245,7/20/2026,100
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8336 Twisted Tea Half & Half 4/6/12 oz Btl,OA9312,66,62,94,104,108,82,107,57,59,47,117,7/10/2026,120
+Boston Beer Company,Angry Orchard,4/6/12oz NR,8124 Angry Orchard Green Apple 4/6/12 oz Btl,OA4C12,61,107,97,116,117,94,75,90,91,32,198,7/16/2026,120
+Boston Beer Company,Dogfish Head Spirits,3/8/12oz Can,200615 Dogfish Head Tropical Crush Variety 3/8/12 oz Can,DS1S78,55,74,41,83,45,43,117,26,32,12,319,7/20/2026,52
+Boston Beer Company,Sun Cruiser,1/24/12oz Can,200678 Sun Cruiser Lemonade & Ice Tea 1/24/12 oz Can,AW1277,55,93,70,88,143,88,73,71,81,66,499,7/10/2026,208
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8345 Twisted Tea Light 2/12/12 oz Can,OA9763,52,108,65,103,281,91,81,72,155,200,691,7/13/2026,100
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3907 Sam Adams Porch Rocker 4/6/12 oz Btl,SA2K12,51,68,88,153,122,103,137,117,91,48,42,7/1/2026,60
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200636 Sun Cruiser Classic Iced Tea 3/8/12oz Can,AW1178,49,175,162,345,234,146,154,163,155,99,802,7/20/2026,104
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8384 Twisted Tea Extreme Lemon 1/12/24 oz Can,OA3Z53,47,63,55,77,37,86,57,51,63,36,124,7/9/2026,102
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3843 Sam Adams Summer Ale 2/12/12 oz Btl,SA3513,46,92,208,318,292,160,299,141,148,79,0,7/7/2026,60
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12149 Dogfish Head Grateful Dead Juicy Pale Ale 4/6/12 oz Can,DBCK66,45,51,24,97,66,70,54,54,49,22,216,7/20/2026,100
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8349 Twisted Tea Half & Half 2/12/12 oz Can,OA9363,44,85,153,227,489,160,107,159,79,55,744,7/13/2026,200
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200637 Sun Cruiser Half & Half Lemonade Iced Tea 3/8/12 oz Can,AW1278,43,113,108,184,428,102,144,86,99,109,1072,7/16/2026,208
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200680 Sun Cruiser White Tea Variety 3/8/12 oz Can,AW1V78,43,104,74,179,297,,,50,88,28,233,7/10/2026,208
+Boston Beer Company,Angry Orchard,2/12/12oz NR,8111 Angry Orchard Crisp Apple 2/12/12 oz Btl,OA7813,42,40,47,99,63,50,84,52,47,45,162,7/16/2026,180
+Boston Beer Company,Angry Orchard,4/6/12oz NR,8134 Angry Orchard Rose 4/6/12 oz Btl,OA5512,41,76,23,38,64,56,32,39,34,16,101,7/13/2026,60
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8348 Twisted Tea Raspberry 1/12/24 oz Can,OA9253,39,46,30,58,45,59,39,60,25,23,199,7/13/2026,102
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12144 Dogfish Head All IPA Variety 2/12/12 oz Can,DBBG63,37,21,12,66,33,23,10,19,17,7,65,6/16/2026,100
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,3807 Sam Adams Summer Ale 15.5 Gal Keg,SA3590,37,63,54,69,60,55,66,66,59,25,0,7/13/2026,24
+Boston Beer Company,Angry Orchard,1/12/19.2 oz Can,8153 Angry Orchard Crisp Imperial 1/12/19.2 oz Can,28831,36,27,29,30,29,28,28,33,22,5,30,7/6/2026,100
+Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3860 Sam Adams Summer Ale 5.2 Gal Keg,SA3560,36,53,46,63,68,55,60,48,54,25,24,7/13/2026,12
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3821 Sam Adams Cherry Wheat 4/6/12 oz Btl,SA2712,36,40,40,83,71,49,66,53,41,22,128,7/10/2026,120
+Boston Beer Company,Sun Cruiser,6/4/12oz Can,200633 Sun Cruiser Lemonade & Iced Tea 6/4/12 oz Can,AW124S,36,23,30,65,64,32,50,112,6,,207,6/5/2026,312
+Boston Beer Company,Twisted Tea,1/24/12oz Can,8375 Twisted Tea Party Pack Variety 1/24/12 oz Loose Can,OA9433,36,25,24,198,84,39,158,62,30,67,77,6/22/2026,200
+Boston Beer Company,Truly,2/12/12oz Can,8666 Truly Hard Seltzer Fruit Punch Variety 2/12/12 oz Can,PD4473,35,38,66,96,50,89,55,35,58,21,249,7/10/2026,104
+Boston Beer Company,Truly,2/12/12oz Can,8684 Truly Hard Seltzer Citrus Variety 2/12/12 oz Can,PD1073,35,39,55,121,88,90,40,45,61,45,336,7/10/2026,104
+Boston Beer Company,Dogfish Head Spirits,3/8/12oz Can,200608 Dogfish Head Bar Cart Variety 3/8/12 oz Can,DS3178,34,85,46,62,43,-23,130,32,46,19,628,7/20/2026,156
+Boston Beer Company,Truly,2/12/12oz Can,8647 Truly Hard Seltzer Unruly Variety 2/12/12 oz Can,PD2R73,33,49,76,107,126,72,48,60,72,37,480,7/13/2026,208
+Boston Beer Company,Truly,2/12/12oz Can,8664 Truly Star Squad 2/12/12 oz Can,PD7473,33,16,69,146,68,113,48,47,42,29,367,6/8/2026,312
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8360 Twisted Tea Peach 1/12/24 oz Can,OA9553,31,29,26,39,28,24,43,18,21,7,186,7/8/2026,102
+Boston Beer Company,Sun Cruiser,6/4/12oz Can,200632 Sun Cruiser Classic Iced Tea 6/4/12 oz Can,AW114S,30,40,35,65,80,50,79,162,12,,281,7/8/2026,104
+Boston Beer Company,Truly,1/12/24oz Can,8677 Truly Hard Seltzer Wild Berry 1/12/24 oz Can,PD0853,30,13,34,36,34,19,26,30,11,11,180,7/13/2026,102
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12015 Dogfish Head Seaquench Ale 4/6/12 oz Can,DB0466,29,14,32,26,26,35,15,12,14,4,70,7/20/2026,50
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8387 Twisted Tea Extreme Variety Pack 2/12/12 oz Can,OA7T63,29,56,46,89,141,68,53,63,75,,366,7/10/2026,100
+Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12048 Dogfish Head 90 Minute IPA 1/12/19.2 oz Can,DB0154,28,25,16,46,21,29,25,32,31,13,182,7/20/2026,80
+Boston Beer Company,Hard Mountain Dew,2/12/12oz Can,83003 Hard Mountain Dew Mix 2/12/12 oz Can,AJ0563A1,28,33,23,55,35,44,15,38,15,10,84,7/10/2026,100
+Boston Beer Company,Samuel Adams,2/12/12oz Can,3829 Sam Adams Boston Lager 2/12/12 oz Can,SA1063,28,47,20,65,29,44,43,40,30,30,200,7/8/2026,100
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8343 Twisted Tea Light 4/6/12 oz Btl,OA9712,27,52,12,52,40,30,38,44,35,,27,7/13/2026,60
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12137 Dogfish Head Groovy Summer Variety 2/12/12 oz Can,DBAE63,26,27,28,45,33,38,52,24,23,18,23,7/10/2026,50
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200641 Sun Cruiser Vodka Pink Lemonade 3/8/12 oz Can,AW1878,26,91,90,171,195,91,215,-3,11,,449,7/16/2026,104
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12155 Dogfish Head Grateful Dead Juicy Pale Ale 2/12/12 oz Can,DBCK63,24,26,20,24,38,29,21,50,24,13,224,7/20/2026,100
+Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200675 Sun Cruiser Lemonade Iced Tea 1/12/19.2 oz Can,AW1257,24,25,29,32,21,16,25,12,20,6,116,6/22/2026,100
+Boston Beer Company,Angry Orchard,1/12/19.2oz,8154 Angry Orchard Crisp Apple 1/12/19.2 oz Can,OA7854,23,47,40,61,36,53,42,57,39,9,220,6/24/2026,100
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8383 Twisted Tea Extreme Blue Razz 1/12/24 oz Can,OA4853,23,33,19,35,43,33,29,20,16,21,53,7/8/2026,102
+Boston Beer Company,Truly,2/12/12oz Can,8674 Truly Hard Seltzer Lemonade Variety 2/12/12 oz Can,PD2573,22,42,80,105,59,96,40,53,47,29,344,7/13/2026,104
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12147 Dogfish Head 30 Minute IPA 4/6/12 oz Can,DBCT66,21,11,16,35,25,24,18,19,15,2,86,7/20/2026,50
+Boston Beer Company,Truly,2/12/12oz Can,8648 Truly Party 2/12/12 oz Can,PD2F73,20,39,28,68,30,49,31,11,27,29,172,7/8/2026,104
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8344 Twisted Tea Light 1/12/24 oz Can,OA9753,20,17,15,31,27,25,26,23,21,16,186,6/22/2026,102
+Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200672 Sun Cruiser Classic Iced Tea 1/12/19.2 oz Can,AW1157,19,29,26,40,24,27,36,38,24,25,173,7/7/2026,100
+Boston Beer Company,Truly,2/12/12oz Can,8651 Truly Hard Seltzer Unruly Lemonade Variety 2/12/12 oz Can,PD4G73,19,23,44,62,44,63,15,21,27,19,133,7/7/2026,104
+Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12014 Dogfish Head 60 Minute IPA 1/12/19.2 oz Can,DB0054,18,26,9,27,20,27,18,21,20,10,138,7/20/2026,40
+Boston Beer Company,Sun Cruiser,3/8/12oz Can,200676 Sun Cruiser Blueberry Lemonade 3/8/12 oz Can,AW1F78,18,36,82,14,113,44,61,103,94,50,468,7/16/2026,104
+Boston Beer Company,Truly,1/12/24oz Can,8676 Truly Hard Seltzer Pineapple 1/12/24 oz Can,PD1653,18,10,14,14,23,21,21,10,10,5,95,7/7/2026,102
+Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200673 Sun Cruiser Pink Lemonade 1/12/19.2 oz Can,AW1857,17,17,29,30,18,18,20,16,7,10,37,5/27/2026,100
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12158 Dogfish Head Citrus Day Dream 4/6/12 oz Can,DBDV66,16,15,6,27,17,24,23,21,23,5,98,6/25/2026,100
+Boston Beer Company,Hard Mountain Dew,1/12/24oz Can,83001 Hard Mountain Dew Baja Blast 1/12/24 oz Can,AJ0253A1,16,1,22,11,17,31,8,15,11,4,99,6/22/2026,102
+Boston Beer Company,Samuel Adams,4/6/12oz Can,4027 Sam Adams Golden Non-Alcoholic 4/6/12 oz Can,SA8Z66,16,11,1,6,7,17,7,6,6,8,22,7/10/2026,50
+Boston Beer Company,Twisted Tea,2/12/12oz NR,8332 Twisted Tea 2/12/12 oz Btl,OA9113,16,36,45,58,54,14,30,74,23,,94,7/10/2026,60
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200610 Dogfish Head Blood Orange & Mango Vodka Crush 6/4/12 oz Can,DS264S,15,29,13,16,28,22,25,5,18,11,136,7/20/2026,52
+Boston Beer Company,Sun Cruiser,1/24/12oz Can,200679 Sun Cruiser Pink Lemonade 1/24/12 oz Can,AW1877,15,30,12,13,42,31,20,10,20,18,442,7/10/2026,104
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8390 Twisted Tea Extreme Tropical Peach 1/12/24 oz Can,OA7R53,13,20,16,27,16,28,32,25,22,27,160,7/7/2026,102
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4026 Sam Adams Just the Haze NA 2/12/12 oz Can,25728,12,22,12,3,16,11,8,6,2,6,2,7/8/2026,50
+Boston Beer Company,Samuel Adams,4/6/12oz Can,4030 Sam Adams Juicy IPA 4/6/12 oz Can,SAT966,12,21,8,13,30,15,,,,,46,7/20/2026,50
+Boston Beer Company,Samuel Adams,4/6/12oz NR,4039 Sam Adams American Light 4/6/12 oz Btl,SAX712,12,15,37,17,,16,32,20,18,6,39,7/1/2026,120
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8378 Twisted Tea Black Cherry 1/12/24 oz Can,OA2G53,12,15,9,26,20,19,17,11,12,7,62,6/9/2026,102
+Boston Beer Company,Dogfish Head Beer,1/6 BBL Keg (5.2 Gal),12012 Dogfish 60 Minute IPA 5.2 Gal Keg,DB0060,11,12,7,17,14,15,13,17,10,3,83,7/20/2026,48
+Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200677 Sun Cruiser Blueberry Lemonade 1/12/19.2 oz Can,AW1F57,11,9,15,15,9,5,15,7,12,4,96,6/22/2026,100
+Boston Beer Company,Truly,2/12/12oz Can,8724 Truly Hard Seltzer Paradise Pack 2/12/12 oz Can,PD5G73,11,30,21,43,22,49,19,26,16,16,137,3/9/2026,520
+Boston Beer Company,Twisted Tea,2/12/12oz Can,8373 Twisted Tea Light Party Pack 2/12/12 oz Can,OABM63,11,63,43,101,171,41,40,67,46,47,835,6/18/2026,100
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200628 Dogfish Head Blueberry Lemondrop 6/4/12 oz Can,DS2C4S,10,15,8,18,15,17,9,9,14,7,45,7/7/2026,52
+Boston Beer Company,Hard Mountain Dew,2/12/12oz Can,83002 Hard Mountain Dew Baja Blast Mix 2/12/12 oz Can,AJ0E63,9,33,7,48,24,22,21,28,12,8,79,7/7/2026,100
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4040 Sam Adams American Light 2/12/12 oz Can,SAX763,9,2,17,18,11,10,25,11,13,6,58,7/10/2026,50
+Boston Beer Company,Sun Cruiser,1/12/19.2 oz Can,200674 Sun Cruiser Classic Lemonade 1/12/19.2 oz Can,AW1757,9,11,10,13,6,1,4,5,4,2,123,5/27/2026,100
+Boston Beer Company,Sun Cruiser,6/4/12oz Can,200669 Sun Cruiser Classic Lemonade 6/4/12 oz Can,AW174S,9,17,8,19,43,41,8,14,17,4,181,7/7/2026,104
+Boston Beer Company,Truly,1/12/24oz Can,8649 Truly Hard Seltzer Citrus Squeeze 1/12/24 oz Can,PD4253,8,4,17,16,6,6,9,11,5,1,73,7/1/2026,102
+Boston Beer Company,Truly,1/12/24oz Can,8659 Truly Hard Seltzer Unruly Tropical Twist 1/12/24 oz Can,PD2S53,8,5,10,6,9,7,6,2,6,1,7,3/2/2026,102
+Boston Beer Company,Dogfish Head Beer,15.5 Gal Keg,12013 Dogfish 60 Minute IPA 15.5 Gal Keg,DB0090,7,7,11,16,9,13,12,21,13,5,112,7/15/2026,60
+Boston Beer Company,Dogfish Head Beer,15.5 Gal Keg,12150 Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg,DBCK90,7,8,5,4,4,5,8,4,7,3,46,7/15/2026,20
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200606 Dogfish Head Strawberry Honeyberry Vodka Lemonade 6/4/12 oz Can,DS174S,7,15,12,12,13,16,9,12,13,5,65,7/15/2026,52
+Boston Beer Company,Samuel Adams,1/12/19.2oz,4054 Sam Adams Cherry Bomb 1/12/19.2 oz Can,SB5M54,7,3,12,8,20,14,12,11,9,3,74,7/7/2026,40
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8377 Twisted Tea Pineapple 1/12/24 oz Can,OA2N53,7,8,13,12,16,13,8,10,5,4,91,6/16/2026,102
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12059 Dogfish Head Festina Peche 4/6/12 oz Can,DB7712,6,11,9,11,21,26,,,,,16,6/10/2026,100
+Boston Beer Company,Hard Mountain Dew,1/12/24oz Can,83004 Hard Mountain Dew Original 1/12/24 oz Can,AJ0153A1,6,8,6,15,6,22,,11,12,,36,4/20/2026,102
+Boston Beer Company,Angry Orchard,1/6 BBL Keg (5.2 Gal),8102 Angry Orchard Crisp Apple 5.2 Gal Keg,OA7860,5,6,4,6,11,5,4,4,6,3,32,7/9/2026,12
+Boston Beer Company,Dogfish Head Beer,5.2 Gal Keg,12151 Dogfish Head Grateful Dead Juicy Pale Ale 5.2 Gal Keg,DBCK60,5,2,6,9,5,6,9,5,5,2,42,7/15/2026,24
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4031 Sam Adams Juicy IPA 2/12/12 oz Can,SAT9634T,5,2,6,18,11,9,14,6,1,3,95,7/20/2026,50
+Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3802 Sam Adams Boston Lager 5.2 Gal Keg,SA1060,4,8,1,8,5,6,3,5,3,2,16,7/13/2026,12
+Boston Beer Company,Sun Cruiser,1/24/12oz Can,200640 Sun Cruiser Vodka Lemonade 1/24/12 oz Loose Can,AW1777AT,4,8,4,12,53,17,7,-10,85,3,194,7/7/2026,104
+Boston Beer Company,Sun Cruiser,6/4/12oz Can,200670 Sun Cruiser Pink Lemonade 6/4/12 oz Can,734889,4,10,16,35,64,35,19,14,14,16,102,7/7/2026,104
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8323 Twisted Tea Mangonada 1/12/24 oz Can,OA2U53AT,4,7,5,3,2,3,5,8,4,1,58,3/30/2026,102
+Boston Beer Company,Twisted Tea,4/5 Liter Box,8339 Twisted Tea Original Cardboard Bag n' Box 4/5 L Btl,OA9170,4,9,15,17,10,14,17,4,15,5,94,7/10/2026,30
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,3812 Sam Adams Cherry Wheat 15.5 Gal Keg,SA2790,3,,3,1,,3,1,3,1,,21,7/16/2026,4
+Boston Beer Company,Sinless Vodka Cocktail,3/8/12oz Can,200714 Sinless Vodka Variety Pack 3/8/12 oz Can,AY1178,3,11,12,49,13,6,39,6,41,19,420,6/22/2026,208
+Boston Beer Company,Twisted Tea,1/6 BBL Keg (5.2 Gal),8326 Twisted Tea Orig 5.2 Gal Keg,OA9160,3,2,3,4,2,9,15,7,7,2,28,7/8/2026,24
+Boston Beer Company,Twisted Tea,15.5 Gal Keg,8371 Twisted Tea Original 15.5 Gal Keg,OA9190,3,2,2,2,2,5,1,6,1,1,19,7/16/2026,4
+Boston Beer Company,Angry Orchard,15.5 Gal Keg,8101 Angry Orchard Crisp Apple 15.5 Gal Keg,OA7890,2,9,11,13,8,10,8,10,8,1,77,7/10/2026,16
+Boston Beer Company,Angry Orchard,2/12/12oz Can,8143 Angry Orchard Thriller Variety 2/12/12 oz Can,OA1Z63,2,-1,,,,-3,-2,-1,-2,-1,98,7/16/2026,100
+Boston Beer Company,Dogfish Head Beer,12/19.2oz Can,12152 Dogfish Head Grateful Dead Juicy Pale Ale 1/12/19.2 oz Can,DBCK54,2,2,7,6,5,7,2,3,3,,11,5/8/2026,40
+Boston Beer Company,Dogfish Head Beer,6/4/12oz NR,12077 Dogfish Head 120 Minute IPA 6/4/12 oz Btl,DB3414,2,5,,1,1,4,2,3,1,,35,3/16/2026,144
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200619 Dogfish Head Tequila Margarita Strawberry Lime 6/4/12 oz Can,DS1M4S,2,9,9,6,17,16,9,6,11,4,348,7/15/2026,52
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200630 Dogfish Head Peach Mango Rum Punch 6/4/12 oz Can,DS2D4S,2,17,8,15,13,12,4,5,10,7,49,3/6/2026,208
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,3804 Sam Adams Boston Lager 15.5 Gal Keg,SA1090,2,9,4,5,5,5,6,5,3,,34,7/16/2026,4
+Boston Beer Company,Samuel Adams,5.2 Gal Keg,4033 Sam Adams Juicy 5.2 Gal Keg,SAT960,2,1,4,2,3,4,1,1,,,6,6/10/2026,12
+Boston Beer Company,Sun Cruiser,1/12/24oz Can,200639 Sun Cruiser Lemonade Iced Tea 1/12/24 oz Can,AW1253,2,5,2,3,5,2,3,4,1,1,15,,
+Boston Beer Company,Dogfish Head Beer,6/4/12oz NR,12062 Dogfish Head Worldwide Stout 6/4/12 oz Btl,1701A,1,3,,1,,2,,,,,80,,
+Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200713 Sinless Vodka Black Cherry 6/4/12 oz Can,AY124S,1,8,0,5,8,2,3,1,7,5,92,5/7/2026,104
+Boston Beer Company,Twisted Tea,1/24/16.00 oz,8391 Twisted Tea Extreme Long Island Iced Tea 1/24/16 oz Can,OA7S24,1,2,-1,7,4,-1,3,1,4,-2,107,,
+Boston Beer Company,Angry Orchard,2/12/12oz Can,8145 Angry Orchard Summer Crush Variety Pack 2/12/12 oz Can,OA2V63,-1,,30,73,80,119,95,72,55,31,0,7/1/2026,100
+Boston Beer Company,Samuel Adams,1/6 BBL Keg (5.2 Gal),3866 Sam Adams Cold Snap 5.2 Gal Keg,SA4H60,-1,,2,,1,1,-1,,,,1,3/17/2026,12
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3908 Sam Adams Porch Rocker 2/12/12 oz Btl,SA2K13,-1,,42,68,62,68,23,40,62,13,-1,7/1/2026,60
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3954 Sam Adams Jack-O Pumpkin Ale 2/12/12 oz Btl,SAVP13,-1,,,,,,,,,,0,,
+Boston Beer Company,Samuel Adams,2/12/12oz NR,4048 Sam Adams Winter White Ale 2/12/12 oz Btl,SA2X13,-1,,,,-1,-2,,,-3,,0,,
+Boston Beer Company,Truly,15.5 Gal Keg,8672 Truly Hard Seltzer Wild Berry Keg 15.5 Gal Keg,PD0890,-1,12,3,13,,4,11,6,6,2,0,7/9/2026,16
+Boston Beer Company,Angry Orchard,2/12/12oz Can,8151 Angry orchard The Knotty Bunch Variety 2/12/12 oz Can,OA1S63,-7,,,,-1,-2,-1,-1,-6,-1,1,2/17/2026,50
+Boston Beer Company,Angry Orchard,4/6/12oz Can,8142 Angry Orchard Crisp Apple 4/6/12 oz Can,OA7866,,,,,,,6,6,10,2,0,3/2/2026,50
+Boston Beer Company,Angry Orchard,4/6/12oz Can,8152 Angry Orchard Crisp Light 4/6/12 oz Can,OA3U66,,,,,,,,1,,,0,1/27/2026,50
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12019 Dogfish Head Seaquench Ale 2/12/12 oz Can,DB0463,,,,-1,,,,3,,,0,,
+Boston Beer Company,Dogfish Head Beer,2/12/12oz Can,12130 Dogfish Head Off-Centered Fall Variety 2/12/12 oz Can,DB6C63,,,,,,-1,,,,,0,,
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12020 Dogfish Head Liquid Truth Serum 4/6/12 oz Can,DB0566,,,,,,-3,,,,,0,,
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12069 Dogfish Head Covered in Nuggs 4/6/12 oz Can,DBBN6641,,,,,,,,-6,,,0,,
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12142 Dogfish Head Punkin Ale 4/6/12 oz Can,DB1566,,,,,,,-1,-1,,,0,,
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12153 Dogfish Head Tropical Squall 4/6/12 oz Can,DBBF66,,,,,,,,-2,,,0,2/20/2026,50
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12157 Dogfish Head Czech Spresso 4/6/12 oz Can,DBDR66,,-1,1,,3,1,2,-2,-1,-1,18,,
+Boston Beer Company,Dogfish Head Beer,4/6/12oz Can,12159 Dogfish Head Aprihop IPA 4/6/12 oz Can,,,,,,,,,,,5,0,4/10/2026,100
+Boston Beer Company,Dogfish Head Spirits,1/12/750 mL (BO),200600 Dogfish Head Analog Vodka 1/12/750 mL Btl,DS0319,,,,,,,,1,,,270,,
+Boston Beer Company,Dogfish Head Spirits,6/4/12oz Can,200617 Dogfish Head Rum Mai Tai Pineapple Orange 6/4/12 oz Can,DS1G4S,,,1,,,2,1,-1,,,0,,
+Boston Beer Company,Samuel Adams,1/24/12oz Can,4028 Sam Adams Star Spangled Summer Variety 1/24/12 oz Can,SA7X33,,200,100,180,100,100,,0,300,,200,7/1/2026,600
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,3808 Sam Adams Cold Snap 15.5 Gal Keg,SA4H90,,,,-1,-3,-3,-1,,1,-1,3,,
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,4032 Sam Adams Juicy IPA 15.5 Gal Keg,SAT990,,1,1,0,,,-1,0,1,,16,6/3/2026,4
+Boston Beer Company,Samuel Adams,15.5 Gal Keg,4042 Sam Adams American Light 15.5 Gal Keg,SAX790,,,,,,,,0,-1,,0,,
+Boston Beer Company,Samuel Adams,2/12/12oz Can,3952 Sam Adams Cold Snap 2/12/12 oz Can,SA4H63,,-1,,,-2,,-3,-2,,-1,39,3/2/2026,50
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4013 Sam Adams Winter Break Variety 2/12/12 oz Can,SA3063,,,,,-3,-7,,-3,-2,,0,,
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4021 Sam Adams Porch Rocker 2/12/12 oz Can,SA2K63,,15,41,103,75,67,51,47,26,18,0,6/24/2026,100
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4035 Sam Adams Spring Favorites Variety 2/12/12 oz Can,SA3263A1,,,-1,,,-2,-2,-2,,-2,0,3/17/2026,50
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4037 Sam Adams Breakaway Blonde Ale 2/12/12 oz Can,SAUA163A1,,,,,,,,,,1,9,2/24/2026,50
+Boston Beer Company,Samuel Adams,2/12/12oz Can,4049 Sam Adams Winter White Ale 2/12/12 oz Can,SA2X63,,,,,,-2,-4,-1,,,0,,
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3827 Sam Adams Winter Lager 2/12/12 oz Btl,SA1413,,,-2,,-2,-1,,,-1,,0,,
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3841 Sam Adams Cold Snap 2/12/12 oz Btl,SA4H13,,,,-6,,,-3,,-6,,0,3/2/2026,60
+Boston Beer Company,Samuel Adams,2/12/12oz NR,3918 Sam Adams Octoberfest 2/12/12 oz Btl,SA1313,,,,,-2,,,,,,0,,
+Boston Beer Company,Samuel Adams,4/6/12oz Can,4012 Sam Adams Just the Haze NA 4/6/12 oz Can,SAWC66,,4,36,58,33,34,34,38,36,17,0,6/25/2026,100
+Boston Beer Company,Samuel Adams,4/6/12oz Can,4047 Sam Adams Winter White Ale 4/6/12 oz Btl,SA2X12,,,,,-1,,,,-1,,0,,
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3826 Sam Adams Winter Lager 4/6/12 oz Btl,SA1412,,,,,-1,-1,-1,-2,,-1,0,,
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3832 Sam Adams Breakaway Blonde Ale 4/6/12 oz Btl,SAU112A1,,,1,1,1,6,-2,,1,,-1,3/19/2026,60
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3840 Sam Adams Cold Snap 4/6/12 oz Btl,SA4H12,,-3,,-2,-4,,-1,,,,1,2/25/2026,60
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3919 Sam Adams Octoberfest 4/6/12 oz Btl,SA1312,,,,,,,-2,-1,,,0,,
+Boston Beer Company,Samuel Adams,4/6/12oz NR,3953 Sam Adams Jack-O Pumpkin Ale 4/6/12 oz Btl,SAVP12,,,,,-1,,,,,,0,,
+Boston Beer Company,Samuel Adams,4/6/12oz NR,4034 Sam Adams Old Fezziwig 4/6/12 oz Btl,,,,-2,,,,-8,,,,1,,
+Boston Beer Company,Samuel Adams,5.2 Gal Keg,4043 Sam Adams American Light 5.2 Gal Keg,SAX760,,,,6,3,2,,2,1,,20,7/13/2026,12
+Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200711 Sinless Vodka Cranberry 6/4/12 oz Can,AY134S,,8,3,9,5,2,2,4,6,4,78,3/2/2026,208
+Boston Beer Company,Sinless Vodka Cocktail,6/4/12oz Can,200712 Sinless Vodka Pineapple 6/4/12 oz Can,AY154S,,2,1,3,6,2,6,4,5,2,111,5/19/2026,104
+Boston Beer Company,Sun Cruiser,1/12/24oz Can,200638 Sun Cruiser Classic Iced Tea 1/12/24 oz Can,AW1153,,,,,,,,1,,,0,,
+Boston Beer Company,Sun Cruiser,1/12/24oz Can,200642 Sun Cruiser Vodka Pink Lemonade 1/12/24 oz Can,AW187M,,1,2,3,10,1,3,1,,2,13,,
+Boston Beer Company,Sun Cruiser,1/12/24oz Can,200667 Sun Cruiser Lemonade 1/12/24 oz Can,AW1777,,,,,,2,5,2,2,,0,,
+Boston Beer Company,Truly,1/12/24oz Can,8657 Truly Hard Seltzer Unruly Blue Razz Lemonade 1/12/24 oz Can,PD4C53,,,,,,,,,,-1,0,,
+Boston Beer Company,Truly,1/24/16.00 oz,8663 Truly Hard Seltzer Wild Berry 1/24/16 oz,PD0824,,20,-5,,,7,15,,,,131,,
+Boston Beer Company,Truly,1/6 BBL Keg (5.2 Gal),8671 Truly Hard Seltzer Wild Berry 5.2 Gal Keg,PD0860,,1,12,7,,,3,17,5,2,15,7/9/2026,12
+Boston Beer Company,Truly,2/12/12oz Can,8646 Truly Hard Seltzer Dream Variety 2/12/12 oz Can,PD1C73,,-1,,-2,-1,,,,-1,,0,2/17/2026,104
+Boston Beer Company,Truly,2/12/12oz Can,8700 Truly Hard Seltzer Celebrations Variety 2/12/12 oz Can,PD5673,,,1,-4,,-1,,,-4,,-4,,
+Boston Beer Company,Truly,4/6/12oz Can,8670 Truly Hard Seltzer Strawberry Lemonade 4/6/12 oz Can,PD2761,,,,,,,,1,,,0,,
+Boston Beer Company,Truly,4/6/12oz Can,8691 Truly Hard Seltzer Wild Berry 4/6/12 oz Can,PD0861,,2,10,2,2,8,11,9,1,1,25,6/11/2026,50
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8351 Twisted Tea Mango 1/12/24 oz Can,OA8653,,,1,19,17,18,13,17,15,5,0,4/30/2026,102
+Boston Beer Company,Twisted Tea,1/12/24oz Can,8376 Twisted Tea Blueberry 1/12/24 oz Can,OA8753,,,,,,,,11,13,3,0,3/17/2026,102
+Boston Beer Company,Twisted Tea,2/12/12oz NR,8337 Twisted Tea Half & Half 2/12/12 oz Btl,OA9313,,-2,5,24,9,8,14,5,8,6,0,6/3/2026,60
+Boston Beer Company,Twisted Tea,24/16OZ can,8370 Twisted Tea 1/24/16 oz Loose Can,OA9124,,20,,33,,0,,,,,402,,
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8334 Twisted Tea Raspberry 4/6/12 oz Btl,OA9212,,,11,9,34,18,25,13,9,11,0,5/27/2026,60
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8342 Twisted Tea Peach 4/6/12 oz Btl,OA9512,,-1,,,12,18,33,26,19,22,0,4/30/2026,60
+Boston Beer Company,Twisted Tea,4/6/12oz NR,8386 Twisted Tea Rocket Pop 4/6/12 oz Btl,OA2S12,,,,,,,,-1,-1,,0,,
+Boston Beer Company,Twisted Tea,6/4/16oz Can,8388 Twisted Tea Light 6/4/16 oz Can,OA9715,,1,,1,9,4,3,3,1,5,211,,
+Boston Beer Company,Twisted Tea,6/4/16oz Can,8389 Twisted Tea Original 6/4/16 oz Can,OA9115,,3,6,2,4,8,4,3,,,371,,
