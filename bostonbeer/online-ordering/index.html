@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Online Ordering Pulse Check · Boston Beer</title>
+<title>Trend Forecast · Boston Beer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -32,13 +32,7 @@ h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--nav
 .sub{color:var(--ink-soft);font-size:13.5px;max-width:760px;margin:0}
 .updated{margin:10px 0 0;font-size:12px;color:var(--ink-soft);letter-spacing:.01em;font-weight:500}
 
-.tabs{display:flex;gap:6px;margin:16px 0 0;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:4px;max-width:420px}
-.tabbtn{flex:1;text-align:center;padding:9px 10px;border-radius:8px;font-weight:700;font-size:13px;color:var(--ink-soft);
-  cursor:pointer;user-select:none;border:none;background:transparent;font-family:inherit}
-.tabbtn.active{background:var(--navy);color:#fff;box-shadow:var(--shadow)}
-.tabpage{margin-top:16px}
-
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin:16px 0}
 .panel h2{font-size:16px;margin:0 0 4px;color:var(--navy);font-weight:700}
 .panel .phint{font-size:12px;color:var(--ink-soft);margin:0 0 14px}
 
@@ -57,9 +51,9 @@ h1{font-weight:800;font-size:clamp(24px,4vw,32px);margin:0 0 8px;color:var(--nav
 .legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
 
 table{width:100%;border-collapse:collapse;font-size:13px}
-#sku-table{min-width:1500px}
-#sku-table td:first-child,#sku-table th:first-child{min-width:230px;position:sticky;left:0;background:var(--card);z-index:1}
-#sku-table tr:hover td:first-child{background:var(--card2)}
+#trend-table{min-width:1500px}
+#trend-table td:first-child,#trend-table th:first-child{min-width:230px;position:sticky;left:0;background:var(--card);z-index:1}
+#trend-table tr:hover td:first-child{background:var(--card2)}
 th{text-align:left;color:var(--ink-soft);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:8px 8px;border-bottom:2px solid var(--line);white-space:nowrap;user-select:none}
 th[data-key]{cursor:pointer}
 .sort-ind{margin-left:3px;color:var(--blue);font-size:9px}
@@ -68,14 +62,12 @@ td{padding:7px 8px;border-bottom:1px solid var(--line-soft);vertical-align:middl
 tr:hover td{background:var(--card2)}
 .pname{font-weight:600;font-size:13px;color:var(--ink)}
 .pmeta{font-size:11px;color:var(--ink-soft);margin-top:2px}
-.sparkline{display:inline-flex;align-items:flex-end;gap:2px;height:20px;vertical-align:middle}
-.sparkline i{display:block;width:4px;background:var(--blue);border-radius:1px;opacity:.85}
 
 .pname-row{display:flex;align-items:center;gap:6px;cursor:pointer}
 .pname-row:hover .pname{color:var(--blue)}
 .chev{color:var(--ink-soft);font-size:10px;transition:transform .15s;flex-shrink:0;display:inline-block}
 .chev.open{transform:rotate(90deg)}
-#sku-table tr.detail-row td{position:static;background:#F5F8FB;padding:14px 18px 18px}
+#trend-table tr.detail-row td{position:static;background:#F5F8FB;padding:14px 18px 18px}
 .detail-inner{display:flex;flex-direction:column;gap:16px}
 .detail-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--navy);margin-bottom:8px}
 .detail-sub{font-size:10.5px;font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink-soft);margin-left:8px}
@@ -88,12 +80,6 @@ tr:hover td{background:var(--card2)}
 .barlabel{font-size:9.5px;color:var(--ink-soft);margin-top:4px;white-space:nowrap}
 
 .wk{min-width:78px;text-align:center}
-.wk-f{width:56px;text-align:right;border:1px solid var(--line);border-radius:6px;padding:4px 5px;font-size:12.5px;
-  font-family:inherit;background:var(--blue-soft);color:var(--ink);font-weight:600}
-.wk-f:focus{outline:2px solid var(--blue);outline-offset:1px}
-.wk-f.hi-high{background:var(--amber-soft);color:var(--amber)}
-.wk-f.hi-low{background:var(--teal-soft);color:var(--teal)}
-.wk-locked{width:56px;text-align:right;padding:4px 5px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
 .wk-onfile{font-size:9.5px;color:var(--ink-soft);margin-top:2px;white-space:nowrap}
 
 .trend-box{display:inline-block;min-width:44px;text-align:right;border:1px solid var(--line);border-radius:6px;
@@ -133,12 +119,6 @@ tr:hover td{background:var(--card2)}
 .table-scroll{overflow-x:auto;border-radius:10px}
 .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
 
-details.orphans{margin-top:6px}
-details.orphans summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--navy);list-style:none;display:flex;align-items:center;gap:8px}
-details.orphans summary::-webkit-details-marker{display:none}
-details.orphans summary::before{content:"\203A";display:inline-block;transition:transform .15s;color:var(--ink-soft)}
-details.orphans[open] summary::before{transform:rotate(90deg)}
-
 footer{padding:26px 0 40px;color:var(--ink-soft);font-size:11.5px;text-align:center}
 footer p{max-width:720px;margin:6px auto}
 
@@ -157,71 +137,17 @@ footer p{max-width:720px;margin:6px auto}
 <div class="wrap">
 <header>
   <p class="eyebrow">Boston Beer &middot; Online Ordering</p>
-  <h1>Forecast Pulse Check</h1>
-  <p class="sub">Lines up each SKU's recent case sales, current Available, and last receive against your confirmed order (On File) per week, with Boston Beer's own forecast (F) shown just below it for reference, so you can eyeball whether On File needs adjusting before it locks. A week's On File is tinted if it's well above or below the SKU's recent average — everything else is the raw numbers, no projection or formula behind it. Click a product name to expand its last 8 weeks of case sales and Encompass's own forward-looking system forecast, for a read on whether it's seasonal or trending up.</p>
+  <h1>Trend Forecast</h1>
+  <p class="sub">For each SKU on Boston Beer's forecast, the next 8 weeks are projected from last year's actual sales scaled by the SKU's trailing 13-week trend, then lined up against Boston Beer's own forecast so you can spot where the two disagree by more than 10%. Click a product name to see the full run of last year's weekly sales behind that projection, plus the 13-week trend comparison itself.</p>
   <p class="updated" id="updated-line"></p>
 </header>
 
-<div class="tabs" role="tablist">
-  <button class="tabbtn active" data-tab="pulse" role="tab" aria-selected="true">Pulse Check</button>
-  <button class="tabbtn" data-tab="trend" role="tab" aria-selected="false">Trend Forecast</button>
-</div>
-
-<div id="tab-pulse" class="tabpage active">
-<div class="panel">
-  <div class="controls">
-    <div class="ctl">
-      <label>Search product / SKU</label>
-      <input type="text" id="ctl-search" placeholder="e.g. Twisted Tea, OA9163">
-    </div>
-    <button class="btn ghost" id="btn-reset">Reset edits</button>
-    <button class="btn" id="btn-export">Export upload CSV</button>
-    <span class="result-count"><span id="count-visible">0</span> of <span id="count-total">0</span> SKUs</span>
-  </div>
-  <div class="legend">
-    <span><span class="sw" style="background:var(--blue-soft);border:1px solid var(--line)"></span> On File (A) &mdash; edit directly, it feeds the export</span>
-    <span><span class="sw" style="background:var(--amber-soft)"></span> On File is well above recent average weekly sales</span>
-    <span><span class="sw" style="background:var(--teal-soft)"></span> On File is well below recent average weekly sales</span>
-    <span>Small text under a week = Boston Beer's own forecast (F), for reference</span>
-  </div>
-  <div class="table-scroll">
-    <table id="sku-table">
-      <thead>
-        <tr>
-          <th data-key="name">Product<span class="sort-ind"></span></th>
-          <th class="num" data-key="avail">Available<span class="sort-ind"></span></th>
-          <th data-key="lastReceive">Last Receive<span class="sort-ind"></span></th>
-          <th class="num" data-key="l4">4-wk Avg<span class="sort-ind"></span></th>
-          <th title="Encompass Inventory Report's last 8 weeks of actual case sales, oldest to newest. Hover a bar for the exact number. Click a product name to see the full breakdown plus Boston Beer's own forward forecast.">Recent Sales</th>
-          <th id="week-headers-start"></th>
-        </tr>
-      </thead>
-      <tbody id="sku-tbody"></tbody>
-    </table>
-  </div>
-  <div class="empty" id="empty-state" style="display:none">No SKUs match this filter.</div>
-</div>
-
-<div class="panel">
-  <details class="orphans" id="orphans-details">
-    <summary>SKUs with recent sales but <span id="orphan-count">0</span> no current forecast row</summary>
-    <div class="table-scroll" style="margin-top:12px">
-      <table id="orphan-table">
-        <thead><tr><th>Product</th><th>Brand</th><th class="num">Available</th><th class="num">4-wk Avg</th><th>Last Receive</th></tr></thead>
-        <tbody id="orphan-tbody"></tbody>
-      </table>
-    </div>
-  </details>
-</div>
-</div>
-
-<div id="tab-trend" class="tabpage" style="display:none">
 <div class="panel">
   <h2>Trend Forecast vs. Boston Beer Forecast</h2>
   <p class="phint" id="trend-window-line"></p>
   <details class="calc-help">
     <summary>What does the % next to BBC mean?</summary>
-    <p>It's how far Boston Beer's forecast is from the trend forecast: <code>(BBC forecast &minus; Trend forecast) / Trend forecast</code>. For example, Angry Orchard Crisp (OA7863), week of 7/25: the trend forecast is 161 cases (last year's actual for that week &times; its +12% 13-week trend), Boston Beer forecasts 98, so <code>(98 &minus; 161) / 161 = &minus;39%</code> &mdash; Boston Beer's forecast is 39% lower than what the recent trend suggests. Any week off by more than 10% either direction gets tinted. Both numbers below are editable if you want to test a different scenario &mdash; the % recalculates as you type.</p>
+    <p>It's how far Boston Beer's forecast is from the trend forecast: <code>(BBC forecast &minus; Trend forecast) / Trend forecast</code>. For example, Angry Orchard Crisp (OA7863), week of 7/25: the trend forecast is 161 cases (last year's actual for that week &times; its +12% 13-week trend), Boston Beer forecasts 98, so <code>(98 &minus; 161) / 161 = &minus;39%</code> &mdash; Boston Beer's forecast is 39% lower than what the recent trend suggests. Any week off by more than 10% either direction gets tinted.</p>
   </details>
   <div class="controls">
     <div class="ctl">
@@ -268,7 +194,6 @@ footer p{max-width:720px;margin:6px auto}
   </div>
   <div class="empty" id="trend-empty-state" style="display:none">No SKUs match this filter.</div>
 </div>
-</div>
 
 <footer>
   <p>Data refreshed manually from the Boston Beer portal forecast export + Encompass Inventory Report &mdash; see README in this folder for how to update.</p>
@@ -276,71 +201,12 @@ footer p{max-width:720px;margin:6px auto}
 </div>
 
 <script>
-let DATA = null;
 let TREND = null;
 let trendState = { search: "", sortKey: "name", sortDir: "asc" };
-let edits = {}; // sku -> weekIndex -> edited forecast value
 let expanded = new Set(); // sku codes with the detail panel open
-let state = { search: "", sortKey: "name", sortDir: "asc" };
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function fmtNum(n){ if(n==null||isNaN(n)) return "—"; return Math.round(n).toLocaleString('en-US'); }
-
-function sparkline(weeks){
-  const vals = (weeks||[]).map(v => v==null?0:v);
-  const max = Math.max(1, ...vals);
-  return '<span class="sparkline">' + vals.map(v => `<i style="height:${Math.max(2, Math.round(v/max*18))}px" title="${fmtNum(v)}"></i>`).join('') + '</span>';
-}
-
-// The editable box holds On File (the "A" column -- your manager's
-// confirmed order), not Boston Beer's forecast. Blank stays blank until
-// a decision is actually made -- it's never silently defaulted to F.
-function effOnFile(sku, i){
-  const stored = edits[sku.sku] && edits[sku.sku][i];
-  if(stored !== undefined) return stored;
-  return sku.weeks[i].onFile;
-}
-
-// Light-touch pulse check only -- no trend line, no seasonal fallback, no
-// case-pack rounding. Just: is this week's On File noticeably far from the
-// SKU's own recent 4-week average sales (Encompass's own L4 Average, not
-// something we computed)? >=50% above/below is the only rule. Blank On
-// File (nothing decided yet) never gets a color -- there's nothing to flag.
-function hiClass(f, l4){
-  if(f==null || l4==null || l4<=0) return '';
-  const ratio = f / l4;
-  if(ratio >= 1.5) return 'hi-high';
-  if(ratio <= 0.5) return 'hi-low';
-  return '';
-}
-
-const SORT_ACCESSORS = {
-  name: s => s.product,
-  avail: s => s.available,
-  lastReceive: s => s.lastReceiveDate ? new Date(s.lastReceiveDate) : null,
-  l4: s => s.l4Avg,
-};
-
-function compareSkus(a, b){
-  const acc = SORT_ACCESSORS[state.sortKey] || SORT_ACCESSORS.name;
-  const av = acc(a), bv = acc(b);
-  const aMissing = av==null, bMissing = bv==null;
-  if(aMissing && bMissing) return 0;
-  if(aMissing) return 1;
-  if(bMissing) return -1;
-  const cmp = (typeof av === 'string') ? av.localeCompare(bv) : (av<bv?-1:av>bv?1:0);
-  return state.sortDir === 'asc' ? cmp : -cmp;
-}
-
-function updateSortIndicators(){
-  document.querySelectorAll('#sku-table thead th[data-key]').forEach(th => {
-    const ind = th.querySelector('.sort-ind');
-    if(!ind) return;
-    ind.textContent = th.dataset.key === state.sortKey ? (state.sortDir==='asc' ? '▲' : '▼') : '';
-  });
-}
-
-function shortDate(md){ const parts=String(md).split('/'); return parts.length>=2 ? parts[0]+'/'+parts[1] : md; }
 
 function miniBars(values, labels, color){
   const nums = (values||[]).map(v => v==null ? null : v);
@@ -351,147 +217,6 @@ function miniBars(values, labels, color){
       <div class="barwrap"><div class="bar" style="height:${v==null?2:Math.max(3,Math.round(Math.abs(v)/scale*44))}px;background:${color}"></div></div>
       <div class="barlabel">${esc(labels[i]||'')}</div>
     </div>`).join('') + '</div>';
-}
-
-function detailRow(s, colspan){
-  const hasRecent = Array.isArray(s.recentWeeks) && s.recentWeeks.some(v=>v!=null);
-  const hasForecast = Array.isArray(s.forecastReportWeeks) && s.forecastReportWeeks.length;
-  const recentBlock = hasRecent
-    ? miniBars(s.recentWeeks, s.recentWeekLabels||[], 'var(--blue)')
-    : '<div class="detail-empty">No Inventory Report row for this SKU.</div>';
-  const forecastBlock = hasForecast
-    ? miniBars(s.forecastReportWeeks.map(w=>w.cases), s.forecastReportWeeks.map(w=>shortDate(w.weekEnding)), 'var(--navy)')
-    : '<div class="detail-empty">No ForecastReport row for this SKU.</div>';
-  return `<tr class="detail-row"><td colspan="${colspan}"><div class="detail-inner">
-    <div class="detail-block">
-      <div class="detail-label">Recent actual sales<span class="detail-sub">Encompass Inventory Report &middot; last 8 weeks, oldest to newest</span></div>
-      ${recentBlock}
-    </div>
-    <div class="detail-block">
-      <div class="detail-label">Encompass System Forecast<span class="detail-sub">ForecastReport export &middot; Encompass's own forward-looking model, several months out</span></div>
-      ${forecastBlock}
-    </div>
-  </div></td></tr>`;
-}
-
-function weekCell(sku, i){
-  const w = sku.weeks[i];
-  if(w.locked){
-    const shipped = w.onFile != null ? w.onFile : w.forecast;
-    return `<td class="wk"><div class="wk-locked">${fmtNum(shipped)}</div><div class="wk-onfile">Locked</div></td>`;
-  }
-  const onFileVal = effOnFile(sku, i);
-  const cls = hiClass(onFileVal, sku.l4Avg);
-  const title = sku.l4Avg!=null ? `Recent 4-wk avg: ${fmtNum(sku.l4Avg)}/wk` : '';
-  const forecastRef = w.forecast != null ? `<div class="wk-onfile">BBC forecast: ${fmtNum(w.forecast)}</div>` : '';
-  return `<td class="wk"><input class="wk-f ${cls}" type="number" min="0" step="1" title="${esc(title)}"
-    value="${onFileVal==null?'':onFileVal}" data-sku="${esc(sku.sku)}" data-week="${i}">${forecastRef}</td>`;
-}
-
-function render(){
-  const q = state.search.trim().toLowerCase();
-  let skus = state.search ? DATA.skus.filter(s => s.product.toLowerCase().includes(q) || s.sku.toLowerCase().includes(q)) : DATA.skus.slice();
-  skus.sort(compareSkus);
-  updateSortIndicators();
-
-  document.getElementById('count-visible').textContent = skus.length;
-  document.getElementById('count-total').textContent = DATA.skus.length;
-
-  const tbody = document.getElementById('sku-tbody');
-  if(!skus.length){
-    tbody.innerHTML = '';
-    document.getElementById('empty-state').style.display = 'block';
-    return;
-  }
-  document.getElementById('empty-state').style.display = 'none';
-
-  const colspan = 5 + DATA.meta.weekDates.length;
-  tbody.innerHTML = skus.map(s => {
-    const unmatchedTag = !s.cleanName ? ` <span title="No matching product record found in Encompass — showing the raw portal name" style="cursor:help">†</span>` : '';
-    const lastReceive = s.lastReceiveDate ? `${esc(s.lastReceiveDate)}<div class="pmeta">${fmtNum(s.lastReceiveQty)} cs</div>` : '—';
-    const weekCells = s.weeks.map((w,i) => weekCell(s, i)).join('');
-    const isOpen = expanded.has(s.sku);
-    const mainRow = `<tr>
-      <td><div class="pname-row" data-toggle="${esc(s.sku)}"><span class="chev${isOpen?' open':''}">&#9656;</span><span class="pname">${esc(s.product)}${unmatchedTag}</span></div><div class="pmeta">${esc(s.sku)}${s.brandFamily?' · '+esc(s.brandFamily):''}${s.package?' · '+esc(s.package):''}</div></td>
-      <td class="num">${fmtNum(s.available)}</td>
-      <td>${lastReceive}</td>
-      <td class="num">${fmtNum(s.l4Avg)}</td>
-      <td>${sparkline(s.recentWeeks)}</td>
-      ${weekCells}
-    </tr>`;
-    return mainRow + (isOpen ? detailRow(s, colspan) : '');
-  }).join('');
-
-  tbody.querySelectorAll('.wk-f').forEach(inp => {
-    inp.addEventListener('input', () => {
-      const sku = inp.dataset.sku, week = parseInt(inp.dataset.week, 10);
-      const val = inp.value === '' ? null : parseFloat(inp.value);
-      if(!edits[sku]) edits[sku] = {};
-      edits[sku][week] = val;
-      const skuObj = DATA.skus.find(s => s.sku === sku);
-      inp.className = 'wk-f ' + hiClass(val, skuObj ? skuObj.l4Avg : null);
-    });
-  });
-
-  tbody.querySelectorAll('.pname-row').forEach(el => {
-    el.addEventListener('click', () => {
-      const sku = el.dataset.toggle;
-      if(expanded.has(sku)) expanded.delete(sku); else expanded.add(sku);
-      render();
-    });
-  });
-}
-
-function renderOrphans(){
-  const orphans = DATA.orphanInventory || [];
-  document.getElementById('orphan-count').textContent = orphans.length;
-  document.getElementById('orphan-tbody').innerHTML = orphans.map(o => `
-    <tr>
-      <td><div class="pname">${esc(o.product)}</div><div class="pmeta">${esc(o.sku)}</div></td>
-      <td>${esc(o.brandFamily||'')}</td>
-      <td class="num">${fmtNum(o.available)}</td>
-      <td class="num">${fmtNum(o.l4Avg)}</td>
-      <td>${esc(o.lastReceiveDate||'—')}</td>
-    </tr>`).join('');
-}
-
-function renderWeekHeaders(){
-  const lockedWeeks = DATA.meta.lockedWeeks || 0;
-  const start = document.getElementById('week-headers-start');
-  const headers = DATA.meta.weekDates.map((wd,i) => {
-    const label = wd.slice(0,5); // MM/DD
-    const tag = i < lockedWeeks ? ' (locked)' : '';
-    return `<th class="wk">${esc(label)}${tag}</th>`;
-  }).join('');
-  start.outerHTML = headers;
-}
-
-function csvEscape(v){
-  const s = v==null ? "" : String(v);
-  return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
-}
-
-function exportCSV(){
-  // The locked (nearest) week can't be changed in the portal, so it's left
-  // out of the export -- only open weeks go out, using whatever's currently
-  // on file (edited or original). A week nobody's decided on yet exports
-  // blank -- this is a snapshot of confirmed orders, not a filled-in guess.
-  const lockedWeeks = DATA.meta.lockedWeeks || 0;
-  const weekDates = DATA.meta.weekDates.slice(lockedWeeks);
-  const header = ['Product','Distributor','BBC SKU','Customer', ...weekDates];
-  const lines = [header.map(csvEscape).join(',')];
-  DATA.skus.forEach(sku => {
-    const vals = weekDates.map((_, idx) => effOnFile(sku, idx + lockedWeeks));
-    const row = [sku.product, sku.distributor, sku.sku, sku.customerSku || '', ...vals.map(v => v==null?'':v)];
-    lines.push(row.map(csvEscape).join(','));
-  });
-  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `boston_beer_forecast_adjusted.csv`;
-  document.body.appendChild(a); a.click(); a.remove();
-  URL.revokeObjectURL(url);
 }
 
 // (BBC forecast - Trend forecast) / Trend forecast -- shared by the table
@@ -513,6 +238,33 @@ function trendWeekCell(p, i){
     ? `BBC: ${fmtNum(w.bbcForecast)}${w.flagged?` <span class="diff-tag">(${diffLabel})</span>`:''}`
     : 'No BBC forecast';
   return `<td class="wk"><div class="trend-box ${cls}" title="Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases">${fmtNum(w.trendForecast)}</div><div class="wk-onfile">${bbcLine}</div></td>`;
+}
+
+// Detail panel behind a product's 8-week trend forecast: the full run of
+// last year's weekly actuals it was scaled from, and the 13-week totals
+// (this year vs. last year) that produced its trend %.
+function trendDetailRow(p, colspan){
+  const hasRef = Array.isArray(p.lastYearWeeklyRef) && p.lastYearWeeklyRef.some(w=>w.cases!=null);
+  const refBlock = hasRef
+    ? miniBars(p.lastYearWeeklyRef.map(w=>w.cases), p.lastYearWeeklyRef.map(w=>w.weekEnding), 'var(--blue)')
+    : '<div class="detail-empty">No LY_By_Week.csv row for this SKU.</div>';
+  const hasL13 = p.l13LyCases!=null && p.l13TyCases!=null;
+  const l13Block = hasL13
+    ? miniBars([p.l13LyCases, p.l13TyCases], [`${TREND.meta.l13Window.lastYear.slice(5,10)} (LY)`, `${TREND.meta.l13Window.thisYear.slice(5,10)} (TY)`], 'var(--navy)')
+    : '<div class="detail-empty">No L13_Trend.csv row for this SKU.</div>';
+  const trendLabel = p.trendPct!=null
+    ? `<span class="trendpct ${p.trendPct>=0?'up':'down'}">${p.trendPct>=0?'+':''}${Math.round(p.trendPct*100)}%</span>`
+    : '';
+  return `<tr class="detail-row"><td colspan="${colspan}"><div class="detail-inner">
+    <div class="detail-block">
+      <div class="detail-label">Last year's weekly sales<span class="detail-sub">LY_By_Week.csv &middot; week ${p.lastYearWeeklyRef && p.lastYearWeeklyRef[0] ? p.lastYearWeeklyRef[0].weekNum : '?'} of ${TREND.meta.refYear} through year end &mdash; the reference the 8-week trend forecast above is scaled from</span></div>
+      ${refBlock}
+    </div>
+    <div class="detail-block">
+      <div class="detail-label">13-wk trend comparison ${trendLabel}<span class="detail-sub">L13_Trend.csv &middot; trailing-13-week case total, this year vs. last year</span></div>
+      ${l13Block}
+    </div>
+  </div></td></tr>`;
 }
 
 const TREND_SORT_ACCESSORS = {
@@ -566,6 +318,7 @@ function renderTrend(){
   }
   document.getElementById('trend-empty-state').style.display = 'none';
 
+  const colspan = 4 + TREND.meta.weeks.length;
   tbody.innerHTML = products.map(p => {
     const weekCells = p.weeks.map((w,i) => trendWeekCell(p, i)).join('');
     const trendLabel = p.trendPct!=null
@@ -574,14 +327,29 @@ function renderTrend(){
     const lastReceive = p.lastReceiveDate
       ? `${esc(p.lastReceiveDate)}<div class="pmeta">${fmtNum(p.lastReceiveQty)} Cases</div>`
       : '—';
-    return `<tr>
-      <td><div class="pname">${esc(p.product)}</div><div class="pmeta">${esc(p.sku)}</div></td>
+    const isOpen = expanded.has(p.sku);
+    const mainRow = `<tr>
+      <td><div class="pname-row" data-toggle="${esc(p.sku)}"><span class="chev${isOpen?' open':''}">&#9656;</span><span class="pname">${esc(p.product)}</span></div><div class="pmeta">${esc(p.sku)}</div></td>
       <td class="num">${fmtNum(p.available)}</td>
       <td>${lastReceive}</td>
       <td class="num">${trendLabel}</td>
       ${weekCells}
     </tr>`;
+    return mainRow + (isOpen ? trendDetailRow(p, colspan) : '');
   }).join('');
+
+  tbody.querySelectorAll('.pname-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const sku = el.dataset.toggle;
+      if(expanded.has(sku)) expanded.delete(sku); else expanded.add(sku);
+      renderTrend();
+    });
+  });
+}
+
+function csvEscape(v){
+  const s = v==null ? "" : String(v);
+  return /[",\n]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s;
 }
 
 function exportTrendCSV(){
@@ -643,66 +411,35 @@ function initTrendCalc(){
 
 async function boot(){
   const cb = "?_="+Date.now();
-  const res = await fetch('data/forecast.json'+cb, {cache:"no-store"});
-  DATA = await res.json();
+  const tres = await fetch('data/trend_forecast.json'+cb, {cache:"no-store"});
+  if(!tres.ok){
+    document.getElementById('trend-window-line').textContent = 'Trend forecast data not available.';
+    return;
+  }
+  TREND = await tres.json();
 
-  if(DATA.meta.generatedAt){
-    const d = new Date(DATA.meta.generatedAt);
+  if(TREND.meta.generatedAt){
+    const d = new Date(TREND.meta.generatedAt);
     const f = d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric'});
     document.getElementById('updated-line').textContent = `Data as of ${f}`;
   }
 
-  renderWeekHeaders();
-
-  document.querySelectorAll('#sku-table thead th[data-key]').forEach(th => {
+  const w = TREND.meta.l13Window;
+  document.getElementById('trend-window-line').textContent =
+    `Trend = each SKU's case change over the trailing 13 weeks (${w.thisYear} vs. ${w.lastYear} a year prior), applied to last year's actuals for the matching week this year. Rows more than 10% off Boston Beer's own forecast are tinted. Click a product name for the full picture behind its numbers.`;
+  renderTrendWeekHeaders();
+  document.querySelectorAll('#trend-table thead th[data-key]').forEach(th => {
     th.addEventListener('click', () => {
       const key = th.dataset.key;
-      if(state.sortKey === key) state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
-      else { state.sortKey = key; state.sortDir = 'asc'; }
-      render();
+      if(trendState.sortKey === key) trendState.sortDir = trendState.sortDir === 'asc' ? 'desc' : 'asc';
+      else { trendState.sortKey = key; trendState.sortDir = 'asc'; }
+      renderTrend();
     });
   });
-
-  document.getElementById('ctl-search').addEventListener('input', e => { state.search = e.target.value; render(); });
-  document.getElementById('btn-export').addEventListener('click', exportCSV);
-  document.getElementById('btn-reset').addEventListener('click', () => { edits = {}; render(); });
-
-  renderOrphans();
-  render();
-
-  try{
-    const tres = await fetch('data/trend_forecast.json'+cb, {cache:"no-store"});
-    if(tres.ok) TREND = await tres.json();
-  } catch(e){ /* trend tab just shows its empty state below */ }
-
-  if(TREND){
-    const w = TREND.meta.l13Window;
-    document.getElementById('trend-window-line').textContent =
-      `Trend = each SKU's case change over the trailing 13 weeks (${w.thisYear} vs. ${w.lastYear} a year prior), applied to last year's actuals for the matching week this year. Rows more than 10% off Boston Beer's own forecast are tinted.`;
-    renderTrendWeekHeaders();
-    document.querySelectorAll('#trend-table thead th[data-key]').forEach(th => {
-      th.addEventListener('click', () => {
-        const key = th.dataset.key;
-        if(trendState.sortKey === key) trendState.sortDir = trendState.sortDir === 'asc' ? 'desc' : 'asc';
-        else { trendState.sortKey = key; trendState.sortDir = 'asc'; }
-        renderTrend();
-      });
-    });
-    document.getElementById('trend-search').addEventListener('input', e => { trendState.search = e.target.value; renderTrend(); });
-    document.getElementById('trend-btn-export').addEventListener('click', exportTrendCSV);
-    initTrendCalc();
-    renderTrend();
-  } else {
-    document.getElementById('trend-window-line').textContent = 'Trend forecast data not available.';
-  }
-
-  document.querySelectorAll('.tabbtn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tabbtn').forEach(b => { b.classList.toggle('active', b===btn); b.setAttribute('aria-selected', b===btn); });
-      document.getElementById('tab-pulse').style.display = btn.dataset.tab==='pulse' ? '' : 'none';
-      document.getElementById('tab-trend').style.display = btn.dataset.tab==='trend' ? '' : 'none';
-    });
-  });
+  document.getElementById('trend-search').addEventListener('input', e => { trendState.search = e.target.value; renderTrend(); });
+  document.getElementById('trend-btn-export').addEventListener('click', exportTrendCSV);
+  initTrendCalc();
+  renderTrend();
 }
 boot();
 </script>
