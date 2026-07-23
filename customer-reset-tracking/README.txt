@@ -6,6 +6,11 @@ dashboard once the methodology and data are solid. Per Gavin: do NOT
 build a dashboard from this data yet -- this folder exists to collect
 and organize the inputs while the eval approach is worked out.
 
+Per Gavin (2026-07-23): focus is 2026 only for now -- reset_history_2024.xlsx
+and reset_history_2025.xlsx are kept for methodology reference (see "Key
+findings" below) but the actual eval is being built from 2026 reset
+accounts and their own sales data, not the prior program years.
+
 Files:
   reset_history_2024.xlsx   Prior program year. 78 reset accounts,
                              Jan-Dec 2024. Sales compared 2023 vs 2024,
@@ -38,17 +43,28 @@ Files:
                              rows, 209 distinct Brand Families, no gaps.
                              (Originally
                              "Fusion_GSHARKEY_20260723_1253413352281.csv".)
+  sales_2026-02_batch.csv   Same shape as the January batch, for the
+                             February 2026 reset cohort (11 accounts:
+                             5001, 15040, 23003, 25010, 28011, 31060,
+                             47004, 47005, 49019, 73008, 77001). Feb
+                             2025 - Jul 2026, 9,530 rows, clean (no
+                             missing values). (Originally
+                             "RDE_Feb_2026_Reset_Stores_Data.csv".)
                              Future monthly batches should follow the
                              naming pattern sales_2026-MM_batch.csv.
 
 Key findings so far (see chat history for full detail):
   - 10 of the 11 January accounts were ALSO reset in 2024 and/or 2025
-    (only City Supermarkets/43001 is a true first-time reset). Across
-    all three program years, 118 unique stores have been reset at
-    least once, and 31 of the 73 2026 accounts have now been reset
-    three years running. This is mostly a recurring annual program,
-    not one-time events -- the eval needs to split "first-time" vs
-    "repeat" resets rather than treat all accounts the same.
+    (only City Supermarkets/43001 is a true first-time reset). The
+    February cohort is a different mix: 5 of 11 are first-time (River
+    Place Food Store/5001, McBride Liquors/15040, Bottle
+    Republic/31060, BP Station/49019, Shoprite Liq (A)Hillsdale/73008),
+    6 are repeats. Across all three program years, 118 unique stores
+    have been reset at least once, and 31 of the 73 2026 accounts have
+    now been reset three years running. This is mostly a recurring
+    annual program, not one-time events -- the eval needs to split
+    "first-time" vs "repeat" resets rather than treat all accounts the
+    same.
   - The 2024/2025 files already used a decent methodology: YoY
     comparison anchored to each account's own reset date (not a shared
     calendar cutoff), a Constellation-brand in-store benchmark, and a
