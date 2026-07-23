@@ -314,6 +314,7 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
             "product": (l13["product"] if l13 else None) or r["Product"].strip(),
             "available": inv["available"] if inv else None,
             "lastReceiveDate": inv["lastReceiveDate"] if inv else None,
+            "lastReceiveQty": inv["lastReceiveQty"] if inv else None,
             "trendPct": round(trend_pct, 4) if trend_pct is not None else None,
             "l13LyCases": l13["lyCases"] if l13 else None,
             "l13TyCases": l13["tyCases"] if l13 else None,
