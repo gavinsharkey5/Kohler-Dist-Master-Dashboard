@@ -10,6 +10,13 @@ two ways and lines them up:
     13-week YoY case trend from L13_Trend.csv), floored at 0.
   bbc forecast = Boston Beer's own "<date> F" value for that week.
 
+If a SKU has no L13_Trend.csv row, or its last-year trailing-13-week total
+is zero or negative (e.g. a mostly-returns window -- no positive base to
+measure growth against), there's no 13-week trend % to apply. Rather than
+show "no data" for a SKU that clearly has sales history, that week's trend
+forecast falls back to last year's actual cases carried forward as-is
+(0% applied) -- weeks_out[i]["fallback"] flags this so the page can say so.
+
 Any week where the two disagree by more than 10% is flagged for the page to
 tint. Each product also carries the full run of last year's weekly actuals
 from the current week through week 52 (not just the 8 forecast weeks) and
@@ -232,18 +239,27 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
 
         trend_pct = (l13["tyCases"] / l13["lyCases"] - 1) if (l13 and l13["lyCases"] > 0) else None
 
+        # No computable 13-week trend (no L13 row, or last year's 13-week
+        # total was zero/negative -- e.g. a mostly-returns window) doesn't
+        # mean no forecast: fall back to carrying last year's actual cases
+        # forward as-is (0% applied), rather than showing "no data" for a
+        # SKU that clearly has sales history, just nothing to scale it by.
         weeks_out = []
         for wm in week_meta:
             f_raw = (r.get(f"{wm['weekEnding']} F") or "").strip()
             bbc_val = float(f_raw) if f_raw != "" else None
             ly_val = ly_weeks.get((wm["lyYear"], wm["lyWeekNum"])) if ly_weeks else None
-            trend_val = max(0, round(ly_val * (1 + trend_pct))) if (trend_pct is not None and ly_val is not None) else None
+            used_pct = trend_pct if trend_pct is not None else 0.0
+            fallback = trend_pct is None and ly_val is not None
+            trend_val = max(0, round(ly_val * (1 + used_pct))) if ly_val is not None else None
             diff_pct = (bbc_val - trend_val) / trend_val if (trend_val and bbc_val is not None) else None
             weeks_out.append({
                 "weekEnding": wm["weekEnding"],
                 "lyWeekNum": wm["lyWeekNum"],
                 "lyCases": ly_val,
                 "trendForecast": trend_val,
+                "trendPctUsed": round(used_pct, 4) if trend_val is not None else None,
+                "fallback": fallback,
                 "bbcForecast": bbc_val,
                 "diffPct": round(diff_pct, 4) if diff_pct is not None else None,
                 "flagged": diff_pct is not None and abs(diff_pct) > 0.10,
@@ -270,7 +286,7 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
             "trendPct": round(trend_pct, 4) if trend_pct is not None else None,
             "l13LyCases": l13["lyCases"] if l13 else None,
             "l13TyCases": l13["tyCases"] if l13 else None,
-            "hasTrend": trend_pct is not None and any(w["lyCases"] is not None for w in weeks_out),
+            "hasTrend": any(w["trendForecast"] is not None for w in weeks_out),
             "weeks": weeks_out,
             "lastYearWeeklyRef": last_year_ref,
         })

@@ -87,6 +87,8 @@ tr:hover td{background:var(--card2)}
 .trend-box.hi-high{background:var(--amber-soft);color:var(--amber);border-color:transparent}
 .trend-box.hi-low{background:var(--teal-soft);color:var(--teal);border-color:transparent}
 .trend-box.no-data{font-weight:500;color:var(--ink-soft);background:var(--card2)}
+.trend-box.fallback{border-style:dashed}
+.fallback-note{font-size:9px;color:var(--ink-soft);margin-top:1px}
 .diff-tag{font-weight:700}
 .trendpct{font-weight:600}
 .trendpct.up{color:var(--teal)}
@@ -146,8 +148,11 @@ footer p{max-width:720px;margin:6px auto}
   <h2>Trend Forecast vs. Boston Beer Forecast</h2>
   <p class="phint" id="trend-window-line"></p>
   <details class="calc-help">
-    <summary>What does the % next to BBC mean?</summary>
-    <p>It's how far Boston Beer's forecast is from the trend forecast: <code>(BBC forecast &minus; Trend forecast) / Trend forecast</code>. For example, Angry Orchard Crisp (OA7863), week of 7/25: the trend forecast is 161 cases (last year's actual for that week &times; its +12% 13-week trend), Boston Beer forecasts 98, so <code>(98 &minus; 161) / 161 = &minus;39%</code> &mdash; Boston Beer's forecast is 39% lower than what the recent trend suggests. Any week off by more than 10% either direction gets tinted.</p>
+    <summary>How are the trend forecast, the 13-wk trend %, and the tint calculated?</summary>
+    <p><strong>13-wk trend %</strong> = <code>(this year's trailing-13-week case total &divide; last year's trailing-13-week case total) &minus; 1</code>, using the exact 13-week windows L13_Trend.csv reports (shown just above this table). For Sam Adams Cherry Wheat 4/6/12oz Btl (SA2712): this year 699 cases &divide; last year 804 cases &minus; 1 = <strong>&minus;13%</strong>.</p>
+    <p><strong>Trend forecast</strong> (the bold number in each week) = <code>last year's actual cases for that same retail week &times; (1 + 13-wk trend %)</code>. Continuing SA2712 (&minus;13% trend): last year's week-of-7/26 actual was 25 cases, so <code>25 &times; (1 &minus; 13%) = 22</code> &mdash; that week's trend forecast. Hover any trend forecast box to see this exact math for that product and week.</p>
+    <p>If a SKU has no L13_Trend.csv row, or its last-year trailing-13-week total is zero or negative (e.g. a mostly-returns window, nothing positive to measure growth against), there's no % to apply &mdash; that SKU's boxes get a <strong>dashed border</strong> and simply carry last year's actual cases forward as-is, with no growth/decline adjustment.</p>
+    <p><strong>BBC diff %</strong> (the small text under each trend forecast) is how far Boston Beer's own forecast is from the trend forecast: <code>(BBC forecast &minus; Trend forecast) / Trend forecast</code>. For example, Angry Orchard Crisp (OA7863), week of 7/25: the trend forecast is 161 cases, Boston Beer forecasts 98, so <code>(98 &minus; 161) / 161 = &minus;39%</code> &mdash; Boston Beer's forecast is 39% lower than what the recent trend suggests. Any week off by more than 10% either direction gets tinted amber (BBC above trend) or teal (BBC below trend).</p>
   </details>
   <div class="controls">
     <div class="ctl">
@@ -159,9 +164,10 @@ footer p{max-width:720px;margin:6px auto}
   </div>
   <div class="legend">
     <span><span class="sw" style="background:var(--card2);border:1px solid var(--line)"></span> Trend forecast &mdash; last year's actual cases that week &times; (1 + 13-wk YoY trend)</span>
+    <span><span class="sw" style="background:var(--card2);border:1px dashed var(--line)"></span> No 13-wk trend on file &mdash; carried flat from last year (0% applied)</span>
     <span><span class="sw" style="background:var(--amber-soft)"></span> Boston Beer's forecast is &gt;10% above trend</span>
     <span><span class="sw" style="background:var(--teal-soft)"></span> Boston Beer's forecast is &gt;10% below trend</span>
-    <span>Small text under a week = Boston Beer's own forecast (F), for reference</span>
+    <span>Small text under a week = Boston Beer's own forecast (F), for reference &middot; hover a trend box for the exact calculation</span>
   </div>
   <div class="calc-box">
     <div class="calc-title">Quick calculator &mdash; test any two numbers, nothing here touches the table above</div>
@@ -228,16 +234,25 @@ function computeDiff(trendVal, bbcVal){
 
 function trendWeekCell(p, i){
   const w = p.weeks[i];
-  if(!p.hasTrend){
+  if(w.trendForecast==null){
     const bbc = w.bbcForecast!=null ? `BBC: ${fmtNum(w.bbcForecast)}` : 'No BBC forecast';
-    return `<td class="wk"><div class="trend-box no-data">—</div><div class="wk-onfile">${bbc}</div></td>`;
+    return `<td class="wk"><div class="trend-box no-data" title="No last-year actual for week ${w.lyWeekNum} to project from (LY_By_Week.csv row missing or blank for this week).">—</div><div class="wk-onfile">${bbc}</div></td>`;
   }
   const cls = w.flagged ? (w.diffPct>0 ? 'hi-high' : 'hi-low') : '';
   const diffLabel = w.diffPct!=null ? `${w.diffPct>=0?'+':''}${Math.round(w.diffPct*100)}%` : '';
   const bbcLine = w.bbcForecast!=null
     ? `BBC: ${fmtNum(w.bbcForecast)}${w.flagged?` <span class="diff-tag">(${diffLabel})</span>`:''}`
     : 'No BBC forecast';
-  return `<td class="wk"><div class="trend-box ${cls}" title="Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases">${fmtNum(w.trendForecast)}</div><div class="wk-onfile">${bbcLine}</div></td>`;
+  // Spell out the exact math behind this box's number, and behind the tint
+  // (if any), so a manager doesn't have to take the bold number on faith.
+  const calcLine = w.fallback
+    ? `Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases. No 13-wk trend on file for this SKU, so carried forward as-is (0% applied) = ${fmtNum(w.trendForecast)} trend forecast.`
+    : `Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases × (1 ${w.trendPctUsed>=0?'+':'−'} ${Math.abs(Math.round(w.trendPctUsed*100))}%) = ${fmtNum(w.trendForecast)} trend forecast.`;
+  const tintLine = (w.bbcForecast!=null && w.diffPct!=null)
+    ? ` BBC ${fmtNum(w.bbcForecast)} vs. trend ${fmtNum(w.trendForecast)} = ${diffLabel}${w.flagged ? ' — tinted (>10% off)' : ' — not tinted (within 10%)'}.`
+    : '';
+  const title = calcLine + tintLine;
+  return `<td class="wk"><div class="trend-box ${cls}${w.fallback?' fallback':''}" title="${esc(title)}">${fmtNum(w.trendForecast)}</div><div class="wk-onfile">${bbcLine}</div></td>`;
 }
 
 // Detail panel behind a product's 8-week trend forecast: the full run of
@@ -254,11 +269,15 @@ function trendDetailRow(p, colspan){
     : '<div class="detail-empty">No L13_Trend.csv row for this SKU.</div>';
   const trendLabel = p.trendPct!=null
     ? `<span class="trendpct ${p.trendPct>=0?'up':'down'}">${p.trendPct>=0?'+':''}${Math.round(p.trendPct*100)}%</span>`
+    : (hasL13 ? `<span class="trendpct" style="color:var(--ink-soft)">no % &mdash; last year's total was zero/negative</span>` : '');
+  const fallbackNote = (p.trendPct==null && hasRef)
+    ? `<div class="detail-empty">No 13-wk trend % could be computed for this SKU, so the trend forecast above simply carries last year's actual cases forward as-is (dashed-border boxes).</div>`
     : '';
   return `<tr class="detail-row"><td colspan="${colspan}"><div class="detail-inner">
     <div class="detail-block">
       <div class="detail-label">Last year's weekly sales<span class="detail-sub">LY_By_Week.csv &middot; week ${p.lastYearWeeklyRef && p.lastYearWeeklyRef[0] ? p.lastYearWeeklyRef[0].weekNum : '?'} of ${TREND.meta.refYear} through year end &mdash; the reference the 8-week trend forecast above is scaled from</span></div>
       ${refBlock}
+      ${fallbackNote}
     </div>
     <div class="detail-block">
       <div class="detail-label">13-wk trend comparison ${trendLabel}<span class="detail-sub">L13_Trend.csv &middot; trailing-13-week case total, this year vs. last year</span></div>
@@ -323,7 +342,9 @@ function renderTrend(){
     const weekCells = p.weeks.map((w,i) => trendWeekCell(p, i)).join('');
     const trendLabel = p.trendPct!=null
       ? `<span class="trendpct ${p.trendPct>=0?'up':'down'}">${p.trendPct>=0?'+':''}${Math.round(p.trendPct*100)}%</span>`
-      : '<span style="color:var(--ink-soft)">No history</span>';
+      : (p.hasTrend
+          ? `<span style="color:var(--ink-soft)" title="No 13-wk trend % on file for this SKU -- boxes below carry last year's actual cases forward as-is">Flat (LY)</span>`
+          : '<span style="color:var(--ink-soft)">No history</span>');
     const lastReceive = p.lastReceiveDate
       ? `${esc(p.lastReceiveDate)}<div class="pmeta">${fmtNum(p.lastReceiveQty)} Cases</div>`
       : '—';
