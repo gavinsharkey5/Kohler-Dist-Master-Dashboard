@@ -213,6 +213,7 @@ footer p{max-width:720px;margin:6px auto}
       <thead>
         <tr>
           <th data-key="name">Product<span class="sort-ind"></span></th>
+          <th class="num" data-key="available">Available<span class="sort-ind"></span></th>
           <th class="num" data-key="trendPct">13-wk Trend<span class="sort-ind"></span></th>
           <th id="trend-week-headers-start"></th>
         </tr>
@@ -464,6 +465,7 @@ function trendWeekCell(p, i){
 
 const TREND_SORT_ACCESSORS = {
   name: p => p.product,
+  available: p => p.available,
   trendPct: p => p.trendPct,
 };
 
@@ -518,6 +520,7 @@ function renderTrend(){
       : '<span style="color:var(--ink-soft)">No history</span>';
     return `<tr>
       <td><div class="pname">${esc(p.product)}</div><div class="pmeta">${esc(p.sku)}</div></td>
+      <td class="num">${fmtNum(p.available)}</td>
       <td class="num">${trendLabel}</td>
       ${weekCells}
     </tr>`;

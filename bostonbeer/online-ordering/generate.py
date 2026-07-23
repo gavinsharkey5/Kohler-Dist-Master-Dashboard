@@ -248,7 +248,7 @@ def load_ly_by_week(path):
     return out
 
 
-def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup):
+def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup, inv_lookup):
     """For each SKU on the Boston Beer forecast (same driver list as the
     Pulse Check tab, matched into L13/LY by the same resolve() used for
     Inventory/ForecastReport), projects the next up-to-8 weeks two ways and
@@ -265,6 +265,11 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
     breakdown to scale) gets trendForecast=None for every week rather than
     a fabricated number. diffPct/flagged (>10% apart) are only set when
     both numbers exist and the trend forecast is positive.
+
+    Each product also carries "available" (current on-hand cases, from
+    the same Inventory Report lookup the Pulse Check tab uses) so the
+    Trend Forecast tab can show current inventory alongside the trend,
+    without a second network fetch.
     """
     fc_weeks = week_dates[:8]
     ly_year = l13_windows["lyEnd"].year
@@ -279,6 +284,7 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
         bbc = r["BBC SKU"].strip()
         l13 = resolve(bbc, l13_lookup)
         ly_weeks = resolve(bbc, ly_lookup)
+        inv = resolve(bbc, inv_lookup)
         if l13 is None:
             unmatched_l13 += 1
         if ly_weeks is None:
@@ -306,6 +312,7 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
         products.append({
             "sku": bbc,
             "product": (l13["product"] if l13 else None) or r["Product"].strip(),
+            "available": inv["available"] if inv else None,
             "trendPct": round(trend_pct, 4) if trend_pct is not None else None,
             "l13LyCases": l13["lyCases"] if l13 else None,
             "l13TyCases": l13["tyCases"] if l13 else None,
@@ -431,7 +438,7 @@ def main():
     if l13_csv.exists() and ly_by_week_csv.exists():
         l13_lookup, l13_windows = load_l13_trend(l13_csv)
         ly_lookup = load_ly_by_week(ly_by_week_csv)
-        trend = build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup)
+        trend = build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_lookup, inv_lookup)
         TREND_OUT_JSON.write_text(json.dumps(trend))
         wk = trend["meta"]["weeks"]
         print(f"\nWrote trend forecast for {len(trend['products'])} SKUs, {len(wk)} weeks "

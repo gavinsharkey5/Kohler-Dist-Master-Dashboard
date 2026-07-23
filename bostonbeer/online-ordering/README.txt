@@ -192,5 +192,9 @@ L13_Trend.csv/076KOH_Forecasts.csv pair re-derives the right weeks
 automatically; nothing here is hardcoded to July 2026's specific
 dates.
 
-Click the "13-wk Trend" column header to sort by trend %; search
-filters by product name or SKU same as the Pulse Check tab.
+An Available column (current on-hand cases, from the same Inventory
+Report the Pulse Check tab uses) sits between Product and 13-wk Trend.
+
+Click the "Available" or "13-wk Trend" column header to sort by that
+column; search filters by product name or SKU same as the Pulse Check
+tab.
