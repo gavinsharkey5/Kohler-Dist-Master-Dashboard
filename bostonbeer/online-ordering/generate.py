@@ -266,10 +266,10 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
     a fabricated number. diffPct/flagged (>10% apart) are only set when
     both numbers exist and the trend forecast is positive.
 
-    Each product also carries "available" (current on-hand cases, from
-    the same Inventory Report lookup the Pulse Check tab uses) so the
-    Trend Forecast tab can show current inventory alongside the trend,
-    without a second network fetch.
+    Each product also carries "available" and "lastReceiveDate" (current
+    on-hand cases and last delivery date, from the same Inventory Report
+    lookup the Pulse Check tab uses) so the Trend Forecast tab can show
+    current inventory alongside the trend, without a second network fetch.
     """
     fc_weeks = week_dates[:8]
     ly_year = l13_windows["lyEnd"].year
@@ -313,6 +313,7 @@ def build_trend_forecast(forecast_rows, week_dates, l13_lookup, l13_windows, ly_
             "sku": bbc,
             "product": (l13["product"] if l13 else None) or r["Product"].strip(),
             "available": inv["available"] if inv else None,
+            "lastReceiveDate": inv["lastReceiveDate"] if inv else None,
             "trendPct": round(trend_pct, 4) if trend_pct is not None else None,
             "l13LyCases": l13["lyCases"] if l13 else None,
             "l13TyCases": l13["tyCases"] if l13 else None,

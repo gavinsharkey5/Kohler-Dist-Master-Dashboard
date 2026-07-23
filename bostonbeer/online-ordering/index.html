@@ -200,6 +200,7 @@ footer p{max-width:720px;margin:6px auto}
       <label>Search product / SKU</label>
       <input type="text" id="trend-search" placeholder="e.g. Twisted Tea, OA9163">
     </div>
+    <button class="btn" id="trend-btn-export">Export CSV</button>
     <span class="result-count"><span id="trend-count-visible">0</span> of <span id="trend-count-total">0</span> SKUs</span>
   </div>
   <div class="legend">
@@ -214,6 +215,7 @@ footer p{max-width:720px;margin:6px auto}
         <tr>
           <th data-key="name">Product<span class="sort-ind"></span></th>
           <th class="num" data-key="available">Available<span class="sort-ind"></span></th>
+          <th data-key="lastReceiveDate">Last Receive<span class="sort-ind"></span></th>
           <th class="num" data-key="trendPct">13-wk Trend<span class="sort-ind"></span></th>
           <th id="trend-week-headers-start"></th>
         </tr>
@@ -466,6 +468,7 @@ function trendWeekCell(p, i){
 const TREND_SORT_ACCESSORS = {
   name: p => p.product,
   available: p => p.available,
+  lastReceiveDate: p => p.lastReceiveDate ? new Date(p.lastReceiveDate) : null,
   trendPct: p => p.trendPct,
 };
 
@@ -521,10 +524,45 @@ function renderTrend(){
     return `<tr>
       <td><div class="pname">${esc(p.product)}</div><div class="pmeta">${esc(p.sku)}</div></td>
       <td class="num">${fmtNum(p.available)}</td>
+      <td>${esc(p.lastReceiveDate||'—')}</td>
       <td class="num">${trendLabel}</td>
       ${weekCells}
     </tr>`;
   }).join('');
+}
+
+function exportTrendCSV(){
+  if(!TREND) return;
+  // Exports whatever the search box currently matches, in the currently
+  // sorted order -- same rows visible on screen, not always the full list.
+  const q = trendState.search.trim().toLowerCase();
+  let products = trendState.search ? TREND.products.filter(p => p.product.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)) : TREND.products.slice();
+  products.sort(compareTrend);
+
+  const weekHeaders = TREND.meta.weeks.flatMap(w => [
+    `${w.weekEnding} Trend Forecast`, `${w.weekEnding} BBC Forecast`, `${w.weekEnding} Diff %`,
+  ]);
+  const header = ['Product', 'SKU', 'Available', 'Last Receive', '13-wk Trend %', ...weekHeaders];
+  const lines = [header.map(csvEscape).join(',')];
+  products.forEach(p => {
+    const weekVals = p.weeks.flatMap(w => [
+      w.trendForecast==null?'':w.trendForecast,
+      w.bbcForecast==null?'':w.bbcForecast,
+      w.diffPct==null?'':Math.round(w.diffPct*100),
+    ]);
+    const row = [
+      p.product, p.sku, p.available==null?'':p.available, p.lastReceiveDate||'',
+      p.trendPct==null?'':Math.round(p.trendPct*100), ...weekVals,
+    ];
+    lines.push(row.map(csvEscape).join(','));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `boston_beer_trend_forecast.csv`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
 }
 
 async function boot(){
@@ -575,6 +613,7 @@ async function boot(){
       });
     });
     document.getElementById('trend-search').addEventListener('input', e => { trendState.search = e.target.value; renderTrend(); });
+    document.getElementById('trend-btn-export').addEventListener('click', exportTrendCSV);
     renderTrend();
   } else {
     document.getElementById('trend-window-line').textContent = 'Trend forecast data not available.';
