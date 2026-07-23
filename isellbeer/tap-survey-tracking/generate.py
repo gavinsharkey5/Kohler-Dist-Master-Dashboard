@@ -123,6 +123,11 @@ for n, raw in raw_by_num.items():
     t = tmpl_by_num.get(n)
     if t is None:
         continue
+    if not raw['Route / Sales Rep'].strip():
+        # No rep to attribute this row to (seen once so far: a stray 0-tap
+        # placeholder row with no brand either) -- would otherwise surface
+        # as a blank-named rep card with nothing real in it.
+        continue
     visited = parse_datetime(raw['Date/Time'])
     corrected = (t['Corrected Distributor'] or '').strip().upper() or 'UNVERIFIED'
     raw_status = (t['Distributor'] or '').strip().upper() or 'UNVERIFIED'

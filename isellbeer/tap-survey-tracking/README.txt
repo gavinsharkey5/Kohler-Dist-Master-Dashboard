@@ -80,3 +80,6 @@ Notes:
     generate.py doesn't enforce that, so if a future export ever gives one
     rep two different DM values across rows, the dashboard would just show
     whichever value each individual tap row carries rather than error.
+  - A row with a blank Route / Sales Rep is dropped entirely rather than
+    shown as a blank-named rep card -- seen once so far, a stray 0-tap
+    placeholder row with no brand either.
