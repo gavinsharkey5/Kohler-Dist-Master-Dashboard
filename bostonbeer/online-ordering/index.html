@@ -106,6 +106,24 @@ tr:hover td{background:var(--card2)}
 .trendpct.up{color:var(--teal)}
 .trendpct.down{color:var(--amber)}
 
+.trend-in{width:52px;text-align:right;border:1px solid var(--line);border-radius:6px;padding:4px 5px;font-size:12.5px;
+  font-family:inherit;font-weight:700;background:var(--card2);color:var(--ink)}
+.trend-in:focus{outline:2px solid var(--blue);outline-offset:1px}
+.trend-in.hi-high{background:var(--amber-soft);color:var(--amber)}
+.trend-in.hi-low{background:var(--teal-soft);color:var(--teal)}
+.bbc-row{font-size:9.5px;color:var(--ink-soft);margin-top:3px;display:flex;align-items:center;gap:3px;justify-content:flex-end;white-space:nowrap}
+.bbc-in{width:38px;text-align:right;border:1px solid var(--line);border-radius:4px;padding:1px 3px;font-size:9.5px;
+  font-family:inherit;background:var(--card);color:var(--ink-soft)}
+.bbc-in:focus{outline:1.5px solid var(--blue);color:var(--ink)}
+
+.calc-help{margin:0 0 14px;font-size:12px}
+.calc-help summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none}
+.calc-help summary::-webkit-details-marker{display:none}
+.calc-help summary::before{content:"\203A";display:inline-block;margin-right:5px;transition:transform .15s;color:var(--ink-soft)}
+.calc-help[open] summary::before{transform:rotate(90deg)}
+.calc-help p{color:var(--ink-soft);margin:8px 0 0;max-width:760px}
+.calc-help code{background:var(--card2);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:11.5px}
+
 .table-scroll{overflow-x:auto;border-radius:10px}
 .empty{padding:30px;text-align:center;color:var(--ink-soft);font-size:13.5px}
 
@@ -195,11 +213,16 @@ footer p{max-width:720px;margin:6px auto}
 <div class="panel">
   <h2>Trend Forecast vs. Boston Beer Forecast</h2>
   <p class="phint" id="trend-window-line"></p>
+  <details class="calc-help">
+    <summary>What does the % next to BBC mean?</summary>
+    <p>It's how far Boston Beer's forecast is from the trend forecast: <code>(BBC forecast &minus; Trend forecast) / Trend forecast</code>. For example, Angry Orchard Crisp (OA7863), week of 7/25: the trend forecast is 161 cases (last year's actual for that week &times; its +12% 13-week trend), Boston Beer forecasts 98, so <code>(98 &minus; 161) / 161 = &minus;39%</code> &mdash; Boston Beer's forecast is 39% lower than what the recent trend suggests. Any week off by more than 10% either direction gets tinted. Both numbers below are editable if you want to test a different scenario &mdash; the % recalculates as you type.</p>
+  </details>
   <div class="controls">
     <div class="ctl">
       <label>Search product / SKU</label>
       <input type="text" id="trend-search" placeholder="e.g. Twisted Tea, OA9163">
     </div>
+    <button class="btn ghost" id="trend-btn-reset">Reset edits</button>
     <button class="btn" id="trend-btn-export">Export CSV</button>
     <span class="result-count"><span id="trend-count-visible">0</span> of <span id="trend-count-total">0</span> SKUs</span>
   </div>
@@ -236,6 +259,7 @@ footer p{max-width:720px;margin:6px auto}
 let DATA = null;
 let TREND = null;
 let trendState = { search: "", sortKey: "name", sortDir: "asc" };
+let trendEdits = {}; // "sku|weekIndex" -> {trend?: number|null, bbc?: number|null}
 let edits = {}; // sku -> weekIndex -> edited forecast value
 let expanded = new Set(); // sku codes with the detail panel open
 let state = { search: "", sortKey: "name", sortDir: "asc" };
@@ -451,18 +475,38 @@ function exportCSV(){
   URL.revokeObjectURL(url);
 }
 
+// Both boxes are editable so a manager can test "what if" numbers -- edits
+// are kept in trendEdits (browser-only, like Pulse Check's On File edits)
+// and override the computed trend/BBC values everywhere: display, sort,
+// and CSV export.
+function effTrendVal(p, i){
+  const e = trendEdits[p.sku + '|' + i];
+  return (e && e.trend !== undefined) ? e.trend : p.weeks[i].trendForecast;
+}
+function effBbcVal(p, i){
+  const e = trendEdits[p.sku + '|' + i];
+  return (e && e.bbc !== undefined) ? e.bbc : p.weeks[i].bbcForecast;
+}
+function computeDiff(trendVal, bbcVal){
+  if(trendVal==null || !(trendVal>0) || bbcVal==null || isNaN(bbcVal)) return null;
+  return (bbcVal - trendVal) / trendVal;
+}
+
 function trendWeekCell(p, i){
   const w = p.weeks[i];
-  if(!p.hasTrend){
-    const bbc = w.bbcForecast!=null ? `BBC: ${fmtNum(w.bbcForecast)}` : 'No BBC forecast';
-    return `<td class="wk"><div class="trend-box no-data">—</div><div class="wk-onfile">${bbc}</div></td>`;
-  }
-  const cls = w.flagged ? (w.diffPct>0 ? 'hi-high' : 'hi-low') : '';
-  const diffLabel = w.diffPct!=null ? `${w.diffPct>=0?'+':''}${Math.round(w.diffPct*100)}%` : '';
-  const bbcLine = w.bbcForecast!=null
-    ? `BBC: ${fmtNum(w.bbcForecast)}${w.flagged?` <span class="diff-tag">(${diffLabel})</span>`:''}`
-    : 'No BBC forecast';
-  return `<td class="wk"><div class="trend-box ${cls}" title="Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases">${fmtNum(w.trendForecast)}</div><div class="wk-onfile">${bbcLine}</div></td>`;
+  const trendVal = effTrendVal(p, i);
+  const bbcVal = effBbcVal(p, i);
+  const diffPct = computeDiff(trendVal, bbcVal);
+  const flagged = diffPct!=null && Math.abs(diffPct) > 0.10;
+  const cls = flagged ? (diffPct>0 ? 'hi-high' : 'hi-low') : '';
+  const diffLabel = diffPct!=null ? `${diffPct>=0?'+':''}${Math.round(diffPct*100)}%` : '';
+  const title = w.lyCases!=null ? `Last year (wk ${w.lyWeekNum}): ${fmtNum(w.lyCases)} cases` : '';
+  return `<td class="wk">
+    <input type="number" class="trend-in ${cls}" data-sku="${esc(p.sku)}" data-week="${i}" data-field="trend"
+      value="${trendVal==null?'':trendVal}" title="${esc(title)}">
+    <div class="bbc-row">BBC: <input type="number" class="bbc-in" data-sku="${esc(p.sku)}" data-week="${i}" data-field="bbc"
+      value="${bbcVal==null?'':bbcVal}"><span class="diff-tag">${diffPct!=null?`(${diffLabel})`:''}</span></div>
+  </td>`;
 }
 
 const TREND_SORT_ACCESSORS = {
@@ -521,14 +565,33 @@ function renderTrend(){
     const trendLabel = p.trendPct!=null
       ? `<span class="trendpct ${p.trendPct>=0?'up':'down'}">${p.trendPct>=0?'+':''}${Math.round(p.trendPct*100)}%</span>`
       : '<span style="color:var(--ink-soft)">No history</span>';
+    const lastReceive = p.lastReceiveDate
+      ? `${esc(p.lastReceiveDate)}<div class="pmeta">${fmtNum(p.lastReceiveQty)} Cases</div>`
+      : '—';
     return `<tr>
       <td><div class="pname">${esc(p.product)}</div><div class="pmeta">${esc(p.sku)}</div></td>
       <td class="num">${fmtNum(p.available)}</td>
-      <td>${esc(p.lastReceiveDate||'—')}</td>
+      <td>${lastReceive}</td>
       <td class="num">${trendLabel}</td>
       ${weekCells}
     </tr>`;
   }).join('');
+}
+
+// Editing a trend/BBC box recomputes just that cell in place -- never a
+// full renderTrend(), which would rebuild every <input> and drop focus
+// mid-keystroke.
+function refreshTrendCell(td){
+  const trendInp = td.querySelector('.trend-in');
+  const bbcInp = td.querySelector('.bbc-in');
+  const diffTag = td.querySelector('.diff-tag');
+  const trendVal = trendInp.value === '' ? null : parseFloat(trendInp.value);
+  const bbcVal = bbcInp.value === '' ? null : parseFloat(bbcInp.value);
+  const diffPct = computeDiff(trendVal, bbcVal);
+  const flagged = diffPct!=null && Math.abs(diffPct) > 0.10;
+  trendInp.classList.remove('hi-high', 'hi-low');
+  if(flagged) trendInp.classList.add(diffPct>0 ? 'hi-high' : 'hi-low');
+  diffTag.textContent = diffPct!=null ? `(${diffPct>=0?'+':''}${Math.round(diffPct*100)}%)` : '';
 }
 
 function exportTrendCSV(){
@@ -542,16 +605,18 @@ function exportTrendCSV(){
   const weekHeaders = TREND.meta.weeks.flatMap(w => [
     `${w.weekEnding} Trend Forecast`, `${w.weekEnding} BBC Forecast`, `${w.weekEnding} Diff %`,
   ]);
-  const header = ['Product', 'SKU', 'Available', 'Last Receive', '13-wk Trend %', ...weekHeaders];
+  const header = ['Product', 'SKU', 'Available', 'Last Receive', 'Last Receive Cases', '13-wk Trend %', ...weekHeaders];
   const lines = [header.map(csvEscape).join(',')];
   products.forEach(p => {
-    const weekVals = p.weeks.flatMap(w => [
-      w.trendForecast==null?'':w.trendForecast,
-      w.bbcForecast==null?'':w.bbcForecast,
-      w.diffPct==null?'':Math.round(w.diffPct*100),
-    ]);
+    // Uses whatever's currently on screen -- your typed overrides if you
+    // made any, the original computed values otherwise -- same as the
+    // Pulse Check tab's On File export.
+    const weekVals = p.weeks.flatMap((w,i) => {
+      const trendVal = effTrendVal(p, i), bbcVal = effBbcVal(p, i), diffPct = computeDiff(trendVal, bbcVal);
+      return [trendVal==null?'':trendVal, bbcVal==null?'':bbcVal, diffPct==null?'':Math.round(diffPct*100)];
+    });
     const row = [
-      p.product, p.sku, p.available==null?'':p.available, p.lastReceiveDate||'',
+      p.product, p.sku, p.available==null?'':p.available, p.lastReceiveDate||'', p.lastReceiveQty==null?'':p.lastReceiveQty,
       p.trendPct==null?'':Math.round(p.trendPct*100), ...weekVals,
     ];
     lines.push(row.map(csvEscape).join(','));
@@ -614,6 +679,16 @@ async function boot(){
     });
     document.getElementById('trend-search').addEventListener('input', e => { trendState.search = e.target.value; renderTrend(); });
     document.getElementById('trend-btn-export').addEventListener('click', exportTrendCSV);
+    document.getElementById('trend-btn-reset').addEventListener('click', () => { trendEdits = {}; renderTrend(); });
+    document.getElementById('trend-tbody').addEventListener('input', e => {
+      const inp = e.target.closest('.trend-in, .bbc-in');
+      if(!inp) return;
+      const key = inp.dataset.sku + '|' + inp.dataset.week;
+      const val = inp.value === '' ? null : parseFloat(inp.value);
+      if(!trendEdits[key]) trendEdits[key] = {};
+      trendEdits[key][inp.dataset.field] = val;
+      refreshTrendCell(inp.closest('td'));
+    });
     renderTrend();
   } else {
     document.getElementById('trend-window-line').textContent = 'Trend forecast data not available.';

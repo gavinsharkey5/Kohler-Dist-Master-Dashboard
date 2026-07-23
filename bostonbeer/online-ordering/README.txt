@@ -193,12 +193,26 @@ automatically; nothing here is hardcoded to July 2026's specific
 dates.
 
 Available and Last Receive columns (current on-hand cases and last
-delivery date, from the same Inventory Report the Pulse Check tab
-uses) sit between Product and 13-wk Trend.
+delivery date + quantity in Cases, from the same Inventory Report the
+Pulse Check tab uses) sit between Product and 13-wk Trend.
+
+The "What does the % next to BBC mean?" details block spells out the
+diffPct formula with a worked example, for a manager who doesn't want
+to read generate.py to understand the tinting.
+
+Both the trend forecast and BBC forecast boxes in every week cell are
+editable, same philosophy as Pulse Check's On File field: edits are
+browser-only (kept in trendEdits, never written back to the JSON),
+the % recalculates live as you type in either box, and "Reset edits"
+clears them back to the computed/exported values. This is meant as a
+quick "what if" calculator (e.g. a manager knows a number is stale and
+wants to see the resulting % without waiting on a data refresh), not a
+way to correct the underlying data -- to actually fix a wrong number,
+refresh the source CSVs and rerun generate.py instead.
 
 Click "Available", "Last Receive", or "13-wk Trend" to sort by that
 column; search filters by product name or SKU same as the Pulse Check
 tab. "Export CSV" downloads whatever's currently visible (respects the
-search filter and sort order) -- Product, SKU, Available, Last
-Receive, 13-wk Trend %, then Trend Forecast / BBC Forecast / Diff % for
-each of the 8 weeks.
+search filter, sort order, AND any edits) -- Product, SKU, Available,
+Last Receive, Last Receive Cases, 13-wk Trend %, then Trend Forecast /
+BBC Forecast / Diff % for each of the 8 weeks.
