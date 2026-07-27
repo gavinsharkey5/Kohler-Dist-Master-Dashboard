@@ -18,7 +18,19 @@ by hand instead):
                                Customer Name, Premise, Brand Family,
                                Date, Buyers. The "Buyers" column is a
                                raw Encompass flag and is NOT trusted --
-                               see classification logic below.
+                               see classification logic below. As of the
+                               2026-07-28 refresh RDE started exporting
+                               this one under different headers (Sales
+                               Rep Assigned / Customer Num, no Premise
+                               column, two windowed "Buyer Count ..."
+                               columns instead of one "Buyers" flag) --
+                               generate.py's build_carbliss() accepts
+                               either header set (see pick_col()); the
+                               windowed Buyer Count columns aren't used
+                               either way since classification is driven
+                               off each row's own Date, and Premise
+                               defaults to "On Premise" when absent
+                               (this tracker is on-premise only).
   sapporo_na_new_buyers.csv   RDE "Sapporo (2) New Buying Accounts"
                                export: same shape plus Product Name,
                                New Buyers (this flag IS used as-is --

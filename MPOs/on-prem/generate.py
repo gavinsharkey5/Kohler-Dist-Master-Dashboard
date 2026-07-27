@@ -52,13 +52,34 @@ def load_csv(path):
         return list(csv.DictReader(f))
 
 
+def pick_col(fieldnames, *aliases):
+    for a in aliases:
+        if a in fieldnames:
+            return a
+    return None
+
+
 def build_carbliss():
     rows = load_csv(CARBLISS_CSV)
+    fieldnames = rows[0].keys() if rows else []
+    # RDE has exported this report under two different header sets --
+    # "Sales Rep Name"/"Customer ID"/"Premise" and, as of the 2026-07-28
+    # refresh, "Sales Rep Assigned"/"Customer Num" with no Premise column
+    # at all (replaced by two windowed "Buyer Count ..." columns we don't
+    # need, since classification is driven off each row's own Date). This
+    # is the on-prem tracker exclusively, so Premise defaults to "On
+    # Premise" when the export doesn't carry it.
+    rep_col = pick_col(fieldnames, "Sales Rep Name", "Sales Rep Assigned")
+    cust_id_col = pick_col(fieldnames, "Customer ID", "Customer Num")
+    premise_col = pick_col(fieldnames, "Premise")
+    if not rep_col or not cust_id_col:
+        raise SystemExit(f"{CARBLISS_CSV}: could not find rep/customer-id columns in {list(fieldnames)}")
+
     parsed = [(parse_date(r["Date"]), r) for r in rows]
 
     by_customer = {}
     for d, r in parsed:
-        by_customer.setdefault(r["Customer ID"], []).append(d)
+        by_customer.setdefault(r[cust_id_col], []).append(d)
 
     new_customers = set()
     for cust_id, dates in by_customer.items():
@@ -71,16 +92,16 @@ def build_carbliss():
     flagged_customer = set()
     out = []
     for d, r in parsed:
-        cust_id = r["Customer ID"]
+        cust_id = r[cust_id_col]
         is_new_row = 0
         if cust_id in new_customers and cust_id not in flagged_customer and NEW_BUYER_WINDOW_START <= d <= NEW_BUYER_WINDOW_END:
             is_new_row = 1
             flagged_customer.add(cust_id)
         out.append({
-            "SALES_REP_NAME": r["Sales Rep Name"].strip(),
+            "SALES_REP_NAME": r[rep_col].strip(),
             "CUSTOMER_ID": int(cust_id),
             "CUSTOMER_NAME": r["Customer Name"].strip(),
-            "PREMISE": r["Premise"].strip(),
+            "PREMISE": r[premise_col].strip() if premise_col else "On Premise",
             "BRAND_FAMILY": r["Brand Family"].strip(),
             "DATE": d.isoformat(),
             "NEW_BUYERS": is_new_row,
