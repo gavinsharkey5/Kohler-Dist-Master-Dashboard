@@ -505,7 +505,7 @@ function nbLineTable(lines){
     const rows = g.items.map(l=>`<tr class="pkg-item-row ${gid} ${l.pct<90?'focus-row':''}"><td>${l.product}</td><td class="num">${l.placements}</td><td class="num">${l.goal90}</td><td class="num">${nbPctCell(l.pct)}</td></tr>`).join('');
     return header+rows;
   }).join('');
-  return `<table><thead><tr><th>Product</th><th class="num">Placements</th><th class="num">90% Goal</th><th class="num">% to Goal</th></tr></thead><tbody>${body}</tbody></table>`;
+  return `<table><thead><tr><th>Product</th><th class="num">Placements</th><th class="num">100% Goal</th><th class="num">% to Goal</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 // Delegated once for the whole page -- covers package-group headers however
 // many times nbLineTable() re-renders (rep view, or every expanded row in
@@ -685,7 +685,7 @@ function renderObjectiveView(){
 
       const table = document.createElement('div');
       table.className='table-scroll';
-      table.innerHTML = `<table><thead><tr><th>Rep</th><th class="num">Total Placements</th><th class="num">Total 90% Goal</th></tr></thead><tbody>${rows}</tbody></table>`;
+      table.innerHTML = `<table><thead><tr><th>Rep</th><th class="num">Total Placements</th><th class="num">Total 100% Goal</th></tr></thead><tbody>${rows}</tbody></table>`;
       inner.appendChild(table);
 
       table.querySelectorAll('.rep-row').forEach(row=>{
