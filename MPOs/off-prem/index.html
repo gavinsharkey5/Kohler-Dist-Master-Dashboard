@@ -294,6 +294,11 @@ function buildPlacementsDataset(rows, target){
 // the long-format goals export (rep/product#/product name/package/GOAL90)
 // by rep + product number (falling back to rep + normalized product name
 // if either side lacks a parseable product number), NOT by row position.
+// The actuals export only contains rows for products with placement
+// activity, so a rep/product with zero placements this period has no
+// actuals row at all -- those goal rows are backfilled below (as
+// zero-placement lines) so group/rep goal totals reflect the full
+// assigned goal, not just the goal for products with recorded activity.
 function buildNewBelgiumDataset(actualRows, goalRows){
   if(!Array.isArray(actualRows)||!actualRows.length||!Array.isArray(goalRows)||!goalRows.length) return null;
   const aRepCol=findCol(actualRows[0],REP_COLS), aPkgCol=findCol(actualRows[0],PACKAGE_COLS),
@@ -303,19 +308,43 @@ function buildNewBelgiumDataset(actualRows, goalRows){
         gGoalCol=findCol(goalRows[0],GOAL_COLS);
   if(!aRepCol||!aProdCol||!aPlaceCol||!gRepCol||!gGoalCol||(!gNumCol&&!gNameCol)) return null;
 
-  const goalMap=new Map();
+  // The goals export has no package-group field (it has a Package Type
+  // string like "1/15/19.2 oz Can" instead) -- build a global product ->
+  // package-group lookup from the actuals export (whichever rep/rows have
+  // it) so zero-placement goal rows can still be bucketed into the right
+  // group.
+  const groupByNum=new Map(), groupByName=new Map();
+  actualRows.forEach(r=>{
+    const productRaw=String(r[aProdCol]||"").trim();
+    const pkg=aPkgCol?String(r[aPkgCol]||"").trim():"";
+    if(!pkg) return;
+    const num=extractProductNum(productRaw);
+    if(num && !groupByNum.has(num)) groupByNum.set(num,pkg);
+    const nameKey=tokens(productRaw).join(" ");
+    if(nameKey && !groupByName.has(nameKey)) groupByName.set(nameKey,pkg);
+  });
+
+  const goalList=[];
   goalRows.forEach(r=>{
     const rep=String(r[gRepCol]||"").trim(); if(!rep) return;
     const goal=parseFloat(r[gGoalCol]); if(isNaN(goal)) return;
     const num=gNumCol?extractProductNum(r[gNumCol]):null;
-    const nameKey=gNameCol?tokens(r[gNameCol]).join(" "):null;
-    const pkg=gPkgCol?String(r[gPkgCol]||"").trim():"";
-    const entry={goal90:goal, package_group:pkg};
-    if(num) goalMap.set(rep+"|n:"+num, entry);
-    if(nameKey && !goalMap.has(rep+"|t:"+nameKey)) goalMap.set(rep+"|t:"+nameKey, entry);
+    const rawName=gNameCol?String(r[gNameCol]||"").trim():"";
+    const nameKey=rawName?tokens(rawName).join(" "):null;
+    const pkgType=gPkgCol?String(r[gPkgCol]||"").trim():"";
+    const displayProduct=[num,rawName,pkgType].filter(Boolean).join(" ");
+    const package_group=(num&&groupByNum.get(num))||(nameKey&&groupByName.get(nameKey))||"";
+    goalList.push({rep, num, nameKey, goal90:goal, package_group, displayProduct});
+  });
+  const goalMap=new Map();
+  goalList.forEach(g=>{
+    if(g.num) goalMap.set(g.rep+"|n:"+g.num, g);
+    if(g.nameKey && !goalMap.has(g.rep+"|t:"+g.nameKey)) goalMap.set(g.rep+"|t:"+g.nameKey, g);
   });
 
   const byRep=new Map();
+  function repLineMap(rep){ if(!byRep.has(rep)) byRep.set(rep,new Map()); return byRep.get(rep); }
+
   let unmatched=0;
   actualRows.forEach(r=>{
     const rep=String(r[aRepCol]||"").trim(); if(!rep) return;
@@ -329,14 +358,24 @@ function buildNewBelgiumDataset(actualRows, goalRows){
     if(!g) unmatched++;
     const goal90=g?g.goal90:0;
     const pct=goal90>0?Math.round((placements/goal90*100)*10)/10:0;
-    if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({package_group:pkg||(g&&g.package_group)||"", product:productRaw, placements, goal90, pct});
+    const matchKey=g?(g.num?"n:"+g.num:"t:"+g.nameKey):"raw:"+nameKey;
+    repLineMap(rep).set(matchKey, {package_group:pkg||(g&&g.package_group)||"", product:productRaw, placements, goal90, pct});
   });
   if(unmatched) console.warn('New Belgium: '+unmatched+' actual rows had no matching goal row (rep+product could not be joined)');
 
+  // Backfill any goal row with no actuals this period as a zero-placement line.
+  goalList.forEach(g=>{
+    const matchKey=g.num?"n:"+g.num:"t:"+g.nameKey;
+    const lines=repLineMap(g.rep);
+    if(!lines.has(matchKey)){
+      lines.set(matchKey, {package_group:g.package_group, product:g.displayProduct, placements:0, goal90:g.goal90, pct:0});
+    }
+  });
+
   const reps=[];
   let total_placements=0, total_goal90=0, reps_hit90=0;
-  byRep.forEach((repLines,rep)=>{
+  byRep.forEach((lineMap,rep)=>{
+    const repLines=[...lineMap.values()];
     const placements=repLines.reduce((s,l)=>s+l.placements,0);
     const goal90=repLines.reduce((s,l)=>s+l.goal90,0);
     const pct=goal90>0?Math.round((placements/goal90*100)*10)/10:0;
@@ -428,20 +467,20 @@ function allReps(){
 }
 function repFind(objKey, rep){ return DATA[objKey].reps.find(r=>r.rep===rep); }
 
-// Sort New Belgium product lines so incomplete (not yet hit) show first, worst first
+// Sort New Belgium product lines so incomplete (not yet at goal) show first, worst first
 function sortNBLines(lines){
   return lines.slice().sort((a,b)=>{
-    const ah = a.pct>=100?1:0, bh = b.pct>=100?1:0;
+    const ah = a.pct>=90?1:0, bh = b.pct>=90?1:0;
     if(ah!==bh) return ah-bh;
     return a.pct-b.pct;
   });
 }
 function nbPctCell(pct){
-  return pct>=100 ? '<span class="complete-tag">✓ Complete</span>' : pct.toFixed(1)+'%';
+  return pct>=90 ? '<span class="complete-tag">At Goal</span>' : pct.toFixed(1)+'%';
 }
 // Groups a rep's product lines by package type, sorting each group's
 // products incomplete-first/worst-first (same rule as sortNBLines), and
-// puts groups with anything still incomplete ahead of fully-complete
+// puts groups with anything still below goal ahead of fully-at-goal
 // groups so the rep's outstanding work still surfaces first overall.
 function groupNBLines(lines){
   const groups = new Map();
@@ -453,15 +492,17 @@ function groupNBLines(lines){
   return [...groups.entries()]
     .map(([name, items])=>{
       const sorted = sortNBLines(items);
-      return {name, items: sorted, hasIncomplete: sorted.some(l=>l.pct<100)};
+      const totalPlacements = sorted.reduce((s,l)=>s+l.placements,0);
+      const totalGoal90 = sorted.reduce((s,l)=>s+l.goal90,0);
+      return {name, items: sorted, hasIncomplete: sorted.some(l=>l.pct<90), totalPlacements, totalGoal90};
     })
     .sort((a,b)=> a.hasIncomplete===b.hasIncomplete ? a.name.localeCompare(b.name) : (a.hasIncomplete?-1:1));
 }
 function nbLineTable(lines){
   const body = groupNBLines(lines).map(g=>{
     const gid = 'nbg'+(uid++);
-    const header = `<tr class="pkg-group-row" data-group="${gid}"><td colspan="4"><span class="pkg-chev">▼</span>${g.name}</td></tr>`;
-    const rows = g.items.map(l=>`<tr class="pkg-item-row ${gid} ${l.pct<100?'focus-row':''}"><td>${l.product}</td><td class="num">${l.placements}</td><td class="num">${l.goal90}</td><td class="num">${l.pct.toFixed(1)}%</td></tr>`).join('');
+    const header = `<tr class="pkg-group-row" data-group="${gid}"><td><span class="pkg-chev">▼</span>${g.name}</td><td class="num">${g.totalPlacements}</td><td class="num">${g.totalGoal90}</td><td class="num"></td></tr>`;
+    const rows = g.items.map(l=>`<tr class="pkg-item-row ${gid} ${l.pct<90?'focus-row':''}"><td>${l.product}</td><td class="num">${l.placements}</td><td class="num">${l.goal90}</td><td class="num">${nbPctCell(l.pct)}</td></tr>`).join('');
     return header+rows;
   }).join('');
   return `<table><thead><tr><th>Product</th><th class="num">Placements</th><th class="num">90% Goal</th><th class="num">% to Goal</th></tr></thead><tbody>${body}</tbody></table>`;
@@ -531,7 +572,7 @@ function renderRepView(){
           <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div>
           <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${Math.min(r.pct,100)}%"></div></div>
         </div>
-        <div class="obj-right"><div><div class="obj-progress-txt">${r.pct.toFixed(1)}%</div><div class="obj-progress-sub">${r.hit90?'<span class="flag-hit">✓ At goal</span>':'Below goal'}</div></div></div>`;
+        <div class="obj-right"><div><div class="obj-progress-txt">${r.placements.toFixed(0)} / ${r.goal90.toFixed(0)}</div><div class="obj-progress-sub">Placements / Goal</div></div></div>`;
       card.appendChild(head);
       const body = document.createElement('div');
       body.className='obj-body';
@@ -628,7 +669,7 @@ function renderObjectiveView(){
       const rows = ROSTER.map(repName=>{
         const r = DATA.new_belgium.reps.find(x=>x.rep===repName);
         if(!r){
-          return `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>`;
+          return `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td></tr>`;
         }
         const rowId = 'nbrow'+(uid++);
         return `
@@ -636,16 +677,15 @@ function renderObjectiveView(){
             <td><span class="rep-chev">▶</span>${r.rep}</td>
             <td class="num">${r.placements.toFixed(0)}</td>
             <td class="num">${r.goal90.toFixed(0)}</td>
-            <td class="num">${r.pct.toFixed(1)}%</td>
           </tr>
           <tr class="rep-sub" id="${rowId}">
-            <td colspan="4"><div class="rep-sub-inner">${nbLineTable(r.lines)}</div></td>
+            <td colspan="3"><div class="rep-sub-inner">${nbLineTable(r.lines)}</div></td>
           </tr>`;
       }).join('');
 
       const table = document.createElement('div');
       table.className='table-scroll';
-      table.innerHTML = `<table><thead><tr><th>Rep</th><th class="num">Total Placements</th><th class="num">Total 90% Goal</th><th class="num">% of Goal</th></tr></thead><tbody>${rows}</tbody></table>`;
+      table.innerHTML = `<table><thead><tr><th>Rep</th><th class="num">Total Placements</th><th class="num">Total 90% Goal</th></tr></thead><tbody>${rows}</tbody></table>`;
       inner.appendChild(table);
 
       table.querySelectorAll('.rep-row').forEach(row=>{
