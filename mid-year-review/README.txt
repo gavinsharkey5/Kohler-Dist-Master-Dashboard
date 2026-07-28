@@ -18,6 +18,8 @@ recalibrated this brand's goal" without touching the workbook. Edits
 are local to the browser only (not saved back); "Reset edited goals"
 reverts everything to the workbook's original values.
 
+Default sort is 2026 YTD CE, largest first.
+
 A second tab, "New in 2026", lists brands with zero prior-year sales
 (regardless of whether a goal exists for them in the workbook -- per
 Kohler, 2026-07-28, a handful of brands do have a goal % on file
@@ -26,6 +28,12 @@ Newcastle; those move here too since there's no real prior-year
 baseline to measure a trend against). Almost always brand-new
 launches (e.g. Carbliss, Monaco, Noca) the plan was built before they
 existed.
+
+A third tab, "Terminated Brands" (per Kohler, 2026-07-28), lists
+brands with zero or negative 2026 YTD Case Equivalents -- pulled out
+of both the Vs. Goal and New in 2026 tabs regardless of whether they
+have a goal or prior-year sales on file, since they aren't actively
+selling right now either way.
 
 Shipyard, Jersey Girl, Soda Birch, and Whole Hog are excluded from the
 dashboard entirely (per Kohler, 2026-07-28) -- negative/near-zero

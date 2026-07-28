@@ -262,8 +262,18 @@ def main():
             "trend_pct": metrics["pct_change"],
         })
 
+    # Terminated: zero or negative 2026 YTD case volume, regardless of
+    # whether the brand has a goal or prior-year sales -- it's not actively
+    # selling right now, so it doesn't belong in either the vs-goal
+    # comparison or the New-in-2026 white-space list. Pulled out of both
+    # buckets rather than added on top, so a brand appears in exactly one tab.
+    terminated = [r for r in with_goal + no_goal if r["ce_current"] <= 0]
+    with_goal = [r for r in with_goal if r["ce_current"] > 0]
+    no_goal = [r for r in no_goal if r["ce_current"] > 0]
+
     with_goal.sort(key=lambda r: (r["gap_brewery"] if r["gap_brewery"] is not None else 999))
     no_goal.sort(key=lambda r: -r["ce_current"])
+    terminated.sort(key=lambda r: r["ce_current"])
 
     managers = sorted({r["brand_manager"] for r in with_goal + no_goal if r.get("brand_manager")})
     suppliers = sorted({r["supplier"] for r in with_goal + no_goal if r.get("supplier")})
@@ -277,6 +287,7 @@ def main():
         "meta": {
             "totalWithGoal": len(with_goal),
             "totalNoGoal": len(no_goal),
+            "totalTerminated": len(terminated),
             "behindBrewery": behind_brewery,
             "behindKohler": behind_kohler,
         },
@@ -284,10 +295,12 @@ def main():
         "suppliers": suppliers,
         "brands": with_goal,
         "newBrands": no_goal,
+        "terminatedBrands": terminated,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
-    print(f"Wrote {len(with_goal)} brands with goals + {len(no_goal)} brands with no 2025 goal/sales to {OUT}")
+    print(f"Wrote {len(with_goal)} brands with goals + {len(no_goal)} brands with no 2025 goal/sales "
+          f"+ {len(terminated)} terminated brands to {OUT}")
     print(f"Behind Brewery goal: {behind_brewery} / {len(with_goal)}   Behind Kohler goal: {behind_kohler} / {len(with_goal)}")
 
 

@@ -128,6 +128,7 @@
   <div class="tabs" id="tabs">
     <div class="tab active" data-view="goal">Vs. Goal <span class="count" id="tab-goal-count"></span></div>
     <div class="tab" data-view="new">New in 2026 <span class="count" id="tab-new-count"></span></div>
+    <div class="tab" data-view="terminated">Terminated Brands <span class="count" id="tab-terminated-count"></span></div>
   </div>
 
   <!-- VS GOAL -->
@@ -227,6 +228,35 @@
     </section>
   </div>
 
+  <!-- TERMINATED BRANDS -->
+  <div class="view" id="view-terminated">
+    <div class="notice">
+      <b>Not actively selling.</b> These brands have zero or negative 2026 YTD Case Equivalents (a negative
+      number is a return/credit adjustment outweighing any actual sales) &mdash; regardless of whether they have
+      a 2026 goal or prior-year sales on file. Pulled out of both the Vs. Goal and New in 2026 tabs so those
+      stay focused on brands that are actually moving volume right now.
+    </div>
+    <section class="panel">
+      <h2>Brands with 0 or negative 2026 YTD CE</h2>
+      <p class="desc">Click a column header to sort.</p>
+      <div class="controls">
+        <input type="search" id="termSearch" placeholder="Search brand or supplier&hellip;">
+        <button class="btn" id="exportTermBtn">Export CSV</button>
+        <div class="spacer"></div>
+        <span class="rowcount" id="termRowcount"></span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <colgroup>
+            <col style="width:26%"><col style="width:26%"><col style="width:22%"><col style="width:13%"><col style="width:13%">
+          </colgroup>
+          <thead><tr id="termTheadRow"></tr></thead>
+          <tbody id="termTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
   <footer id="footerNote">Kohler Distributing &middot; 6-Month Review. Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.</footer>
 </div>
 
@@ -236,10 +266,12 @@ const fmtPct = (n,d=1) => n==null?'—':(n*100>=0?'+':'')+(n*100).toFixed(d)+'%'
 const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 let DATA = null;
-let SORT = {key:'gap_brewery', dir:'asc'};
+let SORT = {key:'ce_current', dir:'desc'};
 let FILTER = {search:'', manager:'', supplier:''};
 let NEW_SORT = {key:'ce_current', dir:'desc'};
 let NEW_FILTER = {search:''};
+let TERM_SORT = {key:'ce_current', dir:'asc'};
+let TERM_FILTER = {search:''};
 
 const COLS = [
   {key:'brand', label:'Brand', kind:'text'},
@@ -262,6 +294,14 @@ const NEW_COLS = [
   {key:'brand', label:'Brand', kind:'text'},
   {key:'supplier', label:'Supplier', kind:'text'},
   {key:'brand_manager', label:'Brand Manager', kind:'text'},
+  {key:'ce_current', label:'2026 CE (YTD)', kind:'ce'},
+];
+
+const TERM_COLS = [
+  {key:'brand', label:'Brand', kind:'text'},
+  {key:'supplier', label:'Supplier', kind:'text'},
+  {key:'brand_manager', label:'Brand Manager', kind:'text'},
+  {key:'ce_prior', label:'2025 CE (YTD)', kind:'ce'},
   {key:'ce_current', label:'2026 CE (YTD)', kind:'ce'},
 ];
 
@@ -521,6 +561,72 @@ function exportNewCSV(){
   a.click();
 }
 
+// ---- Terminated Brands tab ----
+function termFilteredSorted(){
+  let rows = DATA.terminatedBrands.filter(r=>{
+    if (TERM_FILTER.search){
+      const s = TERM_FILTER.search.toLowerCase();
+      if (!(r.brand||'').toLowerCase().includes(s) && !(r.supplier||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  });
+  rows.sort((a,b)=>{
+    let av=a[TERM_SORT.key], bv=b[TERM_SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return TERM_SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?-Infinity:av; bv = bv==null?-Infinity:bv;
+    return TERM_SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return rows;
+}
+
+function renderTermHead(){
+  const tr = document.getElementById('termTheadRow');
+  tr.innerHTML = '';
+  TERM_COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    th.textContent = c.label;
+    if (TERM_SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = TERM_SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (TERM_SORT.key===c.key) TERM_SORT.dir = TERM_SORT.dir==='asc'?'desc':'asc'; else { TERM_SORT.key=c.key; TERM_SORT.dir='asc'; }
+      renderTermTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function renderTermTable(){
+  renderTermHead();
+  const rows = termFilteredSorted();
+  document.getElementById('termTbody').innerHTML = rows.map(r=>`<tr>
+    <td class="wraptext"><span class="brandname">${esc(r.brand)}</span></td>
+    <td class="wraptext"><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
+    <td class="wraptext">${esc(r.brand_manager)||'—'}</td>
+    <td class="num">${fmtCE(r.ce_prior)}</td>
+    <td class="num">${fmtCE(r.ce_current)}</td>
+  </tr>`).join('');
+  document.getElementById('termRowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.terminatedBrands.length.toLocaleString()} brands`;
+}
+
+function exportTermCSV(){
+  const rows = termFilteredSorted();
+  const header = ['Brand','Supplier','Brand Manager','2025 CE (YTD)','2026 CE (YTD)'];
+  const lines = [header.join(',')];
+  rows.forEach(r=>{
+    lines.push([r.brand,r.supplier||'',r.brand_manager||'',
+      r.ce_prior!=null?r.ce_prior.toFixed(0):'', r.ce_current!=null?r.ce_current.toFixed(0):'']
+      .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(','));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mid-year-review-terminated.csv';
+  a.click();
+}
+
 function renderCaveats(){
   const outliers = DATA.brands.filter(r =>
     (r.goal_brewery_pct!=null && Math.abs(r.goal_brewery_pct)>2) ||
@@ -546,11 +652,13 @@ async function init(){
   populateSelect('supplierFilter', DATA.suppliers);
   document.getElementById('tab-goal-count').textContent = `(${DATA.brands.length})`;
   document.getElementById('tab-new-count').textContent = `(${DATA.newBrands.length})`;
+  document.getElementById('tab-terminated-count').textContent = `(${DATA.terminatedBrands.length})`;
 
   renderKPIs();
   renderTable();
   renderCaveats();
   renderNewTable();
+  renderTermTable();
 
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('managerFilter').addEventListener('change', e=>{ FILTER.manager = e.target.value; renderTable(); });
@@ -563,6 +671,8 @@ async function init(){
   });
   document.getElementById('newSearch').addEventListener('input', e=>{ NEW_FILTER.search = e.target.value; renderNewTable(); });
   document.getElementById('exportNewBtn').addEventListener('click', exportNewCSV);
+  document.getElementById('termSearch').addEventListener('input', e=>{ TERM_FILTER.search = e.target.value; renderTermTable(); });
+  document.getElementById('exportTermBtn').addEventListener('click', exportTermCSV);
 
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click', ()=>{
