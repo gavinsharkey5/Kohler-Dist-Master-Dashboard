@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>2026 Mod Year Review &amp; 2027 Planning</title>
+<title>2026 Mid Year Review &amp; 2027 Planning</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6A7180;
     --line:#2A2E38;--line-soft:#20242D;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
-    --brewery:#5B8DEF;--kohler:#F4B83E;--baseline:#7A8194;
+    --brewery:#5B8DEF;--kohler:#F4B83E;
     --good:#37C46B;--good-soft:#12301E;--bad:#E5604D;--bad-soft:#33191A;
     --input-bg:#101318;--input-border:#3A4155;
   }
@@ -48,29 +48,14 @@
   section.panel h2{font-family:"Space Grotesk";font-size:17px;margin:0 0 4px}
   section.panel .desc{color:var(--ink-soft);font-size:13px;margin:0 0 16px}
 
-  /* chart */
-  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 14px}
-  .legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
-  .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
-  .chart-row{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid var(--line-soft)}
-  .chart-row:last-child{border-bottom:none}
-  .chart-row .segname{font-size:12.5px;font-weight:600;color:var(--ink)}
-  .chart-row .segct{font-size:11px;color:var(--ink-mute);font-weight:400}
-  .bars{display:flex;flex-direction:column;gap:4px}
-  .barline{display:grid;grid-template-columns:1fr 84px;align-items:center;gap:8px}
-  .bartrack{height:9px;background:var(--line-soft);border-radius:5px;overflow:hidden}
-  .barfill{height:100%;border-radius:5px}
-  .barval{font-size:11.5px;text-align:right;color:var(--ink-soft);white-space:nowrap}
-
   /* controls */
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
   .controls input[type=search],.controls select{background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
     border-radius:9px;padding:8px 12px;font:inherit;font-size:13px}
   .controls input[type=search]{min-width:220px}
-  .track-toggle{display:inline-flex;background:var(--input-bg);border:1px solid var(--input-border);border-radius:9px;padding:3px;gap:2px}
-  .track-toggle button{background:none;border:none;color:var(--ink-soft);font:inherit;font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:7px;cursor:pointer}
-  .track-toggle button.active{background:var(--brewery);color:#0E1014}
-  .track-toggle button.active.kohler{background:var(--kohler)}
+  .goal-legend{display:flex;gap:16px;flex-wrap:wrap}
+  .goal-legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
+  .goal-legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
   .btn{background:none;border:1px solid var(--input-border);color:var(--ink-soft);font:inherit;font-size:12.5px;font-weight:600;
     padding:8px 13px;border-radius:9px;cursor:pointer}
   .btn:hover{color:var(--ink);border-color:var(--ink-soft)}
@@ -79,7 +64,12 @@
 
   /* table */
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;width:100%;min-width:1240px}
+  table{border-collapse:collapse;width:100%;min-width:1420px}
+  .grp-brewery{background:rgba(91,141,239,.07)}
+  .grp-kohler{background:rgba(244,184,62,.07)}
+  th.grp-first,td.grp-first{border-left:2px solid var(--line)}
+  th.grp-brewery.grp-first{border-left-color:var(--brewery)}
+  th.grp-kohler.grp-first{border-left-color:var(--kohler)}
   thead th{position:sticky;top:0;background:#12141B;text-align:left;font-size:11px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.04em;padding:10px 11px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
   thead th:hover{color:var(--ink)}
@@ -119,39 +109,30 @@
 
   <header>
     <a class="backlink" href="../">&larr; All trackers</a>
-    <p class="eyebrow">Mod Year Review &middot; 2027 Planning</p>
-    <h1>2026 Mod Year Review &amp; 2027 Planning</h1>
+    <p class="eyebrow">Mid Year Review &middot; 2027 Planning</p>
+    <h1>2026 Mid Year Review &amp; 2027 Planning</h1>
     <p class="sub">Where each brand finished 2025 vs. its 2026 Brewery/Kohler goal, a live projection of where
       2026 lands by 12/31 given YTD actuals through <b>7/21/2026</b>, and an editable, brand-level starting point
-      for 2027 case, revenue, and gross-profit targets. Edits here are local to your browser and don't save back
-      to the source workbook &mdash; use <b>Export CSV</b> to keep a copy.</p>
+      for 2027 case targets &mdash; set independently for the Brewery and Kohler goal tracks. Edits here are local
+      to your browser and don't save back to the source workbook &mdash; use <b>Export CSV</b> to keep a copy.</p>
   </header>
 
   <div class="kpis" id="kpis"></div>
 
   <section class="panel">
-    <h2>2025 actual &middot; 2026 projected finish &middot; 2027 target, by segment</h2>
-    <p class="desc">Case equivalents. 2027 target uses the currently selected goal track and each row's editable % (defaults to that brand's 2026 goal %, carried forward).</p>
-    <div class="legend">
-      <span class="item"><i class="sw" style="background:var(--baseline)"></i>2025 Actual Finish</span>
-      <span class="item"><i class="sw" style="background:var(--brewery)"></i>2026 Projected Finish</span>
-      <span class="item"><i class="sw" style="background:var(--kohler)"></i>2027 Target</span>
-    </div>
-    <div id="chart"></div>
-  </section>
-
-  <section class="panel">
     <h2>By brand family</h2>
-    <p class="desc">Click a column header to sort. Edit the blue/gold % cell to change that brand's 2027 target &mdash; totals above update live.</p>
+    <p class="desc">Click a column header to sort. Brewery-goal columns are tinted blue, Kohler-goal columns are
+      tinted gold &mdash; edit either track's % cell to set that brand's 2027 target for that track independently;
+      KPI totals above update live for both.</p>
+    <div class="goal-legend">
+      <span class="item"><i class="sw" style="background:var(--brewery)"></i>Brewery goal columns</span>
+      <span class="item"><i class="sw" style="background:var(--kohler)"></i>Kohler goal columns</span>
+    </div>
 
     <div class="controls">
       <input type="search" id="search" placeholder="Search brand or supplier&hellip;">
       <select id="segmentFilter"><option value="">All segments</option></select>
       <select id="supplierFilter"><option value="">All suppliers</option></select>
-      <div class="track-toggle" id="trackToggle">
-        <button data-track="brewery" class="active">Brewery goal</button>
-        <button data-track="kohler" class="kohler">Kohler goal</button>
-      </div>
       <button class="btn" id="resetBtn">Reset 2027 % to 2026 goal</button>
       <button class="btn" id="exportBtn">Export CSV</button>
       <div class="spacer"></div>
@@ -172,14 +153,11 @@
       that same remainder period (<code>2025 full year &minus; 2025 YTD 1/1&ndash;7/21</code>) are grown by that
       brand's own YTD year-over-year rate (<code>2026 YTD &divide; 2025 YTD (1/1&ndash;7/21) &minus; 1</code>) and
       added to 2026 YTD actuals. This mirrors the method already used in the workbook's own
-      <code>DATA - 2025 Review</code> tab to estimate the 2025 finish. $Vol and Gross are projected the same way,
-      independently (their growth rates can differ from the case-count rate where mix/pricing is shifting).</p>
-    <p><b>2027 price &amp; margin per case:</b> blended $Vol/CE and Gross/CE across 2024, 2025, and 2026 YTD
-      actuals for that brand, applied to the 2027 case target. This is a placeholder based on trailing actuals,
-      not a 2027 pricing/cost assumption &mdash; swap in real 2027 pricing when you have it.</p>
-    <p><b>2027 case target:</b> defaults to each brand's 2026 goal % carried forward, applied to the 2026
-      projected finish (i.e. "hold the same growth rate"). Edit any row's % to set a real 2027 target; this is a
-      starting point, not a recommendation.</p>
+      <code>DATA - 2025 Review</code> tab to estimate the 2025 finish.</p>
+    <p><b>2027 case target:</b> each goal track (Brewery, Kohler) defaults to that brand's own 2026 goal %
+      carried forward, applied to the 2026 projected finish (i.e. "hold the same growth rate"). Edit either
+      track's % to set a real 2027 target for that track independently; this is a starting point, not a
+      recommendation.</p>
     <details class="caveats">
       <summary>Data quality caveats (click to expand)</summary>
       <ul>
@@ -203,12 +181,9 @@
 
 <script>
 const fmtCE = n => n==null?'—':Math.round(n).toLocaleString('en-US');
-const fmtUSD = n => n==null?'—':'$'+Math.round(n).toLocaleString('en-US');
-const fmtUSDk = n => n==null?'—':'$'+(n/1000).toLocaleString('en-US',{maximumFractionDigits:0})+'k';
 const fmtPct = (n,d=1) => n==null?'—':(n*100>=0?'+':'')+(n*100).toFixed(d)+'%';
 
 let RECORDS = [];
-let TRACK = 'brewery';           // 'brewery' | 'kohler'
 let SORT = {key:'ce_2026_proj_finish', dir:'desc'};
 let FILTER = {search:'', segment:'', supplier:''};
 
@@ -220,24 +195,26 @@ const COLS = [
   {key:'ce_2026_ytd', label:'2026 YTD', kind:'ce'},
   {key:'growth_2026_ce', label:'YoY', kind:'pct'},
   {key:'ce_2026_proj_finish', label:'2026 Proj. Finish', kind:'ce'},
-  {key:'vsgoal', label:'vs Goal', kind:'deltapct'},
-  {key:'goal2027pct', label:'2027 Goal %', kind:'editpct'},
-  {key:'ce2027', label:'2027 CE Target', kind:'ce-strong'},
-  {key:'rev2027', label:'2027 Revenue Target', kind:'usd-strong'},
-  {key:'gp2027', label:'2027 GP Target', kind:'usd-strong'},
+  {key:'vsBreweryGoal', label:'vs Brewery Goal', kind:'deltapct', group:'brewery', first:true},
+  {key:'goal2027_brewery_pct', label:'2027 Brewery %', kind:'editpct', group:'brewery'},
+  {key:'ce2027Brewery', label:'2027 CE Target (Brewery)', kind:'ce-strong', group:'brewery'},
+  {key:'vsKohlerGoal', label:'vs Kohler Goal', kind:'deltapct', group:'kohler', first:true},
+  {key:'goal2027_kohler_pct', label:'2027 Kohler %', kind:'editpct', group:'kohler'},
+  {key:'ce2027Kohler', label:'2027 CE Target (Kohler)', kind:'ce-strong', group:'kohler'},
 ];
 
-function goalPctKey(){ return TRACK==='brewery' ? 'goal2027_brewery_pct' : 'goal2027_kohler_pct'; }
-function goal2026CeKey(){ return TRACK==='brewery' ? 'goal2026_brewery_ce' : 'goal2026_kohler_ce'; }
-
 function derive(r){
-  const pct = r[goalPctKey()];
-  const ce2027 = pct==null ? null : r.ce_2026_proj_finish * (1+pct);
-  const rev2027 = (ce2027!=null && r.price_per_ce!=null) ? ce2027 * r.price_per_ce : null;
-  const gp2027 = (ce2027!=null && r.margin_per_ce!=null) ? ce2027 * r.margin_per_ce : null;
-  const goalCe = r[goal2026CeKey()];
-  const vsgoal = (goalCe && goalCe!==0) ? (r.ce_2026_proj_finish/goalCe - 1) : null;
-  return {ce2027, rev2027, gp2027, vsgoal};
+  const bPct = r.goal2027_brewery_pct;
+  const ce2027Brewery = bPct==null ? null : r.ce_2026_proj_finish * (1+bPct);
+  const goalBreweryCe = r.goal2026_brewery_ce;
+  const vsBreweryGoal = (goalBreweryCe && goalBreweryCe!==0) ? (r.ce_2026_proj_finish/goalBreweryCe - 1) : null;
+
+  const kPct = r.goal2027_kohler_pct;
+  const ce2027Kohler = kPct==null ? null : r.ce_2026_proj_finish * (1+kPct);
+  const goalKohlerCe = r.goal2026_kohler_ce;
+  const vsKohlerGoal = (goalKohlerCe && goalKohlerCe!==0) ? (r.ce_2026_proj_finish/goalKohlerCe - 1) : null;
+
+  return {ce2027Brewery, vsBreweryGoal, ce2027Kohler, vsKohlerGoal};
 }
 
 function populateFilters(){
@@ -260,9 +237,8 @@ function filteredSorted(){
     return true;
   });
   rows = rows.map(r=>({...r, ...derive(r)}));
-  const key = SORT.key==='vsgoal'?'vsgoal':(SORT.key==='goal2027pct'?goalPctKey():(SORT.key==='ce2027'?'ce2027':(SORT.key==='rev2027'?'rev2027':(SORT.key==='gp2027'?'gp2027':SORT.key))));
   rows.sort((a,b)=>{
-    let av=a[key], bv=b[key];
+    let av=a[SORT.key], bv=b[SORT.key];
     if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
     av = av==null?-Infinity:av; bv = bv==null?-Infinity:bv;
     return SORT.dir==='asc'? av-bv : bv-av;
@@ -276,16 +252,15 @@ function renderHead(){
   COLS.forEach(c=>{
     const th = document.createElement('th');
     if (c.kind!=='text') th.classList.add('num');
-    let label = c.label;
-    if (c.key==='vsgoal') label = 'vs ' + (TRACK==='brewery'?'Brewery':'Kohler') + ' Goal';
-    if (c.key==='goal2027pct') label = '2027 ' + (TRACK==='brewery'?'Brewery':'Kohler') + ' %';
-    th.textContent = label;
-    if (SORT.key===c.key || (c.key==='goal2027pct'&&SORT.key==='goal2027pct')){
+    if (c.group) th.classList.add('grp-'+c.group);
+    if (c.first) th.classList.add('grp-first');
+    th.textContent = c.label;
+    if (SORT.key===c.key){
       const a = document.createElement('span'); a.className='arrow'; a.textContent = SORT.dir==='asc'?'▲':'▼';
       th.appendChild(a);
     }
     th.addEventListener('click', ()=>{
-      if (c.key==='goal2027pct' || c.kind==='editpct') return; // sort by other cols; editing col still sortable via value
+      if (c.kind==='editpct') return; // editing col isn't sortable, all other cols are
       if (SORT.key===c.key) SORT.dir = SORT.dir==='asc'?'desc':'asc'; else { SORT.key=c.key; SORT.dir='desc'; }
       renderAll();
     });
@@ -293,13 +268,12 @@ function renderHead(){
   });
 }
 
-function onPctEdit(brandKey, val){
+function onPctEdit(brandKey, field, val){
   const r = RECORDS.find(x=>x._key===brandKey);
   if (!r) return;
   const num = parseFloat(val);
-  r[goalPctKey()] = isNaN(num) ? null : num/100;
+  r[field] = isNaN(num) ? null : num/100;
   renderKPIs();
-  renderChart();
   updateRowTargets(r);
 }
 
@@ -307,9 +281,8 @@ function updateRowTargets(r){
   const d = derive(r);
   const tr = document.querySelector(`tr[data-key="${CSS.escape(r._key)}"]`);
   if (!tr) return;
-  tr.querySelector('.cell-ce2027').textContent = fmtCE(d.ce2027);
-  tr.querySelector('.cell-rev2027').textContent = fmtUSDk(d.rev2027);
-  tr.querySelector('.cell-gp2027').textContent = fmtUSDk(d.gp2027);
+  tr.querySelector('.cell-ce2027-brewery').textContent = fmtCE(d.ce2027Brewery);
+  tr.querySelector('.cell-ce2027-kohler').textContent = fmtCE(d.ce2027Kohler);
 }
 
 function renderRows(rows){
@@ -329,23 +302,34 @@ function renderRows(rows){
     const tdYoY = document.createElement('td'); tdYoY.className='num';
     tdYoY.innerHTML = r.growth_2026_ce==null?'—':`<span class="delta ${r.growth_2026_ce>0.002?'pos':(r.growth_2026_ce<-0.002?'neg':'flat')}">${fmtPct(r.growth_2026_ce)}</span>`;
     const tdProj = document.createElement('td'); tdProj.className='num'; tdProj.textContent = fmtCE(r.ce_2026_proj_finish);
-    const tdVsGoal = document.createElement('td'); tdVsGoal.className='num';
-    tdVsGoal.innerHTML = r.vsgoal==null?'—':`<span class="delta ${r.vsgoal>0.002?'pos':(r.vsgoal<-0.002?'neg':'flat')}">${fmtPct(r.vsgoal)}</span>`;
 
-    const tdEdit = document.createElement('td'); tdEdit.className='num';
-    const pctVal = r[goalPctKey()];
-    const input = document.createElement('input');
-    input.type='number'; input.step='0.1'; input.className='pctinput'+(TRACK==='kohler'?' kohler':'');
-    input.value = pctVal==null?'':(pctVal*100).toFixed(1);
-    input.addEventListener('input', e=>onPctEdit(r._key, e.target.value));
-    tdEdit.appendChild(input);
+    const tdVsBrewery = document.createElement('td'); tdVsBrewery.className='num grp-brewery grp-first';
+    tdVsBrewery.innerHTML = r.vsBreweryGoal==null?'—':`<span class="delta ${r.vsBreweryGoal>0.002?'pos':(r.vsBreweryGoal<-0.002?'neg':'flat')}">${fmtPct(r.vsBreweryGoal)}</span>`;
+    const tdEditBrewery = document.createElement('td'); tdEditBrewery.className='num grp-brewery';
+    const inputBrewery = document.createElement('input');
+    inputBrewery.type='number'; inputBrewery.step='0.1'; inputBrewery.className='pctinput';
+    inputBrewery.value = r.goal2027_brewery_pct==null?'':(r.goal2027_brewery_pct*100).toFixed(1);
+    inputBrewery.addEventListener('input', e=>onPctEdit(r._key, 'goal2027_brewery_pct', e.target.value));
+    tdEditBrewery.appendChild(inputBrewery);
+    const tdCe27Brewery = document.createElement('td'); tdCe27Brewery.className='num target grp-brewery cell-ce2027-brewery';
+
+    const tdVsKohler = document.createElement('td'); tdVsKohler.className='num grp-kohler grp-first';
+    tdVsKohler.innerHTML = r.vsKohlerGoal==null?'—':`<span class="delta ${r.vsKohlerGoal>0.002?'pos':(r.vsKohlerGoal<-0.002?'neg':'flat')}">${fmtPct(r.vsKohlerGoal)}</span>`;
+    const tdEditKohler = document.createElement('td'); tdEditKohler.className='num grp-kohler';
+    const inputKohler = document.createElement('input');
+    inputKohler.type='number'; inputKohler.step='0.1'; inputKohler.className='pctinput kohler';
+    inputKohler.value = r.goal2027_kohler_pct==null?'':(r.goal2027_kohler_pct*100).toFixed(1);
+    inputKohler.addEventListener('input', e=>onPctEdit(r._key, 'goal2027_kohler_pct', e.target.value));
+    tdEditKohler.appendChild(inputKohler);
+    const tdCe27Kohler = document.createElement('td'); tdCe27Kohler.className='num target grp-kohler cell-ce2027-kohler';
 
     const d = derive(r);
-    const tdCe27 = document.createElement('td'); tdCe27.className='num target cell-ce2027'; tdCe27.textContent = fmtCE(d.ce2027);
-    const tdRev27 = document.createElement('td'); tdRev27.className='num target cell-rev2027'; tdRev27.textContent = fmtUSDk(d.rev2027);
-    const tdGp27 = document.createElement('td'); tdGp27.className='num target cell-gp2027'; tdGp27.textContent = fmtUSDk(d.gp2027);
+    tdCe27Brewery.textContent = fmtCE(d.ce2027Brewery);
+    tdCe27Kohler.textContent = fmtCE(d.ce2027Kohler);
 
-    [tdSupplier,tdBrand,tdSeg,tdF25,tdYtd,tdYoY,tdProj,tdVsGoal,tdEdit,tdCe27,tdRev27,tdGp27].forEach(td=>tr.appendChild(td));
+    [tdSupplier,tdBrand,tdSeg,tdF25,tdYtd,tdYoY,tdProj,
+     tdVsBrewery,tdEditBrewery,tdCe27Brewery,
+     tdVsKohler,tdEditKohler,tdCe27Kohler].forEach(td=>tr.appendChild(td));
     frag.appendChild(tr);
   });
   tbody.appendChild(frag);
@@ -356,54 +340,31 @@ function sum(rows, key){ return rows.reduce((a,r)=>a+(r[key]||0),0); }
 
 function renderKPIs(){
   const all = RECORDS.map(r=>({...r, ...derive(r)}));
-  const ce2025 = sum(all,'ce_2025'), vol2025 = sum(all,'vol_2025'), gross2025 = sum(all,'gross_2025');
+  const ce2025 = sum(all,'ce_2025');
   const ceYtd26 = sum(all,'ce_2026_ytd'), ceYtd25 = sum(all,'ce_2025_ytd');
   const yoy = ceYtd25 ? (ceYtd26/ceYtd25-1) : null;
-  const ceProj = sum(all,'ce_2026_proj_finish'), volProj = sum(all,'vol_2026_proj_finish'), grossProj = sum(all,'gross_2026_proj_finish');
+  const ceProj = sum(all,'ce_2026_proj_finish');
   const goalBreweryCe = sum(all.filter(r=>r.goal2026_brewery_ce!=null),'goal2026_brewery_ce');
   const goalKohlerCe = sum(all.filter(r=>r.goal2026_kohler_ce!=null),'goal2026_kohler_ce');
   const vsBrewery = goalBreweryCe ? (ceProj/goalBreweryCe-1) : null;
   const vsKohler = goalKohlerCe ? (ceProj/goalKohlerCe-1) : null;
-  const ce2027 = sum(all,'ce2027'), rev2027 = sum(all,'rev2027'), gp2027 = sum(all,'gp2027');
+  const ce2027Brewery = sum(all,'ce2027Brewery'), ce2027Kohler = sum(all,'ce2027Kohler');
   const newCount = RECORDS.filter(r=>!r.in_taxonomy).length;
   const newCe = sum(all.filter(r=>!r.in_taxonomy),'ce_2026_ytd');
   const newShare = ceYtd26 ? newCe/ceYtd26 : 0;
 
   const tiles = [
-    {lbl:'2025 Actual Finish', val:fmtCE(ce2025)+' CE', sub:`${fmtUSDk(vol2025)} rev &middot; ${fmtUSDk(gross2025)} GP`},
+    {lbl:'2025 Actual Finish', val:fmtCE(ce2025)+' CE'},
     {lbl:'2026 YTD (thru 7/21)', val:fmtCE(ceYtd26)+' CE', sub: yoy==null?'':`<span class="${yoy>=0?'g':'b'}">${fmtPct(yoy)} YoY</span> vs 2025 YTD`},
-    {lbl:'2026 Projected Finish', val:fmtCE(ceProj)+' CE', sub:`${fmtUSDk(volProj)} rev &middot; ${fmtUSDk(grossProj)} GP`},
-    {lbl:'2026 Proj. vs Goals', val: fmtPct(TRACK==='brewery'?vsBrewery:vsKohler), sub:`Brewery ${fmtPct(vsBrewery)} &middot; Kohler ${fmtPct(vsKohler)}`},
-    {lbl:`2027 Target &middot; ${TRACK==='brewery'?'Brewery':'Kohler'} track`, val:fmtCE(ce2027)+' CE', sub:'From each row\'s editable % below'},
-    {lbl:'2027 Revenue Target', val:fmtUSDk(rev2027), sub:'Trailing price/case &times; 2027 CE target'},
-    {lbl:'2027 Gross Profit Target', val:fmtUSDk(gp2027), sub:'Trailing margin/case &times; 2027 CE target'},
+    {lbl:'2026 Projected Finish', val:fmtCE(ceProj)+' CE'},
     {lbl:'Taxonomy coverage', val:`${RECORDS.length-newCount} / ${RECORDS.length}`, sub:`${newCount} brands not yet in 2026 plan (${fmtPct(newShare,1)} of 2026 YTD volume)`},
+    {lbl:'2026 Proj. vs Brewery Goal', val: fmtPct(vsBrewery)},
+    {lbl:'2026 Proj. vs Kohler Goal', val: fmtPct(vsKohler)},
+    {lbl:'2027 Target &middot; Brewery track', val:fmtCE(ce2027Brewery)+' CE', sub:'From each row\'s editable Brewery % below'},
+    {lbl:'2027 Target &middot; Kohler track', val:fmtCE(ce2027Kohler)+' CE', sub:'From each row\'s editable Kohler % below'},
   ];
   const el = document.getElementById('kpis');
   el.innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
-}
-
-function renderChart(){
-  const all = RECORDS.map(r=>({...r, ...derive(r)}));
-  const segMap = new Map();
-  all.forEach(r=>{
-    const seg = r.segment || 'Unclassified';
-    if (!segMap.has(seg)) segMap.set(seg, {seg, ce2025:0, ceProj:0, ce2027:0, n:0});
-    const s = segMap.get(seg);
-    s.ce2025 += r.ce_2025||0; s.ceProj += r.ce_2026_proj_finish||0; s.ce2027 += r.ce2027||0; s.n++;
-  });
-  const segs = [...segMap.values()].sort((a,b)=>b.ceProj-a.ceProj);
-  const max = Math.max(...segs.flatMap(s=>[s.ce2025,s.ceProj,s.ce2027]), 1);
-  const bar = (val,color) => `<div class="barline"><div class="bartrack"><div class="barfill" style="width:${Math.max(2,val/max*100)}%;background:${color}"></div></div><div class="barval num">${fmtCE(val)}</div></div>`;
-  document.getElementById('chart').innerHTML = segs.map(s=>`
-    <div class="chart-row">
-      <div><div class="segname">${s.seg}</div><div class="segct">${s.n} brand${s.n===1?'':'s'}</div></div>
-      <div class="bars">
-        ${bar(s.ce2025,'var(--baseline)')}
-        ${bar(s.ceProj,'var(--brewery)')}
-        ${bar(s.ce2027,'var(--kohler)')}
-      </div>
-    </div>`).join('');
 }
 
 function renderTable(){
@@ -411,25 +372,29 @@ function renderTable(){
   renderRows(filteredSorted());
 }
 
-function renderAll(){ renderKPIs(); renderChart(); renderTable(); }
+function renderAll(){ renderKPIs(); renderTable(); }
 
 function exportCSV(){
   const rows = filteredSorted();
   const header = ['Supplier','Brand','Segment','2025 Finish CE','2026 YTD CE','YoY %','2026 Projected Finish CE',
-    `vs ${TRACK} Goal %`, `2027 ${TRACK} Goal %`, '2027 CE Target', '2027 Revenue Target', '2027 GP Target'];
+    'vs Brewery Goal %', '2027 Brewery Goal %', '2027 CE Target (Brewery)',
+    'vs Kohler Goal %', '2027 Kohler Goal %', '2027 CE Target (Kohler)'];
   const lines = [header.join(',')];
   rows.forEach(r=>{
-    const pct = r[goalPctKey()];
     lines.push([r.supplier,r.brand,r.segment||'', r.ce_2025?.toFixed(0), r.ce_2026_ytd?.toFixed(0),
       r.growth_2026_ce!=null?(r.growth_2026_ce*100).toFixed(1):'', r.ce_2026_proj_finish?.toFixed(0),
-      r.vsgoal!=null?(r.vsgoal*100).toFixed(1):'', pct!=null?(pct*100).toFixed(1):'',
-      r.ce2027!=null?r.ce2027.toFixed(0):'', r.rev2027!=null?r.rev2027.toFixed(0):'', r.gp2027!=null?r.gp2027.toFixed(0):'']
+      r.vsBreweryGoal!=null?(r.vsBreweryGoal*100).toFixed(1):'',
+      r.goal2027_brewery_pct!=null?(r.goal2027_brewery_pct*100).toFixed(1):'',
+      r.ce2027Brewery!=null?r.ce2027Brewery.toFixed(0):'',
+      r.vsKohlerGoal!=null?(r.vsKohlerGoal*100).toFixed(1):'',
+      r.goal2027_kohler_pct!=null?(r.goal2027_kohler_pct*100).toFixed(1):'',
+      r.ce2027Kohler!=null?r.ce2027Kohler.toFixed(0):'']
       .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(','));
   });
   const blob = new Blob([lines.join('\n')], {type:'text/csv'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `2027-planning-${TRACK}-goal.csv`;
+  a.download = `2027-planning-brewery-and-kohler-goals.csv`;
   a.click();
 }
 
@@ -443,12 +408,6 @@ async function init(){
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('segmentFilter').addEventListener('change', e=>{ FILTER.segment = e.target.value; renderTable(); });
   document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; renderTable(); });
-  document.getElementById('trackToggle').addEventListener('click', e=>{
-    const btn = e.target.closest('button'); if (!btn) return;
-    TRACK = btn.dataset.track;
-    document.querySelectorAll('#trackToggle button').forEach(b=>b.classList.toggle('active', b===btn));
-    renderAll();
-  });
   document.getElementById('resetBtn').addEventListener('click', ()=>{
     RECORDS.forEach(r=>{ r.goal2027_brewery_pct = r.goal2026_brewery_pct; r.goal2027_kohler_pct = r.goal2026_kohler_pct; });
     renderAll();
