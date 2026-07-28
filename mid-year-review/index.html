@@ -162,6 +162,13 @@
         <input type="search" id="search" placeholder="Search brand or supplier&hellip;">
         <select id="managerFilter"><option value="">All Brand Managers</option></select>
         <select id="supplierFilter"><option value="">All Suppliers</option></select>
+        <select id="statusFilter">
+          <option value="">All Statuses</option>
+          <option value="On Pace">On Pace</option>
+          <option value="Behind Brewery">Behind Brewery</option>
+          <option value="Behind Kohler">Behind Kohler</option>
+          <option value="Behind Both">Behind Both</option>
+        </select>
         <button class="btn" id="resetBtn">Reset edited goals</button>
         <button class="btn" id="exportBtn">Export CSV</button>
         <div class="spacer"></div>
@@ -267,7 +274,7 @@ const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;
 
 let DATA = null;
 let SORT = {key:'ce_current', dir:'desc'};
-let FILTER = {search:'', manager:'', supplier:''};
+let FILTER = {search:'', manager:'', supplier:'', status:''};
 let NEW_SORT = {key:'ce_current', dir:'desc'};
 let NEW_FILTER = {search:''};
 let TERM_SORT = {key:'ce_current', dir:'asc'};
@@ -346,6 +353,7 @@ function filteredSorted(){
     return true;
   });
   rows = rows.map(r=>{ const d = derive(r); return {...r, ...d, status: statusOf(d).label}; });
+  if (FILTER.status) rows = rows.filter(r=>r.status===FILTER.status);
   rows.sort((a,b)=>{
     let av=a[SORT.key], bv=b[SORT.key];
     if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
@@ -663,6 +671,7 @@ async function init(){
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('managerFilter').addEventListener('change', e=>{ FILTER.manager = e.target.value; renderTable(); });
   document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; renderTable(); });
+  document.getElementById('statusFilter').addEventListener('change', e=>{ FILTER.status = e.target.value; renderTable(); });
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
   document.getElementById('resetBtn').addEventListener('click', ()=>{
     DATA.brands.forEach(r=>{ r.goal_brewery_pct = r.goal_brewery_pct_orig; r.goal_kohler_pct = r.goal_kohler_pct_orig; });
