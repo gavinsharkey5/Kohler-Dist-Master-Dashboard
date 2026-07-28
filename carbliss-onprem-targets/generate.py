@@ -89,6 +89,15 @@ def carbliss_flavor_of(prod_name):
     return None
 
 
+def join_flavors(flavors):
+    """'Pineapple' / 'Pineapple or Watermelon' / 'Pineapple, Watermelon, or Peach'."""
+    if len(flavors) == 1:
+        return flavors[0]
+    if len(flavors) == 2:
+        return f"{flavors[0]} or {flavors[1]}"
+    return f"{', '.join(flavors[:-1])}, or {flavors[-1]}"
+
+
 def brand_of(product_name):
     if product_name.startswith('Sun Cruiser'):
         return 'Sun Cruiser'
@@ -245,16 +254,23 @@ def build_pitch(r):
     # competing head-on with an already-satisfied craving. Instead pitch
     # gap_flavor, a flavor from a different family that's genuine white space,
     # so Carbliss adds menu breadth instead of cannibalizing a proven seller.
-    if r['gap_flavor']:
-        gf = r['gap_flavor']
+    if r['gap_flavors']:
+        gap_flavors = r['gap_flavors']
+        top_flavor = gap_flavors[0]
+        flavor_list = join_flavors(gap_flavors)
         pf = r['primary_flavor']
         if pf:
             covering_brand = brand_of(r['primary_sku_for_flavor'][0])
-            bullets.append({'label': 'Diversify with', 'text': f"Their {pf} craving is already covered by {covering_brand} — pitch Carbliss {gf} instead to open a new flavor lane rather than compete head-on."})
+            bullets.append({'label': 'Diversify with', 'items': [
+                f"Their {pf} craving is already covered by {covering_brand}.",
+                f"Pitch Carbliss {flavor_list} instead to open a new flavor lane rather than compete head-on.",
+            ]})
         else:
-            bullets.append({'label': 'Diversify with', 'text': f"Carbliss {gf} — nothing on their menu covers it yet, clean white space."})
+            bullets.append({'label': 'Diversify with', 'items': [
+                f"Carbliss {flavor_list} — nothing on their menu covers it yet, clean white space.",
+            ]})
 
-        ref_price = flavor_ref_price.get(gf)
+        ref_price = flavor_ref_price.get(top_flavor)
         anchor = r['primary']
         if ref_price and anchor:
             anchor_prod, anchor_agg = anchor
@@ -268,7 +284,7 @@ def build_pitch(r):
                     framing = "and it undercuts what's already on shelf — easy yes."
                 else:
                     framing = "in line with what's already on shelf — no price objection."
-                bullets.append({'label': 'Price', 'text': f"Carbliss runs ~${fmt_price(ref_price)}/cs vs ~${fmt_price(onshelf_price)}/cs for their {onshelf_brand} ({onshelf_sku}) — {framing}"})
+                bullets.append({'label': 'Price', 'text': f"Carbliss {top_flavor} runs ~${fmt_price(ref_price)}/cs vs ~${fmt_price(onshelf_price)}/cs for their {onshelf_brand} ({onshelf_sku}) — {framing}"})
     elif r['existing_carbliss']:
         bullets.append({'label': 'Note', 'text': "Their flavor mix already lines up with Carbliss — this is about shelf share, not a new flavor."})
     elif r['primary']:
@@ -343,13 +359,12 @@ for cid, acct in accounts.items():
     else:
         pool = gap_candidates
     pool.sort(key=lambda fl: -flavor_popularity[fl])
-    gap_flavor = pool[0] if pool else None
 
     results.append({
         'id': cid, 'name': acct['name'], 'rep': acct['rep'], 'city': direct_city.get(cid) or xref_city.get(cid),
         'brands': acct['brands'], 'lapsed': lapsed, 'breadth': breadth, 'primary': primary,
         'primary_flavor': primary_flavor, 'primary_sku_for_flavor': primary_sku_for_flavor,
-        'gap_flavor': gap_flavor, 'existing_carbliss': sorted(existing_carbliss_set),
+        'gap_flavors': pool, 'existing_carbliss': sorted(existing_carbliss_set),
     })
 
 for r in results:
@@ -371,7 +386,7 @@ for r in results:
         # from the account-level export (authoritative), not the SKU-level 'lapsed' flag.
         'lapsed': total26 == 0,
         'isNew': total25 == 0 and total26 > 0,
-        'primaryFlavor': r['primary_flavor'], 'gapFlavor': r['gap_flavor'],
+        'primaryFlavor': r['primary_flavor'], 'gapFlavors': r['gap_flavors'],
         'pitchBullets': r['pitch_bullets'],
     })
 final_accounts.sort(key=lambda a: -a['total26'])
