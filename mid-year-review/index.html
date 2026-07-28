@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>6-Month Review: Trend vs. Goal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6A7180;
+    --line:#2A2E38;--line-soft:#20242D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+    --brewery:#5B8DEF;--kohler:#F4B83E;
+    --good:#37C46B;--good-soft:#12301E;--bad:#E5604D;--bad-soft:#33191A;
+    --input-bg:#101318;--input-border:#3A4155;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14.5px;line-height:1.5;
+    padding:0 18px 60px}
+  .wrap{max-width:1400px;margin:0 auto}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+  a{color:inherit}
+
+  header{padding:30px 0 6px}
+  .backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:14px}
+  .backlink:hover{color:var(--ink)}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0}
+  .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
+  .sub b{color:var(--ink)}
+
+  .tabs{display:flex;gap:4px;margin:22px 0 0;flex-wrap:wrap}
+  .tab{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);font:inherit;font-size:13px;font-weight:600;
+    padding:9px 16px;border-radius:9px 9px 0 0;cursor:pointer;border-bottom:none}
+  .tab.active{background:var(--card-h);color:var(--ink)}
+  .tab .count{color:var(--ink-mute);font-weight:400;margin-left:4px}
+  .view{display:none}
+  .view.active{display:block}
+
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 22px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px;box-shadow:var(--shadow)}
+  .kpi .lbl{font-size:11.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
+  .kpi .val{font-family:"Space Grotesk";font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .kpi .sub2{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
+  @media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  section.panel{background:var(--card);border:1px solid var(--line);border-radius:0 14px 14px 14px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
+  section.panel h2{font-family:"Space Grotesk";font-size:17px;margin:0 0 4px}
+  section.panel .desc{color:var(--ink-soft);font-size:13px;margin:0 0 16px}
+
+  .notice{background:rgba(244,184,62,.08);border:1px solid rgba(244,184,62,.25);border-radius:12px;padding:14px 18px;margin:0 0 20px;font-size:13px;color:var(--ink-soft)}
+  .notice b{color:var(--ink)}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
+  .controls input[type=search],.controls select{background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
+    border-radius:9px;padding:8px 12px;font:inherit;font-size:13px}
+  .controls input[type=search]{min-width:220px}
+  .btn{background:none;border:1px solid var(--input-border);color:var(--ink-soft);font:inherit;font-size:12.5px;font-weight:600;
+    padding:8px 13px;border-radius:9px;cursor:pointer}
+  .btn:hover{color:var(--ink);border-color:var(--ink-soft)}
+  .spacer{flex:1}
+  .rowcount{font-size:12px;color:var(--ink-mute)}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 14px}
+  .legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
+  .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  table{border-collapse:collapse;width:100%;table-layout:fixed}
+  thead th{position:sticky;top:0;background:#12141B;text-align:left;font-size:10.5px;font-weight:600;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.03em;padding:9px 8px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
+    overflow:hidden;text-overflow:ellipsis}
+  thead th:hover{color:var(--ink)}
+  thead th.num,td.num{text-align:right}
+  thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
+  tbody td{padding:7px 8px;border-bottom:1px solid var(--line-soft);font-size:12.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  tbody td.wraptext{white-space:normal;word-break:break-word}
+  tbody tr:hover td{background:var(--card-h)}
+  .brandname{font-weight:600;color:var(--ink)}
+  .suppliername{color:var(--ink-soft);font-size:11.5px}
+
+  .gapcell{font-weight:700;border-radius:6px;padding:3px 7px;display:inline-block;min-width:56px;text-align:right}
+  .gapcell.behind{background:var(--bad-soft);color:var(--bad)}
+  .gapcell.ahead{background:var(--good-soft);color:var(--good)}
+  .gapcell.flat{color:var(--ink-mute)}
+
+  .status-badge{font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;border-radius:20px;padding:3px 10px;white-space:nowrap}
+  .status-badge.behind-both{background:var(--bad-soft);color:var(--bad)}
+  .status-badge.behind-one{background:rgba(244,184,62,.14);color:var(--kohler)}
+  .status-badge.on-track{background:var(--good-soft);color:var(--good)}
+
+  .grp-brewery{background:rgba(91,141,239,.06)}
+  .grp-kohler{background:rgba(244,184,62,.06)}
+  th.grp-first,td.grp-first{border-left:2px solid var(--line)}
+  th.grp-brewery.grp-first{border-left-color:var(--brewery)}
+  th.grp-kohler.grp-first{border-left-color:var(--kohler)}
+
+  footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="backlink" href="../">&larr; All trackers</a>
+    <p class="eyebrow">6-Month Review</p>
+    <h1>Brand Trend vs. Goal</h1>
+    <p class="sub" id="subtitle">Where each brand's current-year trend stands against its 2026 Brewery Goal % and
+      Kohler Goal %, so brand managers can see who's ahead or behind pace and recalibrate for the back half of the
+      year. "Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both
+      years (a true apples-to-apples comparison), not a full-year projection.</p>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-view="goal">Vs. Goal <span class="count" id="tab-goal-count"></span></div>
+    <div class="tab" data-view="new">New in 2026 <span class="count" id="tab-new-count"></span></div>
+  </div>
+
+  <!-- VS GOAL -->
+  <div class="view active" id="view-goal">
+    <div class="kpis" id="kpis"></div>
+
+    <section class="panel">
+      <h2>By brand family</h2>
+      <p class="desc">Click a column header to sort. Rows are color-coded where a brand is trending behind its
+        goal &mdash; red for behind, green for ahead or on pace. Brewery-goal columns are tinted blue, Kohler-goal
+        columns tinted gold.</p>
+      <div class="legend">
+        <span class="item"><i class="sw" style="background:var(--brewery)"></i>Brewery goal columns</span>
+        <span class="item"><i class="sw" style="background:var(--kohler)"></i>Kohler goal columns</span>
+        <span class="item"><i class="sw" style="background:var(--bad)"></i>Behind goal</span>
+        <span class="item"><i class="sw" style="background:var(--good)"></i>Ahead / on pace</span>
+      </div>
+
+      <div class="controls">
+        <input type="search" id="search" placeholder="Search brand or supplier&hellip;">
+        <select id="managerFilter"><option value="">All Brand Managers</option></select>
+        <select id="supplierFilter"><option value="">All Suppliers</option></select>
+        <button class="btn" id="exportBtn">Export CSV</button>
+        <div class="spacer"></div>
+        <span class="rowcount" id="rowcount"></span>
+      </div>
+
+      <div class="tablewrap">
+        <table>
+          <colgroup>
+            <col style="width:16%"><col style="width:13%"><col style="width:13%">
+            <col style="width:8%">
+            <col style="width:8%"><col style="width:9%">
+            <col style="width:8%"><col style="width:9%">
+            <col style="width:16%">
+          </colgroup>
+          <thead><tr id="theadRow"></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel methodology">
+      <h2>Methodology &amp; data notes</h2>
+      <p><b>Trend %:</b> each brand's Case Equivalent volume for the current comparable-YTD window vs. the same
+        window last year (e.g. 1/1&ndash;7/28), straight from the Encompass comparison report &mdash; not a
+        projection.</p>
+      <p><b>Goal %:</b> each brand's 2026 Brewery Goal and Kohler Goal, pulled from the 2026 planning workbook
+        (the same one used to set targets at the start of the year).</p>
+      <p><b>Gap:</b> Trend % minus Goal %. Negative (red) means the brand is trending behind that goal; zero or
+        positive (green) means it's on pace or ahead.</p>
+      <details class="caveats">
+        <summary>Data quality caveats (click to expand)</summary>
+        <ul id="caveatsList" style="margin:0;padding-left:20px;color:var(--ink-soft);font-size:13px"></ul>
+      </details>
+    </section>
+  </div>
+
+  <!-- NEW IN 2026 -->
+  <div class="view" id="view-new">
+    <div class="notice">
+      <b>No goal, no comparison.</b> These brands had zero recorded sales in the prior-year comparable window and
+      no Brewery or Kohler goal % in the 2026 planning workbook &mdash; almost always because they launched after
+      the plan was built (e.g. Carbliss, Monaco, Noca). There's nothing to measure them against yet; once they get
+      a 2026 goal assigned, they'll move into the main Vs. Goal tab on the next refresh.
+    </div>
+    <section class="panel">
+      <h2>Brands with no 2025 goal or sales</h2>
+      <p class="desc">Click a column header to sort.</p>
+      <div class="controls">
+        <input type="search" id="newSearch" placeholder="Search brand or supplier&hellip;">
+        <button class="btn" id="exportNewBtn">Export CSV</button>
+        <div class="spacer"></div>
+        <span class="rowcount" id="newRowcount"></span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <colgroup>
+            <col style="width:28%"><col style="width:28%"><col style="width:24%"><col style="width:20%">
+          </colgroup>
+          <thead><tr id="newTheadRow"></tr></thead>
+          <tbody id="newTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <footer id="footerNote">Kohler Distributing &middot; 6-Month Review. Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.</footer>
+</div>
+
+<script>
+const fmtCE = n => n==null?'—':Math.round(n).toLocaleString('en-US');
+const fmtPct = (n,d=1) => n==null?'—':(n*100>=0?'+':'')+(n*100).toFixed(d)+'%';
+const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+let DATA = null;
+let SORT = {key:'gap_brewery', dir:'asc'};
+let FILTER = {search:'', manager:'', supplier:''};
+let NEW_SORT = {key:'ce_current', dir:'desc'};
+let NEW_FILTER = {search:''};
+
+const COLS = [
+  {key:'brand', label:'Brand', kind:'text'},
+  {key:'supplier', label:'Supplier', kind:'text'},
+  {key:'brand_manager', label:'Brand Manager', kind:'text'},
+  {key:'trend_pct', label:'Trend %', kind:'pct'},
+  {key:'goal_brewery_pct', label:'Brewery Goal', kind:'pct', group:'brewery', first:true},
+  {key:'gap_brewery', label:'Gap', kind:'gap', group:'brewery'},
+  {key:'goal_kohler_pct', label:'Kohler Goal', kind:'pct', group:'kohler', first:true},
+  {key:'gap_kohler', label:'Gap', kind:'gap', group:'kohler'},
+  {key:'status', label:'Status', kind:'status'},
+];
+
+const NEW_COLS = [
+  {key:'brand', label:'Brand', kind:'text'},
+  {key:'supplier', label:'Supplier', kind:'text'},
+  {key:'brand_manager', label:'Brand Manager', kind:'text'},
+  {key:'ce_current', label:'2026 CE (YTD)', kind:'ce'},
+];
+
+function statusOf(r){
+  const bBehind = r.gap_brewery!=null && r.gap_brewery < 0;
+  const kBehind = r.gap_kohler!=null && r.gap_kohler < 0;
+  if (bBehind && kBehind) return {label:'Behind Both', cls:'behind-both'};
+  if (bBehind || kBehind) return {label: bBehind?'Behind Brewery':'Behind Kohler', cls:'behind-one'};
+  return {label:'On Pace', cls:'on-track'};
+}
+
+function gapCell(v){
+  if (v==null) return '—';
+  const cls = v<-0.001?'behind':(v>0.001?'ahead':'flat');
+  return `<span class="gapcell ${cls}">${fmtPct(v)}</span>`;
+}
+
+function populateSelect(id, values){
+  const sel = document.getElementById(id);
+  values.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
+}
+
+function filteredSorted(){
+  let rows = DATA.brands.filter(r=>{
+    if (FILTER.manager && r.brand_manager!==FILTER.manager) return false;
+    if (FILTER.supplier && r.supplier!==FILTER.supplier) return false;
+    if (FILTER.search){
+      const s = FILTER.search.toLowerCase();
+      if (!(r.brand||'').toLowerCase().includes(s) && !(r.supplier||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  });
+  rows = rows.map(r=>({...r, status: statusOf(r).label}));
+  rows.sort((a,b)=>{
+    let av=a[SORT.key], bv=b[SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?Infinity:av; bv = bv==null?Infinity:bv;
+    return SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return rows;
+}
+
+function renderHead(){
+  const tr = document.getElementById('theadRow');
+  tr.innerHTML = '';
+  COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    if (c.group) th.classList.add('grp-'+c.group);
+    if (c.first) th.classList.add('grp-first');
+    th.textContent = c.label;
+    if (SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (SORT.key===c.key) SORT.dir = SORT.dir==='asc'?'desc':'asc'; else { SORT.key=c.key; SORT.dir= (c.kind==='text')?'asc':'asc'; }
+      renderTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function renderRows(rows){
+  const tbody = document.getElementById('tbody');
+  const frag = document.createDocumentFragment();
+  rows.forEach(r=>{
+    const tr = document.createElement('tr');
+    const st = statusOf(r);
+
+    const tdBrand = document.createElement('td'); tdBrand.className='wraptext'; tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
+    const tdSupplier = document.createElement('td'); tdSupplier.className='wraptext'; tdSupplier.innerHTML = `<span class="suppliername">${esc(r.supplier)||'—'}</span>`;
+    const tdMgr = document.createElement('td'); tdMgr.className='wraptext'; tdMgr.textContent = r.brand_manager || '—';
+    const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
+
+    const tdBGoal = document.createElement('td'); tdBGoal.className='num grp-brewery grp-first'; tdBGoal.textContent = fmtPct(r.goal_brewery_pct);
+    const tdBGap = document.createElement('td'); tdBGap.className='num grp-brewery'; tdBGap.innerHTML = gapCell(r.gap_brewery);
+
+    const tdKGoal = document.createElement('td'); tdKGoal.className='num grp-kohler grp-first'; tdKGoal.textContent = fmtPct(r.goal_kohler_pct);
+    const tdKGap = document.createElement('td'); tdKGap.className='num grp-kohler'; tdKGap.innerHTML = gapCell(r.gap_kohler);
+
+    const tdStatus = document.createElement('td'); tdStatus.innerHTML = `<span class="status-badge ${st.cls}">${st.label}</span>`;
+
+    [tdBrand,tdSupplier,tdMgr,tdTrend,tdBGoal,tdBGap,tdKGoal,tdKGap,tdStatus].forEach(td=>tr.appendChild(td));
+    frag.appendChild(tr);
+  });
+  const tbodyEl = document.getElementById('tbody');
+  tbodyEl.innerHTML = '';
+  tbodyEl.appendChild(frag);
+  document.getElementById('rowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.brands.length.toLocaleString()} brand families`;
+}
+
+function renderTable(){
+  renderHead();
+  renderRows(filteredSorted());
+}
+
+function renderKPIs(){
+  const m = DATA.meta;
+  const totalPrior = DATA.brands.reduce((a,r)=>a+(r.ce_prior||0),0);
+  const totalCurrent = DATA.brands.reduce((a,r)=>a+(r.ce_current||0),0);
+  const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
+  const tiles = [
+    {lbl:'Brands Tracked', val:fmtCE(m.totalWithGoal), sub:'have a 2026 Brewery/Kohler goal'},
+    {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked brands'},
+    {lbl:'Behind Brewery Goal', val:`${m.behindBrewery} / ${m.totalWithGoal}`, sub:`${(100*m.behindBrewery/m.totalWithGoal).toFixed(0)}% of tracked brands`},
+    {lbl:'Behind Kohler Goal', val:`${m.behindKohler} / ${m.totalWithGoal}`, sub:`${(100*m.behindKohler/m.totalWithGoal).toFixed(0)}% of tracked brands`},
+    {lbl:'New in 2026', val:fmtCE(m.totalNoGoal), sub:'no 2025 goal or sales yet — see the other tab'},
+  ];
+  document.getElementById('kpis').innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
+}
+
+function exportCSV(){
+  const rows = filteredSorted();
+  const header = ['Brand','Supplier','Brand Manager','Trend %','Brewery Goal %','Gap vs Brewery','Kohler Goal %','Gap vs Kohler','Status'];
+  const lines = [header.join(',')];
+  rows.forEach(r=>{
+    lines.push([r.brand,r.supplier||'',r.brand_manager||'',
+      r.trend_pct!=null?(r.trend_pct*100).toFixed(1):'',
+      r.goal_brewery_pct!=null?(r.goal_brewery_pct*100).toFixed(1):'',
+      r.gap_brewery!=null?(r.gap_brewery*100).toFixed(1):'',
+      r.goal_kohler_pct!=null?(r.goal_kohler_pct*100).toFixed(1):'',
+      r.gap_kohler!=null?(r.gap_kohler*100).toFixed(1):'',
+      r.status]
+      .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(','));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mid-year-review-vs-goal.csv';
+  a.click();
+}
+
+// ---- New in 2026 tab ----
+function newFilteredSorted(){
+  let rows = DATA.newBrands.filter(r=>{
+    if (NEW_FILTER.search){
+      const s = NEW_FILTER.search.toLowerCase();
+      if (!(r.brand||'').toLowerCase().includes(s) && !(r.supplier||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  });
+  rows.sort((a,b)=>{
+    let av=a[NEW_SORT.key], bv=b[NEW_SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return NEW_SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?-Infinity:av; bv = bv==null?-Infinity:bv;
+    return NEW_SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return rows;
+}
+
+function renderNewHead(){
+  const tr = document.getElementById('newTheadRow');
+  tr.innerHTML = '';
+  NEW_COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    th.textContent = c.label;
+    if (NEW_SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = NEW_SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (NEW_SORT.key===c.key) NEW_SORT.dir = NEW_SORT.dir==='asc'?'desc':'asc'; else { NEW_SORT.key=c.key; NEW_SORT.dir='desc'; }
+      renderNewTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function renderNewTable(){
+  renderNewHead();
+  const rows = newFilteredSorted();
+  document.getElementById('newTbody').innerHTML = rows.map(r=>`<tr>
+    <td class="wraptext"><span class="brandname">${esc(r.brand)}</span></td>
+    <td class="wraptext"><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
+    <td class="wraptext">${esc(r.brand_manager)||'—'}</td>
+    <td class="num">${fmtCE(r.ce_current)}</td>
+  </tr>`).join('');
+  document.getElementById('newRowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.newBrands.length.toLocaleString()} brands`;
+}
+
+function exportNewCSV(){
+  const rows = newFilteredSorted();
+  const header = ['Brand','Supplier','Brand Manager','2026 CE (YTD)'];
+  const lines = [header.join(',')];
+  rows.forEach(r=>{
+    lines.push([r.brand,r.supplier||'',r.brand_manager||'', r.ce_current!=null?r.ce_current.toFixed(0):'']
+      .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(','));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mid-year-review-new-in-2026.csv';
+  a.click();
+}
+
+function renderCaveats(){
+  const outliers = DATA.brands.filter(r =>
+    (r.goal_brewery_pct!=null && Math.abs(r.goal_brewery_pct)>2) ||
+    (r.goal_kohler_pct!=null && Math.abs(r.goal_kohler_pct)>2));
+  const items = [];
+  if (outliers.length){
+    items.push(`${outliers.length} brand(s) have unusually large goal percentages in the source workbook (e.g. `+
+      `${outliers.slice(0,3).map(o=>esc(o.brand)+' '+fmtPct(Math.abs(o.goal_brewery_pct)>Math.abs(o.goal_kohler_pct||0)?o.goal_brewery_pct:o.goal_kohler_pct)).join(', ')}`+
+      `${outliers.length>3?', &hellip;':''}) &mdash; almost certainly placeholder multipliers entered for brand-new-2026 items rather than true annual growth targets. Worth a quick double-check with whoever set them before trusting their Gap column.`);
+  }
+  items.push('Brand-level totals reconcile to the RDE export\'s own Total row within ~0.02%.');
+  items.push('A brand whose name is also used as its own supplier label in the workbook (e.g. Carbliss, Sapporo) is matched correctly even when the RDE export emits it as a single row rather than a header+leaf pair.');
+  document.getElementById('caveatsList').innerHTML = items.map(i=>`<li style="margin:0 0 6px">${i}</li>`).join('');
+}
+
+async function init(){
+  const res = await fetch('data/data.json');
+  DATA = await res.json();
+
+  populateSelect('managerFilter', DATA.managers);
+  populateSelect('supplierFilter', DATA.suppliers);
+  document.getElementById('tab-goal-count').textContent = `(${DATA.brands.length})`;
+  document.getElementById('tab-new-count').textContent = `(${DATA.newBrands.length})`;
+
+  renderKPIs();
+  renderTable();
+  renderCaveats();
+  renderNewTable();
+
+  document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
+  document.getElementById('managerFilter').addEventListener('change', e=>{ FILTER.manager = e.target.value; renderTable(); });
+  document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; renderTable(); });
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  document.getElementById('newSearch').addEventListener('input', e=>{ NEW_FILTER.search = e.target.value; renderNewTable(); });
+  document.getElementById('exportNewBtn').addEventListener('click', exportNewCSV);
+
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('view-'+t.dataset.view).classList.add('active');
+    });
+  });
+}
+init();
+</script>
+</body>
+</html>

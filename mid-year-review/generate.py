@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""
+Builds data/data.json for the 6-Month Review dashboard: for every brand
+family, current YTD trend % vs. its 2026 Brewery Goal % and Kohler Goal %
+(both from the 2026 planning workbook), so brand managers can see at a
+glance whether they're ahead of, on, or behind pace -- and recalibrate the
+back half of the year accordingly.
+
+Inputs (keep these filenames when refreshing):
+  2026_planning_source.xlsx  The 2026 Planning by Brand workbook. Gives us
+                              the brand -> supplier / brand manager taxonomy
+                              plus each brand's 2026 Brewery & Kohler Goal %
+                              (columns K/N of the '2026 Planning by Brand'
+                              tab). Same workbook used by ../2027-planning/.
+  ytd_comparison.csv          RDE "Comparison" export, same-period-both-years
+                              (e.g. "Case Equiv 1/1/2025-7/28/2025" vs
+                              "Case Equiv 1/1/2026-7/28/2026" plus a
+                              "Case Equiv % +/-" column) -- this IS the
+                              current trend %, no projection math needed.
+                              Column headers' date ranges shift every time
+                              this gets re-pulled; matched by "Case Equiv"
+                              prefix, not the exact header string.
+
+A brand with no Brewery/Kohler goal set in the workbook (new items launched
+after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
+main vs-goal table and instead listed on its own "New in 2026" tab --
+there's no goal to compare it against yet.
+
+Run: python3 generate.py
+"""
+import csv
+import json
+import re
+from pathlib import Path
+
+import openpyxl
+
+HERE = Path(__file__).parent
+WORKBOOK = HERE / "2026_planning_source.xlsx"
+CSV_YTD = HERE / "ytd_comparison.csv"
+HTML = HERE / "index.html"
+OUT = HERE / "data" / "data.json"
+
+# Same aliasing quirk documented in ../2027-planning/build_data.py: the
+# workbook's hand-entered "Pabst Brand" is RDE's "Pabst Blue Ribbon".
+NAME_ALIASES = {
+    "pabst blue ribbon": "Pabst Brand",
+}
+
+
+def to_num(raw):
+    if raw is None:
+        return 0.0
+    raw = str(raw).strip()
+    if raw == "" or raw == "-":
+        return 0.0
+    neg = raw.startswith("(") and raw.endswith(")")
+    raw = raw.strip("()").replace("$", "").replace(",", "").replace("%", "")
+    if raw == "":
+        return 0.0
+    val = float(raw)
+    return -val if neg else val
+
+
+def load_workbook_taxonomy():
+    wb_values = openpyxl.load_workbook(WORKBOOK, data_only=True)
+    wb_formulas = openpyxl.load_workbook(WORKBOOK, data_only=False)
+    wsv = wb_values["2026 Planning by Brand"]
+    wsf = wb_formulas["2026 Planning by Brand"]
+
+    brands = {}
+    brands_lower = {}
+    supplier_names = set()
+    brand_manager_by_supplier = {}
+
+    for r in range(3, wsv.max_row + 1):
+        brand = wsv.cell(r, 1).value
+        if brand is None or str(brand).strip() == "":
+            continue
+        is_grey = wsf.cell(r, 1).fill.patternType == "solid"
+        supplier = wsv.cell(r, 2).value
+
+        if is_grey:
+            grey_name = str(brand).strip()
+            supplier_names.add(grey_name)
+            grey_manager = wsv.cell(r, 3).value
+            if grey_manager:
+                brand_manager_by_supplier.setdefault(grey_name, str(grey_manager).strip())
+            continue
+
+        manager = wsv.cell(r, 3).value
+        brewery_pct = wsv.cell(r, 11).value
+        kohler_pct = wsv.cell(r, 14).value
+
+        name = str(brand).strip()
+        brands[name] = {
+            "brand": name,
+            "supplier": (str(supplier).strip() if supplier else None),
+            "brand_manager": manager,
+            "goal2026_brewery_pct": brewery_pct if isinstance(brewery_pct, (int, float)) else None,
+            "goal2026_kohler_pct": kohler_pct if isinstance(kohler_pct, (int, float)) else None,
+        }
+        if supplier:
+            supplier_names.add(str(supplier).strip())
+        if supplier and manager:
+            brand_manager_by_supplier.setdefault(str(supplier).strip(), str(manager).strip())
+        brands_lower[name.lower()] = name
+
+    return brands, brands_lower, supplier_names, brand_manager_by_supplier
+
+
+def parse_ytd_csv(path, brands, brands_lower, supplier_names):
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        prior_col = next(c for c in fieldnames if c.startswith("Case Equiv 1/1/2025") or c.startswith("Case Equiv 1/1/202") and "2025" in c)
+        # Robust column matching: first "Case Equiv <date>" column is the prior
+        # year, the second is the current year; the % column starts "Case Equiv %".
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and not c.startswith("Case Equiv %") and not c.startswith("Case Equiv ±")]
+        pct_col = next(c for c in fieldnames if c.startswith("Case Equiv %"))
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+
+        rows = []
+        for r in reader:
+            name = (r.get("Supplier / Brand Family") or "").strip()
+            if not name or name == "Total":
+                continue
+            rows.append((name, {
+                "ce_prior": to_num(r[prior_col]),
+                "ce_current": to_num(r[current_col]),
+                "pct_change": to_num(r[pct_col]) / 100.0,
+            }))
+
+    supplier_names_lower = {s.lower() for s in supplier_names}
+    results = {}
+    current_supplier = None
+    unclassified = []
+    skipped_phantom_headers = []
+
+    for i, (raw_name, metrics) in enumerate(rows):
+        name_l = raw_name.lower()
+        next_name_l = rows[i + 1][0].lower() if i + 1 < len(rows) else None
+        next_metrics = rows[i + 1][1] if i + 1 < len(rows) else None
+
+        alias = NAME_ALIASES.get(name_l)
+        canonical = alias or brands_lower.get(name_l)
+
+        # A brand-family name that's immediately followed by an identical-name
+        # row is functioning as this brand's own supplier-subtotal header here
+        # (e.g. "Heineken USA" / "Heineken USA", "Sapporo" / "Sapporo") -- the
+        # SECOND occurrence is the real leaf data, this first one is skipped.
+        if canonical and next_name_l == name_l:
+            current_supplier = canonical
+            continue
+
+        # A known brand name is treated as real leaf data even when that same
+        # name is ALSO registered as a supplier label in the workbook (e.g.
+        # single-brand entities like "Carbliss", "Monaco") -- some RDE pulls
+        # emit just the one row for these instead of a header+leaf pair, and
+        # without this check that lone row would get swallowed as a phantom
+        # header (see the Kohler-side supplier check just below).
+        if canonical:
+            supplier = brands[canonical]["supplier"] or current_supplier
+            results[(supplier, canonical)] = metrics
+            continue
+
+        if name_l in supplier_names_lower:
+            current_supplier = next(s for s in supplier_names if s.lower() == name_l)
+            continue
+
+        # Unrecognized name, not a known brand or supplier. If the very next
+        # row has identical Case Equiv figures, this row is almost certainly
+        # a phantom supplier-subtotal for that single next brand (RDE's own
+        # distributor/supplier label for it, which isn't in the workbook at
+        # all -- e.g. "SN Food & Beverage LLC" heading straight into
+        # "Carbliss" with the same total) rather than real brand data of its
+        # own; skip it so its volume isn't double-counted under two names.
+        if next_metrics is not None and next_metrics == metrics:
+            skipped_phantom_headers.append(raw_name)
+            current_supplier = raw_name
+            continue
+
+        unclassified.append((current_supplier, raw_name, metrics))
+
+    if skipped_phantom_headers:
+        print(f"Skipped {len(skipped_phantom_headers)} phantom header row(s) (unrecognized name, "
+              f"identical totals to the very next row): {skipped_phantom_headers}")
+
+    return results, unclassified
+
+
+def main():
+    brands, brands_lower, supplier_names, brand_manager_by_supplier = load_workbook_taxonomy()
+    print(f"Loaded {len(brands)} canonical brand families with 2026 goals from the workbook.")
+
+    matched, unclassified = parse_ytd_csv(CSV_YTD, brands, brands_lower, supplier_names)
+    print(f"Matched {len(matched)} brand families in {CSV_YTD.name}; {len(unclassified)} unmatched (new SKUs).")
+
+    with_goal = []
+    no_goal = []
+
+    for (supplier, brand), metrics in matched.items():
+        base = brands.get(brand, {})
+        brewery_pct = base.get("goal2026_brewery_pct")
+        kohler_pct = base.get("goal2026_kohler_pct")
+        manager = base.get("brand_manager") or brand_manager_by_supplier.get(supplier)
+        trend = metrics["pct_change"]
+
+        rec = {
+            "brand": brand,
+            "supplier": supplier,
+            "brand_manager": manager,
+            "ce_prior": metrics["ce_prior"],
+            "ce_current": metrics["ce_current"],
+            "trend_pct": trend,
+        }
+
+        if brewery_pct is None and kohler_pct is None:
+            no_goal.append(rec)
+        else:
+            rec["goal_brewery_pct"] = brewery_pct
+            rec["goal_kohler_pct"] = kohler_pct
+            rec["gap_brewery"] = (trend - brewery_pct) if (trend is not None and brewery_pct is not None) else None
+            rec["gap_kohler"] = (trend - kohler_pct) if (trend is not None and kohler_pct is not None) else None
+            with_goal.append(rec)
+
+    for supplier, name, metrics in unclassified:
+        manager = brand_manager_by_supplier.get(supplier)
+        no_goal.append({
+            "brand": name,
+            "supplier": supplier,
+            "brand_manager": manager,
+            "ce_prior": metrics["ce_prior"],
+            "ce_current": metrics["ce_current"],
+            "trend_pct": metrics["pct_change"],
+        })
+
+    with_goal.sort(key=lambda r: (r["gap_brewery"] if r["gap_brewery"] is not None else 999))
+    no_goal.sort(key=lambda r: -r["ce_current"])
+
+    managers = sorted({r["brand_manager"] for r in with_goal + no_goal if r.get("brand_manager")})
+    suppliers = sorted({r["supplier"] for r in with_goal + no_goal if r.get("supplier")})
+
+    behind_brewery = sum(1 for r in with_goal if r.get("gap_brewery") is not None and r["gap_brewery"] < 0)
+    behind_kohler = sum(1 for r in with_goal if r.get("gap_kohler") is not None and r["gap_kohler"] < 0)
+
+    payload = {
+        "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
+                          "See generate.py for methodology.",
+        "meta": {
+            "totalWithGoal": len(with_goal),
+            "totalNoGoal": len(no_goal),
+            "behindBrewery": behind_brewery,
+            "behindKohler": behind_kohler,
+        },
+        "managers": managers,
+        "suppliers": suppliers,
+        "brands": with_goal,
+        "newBrands": no_goal,
+    }
+    OUT.parent.mkdir(exist_ok=True)
+    OUT.write_text(json.dumps(payload, indent=2))
+    print(f"Wrote {len(with_goal)} brands with goals + {len(no_goal)} brands with no 2025 goal/sales to {OUT}")
+    print(f"Behind Brewery goal: {behind_brewery} / {len(with_goal)}   Behind Kohler goal: {behind_kohler} / {len(with_goal)}")
+
+
+if __name__ == "__main__":
+    main()
