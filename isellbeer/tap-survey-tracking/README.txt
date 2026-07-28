@@ -7,6 +7,17 @@ their accounts sorted by tap count, expand an account to see its brands,
 county, most recent visit date, and most recent photo. A District Manager
 filter narrows the whole page to one district's reps at once.
 
+A second tab, "By Brand," regroups the same tap-level records by brand
+family instead of rep: a ranked leaderboard by total taps, expand a brand
+to see its distribution by County/Area, Rep, and City (each with the same
+Ours-vs-Competitor mix). There's no separate brand dropdown -- the
+existing search box already matches brand/brand family text, so typing a
+name there is how you jump to one instead of scrolling a ~300-entry list.
+All the other filters (rep, county, status, DM) apply to this tab too,
+computed client-side from the same RECORDS array as the rep tab (see
+groupByBrand() in the inline script) -- no new data or generate.py changes
+needed for this view.
+
 Files:
   iSellBeer_TAPS_US_THEM_Mediator.xlsx
                  The tap-audit engine's own working file (see the tap-audit

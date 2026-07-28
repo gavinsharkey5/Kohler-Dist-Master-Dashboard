@@ -44,6 +44,12 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .scard .sub{font-size:11px;color:var(--ink-soft);margin-top:5px}
 .scard.us .big{color:var(--us)} .scard.them .big{color:var(--them)}
 
+.tabs{display:flex;gap:8px;margin:0 0 14px}
+.tabbtn{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;padding:9px 16px;border-radius:10px;cursor:pointer;
+  background:var(--card);color:var(--ink-soft);border:1px solid var(--line);transition:.12s}
+.tabbtn:hover{color:var(--ink);border-color:var(--accent)}
+.tabbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#06131c;font-weight:700}
+
 .toolbar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 16px;
   display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow)}
 .tgroup{display:flex;flex-direction:column;gap:5px}
@@ -125,6 +131,22 @@ a:has(>.acct-photo){flex:none;display:block;line-height:0;cursor:pointer}
 .photo-link:hover{text-decoration:underline}
 .photo-empty-note{font-size:11px;color:var(--ink-soft);margin:0 0 8px}
 
+.brand-accounts{display:none;border-top:1px solid var(--line);padding:12px 14px}
+.brand-card.open .brand-accounts{display:block}
+.bd-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 12px}
+@media (max-width:760px){.bd-grid{grid-template-columns:1fr}}
+.bd-panel{background:var(--card2);border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px}
+.bd-panel.full{grid-column:1 / -1}
+.bd-title{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 8px;display:flex;justify-content:space-between}
+.bd-list{max-height:260px;overflow-y:auto}
+.bd-row{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--line-soft);font-size:12.5px}
+.bd-row:last-child{border-bottom:none}
+.bd-row .bd-name{flex:1;min-width:0;font-family:"Space Grotesk";font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bd-row .bd-mix{width:80px;flex:none}
+.bd-row .bd-taps{width:44px;flex:none;text-align:right;font-family:"Space Grotesk";font-weight:700}
+.muted{color:var(--ink-soft)}
+
 .legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 4px 0;font-size:11.5px;color:var(--ink-soft)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend .sw{width:9px;height:9px;border-radius:50%}
@@ -143,13 +165,18 @@ footer p{margin:0 0 8px}
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing &middot; Tap Tracker</p>
   <h1>What's actually on tap, by rep</h1>
-  <p class="lede">Every surveyed tap, grouped by rep &rarr; account &rarr; brand. Each rep's book of accounts is scored Ours vs. Competitor by tap handle; drill into an account to see its brands, when it was last visited, and its most recent photo.</p>
+  <p class="lede">Every surveyed tap, grouped by rep &rarr; account &rarr; brand, or by brand &rarr; county / rep / city. Each rep's book of accounts is scored Ours vs. Competitor by tap handle; drill into an account to see its brands, when it was last visited, and its most recent photo. Switch to <b>By Brand</b> to pick a single brand family and see where it's carried.</p>
   <p class="updated" id="updated"></p>
 </div></div>
 
 <div class="wrap" style="padding-top:20px">
 
   <div class="summary" id="summary"></div>
+
+  <div class="tabs">
+    <button class="tabbtn" id="tabRep" type="button" aria-pressed="true">By Rep</button>
+    <button class="tabbtn" id="tabBrand" type="button" aria-pressed="false">By Brand</button>
+  </div>
 
   <div class="toolbar">
     <div class="tgroup">
@@ -183,6 +210,7 @@ footer p{margin:0 0 8px}
   </div>
 
   <div id="reps"></div>
+  <div id="brands" style="display:none"></div>
 
   <div class="legend">
     <span><span class="sw" style="background:var(--us)"></span> Ours &mdash; carried &amp; in territory</span>
@@ -194,6 +222,7 @@ footer p{margin:0 0 8px}
   <footer>
     <hr>
     <p><b>How to read this:</b> each rep card shows a pie of their book's tap handles &mdash; Ours vs. Competitor (by <b># of Taps</b>, not just row count, so an account with 3 handles of the same brand counts as 3). Expand a rep to see their accounts, sorted by tap count; expand an account to see its individual brands, each tagged Ours or Competitor.</p>
+    <p><b>By Brand tab:</b> the same tap handles, regrouped by brand family instead of rep &mdash; ranked by total taps surveyed. Expand a brand to see its distribution by County/Area, Rep, and City, each with the same Ours-vs-Competitor mix. Use the search box to jump straight to a brand instead of scrolling; any other filter set above (rep, county, status) narrows this view too, so you can e.g. see one rep's distribution of a single brand.</p>
     <p><b>US / THEM source:</b> built from the tap-audit engine's own working file (the <b>iSellBeer Corrected/US vs THEM Mediator</b> workbook), not a flat pre-corrected export. Every brand is checked against Kohler's product catalog and Brand Family Territory rules; where iSellBeer's own survey flag disagrees with that check, the row is marked <span class="flip-badge" style="cursor:default">&#8646; corrected</span> and hovering the badge shows why. <b id="flipCount"></b> were corrected this way.</p>
     <p id="photoNote"><b>Photos:</b> shown per account using the real photo link behind each survey's "Photos" cell &mdash; a plain CSV export of this same report flattens that link to text, so a future refresh from a .csv (instead of the full mediator workbook) would lose photos again.</p>
     <p><b>Visit date:</b> this export is one snapshot in time &mdash; each account appears with a single visit date. Refresh by re-exporting and re-running <code>generate.py</code>; a future export with repeat visits per account would show the most recent one.</p>
@@ -207,9 +236,10 @@ footer p{margin:0 0 8px}
   var DATA = JSON.parse(document.getElementById('tap-data').textContent);
   var RECORDS = DATA.records || [];
 
-  var state = { search:'', rep:'', county:'', status:'', dm:'' };
+  var state = { search:'', rep:'', county:'', status:'', dm:'', tab:'rep' };
   var openReps = {};
   var openAccounts = {};
+  var openBrands = {};
 
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function ce0(n){ return Math.round(n||0).toLocaleString(); }
@@ -294,6 +324,70 @@ footer p{margin:0 0 8px}
     return list;
   }
 
+  function groupByBrand(records){
+    var brands = {}, order = [];
+    function bump(map, name){
+      name = name || '(Unknown)';
+      if(!map[name]) map[name] = { name:name, taps:0, us:0, them:0, unv:0 };
+      var o = map[name];
+      o.taps += this.taps;
+      if(this.status==='US') o.us += this.taps; else if(this.status==='THEM') o.them += this.taps; else o.unv += this.taps;
+    }
+    records.forEach(function(r){
+      var key = (r.brandFamily && r.brandFamily.trim()) || (r.brand && r.brand.trim()) || '(Unspecified)';
+      if(!brands[key]){ brands[key] = { name:key, taps:0, us:0, them:0, unv:0, cities:{}, counties:{}, reps:{}, accounts:{} }; order.push(key); }
+      var b = brands[key];
+      b.taps += r.taps;
+      b.accounts[r.account+'|'+r.dba] = true;
+      bump.call(r, b.cities, r.city);
+      bump.call(r, b.counties, r.county);
+      bump.call(r, b.reps, r.rep);
+      if(r.status==='US') b.us += r.taps; else if(r.status==='THEM') b.them += r.taps; else b.unv += r.taps;
+    });
+    return order.map(function(k){
+      var b = brands[k];
+      b.accountCount = Object.keys(b.accounts).length;
+      b.cityList = Object.values(b.cities).sort(function(x,y){ return y.taps-x.taps; });
+      b.countyList = Object.values(b.counties).sort(function(x,y){ return y.taps-x.taps; });
+      b.repList = Object.values(b.reps).sort(function(x,y){ return y.taps-x.taps; });
+      return b;
+    }).sort(function(a,b){ return b.taps-a.taps; });
+  }
+
+  function breakdownRows(items){
+    if(!items.length) return '<div class="bd-row"><span class="bd-name muted">No taps match these filters.</span></div>';
+    return items.map(function(i){
+      var mix = '<div class="mix-bar">'+
+        (i.us? '<i class="m-us" style="width:'+(i.us/i.taps*100)+'%"></i>':'')+
+        (i.them? '<i class="m-them" style="width:'+(i.them/i.taps*100)+'%"></i>':'')+
+        (i.unv? '<i class="m-unv" style="width:'+(i.unv/i.taps*100)+'%"></i>':'')+
+      '</div>';
+      return '<div class="bd-row"><span class="bd-name">'+esc(i.name)+'</span><span class="bd-mix">'+mix+'</span><span class="bd-taps">'+ce0(i.taps)+'</span></div>';
+    }).join('');
+  }
+
+  function brandHtml(brand){
+    var isOpen = filtersActive() ? true : !!openBrands[brand.name];
+    var pct = function(n){ return brand.taps? Math.round(n/brand.taps*100):0; };
+    var head = '<div class="rep-head" data-brand="'+esc(brand.name)+'">'+
+      '<span class="rep-chev">▸</span>'+
+      '<div class="rep-pie">'+pieSvg(brand.us, brand.them, brand.unv)+'</div>'+
+      '<div class="rep-info"><div class="rep-name">'+esc(brand.name)+'</div>'+
+      '<div class="rep-meta">'+ce0(brand.accountCount)+' accounts &middot; '+ce0(brand.taps)+' taps surveyed</div></div>'+
+      '<div class="rep-stats"><div class="us"><span class="n">'+pct(brand.us)+'%</span><span class="l">Ours</span></div>'+
+      '<div class="them"><span class="n">'+pct(brand.them)+'%</span><span class="l">Competitor</span></div></div>'+
+    '</div>';
+    var body = '';
+    if(isOpen){
+      body = '<div class="brand-accounts" data-brand-scroll="'+esc(brand.name)+'"><div class="bd-grid">'+
+        '<div class="bd-panel"><div class="bd-title"><span>By County / Area</span><span>'+ce0(brand.countyList.length)+'</span></div><div class="bd-list">'+breakdownRows(brand.countyList)+'</div></div>'+
+        '<div class="bd-panel"><div class="bd-title"><span>By Rep</span><span>'+ce0(brand.repList.length)+'</span></div><div class="bd-list">'+breakdownRows(brand.repList)+'</div></div>'+
+        '<div class="bd-panel full"><div class="bd-title"><span>By City</span><span>'+ce0(brand.cityList.length)+'</span></div><div class="bd-list">'+breakdownRows(brand.cityList)+'</div></div>'+
+      '</div></div>';
+    }
+    return '<div class="rep-card brand-card'+(isOpen?' open':'')+'">'+head+body+'</div>';
+  }
+
   var RP_C = 2*Math.PI*40;
   function pieSvg(us, them, unv){
     var total = us+them+unv;
@@ -373,24 +467,13 @@ footer p{margin:0 0 8px}
     return '<div class="rep-card'+(isOpen?' open':'')+'" data-rep-card="'+esc(rep.rep)+'">'+head+body+'</div>';
   }
 
-  function render(){
-    // preserve scroll position: full innerHTML rebuild below would otherwise
-    // reset both the page scroll and any open rep's own account-list scroll
-    var pageScroll = window.scrollY;
-    var innerScrolls = {};
-    document.querySelectorAll('.rep-accounts[data-rep-scroll]').forEach(function(el){
-      innerScrolls[el.dataset.repScroll] = el.scrollTop;
-    });
-
-    var records = filteredRecords();
+  function renderRepsTab(container, records){
     var reps = groupByRep(records);
     var acctCount = 0; reps.forEach(function(r){ acctCount += r.accountsList.length; });
     document.getElementById('resultCount').textContent = ce0(records.length)+' taps across '+ce0(acctCount)+' accounts, '+ce0(reps.length)+' reps';
 
-    var container = document.getElementById('reps');
     if(!reps.length){
       container.innerHTML = '<div class="empty-note">No taps match these filters.</div>';
-      window.scrollTo(0, pageScroll);
       return;
     }
     container.innerHTML = reps.map(repHtml).join('');
@@ -410,6 +493,45 @@ footer p{margin:0 0 8px}
         render();
       });
     });
+  }
+
+  function renderBrandsTab(container, records){
+    var brands = groupByBrand(records);
+    document.getElementById('resultCount').textContent = ce0(records.length)+' taps across '+ce0(brands.length)+' brand families';
+
+    if(!brands.length){
+      container.innerHTML = '<div class="empty-note">No taps match these filters.</div>';
+      return;
+    }
+    container.innerHTML = brands.map(brandHtml).join('');
+
+    container.querySelectorAll('.brand-card .rep-head').forEach(function(el){
+      el.addEventListener('click', function(){
+        var name = el.dataset.brand;
+        openBrands[name] = !openBrands[name];
+        render();
+      });
+    });
+  }
+
+  function render(){
+    // preserve scroll position: full innerHTML rebuild below would otherwise
+    // reset both the page scroll and any open rep's own account-list scroll
+    var pageScroll = window.scrollY;
+    var innerScrolls = {};
+    document.querySelectorAll('.rep-accounts[data-rep-scroll]').forEach(function(el){
+      innerScrolls[el.dataset.repScroll] = el.scrollTop;
+    });
+
+    var records = filteredRecords();
+    var repsEl = document.getElementById('reps'), brandsEl = document.getElementById('brands');
+    if(state.tab === 'brand'){
+      repsEl.style.display = 'none'; brandsEl.style.display = '';
+      renderBrandsTab(brandsEl, records);
+    } else {
+      brandsEl.style.display = 'none'; repsEl.style.display = '';
+      renderRepsTab(repsEl, records);
+    }
 
     document.querySelectorAll('.rep-accounts[data-rep-scroll]').forEach(function(el){
       var saved = innerScrolls[el.dataset.repScroll];
@@ -418,17 +540,28 @@ footer p{margin:0 0 8px}
     window.scrollTo(0, pageScroll);
   }
 
+  function setTab(tab){
+    state.tab = tab;
+    document.getElementById('tabRep').setAttribute('aria-pressed', tab==='rep');
+    document.getElementById('tabBrand').setAttribute('aria-pressed', tab==='brand');
+    document.getElementById('expandAll').textContent = tab==='brand' ? 'Expand all brands' : 'Expand all reps';
+    render();
+  }
+
+  document.getElementById('tabRep').addEventListener('click', function(){ setTab('rep'); });
+  document.getElementById('tabBrand').addEventListener('click', function(){ setTab('brand'); });
   document.getElementById('search').addEventListener('input', function(e){ state.search=e.target.value; render(); });
   document.getElementById('dmFilter').addEventListener('change', function(e){ state.dm=e.target.value; render(); });
   document.getElementById('repFilter').addEventListener('change', function(e){ state.rep=e.target.value; render(); });
   document.getElementById('countyFilter').addEventListener('change', function(e){ state.county=e.target.value; render(); });
   document.getElementById('statusFilter').addEventListener('change', function(e){ state.status=e.target.value; render(); });
   document.getElementById('expandAll').addEventListener('click', function(){
-    RECORDS.forEach(function(r){ openReps[r.rep]=true; });
+    if(state.tab === 'brand'){ groupByBrand(RECORDS).forEach(function(b){ openBrands[b.name]=true; }); }
+    else { RECORDS.forEach(function(r){ openReps[r.rep]=true; }); }
     render();
   });
   document.getElementById('collapseAll').addEventListener('click', function(){
-    openReps = {}; openAccounts = {};
+    openReps = {}; openAccounts = {}; openBrands = {};
     render();
   });
 
