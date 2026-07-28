@@ -64,18 +64,20 @@
 
   /* table */
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;width:100%;min-width:1420px}
+  table{border-collapse:collapse;width:100%;table-layout:fixed}
   .grp-brewery{background:rgba(91,141,239,.07)}
   .grp-kohler{background:rgba(244,184,62,.07)}
   th.grp-first,td.grp-first{border-left:2px solid var(--line)}
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
-  thead th{position:sticky;top:0;background:#12141B;text-align:left;font-size:11px;font-weight:600;color:var(--ink-soft);
-    text-transform:uppercase;letter-spacing:.04em;padding:10px 11px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th{position:sticky;top:0;background:#12141B;text-align:left;font-size:10px;font-weight:600;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.03em;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
+    overflow:hidden;text-overflow:ellipsis}
   thead th:hover{color:var(--ink)}
   thead th.num,td.num{text-align:right}
-  thead th .arrow{opacity:.5;font-size:9px;margin-left:3px}
-  tbody td{padding:8px 11px;border-bottom:1px solid var(--line-soft);font-size:12.8px;white-space:nowrap}
+  thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
+  tbody td{padding:6px 6px;border-bottom:1px solid var(--line-soft);font-size:11.8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  tbody td.wraptext{white-space:normal;word-break:break-word}
   tbody tr:hover td{background:var(--card-h)}
   tbody tr.unclassified td{opacity:.72}
   .tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
@@ -86,8 +88,8 @@
   .delta.pos{color:var(--good)}
   .delta.neg{color:var(--bad)}
   .delta.flat{color:var(--ink-mute)}
-  .pctinput{width:64px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
-    font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:12.5px;text-align:right;border-radius:6px;padding:4px 6px}
+  .pctinput{width:100%;max-width:56px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
+    font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:11.5px;text-align:right;border-radius:6px;padding:3px 5px}
   .pctinput.kohler{color:var(--kohler)}
   .pctinput:focus{outline:2px solid var(--brewery);outline-offset:1px}
   .pctinput.kohler:focus{outline-color:var(--kohler)}
@@ -141,6 +143,12 @@
 
     <div class="tablewrap">
       <table>
+        <colgroup>
+          <col style="width:13%"><col style="width:12%"><col style="width:7%">
+          <col style="width:7%"><col style="width:7%"><col style="width:5%"><col style="width:7%">
+          <col style="width:6%"><col style="width:6%"><col style="width:9%">
+          <col style="width:6%"><col style="width:6%"><col style="width:9%">
+        </colgroup>
         <thead><tr id="theadRow"></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -191,16 +199,16 @@ const COLS = [
   {key:'supplier', label:'Supplier', kind:'text'},
   {key:'brand', label:'Brand', kind:'text'},
   {key:'segment', label:'Segment', kind:'text'},
-  {key:'ce_2025', label:'2025 Finish', kind:'ce'},
-  {key:'ce_2026_ytd', label:'2026 YTD', kind:'ce'},
+  {key:'ce_2025', label:"'25 Finish", kind:'ce'},
+  {key:'ce_2026_ytd', label:"'26 YTD", kind:'ce'},
   {key:'growth_2026_ce', label:'YoY', kind:'pct'},
-  {key:'ce_2026_proj_finish', label:'2026 Proj. Finish', kind:'ce'},
-  {key:'vsBreweryGoal', label:'vs Brewery Goal', kind:'deltapct', group:'brewery', first:true},
-  {key:'goal2027_brewery_pct', label:'2027 Brewery %', kind:'editpct', group:'brewery'},
-  {key:'ce2027Brewery', label:'2027 CE Target (Brewery)', kind:'ce-strong', group:'brewery'},
-  {key:'vsKohlerGoal', label:'vs Kohler Goal', kind:'deltapct', group:'kohler', first:true},
-  {key:'goal2027_kohler_pct', label:'2027 Kohler %', kind:'editpct', group:'kohler'},
-  {key:'ce2027Kohler', label:'2027 CE Target (Kohler)', kind:'ce-strong', group:'kohler'},
+  {key:'ce_2026_proj_finish', label:"'26 Proj.", kind:'ce'},
+  {key:'vsBreweryGoal', label:'vs Goal', full:'vs Brewery Goal', kind:'deltapct', group:'brewery', first:true},
+  {key:'goal2027_brewery_pct', label:"'27 %", full:'2027 Brewery %', kind:'editpct', group:'brewery'},
+  {key:'ce2027Brewery', label:'CE Target', full:'2027 CE Target (Brewery)', kind:'ce-strong', group:'brewery'},
+  {key:'vsKohlerGoal', label:'vs Goal', full:'vs Kohler Goal', kind:'deltapct', group:'kohler', first:true},
+  {key:'goal2027_kohler_pct', label:"'27 %", full:'2027 Kohler %', kind:'editpct', group:'kohler'},
+  {key:'ce2027Kohler', label:'CE Target', full:'2027 CE Target (Kohler)', kind:'ce-strong', group:'kohler'},
 ];
 
 function derive(r){
@@ -255,6 +263,7 @@ function renderHead(){
     if (c.group) th.classList.add('grp-'+c.group);
     if (c.first) th.classList.add('grp-first');
     th.textContent = c.label;
+    th.title = c.full || c.label;
     if (SORT.key===c.key){
       const a = document.createElement('span'); a.className='arrow'; a.textContent = SORT.dir==='asc'?'▲':'▼';
       th.appendChild(a);
@@ -294,9 +303,9 @@ function renderRows(rows){
     tr.dataset.key = r._key;
     if (!r.in_taxonomy) tr.classList.add('unclassified');
 
-    const tdSupplier = document.createElement('td'); tdSupplier.innerHTML = `<span class="suppliername">${r.supplier||'—'}</span>`;
-    const tdBrand = document.createElement('td'); tdBrand.innerHTML = `<span class="brandname">${r.brand}</span>${r.in_taxonomy?'':'<span class="tag">New</span>'}`;
-    const tdSeg = document.createElement('td'); tdSeg.textContent = r.segment || (r.in_taxonomy?'':'Unclassified');
+    const tdSupplier = document.createElement('td'); tdSupplier.className='wraptext'; tdSupplier.innerHTML = `<span class="suppliername">${r.supplier||'—'}</span>`;
+    const tdBrand = document.createElement('td'); tdBrand.className='wraptext'; tdBrand.innerHTML = `<span class="brandname">${r.brand}</span>${r.in_taxonomy?'':'<span class="tag">New</span>'}`;
+    const tdSeg = document.createElement('td'); tdSeg.className='wraptext'; tdSeg.textContent = r.segment || (r.in_taxonomy?'':'Unclassified');
     const tdF25 = document.createElement('td'); tdF25.className='num'; tdF25.textContent = fmtCE(r.ce_2025);
     const tdYtd = document.createElement('td'); tdYtd.className='num'; tdYtd.textContent = fmtCE(r.ce_2026_ytd);
     const tdYoY = document.createElement('td'); tdYoY.className='num';
