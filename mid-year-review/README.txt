@@ -19,9 +19,18 @@ are local to the browser only (not saved back); "Reset edited goals"
 reverts everything to the workbook's original values.
 
 A second tab, "New in 2026", lists brands with zero prior-year sales
-AND no 2026 goal in the workbook -- almost always brand-new launches
-(e.g. Carbliss, Monaco, Noca) that the plan was built before they
-existed. There's nothing to compare them against yet.
+(regardless of whether a goal exists for them in the workbook -- per
+Kohler, 2026-07-28, a handful of brands do have a goal % on file
+despite zero 2025 volume, e.g. Viva Tequila Seltzer, Pop Sips,
+Newcastle; those move here too since there's no real prior-year
+baseline to measure a trend against). Almost always brand-new
+launches (e.g. Carbliss, Monaco, Noca) the plan was built before they
+existed.
+
+Shipyard, Jersey Girl, Soda Birch, and Whole Hog are excluded from the
+dashboard entirely (per Kohler, 2026-07-28) -- negative/near-zero
+credit-adjustment entries in the RDE export, not real placements. See
+EXCLUDED_BRANDS in generate.py.
 
 Files:
   2026_planning_source.xlsx  The 2026 Planning by Brand workbook --

@@ -1,10 +1,10 @@
 {
   "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.",
   "meta": {
-    "totalWithGoal": 282,
-    "totalNoGoal": 54,
-    "behindBrewery": 123,
-    "behindKohler": 143
+    "totalWithGoal": 261,
+    "totalNoGoal": 71,
+    "behindBrewery": 120,
+    "behindKohler": 128
   },
   "managers": [
     "Chris McCrohan",
@@ -79,10 +79,8 @@
     "Heineken USA",
     "Hofbrauhaus USA",
     "Hornell Brewing Company",
-    "Hygrade Beverage",
     "Island Brands USA",
     "Ithaca",
-    "Jersey Girl",
     "Jerzey Jungle LLC",
     "Kimo Spirits",
     "Kirin Ichiban",
@@ -112,7 +110,6 @@
     "Paulaner",
     "Phusion Projects",
     "Pio Imports",
-    "Point Brewing",
     "Power Distribution LLC",
     "Prestige",
     "Pride & Clarke",
@@ -147,34 +144,6 @@
     "XYZ Beverage"
   ],
   "brands": [
-    {
-      "brand": "Viva Tequila Seltzer",
-      "supplier": "Viva Beverages Inc",
-      "brand_manager": "Chris Politano",
-      "ce_prior": 0.0,
-      "ce_current": 1311.33,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 148,
-      "proj_finish_2026_ce": 1607.33,
-      "goal_brewery_pct": 20,
-      "goal_kohler_pct": 20,
-      "gap_brewery": -19.0,
-      "gap_kohler": -19.0
-    },
-    {
-      "brand": "Pop Sips",
-      "supplier": "Passion Tree Co",
-      "brand_manager": "Chris Politano",
-      "ce_prior": 0.0,
-      "ce_current": 151.88,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 159.375,
-      "proj_finish_2026_ce": 470.63,
-      "goal_brewery_pct": 15,
-      "goal_kohler_pct": 15,
-      "gap_brewery": -14.0,
-      "gap_kohler": -14.0
-    },
     {
       "brand": "Brewt's",
       "supplier": "Brewt's LLC",
@@ -916,20 +885,6 @@
       "goal_kohler_pct": 0,
       "gap_brewery": -0.18319999999999997,
       "gap_kohler": -0.22219999999999998
-    },
-    {
-      "brand": "Whole Hog",
-      "supplier": "Point Brewing",
-      "brand_manager": "Steve Halloran",
-      "ce_prior": -52.78,
-      "ce_current": -62.89,
-      "trend_pct": -0.1916,
-      "finish_2025_ce": 2566.44436,
-      "proj_finish_2026_ce": 2054.4909726240003,
-      "goal_brewery_pct": -0.01,
-      "goal_kohler_pct": -0.01,
-      "gap_brewery": -0.18159999999999998,
-      "gap_kohler": -0.18159999999999998
     },
     {
       "brand": "Schlitz Malt",
@@ -3060,20 +3015,6 @@
       "gap_kohler": 1.1429000000000002
     },
     {
-      "brand": "Newcastle",
-      "supplier": "Heineken USA",
-      "brand_manager": "Perry Calderone",
-      "ce_prior": 0.0,
-      "ce_current": 303.56,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 62,
-      "proj_finish_2026_ce": 427.56,
-      "goal_brewery_pct": 0,
-      "goal_kohler_pct": 0,
-      "gap_brewery": 1.0,
-      "gap_kohler": 1.0
-    },
-    {
       "brand": "Baptist Wit",
       "supplier": "Global Beer",
       "brand_manager": "Perry Calderone",
@@ -3172,62 +3113,6 @@
       "gap_kohler": 2.6296
     },
     {
-      "brand": "Monte Carlo",
-      "supplier": "Famosa",
-      "brand_manager": "Tom Gibbons",
-      "ce_prior": 0.0,
-      "ce_current": 0.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": -6,
-      "proj_finish_2026_ce": -12.0,
-      "goal_brewery_pct": -1,
-      "goal_kohler_pct": null,
-      "gap_brewery": 2.0,
-      "gap_kohler": null
-    },
-    {
-      "brand": "Superior Cerveza",
-      "supplier": "US Beverage",
-      "brand_manager": "Steve Halloran",
-      "ce_prior": 0.0,
-      "ce_current": 0.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 0,
-      "proj_finish_2026_ce": 0.0,
-      "goal_brewery_pct": -1,
-      "goal_kohler_pct": -1,
-      "gap_brewery": 2.0,
-      "gap_kohler": 2.0
-    },
-    {
-      "brand": "Jersey Girl",
-      "supplier": "Jersey Girl",
-      "brand_manager": null,
-      "ce_prior": -12.09,
-      "ce_current": 0.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": -12.090268,
-      "proj_finish_2026_ce": -0.000536000000000314,
-      "goal_brewery_pct": -1,
-      "goal_kohler_pct": -1,
-      "gap_brewery": 2.0,
-      "gap_kohler": 2.0
-    },
-    {
-      "brand": "Soda Birch",
-      "supplier": "Hygrade Beverage",
-      "brand_manager": null,
-      "ce_prior": -6.89,
-      "ce_current": 0.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": -6.888889,
-      "proj_finish_2026_ce": 0.002221999999999724,
-      "goal_brewery_pct": -1,
-      "goal_kohler_pct": -1,
-      "gap_brewery": 2.0,
-      "gap_kohler": 2.0
-    },
-    {
       "brand": "Carib",
       "supplier": "Total Beverage Solutions",
       "brand_manager": "Dan Downing",
@@ -3310,20 +3195,6 @@
       "goal_kohler_pct": -0.06,
       "gap_brewery": null,
       "gap_kohler": 0.020199999999999996
-    },
-    {
-      "brand": "Shipyard",
-      "supplier": "Total Beverage Solutions",
-      "brand_manager": "Dan Downing",
-      "ce_prior": -31.33,
-      "ce_current": -23.87,
-      "trend_pct": 0.23829999999999998,
-      "finish_2025_ce": 1889.70829,
-      "proj_finish_2026_ce": 2354.951714507,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 0,
-      "gap_brewery": null,
-      "gap_kohler": 0.23829999999999998
     },
     {
       "brand": "Honey Brown",
@@ -3508,20 +3379,6 @@
       "gap_kohler": -0.41579999999999995
     },
     {
-      "brand": "Fiveislands",
-      "supplier": "Modern Infusions",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 659.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 315,
-      "proj_finish_2026_ce": 1289.0,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 3,
-      "gap_brewery": null,
-      "gap_kohler": -2.0
-    },
-    {
       "brand": "Hi5",
       "supplier": "Modern Infusions",
       "brand_manager": "Jason Koo",
@@ -3704,48 +3561,6 @@
       "gap_kohler": -0.2444
     },
     {
-      "brand": "Bella Ray",
-      "supplier": "Bella Ray Beverage",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 131.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 155,
-      "proj_finish_2026_ce": 441.0,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 3,
-      "gap_brewery": null,
-      "gap_kohler": -2.0
-    },
-    {
-      "brand": "Brio",
-      "supplier": "Dreamz Invenstments LLC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 111.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 55,
-      "proj_finish_2026_ce": 221.0,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 80,
-      "gap_brewery": null,
-      "gap_kohler": -79.0
-    },
-    {
-      "brand": "Alte Beverage",
-      "supplier": "Alte Beverage",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 107.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 39,
-      "proj_finish_2026_ce": 185.0,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 10,
-      "gap_brewery": null,
-      "gap_kohler": -9.0
-    },
-    {
       "brand": "LoDo",
       "supplier": "Lodo Brands",
       "brand_manager": "Jason Koo",
@@ -3774,62 +3589,6 @@
       "gap_kohler": -0.3156
     },
     {
-      "brand": "Desquite",
-      "supplier": "Licores Artesanales",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 38.58,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 9.5,
-      "proj_finish_2026_ce": 57.58,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 4,
-      "gap_brewery": null,
-      "gap_kohler": -3.0
-    },
-    {
-      "brand": "Castellani Etichetta Gialla",
-      "supplier": "Savorian INC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 22.19,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 33.814016,
-      "proj_finish_2026_ce": 89.818032,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 15,
-      "gap_brewery": null,
-      "gap_kohler": -14.0
-    },
-    {
-      "brand": "Les Domaniales Rose D' Anjou Loire",
-      "supplier": "Savorian INC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 6.34,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 3.170064,
-      "proj_finish_2026_ce": 12.680128,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 15,
-      "gap_brewery": null,
-      "gap_kohler": -14.0
-    },
-    {
-      "brand": "Stoney River",
-      "supplier": "Savorian INC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 3.17,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 9.510192,
-      "proj_finish_2026_ce": 22.190384,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 20,
-      "gap_brewery": null,
-      "gap_kohler": -19.0
-    },
-    {
       "brand": "Dad Grass",
       "supplier": "Dad Grass",
       "brand_manager": "Jason Koo",
@@ -3856,20 +3615,6 @@
       "goal_kohler_pct": -1,
       "gap_brewery": null,
       "gap_kohler": 3.8333
-    },
-    {
-      "brand": "Ecaana",
-      "supplier": "Riviera Imports",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 14.79,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 12.680256,
-      "proj_finish_2026_ce": 40.150512,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 15,
-      "gap_brewery": null,
-      "gap_kohler": -14.0
     },
     {
       "brand": "48 Blocks",
@@ -3954,48 +3699,6 @@
       "goal_kohler_pct": 5,
       "gap_brewery": null,
       "gap_kohler": -6.0
-    },
-    {
-      "brand": "Guaname Rompope",
-      "supplier": "Primos Imports LLC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": -0.95,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 0.946353,
-      "proj_finish_2026_ce": 0.942706,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 2.5,
-      "gap_brewery": null,
-      "gap_kohler": -1.5
-    },
-    {
-      "brand": "Paradisse",
-      "supplier": "Paradisse Spirits LLC",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 6.0,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 3.499986,
-      "proj_finish_2026_ce": 12.999972,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 5,
-      "gap_brewery": null,
-      "gap_kohler": -4.0
-    },
-    {
-      "brand": "Waterloo Gin",
-      "supplier": "Waterloo Gin",
-      "brand_manager": "Jason Koo",
-      "ce_prior": 0.0,
-      "ce_current": 1.08,
-      "trend_pct": 1.0,
-      "finish_2025_ce": 18.999988,
-      "proj_finish_2026_ce": 39.079975999999995,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 4,
-      "gap_brewery": null,
-      "gap_kohler": -3.0
     },
     {
       "brand": "Mota'Lada",
@@ -4124,12 +3827,32 @@
       "trend_pct": 0.2681
     },
     {
+      "brand": "Viva Tequila Seltzer",
+      "supplier": "Viva Beverages Inc",
+      "brand_manager": "Chris Politano",
+      "ce_prior": 0.0,
+      "ce_current": 1311.33,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 148,
+      "proj_finish_2026_ce": 1607.33
+    },
+    {
       "brand": "Sinless Vodka Cocktail",
       "supplier": "Boston Beer Company",
       "brand_manager": "Chris Politano",
       "ce_prior": 0.0,
       "ce_current": 842.0,
       "trend_pct": 1.0
+    },
+    {
+      "brand": "Fiveislands",
+      "supplier": "Modern Infusions",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 659.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 315,
+      "proj_finish_2026_ce": 1289.0
     },
     {
       "brand": "Ole",
@@ -4180,6 +3903,16 @@
       "trend_pct": -0.08810000000000001
     },
     {
+      "brand": "Newcastle",
+      "supplier": "Heineken USA",
+      "brand_manager": "Perry Calderone",
+      "ce_prior": 0.0,
+      "ce_current": 303.56,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 62,
+      "proj_finish_2026_ce": 427.56
+    },
+    {
       "brand": "Coors 0.0",
       "supplier": "MolsonCoors Beverage Company",
       "brand_manager": "Dan Downing",
@@ -4208,6 +3941,26 @@
       "proj_finish_2026_ce": 345.18115394
     },
     {
+      "brand": "Pop Sips",
+      "supplier": "Passion Tree Co",
+      "brand_manager": "Chris Politano",
+      "ce_prior": 0.0,
+      "ce_current": 151.88,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 159.375,
+      "proj_finish_2026_ce": 470.63
+    },
+    {
+      "brand": "Bella Ray",
+      "supplier": "Bella Ray Beverage",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 131.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 155,
+      "proj_finish_2026_ce": 441.0
+    },
+    {
       "brand": "Caravella",
       "supplier": "Caravella Inc",
       "brand_manager": "Jason Koo",
@@ -4216,6 +3969,26 @@
       "trend_pct": -0.43329999999999996,
       "finish_2025_ce": 348.257904,
       "proj_finish_2026_ce": 197.3488501968
+    },
+    {
+      "brand": "Brio",
+      "supplier": "Dreamz Invenstments LLC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 111.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 55,
+      "proj_finish_2026_ce": 221.0
+    },
+    {
+      "brand": "Alte Beverage",
+      "supplier": "Alte Beverage",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 107.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 39,
+      "proj_finish_2026_ce": 185.0
     },
     {
       "brand": "Chateau Diana",
@@ -4270,6 +4043,16 @@
       "trend_pct": 1.0
     },
     {
+      "brand": "Desquite",
+      "supplier": "Licores Artesanales",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 38.58,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 9.5,
+      "proj_finish_2026_ce": 57.58
+    },
+    {
       "brand": "Surface Brands",
       "supplier": "Oceano",
       "brand_manager": "Jason Koo",
@@ -4294,6 +4077,16 @@
       "trend_pct": 1.0,
       "finish_2025_ce": 29.652784,
       "proj_finish_2026_ce": 81.545568
+    },
+    {
+      "brand": "Castellani Etichetta Gialla",
+      "supplier": "Savorian INC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 22.19,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 33.814016,
+      "proj_finish_2026_ce": 89.818032
     },
     {
       "brand": "Lo Secco",
@@ -4334,6 +4127,16 @@
       "ce_prior": 0.0,
       "ce_current": 16.33,
       "trend_pct": 1.0
+    },
+    {
+      "brand": "Ecaana",
+      "supplier": "Riviera Imports",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 14.79,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 12.680256,
+      "proj_finish_2026_ce": 40.150512
     },
     {
       "brand": "Citizen Cider",
@@ -4404,6 +4207,16 @@
       "trend_pct": 1.0
     },
     {
+      "brand": "Les Domaniales Rose D' Anjou Loire",
+      "supplier": "Savorian INC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 6.34,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 3.170064,
+      "proj_finish_2026_ce": 12.680128
+    },
+    {
       "brand": "American Fruit",
       "supplier": "American Fruits",
       "brand_manager": "Tom Gibbons",
@@ -4412,6 +4225,16 @@
       "trend_pct": 0.2,
       "finish_2025_ce": 10.5,
       "proj_finish_2026_ce": 12.6
+    },
+    {
+      "brand": "Paradisse",
+      "supplier": "Paradisse Spirits LLC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 6.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 3.499986,
+      "proj_finish_2026_ce": 12.999972
     },
     {
       "brand": "Bodega Quarters",
@@ -4430,6 +4253,16 @@
       "trend_pct": 1.0,
       "finish_2025_ce": 3,
       "proj_finish_2026_ce": 9.5
+    },
+    {
+      "brand": "Stoney River",
+      "supplier": "Savorian INC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 3.17,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 9.510192,
+      "proj_finish_2026_ce": 22.190384
     },
     {
       "brand": "Charro",
@@ -4456,6 +4289,16 @@
       "ce_prior": 0.0,
       "ce_current": 2.0,
       "trend_pct": 1.0
+    },
+    {
+      "brand": "Waterloo Gin",
+      "supplier": "Waterloo Gin",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": 1.08,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 18.999988,
+      "proj_finish_2026_ce": 39.079975999999995
     },
     {
       "brand": "Overstone",
@@ -4501,6 +4344,26 @@
       "brand": "Coney Island",
       "supplier": "Boston Beer Company",
       "brand_manager": "Chris Politano",
+      "ce_prior": 0.0,
+      "ce_current": 0.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 0,
+      "proj_finish_2026_ce": 0.0
+    },
+    {
+      "brand": "Monte Carlo",
+      "supplier": "Famosa",
+      "brand_manager": "Tom Gibbons",
+      "ce_prior": 0.0,
+      "ce_current": 0.0,
+      "trend_pct": 1.0,
+      "finish_2025_ce": -6,
+      "proj_finish_2026_ce": -12.0
+    },
+    {
+      "brand": "Superior Cerveza",
+      "supplier": "US Beverage",
+      "brand_manager": "Steve Halloran",
       "ce_prior": 0.0,
       "ce_current": 0.0,
       "trend_pct": 1.0,
@@ -4566,6 +4429,16 @@
       "trend_pct": -1.0,
       "finish_2025_ce": 10,
       "proj_finish_2026_ce": 0.0
+    },
+    {
+      "brand": "Guaname Rompope",
+      "supplier": "Primos Imports LLC",
+      "brand_manager": "Jason Koo",
+      "ce_prior": 0.0,
+      "ce_current": -0.95,
+      "trend_pct": 1.0,
+      "finish_2025_ce": 0.946353,
+      "proj_finish_2026_ce": 0.942706
     }
   ]
 }

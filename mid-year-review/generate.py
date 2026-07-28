@@ -191,12 +191,20 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
     return results, unclassified
 
 
+# Excluded outright (per Kohler, 2026-07-28) -- these are negative/near-zero
+# credit-adjustment entries in the RDE export, not real current placements.
+EXCLUDED_BRANDS = {"shipyard", "jersey girl", "soda birch", "whole hog"}
+
+
 def main():
     brands, brands_lower, supplier_names, brand_manager_by_supplier = load_workbook_taxonomy()
     print(f"Loaded {len(brands)} canonical brand families with 2026 goals from the workbook.")
 
     matched, unclassified = parse_ytd_csv(CSV_YTD, brands, brands_lower, supplier_names)
     print(f"Matched {len(matched)} brand families in {CSV_YTD.name}; {len(unclassified)} unmatched (new SKUs).")
+
+    matched = {k: v for k, v in matched.items() if k[1].lower() not in EXCLUDED_BRANDS}
+    unclassified = [u for u in unclassified if u[1].lower() not in EXCLUDED_BRANDS]
 
     with_goal = []
     no_goal = []
@@ -230,7 +238,11 @@ def main():
             "proj_finish_2026_ce": proj_finish,
         }
 
-        if brewery_pct is None and kohler_pct is None:
+        # No goal at all, OR zero recorded sales in the 2025 comparable
+        # window -- either way there's no real prior-year baseline to
+        # measure a 2026 trend against, so it belongs on the New tab
+        # rather than the main vs-goal table (per Kohler, 2026-07-28).
+        if (brewery_pct is None and kohler_pct is None) or ce_prior == 0:
             no_goal.append(rec)
         else:
             rec["goal_brewery_pct"] = brewery_pct
