@@ -89,6 +89,7 @@ def load_workbook_taxonomy():
             continue
 
         manager = wsv.cell(r, 3).value
+        finish_2025 = wsv.cell(r, 10).value
         brewery_pct = wsv.cell(r, 11).value
         kohler_pct = wsv.cell(r, 14).value
 
@@ -97,6 +98,7 @@ def load_workbook_taxonomy():
             "brand": name,
             "supplier": (str(supplier).strip() if supplier else None),
             "brand_manager": manager,
+            "finish_2025_ce": finish_2025 if isinstance(finish_2025, (int, float)) else None,
             "goal2026_brewery_pct": brewery_pct if isinstance(brewery_pct, (int, float)) else None,
             "goal2026_kohler_pct": kohler_pct if isinstance(kohler_pct, (int, float)) else None,
         }
@@ -203,16 +205,29 @@ def main():
         base = brands.get(brand, {})
         brewery_pct = base.get("goal2026_brewery_pct")
         kohler_pct = base.get("goal2026_kohler_pct")
+        finish_2025 = base.get("finish_2025_ce")
         manager = base.get("brand_manager") or brand_manager_by_supplier.get(supplier)
         trend = metrics["pct_change"]
+        ce_prior, ce_current = metrics["ce_prior"], metrics["ce_current"]
+
+        # 2026 projected finish = current YTD + (2025's full-year finish minus
+        # its own YTD-comparable slice, i.e. the "remainder" period) grown at
+        # this year's YTD trend rate. Same method used in ../2027-planning/.
+        if finish_2025 is not None:
+            remainder_2025 = finish_2025 - ce_prior
+            proj_finish = ce_current + remainder_2025 * (1 + (trend or 0))
+        else:
+            proj_finish = None
 
         rec = {
             "brand": brand,
             "supplier": supplier,
             "brand_manager": manager,
-            "ce_prior": metrics["ce_prior"],
-            "ce_current": metrics["ce_current"],
+            "ce_prior": ce_prior,
+            "ce_current": ce_current,
             "trend_pct": trend,
+            "finish_2025_ce": finish_2025,
+            "proj_finish_2026_ce": proj_finish,
         }
 
         if brewery_pct is None and kohler_pct is None:

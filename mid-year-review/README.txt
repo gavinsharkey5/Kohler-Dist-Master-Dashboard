@@ -6,7 +6,17 @@ For every brand family, compares its current year-over-year trend
 planning workbook -- so brand managers can see at a glance who's
 ahead of, on, or behind pace, and recalibrate for the back half of
 the year. Rows are color-coded (red = behind goal, green = ahead/on
-pace).
+pace). Brewery-goal columns are amber, Kohler-goal columns are blue.
+
+Shows both years' comparable-YTD case volumes plus a 2026 Projected
+Finish (this year's YTD case count + the 2025 remainder-of-year grown
+at this year's YTD trend rate -- same method as ../2027-planning/).
+Each brand's Brewery Goal % and Kohler Goal % is editable right in the
+table -- typing a new value recalculates that track's Goal CE and Gap
+live (and the KPI tiles above), so a manager can test "what if we
+recalibrated this brand's goal" without touching the workbook. Edits
+are local to the browser only (not saved back); "Reset edited goals"
+reverts everything to the workbook's original values.
 
 A second tab, "New in 2026", lists brands with zero prior-year sales
 AND no 2026 goal in the workbook -- almost always brand-new launches
