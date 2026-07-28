@@ -137,13 +137,24 @@
     <section class="panel">
       <h2>By brand family</h2>
       <p class="desc">Click a column header to sort. Rows are color-coded where a brand is trending behind its
-        goal &mdash; red for behind, green for ahead or on pace. Brewery-goal columns are tinted blue, Kohler-goal
-        columns tinted gold.</p>
+        goal &mdash; red for behind, green for ahead or on pace. Brewery-goal columns are tinted amber, Kohler-goal
+        columns tinted blue.</p>
       <div class="legend">
         <span class="item"><i class="sw" style="background:var(--brewery)"></i>Brewery goal columns</span>
         <span class="item"><i class="sw" style="background:var(--kohler)"></i>Kohler goal columns</span>
         <span class="item"><i class="sw" style="background:var(--bad)"></i>Behind goal</span>
         <span class="item"><i class="sw" style="background:var(--good)"></i>Ahead / on pace</span>
+      </div>
+
+      <div class="notice">
+        <b>How "'26 Proj." is calculated:</b> 2026 YTD cases + (2025's actual full-year finish minus its own
+        comparable-YTD slice, i.e. the "2025 remainder") grown at this brand's current 2026 YTD trend rate. In
+        plain terms: it assumes the rest of 2026 performs like this year has so far, relative to how the back
+        half of 2025 actually went for this brand.
+        <br><br>
+        <b>How "Gap" is calculated:</b> Trend % minus that track's Goal %. A negative Gap (red) means the brand
+        is trending behind that goal; zero or positive (green) means it's on pace or ahead. Editing a Goal %
+        recalculates its Gap (and Goal CE) immediately.
       </div>
 
       <div class="controls">
