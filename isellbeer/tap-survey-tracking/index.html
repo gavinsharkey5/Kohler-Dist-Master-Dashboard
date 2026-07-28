@@ -34,8 +34,7 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .updated{color:var(--ink-soft);font-size:11.5px;margin:10px 0 0}
 .updated .warn{color:var(--unv)}
 
-.summary{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:20px 0}
-@media (max-width:1080px){.summary{grid-template-columns:repeat(3,1fr)}}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0}
 @media (max-width:640px){.summary{grid-template-columns:repeat(2,1fr)}}
 .scard{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
   padding:14px 16px;box-shadow:var(--shadow)}
@@ -105,8 +104,13 @@ a:has(>.acct-photo){flex:none;display:block;line-height:0;cursor:pointer}
 .mix-bar .m-us{background:var(--us)} .mix-bar .m-them{background:var(--them)} .mix-bar .m-unv{background:var(--unv)}
 .acct-taps{width:56px;flex:none;text-align:right;font-family:"Space Grotesk";font-weight:700;font-size:14px}
 .acct-taps small{display:block;font-family:"Inter";font-weight:400;font-size:9.5px;color:var(--ink-soft);text-transform:uppercase}
-.acct-visited{width:82px;flex:none;text-align:right;font-size:11px;color:var(--ink-soft)}
+.acct-visited{width:96px;flex:none;text-align:right;font-size:11px;color:var(--ink-soft)}
 .acct-visited .l{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.05em}
+.refresh-badge{display:inline-block;font-family:"Space Grotesk";font-size:9px;font-weight:700;letter-spacing:.03em;
+  text-transform:uppercase;padding:2px 6px;border-radius:999px;margin-top:3px;white-space:nowrap}
+.refresh-badge.overdue{background:var(--them-soft);color:var(--them)}
+.refresh-badge.soon{background:var(--unv-soft);color:var(--unv)}
+.rep-meta .refresh-badge{margin-top:0;margin-left:6px;vertical-align:1px}
 @media (max-width:640px){.acct-visited{display:none}}
 
 .acct-brands{display:none;border-top:1px solid var(--line-soft);padding:8px 12px 12px 60px;overflow-x:auto}
@@ -223,6 +227,7 @@ footer p{margin:0 0 8px}
     <hr>
     <p><b>How to read this:</b> each rep card shows a pie of their book's tap handles &mdash; Ours vs. Competitor (by <b># of Taps</b>, not just row count, so an account with 3 handles of the same brand counts as 3). Expand a rep to see their accounts, sorted by tap count; expand an account to see its individual brands, each tagged Ours or Competitor.</p>
     <p><b>By Brand tab:</b> the same tap handles, regrouped by brand family instead of rep &mdash; ranked by total taps surveyed. Expand a brand to see its distribution by County/Area, Rep, and City, each with the same Ours-vs-Competitor mix. Use the search box to jump straight to a brand instead of scrolling; any other filter set above (rep, county, status) narrows this view too, so you can e.g. see one rep's distribution of a single brand.</p>
+    <p><b>60-day resurvey warning:</b> reps are expected to resurvey every account within 60 days. An account's "Visited" date turns into <span class="refresh-badge soon" style="cursor:default">Due in Nd</span> starting 7 days out, and <span class="refresh-badge overdue" style="cursor:default">Overdue Nd</span> once past 60 &mdash; both shown on the account row, rolled up as a count on each rep's card, and totaled in the "60-Day Resurvey" tile above. This is computed live against today's date in your browser, not baked into the data export, so it stays accurate between refreshes even if the underlying survey data doesn't change.</p>
     <p><b>US / THEM source:</b> built from the tap-audit engine's own working file (the <b>iSellBeer Corrected/US vs THEM Mediator</b> workbook), not a flat pre-corrected export. Every brand is checked against Kohler's product catalog and Brand Family Territory rules; where iSellBeer's own survey flag disagrees with that check, the row is marked <span class="flip-badge" style="cursor:default">&#8646; corrected</span> and hovering the badge shows why. <b id="flipCount"></b> were corrected this way.</p>
     <p id="photoNote"><b>Photos:</b> shown per account using the real photo link behind each survey's "Photos" cell &mdash; a plain CSV export of this same report flattens that link to text, so a future refresh from a .csv (instead of the full mediator workbook) would lose photos again.</p>
     <p><b>Visit date:</b> this export is one snapshot in time &mdash; each account appears with a single visit date. Refresh by re-exporting and re-running <code>generate.py</code>; a future export with repeat visits per account would show the most recent one.</p>
@@ -245,6 +250,24 @@ footer p{margin:0 0 8px}
   function ce0(n){ return Math.round(n||0).toLocaleString(); }
   function filtersActive(){ return !!(state.search || state.county || state.status); }
 
+  // Reps must resurvey every 60 days; flag accounts approaching or past that,
+  // computed live against today's date (not baked into generate.py) so the
+  // warning stays accurate between data refreshes.
+  var REFRESH_DAYS = 60, REFRESH_WARN_LEAD = 7;
+  function daysSinceVisit(iso){ return Math.floor((new Date() - new Date(iso)) / 86400000); }
+  function refreshStatus(iso){
+    var d = daysSinceVisit(iso);
+    if(d >= REFRESH_DAYS) return {level:'overdue', days:d};
+    if(d >= REFRESH_DAYS - REFRESH_WARN_LEAD) return {level:'soon', days:REFRESH_DAYS-d};
+    return null;
+  }
+  function refreshBadge(status){
+    if(!status) return '';
+    return status.level==='overdue'
+      ? '<span class="refresh-badge overdue" title="Last visited '+status.days+' days ago — due for a resurvey">Overdue '+status.days+'d</span>'
+      : '<span class="refresh-badge soon" title="Due for a 60-day resurvey in '+status.days+' days">Due in '+status.days+'d</span>';
+  }
+
   function populateSelects(){
     var dmSel = document.getElementById('dmFilter');
     (DATA.districtManagers||[]).forEach(function(d){ var o=document.createElement('option'); o.value=d; o.textContent=d; dmSel.appendChild(o); });
@@ -254,16 +277,33 @@ footer p{margin:0 0 8px}
     (DATA.counties||[]).forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c; countySel.appendChild(o); });
   }
 
+  function computeRefreshSummary(){
+    var latest = {};
+    RECORDS.forEach(function(r){
+      var key = r.account+'|'+r.dba;
+      if(!latest[key] || r.visited > latest[key]) latest[key] = r.visited;
+    });
+    var overdue = 0, soon = 0;
+    Object.keys(latest).forEach(function(k){
+      var st = refreshStatus(latest[k]);
+      if(st){ if(st.level==='overdue') overdue++; else soon++; }
+    });
+    return { overdue:overdue, soon:soon, total:Object.keys(latest).length };
+  }
+
   function renderSummary(){
     var s = DATA.summary || {};
     var photoNote = s.photosAvailable ? (ce0(s.photosAvailable)+' of '+ce0(s.accountCount)+' accounts have a photo') : 'no photo links in this export';
+    var rs = computeRefreshSummary();
+    var refreshSub = rs.overdue||rs.soon ? (ce0(rs.overdue)+' overdue, '+ce0(rs.soon)+' due soon') : 'all accounts current';
     document.getElementById('summary').innerHTML =
       '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(s.taps)+'</div><div class="sub">across '+ce0(s.accountCount)+' accounts</div></div>'+
       '<div class="scard us"><div class="lbl">Ours</div><div class="big num">'+ce0(s.us)+'</div><div class="sub">'+(s.usPct||0)+'% of surveyed taps</div></div>'+
       '<div class="scard them"><div class="lbl">Competitor</div><div class="big num">'+ce0(s.them)+'</div><div class="sub">'+(s.themPct||0)+'% of surveyed taps</div></div>'+
       '<div class="scard"><div class="lbl">Reps</div><div class="big num">'+ce0(s.repCount)+'</div><div class="sub">tap surveys on file</div></div>'+
       '<div class="scard"><div class="lbl">Photos</div><div class="big num">'+ce0(s.photosAvailable)+'</div><div class="sub">'+photoNote+'</div></div>'+
-      '<div class="scard"><div class="lbl">Corrected</div><div class="big num">'+ce0(s.flipped||0)+'</div><div class="sub">rows where iSellBeer’s own flag was wrong</div></div>';
+      '<div class="scard"><div class="lbl">Corrected</div><div class="big num">'+ce0(s.flipped||0)+'</div><div class="sub">rows where iSellBeer’s own flag was wrong</div></div>'+
+      '<div class="scard'+(rs.overdue?' them':'')+'"><div class="lbl">60-Day Resurvey</div><div class="big num">'+ce0(rs.overdue+rs.soon)+'</div><div class="sub">'+refreshSub+'</div></div>';
     var updated = 'Data as of '+DATA.generatedAt;
     if(!s.photosAvailable){ updated += ' &middot; <span class="warn">no photo links available &mdash; rebuild from an .xlsx export to show photos</span>'; }
     document.getElementById('updated').innerHTML = updated;
@@ -314,9 +354,12 @@ footer p{margin:0 0 8px}
     });
     var list = repOrder.map(function(k){
       var rep = reps[k];
+      rep.overdueCount = 0; rep.soonCount = 0;
       rep.accountsList = rep.acctOrder.map(function(ak){
         var a = rep.accounts[ak];
         a.brandsList = a.brandOrder.map(function(bk){ return a.brands[bk]; }).sort(function(x,y){ return y.taps-x.taps; });
+        a.refresh = refreshStatus(a.visited);
+        if(a.refresh){ if(a.refresh.level==='overdue') rep.overdueCount++; else rep.soonCount++; }
         return a;
       }).sort(function(x,y){ return y.taps-x.taps; });
       return rep;
@@ -433,7 +476,7 @@ footer p{margin:0 0 8px}
       '<div class="acct-info"><div class="acct-name">'+esc(a.dba)+'</div><div class="acct-sub">'+esc(a.county)+(a.city?' &middot; '+esc(a.city):'')+'</div></div>'+
       '<div class="acct-mix">'+mixHtml+'</div>'+
       '<div class="acct-taps">'+ce0(a.taps)+'<small>taps</small></div>'+
-      '<div class="acct-visited"><span class="l">Visited</span>'+esc(a.visitedDisplay)+'</div>'+
+      '<div class="acct-visited"><span class="l">Visited</span>'+esc(a.visitedDisplay)+refreshBadge(a.refresh)+'</div>'+
     '</div>';
     var body = '';
     if(isOpen){
@@ -441,6 +484,7 @@ footer p{margin:0 0 8px}
         '<p class="acct-address">'+esc(a.address)+(a.city?', '+esc(a.city):'')+
           (a.photo ? ' &middot; <a class="photo-link" href="'+esc(a.photo)+'" target="_blank" rel="noopener">&#128247; View most recent photo</a>' : '')+
         '</p>'+
+        (a.refresh ? '<p class="photo-empty-note">'+(a.refresh.level==='overdue' ? '<b style="color:var(--them)">Overdue</b> for its 60-day resurvey &mdash; last visited '+a.refresh.days+' days ago.' : 'Due for its 60-day resurvey in '+a.refresh.days+' days.')+'</p>' : '')+
         (a.photo ? '' : '<p class="photo-empty-note">No photo on file for this account.</p>')+
         '<table><thead><tr><th>Brand</th><th>Supplier</th><th class="num-cell">Taps</th><th>Status</th></tr></thead>'+
         '<tbody>'+brandRows(a.brandsList)+'</tbody></table>'+
@@ -452,11 +496,13 @@ footer p{margin:0 0 8px}
   function repHtml(rep){
     var isOpen = (filtersActive() || state.rep===rep.rep) ? true : !!openReps[rep.rep];
     var pct = function(n){ return rep.taps? Math.round(n/rep.taps*100):0; };
+    var repRefreshBadge = rep.overdueCount ? '<span class="refresh-badge overdue" title="Accounts past their 60-day resurvey window">'+rep.overdueCount+' overdue</span>'
+      : rep.soonCount ? '<span class="refresh-badge soon" title="Accounts approaching their 60-day resurvey window">'+rep.soonCount+' due soon</span>' : '';
     var head = '<div class="rep-head" data-rep="'+esc(rep.rep)+'">'+
       '<span class="rep-chev">▸</span>'+
       '<div class="rep-pie">'+pieSvg(rep.us, rep.them, rep.unv)+'</div>'+
       '<div class="rep-info"><div class="rep-name">'+esc(rep.rep)+'</div>'+
-      '<div class="rep-meta">'+ce0(rep.accountsList.length)+' accounts &middot; '+ce0(rep.taps)+' taps surveyed</div></div>'+
+      '<div class="rep-meta">'+ce0(rep.accountsList.length)+' accounts &middot; '+ce0(rep.taps)+' taps surveyed'+repRefreshBadge+'</div></div>'+
       '<div class="rep-stats"><div class="us"><span class="n">'+pct(rep.us)+'%</span><span class="l">Ours</span></div>'+
       '<div class="them"><span class="n">'+pct(rep.them)+'%</span><span class="l">Competitor</span></div></div>'+
     '</div>';

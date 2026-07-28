@@ -18,6 +18,24 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
+60-day resurvey warning (added 2026-07-23, per Kohler): reps are expected
+to resurvey every account within 60 days. Shown three ways, all computed
+live in the browser against today's date (refreshStatus() in the inline
+script) rather than baked into generate.py's output -- so the warning
+stays correct between data refreshes even if the underlying export
+doesn't change for a while:
+  - A badge on each account row (and a one-line note in its expanded
+    detail): amber "Due in Nd" starting 7 days before the 60-day mark,
+    red "Overdue Nd" once past it.
+  - A count on each rep's card in the header line (overdue takes priority
+    over "due soon" if a rep has both, to keep the line short).
+  - A "60-Day Resurvey" tile in the top summary row, totaled across all
+    accounts regardless of any active filter (matching how the other
+    summary tiles behave).
+The 7-day lead time and 60-day window are both edit-in-one-place
+constants (REFRESH_DAYS, REFRESH_WARN_LEAD) near the top of the inline
+script if Kohler's cadence ever changes.
+
 Files:
   iSellBeer_TAPS_US_THEM_Mediator.xlsx
                  The tap-audit engine's own working file (see the tap-audit
