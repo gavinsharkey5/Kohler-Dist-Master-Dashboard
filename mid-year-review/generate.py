@@ -290,7 +290,7 @@ def main():
     no_goal.sort(key=lambda r: -r["ce_current"])
     terminated.sort(key=lambda r: r["ce_current"])
 
-    managers = sorted({r["brand_manager"] for r in with_goal + no_goal if r.get("brand_manager")})
+    managers = sorted({r["brand_manager"] for r in with_goal + no_goal + terminated if r.get("brand_manager")})
     suppliers = sorted({r["supplier"] for r in with_goal + no_goal if r.get("supplier")})
 
     behind_brewery = sum(1 for r in with_goal if r.get("gap_brewery") is not None and r["gap_brewery"] < 0)

@@ -215,6 +215,7 @@
       <p class="desc">Click a column header to sort.</p>
       <div class="controls">
         <input type="search" id="newSearch" placeholder="Search brand or supplier&hellip;">
+        <select id="newManagerFilter"><option value="">All Brand Managers</option></select>
         <button class="btn" id="exportNewBtn">Export CSV</button>
         <div class="spacer"></div>
         <span class="rowcount" id="newRowcount"></span>
@@ -244,6 +245,7 @@
       <p class="desc">Click a column header to sort.</p>
       <div class="controls">
         <input type="search" id="termSearch" placeholder="Search brand or supplier&hellip;">
+        <select id="termManagerFilter"><option value="">All Brand Managers</option></select>
         <button class="btn" id="exportTermBtn">Export CSV</button>
         <div class="spacer"></div>
         <span class="rowcount" id="termRowcount"></span>
@@ -272,9 +274,9 @@ let DATA = null;
 let SORT = {key:'ce_current', dir:'desc'};
 let FILTER = {search:'', manager:'', supplier:'', status:''};
 let NEW_SORT = {key:'ce_current', dir:'desc'};
-let NEW_FILTER = {search:''};
+let NEW_FILTER = {search:'', manager:''};
 let TERM_SORT = {key:'ce_current', dir:'asc'};
-let TERM_FILTER = {search:''};
+let TERM_FILTER = {search:'', manager:''};
 
 const COLS = [
   {key:'brand', label:'Brand', kind:'text'},
@@ -507,6 +509,7 @@ function exportCSV(){
 // ---- New in 2026 tab ----
 function newFilteredSorted(){
   let rows = DATA.newBrands.filter(r=>{
+    if (NEW_FILTER.manager && r.brand_manager!==NEW_FILTER.manager) return false;
     if (NEW_FILTER.search){
       const s = NEW_FILTER.search.toLowerCase();
       if (!(r.brand||'').toLowerCase().includes(s) && !(r.supplier||'').toLowerCase().includes(s)) return false;
@@ -571,6 +574,7 @@ function exportNewCSV(){
 // ---- Terminated Brands tab ----
 function termFilteredSorted(){
   let rows = DATA.terminatedBrands.filter(r=>{
+    if (TERM_FILTER.manager && r.brand_manager!==TERM_FILTER.manager) return false;
     if (TERM_FILTER.search){
       const s = TERM_FILTER.search.toLowerCase();
       if (!(r.brand||'').toLowerCase().includes(s) && !(r.supplier||'').toLowerCase().includes(s)) return false;
@@ -661,6 +665,8 @@ async function init(){
 
   populateSelect('managerFilter', DATA.managers);
   populateSelect('supplierFilter', DATA.suppliers);
+  populateSelect('newManagerFilter', DATA.managers);
+  populateSelect('termManagerFilter', DATA.managers);
   document.getElementById('tab-goal-count').textContent = `(${DATA.brands.length})`;
   document.getElementById('tab-new-count').textContent = `(${DATA.newBrands.length})`;
   document.getElementById('tab-terminated-count').textContent = `(${DATA.terminatedBrands.length})`;
@@ -672,7 +678,12 @@ async function init(){
   renderTermTable();
 
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
-  document.getElementById('managerFilter').addEventListener('change', e=>{ FILTER.manager = e.target.value; renderTable(); });
+  document.getElementById('managerFilter').addEventListener('change', e=>{
+    FILTER.manager = e.target.value;
+    NEW_FILTER.manager = e.target.value; document.getElementById('newManagerFilter').value = e.target.value;
+    TERM_FILTER.manager = e.target.value; document.getElementById('termManagerFilter').value = e.target.value;
+    renderTable(); renderNewTable(); renderTermTable();
+  });
   document.getElementById('supplierFilter').addEventListener('change', e=>{ FILTER.supplier = e.target.value; renderTable(); });
   document.getElementById('statusFilter').addEventListener('change', e=>{ FILTER.status = e.target.value; renderTable(); });
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
@@ -682,8 +693,20 @@ async function init(){
     renderTable();
   });
   document.getElementById('newSearch').addEventListener('input', e=>{ NEW_FILTER.search = e.target.value; renderNewTable(); });
+  document.getElementById('newManagerFilter').addEventListener('change', e=>{
+    NEW_FILTER.manager = e.target.value;
+    FILTER.manager = e.target.value; document.getElementById('managerFilter').value = e.target.value;
+    TERM_FILTER.manager = e.target.value; document.getElementById('termManagerFilter').value = e.target.value;
+    renderTable(); renderNewTable(); renderTermTable();
+  });
   document.getElementById('exportNewBtn').addEventListener('click', exportNewCSV);
   document.getElementById('termSearch').addEventListener('input', e=>{ TERM_FILTER.search = e.target.value; renderTermTable(); });
+  document.getElementById('termManagerFilter').addEventListener('change', e=>{
+    TERM_FILTER.manager = e.target.value;
+    FILTER.manager = e.target.value; document.getElementById('managerFilter').value = e.target.value;
+    NEW_FILTER.manager = e.target.value; document.getElementById('newManagerFilter').value = e.target.value;
+    renderTable(); renderNewTable(); renderTermTable();
+  });
   document.getElementById('exportTermBtn').addEventListener('click', exportTermCSV);
 
   document.querySelectorAll('.tab').forEach(t=>{
