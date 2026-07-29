@@ -1,7 +1,7 @@
 {
   "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.",
   "meta": {
-    "totalWithGoal": 233,
+    "totalWithGoal": 237,
     "totalNoGoal": 59,
     "totalTerminated": 40,
     "behindBrewery": 110,
@@ -3376,7 +3376,63 @@
       "gap_kohler": -0.5449999999999999
     },
     {
-      "brand": "Food & Bev (Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import)",
+      "brand": "Aguila Light",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": null,
+      "ce_current": null,
+      "trend_pct": null,
+      "finish_2025_ce": 500.27,
+      "proj_finish_2026_ce": null,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.25,
+      "gap_brewery": null,
+      "gap_kohler": null
+    },
+    {
+      "brand": "Club Colombia Dorada",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": null,
+      "ce_current": null,
+      "trend_pct": null,
+      "finish_2025_ce": 1276.45,
+      "proj_finish_2026_ce": null,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.25,
+      "gap_brewery": null,
+      "gap_kohler": null
+    },
+    {
+      "brand": "Club Colombia Roja",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": null,
+      "ce_current": null,
+      "trend_pct": null,
+      "finish_2025_ce": 329.83,
+      "proj_finish_2026_ce": null,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.25,
+      "gap_brewery": null,
+      "gap_kohler": null
+    },
+    {
+      "brand": "Pilsen Import",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": null,
+      "ce_current": null,
+      "trend_pct": null,
+      "finish_2025_ce": 322.39,
+      "proj_finish_2026_ce": null,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.05,
+      "gap_brewery": null,
+      "gap_kohler": null
+    },
+    {
+      "brand": "Food & Bev (combined actual -- RDE doesn't report Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import separately)",
       "supplier": "Food & Bev Enterprise LLC",
       "brand_manager": "Denise Montes",
       "ce_prior": 1077.22,

@@ -292,10 +292,33 @@ def main():
             "trend_pct": metrics["pct_change"],
         }
         if manager in FORCE_VS_GOAL_MANAGERS and metrics["ce_prior"] != 0:
-            # Rolls up multiple workbook brands with different goals apiece
-            # (or, if unbroken_out is empty, no workbook entry at all) -- no
-            # single goal/finish figure maps onto one combined row, so those
-            # columns stay blank rather than guessing at a number.
+            if unbroken_out:
+                # Confirmed with Kohler, 2026-07-29 (Mid_Year_Planning_2027 --
+                # Denise Montes Brands.xlsx): each rolled-up brand DOES have
+                # its own goal % in the planning workbook, so give each one
+                # its own row for goal-tracking purposes. Actual 2025/2026 CE
+                # volume still can't be split per brand -- RDE itself only
+                # ever reports it as one combined figure -- so those columns
+                # stay blank on the per-brand rows; one extra row carries the
+                # real combined actual so brand-level totals still reconcile
+                # to RDE's own Total row.
+                for b in sorted(unbroken_out):
+                    b_rec = brands[b]
+                    with_goal.append({
+                        "brand": b,
+                        "supplier": supplier,
+                        "brand_manager": manager,
+                        "ce_prior": None,
+                        "ce_current": None,
+                        "trend_pct": None,
+                        "finish_2025_ce": b_rec["finish_2025_ce"],
+                        "proj_finish_2026_ce": None,
+                        "goal_brewery_pct": b_rec["goal2026_brewery_pct"],
+                        "goal_kohler_pct": b_rec["goal2026_kohler_pct"],
+                        "gap_brewery": None,
+                        "gap_kohler": None,
+                    })
+                rec["brand"] = f"{name} (combined actual -- RDE doesn't report {', '.join(sorted(unbroken_out))} separately)"
             rec.update(finish_2025_ce=None, proj_finish_2026_ce=None,
                        goal_brewery_pct=None, goal_kohler_pct=None,
                        gap_brewery=None, gap_kohler=None)
@@ -308,9 +331,11 @@ def main():
     # selling right now, so it doesn't belong in either the vs-goal
     # comparison or the New-in-2026 white-space list. Pulled out of both
     # buckets rather than added on top, so a brand appears in exactly one tab.
-    terminated = [r for r in with_goal + no_goal if r["ce_current"] <= 0]
-    with_goal = [r for r in with_goal if r["ce_current"] > 0]
-    no_goal = [r for r in no_goal if r["ce_current"] > 0]
+    # ce_current is None for the goal-only per-brand rows added above (no
+    # actual sales tracked against them individually) -- never terminated.
+    terminated = [r for r in with_goal + no_goal if r["ce_current"] is not None and r["ce_current"] <= 0]
+    with_goal = [r for r in with_goal if r["ce_current"] is None or r["ce_current"] > 0]
+    no_goal = [r for r in no_goal if r["ce_current"] is None or r["ce_current"] > 0]
 
     with_goal.sort(key=lambda r: (r["gap_brewery"] if r["gap_brewery"] is not None else 999))
     no_goal.sort(key=lambda r: -r["ce_current"])
