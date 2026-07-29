@@ -72,14 +72,13 @@
   .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
 
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;width:100%;table-layout:fixed}
+  table{border-collapse:collapse;table-layout:fixed}
   thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:10px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
     overflow:hidden;text-overflow:ellipsis}
   thead th:hover{color:var(--ink)}
   thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
   tbody td{padding:7px 6px;border-bottom:1px solid var(--line-soft);font-size:12.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
-  tbody td.wraptext{white-space:normal;word-break:break-word}
   tbody tr:hover td{background:var(--card-h)}
   .brandname{font-weight:600;color:var(--ink)}
   .suppliername{color:var(--ink-soft);font-size:11.5px}
@@ -175,11 +174,11 @@
       <div class="tablewrap">
         <table>
           <colgroup>
-            <col style="width:8%"><col style="width:6%"><col style="width:6%">
-            <col style="width:7%"><col style="width:7%"><col style="width:7%"><col style="width:6%"><col style="width:7%">
-            <col style="width:6%"><col style="width:7%"><col style="width:6%">
-            <col style="width:6%"><col style="width:7%"><col style="width:6%">
-            <col style="width:8%">
+            <col style="width:285px"><col style="width:205px"><col style="width:115px">
+            <col style="width:85px"><col style="width:85px"><col style="width:85px"><col style="width:70px"><col style="width:90px">
+            <col style="width:70px"><col style="width:90px"><col style="width:85px">
+            <col style="width:70px"><col style="width:90px"><col style="width:85px">
+            <col style="width:110px">
           </colgroup>
           <thead><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
@@ -223,7 +222,7 @@
       <div class="tablewrap">
         <table>
           <colgroup>
-            <col style="width:28%"><col style="width:28%"><col style="width:24%"><col style="width:20%">
+            <col style="width:290px"><col style="width:210px"><col style="width:120px"><col style="width:110px">
           </colgroup>
           <thead><tr id="newTheadRow"></tr></thead>
           <tbody id="newTbody"></tbody>
@@ -252,7 +251,7 @@
       <div class="tablewrap">
         <table>
           <colgroup>
-            <col style="width:26%"><col style="width:26%"><col style="width:22%"><col style="width:13%"><col style="width:13%">
+            <col style="width:280px"><col style="width:200px"><col style="width:115px"><col style="width:100px"><col style="width:100px">
           </colgroup>
           <thead><tr id="termTheadRow"></tr></thead>
           <tbody id="termTbody"></tbody>
@@ -414,9 +413,9 @@ function renderRows(rows){
     tr.dataset.key = r._key;
     const st = statusOf(r);
 
-    const tdBrand = document.createElement('td'); tdBrand.className='wraptext'; tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
-    const tdSupplier = document.createElement('td'); tdSupplier.className='wraptext'; tdSupplier.innerHTML = `<span class="suppliername">${esc(r.supplier)||'—'}</span>`;
-    const tdMgr = document.createElement('td'); tdMgr.className='wraptext'; tdMgr.textContent = r.brand_manager || '—';
+    const tdBrand = document.createElement('td'); tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
+    const tdSupplier = document.createElement('td'); tdSupplier.innerHTML = `<span class="suppliername">${esc(r.supplier)||'—'}</span>`;
+    const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
     const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
     const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
     const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
@@ -546,9 +545,9 @@ function renderNewTable(){
   renderNewHead();
   const rows = newFilteredSorted();
   document.getElementById('newTbody').innerHTML = rows.map(r=>`<tr>
-    <td class="wraptext"><span class="brandname">${esc(r.brand)}</span></td>
-    <td class="wraptext"><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
-    <td class="wraptext">${esc(r.brand_manager)||'—'}</td>
+    <td><span class="brandname">${esc(r.brand)}</span></td>
+    <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
+    <td>${esc(r.brand_manager)||'—'}</td>
     <td class="num">${fmtCE(r.ce_current)}</td>
   </tr>`).join('');
   document.getElementById('newRowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.newBrands.length.toLocaleString()} brands`;
@@ -610,9 +609,9 @@ function renderTermTable(){
   renderTermHead();
   const rows = termFilteredSorted();
   document.getElementById('termTbody').innerHTML = rows.map(r=>`<tr>
-    <td class="wraptext"><span class="brandname">${esc(r.brand)}</span></td>
-    <td class="wraptext"><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
-    <td class="wraptext">${esc(r.brand_manager)||'—'}</td>
+    <td><span class="brandname">${esc(r.brand)}</span></td>
+    <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
+    <td>${esc(r.brand_manager)||'—'}</td>
     <td class="num">${fmtCE(r.ce_prior)}</td>
     <td class="num">${fmtCE(r.ce_current)}</td>
   </tr>`).join('');
