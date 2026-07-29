@@ -3382,7 +3382,7 @@
       "trend_pct": 1.0
     },
     {
-      "brand": "Food & Bev",
+      "brand": "Food & Bev (Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import)",
       "supplier": "Food & Bev Enterprise LLC",
       "brand_manager": "Denise Montes",
       "ce_prior": 1077.22,
@@ -3400,7 +3400,7 @@
       "proj_finish_2026_ce": 1607.33
     },
     {
-      "brand": "Sinless Vodka Cocktail",
+      "brand": "Sinless Vodka Cocktail (Jim Beam Kentucky, Sinless)",
       "supplier": "Boston Beer Company",
       "brand_manager": "Chris Politano",
       "ce_prior": 0.0,
@@ -3418,7 +3418,7 @@
       "proj_finish_2026_ce": 1289.0
     },
     {
-      "brand": "Ole",
+      "brand": "Ole (Ole Tequila Cocktail)",
       "supplier": "Mark Anthony",
       "brand_manager": "Steve Halloran",
       "ce_prior": 0.0,
@@ -3426,7 +3426,7 @@
       "trend_pct": 1.0
     },
     {
-      "brand": "Mike's Hard Dirty Lemonade",
+      "brand": "Mike's Hard Dirty Lemonade (Ole Tequila Cocktail)",
       "supplier": "Mark Anthony",
       "brand_manager": "Steve Halloran",
       "ce_prior": 0.0,
@@ -3434,7 +3434,7 @@
       "trend_pct": 1.0
     },
     {
-      "brand": "Heineken 0.0 Ultimate",
+      "brand": "Heineken 0.0 Ultimate (Heineken Ultimate 0.0, Tecate Light)",
       "supplier": "Heineken USA",
       "brand_manager": "Perry Calderone",
       "ce_prior": 0.0,
@@ -3450,7 +3450,7 @@
       "trend_pct": 1.0
     },
     {
-      "brand": "Monaco",
+      "brand": "Monaco (Lech, Milwaukee's Best)",
       "supplier": "MolsonCoors Beverage Company",
       "brand_manager": "Dan Downing",
       "ce_prior": 0.0,
@@ -3476,7 +3476,7 @@
       "proj_finish_2026_ce": 427.56
     },
     {
-      "brand": "Coors 0.0",
+      "brand": "Coors 0.0 (Lech, Milwaukee's Best)",
       "supplier": "MolsonCoors Beverage Company",
       "brand_manager": "Dan Downing",
       "ce_prior": 0.0,

@@ -31,6 +31,7 @@ Run: python3 generate.py
 import csv
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
 
 import openpyxl
@@ -251,10 +252,24 @@ def main():
             rec["gap_kohler"] = (trend - kohler_pct) if (trend is not None and kohler_pct is not None) else None
             with_goal.append(rec)
 
+    # Some suppliers have workbook line-item brands that RDE never breaks out
+    # individually -- their combined volume shows up as one generic-named row
+    # (e.g. "Food & Bev" for Food & Bev Enterprise LLC's Club Colombia Roja/
+    # Dorada, Aguila Light, and Pilsen Import, confirmed with Kohler
+    # 2026-07-29). Relabel those rows to name the actual planning-workbook
+    # brands they represent, so they're recognizable instead of opaque.
+    matched_brand_names = {b for (_supplier, b) in matched.keys()}
+    brands_by_supplier = defaultdict(list)
+    for b_name, b_rec in brands.items():
+        if b_rec["supplier"]:
+            brands_by_supplier[b_rec["supplier"]].append(b_name)
+
     for supplier, name, metrics in unclassified:
         manager = brand_manager_by_supplier.get(supplier)
+        unbroken_out = [b for b in brands_by_supplier.get(supplier, []) if b not in matched_brand_names]
+        brand_label = f"{name} ({', '.join(sorted(unbroken_out))})" if unbroken_out else name
         no_goal.append({
-            "brand": name,
+            "brand": brand_label,
             "supplier": supplier,
             "brand_manager": manager,
             "ce_prior": metrics["ce_prior"],
