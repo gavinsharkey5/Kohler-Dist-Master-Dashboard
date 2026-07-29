@@ -1,5 +1,23 @@
 [
   {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "CUSTOMER_ID": 230929,
+    "CUSTOMER_NAME": "Airport Pub & Pkg",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-07-29",
+    "NEW_BUYERS": 1
+  },
+  {
+    "SALES_REP_NAME": "Anthony Palmisano",
+    "CUSTOMER_ID": 231309,
+    "CUSTOMER_NAME": "The Stuffed Olive_2",
+    "PREMISE": "On Premise",
+    "PRODUCT_NAME": "Sapporo Premium Non-Alcoholic 4/6/12 oz Can",
+    "DATE": "2026-07-29",
+    "NEW_BUYERS": 1
+  },
+  {
     "SALES_REP_NAME": "Brian Sengebush",
     "CUSTOMER_ID": 191007,
     "CUSTOMER_NAME": "Charley's Tavern",
