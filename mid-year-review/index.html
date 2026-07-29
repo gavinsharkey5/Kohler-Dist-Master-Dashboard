@@ -54,6 +54,7 @@
   section.panel .desc{color:var(--ink-soft);font-size:13px;margin:0 0 16px}
 
   .notice{background:rgba(244,184,62,.08);border:1px solid rgba(244,184,62,.25);border-radius:12px;padding:14px 18px;margin:0 0 20px;font-size:13px;color:var(--ink-soft)}
+  .notice code{background:var(--input-bg);border:1px solid var(--input-border);border-radius:5px;padding:1px 6px;font-family:"Space Grotesk";font-size:12.5px;color:var(--ink)}
   .notice b{color:var(--ink)}
 
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
@@ -148,14 +149,11 @@
       </div>
 
       <div class="notice">
-        <b>How "'26 Proj." is calculated:</b> 2026 YTD cases + (2025's actual full-year finish minus its own
-        comparable-YTD slice, i.e. the "2025 remainder") grown at this brand's current 2026 YTD trend rate. In
-        plain terms: it assumes the rest of 2026 performs like this year has so far, relative to how the back
-        half of 2025 actually went for this brand.
+        <b>'26 Proj.</b> = <code>2026 YTD CE + (2025 Finish &minus; 2025 YTD CE) &times; (1 + Trend %)</code>
+        &mdash; this year's cases so far, plus the rest of 2025 grown at this year's trend rate.
         <br><br>
-        <b>How "Gap" is calculated:</b> Trend % minus that track's Goal %. A negative Gap (red) means the brand
-        is trending behind that goal; zero or positive (green) means it's on pace or ahead. Editing a Goal %
-        recalculates its Gap (and Goal CE) immediately.
+        <b>Gap</b> = <code>Trend % &minus; Goal %</code> &mdash; negative (red) is behind that goal, zero or
+        positive (green) is on pace or ahead. Editing a Goal % recalculates its Gap and Goal CE immediately.
       </div>
 
       <div class="controls">
