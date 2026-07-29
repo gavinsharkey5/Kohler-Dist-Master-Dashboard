@@ -56,8 +56,25 @@ Files:
                               headers' date range shifts every refresh;
                               matched by "Case Equiv" prefix, not the
                               exact string.
-  generate.py                 Rebuilds data/data.json from the two
-                              files above.
+  denise_food_bev_product_detail.csv
+                              RDE product-level export (Supplier, Brand
+                              Family, Product Name, both years' Case
+                              Equiv) scoped to Denise Montes' brands.
+                              RDE's own Brand Family tagging lumps
+                              several Food & Bev Enterprise LLC brands
+                              together (Aguila Light Import counted
+                              under "Aguila Import"; Club Colombia
+                              Dorada/Roja and Pilsen Import all under a
+                              generic "Food & Bev") -- this file's
+                              Product Name text still distinguishes
+                              them, so generate.py matches on keywords
+                              in that column instead (see
+                              FOOD_BEV_BRAND_KEYWORDS) to recover the
+                              real per-brand split. Optional -- if this
+                              file is absent, those brands just fall
+                              back to RDE's own (contaminated) rollup.
+  generate.py                 Rebuilds data/data.json from the files
+                              above.
   index.html                  The page itself.
 
 To refresh (e.g. at each month-end check-in):
@@ -66,8 +83,11 @@ To refresh (e.g. at each month-end check-in):
      filename, same columns).
   2. If the goals themselves changed, save the updated workbook over
      2026_planning_source.xlsx.
-  3. Run: python3 generate.py
-  4. Commit and push.
+  3. If refreshing Denise Montes' Food & Bev Enterprise LLC brands,
+     re-pull the product-level export too and save it over
+     denise_food_bev_product_detail.csv.
+  4. Run: python3 generate.py
+  5. Commit and push.
 
 Notes:
   - A brand whose name is also used as its own supplier label in the

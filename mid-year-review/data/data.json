@@ -1,9 +1,9 @@
 {
   "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.",
   "meta": {
-    "totalWithGoal": 237,
+    "totalWithGoal": 235,
     "totalNoGoal": 59,
-    "totalTerminated": 40,
+    "totalTerminated": 41,
     "behindBrewery": 110,
     "behindKohler": 115
   },
@@ -2945,15 +2945,15 @@
       "brand": "Aguila Import",
       "supplier": "Food & Bev Enterprise LLC",
       "brand_manager": "Denise Montes",
-      "ce_prior": 763.43,
-      "ce_current": 1067.63,
-      "trend_pct": 0.3985,
+      "ce_prior": 474.56,
+      "ce_current": 672.9,
+      "trend_pct": 0.417945043830074,
       "finish_2025_ce": 795.79,
-      "proj_finish_2026_ce": 1112.8854600000002,
+      "proj_finish_2026_ce": 1128.3864864295347,
       "goal_brewery_pct": null,
       "goal_kohler_pct": 0.15,
       "gap_brewery": null,
-      "gap_kohler": 0.24850000000000003
+      "gap_kohler": 0.267945043830074
     },
     {
       "brand": "Costenita",
@@ -3376,75 +3376,46 @@
       "gap_kohler": -0.5449999999999999
     },
     {
-      "brand": "Aguila Light",
-      "supplier": "Food & Bev Enterprise LLC",
-      "brand_manager": "Denise Montes",
-      "ce_prior": null,
-      "ce_current": null,
-      "trend_pct": null,
-      "finish_2025_ce": 500.27,
-      "proj_finish_2026_ce": null,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 0.25,
-      "gap_brewery": null,
-      "gap_kohler": null
-    },
-    {
       "brand": "Club Colombia Dorada",
       "supplier": "Food & Bev Enterprise LLC",
       "brand_manager": "Denise Montes",
-      "ce_prior": null,
-      "ce_current": null,
-      "trend_pct": null,
+      "ce_prior": 708.6800000000001,
+      "ce_current": 1118.6399999999999,
+      "trend_pct": 0.5784839419766323,
       "finish_2025_ce": 1276.45,
-      "proj_finish_2026_ce": null,
+      "proj_finish_2026_ce": 2014.8558277360723,
       "goal_brewery_pct": null,
       "goal_kohler_pct": 0.25,
       "gap_brewery": null,
-      "gap_kohler": null
+      "gap_kohler": 0.32848394197663233
+    },
+    {
+      "brand": "Aguila Light",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": 288.88,
+      "ce_current": 394.73,
+      "trend_pct": 0.36641512046524527,
+      "finish_2025_ce": 500.27,
+      "proj_finish_2026_ce": 683.5764923151482,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.25,
+      "gap_brewery": null,
+      "gap_kohler": 0.11641512046524527
     },
     {
       "brand": "Club Colombia Roja",
       "supplier": "Food & Bev Enterprise LLC",
       "brand_manager": "Denise Montes",
-      "ce_prior": null,
-      "ce_current": null,
-      "trend_pct": null,
+      "ce_prior": 182.5,
+      "ce_current": 252.01000000000002,
+      "trend_pct": 0.3808767123287673,
       "finish_2025_ce": 329.83,
-      "proj_finish_2026_ce": null,
+      "proj_finish_2026_ce": 455.4545660273973,
       "goal_brewery_pct": null,
       "goal_kohler_pct": 0.25,
       "gap_brewery": null,
-      "gap_kohler": null
-    },
-    {
-      "brand": "Pilsen Import",
-      "supplier": "Food & Bev Enterprise LLC",
-      "brand_manager": "Denise Montes",
-      "ce_prior": null,
-      "ce_current": null,
-      "trend_pct": null,
-      "finish_2025_ce": 322.39,
-      "proj_finish_2026_ce": null,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": 0.05,
-      "gap_brewery": null,
-      "gap_kohler": null
-    },
-    {
-      "brand": "Food & Bev (combined actual)",
-      "supplier": "Food & Bev Enterprise LLC",
-      "brand_manager": "Denise Montes",
-      "ce_prior": 1077.22,
-      "ce_current": 1366.0,
-      "trend_pct": 0.2681,
-      "note": "Combined actual CE for Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import -- RDE doesn't report these separately.",
-      "finish_2025_ce": null,
-      "proj_finish_2026_ce": null,
-      "goal_brewery_pct": null,
-      "goal_kohler_pct": null,
-      "gap_brewery": null,
-      "gap_kohler": null
+      "gap_kohler": 0.1308767123287673
     }
   ],
   "newBrands": [
@@ -4055,6 +4026,20 @@
       "goal_kohler_pct": -1,
       "gap_brewery": -1.0685,
       "gap_kohler": -0.0685
+    },
+    {
+      "brand": "Pilsen Import",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": 186.04000000000002,
+      "ce_current": -4.65,
+      "trend_pct": -1.0249946248118684,
+      "finish_2025_ce": 322.39,
+      "proj_finish_2026_ce": -8.05801709309826,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": 0.05,
+      "gap_brewery": null,
+      "gap_kohler": -1.0749946248118685
     },
     {
       "brand": "Bodega Chiller",

@@ -20,6 +20,14 @@ Inputs (keep these filenames when refreshing):
                               Column headers' date ranges shift every time
                               this gets re-pulled; matched by "Case Equiv"
                               prefix, not the exact header string.
+  denise_food_bev_product_detail.csv (optional)
+                              Product-level RDE export for Food & Bev
+                              Enterprise LLC. RDE's own Brand Family
+                              tagging conflates several of that
+                              supplier's workbook brands (see
+                              FOOD_BEV_BRAND_KEYWORDS below); this file's
+                              Product Name text still distinguishes them,
+                              recovering the real per-brand split.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -39,6 +47,7 @@ import openpyxl
 HERE = Path(__file__).parent
 WORKBOOK = HERE / "2026_planning_source.xlsx"
 CSV_YTD = HERE / "ytd_comparison.csv"
+DENISE_PRODUCT_DETAIL = HERE / "denise_food_bev_product_detail.csv"
 HTML = HERE / "index.html"
 OUT = HERE / "data" / "data.json"
 
@@ -192,6 +201,53 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
     return results, unclassified
 
 
+# RDE's own Brand Family tagging conflates several of Food & Bev Enterprise
+# LLC's workbook line-item brands: Aguila Light Import products get tagged
+# "Aguila Import" (inflating that brand's real total), and Club Colombia
+# Dorada/Roja + Pilsen Import products all get tagged a generic "Food & Bev"
+# with no per-brand split at all. Confirmed with Kohler, 2026-07-29, via a
+# product-level RDE export (denise_food_bev_product_detail.csv) where the
+# Product Name text (unlike Brand Family) still distinguishes them -- this
+# recovers the real per-brand split by matching on that text instead.
+FOOD_BEV_SUPPLIER = "Food & Bev Enterprise LLC"
+FOOD_BEV_BRAND_KEYWORDS = [
+    # (keyword to find in Product Name, canonical workbook brand). Order
+    # matters: "light" is checked before the bare "aguila" fallback so
+    # Aguila Light Import products don't get counted as Aguila Import.
+    ("dorada", "Club Colombia Dorada"),
+    ("roja", "Club Colombia Roja"),
+    ("pilsen", "Pilsen Import"),
+    ("light", "Aguila Light"),
+    ("aguila", "Aguila Import"),
+]
+
+
+def parse_product_detail_overrides(path, supplier=FOOD_BEV_SUPPLIER, keywords=FOOD_BEV_BRAND_KEYWORDS):
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and not c.startswith("Case Equiv %") and not c.startswith("Case Equiv ±")]
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+        rows = list(reader)
+
+    sums = defaultdict(lambda: {"ce_prior": 0.0, "ce_current": 0.0})
+    for row in rows:
+        if (row.get("Supplier") or "").strip() != supplier:
+            continue
+        product = (row.get("Product Name") or "").lower()
+        brand = next((b for kw, b in keywords if kw in product), None)
+        if brand is None:
+            continue
+        sums[brand]["ce_prior"] += to_num(row[prior_col])
+        sums[brand]["ce_current"] += to_num(row[current_col])
+
+    overrides = {}
+    for brand, m in sums.items():
+        pct_change = (m["ce_current"] / m["ce_prior"] - 1) if m["ce_prior"] else None
+        overrides[brand] = {"ce_prior": m["ce_prior"], "ce_current": m["ce_current"], "pct_change": pct_change}
+    return overrides
+
+
 # Excluded outright (per Kohler, 2026-07-28) -- these are negative/near-zero
 # credit-adjustment entries in the RDE export, not real current placements.
 EXCLUDED_BRANDS = {"shipyard", "jersey girl", "soda birch", "whole hog"}
@@ -211,6 +267,16 @@ def main():
 
     matched, unclassified = parse_ytd_csv(CSV_YTD, brands, brands_lower, supplier_names)
     print(f"Matched {len(matched)} brand families in {CSV_YTD.name}; {len(unclassified)} unmatched (new SKUs).")
+
+    if DENISE_PRODUCT_DETAIL.exists():
+        overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
+        for brand, metrics in overrides.items():
+            matched[(FOOD_BEV_SUPPLIER, brand)] = metrics
+        # The generic "Food & Bev" rollup row is now fully represented by the
+        # disaggregated brands above -- drop it so its volume isn't double-counted.
+        unclassified = [u for u in unclassified if not (u[0] == FOOD_BEV_SUPPLIER and u[1] == "Food & Bev")]
+        print(f"Applied product-level brand split for {len(overrides)} {FOOD_BEV_SUPPLIER} brand(s) "
+              f"from {DENISE_PRODUCT_DETAIL.name}: {sorted(overrides)}.")
 
     matched = {k: v for k, v in matched.items() if k[1].lower() not in EXCLUDED_BRANDS}
     unclassified = [u for u in unclassified if u[1].lower() not in EXCLUDED_BRANDS]
@@ -267,12 +333,14 @@ def main():
             rec["gap_kohler"] = (trend - kohler_pct) if (trend is not None and kohler_pct is not None) else None
             with_goal.append(rec)
 
-    # Some suppliers have workbook line-item brands that RDE never breaks out
-    # individually -- their combined volume shows up as one generic-named row
-    # (e.g. "Food & Bev" for Food & Bev Enterprise LLC's Club Colombia Roja/
-    # Dorada, Aguila Light, and Pilsen Import, confirmed with Kohler
-    # 2026-07-29). Relabel those rows to name the actual planning-workbook
-    # brands they represent, so they're recognizable instead of opaque.
+    # Some suppliers have workbook line-item brands that RDE's brand-family
+    # tagging never breaks out individually -- their combined volume shows up
+    # as one generic-named row (e.g. "Sinless Vodka Cocktail" covering both
+    # Jim Beam Kentucky and Sinless). Relabel those rows to name the actual
+    # planning-workbook brands they represent, so they're recognizable
+    # instead of opaque. (Food & Bev Enterprise LLC's brands used to hit this
+    # too, until the product-level override above started splitting them for
+    # real instead of just relabeling the rollup.)
     matched_brand_names = {b for (_supplier, b) in matched.keys()}
     brands_by_supplier = defaultdict(list)
     for b_name, b_rec in brands.items():
@@ -292,34 +360,6 @@ def main():
             "trend_pct": metrics["pct_change"],
         }
         if manager in FORCE_VS_GOAL_MANAGERS and metrics["ce_prior"] != 0:
-            if unbroken_out:
-                # Confirmed with Kohler, 2026-07-29 (Mid_Year_Planning_2027 --
-                # Denise Montes Brands.xlsx): each rolled-up brand DOES have
-                # its own goal % in the planning workbook, so give each one
-                # its own row for goal-tracking purposes. Actual 2025/2026 CE
-                # volume still can't be split per brand -- RDE itself only
-                # ever reports it as one combined figure -- so those columns
-                # stay blank on the per-brand rows; one extra row carries the
-                # real combined actual so brand-level totals still reconcile
-                # to RDE's own Total row.
-                for b in sorted(unbroken_out):
-                    b_rec = brands[b]
-                    with_goal.append({
-                        "brand": b,
-                        "supplier": supplier,
-                        "brand_manager": manager,
-                        "ce_prior": None,
-                        "ce_current": None,
-                        "trend_pct": None,
-                        "finish_2025_ce": b_rec["finish_2025_ce"],
-                        "proj_finish_2026_ce": None,
-                        "goal_brewery_pct": b_rec["goal2026_brewery_pct"],
-                        "goal_kohler_pct": b_rec["goal2026_kohler_pct"],
-                        "gap_brewery": None,
-                        "gap_kohler": None,
-                    })
-                rec["brand"] = f"{name} (combined actual)"
-                rec["note"] = f"Combined actual CE for {', '.join(sorted(unbroken_out))} -- RDE doesn't report these separately."
             rec.update(finish_2025_ce=None, proj_finish_2026_ce=None,
                        goal_brewery_pct=None, goal_kohler_pct=None,
                        gap_brewery=None, gap_kohler=None)

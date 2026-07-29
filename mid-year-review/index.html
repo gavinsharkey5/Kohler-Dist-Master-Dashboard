@@ -654,10 +654,7 @@ function renderCaveats(){
   }
   items.push('Brand-level totals reconcile to the RDE export\'s own Total row within ~0.02%.');
   items.push('A brand whose name is also used as its own supplier label in the workbook (e.g. Carbliss, Sapporo) is matched correctly even when the RDE export emits it as a single row rather than a header+leaf pair.');
-  const combinedActual = DATA.brands.filter(r=>/\(combined actual/.test(r.brand||''));
-  if (combinedActual.length){
-    items.push(`Denise Montes' Food &amp; Bev Enterprise LLC brands (Aguila Light, Club Colombia Roja, Club Colombia Dorada, Pilsen Import) each get their own row with their real 2026 goal %, but RDE only ever reports their actual 2025/2026 CE volume combined, never per brand &mdash; that combined total is on its own "${esc(combinedActual[0].brand)}" row rather than split (or guessed at) across the four.`);
-  }
+  items.push('Denise Montes\' Food &amp; Bev Enterprise LLC brands: RDE\'s own Brand Family tagging lumps Aguila Light Import into "Aguila Import" and tags Club Colombia Dorada/Roja + Pilsen Import all as a generic "Food & Bev" &mdash; confirmed via a product-level RDE export where each product\'s own name still distinguishes them. Aguila Light, Club Colombia Dorada, and Club Colombia Roja are split out from that product-level detail (denise_food_bev_product_detail.csv) rather than RDE\'s own brand-level rollup, and Aguila Import\'s totals are corrected to exclude Aguila Light\'s volume.');
   const rollups = DATA.newBrands.filter(r=>/\(.+\)$/.test(r.brand||''));
   if (rollups.length){
     items.push(`${rollups.length} row(s) on the "New in 2026" tab are RDE rollups covering multiple planning-workbook brands that RDE doesn't break out individually (e.g. ${esc(rollups[0].brand)}) &mdash; the brands listed in parentheses share that one combined volume figure rather than each having their own.`);
