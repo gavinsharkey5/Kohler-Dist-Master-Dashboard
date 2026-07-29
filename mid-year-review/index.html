@@ -92,6 +92,7 @@
   .status-badge.behind-both{background:var(--bad-soft);color:var(--bad)}
   .status-badge.behind-one{background:rgba(244,184,62,.14);color:#F4B83E}
   .status-badge.on-track{background:var(--good-soft);color:var(--good)}
+  .status-badge.no-goal{background:var(--ink-soft-bg,rgba(128,128,128,.14));color:var(--ink-soft)}
 
   .grp-brewery{background:rgba(244,184,62,.06)}
   .grp-kohler{background:rgba(91,141,239,.06)}
@@ -164,6 +165,7 @@
           <option value="Behind Brewery">Behind Brewery</option>
           <option value="Behind Kohler">Behind Kohler</option>
           <option value="Behind Both">Behind Both</option>
+          <option value="No Goal">No Goal</option>
         </select>
         <button class="btn" id="resetBtn">Reset edited goals</button>
         <button class="btn" id="exportBtn">Export CSV</button>
@@ -323,6 +325,7 @@ function derive(r){
 }
 
 function statusOf(d){
+  if (d.gap_brewery==null && d.gap_kohler==null) return {label:'No Goal', cls:'no-goal'};
   const bBehind = d.gap_brewery!=null && d.gap_brewery < 0;
   const kBehind = d.gap_kohler!=null && d.gap_kohler < 0;
   if (bBehind && kBehind) return {label:'Behind Both', cls:'behind-both'};
@@ -462,6 +465,7 @@ function renderTable(){
 function renderKPIs(){
   const all = DATA.brands.map(r=>({...r, ...derive(r)}));
   const totalWithGoal = all.length;
+  const withGoalCount = all.filter(r=>r.goal_brewery_pct!=null || r.goal_kohler_pct!=null).length;
   const totalPrior = all.reduce((a,r)=>a+(r.ce_prior||0),0);
   const totalCurrent = all.reduce((a,r)=>a+(r.ce_current||0),0);
   const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
@@ -469,11 +473,11 @@ function renderKPIs(){
   const behindBrewery = all.filter(r=>r.gap_brewery!=null && r.gap_brewery<0).length;
   const behindKohler = all.filter(r=>r.gap_kohler!=null && r.gap_kohler<0).length;
   const tiles = [
-    {lbl:'Brands Tracked', val:fmtCE(totalWithGoal), sub:'have a 2026 Brewery/Kohler goal'},
+    {lbl:'Brands Tracked', val:fmtCE(totalWithGoal), sub:`${withGoalCount} have a 2026 Brewery/Kohler goal`},
     {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked brands'},
     {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
-    {lbl:'Behind Brewery Goal', val:`${behindBrewery} / ${totalWithGoal}`, sub:`${(100*behindBrewery/totalWithGoal).toFixed(0)}% of tracked brands`},
-    {lbl:'Behind Kohler Goal', val:`${behindKohler} / ${totalWithGoal}`, sub:`${(100*behindKohler/totalWithGoal).toFixed(0)}% of tracked brands`},
+    {lbl:'Behind Brewery Goal', val:`${behindBrewery} / ${withGoalCount}`, sub:`${(100*behindBrewery/withGoalCount).toFixed(0)}% of brands with a goal`},
+    {lbl:'Behind Kohler Goal', val:`${behindKohler} / ${withGoalCount}`, sub:`${(100*behindKohler/withGoalCount).toFixed(0)}% of brands with a goal`},
     {lbl:'New in 2026', val:fmtCE(DATA.meta.totalNoGoal), sub:'no 2025 goal or sales yet — see the other tab'},
   ];
   document.getElementById('kpis').innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');

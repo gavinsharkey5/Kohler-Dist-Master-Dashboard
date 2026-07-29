@@ -196,6 +196,14 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
 # credit-adjustment entries in the RDE export, not real current placements.
 EXCLUDED_BRANDS = {"shipyard", "jersey girl", "soda birch", "whole hog"}
 
+# Per Kohler, 2026-07-29: show these managers' goal-less-but-actively-selling
+# brands on the main Vs. Goal table instead of "New in 2026", with the goal/
+# gap/projection columns left blank (no goal to map them to). Scoped to named
+# managers only, not a general policy change -- brands with zero 2025 volume
+# still belong on the New tab regardless of manager, since there's no prior-
+# year baseline to show a trend against either way.
+FORCE_VS_GOAL_MANAGERS = {"Denise Montes"}
+
 
 def main():
     brands, brands_lower, supplier_names, brand_manager_by_supplier = load_workbook_taxonomy()
@@ -244,7 +252,14 @@ def main():
         # measure a 2026 trend against, so it belongs on the New tab
         # rather than the main vs-goal table (per Kohler, 2026-07-28).
         if (brewery_pct is None and kohler_pct is None) or ce_prior == 0:
-            no_goal.append(rec)
+            if manager in FORCE_VS_GOAL_MANAGERS and ce_prior != 0:
+                rec["goal_brewery_pct"] = None
+                rec["goal_kohler_pct"] = None
+                rec["gap_brewery"] = None
+                rec["gap_kohler"] = None
+                with_goal.append(rec)
+            else:
+                no_goal.append(rec)
         else:
             rec["goal_brewery_pct"] = brewery_pct
             rec["goal_kohler_pct"] = kohler_pct
@@ -268,14 +283,25 @@ def main():
         manager = brand_manager_by_supplier.get(supplier)
         unbroken_out = [b for b in brands_by_supplier.get(supplier, []) if b not in matched_brand_names]
         brand_label = f"{name} ({', '.join(sorted(unbroken_out))})" if unbroken_out else name
-        no_goal.append({
+        rec = {
             "brand": brand_label,
             "supplier": supplier,
             "brand_manager": manager,
             "ce_prior": metrics["ce_prior"],
             "ce_current": metrics["ce_current"],
             "trend_pct": metrics["pct_change"],
-        })
+        }
+        if manager in FORCE_VS_GOAL_MANAGERS and metrics["ce_prior"] != 0:
+            # Rolls up multiple workbook brands with different goals apiece
+            # (or, if unbroken_out is empty, no workbook entry at all) -- no
+            # single goal/finish figure maps onto one combined row, so those
+            # columns stay blank rather than guessing at a number.
+            rec.update(finish_2025_ce=None, proj_finish_2026_ce=None,
+                       goal_brewery_pct=None, goal_kohler_pct=None,
+                       gap_brewery=None, gap_kohler=None)
+            with_goal.append(rec)
+        else:
+            no_goal.append(rec)
 
     # Terminated: zero or negative 2026 YTD case volume, regardless of
     # whether the brand has a goal or prior-year sales -- it's not actively

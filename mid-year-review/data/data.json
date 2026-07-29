@@ -1,8 +1,8 @@
 {
   "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.",
   "meta": {
-    "totalWithGoal": 231,
-    "totalNoGoal": 61,
+    "totalWithGoal": 233,
+    "totalNoGoal": 59,
     "totalTerminated": 40,
     "behindBrewery": 110,
     "behindKohler": 115
@@ -2970,6 +2970,20 @@
       "gap_kohler": 0.18490000000000004
     },
     {
+      "brand": "Cerveza Republica LA Tuya",
+      "supplier": "Vinaio Imports LTD",
+      "brand_manager": "Denise Montes",
+      "ce_prior": 863.98,
+      "ce_current": 266.2,
+      "trend_pct": -0.6919,
+      "finish_2025_ce": 2006.292144,
+      "proj_finish_2026_ce": 618.1463715664,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": null,
+      "gap_brewery": null,
+      "gap_kohler": null
+    },
+    {
       "brand": "DELTA",
       "supplier": "Delta Beverage LLC",
       "brand_manager": "Jason Koo",
@@ -3360,6 +3374,20 @@
       "goal_kohler_pct": 1,
       "gap_brewery": null,
       "gap_kohler": -0.5449999999999999
+    },
+    {
+      "brand": "Food & Bev (Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import)",
+      "supplier": "Food & Bev Enterprise LLC",
+      "brand_manager": "Denise Montes",
+      "ce_prior": 1077.22,
+      "ce_current": 1366.0,
+      "trend_pct": 0.2681,
+      "finish_2025_ce": null,
+      "proj_finish_2026_ce": null,
+      "goal_brewery_pct": null,
+      "goal_kohler_pct": null,
+      "gap_brewery": null,
+      "gap_kohler": null
     }
   ],
   "newBrands": [
@@ -3380,14 +3408,6 @@
       "ce_prior": 0.0,
       "ce_current": 1872.0,
       "trend_pct": 1.0
-    },
-    {
-      "brand": "Food & Bev (Aguila Light, Club Colombia Dorada, Club Colombia Roja, Pilsen Import)",
-      "supplier": "Food & Bev Enterprise LLC",
-      "brand_manager": "Denise Montes",
-      "ce_prior": 1077.22,
-      "ce_current": 1366.0,
-      "trend_pct": 0.2681
     },
     {
       "brand": "Viva Tequila Seltzer",
@@ -3482,16 +3502,6 @@
       "ce_prior": 0.0,
       "ce_current": 278.0,
       "trend_pct": 1.0
-    },
-    {
-      "brand": "Cerveza Republica LA Tuya",
-      "supplier": "Vinaio Imports LTD",
-      "brand_manager": "Denise Montes",
-      "ce_prior": 863.98,
-      "ce_current": 266.2,
-      "trend_pct": -0.6919,
-      "finish_2025_ce": 2006.292144,
-      "proj_finish_2026_ce": 618.1463715664
     },
     {
       "brand": "HOP WTR",
