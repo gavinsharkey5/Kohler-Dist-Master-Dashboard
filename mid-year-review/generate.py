@@ -318,7 +318,8 @@ def main():
                         "gap_brewery": None,
                         "gap_kohler": None,
                     })
-                rec["brand"] = f"{name} (combined actual -- RDE doesn't report {', '.join(sorted(unbroken_out))} separately)"
+                rec["brand"] = f"{name} (combined actual)"
+                rec["note"] = f"Combined actual CE for {', '.join(sorted(unbroken_out))} -- RDE doesn't report these separately."
             rec.update(finish_2025_ce=None, proj_finish_2026_ce=None,
                        goal_brewery_pct=None, goal_kohler_pct=None,
                        gap_brewery=None, gap_kohler=None)

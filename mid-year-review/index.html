@@ -21,7 +21,7 @@
   body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
     font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14.5px;line-height:1.5;
     padding:0 18px 60px}
-  .wrap{max-width:1700px;margin:0 auto}
+  .wrap{max-width:1950px;margin:0 auto}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
   a{color:inherit}
 
@@ -73,22 +73,22 @@
 
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
   table{border-collapse:collapse;table-layout:fixed}
-  thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:10px;font-weight:600;color:var(--ink-soft);
+  thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
     overflow:hidden;text-overflow:ellipsis}
   thead th:hover{color:var(--ink)}
   thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
-  tbody td{padding:7px 6px;border-bottom:1px solid var(--line-soft);font-size:12.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  tbody td{padding:8px 7px;border-bottom:1px solid var(--line-soft);font-size:13.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
   tbody tr:hover td{background:var(--card-h)}
   .brandname{font-weight:600;color:var(--ink)}
-  .suppliername{color:var(--ink-soft);font-size:11.5px}
+  .suppliername{color:var(--ink-soft);font-size:12.3px}
 
   .gapcell{font-weight:700;border-radius:6px;padding:3px 7px;display:inline-block;min-width:56px;text-align:center}
   .gapcell.behind{background:var(--bad-soft);color:var(--bad)}
   .gapcell.ahead{background:var(--good-soft);color:var(--good)}
   .gapcell.flat{color:var(--ink-mute)}
 
-  .status-badge{font-size:9.5px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;border-radius:20px;padding:3px 8px;white-space:nowrap}
+  .status-badge{font-size:10.3px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;border-radius:20px;padding:3px 8px;white-space:nowrap}
   .status-badge.behind-both{background:var(--bad-soft);color:var(--bad)}
   .status-badge.behind-one{background:rgba(244,184,62,.14);color:#F4B83E}
   .status-badge.on-track{background:var(--good-soft);color:var(--good)}
@@ -100,8 +100,8 @@
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
 
-  .pctinput{width:100%;max-width:60px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
-    font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:11.5px;text-align:center;border-radius:6px;padding:3px 5px}
+  .pctinput{width:100%;max-width:64px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
+    font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:12.3px;text-align:center;border-radius:6px;padding:3px 5px}
   .pctinput.kohler{color:var(--kohler)}
   .pctinput:focus{outline:2px solid var(--brewery);outline-offset:1px}
   .pctinput.kohler:focus{outline-color:var(--kohler)}
@@ -174,13 +174,13 @@
       </div>
 
       <div class="tablewrap">
-        <table>
+        <table style="width:1864px">
           <colgroup>
-            <col style="width:285px"><col style="width:205px"><col style="width:115px">
-            <col style="width:85px"><col style="width:85px"><col style="width:85px"><col style="width:70px"><col style="width:90px">
-            <col style="width:70px"><col style="width:90px"><col style="width:85px">
-            <col style="width:70px"><col style="width:90px"><col style="width:85px">
-            <col style="width:110px">
+            <col style="width:340px"><col style="width:225px"><col style="width:135px">
+            <col style="width:88px"><col style="width:88px"><col style="width:88px"><col style="width:85px"><col style="width:90px">
+            <col style="width:82px"><col style="width:90px"><col style="width:118px">
+            <col style="width:82px"><col style="width:90px"><col style="width:118px">
+            <col style="width:145px">
           </colgroup>
           <thead><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
@@ -223,9 +223,9 @@
         <span class="rowcount" id="newRowcount"></span>
       </div>
       <div class="tablewrap">
-        <table>
+        <table style="width:770px">
           <colgroup>
-            <col style="width:290px"><col style="width:210px"><col style="width:120px"><col style="width:110px">
+            <col style="width:300px"><col style="width:225px"><col style="width:135px"><col style="width:110px">
           </colgroup>
           <thead><tr id="newTheadRow"></tr></thead>
           <tbody id="newTbody"></tbody>
@@ -253,9 +253,9 @@
         <span class="rowcount" id="termRowcount"></span>
       </div>
       <div class="tablewrap">
-        <table>
+        <table style="width:870px">
           <colgroup>
-            <col style="width:280px"><col style="width:200px"><col style="width:115px"><col style="width:100px"><col style="width:100px">
+            <col style="width:300px"><col style="width:225px"><col style="width:135px"><col style="width:105px"><col style="width:105px">
           </colgroup>
           <thead><tr id="termTheadRow"></tr></thead>
           <tbody id="termTbody"></tbody>
@@ -418,7 +418,7 @@ function renderRows(rows){
     tr.dataset.key = r._key;
     const st = statusOf(r);
 
-    const tdBrand = document.createElement('td'); tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
+    const tdBrand = document.createElement('td'); tdBrand.title = r.note || r.brand; tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
     const tdSupplier = document.createElement('td'); tdSupplier.innerHTML = `<span class="suppliername">${esc(r.supplier)||'—'}</span>`;
     const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
     const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
@@ -552,7 +552,7 @@ function renderNewTable(){
   renderNewHead();
   const rows = newFilteredSorted();
   document.getElementById('newTbody').innerHTML = rows.map(r=>`<tr>
-    <td><span class="brandname">${esc(r.brand)}</span></td>
+    <td title="${esc(r.brand)}"><span class="brandname">${esc(r.brand)}</span></td>
     <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
     <td>${esc(r.brand_manager)||'—'}</td>
     <td class="num">${fmtCE(r.ce_current)}</td>
@@ -617,7 +617,7 @@ function renderTermTable(){
   renderTermHead();
   const rows = termFilteredSorted();
   document.getElementById('termTbody').innerHTML = rows.map(r=>`<tr>
-    <td><span class="brandname">${esc(r.brand)}</span></td>
+    <td title="${esc(r.brand)}"><span class="brandname">${esc(r.brand)}</span></td>
     <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
     <td>${esc(r.brand_manager)||'—'}</td>
     <td class="num">${fmtCE(r.ce_prior)}</td>
