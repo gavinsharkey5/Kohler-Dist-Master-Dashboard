@@ -176,11 +176,11 @@
       <div class="tablewrap">
         <table>
           <colgroup>
-            <col style="width:10%"><col style="width:8%"><col style="width:8%">
-            <col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:7%">
+            <col style="width:9%"><col style="width:7%"><col style="width:7%">
+            <col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:6%"><col style="width:7%">
             <col style="width:6%"><col style="width:7%"><col style="width:6%">
             <col style="width:6%"><col style="width:7%"><col style="width:6%">
-            <col style="width:10%">
+            <col style="width:8%">
           </colgroup>
           <thead><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
@@ -282,6 +282,7 @@ const COLS = [
   {key:'brand', label:'Brand', kind:'text'},
   {key:'supplier', label:'Supplier', kind:'text'},
   {key:'brand_manager', label:'Manager', full:'Brand Manager', kind:'text'},
+  {key:'finish_2025_ce', label:"'25 Finish", full:'2025 Actual Full-Year Finish (CE)', kind:'ce'},
   {key:'ce_prior', label:"'25 YTD CE", kind:'ce'},
   {key:'ce_current', label:"'26 YTD CE", kind:'ce'},
   {key:'trend_pct', label:'Trend %', kind:'pct'},
@@ -417,6 +418,7 @@ function renderRows(rows){
     const tdBrand = document.createElement('td'); tdBrand.className='wraptext'; tdBrand.innerHTML = `<span class="brandname">${esc(r.brand)}</span>`;
     const tdSupplier = document.createElement('td'); tdSupplier.className='wraptext'; tdSupplier.innerHTML = `<span class="suppliername">${esc(r.supplier)||'—'}</span>`;
     const tdMgr = document.createElement('td'); tdMgr.className='wraptext'; tdMgr.textContent = r.brand_manager || '—';
+    const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
     const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
     const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
     const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
@@ -442,7 +444,7 @@ function renderRows(rows){
 
     const tdStatus = document.createElement('td'); tdStatus.innerHTML = `<span class="status-badge ${st.cls}">${st.label}</span>`;
 
-    [tdBrand,tdSupplier,tdMgr,tdPrior,tdCurrent,tdTrend,tdProj,
+    [tdBrand,tdSupplier,tdMgr,tdFinish25,tdPrior,tdCurrent,tdTrend,tdProj,
      tdBGoal,tdBGoalCe,tdBGap,tdKGoal,tdKGoalCe,tdKGap,tdStatus].forEach(td=>tr.appendChild(td));
     frag.appendChild(tr);
   });
@@ -479,11 +481,12 @@ function renderKPIs(){
 
 function exportCSV(){
   const rows = filteredSorted();
-  const header = ['Brand','Supplier','Brand Manager','2025 YTD CE','2026 YTD CE','Trend %','2026 Projected Finish CE',
+  const header = ['Brand','Supplier','Brand Manager','2025 Finish CE','2025 YTD CE','2026 YTD CE','Trend %','2026 Projected Finish CE',
     'Brewery Goal %','Brewery Goal CE','Gap vs Brewery','Kohler Goal %','Kohler Goal CE','Gap vs Kohler','Status'];
   const lines = [header.join(',')];
   rows.forEach(r=>{
     lines.push([r.brand,r.supplier||'',r.brand_manager||'',
+      r.finish_2025_ce!=null?r.finish_2025_ce.toFixed(0):'',
       r.ce_prior!=null?r.ce_prior.toFixed(0):'', r.ce_current!=null?r.ce_current.toFixed(0):'',
       r.trend_pct!=null?(r.trend_pct*100).toFixed(1):'',
       r.proj_finish_2026_ce!=null?r.proj_finish_2026_ce.toFixed(0):'',
