@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Customer Reset Tracking &mdash; Kohler Distributing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6A7180;
+    --line:#2A2E38;--line-soft:#20242D;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+    --accent:#5B8DEF;
+    --good:#37C46B;--good-soft:#12301E;--bad:#E5604D;--bad-soft:#33191A;--neutral:#9097A6;
+    --input-bg:#101318;--input-border:#3A4155;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14.5px;line-height:1.5;
+    padding:0 18px 60px}
+  .wrap{max-width:1200px;margin:0 auto}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+  a{color:inherit}
+
+  header{padding:30px 0 6px}
+  .backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:14px}
+  .backlink:hover{color:var(--ink)}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
+  h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0}
+  .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
+  .updated{color:var(--ink-mute);font-size:12.5px;margin:12px 0 0}
+
+  section.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
+  section.panel h2{font-family:"Space Grotesk";font-size:17px;margin:0 0 4px}
+  section.panel .desc{color:var(--ink-soft);font-size:13px;margin:0 0 16px}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0}
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .kpi .lbl{font-size:11.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
+  .kpi .val{font-family:"Space Grotesk";font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .kpi .val.good{color:var(--good)} .kpi .val.bad{color:var(--bad)}
+  .kpi .sub2{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:700px){.split{grid-template-columns:1fr}}
+  .splitcard{border-radius:14px;padding:18px 20px;border:1px solid var(--line)}
+  .splitcard .lbl{font-family:"Space Grotesk";font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .splitcard .big{font-family:"Space Grotesk";font-weight:700;font-size:38px;margin:8px 0 4px}
+  .splitcard .big.good{color:var(--good)} .splitcard .big.bad{color:var(--bad)}
+  .splitcard .sub2{color:var(--ink-soft);font-size:13px}
+
+  .segrow, .monthrow{display:grid;grid-template-columns:100px 1fr 90px 70px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+  .segrow:last-child, .monthrow:last-child{border-bottom:none}
+  .segrow .segname, .monthrow .monthname{font-family:"Space Grotesk";font-weight:600}
+  .segbar{height:10px;border-radius:5px;background:var(--line-soft);overflow:hidden}
+  .segbar i{display:block;height:100%;border-radius:5px}
+  .segpct{text-align:right;font-family:"Space Grotesk";font-weight:700}
+  .segpct.good{color:var(--good)} .segpct.bad{color:var(--bad)}
+  .segcount{text-align:right;color:var(--ink-soft);font-size:12.5px}
+
+  .notice{background:rgba(244,184,62,.08);border:1px solid rgba(244,184,62,.25);border-radius:12px;padding:14px 18px;margin:0 0 20px;font-size:13px;color:var(--ink-soft)}
+
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px}
+  .controls input, .controls select{background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
+    border-radius:9px;padding:8px 12px;font:inherit;font-size:13px}
+  .controls input[type=search]{min-width:200px}
+  .controls .spacer{flex:1}
+  .rowcount{font-size:12px;color:var(--ink-mute)}
+
+  table{width:100%;border-collapse:collapse}
+  thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:10.5px;font-weight:600;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+  thead th:hover{color:var(--ink)}
+  thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
+  tbody td{padding:8px 6px;border-bottom:1px solid var(--line-soft);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  tbody tr:hover td{background:var(--card-h)}
+  td.name{text-align:left;font-weight:600}
+  td.city{text-align:left;color:var(--ink-soft)}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  .typepill{font-size:10.5px;font-weight:700;text-transform:uppercase;border-radius:20px;padding:3px 9px}
+  .typepill.first{background:var(--good-soft);color:var(--good)}
+  .typepill.repeat{background:rgba(91,141,239,.14);color:var(--accent)}
+  .liftcell{font-weight:700}
+  .liftcell.good{color:var(--good)} .liftcell.bad{color:var(--bad)} .liftcell.na{color:var(--ink-mute);font-weight:400;font-style:italic}
+
+  .pending-list{columns:2;column-gap:24px;font-size:13px;color:var(--ink-soft)}
+  @media (max-width:700px){.pending-list{columns:1}}
+  .pending-list li{margin-bottom:4px}
+
+  details.caveats{margin-top:6px}
+  details.caveats summary{cursor:pointer;font-weight:600;color:var(--ink-soft);font-size:13.5px}
+  details.caveats ul{margin:10px 0 0;padding-left:20px;color:var(--ink-soft);font-size:13px}
+  details.caveats li{margin:0 0 8px}
+
+  footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="backlink" href="../"><span>&larr;</span> All trackers</a>
+    <p class="eyebrow">Kohler Distributing &middot; Customer Reset Tracking</p>
+    <h1>Does a Reset Lift Sales?</h1>
+    <p class="sub">Every 2026 shelf/cooler reset (the "SFS" program), compared against the same 90-day window one
+      year earlier at that same account &mdash; controls for seasonality the same way the prior two program years'
+      own methodology did. First-time resets (brand-new to the program) are tracked separately from repeat resets
+      (reset again in 2024 and/or 2025), since combining them hides very different effects.</p>
+    <p class="updated" id="updated"></p>
+  </header>
+
+  <div class="notice" id="pendingNotice"></div>
+
+  <section class="panel">
+    <h2>Overall</h2>
+    <p class="desc">All evaluated accounts, Case Equivalent volume, 90 days post-reset vs. the same 90 days one year earlier.</p>
+    <div class="kpis" id="overallKpis"></div>
+  </section>
+
+  <section class="panel">
+    <h2>First-Time vs. Repeat Resets</h2>
+    <p class="desc">The same blended lift, split by whether this was the account's first-ever SFS reset or a repeat of a 2024/2025 reset.</p>
+    <div class="split" id="resetTypeSplit"></div>
+  </section>
+
+  <section class="panel">
+    <h2>By Reset Month</h2>
+    <p class="desc">Jan/Feb/Mar 2026 cohorts &mdash; Apr/May cohorts haven't had their sales data pulled yet (see notice above).</p>
+    <div id="monthRows"></div>
+  </section>
+
+  <section class="panel">
+    <h2>By Segment</h2>
+    <p class="desc">Segmentation (A/B/C) comes from the reset roster as-is; its exact definition hasn't been confirmed (assumed to be a volume tier) &mdash; shown here as a grouping, not an endorsed metric.</p>
+    <div id="segRows"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Every Evaluated Account</h2>
+    <p class="desc">Click a column header to sort.</p>
+    <div class="controls">
+      <input type="search" id="search" placeholder="Search account or city&hellip;">
+      <select id="typeFilter">
+        <option value="">All Types</option>
+        <option value="First-Time">First-Time</option>
+        <option value="Repeat">Repeat</option>
+      </select>
+      <select id="segFilter"><option value="">All Segments</option></select>
+      <select id="monthFilter"><option value="">All Months</option></select>
+      <div class="spacer"></div>
+      <span class="rowcount" id="rowcount"></span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr id="theadRow"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Pending &mdash; No Sales Data Yet</h2>
+    <p class="desc" id="pendingDesc"></p>
+    <ul class="pending-list" id="pendingList"></ul>
+  </section>
+
+  <section class="panel methodology">
+    <h2>Methodology &amp; data notes</h2>
+    <p><b>Post window:</b> each account's own Reset Date through Reset Date + 90 days, using 2026 transactions.</p>
+    <p><b>Pre window:</b> the same 90-day calendar window one year earlier (Reset Date &minus; 365 days), using 2025
+      transactions &mdash; a year-over-year comparison, not a same-year before/after, so a reset's apparent effect
+      isn't just normal seasonal variation.</p>
+    <p><b>Lift %:</b> (post total &minus; pre total) / pre total, on Case Equivalents (the headline metric; $
+      Volume and Gross Profit are tracked the same way per account, see the export).</p>
+    <details class="caveats">
+      <summary>Data quality &amp; open items (click to expand)</summary>
+      <ul id="caveatsList"></ul>
+    </details>
+  </section>
+
+</div>
+<footer>Kohler Distributing &middot; Customer Reset Tracking. See generate.py for methodology.</footer>
+
+<script id="reset-data" type="application/json">{"generatedAt":"2026-07-30 18:10 UTC","windowDays":90,"rosterTotal":73,"evaluatedCount":38,"pendingCount":35,"overall":{"accountCount":38,"caseEquiv":{"pre":86729.67,"post":86909.63,"liftPct":0.2},"dollarVol":{"pre":2499174.53,"post":2542559.4,"liftPct":1.7},"grossProfit":{"pre":683215.25,"post":701507.06,"liftPct":2.7},"upCount":17,"downCount":19,"noBaselineCount":1},"byResetType":{"First-Time":{"accountCount":9,"caseEquiv":{"pre":19915.36,"post":22366.14,"liftPct":12.3},"dollarVol":{"pre":559539.3,"post":645741.55,"liftPct":15.4},"grossProfit":{"pre":153353.46,"post":179320.34,"liftPct":16.9},"upCount":3,"downCount":5,"noBaselineCount":1},"Repeat":{"accountCount":29,"caseEquiv":{"pre":66814.31,"post":64543.49,"liftPct":-3.4},"dollarVol":{"pre":1939635.23,"post":1896817.85,"liftPct":-2.2},"grossProfit":{"pre":529861.79,"post":522186.72,"liftPct":-1.4},"upCount":14,"downCount":14,"noBaselineCount":0}},"byMonth":{"January 2026":{"accountCount":10,"caseEquiv":{"pre":22639.93,"post":21563.27,"liftPct":-4.8},"dollarVol":{"pre":656735.33,"post":632740.93,"liftPct":-3.7},"grossProfit":{"pre":179891.52,"post":173102.74,"liftPct":-3.8},"upCount":3,"downCount":6,"noBaselineCount":0},"February 2026":{"accountCount":12,"caseEquiv":{"pre":24355.65,"post":27756.15,"liftPct":14.0},"dollarVol":{"pre":701197.08,"post":809838.42,"liftPct":15.5},"grossProfit":{"pre":195396.96,"post":230202.0,"liftPct":17.8},"upCount":6,"downCount":5,"noBaselineCount":1},"March 2026":{"accountCount":16,"caseEquiv":{"pre":39734.09,"post":37590.21,"liftPct":-5.4},"dollarVol":{"pre":1141242.12,"post":1099980.05,"liftPct":-3.6},"grossProfit":{"pre":307926.77,"post":298202.32,"liftPct":-3.2},"upCount":8,"downCount":8,"noBaselineCount":0}},"bySegment":{"A":{"accountCount":16,"caseEquiv":{"pre":54556.38,"post":54873.01,"liftPct":0.6},"dollarVol":{"pre":1551080.52,"post":1588546.36,"liftPct":2.4},"grossProfit":{"pre":421027.82,"post":436981.0,"liftPct":3.8},"upCount":5,"downCount":9,"noBaselineCount":1},"B":{"accountCount":9,"caseEquiv":{"pre":17982.6,"post":17081.17,"liftPct":-5.0},"dollarVol":{"pre":537502.68,"post":511594.35,"liftPct":-4.8},"grossProfit":{"pre":148756.08,"post":140385.57,"liftPct":-5.6},"upCount":4,"downCount":5,"noBaselineCount":0},"C":{"accountCount":13,"caseEquiv":{"pre":14190.69,"post":14955.45,"liftPct":5.4},"dollarVol":{"pre":410591.33,"post":442418.69,"liftPct":7.8},"grossProfit":{"pre":113431.35,"post":124140.49,"liftPct":9.4},"upCount":8,"downCount":5,"noBaselineCount":0}},"accounts":[{"account":"20051","name":"Costambar Bar & Liquor","city":"Paterson","segment":"C","resetDate":"2026-03-05","resetMonth":"March 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":806.35,"dollarVol":25674.3,"grossProfit":7227.05},"pre":{"caseEquiv":106.54,"dollarVol":3376.4,"grossProfit":1077.49},"liftCaseEquiv":656.9,"liftDollarVol":660.4,"liftGrossProfit":570.7},{"account":"13017","name":"On The Rocks","city":"Little Falls","segment":"A","resetDate":"2026-03-19","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":1472.27,"dollarVol":44862.1,"grossProfit":12476.67},"pre":{"caseEquiv":927.07,"dollarVol":28474.55,"grossProfit":7878.52},"liftCaseEquiv":58.8,"liftDollarVol":57.6,"liftGrossProfit":58.4},{"account":"15040","name":"Mcbride Liquors","city":"Little Falls","segment":"C","resetDate":"2026-02-18","resetMonth":"February 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":562.22,"dollarVol":16557.01,"grossProfit":4696.7},"pre":{"caseEquiv":430.81,"dollarVol":12298.45,"grossProfit":3352.1},"liftCaseEquiv":30.5,"liftDollarVol":34.6,"liftGrossProfit":40.1},{"account":"21024","name":"Altiero Liquors","city":"Paterson","segment":"C","resetDate":"2026-03-04","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":999.98,"dollarVol":30536.14,"grossProfit":8548.22},"pre":{"caseEquiv":779.41,"dollarVol":22588.37,"grossProfit":5853.1},"liftCaseEquiv":28.3,"liftDollarVol":35.2,"liftGrossProfit":46.0},{"account":"47005","name":"High Spirits","city":"Ridgefield Park","segment":"A","resetDate":"2026-02-03","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":3622.14,"dollarVol":106924.85,"grossProfit":30592.67},"pre":{"caseEquiv":2990.76,"dollarVol":85011.58,"grossProfit":22958.26},"liftCaseEquiv":21.1,"liftDollarVol":25.8,"liftGrossProfit":33.3},{"account":"190913","name":"Main Street Liquor","city":"Wharton","segment":"C","resetDate":"2026-03-11","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":1849.09,"dollarVol":53896.3,"grossProfit":14936.96},"pre":{"caseEquiv":1554.79,"dollarVol":43965.06,"grossProfit":12283.02},"liftCaseEquiv":18.9,"liftDollarVol":22.6,"liftGrossProfit":21.6},{"account":"15059","name":"Belmont Liquors","city":"Paterson","segment":"B","resetDate":"2026-03-10","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":1521.53,"dollarVol":45432.3,"grossProfit":11676.4},"pre":{"caseEquiv":1287.83,"dollarVol":38109.9,"grossProfit":9870.48},"liftCaseEquiv":18.1,"liftDollarVol":19.2,"liftGrossProfit":18.3},{"account":"67005","name":"Shoprite Liquors","city":"Northvale","segment":"A","resetDate":"2026-02-02","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":5981.85,"dollarVol":166455.79,"grossProfit":48613.57},"pre":{"caseEquiv":5391.81,"dollarVol":150529.03,"grossProfit":42202.14},"liftCaseEquiv":10.9,"liftDollarVol":10.6,"liftGrossProfit":15.2},{"account":"36007","name":"Shoprite Liquors","city":"Wallington","segment":"A","resetDate":"2026-01-27","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":3705.53,"dollarVol":102677.63,"grossProfit":28343.84},"pre":{"caseEquiv":3343.56,"dollarVol":93991.1,"grossProfit":25501.56},"liftCaseEquiv":10.8,"liftDollarVol":9.2,"liftGrossProfit":11.1},{"account":"5001","name":"23 Wine & Spirits (River Place Food Store)","city":"Butler","segment":"C","resetDate":"2026-02-26","resetMonth":"February 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":3057.39,"dollarVol":91918.8,"grossProfit":26962.05},"pre":{"caseEquiv":2769.98,"dollarVol":81197.94,"grossProfit":22613.52},"liftCaseEquiv":10.4,"liftDollarVol":13.2,"liftGrossProfit":19.2},{"account":"77001","name":"Food Mart Liquor","city":"Elmwood Park","segment":"C","resetDate":"2026-02-25","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":512.42,"dollarVol":15473.05,"grossProfit":4245.14},"pre":{"caseEquiv":469.76,"dollarVol":12717.35,"grossProfit":3613.94},"liftCaseEquiv":9.1,"liftDollarVol":21.7,"liftGrossProfit":17.5},{"account":"76006","name":"Wine Country","city":"Saddle Brook","segment":"B","resetDate":"2026-03-02","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":1743.67,"dollarVol":47249.83,"grossProfit":13098.7},"pre":{"caseEquiv":1619.0,"dollarVol":43783.31,"grossProfit":12156.67},"liftCaseEquiv":7.7,"liftDollarVol":7.9,"liftGrossProfit":7.7},{"account":"21021","name":"Park Avenue Liquors","city":"Paterson","segment":"B","resetDate":"2026-03-12","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":1439.73,"dollarVol":45055.3,"grossProfit":12560.34},"pre":{"caseEquiv":1353.67,"dollarVol":41881.0,"grossProfit":11813.03},"liftCaseEquiv":6.4,"liftDollarVol":7.6,"liftGrossProfit":6.3},{"account":"29008","name":"Krauszers Food","city":"Lyndhurst","segment":"C","resetDate":"2026-01-07","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":266.19,"dollarVol":8158.9,"grossProfit":2245.17},"pre":{"caseEquiv":256.69,"dollarVol":7844.3,"grossProfit":2208.46},"liftCaseEquiv":3.7,"liftDollarVol":4.0,"liftGrossProfit":1.7},{"account":"24017","name":"Rainbow Deli & Discount Liquors","city":"Clifton","segment":"B","resetDate":"2026-01-28","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":3091.34,"dollarVol":92108.88,"grossProfit":24576.26},"pre":{"caseEquiv":2994.76,"dollarVol":87338.05,"grossProfit":23989.7},"liftCaseEquiv":3.2,"liftDollarVol":5.5,"liftGrossProfit":2.4},{"account":"23003","name":"Petes Liquors","city":"Clifton","segment":"C","resetDate":"2026-02-19","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":1192.43,"dollarVol":34285.5,"grossProfit":9307.34},"pre":{"caseEquiv":1163.61,"dollarVol":32944.52,"grossProfit":9038.37},"liftCaseEquiv":2.5,"liftDollarVol":4.1,"liftGrossProfit":3.0},{"account":"27037","name":"Shanik Liquors","city":"Passaic","segment":"A","resetDate":"2026-03-17","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":4146.76,"dollarVol":117348.9,"grossProfit":31719.82},"pre":{"caseEquiv":4119.31,"dollarVol":115678.3,"grossProfit":31136.6},"liftCaseEquiv":0.7,"liftDollarVol":1.4,"liftGrossProfit":1.9},{"account":"27034","name":"Liquor Stop","city":"Passaic","segment":"A","resetDate":"2026-01-27","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":2184.48,"dollarVol":60721.1,"grossProfit":15955.23},"pre":{"caseEquiv":2184.34,"dollarVol":59621.31,"grossProfit":16122.56},"liftCaseEquiv":0.0,"liftDollarVol":1.8,"liftGrossProfit":-1.0},{"account":"45004","name":"Ridgefield Liquor","city":"Ridgefield","segment":"B","resetDate":"2026-01-12","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":976.36,"dollarVol":27819.7,"grossProfit":7672.34},"pre":{"caseEquiv":994.87,"dollarVol":28227.17,"grossProfit":7870.88},"liftCaseEquiv":-1.9,"liftDollarVol":-1.4,"liftGrossProfit":-2.5},{"account":"73008","name":"Shoprite Liquors","city":"Hillsdale","segment":"A","resetDate":"2026-02-10","resetMonth":"February 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":4683.08,"dollarVol":127210.14,"grossProfit":35218.53},"pre":{"caseEquiv":4782.3,"dollarVol":128876.5,"grossProfit":36309.31},"liftCaseEquiv":-2.1,"liftDollarVol":-1.3,"liftGrossProfit":-3.0},{"account":"20014","name":"Bombolom Liquors","city":"Paterson","segment":"A","resetDate":"2026-03-18","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":3536.75,"dollarVol":106068.2,"grossProfit":28607.72},"pre":{"caseEquiv":3663.82,"dollarVol":109518.45,"grossProfit":28967.8},"liftCaseEquiv":-3.5,"liftDollarVol":-3.2,"liftGrossProfit":-1.2},{"account":"21044","name":"Farmboy Super Fresh Liquor","city":"Paterson","segment":"A","resetDate":"2026-01-14","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":3328.6,"dollarVol":105408.55,"grossProfit":29154.34},"pre":{"caseEquiv":3485.82,"dollarVol":105798.94,"grossProfit":29160.18},"liftCaseEquiv":-4.5,"liftDollarVol":-0.4,"liftGrossProfit":-0.0},{"account":"49019","name":"Bp Station","city":"Lodi","segment":"C","resetDate":"2026-02-19","resetMonth":"February 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":1069.26,"dollarVol":32038.4,"grossProfit":8683.26},"pre":{"caseEquiv":1138.28,"dollarVol":34754.55,"grossProfit":9111.54},"liftCaseEquiv":-6.1,"liftDollarVol":-7.8,"liftGrossProfit":-4.7},{"account":"49055","name":"Edgewater Wine & Spirits","city":"Edgewater","segment":"A","resetDate":"2026-01-02","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":2001.64,"dollarVol":63574.75,"grossProfit":17935.19},"pre":{"caseEquiv":2147.49,"dollarVol":66773.3,"grossProfit":18638.04},"liftCaseEquiv":-6.8,"liftDollarVol":-4.8,"liftGrossProfit":-3.8},{"account":"27046","name":"Eagle Liquors","city":"Passaic","segment":"A","resetDate":"2026-03-24","resetMonth":"March 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":4878.47,"dollarVol":135637.9,"grossProfit":36327.98},"pre":{"caseEquiv":5334.34,"dollarVol":143003.8,"grossProfit":38149.58},"liftCaseEquiv":-8.5,"liftDollarVol":-5.2,"liftGrossProfit":-4.8},{"account":"43001","name":"City Supermarkets","city":"Fairview","segment":"B","resetDate":"2026-01-29","resetMonth":"January 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":2776.72,"dollarVol":82555.64,"grossProfit":22669.88},"pre":{"caseEquiv":3062.56,"dollarVol":91995.26,"grossProfit":25027.39},"liftCaseEquiv":-9.3,"liftDollarVol":-10.3,"liftGrossProfit":-9.4},{"account":"25012","name":"Bottle Liquor Store","city":"Clifton","segment":"A","resetDate":"2026-03-09","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":4455.53,"dollarVol":133310.66,"grossProfit":35505.65},"pre":{"caseEquiv":4937.9,"dollarVol":145968.11,"grossProfit":38457.56},"liftCaseEquiv":-9.8,"liftDollarVol":-8.7,"liftGrossProfit":-7.7},{"account":"25010","name":"Stew Leonards","city":"Clifton","segment":"B","resetDate":"2026-02-10","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":3036.58,"dollarVol":96615.37,"grossProfit":27544.27},"pre":{"caseEquiv":3375.25,"dollarVol":108051.94,"grossProfit":30730.82},"liftCaseEquiv":-10.0,"liftDollarVol":-10.6,"liftGrossProfit":-10.4},{"account":"29003","name":"Liquor Shed","city":"Lyndhurst","segment":"C","resetDate":"2026-03-31","resetMonth":"March 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":2017.63,"dollarVol":57224.47,"grossProfit":16089.0},"pre":{"caseEquiv":2290.55,"dollarVol":64036.4,"grossProfit":17712.53},"liftCaseEquiv":-11.9,"liftDollarVol":-10.6,"liftGrossProfit":-9.2},{"account":"28011","name":"Liquor Mart","city":"North Arlington","segment":"C","resetDate":"2026-02-25","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":1113.67,"dollarVol":32635.42,"grossProfit":9195.84},"pre":{"caseEquiv":1288.5,"dollarVol":37598.92,"grossProfit":10515.06},"liftCaseEquiv":-13.6,"liftDollarVol":-13.2,"liftGrossProfit":-12.5},{"account":"48002","name":"Manor Beverages","city":"Leonia","segment":"B","resetDate":"2026-01-28","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":742.95,"dollarVol":21691.18,"grossProfit":5877.12},"pre":{"caseEquiv":878.86,"dollarVol":24608.5,"grossProfit":6808.58},"liftCaseEquiv":-15.5,"liftDollarVol":-11.9,"liftGrossProfit":-13.7},{"account":"36006","name":"Wallington Liquors","city":"Wallington","segment":"C","resetDate":"2026-03-03","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2025"],"status":"evaluated","post":{"caseEquiv":1098.73,"dollarVol":31221.2,"grossProfit":8307.02},"pre":{"caseEquiv":1387.18,"dollarVol":40052.77,"grossProfit":11100.32},"liftCaseEquiv":-20.8,"liftDollarVol":-22.0,"liftGrossProfit":-25.2},{"account":"27063","name":"Archies Liquor","city":"Passaic","segment":"A","resetDate":"2026-01-22","resetMonth":"January 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":2489.46,"dollarVol":68024.6,"grossProfit":18673.37},"pre":{"caseEquiv":3290.98,"dollarVol":90537.4,"grossProfit":24564.17},"liftCaseEquiv":-24.4,"liftDollarVol":-24.9,"liftGrossProfit":-24.0},{"account":"15013","name":"El Oasis Liquor","city":"Paterson","segment":"A","resetDate":"2026-03-04","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024"],"status":"evaluated","post":{"caseEquiv":2867.79,"dollarVol":86541.9,"grossProfit":23396.95},"pre":{"caseEquiv":3876.32,"dollarVol":113381.35,"grossProfit":30579.42},"liftCaseEquiv":-26.0,"liftDollarVol":-23.7,"liftGrossProfit":-23.5},{"account":"47004","name":"Wides Deli & Liquors","city":"Ridgefield Park","segment":"C","resetDate":"2026-02-27","resetMonth":"February 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":410.09,"dollarVol":12799.2,"grossProfit":3696.74},"pre":{"caseEquiv":554.59,"dollarVol":17216.3,"grossProfit":4951.9},"liftCaseEquiv":-26.1,"liftDollarVol":-25.7,"liftGrossProfit":-25.3},{"account":"27008","name":"Bermuda Liquors","city":"Passaic","segment":"A","resetDate":"2026-03-16","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":3003.64,"dollarVol":86854.4,"grossProfit":23013.58},"pre":{"caseEquiv":4080.56,"dollarVol":113916.8,"grossProfit":30402.12},"liftCaseEquiv":-26.4,"liftDollarVol":-23.8,"liftGrossProfit":-24.3},{"account":"54006","name":"Fine Wine & Spirits","city":"Tenafly","segment":"B","resetDate":"2026-03-25","resetMonth":"March 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"evaluated","post":{"caseEquiv":1752.29,"dollarVol":53066.15,"grossProfit":14710.26},"pre":{"caseEquiv":2415.8,"dollarVol":73507.55,"grossProfit":20488.53},"liftCaseEquiv":-27.5,"liftDollarVol":-27.8,"liftGrossProfit":-28.2},{"account":"31060","name":"Bottle Republic","city":"Rutherford","segment":"A","resetDate":"2026-02-06","resetMonth":"February 2026","resetType":"First-Time","repeatYears":[],"status":"evaluated","post":{"caseEquiv":2515.02,"dollarVol":76924.89,"grossProfit":21445.89},"pre":{"caseEquiv":0.0,"dollarVol":0.0,"grossProfit":0.0},"liftCaseEquiv":null,"liftDollarVol":null,"liftGrossProfit":null}],"pendingAccounts":[{"account":"81001","name":"B & B Liquors","city":"Fair Lawn","segment":"B","resetDate":"2026-04-22","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"77002","name":"Birchwood Deli & Liquor","city":"Elmwood Park","segment":"B","resetDate":"2026-04-27","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"83010","name":"Bottle King","city":"Glen Rock","segment":"A","resetDate":"2026-04-21","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"31033","name":"Capri Liquor & Deli","city":"East Rutherford","segment":"B","resetDate":"2026-04-27","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"50016","name":"Cedar Liquors","city":"Teaneck","segment":"C","resetDate":"2026-04-30","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"38019","name":"Circle Liquors","city":"Lodi","segment":"C","resetDate":"2026-04-22","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"25008","name":"Clifton Commons Spirits & Wines","city":"Clifton","segment":"A","resetDate":"2026-04-27","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"46033","name":"Discount Liquor Outlet","city":"Palisades Park","segment":"A","resetDate":"2026-05-07","resetMonth":"May 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"23006","name":"Discount Liquors","city":"Clifton","segment":"B","resetDate":"2026-04-22","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"},{"account":"21045","name":"Dorta Liquors","city":"Paterson","segment":"A","resetDate":"2026-04-13","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"22032","name":"Economy Liquors","city":"Paterson","segment":"A","resetDate":"2026-04-16","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"38007","name":"Garden Liquors & Wines","city":"Lodi","segment":"A","resetDate":"2026-05-07","resetMonth":"May 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"62009","name":"Garys","city":"Closter","segment":"B","resetDate":"2026-04-17","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"83001","name":"Glen Rock Wine & Liquors","city":"Glen Rock","segment":"A","resetDate":"2026-04-30","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"79002","name":"Hollywood Liquors","city":"Maywood","segment":"B","resetDate":"2026-04-20","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"},{"account":"7001","name":"Home Wines & Liquors","city":"Riverdale","segment":"C","resetDate":"2026-04-20","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"},{"account":"11003","name":"Lincoln Park Fine Wine & Spirits","city":"Lincoln Park","segment":"B","resetDate":"2026-04-22","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"34007","name":"Liquor Master","city":"Hasbrouck Heights","segment":"C","resetDate":"2026-04-27","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"28012","name":"Lucky 7 Wine & Liquors","city":"North Arlington","segment":"A","resetDate":"2026-04-23","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"21023","name":"Luna Liquors","city":"Paterson","segment":"A","resetDate":"2026-04-13","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"34001","name":"Meadowlands Wine & Liquor","city":"Wood Ridge","segment":"C","resetDate":"2026-05-06","resetMonth":"May 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"77016","name":"Metro Liquors","city":"Elmwood Park","segment":"B","resetDate":"2026-05-06","resetMonth":"May 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"52025","name":"Oprandys Wine & Liquor Store","city":"Englewood","segment":"C","resetDate":"2026-04-15","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"},{"account":"77012","name":"Pay Less Liquor & Deli","city":"Elmwood Park","segment":"C","resetDate":"2026-05-06","resetMonth":"May 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"24011","name":"Shoppers Vineyard","city":"Clifton","segment":"A","resetDate":"2026-04-23","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"52015","name":"Shoprite Liquors","city":"Englewood","segment":"A","resetDate":"2026-04-01","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"80005","name":"Shoprite Liquors","city":"Paramus","segment":"A","resetDate":"2026-04-02","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"81014","name":"Shoprite Liquors","city":"Fair Lawn","segment":"A","resetDate":"2026-04-16","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"23004","name":"Shoprite Liquors","city":"Clifton","segment":"A","resetDate":"2026-04-21","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"208026","name":"Stew Leonards Wines & Spirits","city":"Paramus","segment":"C","resetDate":"2026-04-29","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2025"],"status":"pending"},{"account":"27066","name":"Sunnys Liquors","city":"Passaic","segment":"A","resetDate":"2026-04-14","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"20106","name":"Super Wine Warehouse","city":"Paterson","segment":"A","resetDate":"2026-04-22","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024","2025"],"status":"pending"},{"account":"21033","name":"The Liquor Shop","city":"Paterson","segment":"A","resetDate":"2026-04-21","resetMonth":"April 2026","resetType":"Repeat","repeatYears":["2024"],"status":"pending"},{"account":"32017","name":"Wine Grand","city":"Carlstadt","segment":"B","resetDate":"2026-04-17","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"},{"account":"29011","name":"World Of Wine & Liquor","city":"Lyndhurst","segment":"C","resetDate":"2026-04-28","resetMonth":"April 2026","resetType":"First-Time","repeatYears":[],"status":"pending"}]}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('reset-data').textContent);
+const fmtCE = n => n==null?'—':Math.round(n).toLocaleString('en-US');
+const fmtPct = n => n==null?'No baseline':(n>=0?'+':'')+n.toFixed(1)+'%';
+const esc = s => (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+const COLS = [
+  {key:'name', label:'Account', kind:'text'},
+  {key:'city', label:'City', kind:'text'},
+  {key:'segment', label:'Segment', kind:'text'},
+  {key:'resetDate', label:'Reset Date', kind:'text'},
+  {key:'resetType', label:'Type', kind:'text'},
+  {key:'preCE', label:"Pre CE (90d, '25)", kind:'ce'},
+  {key:'postCE', label:"Post CE (90d, '26)", kind:'ce'},
+  {key:'liftCaseEquiv', label:'Lift %', kind:'pct'},
+];
+let SORT = {key:'liftCaseEquiv', dir:'desc'};
+let FILTER = {search:'', type:'', segment:'', month:''};
+
+function kpiTile(lbl, val, sub, cls){
+  return `<div class="kpi"><p class="lbl">${lbl}</p><p class="val num ${cls||''}">${val}</p><p class="sub2">${sub||''}</p></div>`;
+}
+
+function liftClass(n){ return n==null?'na':(n>0?'good':(n<0?'bad':'')); }
+
+function renderOverallKpis(){
+  const o = DATA.overall;
+  const tiles = [
+    kpiTile('Accounts Evaluated', DATA.evaluatedCount, `of ${DATA.rosterTotal} total 2026 reset accounts`),
+    kpiTile('Blended Case Equiv Lift', fmtPct(o.caseEquiv.liftPct), `${fmtCE(o.caseEquiv.pre)} &rarr; ${fmtCE(o.caseEquiv.post)} CE`, liftClass(o.caseEquiv.liftPct)),
+    kpiTile('Accounts Up', o.upCount, `of ${DATA.evaluatedCount} evaluated`, 'good'),
+    kpiTile('Accounts Down', o.downCount, `${o.noBaselineCount} with no prior-year baseline`, 'bad'),
+  ];
+  document.getElementById('overallKpis').innerHTML = tiles.join('');
+}
+
+function renderResetTypeSplit(){
+  const ft = DATA.byResetType['First-Time'];
+  const rp = DATA.byResetType['Repeat'];
+  function card(label, d, cls){
+    return `<div class="splitcard" style="background:${cls==='good'?'var(--good-soft)':'var(--bad-soft)'}">
+      <div class="lbl">${label}</div>
+      <div class="big ${liftClass(d.caseEquiv.liftPct)}">${fmtPct(d.caseEquiv.liftPct)}</div>
+      <div class="sub2">${d.accountCount} accounts &middot; ${fmtCE(d.caseEquiv.pre)} &rarr; ${fmtCE(d.caseEquiv.post)} CE &middot; ${d.upCount} up / ${d.downCount} down</div>
+    </div>`;
+  }
+  document.getElementById('resetTypeSplit').innerHTML =
+    card('First-Time Resets', ft, liftClass(ft.caseEquiv.liftPct)) +
+    card('Repeat Resets', rp, liftClass(rp.caseEquiv.liftPct));
+}
+
+function renderGroupRows(containerId, groups, nameField){
+  const el = document.getElementById(containerId);
+  const entries = Object.entries(groups);
+  el.innerHTML = entries.map(([name, d])=>{
+    const pct = d.caseEquiv.liftPct;
+    const barPct = Math.min(Math.abs(pct||0), 100);
+    const barColor = pct==null ? 'var(--neutral)' : (pct>=0?'var(--good)':'var(--bad)');
+    return `<div class="segrow">
+      <div class="segname">${esc(name)}</div>
+      <div class="segbar"><i style="width:${barPct}%;background:${barColor}"></i></div>
+      <div class="segpct ${liftClass(pct)}">${fmtPct(pct)}</div>
+      <div class="segcount">${d.accountCount} accts</div>
+    </div>`;
+  }).join('');
+}
+
+function populateSelect(id, values){
+  const sel = document.getElementById(id);
+  values.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
+}
+
+function filteredSorted(){
+  let rows = DATA.accounts.map(e=>({...e, preCE:e.pre.caseEquiv, postCE:e.post.caseEquiv}));
+  rows = rows.filter(r=>{
+    if (FILTER.type && r.resetType !== FILTER.type) return false;
+    if (FILTER.segment && r.segment !== FILTER.segment) return false;
+    if (FILTER.month && r.resetMonth !== FILTER.month) return false;
+    if (FILTER.search){
+      const s = FILTER.search.toLowerCase();
+      if (!(r.name||'').toLowerCase().includes(s) && !(r.city||'').toLowerCase().includes(s)) return false;
+    }
+    return true;
+  });
+  rows.sort((a,b)=>{
+    let av=a[SORT.key], bv=b[SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?-Infinity:av; bv = bv==null?-Infinity:bv;
+    return SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return rows;
+}
+
+function renderHead(){
+  const tr = document.getElementById('theadRow');
+  tr.innerHTML = '';
+  COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    th.textContent = c.label;
+    if (SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (SORT.key===c.key) SORT.dir = SORT.dir==='asc'?'desc':'asc'; else { SORT.key=c.key; SORT.dir='desc'; }
+      renderTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function renderTable(){
+  renderHead();
+  const rows = filteredSorted();
+  document.getElementById('tbody').innerHTML = rows.map(r=>`<tr>
+    <td class="name">${esc(r.name)}</td>
+    <td class="city">${esc(r.city)}</td>
+    <td>${esc(r.segment)||'—'}</td>
+    <td>${esc(r.resetDate)}</td>
+    <td><span class="typepill ${r.resetType==='First-Time'?'first':'repeat'}">${r.resetType}</span></td>
+    <td class="num">${fmtCE(r.preCE)}</td>
+    <td class="num">${fmtCE(r.postCE)}</td>
+    <td class="num liftcell ${liftClass(r.liftCaseEquiv)}">${fmtPct(r.liftCaseEquiv)}</td>
+  </tr>`).join('');
+  document.getElementById('rowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.accounts.length.toLocaleString()} accounts`;
+}
+
+function renderPending(){
+  const p = DATA.pendingAccounts;
+  document.getElementById('pendingDesc').textContent =
+    `${p.length} accounts on the 2026 reset roster with a reset date, but no monthly sales batch pulled yet.`;
+  document.getElementById('pendingList').innerHTML = p
+    .sort((a,b)=> a.resetDate.localeCompare(b.resetDate))
+    .map(a=>`<li>${esc(a.name)} <span style="color:var(--ink-mute)">&mdash; ${esc(a.resetMonth)}</span></li>`).join('');
+}
+
+function renderCaveats(){
+  const items = [
+    'Control-store baseline (non-reset accounts, for comparison) has not been pulled yet -- lift here is measured against each account\'s own prior year, not against a same-period control group. The prior program years found reset stores performed roughly in line with a control group\'s own YoY decline (-8.7% vs -8.0%), so a positive lift % here should be read as "better than this account\'s own last year," not yet confirmed as "better than doing nothing."',
+    'Segmentation (A/B/C) is carried through from the reset roster as-is; what it actually measures (volume tier vs. something else) hasn\'t been confirmed.',
+    'The Constellation Brands in-store benchmark used in the 2024/2025 program-year workbooks isn\'t available in this build\'s monthly sales exports -- not included here.',
+    `${DATA.pendingCount} of ${DATA.rosterTotal} accounts (the April/May 2026 reset cohorts) don't have sales data pulled yet -- see "Pending" below.`,
+    'An account with $0 in the same 90-day window last year (a genuine brand-new placement, not just a first-time reset of an existing account) shows "No baseline" rather than an invented or infinite lift percentage.',
+  ];
+  document.getElementById('caveatsList').innerHTML = items.map(i=>`<li>${i}</li>`).join('');
+}
+
+function init(){
+  document.getElementById('updated').textContent = `Data refreshed ${DATA.generatedAt}`;
+  document.getElementById('pendingNotice').textContent =
+    `Evaluating ${DATA.evaluatedCount} of ${DATA.rosterTotal} total 2026 reset accounts (Jan/Feb/Mar cohorts) -- ` +
+    `the remaining ${DATA.pendingCount} (April/May cohorts) haven't had sales data pulled yet.`;
+
+  renderOverallKpis();
+  renderResetTypeSplit();
+  renderGroupRows('monthRows', DATA.byMonth);
+  renderGroupRows('segRows', DATA.bySegment);
+  renderCaveats();
+  renderPending();
+
+  const segments = Object.keys(DATA.bySegment).sort();
+  const months = Object.keys(DATA.byMonth);
+  populateSelect('segFilter', segments);
+  populateSelect('monthFilter', months);
+
+  renderTable();
+
+  document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
+  document.getElementById('typeFilter').addEventListener('change', e=>{ FILTER.type = e.target.value; renderTable(); });
+  document.getElementById('segFilter').addEventListener('change', e=>{ FILTER.segment = e.target.value; renderTable(); });
+  document.getElementById('monthFilter').addEventListener('change', e=>{ FILTER.month = e.target.value; renderTable(); });
+}
+init();
+</script>
+</body></html>

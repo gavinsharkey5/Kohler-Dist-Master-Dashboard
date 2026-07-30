@@ -1,92 +1,95 @@
-Customer Reset Tracking — working folder, no dashboard yet
+Customer Reset Tracking — Does a Reset Lift Sales?
 
-Goal: figure out whether Kohler's off-premise shelf/store resets (the
-"SFS" program) actually increase or decrease sales, and build a
-dashboard once the methodology and data are solid. Per Gavin: do NOT
-build a dashboard from this data yet -- this folder exists to collect
-and organize the inputs while the eval approach is worked out.
+Evaluates whether Kohler's off-premise shelf/cooler resets (the "SFS"
+program) actually increase sales, using each account's own reset date as
+the anchor.
 
-Per Gavin (2026-07-23): focus is 2026 only for now -- reset_history_2024.xlsx
-and reset_history_2025.xlsx are kept for methodology reference (see "Key
-findings" below) but the actual eval is being built from 2026 reset
-accounts and their own sales data, not the prior program years.
+Methodology (matches the "3 Months From Reset Date" window already used in
+reset_history_2025.xlsx's own Store Reset Data tab):
+  - POST window: each account's own Reset Date through Reset Date + 90
+    days, using 2026 transactions.
+  - PRE window: the SAME 90-day calendar window one year earlier (Reset
+    Date - 365 days), using 2025 transactions -- a year-over-year
+    comparison, not a same-year before/after, so the result isn't just
+    normal seasonal variation.
+  - Lift % = (post total - pre total) / pre total, on Case Equivalents
+    (the headline metric; $ Volume and Gross Profit are computed the same
+    way per account -- see generate.py).
+  - First-time resets (a store's first-ever SFS reset) are tracked
+    SEPARATELY from repeat resets (reset again in 2024 and/or 2025) rather
+    than blended together -- per the v1 build's own numbers, First-Time
+    shows +12.3% blended lift vs. Repeat's -3.4%; averaging them together
+    would have hidden that split entirely.
+
+v1 status (2026-07-30): 38 of 73 total 2026 reset accounts evaluated
+(the January, February, and March reset cohorts) -- the April and May
+cohorts don't have sales data pulled yet.
 
 Files:
-  reset_history_2024.xlsx   Prior program year. 78 reset accounts,
-                             Jan-Dec 2024. Sales compared 2023 vs 2024,
-                             anchored to each account's own reset date,
-                             plus a parallel "Constellation Brands"
-                             column as an in-store benchmark. Segmented
-                             A/B/C. (Originally
-                             "20232024_SFS_Reset_Comparison_v1.xlsx".)
-  reset_history_2025.xlsx   Prior program year. 69 reset accounts,
-                             Jan-Jun 2025, same shape as above plus a
-                             "Before/After PSA" (photo) tracking column
-                             and SKU/"Placement Count" pre vs post.
-                             (Originally "Store_Reset_Data_Eval_2025.xlsx".)
-  reset_accounts_2026.xlsx  The 2026 reset account list to evaluate --
-                             73 accounts, reset dates 1/2 - 5/7/2026,
-                             with both Kohler Account # and TD Linx #.
-                             (Originally "SFS_JanJune_2026.xlsx".)
-  sales_2026-01_batch.csv   First raw sales pull, for the January 2026
-                             reset cohort only (11 accounts: 49055,
-                             29008, 45004, 21044, 27063, 27034, 36007,
-                             48002, 24017, 43001, 67005). One row per
-                             (Customer, Brand Family, actual invoice
-                             date) from Encompass's InvoiceTrans, Jan
-                             2025 - Jun 2026, with Case Equiv, $vol, and
-                             Gross Profit. The "2025"/"2026" column
-                             split in this export is just which year
-                             the row's own date falls in -- only one of
-                             each pair is ever populated per row, it is
-                             NOT a same-day 2025-vs-2026 pivot. 9,605
-                             rows, 209 distinct Brand Families, no gaps.
-                             (Originally
-                             "Fusion_GSHARKEY_20260723_1253413352281.csv".)
-  sales_2026-02_batch.csv   Same shape as the January batch, for the
-                             February 2026 reset cohort (11 accounts:
-                             5001, 15040, 23003, 25010, 28011, 31060,
-                             47004, 47005, 49019, 73008, 77001). Feb
-                             2025 - Jul 2026, 9,530 rows, clean (no
-                             missing values). (Originally
-                             "RDE_Feb_2026_Reset_Stores_Data.csv".)
-                             Future monthly batches should follow the
-                             naming pattern sales_2026-MM_batch.csv.
+  reset_accounts_2026.xlsx  The 2026 reset roster -- Kohler Account #, TD
+                             Linx #, Name, Address, City, State, Zip,
+                             Segmentation (A/B/C), Reset Date. 73 accounts,
+                             1/2-5/7/2026. (Originally "SFS_JanJune_2026.xlsx".)
+  reset_history_2024.xlsx   Prior program years, keyed by TD Linx # -- used
+  reset_history_2025.xlsx   ONLY to tag each 2026 account as first-time vs.
+                             repeat, not for their own sales figures (kept
+                             for methodology reference; see "Key findings"
+                             below).
+  sales_2026-01_batch.csv   RDE "Jan/Feb/Mar 2026 Reset Stores Data"
+  sales_2026-02_batch.csv   exports -- one row per (Customer, Brand Family,
+  sales_2026-03_batch.csv   actual invoice date), Jan 2025 onward, with
+                             Case Equiv/$vol/Gross Profit. Only one of each
+                             metric's "2025"/"2026" column pair is ever
+                             populated per row (whichever year the row's
+                             own Load Sheet Date falls in) -- this is a flat
+                             transaction ledger, not a pre-aggregated pivot;
+                             generate.py does the pre/post windowing.
+                             Future batches should follow the naming
+                             pattern sales_2026-MM_batch.csv.
+  generate.py               Rebuilds the embedded data in index.html.
+                             Requires openpyxl (pip install openpyxl).
+  index.html                The dashboard itself (data is embedded in the
+                             <script id="reset-data"> tag).
 
-Key findings so far (see chat history for full detail):
-  - 10 of the 11 January accounts were ALSO reset in 2024 and/or 2025
-    (only City Supermarkets/43001 is a true first-time reset). The
-    February cohort is a different mix: 5 of 11 are first-time (River
-    Place Food Store/5001, McBride Liquors/15040, Bottle
-    Republic/31060, BP Station/49019, Shoprite Liq (A)Hillsdale/73008),
-    6 are repeats. Across all three program years, 118 unique stores
-    have been reset at least once, and 31 of the 73 2026 accounts have
-    now been reset three years running. This is mostly a recurring
-    annual program, not one-time events -- the eval needs to split
-    "first-time" vs "repeat" resets rather than treat all accounts the
-    same.
-  - The 2024/2025 files already used a decent methodology: YoY
-    comparison anchored to each account's own reset date (not a shared
-    calendar cutoff), a Constellation-brand in-store benchmark, and a
-    (not-included-here) non-reset "control store" baseline (-8.0% avg
-    case change vs. -8.7% for reset stores, per reset_history_2025.xlsx
-    Summary Stats tab).
-  - sales_2026-01_batch.csv only goes back to Jan 2025, not 2024 as
-    originally asked -- workable (still covers each account's most
-    recent prior reset for the ones reset in 2025), but doesn't reach
-    back to a pre-2024 baseline for accounts whose only prior reset was
-    in 2024.
+To refresh with a new monthly cohort (e.g. April):
+  1. Pull that cohort's sales data (same RDE report, same columns) and
+     save it as sales_2026-04_batch.csv in this folder.
+  2. If the roster or segmentation changed, save the updated workbook over
+     reset_accounts_2026.xlsx.
+  3. Run: python3 generate.py -- it prints the overall split, up/down
+     counts, and the First-Time vs. Repeat blended lift, worth a sanity
+     check against what you'd expect.
+  4. Commit and push.
 
-Still open / needed before building anything:
-  - Segmentation (A/B/C) definition -- assumed to be a volume tier,
-    not confirmed.
-  - What Constellation's relationship to the reset actually is (shares
-    the reset shelf/cooler space? a separate benchmark?) -- changes how
-    much weight to put on it as a control.
-  - A non-reset "control" account sales pull, so the control comparison
-    can be built/verified directly rather than relying on the prior
+Key findings so far (v1, Jan/Feb/Mar 2026 cohorts, 38 accounts):
+  - Blended (all 38): +0.2% Case Equiv lift, 17 up / 19 down / 1 with no
+    prior-year baseline (a genuine brand-new placement, not just a
+    first-time reset).
+  - First-Time resets (9 accounts): +12.3% blended lift.
+  - Repeat resets (29 accounts): -3.4% blended lift.
+  - This mirrors the pattern already known from 2024/2025: most of the 73
+    2026 accounts are repeat resets (this is mostly a recurring annual
+    program), and repeats show a much weaker (here, negative) effect than
+    first-time resets -- consistent with the idea that a store's shelf
+    space only has so much room to gain each time it's touched.
+  - The 2024/2025 files' own methodology (YoY anchored to reset date, plus
+    a non-reset control-store baseline) found reset stores performed
+    roughly in line with a control group's own decline (-8.7% vs -8.0%
+    average case change, per reset_history_2025.xlsx Summary Stats) --
+    i.e. resets may not be beating "doing nothing." v1 here doesn't yet
+    have its own control-store pull to check whether that still holds for
+    2026 (see "Still open" below).
+
+Still open / not yet in v1:
+  - A non-reset "control" account sales pull for 2026, so the control
+    comparison can be verified directly rather than relying on the prior
     program's summary number.
-  - How to treat the repeat-reset cohort in the eventual dashboard
-    (separate cohort is the working recommendation).
-  - Remaining monthly batches (Feb-May 2026 reset accounts) need the
-    same sales pull as sales_2026-01_batch.csv.
+  - Confirmation of what Segmentation A/B/C actually measures (assumed to
+    be a volume tier, not confirmed) -- carried through and shown as a
+    grouping in the dashboard, but not treated as an endorsed metric.
+  - What Constellation's relationship to the reset actually is (shares the
+    reset shelf/cooler space? a separate benchmark?) -- the 2026 monthly
+    sales exports don't carry a Constellation benchmark column the way the
+    2024/2025 workbooks did, so it isn't in v1 at all.
+  - April and May 2026 reset cohorts (35 accounts) still need their sales
+    data pulled, same shape as the Jan/Feb/Mar batches.
