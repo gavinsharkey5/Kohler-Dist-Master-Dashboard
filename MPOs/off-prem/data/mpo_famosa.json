@@ -1,22 +1,22 @@
 [
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
-    "CUSTOMER_NUM": 29010,
-    "CUSTOMER_NAME": "Paradise Liquors",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "CUSTOMER_NUM": 152039,
     "CUSTOMER_NAME": "Cottage Liquors",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
     "DATE": "2026-07-17",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "CUSTOMER_NUM": 29010,
+    "CUSTOMER_NAME": "Paradise Liquors",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -91,6 +91,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20080,
+    "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20005,
     "CUSTOMER_NAME": "La Sorpresa Liq (P)",
     "PRODUCT_NUM": 3731,
@@ -110,13 +120,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20080,
-    "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 17027,
+    "CUSTOMER_NAME": "FOOD BAZAAR",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -140,29 +150,9 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Dylan Rubino",
-    "CUSTOMER_NUM": 17027,
-    "CUSTOMER_NAME": "FOOD BAZAAR",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
     "CUSTOMER_NUM": 173031,
     "CUSTOMER_NAME": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-22",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21026,
-    "CUSTOMER_NAME": "C Town Supermarket(P)",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
@@ -177,6 +167,16 @@
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
     "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 21026,
+    "CUSTOMER_NAME": "C Town Supermarket(P)",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-22",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -211,16 +211,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 27063,
-    "CUSTOMER_NAME": "Archies (P)",
-    "PRODUCT_NUM": 3731,
-    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
-    "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-29",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77009,
     "CUSTOMER_NAME": "M & M Wine & Spirits",
     "PRODUCT_NUM": 3731,
@@ -230,13 +220,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21024,
-    "CUSTOMER_NAME": "Altiero Liquors",
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 27063,
+    "CUSTOMER_NAME": "Archies (P)",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-15",
+    "DATE": "2026-07-29",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -251,12 +241,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27072,
-    "CUSTOMER_NAME": "Passaic Discount Liquors",
+    "CUSTOMER_NUM": 20062,
+    "CUSTOMER_NAME": "Intensity Lounge/Angie's Liquors",
     "PRODUCT_NUM": 3731,
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
-    "DATE": "2026-07-15",
+    "DATE": "2026-07-30",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -267,6 +257,26 @@
     "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
     "BRAND_FAMILY": "Famosa",
     "DATE": "2026-07-27",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 21024,
+    "CUSTOMER_NAME": "Altiero Liquors",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-15",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27072,
+    "CUSTOMER_NAME": "Passaic Discount Liquors",
+    "PRODUCT_NUM": 3731,
+    "PRODUCT_NAME": "Famosa 4/6/7 oz Btl",
+    "BRAND_FAMILY": "Famosa",
+    "DATE": "2026-07-15",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
