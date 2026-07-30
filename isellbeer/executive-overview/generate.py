@@ -159,23 +159,31 @@ def group_of(area):
 
 
 # ---------- top-line summary ----------
-total_taps = sum(r['taps'] for r in records)
-total_us = sum(r['taps'] for r in records if r['status'] == 'US')
-total_them = sum(r['taps'] for r in records if r['status'] == 'THEM')
-total_unv = total_taps - total_us - total_them
-accounts_surveyed = len(set(r['account'] for r in records))
+# Per Kohler, 2026-07-30: the headline numbers (hero + brand breakdown) are
+# scoped to the core market only, since that's what the manager actually
+# cares about day to day -- company-wide totals are kept as a smaller
+# reference figure (see companyWide below) rather than dropped, so nothing's
+# hidden, just de-emphasized.
+def summarize(rows):
+    taps = sum(r['taps'] for r in rows)
+    us = sum(r['taps'] for r in rows if r['status'] == 'US')
+    them = sum(r['taps'] for r in rows if r['status'] == 'THEM')
+    return {
+        'totalTaps': taps, 'usTaps': us, 'themTaps': them, 'unverifiedTaps': taps - us - them,
+        'usPct': pct(us, taps), 'themPct': pct(them, taps),
+        'accountsSurveyed': len(set(r['account'] for r in rows)),
+    }
 
-summary = {
-    'totalTaps': total_taps, 'usTaps': total_us, 'themTaps': total_them, 'unverifiedTaps': total_unv,
-    'usPct': pct(total_us, total_taps), 'themPct': pct(total_them, total_taps),
-    'accountsSurveyed': accounts_surveyed,
-}
+
+core_records = [r for r in records if group_of(r['area']) == 'core']
+summary = summarize(core_records)
+company_wide = summarize(records)
 
 
-# ---------- brand mix (top N + Other), each side ----------
-def brand_breakdown(status, top_n):
+# ---------- brand mix (top N + Other), each side -- core market only ----------
+def brand_breakdown(status, top_n, rows):
     totals = defaultdict(int)
-    for r in records:
+    for r in rows:
         if r['status'] == status:
             totals[r['brandFamily']] += r['taps']
     side_total = sum(totals.values())
@@ -190,8 +198,8 @@ def brand_breakdown(status, top_n):
     }
 
 
-brands_us = brand_breakdown('US', TOP_N_BRANDS)
-brands_them = brand_breakdown('THEM', TOP_N_BRANDS)
+brands_us = brand_breakdown('US', TOP_N_BRANDS, core_records)
+brands_them = brand_breakdown('THEM', TOP_N_BRANDS, core_records)
 
 
 # ---------- by area ----------
@@ -315,6 +323,7 @@ velocity = {
 payload = {
     'generatedAt': datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
     'summary': summary,
+    'companyWide': company_wide,
     'brandsUs': brands_us,
     'brandsThem': brands_them,
     'areas': {'core': core_areas_out, 'nonFocus': non_focus_areas_out, 'other': other_areas_out},
@@ -331,9 +340,11 @@ new_html, n = re.subn(
 assert n == 1, 'exec-data script tag not found in index.html'
 HTML.write_text(new_html, encoding='utf-8')
 
-print(f"{total_taps} taps surveyed at {accounts_surveyed} accounts: {total_us} ours ({summary['usPct']}%) / "
-      f"{total_them} competitor ({summary['themPct']}%) / {total_unv} unverified")
-print(f"Core market areas: {', '.join(a['area'] + ' ' + str(a['totalTaps']) for a in core_areas_out)}")
+print(f"CORE MARKET: {summary['totalTaps']} taps at {summary['accountsSurveyed']} accounts: "
+      f"{summary['usTaps']} ours ({summary['usPct']}%) / {summary['themTaps']} competitor ({summary['themPct']}%)")
+print(f"  by area: {', '.join(a['area'] + ' ' + str(a['totalTaps']) for a in core_areas_out)}")
+print(f"Company-wide (reference only): {company_wide['totalTaps']} taps, "
+      f"{company_wide['usPct']}% ours / {company_wide['themPct']}% competitor")
 print(f"Velocity: {len(velocity_brands)}/{TOP_N_BRANDS} top brands matched to Encompass "
       f"({len(matched_accounts)}/{len(tap_accounts)} accounts have a units-sold record)")
 if velocity_unmatched:

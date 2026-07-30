@@ -40,6 +40,10 @@ section{margin:34px 0}
 .sec-sub{color:var(--ink-soft);font-size:14.5px;margin:0 0 18px;max-width:620px}
 
 /* ---- hero ---- */
+.core-badge{display:inline-block;font-family:"Space Grotesk";font-weight:700;font-size:12px;letter-spacing:.06em;
+  color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:999px;padding:6px 14px;margin:0 0 12px}
+.company-ref{color:var(--ink-mute);font-size:12.5px;margin:12px 2px 0}
 .hero-total{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;
   padding:26px 24px;text-align:center;box-shadow:var(--shadow)}
 .hero-total .lbl{font-family:"Space Grotesk";font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
@@ -134,7 +138,7 @@ footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10p
   <div class="wrap">
     <p class="eyebrow">Kohler Distributing &middot; Executive Overview</p>
     <h1>Tap Share Overview</h1>
-    <p class="lede">Where we stand vs. competitors on tap handles surveyed in the market &mdash; overall, by brand, and across our core distribution area.</p>
+    <p class="lede">Where we stand vs. competitors on tap handles surveyed in our core market &mdash; overall, by brand, and by area.</p>
     <p class="updated" id="updated"></p>
   </div>
 </div>
@@ -142,6 +146,7 @@ footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10p
 <div class="wrap">
 
   <section id="hero">
+    <div class="core-badge">CORE MARKET &mdash; Bergen, Sussex, Passaic, Morris 1 &amp; Morris 3</div>
     <div class="hero-total">
       <div class="lbl">Tap Handles Surveyed</div>
       <div class="big num" id="heroTotal">&mdash;</div>
@@ -164,14 +169,14 @@ footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10p
   </section>
 
   <section id="overall-pie">
-    <h2 class="sec-title">Overall: Us vs. Them</h2>
-    <p class="sec-sub">Every tap handle surveyed, company-wide, split by who's pouring it.</p>
+    <h2 class="sec-title">Core Market: Us vs. Them</h2>
+    <p class="sec-sub">Every tap handle surveyed in our core market, split by who's pouring it.</p>
     <div class="donut-wrap" id="usThemDonut"></div>
   </section>
 
   <section id="brands">
     <h2 class="sec-title">Brand Breakdown</h2>
-    <p class="sec-sub">Top 8 brand families on each side by handle count; everything smaller is grouped into "All Other" so the list stays readable.</p>
+    <p class="sec-sub">Core market only. Top 8 brand families on each side by handle count; everything smaller is grouped into "All Other" so the list stays readable.</p>
     <div class="brand-cols">
       <div class="brand-panel us">
         <h3>OUR BRANDS</h3>
@@ -199,6 +204,7 @@ footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10p
       <thead><tr><th>Area</th><th class="num">Handles</th><th class="num">Us</th><th class="num">Them</th></tr></thead>
       <tbody id="otherAreaRows"></tbody>
     </table>
+    <p class="company-ref" id="companyWideRef"></p>
   </section>
 
   <section id="velocity">
@@ -226,7 +232,7 @@ footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10p
 
 <footer>Kohler Distributing &middot; Tap Share Executive Overview. See generate.py for methodology.</footer>
 
-<script id="exec-data" type="application/json">{"generatedAt":"2026-07-30 13:54 UTC","summary":{"totalTaps":5599,"usTaps":2701,"themTaps":2898,"unverifiedTaps":0,"usPct":48.2,"themPct":51.8,"accountsSurveyed":649},"brandsUs":{"total":2701,"top":[{"brand":"Blue Moon","taps":301,"pct":11.1},{"brand":"Yuengling","taps":270,"pct":10.0},{"brand":"Sam Adams Seasonal","taps":231,"pct":8.6},{"brand":"Miller Lite","taps":184,"pct":6.8},{"brand":"Modelo Cerveza","taps":182,"pct":6.7},{"brand":"Coors Light","taps":174,"pct":6.4},{"brand":"Peroni Nastro Azzurro","taps":77,"pct":2.9},{"brand":"New Belgium Voodoo Ranger","taps":76,"pct":2.8}],"other":{"taps":1206,"pct":44.7,"brandCount":101}},"brandsThem":{"total":2898,"top":[{"brand":"Other Supplier","taps":784,"pct":27.1},{"brand":"Stella Artois","taps":281,"pct":9.7},{"brand":"Guinness","taps":271,"pct":9.4},{"brand":"Michelob Ultra","taps":184,"pct":6.3},{"brand":"Kona Brewing Company","taps":104,"pct":3.6},{"brand":"Bud Light","taps":90,"pct":3.1},{"brand":"Allagash Brewing Company","taps":86,"pct":3.0},{"brand":"Downeast Cider","taps":75,"pct":2.6}],"other":{"taps":1023,"pct":35.3,"brandCount":201}},"areas":{"core":[{"area":"Bergen","totalTaps":2611,"usTaps":1386,"themTaps":1225,"usPct":53.1,"themPct":46.9,"topUs":[{"brand":"Blue Moon","taps":164},{"brand":"Sam Adams Seasonal","taps":131},{"brand":"Yuengling","taps":127},{"brand":"Modelo Cerveza","taps":95},{"brand":"Coors Light","taps":89}],"topThem":[{"brand":"Other Supplier","taps":358},{"brand":"Stella Artois","taps":149},{"brand":"Guinness","taps":118},{"brand":"Michelob Ultra","taps":79},{"brand":"Kona Brewing Company","taps":51}]},{"area":"Sussex","totalTaps":513,"usTaps":222,"themTaps":291,"usPct":43.3,"themPct":56.7,"topUs":[{"brand":"Yuengling","taps":38},{"brand":"Miller Lite","taps":36},{"brand":"Blue Moon","taps":30},{"brand":"Sam Adams Seasonal","taps":22},{"brand":"Coors Light","taps":14}],"topThem":[{"brand":"Other Supplier","taps":95},{"brand":"Stella Artois","taps":27},{"brand":"Guinness","taps":26},{"brand":"Michelob Ultra","taps":23},{"brand":"Downeast Cider","taps":15}]},{"area":"Passaic","totalTaps":1201,"usTaps":661,"themTaps":540,"usPct":55.0,"themPct":45.0,"topUs":[{"brand":"Blue Moon","taps":71},{"brand":"Yuengling","taps":61},{"brand":"Modelo Cerveza","taps":55},{"brand":"Coors Light","taps":47},{"brand":"Sam Adams Seasonal","taps":44}],"topThem":[{"brand":"Other Supplier","taps":160},{"brand":"Guinness","taps":58},{"brand":"Stella Artois","taps":51},{"brand":"Michelob Ultra","taps":40},{"brand":"Bud Light","taps":22}]},{"area":"Morris 1","totalTaps":701,"usTaps":272,"themTaps":429,"usPct":38.8,"themPct":61.2,"topUs":[{"brand":"Yuengling","taps":35},{"brand":"Miller Lite","taps":29},{"brand":"Sam Adams Seasonal","taps":29},{"brand":"Blue Moon","taps":26},{"brand":"Coors Light","taps":16}],"topThem":[{"brand":"Other Supplier","taps":142},{"brand":"Guinness","taps":34},{"brand":"Stella Artois","taps":32},{"brand":"Michelob Ultra","taps":30},{"brand":"Bud Light","taps":17}]},{"area":"Morris 3","totalTaps":146,"usTaps":76,"themTaps":70,"usPct":52.1,"themPct":47.9,"topUs":[{"brand":"Blue Moon","taps":10},{"brand":"Yuengling","taps":9},{"brand":"Coors Light","taps":8},{"brand":"Miller Lite","taps":5},{"brand":"Sam Adams Seasonal","taps":5}],"topThem":[{"brand":"Other Supplier","taps":20},{"brand":"Stella Artois","taps":7},{"brand":"Guinness","taps":6},{"brand":"Kona Brewing Company","taps":5},{"brand":"Bud Light","taps":4}]}],"nonFocus":[{"area":"Essex","totalTaps":199,"usTaps":37,"themTaps":162,"usPct":18.6,"themPct":81.4},{"area":"Hudson","totalTaps":122,"usTaps":30,"themTaps":92,"usPct":24.6,"themPct":75.4},{"area":"Union","totalTaps":48,"usTaps":5,"themTaps":43,"usPct":10.4,"themPct":89.6}],"other":[{"area":"Morris 2","totalTaps":58,"usTaps":12,"themTaps":46,"usPct":20.7,"themPct":79.3}]},"velocity":{"accountsSurveyed":649,"accountsMatched":503,"brands":[{"brand":"Blue Moon","matchedTaps":298,"unitsSold":1899.0,"unitsPerTap":6.37},{"brand":"Yuengling","matchedTaps":270,"unitsSold":2155.0,"unitsPerTap":7.98},{"brand":"Sam Adams Seasonal","matchedTaps":230,"unitsSold":1431.0,"unitsPerTap":6.22},{"brand":"Miller Lite","matchedTaps":183,"unitsSold":2088.0,"unitsPerTap":11.41},{"brand":"Modelo Cerveza","matchedTaps":180,"unitsSold":1298.0,"unitsPerTap":7.21},{"brand":"Coors Light","matchedTaps":174,"unitsSold":1469.0,"unitsPerTap":8.44},{"brand":"Peroni Nastro Azzurro","matchedTaps":77,"unitsSold":522.0,"unitsPerTap":6.78},{"brand":"New Belgium Voodoo Ranger","matchedTaps":75,"unitsSold":70.0,"unitsPerTap":0.93}],"unmatchedBrands":[]}}</script>
+<script id="exec-data" type="application/json">{"generatedAt":"2026-07-30 14:05 UTC","summary":{"totalTaps":5172,"usTaps":2617,"themTaps":2555,"unverifiedTaps":0,"usPct":50.6,"themPct":49.4,"accountsSurveyed":608},"companyWide":{"totalTaps":5599,"usTaps":2701,"themTaps":2898,"unverifiedTaps":0,"usPct":48.2,"themPct":51.8,"accountsSurveyed":649},"brandsUs":{"total":2617,"top":[{"brand":"Blue Moon","taps":301,"pct":11.5},{"brand":"Yuengling","taps":270,"pct":10.3},{"brand":"Sam Adams Seasonal","taps":231,"pct":8.8},{"brand":"Miller Lite","taps":184,"pct":7.0},{"brand":"Modelo Cerveza","taps":182,"pct":7.0},{"brand":"Coors Light","taps":174,"pct":6.6},{"brand":"Peroni Nastro Azzurro","taps":77,"pct":2.9},{"brand":"New Belgium Voodoo Ranger","taps":76,"pct":2.9}],"other":{"taps":1122,"pct":42.9,"brandCount":97}},"brandsThem":{"total":2555,"top":[{"brand":"Other Supplier","taps":775,"pct":30.3},{"brand":"Stella Artois","taps":266,"pct":10.4},{"brand":"Guinness","taps":242,"pct":9.5},{"brand":"Michelob Ultra","taps":176,"pct":6.9},{"brand":"Kona Brewing Company","taps":97,"pct":3.8},{"brand":"Bud Light","taps":86,"pct":3.4},{"brand":"Allagash Brewing Company","taps":74,"pct":2.9},{"brand":"Downeast Cider","taps":68,"pct":2.7}],"other":{"taps":771,"pct":30.2,"brandCount":151}},"areas":{"core":[{"area":"Bergen","totalTaps":2611,"usTaps":1386,"themTaps":1225,"usPct":53.1,"themPct":46.9,"topUs":[{"brand":"Blue Moon","taps":164},{"brand":"Sam Adams Seasonal","taps":131},{"brand":"Yuengling","taps":127},{"brand":"Modelo Cerveza","taps":95},{"brand":"Coors Light","taps":89}],"topThem":[{"brand":"Other Supplier","taps":358},{"brand":"Stella Artois","taps":149},{"brand":"Guinness","taps":118},{"brand":"Michelob Ultra","taps":79},{"brand":"Kona Brewing Company","taps":51}]},{"area":"Sussex","totalTaps":513,"usTaps":222,"themTaps":291,"usPct":43.3,"themPct":56.7,"topUs":[{"brand":"Yuengling","taps":38},{"brand":"Miller Lite","taps":36},{"brand":"Blue Moon","taps":30},{"brand":"Sam Adams Seasonal","taps":22},{"brand":"Coors Light","taps":14}],"topThem":[{"brand":"Other Supplier","taps":95},{"brand":"Stella Artois","taps":27},{"brand":"Guinness","taps":26},{"brand":"Michelob Ultra","taps":23},{"brand":"Downeast Cider","taps":15}]},{"area":"Passaic","totalTaps":1201,"usTaps":661,"themTaps":540,"usPct":55.0,"themPct":45.0,"topUs":[{"brand":"Blue Moon","taps":71},{"brand":"Yuengling","taps":61},{"brand":"Modelo Cerveza","taps":55},{"brand":"Coors Light","taps":47},{"brand":"Sam Adams Seasonal","taps":44}],"topThem":[{"brand":"Other Supplier","taps":160},{"brand":"Guinness","taps":58},{"brand":"Stella Artois","taps":51},{"brand":"Michelob Ultra","taps":40},{"brand":"Bud Light","taps":22}]},{"area":"Morris 1","totalTaps":701,"usTaps":272,"themTaps":429,"usPct":38.8,"themPct":61.2,"topUs":[{"brand":"Yuengling","taps":35},{"brand":"Miller Lite","taps":29},{"brand":"Sam Adams Seasonal","taps":29},{"brand":"Blue Moon","taps":26},{"brand":"Coors Light","taps":16}],"topThem":[{"brand":"Other Supplier","taps":142},{"brand":"Guinness","taps":34},{"brand":"Stella Artois","taps":32},{"brand":"Michelob Ultra","taps":30},{"brand":"Bud Light","taps":17}]},{"area":"Morris 3","totalTaps":146,"usTaps":76,"themTaps":70,"usPct":52.1,"themPct":47.9,"topUs":[{"brand":"Blue Moon","taps":10},{"brand":"Yuengling","taps":9},{"brand":"Coors Light","taps":8},{"brand":"Miller Lite","taps":5},{"brand":"Sam Adams Seasonal","taps":5}],"topThem":[{"brand":"Other Supplier","taps":20},{"brand":"Stella Artois","taps":7},{"brand":"Guinness","taps":6},{"brand":"Kona Brewing Company","taps":5},{"brand":"Bud Light","taps":4}]}],"nonFocus":[{"area":"Essex","totalTaps":199,"usTaps":37,"themTaps":162,"usPct":18.6,"themPct":81.4},{"area":"Hudson","totalTaps":122,"usTaps":30,"themTaps":92,"usPct":24.6,"themPct":75.4},{"area":"Union","totalTaps":48,"usTaps":5,"themTaps":43,"usPct":10.4,"themPct":89.6}],"other":[{"area":"Morris 2","totalTaps":58,"usTaps":12,"themTaps":46,"usPct":20.7,"themPct":79.3}]},"velocity":{"accountsSurveyed":649,"accountsMatched":503,"brands":[{"brand":"Blue Moon","matchedTaps":298,"unitsSold":1899.0,"unitsPerTap":6.37},{"brand":"Yuengling","matchedTaps":270,"unitsSold":2155.0,"unitsPerTap":7.98},{"brand":"Sam Adams Seasonal","matchedTaps":230,"unitsSold":1431.0,"unitsPerTap":6.22},{"brand":"Miller Lite","matchedTaps":183,"unitsSold":2088.0,"unitsPerTap":11.41},{"brand":"Modelo Cerveza","matchedTaps":180,"unitsSold":1298.0,"unitsPerTap":7.21},{"brand":"Coors Light","matchedTaps":174,"unitsSold":1469.0,"unitsPerTap":8.44},{"brand":"Peroni Nastro Azzurro","matchedTaps":77,"unitsSold":522.0,"unitsPerTap":6.78},{"brand":"New Belgium Voodoo Ranger","matchedTaps":75,"unitsSold":70.0,"unitsPerTap":0.93}],"unmatchedBrands":[]}}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('exec-data').textContent);
 const fmtInt = n => Math.round(n).toLocaleString('en-US');
@@ -350,6 +356,9 @@ function init(){
       `<td class="num us">${fmtPct(a.usPct)}</td><td class="num them">${fmtPct(a.themPct)}</td>`;
     otherRows.appendChild(tr);
   });
+  const cw = DATA.companyWide;
+  document.getElementById('companyWideRef').textContent =
+    `Company-wide, including these areas: ${fmtInt(cw.totalTaps)} handles, ${fmtPct(cw.usPct)} ours / ${fmtPct(cw.themPct)} competitor.`;
 
   const v = DATA.velocity;
   document.getElementById('velNote').textContent =

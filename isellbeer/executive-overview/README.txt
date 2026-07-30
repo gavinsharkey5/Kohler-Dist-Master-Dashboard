@@ -10,21 +10,29 @@ pull up on a phone mid-conversation with a supplier.
 
 Shows, in order:
   1. Grand total tap handles surveyed, and our share vs. competitors' (big
-     numbers, a stacked bar, and a donut chart).
+     numbers, a stacked bar, and a donut chart) -- CORE MARKET ONLY (per
+     Kohler, 2026-07-30: the manager isn't as concerned with areas outside
+     it, so the headline numbers are scoped to match what he actually cares
+     about day to day). A "Core Market" badge sits right above these numbers
+     so it's never ambiguous what they cover. The company-wide total (all
+     areas, including non-focus) is kept as a single reference line in the
+     "Other Areas" section rather than dropped -- see companyWide in the
+     generated data.
   2. Brand breakdown: top 8 brand families on each side by handle count
-     (everything smaller grouped into "All Other" so the chart/list stays
-     readable), each with its own donut + ranked list.
+     within the core market (everything smaller grouped into "All Other" so
+     the chart/list stays readable), each with its own donut + ranked list.
   3. Core market by area (Bergen, Sussex, Passaic, Morris 1, Morris 3): each
      area's total handles, our/their split, and the top 5 brands on each side
      in that specific area -- this is the "what's our share in your area"
      section for in-person conversations.
-  4. Other areas (Essex, Hudson, Union, Morris 2): per Kohler, 2026-07-30,
+  4. Other areas (Essex, Hudson, Union, Morris 2): per Kohler, 2026-07-28/30,
      not a primary focus -- shown as a compact summary table only, no
-     per-brand detail.
+     per-brand detail, plus the company-wide reference line mentioned above.
   5. Velocity: units sold per tap handle, for our own brand families only
      (Encompass only ever records our own sales, so this can't be computed
-     for competitor brands) -- see the "Velocity" note below for how this is
-     joined and its limits.
+     for competitor brands) -- computed company-wide (not core-market-only),
+     since it's a separate, clearly-labeled section -- see the "Velocity"
+     note below for how this is joined and its limits.
 
 Files:
   iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx
