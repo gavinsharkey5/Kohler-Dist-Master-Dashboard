@@ -229,20 +229,27 @@ def area_summary(area_name):
     }
 
 
-def top_brands_in(rows, status, top_n):
+def brands_in(rows, status):
+    """All brand families with any taps in these rows, ranked -- not just the
+    top N -- so the frontend's brand customizer can look up ANY brand's
+    count in this area on demand, not just the precomputed default set."""
     totals = defaultdict(int)
     for r in rows:
         if r['status'] == status:
             totals[r['brandFamily']] += r['taps']
     ranked = sorted(totals.items(), key=lambda kv: -kv[1])
-    return [{'brand': b.title(), 'taps': t} for b, t in ranked[:top_n]]
+    return [{'brand': b.title(), 'taps': t} for b, t in ranked]
 
 
 core_areas_out = []
 for a in CORE_AREAS:
     rows, s = area_summary(a)
-    s['topUs'] = top_brands_in(rows, 'US', TOP_N_AREA_BRANDS)
-    s['topThem'] = top_brands_in(rows, 'THEM', TOP_N_AREA_BRANDS)
+    all_us_here = brands_in(rows, 'US')
+    all_them_here = brands_in(rows, 'THEM')
+    s['topUs'] = all_us_here[:TOP_N_AREA_BRANDS]
+    s['topThem'] = all_them_here[:TOP_N_AREA_BRANDS]
+    s['allUs'] = all_us_here
+    s['allThem'] = all_them_here
     core_areas_out.append(s)
 
 non_focus_areas_out = [area_summary(a)[1] for a in NON_FOCUS_AREAS]
@@ -343,13 +350,22 @@ def resolve_encompass_key(brand_family):
     return None
 
 
+# Company-wide (not core-market-only, same scope as the rest of this
+# section) -- every US brand family that appears anywhere, so the velocity
+# table's brand customizer can pick from more than just the default top 8.
+company_wide_us_totals = defaultdict(int)
+for r in records:
+    if r['status'] == 'US':
+        company_wide_us_totals[r['brandFamily']] += r['taps']
+candidate_us_brands = sorted(company_wide_us_totals, key=lambda b: -company_wide_us_totals[b])
+
 velocity_brands = []
 velocity_unmatched = []
-for entry in brands_us['top']:
-    brand_family = entry['brand'].upper()
+for brand_family in candidate_us_brands:
     key = resolve_encompass_key(brand_family)
     if key is None:
-        velocity_unmatched.append(entry['brand'])
+        if brand_family.title() in [e['brand'] for e in brands_us['top']]:
+            velocity_unmatched.append(brand_family.title())
         continue
     kind, name = key
     matched_taps = sum(r['taps'] for r in records
@@ -359,16 +375,21 @@ for entry in brands_us['top']:
     else:
         matched_units = sum(units_by_account_supplier[(a, name)] for a in matched_accounts)
     velocity_brands.append({
-        'brand': entry['brand'],
+        'brand': brand_family.title(),
         'matchedTaps': matched_taps,
         'unitsSold': round(matched_units, 1),
         'unitsPerTap': round(matched_units / matched_taps, 2) if matched_taps else None,
     })
+velocity_brands.sort(key=lambda b: -(b['unitsPerTap'] or 0))
+
+resolved_brand_names = {b['brand'] for b in velocity_brands}
+default_velocity_brands = [e['brand'] for e in brands_us['top'] if e['brand'] in resolved_brand_names]
 
 velocity = {
     'accountsSurveyed': len(tap_accounts),
     'accountsMatched': len(matched_accounts),
     'brands': velocity_brands,
+    'defaultBrands': default_velocity_brands,
     'unmatchedBrands': velocity_unmatched,
 }
 
@@ -400,7 +421,8 @@ print(f"CORE MARKET: {summary['totalTaps']} taps at {summary['accountsSurveyed']
 print(f"  by area: {', '.join(a['area'] + ' ' + str(a['totalTaps']) for a in core_areas_out)}")
 print(f"Company-wide (reference only): {company_wide['totalTaps']} taps, "
       f"{company_wide['usPct']}% ours / {company_wide['themPct']}% competitor")
-print(f"Velocity: {len(velocity_brands)}/{TOP_N_BRANDS} top brands matched to Encompass "
-      f"({len(matched_accounts)}/{len(tap_accounts)} accounts have a units-sold record)")
+print(f"Velocity: {len(velocity_brands)} US brand(s) matched to Encompass out of {len(candidate_us_brands)} candidates "
+      f"({len(default_velocity_brands)}/{TOP_N_BRANDS} of the default top brands resolved); "
+      f"{len(matched_accounts)}/{len(tap_accounts)} accounts have a units-sold record")
 if velocity_unmatched:
     print(f"  No Encompass mapping found for: {velocity_unmatched}")

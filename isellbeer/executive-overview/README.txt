@@ -34,7 +34,14 @@ Shows, in order:
   3. Core market by area (Bergen, Sussex, Passaic, Morris 1, Morris 3): each
      area's total handles, our/their split, and the top 5 brands on each side
      in that specific area -- this is the "what's our share in your area"
-     section for in-person conversations.
+     section for in-person conversations. Per Kohler, 2026-07-30: a single
+     "Customize brands shown in every area" toggle above the cards opens two
+     searchable checklists (Our Brands / Competitor Brands, capped at 5 each,
+     same pattern as the pie customizer) -- whatever's checked replaces the
+     default top-5 in EVERY area card at once (same brand set, same order,
+     so you can compare one brand's numbers across areas at a glance; a
+     brand absent from a given area shows 0 rather than being omitted).
+     "Reset to Top 5" restores each area's own natural top 5.
   4. Look up a brand's share by area: per Kohler, 2026-07-30, a single
      dropdown (grouped "Our Brands" / "Competitor Brands", every brand family
      in the export, not just the top 8) lets you pick any one brand and see
@@ -52,7 +59,13 @@ Shows, in order:
      (Encompass only ever records our own sales, so this can't be computed
      for competitor brands) -- computed company-wide (not core-market-only),
      since it's a separate, clearly-labeled section -- see the "Velocity"
-     note below for how this is joined and its limits.
+     note below for how this is joined and its limits. Per Kohler,
+     2026-07-30: a "Customize brands shown" toggle opens a searchable
+     checklist of every brand that resolved to an Encompass match (up to 99
+     in this build, not just the default top 8), sorted by units/handle so
+     the fastest (and slowest) movers are easy to spot even if they're a
+     small brand; capped at 15 shown at once to keep the table readable.
+     "Reset to Default" restores the original top-8-by-handle-count view.
 
 Files:
   iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx
