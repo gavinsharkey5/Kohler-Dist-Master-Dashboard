@@ -4,9 +4,11 @@ A phone-friendly, top-line summary of our tap-handle share vs. competitors',
 built for the head of the company (not the reps -- see ../tap-survey-tracking/
 for the rep-facing account-by-account drill-down; this page reads a separate
 snapshot of the same kind of workbook, but does not modify or link to that
-tracker's own data). No filters, no drill-down, no interaction beyond
-scrolling -- everything is visible on one page by design, so it's easy to
-pull up on a phone mid-conversation with a supplier.
+tracker's own data). The default view has no filters and no drill-down --
+everything is visible on one page by scrolling, so it's easy to pull up on a
+phone mid-conversation with a supplier. Two opt-in interactive pieces (below)
+exist for whoever preps talking points beforehand; neither changes what the
+page shows until someone actually touches them.
 
 Shows, in order:
   1. Grand total tap handles surveyed, and our share vs. competitors' (big
@@ -21,14 +23,32 @@ Shows, in order:
   2. Brand breakdown: top 8 brand families on each side by handle count
      within the core market (everything smaller grouped into "All Other" so
      the chart/list stays readable), each with its own donut + ranked list.
+     Per Kohler, 2026-07-30: a "Customize brands shown" toggle under each
+     donut opens a searchable checklist of every brand family on that side
+     (see allBrandsUs/allBrandsThem in the generated data) -- check/uncheck
+     up to 8 to swap which get their own slice, anything unchecked folds into
+     "All Other". Capped at 8 explicit slices (a 9th checkbox just disables
+     until one is unchecked) to keep the chart's colors validated and
+     readable; "Reset to Top 8" restores the default. Pure client-side
+     re-render, no new data needed for a different selection.
   3. Core market by area (Bergen, Sussex, Passaic, Morris 1, Morris 3): each
      area's total handles, our/their split, and the top 5 brands on each side
      in that specific area -- this is the "what's our share in your area"
      section for in-person conversations.
-  4. Other areas (Essex, Hudson, Union, Morris 2): per Kohler, 2026-07-28/30,
+  4. Look up a brand's share by area: per Kohler, 2026-07-30, a single
+     dropdown (grouped "Our Brands" / "Competitor Brands", every brand family
+     in the export, not just the top 8) lets you pick any one brand and see
+     its handle count and % share in EVERY area, core market first then the
+     others. Answers "what's our Modelo share in Sussex" for a brand that
+     isn't one of the precomputed top-5 shown in section 3. Combines a
+     brand's US and THEM taps together (a handful of brands, e.g. Blue Moon,
+     show up on both sides at different accounts) since the point here is
+     "how much of this brand is out there," not who gets credit for it -- see
+     brandLookup in the generated data.
+  5. Other areas (Essex, Hudson, Union, Morris 2): per Kohler, 2026-07-28/30,
      not a primary focus -- shown as a compact summary table only, no
      per-brand detail, plus the company-wide reference line mentioned above.
-  5. Velocity: units sold per tap handle, for our own brand families only
+  6. Velocity: units sold per tap handle, for our own brand families only
      (Encompass only ever records our own sales, so this can't be computed
      for competitor brands) -- computed company-wide (not core-market-only),
      since it's a separate, clearly-labeled section -- see the "Velocity"

@@ -202,6 +202,21 @@ brands_us = brand_breakdown('US', TOP_N_BRANDS, core_records)
 brands_them = brand_breakdown('THEM', TOP_N_BRANDS, core_records)
 
 
+# ---------- full brand totals, core market (for the pie-chart brand picker) ----------
+def all_brand_totals(status, rows):
+    totals = defaultdict(int)
+    for r in rows:
+        if r['status'] == status:
+            totals[r['brandFamily']] += r['taps']
+    side_total = sum(totals.values())
+    ranked = sorted(totals.items(), key=lambda kv: -kv[1])
+    return [{'brand': b.title(), 'taps': t, 'pct': pct(t, side_total)} for b, t in ranked]
+
+
+all_brands_us = all_brand_totals('US', core_records)
+all_brands_them = all_brand_totals('THEM', core_records)
+
+
 # ---------- by area ----------
 def area_summary(area_name):
     rows = [r for r in records if r['area'] == area_name]
@@ -237,6 +252,43 @@ other_areas_out = [area_summary(a)[1] for a in other_area_names]
 unassigned_rows, unassigned_summary = area_summary('UNASSIGNED')
 if unassigned_summary['totalTaps']:
     other_areas_out.append(unassigned_summary)
+
+
+# ---------- brand lookup: any brand family's handle share, in every area ----------
+# Combines US + THEM taps for the same brand-family text (a handful of brands,
+# e.g. Blue Moon, show up on both sides at different accounts -- this answers
+# "how much of this brand is out there in area X", not "how much do we
+# specifically get credit for"). Covers every area, not just the core market,
+# since this is a lookup tool, not the headline framing above.
+area_total_taps = {}
+area_group_label = {}
+for grp, out_list in (('core', core_areas_out), ('nonFocus', non_focus_areas_out), ('other', other_areas_out)):
+    for a in out_list:
+        area_total_taps[a['area']] = a['totalTaps']
+        area_group_label[a['area']] = grp
+
+brand_area_taps = defaultdict(lambda: defaultdict(int))
+brand_side_taps = defaultdict(lambda: {'US': 0, 'THEM': 0})
+for r in records:
+    if r['area'] == 'UNASSIGNED':
+        continue
+    area_title = r['area'].title()
+    brand_area_taps[r['brandFamily']][area_title] += r['taps']
+    if r['status'] in ('US', 'THEM'):
+        brand_side_taps[r['brandFamily']][r['status']] += r['taps']
+
+brand_lookup = []
+for bf, area_map in brand_area_taps.items():
+    sides = brand_side_taps[bf]
+    side = 'US' if sides['US'] >= sides['THEM'] else 'THEM'
+    total = sum(area_map.values())
+    by_area = [
+        {'area': area_title, 'group': area_group_label.get(area_title, 'other'), 'taps': taps,
+         'areaTotal': area_total_taps.get(area_title, 0), 'pct': pct(taps, area_total_taps.get(area_title, 0))}
+        for area_title, taps in sorted(area_map.items(), key=lambda kv: -kv[1])
+    ]
+    brand_lookup.append({'brand': bf.title(), 'side': side, 'totalTaps': total, 'byArea': by_area})
+brand_lookup.sort(key=lambda b: -b['totalTaps'])
 
 
 # ---------- velocity: join tap brands (US only) to Encompass units sold ----------
@@ -326,6 +378,9 @@ payload = {
     'companyWide': company_wide,
     'brandsUs': brands_us,
     'brandsThem': brands_them,
+    'allBrandsUs': all_brands_us,
+    'allBrandsThem': all_brands_them,
+    'brandLookup': brand_lookup,
     'areas': {'core': core_areas_out, 'nonFocus': non_focus_areas_out, 'other': other_areas_out},
     'velocity': velocity,
 }
