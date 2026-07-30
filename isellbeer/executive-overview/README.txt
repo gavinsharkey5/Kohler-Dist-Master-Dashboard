@@ -1,0 +1,97 @@
+Tap Share — Executive Overview
+
+A phone-friendly, top-line summary of our tap-handle share vs. competitors',
+built for the head of the company (not the reps -- see ../tap-survey-tracking/
+for the rep-facing account-by-account drill-down; this page reads a separate
+snapshot of the same kind of workbook, but does not modify or link to that
+tracker's own data). No filters, no drill-down, no interaction beyond
+scrolling -- everything is visible on one page by design, so it's easy to
+pull up on a phone mid-conversation with a supplier.
+
+Shows, in order:
+  1. Grand total tap handles surveyed, and our share vs. competitors' (big
+     numbers, a stacked bar, and a donut chart).
+  2. Brand breakdown: top 8 brand families on each side by handle count
+     (everything smaller grouped into "All Other" so the chart/list stays
+     readable), each with its own donut + ranked list.
+  3. Core market by area (Bergen, Sussex, Passaic, Morris 1, Morris 3): each
+     area's total handles, our/their split, and the top 5 brands on each side
+     in that specific area -- this is the "what's our share in your area"
+     section for in-person conversations.
+  4. Other areas (Essex, Hudson, Union, Morris 2): per Kohler, 2026-07-30,
+     not a primary focus -- shown as a compact summary table only, no
+     per-brand detail.
+  5. Velocity: units sold per tap handle, for our own brand families only
+     (Encompass only ever records our own sales, so this can't be computed
+     for competitor brands) -- see the "Velocity" note below for how this is
+     joined and its limits.
+
+Files:
+  iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx
+                 Same shape as ../tap-survey-tracking/'s mediator workbook --
+                 see that folder's README for the full sheet-by-sheet
+                 breakdown of the raw survey sheet + "iSellBeer Import
+                 Template" (Corrected Distributor = the authoritative US/THEM
+                 ruling). This file additionally reads the workbook's "Brand
+                 Crosswalk" sheet (Report Brand Family -> Mapped Encompass
+                 Brand Family) for the velocity join below.
+  encompass_units_sold.csv
+                 RDE "iSellBeer TAPS Exec Overview" export: Customer Num,
+                 Customer Name, Area, Shipping Address, City, Date, Sales Rep
+                 Name, District Manager Name, Brand, Brand Family, Supplier,
+                 Units <year>. Used only for the velocity section.
+  generate.py    Rebuilds the embedded data in index.html from the two files
+                 above. Requires openpyxl (pip install openpyxl).
+  index.html     The dashboard itself (data is embedded in the
+                 <script id="exec-data"> tag).
+
+To refresh with new exports:
+  1. Re-run the tap-audit process on the new raw survey export (see the
+     tap-audit skill) to produce an updated audit-matrix workbook. Save it
+     over iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx, same filename.
+  2. Save the new Encompass units-sold export over encompass_units_sold.csv,
+     same filename/columns (the "Units <year>" header's year can shift
+     between exports -- generate.py matches by column-name prefix, not the
+     exact string).
+  3. Run: python3 generate.py -- it prints the overall split, each core
+     area's total, and how many of the top brands matched to Encompass,
+     worth a sanity check against what you'd expect.
+  4. Commit and push.
+
+Distribution-area data-quality fix (per Kohler, 2026-07-30): three area
+labels in the source export aren't real distribution areas, corrected here
+rather than left as-is or silently dropped:
+  - "Passaic-FF" is folded into "Passaic" (same area, different label).
+  - "Sales" is a placeholder for rows Kohler's own process never assigned a
+    real area to. Every one is reassigned here from its City, majority-vote
+    against every OTHER, correctly-labeled row that shares that city; a
+    handful of cities that appear nowhere else in the export fall back to
+    Address-confirmed manual assignment (Old Tappan and Ridgefield, NJ ->
+    Bergen; Passaic city -> Passaic area) -- all well-established NJ
+    municipalities, not a judgment call.
+  - "Morris 2" is left alone: it's a real area, just not one of Kohler's
+    named core-market or non-focus areas, so it surfaces in its own "Other
+    Areas" row rather than being folded into Morris 1 or 3.
+
+Brand grouping (per Kohler, 2026-07-30): the raw export has 100+ distinct
+brand families on each side (our brands and competitors'), far too many for
+a readable pie chart or list. Both the top-line brand breakdown and each
+core area's brand lists show the top N by handle count (8 for the top-line
+breakdown, 5 per area) with everything else folded into "All Other" --
+adjust TOP_N_BRANDS / TOP_N_AREA_BRANDS in generate.py if that should change.
+
+Velocity (per Kohler, 2026-07-30): "map the actual velocity of the tap
+handles" using the Encompass units-sold export. This only works for our own
+brands -- Encompass has no record of what a competitor sold through a handle
+we don't own -- and only at accounts where the export has BOTH a tap-survey
+row and a matching Encompass sales record for the same customer number (in
+this build, ~504 of 650 surveyed accounts, ~78%). Brand names differ between
+the two systems (e.g. "Sam Adams Seasonal" vs. "Samuel Adams", "Miller Lite"
+vs. "Lite", "Yuengling" vs. its supplier "Dg Yuengling Inc"), so
+generate.py's resolve_encompass_key() tries, in order: (1) an exact
+Brand-Family match, (2) the audit workbook's own Brand Crosswalk sheet's
+mapped name as a Brand Family, (3) that same mapped name as a Supplier
+match. A brand with no resolvable match (rare among the top 8, but possible)
+is listed in the page's "no Encompass match" note rather than silently
+dropped or shown with made-up numbers. Treat the resulting units-per-handle
+figures as directional, not exact to the unit.

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tap Share Overview &mdash; Kohler Distributing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6; --ink-mute:#666D7C;
+  --line:#262A35; --line-soft:#1F222B;
+  --accent:#3FA9F5;
+  --us:#37C46B; --us-soft:#15301E;
+  --them:#E5197D; --them-soft:#30111F;
+  --other-gray:#6B7280;
+  --b1:#3987e5; --b2:#d95926; --b3:#199e70; --b4:#c98500; --b5:#d55181; --b6:#008300; --b7:#9085e9; --b8:#e66767;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.5;padding:0 0 40px}
+.num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:840px;margin:0 auto;padding:0 18px}
+a{color:inherit}
+
+.backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:600;margin:20px 0 0}
+.backlink:hover{color:var(--ink)}
+
+.gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line);margin-top:10px}
+.gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:260px;
+  background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 18%,transparent),transparent 70%);pointer-events:none}
+.gx-head .wrap{position:relative;padding:20px 18px 26px}
+.eyebrow{font-family:"Space Grotesk";letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;
+  color:var(--accent);margin:0 0 10px}
+h1{font-family:"Space Grotesk";font-weight:700;font-size:32px;margin:0;letter-spacing:-.01em}
+.lede{color:var(--ink-soft);font-size:16px;max-width:640px;margin:10px 0 0}
+.updated{color:var(--ink-mute);font-size:13px;margin:12px 0 0}
+
+section{margin:34px 0}
+.sec-title{font-family:"Space Grotesk";font-weight:700;font-size:21px;margin:0 0 6px}
+.sec-sub{color:var(--ink-soft);font-size:14.5px;margin:0 0 18px;max-width:620px}
+
+/* ---- hero ---- */
+.hero-total{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;
+  padding:26px 24px;text-align:center;box-shadow:var(--shadow)}
+.hero-total .lbl{font-family:"Space Grotesk";font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.hero-total .big{font-family:"Space Grotesk";font-weight:700;font-size:56px;line-height:1.1;margin:8px 0 2px}
+.hero-total .sub{color:var(--ink-soft);font-size:14.5px}
+
+.split-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.split-card{border-radius:16px;padding:18px 16px;text-align:center;border:1px solid var(--line)}
+.split-card.us{background:var(--us-soft)} .split-card.them{background:var(--them-soft)}
+.split-card .lbl{font-family:"Space Grotesk";font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.split-card.us .lbl{color:var(--us)} .split-card.them .lbl{color:var(--them)}
+.split-card .pctnum{font-family:"Space Grotesk";font-weight:700;font-size:42px;line-height:1.15;margin:6px 0 2px}
+.split-card .cnt{color:var(--ink-soft);font-size:13.5px}
+
+.stackbar{height:28px;border-radius:8px;overflow:hidden;display:flex;margin:18px 0 2px;border:1px solid var(--line)}
+.stackbar .us{background:var(--us)} .stackbar .them{background:var(--them)}
+.stackbar-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-mute)}
+
+/* ---- donut ---- */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.donut-center-lbl{font-family:"Space Grotesk";font-weight:700;font-size:22px;fill:var(--ink)}
+.donut-center-sub{font-family:"Inter";font-size:11px;fill:var(--ink-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;font-size:13.5px}
+.legend .item{display:flex;align-items:center;gap:6px}
+.legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
+.legend .lname{color:var(--ink)}
+.legend .lpct{color:var(--ink-soft);font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+
+/* ---- brand columns ---- */
+.brand-cols{display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:720px){.brand-cols{grid-template-columns:1fr 1fr}}
+.brand-panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;box-shadow:var(--shadow)}
+.brand-panel h3{font-family:"Space Grotesk";font-size:15px;margin:0 0 14px;text-align:center}
+.brand-panel.us h3{color:var(--us)} .brand-panel.them h3{color:var(--them)}
+.brand-list{width:100%;border-collapse:collapse;margin-top:16px}
+.brand-list td{padding:7px 4px;border-bottom:1px solid var(--line-soft);font-size:14px}
+.brand-list tr:last-child td{border-bottom:none}
+.brand-list .sw{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;flex:none}
+.brand-list .bname{display:flex;align-items:center}
+.brand-list .bnum{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums;white-space:nowrap}
+.brand-list .bpct{text-align:right;color:var(--ink-soft);font-family:"Space Grotesk";font-variant-numeric:tabular-nums;white-space:nowrap;width:52px}
+.brand-list tr.other .bname{color:var(--ink-soft);font-style:italic}
+
+/* ---- area cards ---- */
+.area-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.area-card .ahead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.area-card h3{font-family:"Space Grotesk";font-size:18px;margin:0}
+.area-card .atotal{color:var(--ink-soft);font-size:13.5px}
+.area-bar{height:14px;border-radius:6px;overflow:hidden;display:flex;margin:10px 0;border:1px solid var(--line)}
+.area-bar .us{background:var(--us)} .area-bar .them{background:var(--them)}
+.area-pcts{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:12px}
+.area-pcts .us{color:var(--us);font-weight:700} .area-pcts .them{color:var(--them);font-weight:700}
+.area-brands{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.area-brands h4{font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px}
+.area-brands ul{list-style:none;margin:0;padding:0;font-size:13.5px}
+.area-brands li{display:flex;justify-content:space-between;padding:3px 0;gap:8px}
+.area-brands li .n{color:var(--ink-soft);font-family:"Space Grotesk";flex:none}
+
+/* ---- other areas ---- */
+.other-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.other-table th{text-align:left;font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line);background:var(--card2)}
+.other-table td{padding:10px 12px;border-bottom:1px solid var(--line-soft);font-size:14px}
+.other-table tr:last-child td{border-bottom:none}
+.other-table td.num, .other-table th.num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+.other-table td.us{color:var(--us);font-weight:600} .other-table td.them{color:var(--them);font-weight:600}
+
+/* ---- velocity ---- */
+.vel-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vel-table th{text-align:left;font-family:"Space Grotesk";font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-soft);padding:10px 12px;border-bottom:1px solid var(--line);background:var(--card2)}
+.vel-table td{padding:10px 12px;border-bottom:1px solid var(--line-soft);font-size:14px}
+.vel-table tr:last-child td{border-bottom:none}
+.vel-table td.num, .vel-table th.num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+.vel-rate{font-weight:700;color:var(--accent)}
+.vel-note{background:rgba(63,169,245,.08);border:1px solid rgba(63,169,245,.25);border-radius:12px;padding:12px 16px;
+  margin:0 0 16px;font-size:13.5px;color:var(--ink-soft)}
+
+details.notes{margin-top:40px;color:var(--ink-mute);font-size:12.5px}
+details.notes summary{cursor:pointer;font-weight:600;color:var(--ink-soft)}
+details.notes ul{padding-left:20px}
+details.notes li{margin-bottom:6px}
+
+footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="../">&larr; iSellBeer</a>
+</div>
+<div class="gx-head">
+  <div class="wrap">
+    <p class="eyebrow">Kohler Distributing &middot; Executive Overview</p>
+    <h1>Tap Share Overview</h1>
+    <p class="lede">Where we stand vs. competitors on tap handles surveyed in the market &mdash; overall, by brand, and across our core distribution area.</p>
+    <p class="updated" id="updated"></p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="hero">
+    <div class="hero-total">
+      <div class="lbl">Tap Handles Surveyed</div>
+      <div class="big num" id="heroTotal">&mdash;</div>
+      <div class="sub" id="heroSub"></div>
+    </div>
+    <div class="split-row">
+      <div class="split-card us">
+        <div class="lbl">Our Share</div>
+        <div class="pctnum num" id="usPct">&mdash;</div>
+        <div class="cnt num" id="usCnt"></div>
+      </div>
+      <div class="split-card them">
+        <div class="lbl">Competitor Share</div>
+        <div class="pctnum num" id="themPct">&mdash;</div>
+        <div class="cnt num" id="themCnt"></div>
+      </div>
+    </div>
+    <div class="stackbar" id="heroBar"></div>
+    <div class="stackbar-labels"><span>0%</span><span>100%</span></div>
+  </section>
+
+  <section id="overall-pie">
+    <h2 class="sec-title">Overall: Us vs. Them</h2>
+    <p class="sec-sub">Every tap handle surveyed, company-wide, split by who's pouring it.</p>
+    <div class="donut-wrap" id="usThemDonut"></div>
+  </section>
+
+  <section id="brands">
+    <h2 class="sec-title">Brand Breakdown</h2>
+    <p class="sec-sub">Top 8 brand families on each side by handle count; everything smaller is grouped into "All Other" so the list stays readable.</p>
+    <div class="brand-cols">
+      <div class="brand-panel us">
+        <h3>OUR BRANDS</h3>
+        <div class="donut-wrap" id="usBrandDonut"></div>
+        <table class="brand-list" id="usBrandList"></table>
+      </div>
+      <div class="brand-panel them">
+        <h3>COMPETITOR BRANDS</h3>
+        <div class="donut-wrap" id="themBrandDonut"></div>
+        <table class="brand-list" id="themBrandList"></table>
+      </div>
+    </div>
+  </section>
+
+  <section id="core-areas">
+    <h2 class="sec-title">Core Market, by Area</h2>
+    <p class="sec-sub">Bergen, Sussex, Passaic, Morris 1 &amp; Morris 3 &mdash; where we focus. Each area's top brands on our side and theirs.</p>
+    <div id="coreAreaCards"></div>
+  </section>
+
+  <section id="other-areas">
+    <h2 class="sec-title">Other Areas</h2>
+    <p class="sec-sub">Essex, Hudson, Union, and Morris 2 &mdash; not a primary focus, shown here for completeness only.</p>
+    <table class="other-table">
+      <thead><tr><th>Area</th><th class="num">Handles</th><th class="num">Us</th><th class="num">Them</th></tr></thead>
+      <tbody id="otherAreaRows"></tbody>
+    </table>
+  </section>
+
+  <section id="velocity">
+    <h2 class="sec-title">Velocity: Units Sold Per Tap Handle</h2>
+    <p class="sec-sub">For our own brands only &mdash; Encompass only records our sales, so this can't be computed for competitor brands. Ranked fastest-pouring first.</p>
+    <div class="vel-note" id="velNote"></div>
+    <table class="vel-table">
+      <thead><tr><th>Brand</th><th class="num">Handles</th><th class="num">Units Sold (2026)</th><th class="num">Units / Handle</th></tr></thead>
+      <tbody id="velRows"></tbody>
+    </table>
+  </section>
+
+  <details class="notes">
+    <summary>Data &amp; methodology notes</summary>
+    <ul>
+      <li>"Handles" = the "# of Taps" field summed across every surveyed row, not row count &mdash; an account with 3 handles of one brand counts as 3, not 1.</li>
+      <li>Us/Them status is the tap-audit engine's "Corrected Distributor" ruling (product catalog + territory rules), the same authoritative source used by the rep-facing tap tracker.</li>
+      <li>Three area-label data issues were corrected here: "Passaic-FF" is folded into "Passaic"; "Sales" (a placeholder for unassigned rows) is reassigned from each account's City, falling back to Address for the handful of cities appearing nowhere else in the export; "Morris 2" is real but isn't one of the named core or non-focus areas, so it appears in "Other Areas" rather than being folded into Morris 1/3.</li>
+      <li>Brand names differ between the tap-survey system and Encompass (e.g. "Sam Adams Seasonal" vs. "Samuel Adams", "Miller Lite" vs. "Lite") &mdash; velocity figures are reconciled via the audit workbook's own Brand Crosswalk sheet plus a supplier-name fallback, and should be read as directional, not exact to the unit.</li>
+      <li>Velocity is computed only at the accounts where both a tap survey row and an Encompass sales record exist for the same customer number (see the note above the velocity table for the match rate) &mdash; it is not a company-wide sales total.</li>
+    </ul>
+  </details>
+
+</div>
+
+<footer>Kohler Distributing &middot; Tap Share Executive Overview. See generate.py for methodology.</footer>
+
+<script id="exec-data" type="application/json">{"generatedAt":"2026-07-30 13:54 UTC","summary":{"totalTaps":5599,"usTaps":2701,"themTaps":2898,"unverifiedTaps":0,"usPct":48.2,"themPct":51.8,"accountsSurveyed":649},"brandsUs":{"total":2701,"top":[{"brand":"Blue Moon","taps":301,"pct":11.1},{"brand":"Yuengling","taps":270,"pct":10.0},{"brand":"Sam Adams Seasonal","taps":231,"pct":8.6},{"brand":"Miller Lite","taps":184,"pct":6.8},{"brand":"Modelo Cerveza","taps":182,"pct":6.7},{"brand":"Coors Light","taps":174,"pct":6.4},{"brand":"Peroni Nastro Azzurro","taps":77,"pct":2.9},{"brand":"New Belgium Voodoo Ranger","taps":76,"pct":2.8}],"other":{"taps":1206,"pct":44.7,"brandCount":101}},"brandsThem":{"total":2898,"top":[{"brand":"Other Supplier","taps":784,"pct":27.1},{"brand":"Stella Artois","taps":281,"pct":9.7},{"brand":"Guinness","taps":271,"pct":9.4},{"brand":"Michelob Ultra","taps":184,"pct":6.3},{"brand":"Kona Brewing Company","taps":104,"pct":3.6},{"brand":"Bud Light","taps":90,"pct":3.1},{"brand":"Allagash Brewing Company","taps":86,"pct":3.0},{"brand":"Downeast Cider","taps":75,"pct":2.6}],"other":{"taps":1023,"pct":35.3,"brandCount":201}},"areas":{"core":[{"area":"Bergen","totalTaps":2611,"usTaps":1386,"themTaps":1225,"usPct":53.1,"themPct":46.9,"topUs":[{"brand":"Blue Moon","taps":164},{"brand":"Sam Adams Seasonal","taps":131},{"brand":"Yuengling","taps":127},{"brand":"Modelo Cerveza","taps":95},{"brand":"Coors Light","taps":89}],"topThem":[{"brand":"Other Supplier","taps":358},{"brand":"Stella Artois","taps":149},{"brand":"Guinness","taps":118},{"brand":"Michelob Ultra","taps":79},{"brand":"Kona Brewing Company","taps":51}]},{"area":"Sussex","totalTaps":513,"usTaps":222,"themTaps":291,"usPct":43.3,"themPct":56.7,"topUs":[{"brand":"Yuengling","taps":38},{"brand":"Miller Lite","taps":36},{"brand":"Blue Moon","taps":30},{"brand":"Sam Adams Seasonal","taps":22},{"brand":"Coors Light","taps":14}],"topThem":[{"brand":"Other Supplier","taps":95},{"brand":"Stella Artois","taps":27},{"brand":"Guinness","taps":26},{"brand":"Michelob Ultra","taps":23},{"brand":"Downeast Cider","taps":15}]},{"area":"Passaic","totalTaps":1201,"usTaps":661,"themTaps":540,"usPct":55.0,"themPct":45.0,"topUs":[{"brand":"Blue Moon","taps":71},{"brand":"Yuengling","taps":61},{"brand":"Modelo Cerveza","taps":55},{"brand":"Coors Light","taps":47},{"brand":"Sam Adams Seasonal","taps":44}],"topThem":[{"brand":"Other Supplier","taps":160},{"brand":"Guinness","taps":58},{"brand":"Stella Artois","taps":51},{"brand":"Michelob Ultra","taps":40},{"brand":"Bud Light","taps":22}]},{"area":"Morris 1","totalTaps":701,"usTaps":272,"themTaps":429,"usPct":38.8,"themPct":61.2,"topUs":[{"brand":"Yuengling","taps":35},{"brand":"Miller Lite","taps":29},{"brand":"Sam Adams Seasonal","taps":29},{"brand":"Blue Moon","taps":26},{"brand":"Coors Light","taps":16}],"topThem":[{"brand":"Other Supplier","taps":142},{"brand":"Guinness","taps":34},{"brand":"Stella Artois","taps":32},{"brand":"Michelob Ultra","taps":30},{"brand":"Bud Light","taps":17}]},{"area":"Morris 3","totalTaps":146,"usTaps":76,"themTaps":70,"usPct":52.1,"themPct":47.9,"topUs":[{"brand":"Blue Moon","taps":10},{"brand":"Yuengling","taps":9},{"brand":"Coors Light","taps":8},{"brand":"Miller Lite","taps":5},{"brand":"Sam Adams Seasonal","taps":5}],"topThem":[{"brand":"Other Supplier","taps":20},{"brand":"Stella Artois","taps":7},{"brand":"Guinness","taps":6},{"brand":"Kona Brewing Company","taps":5},{"brand":"Bud Light","taps":4}]}],"nonFocus":[{"area":"Essex","totalTaps":199,"usTaps":37,"themTaps":162,"usPct":18.6,"themPct":81.4},{"area":"Hudson","totalTaps":122,"usTaps":30,"themTaps":92,"usPct":24.6,"themPct":75.4},{"area":"Union","totalTaps":48,"usTaps":5,"themTaps":43,"usPct":10.4,"themPct":89.6}],"other":[{"area":"Morris 2","totalTaps":58,"usTaps":12,"themTaps":46,"usPct":20.7,"themPct":79.3}]},"velocity":{"accountsSurveyed":649,"accountsMatched":503,"brands":[{"brand":"Blue Moon","matchedTaps":298,"unitsSold":1899.0,"unitsPerTap":6.37},{"brand":"Yuengling","matchedTaps":270,"unitsSold":2155.0,"unitsPerTap":7.98},{"brand":"Sam Adams Seasonal","matchedTaps":230,"unitsSold":1431.0,"unitsPerTap":6.22},{"brand":"Miller Lite","matchedTaps":183,"unitsSold":2088.0,"unitsPerTap":11.41},{"brand":"Modelo Cerveza","matchedTaps":180,"unitsSold":1298.0,"unitsPerTap":7.21},{"brand":"Coors Light","matchedTaps":174,"unitsSold":1469.0,"unitsPerTap":8.44},{"brand":"Peroni Nastro Azzurro","matchedTaps":77,"unitsSold":522.0,"unitsPerTap":6.78},{"brand":"New Belgium Voodoo Ranger","matchedTaps":75,"unitsSold":70.0,"unitsPerTap":0.93}],"unmatchedBrands":[]}}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('exec-data').textContent);
+const fmtInt = n => Math.round(n).toLocaleString('en-US');
+const fmtPct = n => n.toFixed(1) + '%';
+const BRAND_COLORS = ['var(--b1)','var(--b2)','var(--b3)','var(--b4)','var(--b5)','var(--b6)','var(--b7)','var(--b8)'];
+
+function svgEl(tag, attrs){
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+// Renders a donut chart into container `el` from segments [{label, value, color}],
+// with a center label, then a legend of name + %. size/thickness in px.
+function renderDonut(el, segments, size, thickness, centerBig, centerSmall){
+  const total = segments.reduce((a,s)=>a+s.value,0);
+  const R = size/2;
+  const r = R - thickness/2;
+  const C = 2*Math.PI*r;
+  const gapPx = 3;
+  const svg = svgEl('svg', {width:size, height:size, viewBox:`0 0 ${size} ${size}`});
+  const g = svgEl('g', {transform:`rotate(-90 ${R} ${R})`});
+  let cum = 0;
+  segments.forEach(s => {
+    if (s.value <= 0) return;
+    const frac = s.value/total;
+    const arcLen = Math.max(frac*C - gapPx, 1);
+    const offset = -(cum/total)*C;
+    const circle = svgEl('circle', {
+      cx:R, cy:R, r:r, fill:'none', stroke:s.color, 'stroke-width':thickness,
+      'stroke-dasharray':`${arcLen} ${C-arcLen}`, 'stroke-dashoffset':offset,
+    });
+    g.appendChild(circle);
+    cum += s.value;
+  });
+  svg.appendChild(g);
+  if (centerBig){
+    const t1 = svgEl('text', {x:R, y:R-4, 'text-anchor':'middle', class:'donut-center-lbl'});
+    t1.textContent = centerBig;
+    svg.appendChild(t1);
+    const t2 = svgEl('text', {x:R, y:R+14, 'text-anchor':'middle', class:'donut-center-sub'});
+    t2.textContent = centerSmall || '';
+    svg.appendChild(t2);
+  }
+  const legend = document.createElement('div');
+  legend.className = 'legend';
+  segments.forEach(s=>{
+    if (s.value <= 0) return;
+    const item = document.createElement('div'); item.className = 'item';
+    const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = s.color;
+    const nm = document.createElement('span'); nm.className = 'lname'; nm.textContent = s.label;
+    const pc = document.createElement('span'); pc.className = 'lpct'; pc.textContent = fmtPct(s.value/total*100);
+    item.append(sw, nm, pc);
+    legend.appendChild(item);
+  });
+  el.innerHTML = '';
+  el.appendChild(svg);
+  el.appendChild(legend);
+}
+
+function init(){
+  const s = DATA.summary;
+  document.getElementById('updated').textContent = `Data refreshed ${DATA.generatedAt}`;
+  document.getElementById('heroTotal').textContent = fmtInt(s.totalTaps);
+  document.getElementById('heroSub').textContent = `across ${fmtInt(s.accountsSurveyed)} surveyed accounts`;
+  document.getElementById('usPct').textContent = fmtPct(s.usPct);
+  document.getElementById('usCnt').textContent = `${fmtInt(s.usTaps)} handles`;
+  document.getElementById('themPct').textContent = fmtPct(s.themPct);
+  document.getElementById('themCnt').textContent = `${fmtInt(s.themTaps)} handles`;
+
+  const bar = document.getElementById('heroBar');
+  bar.innerHTML = `<div class="us" style="width:${s.usPct}%"></div><div class="them" style="width:${s.themPct}%"></div>`;
+
+  renderDonut(document.getElementById('usThemDonut'),
+    [{label:'Us', value:s.usTaps, color:'var(--us)'}, {label:'Them', value:s.themTaps, color:'var(--them)'}],
+    200, 34, fmtPct(s.usPct), 'ours');
+
+  function renderBrandSide(key, listId, donutId, color){
+    const b = DATA[key];
+    const segs = b.top.map((t,i)=>({label:t.brand, value:t.taps, color: i<8?BRAND_COLORS[i]:color}));
+    if (b.other.taps > 0) segs.push({label:'All Other', value:b.other.taps, color:'var(--other-gray)'});
+    renderDonut(document.getElementById(donutId), segs, 180, 30, fmtInt(b.total), 'handles');
+    const tbl = document.getElementById(listId);
+    tbl.innerHTML = '';
+    b.top.forEach((t,i)=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td class="bname"><span class="sw" style="background:${BRAND_COLORS[i]}"></span>${t.brand}</td>` +
+        `<td class="bnum">${fmtInt(t.taps)}</td><td class="bpct">${fmtPct(t.pct)}</td>`;
+      tbl.appendChild(tr);
+    });
+    if (b.other.taps > 0){
+      const tr = document.createElement('tr'); tr.className = 'other';
+      tr.innerHTML = `<td class="bname"><span class="sw" style="background:var(--other-gray)"></span>All Other (${b.other.brandCount} brands)</td>` +
+        `<td class="bnum">${fmtInt(b.other.taps)}</td><td class="bpct">${fmtPct(b.other.pct)}</td>`;
+      tbl.appendChild(tr);
+    }
+  }
+  renderBrandSide('brandsUs', 'usBrandList', 'usBrandDonut', 'var(--us)');
+  renderBrandSide('brandsThem', 'themBrandList', 'themBrandDonut', 'var(--them)');
+
+  const coreWrap = document.getElementById('coreAreaCards');
+  DATA.areas.core.forEach(a=>{
+    const card = document.createElement('div'); card.className = 'area-card';
+    const usList = a.topUs.map(b=>`<li><span>${b.brand}</span><span class="n">${fmtInt(b.taps)}</span></li>`).join('') || '<li><span>&mdash;</span></li>';
+    const themList = a.topThem.map(b=>`<li><span>${b.brand}</span><span class="n">${fmtInt(b.taps)}</span></li>`).join('') || '<li><span>&mdash;</span></li>';
+    card.innerHTML = `
+      <div class="ahead"><h3>${a.area}</h3><span class="atotal">${fmtInt(a.totalTaps)} handles</span></div>
+      <div class="area-bar"><div class="us" style="width:${a.usPct}%"></div><div class="them" style="width:${a.themPct}%"></div></div>
+      <div class="area-pcts"><span class="us">Us ${fmtPct(a.usPct)}</span><span class="them">Them ${fmtPct(a.themPct)}</span></div>
+      <div class="area-brands">
+        <div><h4>Top Our Brands</h4><ul>${usList}</ul></div>
+        <div><h4>Top Competitor Brands</h4><ul>${themList}</ul></div>
+      </div>`;
+    coreWrap.appendChild(card);
+  });
+
+  const otherRows = document.getElementById('otherAreaRows');
+  DATA.areas.nonFocus.concat(DATA.areas.other).forEach(a=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${a.area}</td><td class="num">${fmtInt(a.totalTaps)}</td>` +
+      `<td class="num us">${fmtPct(a.usPct)}</td><td class="num them">${fmtPct(a.themPct)}</td>`;
+    otherRows.appendChild(tr);
+  });
+
+  const v = DATA.velocity;
+  document.getElementById('velNote').textContent =
+    `${fmtInt(v.accountsMatched)} of ${fmtInt(v.accountsSurveyed)} surveyed accounts (${fmtPct(v.accountsMatched/v.accountsSurveyed*100)}) ` +
+    `have a matching 2026 Encompass sales record; velocity below is computed only across those accounts.` +
+    (v.unmatchedBrands.length ? ` No Encompass match found for: ${v.unmatchedBrands.join(', ')}.` : '');
+  const velRows = document.getElementById('velRows');
+  const sorted = v.brands.slice().sort((a,b)=> (b.unitsPerTap||0) - (a.unitsPerTap||0));
+  sorted.forEach(b=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${b.brand}</td><td class="num">${fmtInt(b.matchedTaps)}</td>` +
+      `<td class="num">${fmtInt(b.unitsSold)}</td><td class="num vel-rate">${b.unitsPerTap!=null?b.unitsPerTap.toFixed(1):'&mdash;'}</td>`;
+    velRows.appendChild(tr);
+  });
+}
+init();
+</script>
+</body></html>
