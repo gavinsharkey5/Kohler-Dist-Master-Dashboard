@@ -1,12 +1,112 @@
 [
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NUM": 200351,
+    "PRODUCT_NAME": "Amethystos Red 12/750 mL",
+    "CUSTOMER_NUM": 31036,
+    "CUSTOMER_NAME": "Eros Cafe",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "PRODUCT_NUM": 200352,
+    "PRODUCT_NAME": "Amethystos White 12/750 mL",
+    "CUSTOMER_NUM": 190016,
+    "CUSTOMER_NAME": "12 Islands Greek Taverna",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NUM": 200771,
     "PRODUCT_NAME": "Desquite Artesanal 6/750 mL Btl",
     "CUSTOMER_NUM": 22065,
     "CUSTOMER_NAME": "Mambo Lounge (P)",
     "PREMISE": "On Premise",
-    "DATE": "2026-07-30",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "PRODUCT_NUM": 200351,
+    "PRODUCT_NAME": "Amethystos Red 12/750 mL",
+    "CUSTOMER_NUM": 190016,
+    "CUSTOMER_NAME": "12 Islands Greek Taverna",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 201077,
+    "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200400,
+    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NUM": 200352,
+    "PRODUCT_NAME": "Amethystos White 12/750 mL",
+    "CUSTOMER_NUM": 31036,
+    "CUSTOMER_NAME": "Eros Cafe",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NUM": 201054,
+    "PRODUCT_NAME": "Green River Wheated 1/750 mL",
+    "CUSTOMER_NUM": 1007,
+    "CUSTOMER_NAME": "The Greenwood Tavern",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "PRODUCT_NUM": 200356,
+    "PRODUCT_NAME": "Isidoros Arvanitis Plomari Ouzo 12/750 mL Btl",
+    "CUSTOMER_NUM": 190016,
+    "CUSTOMER_NAME": "12 Islands Greek Taverna",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 1007,
+    "CUSTOMER_NAME": "The Greenwood Tavern",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 67014,
+    "CUSTOMER_NAME": "The Rockleigh C C (P)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-31",
     "Placement Count 2026": "1.00"
   },
   {
@@ -15,16 +115,6 @@
     "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "CUSTOMER_NUM": 69012,
     "CUSTOMER_NAME": "449 Prime @ Edgewood Country Club",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-30",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 100923,
-    "PRODUCT_NAME": "Paradisse Fassionola Liqueur 6/750 mL Btl",
-    "CUSTOMER_NUM": 69003,
-    "CUSTOMER_NAME": "Edgewood Country Club",
     "PREMISE": "On Premise",
     "DATE": "2026-07-30",
     "Placement Count 2026": "1.00"
@@ -50,6 +140,16 @@
     "Placement Count 2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 100923,
+    "PRODUCT_NAME": "Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "CUSTOMER_NUM": 69003,
+    "CUSTOMER_NAME": "Edgewood Country Club",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-30",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
     "PRODUCT_NUM": 100912,
     "PRODUCT_NAME": "OVO Vodka 1/12/750 mL Btl",
@@ -70,11 +170,21 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NUM": 200771,
-    "PRODUCT_NAME": "Desquite Artesanal 6/750 mL Btl",
-    "CUSTOMER_NUM": 39004,
-    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 81027,
+    "CUSTOMER_NAME": "RP Prime Steakhouse",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-30",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200404,
+    "PRODUCT_NAME": "Traveler's Club Vodka 6/1.75 L Btl",
+    "CUSTOMER_NUM": 61004,
+    "CUSTOMER_NAME": "Andiamo",
     "PREMISE": "On Premise",
     "DATE": "2026-07-29",
     "Placement Count 2026": "1.00"
@@ -90,11 +200,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200404,
-    "PRODUCT_NAME": "Traveler's Club Vodka 6/1.75 L Btl",
-    "CUSTOMER_NUM": 61004,
-    "CUSTOMER_NAME": "Andiamo",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NUM": 201055,
+    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "CUSTOMER_NUM": 231210,
+    "CUSTOMER_NAME": "Bally Owen Golf Club",
     "PREMISE": "On Premise",
     "DATE": "2026-07-29",
     "Placement Count 2026": "1.00"
@@ -105,16 +215,6 @@
     "PRODUCT_NAME": "Chateau Diana Pinot Grigio 12/750 mL Btl",
     "CUSTOMER_NUM": 150024,
     "CUSTOMER_NAME": "Mcgovern's Tavern(A)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-29",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NUM": 201055,
-    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
-    "CUSTOMER_NUM": 231210,
-    "CUSTOMER_NAME": "Bally Owen Golf Club",
     "PREMISE": "On Premise",
     "DATE": "2026-07-29",
     "Placement Count 2026": "1.00"
@@ -140,13 +240,13 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": 200771,
+    "PRODUCT_NAME": "Desquite Artesanal 6/750 mL Btl",
+    "CUSTOMER_NUM": 39004,
+    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
     "PREMISE": "On Premise",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-29",
     "Placement Count 2026": "1.00"
   },
   {
@@ -160,29 +260,19 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 201056,
-    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-28",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NUM": 201065,
-    "PRODUCT_NAME": "Green River 1/1 L Btl",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "PRODUCT_NUM": 200353,
+    "PRODUCT_NAME": "Chateau Julia Assyrtiko 12/750 mL",
+    "CUSTOMER_NUM": 170153,
+    "CUSTOMER_NAME": "Molos Rest",
     "PREMISE": "On Premise",
     "DATE": "2026-07-28",
     "Placement Count 2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200365,
-    "PRODUCT_NAME": "Striped Pig Doppio 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "CUSTOMER_NUM": 39010,
     "CUSTOMER_NAME": "Players Club (Z)",
     "PREMISE": "On Premise",
@@ -210,6 +300,16 @@
     "Placement Count 2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NUM": 201065,
+    "PRODUCT_NAME": "Green River 1/1 L Btl",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-28",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NUM": 200382,
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
@@ -221,8 +321,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200365,
+    "PRODUCT_NAME": "Striped Pig Doppio 1/6/750 mL Btl",
     "CUSTOMER_NUM": 39010,
     "CUSTOMER_NAME": "Players Club (Z)",
     "PREMISE": "On Premise",
@@ -230,23 +330,23 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Jaime Colonna",
-    "PRODUCT_NUM": 200353,
-    "PRODUCT_NAME": "Chateau Julia Assyrtiko 12/750 mL",
-    "CUSTOMER_NUM": 170153,
-    "CUSTOMER_NAME": "Molos Rest",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-28",
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "PRODUCT_NUM": 200218,
-    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
-    "CUSTOMER_NUM": 80011,
-    "CUSTOMER_NAME": "Casa De Montecristo",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
     "PREMISE": "On Premise",
-    "DATE": "2026-07-27",
+    "DATE": "2026-07-28",
     "Placement Count 2026": "1.00"
   },
   {
@@ -260,21 +360,21 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NUM": 200217,
-    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
-    "CUSTOMER_NUM": 84022,
-    "CUSTOMER_NAME": "Park West Tavern",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NUM": 200218,
+    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "CUSTOMER_NUM": 80011,
+    "CUSTOMER_NAME": "Casa De Montecristo",
     "PREMISE": "On Premise",
-    "DATE": "2026-07-24",
+    "DATE": "2026-07-27",
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 27015,
-    "CUSTOMER_NAME": "Dona Maria Rest",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NUM": 200400,
+    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
+    "CUSTOMER_NUM": 10007,
+    "CUSTOMER_NAME": "Bardis (P)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-24",
     "Placement Count 2026": "1.00"
@@ -285,16 +385,6 @@
     "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
     "CUSTOMER_NUM": 84022,
     "CUSTOMER_NAME": "Park West Tavern",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-24",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 27015,
-    "CUSTOMER_NAME": "Dona Maria Rest",
     "PREMISE": "On Premise",
     "DATE": "2026-07-24",
     "Placement Count 2026": "1.00"
@@ -310,11 +400,61 @@
     "Placement Count 2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200365,
+    "PRODUCT_NAME": "Striped Pig Doppio 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-24",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NUM": 200217,
+    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-24",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NUM": 200216,
     "PRODUCT_NAME": "Leyenda 1925 Anejo Tequila 1/750 ML Btl",
     "CUSTOMER_NUM": 84022,
     "CUSTOMER_NAME": "Park West Tavern",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-24",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-24",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 27015,
+    "CUSTOMER_NAME": "Dona Maria Rest",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-24",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200400,
+    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-24",
     "Placement Count 2026": "1.00"
@@ -340,41 +480,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NUM": 200382,
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-24",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "CUSTOMER_NUM": 27015,
     "CUSTOMER_NAME": "Dona Maria Rest",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-24",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NUM": 200400,
-    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
-    "CUSTOMER_NUM": 10007,
-    "CUSTOMER_NAME": "Bardis (P)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-24",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200400,
-    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
-    "CUSTOMER_NUM": 41006,
-    "CUSTOMER_NAME": "Straphanger Saloon (A)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-24",
     "Placement Count 2026": "1.00"
@@ -390,11 +500,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200365,
-    "PRODUCT_NAME": "Striped Pig Doppio 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 27015,
+    "CUSTOMER_NAME": "Dona Maria Rest",
     "PREMISE": "On Premise",
     "DATE": "2026-07-24",
     "Placement Count 2026": "1.00"
@@ -421,10 +531,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 100923,
-    "PRODUCT_NAME": "Paradisse Fassionola Liqueur 6/750 mL Btl",
-    "CUSTOMER_NUM": 60002,
-    "CUSTOMER_NAME": "QB's Bar and Grill",
+    "PRODUCT_NUM": 201054,
+    "PRODUCT_NAME": "Green River Wheated 1/750 mL",
+    "CUSTOMER_NUM": 71011,
+    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
     "PREMISE": "On Premise",
     "DATE": "2026-07-22",
     "Placement Count 2026": "1.00"
@@ -441,22 +551,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 201054,
-    "PRODUCT_NAME": "Green River Wheated 1/750 mL",
-    "CUSTOMER_NUM": 71011,
-    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
+    "PRODUCT_NUM": 100923,
+    "PRODUCT_NAME": "Paradisse Fassionola Liqueur 6/750 mL Btl",
+    "CUSTOMER_NUM": 60002,
+    "CUSTOMER_NAME": "QB's Bar and Grill",
     "PREMISE": "On Premise",
     "DATE": "2026-07-22",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-21",
     "Placement Count 2026": "1.00"
   },
   {
@@ -465,6 +565,16 @@
     "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
     "CUSTOMER_NUM": 69009,
     "CUSTOMER_NAME": "Rivervale Country Club",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-21",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 201055,
+    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "CUSTOMER_NUM": 59001,
+    "CUSTOMER_NAME": "ORA",
     "PREMISE": "On Premise",
     "DATE": "2026-07-21",
     "Placement Count 2026": "1.00"
@@ -481,10 +591,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 201055,
-    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
-    "CUSTOMER_NUM": 59001,
-    "CUSTOMER_NAME": "ORA",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
     "PREMISE": "On Premise",
     "DATE": "2026-07-21",
     "Placement Count 2026": "1.00"
@@ -495,6 +605,46 @@
     "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
     "CUSTOMER_NUM": 1005,
     "CUSTOMER_NAME": "Grasshopper Irish Pub (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-17",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 201055,
+    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "CUSTOMER_NUM": 59001,
+    "CUSTOMER_NAME": "ORA",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-17",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200400,
+    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
+    "CUSTOMER_NUM": 41006,
+    "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-17",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NUM": 201077,
+    "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
+    "CUSTOMER_NUM": 25056,
+    "CUSTOMER_NAME": "Emerald Corner (Z)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-17",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-17",
     "Placement Count 2026": "1.00"
@@ -511,50 +661,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NUM": 201056,
-    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-17",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "PRODUCT_NUM": 201077,
     "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
     "CUSTOMER_NUM": 10007,
     "CUSTOMER_NAME": "Bardis (P)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-17",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NUM": 201077,
-    "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
-    "CUSTOMER_NUM": 25056,
-    "CUSTOMER_NAME": "Emerald Corner (Z)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-17",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200400,
-    "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
-    "CUSTOMER_NUM": 41006,
-    "CUSTOMER_NAME": "Straphanger Saloon (A)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-17",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 201055,
-    "PRODUCT_NAME": "Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
-    "CUSTOMER_NUM": 59001,
-    "CUSTOMER_NAME": "ORA",
     "PREMISE": "On Premise",
     "DATE": "2026-07-17",
     "Placement Count 2026": "1.00"
@@ -567,6 +677,16 @@
     "CUSTOMER_NAME": "Courtyard by Marriott Wayne Fairfield",
     "PREMISE": "On Premise",
     "DATE": "2026-07-16",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NUM": 201077,
+    "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
+    "CUSTOMER_NUM": 8015,
+    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-15",
     "Placement Count 2026": "1.00"
   },
   {
@@ -591,12 +711,42 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NUM": 201077,
-    "PRODUCT_NAME": "Green River Honey 1/750 mL Btl",
-    "CUSTOMER_NUM": 8015,
-    "CUSTOMER_NAME": "Thatcher Mc Ghees (A)",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 25083,
+    "CUSTOMER_NAME": "Rutt's Hut (A)",
     "PREMISE": "On Premise",
-    "DATE": "2026-07-15",
+    "DATE": "2026-07-14",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NUM": 201073,
+    "PRODUCT_NAME": "Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-14",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NUM": 201074,
+    "PRODUCT_NAME": "Bardstown Discovery #13 1/750 mL Btl",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-14",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NUM": 201056,
+    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "CUSTOMER_NUM": 230103,
+    "CUSTOMER_NAME": "St.Moritz Grill & Bar",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-14",
     "Placement Count 2026": "1.00"
   },
   {
@@ -620,51 +770,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NUM": 201074,
-    "PRODUCT_NAME": "Bardstown Discovery #13 1/750 mL Btl",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-14",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NUM": 201056,
-    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "CUSTOMER_NUM": 25083,
-    "CUSTOMER_NAME": "Rutt's Hut (A)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-14",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "PRODUCT_NUM": 201056,
-    "PRODUCT_NAME": "Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "CUSTOMER_NUM": 230103,
-    "CUSTOMER_NAME": "St.Moritz Grill & Bar",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-14",
-    "Placement Count 2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NUM": 200400,
     "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
     "CUSTOMER_NUM": 69009,
     "CUSTOMER_NAME": "Rivervale Country Club",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-14",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NUM": 201073,
-    "PRODUCT_NAME": "Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
     "PREMISE": "On Premise",
     "DATE": "2026-07-14",
     "Placement Count 2026": "1.00"
@@ -677,16 +787,6 @@
     "CUSTOMER_NAME": "86 and Vine",
     "PREMISE": "On Premise",
     "DATE": "2026-07-13",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NUM": 101076,
-    "PRODUCT_NAME": "Ukrainian Spirit Vodka 1/12/1 L Btl",
-    "CUSTOMER_NUM": 27067,
-    "CUSTOMER_NAME": "Ukranian (Z) Center",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-10",
     "Placement Count 2026": "1.00"
   },
   {
@@ -705,6 +805,16 @@
     "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
     "CUSTOMER_NUM": 41006,
     "CUSTOMER_NAME": "Straphanger Saloon (A)",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-10",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": 101076,
+    "PRODUCT_NAME": "Ukrainian Spirit Vodka 1/12/1 L Btl",
+    "CUSTOMER_NUM": 27067,
+    "CUSTOMER_NAME": "Ukranian (Z) Center",
     "PREMISE": "On Premise",
     "DATE": "2026-07-10",
     "Placement Count 2026": "1.00"
@@ -731,16 +841,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
-    "PRODUCT_NUM": 200352,
-    "PRODUCT_NAME": "Amethystos White 12/750 mL",
-    "CUSTOMER_NUM": 190016,
-    "CUSTOMER_NAME": "12 Islands Greek Taverna",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-09",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "John O'Donoghue",
     "PRODUCT_NUM": 200351,
     "PRODUCT_NAME": "Amethystos Red 12/750 mL",
     "CUSTOMER_NUM": 190016,
@@ -755,6 +855,16 @@
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "CUSTOMER_NUM": 191009,
     "CUSTOMER_NAME": "Mason Street Grille",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-09",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "PRODUCT_NUM": 200352,
+    "PRODUCT_NAME": "Amethystos White 12/750 mL",
+    "CUSTOMER_NUM": 190016,
+    "CUSTOMER_NAME": "12 Islands Greek Taverna",
     "PREMISE": "On Premise",
     "DATE": "2026-07-09",
     "Placement Count 2026": "1.00"
@@ -810,11 +920,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "CUSTOMER_NUM": 61004,
-    "CUSTOMER_NAME": "Andiamo",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NUM": 101070,
+    "PRODUCT_NAME": "Overstone Sauvignon Blanc 1/12/750 mL Btl",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
     "PREMISE": "On Premise",
     "DATE": "2026-07-07",
     "Placement Count 2026": "1.00"
@@ -830,6 +940,16 @@
     "Placement Count 2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200352,
+    "PRODUCT_NAME": "Amethystos White 12/750 mL",
+    "CUSTOMER_NUM": 54012,
+    "CUSTOMER_NAME": "Axia Taverna",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-07",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NUM": 101091,
     "PRODUCT_NAME": "Lo Secco Prosecco 1/12/750 mL Btl",
@@ -840,21 +960,11 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NUM": 101070,
-    "PRODUCT_NAME": "Overstone Sauvignon Blanc 1/12/750 mL Btl",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-07",
-    "Placement Count 2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200352,
-    "PRODUCT_NAME": "Amethystos White 12/750 mL",
-    "CUSTOMER_NUM": 54012,
-    "CUSTOMER_NAME": "Axia Taverna",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "CUSTOMER_NUM": 61004,
+    "CUSTOMER_NAME": "Andiamo",
     "PREMISE": "On Premise",
     "DATE": "2026-07-07",
     "Placement Count 2026": "1.00"
@@ -880,21 +990,21 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NUM": 200771,
-    "PRODUCT_NAME": "Desquite Artesanal 6/750 mL Btl",
-    "CUSTOMER_NUM": 27001,
-    "CUSTOMER_NAME": "Fiesta Night Club(P)",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-03",
-    "Placement Count 2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NUM": 200313,
     "PRODUCT_NAME": "Pride & Clarke Vodka 24/375 mL Btl",
     "CUSTOMER_NUM": 20058,
     "CUSTOMER_NAME": "Krystal Bar(P) & Liqs.",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-03",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NUM": 200771,
+    "PRODUCT_NAME": "Desquite Artesanal 6/750 mL Btl",
+    "CUSTOMER_NUM": 27001,
+    "CUSTOMER_NAME": "Fiesta Night Club(P)",
     "PREMISE": "On Premise",
     "DATE": "2026-07-03",
     "Placement Count 2026": "1.00"
@@ -910,26 +1020,6 @@
     "Placement Count 2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "PRODUCT_NUM": 201054,
-    "PRODUCT_NAME": "Green River Wheated 1/750 mL",
-    "CUSTOMER_NUM": 190104,
-    "CUSTOMER_NAME": "Black Rabbit Saloon LLC",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-02",
-    "Placement Count 2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NUM": 200404,
-    "PRODUCT_NAME": "Traveler's Club Vodka 6/1.75 L Btl",
-    "CUSTOMER_NUM": 61004,
-    "CUSTOMER_NAME": "Andiamo",
-    "PREMISE": "On Premise",
-    "DATE": "2026-07-02",
-    "Placement Count 2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NUM": 200400,
     "PRODUCT_NAME": "Travelers Club Vodka 12/1 L Btl",
@@ -940,11 +1030,31 @@
     "Placement Count 2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "PRODUCT_NUM": 201054,
+    "PRODUCT_NAME": "Green River Wheated 1/750 mL",
+    "CUSTOMER_NUM": 190104,
+    "CUSTOMER_NAME": "Black Rabbit Saloon LLC",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-02",
+    "Placement Count 2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "PRODUCT_NUM": 200311,
     "PRODUCT_NAME": "Pride & Clarke Vodka 12/1 L Btl",
     "CUSTOMER_NUM": 28021,
     "CUSTOMER_NAME": "Brazilian Spices Steakhouse & Pizza",
+    "PREMISE": "On Premise",
+    "DATE": "2026-07-02",
+    "Placement Count 2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NUM": 200404,
+    "PRODUCT_NAME": "Traveler's Club Vodka 6/1.75 L Btl",
+    "CUSTOMER_NUM": 61004,
+    "CUSTOMER_NAME": "Andiamo",
     "PREMISE": "On Premise",
     "DATE": "2026-07-02",
     "Placement Count 2026": "1.00"
