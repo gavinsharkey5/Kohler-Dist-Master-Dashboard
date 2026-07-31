@@ -7,7 +7,7 @@ workbook's sample data (Bardstown, Molly's) was only a layout reference --
 this dashboard covers the full real W&S portfolio from Encompass exports.
 
 Tabs:
-  Overview          Headline KPIs, top brand families by revenue, and a
+  Overview          Headline KPIs, top brand families by $Vol, and a
                      margin watch list.
   Distribution      "Brand by Item" -- Accounts Purchasing (AP) at four
                      trailing windows, plus a FY25 vs FY26 YTD reference.
@@ -53,6 +53,10 @@ glossary tooltips on each tab):
       Trend    = compares the current 90D AP window to the 3 months
                  immediately before it (a real "prior period" comparison,
                  not FY-over-FY).
+
+  $Vol = SUM(invoicetrans.extprice) -- i.e. the sum of the Ext Price column
+    in ws_invoice_trans.csv (Unit Price x Num Units, already net of any
+    discount), across every revenue-bearing line for that item/brand.
 
   Realized Margin = Unit Price - Laid-in Cost, weighted by units actually
     sold, computed from ws_invoice_trans.csv. The "Pricing" sample tab in

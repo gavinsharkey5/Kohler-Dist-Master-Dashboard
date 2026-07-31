@@ -200,7 +200,7 @@ tbody tr:hover{background:#FBF6EE;}
   <div class="panel">
     <div class="panel-head">
       <div>
-        <h2>Top Brand Families by Revenue</h2>
+        <h2>Top Brand Families by $Vol</h2>
         <div class="panel-sub">Realized sales &amp; margin, from actual invoice transactions</div>
       </div>
     </div>
@@ -209,7 +209,7 @@ tbody tr:hover{background:#FBF6EE;}
         <table id="top-rev-table">
           <thead><tr>
             <th>Brand Family</th>
-            <th class="num">Revenue</th>
+            <th class="num">$Vol</th>
             <th class="num">Units Sold</th>
             <th class="num">Margin %</th>
             <th class="num">Margin $</th>
@@ -232,7 +232,7 @@ tbody tr:hover{background:#FBF6EE;}
         <table id="watch-table">
           <thead><tr>
             <th>Brand Family</th>
-            <th class="num">Revenue</th>
+            <th class="num">$Vol</th>
             <th class="num">Units Sold</th>
             <th class="num">Margin %</th>
             <th class="num">Margin $</th>
@@ -345,7 +345,7 @@ tbody tr:hover{background:#FBF6EE;}
       <details class="glossary">
         <summary>What do these columns mean?</summary>
         <dl class="glossary-grid">
-          <div class="glossary-item"><dt>Avg Unit Price</dt><dd>Total realized sales dollars (Ext Price) divided by units sold &mdash; the actual net price achieved, after any discounts.</dd></div>
+          <div class="glossary-item"><dt>Avg Unit Price</dt><dd>Total $Vol (sum of Ext Price) divided by units sold &mdash; the actual net price achieved, after any discounts.</dd></div>
           <div class="glossary-item"><dt>Avg Laid-In Cost</dt><dd>Weighted average landed cost per unit (FOB + freight + duties, as recorded in Encompass), before any distributor margin.</dd></div>
           <div class="glossary-item"><dt>Margin $/Unit</dt><dd>Avg Unit Price minus Avg Laid-In Cost.</dd></div>
           <div class="glossary-item"><dt>Margin %</dt><dd>Margin $/Unit divided by Avg Unit Price.</dd></div>
@@ -370,7 +370,7 @@ tbody tr:hover{background:#FBF6EE;}
             <th data-key="pkg">Package</th>
             <th data-key="units" class="num">Units Sold</th>
             <th data-key="cases" class="num">Cases</th>
-            <th data-key="revenue" class="num">Revenue</th>
+            <th data-key="revenue" class="num">$Vol</th>
             <th data-key="avgUnitPrice" class="num">Avg Unit Price</th>
             <th data-key="avgLaidInCost" class="num">Avg Laid-In Cost</th>
             <th data-key="avgDiscountPerUnit" class="num">Avg Discount/Unit</th>
@@ -467,7 +467,7 @@ function applySort(rows, state){
 function renderOverview(){
   var o = DATA.overview;
   var kpis = [
-    {label:'Total Revenue', value: fmtMoney(o.totalRevenue), sub: 'invoices ' + o.invoiceDateMin + ' – ' + o.invoiceDateMax},
+    {label:'Total $Vol', value: fmtMoney(o.totalRevenue), sub: 'invoices ' + o.invoiceDateMin + ' – ' + o.invoiceDateMax},
     {label:'Overall Margin %', value: fmtPct(o.overallMarginPct), sub: fmtMoney(o.totalMargin) + ' realized margin'},
     {label:'Units Sold', value: fmtNum(o.totalUnitsSold), sub: fmtNum(o.totalCasesSold) + ' case equivalents'},
     {label:'Lifetime Accounts', value: fmtNum(o.lifetimeAccounts), sub: 'ever bought W&S'},
