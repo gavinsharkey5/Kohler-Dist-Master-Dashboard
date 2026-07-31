@@ -51,10 +51,14 @@ PRIORITY_BRANDS = {
     'TRULY SEASONAL HARD SELTZER', 'TWISTED TEA', 'WHITE CLAW CLAWTAILS',
     'WHITE CLAW ORIGINAL HARD SELTZER', 'WHITE CLAW SURF HARD SELTZER',
     'WHITE CLAW SURGE HARD SELTZER', 'WHITE CLAW VODKA + SODA', 'YUENGLING BREWERY',
+    # Confirmed with the user 2026-07-30.
+    'WHITE CLAW ZERO', 'SIMPLY SPIKED LEMONADE',
 }
 ALLOTHER_BRANDS = {
     'ATHLETIC BREWING COMPANY', 'CARIB BREWERY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN',
     'KIRIN ICHIBAN', 'POPSICLE FMB', 'SIERRA NEVADA BREWING COMPANY',
+    # Confirmed with the user 2026-07-30.
+    'TALKHOUSE ENCORE TEQUILA SODA', 'TALKHOUSE ENCORE VARIETY PACK',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
@@ -65,11 +69,16 @@ ALLOTHER_BRANDS = {
 # shorter Brand Family labels for the same already-classified brands.
 # Confirmed with the user 2026-07-23: "YUENGLING" is the same shorter-label
 # pattern for "YUENGLING BREWERY".
+# Confirmed with the user 2026-07-30: "ATHLETIC BREWING CO" and "CARBLISS
+# COCKTAILS" are the same shorter-label pattern for "ATHLETIC BREWING
+# COMPANY" and "CARBLISS" respectively.
 BRAND_FAMILY_ALIASES = {
     'BRAXTON': 'GARAGE BEER - CONTRACT BREWING',
     'GARAGE BEER': 'GARAGE BEER - CONTRACT BREWING',
     'SAM ADAMS': 'SAMUEL ADAMS',
     'YUENGLING': 'YUENGLING BREWERY',
+    'ATHLETIC BREWING CO': 'ATHLETIC BREWING COMPANY',
+    'CARBLISS COCKTAILS': 'CARBLISS',
 }
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
