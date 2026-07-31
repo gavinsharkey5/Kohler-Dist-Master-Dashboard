@@ -11,11 +11,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 50016,
-    "CUSTOMER_NAME": "Teaneck Quickshop(P)Conv",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
+    "CUSTOMER_NUM": 38021,
+    "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-28",
     "PLACEMENT_COUNT___2026": "1.00"
   },
@@ -31,6 +31,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 50016,
+    "CUSTOMER_NAME": "Teaneck Quickshop(P)Conv",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38007,
     "CUSTOMER_NAME": "Garden Liquors (P)",
     "PRODUCT_NUM": 100961,
@@ -41,16 +51,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38021,
-    "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38007,
     "CUSTOMER_NAME": "Garden Liquors (P)",
     "PRODUCT_NUM": 100962,
@@ -63,49 +63,9 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-20",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43005,
-    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "PRODUCT_NUM": 100962,
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-20",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46012,
-    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
-    "PRODUCT_NUM": 100121,
-    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-20",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46012,
-    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-20",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43005,
-    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
-    "PRODUCT_NUM": 100121,
-    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
     "PLACEMENT_COUNT___2026": "1.00"
   },
@@ -123,10 +83,60 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46012,
+    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
+    "PRODUCT_NUM": 100121,
+    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 43005,
+    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
+    "PRODUCT_NUM": 100121,
+    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 43005,
+    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "PRODUCT_NUM": 100961,
     "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46012,
+    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 40022,
+    "CUSTOMER_NAME": "Buy Rite Of Hackensack",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-29",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -150,53 +160,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40022,
-    "CUSTOMER_NAME": "Buy Rite Of Hackensack",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-29",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 15037,
-    "CUSTOMER_NAME": "Liquor Gallery (Paterson)",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-20",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -213,6 +183,26 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 15037,
+    "CUSTOMER_NAME": "Liquor Gallery (Paterson)",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-20",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "PRODUCT_NUM": 200382,
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
@@ -223,20 +213,20 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 25047,
-    "CUSTOMER_NAME": "Parker Liquors (Z)",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-17",
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -250,13 +240,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230106,
-    "CUSTOMER_NAME": "Burkes",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-30",
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 25047,
+    "CUSTOMER_NAME": "Parker Liquors (Z)",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-17",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -290,6 +280,46 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "CUSTOMER_NUM": 230106,
+    "CUSTOMER_NAME": "Burkes",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-30",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 28011,
+    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
+    "PRODUCT_NUM": 100121,
+    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-22",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 28011,
+    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
+    "PRODUCT_NUM": 100125,
+    "PRODUCT_NAME": "La Grand Noir Rose 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-22",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 28011,
+    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-22",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 13008,
     "CUSTOMER_NAME": "Little Falls Liq(P)",
@@ -310,9 +340,9 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190101,
+    "CUSTOMER_NAME": "Montville Wine & Spirits",
     "PRODUCT_NUM": 100122,
     "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "Le Grand Noir",
@@ -320,23 +350,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "PRODUCT_NUM": 100121,
-    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-22",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28011,
-    "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "PRODUCT_NUM": 100125,
-    "PRODUCT_NAME": "La Grand Noir Rose 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-22",
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190101,
+    "CUSTOMER_NAME": "Montville Wine & Spirits",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-08",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -345,16 +365,6 @@
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
     "PRODUCT_NUM": 100962,
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190917,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -371,16 +381,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191814,
-    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-15",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190101,
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "PRODUCT_NUM": 100962,
@@ -391,30 +391,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190101,
-    "CUSTOMER_NAME": "Montville Wine & Spirits",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-22",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191518,
-    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-08",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191814,
     "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-15",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -431,12 +411,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190101,
-    "CUSTOMER_NAME": "Montville Wine & Spirits",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
     "PRODUCT_NUM": 100961,
     "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-08",
+    "DATE": "2026-07-15",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190917,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -447,6 +437,36 @@
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 191518,
+    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 32017,
+    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-24",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 32017,
+    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
+    "PRODUCT_NUM": 100121,
+    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -463,26 +483,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
-    "PRODUCT_NUM": 100121,
-    "PRODUCT_NAME": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "PRODUCT_NUM": 100961,
     "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
@@ -493,20 +493,10 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 19027,
     "CUSTOMER_NAME": "Goffle Road Wine and More",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84004,
-    "CUSTOMER_NAME": "Quick Stop Liquor & Wine",
     "PRODUCT_NUM": 100962,
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-09",
+    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -521,22 +511,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 19027,
-    "CUSTOMER_NAME": "Goffle Road Wine and More",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-10",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84004,
     "CUSTOMER_NAME": "Quick Stop Liquor & Wine",
     "PRODUCT_NUM": 100961,
     "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-09",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 84004,
+    "CUSTOMER_NAME": "Quick Stop Liquor & Wine",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-09",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 19027,
+    "CUSTOMER_NAME": "Goffle Road Wine and More",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -551,20 +551,20 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27015,
-    "CUSTOMER_NAME": "Dona Maria Rest",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-24",
+    "CUSTOMER_NUM": 20070,
+    "CUSTOMER_NAME": "Joe's Liquor (A)",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-16",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27015,
     "CUSTOMER_NAME": "Dona Maria Rest",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -583,8 +583,18 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27015,
     "CUSTOMER_NAME": "Dona Maria Rest",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-24",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27015,
+    "CUSTOMER_NAME": "Dona Maria Rest",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -601,20 +611,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20070,
-    "CUSTOMER_NAME": "Joe's Liquor (A)",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27015,
     "CUSTOMER_NAME": "Dona Maria Rest",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -623,8 +623,8 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27015,
     "CUSTOMER_NAME": "Dona Maria Rest",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
@@ -641,62 +641,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 69012,
-    "CUSTOMER_NAME": "449 Prime @ Edgewood Country Club",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-30",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39010,
-    "CUSTOMER_NAME": "Players Club (Z)",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 86002,
     "CUSTOMER_NAME": "Doghouse Saloon (Z)",
     "PRODUCT_NUM": 200382,
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
     "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 67014,
+    "CUSTOMER_NAME": "The Rockleigh C C (P)",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-31",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -711,12 +671,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71011,
-    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-22",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-21",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-24",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -731,118 +711,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-21",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-08",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 78008,
-    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-30",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-28",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
     "PRODUCT_NUM": 200381,
     "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
@@ -850,29 +720,9 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 200381,
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200384,
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 39010,
+    "CUSTOMER_NAME": "Players Club (Z)",
     "PRODUCT_NUM": 200385,
     "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
@@ -880,123 +730,23 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 69012,
+    "CUSTOMER_NAME": "449 Prime @ Edgewood Country Club",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 47004,
-    "CUSTOMER_NAME": "Wides Deli & Liquor",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 76006,
-    "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-15",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 76006,
-    "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-15",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 78008,
-    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
-    "PRODUCT_NUM": 100961,
-    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-30",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 200382,
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "PRODUCT_NUM": 100122,
-    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Le Grand Noir",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 71011,
+    "CUSTOMER_NAME": "Marriott (P) Park Ridge",
     "PRODUCT_NUM": 100962,
     "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-08",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 78008,
-    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-30",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "PRODUCT_NUM": 200385,
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "PRODUCT_NUM": 200383,
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-14",
+    "DATE": "2026-07-22",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -1020,13 +770,263 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 75004,
-    "CUSTOMER_NAME": "Cork & Keg (A)",
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-16",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 38018,
+    "CUSTOMER_NAME": "THE BOTTLE SHOP",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 38018,
+    "CUSTOMER_NAME": "THE BOTTLE SHOP",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
     "PRODUCT_NUM": 200382,
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "BRAND_FAMILY": "YaVe Tequila",
-    "DATE": "2026-07-20",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 78008,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-30",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200381,
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 47004,
+    "CUSTOMER_NAME": "Wides Deli & Liquor",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-16",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 78008,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-30",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200384,
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 76006,
+    "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
+    "PRODUCT_NUM": 100961,
+    "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-15",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 76006,
+    "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-15",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 200383,
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 29004,
+    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 78008,
+    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
+    "PRODUCT_NUM": 200385,
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-30",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 38018,
+    "CUSTOMER_NAME": "THE BOTTLE SHOP",
+    "PRODUCT_NUM": 100122,
+    "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Le Grand Noir",
+    "DATE": "2026-07-14",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-16",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -1037,16 +1037,6 @@
     "PRODUCT_NAME": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 71006,
-    "CUSTOMER_NAME": "Ridgemont Liquors (A)",
-    "PRODUCT_NUM": 100962,
-    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
-    "BRAND_FAMILY": "2XO",
-    "DATE": "2026-07-08",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -1067,6 +1057,26 @@
     "PRODUCT_NAME": "2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 71006,
+    "CUSTOMER_NAME": "Ridgemont Liquors (A)",
+    "PRODUCT_NUM": 100962,
+    "PRODUCT_NAME": "2XO French Oak 1/750 mL Btl",
+    "BRAND_FAMILY": "2XO",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 75004,
+    "CUSTOMER_NAME": "Cork & Keg (A)",
+    "PRODUCT_NUM": 200382,
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "DATE": "2026-07-20",
     "PLACEMENT_COUNT___2026": "1.00"
   }
 ]

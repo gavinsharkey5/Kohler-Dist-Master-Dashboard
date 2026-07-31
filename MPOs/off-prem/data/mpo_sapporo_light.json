@@ -1,42 +1,22 @@
 [
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
+    "CUSTOMER_NUM": 250024,
+    "CUSTOMER_NAME": "Best Cellars (Summit)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-31",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Andrew Lundy",
     "CUSTOMER_NUM": 250016,
     "CUSTOMER_NAME": "Buy Rite Liq (A)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-07-29",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 46033,
-    "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-22",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79005,
-    "CUSTOMER_NAME": "Maywood Wine&Liq (A)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-03",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38007,
-    "CUSTOMER_NAME": "Garden Liquors (P)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-10",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -51,6 +31,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 38007,
+    "CUSTOMER_NAME": "Garden Liquors (P)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 25045,
     "CUSTOMER_NAME": "Clifton Disc Liq (A)",
     "PRODUCT_NUM": 10345,
@@ -60,13 +50,23 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49045,
-    "CUSTOMER_NAME": "Liquor World",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 79005,
+    "CUSTOMER_NAME": "Maywood Wine&Liq (A)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-14",
+    "DATE": "2026-07-03",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 46033,
+    "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-22",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -81,22 +81,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43013,
-    "CUSTOMER_NAME": "Buy Rite Of Fairview",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-01",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 49045,
+    "CUSTOMER_NAME": "Liquor World",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-14",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -120,13 +120,13 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58001,
-    "CUSTOMER_NAME": "Total Wine & More (River Edge)",
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 43013,
+    "CUSTOMER_NAME": "Buy Rite Of Fairview",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-03",
+    "DATE": "2026-07-01",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -161,16 +161,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 39012,
-    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-08",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "PRODUCT_NUM": 10345,
@@ -180,23 +170,33 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20079,
-    "CUSTOMER_NAME": "Limestone Liquors (A)",
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 58001,
+    "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-03",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 39012,
+    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-08",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20080,
-    "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
+    "CUSTOMER_NUM": 22022,
+    "CUSTOMER_NAME": "C Town (A)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-31",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -211,8 +211,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22022,
-    "CUSTOMER_NAME": "C Town (A)",
+    "CUSTOMER_NUM": 15023,
+    "CUSTOMER_NAME": "Santana's Sport(P)Bella",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -220,9 +220,39 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20080,
+    "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20079,
+    "CUSTOMER_NAME": "Limestone Liquors (A)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-28",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
     "CUSTOMER_NUM": 170144,
     "CUSTOMER_NAME": "Hudson Wine Co (P)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-08",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 21006,
+    "CUSTOMER_NAME": "Camilo Liquors(A)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -241,32 +271,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27037,
-    "CUSTOMER_NAME": "Shanik Liqs.(P)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-16",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21006,
-    "CUSTOMER_NAME": "Camilo Liquors(A)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-08",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21023,
     "CUSTOMER_NAME": "Luna Liquors",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-07-10",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27037,
+    "CUSTOMER_NAME": "Shanik Liqs.(P)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-16",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -281,22 +301,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 231215,
-    "CUSTOMER_NAME": "Mac & Lindy's W & S (A)",
+    "CUSTOMER_NUM": 191408,
+    "CUSTOMER_NAME": "Super Saver Liq",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-15",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230105,
-    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-09",
+    "DATE": "2026-07-30",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -311,6 +321,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "CUSTOMER_NUM": 231215,
+    "CUSTOMER_NAME": "Mac & Lindy's W & S (A)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-15",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230121,
     "CUSTOMER_NAME": "White Deer Inn",
     "PRODUCT_NUM": 10345,
@@ -321,12 +341,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 191408,
-    "CUSTOMER_NAME": "Super Saver Liq",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-30",
+    "DATE": "2026-07-09",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -343,6 +363,16 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 13008,
     "CUSTOMER_NAME": "Little Falls Liq(P)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-29",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -370,16 +400,6 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24017,
-    "CUSTOMER_NAME": "Rainbow Liquor (P)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-29",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
     "CUSTOMER_NUM": 190711,
     "CUSTOMER_NAME": "Shop Rite Liquors",
@@ -387,36 +407,6 @@
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-07-15",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190917,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-27",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190101,
-    "CUSTOMER_NAME": "Montville Wine & Spirits",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-22",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -431,6 +421,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190917,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-27",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-24",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191814,
     "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
     "PRODUCT_NUM": 10345,
@@ -440,29 +450,19 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190101,
+    "CUSTOMER_NAME": "Montville Wine & Spirits",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-22",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-07",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77009,
-    "CUSTOMER_NAME": "M & M Wine & Spirits",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-06",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 33002,
-    "CUSTOMER_NAME": "Moonachie Liquors",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -480,13 +480,33 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17010,
-    "CUSTOMER_NAME": "Frank's Fine Wine & Foods",
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 33002,
+    "CUSTOMER_NAME": "Moonachie Liquors",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-07",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 77009,
+    "CUSTOMER_NAME": "M & M Wine & Spirits",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-06",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "CUSTOMER_NUM": 11001,
+    "CUSTOMER_NAME": "Lincoln Center Liq",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-31",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -501,8 +521,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84010,
-    "CUSTOMER_NAME": "Ridgewood Super Cellar",
+    "CUSTOMER_NUM": 17011,
+    "CUSTOMER_NAME": "Nico's Wine & Spirits",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -521,12 +541,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17011,
-    "CUSTOMER_NAME": "Nico's Wine & Spirits",
+    "CUSTOMER_NUM": 84010,
+    "CUSTOMER_NAME": "Ridgewood Super Cellar",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-07-29",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 17010,
+    "CUSTOMER_NAME": "Frank's Fine Wine & Foods",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-28",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -541,28 +571,48 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-06",
+    "DATE": "2026-07-27",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 39001,
-    "CUSTOMER_NAME": "Home Wines & Liq 75 (A) (South Hackensack)",
+    "CUSTOMER_NUM": 76021,
+    "CUSTOMER_NAME": "Saddle Brook Liquor & Bar",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-06",
+    "DATE": "2026-07-01",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 20106,
-    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
+    "CUSTOMER_NUM": 46019,
+    "CUSTOMER_NAME": "Palisades Wine And Liquor",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-24",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 46019,
+    "CUSTOMER_NAME": "Palisades Wine And Liquor",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-07",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 83010,
+    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -581,42 +631,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83010,
-    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
+    "CUSTOMER_NUM": 80005,
+    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-09",
+    "DATE": "2026-07-31",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 76021,
-    "CUSTOMER_NAME": "Saddle Brook Liquor & Bar",
+    "CUSTOMER_NUM": 39001,
+    "CUSTOMER_NAME": "Home Wines & Liq 75 (A) (South Hackensack)",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
-    "DATE": "2026-07-01",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-27",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 46019,
-    "CUSTOMER_NAME": "Palisades Wine And Liquor",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-07",
+    "DATE": "2026-07-06",
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
@@ -631,28 +661,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 46019,
-    "CUSTOMER_NAME": "Palisades Wine And Liquor",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-24",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 55001,
-    "CUSTOMER_NAME": "Coasters Liquors",
-    "PRODUCT_NUM": 10345,
-    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
-    "BRAND": "Sapporo Light",
-    "DATE": "2026-07-07",
-    "PLACEMENT_COUNT___2026": "1.00"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)",
+    "CUSTOMER_NUM": 20106,
+    "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -660,9 +670,19 @@
     "PLACEMENT_COUNT___2026": "1.00"
   },
   {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-06",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 74005,
-    "CUSTOMER_NAME": "Winemart Discount",
+    "CUSTOMER_NUM": 55001,
+    "CUSTOMER_NAME": "Coasters Liquors",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
@@ -681,12 +701,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 74005,
+    "CUSTOMER_NAME": "Winemart Discount",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-07",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 67005,
     "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",
     "PRODUCT_NUM": 10345,
     "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
     "BRAND": "Sapporo Light",
     "DATE": "2026-06-30",
+    "PLACEMENT_COUNT___2026": "1.00"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 62001,
+    "CUSTOMER_NAME": "Garden State Deli (A)",
+    "PRODUCT_NUM": 10345,
+    "PRODUCT_NAME": "Sapporo Light 2/12/12 oz Can",
+    "BRAND": "Sapporo Light",
+    "DATE": "2026-07-09",
     "PLACEMENT_COUNT___2026": "1.00"
   }
 ]
