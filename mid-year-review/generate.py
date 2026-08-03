@@ -63,6 +63,16 @@ NAME_ALIASES = {
     "pabst blue ribbon": "Pabst Brand",
 }
 
+# Per Gavin, 2026-08-04: the workbook itself mis-lists these brands' Supplier
+# column -- e.g. "Fresca Mixed" is tagged "Constellation Brands" in the
+# workbook, but ytd_comparison.csv's own row order puts it under its own
+# "SAZERAC INC" header, separate from Constellation's brands entirely (a
+# workbook data-entry error, not an RDE/parsing issue). Corrected here rather
+# than editing 2026_planning_source.xlsx directly.
+SUPPLIER_OVERRIDES = {
+    "Fresca Mixed": "Sazerac Inc",
+}
+
 
 def to_num(raw):
     if raw is None:
@@ -125,9 +135,11 @@ def load_workbook_taxonomy():
         kohler_pct = wsv.cell(r, 14).value
 
         name = str(brand).strip()
+        supplier_name = str(supplier).strip() if supplier else None
+        supplier_name = SUPPLIER_OVERRIDES.get(name, supplier_name)
         brands[name] = {
             "brand": name,
-            "supplier": (str(supplier).strip() if supplier else None),
+            "supplier": supplier_name,
             "brand_manager": manager,
             "finish_2025_ce": finish_2025 if isinstance(finish_2025, (int, float)) else None,
             "goal2026_brewery_pct": brewery_pct if isinstance(brewery_pct, (int, float)) else None,
