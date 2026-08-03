@@ -918,8 +918,19 @@ function renderCaveats(){
 }
 
 async function init(){
-  const res = await fetch('data/data.json');
+  const res = await fetch('data/data.json', {cache: 'no-store'});
   DATA = await res.json();
+  // Defensive: a stale cached data.json (CDN/browser cache lagging behind a
+  // fresh index.html) shouldn't be able to hard-crash init() and blank the
+  // whole page -- degrade the missing piece instead of throwing.
+  DATA.brands = DATA.brands || [];
+  DATA.newBrands = DATA.newBrands || [];
+  DATA.terminatedBrands = DATA.terminatedBrands || [];
+  DATA.supplierRollup = DATA.supplierRollup || [];
+  DATA.managers = DATA.managers || [];
+  DATA.suppliers = DATA.suppliers || [];
+  DATA.meta = DATA.meta || {};
+
   DATA.brands = DATA.brands.map((r,i)=>({...r, _key: `${r.supplier}|${r.brand}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
   DATA.supplierRollup = DATA.supplierRollup.map((r,i)=>({...r, _key: `${r.supplier}|${i}`,
