@@ -115,6 +115,28 @@ also workbook-recognized brands); Shipyard/Jersey Girl/Soda
 Birch/Whole Hog are skipped per the existing EXCLUDED_BRANDS policy
 rather than added.
 
+Mirrored the other direction the next day (per Gavin's managers'
+request): a whole supplier with 0 sales in 2025 (brand-new to the
+portfolio, e.g. Carbliss under SN Food & Beverage LLC, Noca under Noca
+Beverages) is also dropped from this tab, and an individual brand
+family with 0 2025 sales is dropped even under an established supplier
+(e.g. Monaco under MolsonCoors Beverage Company) -- no real prior-year
+baseline to show a trend against, same threshold New Brand Families in
+2026 already uses. 86 suppliers / 241 brand families remain as of this
+refresh. Dropped brands not already represented in New Brand Families
+get added there.
+
+A raw CSV row that never matched any single workbook brand (like
+"Monaco" above) is often ALREADY represented in New Brand Families
+under a relabeled compound name from the unbroken_out logic further
+below (e.g. "Monaco (Lech, Milwaukee's Best)" -- Lech and Milwaukee's
+Best are workbook brands under MolsonCoors that RDE never broke out
+individually, so their volume rides along on whatever raw row RDE
+happened to label). Both of these removal passes match on the raw
+(supplier, brand) pair against the unclassified list, not just the
+display name, so a brand like this gets pulled off the Supplier +
+Brand tab without creating a second, duplicate row elsewhere.
+
 One surprising but confirmed-correct consequence: this tab now follows
 RDE's OWN routing rather than the planning workbook's taxonomy, and
 those two occasionally disagree. Kirin Ichiban and Kirin Light are
