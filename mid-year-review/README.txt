@@ -84,18 +84,36 @@ versa).
 
 As of 2026-08-04 (per Gavin's managers' request), this tab's grouping
 mirrors ytd_comparison.csv's OWN Supplier -> Brand Family hierarchy
-directly -- every supplier and brand family RDE tracks (129 suppliers,
-338 brand families this refresh), not just the with-goal subset the
-By Brand Family / By Supplier tabs use. A brand or supplier with no
-workbook goal simply shows blank Goal %/Goal CE/Gap cells and a "No
-Goal" status, same treatment goal-less items already got elsewhere.
-See build_raw_supplier_tree() in generate.py: RDE flattens its 2-level
-Supplier -> Brand Family tree into one column with no indent marker,
-but it's fully recoverable because a header row's own Case Equiv
-figures always exactly equal the sum of the brand-family rows
-immediately beneath it, up to the next header row -- reconstructed by
-finding that run for every row, greedily, and validated to fully
-resolve all ~465 rows in the export with zero leftovers.
+directly -- every supplier and brand family RDE tracks, not just the
+with-goal subset the By Brand Family / By Supplier tabs use. A brand
+or supplier with no workbook goal simply shows blank Goal %/Goal
+CE/Gap cells and a "No Goal" status, same treatment goal-less items
+already got elsewhere. See build_raw_supplier_tree() in generate.py:
+RDE flattens its 2-level Supplier -> Brand Family tree into one column
+with no indent marker, but it's fully recoverable because a header
+row's own Case Equiv figures always exactly equal the sum of the
+brand-family rows immediately beneath it, up to the next header row --
+reconstructed by finding that run for every row, greedily, and
+validated to fully resolve all ~465 rows in the export with zero
+leftovers.
+
+As of 2026-08-05 (per Gavin's managers' request): a whole supplier
+with 0 or negative 2026 YTD CE (e.g. the Buzbee's...Point Brewing tail
+of the export) is dropped from this tab entirely, and an individual
+brand family with 0/negative 2026 YTD CE is dropped even under an
+otherwise-healthy supplier (e.g. Corona Refresca under Constellation
+Brands, Coney Island under Boston Beer Company) -- same threshold the
+Terminated Brands tab already uses. 109 suppliers / 291 brand families
+remain as of this refresh (down from 129 / 338). Buzbee's Beverages
+USA LLC itself is technically +$0.57 CE, not zero or negative, but was
+named explicitly as the start of the range to drop, so it's excluded
+by name (COMBO_MANUAL_EXCLUDE_SUPPLIERS in generate.py) rather than by
+the numeric rule. Every brand dropped this way that wasn't already
+represented in Terminated Brands gets added there (2 this refresh --
+most of the ~45 dropped brands already existed there since they're
+also workbook-recognized brands); Shipyard/Jersey Girl/Soda
+Birch/Whole Hog are skipped per the existing EXCLUDED_BRANDS policy
+rather than added.
 
 One surprising but confirmed-correct consequence: this tab now follows
 RDE's OWN routing rather than the planning workbook's taxonomy, and

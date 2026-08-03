@@ -662,10 +662,56 @@ def main():
             "children": children_recs,
         })
 
+    # Per Gavin, 2026-08-05: drop dead weight from the Supplier + Brand tab --
+    # a whole supplier with 0 or negative 2026 YTD CE (e.g. the Buzbee's...
+    # Point Brewing tail of the export), or an individual brand family with
+    # 0/negative 2026 YTD CE even under an otherwise-healthy supplier (e.g.
+    # Corona Refresca under Constellation). Same threshold the Terminated
+    # Brands tab already uses. Buzbee's itself is +$0.57 CE (effectively
+    # zero) but was named explicitly as the start of the range to drop.
+    COMBO_MANUAL_EXCLUDE_SUPPLIERS = {"Buzbee's Beverages USA LLC"}
+    existing_terminated_names = {r["brand"] for r in terminated}
+    newly_terminated = []
+
+    def is_dead(v):
+        return v is not None and v <= 0
+
+    kept_rollup = []
+    for group in combo_rollup:
+        if is_dead(group["ce_current"]) or group["supplier"] in COMBO_MANUAL_EXCLUDE_SUPPLIERS:
+            for c in group["children"]:
+                if c["brand"].lower() in EXCLUDED_BRANDS or c["brand"] in existing_terminated_names:
+                    continue
+                newly_terminated.append({
+                    "brand": c["brand"], "supplier": group["supplier"],
+                    "brand_manager": c["brand_manager"], "ce_prior": c["ce_prior"], "ce_current": c["ce_current"],
+                })
+            continue
+        kept_children = []
+        for c in group["children"]:
+            if is_dead(c["ce_current"]):
+                if c["brand"].lower() not in EXCLUDED_BRANDS and c["brand"] not in existing_terminated_names:
+                    newly_terminated.append({
+                        "brand": c["brand"], "supplier": group["supplier"],
+                        "brand_manager": c["brand_manager"], "ce_prior": c["ce_prior"], "ce_current": c["ce_current"],
+                    })
+                continue
+            kept_children.append(c)
+        group["children"] = kept_children
+        kept_rollup.append(group)
+
+    dropped_supplier_count = len(combo_rollup) - len(kept_rollup)
+    combo_rollup = kept_rollup
+    if newly_terminated:
+        terminated = terminated + newly_terminated
+        terminated.sort(key=lambda r: r["ce_current"])
+
     combo_rollup.sort(key=lambda r: -(r["ce_current"] or 0))
     total_combo_children = sum(len(g["children"]) for g in combo_rollup)
     print(f"Supplier + Brand combo rollup: {len(combo_rollup)} suppliers, {total_combo_children} brand families "
           f"(mirrors {CSV_YTD.name}'s own hierarchy; Food & Bev Enterprise LLC left as the existing override).")
+    print(f"Dropped {dropped_supplier_count} supplier(s) with 0/negative 2026 CE and their brands from the combo "
+          f"tab; moved {len(newly_terminated)} previously-unlisted brand(s) into Terminated Brands.")
 
     payload = {
         "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
