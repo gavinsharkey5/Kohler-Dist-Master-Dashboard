@@ -125,9 +125,5 @@ Notes:
     instead.
   - Brand-level totals reconcile to ytd_comparison.csv's own Total row
     within ~0.02%.
-  - As of the 2026-08-03 refresh, denise_food_bev_product_detail.csv
-    still reflects the prior 1/1-7/28 window (Gavin only re-pulled the
-    main ytd_comparison.csv this time) -- Denise Montes' Food & Bev
-    Enterprise LLC brands (Aguila Import/Light, Club Colombia
-    Dorada/Roja, Pilsen Import) are therefore ~3 days stale relative to
-    every other brand on the page until that file gets re-pulled too.
+  - denise_food_bev_product_detail.csv is now on the same 1/1-7/31
+    window as ytd_comparison.csv (re-pulled 2026-08-03).
