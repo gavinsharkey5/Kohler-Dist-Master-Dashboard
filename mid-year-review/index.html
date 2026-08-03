@@ -1296,6 +1296,7 @@ async function init(){
   DATA.newBrands = DATA.newBrands || [];
   DATA.terminatedBrands = DATA.terminatedBrands || [];
   DATA.supplierRollup = DATA.supplierRollup || [];
+  DATA.comboRollup = DATA.comboRollup || [];
   DATA.managers = DATA.managers || [];
   DATA.suppliers = DATA.suppliers || [];
   DATA.meta = DATA.meta || {};
@@ -1305,13 +1306,15 @@ async function init(){
   DATA.supplierRollup = DATA.supplierRollup.map((r,i)=>({...r, _key: `${r.supplier}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
 
-  // "Supplier + Brand" combo tab: independent copies of the supplier rollup
-  // rows, each carrying its own copies of the brand-family rows that share
-  // its supplier -- edits here are local to this tab, same as the other two.
-  DATA.comboGroups = DATA.supplierRollup.map((sup,i)=>({
+  // "Supplier + Brand" combo tab: DATA.comboRollup already mirrors
+  // ytd_comparison.csv's own Supplier -> Brand Family hierarchy directly
+  // (built server-side in generate.py) -- every supplier RDE tracks, every
+  // brand family under it, goal % blank where none exists. Just wrap it in
+  // its own editable-state copies here, independent of the other tabs.
+  DATA.comboGroups = (DATA.comboRollup || []).map((sup,i)=>({
     ...sup, _key: `combo-sup|${sup.supplier}|${i}`,
     goal_brewery_pct_orig: sup.goal_brewery_pct, goal_kohler_pct_orig: sup.goal_kohler_pct,
-    children: DATA.brands.filter(b=>b.supplier===sup.supplier).map((b,j)=>({
+    children: (sup.children || []).map((b,j)=>({
       ...b, _key: `combo-brand|${sup.supplier}|${j}`,
       goal_brewery_pct_orig: b.goal_brewery_pct, goal_kohler_pct_orig: b.goal_kohler_pct,
     })),

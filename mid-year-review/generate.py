@@ -256,6 +256,81 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
     return results, unclassified, supplier_ytd, range_prior, range_current
 
 
+# ---------------------------------------------------------------------------
+# Raw Supplier -> Brand Family hierarchy, reconstructed straight from
+# ytd_comparison.csv's own row order -- for the "Supplier + Brand" combo tab.
+# ---------------------------------------------------------------------------
+# Per Gavin, 2026-08-04: that tab should mirror the RDE export's own
+# structure exactly (every supplier it tracks, every brand family under it,
+# whether or not it has a workbook goal) rather than the curated with-goal
+# subset the Vs. Goal / By Supplier tabs use. RDE flattens a 2-level
+# Supplier -> Brand Family tree into one column with no indent markers, but
+# it's still fully recoverable: a header row's own Case Equiv figures always
+# equal the SUM of the brand-family rows immediately beneath it, up to the
+# next header row. This reconstructs that tree by greedily finding, for each
+# candidate header row, the smallest run of following rows whose Case Equiv
+# sum matches it exactly (absorbing any trailing exact-zero row too, since a
+# real zero-volume child can be genuinely ambiguous with the next header
+# otherwise -- see "Coney Island" under Boston Beer Company).
+HIERARCHY_TOLERANCE = 0.03
+HIERARCHY_MAX_CHILDREN = 60
+
+
+def build_raw_supplier_tree(path):
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv")
+                   and not c.startswith("Case Equiv %") and not c.startswith("Case Equiv ±")]
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+        rows = []
+        for r in reader:
+            name = (r.get("Supplier / Brand Family") or "").strip()
+            if not name or name == "Total":
+                continue
+            rows.append((name, to_num(r[prior_col]), to_num(r[current_col])))
+
+    groups = []
+    unresolved = []
+    i = 0
+    while i < len(rows):
+        name, prior, current = rows[i]
+        matched_k = None
+        csum_p = csum_c = 0.0
+        for k in range(1, min(HIERARCHY_MAX_CHILDREN, len(rows) - i)):
+            cp, cc = rows[i + k][1], rows[i + k][2]
+            csum_p += cp
+            csum_c += cc
+            if abs(csum_p - prior) < HIERARCHY_TOLERANCE and abs(csum_c - current) < HIERARCHY_TOLERANCE:
+                # Greedily absorb any immediately-following exact-zero row(s)
+                # too -- they don't change the sum, so they're ambiguous
+                # between "this group's trailing child" and "next header's
+                # leading child"; a zero-volume item is unambiguously the
+                # former.
+                j = k
+                while (i + j + 1 < len(rows)
+                       and abs(rows[i + j + 1][1]) < HIERARCHY_TOLERANCE
+                       and abs(rows[i + j + 1][2]) < HIERARCHY_TOLERANCE):
+                    j += 1
+                matched_k = j
+                break
+        if matched_k is None:
+            unresolved.append((name, prior, current))
+            i += 1
+            continue
+        children = rows[i + 1:i + 1 + matched_k]
+        groups.append({"supplier": name, "ce_prior": prior, "ce_current": current, "children": children})
+        i += 1 + matched_k
+
+    if unresolved:
+        raise SystemExit(
+            f"Could not reconstruct the Supplier/Brand Family hierarchy for {len(unresolved)} row(s) in "
+            f"{path.name} -- a header row's own Case Equiv figures no longer sum-match its following rows. "
+            f"Investigate before trusting the Supplier + Brand tab: {unresolved[:10]}")
+
+    return groups
+
+
 # RDE's own Brand Family tagging conflates several of Food & Bev Enterprise
 # LLC's workbook line-item brands: Aguila Light Import products get tagged
 # "Aguila Import" (inflating that brand's real total), and Club Colombia
@@ -525,6 +600,73 @@ def main():
     print(f"Supplier rollup: {len(supplier_rollup)} suppliers with both workbook goals and YTD data "
           f"(+ {len(orphan_suppliers)} synthesized no-goal supplier(s)).")
 
+    # ------------------------------------------------------------------
+    # "Supplier + Brand" combo tab: mirrors ytd_comparison.csv's own
+    # Supplier -> Brand Family structure directly (every supplier RDE
+    # tracks, every brand family under it -- not just the with-goal
+    # subset above), attaching a workbook goal % wherever one exists and
+    # leaving it blank otherwise. Per Gavin, 2026-08-04.
+    # ------------------------------------------------------------------
+    supplier_goals_lower = {k.lower(): v for k, v in supplier_goals.items()}
+    raw_tree = build_raw_supplier_tree(CSV_YTD)
+
+    def brand_goal_lookup(raw_name):
+        canonical = NAME_ALIASES.get(raw_name.lower()) or brands_lower.get(raw_name.lower())
+        return brands.get(canonical) if canonical else None
+
+    combo_rollup = []
+    for group in raw_tree:
+        supplier_name = group["supplier"]
+
+        if supplier_name == FOOD_BEV_SUPPLIER:
+            # Per Gavin, 2026-08-04: leave Denise Montes' Food & Bev
+            # Enterprise LLC brands exactly as already computed above (the
+            # product-detail override split) -- don't rebuild them from
+            # this raw CSV's generic, unsplit rollup.
+            parent = next((r for r in supplier_rollup if r["supplier"] == FOOD_BEV_SUPPLIER), None)
+            if parent is None:
+                continue
+            children_recs = [dict(r) for r in with_goal if r.get("supplier") == FOOD_BEV_SUPPLIER]
+            combo_rollup.append({**dict(parent), "children": children_recs})
+            continue
+
+        goal = supplier_goals_lower.get(supplier_name.lower())
+        ce_prior, ce_current = group["ce_prior"], group["ce_current"]
+        trend = (ce_current / ce_prior - 1) if ce_prior else None
+        finish_2025 = goal.get("finish_2025_ce") if goal else None
+        brewery_pct = goal.get("goal2026_brewery_pct") if goal else None
+        kohler_pct = goal.get("goal2026_kohler_pct") if goal else None
+        manager = (goal.get("brand_manager") if goal else None) or brand_manager_by_supplier.get(supplier_name)
+        proj_finish = (ce_current + (finish_2025 - ce_prior) * (1 + (trend or 0))) if finish_2025 is not None else None
+
+        children_recs = []
+        for child_name, c_prior, c_current in group["children"]:
+            base = brand_goal_lookup(child_name) or {}
+            c_trend = (c_current / c_prior - 1) if c_prior else None
+            c_finish = base.get("finish_2025_ce")
+            c_proj = (c_current + (c_finish - c_prior) * (1 + (c_trend or 0))) if c_finish is not None else None
+            children_recs.append({
+                "brand": child_name,
+                "brand_manager": base.get("brand_manager") or manager,
+                "finish_2025_ce": c_finish, "ce_prior": c_prior, "ce_current": c_current,
+                "trend_pct": c_trend, "proj_finish_2026_ce": c_proj,
+                "goal_brewery_pct": base.get("goal2026_brewery_pct"),
+                "goal_kohler_pct": base.get("goal2026_kohler_pct"),
+            })
+
+        combo_rollup.append({
+            "supplier": supplier_name, "brand_manager": manager,
+            "finish_2025_ce": finish_2025, "ce_prior": ce_prior, "ce_current": ce_current,
+            "trend_pct": trend, "proj_finish_2026_ce": proj_finish,
+            "goal_brewery_pct": brewery_pct, "goal_kohler_pct": kohler_pct,
+            "children": children_recs,
+        })
+
+    combo_rollup.sort(key=lambda r: -(r["ce_current"] or 0))
+    total_combo_children = sum(len(g["children"]) for g in combo_rollup)
+    print(f"Supplier + Brand combo rollup: {len(combo_rollup)} suppliers, {total_combo_children} brand families "
+          f"(mirrors {CSV_YTD.name}'s own hierarchy; Food & Bev Enterprise LLC left as the existing override).")
+
     payload = {
         "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
                           "See generate.py for methodology.",
@@ -546,6 +688,7 @@ def main():
         "newBrands": no_goal,
         "terminatedBrands": terminated,
         "supplierRollup": supplier_rollup,
+        "comboRollup": combo_rollup,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))

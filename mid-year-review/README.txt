@@ -72,17 +72,49 @@ layout of the "2026 Planning by Brand" workbook sheet itself: each
 supplier's own row (bold, darker background, collapsed by default)
 with its brand families listed underneath when expanded, sorted by
 2026 YTD CE largest-first (so e.g. Corona Extra is the first brand
-listed under Constellation Brands). Only brands with a 2026 goal are
-nested here (the same 235-brand set as the By Brand Family tab) -- New
-Brand Families in 2026 and Terminated Brands stay off this view.
-Clicking a supplier row toggles it; Expand All/Collapse All and a
-search box (which force-expands any supplier with a matching brand)
-make it easy to find one brand without opening all 120 groups.
-Clicking a column header sorts the supplier rows (brand rows within a
-group keep their fixed CE-descending order regardless of the
-supplier-level sort). Editable Goal % works the same way as the other
-two tabs, independently (edits here don't affect the By Brand Family
-or By Supplier tabs, and vice versa).
+listed under Constellation Brands). Clicking a supplier row toggles
+it; Expand All/Collapse All and a search box (which force-expands any
+supplier with a matching brand) make it easy to find one brand
+without opening all 129 groups. Clicking a column header sorts the
+supplier rows (brand rows within a group keep their fixed
+CE-descending order regardless of the supplier-level sort). Editable
+Goal % works the same way as the other two tabs, independently (edits
+here don't affect the By Brand Family or By Supplier tabs, and vice
+versa).
+
+As of 2026-08-04 (per Gavin's managers' request), this tab's grouping
+mirrors ytd_comparison.csv's OWN Supplier -> Brand Family hierarchy
+directly -- every supplier and brand family RDE tracks (129 suppliers,
+338 brand families this refresh), not just the with-goal subset the
+By Brand Family / By Supplier tabs use. A brand or supplier with no
+workbook goal simply shows blank Goal %/Goal CE/Gap cells and a "No
+Goal" status, same treatment goal-less items already got elsewhere.
+See build_raw_supplier_tree() in generate.py: RDE flattens its 2-level
+Supplier -> Brand Family tree into one column with no indent marker,
+but it's fully recoverable because a header row's own Case Equiv
+figures always exactly equal the sum of the brand-family rows
+immediately beneath it, up to the next header row -- reconstructed by
+finding that run for every row, greedily, and validated to fully
+resolve all ~465 rows in the export with zero leftovers.
+
+One surprising but confirmed-correct consequence: this tab now follows
+RDE's OWN routing rather than the planning workbook's taxonomy, and
+those two occasionally disagree. Kirin Ichiban and Kirin Light are
+each their own goal-tracked entity in the workbook, but RDE's current
+export nests both of them as brand families under New Belgium Brewing
+Company (not their own supplier header) -- so here they show up as
+children of New Belgium (each still carrying their own individual
+goal %, separate from New Belgium's), whereas the By Brand Family tab
+still shows their workbook-assigned supplier. Worth flagging to
+whoever owns the workbook if that routing looks wrong; not touched
+here since the instruction was to mirror the RDE export exactly.
+
+Exception (per Gavin, 2026-08-04): Food & Bev Enterprise LLC (Denise
+Montes' brands) is deliberately NOT rebuilt from this raw hierarchy --
+its 6 children here are the exact same product-detail-corrected
+records already used elsewhere (see the Food & Bev Enterprise LLC
+paragraph below), not the raw CSV's generic 4-row breakdown, per
+explicit instruction to leave her brands unchanged.
 
 Conditional formatting on Trend %: every Trend % cell (By Brand
 Family, By Supplier, and Supplier + Brand) is shaded on a continuous
@@ -180,3 +212,10 @@ Notes:
     within ~0.02%.
   - denise_food_bev_product_detail.csv is now on the same 1/1-7/31
     window as ytd_comparison.csv (re-pulled 2026-08-03).
+  - SUPPLIER_OVERRIDES in generate.py corrects brand->supplier
+    mismatches in the workbook itself (e.g. "Fresca Mixed" is tagged
+    "Constellation Brands" in the workbook, but really belongs to
+    Sazerac Inc per ytd_comparison.csv's own row order). This affects
+    the By Brand Family tab's Supplier column; the Supplier + Brand
+    tab doesn't need it since that tab's grouping already comes
+    straight from the raw CSV hierarchy, independent of the workbook.
