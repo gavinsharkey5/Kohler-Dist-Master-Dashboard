@@ -1,12 +1,16 @@
 6-Month Review — Brand Trend vs. Goal
 
 For every brand family, compares its current year-over-year trend
-(Case Equivalents, same comparable date range both years, e.g.
-1/1-7/28) against its 2026 Brewery Goal % and Kohler Goal % from the
+(Case Equivalents, same comparable date range both years -- currently
+1/1-7/31) against its 2026 Brewery Goal % and Kohler Goal % from the
 planning workbook -- so brand managers can see at a glance who's
 ahead of, on, or behind pace, and recalibrate for the back half of
 the year. Rows are color-coded (red = behind goal, green = ahead/on
 pace). Brewery-goal columns are amber, Kohler-goal columns are blue.
+The exact comparable date range is read straight out of
+ytd_comparison.csv's own column headers each refresh (see
+generate.py's range_prior/range_current), so the page's subtitle text
+never needs a manual edit when the window shifts.
 
 Shows both years' comparable-YTD case volumes plus a 2026 Projected
 Finish (this year's YTD case count + the 2025 remainder-of-year grown
@@ -39,6 +43,21 @@ Shipyard, Jersey Girl, Soda Birch, and Whole Hog are excluded from the
 dashboard entirely (per Kohler, 2026-07-28) -- negative/near-zero
 credit-adjustment entries in the RDE export, not real placements. See
 EXCLUDED_BRANDS in generate.py.
+
+A fourth tab, "By Supplier" (added 2026-08-03 per Gavin's managers'
+request), is the same vs.-goal math rolled up to the supplier level
+(Constellation Brands, MolsonCoors, etc.) instead of brand family.
+Each supplier's Brewery/Kohler Goal % and 2025 Finish come from that
+supplier's own grey header row in the planning workbook (not a sum of
+its brands' individual goals), and its YTD Case Equiv figures come
+from that supplier's own subtotal row in ytd_comparison.csv (not a
+re-sum of the brand-level rows, so it still reconciles even for
+brands the Vs. Goal tab excludes, relabels, or moves to another tab).
+Goal % is editable here too, independently of the brand-level table.
+Only suppliers with BOTH a workbook goal and recorded YTD volume in
+either year appear -- 119 of 133 workbook suppliers as of this
+refresh; the other 14 (Suntory, Iron Horse, Heavy Seas, etc.) had zero
+volume in both years and so don't have a row in the RDE export at all.
 
 Files:
   2026_planning_source.xlsx  The 2026 Planning by Brand workbook --
@@ -106,3 +125,9 @@ Notes:
     instead.
   - Brand-level totals reconcile to ytd_comparison.csv's own Total row
     within ~0.02%.
+  - As of the 2026-08-03 refresh, denise_food_bev_product_detail.csv
+    still reflects the prior 1/1-7/28 window (Gavin only re-pulled the
+    main ytd_comparison.csv this time) -- Denise Montes' Food & Bev
+    Enterprise LLC brands (Aguila Import/Light, Club Colombia
+    Dorada/Roja, Pilsen Import) are therefore ~3 days stale relative to
+    every other brand on the page until that file gets re-pulled too.

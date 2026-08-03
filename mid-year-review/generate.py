@@ -34,6 +34,12 @@ after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
 main vs-goal table and instead listed on its own "New in 2026" tab --
 there's no goal to compare it against yet.
 
+Also builds a supplier-level rollup (payload["supplierRollup"], the "By
+Supplier" tab) using the SAME vs-goal math, but sourced from each
+supplier's own grey header row in the workbook (its own Brewery/Kohler
+Goal % and 2025 Finish, not a sum of its brands') and its own subtotal
+row in ytd_comparison.csv (not a re-sum of the brand-level rows).
+
 Run: python3 generate.py
 """
 import csv
@@ -82,6 +88,11 @@ def load_workbook_taxonomy():
     brands_lower = {}
     supplier_names = set()
     brand_manager_by_supplier = {}
+    # Supplier-level rollup: the grey header row for each supplier carries its
+    # OWN 2026 Brewery/Kohler Goal % and 2025 Finish (same columns J/K/N as a
+    # brand row), not just its per-brand children -- this is what powers the
+    # "By Supplier" tab.
+    supplier_goals = {}
 
     for r in range(3, wsv.max_row + 1):
         brand = wsv.cell(r, 1).value
@@ -96,6 +107,16 @@ def load_workbook_taxonomy():
             grey_manager = wsv.cell(r, 3).value
             if grey_manager:
                 brand_manager_by_supplier.setdefault(grey_name, str(grey_manager).strip())
+            grey_finish_2025 = wsv.cell(r, 10).value
+            grey_brewery_pct = wsv.cell(r, 11).value
+            grey_kohler_pct = wsv.cell(r, 14).value
+            supplier_goals[grey_name] = {
+                "supplier": grey_name,
+                "brand_manager": str(grey_manager).strip() if grey_manager else None,
+                "finish_2025_ce": grey_finish_2025 if isinstance(grey_finish_2025, (int, float)) else None,
+                "goal2026_brewery_pct": grey_brewery_pct if isinstance(grey_brewery_pct, (int, float)) else None,
+                "goal2026_kohler_pct": grey_kohler_pct if isinstance(grey_kohler_pct, (int, float)) else None,
+            }
             continue
 
         manager = wsv.cell(r, 3).value
@@ -118,7 +139,7 @@ def load_workbook_taxonomy():
             brand_manager_by_supplier.setdefault(str(supplier).strip(), str(manager).strip())
         brands_lower[name.lower()] = name
 
-    return brands, brands_lower, supplier_names, brand_manager_by_supplier
+    return brands, brands_lower, supplier_names, brand_manager_by_supplier, supplier_goals
 
 
 def parse_ytd_csv(path, brands, brands_lower, supplier_names):
@@ -131,6 +152,11 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
         ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and not c.startswith("Case Equiv %") and not c.startswith("Case Equiv ±")]
         pct_col = next(c for c in fieldnames if c.startswith("Case Equiv %"))
         prior_col, current_col = ce_cols[0], ce_cols[1]
+        # e.g. "Case Equiv 1/1/2025 - 7/31/2025" -> "1/1/2025 - 7/31/2025" --
+        # the exact comparison window pulled this refresh, so the dashboard's
+        # column headers/notices can show it without ever being hand-edited.
+        range_prior = prior_col.replace("Case Equiv", "").strip()
+        range_current = current_col.replace("Case Equiv", "").strip()
 
         rows = []
         for r in reader:
@@ -145,6 +171,7 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
 
     supplier_names_lower = {s.lower() for s in supplier_names}
     results = {}
+    supplier_ytd = {}
     current_supplier = None
     unclassified = []
     skipped_phantom_headers = []
@@ -161,8 +188,13 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
         # row is functioning as this brand's own supplier-subtotal header here
         # (e.g. "Heineken USA" / "Heineken USA", "Sapporo" / "Sapporo") -- the
         # SECOND occurrence is the real leaf data, this first one is skipped.
+        # When that header name is itself a known supplier (single-brand
+        # suppliers like these), its own row IS that supplier's total.
         if canonical and next_name_l == name_l:
             current_supplier = canonical
+            if canonical.lower() in supplier_names_lower:
+                exact_supplier = next(s for s in supplier_names if s.lower() == canonical.lower())
+                supplier_ytd.setdefault(exact_supplier, metrics)
             continue
 
         # A known brand name is treated as real leaf data even when that same
@@ -174,10 +206,21 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
         if canonical:
             supplier = brands[canonical]["supplier"] or current_supplier
             results[(supplier, canonical)] = metrics
+            # Single-brand suppliers (Sapporo, Kirin Ichiban, ...) sometimes
+            # collapse to just this one row instead of a header+leaf pair --
+            # when the brand's own registered supplier IS itself (same name),
+            # this row's total doubles as that supplier's own YTD total.
+            if supplier and supplier.lower() == canonical.lower() and supplier.lower() in supplier_names_lower:
+                exact_supplier = next(s for s in supplier_names if s.lower() == supplier.lower())
+                supplier_ytd.setdefault(exact_supplier, metrics)
             continue
 
         if name_l in supplier_names_lower:
             current_supplier = next(s for s in supplier_names if s.lower() == name_l)
+            # This row's own Case Equiv figures ARE that supplier's total
+            # (sum of every brand-family row that follows it) -- captured
+            # here for the "By Supplier" rollup tab.
+            supplier_ytd.setdefault(current_supplier, metrics)
             continue
 
         # Unrecognized name, not a known brand or supplier. If the very next
@@ -198,7 +241,7 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
         print(f"Skipped {len(skipped_phantom_headers)} phantom header row(s) (unrecognized name, "
               f"identical totals to the very next row): {skipped_phantom_headers}")
 
-    return results, unclassified
+    return results, unclassified, supplier_ytd, range_prior, range_current
 
 
 # RDE's own Brand Family tagging conflates several of Food & Bev Enterprise
@@ -262,11 +305,13 @@ FORCE_VS_GOAL_MANAGERS = {"Denise Montes"}
 
 
 def main():
-    brands, brands_lower, supplier_names, brand_manager_by_supplier = load_workbook_taxonomy()
+    brands, brands_lower, supplier_names, brand_manager_by_supplier, supplier_goals = load_workbook_taxonomy()
     print(f"Loaded {len(brands)} canonical brand families with 2026 goals from the workbook.")
 
-    matched, unclassified = parse_ytd_csv(CSV_YTD, brands, brands_lower, supplier_names)
+    matched, unclassified, supplier_ytd, range_prior, range_current = parse_ytd_csv(
+        CSV_YTD, brands, brands_lower, supplier_names)
     print(f"Matched {len(matched)} brand families in {CSV_YTD.name}; {len(unclassified)} unmatched (new SKUs).")
+    print(f"YTD comparison window: {range_prior}  vs.  {range_current}")
 
     if DENISE_PRODUCT_DETAIL.exists():
         overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
@@ -388,6 +433,46 @@ def main():
     behind_brewery = sum(1 for r in with_goal if r.get("gap_brewery") is not None and r["gap_brewery"] < 0)
     behind_kohler = sum(1 for r in with_goal if r.get("gap_kohler") is not None and r["gap_kohler"] < 0)
 
+    # ------------------------------------------------------------------
+    # Supplier-level rollup ("By Supplier" tab): same vs-goal math as brand
+    # families, but at the supplier (Constellation, MolsonCoors, ...) level,
+    # using each supplier's OWN Brewery/Kohler Goal % from the workbook's
+    # grey header row and its own Case Equiv total from the YTD comparison.
+    # ------------------------------------------------------------------
+    supplier_rollup = []
+    for supplier_name, metrics in supplier_ytd.items():
+        goal = supplier_goals.get(supplier_name)
+        if goal is None:
+            continue
+        ce_prior, ce_current, trend = metrics["ce_prior"], metrics["ce_current"], metrics["pct_change"]
+        finish_2025 = goal.get("finish_2025_ce")
+        brewery_pct = goal.get("goal2026_brewery_pct")
+        kohler_pct = goal.get("goal2026_kohler_pct")
+
+        if finish_2025 is not None:
+            remainder_2025 = finish_2025 - ce_prior
+            proj_finish = ce_current + remainder_2025 * (1 + (trend or 0))
+        else:
+            proj_finish = None
+
+        supplier_rollup.append({
+            "supplier": supplier_name,
+            "brand_manager": goal.get("brand_manager"),
+            "finish_2025_ce": finish_2025,
+            "ce_prior": ce_prior,
+            "ce_current": ce_current,
+            "trend_pct": trend,
+            "proj_finish_2026_ce": proj_finish,
+            "goal_brewery_pct": brewery_pct,
+            "goal_kohler_pct": kohler_pct,
+            "gap_brewery": (trend - brewery_pct) if (trend is not None and brewery_pct is not None) else None,
+            "gap_kohler": (trend - kohler_pct) if (trend is not None and kohler_pct is not None) else None,
+        })
+    supplier_rollup.sort(key=lambda r: (r["gap_brewery"] if r["gap_brewery"] is not None else 999))
+    behind_brewery_supplier = sum(1 for r in supplier_rollup if r.get("gap_brewery") is not None and r["gap_brewery"] < 0)
+    behind_kohler_supplier = sum(1 for r in supplier_rollup if r.get("gap_kohler") is not None and r["gap_kohler"] < 0)
+    print(f"Supplier rollup: {len(supplier_rollup)} suppliers with both workbook goals and YTD data.")
+
     payload = {
         "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
                           "See generate.py for methodology.",
@@ -397,18 +482,26 @@ def main():
             "totalTerminated": len(terminated),
             "behindBrewery": behind_brewery,
             "behindKohler": behind_kohler,
+            "totalSuppliers": len(supplier_rollup),
+            "behindBrewerySupplier": behind_brewery_supplier,
+            "behindKohlerSupplier": behind_kohler_supplier,
+            "ytdRangePrior": range_prior,
+            "ytdRangeCurrent": range_current,
         },
         "managers": managers,
         "suppliers": suppliers,
         "brands": with_goal,
         "newBrands": no_goal,
         "terminatedBrands": terminated,
+        "supplierRollup": supplier_rollup,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
     print(f"Wrote {len(with_goal)} brands with goals + {len(no_goal)} brands with no 2025 goal/sales "
           f"+ {len(terminated)} terminated brands to {OUT}")
     print(f"Behind Brewery goal: {behind_brewery} / {len(with_goal)}   Behind Kohler goal: {behind_kohler} / {len(with_goal)}")
+    print(f"Supplier rollup behind Brewery: {behind_brewery_supplier} / {len(supplier_rollup)}   "
+          f"behind Kohler: {behind_kohler_supplier} / {len(supplier_rollup)}")
 
 
 if __name__ == "__main__":
