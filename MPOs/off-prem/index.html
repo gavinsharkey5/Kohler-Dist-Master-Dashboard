@@ -44,6 +44,11 @@
   .repchip:hover{border-color:var(--accent);color:var(--text);}
   .repchip.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
 
+  .monthbar{max-width:1200px;margin:0 auto;padding:14px 32px 0;display:flex;gap:8px;flex-wrap:wrap;}
+  .monthtab{background:none;border:1px solid var(--border);color:var(--text-dim);padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
+  .monthtab:hover{color:var(--text);border-color:var(--text-dim);}
+  .monthtab.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+
   main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
 
   .backbtn{background:none;border:1px solid var(--border);color:var(--text-dim);font:inherit;font-weight:600;font-size:14px;padding:8px 15px;border-radius:11px;cursor:pointer;margin-bottom:4px;}
@@ -126,6 +131,7 @@
 
   @media (max-width: 820px){
     .topbar{padding:18px 16px 0;}
+    .monthbar{padding:14px 16px 0;}
     header{padding:0 16px 16px;}
     .kpi-strip{padding:0 16px;gap:10px;margin-top:20px;}
     .repbar-wrap{padding:0 16px;margin-top:18px;}
@@ -161,6 +167,7 @@
 
   @media (max-width: 480px){
     .topbar{padding:14px 12px 0;}
+    .monthbar{padding:12px 12px 0;}
     header{padding:0 12px 14px;}
     .kpi-strip{padding:0 12px;grid-template-columns:repeat(2,1fr)!important;gap:8px;}
     .repbar-wrap{padding:0 12px;}
@@ -184,8 +191,10 @@
   <div class="crumb"><a href="../index.html">MPO Tracker</a> &nbsp;/&nbsp; Off-Premise</div>
 </div>
 
+<div class="monthbar" id="monthbar"></div>
+
 <header>
-  <div class="eyebrow">Off-Premise · July 2026</div>
+  <div class="eyebrow" id="eyebrow">Off-Premise · July 2026</div>
   <h1>Off-Prem MPO Tracker</h1>
   <p class="sub">20% of Total Commission Eligibility — weighted across objectives. New Belgium targets are the <strong>90%-of-goal</strong> figures per rep/product; Sapporo Light and Famosa are <strong>per-rep</strong> targets.</p>
   <p class="updated" id="updated-line"></p>
@@ -202,6 +211,14 @@
 
 <script>
 let DATA = {};
+
+// Each entry is a permanent monthly snapshot -- add a new one here (and
+// point generate.py's MONTH_KEY at the same key) once a new month's RDE
+// exports/Snowflake sync are ready. Earlier months stay viewable forever.
+const MONTHS = [
+  {key:'2026-07', label:'July 2026', dir:'data/2026-07/'},
+];
+let activeMonth = MONTHS[0].key;
 
 const OBJECTIVES = [
   {key:'new_belgium', name:'New Belgium – Achieve 90% of Assigned Distribution Goal', weight:0.30, type:'new_belgium', hasData:true},
@@ -393,7 +410,27 @@ function showDataError(msg){
   document.getElementById('objectives').innerHTML=`<div class="empty-obj"><div>${msg}</div></div>`;
 }
 
-async function boot(){
+function renderMonthBar(){
+  const bar = document.getElementById('monthbar');
+  bar.innerHTML = MONTHS.map(m=>`<button class="monthtab${m.key===activeMonth?' active':''}" data-month="${m.key}">${m.label}</button>`).join('');
+  bar.querySelectorAll('.monthtab').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.month===activeMonth) return;
+    loadMonth(b.dataset.month);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+}
+
+async function loadMonth(monthKey){
+  const month = MONTHS.find(m=>m.key===monthKey);
+  if(!month) return;
+  activeMonth = monthKey;
+  DATA = {};
+  activeRep = null;
+  renderMonthBar();
+  document.getElementById('eyebrow').textContent = `Off-Premise · ${month.label}`;
+  document.title = `Off-Prem MPO Tracker | ${month.label}`;
+  document.getElementById('updated-line').innerHTML = '';
+
   const cb="?_="+Date.now();
   async function loadJSON(file){
     try{
@@ -404,11 +441,11 @@ async function boot(){
   }
 
   const [actuals, goals, ws2xo, sapLight, famosa] = await Promise.all([
-    loadJSON('data/mpo_new_belgium_actuals.json'),
-    loadJSON('data/mpo_new_belgium_90goals.json'),
-    loadJSON('data/mpo_wine_spirits_2xo.json'),
-    loadJSON('data/mpo_sapporo_light.json'),
-    loadJSON('data/mpo_famosa.json'),
+    loadJSON(month.dir+'mpo_new_belgium_actuals.json'),
+    loadJSON(month.dir+'mpo_new_belgium_90goals.json'),
+    loadJSON(month.dir+'mpo_wine_spirits_2xo.json'),
+    loadJSON(month.dir+'mpo_sapporo_light.json'),
+    loadJSON(month.dir+'mpo_famosa.json'),
   ]);
 
   if(actuals && goals){
@@ -420,11 +457,11 @@ async function boot(){
   if(famosa){ const built=buildPlacementsDataset(famosa,5); if(built) DATA.famosa=built; }
 
   if(!DATA.new_belgium||!DATA.ws_2xo||!DATA.sapporo_light||!DATA.famosa){
-    showDataError("Couldn't load synced MPO data. Check that the Snowflake sync workflow has run and that data/mpo_*.json files exist with recognizable rep/product/goal columns.");
+    showDataError("Couldn't load synced MPO data. Check that the Snowflake sync workflow has run and that "+month.dir+"mpo_*.json files exist with recognizable rep/product/goal columns.");
     return;
   }
 
-  const meta=await loadJSON('data/sync_meta.json');
+  const meta=await loadJSON(month.dir+'sync_meta.json');
   if(meta && meta.synced_at){
     const d=new Date(meta.synced_at);
     const fmt=d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
@@ -446,6 +483,7 @@ function pctOf(o){
 
 function renderKPIs(){
   const strip = document.getElementById('kpi-strip');
+  strip.innerHTML = '';
   const weighted = OBJECTIVES.reduce((s,o)=>s+o.weight*pctOf(o),0);
   const kpis = [
     {label:'Weighted MPO Complete', val: weighted.toFixed(0)+'%', cls: weighted>=90?'good':(weighted>=50?'':'warn'), sub:'across all objectives'},
@@ -738,7 +776,7 @@ function renderMain(){
   document.querySelectorAll('.repchip').forEach(c=>c.classList.toggle('active', c.dataset.rep===activeRep));
   if(activeRep) renderRepView(); else renderObjectiveView();
 }
-boot();
+loadMonth(activeMonth);
 </script>
 </body>
 </html>

@@ -38,7 +38,10 @@ CARBLISS_CSV = HERE / "carbliss_new_buyers.csv"
 SAPPORO_CSV = HERE / "sapporo_na_new_buyers.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_placements.csv"
 
-# Update these each month this file is refreshed by hand.
+# Update these each month this file is refreshed by hand. MONTH_KEY controls
+# which data/<MONTH_KEY>/ snapshot folder gets (re)written -- it must match a
+# key in the MONTHS array in index.html for the tab to pick it up.
+MONTH_KEY = "2026-07"
 NEW_BUYER_WINDOW_START = date(2026, 7, 1)
 NEW_BUYER_WINDOW_END = date(2026, 7, 31)
 
@@ -150,19 +153,20 @@ def main():
     sapporo_rows = build_sapporo()
     wine_spirits_rows = build_wine_spirits()
 
-    DATA_DIR.mkdir(exist_ok=True)
-    (DATA_DIR / "mpo_carbliss_new_buyers.json").write_text(json.dumps(carbliss_rows, indent=2))
-    (DATA_DIR / "mpo_sapporo_na_new_buyers.json").write_text(json.dumps(sapporo_rows, indent=2))
-    (DATA_DIR / "mpo_wine_spirits_placements.json").write_text(json.dumps(wine_spirits_rows, indent=2))
+    month_dir = DATA_DIR / MONTH_KEY
+    month_dir.mkdir(parents=True, exist_ok=True)
+    (month_dir / "mpo_carbliss_new_buyers.json").write_text(json.dumps(carbliss_rows, indent=2))
+    (month_dir / "mpo_sapporo_na_new_buyers.json").write_text(json.dumps(sapporo_rows, indent=2))
+    (month_dir / "mpo_wine_spirits_placements.json").write_text(json.dumps(wine_spirits_rows, indent=2))
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    (DATA_DIR / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
+    (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
 
     print(f"Carbliss: {new_count} new buyers out of {total_customers} customers in the export "
           f"({len(carbliss_rows)} transaction rows written)")
     print(f"Sapporo NA: {len(sapporo_rows)} rows written")
     print(f"Wine & Spirits: {len(wine_spirits_rows)} rows written")
-    print(f"sync_meta.json timestamped {synced_at}")
+    print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 
 if __name__ == "__main__":

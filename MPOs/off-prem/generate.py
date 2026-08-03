@@ -19,6 +19,11 @@ from pathlib import Path
 HERE = Path(__file__).parent
 DATA_DIR = HERE / "data"
 
+# Update this each month this file is refreshed by hand. MONTH_KEY controls
+# which data/<MONTH_KEY>/ snapshot folder gets (re)written -- it must match a
+# key in the MONTHS array in index.html for the tab to pick it up.
+MONTH_KEY = "2026-07"
+
 NEW_BELGIUM_GOALS_CSV = HERE / "new_belgium_90goals.csv"
 NEW_BELGIUM_ACTUALS_CSV = HERE / "new_belgium_actuals.csv"
 SAPPORO_LIGHT_CSV = HERE / "sapporo_light.csv"
@@ -114,14 +119,15 @@ def main():
         "mpo_famosa.json": build_famosa(),
     }
 
-    DATA_DIR.mkdir(exist_ok=True)
+    month_dir = DATA_DIR / MONTH_KEY
+    month_dir.mkdir(parents=True, exist_ok=True)
     for filename, rows in outputs.items():
-        (DATA_DIR / filename).write_text(json.dumps(rows, indent=2))
+        (month_dir / filename).write_text(json.dumps(rows, indent=2))
         print(f"Wrote {len(rows)} rows to {filename}")
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    (DATA_DIR / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
-    print(f"sync_meta.json timestamped {synced_at}")
+    (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
+    print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 
 if __name__ == "__main__":
