@@ -24,7 +24,12 @@ reverts everything to the workbook's original values.
 
 Default sort is 2026 YTD CE, largest first.
 
-A second tab, "New in 2026", lists brands with zero prior-year sales
+Tab order (per Gavin, 2026-08-04): "Supplier + Brand" opens first,
+then "By Supplier", then "By Brand Family" (the original brand-level
+table, renamed from "Vs. Goal"), then "New Brand Families in 2026"
+(renamed from "New in 2026"), then "Terminated Brands" last.
+
+"New Brand Families in 2026" lists brands with zero prior-year sales
 (regardless of whether a goal exists for them in the workbook -- per
 Kohler, 2026-07-28, a handful of brands do have a goal % on file
 despite zero 2025 volume, e.g. Viva Tequila Seltzer, Pop Sips,
@@ -33,48 +38,68 @@ baseline to measure a trend against). Almost always brand-new
 launches (e.g. Carbliss, Monaco, Noca) the plan was built before they
 existed.
 
-A third tab, "Terminated Brands" (per Kohler, 2026-07-28), lists
-brands with zero or negative 2026 YTD Case Equivalents -- pulled out
-of both the Vs. Goal and New in 2026 tabs regardless of whether they
-have a goal or prior-year sales on file, since they aren't actively
-selling right now either way.
+"Terminated Brands" (per Kohler, 2026-07-28) lists brands with zero
+or negative 2026 YTD Case Equivalents -- pulled out of both the By
+Brand Family and New Brand Families in 2026 tabs regardless of
+whether they have a goal or prior-year sales on file, since they
+aren't actively selling right now either way.
 
 Shipyard, Jersey Girl, Soda Birch, and Whole Hog are excluded from the
 dashboard entirely (per Kohler, 2026-07-28) -- negative/near-zero
 credit-adjustment entries in the RDE export, not real placements. See
 EXCLUDED_BRANDS in generate.py.
 
-A fourth tab, "By Supplier" (added 2026-08-03 per Gavin's managers'
-request), is the same vs.-goal math rolled up to the supplier level
-(Constellation Brands, MolsonCoors, etc.) instead of brand family.
-Each supplier's Brewery/Kohler Goal % and 2025 Finish come from that
-supplier's own grey header row in the planning workbook (not a sum of
-its brands' individual goals), and its YTD Case Equiv figures come
-from that supplier's own subtotal row in ytd_comparison.csv (not a
-re-sum of the brand-level rows, so it still reconciles even for
-brands the Vs. Goal tab excludes, relabels, or moves to another tab).
-Goal % is editable here too, independently of the brand-level table.
-Only suppliers with BOTH a workbook goal and recorded YTD volume in
-either year appear -- 119 of 133 workbook suppliers as of this
-refresh; the other 14 (Suntory, Iron Horse, Heavy Seas, etc.) had zero
-volume in both years and so don't have a row in the RDE export at all.
-Plus 1 synthesized entry (see below) for a supplier with brand-level
-goals but no supplier-level grey row of its own -- 120 total.
+"By Supplier" (added 2026-08-03 per Gavin's managers' request) is the
+same vs.-goal math rolled up to the supplier level (Constellation
+Brands, MolsonCoors, etc.) instead of brand family. Each supplier's
+Brewery/Kohler Goal % and 2025 Finish come from that supplier's own
+grey header row in the planning workbook (not a sum of its brands'
+individual goals), and its YTD Case Equiv figures come from that
+supplier's own subtotal row in ytd_comparison.csv (not a re-sum of the
+brand-level rows, so it still reconciles even for brands the By Brand
+Family tab excludes, relabels, or moves to another tab). Goal % is
+editable here too, independently of the brand-level table. Only
+suppliers with BOTH a workbook goal and recorded YTD volume in either
+year appear -- 119 of 133 workbook suppliers as of this refresh; the
+other 14 (Suntory, Iron Horse, Heavy Seas, etc.) had zero volume in
+both years and so don't have a row in the RDE export at all. Plus 1
+synthesized entry (see below) for a supplier with brand-level goals
+but no supplier-level grey row of its own -- 120 total.
 
-A fifth tab, "Supplier + Brand" (added 2026-08-03 per Gavin's
-managers' request), mimics the layout of the "2026 Planning by Brand"
-workbook sheet itself: each supplier's own row (bold, collapsed by
-default) with its brand families listed underneath when expanded.
-Only brands with a 2026 goal are nested here (the same 235-brand set
-as the Vs. Goal tab) -- New in 2026 and Terminated brands stay off
-this view. Clicking a supplier row toggles it; Expand All/Collapse All
-and a search box (which force-expands any supplier with a matching
-brand) make it easy to find one brand without opening all 120 groups.
-Brand rows within a group are always sorted by Gap vs. Brewery Goal
-(worst first); clicking a column header sorts the supplier rows
-instead. Editable Goal % works the same way as the other two tabs,
-independently (edits here don't affect the Vs. Goal or By Supplier
-tabs, and vice versa).
+"Supplier + Brand" (added 2026-08-03, reordered to the first tab and
+tuned 2026-08-04, both per Gavin's managers' request) mimics the
+layout of the "2026 Planning by Brand" workbook sheet itself: each
+supplier's own row (bold, darker background, collapsed by default)
+with its brand families listed underneath when expanded, sorted by
+2026 YTD CE largest-first (so e.g. Corona Extra is the first brand
+listed under Constellation Brands). Only brands with a 2026 goal are
+nested here (the same 235-brand set as the By Brand Family tab) -- New
+Brand Families in 2026 and Terminated Brands stay off this view.
+Clicking a supplier row toggles it; Expand All/Collapse All and a
+search box (which force-expands any supplier with a matching brand)
+make it easy to find one brand without opening all 120 groups.
+Clicking a column header sorts the supplier rows (brand rows within a
+group keep their fixed CE-descending order regardless of the
+supplier-level sort). Editable Goal % works the same way as the other
+two tabs, independently (edits here don't affect the By Brand Family
+or By Supplier tabs, and vice versa).
+
+Conditional formatting on Trend %: every Trend % cell (By Brand
+Family, By Supplier, and Supplier + Brand) is shaded on a continuous
+green-to-red scale based on how far it is from 0% -- more saturated
+green the more it's growing, more saturated red the more it's
+bleeding, capped at a +/-30% swing (see TREND_SCALE_CAP in
+index.html) so one extreme outlier doesn't wash out the rest of the
+scale for everything else.
+
+Click-to-sum on '26 YTD CE: click any '26 YTD CE cell (in any tab,
+including New Brand Families in 2026 and Terminated Brands) to select
+it -- click again to deselect. A floating bar at the bottom-right of
+the page sums every selected cell in the CURRENT tab live, so you can
+spot-check that a supplier's own total on the Supplier + Brand or By
+Supplier tab actually matches the sum of its individual brands (or
+vice versa). Selections are local to whichever tab is open and clear
+automatically when you switch tabs or re-sort/re-filter the table.
 
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,

@@ -88,6 +88,11 @@
   .gapcell.ahead{background:var(--good-soft);color:var(--good)}
   .gapcell.flat{color:var(--ink-mute)}
 
+  .trendcell{font-weight:700;border-radius:6px;padding:3px 7px;display:inline-block;min-width:56px;text-align:center}
+  .trendcell.good{color:var(--good)}
+  .trendcell.bad{color:var(--bad)}
+  .trendcell.flat{color:var(--ink-mute)}
+
   .status-badge{font-size:10.3px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;border-radius:20px;padding:3px 8px;white-space:nowrap}
   .status-badge.behind-both{background:var(--bad-soft);color:var(--bad)}
   .status-badge.behind-one{background:rgba(244,184,62,.14);color:#F4B83E}
@@ -100,8 +105,8 @@
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
 
-  .combo-suprow td{background:#1B1E27;font-weight:600;border-bottom:1px solid var(--line)}
-  .combo-suprow:hover td{background:#20242E}
+  .combo-suprow td{background:#0A0B0F;font-weight:600;border-bottom:1px solid var(--line)}
+  .combo-suprow:hover td{background:#0F1116}
   .combo-name{text-align:left!important;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .combo-chevron{display:inline-block;width:14px;color:var(--ink-soft);font-size:10px}
   .combo-childcount{color:var(--ink-mute);font-weight:400;font-size:11.5px;margin-left:4px}
@@ -117,6 +122,15 @@
   td.target{color:var(--ink);font-weight:600}
 
   footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10px}
+
+  .ce-selectable{cursor:pointer}
+  .ce-selectable:hover{outline:1px dashed var(--ink-soft);outline-offset:-2px}
+  .cell-selected{background:rgba(91,141,239,.30)!important;outline:1px solid var(--kohler);outline-offset:-1px}
+
+  #selectionSumBar{display:none;position:fixed;bottom:18px;right:18px;z-index:80;align-items:center;gap:12px;
+    background:var(--card-h);border:1px solid var(--kohler);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow)}
+  #selectionSumBar.show{display:flex}
+  #selectionSumBar span{font-family:"Space Grotesk";font-weight:600;font-size:13px;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -135,15 +149,15 @@
   </header>
 
   <div class="tabs" id="tabs">
-    <div class="tab active" data-view="goal">Vs. Goal <span class="count" id="tab-goal-count"></span></div>
-    <div class="tab" data-view="new">New in 2026 <span class="count" id="tab-new-count"></span></div>
-    <div class="tab" data-view="terminated">Terminated Brands <span class="count" id="tab-terminated-count"></span></div>
+    <div class="tab active" data-view="combo">Supplier + Brand <span class="count" id="tab-combo-count"></span></div>
     <div class="tab" data-view="suppliers">By Supplier <span class="count" id="tab-suppliers-count"></span></div>
-    <div class="tab" data-view="combo">Supplier + Brand <span class="count" id="tab-combo-count"></span></div>
+    <div class="tab" data-view="goal">By Brand Family <span class="count" id="tab-goal-count"></span></div>
+    <div class="tab" data-view="new">New Brand Families in 2026 <span class="count" id="tab-new-count"></span></div>
+    <div class="tab" data-view="terminated">Terminated Brands <span class="count" id="tab-terminated-count"></span></div>
   </div>
 
   <!-- VS GOAL -->
-  <div class="view active" id="view-goal">
+  <div class="view" id="view-goal">
     <div class="kpis" id="kpis"></div>
 
     <section class="panel">
@@ -221,7 +235,7 @@
       <b>No goal, no comparison.</b> These brands had zero recorded sales in the prior-year comparable window and
       no Brewery or Kohler goal % in the 2026 planning workbook &mdash; almost always because they launched after
       the plan was built (e.g. Carbliss, Monaco, Noca). There's nothing to measure them against yet; once they get
-      a 2026 goal assigned, they'll move into the main Vs. Goal tab on the next refresh.
+      a 2026 goal assigned, they'll move into the main By Brand Family tab on the next refresh.
     </div>
     <section class="panel">
       <h2>Brands with no 2025 goal or sales</h2>
@@ -250,8 +264,8 @@
     <div class="notice">
       <b>Not actively selling.</b> These brands have zero or negative 2026 YTD Case Equivalents (a negative
       number is a return/credit adjustment outweighing any actual sales) &mdash; regardless of whether they have
-      a 2026 goal or prior-year sales on file. Pulled out of both the Vs. Goal and New in 2026 tabs so those
-      stay focused on brands that are actually moving volume right now.
+      a 2026 goal or prior-year sales on file. Pulled out of both the By Brand Family and New Brand Families in
+      2026 tabs so those stay focused on brands that are actually moving volume right now.
     </div>
     <section class="panel">
       <h2>Brands with 0 or negative 2026 YTD CE</h2>
@@ -337,7 +351,7 @@
       <h2>Methodology &amp; data notes</h2>
       <p><b>Trend %:</b> each supplier's total Case Equivalent volume for the current comparable-YTD window vs.
         the same window last year, straight from the Encompass comparison report's own supplier subtotal row (not
-        a re-sum of the Brand Family tab's rows, so it still reconciles even for brands the Vs. Goal tab excludes
+        a re-sum of the By Brand Family tab's rows, so it still reconciles even for brands that tab excludes
         or relabels).</p>
       <p><b>Goal %:</b> each supplier's 2026 Brewery Goal and Kohler Goal, pulled from that supplier's own header
         row in the 2026 planning workbook (same workbook, same columns as the brand-level goals).</p>
@@ -348,16 +362,18 @@
   </div>
 
   <!-- SUPPLIER + BRAND (COMBO) -->
-  <div class="view" id="view-combo">
+  <div class="view active" id="view-combo">
     <div class="kpis" id="comboKpis"></div>
 
     <section class="panel">
       <h2>Supplier + Brand rollup</h2>
       <p class="desc">Mirrors the layout of the "2026 Planning by Brand" workbook sheet &mdash; each supplier's own
         row (bold) with its brand families listed underneath. Click a supplier row (or the chevron) to expand or
-        collapse its brands. Only brands that have a 2026 goal appear here, same set as the Vs. Goal tab; New in
-        2026 and Terminated brands stay on their own tabs. Click a column header to sort the <b>supplier</b> rows
-        &mdash; brand rows within a supplier are always sorted by Gap vs. Brewery Goal (worst first).</p>
+        collapse its brands. Only brands that have a 2026 goal appear here, same set as the By Brand Family tab;
+        New Brand Families in 2026 and Terminated Brands stay on their own tabs. Click a column header to sort the
+        <b>supplier</b> rows &mdash; brand rows within a supplier are always sorted by 2026 YTD CE, largest first.
+        Click any <b>'26 YTD CE</b> cell to select it (click again to deselect); selected cells sum in the bar at
+        the bottom of the page &mdash; handy for spot-checking that a supplier's own total matches its brands.</p>
       <div class="legend">
         <span class="item"><i class="sw" style="background:var(--brewery)"></i>Brewery goal columns</span>
         <span class="item"><i class="sw" style="background:var(--kohler)"></i>Kohler goal columns</span>
@@ -401,6 +417,11 @@
   </div>
 
   <footer id="footerNote">Kohler Distributing &middot; 6-Month Review. Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.</footer>
+</div>
+
+<div id="selectionSumBar">
+  <span id="selectionSumText"></span>
+  <button class="btn" id="clearSelectionBtn">Clear</button>
 </div>
 
 <script>
@@ -514,10 +535,50 @@ function gapCell(v){
   return `<span class="gapcell ${cls}">${fmtPct(v)}</span>`;
 }
 
+// Conditional formatting for Trend % -- a continuous color scale (like an
+// Excel color-scale rule), not just a fixed threshold: the further from 0%,
+// the more saturated the green (growing) or red (bleeding), capped at a
+// +/-30% swing so one extreme outlier doesn't wash out the rest of the scale.
+const TREND_SCALE_CAP = 0.30;
+function trendCell(v){
+  if (v==null) return '<span class="trendcell flat">—</span>';
+  const cls = v<-0.0005?'bad':(v>0.0005?'good':'flat');
+  const mag = Math.min(Math.abs(v)/TREND_SCALE_CAP, 1);
+  const alpha = (0.08 + mag*0.30).toFixed(3);
+  const rgb = cls==='good' ? '55,196,107' : (cls==='bad' ? '229,96,77' : '154,161,176');
+  const bg = cls==='flat' ? 'transparent' : `rgba(${rgb},${alpha})`;
+  return `<span class="trendcell ${cls}" style="background:${bg}">${fmtPct(v)}</span>`;
+}
+
 function populateSelect(id, values){
   const sel = document.getElementById(id);
   values.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
 }
+
+// ---- '26 YTD CE selection-sum (click cells to spot-check a supplier's
+// total against its brands, or vice versa) ----
+function updateSelectionSum(){
+  const activeView = document.querySelector('.view.active');
+  const bar = document.getElementById('selectionSumBar');
+  const selected = activeView ? [...activeView.querySelectorAll('.cell-selected')] : [];
+  if (!selected.length){ bar.classList.remove('show'); return; }
+  const sum = selected.reduce((a,td)=>a + (parseFloat(td.dataset.ceval)||0), 0);
+  document.getElementById('selectionSumText').textContent =
+    `${selected.length.toLocaleString()} cell${selected.length===1?'':'s'} selected  ·  Sum: ${fmtCE(sum)} CE`;
+  bar.classList.add('show');
+}
+
+function clearSelection(){
+  document.querySelectorAll('.cell-selected').forEach(td=>td.classList.remove('cell-selected'));
+  updateSelectionSum();
+}
+
+document.addEventListener('click', e=>{
+  const cell = e.target.closest('.ce-selectable');
+  if (!cell || cell.dataset.ceval === '') return;
+  cell.classList.toggle('cell-selected');
+  updateSelectionSum();
+});
 
 function filteredSorted(){
   let rows = DATA.brands.filter(r=>{
@@ -598,8 +659,8 @@ function renderRows(rows){
     const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
     const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
     const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
-    const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
-    const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
+    const tdCurrent = document.createElement('td'); tdCurrent.className='num ce-selectable'; tdCurrent.dataset.ceval = r.ce_current==null?'':r.ce_current; tdCurrent.textContent = fmtCE(r.ce_current);
+    const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.innerHTML = trendCell(r.trend_pct);
     const tdProj = document.createElement('td'); tdProj.className='num target'; tdProj.textContent = fmtCE(r.proj_finish_2026_ce);
 
     const tdBGoal = document.createElement('td'); tdBGoal.className='num grp-brewery grp-first';
@@ -653,7 +714,7 @@ function renderKPIs(){
     {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
     {lbl:'Behind Brewery Goal', val:`${behindBrewery} / ${withGoalCount}`, sub:`${(100*behindBrewery/withGoalCount).toFixed(0)}% of brands with a goal`},
     {lbl:'Behind Kohler Goal', val:`${behindKohler} / ${withGoalCount}`, sub:`${(100*behindKohler/withGoalCount).toFixed(0)}% of brands with a goal`},
-    {lbl:'New in 2026', val:fmtCE(DATA.meta.totalNoGoal), sub:'no 2025 goal or sales yet — see the other tab'},
+    {lbl:'New Brand Families', val:fmtCE(DATA.meta.totalNoGoal), sub:'no 2025 goal or sales yet — see the other tab'},
   ];
   document.getElementById('kpis').innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
 }
@@ -685,7 +746,7 @@ function exportCSV(){
   a.click();
 }
 
-// ---- New in 2026 tab ----
+// ---- New Brand Families in 2026 tab ----
 function newFilteredSorted(){
   let rows = DATA.newBrands.filter(r=>{
     if (NEW_FILTER.manager && r.brand_manager!==NEW_FILTER.manager) return false;
@@ -730,7 +791,7 @@ function renderNewTable(){
     <td title="${esc(r.brand)}"><span class="brandname">${esc(r.brand)}</span></td>
     <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
     <td>${esc(r.brand_manager)||'—'}</td>
-    <td class="num">${fmtCE(r.ce_current)}</td>
+    <td class="num ce-selectable" data-ceval="${r.ce_current==null?'':r.ce_current}">${fmtCE(r.ce_current)}</td>
   </tr>`).join('');
   document.getElementById('newRowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.newBrands.length.toLocaleString()} brands`;
 }
@@ -796,7 +857,7 @@ function renderTermTable(){
     <td><span class="suppliername">${esc(r.supplier)||'—'}</span></td>
     <td>${esc(r.brand_manager)||'—'}</td>
     <td class="num">${fmtCE(r.ce_prior)}</td>
-    <td class="num">${fmtCE(r.ce_current)}</td>
+    <td class="num ce-selectable" data-ceval="${r.ce_current==null?'':r.ce_current}">${fmtCE(r.ce_current)}</td>
   </tr>`).join('');
   document.getElementById('termRowcount').textContent = `${rows.length.toLocaleString()} of ${DATA.terminatedBrands.length.toLocaleString()} brands`;
 }
@@ -895,8 +956,8 @@ function renderSupplierRows(rows){
     const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
     const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
     const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
-    const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
-    const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
+    const tdCurrent = document.createElement('td'); tdCurrent.className='num ce-selectable'; tdCurrent.dataset.ceval = r.ce_current==null?'':r.ce_current; tdCurrent.textContent = fmtCE(r.ce_current);
+    const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.innerHTML = trendCell(r.trend_pct);
     const tdProj = document.createElement('td'); tdProj.className='num target'; tdProj.textContent = fmtCE(r.proj_finish_2026_ce);
 
     const tdBGoal = document.createElement('td'); tdBGoal.className='num grp-brewery grp-first';
@@ -985,8 +1046,8 @@ function buildComboCommonCells(r){
   const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
   const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
   const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
-  const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
-  const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
+  const tdCurrent = document.createElement('td'); tdCurrent.className='num ce-selectable'; tdCurrent.dataset.ceval = r.ce_current==null?'':r.ce_current; tdCurrent.textContent = fmtCE(r.ce_current);
+  const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.innerHTML = trendCell(r.trend_pct);
   const tdProj = document.createElement('td'); tdProj.className='num target'; tdProj.textContent = fmtCE(r.proj_finish_2026_ce);
 
   const tdBGoal = document.createElement('td'); tdBGoal.className='num grp-brewery grp-first';
@@ -1060,7 +1121,7 @@ function comboFilteredGroups(){
     let children = g.children;
     if (COMBO_FILTER.manager) children = children.filter(c=>c.brand_manager===COMBO_FILTER.manager);
     if (s) children = children.filter(c=>(c.brand||'').toLowerCase().includes(s) || (c.brand_manager||'').toLowerCase().includes(s));
-    children.sort((a,b)=>(a.gap_brewery==null?999:a.gap_brewery)-(b.gap_brewery==null?999:b.gap_brewery));
+    children.sort((a,b)=>(b.ce_current==null?-Infinity:b.ce_current)-(a.ce_current==null?-Infinity:a.ce_current));
     return {...g, children};
   });
 
@@ -1220,7 +1281,7 @@ function renderCaveats(){
   items.push('Denise Montes\' Food &amp; Bev Enterprise LLC brands: RDE\'s own Brand Family tagging lumps Aguila Light Import into "Aguila Import" and tags Club Colombia Dorada/Roja + Pilsen Import all as a generic "Food & Bev" &mdash; confirmed via a product-level RDE export where each product\'s own name still distinguishes them. Aguila Light, Club Colombia Dorada, and Club Colombia Roja are split out from that product-level detail (denise_food_bev_product_detail.csv) rather than RDE\'s own brand-level rollup, and Aguila Import\'s totals are corrected to exclude Aguila Light\'s volume.');
   const rollups = DATA.newBrands.filter(r=>/\(.+\)$/.test(r.brand||''));
   if (rollups.length){
-    items.push(`${rollups.length} row(s) on the "New in 2026" tab are RDE rollups covering multiple planning-workbook brands that RDE doesn't break out individually (e.g. ${esc(rollups[0].brand)}) &mdash; the brands listed in parentheses share that one combined volume figure rather than each having their own.`);
+    items.push(`${rollups.length} row(s) on the "New Brand Families in 2026" tab are RDE rollups covering multiple planning-workbook brands that RDE doesn't break out individually (e.g. ${esc(rollups[0].brand)}) &mdash; the brands listed in parentheses share that one combined volume figure rather than each having their own.`);
   }
   document.getElementById('caveatsList').innerHTML = items.map(i=>`<li style="margin:0 0 6px">${i}</li>`).join('');
 }
@@ -1351,12 +1412,15 @@ async function init(){
   });
   document.getElementById('comboExportBtn').addEventListener('click', exportComboCSV);
 
+  document.getElementById('clearSelectionBtn').addEventListener('click', clearSelection);
+
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click', ()=>{
       document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
       document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
       t.classList.add('active');
       document.getElementById('view-'+t.dataset.view).classList.add('active');
+      clearSelection();
     });
   });
 }
