@@ -100,6 +100,15 @@
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
 
+  .combo-suprow td{background:#1B1E27;font-weight:600;border-bottom:1px solid var(--line)}
+  .combo-suprow:hover td{background:#20242E}
+  .combo-name{text-align:left!important;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .combo-chevron{display:inline-block;width:14px;color:var(--ink-soft);font-size:10px}
+  .combo-childcount{color:var(--ink-mute);font-weight:400;font-size:11.5px;margin-left:4px}
+  .combo-childrow .combo-name{padding-left:26px;text-align:left!important}
+  .combo-childrow .brandname{font-weight:500;font-size:12.8px}
+  .combo-childrow td{border-bottom:1px solid var(--line-soft)}
+
   .pctinput{width:100%;max-width:64px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
     font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:12.3px;text-align:center;border-radius:6px;padding:3px 5px}
   .pctinput.kohler{color:var(--kohler)}
@@ -130,6 +139,7 @@
     <div class="tab" data-view="new">New in 2026 <span class="count" id="tab-new-count"></span></div>
     <div class="tab" data-view="terminated">Terminated Brands <span class="count" id="tab-terminated-count"></span></div>
     <div class="tab" data-view="suppliers">By Supplier <span class="count" id="tab-suppliers-count"></span></div>
+    <div class="tab" data-view="combo">Supplier + Brand <span class="count" id="tab-combo-count"></span></div>
   </div>
 
   <!-- VS GOAL -->
@@ -337,6 +347,59 @@
     </section>
   </div>
 
+  <!-- SUPPLIER + BRAND (COMBO) -->
+  <div class="view" id="view-combo">
+    <div class="kpis" id="comboKpis"></div>
+
+    <section class="panel">
+      <h2>Supplier + Brand rollup</h2>
+      <p class="desc">Mirrors the layout of the "2026 Planning by Brand" workbook sheet &mdash; each supplier's own
+        row (bold) with its brand families listed underneath. Click a supplier row (or the chevron) to expand or
+        collapse its brands. Only brands that have a 2026 goal appear here, same set as the Vs. Goal tab; New in
+        2026 and Terminated brands stay on their own tabs. Click a column header to sort the <b>supplier</b> rows
+        &mdash; brand rows within a supplier are always sorted by Gap vs. Brewery Goal (worst first).</p>
+      <div class="legend">
+        <span class="item"><i class="sw" style="background:var(--brewery)"></i>Brewery goal columns</span>
+        <span class="item"><i class="sw" style="background:var(--kohler)"></i>Kohler goal columns</span>
+        <span class="item"><i class="sw" style="background:var(--bad)"></i>Behind goal</span>
+        <span class="item"><i class="sw" style="background:var(--good)"></i>Ahead / on pace</span>
+      </div>
+
+      <div class="controls">
+        <input type="search" id="comboSearch" placeholder="Search supplier, brand, or manager&hellip;">
+        <select id="comboManagerFilter"><option value="">All Brand Managers</option></select>
+        <select id="comboStatusFilter">
+          <option value="">All Statuses (supplier level)</option>
+          <option value="On Pace">On Pace</option>
+          <option value="Behind Brewery">Behind Brewery</option>
+          <option value="Behind Kohler">Behind Kohler</option>
+          <option value="Behind Both">Behind Both</option>
+          <option value="No Goal">No Goal</option>
+        </select>
+        <button class="btn" id="comboExpandAllBtn">Expand all</button>
+        <button class="btn" id="comboCollapseAllBtn">Collapse all</button>
+        <button class="btn" id="comboResetBtn">Reset edited goals</button>
+        <button class="btn" id="comboExportBtn">Export CSV</button>
+        <div class="spacer"></div>
+        <span class="rowcount" id="comboRowcount"></span>
+      </div>
+
+      <div class="tablewrap">
+        <table style="width:1644px">
+          <colgroup>
+            <col style="width:300px"><col style="width:180px">
+            <col style="width:88px"><col style="width:88px"><col style="width:88px"><col style="width:85px"><col style="width:90px">
+            <col style="width:82px"><col style="width:90px"><col style="width:118px">
+            <col style="width:82px"><col style="width:90px"><col style="width:118px">
+            <col style="width:145px">
+          </colgroup>
+          <thead><tr id="comboTheadRow"></tr></thead>
+          <tbody id="comboTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
   <footer id="footerNote">Kohler Distributing &middot; 6-Month Review. Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). See generate.py for methodology.</footer>
 </div>
 
@@ -354,6 +417,9 @@ let TERM_SORT = {key:'ce_current', dir:'asc'};
 let TERM_FILTER = {search:'', manager:''};
 let SUP_SORT = {key:'ce_current', dir:'desc'};
 let SUP_FILTER = {search:'', manager:'', status:''};
+let COMBO_SORT = {key:'ce_current', dir:'desc'};
+let COMBO_FILTER = {search:'', manager:'', status:''};
+let COMBO_EXPANDED = new Set();
 
 const COLS = [
   {key:'brand', label:'Brand', kind:'text'},
@@ -386,6 +452,23 @@ const TERM_COLS = [
   {key:'brand_manager', label:'Brand Manager', kind:'text'},
   {key:'ce_prior', label:'2025 CE (YTD)', kind:'ce'},
   {key:'ce_current', label:'2026 CE (YTD)', kind:'ce'},
+];
+
+const COMBO_COLS = [
+  {key:'supplier', label:'Supplier / Brand Family', kind:'text'},
+  {key:'brand_manager', label:'Manager', full:'Brand Manager', kind:'text'},
+  {key:'finish_2025_ce', label:"'25 Finish", full:'2025 Actual Full-Year Finish (CE)', kind:'ce'},
+  {key:'ce_prior', label:"'25 YTD CE", kind:'ce'},
+  {key:'ce_current', label:"'26 YTD CE", kind:'ce'},
+  {key:'trend_pct', label:'Trend %', kind:'pct'},
+  {key:'proj_finish_2026_ce', label:"'26 Proj.", full:'2026 Projected Finish (CE)', kind:'ce'},
+  {key:'goal_brewery_pct', label:'Goal %', full:'2026 Brewery Goal % (editable)', kind:'editpct', group:'brewery', first:true},
+  {key:'goal_brewery_ce', label:'Goal CE', full:'2026 Brewery Goal (CE)', kind:'ce', group:'brewery'},
+  {key:'gap_brewery', label:'Gap', full:'Trend % vs Brewery Goal %', kind:'gap', group:'brewery'},
+  {key:'goal_kohler_pct', label:'Goal %', full:'2026 Kohler Goal % (editable)', kind:'editpct', group:'kohler', first:true},
+  {key:'goal_kohler_ce', label:'Goal CE', full:'2026 Kohler Goal (CE)', kind:'ce', group:'kohler'},
+  {key:'gap_kohler', label:'Gap', full:'Trend % vs Kohler Goal %', kind:'gap', group:'kohler'},
+  {key:'status', label:'Status', kind:'status'},
 ];
 
 const SUP_COLS = [
@@ -897,6 +980,231 @@ function exportSupplierCSV(){
   a.click();
 }
 
+// ---- Supplier + Brand (combo) tab ----
+function buildComboCommonCells(r){
+  const tdMgr = document.createElement('td'); tdMgr.textContent = r.brand_manager || '—';
+  const tdFinish25 = document.createElement('td'); tdFinish25.className='num'; tdFinish25.textContent = fmtCE(r.finish_2025_ce);
+  const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.ce_prior);
+  const tdCurrent = document.createElement('td'); tdCurrent.className='num'; tdCurrent.textContent = fmtCE(r.ce_current);
+  const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.textContent = fmtPct(r.trend_pct);
+  const tdProj = document.createElement('td'); tdProj.className='num target'; tdProj.textContent = fmtCE(r.proj_finish_2026_ce);
+
+  const tdBGoal = document.createElement('td'); tdBGoal.className='num grp-brewery grp-first';
+  const inputB = document.createElement('input');
+  inputB.type='number'; inputB.step='0.1'; inputB.className='pctinput';
+  inputB.value = r.goal_brewery_pct==null?'':(r.goal_brewery_pct*100).toFixed(1);
+  inputB.addEventListener('input', e=>onComboPctEdit(r._key, 'goal_brewery_pct', e.target.value));
+  tdBGoal.appendChild(inputB);
+  const tdBGoalCe = document.createElement('td'); tdBGoalCe.className='num grp-brewery target cell-bgoalce'; tdBGoalCe.textContent = fmtCE(r.goal_brewery_ce);
+  const tdBGap = document.createElement('td'); tdBGap.className='num grp-brewery cell-bgap'; tdBGap.innerHTML = gapCell(r.gap_brewery);
+
+  const tdKGoal = document.createElement('td'); tdKGoal.className='num grp-kohler grp-first';
+  const inputK = document.createElement('input');
+  inputK.type='number'; inputK.step='0.1'; inputK.className='pctinput kohler';
+  inputK.value = r.goal_kohler_pct==null?'':(r.goal_kohler_pct*100).toFixed(1);
+  inputK.addEventListener('input', e=>onComboPctEdit(r._key, 'goal_kohler_pct', e.target.value));
+  tdKGoal.appendChild(inputK);
+  const tdKGoalCe = document.createElement('td'); tdKGoalCe.className='num grp-kohler target cell-kgoalce'; tdKGoalCe.textContent = fmtCE(r.goal_kohler_ce);
+  const tdKGap = document.createElement('td'); tdKGap.className='num grp-kohler cell-kgap'; tdKGap.innerHTML = gapCell(r.gap_kohler);
+
+  const st = statusOf(r);
+  const tdStatus = document.createElement('td'); tdStatus.innerHTML = `<span class="status-badge ${st.cls}">${st.label}</span>`;
+
+  return [tdMgr,tdFinish25,tdPrior,tdCurrent,tdTrend,tdProj,tdBGoal,tdBGoalCe,tdBGap,tdKGoal,tdKGoalCe,tdKGap,tdStatus];
+}
+
+function onComboPctEdit(key, field, val){
+  let target = null;
+  for (const g of DATA.comboGroups){
+    if (g._key===key){ target = g; break; }
+    const child = g.children.find(c=>c._key===key);
+    if (child){ target = child; break; }
+  }
+  if (!target) return;
+  const num = parseFloat(val);
+  target[field] = isNaN(num) ? null : num/100;
+  renderComboKPIs();
+  updateComboRowTargets(target);
+}
+
+function updateComboRowTargets(r){
+  const d = derive(r);
+  const tr = document.querySelector(`tr[data-combokey="${CSS.escape(r._key)}"]`);
+  if (!tr) return;
+  tr.querySelector('.cell-bgoalce').textContent = fmtCE(d.goal_brewery_ce);
+  tr.querySelector('.cell-bgap').innerHTML = gapCell(d.gap_brewery);
+  tr.querySelector('.cell-kgoalce').textContent = fmtCE(d.goal_kohler_ce);
+  tr.querySelector('.cell-kgap').innerHTML = gapCell(d.gap_kohler);
+  const st = statusOf(d);
+  const badge = tr.querySelector('.status-badge');
+  badge.className = `status-badge ${st.cls}`;
+  badge.textContent = st.label;
+}
+
+function toggleComboGroup(supplierName){
+  if (COMBO_EXPANDED.has(supplierName)) COMBO_EXPANDED.delete(supplierName); else COMBO_EXPANDED.add(supplierName);
+  renderComboTable();
+}
+
+function comboFilteredGroups(){
+  const s = (COMBO_FILTER.search||'').toLowerCase();
+  let groups = DATA.comboGroups.map(g=>{
+    const gd = derive(g);
+    const children = g.children.map(c=>{ const cd = derive(c); return {...c, ...cd, status: statusOf(cd).label}; });
+    return {...g, ...gd, status: statusOf(gd).label, children};
+  });
+
+  if (COMBO_FILTER.status) groups = groups.filter(g=>g.status===COMBO_FILTER.status);
+
+  groups = groups.map(g=>{
+    let children = g.children;
+    if (COMBO_FILTER.manager) children = children.filter(c=>c.brand_manager===COMBO_FILTER.manager);
+    if (s) children = children.filter(c=>(c.brand||'').toLowerCase().includes(s) || (c.brand_manager||'').toLowerCase().includes(s));
+    children.sort((a,b)=>(a.gap_brewery==null?999:a.gap_brewery)-(b.gap_brewery==null?999:b.gap_brewery));
+    return {...g, children};
+  });
+
+  groups = groups.filter(g=>{
+    if (COMBO_FILTER.manager && g.brand_manager!==COMBO_FILTER.manager && g.children.length===0) return false;
+    if (s){
+      const supplierMatches = (g.supplier||'').toLowerCase().includes(s) || (g.brand_manager||'').toLowerCase().includes(s);
+      if (!supplierMatches && g.children.length===0) return false;
+    }
+    return true;
+  });
+
+  groups.sort((a,b)=>{
+    let av=a[COMBO_SORT.key], bv=b[COMBO_SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return COMBO_SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?Infinity:av; bv = bv==null?Infinity:bv;
+    return COMBO_SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return groups;
+}
+
+function renderComboHead(){
+  const tr = document.getElementById('comboTheadRow');
+  tr.innerHTML = '';
+  COMBO_COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    if (c.group) th.classList.add('grp-'+c.group);
+    if (c.first) th.classList.add('grp-first');
+    th.textContent = c.label;
+    th.title = c.full || c.label;
+    if (COMBO_SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = COMBO_SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (c.kind==='editpct') return;
+      if (COMBO_SORT.key===c.key) COMBO_SORT.dir = COMBO_SORT.dir==='asc'?'desc':'asc'; else { COMBO_SORT.key=c.key; COMBO_SORT.dir='asc'; }
+      renderComboTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function renderComboRows(groups){
+  const frag = document.createDocumentFragment();
+  const searching = !!COMBO_FILTER.search;
+  let visibleBrandCount = 0;
+
+  groups.forEach(g=>{
+    const expanded = searching || COMBO_EXPANDED.has(g.supplier);
+
+    const trSup = document.createElement('tr');
+    trSup.className = 'combo-suprow';
+    trSup.dataset.combokey = g._key;
+    const tdName = document.createElement('td');
+    tdName.className = 'combo-name';
+    tdName.title = g.supplier;
+    tdName.innerHTML = `<span class="combo-chevron">${expanded?'▾':'▸'}</span><span class="brandname">${esc(g.supplier)}</span><span class="combo-childcount">(${g.children.length})</span>`;
+    tdName.addEventListener('click', ()=>toggleComboGroup(g.supplier));
+    trSup.appendChild(tdName);
+    buildComboCommonCells(g).forEach(td=>trSup.appendChild(td));
+    frag.appendChild(trSup);
+
+    if (expanded){
+      g.children.forEach(c=>{
+        visibleBrandCount++;
+        const trChild = document.createElement('tr');
+        trChild.className = 'combo-childrow';
+        trChild.dataset.combokey = c._key;
+        const tdCName = document.createElement('td');
+        tdCName.className = 'combo-name';
+        tdCName.title = c.brand;
+        tdCName.innerHTML = `<span class="brandname">${esc(c.brand)}</span>`;
+        trChild.appendChild(tdCName);
+        buildComboCommonCells(c).forEach(td=>trChild.appendChild(td));
+        frag.appendChild(trChild);
+      });
+    } else {
+      visibleBrandCount += g.children.length;
+    }
+  });
+
+  const tbodyEl = document.getElementById('comboTbody');
+  tbodyEl.innerHTML = '';
+  tbodyEl.appendChild(frag);
+  document.getElementById('comboRowcount').textContent =
+    `${groups.length.toLocaleString()} of ${DATA.comboGroups.length.toLocaleString()} suppliers, ${visibleBrandCount.toLocaleString()} brand families`;
+}
+
+function renderComboTable(){
+  renderComboHead();
+  renderComboRows(comboFilteredGroups());
+}
+
+function renderComboKPIs(){
+  const all = DATA.comboGroups.map(r=>({...r, ...derive(r)}));
+  const total = all.length;
+  const totalPrior = all.reduce((a,r)=>a+(r.ce_prior||0),0);
+  const totalCurrent = all.reduce((a,r)=>a+(r.ce_current||0),0);
+  const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
+  const totalProjFinish = all.reduce((a,r)=>a+(r.proj_finish_2026_ce||0),0);
+  const behindBrewery = all.filter(r=>r.gap_brewery!=null && r.gap_brewery<0).length;
+  const behindKohler = all.filter(r=>r.gap_kohler!=null && r.gap_kohler<0).length;
+  const totalBrands = DATA.comboGroups.reduce((a,g)=>a+g.children.length,0);
+  const tiles = [
+    {lbl:'Suppliers Tracked', val:fmtCE(total), sub:`rolling up ${fmtCE(totalBrands)} brand families`},
+    {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked suppliers'},
+    {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
+    {lbl:'Behind Brewery Goal', val:`${behindBrewery} / ${total}`, sub:'suppliers behind their own goal'},
+    {lbl:'Behind Kohler Goal', val:`${behindKohler} / ${total}`, sub:'suppliers behind their own goal'},
+  ];
+  document.getElementById('comboKpis').innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
+}
+
+function exportComboCSV(){
+  const groups = comboFilteredGroups();
+  const header = ['Type','Supplier / Brand Family','Brand Manager','2025 Finish CE','2025 YTD CE','2026 YTD CE','Trend %','2026 Projected Finish CE',
+    'Brewery Goal %','Brewery Goal CE','Gap vs Brewery','Kohler Goal %','Kohler Goal CE','Gap vs Kohler','Status'];
+  const lines = [header.join(',')];
+  const rowLine = (type, name, r) => [type, name, r.brand_manager||'',
+      r.finish_2025_ce!=null?r.finish_2025_ce.toFixed(0):'',
+      r.ce_prior!=null?r.ce_prior.toFixed(0):'', r.ce_current!=null?r.ce_current.toFixed(0):'',
+      r.trend_pct!=null?(r.trend_pct*100).toFixed(1):'',
+      r.proj_finish_2026_ce!=null?r.proj_finish_2026_ce.toFixed(0):'',
+      r.goal_brewery_pct!=null?(r.goal_brewery_pct*100).toFixed(1):'',
+      r.goal_brewery_ce!=null?r.goal_brewery_ce.toFixed(0):'',
+      r.gap_brewery!=null?(r.gap_brewery*100).toFixed(1):'',
+      r.goal_kohler_pct!=null?(r.goal_kohler_pct*100).toFixed(1):'',
+      r.goal_kohler_ce!=null?r.goal_kohler_ce.toFixed(0):'',
+      r.gap_kohler!=null?(r.gap_kohler*100).toFixed(1):'',
+      r.status]
+      .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(',');
+  groups.forEach(g=>{
+    lines.push(rowLine('Supplier', g.supplier, g));
+    g.children.forEach(c=>lines.push(rowLine('Brand', c.brand, c)));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mid-year-review-supplier-brand.csv';
+  a.click();
+}
+
 function renderCaveats(){
   const outliers = DATA.brands.filter(r =>
     (r.goal_brewery_pct!=null && Math.abs(r.goal_brewery_pct)>2) ||
@@ -936,15 +1244,29 @@ async function init(){
   DATA.supplierRollup = DATA.supplierRollup.map((r,i)=>({...r, _key: `${r.supplier}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
 
+  // "Supplier + Brand" combo tab: independent copies of the supplier rollup
+  // rows, each carrying its own copies of the brand-family rows that share
+  // its supplier -- edits here are local to this tab, same as the other two.
+  DATA.comboGroups = DATA.supplierRollup.map((sup,i)=>({
+    ...sup, _key: `combo-sup|${sup.supplier}|${i}`,
+    goal_brewery_pct_orig: sup.goal_brewery_pct, goal_kohler_pct_orig: sup.goal_kohler_pct,
+    children: DATA.brands.filter(b=>b.supplier===sup.supplier).map((b,j)=>({
+      ...b, _key: `combo-brand|${sup.supplier}|${j}`,
+      goal_brewery_pct_orig: b.goal_brewery_pct, goal_kohler_pct_orig: b.goal_kohler_pct,
+    })),
+  }));
+
   populateSelect('managerFilter', DATA.managers);
   populateSelect('supplierFilter', DATA.suppliers);
   populateSelect('newManagerFilter', DATA.managers);
   populateSelect('termManagerFilter', DATA.managers);
   populateSelect('supplierManagerFilter', DATA.managers);
+  populateSelect('comboManagerFilter', DATA.managers);
   document.getElementById('tab-goal-count').textContent = `(${DATA.brands.length})`;
   document.getElementById('tab-new-count').textContent = `(${DATA.newBrands.length})`;
   document.getElementById('tab-terminated-count').textContent = `(${DATA.terminatedBrands.length})`;
   document.getElementById('tab-suppliers-count').textContent = `(${DATA.supplierRollup.length})`;
+  document.getElementById('tab-combo-count').textContent = `(${DATA.comboGroups.length})`;
 
   if (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent){
     document.getElementById('subtitle').innerHTML = `Where each brand's current-year trend stands against its 2026
@@ -963,6 +1285,8 @@ async function init(){
   renderTermTable();
   renderSupplierKPIs();
   renderSupplierTable();
+  renderComboKPIs();
+  renderComboTable();
 
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('managerFilter').addEventListener('change', e=>{
@@ -1005,6 +1329,27 @@ async function init(){
     renderSupplierTable();
   });
   document.getElementById('supplierExportBtn').addEventListener('click', exportSupplierCSV);
+
+  document.getElementById('comboSearch').addEventListener('input', e=>{ COMBO_FILTER.search = e.target.value; renderComboTable(); });
+  document.getElementById('comboManagerFilter').addEventListener('change', e=>{ COMBO_FILTER.manager = e.target.value; renderComboTable(); });
+  document.getElementById('comboStatusFilter').addEventListener('change', e=>{ COMBO_FILTER.status = e.target.value; renderComboTable(); });
+  document.getElementById('comboExpandAllBtn').addEventListener('click', ()=>{
+    DATA.comboGroups.forEach(g=>COMBO_EXPANDED.add(g.supplier));
+    renderComboTable();
+  });
+  document.getElementById('comboCollapseAllBtn').addEventListener('click', ()=>{
+    COMBO_EXPANDED.clear();
+    renderComboTable();
+  });
+  document.getElementById('comboResetBtn').addEventListener('click', ()=>{
+    DATA.comboGroups.forEach(g=>{
+      g.goal_brewery_pct = g.goal_brewery_pct_orig; g.goal_kohler_pct = g.goal_kohler_pct_orig;
+      g.children.forEach(c=>{ c.goal_brewery_pct = c.goal_brewery_pct_orig; c.goal_kohler_pct = c.goal_kohler_pct_orig; });
+    });
+    renderComboKPIs();
+    renderComboTable();
+  });
+  document.getElementById('comboExportBtn').addEventListener('click', exportComboCSV);
 
   document.querySelectorAll('.tab').forEach(t=>{
     t.addEventListener('click', ()=>{

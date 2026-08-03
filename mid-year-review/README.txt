@@ -58,6 +58,34 @@ Only suppliers with BOTH a workbook goal and recorded YTD volume in
 either year appear -- 119 of 133 workbook suppliers as of this
 refresh; the other 14 (Suntory, Iron Horse, Heavy Seas, etc.) had zero
 volume in both years and so don't have a row in the RDE export at all.
+Plus 1 synthesized entry (see below) for a supplier with brand-level
+goals but no supplier-level grey row of its own -- 120 total.
+
+A fifth tab, "Supplier + Brand" (added 2026-08-03 per Gavin's
+managers' request), mimics the layout of the "2026 Planning by Brand"
+workbook sheet itself: each supplier's own row (bold, collapsed by
+default) with its brand families listed underneath when expanded.
+Only brands with a 2026 goal are nested here (the same 235-brand set
+as the Vs. Goal tab) -- New in 2026 and Terminated brands stay off
+this view. Clicking a supplier row toggles it; Expand All/Collapse All
+and a search box (which force-expands any supplier with a matching
+brand) make it easy to find one brand without opening all 120 groups.
+Brand rows within a group are always sorted by Gap vs. Brewery Goal
+(worst first); clicking a column header sorts the supplier rows
+instead. Editable Goal % works the same way as the other two tabs,
+independently (edits here don't affect the Vs. Goal or By Supplier
+tabs, and vice versa).
+
+One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
+Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
+Costenita) -- has brand-level goals in the workbook but never got its
+own grey header/goal row built into the sheet, so there's no
+supplier-level Brewery/Kohler Goal % for it. Rather than let its 6
+brands silently vanish from the By Supplier and Supplier + Brand tabs,
+generate.py synthesizes a "No Goal" supplier entry for it by summing
+its own children directly (see the orphan_suppliers logic in
+generate.py) -- it shows correct YTD/Trend numbers with blank goal
+columns, same treatment a goal-less brand already gets.
 
 Files:
   2026_planning_source.xlsx  The 2026 Planning by Brand workbook --

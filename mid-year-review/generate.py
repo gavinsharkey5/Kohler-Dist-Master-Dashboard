@@ -468,10 +468,50 @@ def main():
             "gap_brewery": (trend - brewery_pct) if (trend is not None and brewery_pct is not None) else None,
             "gap_kohler": (trend - kohler_pct) if (trend is not None and kohler_pct is not None) else None,
         })
+
+    # A handful of suppliers appear on brand rows (their "Supplier" column
+    # value) but never got their own grey header/goal row built into the
+    # workbook at all (e.g. "Food & Bev Enterprise LLC" for Denise Montes'
+    # brands -- confirmed there's no such grey row anywhere in the workbook).
+    # Rather than let their brands silently vanish from every supplier-level
+    # view, synthesize a no-goal supplier entry by summing their own
+    # with-goal children directly -- same "No Goal" treatment a goal-less
+    # brand already gets, just at the supplier level.
+    covered_suppliers = {r["supplier"] for r in supplier_rollup}
+    orphan_suppliers = defaultdict(list)
+    for r in with_goal:
+        sup = r.get("supplier")
+        if sup and sup not in covered_suppliers:
+            orphan_suppliers[sup].append(r)
+
+    for supplier_name, children in orphan_suppliers.items():
+        ce_prior = sum(c["ce_prior"] for c in children if c["ce_prior"] is not None)
+        ce_current = sum(c["ce_current"] for c in children if c["ce_current"] is not None)
+        trend = (ce_current / ce_prior - 1) if ce_prior else None
+        manager = brand_manager_by_supplier.get(supplier_name) or next(
+            (c.get("brand_manager") for c in children if c.get("brand_manager")), None)
+        supplier_rollup.append({
+            "supplier": supplier_name,
+            "brand_manager": manager,
+            "finish_2025_ce": None,
+            "ce_prior": ce_prior,
+            "ce_current": ce_current,
+            "trend_pct": trend,
+            "proj_finish_2026_ce": None,
+            "goal_brewery_pct": None,
+            "goal_kohler_pct": None,
+            "gap_brewery": None,
+            "gap_kohler": None,
+        })
+    if orphan_suppliers:
+        print(f"Synthesized {len(orphan_suppliers)} no-goal supplier rollup row(s) for suppliers with "
+              f"brand-level goals but no supplier-level grey row in the workbook: {sorted(orphan_suppliers)}")
+
     supplier_rollup.sort(key=lambda r: (r["gap_brewery"] if r["gap_brewery"] is not None else 999))
     behind_brewery_supplier = sum(1 for r in supplier_rollup if r.get("gap_brewery") is not None and r["gap_brewery"] < 0)
     behind_kohler_supplier = sum(1 for r in supplier_rollup if r.get("gap_kohler") is not None and r["gap_kohler"] < 0)
-    print(f"Supplier rollup: {len(supplier_rollup)} suppliers with both workbook goals and YTD data.")
+    print(f"Supplier rollup: {len(supplier_rollup)} suppliers with both workbook goals and YTD data "
+          f"(+ {len(orphan_suppliers)} synthesized no-goal supplier(s)).")
 
     payload = {
         "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
