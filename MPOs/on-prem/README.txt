@@ -80,21 +80,18 @@ after" list under each rep, for objectives whose table config has a
 `targetsFile` (see MONTHS in index.html). Built server-side by
 generate_2026-08.py's build_targets() -- a rep's ON-PREMISE-only account
 base (per Kohler, 2026-08-05, via the customer-base export's Premise
-column -- this dashboard is on-prem, so off-premise accounts are never
-valid targets here) MINUS customers who already carry the brand MINUS
-customers in a county Kohler doesn't hold sell rights to for that brand
-(see kohler_brands_whitelist_blacklist.xlsx below); a county with no
-whitelist data at all is kept but flagged "Unverified territory" rather
-than assumed sellable. Each account's county comes from the whitelist
-workbook's "Customers Table (Enc)" sheet, not the CSV's own Area column
--- the CSV's Area falls back to a "Sales" placeholder for accounts
-missing geographic data on that export path, and that sheet resolves
-essentially all of them to a real, whitelist-covered county (load_
-customer_area_overrides() in generate_2026-08.py) -- this closed the
-"Sales"-territory gap from 115 UNKNOWN prospects down to 6 (2026-08-05;
-the remaining 6 are accounts not present in that sheet at all, or in
-Middlesex County, which isn't part of the whitelist's tracked counties).
-Rendered by
+column -- this dashboard is on-prem, so off-premise accounts are NEVER
+valid targets here, full stop) MINUS customers who already carry the
+brand MINUS customers outside ALLOWED_TARGET_COUNTIES -- per Kohler,
+2026-08-06, these on-premise accounts are only ever sold in Bergen,
+Passaic, Passaic-FF, Morris 1, Morris 3, and Sussex; every other county
+(Essex/Hudson/Union/Morris 2, Middlesex, and the "Sales" placeholder some
+accounts fall back to) is excluded outright, not flagged. Each account's
+county comes from the whitelist workbook's "Customers Table (Enc)" sheet,
+not the CSV's own Area column -- the CSV's Area falls back to "Sales" for
+accounts missing geographic data on that export path, and that sheet
+resolves essentially all of them to a real county instead (load_
+customer_area_overrides() in generate_2026-08.py). Rendered by
 targetsBlockHtml()/groupTargetsByRep() in index.html -- shown for EVERY
 rep with prospects, even one with zero current-month activity (that's
 often exactly the rep who most needs the list), via the `hasTargets`
@@ -161,21 +158,27 @@ Files:
                                         only iterates ROSTER.
     kohler_brands_whitelist_blacklist.xlsx
                                        Kohler's per-brand-family,
-                                        per-county sell authorization.
-                                        Two tabs matter to generate_2026-08.py:
-                                        "Master - US vs THEM" (flat one-
-                                        row-per-brand+county, Final
-                                        Determination is "US" or "THEM")
-                                        and "Customers Table (Enc)"
-                                        (Customer ID -> Distribution Area,
-                                        added 2026-08-05 -- the
+                                        per-county sell authorization
+                                        workbook. generate_2026-08.py only
+                                        reads its "Customers Table (Enc)"
+                                        tab (Customer ID -> Distribution
+                                        Area, added 2026-08-05) -- the
                                         authoritative county per account,
                                         used instead of the CSV's own Area
-                                        column). Only used for Target
-                                        Accounts (Angry Orchard, Peroni,
-                                        Coors/Banquet); Wine & Spirits
-                                        doesn't need it since Yave/Leyenda
-                                        are sold in every county.
+                                        column (see
+                                        load_customer_area_overrides()).
+                                        The actual county eligibility
+                                        check is the hardcoded
+                                        ALLOWED_TARGET_COUNTIES constant
+                                        (Bergen/Passaic/Passaic-FF/Morris 1/
+                                        Morris 3/Sussex, per Kohler,
+                                        2026-08-06), not this workbook's
+                                        "Master - US vs THEM" tab. Only
+                                        used for Target Accounts (Angry
+                                        Orchard, Peroni, Coors/Banquet);
+                                        Wine & Spirits doesn't need it
+                                        since Yave/Leyenda are sold in
+                                        every county.
     generate_2026-08.py               Rebuilds the five JSON files above
                                         (three MPO datasets + two Target
                                         Accounts prospect lists).

@@ -62,26 +62,23 @@ worth chasing. Built by crossing three sources:
      appear more than once with a different Shipping Address. On-Premise
      only (per Kohler, 2026-08-05, via the export's own Premise column)
      -- this dashboard is on-prem, so off-premise accounts in a rep's
-     book are never valid targets here even if they don't carry the
-     brand yet.
+     book are NEVER valid targets here, full stop.
   2. angry_orchard_new_lines.csv / molson_coors_peroni_banquet.csv -- ANY
      customer appearing here at all (new-placement flag or not) already
      has recent purchase history of that brand, so they're excluded --
      this is a "hasn't bought it recently" list, not just "hasn't been
      flagged new this month".
-  3. kohler_brands_whitelist_blacklist.xlsx ("Master - US vs THEM" tab)
-     -- per-brand, per-county sell authorization. A prospect in a THEM
-     county is excluded entirely (Kohler doesn't hold the rights to sell
-     that brand there); a prospect in a county with no whitelist row at
-     all (e.g. Middlesex, which isn't part of the tracked core territory)
-     is kept but marked TERRITORY_STATUS "UNKNOWN" rather than silently
-     assumed sellable. Each account's county comes from the workbook's
-     "Customers Table (Enc)" sheet (load_customer_area_overrides()), not
-     the CSV's own Area column -- the CSV's Area falls back to a "Sales"
-     placeholder for accounts missing geographic data on that export
-     path (still ~5% of on-premise accounts even after Kohler's 2026-08-05
-     refresh), and every one of those resolves to a real county in this
-     sheet instead, closing most of the "Sales" UNKNOWN-territory gap.
+  3. ALLOWED_TARGET_COUNTIES -- per Kohler, 2026-08-06, these on-premise
+     accounts are only ever sold in Bergen, Passaic, Passaic-FF, Morris 1,
+     Morris 3, and Sussex; every other county (Essex/Hudson/Union/Morris 2,
+     which the whitelist also blocks these brands in; Middlesex, which
+     isn't part of the tracked core territory at all; and the "Sales"
+     placeholder area some accounts still fall back to) is excluded
+     outright, not just flagged. Each account's county comes from the
+     whitelist workbook's "Customers Table (Enc)" sheet
+     (load_customer_area_overrides()), not the CSV's own Area column,
+     since that sheet has the real county even for "Sales"-placeholder
+     accounts.
 Molson Coors' Peroni and Coors (Banquet) targets are computed
 independently per brand, same as the placement classification.
 
@@ -106,6 +103,12 @@ WHITELIST_XLSX = HERE / "kohler_brands_whitelist_blacklist.xlsx"
 
 NEW_BUYER_WINDOW_START = date(2026, 8, 1)
 NEW_BUYER_WINDOW_END = date(2026, 8, 31)
+
+# Angry Orchard / Peroni / Coors (Banquet) are only sold on-premise in
+# these counties (per Kohler, 2026-08-06) -- everything else (Middlesex,
+# the "Sales" placeholder area, Essex/Hudson/Union/Morris 2) is excluded
+# from Target Accounts outright, not just flagged.
+ALLOWED_TARGET_COUNTIES = {"BERGEN", "PASSAIC", "PASSAIC-FF", "MORRIS 1", "MORRIS 3", "SUSSEX"}
 
 
 def parse_date(raw):
@@ -263,20 +266,6 @@ def load_customer_base(area_overrides):
     return by_rep
 
 
-def load_whitelist():
-    """(brand family lowercased, county uppercased) -> 'US' or 'THEM',
-    from the flat long-format sheet (one row per brand+county)."""
-    wb = load_workbook(WHITELIST_XLSX, data_only=True)
-    ws = wb["Master - US vs THEM"]
-    lookup = {}
-    for row in ws.iter_rows(min_row=2, values_only=True):
-        brand, county, determination = row[0], row[1], row[5]
-        if not brand or not county or not determination:
-            continue
-        lookup[(brand.strip().lower(), county.strip().upper())] = determination.strip().upper()
-    return lookup
-
-
 def already_carrying(path, brand_filter=None):
     """Customer Nums with ANY row in a brand's raw export -- recent
     purchase history, whether or not that row was flagged NEW_PLACEMENT."""
@@ -289,27 +278,22 @@ def already_carrying(path, brand_filter=None):
     return out
 
 
-def build_targets(customer_base_by_rep, whitelist, carrying, brand_label):
+def build_targets(customer_base_by_rep, carrying):
     out = []
-    unknown_territory = 0
     for rep, accounts in customer_base_by_rep.items():
         for a in accounts:
             if a["customer_num"] in carrying:
                 continue
-            status = whitelist.get((brand_label.lower(), a["area"].upper()), "UNKNOWN")
-            if status == "THEM":
+            if a["area"].upper() not in ALLOWED_TARGET_COUNTIES:
                 continue
-            if status == "UNKNOWN":
-                unknown_territory += 1
             out.append({
                 "SALES_REP_ASSIGNED": rep,
                 "CUSTOMER_NUM": int(a["customer_num"]) if a["customer_num"].isdigit() else a["customer_num"],
                 "CUSTOMER_NAME": a["customer_name"],
                 "AREA": a["area"],
-                "TERRITORY_STATUS": status,
             })
     out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"]))
-    return out, unknown_territory
+    return out
 
 
 def main():
@@ -319,17 +303,13 @@ def main():
 
     area_overrides = load_customer_area_overrides()
     customer_base_by_rep = load_customer_base(area_overrides)
-    whitelist = load_whitelist()
 
-    targets_angry_orchard, ao_unknown = build_targets(
-        customer_base_by_rep, whitelist, already_carrying(ANGRY_ORCHARD_CSV), "Angry Orchard")
+    targets_angry_orchard = build_targets(customer_base_by_rep, already_carrying(ANGRY_ORCHARD_CSV))
 
-    targets_peroni, peroni_unknown = build_targets(
-        customer_base_by_rep, whitelist, already_carrying(MOLSON_COORS_CSV, "Peroni"), "Peroni")
+    targets_peroni = build_targets(customer_base_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni"))
     for row in targets_peroni:
         row["BRAND_FAMILY"] = "Peroni"
-    targets_coors, coors_unknown = build_targets(
-        customer_base_by_rep, whitelist, already_carrying(MOLSON_COORS_CSV, "Coors"), "Coors")
+    targets_coors = build_targets(customer_base_by_rep, already_carrying(MOLSON_COORS_CSV, "Coors"))
     for row in targets_coors:
         row["BRAND_FAMILY"] = "Coors"
     targets_molson_coors = sorted(targets_peroni + targets_coors, key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["CUSTOMER_NAME"]))
@@ -351,9 +331,9 @@ def main():
           f"customer+brand pairs ({len(molson_coors_rows)} transaction rows written)")
     print(f"Wine & Spirits (Yave/Leyenda): {len(wine_spirits_rows)} rows written")
     print(f"Target accounts -- Angry Orchard: {len(targets_angry_orchard)} prospects across all reps "
-          f"({ao_unknown} in unmapped/no-whitelist-data territory)")
+          f"(on-premise, {', '.join(sorted(ALLOWED_TARGET_COUNTIES))} only)")
     print(f"Target accounts -- Molson Coors: {len(targets_peroni)} Peroni + {len(targets_coors)} Coors/Banquet "
-          f"prospects ({peroni_unknown}/{coors_unknown} in unmapped territory)")
+          f"prospects (on-premise, {', '.join(sorted(ALLOWED_TARGET_COUNTIES))} only)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 

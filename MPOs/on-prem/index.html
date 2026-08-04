@@ -164,7 +164,6 @@
   .targets-toggle.open .targets-chev{transform:rotate(90deg);}
   .targets-table{display:none;}
   .targets-table.open{display:block;}
-  .territory-unknown{color:var(--text-mute);font-size:11px;font-style:italic;}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
@@ -412,21 +411,20 @@ function buildBuyerCountDataset(rows, target){
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset};
 
 const AREA_COLS=[["area"]];
-const TERRITORY_STATUS_COLS=[["territory","status"],["status"]];
 
-// Target-account rows (prospects who don't carry the brand yet and are in
-// an authorized county -- see generate_2026-08.py) grouped by rep, keyed
+// Target-account rows (prospects who don't carry the brand yet, on-premise,
+// in an allowed county -- see generate_2026-08.py) grouped by rep, keyed
 // by rep name for direct lookup at render time.
 function groupTargetsByRep(rows){
   if(!Array.isArray(rows)||!rows.length) return {};
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
-        areaCol=findCol(rows[0],AREA_COLS), statusCol=findCol(rows[0],TERRITORY_STATUS_COLS);
+        areaCol=findCol(rows[0],AREA_COLS);
   if(!repCol||!custCol) return {};
   const by={};
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!by[rep]) by[rep]=[];
-    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():"", status:statusCol?String(r[statusCol]||"").trim():""});
+    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():""});
   });
   return by;
 }
@@ -436,10 +434,10 @@ function groupTargetsByRep(rows){
 function targetsBlockHtml(targets, brandLabel){
   if(!targets || !targets.length) return '';
   const tid = 'tgt'+(uid++);
-  const rows = targets.map(t=>`<tr><td>${t.customer}</td><td>${t.area}</td><td>${t.status==='UNKNOWN'?'<span class="territory-unknown">Unverified territory</span>':''}</td></tr>`).join('');
+  const rows = targets.map(t=>`<tr><td>${t.customer}</td><td>${t.area}</td></tr>`).join('');
   return `<div class="targets-block">
     <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${targets.length} Target Account${targets.length===1?'':'s'}<span class="targets-hint">— don't carry ${brandLabel} yet, in your territory</span></div>
-    <div class="targets-table" id="${tid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Area</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
+    <div class="targets-table" id="${tid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Area</th></tr></thead><tbody>${rows}</tbody></table></div></div>
   </div>`;
 }
 document.addEventListener('click', e=>{
