@@ -1863,6 +1863,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231607,
+    "CUSTOMER_NAME": "JJ's Bar and Package Goods LLC",
+    "AREA": "Sussex",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191008,
     "CUSTOMER_NAME": "Jefferson Diner & Tav(P)",
     "AREA": "Morris 1",
@@ -2530,6 +2537,13 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230113,
     "CUSTOMER_NAME": "Industry",
+    "AREA": "Sussex",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231607,
+    "CUSTOMER_NAME": "JJ's Bar and Package Goods LLC",
     "AREA": "Sussex",
     "BRAND_FAMILY": "Peroni"
   },
@@ -4691,9 +4705,23 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 26013,
+    "CUSTOMER_NAME": "Tiny Tijuana",
+    "AREA": "Passaic",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 28030,
     "CUSTOMER_NAME": "Carlitos",
     "AREA": "Bergen",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 26013,
+    "CUSTOMER_NAME": "Tiny Tijuana",
+    "AREA": "Passaic",
     "BRAND_FAMILY": "Peroni"
   },
   {
@@ -5013,6 +5041,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 17013,
+    "CUSTOMER_NAME": "Joe's pub",
+    "AREA": "Passaic",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84009,
     "CUSTOMER_NAME": "Mac Murphy",
     "AREA": "Bergen",
@@ -5086,6 +5121,13 @@
     "CUSTOMER_NUM": 83009,
     "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
     "AREA": "Bergen",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 17013,
+    "CUSTOMER_NAME": "Joe's pub",
+    "AREA": "Passaic",
     "BRAND_FAMILY": "Peroni"
   },
   {
@@ -7134,6 +7176,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
+    "CUSTOMER_NUM": 49051,
+    "CUSTOMER_NAME": "Gopchang Story",
+    "AREA": "Bergen",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 52038,
     "CUSTOMER_NAME": "Grissini's Restaurant",
     "AREA": "Bergen",
@@ -7297,6 +7346,13 @@
     "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 49006,
     "CUSTOMER_NAME": "Ga Yeon Restaurant",
+    "AREA": "Bergen",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Office Tell Sell",
+    "CUSTOMER_NUM": 49051,
+    "CUSTOMER_NAME": "Gopchang Story",
     "AREA": "Bergen",
     "BRAND_FAMILY": "Peroni"
   },

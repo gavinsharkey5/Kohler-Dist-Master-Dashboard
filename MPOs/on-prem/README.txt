@@ -73,25 +73,36 @@ Buyer" or "—" status. Per Gavin, 2026-08-04: dates are "only for you to
 denote new buyers and the specific metrics we track", not a full
 transaction log.
 
+Off-premise exclusion applies to EVERY on-prem August dataset, not just
+Target Accounts (per Kohler, 2026-08-07: "off premise accounts should not
+be included in this dashboard ever"). load_off_premise_only_ids() in
+generate_2026-08.py flags any Customer Num that appears in
+sales_reps_customer_base.csv WITHOUT ever appearing as "On Premise" there,
+and build_angry_orchard()/build_molson_coors()/build_wine_spirits() all
+drop those rows up front. This matters beyond Target Accounts:
+angry_orchard_new_lines.csv (the RDE activity export itself, not a
+Kohler-side territory file) carries ~15 off-premise-only customers (Total
+Wine & More, Bottle King, Shop Rite Wine & Spirits, etc.) whose purchase
+history was showing up in reps' Angry Orchard drill-downs even after
+Target Accounts was already on-premise-only -- found 2026-08-07.
+
 Target Accounts (Angry Orchard, Molson Coors Peroni/Banquet only -- per
 Gavin, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
 so skip the territory filter there): a collapsed-by-default "who to go
 after" list under each rep, for objectives whose table config has a
 `targetsFile` (see MONTHS in index.html). Built server-side by
-generate_2026-08.py's build_targets() -- a rep's ON-PREMISE-only account
-base (per Kohler, 2026-08-05, via the customer-base export's Premise
-column -- this dashboard is on-prem, so off-premise accounts are NEVER
-valid targets here, full stop) MINUS customers who already carry the
-brand MINUS customers outside ALLOWED_TARGET_COUNTIES -- per Kohler,
-2026-08-06, these on-premise accounts are only ever sold in Bergen,
-Passaic, Passaic-FF, Morris 1, Morris 3, and Sussex; every other county
-(Essex/Hudson/Union/Morris 2, Middlesex, and the "Sales" placeholder some
-accounts fall back to) is excluded outright, not flagged. Each account's
-county comes from the whitelist workbook's "Customers Table (Enc)" sheet,
-not the CSV's own Area column -- the CSV's Area falls back to "Sales" for
-accounts missing geographic data on that export path, and that sheet
-resolves essentially all of them to a real county instead (load_
-customer_area_overrides() in generate_2026-08.py). Rendered by
+generate_2026-08.py's build_targets() -- a rep's on-premise-only account
+base (via the customer-base export's Premise column) MINUS customers who
+already carry the brand MINUS customers outside ALLOWED_TARGET_COUNTIES --
+per Kohler, 2026-08-06, these on-premise accounts are only ever sold in
+Bergen, Passaic, Passaic-FF, Morris 1, Morris 3, and Sussex; every other
+county (Essex/Hudson/Union/Morris 2, Middlesex) is excluded outright, not
+flagged. Each account's county is the CSV's own Distribution Area column,
+except when that's the "Sales" placeholder (no geographic data on that
+export path) -- then it falls back to the CSV's County column instead
+(per Kohler, 2026-08-07: "use the county column to see where the customer
+is located"), which the 2026-08-07 refresh populates for every row, so no
+separate lookup file is needed for this anymore. Rendered by
 targetsBlockHtml()/groupTargetsByRep() in index.html -- shown for EVERY
 rep with prospects, even one with zero current-month activity (that's
 often exactly the rep who most needs the list), via the `hasTargets`
@@ -143,42 +154,48 @@ Files:
     sales_reps_customer_base.csv      RDE "Sales Reps: Customer Base Core
                                         Territory" export: Sales Rep
                                         Assigned, Customer Num, Customer
-                                        Name, Shipping Address, City,
-                                        Area, Premise, Cases -- one row per
-                                        rep/account/shipping-address (so
-                                        some accounts appear more than
-                                        once); the Target Accounts feature
-                                        dedupes by Customer Num and keeps
-                                        only Premise=="On Premise" rows
-                                        (added 2026-08-05). Also has ~4
-                                        rows for non-rep entities (e.g.
-                                        "Default", "Office Tell Sell") not
-                                        in ROSTER -- harmless, they're just
-                                        never looked up since rendering
-                                        only iterates ROSTER.
+                                        Name, Shipping Address,
+                                        Distribution Area, County, City,
+                                        Area, Premise, Buyer Count, Cases
+                                        -- one row per rep/account/
+                                        shipping-address (so some accounts
+                                        appear more than once). Distribution
+                                        Area and Area are the same field
+                                        duplicated; County is a coarser
+                                        fallback (no Morris 1/2/3 or
+                                        Passaic/Passaic-FF split, but also
+                                        no "Sales" placeholder -- see
+                                        load_customer_base()). Drives TWO
+                                        things: (1) which Customer Nums are
+                                        off-premise-only and get stripped
+                                        from every August dataset (see
+                                        load_off_premise_only_ids() above),
+                                        and (2) Target Accounts' on-premise
+                                        account base (deduped by Customer
+                                        Num, Premise=="On Premise" only).
+                                        Also has ~4 rows for non-rep
+                                        entities (e.g. "Default", "Office
+                                        Tell Sell") not in ROSTER --
+                                        harmless, never looked up since
+                                        rendering only iterates ROSTER.
     kohler_brands_whitelist_blacklist.xlsx
                                        Kohler's per-brand-family,
                                         per-county sell authorization
-                                        workbook. generate_2026-08.py only
-                                        reads its "Customers Table (Enc)"
-                                        tab (Customer ID -> Distribution
-                                        Area, added 2026-08-05) -- the
-                                        authoritative county per account,
-                                        used instead of the CSV's own Area
-                                        column (see
-                                        load_customer_area_overrides()).
-                                        The actual county eligibility
-                                        check is the hardcoded
+                                        workbook, kept for reference/audit
+                                        only -- generate_2026-08.py does
+                                        NOT read this file. The county
+                                        eligibility check is the hardcoded
                                         ALLOWED_TARGET_COUNTIES constant
                                         (Bergen/Passaic/Passaic-FF/Morris 1/
                                         Morris 3/Sussex, per Kohler,
-                                        2026-08-06), not this workbook's
-                                        "Master - US vs THEM" tab. Only
-                                        used for Target Accounts (Angry
-                                        Orchard, Peroni, Coors/Banquet);
-                                        Wine & Spirits doesn't need it
-                                        since Yave/Leyenda are sold in
-                                        every county.
+                                        2026-08-06), and every account's
+                                        county now comes straight from
+                                        sales_reps_customer_base.csv (see
+                                        above), so this workbook's "Master
+                                        - US vs THEM" tab (which agrees
+                                        with the same 6 counties, last
+                                        checked 2026-08-07) is redundant
+                                        with the current logic.
     generate_2026-08.py               Rebuilds the five JSON files above
                                         (three MPO datasets + two Target
                                         Accounts prospect lists).
@@ -205,12 +222,11 @@ To refresh July manually:
 To refresh August manually:
   1. Save the new exports over angry_orchard_new_lines.csv /
      molson_coors_peroni_banquet.csv / wine_spirits_yave_leyenda.csv /
-     sales_reps_customer_base.csv (same column headers), and
-     kohler_brands_whitelist_blacklist.xlsx if Kohler sends an updated
-     territory file.
-  2. Run: python3 generate_2026-08.py -- requires openpyxl (`pip install
-     openpyxl`) to read the whitelist workbook. Prints how many new
-     placements qualified out of how many customer+brand pairs appeared
-     in each export, plus how many Target Accounts prospects were found
-     per brand and how many fell in unmapped ("Unverified") territory.
+     sales_reps_customer_base.csv (same column headers). Update
+     kohler_brands_whitelist_blacklist.xlsx too if Kohler sends a new
+     one, though it's reference-only now (see Files below).
+  2. Run: python3 generate_2026-08.py -- prints how many new placements
+     qualified out of how many customer+brand pairs appeared in each
+     export, how many off-premise-only customer IDs got excluded, and
+     how many Target Accounts prospects were found per brand.
   3. Commit and push.

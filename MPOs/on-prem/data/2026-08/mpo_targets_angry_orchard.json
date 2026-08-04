@@ -1093,6 +1093,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231607,
+    "CUSTOMER_NAME": "JJ's Bar and Package Goods LLC",
+    "AREA": "Sussex"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191504,
     "CUSTOMER_NAME": "Jefferson House (A)",
     "AREA": "Morris 1"
@@ -2370,6 +2376,12 @@
     "AREA": "Bergen"
   },
   {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 26013,
+    "CUSTOMER_NAME": "Tiny Tijuana",
+    "AREA": "Passaic"
+  },
+  {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
     "CUSTOMER_NUM": 32033,
     "CUSTOMER_NAME": "Pulse Gentleman's Club",
@@ -2536,6 +2548,12 @@
     "CUSTOMER_NUM": 83009,
     "CUSTOMER_NAME": "Jalapeno Mex. Grille(A)",
     "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 17013,
+    "CUSTOMER_NAME": "Joe's pub",
+    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3627,6 +3645,12 @@
     "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 49006,
     "CUSTOMER_NAME": "Ga Yeon Restaurant",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Office Tell Sell",
+    "CUSTOMER_NUM": 49051,
+    "CUSTOMER_NAME": "Gopchang Story",
     "AREA": "Bergen"
   },
   {

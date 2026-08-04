@@ -52,6 +52,18 @@ Wine & Spirits (Yave/Leyenda) is a simple distinct-buying-account count
 per rep per brand family in August -- no new-vs-repeat distinction, per
 Kohler: "sales reps need 2 buyers of each brand family to hit this."
 
+Off-premise exclusion (per Kohler, 2026-08-07: "off premise accounts
+should not be included in this dashboard ever") applies to EVERY on-prem
+August dataset, not just Target Accounts -- angry_orchard_new_lines.csv in
+particular carries ~15 customers (Total Wine & More, Bottle King, Shop
+Rite Wine & Spirits, etc.) who are off-premise-only per the customer base
+export, so their purchase history was showing up in reps' Angry Orchard
+drill-downs even though Target Accounts itself was already on-premise-only.
+load_off_premise_only_ids() flags any Customer Num that appears in
+sales_reps_customer_base.csv WITHOUT ever appearing as "On Premise" there,
+and build_angry_orchard()/build_molson_coors()/build_wine_spirits() all
+drop those rows before doing anything else with them.
+
 Target accounts (Angry Orchard, Molson Coors Peroni/Banquet only -- per
 Kohler, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
 so no territory filter applies there): a per-rep "who to go after" list,
@@ -60,9 +72,7 @@ worth chasing. Built by crossing three sources:
   1. sales_reps_customer_base.csv  -- the rep's full account base (every
      customer they cover), deduped by Customer Num since an account can
      appear more than once with a different Shipping Address. On-Premise
-     only (per Kohler, 2026-08-05, via the export's own Premise column)
-     -- this dashboard is on-prem, so off-premise accounts in a rep's
-     book are NEVER valid targets here, full stop.
+     only, via the export's own Premise column.
   2. angry_orchard_new_lines.csv / molson_coors_peroni_banquet.csv -- ANY
      customer appearing here at all (new-placement flag or not) already
      has recent purchase history of that brand, so they're excluded --
@@ -71,14 +81,15 @@ worth chasing. Built by crossing three sources:
   3. ALLOWED_TARGET_COUNTIES -- per Kohler, 2026-08-06, these on-premise
      accounts are only ever sold in Bergen, Passaic, Passaic-FF, Morris 1,
      Morris 3, and Sussex; every other county (Essex/Hudson/Union/Morris 2,
-     which the whitelist also blocks these brands in; Middlesex, which
-     isn't part of the tracked core territory at all; and the "Sales"
-     placeholder area some accounts still fall back to) is excluded
-     outright, not just flagged. Each account's county comes from the
-     whitelist workbook's "Customers Table (Enc)" sheet
-     (load_customer_area_overrides()), not the CSV's own Area column,
-     since that sheet has the real county even for "Sales"-placeholder
-     accounts.
+     which the whitelist also blocks these brands in, and Middlesex, which
+     isn't part of the tracked core territory at all) is excluded outright,
+     not just flagged. Each account's county is the CSV's own Distribution
+     Area (aka "Area") column, EXCEPT when that's the "Sales" placeholder
+     (no geographic data on that particular export path) -- then it falls
+     back to the CSV's County column instead (per Kohler, 2026-08-07: "use
+     the county column to see where the customer is located"), which the
+     2026-08-07 refresh populates for every row, closing the last of the
+     "Sales"-territory gap without needing a separate lookup file at all.
 Molson Coors' Peroni and Coors (Banquet) targets are computed
 independently per brand, same as the placement classification.
 
@@ -89,8 +100,6 @@ import json
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from openpyxl import load_workbook
-
 HERE = Path(__file__).parent
 DATA_DIR = HERE / "data"
 MONTH_KEY = "2026-08"
@@ -99,7 +108,6 @@ ANGRY_ORCHARD_CSV = HERE / "angry_orchard_new_lines.csv"
 MOLSON_COORS_CSV = HERE / "molson_coors_peroni_banquet.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_yave_leyenda.csv"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
-WHITELIST_XLSX = HERE / "kohler_brands_whitelist_blacklist.xlsx"
 
 NEW_BUYER_WINDOW_START = date(2026, 8, 1)
 NEW_BUYER_WINDOW_END = date(2026, 8, 31)
@@ -157,8 +165,9 @@ def classify_new_placements(rows, brand_key):
     return out, len(new_keys), len(by_cust_brand)
 
 
-def build_angry_orchard():
+def build_angry_orchard(off_premise_ids):
     rows = load_csv(ANGRY_ORCHARD_CSV)
+    rows = [r for r in rows if r["Customer Num"].strip() not in off_premise_ids]
     cases_col = find_col(rows[0].keys(), "Cases")
     placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
@@ -176,8 +185,9 @@ def build_angry_orchard():
     return out, new_count, total_pairs
 
 
-def build_molson_coors():
+def build_molson_coors(off_premise_ids):
     rows = load_csv(MOLSON_COORS_CSV)
+    rows = [r for r in rows if r["Customer Num"].strip() not in off_premise_ids]
     cases_col = find_col(rows[0].keys(), "Cases")
     placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
@@ -195,8 +205,9 @@ def build_molson_coors():
     return out, new_count, total_pairs
 
 
-def build_wine_spirits():
+def build_wine_spirits(off_premise_ids):
     rows = load_csv(WINE_SPIRITS_CSV)
+    rows = [r for r in rows if r["Customer Num"].strip() not in off_premise_ids]
     if not rows:
         return []
     cases_col = find_col(rows[0].keys(), "Cases")
@@ -218,31 +229,29 @@ def build_wine_spirits():
     return out
 
 
-def load_customer_area_overrides():
-    """Customer Num -> authoritative Distribution Area, from the
-    workbook's "Customers Table (Enc)" sheet. The customer-base CSV
-    export's own Area column falls back to a "Sales" (or "Middlesex not
-    in use") placeholder for accounts missing geographic data on that
-    export path -- every one of those checked against this sheet (2026-
-    08-05) resolves to a real county here instead, and every OTHER
-    account's Area agrees with this sheet exactly, so this is preferred
-    whenever present rather than only patching the placeholder rows."""
-    wb = load_workbook(WHITELIST_XLSX, data_only=True)
-    ws = wb["Customers Table (Enc)"]
-    lookup = {}
-    for row in ws.iter_rows(min_row=2, values_only=True):
-        cust_id, dist_area = row[0], row[7]
-        if cust_id is None or not dist_area:
+def load_off_premise_only_ids():
+    """Customer Nums that appear in the customer base export WITHOUT ever
+    appearing as "On Premise" there -- confirmed off-premise accounts to
+    strip out of every on-prem August dataset (not just Target Accounts),
+    per Kohler, 2026-08-07."""
+    rows = load_csv(CUSTOMER_BASE_CSV)
+    premises_by_cust = {}
+    for r in rows:
+        cust = r["Customer Num"].strip()
+        if not cust:
             continue
-        lookup[str(cust_id)] = dist_area.strip()
-    return lookup
+        premises_by_cust.setdefault(cust, set()).add(r["Premise"].strip())
+    return {cust for cust, premises in premises_by_cust.items() if premises == {"Off Premise"}}
 
 
-def load_customer_base(area_overrides):
+def load_customer_base():
     """Dedupes to one entry per (rep, customer) -- the same account can
     have multiple rows in the export (one per Shipping Address). On-
-    Premise only (per Kohler, 2026-08-05) -- the on-prem dashboard's
-    Target Accounts shouldn't suggest off-premise accounts."""
+    Premise only -- the on-prem dashboard's Target Accounts shouldn't
+    suggest off-premise accounts. Area is the CSV's own Distribution Area
+    column, except when that's the "Sales" placeholder (no geographic
+    data on that export path) -- then it falls back to the CSV's County
+    column, which is populated for every row."""
     rows = load_csv(CUSTOMER_BASE_CSV)
     by_rep = {}
     seen = set()
@@ -257,7 +266,9 @@ def load_customer_base(area_overrides):
         if key in seen:
             continue
         seen.add(key)
-        area = area_overrides.get(cust_num) or r["Area"].strip()
+        area = r["Distribution Area"].strip()
+        if area == "Sales":
+            area = r["County"].strip() or area
         by_rep.setdefault(rep, []).append({
             "customer_num": cust_num,
             "customer_name": r["Customer Name"].strip(),
@@ -297,12 +308,12 @@ def build_targets(customer_base_by_rep, carrying):
 
 
 def main():
-    angry_orchard_rows, ao_new, ao_total = build_angry_orchard()
-    molson_coors_rows, mc_new, mc_total = build_molson_coors()
-    wine_spirits_rows = build_wine_spirits()
+    off_premise_ids = load_off_premise_only_ids()
+    angry_orchard_rows, ao_new, ao_total = build_angry_orchard(off_premise_ids)
+    molson_coors_rows, mc_new, mc_total = build_molson_coors(off_premise_ids)
+    wine_spirits_rows = build_wine_spirits(off_premise_ids)
 
-    area_overrides = load_customer_area_overrides()
-    customer_base_by_rep = load_customer_base(area_overrides)
+    customer_base_by_rep = load_customer_base()
 
     targets_angry_orchard = build_targets(customer_base_by_rep, already_carrying(ANGRY_ORCHARD_CSV))
 
@@ -325,6 +336,7 @@ def main():
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
 
+    print(f"Off-premise-only customer IDs excluded from all datasets: {len(off_premise_ids)}")
     print(f"Angry Orchard: {ao_new} new placements out of {ao_total} customer+brand pairs "
           f"({len(angry_orchard_rows)} transaction rows written)")
     print(f"Molson Coors (Peroni+Coors/Banquet combined): {mc_new} new placements out of {mc_total} "
