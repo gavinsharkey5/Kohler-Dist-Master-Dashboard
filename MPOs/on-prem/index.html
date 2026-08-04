@@ -8,9 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#0E1014; --card:#181B22; --card-alt:#14171D; --border:#2A2E38;
-    --text:#E9ECF1; --text-dim:#9AA1AD; --accent:#3FB68B; --accent-soft:rgba(63,182,139,0.12);
-    --amber:#E0A93E; --red:#E0603E;
+    /* Same warm barrel-wood + amber-beer + Kohler-blue theme as the
+       6-Month Review dashboard, themed off Kohler Distributing's brand
+       photography rather than a generic neutral dark UI. */
+    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
+    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
+    --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
+    --red:#EB6A50; --red-soft:rgba(235,106,80,0.16);
+    --input-bg:#1A130C; --input-border:#4A3A26;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
@@ -19,21 +27,34 @@
   .crumb{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
   .crumb a{color:var(--text-dim);text-decoration:none;}
   .crumb a:hover{color:var(--accent);}
-  header{max-width:1200px;margin:0 auto;padding:0 32px 20px;border-bottom:1px solid var(--border);}
-  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+
+  .hero-banner{max-width:1200px;margin:0 auto;position:relative;border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);box-shadow:var(--shadow);background:var(--card)}
+  .hero-banner-img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover}
+  .hero-banner::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(21,16,10,.05) 0%,rgba(21,16,10,.6) 100%)}
+  .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
+    filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  @media (max-width:640px){
+    .hero-banner-img{max-height:120px}
+    .hero-logo-badge{height:38px;top:10px;left:12px}
+  }
+
+  header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
   h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
   .sub{color:var(--text-dim);font-size:14.5px;}
   .updated{margin:10px 0 0;font-size:12px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
-  .livedot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent);animation:lp 2s infinite}
-  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
   .kpi-strip{max-width:1200px;margin:28px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   @media(max-width:900px){.kpi-strip{grid-template-columns:repeat(2,1fr);}}
-  .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+  .kpi{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--accent);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);}
   .kpi-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
   .kpi-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
   .kpi-val.warn{color:var(--amber);}
-  .kpi-val.good{color:var(--accent);}
+  .kpi-val.good{color:var(--good);}
   .kpi-sub{font-size:12px;color:var(--text-dim);margin-top:4px;}
 
   .repbar-wrap{max-width:1200px;margin:24px auto 0;padding:0 32px;}
@@ -41,12 +62,12 @@
   .repbar{display:flex;flex-wrap:wrap;gap:8px;}
   .repchip{background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
   .repchip:hover{border-color:var(--accent);color:var(--text);}
-  .repchip.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+  .repchip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
 
   .monthbar{max-width:1200px;margin:0 auto;padding:14px 32px 0;display:flex;gap:8px;flex-wrap:wrap;}
   .monthtab{background:none;border:1px solid var(--border);color:var(--text-dim);padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
   .monthtab:hover{color:var(--text);border-color:var(--text-dim);}
-  .monthtab.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+  .monthtab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
 
   main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
 
@@ -57,7 +78,7 @@
   .rep-hero-stat{font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--text-dim);}
   .rep-hero-stat b{color:var(--accent);}
 
-  .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
   .obj-head{padding:22px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;}
   .obj-head:hover{background:var(--card-alt);}
   .obj-head.static{cursor:default;}
@@ -65,10 +86,10 @@
   .obj-left{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
   .obj-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .obj-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
-  .weight-tag{font-size:11px;color:var(--text-dim);background:#20242D;border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
-  .goal-tag{font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(63,182,139,0.3);padding:2px 8px;border-radius:20px;}
-  .obj-bar-track{width:100%;max-width:420px;height:7px;background:#252932;border-radius:4px;overflow:hidden;margin-top:2px;}
-  .obj-bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+  .weight-tag{font-size:11px;color:var(--text-dim);background:var(--card-alt);border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
+  .goal-tag{font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(78,124,232,0.35);padding:2px 8px;border-radius:20px;}
+  .obj-bar-track{width:100%;max-width:420px;height:7px;background:var(--input-bg);border-radius:4px;overflow:hidden;margin-top:2px;}
+  .obj-bar-fill{height:100%;border-radius:4px;background:var(--good);}
   .obj-bar-fill.over{background:var(--amber);}
   .obj-right{display:flex;align-items:center;gap:18px;flex-shrink:0;}
   .obj-progress-txt{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-align:right;}
@@ -80,20 +101,39 @@
   .obj-card.static-open .obj-body{max-height:6000px;border-top:1px solid var(--border);}
   .obj-body-inner{padding:20px 24px 26px;}
 
+  /* Prominent per-brand titles for "dual" sub-targets (e.g. Yave/Leyenda,
+     Peroni/Banquet) -- cycles accent/amber/good so each brand within one
+     objective reads as its own clearly-labeled section, not a small dim
+     caption easy to miss. Mirrors the 6-Month Review's brewery/kohler
+     tinted-column treatment. */
+  .sub-brand-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;
+    padding:3px 0 3px 11px;margin:0 0 8px;position:relative;}
+  .sub-brand-title::before{content:"";position:absolute;left:0;top:1px;bottom:1px;width:4px;border-radius:3px;}
+  .sub-brand-title.sb-0{color:var(--accent);}
+  .sub-brand-title.sb-0::before{background:var(--accent);}
+  .sub-brand-title.sb-1{color:var(--amber);}
+  .sub-brand-title.sb-1::before{background:var(--amber);}
+  .sub-brand-title.sb-2{color:var(--good);}
+  .sub-brand-title.sb-2::before{background:var(--good);}
+  thead th.sb-col-0{background:var(--accent-soft);color:var(--accent);}
+  thead th.sb-col-1{background:var(--amber-soft);color:var(--amber);}
+  thead th.sb-col-2{background:var(--good-soft);color:var(--good);}
+  thead th.sb-col-0:hover,thead th.sb-col-1:hover,thead th.sb-col-2:hover{color:var(--text);}
+
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
-  td{padding:9px 12px;border-bottom:1px solid #1E222B;}
+  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 12px;background:var(--card-alt);border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--line-soft);}
   tr:last-child td{border-bottom:none;}
   .num{text-align:right;font-variant-numeric:tabular-nums;}
-  .flag-hit{color:var(--accent);font-weight:600;}
+  .flag-hit{color:var(--good);font-weight:600;}
   .flag-miss{color:var(--text-dim);}
-  .mini-bar-track{display:inline-block;width:80px;height:6px;background:#252932;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
-  .mini-bar-fill{height:100%;background:var(--accent);}
+  .mini-bar-track{display:inline-block;width:80px;height:6px;background:var(--input-bg);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
+  .mini-bar-fill{height:100%;background:var(--good);}
   .mini-bar-fill.over{background:var(--amber);}
   .over-badge{color:var(--amber);font-size:11px;font-weight:600;margin-left:6px;}
 
   .rep-row{cursor:pointer;}
-  .rep-row:hover{background:#1C202A;}
+  .rep-row:hover{background:var(--card-alt);}
   .rep-row td:first-child{display:flex;align-items:center;gap:8px;}
   .rep-chev{font-size:10px;color:var(--text-dim);transition:transform .15s;display:inline-block;}
   .rep-row.expanded .rep-chev{transform:rotate(90deg);}
@@ -109,10 +149,10 @@
   .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
 
   .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
-  .empty-tag{font-size:11px;background:#20242D;border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
+  .empty-tag{font-size:11px;background:var(--card-alt);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
-  ::-webkit-scrollbar-thumb{background:#2A2E38;border-radius:4px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 
   /* ===== Mobile / tablet responsiveness ===== */
   html, body{overflow-x:hidden;}
@@ -178,6 +218,10 @@
 
 <div class="topbar">
   <div class="crumb"><a href="../index.html">MPO Tracker</a> &nbsp;/&nbsp; On-Premise</div>
+  <div class="hero-banner">
+    <img class="hero-banner-img" src="../../assets/hero-banner.jpg" alt="Kohler Distributing Company headquarters">
+    <img class="hero-logo-badge" src="../../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
+  </div>
 </div>
 
 <div class="monthbar" id="monthbar"></div>
@@ -467,10 +511,32 @@ function renderRepBar(){
   bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click',()=>{activeRep=b.dataset.rep;renderMain();window.scrollTo({top:0,behavior:'smooth'});}));
 }
 
+// Raw lines carry one row per historical transaction (some sources go back
+// to May so the 90-day-non-buy classifier has purchase history to check),
+// but a rep doesn't need every prior-month date -- just whether an account
+// is a new placement, a regular buyer who's active this month, or neither.
+// So this collapses to one row per customer and only shows a date when
+// that customer has activity in the active month; pure prior-month history
+// shows no date at all (per Gavin, 2026-08-04).
+function isActiveMonthDate(dateStr){
+  return typeof dateStr==='string' && dateStr.startsWith(activeMonth);
+}
 function lineTableNewAccounts(lines, flagLabel){
   flagLabel = flagLabel || 'New Buyer';
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
-  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ '+flagLabel+'</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
+  const byCustomer = new Map();
+  lines.forEach(l=>{
+    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {customer:l.customer, isNew:false, activeDate:null});
+    const c = byCustomer.get(l.customer);
+    if(l.new_buyer==='1') c.isNew = true;
+    if(isActiveMonthDate(l.date) && (!c.activeDate || l.date>c.activeDate)) c.activeDate = l.date;
+  });
+  const rows = [...byCustomer.values()]
+    .sort((a,b)=> (b.isNew-a.isNew) || (b.activeDate||'').localeCompare(a.activeDate||'') || a.customer.localeCompare(b.customer))
+    .map(c=>{
+      const status = c.isNew ? `<span class="flag-hit">✓ ${flagLabel}</span>` : (c.activeDate ? '<span class="flag-miss">Regular Buyer</span>' : '<span class="flag-miss">—</span>');
+      return `<tr><td>${c.customer}</td><td>${c.activeDate||''}</td><td>${status}</td></tr>`;
+    }).join('');
   return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function lineTablePlacements(lines){
@@ -517,11 +583,11 @@ function renderRepView(){
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = subVals.map(sv=>{
+      inner.innerHTML = subVals.map((sv,i)=>{
         const pct=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target, hit=sv.val>=sv.sub.target;
-        return `<div style="margin-bottom:18px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:12px">
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px">${sv.sub.label}</span>
+        return `<div style="margin-bottom:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px">
+            <span class="sub-brand-title sb-${i%3}" style="margin:0">${sv.sub.label}</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-weight:700">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
           </div>
           <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
@@ -610,7 +676,7 @@ function renderObjectiveView(){
       inner.className='obj-body-inner';
 
       const table = document.createElement('table');
-      const headHtml = `<thead><tr><th>Rep</th>${d.subs.map(s=>`<th class="num">${s.label}</th>`).join('')}<th>Status</th></tr></thead>`;
+      const headHtml = `<thead><tr><th>Rep</th>${d.subs.map((s,i)=>`<th class="num sb-col-${i%3}">${s.label}</th>`).join('')}<th>Status</th></tr></thead>`;
       let bodyRows = '';
       ROSTER.forEach(repName=>{
         const subVals = d.subs.map(s=>{const r=s.reps.find(x=>x.rep===repName); return {sub:s, r, val:r?r.qualifying:0};});
@@ -626,7 +692,7 @@ function renderObjectiveView(){
           return `<td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''}</td>`;
         }).join('');
         bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td></tr>`;
-        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}</div>`).join('');
+        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:14px"><div class="sub-brand-title sb-${i%3}">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}</div>`).join('');
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
       });
       table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
