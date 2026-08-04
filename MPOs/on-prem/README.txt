@@ -1,108 +1,138 @@
 On-Prem MPO Tracker
 
 Tracks each rep's progress toward the on-premise Monthly Program
-Objectives: Carbliss new buying accounts, Sapporo NA new buying
-accounts, and Wine & Spirits placements.
+Objectives. Each month's objectives are tracked on their own tab --
+July 2026 (Carbliss / Sapporo NA / Wine & Spirits) and August 2026
+(Boston Beer Angry Orchard / Molson Coors Peroni+Banquet / Wine &
+Spirits Yave+Leyenda) are entirely different programs, since Kohler
+changes the MPO objectives month to month.
 
 Month tabs: data lives in a per-month snapshot folder,
-data/<MONTH_KEY>/ (e.g. data/2026-07/), and index.html shows a tab
-bar (the MONTHS array near the top of the <script>) so every past
-month stays permanently viewable -- opening a new month's tab does
-not touch or overwrite an older one. To add a new month once its RDE
-exports/Snowflake tables are ready:
-  1. Append an entry to MONTHS in index.html, e.g.
-     {key:'2026-08', label:'August 2026', dir:'data/2026-08/'}.
-  2. Set MONTH_KEY to the same key at the top of generate.py, update
-     NEW_BUYER_WINDOW_START/END for the new month, and point the CSV
-     filenames at that month's exports (or, for the Snowflake path,
-     update sync_snowflake_data.py's output paths for this dashboard
-     to data/<MONTH_KEY>/ -- see that script's TABLES_TO_EXPORT).
-  3. Run generate.py -- it creates data/<MONTH_KEY>/ and writes the
-     three JSON files (+ sync_meta.json) there, leaving every earlier
-     month's folder untouched.
-  4. Commit and push. The new tab appears automatically; the newest
-     entry in MONTHS is NOT auto-selected as default -- MONTHS[0]
-     (the first entry) loads on page open, so re-order MONTHS if the
-     newest month should open by default.
-Note: as of 2026-08, August's on-premise MPO objectives/programs are
-themselves changing (different from July's Carbliss/Sapporo NA/Wine &
-Spirits structure) -- adding an August tab will need matching updates
-to OBJECTIVES, the builder functions, and possibly new CSV/JSON shapes
-in generate.py, not just a new MONTHS entry and refreshed data.
+data/<MONTH_KEY>/ (e.g. data/2026-07/, data/2026-08/), and index.html
+shows a tab bar so every past month stays permanently viewable --
+opening a new month's tab does not touch or overwrite an older one.
+The MOST RECENTLY ADDED entry in the MONTHS array (index.html) is the
+default/active tab on page load (MONTHS[MONTHS.length-1]), so append
+new months to the END of that array, not the start.
 
-Normally this page's data (data/<MONTH_KEY>/mpo_carbliss_new_buyers.json,
-data/<MONTH_KEY>/mpo_sapporo_na_new_buyers.json,
-data/<MONTH_KEY>/mpo_wine_spirits_placements.json) is refreshed
-automatically by .github/workflows/snowflake-sync.yml running
-sync_snowflake_data.py, which pulls straight from Snowflake tables
-MPO_CARBLISS_NEW_BUYERS / MPO_SAPPORO_NA_NEW_BUYERS_ON /
-MPO_WINE_SPIRITS_PLACEMENTS_ON. That workflow's schedule is currently
-paused (see the workflow file); its output paths still target the
-flat pre-month-tabs data/ folder and would need updating to match the
-current month's data/<MONTH_KEY>/ before being re-enabled.
+Because each month's objectives are usually different brands with
+different rules, EACH MONTH GETS ITS OWN generate_<MONTH_KEY>.py
+script (generate.py is specifically July's; generate_2026-08.py is
+August's) rather than one script branching on month -- the
+classification logic rarely has anything in common between two
+months' objectives. All of them write to data/<MONTH_KEY>/ and follow
+the same "raw transaction rows + a computed flag, fuzzy-matched
+client-side" pattern (see index.html's tokens()/findCol() and the
+Carbliss-style classification below) so index.html doesn't care
+whether a file came from a manual CSV parse or a Snowflake sync.
 
-Files (for a manual refresh, when Kohler sends the RDE report exports
-by hand instead):
-  carbliss_new_buyers.csv     RDE "Carbliss (15) New Buying Accounts"
-                               export: Sales Rep Name, Customer ID,
-                               Customer Name, Premise, Brand Family,
-                               Date, Buyers. The "Buyers" column is a
-                               raw Encompass flag and is NOT trusted --
-                               see classification logic below. As of the
-                               2026-07-28 refresh RDE started exporting
-                               this one under different headers (Sales
-                               Rep Assigned / Customer Num, no Premise
-                               column, two windowed "Buyer Count ..."
-                               columns instead of one "Buyers" flag) --
-                               generate.py's build_carbliss() accepts
-                               either header set (see pick_col()); the
-                               windowed Buyer Count columns aren't used
-                               either way since classification is driven
-                               off each row's own Date, and Premise
-                               defaults to "On Premise" when absent
-                               (this tracker is on-premise only).
-  sapporo_na_new_buyers.csv   RDE "Sapporo (2) New Buying Accounts"
-                               export: same shape plus Product Name,
-                               New Buyers (this flag IS used as-is --
-                               no known issue with it).
-  wine_spirits_placements.csv RDE "Wine & Spirits (3) Placements"
-                               export: Sales Rep Assigned, Product Num,
-                               Product Name, Customer Num, Customer
-                               Name, Premise, Date, Placement Count for
-                               the current month (passthrough, no
-                               classification needed).
-  generate.py                 Rebuilds the three JSON files above.
-  index.html                  The page itself.
+To add a new month once its RDE exports are ready:
+  1. Add a new generate_<MONTH_KEY>.py (copy the closest existing
+     month's script as a starting point) that reads that month's CSVs
+     and writes data/<MONTH_KEY>/*.json + sync_meta.json.
+  2. In index.html, add an OBJECTIVES_<MONTH_KEY> array (see
+     OBJECTIVES_2026_07 / OBJECTIVES_2026_08 near the top of the
+     <script> for the two supported shapes -- see "Objective types"
+     below) and a matching MONTHS entry at the END of the array:
+     {key:'<MONTH_KEY>', label:'<Month> 2026', dir:'data/<MONTH_KEY>/',
+      objectives: OBJECTIVES_<MONTH_KEY>, tables: [...]}.
+  3. Run the new generate_<MONTH_KEY>.py script.
+  4. Commit and push. The new tab appears and becomes the default.
 
-Carbliss new-buyer classification (per Kohler, 2026-07-21):
-Encompass's own "New Buyers" flag in the Carbliss export has been
-wrong -- e.g. Orange Lantern was flagged as a new buyer despite having
-bought Carbliss in both June and July. generate.py ignores that column
-entirely and instead classifies purely from each customer's purchase
-dates in the file: a customer is a new buyer if they have NO Carbliss
-purchase before NEW_BUYER_WINDOW_START and AT LEAST ONE purchase in
-[NEW_BUYER_WINDOW_START, NEW_BUYER_WINDOW_END] (both hardcoded at the
-top of generate.py -- currently July 2026, update them each month this
-is refreshed by hand). Every transaction row is kept in the output
-(the dashboard's rep detail view shows full activity, not just
-qualifying rows) -- NEW_BUYERS is set to 1 on exactly the customer's
-first qualifying purchase in the window and 0 on every other row for
-that customer, including any later purchases in the same window, so a
-repeat purchase never double-counts toward a rep's 15-account goal.
+Objective types (index.html):
+  'new_accounts'  Single metric, one file, one target -- a rep either
+                  qualifies N times or doesn't. Carbliss, Sapporo NA,
+                  and August's Angry Orchard all use this (built by
+                  buildNewAccountsDataset(), which fuzzy-matches a
+                  "new buyer"/"is new"/"new placement" flag column).
+  'placements'    Single metric, no new-vs-repeat distinction, just a
+                  summed count column (July's Wine & Spirits).
+  'buyer_count'   Single metric, no new-vs-repeat distinction, but
+                  counts DISTINCT buying accounts rather than summing
+                  a count column (August's Wine & Spirits Yave/
+                  Leyenda -- built by buildBuyerCountDataset()).
+  'dual'          TWO independent brand-family sub-targets under ONE
+                  objective (e.g. "4 New Peroni + 4 New Banquet"), that
+                  BOTH must be hit for the objective to count as
+                  achieved -- not a combined pool (confirmed with
+                  Gavin, 2026-08-04). One raw JSON file is split
+                  client-side by a brand-family column (see each
+                  table's `dual`/`brandField`/`subs` config in MONTHS)
+                  into two sub-datasets, each built with the sub's own
+                  builder/target. August's Molson Coors and Wine &
+                  Spirits both use this.
+  'photos'        Placeholder only (hasData:false) -- no iSellBeer
+                  photo-count data source exists yet for any month.
 
-Sapporo NA and Wine & Spirits are simple passthroughs -- their columns
-are used as exported, no reclassification.
+"90-Day Non-Buy" new-placement classification (Angry Orchard, and
+Peroni/Banquet independently within Molson Coors -- per Kohler,
+2026-08-04): a customer's row on a given date is a NEW placement only
+if they have NO purchase of that brand before NEW_BUYER_WINDOW_START
+(i.e. in the prior ~3 months) AND DO have a purchase of it in the
+current month. A customer who bought before the window and buys again
+in it is a regular repeat placement and does NOT count. Same
+date-based, per-transaction-row approach as July's Carbliss
+classification (see generate.py) -- every transaction row is kept in
+the output, NEW_PLACEMENT is set to 1 on exactly the customer's first
+qualifying row and 0 on every other row for that customer+brand, so a
+repeat purchase never double-counts. See
+generate_2026-08.py's classify_new_placements() -- it's brand-scoped
+(the `brand_key` argument), so Molson Coors classifies Peroni and
+Coors/Banquet completely independently per customer.
 
-To refresh manually:
+Files:
+  July 2026 (see generate.py's own docstring for full detail):
+    carbliss_new_buyers.csv, sapporo_na_new_buyers.csv,
+    wine_spirits_placements.csv, generate.py
+
+  August 2026 (see generate_2026-08.py's own docstring for full detail):
+    angry_orchard_new_lines.csv       RDE "2 New Angry Orchard Draft
+                                        Lines" export.
+    molson_coors_peroni_banquet.csv   RDE "Molson Coors ON (4) New
+                                        Peroni Placements (4) New
+                                        Banquet Placements 90 Day Non
+                                        Buy" export -- Brand Family is
+                                        "Peroni" or "Coors" ("Coors" =
+                                        the Banquet objective's raw
+                                        brand label in RDE).
+    wine_spirits_yave_leyenda.csv     RDE "2 Yave Buying Accounts 2
+                                        Leyenda Buying Accounts" export
+                                        -- August-only window (no prior
+                                        months), since this objective is
+                                        a plain buyer count, not a
+                                        new-vs-repeat classification.
+                                        As of the 2026-08-04 refresh
+                                        this file has zero Leyenda rows
+                                        (no Leyenda buyers yet that
+                                        early in the month) -- that's
+                                        expected, not a data bug.
+    generate_2026-08.py               Rebuilds the three JSON files
+                                        above.
+
+  index.html   The page itself (shared by every month).
+
+Normally each month's data is refreshed automatically by
+.github/workflows/snowflake-sync.yml running sync_snowflake_data.py --
+that workflow's schedule is currently paused (see the workflow file),
+its output paths still target the old flat pre-month-tabs data/
+folder, and it was only ever wired up for July's three Snowflake
+tables anyway. August's objectives don't have Snowflake tables yet, so
+it's manual-CSV-only for now.
+
+To refresh July manually:
   1. Save the new exports over carbliss_new_buyers.csv /
      sapporo_na_new_buyers.csv / wine_spirits_placements.csv (same
      column headers).
-  2. If refreshing for a new month, update MONTH_KEY and
-     NEW_BUYER_WINDOW_START / NEW_BUYER_WINDOW_END at the top of
-     generate.py, and add the matching entry to MONTHS in index.html
-     (see "Month tabs" above).
-  3. Run: python3 generate.py -- it prints how many customers
+  2. Run: python3 generate.py -- it prints how many customers
      qualified as new buyers out of how many appeared in the export,
-     worth a sanity check against what you'd expect, and confirms
-     which data/<MONTH_KEY>/ folder it wrote to.
-  4. Commit and push.
+     worth a sanity check against what you'd expect.
+  3. Commit and push.
+
+To refresh August manually:
+  1. Save the new exports over angry_orchard_new_lines.csv /
+     molson_coors_peroni_banquet.csv / wine_spirits_yave_leyenda.csv
+     (same column headers).
+  2. Run: python3 generate_2026-08.py -- it prints how many new
+     placements qualified out of how many customer+brand pairs
+     appeared in each export.
+  3. Commit and push.

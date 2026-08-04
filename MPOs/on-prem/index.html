@@ -200,23 +200,54 @@
 
 <script>
 let DATA = {};
-
-// Each entry is a permanent monthly snapshot -- add a new one here (and
-// point generate.py's MONTH_KEY at the same key) once a new month's RDE
-// exports/Snowflake sync are ready. Earlier months stay viewable forever.
-const MONTHS = [
-  {key:'2026-07', label:'July 2026', dir:'data/2026-07/'},
-];
-let activeMonth = MONTHS[0].key;
-
-const OBJECTIVES = [
-  {key:'carbliss', name:'Carbliss – (15) New Buying Accounts per Rep', weight:0.60, type:'new_accounts', hasData:true},
-  {key:'sapporo_na', name:'Sapporo – (2) New Buying Accounts Sapporo NA per Rep', weight:0.20, type:'new_accounts', hasData:true},
-  {key:'wine_spirits', name:'Wine & Spirits – (3) Placements per Rep', weight:0.10, type:'placements', hasData:true},
-  {key:'isellbeer', name:'iSellBeer Execution – (4) Qualifying Photos per Rep', weight:0.10, type:'photos', hasData:false},
-];
+let OBJECTIVES = [];
 
 const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+
+const OBJECTIVES_2026_07 = [
+  {key:'carbliss', name:'Carbliss – (15) New Buying Accounts per Rep', shortName:'Carbliss', weight:0.60, type:'new_accounts', hasData:true, goalLabel:'15 new accounts each'},
+  {key:'sapporo_na', name:'Sapporo – (2) New Buying Accounts Sapporo NA per Rep', shortName:'Sapporo NA', weight:0.20, type:'new_accounts', hasData:true, goalLabel:'2 new accounts each'},
+  {key:'wine_spirits', name:'Wine & Spirits – (3) Placements per Rep', shortName:'W&S', weight:0.10, type:'placements', hasData:true, goalLabel:'3 placements each'},
+  {key:'isellbeer', name:'iSellBeer Execution – (4) Qualifying Photos per Rep', shortName:'iSellBeer', weight:0.10, type:'photos', hasData:false},
+];
+
+// August's objectives are entirely different brands/rules from July's (per
+// Kohler, 2026-08-04) -- see generate_2026-08.py for the "90-Day Non-Buy"
+// new-placement classification (Angry Orchard, and Peroni/Banquet
+// independently within the Molson Coors objective). Wine & Spirits
+// (Yave/Leyenda) is a plain distinct-buyer count in August, no new-vs-repeat
+// distinction. Molson Coors and Wine & Spirits are both "dual" objectives --
+// two brand-family sub-targets that must BOTH be hit for the objective to
+// count as achieved (confirmed with Gavin 2026-08-04), not a combined pool.
+const OBJECTIVES_2026_08 = [
+  {key:'angry_orchard', name:'Boston Beer – (2) New Angry Orchard Draft Lines', shortName:'Angry Orchard', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'2 new lines each', flagLabel:'New Placement'},
+  {key:'molson_coors', name:'Molson Coors – (4) New Peroni Placements, (4) New Banquet Placements', shortName:'Molson Coors', weight:0.25, type:'dual', hasData:true, goalLabel:'4 Peroni + 4 Banquet each',
+    subs:[{key:'peroni', label:'Peroni', match:'peroni', target:4, flagLabel:'New Placement'}, {key:'banquet', label:'Banquet', match:'coors', target:4, flagLabel:'New Placement'}]},
+  {key:'wine_spirits', name:'Wine & Spirits – (2) Yave Buying Accounts, (2) Leyenda Buying Accounts', shortName:'Wine & Spirits', weight:0.25, type:'dual', hasData:true, goalLabel:'2 Yave + 2 Leyenda each',
+    subs:[{key:'yave', label:'Yave', match:'yave', target:2, flagLabel:'Qualifying Buyer', buyerCount:true}, {key:'leyenda', label:'Leyenda', match:'leyenda', target:2, flagLabel:'Qualifying Buyer', buyerCount:true}]},
+  {key:'isellbeer', name:'iSellBeer Execution – Submit (4) Qualifying Photos in iSellBeer', shortName:'iSellBeer', weight:0.25, type:'photos', hasData:false},
+];
+
+// Each entry is a permanent monthly snapshot -- add a new one here (and a
+// matching generate_<key>.py, and its own objectives list above) once a new
+// month's RDE exports are ready. Earlier months stay viewable forever.
+// MONTHS[MONTHS.length-1] is the default/active tab on page load, so the
+// most-recently-added month should stay last in this array.
+const MONTHS = [
+  {key:'2026-07', label:'July 2026', dir:'data/2026-07/', objectives: OBJECTIVES_2026_07, tables: [
+    {objKey:'carbliss', file:'mpo_carbliss_new_buyers.json', target:15, builder:'new_accounts'},
+    {objKey:'sapporo_na', file:'mpo_sapporo_na_new_buyers.json', target:2, builder:'new_accounts'},
+    {objKey:'wine_spirits', file:'mpo_wine_spirits_placements.json', target:3, builder:'placements'},
+  ]},
+  {key:'2026-08', label:'August 2026', dir:'data/2026-08/', objectives: OBJECTIVES_2026_08, tables: [
+    {objKey:'angry_orchard', file:'mpo_angry_orchard.json', target:2, builder:'new_accounts'},
+    {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
+      subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts'},
+    {objKey:'wine_spirits', file:'mpo_wine_spirits_yave_leyenda.json', dual:true, brandField:'BRAND_FAMILY',
+      subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'buyer_count'},
+  ]},
+];
+let activeMonth = MONTHS[MONTHS.length-1].key;
 
 // ---- Snowflake JSON -> DATA builder ----
 // Column names in the synced tables aren't guaranteed, so match by
@@ -244,7 +275,7 @@ function truthyFlag(v){const s=String(v==null?"":v).trim().toLowerCase();return 
 const REP_COLS=[["rep","name"],["rep"]];
 const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["account"],["location"]];
 const DATE_COLS=[["date"]];
-const NEWBUYER_COLS=[["new","buyer"],["is","new"]];
+const NEWBUYER_COLS=[["new","buyer"],["is","new"],["new","placement"]];
 const PRODUCT_COLS=[["product","name"],["product","desc"],["product"],["brand"],["item"]];
 const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
 
@@ -292,6 +323,33 @@ function buildPlacementsDataset(rows, target){
   return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
 }
 
+// Plain distinct-buying-account count per rep, no new-vs-repeat
+// classification (used by objectives like Wine & Spirits Yave/Leyenda,
+// where the source window IS the current month -- every row already
+// qualifies). Every line is marked new_buyer:"1" so it reuses
+// lineTableNewAccounts()'s rendering, just with a different flagLabel.
+function buildBuyerCountDataset(rows, target){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS), dateCol=findCol(rows[0],DATE_COLS);
+  if(!repCol||!custCol) return null;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r[repCol]||"").trim(); if(!rep) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:dateCol?String(r[dateCol]||"").trim():"", new_buyer:"1"});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    lines.sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+    const distinct=new Set(lines.map(l=>l.customer));
+    reps.push({rep, qualifying:distinct.size, accounts:[...distinct], lines});
+  });
+  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+}
+
+const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset};
+
 function showDataError(msg){
   document.getElementById('kpi-strip').innerHTML='';
   document.getElementById('objectives').innerHTML=`<div class="empty-obj"><div>${msg}</div></div>`;
@@ -311,6 +369,7 @@ async function loadMonth(monthKey){
   const month = MONTHS.find(m=>m.key===monthKey);
   if(!month) return;
   activeMonth = monthKey;
+  OBJECTIVES = month.objectives;
   DATA = {};
   activeRep = null;
   renderMonthBar();
@@ -319,21 +378,31 @@ async function loadMonth(monthKey){
   document.getElementById('updated-line').innerHTML = '';
 
   const cb="?_="+Date.now();
-  const TABLE_CONFIG=[
-    {key:'carbliss', file:month.dir+'mpo_carbliss_new_buyers.json', target:15, builder:buildNewAccountsDataset},
-    {key:'sapporo_na', file:month.dir+'mpo_sapporo_na_new_buyers.json', target:2, builder:buildNewAccountsDataset},
-    {key:'wine_spirits', file:month.dir+'mpo_wine_spirits_placements.json', target:3, builder:buildPlacementsDataset},
-  ];
-  for(const t of TABLE_CONFIG){
+  for(const t of month.tables){
     try{
-      const res=await fetch(t.file+cb,{cache:"no-store"});
+      const res=await fetch(month.dir+t.file+cb,{cache:"no-store"});
       if(!res.ok) continue;
       const rows=await res.json();
-      const built=t.builder(rows, t.target);
-      if(built) DATA[t.key]=built;
+      const builder=BUILDERS[t.builder];
+      if(t.dual){
+        const subs=t.subs.map(s=>{
+          const subRows=rows.filter(r=>String(r[t.brandField]||"").toLowerCase().includes(s.match));
+          const built=builder(subRows, s.target);
+          return {...s, ...(built||{reps:[],reps_at_goal:0,reps_total:ROSTER.length,target_per_rep:s.target})};
+        });
+        const reps_at_goal=ROSTER.filter(name=>subs.every(s=>{
+          const r=s.reps.find(x=>x.rep===name);
+          return r?r.qualifying>=s.target:false;
+        })).length;
+        DATA[t.objKey]={subs, reps_at_goal, reps_total:ROSTER.length};
+      } else {
+        const built=builder(rows, t.target);
+        if(built) DATA[t.objKey]=built;
+      }
     }catch(e){}
   }
-  if(!DATA.carbliss||!DATA.sapporo_na||!DATA.wine_spirits){
+  const missing=OBJECTIVES.filter(o=>o.hasData && !DATA[o.key]);
+  if(missing.length){
     showDataError("Couldn't load synced MPO data. Check that the Snowflake sync workflow has run and that "+month.dir+"mpo_*.json files exist with recognizable rep/customer/date columns.");
     return;
   }
@@ -364,11 +433,13 @@ function renderKPIs(){
   strip.innerHTML = '';
   const weighted = OBJECTIVES.reduce((s,o)=>s+o.weight*objPct(o),0);
   const kpis = [
-    {label:'Weighted MPO Complete', val: weighted.toFixed(0)+'%', cls: weighted>=90?'good':(weighted>=50?'':'warn'), sub:'across all 4 objectives'},
-    {label:'Carbliss – Reps at Goal', val: DATA.carbliss.reps_at_goal+' / '+DATA.carbliss.reps_total, cls:'warn', sub:'15 new accounts each'},
-    {label:'Sapporo NA – Reps at Goal', val: DATA.sapporo_na.reps_at_goal+' / '+DATA.sapporo_na.reps_total, cls:'warn', sub:'2 new accounts each'},
-    {label:'W&S – Reps at Goal', val: DATA.wine_spirits.reps_at_goal+' / '+DATA.wine_spirits.reps_total, cls:'warn', sub:'3 placements each'},
+    {label:'Weighted MPO Complete', val: weighted.toFixed(0)+'%', cls: weighted>=90?'good':(weighted>=50?'':'warn'), sub:`across all ${OBJECTIVES.length} objectives`},
   ];
+  OBJECTIVES.forEach(o=>{
+    if(!o.hasData) return;
+    const d = DATA[o.key];
+    kpis.push({label:(o.shortName||o.name)+' – Reps at Goal', val: d.reps_at_goal+' / '+d.reps_total, cls:'warn', sub:o.goalLabel||''});
+  });
   kpis.forEach(k=>{
     const el = document.createElement('div');
     el.className='kpi';
@@ -396,9 +467,10 @@ function renderRepBar(){
   bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click',()=>{activeRep=b.dataset.rep;renderMain();window.scrollTo({top:0,behavior:'smooth'});}));
 }
 
-function lineTableNewAccounts(lines){
+function lineTableNewAccounts(lines, flagLabel){
+  flagLabel = flagLabel || 'New Buyer';
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
-  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ New Buyer</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
+  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ '+flagLabel+'</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
   return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function lineTablePlacements(lines){
@@ -427,6 +499,41 @@ function renderRepView(){
       container.appendChild(card);
       return;
     }
+
+    if(o.type==='dual'){
+      const d = DATA[o.key];
+      const subVals = d.subs.map(s=>{const r=s.reps.find(x=>x.rep===activeRep); return {sub:s, r, val:r?r.qualifying:0};});
+      const allHit = subVals.every(sv=>sv.val>=sv.sub.target);
+      const head = document.createElement('div');
+      head.className='obj-head static';
+      head.innerHTML = `
+        <div class="obj-left" style="width:100%">
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div>
+        </div>
+        <div class="obj-right"><div class="obj-progress-sub">${allHit?'<span class="flag-hit">✓ At goal</span>':'In progress'}</div></div>`;
+      card.appendChild(head);
+      const body = document.createElement('div');
+      body.className='obj-body';
+      const inner = document.createElement('div');
+      inner.className='obj-body-inner';
+      inner.style.paddingTop='0';
+      inner.innerHTML = subVals.map(sv=>{
+        const pct=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target, hit=sv.val>=sv.sub.target;
+        return `<div style="margin-bottom:18px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:12px">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px">${sv.sub.label}</span>
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
+          </div>
+          <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
+          ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'}
+        </div>`;
+      }).join('');
+      body.appendChild(inner);
+      card.appendChild(body);
+      container.appendChild(card);
+      return;
+    }
+
     const d = DATA[o.key];
     const target = d.target_per_rep;
     const r = repFind(o.key, activeRep);
@@ -453,7 +560,7 @@ function renderRepView(){
     if(!r){
       inner.innerHTML = '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>';
     } else if(o.type==='new_accounts'){
-      inner.innerHTML = lineTableNewAccounts(r.lines);
+      inner.innerHTML = lineTableNewAccounts(r.lines, o.flagLabel);
     } else {
       inner.innerHTML = lineTablePlacements(r.lines);
     }
@@ -475,6 +582,64 @@ function renderObjectiveView(){
           <div><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div></div>
           <div class="empty-tag">No data yet</div>
         </div>`;
+      container.appendChild(card);
+      return;
+    }
+
+    if(o.type==='dual'){
+      const d = DATA[o.key];
+      const pct = objPct(o);
+      const goalTagsHtml = d.subs.map(s=>`<span class="goal-tag">${s.label} ${s.target}</span>`).join('');
+      const head = document.createElement('div');
+      head.className='obj-head';
+      head.innerHTML = `
+        <div class="obj-left">
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span>${goalTagsHtml}</div>
+          <div class="obj-bar-track"><div class="obj-bar-fill" style="width:${pct}%"></div></div>
+        </div>
+        <div class="obj-right">
+          <div><div class="obj-progress-txt">${d.reps_at_goal} / ${d.reps_total}</div><div class="obj-progress-sub">reps at goal (both required)</div></div>
+          <div class="chev">▶</div>
+        </div>`;
+      head.addEventListener('click',()=>card.classList.toggle('open'));
+      card.appendChild(head);
+
+      const body = document.createElement('div');
+      body.className='obj-body';
+      const inner = document.createElement('div');
+      inner.className='obj-body-inner';
+
+      const table = document.createElement('table');
+      const headHtml = `<thead><tr><th>Rep</th>${d.subs.map(s=>`<th class="num">${s.label}</th>`).join('')}<th>Status</th></tr></thead>`;
+      let bodyRows = '';
+      ROSTER.forEach(repName=>{
+        const subVals = d.subs.map(s=>{const r=s.reps.find(x=>x.rep===repName); return {sub:s, r, val:r?r.qualifying:0};});
+        const hasAny = subVals.some(sv=>sv.r);
+        if(!hasAny){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td>${d.subs.map(()=>'<td class="num">—</td>').join('')}<td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
+        const rowId = 'row'+(uid++);
+        const allHit = subVals.every(sv=>sv.val>=sv.sub.target);
+        const cells = subVals.map(sv=>{
+          const rp=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target;
+          return `<td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''}</td>`;
+        }).join('');
+        bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td></tr>`;
+        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}</div>`).join('');
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
+      });
+      table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
+      inner.appendChild(table);
+      table.querySelectorAll('.rep-row').forEach(row=>{
+        row.addEventListener('click',()=>{
+          const sub=document.getElementById(row.dataset.target);
+          sub.classList.toggle('open');
+          row.classList.toggle('expanded');
+        });
+      });
+      body.appendChild(inner);
+      card.appendChild(body);
       container.appendChild(card);
       return;
     }
@@ -525,7 +690,7 @@ function renderObjectiveView(){
           <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.qualifying} / ${target}${over?'<span class="over-badge">+'+(r.qualifying-target)+' over</span>':''}</td>
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTableNewAccounts(r.lines)}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTableNewAccounts(r.lines, o.flagLabel)}</td></tr>`;
       });
     } else if(o.type==='placements'){
       headHtml = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead>`;
