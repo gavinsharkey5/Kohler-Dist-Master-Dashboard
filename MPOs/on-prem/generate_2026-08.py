@@ -59,7 +59,11 @@ answering which of a rep's OWN accounts don't carry the brand yet and are
 worth chasing. Built by crossing three sources:
   1. sales_reps_customer_base.csv  -- the rep's full account base (every
      customer they cover), deduped by Customer Num since an account can
-     appear more than once with a different Shipping Address.
+     appear more than once with a different Shipping Address. On-Premise
+     only (per Kohler, 2026-08-05, via the export's own Premise column)
+     -- this dashboard is on-prem, so off-premise accounts in a rep's
+     book are never valid targets here even if they don't carry the
+     brand yet.
   2. angry_orchard_new_lines.csv / molson_coors_peroni_banquet.csv -- ANY
      customer appearing here at all (new-placement flag or not) already
      has recent purchase history of that brand, so they're excluded --
@@ -71,7 +75,13 @@ worth chasing. Built by crossing three sources:
      that brand there); a prospect in a county with no whitelist row at
      all (e.g. Middlesex, which isn't part of the tracked core territory)
      is kept but marked TERRITORY_STATUS "UNKNOWN" rather than silently
-     assumed sellable.
+     assumed sellable. Each account's county comes from the workbook's
+     "Customers Table (Enc)" sheet (load_customer_area_overrides()), not
+     the CSV's own Area column -- the CSV's Area falls back to a "Sales"
+     placeholder for accounts missing geographic data on that export
+     path (still ~5% of on-premise accounts even after Kohler's 2026-08-05
+     refresh), and every one of those resolves to a real county in this
+     sheet instead, closing most of the "Sales" UNKNOWN-territory gap.
 Molson Coors' Peroni and Coors (Banquet) targets are computed
 independently per brand, same as the placement classification.
 
@@ -205,9 +215,31 @@ def build_wine_spirits():
     return out
 
 
-def load_customer_base():
+def load_customer_area_overrides():
+    """Customer Num -> authoritative Distribution Area, from the
+    workbook's "Customers Table (Enc)" sheet. The customer-base CSV
+    export's own Area column falls back to a "Sales" (or "Middlesex not
+    in use") placeholder for accounts missing geographic data on that
+    export path -- every one of those checked against this sheet (2026-
+    08-05) resolves to a real county here instead, and every OTHER
+    account's Area agrees with this sheet exactly, so this is preferred
+    whenever present rather than only patching the placeholder rows."""
+    wb = load_workbook(WHITELIST_XLSX, data_only=True)
+    ws = wb["Customers Table (Enc)"]
+    lookup = {}
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        cust_id, dist_area = row[0], row[7]
+        if cust_id is None or not dist_area:
+            continue
+        lookup[str(cust_id)] = dist_area.strip()
+    return lookup
+
+
+def load_customer_base(area_overrides):
     """Dedupes to one entry per (rep, customer) -- the same account can
-    have multiple rows in the export (one per Shipping Address)."""
+    have multiple rows in the export (one per Shipping Address). On-
+    Premise only (per Kohler, 2026-08-05) -- the on-prem dashboard's
+    Target Accounts shouldn't suggest off-premise accounts."""
     rows = load_csv(CUSTOMER_BASE_CSV)
     by_rep = {}
     seen = set()
@@ -216,14 +248,17 @@ def load_customer_base():
         cust_num = r["Customer Num"].strip()
         if not rep or not cust_num:
             continue
+        if r["Premise"].strip() != "On Premise":
+            continue
         key = (rep, cust_num)
         if key in seen:
             continue
         seen.add(key)
+        area = area_overrides.get(cust_num) or r["Area"].strip()
         by_rep.setdefault(rep, []).append({
             "customer_num": cust_num,
             "customer_name": r["Customer Name"].strip(),
-            "area": r["Area"].strip(),
+            "area": area,
         })
     return by_rep
 
@@ -282,7 +317,8 @@ def main():
     molson_coors_rows, mc_new, mc_total = build_molson_coors()
     wine_spirits_rows = build_wine_spirits()
 
-    customer_base_by_rep = load_customer_base()
+    area_overrides = load_customer_area_overrides()
+    customer_base_by_rep = load_customer_base(area_overrides)
     whitelist = load_whitelist()
 
     targets_angry_orchard, ao_unknown = build_targets(

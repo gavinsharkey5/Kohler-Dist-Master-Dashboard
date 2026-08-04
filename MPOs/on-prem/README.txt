@@ -78,11 +78,23 @@ Gavin, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
 so skip the territory filter there): a collapsed-by-default "who to go
 after" list under each rep, for objectives whose table config has a
 `targetsFile` (see MONTHS in index.html). Built server-side by
-generate_2026-08.py's build_targets() -- a rep's account base MINUS
-customers who already carry the brand MINUS customers in a county Kohler
-doesn't hold sell rights to for that brand (see kohler_brands_whitelist_
-blacklist.xlsx below); a county with no whitelist data at all is kept but
-flagged "Unverified territory" rather than assumed sellable. Rendered by
+generate_2026-08.py's build_targets() -- a rep's ON-PREMISE-only account
+base (per Kohler, 2026-08-05, via the customer-base export's Premise
+column -- this dashboard is on-prem, so off-premise accounts are never
+valid targets here) MINUS customers who already carry the brand MINUS
+customers in a county Kohler doesn't hold sell rights to for that brand
+(see kohler_brands_whitelist_blacklist.xlsx below); a county with no
+whitelist data at all is kept but flagged "Unverified territory" rather
+than assumed sellable. Each account's county comes from the whitelist
+workbook's "Customers Table (Enc)" sheet, not the CSV's own Area column
+-- the CSV's Area falls back to a "Sales" placeholder for accounts
+missing geographic data on that export path, and that sheet resolves
+essentially all of them to a real, whitelist-covered county (load_
+customer_area_overrides() in generate_2026-08.py) -- this closed the
+"Sales"-territory gap from 115 UNKNOWN prospects down to 6 (2026-08-05;
+the remaining 6 are accounts not present in that sheet at all, or in
+Middlesex County, which isn't part of the whitelist's tracked counties).
+Rendered by
 targetsBlockHtml()/groupTargetsByRep() in index.html -- shown for EVERY
 rep with prospects, even one with zero current-month activity (that's
 often exactly the rep who most needs the list), via the `hasTargets`
@@ -135,24 +147,31 @@ Files:
                                         Territory" export: Sales Rep
                                         Assigned, Customer Num, Customer
                                         Name, Shipping Address, City,
-                                        Area, Cases -- one row per rep/
-                                        account/shipping-address (so some
-                                        accounts appear more than once);
-                                        the Target Accounts feature dedupes
-                                        by Customer Num. Also has ~4 rows
-                                        for non-rep entities (e.g. "Default",
-                                        "Office Tell Sell") not in ROSTER --
-                                        harmless, they're just never looked
-                                        up since rendering only iterates
-                                        ROSTER.
+                                        Area, Premise, Cases -- one row per
+                                        rep/account/shipping-address (so
+                                        some accounts appear more than
+                                        once); the Target Accounts feature
+                                        dedupes by Customer Num and keeps
+                                        only Premise=="On Premise" rows
+                                        (added 2026-08-05). Also has ~4
+                                        rows for non-rep entities (e.g.
+                                        "Default", "Office Tell Sell") not
+                                        in ROSTER -- harmless, they're just
+                                        never looked up since rendering
+                                        only iterates ROSTER.
     kohler_brands_whitelist_blacklist.xlsx
                                        Kohler's per-brand-family,
-                                        per-county sell authorization
-                                        ("Master - US vs THEM" tab is the
-                                        one generate_2026-08.py reads --
-                                        flat one-row-per-brand+county,
-                                        Final Determination is "US" or
-                                        "THEM"). Only used for Target
+                                        per-county sell authorization.
+                                        Two tabs matter to generate_2026-08.py:
+                                        "Master - US vs THEM" (flat one-
+                                        row-per-brand+county, Final
+                                        Determination is "US" or "THEM")
+                                        and "Customers Table (Enc)"
+                                        (Customer ID -> Distribution Area,
+                                        added 2026-08-05 -- the
+                                        authoritative county per account,
+                                        used instead of the CSV's own Area
+                                        column). Only used for Target
                                         Accounts (Angry Orchard, Peroni,
                                         Coors/Banquet); Wine & Spirits
                                         doesn't need it since Yave/Leyenda
