@@ -12,7 +12,7 @@
     --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6A7180;
     --line:#2A2E38;--line-soft:#20242D;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
-    --brewery:#F4B83E;--kohler:#5B8DEF;
+    --brewery:#F4B83E;--kohler:#5B8DEF;--kohler-deep:#2C4670;
     --good:#37C46B;--good-soft:#12301E;--bad:#E5604D;--bad-soft:#33191A;
     --input-bg:#101318;--input-border:#3A4155;
   }
@@ -21,33 +21,45 @@
   body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
     font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14.5px;line-height:1.5;
     padding:0 18px 60px}
+  /* Kohler Distributing brand bar -- blue sampled from the company's own
+     banner logo (index.html), since kohlerdistributing.co itself isn't
+     reachable from this environment to pull an exact palette from. */
+  body::before{content:"";display:block;height:4px;margin:0 -18px;
+    background:linear-gradient(90deg,var(--kohler-deep),var(--kohler) 45%,#7FA6EE 75%,var(--kohler))}
   .wrap{max-width:1950px;margin:0 auto}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
   a{color:inherit}
 
   header{padding:30px 0 6px}
   .backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:14px}
-  .backlink:hover{color:var(--ink)}
+  .backlink:hover{color:var(--kohler)}
   .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0}
   .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
   .sub b{color:var(--ink)}
 
   .tabs{display:flex;gap:4px;margin:22px 0 0;flex-wrap:wrap}
-  .tab{background:var(--card);border:1px solid var(--line);color:var(--ink-soft);font:inherit;font-size:13px;font-weight:600;
-    padding:9px 16px;border-radius:9px 9px 0 0;cursor:pointer;border-bottom:none}
-  .tab.active{background:var(--card-h);color:var(--ink)}
+  .tab{background:var(--card);border:1px solid var(--line);border-top:2px solid transparent;color:var(--ink-soft);font:inherit;font-size:13px;font-weight:600;
+    padding:8px 16px;border-radius:9px 9px 0 0;cursor:pointer;border-bottom:none}
+  .tab:hover{color:var(--ink)}
+  .tab.active{background:var(--card-h);color:var(--ink);border-top-color:var(--kohler)}
   .tab .count{color:var(--ink-mute);font-weight:400;margin-left:4px}
   .view{display:none}
   .view.active{display:block}
 
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:0 0 22px}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px;box-shadow:var(--shadow)}
-  .kpi .lbl{font-size:11.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:0 0 28px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--kohler);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
+  .kpi .lbl{font-size:11.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px}
   .kpi .val{font-family:"Space Grotesk";font-weight:700;font-size:24px;letter-spacing:-.01em}
-  .kpi .sub2{font-size:12.5px;color:var(--ink-soft);margin-top:5px}
+  .kpi .sub2{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
   @media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  .kpi.breakdown{padding:18px 22px 20px}
+  .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:2px}
+  .statusgrid .srow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
+  .statusgrid .srow .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .statusgrid .srow .n{font-family:"Space Grotesk";font-weight:700;color:var(--ink);font-size:16px;margin-left:auto}
 
   section.panel{background:var(--card);border:1px solid var(--line);border-radius:0 14px 14px 14px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
   section.panel h2{font-family:"Space Grotesk";font-size:17px;margin:0 0 4px}
@@ -61,18 +73,19 @@
   .controls input[type=search],.controls select{background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
     border-radius:9px;padding:8px 12px;font:inherit;font-size:13px}
   .controls input[type=search]{min-width:220px}
+  .controls input[type=search]:focus,.controls select:focus{outline:2px solid var(--kohler);outline-offset:1px;border-color:var(--kohler)}
   .btn{background:none;border:1px solid var(--input-border);color:var(--ink-soft);font:inherit;font-size:12.5px;font-weight:600;
     padding:8px 13px;border-radius:9px;cursor:pointer}
-  .btn:hover{color:var(--ink);border-color:var(--ink-soft)}
+  .btn:hover{color:var(--kohler);border-color:var(--kohler)}
   .spacer{flex:1}
   .rowcount{font-size:12px;color:var(--ink-mute)}
 
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 14px}
   .legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
-  .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
+  .legend .sw{width:13px;height:13px;border-radius:4px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
 
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-  table{border-collapse:collapse;table-layout:fixed}
+  table{border-collapse:collapse;table-layout:fixed;margin:0 auto}
   thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
     overflow:hidden;text-overflow:ellipsis}
@@ -99,11 +112,16 @@
   .status-badge.on-track{background:var(--good-soft);color:var(--good)}
   .status-badge.no-goal{background:var(--ink-soft-bg,rgba(128,128,128,.14));color:var(--ink-soft)}
 
-  .grp-brewery{background:rgba(244,184,62,.06)}
-  .grp-kohler{background:rgba(91,141,239,.06)}
-  th.grp-first,td.grp-first{border-left:2px solid var(--line)}
+  .grp-brewery{background:rgba(244,184,62,.10)}
+  .grp-kohler{background:rgba(91,141,239,.10)}
+  thead th.grp-brewery{background:rgba(244,184,62,.22);color:var(--brewery)}
+  thead th.grp-kohler{background:rgba(91,141,239,.22);color:var(--kohler)}
+  thead th.grp-brewery:hover,thead th.grp-kohler:hover{color:var(--ink)}
+  th.grp-first,td.grp-first{border-left:3px solid var(--line)}
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
+  tbody tr:hover td.grp-brewery{background:rgba(244,184,62,.16)}
+  tbody tr:hover td.grp-kohler{background:rgba(91,141,239,.16)}
 
   .combo-suprow td{background:#0A0B0F;font-weight:600;border-bottom:1px solid var(--line)}
   .combo-suprow:hover td{background:#0F1116}
@@ -1224,17 +1242,32 @@ function renderComboKPIs(){
   const totalCurrent = all.reduce((a,r)=>a+(r.ce_current||0),0);
   const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
   const totalProjFinish = all.reduce((a,r)=>a+(r.proj_finish_2026_ce||0),0);
-  const behindBrewery = all.filter(r=>r.gap_brewery!=null && r.gap_brewery<0).length;
-  const behindKohler = all.filter(r=>r.gap_kohler!=null && r.gap_kohler<0).length;
   const totalBrands = DATA.comboGroups.reduce((a,g)=>a+g.children.length,0);
+
+  const statuses = all.map(r=>statusOf(r).label);
+  const onPace = statuses.filter(s=>s==='On Pace').length;
+  const behindBrewery = statuses.filter(s=>s==='Behind Brewery').length;
+  const behindKohler = statuses.filter(s=>s==='Behind Kohler').length;
+  const behindBoth = statuses.filter(s=>s==='Behind Both').length;
+
   const tiles = [
     {lbl:'Suppliers Tracked', val:fmtCE(total), sub:`rolling up ${fmtCE(totalBrands)} brand families`},
     {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked suppliers'},
     {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
-    {lbl:'Behind Brewery Goal', val:`${behindBrewery} / ${total}`, sub:'suppliers behind their own goal'},
-    {lbl:'Behind Kohler Goal', val:`${behindKohler} / ${total}`, sub:'suppliers behind their own goal'},
   ];
-  document.getElementById('comboKpis').innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
+  const kpisEl = document.getElementById('comboKpis');
+  kpisEl.innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
+
+  const breakdown = document.createElement('div');
+  breakdown.className = 'kpi breakdown';
+  breakdown.innerHTML = `<p class="lbl">Suppliers vs. Goal</p>
+    <div class="statusgrid">
+      <span class="srow"><i class="dot" style="background:var(--good)"></i>On Pace<span class="n num">${onPace}</span></span>
+      <span class="srow"><i class="dot" style="background:var(--brewery)"></i>Behind Brewery<span class="n num">${behindBrewery}</span></span>
+      <span class="srow"><i class="dot" style="background:var(--kohler)"></i>Behind Kohler<span class="n num">${behindKohler}</span></span>
+      <span class="srow"><i class="dot" style="background:var(--bad)"></i>Behind Both<span class="n num">${behindBoth}</span></span>
+    </div>`;
+  kpisEl.appendChild(breakdown);
 }
 
 function exportComboCSV(){
