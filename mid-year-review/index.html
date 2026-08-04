@@ -53,19 +53,26 @@
   .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
   .sub b{color:var(--ink)}
 
-  /* Segment & Package Trend panel -- sits in the header alongside the lede
-     text on wide screens, wraps below it on narrow ones. */
-  .trend-widget{flex:1 1 360px;max-width:440px;min-width:280px;background:var(--card);border:1px solid var(--line);
+  /* Segment Trend + Package Trend panels -- sit in the header between the
+     lede text and each other on wide screens, wrap below it on narrow ones. */
+  .trend-widget{flex:1 1 280px;max-width:320px;min-width:250px;background:var(--card);border:1px solid var(--line);
     border-top:2px solid var(--kohler);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
   .trend-widget:empty{display:none}
-  .tw-title{font-family:"Space Grotesk";font-size:14px;font-weight:700;margin:0 0 2px;color:var(--ink)}
-  .tw-sub{font-size:11px;color:var(--ink-soft);margin:0 0 12px}
+  .tw-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 0 2px}
+  .tw-title{font-family:"Space Grotesk";font-size:14px;font-weight:700;margin:0;color:var(--ink)}
+  .tw-sub{font-size:11px;color:var(--ink-soft);margin:0 0 10px}
+  .tw-select{width:100%;background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
+    border-radius:8px;padding:6px 9px;font:inherit;font-size:12px;margin:0 0 12px;font-weight:600}
+  .tw-select:focus{outline:2px solid var(--kohler);outline-offset:1px;border-color:var(--kohler)}
   .tw-section{margin:0 0 12px}
   .tw-section:last-child{margin-bottom:0}
-  .tw-section-lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin:0 0 6px}
-  .tw-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;font-size:12px;padding:3px 0}
+  .tw-section-lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:6px}
+  .tw-section-lbl.up::before{content:"▲";color:var(--good);font-size:8px}
+  .tw-section-lbl.down::before{content:"▼";color:var(--bad);font-size:8px}
+  .tw-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:8px;font-size:11.5px;padding:3px 0}
   .tw-row .tw-lbl{color:var(--ink-soft);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .tw-row .tw-val{color:var(--ink-mute);font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:11px}
+  .tw-note{font-size:10.5px;color:var(--ink-mute);margin:10px 0 0;line-height:1.4}
   @media(max-width:640px){.trend-widget{max-width:none}}
 
   .tabs{display:flex;gap:4px;margin:22px 0 0;flex-wrap:wrap}
@@ -202,7 +209,8 @@
           down to see its case target and gap recalculate live. Edits are local to your browser only and don't save
           back to the workbook; use <b>Export CSV</b> to keep a copy.</p>
       </div>
-      <div class="trend-widget" id="trendWidget"></div>
+      <div class="trend-widget" id="segmentWidget"></div>
+      <div class="trend-widget" id="packageWidget"></div>
     </div>
   </header>
 
@@ -1339,27 +1347,61 @@ function exportComboCSV(){
   a.click();
 }
 
-// ---- Segment & Package Trend (header panel) -- company-wide Cases YoY,
-// from the Fusion segment/package export. Static (doesn't depend on the
-// active tab/brand), so it's rendered once at init and left alone. ----
+// ---- Segment Trend + Package Trend (header panels) -- company-wide Cases
+// YoY, from the Fusion segment/package export. Both are page-level (not
+// scoped to the active tab/brand). ----
 function twRow(r){
-  return `<div class="tw-row"><span class="tw-lbl">${esc(r.label)}</span><span class="tw-val">${fmtCE(r.casesCurrent)}</span>${trendCell(r.pctChange)}</div>`;
+  return `<div class="tw-row"><span class="tw-lbl" title="${esc(r.label)}">${esc(r.label)}</span><span class="tw-val">${fmtCE(r.casesCurrent)}</span>${trendCell(r.pctChange)}</div>`;
 }
-function renderSegmentPackageTrend(){
-  const el = document.getElementById('trendWidget');
+
+let segDrillState = '__all__';
+
+function renderSegmentWidget(){
+  const el = document.getElementById('segmentWidget');
   const t = DATA.segmentPackageTrend;
   if (!t || !t.segments || !t.segments.length){ el.innerHTML = ''; return; }
+
+  const inAll = segDrillState === '__all__';
+  const rows = inAll ? t.segments : (t.subSegments[segDrillState] || []);
+  const options = [`<option value="__all__">All Segments</option>`]
+    .concat(t.segments.map(s=>`<option value="${esc(s.label)}"${s.label===segDrillState?' selected':''}>${esc(s.label)}</option>`));
+
   el.innerHTML = `
-    <p class="tw-title">Segment &amp; Package Trend</p>
-    <p class="tw-sub">Cases, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)} &middot; company-wide</p>
+    <p class="tw-title">Segment Trend</p>
+    <p class="tw-sub">Cases, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)} &middot; ${inAll?'company-wide':'within '+esc(segDrillState)}</p>
+    <select class="tw-select" id="segDrillSelect">${options.join('')}</select>
     <div class="tw-section">
-      <p class="tw-section-lbl">By Segment</p>
-      ${t.segments.map(twRow).join('')}
+      <p class="tw-section-lbl">${inAll?'By Segment':'By Sub-Segment'}</p>
+      ${rows.length ? rows.map(twRow).join('') : '<p class="tw-note" style="margin-top:0">No sub-segment breakdown for this segment.</p>'}
+    </div>`;
+
+  document.getElementById('segDrillSelect').addEventListener('change', e=>{
+    segDrillState = e.target.value;
+    renderSegmentWidget();
+  });
+}
+
+function renderPackageWidget(){
+  const el = document.getElementById('packageWidget');
+  const t = DATA.segmentPackageTrend;
+  if (!t || !t.packageMovers || (!t.packageMovers.up.length && !t.packageMovers.down.length)){ el.innerHTML = ''; return; }
+  const pm = t.packageMovers;
+
+  el.innerHTML = `
+    <p class="tw-title">Package Trend</p>
+    <p class="tw-sub">Top movers by Cases %, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)}</p>
+    <div class="tw-section">
+      <p class="tw-section-lbl up">Trending up (top ${pm.up.length})</p>
+      ${pm.up.map(twRow).join('')}
     </div>
     <div class="tw-section">
-      <p class="tw-section-lbl">By Package Type</p>
-      ${t.packageTypes.map(twRow).join('')}
-    </div>`;
+      <p class="tw-section-lbl down">Trending down (top ${pm.down.length})</p>
+      ${pm.down.map(twRow).join('')}
+    </div>
+    <p class="tw-note">Ranked among packages with &ge; ${fmtCE(pm.minVolumeCases)} cases in either year and volume
+      in both years, so a tiny package's swing can't outrank a real trend. ${pm.newCount} new-this-year and
+      ${pm.discontinuedCount} discontinued package(s) of that size aren't rankable by % and are excluded here;
+      ${pm.belowMinCount} smaller packages are also excluded.</p>`;
 }
 
 function renderCaveats(){
@@ -1442,7 +1484,8 @@ async function init(){
   renderKPIs();
   renderTable();
   renderCaveats();
-  renderSegmentPackageTrend();
+  renderSegmentWidget();
+  renderPackageWidget();
   renderNewTable();
   renderTermTable();
   renderSupplierKPIs();

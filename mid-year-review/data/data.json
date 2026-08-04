@@ -9942,25 +9942,347 @@
         "pctChange": 0.6294
       }
     ],
-    "packageTypes": [
-      {
-        "label": "Bottle",
-        "casesPrior": 1987422.8,
-        "casesCurrent": 1925492.8,
-        "pctChange": -0.0312
-      },
-      {
-        "label": "Can",
-        "casesPrior": 1885220.5,
-        "casesCurrent": 1893462.5,
-        "pctChange": 0.0044
-      },
-      {
-        "label": "Keg",
-        "casesPrior": 44924.0,
-        "casesCurrent": 43403.0,
-        "pctChange": -0.0339
-      }
-    ]
+    "subSegments": {
+      "Spirits": [
+        {
+          "label": "Spirits - Vodka",
+          "casesPrior": 10134.0,
+          "casesCurrent": 7210.2,
+          "pctChange": -0.2885
+        },
+        {
+          "label": "Spirits - Whiskey",
+          "casesPrior": 1389.8,
+          "casesCurrent": 1125.2,
+          "pctChange": -0.1904
+        },
+        {
+          "label": "Spirits - Other",
+          "casesPrior": 284.0,
+          "casesCurrent": 276.5,
+          "pctChange": -0.0264
+        },
+        {
+          "label": "Spirits - Tequila",
+          "casesPrior": 7.0,
+          "casesCurrent": 132.5,
+          "pctChange": 17.93
+        },
+        {
+          "label": "Spirits - Gin",
+          "casesPrior": 65.0,
+          "casesCurrent": 40.2,
+          "pctChange": -0.382
+        },
+        {
+          "label": "Spirits - Rum",
+          "casesPrior": 0.0,
+          "casesCurrent": 32.7,
+          "pctChange": 1.0
+        },
+        {
+          "label": "Spirits - Brandy",
+          "casesPrior": 10.0,
+          "casesCurrent": 12.0,
+          "pctChange": 0.2
+        }
+      ],
+      "RTD": [
+        {
+          "label": "RTD",
+          "casesPrior": 55556.0,
+          "casesCurrent": 90356.0,
+          "pctChange": 0.6264
+        }
+      ],
+      "Beer": [
+        {
+          "label": "Beer - Import",
+          "casesPrior": 2094737.0,
+          "casesCurrent": 2100365.0,
+          "pctChange": 0.0027
+        },
+        {
+          "label": "Beer - Premium",
+          "casesPrior": 750891.0,
+          "casesCurrent": 733210.0,
+          "pctChange": -0.0235
+        },
+        {
+          "label": "Beer - Craft",
+          "casesPrior": 290402.5,
+          "casesCurrent": 281719.5,
+          "pctChange": -0.0299
+        },
+        {
+          "label": "Beer - Economy",
+          "casesPrior": 256308.0,
+          "casesCurrent": 233322.5,
+          "pctChange": -0.0897
+        },
+        {
+          "label": "Beer - Non-Alc",
+          "casesPrior": 44525.0,
+          "casesCurrent": 48231.0,
+          "pctChange": 0.0832
+        },
+        {
+          "label": "Beer - Super Premium",
+          "casesPrior": 5482.0,
+          "casesCurrent": 4672.0,
+          "pctChange": -0.1478
+        },
+        {
+          "label": "Unclassified",
+          "casesPrior": 0.0,
+          "casesCurrent": 12.0,
+          "pctChange": 1.0
+        }
+      ],
+      "THC": [
+        {
+          "label": "THC",
+          "casesPrior": 4122.0,
+          "casesCurrent": 5218.0,
+          "pctChange": 0.2659
+        }
+      ],
+      "Cider": [
+        {
+          "label": "Cider",
+          "casesPrior": 32826.0,
+          "casesCurrent": 34382.0,
+          "pctChange": 0.0474
+        },
+        {
+          "label": "Beer - Non-Alc",
+          "casesPrior": 102.0,
+          "casesCurrent": 18.0,
+          "pctChange": -0.8235
+        }
+      ],
+      "Non-Alc": [
+        {
+          "label": "Non-Alc - Soda",
+          "casesPrior": 5029.0,
+          "casesCurrent": 8011.0,
+          "pctChange": 0.593
+        },
+        {
+          "label": "Non-Alc - Energy",
+          "casesPrior": 6083.0,
+          "casesCurrent": 4948.0,
+          "pctChange": -0.1866
+        },
+        {
+          "label": "Non-Alc - Water",
+          "casesPrior": 3212.0,
+          "casesCurrent": 4746.0,
+          "pctChange": 0.4776
+        },
+        {
+          "label": "Non-Alc \u2013 Mixer",
+          "casesPrior": 923.0,
+          "casesCurrent": 2401.0,
+          "pctChange": 1.6013
+        }
+      ],
+      "FMB": [
+        {
+          "label": "FMB",
+          "casesPrior": 152145.0,
+          "casesCurrent": 122346.0,
+          "pctChange": -0.1959
+        }
+      ],
+      "Seltzer": [
+        {
+          "label": "Seltzer",
+          "casesPrior": 201989.0,
+          "casesCurrent": 177452.0,
+          "pctChange": -0.1215
+        },
+        {
+          "label": "Beer - Non-Alc",
+          "casesPrior": 603.0,
+          "casesCurrent": 553.0,
+          "pctChange": -0.0829
+        },
+        {
+          "label": "FMB",
+          "casesPrior": 0.0,
+          "casesCurrent": 357.0,
+          "pctChange": 1.0
+        }
+      ],
+      "Wine": [
+        {
+          "label": "Wine - Other",
+          "casesPrior": 378.0,
+          "casesCurrent": 771.0,
+          "pctChange": 1.0397
+        },
+        {
+          "label": "Wine - Sparkling",
+          "casesPrior": 263.0,
+          "casesCurrent": 174.0,
+          "pctChange": -0.3384
+        },
+        {
+          "label": "Wine - Red",
+          "casesPrior": 45.0,
+          "casesCurrent": 126.0,
+          "pctChange": 1.8
+        },
+        {
+          "label": "Wine - White",
+          "casesPrior": 56.0,
+          "casesCurrent": 115.0,
+          "pctChange": 1.0536
+        },
+        {
+          "label": "Wine - Rose",
+          "casesPrior": 0.0,
+          "casesCurrent": 19.0,
+          "pctChange": 1.0
+        },
+        {
+          "label": "Wine - Desert",
+          "casesPrior": 0.0,
+          "casesCurrent": 4.0,
+          "pctChange": 1.0
+        }
+      ]
+    },
+    "packageMovers": {
+      "up": [
+        {
+          "label": "15/25oz Can",
+          "casesPrior": 2989.0,
+          "casesCurrent": 22246.0,
+          "pctChange": 6.4426
+        },
+        {
+          "label": "3/8/150ML",
+          "casesPrior": 472.0,
+          "casesCurrent": 2502.0,
+          "pctChange": 4.3008
+        },
+        {
+          "label": "6/4/200 ML",
+          "casesPrior": 1297.0,
+          "casesCurrent": 4601.0,
+          "pctChange": 2.5474
+        },
+        {
+          "label": "1/12/19.2oz",
+          "casesPrior": 809.0,
+          "casesCurrent": 2802.0,
+          "pctChange": 2.4635
+        },
+        {
+          "label": "4/6/11.15oz",
+          "casesPrior": 945.0,
+          "casesCurrent": 2023.0,
+          "pctChange": 1.1407
+        },
+        {
+          "label": "36/12oz Can",
+          "casesPrior": 16850.0,
+          "casesCurrent": 32977.0,
+          "pctChange": 0.9571
+        },
+        {
+          "label": "2/15/12oz Can",
+          "casesPrior": 1829.0,
+          "casesCurrent": 3374.5,
+          "pctChange": 0.845
+        },
+        {
+          "label": "12/28oz Btl",
+          "casesPrior": 2430.0,
+          "casesCurrent": 3924.0,
+          "pctChange": 0.6148
+        },
+        {
+          "label": "1/30/12.00 oz",
+          "casesPrior": 335.0,
+          "casesCurrent": 501.0,
+          "pctChange": 0.4955
+        },
+        {
+          "label": "1/15/19.2oz Can",
+          "casesPrior": 7251.0,
+          "casesCurrent": 9944.0,
+          "pctChange": 0.3714
+        }
+      ],
+      "down": [
+        {
+          "label": "3/8/11.5oz Can",
+          "casesPrior": 1093.0,
+          "casesCurrent": 18.0,
+          "pctChange": -0.9835
+        },
+        {
+          "label": "24/11.2oz NR",
+          "casesPrior": 1790.0,
+          "casesCurrent": 38.0,
+          "pctChange": -0.9788
+        },
+        {
+          "label": "24/16OZ can",
+          "casesPrior": 729.0,
+          "casesCurrent": 178.0,
+          "pctChange": -0.7558
+        },
+        {
+          "label": "6/4/12.7oz NR",
+          "casesPrior": 883.0,
+          "casesCurrent": 340.0,
+          "pctChange": -0.6149
+        },
+        {
+          "label": "4/6/8oz Can",
+          "casesPrior": 4715.0,
+          "casesCurrent": 2279.0,
+          "pctChange": -0.5166
+        },
+        {
+          "label": "24/375ml Btl",
+          "casesPrior": 4127.0,
+          "casesCurrent": 2098.0,
+          "pctChange": -0.4916
+        },
+        {
+          "label": "1/24/16.00 oz",
+          "casesPrior": 5216.0,
+          "casesCurrent": 2892.0,
+          "pctChange": -0.4456
+        },
+        {
+          "label": "1/12/23.50 oz",
+          "casesPrior": 515.0,
+          "casesCurrent": 294.0,
+          "pctChange": -0.4291
+        },
+        {
+          "label": "1/12/750ml Btl",
+          "casesPrior": 1464.0,
+          "casesCurrent": 875.0,
+          "pctChange": -0.4023
+        },
+        {
+          "label": "3/8/7.5oz Can",
+          "casesPrior": 522.0,
+          "casesCurrent": 330.0,
+          "pctChange": -0.3678
+        }
+      ],
+      "minVolumeCases": 500,
+      "newCount": 5,
+      "discontinuedCount": 0,
+      "belowMinCount": 56
+    }
   }
 }

@@ -32,15 +32,15 @@ Inputs (keep these filenames when refreshing):
                               Fusion "Segment / Package" export (Supplier,
                               Brand Family, Segment, Sub-Segments, Package,
                               Cases for the same two YTD windows as
-                              ytd_comparison.csv, $Vol for both). Feeds the
-                              small "Segment & Package Trend" panel in the
-                              page header -- company-wide Cases YoY rolled
-                              up by Segment (Beer/RTD/Spirits/etc.) and by
-                              a package "container type" (Keg/Can/Bottle)
-                              inferred from the free-text Package column
-                              (see classify_package() below). Skipped
-                              entirely, with the panel left off the page,
-                              if this file isn't present.
+                              ytd_comparison.csv, $Vol for both). Feeds two
+                              header panels: a Segment Trend panel (a
+                              dropdown drills from Segment down to that
+                              segment's Sub-Segments) and a Package Trend
+                              panel (top 10 individual packages trending
+                              up / top 10 trending down by Cases %, above
+                              MIN_PACKAGE_VOLUME cases). Both skipped
+                              entirely, with their panels left off the
+                              page, if this file isn't present.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -271,29 +271,16 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
 
 
 # ---------------------------------------------------------------------------
-# Segment & Package Trend (header panel) -- company-wide Cases YoY by
-# Segment and by package "container type", from the Fusion export.
+# Segment Trend (drill from Segment down to Sub-Segment) and Package Trend
+# (top 20 individual package movers) -- two header panels, both Cases YoY
+# from the Fusion segment/package export.
 # ---------------------------------------------------------------------------
 
-def classify_package(raw):
-    """Buckets Fusion's free-text Package column (e.g. "2/12/12oz Can",
-    "15.5 Gal Keg", "1/12/750ml Btl", "750ML") into Keg / Can / Bottle /
-    Other. Most rows carry an explicit container word; the remainder
-    (spirits/wine minis/1L formats with no suffix) are still bottle-format
-    in this export, so a bare volume unit with no Can/Keg word also counts
-    as Bottle. Verified against the full 2026-08-04 export: 0 rows fall
-    into "Other" with this rule.
-    """
-    p = (raw or "").upper()
-    if "KEG" in p or "BBL" in p:
-        return "Keg"
-    if "CAN" in p:
-        return "Can"
-    if "BTL" in p or "NR" in p or "(BO)" in p or "BOTTLE" in p:
-        return "Bottle"
-    if any(u in p for u in ("ML", "LTR", "LITER", "OZ", "SLEEVE")):
-        return "Bottle"
-    return "Other"
+# Cases threshold (in whichever year is larger) for a package to be eligible
+# for the top-movers ranking -- filters out packages so small that a swing
+# from, say, 2 cases to 6 cases (+200%) would otherwise rank above a real
+# story like 20,000 -> 30,000 cases (+50%).
+MIN_PACKAGE_VOLUME = 500
 
 
 def parse_segment_package_trend(path):
@@ -310,30 +297,64 @@ def parse_segment_package_trend(path):
         range_current = current_col.replace("Cases", "").strip()
 
         seg_totals = defaultdict(lambda: [0.0, 0.0])
+        # segment -> sub-segment -> [prior, current]. Scoped per-segment
+        # (not a global by-sub-segment rollup) because a handful of
+        # Sub-Segments labels (e.g. "Beer - Non-Alc", "FMB") appear under
+        # more than one Segment in this export -- drilling into "Beer"
+        # should only show that sub-segment's Beer-segment volume.
+        subseg_totals = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
         pkg_totals = defaultdict(lambda: [0.0, 0.0])
         for r in reader:
             prior, current = to_num(r[prior_col]), to_num(r[current_col])
             segment = (r.get("Segment") or "").strip() or "Unclassified"
             seg_totals[segment][0] += prior
             seg_totals[segment][1] += current
-            pkg_type = classify_package(r.get("Package"))
-            pkg_totals[pkg_type][0] += prior
-            pkg_totals[pkg_type][1] += current
+            subsegment = (r.get("Sub-Segments") or "").strip() or "Unclassified"
+            if subsegment.lower() == "is null":  # Fusion export quirk for a blank value
+                subsegment = "Unclassified"
+            ss = subseg_totals[segment][subsegment]
+            ss[0] += prior
+            ss[1] += current
+            pkg = (r.get("Package") or "").strip()
+            if pkg:
+                pt = pkg_totals[pkg]
+                pt[0] += prior
+                pt[1] += current
 
-    def to_rows(totals):
-        out = []
-        for label, (prior, current) in totals.items():
-            pct = (current / prior - 1) if prior else (1.0 if current else 0.0)
-            out.append({
-                "label": label, "casesPrior": round(prior, 1), "casesCurrent": round(current, 1),
-                "pctChange": round(pct, 4),
-            })
-        out.sort(key=lambda x: -x["casesCurrent"])
-        return out
+    def to_row(label, prior, current):
+        pct = (current / prior - 1) if prior else (1.0 if current else 0.0)
+        return {"label": label, "casesPrior": round(prior, 1), "casesCurrent": round(current, 1),
+                "pctChange": round(pct, 4)}
+
+    segments = sorted((to_row(label, p, c) for label, (p, c) in seg_totals.items()), key=lambda x: -x["casesCurrent"])
+    sub_segments = {
+        segment: sorted((to_row(label, p, c) for label, (p, c) in subs.items()), key=lambda x: -x["casesCurrent"])
+        for segment, subs in subseg_totals.items()
+    }
+
+    # Top movers: require real (nonzero) volume in BOTH years -- a package
+    # that's brand-new this year or fully discontinued has an undefined /
+    # infinite % swing that isn't a comparable "trend" and would otherwise
+    # crowd out genuine percentage movers -- those counts are surfaced
+    # separately instead (newCount/discontinuedCount) so nothing's hidden,
+    # just not force-ranked on an undefined percentage.
+    comparable = [(label, p, c) for label, (p, c) in pkg_totals.items()
+                  if p > 0 and c > 0 and max(p, c) >= MIN_PACKAGE_VOLUME]
+    new_count = sum(1 for p, c in pkg_totals.values() if p == 0 and c >= MIN_PACKAGE_VOLUME)
+    discontinued_count = sum(1 for p, c in pkg_totals.values() if c == 0 and p >= MIN_PACKAGE_VOLUME)
+    below_min_count = sum(1 for p, c in pkg_totals.values() if max(p, c) < MIN_PACKAGE_VOLUME)
+    movers = [to_row(label, p, c) for label, p, c in comparable]
 
     return {
         "rangePrior": range_prior, "rangeCurrent": range_current,
-        "segments": to_rows(seg_totals), "packageTypes": to_rows(pkg_totals),
+        "segments": segments,
+        "subSegments": sub_segments,
+        "packageMovers": {
+            "up": sorted(movers, key=lambda x: -x["pctChange"])[:10],
+            "down": sorted(movers, key=lambda x: x["pctChange"])[:10],
+            "minVolumeCases": MIN_PACKAGE_VOLUME,
+            "newCount": new_count, "discontinuedCount": discontinued_count, "belowMinCount": below_min_count,
+        },
     }
 
 
@@ -483,9 +504,12 @@ def main():
 
     segment_package_trend = parse_segment_package_trend(CSV_SEGMENT_PACKAGE)
     if segment_package_trend:
-        print(f"Segment & Package Trend: {len(segment_package_trend['segments'])} segments, "
-              f"{len(segment_package_trend['packageTypes'])} package types from {CSV_SEGMENT_PACKAGE.name} "
+        pm = segment_package_trend["packageMovers"]
+        print(f"Segment Trend: {len(segment_package_trend['segments'])} segments from {CSV_SEGMENT_PACKAGE.name} "
               f"({segment_package_trend['rangePrior']}  vs.  {segment_package_trend['rangeCurrent']}).")
+        print(f"Package Trend: {len(pm['up'])} up / {len(pm['down'])} down movers "
+              f"(>= {pm['minVolumeCases']} cases; {pm['newCount']} new, {pm['discontinuedCount']} discontinued, "
+              f"{pm['belowMinCount']} below the volume floor, excluded from ranking).")
 
     if DENISE_PRODUCT_DETAIL.exists():
         overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
