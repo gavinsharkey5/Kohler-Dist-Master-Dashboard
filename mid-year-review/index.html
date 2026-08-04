@@ -48,7 +48,11 @@
   .backlink:hover{color:var(--kohler)}
   .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0}
-  .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
+  .sub{color:var(--ink-soft);margin:16px 0 0;max-width:760px;font-size:16px;line-height:1.6;
+    list-style:none;padding:0}
+  .sub li{position:relative;padding-left:22px;margin:0 0 10px}
+  .sub li:last-child{margin-bottom:0}
+  .sub li::before{content:"";position:absolute;left:2px;top:0.62em;width:6px;height:6px;border-radius:50%;background:var(--kohler)}
   .sub b{color:var(--ink)}
 
   .header-row{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
@@ -207,13 +211,17 @@
       <div class="header-text">
         <a class="backlink" href="../">&larr; All trackers</a>
         <p class="eyebrow">6-Month Review</p>
-        <h1>Brand Trend vs. Goal</h1>
-        <p class="sub" id="subtitle">Where each brand's current-year trend stands against its 2026 Brewery Goal % and
-          Kohler Goal %, so brand managers can see who's ahead or behind pace and recalibrate for the back half of the
-          year. "Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both
-          years (a true apples-to-apples comparison). Goal % is editable per brand &mdash; adjust either track up or
-          down to see its case target and gap recalculate live. Edits are local to your browser only and don't save
-          back to the workbook; use <b>Export CSV</b> to keep a copy.</p>
+        <h1>Trend vs. Goal</h1>
+        <ul class="sub" id="subtitle">
+          <li>Shows where each brand's current-year trend stands against its 2026 Brewery Goal % and Kohler Goal %,
+            so brand managers can see who's ahead or behind pace and recalibrate for the back half of the year.</li>
+          <li>"Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both
+            years (a true apples-to-apples comparison).</li>
+          <li>Goal % is editable per brand &mdash; adjust either track up or down to see its case target and gap
+            recalculate live.</li>
+          <li>Edits are local to your browser only and don't save back to the workbook; use <b>Export CSV</b> to
+            keep a copy.</li>
+        </ul>
       </div>
       <div class="trend-widget" id="segmentWidget"></div>
       <div class="trend-widget" id="packageWidget"></div>
@@ -1482,13 +1490,16 @@ async function init(){
   document.getElementById('tab-combo-count').textContent = `(${DATA.comboGroups.length})`;
 
   if (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent){
-    document.getElementById('subtitle').innerHTML = `Where each brand's current-year trend stands against its 2026
-      Brewery Goal % and Kohler Goal %, so brand managers can see who's ahead or behind pace and recalibrate for
-      the back half of the year. "Trend" is each brand's year-over-year Case Equivalent change for the identical
-      date range in both years (<b>${esc(DATA.meta.ytdRangePrior)}</b> vs. <b>${esc(DATA.meta.ytdRangeCurrent)}</b>,
-      a true apples-to-apples comparison). Goal % is editable per brand &mdash; adjust either track up or down to
-      see its case target and gap recalculate live. Edits are local to your browser only and don't save back to
-      the workbook; use <b>Export CSV</b> to keep a copy.`;
+    document.getElementById('subtitle').innerHTML = `
+      <li>Shows where each brand's current-year trend stands against its 2026 Brewery Goal % and Kohler Goal %,
+        so brand managers can see who's ahead or behind pace and recalibrate for the back half of the year.</li>
+      <li>"Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both years
+        (<b>${esc(DATA.meta.ytdRangePrior)}</b> vs. <b>${esc(DATA.meta.ytdRangeCurrent)}</b>, a true
+        apples-to-apples comparison).</li>
+      <li>Goal % is editable per brand &mdash; adjust either track up or down to see its case target and gap
+        recalculate live.</li>
+      <li>Edits are local to your browser only and don't save back to the workbook; use <b>Export CSV</b> to keep
+        a copy.</li>`;
   }
 
   renderKPIs();
