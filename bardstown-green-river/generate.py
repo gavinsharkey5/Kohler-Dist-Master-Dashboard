@@ -76,6 +76,23 @@ def num(s):
     return float(s) if s else 0.0
 
 
+# ---------- premise lookup ----------
+# This export has no Premise column of its own. Cross-referenced against
+# the Wine & Spirits portfolio account roster (which does carry an
+# "On-Off Premise" tag per Customer ID) -- confirmed 2026-08-04 that 100%
+# of this export's ~350 customer numbers are present in that roster, so
+# it's a reliable join key rather than a fresh RDE re-export. Per Kohler
+# request 2026-08-04, to view retention/velocity/CORE performance split
+# by account premise.
+WS_ROSTER_CSV = os.path.join(HERE, '..', 'wine-spirits-portfolio', 'ws_account_level_by_month.csv')
+premise_by_cust = {}
+with open(WS_ROSTER_CSV, newline='', encoding='utf-8-sig') as f:
+    for r in csv.DictReader(f):
+        cid = r['Customer ID'].strip()
+        prem = r['On-Off Premise'].strip()
+        if cid and cid not in premise_by_cust:
+            premise_by_cust[cid] = prem
+
 # ---------- load ----------
 with open(CSV_PATH, newline='', encoding='utf-8-sig') as f:
     reader = csv.DictReader(f)
@@ -90,12 +107,14 @@ for r in raw:
     b = brand_of(r['Product Name'])
     if not b:
         continue
+    cust = r['Customer Num']
     rows.append({
-        'cust': r['Customer Num'], 'name': r['Customer Name'], 'rep': r['Sales Rep Assigned'],
+        'cust': cust, 'name': r['Customer Name'], 'rep': r['Sales Rep Assigned'],
         'area': r['Distribution Area'], 'city': r['City'],
         'prod': r['Product Num'], 'prodName': r['Product Name'], 'brand': b,
         'date': parse_date(r['Date']), 'units': num(r[units_col]),
         'revenue': money(r[rev_col]), 'gp': money(r[gp_col]),
+        'premise': premise_by_cust.get(cust, 'Unknown'),
     })
 
 ALL_DATES = [r['date'] for r in rows]
@@ -107,30 +126,36 @@ for r in rows:
     PRODUCTS[r['prod']] = {'num': r['prod'], 'name': r['prodName'], 'brand': r['brand'],
                             'core': r['prod'] in CORE_SKUS[r['brand']]}
 
-# ---------- per (account, product) purchase groups ----------
-key_rows = defaultdict(list)
-for r in rows:
-    key_rows[(r['cust'], r['prod'])].append(r)
-
-acct_info = {}
-for r in rows:
-    acct_info.setdefault(r['cust'], {'name': r['name'], 'rep': r['rep'], 'area': r['area'], 'city': r['city']})
-
-# ---------- account x brand rollups ----------
-acct_brand = defaultdict(lambda: {'orders': 0, 'units': 0.0, 'revenue': 0.0, 'gp': 0.0,
-                                   'skus': set(), 'dates': [], 'orderLines': []})
-for r in rows:
-    o = acct_brand[(r['cust'], r['brand'])]
-    o['orders'] += 1
-    o['units'] += r['units']
-    o['revenue'] += r['revenue']
-    o['gp'] += r['gp']
-    o['skus'].add(r['prod'])
-    o['dates'].append(r['date'])
-    o['orderLines'].append((r['date'], r['units']))
+# How many distinct accounts didn't match the premise roster (surfaced in
+# the UI as a caveat -- 0 as of the 2026-08-04 refresh, but the join could
+# drift if brand-new accounts appear here before they show up in the W&S
+# roster on its own refresh cycle).
+_all_accts = {r['cust'] for r in rows}
+_unmatched_accts = {r['cust'] for r in rows if r['premise'] == 'Unknown'}
+PREMISE_COVERAGE = {
+    'totalAccounts': len(_all_accts),
+    'unmatchedAccounts': len(_unmatched_accts),
+}
 
 
-def build_brand_payload(brand):
+def build_brand_payload(brand, rows_subset):
+    # ---------- account x brand rollups (scoped to this premise slice) ----------
+    acct_brand = defaultdict(lambda: {'orders': 0, 'units': 0.0, 'revenue': 0.0, 'gp': 0.0,
+                                       'skus': set(), 'dates': [], 'orderLines': []})
+    for r in rows_subset:
+        o = acct_brand[(r['cust'], r['brand'])]
+        o['orders'] += 1
+        o['units'] += r['units']
+        o['revenue'] += r['revenue']
+        o['gp'] += r['gp']
+        o['skus'].add(r['prod'])
+        o['dates'].append(r['date'])
+        o['orderLines'].append((r['date'], r['units']))
+
+    acct_info = {}
+    for r in rows_subset:
+        acct_info.setdefault(r['cust'], {'name': r['name'], 'rep': r['rep'], 'area': r['area'], 'city': r['city']})
+
     core_set = set(CORE_SKUS[brand])
     accounts = []
     for (cust, b), o in acct_brand.items():
@@ -183,7 +208,7 @@ def build_brand_payload(brand):
         prod_accts = defaultdict(int)
         prod_units = 0.0
         prod_rev = 0.0
-        for r in rows:
+        for r in rows_subset:
             if r['prod'] != prod:
                 continue
             prod_accts[r['cust']] += 1
@@ -270,13 +295,25 @@ def build_brand_payload(brand):
     }
 
 
+# Three parallel views, all sharing the same report window/products so
+# they're a true apples-to-apples comparison: All accounts, On-Premise
+# only, Off-Premise only. 'Unknown' (unmatched-to-roster) accounts are
+# included in "all" but excluded from the on/off splits, same as the
+# on/off-prem MPO dashboards do for their own premise breakdowns.
+PREMISE_VIEWS = [('all', None), ('on', 'On Premise'), ('off', 'Off Premise')]
+
 payload = {
     'meta': {
         'windowStart': WINDOW_START.isoformat(), 'windowEnd': WINDOW_END.isoformat(),
         'windowMonths': round(WINDOW_MONTHS, 1),
         'totalRows': len(rows),
     },
-    'brands': {b: build_brand_payload(b) for b in BRANDS},
+    'premiseCoverage': PREMISE_COVERAGE,
+    'views': {
+        key: {'brands': {b: build_brand_payload(b, [r for r in rows if premise is None or r['premise'] == premise])
+                          for b in BRANDS}}
+        for key, premise in PREMISE_VIEWS
+    },
 }
 
 data_json = json.dumps(payload, separators=(',', ':'))
@@ -290,5 +327,9 @@ new_html, n = re.subn(
 assert n == 1, 'bg-data script tag not found in index.html'
 open(HTML, 'w', encoding='utf-8').write(new_html)
 
+print(f"Premise coverage: {PREMISE_COVERAGE['totalAccounts'] - PREMISE_COVERAGE['unmatchedAccounts']} of "
+      f"{PREMISE_COVERAGE['totalAccounts']} accounts matched to a known premise "
+      f"({PREMISE_COVERAGE['unmatchedAccounts']} unmatched)")
+
 for b in BRANDS:
-    print(b, json.dumps(payload['brands'][b]['summary'], indent=2))
+    print(b, json.dumps(payload['views']['all']['brands'][b]['summary'], indent=2))

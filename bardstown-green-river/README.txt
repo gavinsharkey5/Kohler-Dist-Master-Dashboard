@@ -28,6 +28,19 @@ hypothesis: accounts starting with a full case (or even a partial case)
 retain noticeably BETTER than accounts starting with a single bottle, in
 both brands.
 
+Account premise (added 2026-08-04, per a manager's question about on- vs
+off-premise retention): every section has an All Accounts / On-Premise /
+Off-Premise toggle. This export has no Premise column of its own, so
+generate.py joins each Customer Num against
+wine-spirits-portfolio/ws_account_level_by_month.csv's "On-Off Premise"
+column by Customer ID -- confirmed 100% of this export's ~350 customers
+match that roster (0 unmatched as of the 2026-08-04 refresh). If a future
+refresh introduces brand-new accounts that haven't shown up in the W&S
+roster yet, they'll fall back to "Unknown" and only appear in the All
+Accounts view -- generate.py prints the match count on every run, and the
+page shows a caveat note under the premise toggle whenever there are any
+unmatched accounts.
+
 CORE definitions (set by Kohler, hard-coded in generate.py):
   Green River CORE       = Bourbon, Full Proof, Rye, Wheated, Honey (5 SKUs)
   Bardstown Bourbon CORE = Bottled-in-Bond, Bourbon, Double Barrel Rye,
@@ -43,15 +56,21 @@ Files:
                   Revenue, Gross Profit — one row per account x product x
                   order date)
   generate.py    Rebuilds the embedded data in index.html from the CSV above
+                 (also reads ../wine-spirits-portfolio/ws_account_level_by_
+                 month.csv for the On/Off Premise join -- keep that file
+                 reasonably current so new accounts don't fall back to
+                 "Unknown" premise)
   index.html     The dashboard itself (data is embedded in the
-                 <script id="bg-data"> tag)
+                 <script id="bg-data"> tag, as three parallel views: all
+                 accounts, on-premise only, off-premise only)
 
 To refresh with a new export:
   1. Re-export "RDE Bardstown / Green River Retention History", keeping the
      same columns.
   2. Save it over RDE_Bardstown_Green_River_Retention_History.csv in this
      folder (same filename).
-  3. Run: python3 generate.py
+  3. Run: python3 generate.py -- it prints how many accounts matched a
+     known premise, worth a glance if that number looks off.
   4. Commit and push.
 
 Velocity is units per month, averaged over the whole report window (the
