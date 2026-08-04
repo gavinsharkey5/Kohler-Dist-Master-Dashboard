@@ -52,12 +52,37 @@ Wine & Spirits (Yave/Leyenda) is a simple distinct-buying-account count
 per rep per brand family in August -- no new-vs-repeat distinction, per
 Kohler: "sales reps need 2 buyers of each brand family to hit this."
 
+Target accounts (Angry Orchard, Molson Coors Peroni/Banquet only -- per
+Kohler, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
+so no territory filter applies there): a per-rep "who to go after" list,
+answering which of a rep's OWN accounts don't carry the brand yet and are
+worth chasing. Built by crossing three sources:
+  1. sales_reps_customer_base.csv  -- the rep's full account base (every
+     customer they cover), deduped by Customer Num since an account can
+     appear more than once with a different Shipping Address.
+  2. angry_orchard_new_lines.csv / molson_coors_peroni_banquet.csv -- ANY
+     customer appearing here at all (new-placement flag or not) already
+     has recent purchase history of that brand, so they're excluded --
+     this is a "hasn't bought it recently" list, not just "hasn't been
+     flagged new this month".
+  3. kohler_brands_whitelist_blacklist.xlsx ("Master - US vs THEM" tab)
+     -- per-brand, per-county sell authorization. A prospect in a THEM
+     county is excluded entirely (Kohler doesn't hold the rights to sell
+     that brand there); a prospect in a county with no whitelist row at
+     all (e.g. Middlesex, which isn't part of the tracked core territory)
+     is kept but marked TERRITORY_STATUS "UNKNOWN" rather than silently
+     assumed sellable.
+Molson Coors' Peroni and Coors (Banquet) targets are computed
+independently per brand, same as the placement classification.
+
 Run: python3 generate_2026-08.py
 """
 import csv
 import json
 from datetime import date, datetime, timezone
 from pathlib import Path
+
+from openpyxl import load_workbook
 
 HERE = Path(__file__).parent
 DATA_DIR = HERE / "data"
@@ -66,6 +91,8 @@ MONTH_KEY = "2026-08"
 ANGRY_ORCHARD_CSV = HERE / "angry_orchard_new_lines.csv"
 MOLSON_COORS_CSV = HERE / "molson_coors_peroni_banquet.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_yave_leyenda.csv"
+CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
+WHITELIST_XLSX = HERE / "kohler_brands_whitelist_blacklist.xlsx"
 
 NEW_BUYER_WINDOW_START = date(2026, 8, 1)
 NEW_BUYER_WINDOW_END = date(2026, 8, 31)
@@ -178,16 +205,106 @@ def build_wine_spirits():
     return out
 
 
+def load_customer_base():
+    """Dedupes to one entry per (rep, customer) -- the same account can
+    have multiple rows in the export (one per Shipping Address)."""
+    rows = load_csv(CUSTOMER_BASE_CSV)
+    by_rep = {}
+    seen = set()
+    for r in rows:
+        rep = r["Sales Rep Assigned"].strip()
+        cust_num = r["Customer Num"].strip()
+        if not rep or not cust_num:
+            continue
+        key = (rep, cust_num)
+        if key in seen:
+            continue
+        seen.add(key)
+        by_rep.setdefault(rep, []).append({
+            "customer_num": cust_num,
+            "customer_name": r["Customer Name"].strip(),
+            "area": r["Area"].strip(),
+        })
+    return by_rep
+
+
+def load_whitelist():
+    """(brand family lowercased, county uppercased) -> 'US' or 'THEM',
+    from the flat long-format sheet (one row per brand+county)."""
+    wb = load_workbook(WHITELIST_XLSX, data_only=True)
+    ws = wb["Master - US vs THEM"]
+    lookup = {}
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        brand, county, determination = row[0], row[1], row[5]
+        if not brand or not county or not determination:
+            continue
+        lookup[(brand.strip().lower(), county.strip().upper())] = determination.strip().upper()
+    return lookup
+
+
+def already_carrying(path, brand_filter=None):
+    """Customer Nums with ANY row in a brand's raw export -- recent
+    purchase history, whether or not that row was flagged NEW_PLACEMENT."""
+    rows = load_csv(path)
+    out = set()
+    for r in rows:
+        if brand_filter and r.get("Brand Family", "").strip().lower() != brand_filter.lower():
+            continue
+        out.add(r["Customer Num"].strip())
+    return out
+
+
+def build_targets(customer_base_by_rep, whitelist, carrying, brand_label):
+    out = []
+    unknown_territory = 0
+    for rep, accounts in customer_base_by_rep.items():
+        for a in accounts:
+            if a["customer_num"] in carrying:
+                continue
+            status = whitelist.get((brand_label.lower(), a["area"].upper()), "UNKNOWN")
+            if status == "THEM":
+                continue
+            if status == "UNKNOWN":
+                unknown_territory += 1
+            out.append({
+                "SALES_REP_ASSIGNED": rep,
+                "CUSTOMER_NUM": int(a["customer_num"]) if a["customer_num"].isdigit() else a["customer_num"],
+                "CUSTOMER_NAME": a["customer_name"],
+                "AREA": a["area"],
+                "TERRITORY_STATUS": status,
+            })
+    out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"]))
+    return out, unknown_territory
+
+
 def main():
     angry_orchard_rows, ao_new, ao_total = build_angry_orchard()
     molson_coors_rows, mc_new, mc_total = build_molson_coors()
     wine_spirits_rows = build_wine_spirits()
+
+    customer_base_by_rep = load_customer_base()
+    whitelist = load_whitelist()
+
+    targets_angry_orchard, ao_unknown = build_targets(
+        customer_base_by_rep, whitelist, already_carrying(ANGRY_ORCHARD_CSV), "Angry Orchard")
+
+    targets_peroni, peroni_unknown = build_targets(
+        customer_base_by_rep, whitelist, already_carrying(MOLSON_COORS_CSV, "Peroni"), "Peroni")
+    for row in targets_peroni:
+        row["BRAND_FAMILY"] = "Peroni"
+    targets_coors, coors_unknown = build_targets(
+        customer_base_by_rep, whitelist, already_carrying(MOLSON_COORS_CSV, "Coors"), "Coors")
+    for row in targets_coors:
+        row["BRAND_FAMILY"] = "Coors"
+    targets_molson_coors = sorted(targets_peroni + targets_coors, key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["CUSTOMER_NAME"]))
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
     (month_dir / "mpo_angry_orchard.json").write_text(json.dumps(angry_orchard_rows, indent=2))
     (month_dir / "mpo_molson_coors.json").write_text(json.dumps(molson_coors_rows, indent=2))
     (month_dir / "mpo_wine_spirits_yave_leyenda.json").write_text(json.dumps(wine_spirits_rows, indent=2))
+    (month_dir / "mpo_targets_angry_orchard.json").write_text(json.dumps(targets_angry_orchard, indent=2))
+    (month_dir / "mpo_targets_molson_coors.json").write_text(json.dumps(targets_molson_coors, indent=2))
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
@@ -197,6 +314,10 @@ def main():
     print(f"Molson Coors (Peroni+Coors/Banquet combined): {mc_new} new placements out of {mc_total} "
           f"customer+brand pairs ({len(molson_coors_rows)} transaction rows written)")
     print(f"Wine & Spirits (Yave/Leyenda): {len(wine_spirits_rows)} rows written")
+    print(f"Target accounts -- Angry Orchard: {len(targets_angry_orchard)} prospects across all reps "
+          f"({ao_unknown} in unmapped/no-whitelist-data territory)")
+    print(f"Target accounts -- Molson Coors: {len(targets_peroni)} Peroni + {len(targets_coors)} Coors/Banquet "
+          f"prospects ({peroni_unknown}/{coors_unknown} in unmapped territory)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 

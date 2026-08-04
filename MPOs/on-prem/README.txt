@@ -64,6 +64,31 @@ Objective types (index.html):
   'photos'        Placeholder only (hasData:false) -- no iSellBeer
                   photo-count data source exists yet for any month.
 
+Each rep's customer-line drill-down (lineTableNewAccounts()) collapses to
+ONE row per customer -- not one per transaction -- and only shows a date
+when that customer has activity in the ACTIVE month (isActiveMonthDate());
+pure prior-month purchase history (kept only so the 90-day-non-buy
+classifier has something to check) shows no date at all, just a "Regular
+Buyer" or "—" status. Per Gavin, 2026-08-04: dates are "only for you to
+denote new buyers and the specific metrics we track", not a full
+transaction log.
+
+Target Accounts (Angry Orchard, Molson Coors Peroni/Banquet only -- per
+Gavin, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
+so skip the territory filter there): a collapsed-by-default "who to go
+after" list under each rep, for objectives whose table config has a
+`targetsFile` (see MONTHS in index.html). Built server-side by
+generate_2026-08.py's build_targets() -- a rep's account base MINUS
+customers who already carry the brand MINUS customers in a county Kohler
+doesn't hold sell rights to for that brand (see kohler_brands_whitelist_
+blacklist.xlsx below); a county with no whitelist data at all is kept but
+flagged "Unverified territory" rather than assumed sellable. Rendered by
+targetsBlockHtml()/groupTargetsByRep() in index.html -- shown for EVERY
+rep with prospects, even one with zero current-month activity (that's
+often exactly the rep who most needs the list), via the `hasTargets`
+check alongside the usual `hasAny`/`r` activity checks in both
+renderRepView() and renderObjectiveView().
+
 "90-Day Non-Buy" new-placement classification (Angry Orchard, and
 Peroni/Banquet independently within Molson Coors -- per Kohler,
 2026-08-04): a customer's row on a given date is a NEW placement only
@@ -106,8 +131,35 @@ Files:
                                         (no Leyenda buyers yet that
                                         early in the month) -- that's
                                         expected, not a data bug.
-    generate_2026-08.py               Rebuilds the three JSON files
-                                        above.
+    sales_reps_customer_base.csv      RDE "Sales Reps: Customer Base Core
+                                        Territory" export: Sales Rep
+                                        Assigned, Customer Num, Customer
+                                        Name, Shipping Address, City,
+                                        Area, Cases -- one row per rep/
+                                        account/shipping-address (so some
+                                        accounts appear more than once);
+                                        the Target Accounts feature dedupes
+                                        by Customer Num. Also has ~4 rows
+                                        for non-rep entities (e.g. "Default",
+                                        "Office Tell Sell") not in ROSTER --
+                                        harmless, they're just never looked
+                                        up since rendering only iterates
+                                        ROSTER.
+    kohler_brands_whitelist_blacklist.xlsx
+                                       Kohler's per-brand-family,
+                                        per-county sell authorization
+                                        ("Master - US vs THEM" tab is the
+                                        one generate_2026-08.py reads --
+                                        flat one-row-per-brand+county,
+                                        Final Determination is "US" or
+                                        "THEM"). Only used for Target
+                                        Accounts (Angry Orchard, Peroni,
+                                        Coors/Banquet); Wine & Spirits
+                                        doesn't need it since Yave/Leyenda
+                                        are sold in every county.
+    generate_2026-08.py               Rebuilds the five JSON files above
+                                        (three MPO datasets + two Target
+                                        Accounts prospect lists).
 
   index.html   The page itself (shared by every month).
 
@@ -130,9 +182,13 @@ To refresh July manually:
 
 To refresh August manually:
   1. Save the new exports over angry_orchard_new_lines.csv /
-     molson_coors_peroni_banquet.csv / wine_spirits_yave_leyenda.csv
-     (same column headers).
-  2. Run: python3 generate_2026-08.py -- it prints how many new
-     placements qualified out of how many customer+brand pairs
-     appeared in each export.
+     molson_coors_peroni_banquet.csv / wine_spirits_yave_leyenda.csv /
+     sales_reps_customer_base.csv (same column headers), and
+     kohler_brands_whitelist_blacklist.xlsx if Kohler sends an updated
+     territory file.
+  2. Run: python3 generate_2026-08.py -- requires openpyxl (`pip install
+     openpyxl`) to read the whitelist workbook. Prints how many new
+     placements qualified out of how many customer+brand pairs appeared
+     in each export, plus how many Target Accounts prospects were found
+     per brand and how many fell in unmapped ("Unverified") territory.
   3. Commit and push.
