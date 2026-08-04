@@ -59,6 +59,10 @@ ALLOTHER_BRANDS = {
     'KIRIN ICHIBAN', 'POPSICLE FMB', 'SIERRA NEVADA BREWING COMPANY',
     # Confirmed with the user 2026-07-30.
     'TALKHOUSE ENCORE TEQUILA SODA', 'TALKHOUSE ENCORE VARIETY PACK',
+    # Confirmed with the user 2026-08-04. NOCA appears under both its Brand
+    # Family value ("NOCA BEVERAGES") and, when Brand Family is blank, its
+    # raw Brand value ("NOCA") -- both need to be listed.
+    'NOCA', 'NOCA BEVERAGES', 'SARATOGA WATER',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
