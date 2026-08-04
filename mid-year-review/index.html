@@ -9,12 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6A7180;
-    --line:#2A2E38;--line-soft:#20242D;
+    /* Warm barrel-wood + amber-beer + Kohler-blue palette, themed off the
+       Kohler Distributing brand photography (oak barrels, amber pours, the
+       blue "Kohler" script logo) rather than a generic neutral dark UI. */
+    --canvas:#15100A;--card:#241A11;--card-h:#2F2216;--ink:#F7F1E6;--ink-soft:#B7A489;--ink-mute:#8A7860;
+    --line:#3D2E1D;--line-soft:#2A1F14;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
-    --brewery:#F4B83E;--kohler:#5B8DEF;--kohler-deep:#2C4670;
-    --good:#37C46B;--good-soft:#12301E;--bad:#E5604D;--bad-soft:#33191A;
-    --input-bg:#101318;--input-border:#3A4155;
+    --brewery:#F4B83E;--kohler:#4E7CE8;--kohler-deep:#1F3E82;
+    --good:#4CC97A;--good-soft:#1C3324;--bad:#EB6A50;--bad-soft:#3A1E17;
+    --input-bg:#1A130C;--input-border:#4A3A26;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -25,7 +28,7 @@
      banner logo (index.html), since kohlerdistributing.co itself isn't
      reachable from this environment to pull an exact palette from. */
   body::before{content:"";display:block;height:4px;margin:0 -18px;
-    background:linear-gradient(90deg,var(--kohler-deep),var(--kohler) 45%,#7FA6EE 75%,var(--kohler))}
+    background:linear-gradient(90deg,var(--kohler-deep),var(--kohler) 45%,var(--brewery) 100%)}
   .wrap{max-width:1950px;margin:0 auto}
   .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
   a{color:inherit}
@@ -86,7 +89,7 @@
 
   .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
   table{border-collapse:collapse;table-layout:fixed;margin:0 auto}
-  thead th{position:sticky;top:0;background:#12141B;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
+  thead th{position:sticky;top:0;background:#1C130C;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
     overflow:hidden;text-overflow:ellipsis}
   thead th:hover{color:var(--ink)}
@@ -113,18 +116,18 @@
   .status-badge.no-goal{background:var(--ink-soft-bg,rgba(128,128,128,.14));color:var(--ink-soft)}
 
   .grp-brewery{background:rgba(244,184,62,.10)}
-  .grp-kohler{background:rgba(91,141,239,.10)}
+  .grp-kohler{background:rgba(78,124,232,.10)}
   thead th.grp-brewery{background:rgba(244,184,62,.22);color:var(--brewery)}
-  thead th.grp-kohler{background:rgba(91,141,239,.22);color:var(--kohler)}
+  thead th.grp-kohler{background:rgba(78,124,232,.22);color:var(--kohler)}
   thead th.grp-brewery:hover,thead th.grp-kohler:hover{color:var(--ink)}
   th.grp-first,td.grp-first{border-left:3px solid var(--line)}
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
   tbody tr:hover td.grp-brewery{background:rgba(244,184,62,.16)}
-  tbody tr:hover td.grp-kohler{background:rgba(91,141,239,.16)}
+  tbody tr:hover td.grp-kohler{background:rgba(78,124,232,.16)}
 
-  .combo-suprow td{background:#0A0B0F;font-weight:600;border-bottom:1px solid var(--line)}
-  .combo-suprow:hover td{background:#0F1116}
+  .combo-suprow td{background:#100B06;font-weight:600;border-bottom:1px solid var(--line)}
+  .combo-suprow:hover td{background:#1A130C}
   .combo-name{text-align:left!important;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .combo-chevron{display:inline-block;width:14px;color:var(--ink-soft);font-size:10px}
   .combo-childcount{color:var(--ink-mute);font-weight:400;font-size:11.5px;margin-left:4px}
@@ -143,7 +146,7 @@
 
   .ce-selectable{cursor:pointer}
   .ce-selectable:hover{outline:1px dashed var(--ink-soft);outline-offset:-2px}
-  .cell-selected{background:rgba(91,141,239,.30)!important;outline:1px solid var(--kohler);outline-offset:-1px}
+  .cell-selected{background:rgba(78,124,232,.30)!important;outline:1px solid var(--kohler);outline-offset:-1px}
 
   #selectionSumBar{display:none;position:fixed;bottom:18px;right:18px;z-index:80;align-items:center;gap:12px;
     background:var(--card-h);border:1px solid var(--kohler);border-radius:12px;padding:10px 16px;box-shadow:var(--shadow)}
@@ -217,13 +220,13 @@
       </div>
 
       <div class="tablewrap">
-        <table style="width:1864px">
+        <table style="width:100%;min-width:1864px">
           <colgroup>
-            <col style="width:340px"><col style="width:225px"><col style="width:135px">
-            <col style="width:88px"><col style="width:88px"><col style="width:88px"><col style="width:85px"><col style="width:90px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:145px">
+            <col style="width:18.24%"><col style="width:12.07%"><col style="width:7.24%">
+            <col style="width:4.72%"><col style="width:4.72%"><col style="width:4.72%"><col style="width:4.56%"><col style="width:4.83%">
+            <col style="width:4.40%"><col style="width:4.83%"><col style="width:6.33%">
+            <col style="width:4.40%"><col style="width:4.83%"><col style="width:6.33%">
+            <col style="width:7.78%">
           </colgroup>
           <thead><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
@@ -351,13 +354,13 @@
       </div>
 
       <div class="tablewrap">
-        <table style="width:1644px">
+        <table style="width:100%;min-width:1644px">
           <colgroup>
-            <col style="width:300px"><col style="width:180px">
-            <col style="width:88px"><col style="width:88px"><col style="width:88px"><col style="width:85px"><col style="width:90px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:145px">
+            <col style="width:18.25%"><col style="width:10.95%">
+            <col style="width:5.35%"><col style="width:5.35%"><col style="width:5.35%"><col style="width:5.17%"><col style="width:5.47%">
+            <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
+            <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
+            <col style="width:8.82%">
           </colgroup>
           <thead><tr id="supplierTheadRow"></tr></thead>
           <tbody id="supplierTbody"></tbody>
@@ -419,13 +422,13 @@
       </div>
 
       <div class="tablewrap">
-        <table style="width:1644px">
+        <table style="width:100%;min-width:1644px">
           <colgroup>
-            <col style="width:300px"><col style="width:180px">
-            <col style="width:88px"><col style="width:88px"><col style="width:88px"><col style="width:85px"><col style="width:90px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:82px"><col style="width:90px"><col style="width:118px">
-            <col style="width:145px">
+            <col style="width:18.25%"><col style="width:10.95%">
+            <col style="width:5.35%"><col style="width:5.35%"><col style="width:5.35%"><col style="width:5.17%"><col style="width:5.47%">
+            <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
+            <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
+            <col style="width:8.82%">
           </colgroup>
           <thead><tr id="comboTheadRow"></tr></thead>
           <tbody id="comboTbody"></tbody>
@@ -563,7 +566,7 @@ function trendCell(v){
   const cls = v<-0.0005?'bad':(v>0.0005?'good':'flat');
   const mag = Math.min(Math.abs(v)/TREND_SCALE_CAP, 1);
   const alpha = (0.08 + mag*0.30).toFixed(3);
-  const rgb = cls==='good' ? '55,196,107' : (cls==='bad' ? '229,96,77' : '154,161,176');
+  const rgb = cls==='good' ? '76,201,122' : (cls==='bad' ? '235,106,80' : '183,164,137');
   const bg = cls==='flat' ? 'transparent' : `rgba(${rgb},${alpha})`;
   return `<span class="trendcell ${cls}" style="background:${bg}">${fmtPct(v)}</span>`;
 }
