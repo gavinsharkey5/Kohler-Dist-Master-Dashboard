@@ -28,6 +28,19 @@ Inputs (keep these filenames when refreshing):
                               FOOD_BEV_BRAND_KEYWORDS below); this file's
                               Product Name text still distinguishes them,
                               recovering the real per-brand split.
+  segment_package_trend.csv (optional)
+                              Fusion "Segment / Package" export (Supplier,
+                              Brand Family, Segment, Sub-Segments, Package,
+                              Cases for the same two YTD windows as
+                              ytd_comparison.csv, $Vol for both). Feeds the
+                              small "Segment & Package Trend" panel in the
+                              page header -- company-wide Cases YoY rolled
+                              up by Segment (Beer/RTD/Spirits/etc.) and by
+                              a package "container type" (Keg/Can/Bottle)
+                              inferred from the free-text Package column
+                              (see classify_package() below). Skipped
+                              entirely, with the panel left off the page,
+                              if this file isn't present.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -54,6 +67,7 @@ HERE = Path(__file__).parent
 WORKBOOK = HERE / "2026_planning_source.xlsx"
 CSV_YTD = HERE / "ytd_comparison.csv"
 DENISE_PRODUCT_DETAIL = HERE / "denise_food_bev_product_detail.csv"
+CSV_SEGMENT_PACKAGE = HERE / "segment_package_trend.csv"
 HTML = HERE / "index.html"
 OUT = HERE / "data" / "data.json"
 
@@ -257,6 +271,73 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
 
 
 # ---------------------------------------------------------------------------
+# Segment & Package Trend (header panel) -- company-wide Cases YoY by
+# Segment and by package "container type", from the Fusion export.
+# ---------------------------------------------------------------------------
+
+def classify_package(raw):
+    """Buckets Fusion's free-text Package column (e.g. "2/12/12oz Can",
+    "15.5 Gal Keg", "1/12/750ml Btl", "750ML") into Keg / Can / Bottle /
+    Other. Most rows carry an explicit container word; the remainder
+    (spirits/wine minis/1L formats with no suffix) are still bottle-format
+    in this export, so a bare volume unit with no Can/Keg word also counts
+    as Bottle. Verified against the full 2026-08-04 export: 0 rows fall
+    into "Other" with this rule.
+    """
+    p = (raw or "").upper()
+    if "KEG" in p or "BBL" in p:
+        return "Keg"
+    if "CAN" in p:
+        return "Can"
+    if "BTL" in p or "NR" in p or "(BO)" in p or "BOTTLE" in p:
+        return "Bottle"
+    if any(u in p for u in ("ML", "LTR", "LITER", "OZ", "SLEEVE")):
+        return "Bottle"
+    return "Other"
+
+
+def parse_segment_package_trend(path):
+    if not path.exists():
+        return None
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        cases_cols = [c for c in fieldnames if c.startswith("Cases")]
+        if len(cases_cols) < 2:
+            return None
+        prior_col, current_col = cases_cols[0], cases_cols[1]
+        range_prior = prior_col.replace("Cases", "").strip()
+        range_current = current_col.replace("Cases", "").strip()
+
+        seg_totals = defaultdict(lambda: [0.0, 0.0])
+        pkg_totals = defaultdict(lambda: [0.0, 0.0])
+        for r in reader:
+            prior, current = to_num(r[prior_col]), to_num(r[current_col])
+            segment = (r.get("Segment") or "").strip() or "Unclassified"
+            seg_totals[segment][0] += prior
+            seg_totals[segment][1] += current
+            pkg_type = classify_package(r.get("Package"))
+            pkg_totals[pkg_type][0] += prior
+            pkg_totals[pkg_type][1] += current
+
+    def to_rows(totals):
+        out = []
+        for label, (prior, current) in totals.items():
+            pct = (current / prior - 1) if prior else (1.0 if current else 0.0)
+            out.append({
+                "label": label, "casesPrior": round(prior, 1), "casesCurrent": round(current, 1),
+                "pctChange": round(pct, 4),
+            })
+        out.sort(key=lambda x: -x["casesCurrent"])
+        return out
+
+    return {
+        "rangePrior": range_prior, "rangeCurrent": range_current,
+        "segments": to_rows(seg_totals), "packageTypes": to_rows(pkg_totals),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Raw Supplier -> Brand Family hierarchy, reconstructed straight from
 # ytd_comparison.csv's own row order -- for the "Supplier + Brand" combo tab.
 # ---------------------------------------------------------------------------
@@ -399,6 +480,12 @@ def main():
         CSV_YTD, brands, brands_lower, supplier_names)
     print(f"Matched {len(matched)} brand families in {CSV_YTD.name}; {len(unclassified)} unmatched (new SKUs).")
     print(f"YTD comparison window: {range_prior}  vs.  {range_current}")
+
+    segment_package_trend = parse_segment_package_trend(CSV_SEGMENT_PACKAGE)
+    if segment_package_trend:
+        print(f"Segment & Package Trend: {len(segment_package_trend['segments'])} segments, "
+              f"{len(segment_package_trend['packageTypes'])} package types from {CSV_SEGMENT_PACKAGE.name} "
+              f"({segment_package_trend['rangePrior']}  vs.  {segment_package_trend['rangeCurrent']}).")
 
     if DENISE_PRODUCT_DETAIL.exists():
         overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
@@ -798,6 +885,7 @@ def main():
         "terminatedBrands": terminated,
         "supplierRollup": supplier_rollup,
         "comboRollup": combo_rollup,
+        "segmentPackageTrend": segment_package_trend,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))

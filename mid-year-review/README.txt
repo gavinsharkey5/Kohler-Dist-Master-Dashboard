@@ -217,6 +217,20 @@ Files:
                               real per-brand split. Optional -- if this
                               file is absent, those brands just fall
                               back to RDE's own (contaminated) rollup.
+  segment_package_trend.csv (optional)
+                              Fusion "Segment / Package" export (Supplier,
+                              Brand Family, Segment, Sub-Segments,
+                              Package, Cases for the same two YTD
+                              windows as ytd_comparison.csv, $Vol for
+                              both). Feeds the "Segment & Package Trend"
+                              panel in the page header (visible on every
+                              tab) -- company-wide Cases YoY by Segment
+                              (Beer/RTD/Spirits/etc.) and by a package
+                              "container type" (Keg/Can/Bottle) inferred
+                              from the free-text Package column (see
+                              classify_package() in generate.py).
+                              Optional -- if this file is absent, the
+                              panel is just left off the page.
   generate.py                 Rebuilds data/data.json from the files
                               above.
   index.html                  The page itself.
@@ -230,8 +244,11 @@ To refresh (e.g. at each month-end check-in):
   3. If refreshing Denise Montes' Food & Bev Enterprise LLC brands,
      re-pull the product-level export too and save it over
      denise_food_bev_product_detail.csv.
-  4. Run: python3 generate.py
-  5. Commit and push.
+  4. If refreshing the header's Segment & Package Trend panel, re-pull
+     the Fusion segment/package export and save it over
+     segment_package_trend.csv.
+  5. Run: python3 generate.py
+  6. Commit and push.
 
 Notes:
   - A brand whose name is also used as its own supplier label in the

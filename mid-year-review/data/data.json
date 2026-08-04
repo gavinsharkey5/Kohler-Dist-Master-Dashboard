@@ -9882,5 +9882,85 @@
       "goal_kohler_pct": -0.8511904699900791,
       "children": []
     }
-  ]
+  ],
+  "segmentPackageTrend": {
+    "rangePrior": "1/1/2025 - 7/31/2025",
+    "rangeCurrent": "1/1/2026 - 7/31/2026",
+    "segments": [
+      {
+        "label": "Beer",
+        "casesPrior": 3442345.5,
+        "casesCurrent": 3401532.0,
+        "pctChange": -0.0119
+      },
+      {
+        "label": "Seltzer",
+        "casesPrior": 202592.0,
+        "casesCurrent": 178362.0,
+        "pctChange": -0.1196
+      },
+      {
+        "label": "FMB",
+        "casesPrior": 152145.0,
+        "casesCurrent": 122346.0,
+        "pctChange": -0.1959
+      },
+      {
+        "label": "RTD",
+        "casesPrior": 55556.0,
+        "casesCurrent": 90356.0,
+        "pctChange": 0.6264
+      },
+      {
+        "label": "Cider",
+        "casesPrior": 32928.0,
+        "casesCurrent": 34400.0,
+        "pctChange": 0.0447
+      },
+      {
+        "label": "Non-Alc",
+        "casesPrior": 15247.0,
+        "casesCurrent": 20106.0,
+        "pctChange": 0.3187
+      },
+      {
+        "label": "Spirits",
+        "casesPrior": 11889.8,
+        "casesCurrent": 8829.3,
+        "pctChange": -0.2574
+      },
+      {
+        "label": "THC",
+        "casesPrior": 4122.0,
+        "casesCurrent": 5218.0,
+        "pctChange": 0.2659
+      },
+      {
+        "label": "Wine",
+        "casesPrior": 742.0,
+        "casesCurrent": 1209.0,
+        "pctChange": 0.6294
+      }
+    ],
+    "packageTypes": [
+      {
+        "label": "Bottle",
+        "casesPrior": 1987422.8,
+        "casesCurrent": 1925492.8,
+        "pctChange": -0.0312
+      },
+      {
+        "label": "Can",
+        "casesPrior": 1885220.5,
+        "casesCurrent": 1893462.5,
+        "pctChange": 0.0044
+      },
+      {
+        "label": "Keg",
+        "casesPrior": 44924.0,
+        "casesCurrent": 43403.0,
+        "pctChange": -0.0339
+      }
+    ]
+  }
 }

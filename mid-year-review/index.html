@@ -44,12 +44,29 @@
   }
 
   header{padding:30px 0 6px}
+  .header-row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap}
+  .header-text{flex:1 1 480px;min-width:0}
   .backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:14px}
   .backlink:hover{color:var(--kohler)}
   .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;font-weight:600;color:var(--ink-soft);margin:0 0 8px}
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0}
   .sub{color:var(--ink-soft);margin:12px 0 0;max-width:80ch;font-size:14.5px}
   .sub b{color:var(--ink)}
+
+  /* Segment & Package Trend panel -- sits in the header alongside the lede
+     text on wide screens, wraps below it on narrow ones. */
+  .trend-widget{flex:1 1 360px;max-width:440px;min-width:280px;background:var(--card);border:1px solid var(--line);
+    border-top:2px solid var(--kohler);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .trend-widget:empty{display:none}
+  .tw-title{font-family:"Space Grotesk";font-size:14px;font-weight:700;margin:0 0 2px;color:var(--ink)}
+  .tw-sub{font-size:11px;color:var(--ink-soft);margin:0 0 12px}
+  .tw-section{margin:0 0 12px}
+  .tw-section:last-child{margin-bottom:0}
+  .tw-section-lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin:0 0 6px}
+  .tw-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;font-size:12px;padding:3px 0}
+  .tw-row .tw-lbl{color:var(--ink-soft);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tw-row .tw-val{color:var(--ink-mute);font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:11px}
+  @media(max-width:640px){.trend-widget{max-width:none}}
 
   .tabs{display:flex;gap:4px;margin:22px 0 0;flex-wrap:wrap}
   .tab{background:var(--card);border:1px solid var(--line);border-top:2px solid transparent;color:var(--ink-soft);font:inherit;font-size:13px;font-weight:600;
@@ -173,15 +190,20 @@
   </div>
 
   <header>
-    <a class="backlink" href="../">&larr; All trackers</a>
-    <p class="eyebrow">6-Month Review</p>
-    <h1>Brand Trend vs. Goal</h1>
-    <p class="sub" id="subtitle">Where each brand's current-year trend stands against its 2026 Brewery Goal % and
-      Kohler Goal %, so brand managers can see who's ahead or behind pace and recalibrate for the back half of the
-      year. "Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both
-      years (a true apples-to-apples comparison). Goal % is editable per brand &mdash; adjust either track up or
-      down to see its case target and gap recalculate live. Edits are local to your browser only and don't save
-      back to the workbook; use <b>Export CSV</b> to keep a copy.</p>
+    <div class="header-row">
+      <div class="header-text">
+        <a class="backlink" href="../">&larr; All trackers</a>
+        <p class="eyebrow">6-Month Review</p>
+        <h1>Brand Trend vs. Goal</h1>
+        <p class="sub" id="subtitle">Where each brand's current-year trend stands against its 2026 Brewery Goal % and
+          Kohler Goal %, so brand managers can see who's ahead or behind pace and recalibrate for the back half of the
+          year. "Trend" is each brand's year-over-year Case Equivalent change for the identical date range in both
+          years (a true apples-to-apples comparison). Goal % is editable per brand &mdash; adjust either track up or
+          down to see its case target and gap recalculate live. Edits are local to your browser only and don't save
+          back to the workbook; use <b>Export CSV</b> to keep a copy.</p>
+      </div>
+      <div class="trend-widget" id="trendWidget"></div>
+    </div>
   </header>
 
   <div class="tabs" id="tabs">
@@ -1317,6 +1339,29 @@ function exportComboCSV(){
   a.click();
 }
 
+// ---- Segment & Package Trend (header panel) -- company-wide Cases YoY,
+// from the Fusion segment/package export. Static (doesn't depend on the
+// active tab/brand), so it's rendered once at init and left alone. ----
+function twRow(r){
+  return `<div class="tw-row"><span class="tw-lbl">${esc(r.label)}</span><span class="tw-val">${fmtCE(r.casesCurrent)}</span>${trendCell(r.pctChange)}</div>`;
+}
+function renderSegmentPackageTrend(){
+  const el = document.getElementById('trendWidget');
+  const t = DATA.segmentPackageTrend;
+  if (!t || !t.segments || !t.segments.length){ el.innerHTML = ''; return; }
+  el.innerHTML = `
+    <p class="tw-title">Segment &amp; Package Trend</p>
+    <p class="tw-sub">Cases, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)} &middot; company-wide</p>
+    <div class="tw-section">
+      <p class="tw-section-lbl">By Segment</p>
+      ${t.segments.map(twRow).join('')}
+    </div>
+    <div class="tw-section">
+      <p class="tw-section-lbl">By Package Type</p>
+      ${t.packageTypes.map(twRow).join('')}
+    </div>`;
+}
+
 function renderCaveats(){
   const outliers = DATA.brands.filter(r =>
     (r.goal_brewery_pct!=null && Math.abs(r.goal_brewery_pct)>2) ||
@@ -1351,6 +1396,7 @@ async function init(){
   DATA.managers = DATA.managers || [];
   DATA.suppliers = DATA.suppliers || [];
   DATA.meta = DATA.meta || {};
+  DATA.segmentPackageTrend = DATA.segmentPackageTrend || null;
 
   DATA.brands = DATA.brands.map((r,i)=>({...r, _key: `${r.supplier}|${r.brand}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
@@ -1396,6 +1442,7 @@ async function init(){
   renderKPIs();
   renderTable();
   renderCaveats();
+  renderSegmentPackageTrend();
   renderNewTable();
   renderTermTable();
   renderSupplierKPIs();
