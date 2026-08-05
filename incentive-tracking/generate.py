@@ -877,6 +877,71 @@ def build_garage_beer_president():
     return {"byRep": by_rep, "companyTotalThisYear": round(company_total_this_year, 2), "houseGoal": 9305}
 
 
+NEW_BELGIUM_DIST_BRANDS = ["Bell's", "Bell's Hearted Family", "Kirin Ichiban", "Kirin Light", "Voodoo Family"]
+
+
+def build_new_belgium_distribution():
+    """New Belgium Distribution -- Push Volume phase only. The deck's
+    full program is Achieve (May-Jun) / Push Volume (Jul-Aug) / Retain
+    (Sep-Oct), but the Achieve and Retain phases need brand-specific
+    distribution-goal numbers we don't have -- only Push Volume is
+    buildable from this file.
+
+    This file's own periods are May-Jul 2026 (base) vs Aug 2026
+    (current), NOT a year-over-year comparison. Aug is also a partial,
+    in-progress month (this file was pulled ~5 days into August), so
+    comparing full Aug against the 3-month base would show a misleading
+    decline every time. Instead this tracks raw Case Equivalents sold
+    during the Aug push window per core brand family, with the base
+    period's monthly average shown only as a reference rate, not a
+    growth/goal figure.
+
+    Per Gavin, 2026-08-1x: Chris Politano/John Neukum/Office Tell
+    Sell/Default rows are dropped as elsewhere."""
+    rows = read_rows("new_belgium_distribution_push_volume.csv")
+    fieldnames = rows[0].keys() if rows else []
+    base_col, current_col = find_period_cols(fieldnames, "Case Equivalents")
+
+    def blank_brands():
+        return {b: {"label": b, "pushVolumeCE": 0.0, "baseMonthlyAvgCE": 0.0} for b in NEW_BELGIUM_DIST_BRANDS}
+
+    by_rep = {rep: {
+        "pushVolumeCE": 0.0, "baseMonthlyAvgCE": 0.0,
+        "brands": blank_brands(), "lines": [],
+    } for rep in ROSTER}
+
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        brand = row["Brand Family"]
+        if brand not in NEW_BELGIUM_DIST_BRANDS:
+            continue
+        cur = to_num(row[current_col])
+        base_monthly = to_num(row[base_col]) / 3.0
+        d = by_rep[rep]
+        d["pushVolumeCE"] += cur
+        d["baseMonthlyAvgCE"] += base_monthly
+        d["brands"][brand]["pushVolumeCE"] += cur
+        d["brands"][brand]["baseMonthlyAvgCE"] += base_monthly
+        if cur > 0:
+            d["lines"].append({
+                "customer": row["Customer Name"], "product": row["Product Name"],
+                "brand": brand, "caseEquivalents": round(cur, 2), "date": row["Date"],
+            })
+
+    for rep, d in by_rep.items():
+        d["pushVolumeCE"] = round(d["pushVolumeCE"], 2)
+        d["baseMonthlyAvgCE"] = round(d["baseMonthlyAvgCE"], 2)
+        for b in d["brands"].values():
+            b["pushVolumeCE"] = round(b["pushVolumeCE"], 2)
+            b["baseMonthlyAvgCE"] = round(b["baseMonthlyAvgCE"], 2)
+        d["brands"] = [d["brands"][b] for b in NEW_BELGIUM_DIST_BRANDS]
+        d["lines"].sort(key=lambda e: -e["caseEquivalents"])
+
+    return {"byRep": by_rep}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -893,6 +958,7 @@ def main():
         "mollys": build_mollys(),
         "garage_beer_summer_sequel": build_garage_beer_summer_sequel(),
         "garage_beer_president": build_garage_beer_president(),
+        "new_belgium_distribution": build_new_belgium_distribution(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -929,6 +995,7 @@ def main():
           f"{sum(d['rebuyCount'] for d in data['mollys']['byRep'].values())} rebuys")
     print(f"garage_beer_summer_sequel: {sum(1 for d in data['garage_beer_summer_sequel']['byRep'].values() if d['tier'])} reps in a tier")
     print(f"garage_beer_president: {data['garage_beer_president']['companyTotalThisYear']} / {data['garage_beer_president']['houseGoal']} house CE")
+    print(f"new_belgium_distribution: {sum(d['pushVolumeCE'] for d in data['new_belgium_distribution']['byRep'].values()):.0f} total Aug push-volume CE")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

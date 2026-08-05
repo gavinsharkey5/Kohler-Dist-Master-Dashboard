@@ -338,20 +338,34 @@ logic, flag anything that contradicts the deck.
    "are not reps" and are dropped along with Default; ROSTER unchanged.
 
 2. NEW BELGIUM DISTRIBUTION ("New Belgium Volume") -- Achieve May-Jun /
-   Push Volume Jul-Aug / Retain Sep-Oct [NOT STARTED]
+   Push Volume Jul-Aug / Retain Sep-Oct [BUILT, Push Volume phase only]
    - Achieve: secure distribution goals across 4 core brands (New
      Belgium, 12pk Voodoo, 19.2 Voodoo, Hearted Family, Kirin) -- tiered
-     payout per brand goal achieved
+     payout per brand goal achieved [NOT STARTED -- needs brand-specific
+     goal numbers not stated on the slide]
    - Push Volume (Jul-Aug): volume payout for cases sold over last
-     year, as part of the Summer Volume Program
+     year, as part of the Summer Volume Program [BUILT]
    - Retain (Sep-Oct): tiered payout per brand goal retained
+     [NOT STARTED -- same goal-number gap as Achieve]
    - Core Bonus: additional tiered bonus if both achieve + retain goals
-     hit AND positive NBB growth May-October
-   Gavin asked for "new belgium volume" specifically -- likely just the
-   Jul-Aug push-volume piece (same shape as Sun Cruiser), but the
-   achieve/retain distribution-goal tracking needs brand-specific goal
-   numbers not stated on the slide. Ask which scope when the file
-   arrives, and ask for the goal numbers if achieve/retain is wanted.
+     hit AND positive NBB growth May-October [NOT STARTED -- depends on
+     Achieve/Retain]
+   Sourced from RDE_NEW_BELGIUM_DISTRIBUTION__PUSH_VOLUME_2026_1.csv
+   (new_belgium_distribution_push_volume.csv) -- the filename and its
+   brand list (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin
+   Light, Voodoo Family) confirm this is the Push Volume phase data.
+   The file's own two periods are May-Jul 2026 (base, 3 months) vs Aug
+   2026 (current, 1 month) -- NOT a year-over-year comparison, and Aug
+   was only ~5 days in when this file was pulled, so a straight
+   current-vs-base diff would show a misleading decline across the
+   board (e.g. Voodoo Family: ~2,201 CE/mo base rate vs 256 CE seen in
+   the first few days of Aug). Built instead as a volume tracker: raw
+   Case Equivalents sold during the Aug push window per core brand
+   family, with the May-Jul monthly average shown only as a reference
+   rate, not a growth/goal target. Achieve and Retain still need
+   brand-specific distribution-goal numbers before they can be built.
+   Roster note: file includes John Neukum rows, dropped per the
+   standing not-a-rep exclusion.
 
 3. GARAGE BEER PRESIDENT'S INCENTIVE -- Jun-Sep [BUILT]
    - Flat $1.00/CE over last year, once total Garage Beer CEs (company-
