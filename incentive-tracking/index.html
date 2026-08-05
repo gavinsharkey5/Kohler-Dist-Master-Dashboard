@@ -111,6 +111,17 @@
 
   .empty-state{color:var(--text-dim);font-size:14px;padding:30px 10px;text-align:center;}
 
+  .tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;align-items:start;}
+  .prog-tile .prog-head{padding:16px 18px 14px;}
+  .prog-tile .prog-body{padding:12px 18px 16px;gap:6px;}
+
+  .pill-nav-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
+  .pill-nav{display:flex;flex-wrap:wrap;gap:7px;}
+  .pill-nav-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;}
+  .pill{background:var(--card-alt);border:1px solid var(--border);color:var(--text-dim);padding:6px 13px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+  .pill:hover:not(:disabled){border-color:var(--accent);color:var(--text);}
+  .pill:disabled{opacity:0.4;cursor:default;}
+
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 
@@ -12053,6 +12064,67 @@ const PROGRAM_DATA = {
 const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
 const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty City'},{pct:0.75,label:'Lytt-Faced'}];
 
+const PROGRAM_LIST = [
+  {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
+   getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+  {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
+   getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+  {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
+   getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
+   metric:d=>d.caseVolume24oz, metricLabel:'24oz cases', fmt:v=>v.toFixed(0)},
+  {key:'path_to_victory', group:'new', title:'The Path to Victory', shortTitle:'Path to Victory', tag:'August',
+   getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
+   metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
+  {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'August',
+   getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
+   metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
+  {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
+   getRep:rep=>(PROGRAM_DATA['boston_beer']||{}).byRep?.[rep],
+   metric:d=>d.points, metricLabel:'trip bonus points', fmt:v=>v.toFixed(0)},
+  {key:'new_belgium', group:'new', title:'New Belgium Draft (Summer Draft Focus)', shortTitle:'New Belgium Draft', tag:'August',
+   getRep:rep=>(PROGRAM_DATA['new_belgium']||{}).byRep?.[rep],
+   metric:d=>d.featuredNewCount+d.featuredRebuyCount, metricLabel:'featured PODs', fmt:v=>v.toFixed(0)},
+  {key:'lytt', group:'new', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
+   getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
+   metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
+  {key:'fall_seasonal', group:'new', title:'Fall Seasonal Fast Start', shortTitle:'Fall Seasonal', tag:'August',
+   getRep:rep=>{ const po=(PROGRAM_DATA['fall_seasonal']||{}).package_only?.byRep?.[rep]; const pd=(PROGRAM_DATA['fall_seasonal']||{}).packages_and_draft?.byRep?.[rep]; return (po||pd) ? {po,pd} : null; },
+   metric:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), metricLabel:'package CE', fmt:v=>v.toFixed(1)},
+  {key:'sun_cruiser', group:'ongoing', title:'Sun Cruiser Volume', shortTitle:'Sun Cruiser', tag:'May–Aug',
+   getRep:rep=>(PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep],
+   metric:d=>d.rate1CaseGrowth+d.rate3CaseGrowth, metricLabel:'case growth', fmt:v=>v.toFixed(0)},
+  {key:'yave', group:'ongoing', title:'Yave Tequila Launch', shortTitle:'Yave', tag:'Jul–Aug',
+   getRep:rep=>(PROGRAM_DATA['yave']||{}).byRep?.[rep],
+   metric:d=>d.onPremAccountCount+d.offPremAccountCount, metricLabel:'qualifying accounts', fmt:v=>v.toFixed(0)},
+  {key:'mollys', group:'ongoing', title:"Molly's 1.75L", shortTitle:"Molly's", tag:'Jul–Aug',
+   getRep:rep=>(PROGRAM_DATA['mollys']||{}).byRep?.[rep],
+   metric:d=>d.newPodCount+d.rebuyCount, metricLabel:'PODs + rebuys', fmt:v=>v.toFixed(0)},
+  {key:'garage_beer_summer_sequel', group:'ongoing', title:'Garage Beer Summer Sequel', shortTitle:'GB Summer Sequel', tag:'Jun–Aug',
+   getRep:rep=>{ const d=(PROGRAM_DATA['garage_beer_summer_sequel']||{}).byRep?.[rep]; return (d && d.tieredGoal!=null) ? d : null; },
+   metric:d=>d.caseEquiv, metricLabel:'CE', fmt:v=>v.toFixed(0)},
+  {key:'garage_beer_president', group:'ongoing', title:"Garage Beer President's Incentive", shortTitle:"GB President's", tag:'Jun–Sep',
+   getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
+   metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
+  {key:'new_belgium_distribution', group:'ongoing', title:'New Belgium Distribution — Push Volume', shortTitle:'NB Distribution', tag:'Jul–Aug',
+   getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
+   metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
+];
+
+function rankProgram(entry){
+  const rows = ROSTER.map(rep=>{
+    const d = entry.getRep(rep);
+    if(!d) return null;
+    const val = entry.metric(d);
+    if(val==null || Number.isNaN(val)) return null;
+    return {rep, val};
+  }).filter(Boolean);
+  rows.sort((a,b)=>b.val-a.val);
+  rows.forEach((r,i)=>{ r.rank = i+1; });
+  return rows;
+}
+
 let activeRep = null;
 let uid = 0;
 
@@ -12400,41 +12472,95 @@ function cardNewBelgiumDistribution(rep){
   </div>`;
 }
 
+function renderPillNav(rep){
+  const grp = g => PROGRAM_LIST.filter(e=>e.group===g).map(e=>{
+    const has = !!e.getRep(rep);
+    return has
+      ? `<button class="pill" data-anchor="card-${e.key}">${esc(e.shortTitle)}</button>`
+      : `<button class="pill" disabled title="No data yet">${esc(e.shortTitle)}</button>`;
+  }).join('');
+  return `<div class="pill-nav-wrap">
+    <div><div class="pill-nav-label">Jump to — New Incentives</div><div class="pill-nav">${grp('new')}</div></div>
+    <div><div class="pill-nav-label">Jump to — Ongoing Incentives</div><div class="pill-nav">${grp('ongoing')}</div></div>
+  </div>`;
+}
+
 function renderRep(){
   const main = document.getElementById('main');
   main.innerHTML = `
     <button class="backbtn" id="backbtn">&lsaquo; All reps</button>
     <div class="rep-hero"><h2>${esc(activeRep)}</h2></div>
+    ${renderPillNav(activeRep)}
     <div class="prog-grid">
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
-        ${card1911(activeRep)}
-        ${cardWoodchuck(activeRep)}
-        ${cardTona(activeRep)}
-        ${cardPathToVictory(activeRep)}
-        ${cardSamAdams(activeRep)}
-        ${cardBostonBeer(activeRep)}
-        ${cardLytt(activeRep)}
-        ${cardFallSeasonal(activeRep)}
-        ${cardNewBelgium(activeRep)}
+        <div id="card-1911">${card1911(activeRep)}</div>
+        <div id="card-woodchuck">${cardWoodchuck(activeRep)}</div>
+        <div id="card-tona">${cardTona(activeRep)}</div>
+        <div id="card-path_to_victory">${cardPathToVictory(activeRep)}</div>
+        <div id="card-sam_adams">${cardSamAdams(activeRep)}</div>
+        <div id="card-boston_beer">${cardBostonBeer(activeRep)}</div>
+        <div id="card-lytt">${cardLytt(activeRep)}</div>
+        <div id="card-fall_seasonal">${cardFallSeasonal(activeRep)}</div>
+        <div id="card-new_belgium">${cardNewBelgium(activeRep)}</div>
       </div>
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">Ongoing Incentives</span><span class="prog-section-sub">Continuing programs</span></div>
-        ${cardSunCruiser(activeRep)}
-        ${cardYave(activeRep)}
-        ${cardMollys(activeRep)}
-        ${cardGarageBeerSummerSequel(activeRep)}
-        ${cardGarageBeerPresident(activeRep)}
-        ${cardNewBelgiumDistribution(activeRep)}
+        <div id="card-sun_cruiser">${cardSunCruiser(activeRep)}</div>
+        <div id="card-yave">${cardYave(activeRep)}</div>
+        <div id="card-mollys">${cardMollys(activeRep)}</div>
+        <div id="card-garage_beer_summer_sequel">${cardGarageBeerSummerSequel(activeRep)}</div>
+        <div id="card-garage_beer_president">${cardGarageBeerPresident(activeRep)}</div>
+        <div id="card-new_belgium_distribution">${cardNewBelgiumDistribution(activeRep)}</div>
       </div>
     </div>
   `;
   document.getElementById('backbtn').addEventListener('click', ()=>{ activeRep=null; renderMain(); });
 }
 
+function renderTile(entry){
+  const rows = rankProgram(entry);
+  const top = rows.slice(0,5);
+  const topHtml = top.length
+    ? top.map(r=>`<div class="leader-row"><span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span><span class="leader-name">${esc(r.rep)}</span><span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span></div>`).join('')
+    : '<div class="no-lines">No activity yet.</div>';
+  let moreToggle = '';
+  if(rows.length > top.length){
+    const did = 'tile'+(uid++);
+    const fullRows = rows.map(r=>`<tr><td class="num">#${r.rank}</td><td>${esc(r.rep)}</td><td class="num">${entry.fmt(r.val)}</td></tr>`).join('');
+    moreToggle = `<div class="detail-block">
+      <div class="detail-toggle" data-target="${did}"><span class="detail-chev">▶</span>view all ${rows.length} reps</div>
+      <div class="detail-table" id="${did}"><table><thead><tr><th>Rank</th><th>Rep</th><th>${esc(entry.metricLabel)}</th></tr></thead><tbody>${fullRows}</tbody></table></div>
+    </div>`;
+  }
+  return `<div class="prog-card prog-tile">
+    <div class="prog-head">
+      <div class="prog-name-row"><span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+    </div>
+    <div class="prog-body">
+      ${topHtml}
+      ${moreToggle}
+    </div>
+  </div>`;
+}
+
 function renderOverview(){
   const main = document.getElementById('main');
-  main.innerHTML = `<div class="empty-state">Pick a rep above to see their progress across all 4 programs.</div>`;
+  const newTiles = PROGRAM_LIST.filter(e=>e.group==='new').map(renderTile).join('');
+  const ongoingTiles = PROGRAM_LIST.filter(e=>e.group==='ongoing').map(renderTile).join('');
+  main.innerHTML = `
+    <div class="empty-state" style="text-align:left;padding:0 0 4px;">Pick a rep above for their full breakdown — or see where everyone stands on each program below.</div>
+    <div class="prog-grid">
+      <div class="prog-section">
+        <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
+        <div class="tile-grid">${newTiles}</div>
+      </div>
+      <div class="prog-section">
+        <div class="prog-section-head"><span class="prog-section-title">Ongoing Incentives</span><span class="prog-section-sub">Continuing programs</span></div>
+        <div class="tile-grid">${ongoingTiles}</div>
+      </div>
+    </div>
+  `;
 }
 
 function renderMain(){
@@ -12459,6 +12585,13 @@ document.addEventListener('click', (e)=>{
   const table = document.getElementById(t.dataset.target);
   t.classList.toggle('open');
   if(table) table.classList.toggle('open');
+});
+
+document.addEventListener('click', (e)=>{
+  const p = e.target.closest('.pill[data-anchor]');
+  if(!p) return;
+  const el = document.getElementById(p.dataset.anchor);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 boot();
