@@ -36,11 +36,13 @@ re-derive it from scratch again):
     10-19 / 20-39 / 40-69 / 70+ → tier 1/2/3/4.
   - Points = TIER_POINTS[classification][tier]:
       priority: 200 / 300 / 500 / 1000
-      allother: (unknown) / 200 / 300 / 600
-    allother/tier1 has never appeared in any export to date — generate.py
-    deliberately has no value for it and will raise instead of guessing
-    if it ever shows up. Ask the user for the correct point value rather
-    than assuming one.
+      allother: 100 / 200 / 300 / 600
+    allother/tier1 (100 pts) first appeared 2026-08-05 (Report_33) and was
+    confirmed with the user then. If a NEW tier/classification combo ever
+    shows up with no TIER_POINTS entry, it silently scores 0 rather than
+    raising -- always spot-check `python3 generate.py` output against the
+    account count before committing, and ask the user for the correct
+    point value rather than assuming one.
   - Sales Reps and Sales Associates earn on the same point scale.
   - Within a person's list, displays are sorted by points desc, then
     cases desc, then date/time (as a deterministic tiebreak) — NOT

@@ -19,9 +19,9 @@ to reproduce identical aggregate totals):
     observed; the script errors out if one appears rather than guess).
   - Tier is by total cases: 0 (<10, non-qualifying), 1 (10-19),
     2 (20-39), 3 (40-69), 4 (70+).
-  - Points = TIER_POINTS[classification][tier]. allother/tier1 has never
-    been observed in any export to date, so it's deliberately absent —
-    the script raises if it's ever needed instead of guessing at a value.
+  - Points = TIER_POINTS[classification][tier]. allother/tier1 first
+    appeared 2026-08-05 (Report_33) — confirmed with the user as 100 pts
+    (half of allother/tier2), so it's no longer a gap in TIER_POINTS.
   - Sales Reps and Sales Associates earn on the same point scale.
   - Within a person's display list: sorted by points desc, then cases desc
     (not by date — a date-sort was tried once and explicitly reverted).
@@ -63,6 +63,8 @@ ALLOTHER_BRANDS = {
     # Family value ("NOCA BEVERAGES") and, when Brand Family is blank, its
     # raw Brand value ("NOCA") -- both need to be listed.
     'NOCA', 'NOCA BEVERAGES', 'SARATOGA WATER',
+    # Confirmed with the user 2026-08-05.
+    "REDD'S", 'VICTORY BREWING COMPANY',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
@@ -86,7 +88,10 @@ BRAND_FAMILY_ALIASES = {
 }
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
-    'allother': {2: 200, 3: 300, 4: 600},
+    # allother/tier1 confirmed with the user 2026-08-05 (first time this
+    # combination has appeared in any export) -- half of allother/tier2,
+    # matching the roughly 2x step-up pattern between the other tiers.
+    'allother': {1: 100, 2: 200, 3: 300, 4: 600},
 }
 COLS = ['num', 'taker', 'role', 'dm', 'acct', 'dba', 'address', 'city',
         'supplier', 'brand_family', 'brand', 'sku', 'qty', 'dt', 'photo']
