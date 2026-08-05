@@ -1,0 +1,304 @@
+#!/usr/bin/env python3
+"""Builds the embedded JSON in index.html from the raw incentive RDE exports.
+
+Run: python3 generate.py
+Reads everything from data/, writes the PROGRAM_DATA JSON block into
+index.html between the START/END markers.
+"""
+import csv
+import json
+import re
+from pathlib import Path
+
+DATA_DIR = Path(__file__).parent / "data"
+INDEX_HTML = Path(__file__).parent / "index.html"
+
+ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano",
+          "Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino",
+          "Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue",
+          "Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez",
+          "Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"]
+
+DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
+
+
+def to_num(s):
+    s = (s or "").strip()
+    if not s:
+        return 0.0
+    try:
+        return float(s)
+    except ValueError:
+        return 0.0
+
+
+def find_period_cols(fieldnames, prefix):
+    """Find the two dated columns sharing `prefix` (e.g. 'Cases'), return
+    (base_col, current_col) sorted by embedded start date."""
+    cols = [f for f in fieldnames if f.startswith(prefix + " ") or f.startswith(prefix + "  ")]
+    dated = []
+    for c in cols:
+        m = DATE_RE.search(c)
+        if m:
+            mo, da, yr = int(m.group(1)), int(m.group(2)), int(m.group(3))
+            dated.append((yr, mo, da, c))
+    dated.sort()
+    if len(dated) != 2:
+        raise ValueError(f"expected 2 dated columns for prefix {prefix!r}, found {dated} in {fieldnames}")
+    return dated[0][3], dated[1][3]
+
+
+def keg_bbl(package):
+    """Barrel-equivalent for a keg package string. Returns None if not a keg."""
+    p = (package or "").lower()
+    if "1/6 bbl" in p or "5.2 gal" in p:
+        return 1.0 / 6.0
+    if "15.5 gal" in p:
+        return 0.5
+    if "gal keg" in p or "keg" in p:
+        # fallback: try to pull the gallon number and convert (31 gal = 1 bbl)
+        m = re.search(r"([\d.]+)\s*gal", p)
+        if m:
+            return float(m.group(1)) / 31.0
+        return None
+    return None
+
+
+def is_keg_package(package):
+    return keg_bbl(package) is not None
+
+
+def read_rows(filename):
+    path = DATA_DIR / filename
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        return list(csv.DictReader(f))
+
+
+def new_rows_dual(rows, base_col, current_col, key_fields):
+    """Group rows by key_fields; return set of keys that are 'new' this
+    period (populated in current_col, never populated in base_col) and a
+    dict of key -> list of matching rows (for date/detail lookups)."""
+    by_key = {}
+    for row in rows:
+        key = tuple(row[k] for k in key_fields)
+        by_key.setdefault(key, []).append(row)
+    new_keys = set()
+    for key, krows in by_key.items():
+        has_current = any(to_num(r[current_col]) > 0 or r[current_col].strip() not in ("", None) for r in krows)
+        has_base = any(r[base_col].strip() not in ("", None) for r in krows)
+        if has_current and not has_base:
+            new_keys.add(key)
+    return new_keys, by_key
+
+
+def latest_date(krows, col):
+    dates = []
+    for r in krows:
+        if r[col].strip():
+            m = DATE_RE.search(r["Date"])
+            if m:
+                mo, da, yr = int(m.group(1)), int(m.group(2)), int(m.group(3))
+                dates.append(((yr, mo, da), r["Date"]))
+    if not dates:
+        return None
+    dates.sort()
+    return dates[-1][1]
+
+
+def build_1911_or_woodchuck(filename, bbl_threshold):
+    rows = read_rows(filename)
+    fieldnames = rows[0].keys() if rows else []
+    base_col, current_col = find_period_cols(fieldnames, "Cases")
+    _, place_current_col = find_period_cols(fieldnames, "Placement Count")
+    place_base_col, _ = find_period_cols(fieldnames, "Placement Count")
+
+    by_rep = {rep: {
+        "offPremNew": [], "offPremNewCount": 0,
+        "draftNew": [], "draftNewCount": 0,
+        "cumulativeBbl": 0.0, "qualifiesDraft": False,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    new_keys, by_key = new_rows_dual(rows, place_base_col, place_current_col, key_fields)
+
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["caseVolume"] += to_num(row[current_col])
+        if row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
+            bbl_each = keg_bbl(row["Package"]) or 0.0
+            by_rep[rep]["cumulativeBbl"] += bbl_each * to_num(row[current_col])
+
+    for key, krows in by_key.items():
+        rep, cust_num, prod_num = key
+        if rep not in by_rep:
+            continue
+        sample = krows[0]
+        is_off_prem = sample["Premise"] == "Off Premise"
+        is_draft = sample["Premise"] == "On Premise" and is_keg_package(sample["Package"])
+        if key not in new_keys or not (is_off_prem or is_draft):
+            continue
+        entry = {
+            "customer": sample["Customer Name"],
+            "product": sample["Product Name"],
+            "date": latest_date(krows, place_current_col),
+        }
+        if is_off_prem:
+            by_rep[rep]["offPremNew"].append(entry)
+            by_rep[rep]["offPremNewCount"] += 1
+        elif is_draft:
+            by_rep[rep]["draftNew"].append(entry)
+            by_rep[rep]["draftNewCount"] += 1
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
+        d["qualifiesDraft"] = d["cumulativeBbl"] >= bbl_threshold
+        d["cumulativeBbl"] = round(d["cumulativeBbl"], 2)
+        d["caseVolume"] = round(d["caseVolume"], 2)
+        d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["draftNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        leaderboard.append({"rep": rep, "newPlacements": d["totalNewPlacements"], "caseVolume": d["caseVolume"]})
+
+    leaderboard.sort(key=lambda x: (-x["newPlacements"], -x["caseVolume"]))
+    for i, entry in enumerate(leaderboard):
+        entry["rank"] = i + 1
+
+    return {"byRep": by_rep, "leaderboard": leaderboard, "bblThreshold": bbl_threshold}
+
+
+def build_tona():
+    rows = read_rows("tona_rewards.csv")
+    fieldnames = rows[0].keys() if rows else []
+    case_base_col, case_current_col = find_period_cols(fieldnames, "Cases")
+    place_base_col, place_current_col = find_period_cols(fieldnames, "Placement Count")
+
+    by_rep = {rep: {
+        "new24ozNew": [], "new24ozCount": 0,
+        "caseVolume24oz": 0.0, "caseVolumeOther": 0.0,
+        "qualifies": False,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    new_keys, by_key = new_rows_dual(rows, place_base_col, place_current_col, key_fields)
+
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        is_24oz = row["Package"] == "1/12/24oz Can"
+        if is_24oz:
+            by_rep[rep]["caseVolume24oz"] += to_num(row[case_current_col])
+        else:
+            by_rep[rep]["caseVolumeOther"] += to_num(row[case_current_col])
+
+    for key, krows in by_key.items():
+        rep, cust_num, prod_num = key
+        if rep not in by_rep:
+            continue
+        sample = krows[0]
+        if sample["Package"] != "1/12/24oz Can":
+            continue
+        entry = {
+            "customer": sample["Customer Name"],
+            "product": sample["Product Name"],
+            "date": latest_date(krows, place_current_col),
+        }
+        by_rep[rep]["new24ozNew"].append(entry)
+        by_rep[rep]["new24ozCount"] += 1
+
+    for rep, d in by_rep.items():
+        d["qualifies"] = d["caseVolume24oz"] >= 20
+        d["caseVolume24oz"] = round(d["caseVolume24oz"], 2)
+        d["caseVolumeOther"] = round(d["caseVolumeOther"], 2)
+        d["new24ozNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+
+    return {"byRep": by_rep, "qualifierGoal": 20}
+
+
+def find_single_col(fieldnames, prefix):
+    matches = [f for f in fieldnames if f.startswith(prefix + " ")]
+    if len(matches) != 1:
+        raise ValueError(f"expected 1 column for prefix {prefix!r}, found {matches}")
+    return matches[0]
+
+
+def build_path_to_victory():
+    rows = read_rows("path_to_victory.csv")
+    fieldnames = rows[0].keys() if rows else []
+    units_current_col = find_single_col(fieldnames, "Units")
+
+    by_rep = {rep: {
+        "sixPackAccounts": [], "sixPackAccountCount": 0, "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [], "nineteenTwoAccountCount": 0, "nineteenTwoUnits": 0.0,
+    } for rep in ROSTER}
+
+    seen_six = {}
+    seen_192 = {}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        if row["Product Type"] != "Case Beer":
+            continue
+        pkg = row["Package"]
+        cust_key = (rep, row["Customer Num"])
+        if pkg == "4/6/12oz Can":
+            by_rep[rep]["sixPackUnits"] += to_num(row[units_current_col])
+            if cust_key not in seen_six:
+                seen_six[cust_key] = True
+                by_rep[rep]["sixPackAccounts"].append({
+                    "customer": row["Customer Name"], "date": row["Date"],
+                })
+        elif pkg == "1/15/19.2oz Can":
+            by_rep[rep]["nineteenTwoUnits"] += to_num(row[units_current_col])
+            if cust_key not in seen_192:
+                seen_192[cust_key] = True
+                by_rep[rep]["nineteenTwoAccounts"].append({
+                    "customer": row["Customer Name"], "date": row["Date"],
+                })
+
+    for rep, d in by_rep.items():
+        d["sixPackAccountCount"] = len(d["sixPackAccounts"])
+        d["nineteenTwoAccountCount"] = len(d["nineteenTwoAccounts"])
+        d["sixPackUnits"] = round(d["sixPackUnits"], 2)
+        d["nineteenTwoUnits"] = round(d["nineteenTwoUnits"], 2)
+
+    return {"byRep": by_rep}
+
+
+def main():
+    data = {
+        "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
+        "woodchuck": build_1911_or_woodchuck("woodchuck_rewards.csv", bbl_threshold=3.0),
+        "tona": build_tona(),
+        "path_to_victory": build_path_to_victory(),
+    }
+
+    for key in ("1911", "woodchuck"):
+        for rep, d in data[key]["byRep"].items():
+            d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
+
+    for key in ("1911", "woodchuck"):
+        total_new = sum(d["totalNewPlacements"] for d in data[key]["byRep"].values())
+        print(f"{key}: {total_new} total new placements across roster")
+    print(f"tona: {sum(d['new24ozCount'] for d in data['tona']['byRep'].values())} total new 24oz placements")
+    print(f"path_to_victory: {sum(d['sixPackAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 6pk activity, "
+          f"{sum(d['nineteenTwoAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 19.2oz activity")
+
+    payload = json.dumps(data, indent=2)
+    html = INDEX_HTML.read_text()
+    start_marker = "/* PROGRAM_DATA_START */"
+    end_marker = "/* PROGRAM_DATA_END */"
+    start = html.index(start_marker) + len(start_marker)
+    end = html.index(end_marker)
+    html = html[:start] + f"\nconst PROGRAM_DATA = {payload};\n" + html[end:]
+    INDEX_HTML.write_text(html)
+    print("Wrote PROGRAM_DATA into index.html")
+
+
+if __name__ == "__main__":
+    main()

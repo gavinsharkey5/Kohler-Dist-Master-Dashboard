@@ -12,43 +12,72 @@ program's tiers/qualifiers/goals -- NOT estimated dollar payouts. No
 $ leaderboard, no per-rep $ totals. Progress bars / tier status /
 qualifier-met flags only, same visual language as the MPO tracker.
 
-Files (once the raw data starts arriving, 4/4/3 cadence):
+Files:
   generate.py        Rebuilds the embedded JSON in index.html from the
-                      11 raw data files.
-  index.html          The dashboard itself.
-  data/               Raw source files as they're dropped in, one per
-                      program (kept for traceability, like MPOs/).
+                      raw data files in data/. Run: python3 generate.py
+  index.html          The dashboard itself. Rep-chip nav like the MPO
+                      tracker; pick a rep to see all 4 built programs.
+  data/               Raw source RDE exports, one CSV per program
+                      (kept for traceability, like MPOs/). Re-run
+                      generate.py after dropping in a refreshed file.
+
+STATUS (2026-08-05): batch 1 of 3 built and live -- 1911 Rewards,
+Woodchuck Cider Rewards, Tona Distribution & Volume, The Path to
+Victory (programs 1-3 and 8 below). Programs 4-7, 9, 11 still need
+their raw data files (batches 2 and 3, per Gavin's 4/4/3 cadence).
+
+Batch-1 schema notes (apply to any future refreshed pull of these same
+4 files): 1911/Woodchuck/Tona share the same dual-period RDE shape as
+on-prem's August pipeline -- Sales Rep Assigned, Customer Num, Customer
+Name, Product Num, Product Name, Package, Brand Family, Date, then
+paired Buyer Count/Placement Count/Cases columns split into base period
+(5/1-7/31) and current period (8/1-9/30). "New placement" = populated
+in the current-period column, never populated in the base-period column
+for that (rep, customer, product) combo -- same classify_dual_period
+logic as MPOs/on-prem/generate_2026-08.py. The 1911 and Woodchuck files
+also carry a Premise column ("On Premise" / "Off Premise") added in the
+second data pull -- this is used directly to split Off-Premise placements
+from Draft (On Premise + a keg package string), no inference needed.
+Path to Victory is single-period only (8/1-9/30, no base-period column)
+and adds a Product Type column (Case Beer / Keg Beer).
 
 The 11 programs (Aug 2026 unless noted), as read from the deck:
 
-1. BEAK & SKIFF 1911 REWARDS -- Aug-Sept
+1. BEAK & SKIFF 1911 REWARDS -- Aug-Sept [BUILT]
    - $10 per new Off-Premise placement of 1911 Cider
    - $100 per new placement of 1911 Draft, paid after 2 barrels
    - Bonus: top 3 performers (by distribution + volume) win a trip to
      the 1911 Cidery in Upstate NY
-   Tracking: new off-prem placement count, new draft placement count +
-   barrel volume gate, rep ranking for the bonus.
+   Per Gavin, 2026-08-05: the barrel threshold is PER REP, not per
+   account or company-wide -- a rep's cumulative current-period draft
+   volume (across all their 1911 accounts, converted from keg size to
+   barrels: 5.2 Gal / "1/6 BBL Keg" = 1/6 bbl, 15.5 Gal = 1/2 bbl) must
+   cross 2 barrels. Built: off-prem new-placement count + list, draft
+   cumulative-bbl progress bar + new-placement list, company-wide
+   leaderboard (new placements desc, then case volume desc) with a
+   top-3 badge for the Cidery-trip bonus.
 
-2. WOODCHUCK CIDER REWARDS -- Aug-Sept
+2. WOODCHUCK CIDER REWARDS -- Aug-Sept [BUILT]
    - $10 per new Off-Premise placement of Woodchuck Cider
    - $100 per new Woodchuck Draft placement, paid after 3 barrels
    - $1.00 per case sold during the period
    - Qualifier: 3 placements minimum for ANY payout
-   OPEN QUESTION (resolve when the data file arrives): is the
-   3-placement minimum off-prem + draft combined, per rep? Assuming
-   yes (combined new-placement count per rep) unless the file's
-   structure says otherwise.
-   Tracking: new placement count (off-prem + draft), case volume,
-   3-placement qualifier gate.
+   Same per-rep barrel-threshold mechanic as 1911 above, at 3 bbl.
+   3-placement qualifier assumed to be off-prem + draft new placements
+   combined per rep (not corrected by Gavin, keeping this assumption).
+   Built: qualifier progress bar (0-3), off-prem + draft new-placement
+   lists, draft cumulative-bbl progress bar, total case volume.
 
-3. TONA DISTRIBUTION AND VOLUME REWARDS -- Aug-Sept
+3. TONA DISTRIBUTION AND VOLUME REWARDS -- Aug-Sept [BUILT]
    - $10 per new Off-Premise placement of TONA 24oz Cans
    - $1.00 per case of TONA 24oz Cans sold
    - $0.50 per case of all other TONA cases sold
    - Qualifier: minimum 20 cases of TONA 24oz cans sold to earn
      anything above
-   Tracking: new 24oz-can placement count, 24oz case volume, other-SKU
-   case volume, 20-case qualifier gate.
+   Built: 20-case qualifier progress bar, new 24oz-placement count +
+   list, other-Tona case volume. No Premise column in this file (all
+   Tona accounts in the data are off-premise liquor stores) and no
+   draft component, matching the deck.
 
 4. BOSTON BEER AUGUST DRAFT BLITZ
    - Draft (Angry Orchard 15.5 / Dogfish Head 15.5): $100/new POD,
@@ -104,14 +133,23 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    total vs. the 70-POD house goal, 4-new-lines team bonus flag per
    rep, other-brand keg volume.
 
-8. THE PATH TO VICTORY (Victory Monkey Family) -- August
+8. THE PATH TO VICTORY (Victory Monkey Family) -- August [BUILT, partial]
    - Five For Fighting 6pk Can Distribution: $25 for any account
      buying 5 6pk cans (submitted through iSellBeer app); $10 for any
      new POD of the 6pk can
    - Five For Fighting 19.2oz Bonus: $10 for any new POD of 19.2oz
      cans; $5 for all current POD of 19.2oz cans
-   Tracking: qualifying-account count (5+ 6pk cans, iSellBeer-sourced),
-   new POD counts by pack size, current-POD count for 19.2oz.
+   Per Gavin, 2026-08-05: ignore everything iSellBeer-related for this
+   program -- that's handled in a separate system. The RDE file for
+   this program is single-period only (8/1-9/30, no base-period
+   column), so there's no way to distinguish "new POD" from "current
+   POD" from this file alone -- both $ tiers depend on that split.
+   Built (interim, until a base-period file or other new/current
+   signal is available): per-rep account count + unit volume for 6pk
+   cans (Package "4/6/12oz Can") and 19.2oz cans (Package "1/15/19.2oz
+   Can") this period, undifferentiated by new-vs-current. Keg rows in
+   this file (Product Type "Keg Beer") are out of scope -- the deck's
+   Path to Victory rewards only cover the two can formats.
 
 9. FALL SEASONAL FAST START
    - $0.50/CE on all qualifying packages

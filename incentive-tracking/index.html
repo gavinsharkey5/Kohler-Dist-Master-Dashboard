@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incentive Tracker | August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
+    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
+    --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
+    --red:#EB6A50; --red-soft:rgba(235,106,80,0.16);
+    --input-bg:#1A130C; --input-border:#4A3A26;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+  a{color:var(--accent);}
+  .topbar{padding:24px 32px 0;max-width:1200px;margin:0 auto;}
+  .crumb{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
+  .crumb a{color:var(--text-dim);text-decoration:none;}
+  .crumb a:hover{color:var(--accent);}
+
+  .hero-banner{max-width:1200px;margin:0 auto;position:relative;border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);box-shadow:var(--shadow);background:var(--card)}
+  .hero-banner-img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover}
+  .hero-banner::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(21,16,10,.05) 0%,rgba(21,16,10,.6) 100%)}
+  .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
+    filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  @media (max-width:640px){
+    .hero-banner-img{max-height:120px}
+    .hero-logo-badge{height:38px;top:10px;left:12px}
+  }
+
+  header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
+  .sub{color:var(--text-dim);font-size:14.5px;}
+  .updated{margin:10px 0 0;font-size:12px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
+  .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+  .repbar-wrap{max-width:1200px;margin:24px auto 0;padding:0 32px;}
+  .repbar-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+  .repbar{display:flex;flex-wrap:wrap;gap:8px;}
+  .repchip{background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+  .repchip:hover{border-color:var(--accent);color:var(--text);}
+  .repchip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+
+  main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
+
+  .backbtn{background:none;border:1px solid var(--border);color:var(--text-dim);font:inherit;font-weight:600;font-size:14px;padding:8px 15px;border-radius:11px;cursor:pointer;margin-bottom:4px;}
+  .backbtn:hover{color:var(--text);border-color:var(--text-dim);}
+  .rep-hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+  .rep-hero h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
+
+  .prog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
+  .prog-head{padding:20px 24px;border-bottom:1px solid var(--border);}
+  .prog-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
+  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;}
+  .prog-tag{font-size:11px;color:var(--text-dim);background:var(--card-alt);border:1px solid var(--border);padding:2px 9px;border-radius:20px;}
+  .prog-desc{font-size:13px;color:var(--text-dim);}
+  .prog-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:18px;}
+
+  .metric-row{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card-alt);border:1px solid var(--line-soft);border-radius:10px;}
+  .metric-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+  .metric-label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;}
+  .metric-reward{font-size:11.5px;color:var(--amber);}
+  .metric-val{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-align:right;}
+  .metric-sub{font-size:11.5px;color:var(--text-dim);}
+  .obj-bar-track{width:100%;height:7px;background:var(--input-bg);border-radius:4px;overflow:hidden;margin-top:2px;}
+  .obj-bar-fill{height:100%;border-radius:4px;background:var(--good);}
+  .obj-bar-fill.over{background:var(--amber);}
+  .flag-hit{color:var(--good);font-weight:600;}
+  .flag-miss{color:var(--text-dim);}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:7px 10px;background:var(--card-alt);border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:8px 10px;border-bottom:1px solid var(--line-soft);}
+  tr:last-child td{border-bottom:none;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;}
+
+  .detail-block{margin-top:2px;}
+  .detail-toggle{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.04em;padding:2px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .detail-toggle:hover{color:var(--text);}
+  .detail-chev{font-size:9px;transition:transform .15s;display:inline-block;color:var(--amber);}
+  .detail-toggle.open .detail-chev{transform:rotate(90deg);}
+  .detail-table{display:none;padding-top:8px;}
+  .detail-table.open{display:block;}
+  .no-lines{color:var(--text-dim);font-size:12.5px;}
+
+  .leader-row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line-soft);font-size:13px;}
+  .leader-row:last-child{border-bottom:none;}
+  .leader-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-dim);width:24px;}
+  .leader-rank.top3{color:var(--amber);}
+  .leader-name{flex:1;padding:0 8px;}
+  .leader-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:12px;}
+
+  .prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media(max-width:900px){.prog-grid{grid-template-columns:1fr;}}
+
+  .empty-state{color:var(--text-dim);font-size:14px;padding:30px 10px;text-align:center;}
+
+  ::-webkit-scrollbar{height:8px;width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+  html, body{overflow-x:hidden;}
+  * { -webkit-tap-highlight-color: transparent; }
+
+  @media (max-width: 820px){
+    .topbar{padding:18px 16px 0;}
+    header{padding:0 16px 16px;}
+    .repbar-wrap{padding:0 16px;margin-top:18px;}
+    main{padding:0 16px;margin:20px auto;gap:14px;}
+    h1{font-size:clamp(22px,6vw,30px);}
+    .sub{font-size:13.5px;}
+    .repchip{padding:9px 14px;font-size:13px;min-height:38px;display:inline-flex;align-items:center;}
+    .prog-head{padding:16px 16px;}
+    .prog-name{font-size:16.5px;}
+    .prog-body{padding:16px 12px 18px;}
+    table{font-size:12.5px;}
+    th, td{padding:8px 8px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; Incentive Tracker</div>
+  <div class="hero-banner">
+    <img class="hero-banner-img" src="../assets/hero-banner.jpg" alt="Kohler Distributing Company headquarters">
+    <img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Incentive Tracking · August 2026</div>
+  <h1>Incentive Tracker</h1>
+  <p class="sub">Every August 2026 supplier incentive program in one place, so you can see where you stand and where to focus. Progress shown against each program's tiers and qualifiers.</p>
+  <p class="updated"><span class="livedot"></span> Data refreshed Aug 5, 2026</p>
+</header>
+
+<div class="repbar-wrap">
+  <div class="repbar-label">Jump to a rep</div>
+  <div class="repbar" id="repbar"></div>
+</div>
+
+<main id="main"></main>
+
+<script>
+/* PROGRAM_DATA_START */
+const PROGRAM_DATA = {
+  "1911": {
+    "byRep": {
+      "Alex Rodriguez": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Alisa Acciardi": {
+        "offPremNew": [
+          {
+            "customer": "Bottle King Glen Ridge",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          }
+        ],
+        "offPremNewCount": 1,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 6.0,
+        "totalNewPlacements": 1
+      },
+      "Allison Scott": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Andrew Lundy": {
+        "offPremNew": [
+          {
+            "customer": "Wine Anthology (A)",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Wine Anthology (A)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          }
+        ],
+        "offPremNewCount": 2,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 6.0,
+        "totalNewPlacements": 2
+      },
+      "Anthony Palmisano": {
+        "offPremNew": [
+          {
+            "customer": "Usa Wine Traders Club (Bloomingdale)",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 1,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 5.0,
+        "totalNewPlacements": 1
+      },
+      "Brian Sengebush": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Chris Payton": {
+        "offPremNew": [
+          {
+            "customer": "Buy Rite Of Main St Lodi",
+            "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Buy Rite Of Main St Lodi",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Buy Rite Of Main St Lodi",
+            "product": "1911 Honey Crisp 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 3,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 3.0,
+        "totalNewPlacements": 3
+      },
+      "Dan Lagala": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Dave Ehlers": {
+        "offPremNew": [
+          {
+            "customer": "Total Wine & More (Totowa)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Total Wine & More (Totowa)",
+            "product": "1911 Half & Half 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Total Wine & More (River Edge)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 3,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 27.0,
+        "totalNewPlacements": 3
+      },
+      "Derrick Laws": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Dylan Rubino": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Hakan Sadik": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Jaime Colonna": {
+        "offPremNew": [
+          {
+            "customer": "Shop Rite/Metro Plaza",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shop Rite/Metro Plaza",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Sparrow's Wine & Liq(P) (1224 Hoboken)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Jersey City Buy Rite (A)",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 5,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 20.0,
+        "totalNewPlacements": 5
+      },
+      "Javier Melo": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Jayson Romine": {
+        "offPremNew": [
+          {
+            "customer": "Liquor Factory VI Byram",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Liquor Factory VI Byram",
+            "product": "1911 Original 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Liquor Factory VI Byram",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Liquor Factory I Landing",
+            "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Sparta",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Liquor Factory VI Byram",
+            "product": "1911 Rose 6/4/16 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "ShopRite Wines & Spirits of Sparta",
+            "product": "1911 Black Cherry 6/4/16 oz Can",
+            "date": "8/3/2026"
+          }
+        ],
+        "offPremNewCount": 7,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 19.0,
+        "totalNewPlacements": 7
+      },
+      "Jim Heaney": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "John O'Donoghue": {
+        "offPremNew": [
+          {
+            "customer": "The Village Liquor Store_2",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "The Village Liquor Store_2",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Wegmans",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Wegmans",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 4,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 23.0,
+        "totalNewPlacements": 4
+      },
+      "Klejdi Lamo": {
+        "offPremNew": [
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Stanhope",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          }
+        ],
+        "offPremNewCount": 2,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 12.0,
+        "totalNewPlacements": 2
+      },
+      "Matt Powierski": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Michael Harboy": {
+        "offPremNew": [
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "product": "1911 Black Cherry 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "product": "1911 Variety 3/8/12 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "product": "1911 Honey Crisp 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shoprite Wine & Spirits",
+            "product": "1911 Black Cherry 6/4/16 oz Can",
+            "date": "8/5/2026"
+          }
+        ],
+        "offPremNewCount": 9,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 25.0,
+        "totalNewPlacements": 9
+      },
+      "Mike Ast": {
+        "offPremNew": [
+          {
+            "customer": "Waldwick Wine/Spirits",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Waldwick Wine/Spirits",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Lincoln Park Fine Wines & Spirits",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Lincoln Park Fine Wines & Spirits",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 4,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 13.0,
+        "totalNewPlacements": 4
+      },
+      "Nick Melissari": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [
+          {
+            "customer": "Rebar (Z)",
+            "product": "1911 Honey Crisp 5.2 Gal Keg",
+            "date": "8/4/2026"
+          }
+        ],
+        "draftNewCount": 1,
+        "cumulativeBbl": 0.17,
+        "qualifiesDraft": false,
+        "caseVolume": 2.0,
+        "totalNewPlacements": 1
+      },
+      "Pablo Lopez": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Paul Mclaughlin": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 2.0,
+        "totalNewPlacements": 0
+      },
+      "Phil Ernst": {
+        "offPremNew": [
+          {
+            "customer": "Stew Leonard's(A) Paramus Wine",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Stew Leonard's Wines & Spirits of Clifton",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "product": "1911 Original 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "PRIME WINE CELLAR Liquor & Beer",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shop Rite Liq(A) Roch Pk",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/3/2026"
+          }
+        ],
+        "offPremNewCount": 5,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 15.0,
+        "totalNewPlacements": 5
+      },
+      "Robin Feldman": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Shane Barreca": {
+        "offPremNew": [
+          {
+            "customer": "Shoprite Liq (A)Northvle",
+            "product": "1911 Tropical Pineapple Mango 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Shoprite Liq (A)Northvle",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Shoprite Liq (A)Northvle",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Montvale Wines & Spirits",
+            "product": "1911 Honey Crisp 6/4/16 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "product": "1911 Haunted Hayride 6/4/16 oz Can",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "product": "1911 Cider Donut 6/4/16 oz Can",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 6,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 43.0,
+        "totalNewPlacements": 6
+      }
+    },
+    "leaderboard": [
+      {
+        "rep": "Michael Harboy",
+        "newPlacements": 9,
+        "caseVolume": 25.0,
+        "rank": 1
+      },
+      {
+        "rep": "Jayson Romine",
+        "newPlacements": 7,
+        "caseVolume": 19.0,
+        "rank": 2
+      },
+      {
+        "rep": "Shane Barreca",
+        "newPlacements": 6,
+        "caseVolume": 43.0,
+        "rank": 3
+      },
+      {
+        "rep": "Jaime Colonna",
+        "newPlacements": 5,
+        "caseVolume": 20.0,
+        "rank": 4
+      },
+      {
+        "rep": "Phil Ernst",
+        "newPlacements": 5,
+        "caseVolume": 15.0,
+        "rank": 5
+      },
+      {
+        "rep": "John O'Donoghue",
+        "newPlacements": 4,
+        "caseVolume": 23.0,
+        "rank": 6
+      },
+      {
+        "rep": "Mike Ast",
+        "newPlacements": 4,
+        "caseVolume": 13.0,
+        "rank": 7
+      },
+      {
+        "rep": "Dave Ehlers",
+        "newPlacements": 3,
+        "caseVolume": 27.0,
+        "rank": 8
+      },
+      {
+        "rep": "Chris Payton",
+        "newPlacements": 3,
+        "caseVolume": 3.0,
+        "rank": 9
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "newPlacements": 2,
+        "caseVolume": 12.0,
+        "rank": 10
+      },
+      {
+        "rep": "Andrew Lundy",
+        "newPlacements": 2,
+        "caseVolume": 6.0,
+        "rank": 11
+      },
+      {
+        "rep": "Alisa Acciardi",
+        "newPlacements": 1,
+        "caseVolume": 6.0,
+        "rank": 12
+      },
+      {
+        "rep": "Anthony Palmisano",
+        "newPlacements": 1,
+        "caseVolume": 5.0,
+        "rank": 13
+      },
+      {
+        "rep": "Nick Melissari",
+        "newPlacements": 1,
+        "caseVolume": 2.0,
+        "rank": 14
+      },
+      {
+        "rep": "Paul Mclaughlin",
+        "newPlacements": 0,
+        "caseVolume": 2.0,
+        "rank": 15
+      },
+      {
+        "rep": "Alex Rodriguez",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 16
+      },
+      {
+        "rep": "Allison Scott",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 17
+      },
+      {
+        "rep": "Brian Sengebush",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 18
+      },
+      {
+        "rep": "Dan Lagala",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 19
+      },
+      {
+        "rep": "Derrick Laws",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 20
+      },
+      {
+        "rep": "Dylan Rubino",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 21
+      },
+      {
+        "rep": "Hakan Sadik",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 22
+      },
+      {
+        "rep": "Javier Melo",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 23
+      },
+      {
+        "rep": "Jim Heaney",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 24
+      },
+      {
+        "rep": "Matt Powierski",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 25
+      },
+      {
+        "rep": "Pablo Lopez",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 26
+      },
+      {
+        "rep": "Robin Feldman",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 27
+      }
+    ],
+    "bblThreshold": 2.0
+  },
+  "woodchuck": {
+    "byRep": {
+      "Alex Rodriguez": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Alisa Acciardi": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 3.0,
+        "totalNewPlacements": 0
+      },
+      "Allison Scott": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Andrew Lundy": {
+        "offPremNew": [
+          {
+            "customer": "Dittrick's W&L (A)",
+            "product": "Woodchuck Hard Cider Amber 4/6/12 oz Btl",
+            "date": "8/4/2026"
+          }
+        ],
+        "offPremNewCount": 1,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 15.0,
+        "totalNewPlacements": 1
+      },
+      "Anthony Palmisano": {
+        "offPremNew": [
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "product": "Woodchuck Granny Smith 4/6/12 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "product": "Woodchuck Great Gathering Variety 2/12/12 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "product": "Woodchuck Blueberry 4/6/12 oz Can",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Best Cellars (Wanaque)",
+            "product": "Woodchuck Hard Cider Variety 2/12/12 oz Can",
+            "date": "8/3/2026"
+          }
+        ],
+        "offPremNewCount": 4,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 6.0,
+        "totalNewPlacements": 4
+      },
+      "Brian Sengebush": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Chris Payton": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Dan Lagala": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Dave Ehlers": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 14.0,
+        "totalNewPlacements": 0
+      },
+      "Derrick Laws": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Dylan Rubino": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 1.0,
+        "totalNewPlacements": 0
+      },
+      "Hakan Sadik": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Jaime Colonna": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 4.0,
+        "totalNewPlacements": 0
+      },
+      "Javier Melo": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Jayson Romine": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Jim Heaney": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "John O'Donoghue": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Klejdi Lamo": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 5.0,
+        "totalNewPlacements": 0
+      },
+      "Matt Powierski": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Michael Harboy": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Mike Ast": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Nick Melissari": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 1.0,
+        "qualifiesDraft": false,
+        "caseVolume": 2.0,
+        "totalNewPlacements": 0
+      },
+      "Pablo Lopez": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Paul Mclaughlin": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 1.0,
+        "totalNewPlacements": 0
+      },
+      "Phil Ernst": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Robin Feldman": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      },
+      "Shane Barreca": {
+        "offPremNew": [],
+        "offPremNewCount": 0,
+        "draftNew": [],
+        "draftNewCount": 0,
+        "cumulativeBbl": 0.0,
+        "qualifiesDraft": false,
+        "caseVolume": 0.0,
+        "totalNewPlacements": 0
+      }
+    },
+    "leaderboard": [
+      {
+        "rep": "Anthony Palmisano",
+        "newPlacements": 4,
+        "caseVolume": 6.0,
+        "rank": 1
+      },
+      {
+        "rep": "Andrew Lundy",
+        "newPlacements": 1,
+        "caseVolume": 15.0,
+        "rank": 2
+      },
+      {
+        "rep": "Dave Ehlers",
+        "newPlacements": 0,
+        "caseVolume": 14.0,
+        "rank": 3
+      },
+      {
+        "rep": "Klejdi Lamo",
+        "newPlacements": 0,
+        "caseVolume": 5.0,
+        "rank": 4
+      },
+      {
+        "rep": "Jaime Colonna",
+        "newPlacements": 0,
+        "caseVolume": 4.0,
+        "rank": 5
+      },
+      {
+        "rep": "Alisa Acciardi",
+        "newPlacements": 0,
+        "caseVolume": 3.0,
+        "rank": 6
+      },
+      {
+        "rep": "Nick Melissari",
+        "newPlacements": 0,
+        "caseVolume": 2.0,
+        "rank": 7
+      },
+      {
+        "rep": "Dylan Rubino",
+        "newPlacements": 0,
+        "caseVolume": 1.0,
+        "rank": 8
+      },
+      {
+        "rep": "Paul Mclaughlin",
+        "newPlacements": 0,
+        "caseVolume": 1.0,
+        "rank": 9
+      },
+      {
+        "rep": "Alex Rodriguez",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 10
+      },
+      {
+        "rep": "Allison Scott",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 11
+      },
+      {
+        "rep": "Brian Sengebush",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 12
+      },
+      {
+        "rep": "Chris Payton",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 13
+      },
+      {
+        "rep": "Dan Lagala",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 14
+      },
+      {
+        "rep": "Derrick Laws",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 15
+      },
+      {
+        "rep": "Hakan Sadik",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 16
+      },
+      {
+        "rep": "Javier Melo",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 17
+      },
+      {
+        "rep": "Jayson Romine",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 18
+      },
+      {
+        "rep": "Jim Heaney",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 19
+      },
+      {
+        "rep": "John O'Donoghue",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 20
+      },
+      {
+        "rep": "Matt Powierski",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 21
+      },
+      {
+        "rep": "Michael Harboy",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 22
+      },
+      {
+        "rep": "Mike Ast",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 23
+      },
+      {
+        "rep": "Pablo Lopez",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 24
+      },
+      {
+        "rep": "Phil Ernst",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 25
+      },
+      {
+        "rep": "Robin Feldman",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 26
+      },
+      {
+        "rep": "Shane Barreca",
+        "newPlacements": 0,
+        "caseVolume": 0.0,
+        "rank": 27
+      }
+    ],
+    "bblThreshold": 3.0
+  },
+  "tona": {
+    "byRep": {
+      "Alex Rodriguez": {
+        "new24ozNew": [
+          {
+            "customer": "Cantinho Liquors",
+            "product": "Tona 1/12/24 oz Can",
+            "date": "8/5/2026"
+          }
+        ],
+        "new24ozCount": 1,
+        "caseVolume24oz": 1.0,
+        "caseVolumeOther": 10.0,
+        "qualifies": false
+      },
+      "Alisa Acciardi": {
+        "new24ozNew": [
+          {
+            "customer": "Top Shelf Wine & Liquor",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 1,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Allison Scott": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Andrew Lundy": {
+        "new24ozNew": [
+          {
+            "customer": "Ever Blue Liquors",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 1,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Anthony Palmisano": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Brian Sengebush": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Chris Payton": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Dan Lagala": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Dave Ehlers": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Derrick Laws": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 25.0,
+        "qualifies": false
+      },
+      "Dylan Rubino": {
+        "new24ozNew": [
+          {
+            "customer": "International Liqs (P)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Golden Liquors (P)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          },
+          {
+            "customer": "Bergenline Liquor (Z)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          },
+          {
+            "customer": "J & L Liquors (P)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 4,
+        "caseVolume24oz": 1.0,
+        "caseVolumeOther": 9.0,
+        "qualifies": false
+      },
+      "Hakan Sadik": {
+        "new24ozNew": [
+          {
+            "customer": "Express Two Liquors",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          },
+          {
+            "customer": "Newark Discount Wine and Spirits",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          },
+          {
+            "customer": "Avenue Liquors",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 3,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Jaime Colonna": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 5.0,
+        "qualifies": false
+      },
+      "Javier Melo": {
+        "new24ozNew": [
+          {
+            "customer": "C Town Supermarket(P)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          },
+          {
+            "customer": "Farm Boy",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 2,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Jayson Romine": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Jim Heaney": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 5.0,
+        "qualifies": false
+      },
+      "John O'Donoghue": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Klejdi Lamo": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Matt Powierski": {
+        "new24ozNew": [
+          {
+            "customer": "Home Wine Liquor (Passaic)",
+            "product": "Tona 1/12/24 oz Can",
+            "date": null
+          }
+        ],
+        "new24ozCount": 1,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Michael Harboy": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Mike Ast": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Nick Melissari": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Pablo Lopez": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Paul Mclaughlin": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Phil Ernst": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Robin Feldman": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      },
+      "Shane Barreca": {
+        "new24ozNew": [],
+        "new24ozCount": 0,
+        "caseVolume24oz": 0.0,
+        "caseVolumeOther": 0.0,
+        "qualifies": false
+      }
+    },
+    "qualifierGoal": 20
+  },
+  "path_to_victory": {
+    "byRep": {
+      "Alex Rodriguez": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Alisa Acciardi": {
+        "sixPackAccounts": [
+          {
+            "customer": "Golden Beer & Liquor",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Bottle King Glen Ridge",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "21 Plaza Wine & Liquor",
+            "date": "8/3/2026"
+          },
+          {
+            "customer": "Kearny Wine & Liquor",
+            "date": "8/5/2026"
+          }
+        ],
+        "sixPackAccountCount": 4,
+        "sixPackUnits": 25.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Bottle King Glen Ridge",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Shop Rite Wine & Spirits Kearny",
+            "date": "8/5/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 2,
+        "nineteenTwoUnits": 6.0
+      },
+      "Allison Scott": {
+        "sixPackAccounts": [
+          {
+            "customer": "The Yard",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 1,
+        "sixPackUnits": 1.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Andrew Lundy": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Anthony Palmisano": {
+        "sixPackAccounts": [
+          {
+            "customer": "Uncorked Wines & Spirits (West Milford)",
+            "date": "8/3/2026"
+          }
+        ],
+        "sixPackAccountCount": 1,
+        "sixPackUnits": 3.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Krauszer's Liquor Wine and Spirits",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "George's Market (A)",
+            "date": "8/4/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 2,
+        "nineteenTwoUnits": 6.0
+      },
+      "Brian Sengebush": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Chris Payton": {
+        "sixPackAccounts": [
+          {
+            "customer": "Buy Rite Of Main St Lodi",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 1,
+        "sixPackUnits": 1.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Dan Lagala": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Dave Ehlers": {
+        "sixPackAccounts": [
+          {
+            "customer": "Total Wine & More (Totowa)",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Hackensack Liquors",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Total Wine & More (River Edge)",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 3,
+        "sixPackUnits": 6.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Derrick Laws": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Dylan Rubino": {
+        "sixPackAccounts": [
+          {
+            "customer": "Cool Vines",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Palisade Wine & Liquor",
+            "date": "8/7/2026"
+          },
+          {
+            "customer": "Wine Outlet",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "H & H Discount Liq (P)",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Sip Discount Liq (A)",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Corks & Bottles (P)",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 6,
+        "sixPackUnits": 26.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Hakan Sadik": {
+        "sixPackAccounts": [
+          {
+            "customer": "Wine 2 Spirits",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Bloomfield Buyrite",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Buy Rite Wine & Liquor",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 3,
+        "sixPackUnits": 8.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Buy Rite Wine & Liquor",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Maple Check",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "Wine 2 Spirits",
+            "date": "8/5/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 3,
+        "nineteenTwoUnits": 6.0
+      },
+      "Jaime Colonna": {
+        "sixPackAccounts": [
+          {
+            "customer": "Daniels Wine And Liq",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Sprove Marketplace",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "The Ferryman On 1st",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 3,
+        "sixPackUnits": 17.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Sprove Marketplace",
+            "date": "8/5/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 1,
+        "nineteenTwoUnits": 1.0
+      },
+      "Javier Melo": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Jayson Romine": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Jim Heaney": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Rutherford Wine (A)",
+            "date": "8/5/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 1,
+        "nineteenTwoUnits": 1.0
+      },
+      "John O'Donoghue": {
+        "sixPackAccounts": [
+          {
+            "customer": "Fairfield Wine Cellar",
+            "date": "8/6/2026"
+          }
+        ],
+        "sixPackAccountCount": 1,
+        "sixPackUnits": 5.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Klejdi Lamo": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Matt Powierski": {
+        "sixPackAccounts": [
+          {
+            "customer": "Bottle Republic (Rutherford)",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 1,
+        "sixPackUnits": 5.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Michael Harboy": {
+        "sixPackAccounts": [
+          {
+            "customer": "Krauser's Liquor Locker",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "B & B Liquors (West Orange)",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Total Wine & More (West Orange)",
+            "date": "8/6/2026"
+          },
+          {
+            "customer": "Quick Stop Liquors",
+            "date": "8/4/2026"
+          },
+          {
+            "customer": "The Wine Rack North Caldwell",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 5,
+        "sixPackUnits": 17.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Krauser's Liquor Locker",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "The Wine Rack North Caldwell",
+            "date": "8/4/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 2,
+        "nineteenTwoUnits": 6.0
+      },
+      "Mike Ast": {
+        "sixPackAccounts": [
+          {
+            "customer": "Ridgewood Super Cellar",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Fair Lawn Wine & Spirits",
+            "date": "8/3/2026"
+          }
+        ],
+        "sixPackAccountCount": 2,
+        "sixPackUnits": 2.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Fair Lawn Wine & Spirits",
+            "date": "8/6/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 1,
+        "nineteenTwoUnits": 1.0
+      },
+      "Nick Melissari": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Pablo Lopez": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Paul Mclaughlin": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Phil Ernst": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [
+          {
+            "customer": "Acme Markets (Fort Lee)",
+            "date": "8/4/2026"
+          }
+        ],
+        "nineteenTwoAccountCount": 1,
+        "nineteenTwoUnits": 1.0
+      },
+      "Robin Feldman": {
+        "sixPackAccounts": [],
+        "sixPackAccountCount": 0,
+        "sixPackUnits": 0.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      },
+      "Shane Barreca": {
+        "sixPackAccounts": [
+          {
+            "customer": "Ridgemont Liquors (A)",
+            "date": "8/5/2026"
+          },
+          {
+            "customer": "Montvale Wine/Liq & Beer",
+            "date": "8/4/2026"
+          }
+        ],
+        "sixPackAccountCount": 2,
+        "sixPackUnits": 7.0,
+        "nineteenTwoAccounts": [],
+        "nineteenTwoAccountCount": 0,
+        "nineteenTwoUnits": 0.0
+      }
+    }
+  }
+};
+/* PROGRAM_DATA_END */
+
+const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+
+let activeRep = null;
+let uid = 0;
+
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function detailBlock(items, cols, emptyMsg, label){
+  if(!items || !items.length) return `<div class="no-lines">${emptyMsg}</div>`;
+  const did = 'det'+(uid++);
+  const rows = items.map(it=>`<tr>${cols.map(c=>`<td>${esc(it[c.key])}</td>`).join('')}</tr>`).join('');
+  const head = `<thead><tr>${cols.map(c=>`<th>${esc(c.label)}</th>`).join('')}</tr></thead>`;
+  return `<div class="detail-block">
+    <div class="detail-toggle" data-target="${did}"><span class="detail-chev">▶</span>${items.length} ${label}</div>
+    <div class="detail-table" id="${did}"><table>${head}<tbody>${rows}</tbody></table></div>
+  </div>`;
+}
+
+function metricRow(label, reward, valHtml, subHtml, barPct, barOver){
+  const bar = (barPct==null) ? '' : `<div class="obj-bar-track"><div class="obj-bar-fill${barOver?' over':''}" style="width:${Math.min(barPct,100)}%"></div></div>`;
+  return `<div class="metric-row">
+    <div class="metric-top">
+      <div><div class="metric-label">${esc(label)}</div><div class="metric-reward">${esc(reward)}</div></div>
+      <div class="metric-val">${valHtml}</div>
+    </div>
+    ${bar}
+    ${subHtml?`<div class="metric-sub">${subHtml}</div>`:''}
+  </div>`;
+}
+
+function card1911(rep){
+  const d = (PROGRAM_DATA['1911']||{}).byRep?.[rep];
+  if(!d) return '';
+  const bblPct = Math.min(d.cumulativeBbl / 2.0, 1)*100;
+  const rank = (PROGRAM_DATA['1911'].leaderboard||[]).find(r=>r.rep===rep);
+  const rankHtml = rank ? `Rank <b>#${rank.rank}</b> of ${PROGRAM_DATA['1911'].leaderboard.length} on new placements + volume${rank.rank<=3?' <span class="flag-hit">— in the running for the Cidery trip</span>':''}` : '';
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row"><span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-desc">$10 per new off-premise placement · $100 per new draft placement once your cumulative draft volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery</div>
+    </div>
+    <div class="prog-body">
+      ${metricRow('Off-Premise New Placements','$10 each', d.offPremNewCount, null, null)}
+      ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
+      ${metricRow('Draft — Cumulative Volume','$100 each new placement, after 2 bbl', d.cumulativeBbl.toFixed(2)+' bbl', d.qualifiesDraft?'<span class="flag-hit">2-barrel threshold reached</span>':`${(2-d.cumulativeBbl).toFixed(2)} bbl to go`, bblPct, d.qualifiesDraft)}
+      ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new draft placements yet this period.', 'new draft placements')}
+      <div class="metric-sub">${rankHtml}</div>
+    </div>
+  </div>`;
+}
+
+function cardWoodchuck(rep){
+  const d = (PROGRAM_DATA['woodchuck']||{}).byRep?.[rep];
+  if(!d) return '';
+  const bblPct = Math.min(d.cumulativeBbl / 3.0, 1)*100;
+  const totalNew = d.offPremNewCount + d.draftNewCount;
+  const qualifies = totalNew >= 3;
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row"><span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-desc">$10 per new off-premise placement · $100 per new draft placement once cumulative draft volume crosses 3 barrels · $1 per case sold · 3 new placements minimum to earn anything</div>
+    </div>
+    <div class="prog-body">
+      ${metricRow('Qualifier — Total New Placements','3 minimum to earn any payout', totalNew+' / 3', qualifies?'<span class="flag-hit">Qualified</span>':'<span class="flag-miss">Not yet qualified</span>', Math.min(totalNew/3,1)*100, false)}
+      ${metricRow('Off-Premise New Placements','$10 each', d.offPremNewCount, null, null)}
+      ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
+      ${metricRow('Draft — Cumulative Volume','$100 each new placement, after 3 bbl', d.cumulativeBbl.toFixed(2)+' bbl', d.qualifiesDraft?'<span class="flag-hit">3-barrel threshold reached</span>':`${(3-d.cumulativeBbl).toFixed(2)} bbl to go`, bblPct, d.qualifiesDraft)}
+      ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new draft placements yet this period.', 'new draft placements')}
+      ${metricRow('Case Volume','$1 per case sold', d.caseVolume.toFixed(0)+' cases', null, null)}
+    </div>
+  </div>`;
+}
+
+function cardTona(rep){
+  const d = (PROGRAM_DATA['tona']||{}).byRep?.[rep];
+  if(!d) return '';
+  const pct = Math.min(d.caseVolume24oz / 20, 1)*100;
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row"><span class="prog-name">Tona Distribution &amp; Volume</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-desc">$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything</div>
+    </div>
+    <div class="prog-body">
+      ${metricRow('Qualifier — 24oz Case Volume','20 cases minimum to earn any payout', d.caseVolume24oz.toFixed(0)+' / 20', d.qualifies?'<span class="flag-hit">Qualified</span>':'<span class="flag-miss">Not yet qualified</span>', pct, false)}
+      ${metricRow('New 24oz Can Placements','$10 each', d.new24ozCount, null, null)}
+      ${detailBlock(d.new24ozNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new 24oz can placements yet this period.', 'new 24oz placements')}
+      ${metricRow('Other Tona Case Volume','$0.50 per case sold', d.caseVolumeOther.toFixed(0)+' cases', null, null)}
+    </div>
+  </div>`;
+}
+
+function cardPathToVictory(rep){
+  const d = (PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep];
+  if(!d) return '';
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row"><span class="prog-name">The Path to Victory</span><span class="prog-tag">August</span></div>
+      <div class="prog-desc">Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.</div>
+    </div>
+    <div class="prog-body">
+      ${metricRow('6pk Can — Accounts With Activity','$10 new POD / iSellBeer-submitted volume bonus', d.sixPackAccountCount, d.sixPackUnits.toFixed(0)+' units sold this period', null)}
+      ${detailBlock(d.sixPackAccounts, [{key:'customer',label:'Customer'},{key:'date',label:'Date'}], 'No 6pk can activity yet this period.', 'accounts')}
+      ${metricRow('19.2oz Can — Accounts With Activity','$10 new POD / $5 current POD', d.nineteenTwoAccountCount, d.nineteenTwoUnits.toFixed(0)+' units sold this period', null)}
+      ${detailBlock(d.nineteenTwoAccounts, [{key:'customer',label:'Customer'},{key:'date',label:'Date'}], 'No 19.2oz can activity yet this period.', 'accounts')}
+    </div>
+  </div>`;
+}
+
+function renderRep(){
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <button class="backbtn" id="backbtn">&lsaquo; All reps</button>
+    <div class="rep-hero"><h2>${esc(activeRep)}</h2></div>
+    <div class="prog-grid">
+      ${card1911(activeRep)}
+      ${cardWoodchuck(activeRep)}
+      ${cardTona(activeRep)}
+      ${cardPathToVictory(activeRep)}
+    </div>
+  `;
+  document.getElementById('backbtn').addEventListener('click', ()=>{ activeRep=null; renderMain(); });
+}
+
+function renderOverview(){
+  const main = document.getElementById('main');
+  main.innerHTML = `<div class="empty-state">Pick a rep above to see their progress across all 4 programs.</div>`;
+}
+
+function renderMain(){
+  if(activeRep) renderRep(); else renderOverview();
+}
+
+function boot(){
+  const bar = document.getElementById('repbar');
+  bar.innerHTML = ROSTER.map(r=>`<button class="repchip" data-rep="${esc(r)}">${esc(r)}</button>`).join('');
+  bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click', ()=>{
+    activeRep = b.dataset.rep;
+    bar.querySelectorAll('.repchip').forEach(x=>x.classList.toggle('active', x===b));
+    renderMain();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+  renderMain();
+}
+
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.detail-toggle');
+  if(!t) return;
+  const table = document.getElementById(t.dataset.target);
+  t.classList.toggle('open');
+  if(table) table.classList.toggle('open');
+});
+
+boot();
+</script>
+
+</body>
+</html>
