@@ -640,9 +640,10 @@ function renderRepBar(){
 function isActiveMonthDate(dateStr){
   return typeof dateStr==='string' && dateStr.startsWith(activeMonth);
 }
-function lineTableNewAccounts(lines, flagLabel){
+function lineTableNewAccounts(lines, flagLabel, targetsHtml){
   flagLabel = flagLabel || 'New Buyer';
-  if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
+  targetsHtml = targetsHtml || '';
+  if(!lines || lines.length===0) return `<div class="no-lines">No activity recorded this month.</div>${targetsHtml}`;
   const hasPeriods = lines.some(l=>l.period==='base'||l.period==='current');
 
   if(!hasPeriods){
@@ -659,7 +660,7 @@ function lineTableNewAccounts(lines, flagLabel){
         const status = c.isNew ? `<span class="flag-hit">✓ ${flagLabel}</span>` : (c.activeDate ? '<span class="flag-miss">Regular Buyer</span>' : '<span class="flag-miss">—</span>');
         return `<tr><td>${c.customer}</td><td>${c.activeDate||''}</td><td>${status}</td></tr>`;
       }).join('');
-    return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table>${targetsHtml}</div>`;
   }
 
   const byCustomer = new Map();
@@ -693,7 +694,7 @@ function lineTableNewAccounts(lines, flagLabel){
       }</tbody></table>`
     : `<div class="no-lines" style="padding:0">No new placements yet this month.</div>`;
 
-  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${existingAccountsBlockHtml(existing)}</div>`;
+  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${targetsHtml}${existingAccountsBlockHtml(existing)}</div>`;
 }
 // Same collapsed-dropdown treatment as Target Accounts, for accounts that
 // already carry the brand (Repeat Buyer or Bought in Base Period) -- kept
@@ -757,14 +758,14 @@ function renderRepView(){
       inner.style.paddingTop='0';
       inner.innerHTML = subVals.map((sv,i)=>{
         const pct=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target, hit=sv.val>=sv.sub.target;
+        const tgtHtml = targetsBlockHtml((sv.sub.targetsByRep||{})[activeRep], sv.sub.label);
         return `<div style="margin-bottom:20px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px">
             <span class="sub-brand-title sb-${i%3}" style="margin:0">${sv.sub.label}</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-weight:700">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
           </div>
           <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
-          ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'}
-          ${targetsBlockHtml((sv.sub.targetsByRep||{})[activeRep], sv.sub.label)}
+          ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel, tgtHtml) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'+tgtHtml}
         </div>`;
       }).join('');
       body.appendChild(inner);
@@ -796,15 +797,13 @@ function renderRepView(){
     const inner = document.createElement('div');
     inner.className='obj-body-inner';
     inner.style.paddingTop='0';
+    const tgtHtml = (o.type==='new_accounts' && d.targetsByRep) ? targetsBlockHtml(d.targetsByRep[activeRep], o.shortName||o.name) : '';
     if(!r){
-      inner.innerHTML = '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>';
+      inner.innerHTML = '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'+tgtHtml;
     } else if(o.type==='new_accounts'){
-      inner.innerHTML = lineTableNewAccounts(r.lines, o.flagLabel);
+      inner.innerHTML = lineTableNewAccounts(r.lines, o.flagLabel, tgtHtml);
     } else {
       inner.innerHTML = lineTablePlacements(r.lines);
-    }
-    if(o.type==='new_accounts' && d.targetsByRep){
-      inner.innerHTML += targetsBlockHtml(d.targetsByRep[activeRep], o.shortName||o.name);
     }
     body.appendChild(inner);
     card.appendChild(body);
@@ -870,7 +869,10 @@ function renderObjectiveView(){
         }).join('');
         const statusHtml = !hasAny ? '<span class="flag-miss">No activity</span>' : (allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>');
         bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${statusHtml}</td></tr>`;
-        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:14px"><div class="sub-brand-title sb-${i%3}">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}${targetsBlockHtml((s.targetsByRep||{})[repName], s.label)}</div>`).join('');
+        const subTables = d.subs.map((s,i)=>{
+          const tgtHtml = targetsBlockHtml((s.targetsByRep||{})[repName], s.label);
+          return `<div style="margin-bottom:14px"><div class="sub-brand-title sb-${i%3}">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel, tgtHtml):'<div class="no-lines">No activity recorded this month.</div>'+tgtHtml}</div>`;
+        }).join('');
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
       });
       table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
@@ -936,8 +938,9 @@ function renderObjectiveView(){
           <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${qualifying} / ${target}${over?'<span class="over-badge">+'+(qualifying-target)+' over</span>':''}</td>
           <td>${r?(hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'):'<span class="flag-miss">No activity</span>'}</td>
         </tr>`;
-        const activityHtml = r ? lineTableNewAccounts(r.lines, o.flagLabel) : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${activityHtml}${targetsBlockHtml(myTargets, o.shortName||o.name)}</td></tr>`;
+        const tgtHtml = targetsBlockHtml(myTargets, o.shortName||o.name);
+        const activityHtml = r ? lineTableNewAccounts(r.lines, o.flagLabel, tgtHtml) : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>'+tgtHtml;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${activityHtml}</td></tr>`;
       });
     } else if(o.type==='placements'){
       headHtml = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead>`;

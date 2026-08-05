@@ -88,6 +88,14 @@ pattern as Target Accounts -- fully available for traceability, just not
 cluttering the default view. If an objective has zero new placements
 this month, the drill-down just says "No new placements yet this month."
 instead of an empty table.
+Within each card the order is fixed: New Placements table (or the "no
+new placements" message), then the "N Target Accounts" dropdown, then
+the "N Existing Accounts" dropdown -- per Gavin, 2026-08-08: "move
+target accounts above the repeat buyers," since target accounts (where
+to hunt) matter more to a rep than accounts already carrying the brand.
+lineTableNewAccounts() takes the pre-rendered targetsHtml as its third
+argument so it can interpolate it in the right spot, rather than callers
+appending it after the function returns.
 For sources with no PERIOD field (July's Carbliss/Sapporo, and buyer_count
 sources like Wine & Spirits) there's no base-period concept and no
 Target Accounts either, so lineTableNewAccounts() falls back to the
