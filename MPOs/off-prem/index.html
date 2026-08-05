@@ -391,13 +391,14 @@ function buildPlacementsDataset(rows, target){
 function buildNewAccountsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
-        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS);
+        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
+        prodCol=findCol(rows[0],PRODUCT_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0"});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", product: prodCol?String(r[prodCol]||"").trim():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{
@@ -802,8 +803,9 @@ function lineTablePlacements(lines){
 function lineTableNewAccounts(lines, flagLabel){
   flagLabel = flagLabel || 'New Buyer';
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
-  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ '+flagLabel+'</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  const hasProduct = lines.some(l=>l.product);
+  const rows = lines.map(l=>`<tr>${hasProduct?`<td>${l.product}</td>`:''}<td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ '+flagLabel+'</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr>${hasProduct?'<th>Product</th>':''}<th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 // BBC Lytt's numerator file has no per-row Date (it's a distro snapshot,
 // not a transaction log), so this is Customer/Product only.

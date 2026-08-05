@@ -30,13 +30,37 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           Peroni Placements (4) New
                                           Banquet Placements 90 Day Non
                                           Buy" export: Sales Rep Assigned,
-                                          Brand Family, Customer Num,
-                                          Customer Name, Date, Placement
-                                          Count, Cases -- Brand Family is
-                                          "Peroni" or "Coors" (Coors = the
-                                          Banquet objective's raw brand
-                                          label in RDE), windowed
-                                          5/1/2026-8/31/2026.
+                                          Product Num, Product Name,
+                                          Customer Num, Customer Name,
+                                          Date, Placement Count, Cases,
+                                          windowed 5/1/2026-8/31/2026.
+                                          Per Kohler's manager (2026-08-05):
+                                          this dropped its Brand Family
+                                          column in favor of one row per
+                                          PRODUCT (e.g. "Coors Banquet
+                                          1/12/24 oz Can" and "Coors
+                                          Banquet 2/12/12 oz Can" are
+                                          separate products, both under
+                                          the same Banquet objective) --
+                                          the 90-Day Non-Buy classification
+                                          must key on Product Num, NOT
+                                          Brand Family: a customer who
+                                          already carries one Peroni SKU
+                                          but adds a second, different
+                                          Peroni SKU in August is a NEW
+                                          placement for that SKU, where
+                                          the old brand-level key would
+                                          have wrongly excluded it as
+                                          "already carrying Peroni".
+                                          derive_brand_family() recovers
+                                          the Peroni/Banquet grouping the
+                                          dual-objective UI still needs
+                                          (every product name is
+                                          unambiguously one or the other)
+                                          purely for display/bucketing --
+                                          it plays no part in the
+                                          new-vs-repeat classification
+                                          itself.
   wine_spirits_legrand_leyenda_greenriver.csv
                                          RDE "5 New Placements -- (2) Le
                                           Grand Wines (2) Leyenda (1)
@@ -111,22 +135,33 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           precedent as on-prem's Yave/
                                           Leyenda.
 
-Classification -- "90-Day Non-Buy" new placement (Molson Coors Peroni/
-Banquet independently, and each Wine & Spirits brand family
-independently), per Kohler, 2026-08-04: a customer's row on a given date
-is a NEW placement only if they have NO purchase of that same brand
-before NEW_BUYER_WINDOW_START (i.e. in May/June/July) AND DO have a
+Classification -- "90-Day Non-Buy" new placement: a customer's row on a
+given date is a NEW placement only if they have NO purchase of the SAME
+KEY before NEW_BUYER_WINDOW_START (i.e. in May/June/July) AND DO have a
 purchase of it in August. A customer who bought before August and buys
 again in August is a regular repeat placement and does NOT count. Same
 date-based approach as on-prem's August build (see
 on-prem/generate_2026-08.py) -- every transaction row is kept in the
 output, with NEW_PLACEMENT set to 1 on exactly the customer's first
 qualifying row in the window and 0 on every other row for that
-customer+brand, so a repeat purchase in August never double-counts.
-Molson Coors classifies Peroni and Coors (Banquet) independently; Wine &
-Spirits classifies Le Grand Noir, Leyenda 1925, and Bardstown Green River
-independently -- confirmed with Gavin (2026-08-04) that all three Wine &
-Spirits sub-targets are required (not a combined pool of 5).
+customer+key, so a repeat purchase in August never double-counts.
+
+The "KEY" is NOT the same granularity for both objectives:
+  Molson Coors  PRODUCT NUM, independently per product -- per Kohler's
+                manager (2026-08-05), a customer who already carries one
+                Peroni SKU but adds a DIFFERENT Peroni SKU in August is a
+                new placement for that SKU. Classifying by Brand Family
+                (the original approach) wrongly treated "already carries
+                any Peroni" as disqualifying, undercounting genuine new
+                SKU placements. See molson_coors_off_peroni_banquet.csv's
+                entry above and derive_brand_family().
+  Wine & Spirits  Brand Family, independently per family (Le Grand Noir,
+                Leyenda 1925, Bardstown Green River) -- confirmed with
+                Gavin (2026-08-04) that all three sub-targets are
+                required (not a combined pool of 5). Unchanged by the
+                Molson Coors product-level fix above; revisit if Kohler's
+                manager gives the same product-level correction for
+                Wine & Spirits.
 
 BBC Lytt (25% of Account Base) is a per-rep VARIABLE target, not a fixed
 number: each rep's target is ceil(25% * their distinct account-base
@@ -257,14 +292,26 @@ def build_corona_premier():
     return out
 
 
+def derive_brand_family(product_name):
+    """molson_coors_off_peroni_banquet.csv has no Brand Family column
+    (see this script's docstring) -- every product is unambiguously
+    either a Peroni SKU or a Coors Banquet SKU by name, so this recovers
+    the Peroni/Banquet grouping the dual-objective UI needs for display
+    and Target Accounts, without affecting the product-level 90-day-
+    non-buy classification itself (that's keyed on Product Num, not this)."""
+    return "Peroni" if "peroni" in product_name.lower() else "Coors"
+
+
 def build_molson_coors():
     rows = load_csv(MOLSON_COORS_CSV)
-    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
+    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Product Num"])
     out = [{
         "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
         "CUSTOMER_NUM": int(r["Customer Num"]),
         "CUSTOMER_NAME": r["Customer Name"].strip(),
-        "BRAND_FAMILY": r["Brand Family"].strip(),
+        "PRODUCT_NUM": r["Product Num"].strip(),
+        "PRODUCT_NAME": r["Product Name"].strip(),
+        "BRAND_FAMILY": derive_brand_family(r["Product Name"]),
         "DATE": d.isoformat(),
         "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
         "CASES": sum_cols(r, "Cases"),
@@ -363,14 +410,21 @@ def load_core_customer_base():
     return by_rep
 
 
-def already_carrying(path, brand_filter=None):
+def already_carrying(path, brand_filter=None, brand_of=None):
     """Customer Nums with ANY row in a brand's raw export -- recent
-    purchase history, whether or not that row was flagged NEW_PLACEMENT."""
+    purchase history, whether or not that row was flagged NEW_PLACEMENT.
+    This stays BRAND-level even for Molson Coors (pass brand_of to derive
+    a brand from a column other than "Brand Family", e.g. Product Name)
+    -- Target Accounts is a "hasn't touched this brand at all" prospect
+    list, a different question from the product-level 90-day-non-buy
+    classification in build_molson_coors()/classify_new_placements()."""
     rows = load_csv(path)
     out = set()
     for r in rows:
-        if brand_filter and r.get("Brand Family", "").strip().lower() != brand_filter.lower():
-            continue
+        if brand_filter:
+            brand = brand_of(r) if brand_of else r.get("Brand Family", "")
+            if brand.strip().lower() != brand_filter.lower():
+                continue
         out.add(r["Customer Num"].strip())
     return out
 
@@ -401,10 +455,11 @@ def main():
     core_by_rep = load_core_customer_base()
     targets_corona_premier = build_targets(core_by_rep, already_carrying(CORONA_PREMIER_CSV))
 
-    targets_peroni = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni"))
+    molson_coors_brand_of = lambda r: derive_brand_family(r["Product Name"])
+    targets_peroni = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni", brand_of=molson_coors_brand_of))
     for row in targets_peroni:
         row["BRAND_FAMILY"] = "Peroni"
-    targets_coors = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Coors"))
+    targets_coors = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Coors", brand_of=molson_coors_brand_of))
     for row in targets_coors:
         row["BRAND_FAMILY"] = "Coors"
     targets_molson_coors = sorted(targets_peroni + targets_coors, key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["CUSTOMER_NAME"]))
