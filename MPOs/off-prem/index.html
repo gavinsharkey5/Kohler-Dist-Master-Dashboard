@@ -468,19 +468,23 @@ const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacem
 
 const AREA_COLS=[["area"]];
 
-// Target-account rows (prospects who don't carry the brand yet, in the
-// off-premise core territory -- see generate_2026-08.py's build_targets())
-// grouped by rep, keyed by rep name for direct lookup at render time.
+// Target-account rows (prospects who don't carry the brand -- or, for
+// Molson Coors, a specific product -- yet, in the off-premise core
+// territory -- see generate_2026-08.py's build_targets()/
+// build_targets_by_product()) grouped by rep, keyed by rep name for
+// direct lookup at render time. Molson Coors' rows carry a Product Num/
+// Name (Corona Premier's don't), which targetsBlockHtml() uses to decide
+// whether to group by product or by county.
 function groupTargetsByRep(rows){
   if(!Array.isArray(rows)||!rows.length) return {};
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
-        areaCol=findCol(rows[0],AREA_COLS);
+        areaCol=findCol(rows[0],AREA_COLS), prodCol=findCol(rows[0],PRODUCT_COLS);
   if(!repCol||!custCol) return {};
   const by={};
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!by[rep]) by[rep]=[];
-    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():""});
+    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():"", product:prodCol?String(r[prodCol]||"").trim():""});
   });
   return by;
 }
@@ -507,24 +511,54 @@ function groupTargetsByCounty(targets){
     });
 }
 
+// Molson Coors' Target Accounts groups by PRODUCT instead of county --
+// per Kohler's manager (2026-08-05), the 90-day-non-buy incentive is
+// scored per SKU, so a rep needs to know exactly which product to sell
+// in at an account, not just that the account is "missing Peroni".
+// Alphabetical by product name; each group lists the accounts (with
+// their county, since that's still useful context, just not the grouping
+// key here) that haven't carried that exact SKU.
+function groupTargetsByProduct(targets){
+  const groups = new Map();
+  targets.forEach(t=>{
+    const key = t.product || 'Other';
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(t);
+  });
+  return [...groups.entries()]
+    .map(([name, items])=>({name, items: items.slice().sort((a,b)=>a.customer.localeCompare(b.customer))}))
+    .sort((a,b)=>a.name.localeCompare(b.name));
+}
+
 // Collapsed-by-default, both at the "N Target Accounts" level and per
-// county within it -- a rep's full prospect list can run to 100+ rows, so
-// grouping by county (and keeping every group closed until tapped) is what
-// keeps this scannable on an iPad instead of one long undifferentiated
-// list -- mirrors on-prem's Target Accounts treatment.
+// group within it -- a rep's full prospect list can run to 100+ rows, so
+// grouping (and keeping every group closed until tapped) is what keeps
+// this scannable on an iPad instead of one long undifferentiated list --
+// mirrors on-prem's Target Accounts treatment. Reuses the same
+// .tgt-county* classes for both grouping modes since the visual pattern
+// is identical, just the grouping key (product vs. county) differs.
 function targetsBlockHtml(targets, brandLabel){
   if(!targets || !targets.length) return '';
   const tid = 'tgt'+(uid++);
-  const groupsHtml = groupTargetsByCounty(targets).map(g=>{
+  const byProduct = targets.some(t=>t.product);
+  const groups = byProduct ? groupTargetsByProduct(targets) : groupTargetsByCounty(targets);
+  const groupsHtml = groups.map(g=>{
     const gid = 'tgtc'+(uid++);
-    const rows = g.items.map(t=>`<tr><td>${t.customer}</td></tr>`).join('');
+    const rows = g.items.map(t=>`<tr><td>${t.customer}</td>${byProduct?`<td>${t.area}</td>`:''}</tr>`).join('');
     return `<div class="tgt-county">
       <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${g.name}<span class="tgt-county-count">${g.items.length}</span></div>
-      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><tbody>${rows}</tbody></table></div></div>
+      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table>${byProduct?'<thead><tr><th>Customer</th><th>Area</th></tr></thead>':''}<tbody>${rows}</tbody></table></div></div>
     </div>`;
   }).join('');
+  // Product mode: the header count is DISTINCT accounts missing at least
+  // one SKU, not the (much larger) account+product row count -- a rep
+  // cares "how many of my accounts have a gap", not how many rows exist.
+  const count = byProduct ? new Set(targets.map(t=>t.customer)).size : targets.length;
+  const hint = byProduct
+    ? `— missing at least one ${brandLabel} product; expand a product below to see who`
+    : `— don't carry ${brandLabel} yet, in your core territory`;
   return `<div class="targets-block">
-    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${targets.length} Target Account${targets.length===1?'':'s'}<span class="targets-hint">— don't carry ${brandLabel} yet, in your core territory</span></div>
+    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${count} Target Account${count===1?'':'s'}<span class="targets-hint">${hint}</span></div>
     <div class="targets-table" id="${tid}">${groupsHtml}</div>
   </div>`;
 }

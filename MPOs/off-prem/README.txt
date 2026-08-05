@@ -11,13 +11,23 @@ on-prem theme tweak (color vars, hero banner, card/table treatment)
 over to off-prem's <style> block too so they don't drift apart again.
 
 Rep-level activity/Target Accounts display also mirrors on-prem's
-identical cleanup (also 2026-08-05): county-grouped, collapsed-by-
-default Target Accounts (groupTargetsByCounty()/.tgt-county* CSS), and
-Repeat Buyer/Bought-in-Base-Period rows tucked behind a collapsed "N
-Existing Accounts" dropdown instead of cluttering the default view
-(existingAccountsBlockHtml()) -- see generate_2026-08.py's own
-docstring for the full rundown, and carry future on-prem tweaks to
+identical cleanup (also 2026-08-05): collapsed-by-default Target
+Accounts, and Repeat Buyer/Bought-in-Base-Period rows tucked behind a
+collapsed "N Existing Accounts" dropdown instead of cluttering the
+default view (existingAccountsBlockHtml()) -- see generate_2026-08.py's
+own docstring for the full rundown, and carry future on-prem tweaks to
 this pattern over the same way as the theme above.
+
+Molson Coors' Target Accounts is PRODUCT-level, not county-level (added
+2026-08-05, per Kohler's manager): since its 90-day-non-buy incentive is
+scored per SKU, an account already carrying some Peroni/Banquet products
+can still be a real target for the ones it's missing -- grouped by
+product instead (groupTargetsByProduct(), reusing the same .tgt-county*
+CSS/collapse pattern), so a rep sees exactly which product to sell in.
+Corona Premier's Target Accounts is unaffected -- it's a plain placement
+count with no per-SKU distinction, so it stays grouped by county
+(groupTargetsByCounty()). targetsBlockHtml() picks whichever grouping
+applies by checking for a Product field on the target rows.
 
 Tracks each rep's progress toward the off-premise Monthly Program
 Objectives. Each month's objectives are tracked on their own tab --

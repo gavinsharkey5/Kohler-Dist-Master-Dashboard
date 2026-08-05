@@ -176,35 +176,55 @@ per rep (the numerator) -- see buildPctOfBaseDataset() in index.html.
 Target accounts (Corona Premier, Molson Coors Peroni/Banquet only, per
 Kohler 2026-08-05 -- Wine & Spirits isn't territory-restricted so it gets
 none): a per-rep "who to go after" list, answering which of a rep's OWN
-core-territory accounts don't carry the brand yet. Same approach as
-on-prem's build_targets() (see on-prem/generate_2026-08.py) minus the
-county whitelist, since sales_reps_customer_base_core.csv is already
-scoped to the core territory:
+core-territory accounts don't carry the brand yet.
+
+Corona Premier stays BRAND-level (build_targets()/already_carrying()),
+same approach as on-prem's build_targets() (see
+on-prem/generate_2026-08.py) minus the county whitelist, since
+sales_reps_customer_base_core.csv is already scoped to the core
+territory -- it isn't a per-SKU 90-day-non-buy incentive, just a plain
+placement count, so there's no per-product distinction to make.
+
+Molson Coors is PRODUCT-level (build_targets_by_product()), per Kohler's
+manager (2026-08-05): since the 90-day-non-buy incentive is scored per
+Product Num (see classify_dual_period() in build_molson_coors()), an
+account that already carries 2 of 9 Peroni SKUs still has a real,
+sellable gap in the other 7 -- excluding it from Target Accounts entirely
+just because it "carries Peroni" (the old brand-level behavior) hid that
+opportunity. build_targets_by_product() cross-references:
   1. sales_reps_customer_base_core.csv -- the rep's core account base,
      deduped by Customer Num.
-  2. corona_premier_suitcase.csv / molson_coors_off_peroni_banquet.csv --
-     ANY customer appearing here at all (placement flagged new or not)
-     already has recent purchase history of that brand, so they're
-     excluded -- a "hasn't bought it recently" list, not just "hasn't
-     been flagged new this month".
-Molson Coors' Peroni and Coors (Banquet) targets are computed
-independently per brand, same as the placement classification.
+  2. molson_coors_off_peroni_banquet.csv, scoped to ONE Product Num at a
+     time (already_carrying_by_product()) -- ANY customer appearing here
+     for that exact SKU (placement flagged new or not) already has recent
+     purchase history of it, so they're excluded from that SKU's target
+     list specifically (not the whole brand's).
+One output row per (rep, account, product) the account hasn't carried --
+an account can appear once per missing SKU, so this list runs
+considerably larger than a brand-level one would (e.g. ~1,300+ rows
+across ~9 Peroni + ~11 Banquet SKUs vs. ~200 at brand level). Peroni and
+Coors (Banquet) are still computed independently, same as the placement
+classification.
 
 Rep-level drill-down display (index.html, mirrors on-prem's identical
-cleanup): the PERIOD field lets Molson Coors/Wine & Spirits show both a
-customer's most recent base-period and current-month activity, tagged
-New Buyer / Repeat Buyer (bought both) / Bought in Base Period (base
-only). Only New Buyers -- and, for Molson Coors, Target Accounts -- show
-by default; Repeat Buyer/Bought-in-Base-Period rows are tucked behind a
-collapsed "N Existing Accounts" dropdown so a rep's long purchase history
-doesn't bury what they need to act on this month. Target Accounts is
-further grouped by county (collapsed at both the overall-list and
-per-county level) for the same reason. See
-groupTargetsByCounty()/targetsBlockHtml()/lineTableNewAccounts()/
-existingAccountsBlockHtml() in index.html. Molson Coors' line tables also
-show a Product column (lineTableNewAccounts dedupes by customer+product,
-not customer alone) since its classification is per-SKU -- an account can
-have independent new/existing statuses for different Peroni or Banquet
+cleanup, then extended for the per-product Target Accounts above): the
+PERIOD field lets Molson Coors/Wine & Spirits show both a customer's most
+recent base-period and current-month activity, tagged New Buyer / Repeat
+Buyer (bought both) / Bought in Base Period (base only). Only New Buyers
+-- and, for Molson Coors, Target Accounts -- show by default; Repeat
+Buyer/Bought-in-Base-Period rows are tucked behind a collapsed "N
+Existing Accounts" dropdown so a rep's long purchase history doesn't
+bury what they need to act on this month. Corona Premier's Target
+Accounts groups by county (collapsed at both the overall-list and
+per-county level); Molson Coors' groups by PRODUCT instead (one
+collapsed "N accounts don't carry it yet" block per SKU) since the point
+is showing a rep exactly which product to go sell in, not where. See
+groupTargetsByCounty()/groupTargetsByProduct()/targetsBlockHtml()/
+lineTableNewAccounts()/existingAccountsBlockHtml() in index.html.
+Molson Coors' line tables also show a Product column (lineTableNewAccounts
+dedupes by customer+product, not customer alone) since its classification
+is per-SKU -- an account can have independent new/existing statuses for
+different Peroni or Banquet
 SKUs in the same sub-table.
 
 Run: python3 generate_2026-08.py
@@ -533,6 +553,65 @@ def build_targets(customer_base_by_rep, carrying):
     return out
 
 
+def list_products(rows, brand_of, brand_filter):
+    """Distinct (Product Num, Product Name) pairs for a brand, in first-
+    seen order (not alphabetical) -- one entry per SKU Target Accounts
+    needs its own collapsible group for."""
+    seen = set()
+    out = []
+    for r in rows:
+        if brand_of(r).strip().lower() != brand_filter.lower():
+            continue
+        key = r["Product Num"].strip()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append((key, r["Product Name"].strip()))
+    return out
+
+
+def already_carrying_by_product(rows, product_num):
+    """Customer Nums with ANY row for this EXACT product (any Date, whether
+    or not that row was flagged NEW_PLACEMENT) -- recent purchase history
+    scoped to one SKU, not the brand as a whole."""
+    return {r["Customer Num"].strip() for r in rows if r["Product Num"].strip() == product_num}
+
+
+def build_targets_by_product(customer_base_by_rep, rows, brand_filter, brand_of):
+    """Per Kohler's manager (2026-08-05): since the 90-day-non-buy
+    incentive is scored per PRODUCT (see classify_dual_period's Product
+    Num key in build_molson_coors()), Target Accounts shows which SPECIFIC
+    SKUs a rep's own accounts don't carry, not just whether they carry the
+    brand overall -- an account with 2 of 9 Peroni SKUs already "carries
+    Peroni" under the old brand-level logic, but is still a real target
+    for the other 7. One row per (rep, account, product) where that
+    account has never carried that exact product -- an account can appear
+    once per SKU it's missing, so this list is considerably larger and
+    more granular than build_targets()'s brand-level version. Replaces the
+    old brand-level Molson Coors Target Accounts entirely (Corona Premier
+    keeps build_targets() -- it isn't a per-SKU 90-day-non-buy incentive,
+    just a plain placement count, so there's no per-product distinction to
+    make there)."""
+    out = []
+    for product_num, product_name in list_products(rows, brand_of, brand_filter):
+        carrying = already_carrying_by_product(rows, product_num)
+        for rep, accounts in customer_base_by_rep.items():
+            for a in accounts:
+                if a["customer_num"] in carrying:
+                    continue
+                out.append({
+                    "SALES_REP_ASSIGNED": rep,
+                    "CUSTOMER_NUM": int(a["customer_num"]) if a["customer_num"].isdigit() else a["customer_num"],
+                    "CUSTOMER_NAME": a["customer_name"],
+                    "AREA": a["area"],
+                    "PRODUCT_NUM": product_num,
+                    "PRODUCT_NAME": product_name,
+                    "BRAND_FAMILY": brand_filter,
+                })
+    out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["PRODUCT_NAME"], row["CUSTOMER_NAME"]))
+    return out
+
+
 def main():
     corona_premier_rows = build_corona_premier()
     molson_coors_rows, mc_new, mc_total = build_molson_coors()
@@ -543,14 +622,12 @@ def main():
     core_by_rep = load_core_customer_base()
     targets_corona_premier = build_targets(core_by_rep, already_carrying(CORONA_PREMIER_CSV))
 
+    molson_coors_raw_rows = load_csv(MOLSON_COORS_CSV)
     molson_coors_brand_of = lambda r: derive_brand_family(r["Product Name"])
-    targets_peroni = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni", brand_of=molson_coors_brand_of))
-    for row in targets_peroni:
-        row["BRAND_FAMILY"] = "Peroni"
-    targets_coors = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Coors", brand_of=molson_coors_brand_of))
-    for row in targets_coors:
-        row["BRAND_FAMILY"] = "Coors"
-    targets_molson_coors = sorted(targets_peroni + targets_coors, key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["CUSTOMER_NAME"]))
+    targets_peroni = build_targets_by_product(core_by_rep, molson_coors_raw_rows, "Peroni", molson_coors_brand_of)
+    targets_coors = build_targets_by_product(core_by_rep, molson_coors_raw_rows, "Coors", molson_coors_brand_of)
+    targets_molson_coors = sorted(targets_peroni + targets_coors,
+                                   key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["PRODUCT_NAME"], r["CUSTOMER_NAME"]))
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
@@ -577,8 +654,14 @@ def main():
     print(f"Sales Reps Customer Base: {len(customer_base_rows)} rows written ({distinct_base} distinct rep+customer pairs)")
     print(f"Off-Premise Core Territory: {distinct_core} distinct rep+customer pairs across {len(core_by_rep)} reps")
     print(f"Target accounts -- Corona Premier: {len(targets_corona_premier)} prospects across all reps (core territory only)")
-    print(f"Target accounts -- Molson Coors: {len(targets_peroni)} Peroni + {len(targets_coors)} Coors/Banquet "
-          f"prospects (core territory only)")
+    peroni_products = len(list_products(molson_coors_raw_rows, molson_coors_brand_of, "Peroni"))
+    coors_products = len(list_products(molson_coors_raw_rows, molson_coors_brand_of, "Coors"))
+    peroni_distinct = len({(r["SALES_REP_ASSIGNED"], r["CUSTOMER_NUM"]) for r in targets_peroni})
+    coors_distinct = len({(r["SALES_REP_ASSIGNED"], r["CUSTOMER_NUM"]) for r in targets_coors})
+    print(f"Target accounts -- Molson Coors (per-product): {len(targets_peroni)} account+SKU rows across "
+          f"{peroni_products} Peroni products ({peroni_distinct} distinct accounts missing at least one) + "
+          f"{len(targets_coors)} account+SKU rows across {coors_products} Banquet products "
+          f"({coors_distinct} distinct accounts missing at least one), core territory only")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 
