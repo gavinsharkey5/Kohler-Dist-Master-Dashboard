@@ -119,6 +119,20 @@
   .empty-tag{font-size:11px;background:var(--card-alt);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
   .empty-state{color:var(--text-dim);font-size:13px;padding:6px 2px 2px;}
 
+  /* Target Accounts -- per-rep prospect lists (accounts in their book that
+     don't carry the brand yet, in the off-premise core territory). Collapsed
+     by default since a rep's full account base can run to 100+ rows; click
+     the header to reveal it. */
+  .targets-block{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);}
+  .targets-toggle{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.04em;padding:2px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .targets-toggle:hover{color:var(--text);}
+  .targets-hint{color:var(--text-dim);font-weight:500;text-transform:none;letter-spacing:0;font-family:'Inter',sans-serif;font-size:12px;}
+  .targets-chev{font-size:9px;transition:transform .15s;display:inline-block;color:var(--amber);}
+  .targets-toggle.open .targets-chev{transform:rotate(90deg);}
+  .targets-table{display:none;}
+  .targets-table.open{display:block;}
+
   .rep-row{cursor:pointer;}
   .rep-row:hover{background:var(--card-alt);}
   .rep-row td:first-child{display:flex;align-items:center;gap:8px;}
@@ -282,10 +296,12 @@ const MONTHS = [
     {objKey:'famosa', file:'mpo_famosa.json', target:5, builder:'placements'},
   ]},
   {key:'2026-08', label:'August 2026', dir:'data/2026-08/', objectives: OBJECTIVES_2026_08, tables: [
-    {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements'},
+    {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements',
+      targetsFile:'mpo_targets_corona_premier.json'},
     {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25},
     {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
-      subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts'},
+      subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts',
+      targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},
     {objKey:'wine_spirits', file:'mpo_wine_spirits.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'new_accounts'},
   ]},
@@ -437,6 +453,43 @@ function buildPctOfBaseDataset(baseRows, numRows, pct){
 }
 
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset};
+
+const AREA_COLS=[["area"]];
+
+// Target-account rows (prospects who don't carry the brand yet, in the
+// off-premise core territory -- see generate_2026-08.py's build_targets())
+// grouped by rep, keyed by rep name for direct lookup at render time.
+function groupTargetsByRep(rows){
+  if(!Array.isArray(rows)||!rows.length) return {};
+  const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
+        areaCol=findCol(rows[0],AREA_COLS);
+  if(!repCol||!custCol) return {};
+  const by={};
+  rows.forEach(r=>{
+    const rep=String(r[repCol]||"").trim(); if(!rep) return;
+    if(!by[rep]) by[rep]=[];
+    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():""});
+  });
+  return by;
+}
+
+// Collapsed-by-default so a rep's 50-100+ row prospect list doesn't blow
+// out every drill-down by default -- click the header to reveal it.
+function targetsBlockHtml(targets, brandLabel){
+  if(!targets || !targets.length) return '';
+  const tid = 'tgt'+(uid++);
+  const rows = targets.map(t=>`<tr><td>${t.customer}</td><td>${t.area}</td></tr>`).join('');
+  return `<div class="targets-block">
+    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${targets.length} Target Account${targets.length===1?'':'s'}<span class="targets-hint">— don't carry ${brandLabel} yet, in your core territory</span></div>
+    <div class="targets-table" id="${tid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Area</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+  </div>`;
+}
+document.addEventListener('click', e=>{
+  const header = e.target.closest('.targets-toggle');
+  if(!header) return;
+  header.classList.toggle('open');
+  document.getElementById(header.dataset.target)?.classList.toggle('open');
+});
 
 // Joins the flat actuals export (rep/package/product/placements) against
 // the long-format goals export (rep/product#/product name/package/GOAL90)
@@ -607,6 +660,19 @@ async function loadMonth(monthKey){
       } else {
         const built=builder(rows, t.target);
         if(built) DATA[t.objKey]=built;
+      }
+      if(t.targetsFile && DATA[t.objKey]){
+        const trows=await loadJSON(t.targetsFile);
+        if(trows){
+          if(t.dual){
+            DATA[t.objKey].subs.forEach(s=>{
+              const subRows=trows.filter(r=>String(r[t.targetsBrandField]||"").toLowerCase().includes(s.match));
+              s.targetsByRep=groupTargetsByRep(subRows);
+            });
+          } else {
+            DATA[t.objKey].targetsByRep=groupTargetsByRep(trows);
+          }
+        }
       }
     }catch(e){}
   }
@@ -795,6 +861,7 @@ function renderRepView(){
           </div>
           <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
           ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'}
+          ${targetsBlockHtml((sv.sub.targetsByRep||{})[activeRep], sv.sub.label)}
         </div>`;
       }).join('');
       body.appendChild(inner);
@@ -893,6 +960,9 @@ function renderRepView(){
     inner.className='obj-body-inner';
     inner.style.paddingTop='0';
     inner.innerHTML = lineTablePlacements(r ? r.lines : []);
+    if(d.targetsByRep){
+      inner.innerHTML += targetsBlockHtml(d.targetsByRep[activeRep], o.shortName||o.name);
+    }
     body.appendChild(inner);
     card.appendChild(body);
     container.appendChild(card);
@@ -944,18 +1014,20 @@ function renderObjectiveView(){
       ROSTER.forEach(repName=>{
         const subVals = d.subs.map(s=>{const r=s.reps.find(x=>x.rep===repName); return {sub:s, r, val:r?r.qualifying:0};});
         const hasAny = subVals.some(sv=>sv.r);
-        if(!hasAny){
+        const hasTargets = d.subs.some(s=>(s.targetsByRep||{})[repName]?.length);
+        if(!hasAny && !hasTargets){
           bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td>${d.subs.map(()=>'<td class="num">—</td>').join('')}<td><span class="flag-miss">No data</span></td></tr>`;
           return;
         }
         const rowId = 'row'+(uid++);
-        const allHit = subVals.every(sv=>sv.val>=sv.sub.target);
+        const allHit = hasAny && subVals.every(sv=>sv.val>=sv.sub.target);
         const cells = subVals.map(sv=>{
           const rp=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target;
           return `<td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''}</td>`;
         }).join('');
-        bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td></tr>`;
-        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}</div>`).join('');
+        const statusHtml = !hasAny ? '<span class="flag-miss">No activity</span>' : (allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>');
+        bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${statusHtml}</td></tr>`;
+        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}${targetsBlockHtml((s.targetsByRep||{})[repName], s.label)}</div>`).join('');
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
       });
       table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
@@ -1042,20 +1114,23 @@ function renderObjectiveView(){
       let bodyRows = '';
       ROSTER.forEach(repName=>{
         const r = d.reps.find(x=>x.rep===repName);
-        if(!r){
+        const myTargets = (d.targetsByRep||{})[repName];
+        if(!r && !(myTargets&&myTargets.length)){
           bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
           return;
         }
         const rowId = 'row'+(uid++);
-        const rp = Math.min(r.count/target,1)*100;
-        const hit = r.count>=target;
-        const over = r.count>target;
+        const count = r?r.count:0;
+        const rp = Math.min(count/target,1)*100;
+        const hit = count>=target;
+        const over = count>target;
         bodyRows += `<tr class="rep-row" data-target="${rowId}">
-          <td><span class="rep-chev">▶</span>${r.rep}</td>
-          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.count} / ${target}${over?'<span class="over-badge">+'+(r.count-target)+' over</span>':''}</td>
-          <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+          <td><span class="rep-chev">▶</span>${repName}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${count} / ${target}${over?'<span class="over-badge">+'+(count-target)+' over</span>':''}</td>
+          <td>${r?(hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'):'<span class="flag-miss">No activity</span>'}</td>
         </tr>`;
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePlacements(r.lines)}</td></tr>`;
+        const activityHtml = r ? lineTablePlacements(r.lines) : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${activityHtml}${targetsBlockHtml(myTargets, o.shortName||o.name)}</td></tr>`;
       });
       table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);

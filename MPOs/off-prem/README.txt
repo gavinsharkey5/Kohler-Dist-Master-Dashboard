@@ -178,9 +178,32 @@ Files:
                                         DENOMINATOR; account-base size
                                         per rep is the count of DISTINCT
                                         Customer Num, computed
-                                        client-side.
-    generate_2026-08.py               Rebuilds the five JSON files
-                                        above.
+                                        client-side. Full off-prem book
+                                        (every county); BBC Lytt only,
+                                        since Lytt isn't territory-
+                                        restricted.
+    sales_reps_customer_base_core.csv RDE "Sales Reps: Customer Base
+                                        Core Off Prem" export -- added
+                                        2026-08-05. Narrower than the
+                                        file above: only the counties
+                                        where Corona Premier and Molson
+                                        Coors Peroni/Banquet are
+                                        authorized to sell (per Kohler,
+                                        2026-08-05), pre-scoped by RDE
+                                        (no county whitelist needed in
+                                        code, unlike on-prem). Drives
+                                        Target Accounts for those two
+                                        objectives only -- see
+                                        generate_2026-08.py's own
+                                        docstring for the full field
+                                        list and build_targets() logic.
+                                        Wine & Spirits gets no Target
+                                        Accounts since it's sold in
+                                        every county (same precedent as
+                                        on-prem's Yave/Leyenda).
+    generate_2026-08.py               Rebuilds the seven JSON files
+                                        above (five datasets + two
+                                        Target Accounts files).
 
   index.html   The page itself (shared by every month).
 
@@ -203,11 +226,27 @@ To refresh August manually:
   1. Save the new exports over corona_premier_suitcase.csv /
      molson_coors_off_peroni_banquet.csv /
      wine_spirits_legrand_leyenda_greenriver.csv / bbc_lytt_distro.csv /
-     sales_reps_customer_base.csv (same column headers).
+     sales_reps_customer_base.csv / sales_reps_customer_base_core.csv
+     (same column headers).
   2. Run: python3 generate_2026-08.py -- it prints how many new
      placements/rows qualified out of how many were exported, worth a
      sanity check against what you'd expect.
   3. Commit and push.
+
+Target Accounts (added 2026-08-05): a per-rep "who to go after"
+prospect list -- accounts in a rep's OWN off-premise core territory
+that don't carry the brand yet -- shown as a collapsed amber toggle
+under that rep's activity table on both the Corona Premier and Molson
+Coors Peroni/Banquet cards (rep view and objective view alike). Same
+groupTargetsByRep()/targetsBlockHtml() pattern as on-prem's Angry
+Orchard/Molson Coors (see on-prem/index.html), fed by
+mpo_targets_corona_premier.json and mpo_targets_molson_coors.json
+(generate_2026-08.py's build_targets(), scoped by
+sales_reps_customer_base_core.csv -- see that file's entry above).
+Wine & Spirits has no Target Accounts card since it isn't
+territory-restricted, and BBC Lytt already IS a "which of your
+accounts don't carry it yet" objective by construction, so it doesn't
+need a separate Target Accounts block.
 
 Note (2026-08-05): as of that refresh, RDE started splitting Molson
 Coors' and Wine & Spirits' "Placement Count"/"Cases" columns into TWO
