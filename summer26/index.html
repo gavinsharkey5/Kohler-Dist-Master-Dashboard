@@ -297,31 +297,41 @@
 .thc-search{margin:16px 0 0}
 .thc-search input{width:100%;font:inherit;font-size:14.5px;padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .thc-search input:focus{outline:none;border-color:var(--accent)}
-/* Five columns (Rep + 2025/2026 per supplier) -- volume-only for now
-   (see thcRenderTable's comment for why tier/Amplify $ aren't shown),
-   which keeps this comfortably narrower than the page even on an
-   iPhone SE without needing table-layout tricks. Each supplier's pair
-   of year columns is headed by its logo (once provided -- see
-   THC_LOGOS) with the year underneath, instead of a repeated
-   "Supplier 2025"/"Supplier 2026" text label. */
+/* Seven columns (Rep + 2025/2026/+/- per supplier) -- volume-only for
+   now (see thcRenderTable's comment for why tier/Amplify $ aren't
+   shown). table-layout:fixed + an explicit first-column width keeps
+   this from overflowing an iPhone SE: with 7 columns, letting the
+   browser auto-size gave the Rep column almost no room once the two
+   new +/- columns were added, so names wrapped 4-5 lines deep.
+   Numeric columns only ever hold a few characters (case counts, a
+   signed diff), so splitting the rest evenly between them is plenty.
+   Each supplier's 2025/2026 pair is headed by its logo (once provided
+   -- see THC_LOGOS) with the year underneath; +/- has no logo since
+   it's not a year of data, just the delta between the two. */
 .thc-table-wrap{margin:14px 0 0;overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-.thc-table{width:100%;border-collapse:collapse;font-size:13px}
+.thc-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
 .thc-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;
-  padding:9px 8px;border-bottom:1px solid var(--line);background:var(--card2)}
-.thc-table td{padding:10px 8px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+  padding:9px 6px;border-bottom:1px solid var(--line);background:var(--card2)}
+.thc-table td{padding:10px 6px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
 .thc-table tr:last-child td{border-bottom:none}
+.thc-table th:first-child,.thc-table td:first-child{width:22%}
 .thc-table .num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:14px}
 .thc-rep{font-weight:600;overflow-wrap:anywhere}
 .thc-col-head{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.thc-col-logotxt{font-family:"Space Grotesk";font-weight:700;font-size:11.5px;letter-spacing:.02em;color:var(--ink);text-transform:none}
-.thc-col-logoimg{height:20px;width:auto;max-width:64px;object-fit:contain;display:block}
-.thc-col-yr{font-size:9.5px;font-weight:600;color:var(--ink-soft);letter-spacing:.04em}
+.thc-col-logotxt{font-family:"Space Grotesk";font-weight:700;font-size:10px;letter-spacing:.01em;color:var(--ink);text-transform:none;line-height:1.15;text-align:right}
+.thc-col-logoimg{height:18px;width:auto;max-width:56px;object-fit:contain;display:block}
+.thc-col-yr{font-size:9px;font-weight:600;color:var(--ink-soft);letter-spacing:.03em}
+.thc-diff-pos{color:var(--good);font-weight:700}
+.thc-diff-neg{color:#E5604D;font-weight:700}
+.thc-diff-flat{color:var(--ink-soft)}
 @media(max-width:560px){
-  .thc-table{font-size:12px}
-  .thc-table th,.thc-table td{padding:8px 6px}
-  .thc-table .num{font-size:13px}
-  .thc-col-logotxt{font-size:10.5px}
-  .thc-col-logoimg{height:16px}
+  .thc-table{font-size:11.5px}
+  .thc-table th,.thc-table td{padding:8px 4px}
+  .thc-table th:first-child,.thc-table td:first-child{width:19%}
+  .thc-table .num{font-size:12px}
+  .thc-col-logotxt{font-size:9px}
+  .thc-col-logoimg{height:15px}
+  .thc-col-yr{font-size:8px}
 }
 </style>
 </head>
@@ -828,18 +838,28 @@ function thcLogoChip(supKey){
 // (2025 vs 2026 case equivalents per supplier) until that's given the
 // go-ahead; re-adding the tier/Amplify display only means putting back
 // what's in git history for this file, the compute logic never left.
+function thcDiffCell(diff){
+  if(!diff) return `<span class="thc-diff-flat">0</span>`;
+  const cls = diff>0 ? 'thc-diff-pos' : 'thc-diff-neg';
+  const sign = diff>0 ? '+' : '';
+  return `<span class="${cls}">${sign}${diff}</span>`;
+}
 function thcRenderTable(rows, filter){
   const supKeys = Object.keys(THC_TIERS);
   const f = (filter||"").toLowerCase();
   const shown = f ? rows.filter(r=>r.rep.toLowerCase().includes(f)) : rows;
-  const yearHeadCells = k => ['2025','2026'].map(yr=>
+  // Each supplier gets 3 columns: 2025, 2026, and +/- (2026 minus 2025) --
+  // the +/- header has no logo (it's not a year of data, just the delta
+  // between the two), so it's a plain text label instead.
+  const supHeadCells = k => ['2025','2026'].map(yr=>
     `<th class="num"><div class="thc-col-head">${thcLogoChip(k)}<span class="thc-col-yr">${yr}</span></div></th>`
-  ).join('');
-  const head = `<thead><tr><th>Rep</th>${supKeys.map(yearHeadCells).join('')}</tr></thead>`;
+  ).join('') + `<th class="num"><div class="thc-col-head"><span class="thc-col-logotxt">${THC_TIERS[k].label}</span><span class="thc-col-yr">+/-</span></div></th>`;
+  const head = `<thead><tr><th>Rep</th>${supKeys.map(supHeadCells).join('')}</tr></thead>`;
   const body = shown.map(r=>{
     const cells = supKeys.map(k=>{
       const s = r.sups[k];
-      return `<td class="num">${s.c25||'—'}</td><td class="num">${s.c26||'—'}</td>`;
+      const diff = (s.c26||0) - (s.c25||0);
+      return `<td class="num">${s.c25||'—'}</td><td class="num">${s.c26||'—'}</td><td class="num">${thcDiffCell(diff)}</td>`;
     }).join('');
     return `<tr><td class="thc-rep">${esc(r.rep)}</td>${cells}</tr>`;
   }).join('');
