@@ -102,8 +102,7 @@
   .leader-name{flex:1;padding:0 8px;}
   .leader-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:12px;}
 
-  .prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:start;}
-  @media(max-width:900px){.prog-grid{grid-template-columns:1fr;}}
+  .prog-grid{display:flex;flex-direction:column;gap:20px;}
 
   .empty-state{color:var(--text-dim);font-size:14px;padding:30px 10px;text-align:center;}
 
