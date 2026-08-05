@@ -13,6 +13,11 @@ from pathlib import Path
 DATA_DIR = Path(__file__).parent / "data"
 INDEX_HTML = Path(__file__).parent / "index.html"
 
+# Per Gavin, 2026-08-1x: Chris Politano, John Neukum, and Office Tell
+# Sell are NOT reps (despite having rows in the Sun Cruiser file) and
+# must not appear on the dashboard -- their rows are simply excluded,
+# same as "Default" (an unassigned-account bucket in the customer base
+# files).
 ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano",
           "Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino",
           "Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue",
@@ -621,6 +626,183 @@ def build_fall_seasonal():
     }
 
 
+SUN_CRUISER_RATE1_GROUPS = {"12pk Can + 8pk Can + 18pk Can", "12oz 24pk Can"}
+SUN_CRUISER_RATE3_GROUPS = {"12oz 4pk Can", "Single Serve (19.2oz and 24oz Cans)"}
+
+
+def build_sun_cruiser():
+    """Sun Cruiser Volume. File arrives pre-aggregated (rep + package
+    group + product, with a precomputed this-year-vs-last-year case
+    difference for the same May-Aug window) -- no per-transaction rows,
+    no dual-period classification needed. Per the deck, payout only
+    applies to the case growth OVER last year, at a rate set by package
+    group ($1: 12/8/18pk and 24pk; $3: 4pk and single-serve 19.2/24oz).
+    Per Gavin, 2026-08-1x: rows for Chris Politano/John Neukum/Office
+    Tell Sell/Default are dropped since they aren't reps."""
+    rows = read_rows("sun_cruiser.csv")
+
+    by_rep = {rep: {
+        "rate1CaseGrowth": 0.0, "rate3CaseGrowth": 0.0,
+        "rate1Lines": [], "rate3Lines": [],
+        "totalCasesThisYear": 0.0, "totalCasesLastYear": 0.0,
+    } for rep in ROSTER}
+
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        pkg_group = row["Packages"]
+        diff = to_num(row["Cases Unit Difference"])
+        this_year = to_num(row["Cases   5/1/2026 - 8/31/2026"])
+        last_year = to_num(row["Cases   5/1/2025 - 8/31/2025"])
+        by_rep[rep]["totalCasesThisYear"] += this_year
+        by_rep[rep]["totalCasesLastYear"] += last_year
+        if pkg_group in SUN_CRUISER_RATE1_GROUPS:
+            bucket, rate = "rate1", 1.0
+        elif pkg_group in SUN_CRUISER_RATE3_GROUPS:
+            bucket, rate = "rate3", 3.0
+        else:
+            continue
+        if diff > 0:
+            by_rep[rep][f"{bucket}CaseGrowth"] += diff
+            by_rep[rep][f"{bucket}Lines"].append({
+                "product": row["Product Name"], "packages": pkg_group,
+                "caseGrowth": round(diff, 2),
+            })
+
+    for rep, d in by_rep.items():
+        d["rate1CaseGrowth"] = round(d["rate1CaseGrowth"], 2)
+        d["rate3CaseGrowth"] = round(d["rate3CaseGrowth"], 2)
+        d["totalCasesThisYear"] = round(d["totalCasesThisYear"], 2)
+        d["totalCasesLastYear"] = round(d["totalCasesLastYear"], 2)
+        d["rate1Lines"].sort(key=lambda e: -e["caseGrowth"])
+        d["rate3Lines"].sort(key=lambda e: -e["caseGrowth"])
+
+    return {"byRep": by_rep}
+
+
+def load_premise_map():
+    """Customer Num -> 'On Premise'/'Off Premise', from the two Sales
+    Reps' Customer Base files (used wherever a program's own RDE export
+    has no Premise column of its own, e.g. Yave)."""
+    premise = {}
+    for filename, premise_label in [("customer_base_off_prem.csv", "Off Premise"), ("customer_base_on_prem.csv", "On Premise")]:
+        for row in read_rows(filename):
+            premise[row["Customer Num"]] = premise_label
+    return premise
+
+
+def build_yave():
+    """Yave Tequila Launch. Single-period file (7/1-8/31, no base
+    period) -- like Path to Victory, there's no way to split new-POD
+    from rebuy from this file alone, so this tracks raw per-channel
+    account activity against the deck's milestone tiers rather than
+    asserting new-vs-rebuy. No Premise column either, so premise comes
+    from cross-referencing the Sales Reps' Customer Base files (all 20
+    Yave accounts resolved cleanly: 11 off-premise, 9 on-premise).
+    Per the deck: on-premise "1 POD = 2 bottles" (tiers at 1 and 2
+    qualifying accounts), off-premise "1 POD = 1 case/6-pack" (tiers at
+    1, 3, and 5 qualifying accounts)."""
+    rows = read_rows("yave.csv")
+    fieldnames = rows[0].keys() if rows else []
+    units_col = find_single_col(fieldnames, "Units")
+    cases_col = find_single_col(fieldnames, "Cases")
+    premise_map = load_premise_map()
+
+    by_rep = {rep: {
+        "onPremAccounts": [], "onPremAccountCount": 0, "onPremBottles": 0.0,
+        "offPremAccounts": [], "offPremAccountCount": 0, "offPremCases": 0.0,
+        "unclassifiedAccountCount": 0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num"]
+    by_key = {}
+    for row in rows:
+        key = tuple(row[k] for k in key_fields)
+        by_key.setdefault(key, []).append(row)
+
+    for key, krows in by_key.items():
+        rep, cust_num = key
+        if rep not in by_rep:
+            continue
+        sample = krows[0]
+        units_total = sum(to_num(r[units_col]) for r in krows)
+        cases_total = sum(to_num(r[cases_col]) for r in krows)
+        premise = premise_map.get(cust_num)
+        entry = {
+            "customer": sample["Customer Name"],
+            "date": latest_date(krows, units_col),
+        }
+        if premise == "On Premise":
+            by_rep[rep]["onPremBottles"] += units_total
+            if units_total >= 2:
+                entry["bottles"] = round(units_total, 2)
+                by_rep[rep]["onPremAccounts"].append(entry)
+        elif premise == "Off Premise":
+            by_rep[rep]["offPremCases"] += cases_total
+            if cases_total >= 1:
+                entry["cases"] = round(cases_total, 2)
+                by_rep[rep]["offPremAccounts"].append(entry)
+        else:
+            by_rep[rep]["unclassifiedAccountCount"] += 1
+
+    for rep, d in by_rep.items():
+        d["onPremAccountCount"] = len(d["onPremAccounts"])
+        d["offPremAccountCount"] = len(d["offPremAccounts"])
+        d["onPremBottles"] = round(d["onPremBottles"], 2)
+        d["offPremCases"] = round(d["offPremCases"], 2)
+        d["onPremAccounts"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["offPremAccounts"].sort(key=lambda e: e["date"] or "", reverse=True)
+
+    return {"byRep": by_rep}
+
+
+def build_mollys():
+    """Molly's 1.75L. Same dual-period shape as 1911/Woodchuck (base
+    period 4/1-6/30 = the '90 Day Unsold' qualifier window, current
+    period 7/1-8/31): $50 new POD, $10/case rebuy. No on/off-premise
+    split in the deck for this program."""
+    rows = read_rows("mollys.csv")
+    fieldnames = rows[0].keys() if rows else []
+    place_base_col, place_current_col = find_period_cols(fieldnames, "Placement Count")
+    case_base_col, case_current_col = find_period_cols(fieldnames, "Cases")
+
+    by_rep = {rep: {
+        "newPod": [], "newPodCount": 0,
+        "rebuy": [], "rebuyCount": 0, "rebuyCaseVolume": 0.0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
+
+    for key, status in classified.items():
+        rep = key[0]
+        if rep not in by_rep or status == "base_only":
+            continue
+        krows = by_key[key]
+        sample = krows[0]
+        entry = {
+            "customer": sample["Customer Name"],
+            "date": latest_date(krows, place_current_col),
+        }
+        if status == "new":
+            by_rep[rep]["newPod"].append(entry)
+            by_rep[rep]["newPodCount"] += 1
+        elif status == "rebuy":
+            case_vol = sum(to_num(r[case_current_col]) for r in krows)
+            entry["cases"] = round(case_vol, 2)
+            by_rep[rep]["rebuy"].append(entry)
+            by_rep[rep]["rebuyCount"] += 1
+            by_rep[rep]["rebuyCaseVolume"] += case_vol
+
+    for rep, d in by_rep.items():
+        d["rebuyCaseVolume"] = round(d["rebuyCaseVolume"], 2)
+        d["newPod"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["rebuy"].sort(key=lambda e: e["date"] or "", reverse=True)
+
+    return {"byRep": by_rep}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -632,6 +814,9 @@ def main():
         "new_belgium": build_new_belgium(),
         "lytt": build_lytt_launch(),
         "fall_seasonal": build_fall_seasonal(),
+        "sun_cruiser": build_sun_cruiser(),
+        "yave": build_yave(),
+        "mollys": build_mollys(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -659,6 +844,13 @@ def main():
     print(f"fall_seasonal packages_and_draft: {sum(d['packageCaseEquivalents'] for d in pd_.values()):.1f} total CE, "
           f"{sum(d['sixtelCount'] for d in pd_.values())} sixtels, {sum(d['halfKegCount'] for d in pd_.values())} half-kegs, "
           f"{sum(d['otherKegCount'] for d in pd_.values())} other-size kegs")
+    print(f"sun_cruiser: {sum(d['rate1CaseGrowth'] for d in data['sun_cruiser']['byRep'].values()):.0f} rate-1 case growth, "
+          f"{sum(d['rate3CaseGrowth'] for d in data['sun_cruiser']['byRep'].values()):.0f} rate-3 case growth")
+    print(f"yave: {sum(d['onPremAccountCount'] for d in data['yave']['byRep'].values())} on-prem accounts, "
+          f"{sum(d['offPremAccountCount'] for d in data['yave']['byRep'].values())} off-prem accounts, "
+          f"{sum(d['unclassifiedAccountCount'] for d in data['yave']['byRep'].values())} unclassified")
+    print(f"mollys: {sum(d['newPodCount'] for d in data['mollys']['byRep'].values())} new PODs, "
+          f"{sum(d['rebuyCount'] for d in data['mollys']['byRep'].values())} rebuys")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

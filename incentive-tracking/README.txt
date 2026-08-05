@@ -21,9 +21,30 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
-STATUS (2026-08-05): 9 of 11 programs built and live -- everything
-except Le Grand Noir (program 11, no data yet -- held until a file
-exists). All three planned batches delivered.
+STATUS (2026-08-05): 9 of 11 original-deck programs built and live --
+everything except Le Grand Noir (program 11, no data yet -- held until
+a file exists). All three planned batches delivered.
+
+CONTINUING PROGRAMS (slides 13-25, added 2026-08-1x): Gavin asked to
+add 8 more programs from the deck's "continuing programs" section,
+originally deferred on 2026-08-05. 3 of 8 built so far -- Sun Cruiser
+Volume, Yave Tequila Launch, Molly's 1.75L. See "CONTINUING PROGRAMS"
+section below for all 8, including the 5 not yet built (Sammy's Beach
+Bar Rum -- no data yet; New Belgium Distribution/Volume, Garage Beer
+President's Incentive, Garage Beer Summer Sequel, Summer of Success
+THC Volume -- not yet sent, several need goal-threshold numbers not on
+the slides). The iSellBeer Summer Display Auction (slides 14-15) is
+NOT part of this dashboard -- it's covered by the separate
+isellbeer/display-auction-tracker/, and the Chelada/Corona Premier
+Summer of Success program (slides 24-25) was not requested.
+
+Roster note (2026-08-1x): Sun Cruiser's file surfaced 3 names with
+real sales that aren't on the roster -- Chris Politano, John Neukum,
+Office Tell Sell. Per Gavin: "do not include christopher politano,
+john neukum or office tell sell on the incentive dashboard. they are
+not reps" -- their rows are dropped like any other out-of-scope entry
+(same treatment as "Default", an unassigned-account bucket in the
+customer base files). ROSTER stays at the original 27 names.
 
 Batch-1 schema notes (apply to any future refreshed pull of these same
 4 files): 1911/Woodchuck/Tona share the same dual-period RDE shape as
@@ -285,3 +306,116 @@ Build plan:
   as MPOs/on-prem: one generate.py building embedded JSON per program,
   index.html rendering per-rep progress cards, ROSTER-driven like the
   MPO tracker.
+
+CONTINUING PROGRAMS (deck slides 13-25)
+========================================
+Requested by Gavin, 2026-08-1x, after the original 11 were done. Same
+build approach: inspect each file's real columns before writing calc
+logic, flag anything that contradicts the deck.
+
+1. SUN CRUISER VOLUME -- May-Aug [BUILT]
+   - Earn payout for each case over last year's May-Aug volume, once
+     this year's total exceeds last year's for the whole period
+   - $1/case: 12pk+8pk+18pk, 24pk    $3/case: 4pk, 24oz+19.2oz
+   File arrives pre-aggregated -- one row per (rep, package group,
+   product) with a precomputed this-year vs last-year case difference
+   for the full May-Aug window already baked in, no per-transaction
+   rows or dual-period classification needed. Built: per-rep case
+   growth (positive differences only) split into the $1 and $3 rate
+   buckets, with the underlying product-line breakdown. Package group
+   strings map cleanly to the deck's two tiers (SUN_CRUISER_RATE1_
+   GROUPS / SUN_CRUISER_RATE3_GROUPS in generate.py).
+   Roster note: this file surfaced Chris Politano, John Neukum, Office
+   Tell Sell, and a "Default" bucket -- per Gavin, the first three
+   "are not reps" and are dropped along with Default; ROSTER unchanged.
+
+2. NEW BELGIUM DISTRIBUTION ("New Belgium Volume") -- Achieve May-Jun /
+   Push Volume Jul-Aug / Retain Sep-Oct [NOT STARTED]
+   - Achieve: secure distribution goals across 4 core brands (New
+     Belgium, 12pk Voodoo, 19.2 Voodoo, Hearted Family, Kirin) -- tiered
+     payout per brand goal achieved
+   - Push Volume (Jul-Aug): volume payout for cases sold over last
+     year, as part of the Summer Volume Program
+   - Retain (Sep-Oct): tiered payout per brand goal retained
+   - Core Bonus: additional tiered bonus if both achieve + retain goals
+     hit AND positive NBB growth May-October
+   Gavin asked for "new belgium volume" specifically -- likely just the
+   Jul-Aug push-volume piece (same shape as Sun Cruiser), but the
+   achieve/retain distribution-goal tracking needs brand-specific goal
+   numbers not stated on the slide. Ask which scope when the file
+   arrives, and ask for the goal numbers if achieve/retain is wanted.
+
+3. GARAGE BEER PRESIDENT'S INCENTIVE -- Jun-Sep [NOT STARTED]
+   - Flat $1.00/CE over last year, once total Garage Beer CEs (company-
+     wide) cross 9,305 for the period
+   Straightforward once the file arrives -- house-wide CE gate (same
+   shape as Le Grand Noir's 70-case gate) plus per-rep CE-over-LY
+   tracking.
+
+4. GARAGE BEER SUMMER SEQUEL -- Jun-Aug [NOT STARTED]
+   - Volume Push: 3 tiers over 2025 CEs -- Tiered ($1/CE), Bonus
+     ($1.50/CE), Super Bonus ($2/CE) -- goal thresholds not on the slide
+   - Draft Bonus: $50 new draft placement / $100 re-purchase (after
+     account purchases 3 kegs total), half payout on 1/6bbl
+   - $5 per on-premise iSellBeer feature submitted
+   Need the 3 tier goal thresholds (CE counts) from Gavin before the
+   volume-push piece can show tier status; draft bonus is buildable
+   once the file arrives (same per-account cumulative-keg-threshold
+   pattern as 1911/Woodchuck, at a 3-keg gate instead of barrels).
+   iSellBeer feature count is out of scope (separate system, per the
+   Path to Victory / Boston Beer precedent).
+
+5. YAVE TEQUILA LAUNCH -- Jul-Aug [BUILT]
+   - On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25,
+     cocktail feature = $50, cocktail permanent = $150, case rebuys
+     during period = $25
+   - Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50,
+     5 PODs = $125, 3-case qualifies for consumer sampling
+   File is single-period only (7/1-8/31, no base/comparison window)
+   and has no Premise column. Built: premise resolved by cross-
+   referencing Customer Num against the two Sales Reps' Customer Base
+   files (load_premise_map() in generate.py) -- all 20 Yave accounts
+   resolved cleanly (11 off-prem, 9 on-prem). Since there's no base
+   period, new-vs-rebuy can't be split (same limitation as Path to
+   Victory) -- tracks qualifying-account counts against the milestone
+   tiers (on-prem: 2+ bottles this period; off-prem: 1+ case) rather
+   than asserting new placements. Cocktail feature/permanent and
+   rebuy tracking are out of scope -- no signal for them in this file.
+
+6. MOLLY'S 1.75L -- Jul-Aug [BUILT]
+   - Qualifier: 90-day unsold
+   - $50 new POD, $10/case on rebuys during the period
+   Same dual-period shape as 1911/Woodchuck (base period 4/1-6/30 =
+   the 90-day-unsold window, current period 7/1-8/31) -- reused
+   classify_dual() directly. No on/off-premise split in the deck for
+   this program, so none built. Simplest of the continuing programs.
+
+7. SAMMY'S BEACH BAR RUM -- Jul-Aug [HELD -- no data yet]
+   - On-Premise (1 POD = 1 bottle): 1 new POD = $20, cocktail feature
+     $25/month (verified), rebuys 3 bottles = $15 / 1 case = $30
+   - Off-Premise (1 POD = 1 case): 1 new POD = $10, 3 new PODs = $40,
+     12-case display = $200
+   Per Gavin, 2026-08-05: no data yet, held until a file exists. Likely
+   the same shape as Yave (on/off tiers, probably single-period only
+   given Yave's file had no base period) -- expect the same premise-
+   cross-reference and no-new-vs-rebuy caveats when it arrives.
+
+8. SUMMER OF SUCCESS THC VOLUME -- Jun-Aug [NOT STARTED]
+   - Qualifier: reps must hit their individual supplier volume goal to
+     earn ANY payout (goal numbers not on the slide)
+   - Delta: Tier 1 $500 (min 50 cases)
+   - Crescent Cana: Tier 1 $250 (min 20 cases), Tier 2 $150 (min 10 cases)
+   - Amplify Bonus: reps who clear Tier 1 on a supplier earn $1/case on
+     ALL that supplier's THC cases sold over last year (Jun-Aug 2025)
+   Need each rep's individual volume goal number(s) from Gavin before
+   the Tier 1 qualifier gate can be evaluated -- the case minimums
+   shown ARE on the slide (50/20/10), but "individual supplier volume
+   goal" sounds like a separate, possibly per-rep number. Ask when the
+   file arrives if it isn't self-evident from the data.
+
+NOT part of this dashboard:
+  - iSellBeer Summer Display Auction (slides 14-15, Sales Rep + Sales
+    Associate versions) -- already covered by the separate
+    isellbeer/display-auction-tracker/, not duplicated here.
+  - Chelada / Corona Premier Summer of Success Volume Rewards (slides
+    24-25) -- not requested.
