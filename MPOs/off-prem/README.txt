@@ -10,6 +10,15 @@ on-prem's (plus off-prem's own extra classes: a 5-column KPI strip,
 on-prem theme tweak (color vars, hero banner, card/table treatment)
 over to off-prem's <style> block too so they don't drift apart again.
 
+Rep-level activity/Target Accounts display also mirrors on-prem's
+identical cleanup (also 2026-08-05): county-grouped, collapsed-by-
+default Target Accounts (groupTargetsByCounty()/.tgt-county* CSS), and
+Repeat Buyer/Bought-in-Base-Period rows tucked behind a collapsed "N
+Existing Accounts" dropdown instead of cluttering the default view
+(existingAccountsBlockHtml()) -- see generate_2026-08.py's own
+docstring for the full rundown, and carry future on-prem tweaks to
+this pattern over the same way as the theme above.
+
 Tracks each rep's progress toward the off-premise Monthly Program
 Objectives. Each month's objectives are tracked on their own tab --
 July 2026 (New Belgium / Wine & Spirits 2XO+Le Grand+Yave / Sapporo

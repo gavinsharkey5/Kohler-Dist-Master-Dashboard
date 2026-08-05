@@ -7,6 +7,7 @@
     "CUSTOMER_NAME": "Parker Liquors (Z)",
     "BRAND_FAMILY": "Bardstown Green River",
     "DATE": "2026-08-05",
+    "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 1
@@ -19,6 +20,7 @@
     "CUSTOMER_NAME": "Midtown Liq",
     "BRAND_FAMILY": "Bardstown Green River",
     "DATE": "2026-08-03",
+    "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 1
@@ -31,6 +33,7 @@
     "CUSTOMER_NAME": "Wayne Liquor Locker",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-31",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -43,6 +46,7 @@
     "CUSTOMER_NAME": "Clifton Disc Liq (A)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-31",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -55,6 +59,7 @@
     "CUSTOMER_NAME": "Wayne Liquor Locker",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-31",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -67,6 +72,7 @@
     "CUSTOMER_NAME": "Lincoln Center Liq",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-31",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -79,6 +85,7 @@
     "CUSTOMER_NAME": "Shay's Liquors",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-30",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -91,6 +98,7 @@
     "CUSTOMER_NAME": "Burkes",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-30",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -103,6 +111,7 @@
     "CUSTOMER_NAME": "Shay's Liquors",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-30",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -115,6 +124,7 @@
     "CUSTOMER_NAME": "Liquor Shed",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -127,6 +137,7 @@
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
     "BRAND_FAMILY": "Bardstown Green River",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -139,6 +150,7 @@
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -151,6 +163,7 @@
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -163,6 +176,7 @@
     "CUSTOMER_NAME": "Bottle & Cork",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -175,6 +189,7 @@
     "CUSTOMER_NAME": "Liquor Shed",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -187,6 +202,7 @@
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -199,6 +215,7 @@
     "CUSTOMER_NAME": "Shop-Rite(A) Netcong",
     "BRAND_FAMILY": "Bardstown Green River",
     "DATE": "2026-07-29",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -211,6 +228,7 @@
     "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-28",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -223,6 +241,7 @@
     "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-28",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -235,6 +254,7 @@
     "CUSTOMER_NAME": "Teaneck Quickshop(P)Conv",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-28",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -247,6 +267,7 @@
     "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-28",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -259,6 +280,7 @@
     "CUSTOMER_NAME": "Casa De Montecristo",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-27",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -271,6 +293,7 @@
     "CUSTOMER_NAME": "Casa De Montecristo",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-27",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -283,6 +306,7 @@
     "CUSTOMER_NAME": "Park West Tavern",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -295,6 +319,7 @@
     "CUSTOMER_NAME": "Meadowland Wine & Liquor",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -307,6 +332,7 @@
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -319,6 +345,7 @@
     "CUSTOMER_NAME": "Park West Tavern",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -331,6 +358,7 @@
     "CUSTOMER_NAME": "Clifton Disc Liq (A)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -343,6 +371,7 @@
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -355,6 +384,7 @@
     "CUSTOMER_NAME": "Meadowland Wine & Liquor",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -367,6 +397,7 @@
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -379,6 +410,7 @@
     "CUSTOMER_NAME": "Clifton Disc Liq (A)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -391,6 +423,7 @@
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -403,6 +436,7 @@
     "CUSTOMER_NAME": "Park West Tavern",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -415,6 +449,7 @@
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-24",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -427,6 +462,7 @@
     "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-23",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -439,6 +475,7 @@
     "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -451,6 +488,7 @@
     "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -463,6 +501,7 @@
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
     "NEW_PLACEMENT": 0
@@ -475,6 +514,7 @@
     "CUSTOMER_NAME": "Buy Rite Discount Liquor",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -487,6 +527,7 @@
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -499,6 +540,7 @@
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
     "NEW_PLACEMENT": 0
@@ -511,6 +553,7 @@
     "CUSTOMER_NAME": "Montville Wine & Spirits",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-22",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -523,6 +566,7 @@
     "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -535,6 +579,7 @@
     "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -547,6 +592,7 @@
     "CUSTOMER_NAME": "Cork & Keg (A)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -559,6 +605,7 @@
     "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -571,6 +618,7 @@
     "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-20",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -583,6 +631,7 @@
     "CUSTOMER_NAME": "Johnny's Liqs (P)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-17",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -595,6 +644,7 @@
     "CUSTOMER_NAME": "Quick Buy",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-15",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -607,6 +657,7 @@
     "CUSTOMER_NAME": "Quick Buy",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-15",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -619,6 +670,7 @@
     "CUSTOMER_NAME": "Quick Buy",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-15",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
     "NEW_PLACEMENT": 0
@@ -631,6 +683,7 @@
     "CUSTOMER_NAME": "THE BOTTLE SHOP",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-07-14",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -643,6 +696,7 @@
     "CUSTOMER_NAME": "Grand Opening Liq (A)_2",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-13",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -655,6 +709,7 @@
     "CUSTOMER_NAME": "Clifton Commons S & W",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-03",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -667,6 +722,7 @@
     "CUSTOMER_NAME": "La Fortaleza (Carlstadt)",
     "BRAND_FAMILY": "Leyenda 1925",
     "DATE": "2026-07-02",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 5.0,
     "NEW_PLACEMENT": 0
@@ -679,6 +735,7 @@
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-06-26",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0
@@ -691,6 +748,7 @@
     "CUSTOMER_NAME": "Parker Liquors (Z)",
     "BRAND_FAMILY": "Le Grand Noir",
     "DATE": "2026-06-25",
+    "PERIOD": "base",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0,
     "NEW_PLACEMENT": 0

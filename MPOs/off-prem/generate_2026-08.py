@@ -135,15 +135,19 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           precedent as on-prem's Yave/
                                           Leyenda.
 
-Classification -- "90-Day Non-Buy" new placement: a customer's row on a
-given date is a NEW placement only if they have NO purchase of the SAME
-KEY before NEW_BUYER_WINDOW_START (i.e. in May/June/July) AND DO have a
-purchase of it in August. A customer who bought before August and buys
-again in August is a regular repeat placement and does NOT count. Same
-date-based approach as on-prem's August build (see
-on-prem/generate_2026-08.py) -- every transaction row is kept in the
-output, with NEW_PLACEMENT set to 1 on exactly the customer's first
-qualifying row in the window and 0 on every other row for that
+Classification -- "90-Day Non-Buy" new placement: a customer+key is a NEW
+placement only if they have NO row with a populated base-period column
+value (i.e. in May/June/July) AND DO have a row with a populated
+current-period column value (August). A customer who bought before
+August and buys again in August is a regular repeat placement and does
+NOT count -- see find_period_cols()/classify_dual_period(), ported
+verbatim from on-prem's identical dual-period classifier (both Molson
+Coors' and Wine & Spirits' exports carry the same base/current column
+pair; the classifier itself doesn't need NEW_BUYER_WINDOW_START/END,
+just which column is populated). Every transaction row is kept in the
+output, tagged with which period it belongs to (PERIOD: "base" or
+"current"), with NEW_PLACEMENT set to 1 on exactly the customer's first
+qualifying current-period row and 0 on every other row for that
 customer+key, so a repeat purchase in August never double-counts.
 
 The "KEY" is NOT the same granularity for both objectives:
@@ -186,10 +190,28 @@ scoped to the core territory:
 Molson Coors' Peroni and Coors (Banquet) targets are computed
 independently per brand, same as the placement classification.
 
+Rep-level drill-down display (index.html, mirrors on-prem's identical
+cleanup): the PERIOD field lets Molson Coors/Wine & Spirits show both a
+customer's most recent base-period and current-month activity, tagged
+New Buyer / Repeat Buyer (bought both) / Bought in Base Period (base
+only). Only New Buyers -- and, for Molson Coors, Target Accounts -- show
+by default; Repeat Buyer/Bought-in-Base-Period rows are tucked behind a
+collapsed "N Existing Accounts" dropdown so a rep's long purchase history
+doesn't bury what they need to act on this month. Target Accounts is
+further grouped by county (collapsed at both the overall-list and
+per-county level) for the same reason. See
+groupTargetsByCounty()/targetsBlockHtml()/lineTableNewAccounts()/
+existingAccountsBlockHtml() in index.html. Molson Coors' line tables also
+show a Product column (lineTableNewAccounts dedupes by customer+product,
+not customer alone) since its classification is per-SKU -- an account can
+have independent new/existing statuses for different Peroni or Banquet
+SKUs in the same sub-table.
+
 Run: python3 generate_2026-08.py
 """
 import csv
 import json
+import re
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -239,37 +261,85 @@ def sum_cols(row, prefix):
     return total
 
 
-def classify_new_placements(rows, brand_key):
-    """Shared 90-day-non-buy classifier. `brand_key(row)` returns the
-    per-row key (e.g. Brand Family) that purchase history is scoped to --
-    a customer's "new" status is evaluated independently per distinct key.
-    Returns (output_rows, new_count, total_customer_brand_pairs).
+def to_num(raw):
+    raw = (raw or "").strip()
+    if raw == "":
+        return None
+    try:
+        return int(raw)
+    except ValueError:
+        return float(raw)
+
+
+def find_period_cols(fieldnames, prefix):
+    """Two columns share `prefix` (e.g. "Placement Count", "Cases") -- one
+    embeds the 90-day non-buy base-period date range (5/1-7/31), the other
+    the current distribution period (8/1-8/31). Picked apart by each
+    column's embedded START date (not the exact header text), so a future
+    export with a slightly different day-of-month still resolves correctly.
+    Same helper as on-prem's (see on-prem/generate_2026-08.py). Returns
+    (base_col, current_col)."""
+    cols = [f for f in fieldnames if f.startswith(prefix)]
+
+    def start_date(col):
+        m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", col)
+        if not m:
+            raise SystemExit(f"Could not find a date in column header: {col!r}")
+        month, day, year = m.groups()
+        return datetime(int(year), int(month), int(day))
+
+    cols.sort(key=start_date)
+    if len(cols) != 2:
+        raise SystemExit(f"Expected exactly 2 '{prefix}' columns (base period + current period), found: {cols}")
+    return cols[0], cols[1]
+
+
+def classify_dual_period(rows, brand_key, base_col, current_col):
+    """Each row's Date already falls in exactly one of two known windows,
+    and RDE puts that row's value in the matching column (base_col for
+    5/1-7/31, current_col for 8/1-8/31), leaving the other blank -- so
+    classification doesn't need NEW_BUYER_WINDOW_START/END, just which
+    column is populated. `brand_key(row)` returns the per-row key (Product
+    Num for Molson Coors, Brand Family for Wine & Spirits) that purchase
+    history is scoped to -- a customer's "new" status is evaluated
+    independently per distinct key. A customer+key is NEW if they have a
+    populated current_col row and NO populated base_col row (regardless of
+    the actual quantity -- even "0" counts as "a row exists in that
+    window"). Same helper as on-prem's classify_dual_period(). Returns
+    (output_rows, new_count, total_customer_key_pairs) where each output
+    row is (row, period, is_new_row) and period is "base"/"current"/None.
     """
-    parsed = [(parse_date(r["Date"]), r) for r in rows]
+    def has_value(row, col):
+        return (row.get(col) or "").strip() != ""
 
-    by_cust_brand = {}
-    for d, r in parsed:
+    by_cust_key = {}
+    for r in rows:
         key = (r["Customer Num"], brand_key(r))
-        by_cust_brand.setdefault(key, []).append(d)
+        state = by_cust_key.setdefault(key, {"base": False, "current": False})
+        if has_value(r, base_col):
+            state["base"] = True
+        if has_value(r, current_col):
+            state["current"] = True
 
-    new_keys = set()
-    for key, dates in by_cust_brand.items():
-        bought_before = any(d < NEW_BUYER_WINDOW_START for d in dates)
-        bought_in_window = any(NEW_BUYER_WINDOW_START <= d <= NEW_BUYER_WINDOW_END for d in dates)
-        if not bought_before and bought_in_window:
-            new_keys.add(key)
+    new_keys = {key for key, v in by_cust_key.items() if v["current"] and not v["base"]}
 
-    parsed.sort(key=lambda item: item[0])  # earliest first, so the first qualifying row wins
+    rows_sorted = sorted(rows, key=lambda r: parse_date(r["Date"]))  # earliest first, first qualifying row wins
     flagged = set()
     out = []
-    for d, r in parsed:
+    for r in rows_sorted:
         key = (r["Customer Num"], brand_key(r))
+        if has_value(r, current_col):
+            period = "current"
+        elif has_value(r, base_col):
+            period = "base"
+        else:
+            period = None
         is_new_row = 0
-        if key in new_keys and key not in flagged and NEW_BUYER_WINDOW_START <= d <= NEW_BUYER_WINDOW_END:
+        if period == "current" and key in new_keys and key not in flagged:
             is_new_row = 1
             flagged.add(key)
-        out.append((d, r, is_new_row))
-    return out, len(new_keys), len(by_cust_brand)
+        out.append((r, period, is_new_row))
+    return out, len(new_keys), len(by_cust_key)
 
 
 def build_corona_premier():
@@ -304,38 +374,56 @@ def derive_brand_family(product_name):
 
 def build_molson_coors():
     rows = load_csv(MOLSON_COORS_CSV)
-    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Product Num"])
-    out = [{
-        "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
-        "CUSTOMER_NUM": int(r["Customer Num"]),
-        "CUSTOMER_NAME": r["Customer Name"].strip(),
-        "PRODUCT_NUM": r["Product Num"].strip(),
-        "PRODUCT_NAME": r["Product Name"].strip(),
-        "BRAND_FAMILY": derive_brand_family(r["Product Name"]),
-        "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
-        "CASES": sum_cols(r, "Cases"),
-        "NEW_PLACEMENT": is_new,
-    } for d, r, is_new in classified]
+    base_col, current_col = find_period_cols(rows[0].keys(), "Placement Count")
+    cases_base_col, cases_current_col = find_period_cols(rows[0].keys(), "Cases")
+    classified, new_count, total_pairs = classify_dual_period(
+        rows, brand_key=lambda r: r["Product Num"], base_col=base_col, current_col=current_col)
+    out = []
+    for r, period, is_new in classified:
+        if not period:
+            continue
+        cases_col = cases_current_col if period == "current" else cases_base_col
+        out.append({
+            "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
+            "CUSTOMER_NUM": int(r["Customer Num"]),
+            "CUSTOMER_NAME": r["Customer Name"].strip(),
+            "PRODUCT_NUM": r["Product Num"].strip(),
+            "PRODUCT_NAME": r["Product Name"].strip(),
+            "BRAND_FAMILY": derive_brand_family(r["Product Name"]),
+            "DATE": parse_date(r["Date"]).isoformat(),
+            "PERIOD": period,
+            "PLACEMENT_COUNT": to_num(r[current_col] if period == "current" else r[base_col]),
+            "CASES": to_num(r[cases_col]),
+            "NEW_PLACEMENT": is_new,
+        })
     out.sort(key=lambda row: row["DATE"], reverse=True)
     return out, new_count, total_pairs
 
 
 def build_wine_spirits():
     rows = load_csv(WINE_SPIRITS_CSV)
-    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
-    out = [{
-        "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
-        "PRODUCT_NAME": r["Product Name"].strip(),
-        "PRODUCT_NUM": r["Product Num"].strip(),
-        "CUSTOMER_NUM": int(r["Customer Num"]),
-        "CUSTOMER_NAME": r["Customer Name"].strip(),
-        "BRAND_FAMILY": r["Brand Family"].strip(),
-        "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
-        "CASES": sum_cols(r, "Cases"),
-        "NEW_PLACEMENT": is_new,
-    } for d, r, is_new in classified]
+    base_col, current_col = find_period_cols(rows[0].keys(), "Placement Count")
+    cases_base_col, cases_current_col = find_period_cols(rows[0].keys(), "Cases")
+    classified, new_count, total_pairs = classify_dual_period(
+        rows, brand_key=lambda r: r["Brand Family"], base_col=base_col, current_col=current_col)
+    out = []
+    for r, period, is_new in classified:
+        if not period:
+            continue
+        cases_col = cases_current_col if period == "current" else cases_base_col
+        out.append({
+            "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
+            "PRODUCT_NAME": r["Product Name"].strip(),
+            "PRODUCT_NUM": r["Product Num"].strip(),
+            "CUSTOMER_NUM": int(r["Customer Num"]),
+            "CUSTOMER_NAME": r["Customer Name"].strip(),
+            "BRAND_FAMILY": r["Brand Family"].strip(),
+            "DATE": parse_date(r["Date"]).isoformat(),
+            "PERIOD": period,
+            "PLACEMENT_COUNT": to_num(r[current_col] if period == "current" else r[base_col]),
+            "CASES": to_num(r[cases_col]),
+            "NEW_PLACEMENT": is_new,
+        })
     out.sort(key=lambda row: row["DATE"], reverse=True)
     return out, new_count, total_pairs
 
@@ -417,7 +505,7 @@ def already_carrying(path, brand_filter=None, brand_of=None):
     a brand from a column other than "Brand Family", e.g. Product Name)
     -- Target Accounts is a "hasn't touched this brand at all" prospect
     list, a different question from the product-level 90-day-non-buy
-    classification in build_molson_coors()/classify_new_placements()."""
+    classification in build_molson_coors()/classify_dual_period()."""
     rows = load_csv(path)
     out = set()
     for r in rows:
