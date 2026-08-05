@@ -65,13 +65,25 @@ Objective types (index.html):
                   photo-count data source exists yet for any month.
 
 Each rep's customer-line drill-down (lineTableNewAccounts()) collapses to
-ONE row per customer -- not one per transaction -- and only shows a date
-when that customer has activity in the ACTIVE month (isActiveMonthDate());
-pure prior-month purchase history (kept only so the 90-day-non-buy
-classifier has something to check) shows no date at all, just a "Regular
-Buyer" or "—" status. Per Gavin, 2026-08-04: dates are "only for you to
-denote new buyers and the specific metrics we track", not a full
-transaction log.
+ONE row per customer -- not one per transaction. For sources whose lines
+carry a PERIOD field ("base"/"current" -- currently August's Angry Orchard
+and Molson Coors, see "90-Day Non-Buy" below), it shows the customer's
+most recent date in EACH period plus a status (per Gavin, 2026-08-08):
+  New Buyer              bought this month, never in the base period.
+                           Eligible for the incentive.
+  Repeat Buyer            bought in BOTH the base period and this month.
+                           Not new, but actively reordering.
+  Bought in Base Period   bought in the base period only, no this-month
+                           purchase yet. Already carries the brand, not
+                           an incentive-eligible target -- this replaced
+                           a confusing blank-date/"—" row for these
+                           accounts (they used to look identical to
+                           accounts with literally no activity at all).
+For sources with no PERIOD field (July's Carbliss/Sapporo, and buyer_count
+sources like Wine & Spirits) there's no base-period concept, so
+lineTableNewAccounts() falls back to the original single-date "New
+Buyer"/"Regular Buyer"/"—" table rather than showing a pointless
+always-empty base-period column.
 
 Off-premise exclusion applies to EVERY on-prem August dataset, not just
 Target Accounts (per Kohler, 2026-08-07: "off premise accounts should not
@@ -107,23 +119,42 @@ targetsBlockHtml()/groupTargetsByRep() in index.html -- shown for EVERY
 rep with prospects, even one with zero current-month activity (that's
 often exactly the rep who most needs the list), via the `hasTargets`
 check alongside the usual `hasAny`/`r` activity checks in both
-renderRepView() and renderObjectiveView().
+renderRepView() and renderObjectiveView(). As of 2026-08-08 the list is
+also grouped by county (groupTargetsByCounty(), COUNTY_ORDER constant),
+each county collapsed by default -- a rep's target list can run to 100+
+rows, and one long undifferentiated list was too much for reps to scan on
+an iPad; grouping + double-collapse (outer "N Target Accounts", then each
+county within it) keeps it scannable. This also surfaced a real bug: the
+card's CSS had a hard `max-height:6000px` + `overflow:hidden` cap that
+silently clipped a rep's combined activity+targets content once it got
+tall enough (Nick Melissari's Angry Orchard card in particular) -- fixed
+by removing the cap entirely on always-open rep-view cards and raising it
+generously on the toggleable objective-view cards.
 
 "90-Day Non-Buy" new-placement classification (Angry Orchard, and
 Peroni/Banquet independently within Molson Coors -- per Kohler,
-2026-08-04): a customer's row on a given date is a NEW placement only
-if they have NO purchase of that brand before NEW_BUYER_WINDOW_START
-(i.e. in the prior ~3 months) AND DO have a purchase of it in the
-current month. A customer who bought before the window and buys again
-in it is a regular repeat placement and does NOT count. Same
-date-based, per-transaction-row approach as July's Carbliss
-classification (see generate.py) -- every transaction row is kept in
-the output, NEW_PLACEMENT is set to 1 on exactly the customer's first
-qualifying row and 0 on every other row for that customer+brand, so a
-repeat purchase never double-counts. See
-generate_2026-08.py's classify_new_placements() -- it's brand-scoped
-(the `brand_key` argument), so Molson Coors classifies Peroni and
-Coors/Banquet completely independently per customer.
+2026-08-04): a customer+brand is a NEW placement only if they have NO
+purchase of that brand in the base period (the 90-day non-buy window) AND
+DO have a purchase of it in the current period. A customer who bought in
+the base period and buys again in the current period is a repeat
+placement and does NOT count. As of the 2026-08-08 RDE format, this no
+longer needs hardcoded window dates at all -- angry_orchard_new_lines.csv
+and molson_coors_peroni_banquet.csv now carry the base period (5/1-7/31)
+and current period (8/1-8/31) as two SEPARATE columns (e.g. "Units
+5/1/2026 - 7/31/2026" and "Units 8/1/2026 - 8/31/2026"), with each row's
+value already placed in whichever column matches that row's Date. See
+find_period_cols() (picks the two columns apart by each header's embedded
+start date, not exact text, so a slightly different day-of-month in a
+future export still resolves correctly) and classify_dual_period() in
+generate_2026-08.py -- every transaction row is kept in the output,
+tagged PERIOD "base"/"current", with NEW_PLACEMENT set to 1 on exactly
+the customer's first qualifying current-period row and 0 on every other
+row for that customer+brand, so a repeat purchase never double-counts.
+classify_dual_period() is brand-scoped (the `brand_key` argument), so
+Molson Coors classifies Peroni and Coors/Banquet completely independently
+per customer. Wine & Spirits (Yave/Leyenda) is unaffected -- its export
+format didn't change, still a single-window buyer count with no base
+period concept.
 
 Files:
   July 2026 (see generate.py's own docstring for full detail):
@@ -132,11 +163,21 @@ Files:
 
   August 2026 (see generate_2026-08.py's own docstring for full detail):
     angry_orchard_new_lines.csv       RDE "2 New Angry Orchard Draft
-                                        Lines" export.
+                                        Lines" export: Sales Rep Assigned,
+                                        Brand Family, Customer Num,
+                                        Customer Name, Date, and two Units
+                                        columns (base period 5/1-7/31,
+                                        current period 8/1-8/31 -- see
+                                        "90-Day Non-Buy" above). Format as
+                                        of 2026-08-08.
     molson_coors_peroni_banquet.csv   RDE "Molson Coors ON (4) New
                                         Peroni Placements (4) New
                                         Banquet Placements 90 Day Non
-                                        Buy" export -- Brand Family is
+                                        Buy" export -- same shape as
+                                        angry_orchard_new_lines.csv but
+                                        with the base/current split
+                                        applied to a Placement Count pair
+                                        AND a Cases pair. Brand Family is
                                         "Peroni" or "Coors" ("Coors" =
                                         the Banquet objective's raw
                                         brand label in RDE).
@@ -222,7 +263,12 @@ To refresh July manually:
 To refresh August manually:
   1. Save the new exports over angry_orchard_new_lines.csv /
      molson_coors_peroni_banquet.csv / wine_spirits_yave_leyenda.csv /
-     sales_reps_customer_base.csv (same column headers). Update
+     sales_reps_customer_base.csv -- same column headers, i.e. keep the
+     base-period-then-current-period two-column format for Angry Orchard/
+     Molson Coors (see "90-Day Non-Buy" above); find_period_cols() reads
+     each header's embedded date to tell them apart, so the exact day
+     shifting slightly between exports is fine, but there must still be
+     exactly 2 columns per prefix. Update
      kohler_brands_whitelist_blacklist.xlsx too if Kohler sends a new
      one, though it's reference-only now (see Files below).
   2. Run: python3 generate_2026-08.py -- prints how many new placements

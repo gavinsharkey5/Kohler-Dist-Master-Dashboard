@@ -12,21 +12,35 @@ Inputs (keep these filenames when re-exporting from RDE):
   angry_orchard_new_lines.csv     RDE "2 New Angry Orchard Draft Lines"
                                     export: Sales Rep Assigned, Brand
                                     Family, Customer Num, Customer Name,
-                                    Date, Buyer Count, Placement Count,
-                                    Cases -- one row per order occasion,
-                                    windowed 5/1/2026-8/31/2026.
+                                    Date, and TWO Units columns -- one for
+                                    the 90-day non-buy base period
+                                    (5/1/2026-7/31/2026), one for the
+                                    current distribution period
+                                    (8/1/2026-8/31/2026). Format changed
+                                    2026-08-08 (Report format going
+                                    forward per Kohler) -- previously a
+                                    single Placement Count column spanning
+                                    5/1-8/31 that we had to bucket
+                                    ourselves by date; now RDE buckets
+                                    each row into the matching period
+                                    column itself, so classification no
+                                    longer needs hardcoded window dates.
   molson_coors_peroni_banquet.csv RDE "Molson Coors ON (4) New Peroni
                                     Placements (4) New Banquet Placements
-                                    90 Day Non Buy" export: same shape as
-                                    above minus Buyer Count, Brand Family
-                                    is "Peroni" or "Coors" (Coors = the
+                                    90 Day Non Buy" export: same shape,
+                                    but with the base/current split
+                                    applied to BOTH a Placement Count pair
+                                    and a Cases pair (four "amount"
+                                    columns total). Brand Family is
+                                    "Peroni" or "Coors" (Coors = the
                                     Banquet objective's raw brand label
-                                    in RDE), same 5/1-8/31 window.
+                                    in RDE).
   wine_spirits_yave_leyenda.csv   RDE "2 Yave Buying Accounts 2 Leyenda
                                     Buying Accounts" export: Sales Rep
                                     Assigned, Product Name, Product Num,
                                     Brand Family, Customer Num, Customer
                                     Name, Date, Placement Count, Cases --
+                                    unchanged single-column format,
                                     August-only window (8/1-8/31), no
                                     prior-month columns since this
                                     objective is a plain buyer count, not
@@ -34,19 +48,25 @@ Inputs (keep these filenames when re-exporting from RDE):
 
 Classification -- "90-Day Non-Buy" new placement (Angry Orchard, and each
 brand within Molson Coors independently), per Kohler, 2026-08-04: a
-customer's row on a given date is a NEW placement only if they have NO
-purchase of that same brand before NEW_BUYER_WINDOW_START (i.e. in
-May/June/July) AND DO have a purchase of it in August. A customer who
+customer+brand is a NEW placement only if they have NO row with a
+populated base-period column value (i.e. in May/June/July) AND DO have a
+row with a populated current-period column value (August). A customer who
 bought before August and buys again in August is a regular repeat
-placement and does NOT count. Same date-based approach as on-prem's
-Carbliss classification (see generate.py) -- every transaction row is
-kept in the output (rep detail view shows full activity), with
-NEW_PLACEMENT set to 1 on exactly the customer's first qualifying row in
-the window and 0 on every other row for that customer+brand, so a repeat
-purchase in August never double-counts toward a rep's placement goal.
-Molson Coors classifies Peroni and Coors (Banquet) completely
-independently, since a customer could be new-to-Peroni but a longtime
-Coors buyer (or vice versa).
+placement and does NOT count -- see find_period_cols()/
+classify_dual_period(). Every transaction row is kept in the output (rep
+detail view shows full activity), tagged with which period it belongs to
+(PERIOD: "base" or "current"), with NEW_PLACEMENT set to 1 on exactly the
+customer's first qualifying current-period row and 0 on every other row
+for that customer+brand, so a repeat purchase in August never
+double-counts toward a rep's placement goal. Molson Coors classifies
+Peroni and Coors (Banquet) completely independently, since a customer
+could be new-to-Peroni but a longtime Coors buyer (or vice versa).
+
+index.html shows BOTH the customer's most recent base-period date and
+most recent current-period date per account (not just one), tagged
+"New Buyer" / "Repeat Buyer" (bought in both periods) / "Bought in Base
+Period" (base only, no August activity yet) -- confirmed with Gavin,
+2026-08-08.
 
 Wine & Spirits (Yave/Leyenda) is a simple distinct-buying-account count
 per rep per brand family in August -- no new-vs-repeat distinction, per
@@ -97,7 +117,8 @@ Run: python3 generate_2026-08.py
 """
 import csv
 import json
-from datetime import date, datetime, timezone
+import re
+from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -108,9 +129,6 @@ ANGRY_ORCHARD_CSV = HERE / "angry_orchard_new_lines.csv"
 MOLSON_COORS_CSV = HERE / "molson_coors_peroni_banquet.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_yave_leyenda.csv"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
-
-NEW_BUYER_WINDOW_START = date(2026, 8, 1)
-NEW_BUYER_WINDOW_END = date(2026, 8, 31)
 
 # Angry Orchard / Peroni / Coors (Banquet) are only sold on-premise in
 # these counties (per Kohler, 2026-08-06) -- everything else (Middlesex,
@@ -123,6 +141,16 @@ def parse_date(raw):
     return datetime.strptime(raw.strip(), "%m/%d/%Y").date()
 
 
+def to_num(raw):
+    raw = (raw or "").strip()
+    if raw == "":
+        return None
+    try:
+        return int(raw)
+    except ValueError:
+        return float(raw)
+
+
 def load_csv(path):
     with open(path, newline="") as f:
         return list(csv.DictReader(f))
@@ -132,55 +160,94 @@ def find_col(fieldnames, prefix):
     return next(c for c in fieldnames if c.startswith(prefix))
 
 
-def classify_new_placements(rows, brand_key):
-    """Shared 90-day-non-buy classifier. `brand_key(row)` returns the
-    per-row key (e.g. Brand Family) that purchase history is scoped to --
-    a customer's "new" status is evaluated independently per distinct key.
-    Returns (output_rows, new_count, total_customer_brand_pairs).
+def find_period_cols(fieldnames, prefix):
+    """Two columns share `prefix` (e.g. "Units", "Placement Count", "Cases")
+    -- one embeds the 90-day non-buy base-period date range (5/1-7/31), the
+    other the current distribution period (8/1-8/31). Picked apart by each
+    column's embedded START date (not the exact header text), so a future
+    export with a slightly different day-of-month still resolves correctly.
+    Returns (base_col, current_col)."""
+    cols = [f for f in fieldnames if f.startswith(prefix)]
+
+    def start_date(col):
+        m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", col)
+        if not m:
+            raise SystemExit(f"Could not find a date in column header: {col!r}")
+        month, day, year = m.groups()
+        return datetime(int(year), int(month), int(day))
+
+    cols.sort(key=start_date)
+    if len(cols) != 2:
+        raise SystemExit(f"Expected exactly 2 '{prefix}' columns (base period + current period), found: {cols}")
+    return cols[0], cols[1]
+
+
+def classify_dual_period(rows, brand_key, base_col, current_col):
+    """New (2026-08-08) RDE format: each row's Date already falls in
+    exactly one of two known windows, and RDE puts that row's value in the
+    matching column (base_col for 5/1-7/31, current_col for 8/1-8/31),
+    leaving the other blank -- so classification no longer needs
+    NEW_BUYER_WINDOW_START/END constants, just which column is populated.
+    A customer+brand is NEW if they have a populated current_col row and
+    NO populated base_col row (regardless of the actual quantity, even
+    "0" counts as "a row exists in that window" -- same rule the old
+    date-comparison classifier used). Returns (output_rows, new_count,
+    total_customer_brand_pairs) where each output row is
+    (row, period, is_new_row) and period is "base"/"current"/None.
     """
-    parsed = [(parse_date(r["Date"]), r) for r in rows]
+    def has_value(row, col):
+        return (row.get(col) or "").strip() != ""
 
     by_cust_brand = {}
-    for d, r in parsed:
+    for r in rows:
         key = (r["Customer Num"], brand_key(r))
-        by_cust_brand.setdefault(key, []).append(d)
+        state = by_cust_brand.setdefault(key, {"base": False, "current": False})
+        if has_value(r, base_col):
+            state["base"] = True
+        if has_value(r, current_col):
+            state["current"] = True
 
-    new_keys = set()
-    for key, dates in by_cust_brand.items():
-        bought_before = any(d < NEW_BUYER_WINDOW_START for d in dates)
-        bought_in_window = any(NEW_BUYER_WINDOW_START <= d <= NEW_BUYER_WINDOW_END for d in dates)
-        if not bought_before and bought_in_window:
-            new_keys.add(key)
+    new_keys = {key for key, v in by_cust_brand.items() if v["current"] and not v["base"]}
 
-    parsed.sort(key=lambda item: item[0])  # earliest first, so the first qualifying row wins
+    rows_sorted = sorted(rows, key=lambda r: parse_date(r["Date"]))  # earliest first, first qualifying row wins
     flagged = set()
     out = []
-    for d, r in parsed:
+    for r in rows_sorted:
         key = (r["Customer Num"], brand_key(r))
+        if has_value(r, current_col):
+            period = "current"
+        elif has_value(r, base_col):
+            period = "base"
+        else:
+            period = None
         is_new_row = 0
-        if key in new_keys and key not in flagged and NEW_BUYER_WINDOW_START <= d <= NEW_BUYER_WINDOW_END:
+        if period == "current" and key in new_keys and key not in flagged:
             is_new_row = 1
             flagged.add(key)
-        out.append((d, r, is_new_row))
+        out.append((r, period, is_new_row))
     return out, len(new_keys), len(by_cust_brand)
 
 
 def build_angry_orchard(off_premise_ids):
     rows = load_csv(ANGRY_ORCHARD_CSV)
     rows = [r for r in rows if r["Customer Num"].strip() not in off_premise_ids]
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
-    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
-    out = [{
-        "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
-        "CUSTOMER_NUM": int(r["Customer Num"]),
-        "CUSTOMER_NAME": r["Customer Name"].strip(),
-        "BRAND_FAMILY": r["Brand Family"].strip(),
-        "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
-        "NEW_PLACEMENT": is_new,
-    } for d, r, is_new in classified]
+    base_col, current_col = find_period_cols(rows[0].keys(), "Units")
+    classified, new_count, total_pairs = classify_dual_period(
+        rows, brand_key=lambda r: r["Brand Family"], base_col=base_col, current_col=current_col)
+    out = []
+    for r, period, is_new in classified:
+        if not period:
+            continue
+        out.append({
+            "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
+            "CUSTOMER_NUM": int(r["Customer Num"]),
+            "CUSTOMER_NAME": r["Customer Name"].strip(),
+            "BRAND_FAMILY": r["Brand Family"].strip(),
+            "DATE": parse_date(r["Date"]).isoformat(),
+            "PERIOD": period,
+            "UNITS": to_num(r[current_col] if period == "current" else r[base_col]),
+            "NEW_PLACEMENT": is_new,
+        })
     out.sort(key=lambda row: row["DATE"], reverse=True)
     return out, new_count, total_pairs
 
@@ -188,19 +255,26 @@ def build_angry_orchard(off_premise_ids):
 def build_molson_coors(off_premise_ids):
     rows = load_csv(MOLSON_COORS_CSV)
     rows = [r for r in rows if r["Customer Num"].strip() not in off_premise_ids]
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
-    classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
-    out = [{
-        "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
-        "CUSTOMER_NUM": int(r["Customer Num"]),
-        "CUSTOMER_NAME": r["Customer Name"].strip(),
-        "BRAND_FAMILY": r["Brand Family"].strip(),
-        "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
-        "NEW_PLACEMENT": is_new,
-    } for d, r, is_new in classified]
+    base_col, current_col = find_period_cols(rows[0].keys(), "Placement Count")
+    cases_base_col, cases_current_col = find_period_cols(rows[0].keys(), "Cases")
+    classified, new_count, total_pairs = classify_dual_period(
+        rows, brand_key=lambda r: r["Brand Family"], base_col=base_col, current_col=current_col)
+    out = []
+    for r, period, is_new in classified:
+        if not period:
+            continue
+        cases_col = cases_current_col if period == "current" else cases_base_col
+        out.append({
+            "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
+            "CUSTOMER_NUM": int(r["Customer Num"]),
+            "CUSTOMER_NAME": r["Customer Name"].strip(),
+            "BRAND_FAMILY": r["Brand Family"].strip(),
+            "DATE": parse_date(r["Date"]).isoformat(),
+            "PERIOD": period,
+            "PLACEMENT_COUNT": to_num(r[current_col] if period == "current" else r[base_col]),
+            "CASES": to_num(r[cases_col]),
+            "NEW_PLACEMENT": is_new,
+        })
     out.sort(key=lambda row: row["DATE"], reverse=True)
     return out, new_count, total_pairs
 

@@ -6,8 +6,19 @@
     "BRAND_FAMILY": "YaVe Tequila",
     "CUSTOMER_NUM": 73001,
     "CUSTOMER_NAME": "Lou's",
-    "DATE": "2026-08-04",
+    "DATE": "2026-08-05",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 40032,
+    "CUSTOMER_NAME": "Side Bar",
+    "DATE": "2026-08-05",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.33
   }
 ]

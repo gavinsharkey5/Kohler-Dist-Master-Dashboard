@@ -97,8 +97,8 @@
   .chev{transition:transform .18s;color:var(--text-dim);font-size:14px;}
   .obj-card.open .chev{transform:rotate(90deg);}
   .obj-body{max-height:0;overflow:hidden;transition:max-height .25s ease;border-top:1px solid transparent;}
-  .obj-card.open .obj-body{max-height:6000px;border-top:1px solid var(--border);}
-  .obj-card.static-open .obj-body{max-height:6000px;border-top:1px solid var(--border);}
+  .obj-card.open .obj-body{max-height:200000px;border-top:1px solid var(--border);}
+  .obj-card.static-open .obj-body{max-height:none;overflow:visible;border-top:1px solid var(--border);}
   .obj-body-inner{padding:20px 24px 26px;}
 
   /* Prominent per-brand titles for "dual" sub-targets (e.g. Yave/Leyenda,
@@ -163,7 +163,17 @@
   .targets-chev{font-size:9px;transition:transform .15s;display:inline-block;color:var(--amber);}
   .targets-toggle.open .targets-chev{transform:rotate(90deg);}
   .targets-table{display:none;}
-  .targets-table.open{display:block;}
+  .targets-table.open{display:block;padding-top:8px;}
+  .tgt-county{border-top:1px solid var(--line-soft);}
+  .tgt-county:first-child{border-top:none;}
+  .tgt-county-toggle{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12px;color:var(--text-dim);
+    padding:8px 2px;display:flex;align-items:center;gap:7px;}
+  .tgt-county-toggle:hover{color:var(--text);}
+  .tgt-county-count{color:var(--text-mute);font-weight:500;}
+  .tgt-county-chev{font-size:8px;transition:transform .15s;display:inline-block;}
+  .tgt-county-toggle.open .tgt-county-chev{transform:rotate(90deg);}
+  .tgt-county-table{display:none;}
+  .tgt-county-table.open{display:block;}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
@@ -336,19 +346,21 @@ const REP_COLS=[["rep","name"],["rep"]];
 const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["account"],["location"]];
 const DATE_COLS=[["date"]];
 const NEWBUYER_COLS=[["new","buyer"],["is","new"],["new","placement"]];
+const PERIOD_COLS=[["period"]];
 const PRODUCT_COLS=[["product","name"],["product","desc"],["product"],["brand"],["item"]];
 const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
 
 function buildNewAccountsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
-        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS);
+        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
+        periodCol=findCol(rows[0],PERIOD_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0"});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{
@@ -429,19 +441,48 @@ function groupTargetsByRep(rows){
   return by;
 }
 
-// Collapsed-by-default so a rep's 50-100+ row prospect list doesn't blow
-// out every drill-down by default -- click the header to reveal it.
+// Fixed display order for the core-market counties (matches how Gavin
+// always lists them); anything else sorts after, alphabetically.
+const COUNTY_ORDER = ['Bergen','Passaic','Passaic-FF','Morris 1','Morris 3','Sussex'];
+function groupTargetsByCounty(targets){
+  const groups = new Map();
+  targets.forEach(t=>{
+    const key = t.area || 'Other';
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(t);
+  });
+  return [...groups.entries()]
+    .map(([name, items])=>({name, items: items.slice().sort((a,b)=>a.customer.localeCompare(b.customer))}))
+    .sort((a,b)=>{
+      const ai=COUNTY_ORDER.indexOf(a.name), bi=COUNTY_ORDER.indexOf(b.name);
+      if(ai!==-1||bi!==-1) return (ai===-1?99:ai)-(bi===-1?99:bi);
+      return a.name.localeCompare(b.name);
+    });
+}
+
+// Collapsed-by-default, both at the "N Target Accounts" level and per
+// county within it -- a rep's full prospect list can run to 100+ rows, so
+// grouping by county (and keeping every group closed until tapped) is what
+// keeps this scannable on an iPad instead of one long undifferentiated
+// list (per Gavin, 2026-08-08).
 function targetsBlockHtml(targets, brandLabel){
   if(!targets || !targets.length) return '';
   const tid = 'tgt'+(uid++);
-  const rows = targets.map(t=>`<tr><td>${t.customer}</td><td>${t.area}</td></tr>`).join('');
+  const groupsHtml = groupTargetsByCounty(targets).map(g=>{
+    const gid = 'tgtc'+(uid++);
+    const rows = g.items.map(t=>`<tr><td>${t.customer}</td></tr>`).join('');
+    return `<div class="tgt-county">
+      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${g.name}<span class="tgt-county-count">${g.items.length}</span></div>
+      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><tbody>${rows}</tbody></table></div></div>
+    </div>`;
+  }).join('');
   return `<div class="targets-block">
     <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${targets.length} Target Account${targets.length===1?'':'s'}<span class="targets-hint">— don't carry ${brandLabel} yet, in your territory</span></div>
-    <div class="targets-table" id="${tid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Area</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+    <div class="targets-table" id="${tid}">${groupsHtml}</div>
   </div>`;
 }
 document.addEventListener('click', e=>{
-  const header = e.target.closest('.targets-toggle');
+  const header = e.target.closest('.targets-toggle, .tgt-county-toggle');
   if(!header) return;
   header.classList.toggle('open');
   document.getElementById(header.dataset.target)?.classList.toggle('open');
@@ -579,32 +620,68 @@ function renderRepBar(){
 }
 
 // Raw lines carry one row per historical transaction (some sources go back
-// to May so the 90-day-non-buy classifier has purchase history to check),
-// but a rep doesn't need every prior-month date -- just whether an account
-// is a new placement, a regular buyer who's active this month, or neither.
-// So this collapses to one row per customer and only shows a date when
-// that customer has activity in the active month; pure prior-month history
-// shows no date at all (per Gavin, 2026-08-04).
+// months so the 90-day-non-buy classifier has purchase history to check),
+// but a rep doesn't need every prior date -- just when an account last
+// bought in the base (90-day non-buy) period vs. the current month, and
+// what that means. Sources with a PERIOD field on their lines (August's
+// Angry Orchard/Molson Coors) get the full two-date treatment (per Gavin,
+// 2026-08-08):
+//   New Buyer            -- bought this month, never in the base period.
+//                            Eligible for this incentive.
+//   Repeat Buyer          -- bought in BOTH the base period and this
+//                            month. Not new, but actively reordering.
+//   Bought in Base Period -- bought in the base period only, no
+//                            this-month purchase yet. Already carries the
+//                            brand, not an incentive-eligible target.
+// Sources with no PERIOD field at all (July's Carbliss/Sapporo, and
+// buyer_count sources like Wine & Spirits) have no base-period concept,
+// so they keep the original single-date "New Buyer"/"Regular Buyer"
+// table rather than showing a pointless always-empty base-period column.
 function isActiveMonthDate(dateStr){
   return typeof dateStr==='string' && dateStr.startsWith(activeMonth);
 }
 function lineTableNewAccounts(lines, flagLabel){
   flagLabel = flagLabel || 'New Buyer';
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
+  const hasPeriods = lines.some(l=>l.period==='base'||l.period==='current');
+
+  if(!hasPeriods){
+    const byCustomer = new Map();
+    lines.forEach(l=>{
+      if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {customer:l.customer, isNew:false, activeDate:null});
+      const c = byCustomer.get(l.customer);
+      if(l.new_buyer==='1') c.isNew = true;
+      if(isActiveMonthDate(l.date) && (!c.activeDate || l.date>c.activeDate)) c.activeDate = l.date;
+    });
+    const rows = [...byCustomer.values()]
+      .sort((a,b)=> (b.isNew-a.isNew) || (b.activeDate||'').localeCompare(a.activeDate||'') || a.customer.localeCompare(b.customer))
+      .map(c=>{
+        const status = c.isNew ? `<span class="flag-hit">✓ ${flagLabel}</span>` : (c.activeDate ? '<span class="flag-miss">Regular Buyer</span>' : '<span class="flag-miss">—</span>');
+        return `<tr><td>${c.customer}</td><td>${c.activeDate||''}</td><td>${status}</td></tr>`;
+      }).join('');
+    return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+
   const byCustomer = new Map();
   lines.forEach(l=>{
-    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {customer:l.customer, isNew:false, activeDate:null});
+    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {customer:l.customer, isNew:false, baseDate:null, currentDate:null});
     const c = byCustomer.get(l.customer);
     if(l.new_buyer==='1') c.isNew = true;
-    if(isActiveMonthDate(l.date) && (!c.activeDate || l.date>c.activeDate)) c.activeDate = l.date;
+    if(l.period==='current' && (!c.currentDate || l.date>c.currentDate)) c.currentDate = l.date;
+    if(l.period==='base' && (!c.baseDate || l.date>c.baseDate)) c.baseDate = l.date;
   });
+  const rank = c => c.isNew ? 0 : (c.baseDate && c.currentDate ? 1 : 2);
   const rows = [...byCustomer.values()]
-    .sort((a,b)=> (b.isNew-a.isNew) || (b.activeDate||'').localeCompare(a.activeDate||'') || a.customer.localeCompare(b.customer))
+    .sort((a,b)=> rank(a)-rank(b) || (b.currentDate||b.baseDate||'').localeCompare(a.currentDate||a.baseDate||'') || a.customer.localeCompare(b.customer))
     .map(c=>{
-      const status = c.isNew ? `<span class="flag-hit">✓ ${flagLabel}</span>` : (c.activeDate ? '<span class="flag-miss">Regular Buyer</span>' : '<span class="flag-miss">—</span>');
-      return `<tr><td>${c.customer}</td><td>${c.activeDate||''}</td><td>${status}</td></tr>`;
+      let status;
+      if(c.isNew) status = `<span class="flag-hit">✓ ${flagLabel}</span>`;
+      else if(c.baseDate && c.currentDate) status = '<span class="flag-miss">Repeat Buyer</span>';
+      else if(c.baseDate) status = '<span class="flag-miss">Bought in Base Period</span>';
+      else status = '<span class="flag-miss">—</span>';
+      return `<tr><td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td>${status}</td></tr>`;
     }).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Base Period</th><th>This Month</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function lineTablePlacements(lines){
   if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
