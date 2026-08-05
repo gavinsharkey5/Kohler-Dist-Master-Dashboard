@@ -8,9 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#0E1014; --card:#181B22; --card-alt:#14171D; --border:#2A2E38;
-    --text:#E9ECF1; --text-dim:#9AA1AD; --accent:#3FB68B; --accent-soft:rgba(63,182,139,0.12);
-    --amber:#E0A93E; --red:#E0603E;
+    /* Same warm barrel-wood + amber-beer + Kohler-blue theme as the
+       on-premise dashboard and the 6-Month Review dashboard, themed off
+       Kohler Distributing's brand photography rather than a generic
+       neutral dark UI. */
+    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
+    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
+    --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
+    --red:#EB6A50; --red-soft:rgba(235,106,80,0.16);
+    --input-bg:#1A130C; --input-border:#4A3A26;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
@@ -19,22 +28,35 @@
   .crumb{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
   .crumb a{color:var(--text-dim);text-decoration:none;}
   .crumb a:hover{color:var(--accent);}
-  header{max-width:1200px;margin:0 auto;padding:0 32px 20px;border-bottom:1px solid var(--border);}
-  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+
+  .hero-banner{max-width:1200px;margin:0 auto;position:relative;border-radius:14px;overflow:hidden;
+    border:1px solid var(--border);box-shadow:var(--shadow);background:var(--card)}
+  .hero-banner-img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover}
+  .hero-banner::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(21,16,10,.05) 0%,rgba(21,16,10,.6) 100%)}
+  .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
+    filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  @media (max-width:640px){
+    .hero-banner-img{max-height:120px}
+    .hero-logo-badge{height:38px;top:10px;left:12px}
+  }
+
+  header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
   h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,4vw,38px);margin-bottom:8px;}
   .sub{color:var(--text-dim);font-size:14.5px;}
   .updated{margin:10px 0 0;font-size:12px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
-  .livedot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent);animation:lp 2s infinite}
-  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
   .kpi-strip{max-width:1200px;margin:28px auto 0;padding:0 32px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
   @media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:700px){.kpi-strip{grid-template-columns:repeat(2,1fr);}}
-  .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+  .kpi{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--accent);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);}
   .kpi-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
   .kpi-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
   .kpi-val.warn{color:var(--amber);}
-  .kpi-val.good{color:var(--accent);}
+  .kpi-val.good{color:var(--good);}
   .kpi-sub{font-size:12px;color:var(--text-dim);margin-top:4px;}
 
   .repbar-wrap{max-width:1200px;margin:24px auto 0;padding:0 32px;}
@@ -42,12 +64,12 @@
   .repbar{display:flex;flex-wrap:wrap;gap:8px;}
   .repchip{background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:7px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
   .repchip:hover{border-color:var(--accent);color:var(--text);}
-  .repchip.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+  .repchip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
 
   .monthbar{max-width:1200px;margin:0 auto;padding:14px 32px 0;display:flex;gap:8px;flex-wrap:wrap;}
   .monthtab{background:none;border:1px solid var(--border);color:var(--text-dim);padding:8px 16px;border-radius:9px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
   .monthtab:hover{color:var(--text);border-color:var(--text-dim);}
-  .monthtab.active{background:var(--accent-soft);border-color:rgba(63,182,139,0.4);color:var(--accent);}
+  .monthtab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
 
   main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
 
@@ -56,7 +78,7 @@
   .rep-hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
   .rep-hero h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
 
-  .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .obj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
   .obj-head{padding:22px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;}
   .obj-head:hover{background:var(--card-alt);}
   .obj-head.static{cursor:default;}
@@ -64,10 +86,10 @@
   .obj-left{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
   .obj-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .obj-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
-  .weight-tag{font-size:11px;color:var(--text-dim);background:#20242D;border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
-  .goal-tag{font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(63,182,139,0.3);padding:2px 8px;border-radius:20px;}
-  .obj-bar-track{width:100%;max-width:420px;height:7px;background:#252932;border-radius:4px;overflow:hidden;margin-top:2px;}
-  .obj-bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+  .weight-tag{font-size:11px;color:var(--text-dim);background:var(--card-alt);border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
+  .goal-tag{font-size:11px;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(78,124,232,0.35);padding:2px 8px;border-radius:20px;}
+  .obj-bar-track{width:100%;max-width:420px;height:7px;background:var(--input-bg);border-radius:4px;overflow:hidden;margin-top:2px;}
+  .obj-bar-fill{height:100%;border-radius:4px;background:var(--good);}
   .obj-bar-fill.over{background:var(--amber);}
   .obj-right{display:flex;align-items:center;gap:18px;flex-shrink:0;}
   .obj-progress-txt{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-align:right;}
@@ -75,30 +97,54 @@
   .chev{transition:transform .18s;color:var(--text-dim);font-size:14px;}
   .obj-card.open .chev{transform:rotate(90deg);}
   .obj-body{max-height:0;overflow:hidden;transition:max-height .25s ease;border-top:1px solid transparent;}
-  .obj-card.open .obj-body{max-height:5000px;border-top:1px solid var(--border);}
-  .obj-card.static-open .obj-body{max-height:5000px;border-top:1px solid var(--border);}
+  .obj-card.open .obj-body{max-height:200000px;border-top:1px solid var(--border);}
+  .obj-card.static-open .obj-body{max-height:none;overflow:visible;border-top:1px solid var(--border);}
   .obj-body-inner{padding:20px 24px 26px;}
 
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;}
-  td{padding:9px 12px;border-bottom:1px solid #1E222B;}
+  th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 12px;background:var(--card-alt);border-bottom:1px solid var(--border);white-space:nowrap;}
+  td{padding:9px 12px;border-bottom:1px solid var(--line-soft);}
   tr:last-child td{border-bottom:none;}
   .num{text-align:right;font-variant-numeric:tabular-nums;}
-  .flag-hit{color:var(--accent);font-weight:600;}
+  .flag-hit{color:var(--good);font-weight:600;}
   .flag-miss{color:var(--text-dim);}
-  .mini-bar-track{display:inline-block;width:80px;height:6px;background:#252932;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
-  .mini-bar-fill{height:100%;background:var(--accent);}
+  .mini-bar-track{display:inline-block;width:80px;height:6px;background:var(--input-bg);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
+  .mini-bar-fill{height:100%;background:var(--good);}
   .mini-bar-fill.over{background:var(--amber);}
   .over-badge{color:var(--amber);font-size:11px;font-weight:600;margin-left:6px;}
   .table-scroll{max-height:480px;overflow-y:auto;border:1px solid var(--border);border-radius:8px;}
   .table-scroll table thead th{position:sticky;top:0;background:var(--card);z-index:1;}
 
   .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
-  .empty-tag{font-size:11px;background:#20242D;border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
+  .empty-tag{font-size:11px;background:var(--card-alt);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
   .empty-state{color:var(--text-dim);font-size:13px;padding:6px 2px 2px;}
 
+  /* Target Accounts -- per-rep prospect lists (accounts in their book that
+     don't carry the brand yet, in the off-premise core territory). Collapsed
+     by default since a rep's full account base can run to 100+ rows; click
+     the header to reveal it. */
+  .targets-block{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);}
+  .targets-toggle{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.04em;padding:2px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .targets-toggle:hover{color:var(--text);}
+  .targets-hint{color:var(--text-dim);font-weight:500;text-transform:none;letter-spacing:0;font-family:'Inter',sans-serif;font-size:12px;}
+  .targets-chev{font-size:9px;transition:transform .15s;display:inline-block;color:var(--amber);}
+  .targets-toggle.open .targets-chev{transform:rotate(90deg);}
+  .targets-table{display:none;}
+  .targets-table.open{display:block;padding-top:8px;}
+  .tgt-county{border-top:1px solid var(--line-soft);}
+  .tgt-county:first-child{border-top:none;}
+  .tgt-county-toggle{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12px;color:var(--text-dim);
+    padding:8px 2px;display:flex;align-items:center;gap:7px;}
+  .tgt-county-toggle:hover{color:var(--text);}
+  .tgt-county-count{color:var(--text-mute);font-weight:500;}
+  .tgt-county-chev{font-size:8px;transition:transform .15s;display:inline-block;}
+  .tgt-county-toggle.open .tgt-county-chev{transform:rotate(90deg);}
+  .tgt-county-table{display:none;}
+  .tgt-county-table.open{display:block;}
+
   .rep-row{cursor:pointer;}
-  .rep-row:hover{background:#1C202A;}
+  .rep-row:hover{background:var(--card-alt);}
   .rep-row td:first-child{display:flex;align-items:center;gap:8px;}
   .rep-chev{font-size:10px;color:var(--text-dim);transition:transform .15s;display:inline-block;}
   .rep-row.expanded .rep-chev{transform:rotate(90deg);}
@@ -110,11 +156,11 @@
   .rep-sub-inner th{padding:6px 10px;}
   .rep-sub-inner td{padding:6px 10px;}
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
-  .complete-tag{color:var(--accent);font-weight:600;}
-  .focus-row{background:rgba(224,169,62,0.06);}
+  .complete-tag{color:var(--good);font-weight:600;}
+  .focus-row{background:var(--amber-soft);}
   .pkg-group-row{cursor:pointer;}
-  .pkg-group-row:hover td{background:#20242E;}
-  .pkg-group-row td{background:#1A1E27;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;font-weight:600;
+  .pkg-group-row:hover td{background:var(--input-bg);}
+  .pkg-group-row td{background:var(--card-alt);color:var(--text-dim);font-family:'Space Grotesk',sans-serif;font-weight:600;
     font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:7px 12px;}
   .pkg-group-row:first-child td{border-top:none;}
   .pkg-chev{display:inline-block;margin-right:7px;font-size:9px;transition:transform .15s;}
@@ -123,7 +169,7 @@
   .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
 
   ::-webkit-scrollbar{height:8px;width:8px;}
-  ::-webkit-scrollbar-thumb{background:#2A2E38;border-radius:4px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 
   /* ===== Mobile / tablet responsiveness ===== */
   html, body{overflow-x:hidden;}
@@ -189,6 +235,10 @@
 
 <div class="topbar">
   <div class="crumb"><a href="../index.html">MPO Tracker</a> &nbsp;/&nbsp; Off-Premise</div>
+  <div class="hero-banner">
+    <img class="hero-banner-img" src="../../assets/hero-banner.jpg" alt="Kohler Distributing Company headquarters">
+    <img class="hero-logo-badge" src="../../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
+  </div>
 </div>
 
 <div class="monthbar" id="monthbar"></div>
@@ -256,10 +306,12 @@ const MONTHS = [
     {objKey:'famosa', file:'mpo_famosa.json', target:5, builder:'placements'},
   ]},
   {key:'2026-08', label:'August 2026', dir:'data/2026-08/', objectives: OBJECTIVES_2026_08, tables: [
-    {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements'},
+    {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements',
+      targetsFile:'mpo_targets_corona_premier.json'},
     {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25},
     {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
-      subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts'},
+      subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts',
+      targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},
     {objKey:'wine_spirits', file:'mpo_wine_spirits.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'new_accounts'},
   ]},
@@ -293,6 +345,7 @@ const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["accou
 const CUSTOMER_NUM_COLS=[["customer","num"],["customer","id"],["account","num"]];
 const DATE_COLS=[["date"]];
 const NEWBUYER_COLS=[["new","buyer"],["is","new"],["new","placement"]];
+const PERIOD_COLS=[["period"]];
 const BRAND_COLS=[["brand","family"],["brand"]];
 const PRODUCT_COLS=[["product","name"],["product","desc"],["product"],["brand"],["item"]];
 const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
@@ -349,13 +402,14 @@ function buildPlacementsDataset(rows, target){
 function buildNewAccountsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
-        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS);
+        dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
+        periodCol=findCol(rows[0],PERIOD_COLS), prodCol=findCol(rows[0],PRODUCT_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0"});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", product: prodCol?String(r[prodCol]||"").trim():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{
@@ -411,6 +465,75 @@ function buildPctOfBaseDataset(baseRows, numRows, pct){
 }
 
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset};
+
+const AREA_COLS=[["area"]];
+
+// Target-account rows (prospects who don't carry the brand yet, in the
+// off-premise core territory -- see generate_2026-08.py's build_targets())
+// grouped by rep, keyed by rep name for direct lookup at render time.
+function groupTargetsByRep(rows){
+  if(!Array.isArray(rows)||!rows.length) return {};
+  const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
+        areaCol=findCol(rows[0],AREA_COLS);
+  if(!repCol||!custCol) return {};
+  const by={};
+  rows.forEach(r=>{
+    const rep=String(r[repCol]||"").trim(); if(!rep) return;
+    if(!by[rep]) by[rep]=[];
+    by[rep].push({customer:String(r[custCol]||"").trim(), area:areaCol?String(r[areaCol]||"").trim():""});
+  });
+  return by;
+}
+
+// Fixed display order for the core-market counties (matches how Gavin
+// always lists them); anything else sorts after, alphabetically. Same
+// list as on-prem's ALLOWED_TARGET_COUNTIES/COUNTY_ORDER -- off-prem's
+// core territory (sales_reps_customer_base_core.csv) covers this same
+// set of counties.
+const COUNTY_ORDER = ['Bergen','Passaic','Passaic-FF','Morris 1','Morris 3','Sussex'];
+function groupTargetsByCounty(targets){
+  const groups = new Map();
+  targets.forEach(t=>{
+    const key = t.area || 'Other';
+    if(!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(t);
+  });
+  return [...groups.entries()]
+    .map(([name, items])=>({name, items: items.slice().sort((a,b)=>a.customer.localeCompare(b.customer))}))
+    .sort((a,b)=>{
+      const ai=COUNTY_ORDER.indexOf(a.name), bi=COUNTY_ORDER.indexOf(b.name);
+      if(ai!==-1||bi!==-1) return (ai===-1?99:ai)-(bi===-1?99:bi);
+      return a.name.localeCompare(b.name);
+    });
+}
+
+// Collapsed-by-default, both at the "N Target Accounts" level and per
+// county within it -- a rep's full prospect list can run to 100+ rows, so
+// grouping by county (and keeping every group closed until tapped) is what
+// keeps this scannable on an iPad instead of one long undifferentiated
+// list -- mirrors on-prem's Target Accounts treatment.
+function targetsBlockHtml(targets, brandLabel){
+  if(!targets || !targets.length) return '';
+  const tid = 'tgt'+(uid++);
+  const groupsHtml = groupTargetsByCounty(targets).map(g=>{
+    const gid = 'tgtc'+(uid++);
+    const rows = g.items.map(t=>`<tr><td>${t.customer}</td></tr>`).join('');
+    return `<div class="tgt-county">
+      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${g.name}<span class="tgt-county-count">${g.items.length}</span></div>
+      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><tbody>${rows}</tbody></table></div></div>
+    </div>`;
+  }).join('');
+  return `<div class="targets-block">
+    <div class="targets-toggle" data-target="${tid}"><span class="targets-chev">▶</span>${targets.length} Target Account${targets.length===1?'':'s'}<span class="targets-hint">— don't carry ${brandLabel} yet, in your core territory</span></div>
+    <div class="targets-table" id="${tid}">${groupsHtml}</div>
+  </div>`;
+}
+document.addEventListener('click', e=>{
+  const header = e.target.closest('.targets-toggle, .tgt-county-toggle');
+  if(!header) return;
+  header.classList.toggle('open');
+  document.getElementById(header.dataset.target)?.classList.toggle('open');
+});
 
 // Joins the flat actuals export (rep/package/product/placements) against
 // the long-format goals export (rep/product#/product name/package/GOAL90)
@@ -582,6 +705,19 @@ async function loadMonth(monthKey){
         const built=builder(rows, t.target);
         if(built) DATA[t.objKey]=built;
       }
+      if(t.targetsFile && DATA[t.objKey]){
+        const trows=await loadJSON(t.targetsFile);
+        if(trows){
+          if(t.dual){
+            DATA[t.objKey].subs.forEach(s=>{
+              const subRows=trows.filter(r=>String(r[t.targetsBrandField]||"").toLowerCase().includes(s.match));
+              s.targetsByRep=groupTargetsByRep(subRows);
+            });
+          } else {
+            DATA[t.objKey].targetsByRep=groupTargetsByRep(trows);
+          }
+        }
+      }
     }catch(e){}
   }
 
@@ -707,11 +843,101 @@ function lineTablePlacements(lines){
   const rows = lines.map(l=>`<tr><td>${l.product}</td><td>${l.customer}</td><td>${l.date}</td><td class="num">${l.count}</td></tr>`).join('');
   return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th><th>Customer</th><th>Date</th><th class="num">Count</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function lineTableNewAccounts(lines, flagLabel){
+// Raw lines carry one row per historical transaction (going back to May so
+// the 90-day-non-buy classifier has purchase history to check), but a rep
+// doesn't need every prior date -- just when an account/product last
+// bought in the base (90-day non-buy) period vs. the current month, and
+// what that means. Molson Coors/Wine & Spirits both carry a PERIOD field
+// (base/current) per line -- mirrors on-prem's identical treatment:
+//   New Buyer            -- bought this month, never in the base period.
+//                            Eligible for this incentive.
+//   Repeat Buyer          -- bought in BOTH the base period and this
+//                            month. Not new, but actively reordering.
+//   Bought in Base Period -- bought in the base period only, no
+//                            this-month purchase yet. Already carries the
+//                            brand, not an incentive-eligible target.
+// Only New Buyers are shown directly -- Repeat Buyers and Bought-in-Base-
+// Period accounts already carry the brand, so they're tucked behind the
+// same collapsed-dropdown pattern as Target Accounts instead of cluttering
+// the default view (same cleanup as on-prem's).
+//
+// Rows are deduped by (customer, product) rather than customer alone when
+// product info is present -- Molson Coors' new-placement classification is
+// now per PRODUCT (see generate_2026-08.py), so a single account can carry
+// several independent new-vs-existing statuses (one per SKU) in the same
+// Peroni/Banquet sub-table; collapsing by customer alone would silently
+// merge separate new placements into one row.
+function isActiveMonthDate(dateStr){
+  return typeof dateStr==='string' && dateStr.startsWith(activeMonth);
+}
+function lineTableNewAccounts(lines, flagLabel, targetsHtml){
   flagLabel = flagLabel || 'New Buyer';
-  if(!lines || lines.length===0) return '<div class="no-lines">No activity recorded this month.</div>';
-  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.date}</td><td>${l.new_buyer==='1'?'<span class="flag-hit">✓ '+flagLabel+'</span>':'<span class="flag-miss">—</span>'}</td></tr>`).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  targetsHtml = targetsHtml || '';
+  if(!lines || lines.length===0) return `<div class="no-lines">No activity recorded this month.</div>${targetsHtml}`;
+  const hasPeriods = lines.some(l=>l.period==='base'||l.period==='current');
+  const hasProduct = lines.some(l=>l.product);
+  const keyOf = l => hasProduct ? (l.customer+''+l.product) : l.customer;
+
+  if(!hasPeriods){
+    const byKey = new Map();
+    lines.forEach(l=>{
+      const k=keyOf(l);
+      if(!byKey.has(k)) byKey.set(k, {customer:l.customer, product:l.product, isNew:false, activeDate:null});
+      const c = byKey.get(k);
+      if(l.new_buyer==='1') c.isNew = true;
+      if(isActiveMonthDate(l.date) && (!c.activeDate || l.date>c.activeDate)) c.activeDate = l.date;
+    });
+    const rows = [...byKey.values()]
+      .sort((a,b)=> (b.isNew-a.isNew) || (b.activeDate||'').localeCompare(a.activeDate||'') || a.customer.localeCompare(b.customer))
+      .map(c=>{
+        const status = c.isNew ? `<span class="flag-hit">✓ ${flagLabel}</span>` : (c.activeDate ? '<span class="flag-miss">Regular Buyer</span>' : '<span class="flag-miss">—</span>');
+        return `<tr>${hasProduct?`<td>${c.product}</td>`:''}<td>${c.customer}</td><td>${c.activeDate||''}</td><td>${status}</td></tr>`;
+      }).join('');
+    return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr>${hasProduct?'<th>Product</th>':''}<th>Customer</th><th>Date</th><th>Qualifies</th></tr></thead><tbody>${rows}</tbody></table>${targetsHtml}</div>`;
+  }
+
+  const byKey = new Map();
+  lines.forEach(l=>{
+    const k=keyOf(l);
+    if(!byKey.has(k)) byKey.set(k, {customer:l.customer, product:l.product, isNew:false, baseDate:null, currentDate:null});
+    const c = byKey.get(k);
+    if(l.new_buyer==='1') c.isNew = true;
+    if(l.period==='current' && (!c.currentDate || l.date>c.currentDate)) c.currentDate = l.date;
+    if(l.period==='base' && (!c.baseDate || l.date>c.baseDate)) c.baseDate = l.date;
+  });
+  const all = [...byKey.values()];
+
+  const newOnes = all.filter(c=>c.isNew)
+    .sort((a,b)=> (b.currentDate||'').localeCompare(a.currentDate||'') || a.customer.localeCompare(b.customer));
+  const existing = all.filter(c=>!c.isNew)
+    .sort((a,b)=>{
+      const rank = c => (c.baseDate && c.currentDate) ? 0 : 1; // Repeat Buyer before Bought in Base Period
+      return rank(a)-rank(b) || (b.currentDate||b.baseDate||'').localeCompare(a.currentDate||a.baseDate||'') || a.customer.localeCompare(b.customer);
+    });
+
+  const newRowsHtml = newOnes.length
+    ? `<table><thead><tr>${hasProduct?'<th>Product</th>':''}<th>Customer</th><th>Base Period</th><th>This Month</th><th>Status</th></tr></thead><tbody>${
+        newOnes.map(c=>`<tr>${hasProduct?`<td>${c.product}</td>`:''}<td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-hit">✓ ${flagLabel}</span></td></tr>`).join('')
+      }</tbody></table>`
+    : `<div class="no-lines" style="padding:0">No new placements yet this month.</div>`;
+
+  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${targetsHtml}${existingAccountsBlockHtml(existing, hasProduct)}</div>`;
+}
+// Same collapsed-dropdown treatment as Target Accounts, for accounts that
+// already carry the brand (Repeat Buyer or Bought in Base Period) -- kept
+// available for full traceability, just not part of what a rep sees by
+// default when they open the program.
+function existingAccountsBlockHtml(existing, hasProduct){
+  if(!existing.length) return '';
+  const eid = 'exist'+(uid++);
+  const rows = existing.map(c=>{
+    const status = (c.baseDate && c.currentDate) ? 'Repeat Buyer' : 'Bought in Base Period';
+    return `<tr>${hasProduct?`<td>${c.product}</td>`:''}<td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-miss">${status}</span></td></tr>`;
+  }).join('');
+  return `<div class="targets-block">
+    <div class="targets-toggle" data-target="${eid}"><span class="targets-chev">▶</span>${existing.length} Existing Account${existing.length===1?'':'s'}<span class="targets-hint">— already carry it, not eligible for new-placement credit</span></div>
+    <div class="targets-table" id="${eid}"><table><thead><tr>${hasProduct?'<th>Product</th>':''}<th>Customer</th><th>Base Period</th><th>This Month</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </div>`;
 }
 // BBC Lytt's numerator file has no per-row Date (it's a distro snapshot,
 // not a transaction log), so this is Customer/Product only.
@@ -762,13 +988,14 @@ function renderRepView(){
       inner.style.paddingTop='0';
       inner.innerHTML = subVals.map(sv=>{
         const pct=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target, hit=sv.val>=sv.sub.target;
+        const tgtHtml = targetsBlockHtml((sv.sub.targetsByRep||{})[activeRep], sv.sub.label);
         return `<div style="margin-bottom:18px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:12px">
             <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px">${sv.sub.label}</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-weight:700">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
           </div>
           <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
-          ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'}
+          ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel, tgtHtml) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'+tgtHtml}
         </div>`;
       }).join('');
       body.appendChild(inner);
@@ -867,6 +1094,9 @@ function renderRepView(){
     inner.className='obj-body-inner';
     inner.style.paddingTop='0';
     inner.innerHTML = lineTablePlacements(r ? r.lines : []);
+    if(d.targetsByRep){
+      inner.innerHTML += targetsBlockHtml(d.targetsByRep[activeRep], o.shortName||o.name);
+    }
     body.appendChild(inner);
     card.appendChild(body);
     container.appendChild(card);
@@ -918,18 +1148,23 @@ function renderObjectiveView(){
       ROSTER.forEach(repName=>{
         const subVals = d.subs.map(s=>{const r=s.reps.find(x=>x.rep===repName); return {sub:s, r, val:r?r.qualifying:0};});
         const hasAny = subVals.some(sv=>sv.r);
-        if(!hasAny){
+        const hasTargets = d.subs.some(s=>(s.targetsByRep||{})[repName]?.length);
+        if(!hasAny && !hasTargets){
           bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td>${d.subs.map(()=>'<td class="num">—</td>').join('')}<td><span class="flag-miss">No data</span></td></tr>`;
           return;
         }
         const rowId = 'row'+(uid++);
-        const allHit = subVals.every(sv=>sv.val>=sv.sub.target);
+        const allHit = hasAny && subVals.every(sv=>sv.val>=sv.sub.target);
         const cells = subVals.map(sv=>{
           const rp=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target;
           return `<td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''}</td>`;
         }).join('');
-        bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td></tr>`;
-        const subTables = d.subs.map((s,i)=>`<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel):'<div class="no-lines">No activity recorded this month.</div>'}</div>`).join('');
+        const statusHtml = !hasAny ? '<span class="flag-miss">No activity</span>' : (allHit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>');
+        bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${statusHtml}</td></tr>`;
+        const subTables = d.subs.map((s,i)=>{
+          const tgtHtml = targetsBlockHtml((s.targetsByRep||{})[repName], s.label);
+          return `<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel, tgtHtml):'<div class="no-lines">No activity recorded this month.</div>'+tgtHtml}</div>`;
+        }).join('');
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
       });
       table.innerHTML = headHtml + `<tbody>${bodyRows}</tbody>`;
@@ -1016,20 +1251,23 @@ function renderObjectiveView(){
       let bodyRows = '';
       ROSTER.forEach(repName=>{
         const r = d.reps.find(x=>x.rep===repName);
-        if(!r){
+        const myTargets = (d.targetsByRep||{})[repName];
+        if(!r && !(myTargets&&myTargets.length)){
           bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
           return;
         }
         const rowId = 'row'+(uid++);
-        const rp = Math.min(r.count/target,1)*100;
-        const hit = r.count>=target;
-        const over = r.count>target;
+        const count = r?r.count:0;
+        const rp = Math.min(count/target,1)*100;
+        const hit = count>=target;
+        const over = count>target;
         bodyRows += `<tr class="rep-row" data-target="${rowId}">
-          <td><span class="rep-chev">▶</span>${r.rep}</td>
-          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.count} / ${target}${over?'<span class="over-badge">+'+(r.count-target)+' over</span>':''}</td>
-          <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+          <td><span class="rep-chev">▶</span>${repName}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${count} / ${target}${over?'<span class="over-badge">+'+(count-target)+' over</span>':''}</td>
+          <td>${r?(hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'):'<span class="flag-miss">No activity</span>'}</td>
         </tr>`;
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePlacements(r.lines)}</td></tr>`;
+        const activityHtml = r ? lineTablePlacements(r.lines) : '<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>';
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${activityHtml}${targetsBlockHtml(myTargets, o.shortName||o.name)}</td></tr>`;
       });
       table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);

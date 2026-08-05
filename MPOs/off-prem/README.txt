@@ -1,5 +1,24 @@
 Off-Prem MPO Tracker
 
+Same warm barrel-wood + amber-beer + Kohler-blue visual theme as the
+on-premise dashboard (see on-prem/index.html's :root CSS vars) --
+matched 2026-08-05 so both dashboards read as one system. index.html's
+<style> block is the only place that differs meaningfully from
+on-prem's (plus off-prem's own extra classes: a 5-column KPI strip,
+.table-scroll for the July New Belgium goals table, and
+.pkg-group-row for its package-group drill-down) -- carry any future
+on-prem theme tweak (color vars, hero banner, card/table treatment)
+over to off-prem's <style> block too so they don't drift apart again.
+
+Rep-level activity/Target Accounts display also mirrors on-prem's
+identical cleanup (also 2026-08-05): county-grouped, collapsed-by-
+default Target Accounts (groupTargetsByCounty()/.tgt-county* CSS), and
+Repeat Buyer/Bought-in-Base-Period rows tucked behind a collapsed "N
+Existing Accounts" dropdown instead of cluttering the default view
+(existingAccountsBlockHtml()) -- see generate_2026-08.py's own
+docstring for the full rundown, and carry future on-prem tweaks to
+this pattern over the same way as the theme above.
+
 Tracks each rep's progress toward the off-premise Monthly Program
 Objectives. Each month's objectives are tracked on their own tab --
 July 2026 (New Belgium / Wine & Spirits 2XO+Le Grand+Yave / Sapporo
@@ -140,11 +159,23 @@ Files:
     molson_coors_off_peroni_banquet.csv
                                        RDE "Molson Coors OFF (4) New
                                         Peroni Placements (4) New Banquet
-                                        Placements 90 Day Non Buy" export
-                                        -- Brand Family is "Peroni" or
-                                        "Coors" (Coors = the Banquet
-                                        objective's raw brand label in
-                                        RDE).
+                                        Placements 90 Day Non Buy" export.
+                                        As of 2026-08-05, per Kohler's
+                                        manager, this dropped its Brand
+                                        Family column for one row per
+                                        PRODUCT (Product Num/Product
+                                        Name) -- new-placement
+                                        classification is now keyed on
+                                        Product Num, NOT brand, so a
+                                        second, different Peroni SKU at
+                                        an account that already carries
+                                        one Peroni SKU still counts as a
+                                        new placement. derive_brand_family()
+                                        recovers the Peroni/Banquet
+                                        grouping from the product name
+                                        for display and Target Accounts
+                                        only -- see generate_2026-08.py's
+                                        docstring.
     wine_spirits_legrand_leyenda_greenriver.csv
                                        RDE "5 New Placements -- (2) Le
                                         Grand Wines (2) Leyenda (1) Green
@@ -168,9 +199,32 @@ Files:
                                         DENOMINATOR; account-base size
                                         per rep is the count of DISTINCT
                                         Customer Num, computed
-                                        client-side.
-    generate_2026-08.py               Rebuilds the five JSON files
-                                        above.
+                                        client-side. Full off-prem book
+                                        (every county); BBC Lytt only,
+                                        since Lytt isn't territory-
+                                        restricted.
+    sales_reps_customer_base_core.csv RDE "Sales Reps: Customer Base
+                                        Core Off Prem" export -- added
+                                        2026-08-05. Narrower than the
+                                        file above: only the counties
+                                        where Corona Premier and Molson
+                                        Coors Peroni/Banquet are
+                                        authorized to sell (per Kohler,
+                                        2026-08-05), pre-scoped by RDE
+                                        (no county whitelist needed in
+                                        code, unlike on-prem). Drives
+                                        Target Accounts for those two
+                                        objectives only -- see
+                                        generate_2026-08.py's own
+                                        docstring for the full field
+                                        list and build_targets() logic.
+                                        Wine & Spirits gets no Target
+                                        Accounts since it's sold in
+                                        every county (same precedent as
+                                        on-prem's Yave/Leyenda).
+    generate_2026-08.py               Rebuilds the seven JSON files
+                                        above (five datasets + two
+                                        Target Accounts files).
 
   index.html   The page itself (shared by every month).
 
@@ -193,8 +247,36 @@ To refresh August manually:
   1. Save the new exports over corona_premier_suitcase.csv /
      molson_coors_off_peroni_banquet.csv /
      wine_spirits_legrand_leyenda_greenriver.csv / bbc_lytt_distro.csv /
-     sales_reps_customer_base.csv (same column headers).
+     sales_reps_customer_base.csv / sales_reps_customer_base_core.csv
+     (same column headers).
   2. Run: python3 generate_2026-08.py -- it prints how many new
      placements/rows qualified out of how many were exported, worth a
      sanity check against what you'd expect.
   3. Commit and push.
+
+Target Accounts (added 2026-08-05): a per-rep "who to go after"
+prospect list -- accounts in a rep's OWN off-premise core territory
+that don't carry the brand yet -- shown as a collapsed amber toggle
+under that rep's activity table on both the Corona Premier and Molson
+Coors Peroni/Banquet cards (rep view and objective view alike). Same
+groupTargetsByRep()/targetsBlockHtml() pattern as on-prem's Angry
+Orchard/Molson Coors (see on-prem/index.html), fed by
+mpo_targets_corona_premier.json and mpo_targets_molson_coors.json
+(generate_2026-08.py's build_targets(), scoped by
+sales_reps_customer_base_core.csv -- see that file's entry above).
+Wine & Spirits has no Target Accounts card since it isn't
+territory-restricted, and BBC Lytt already IS a "which of your
+accounts don't carry it yet" objective by construction, so it doesn't
+need a separate Target Accounts block.
+
+Note (2026-08-05): as of that refresh, RDE started splitting Molson
+Coors' and Wine & Spirits' "Placement Count"/"Cases" columns into TWO
+date-windowed columns on the same export (e.g. "Placement Count
+5/1/2026 - 7/31/2026" AND "Placement Count 8/1/2026 - 8/31/2026")
+instead of one combined column -- each row is only ever populated in
+whichever of the two matches its own Date. generate_2026-08.py's
+sum_cols() handles this by summing every column sharing the prefix
+(treating blank as 0) rather than find_col()'s old single-match
+lookup, so it works whether RDE exports one combined column or several
+split ones. Corona Premier and BBC Lytt haven't split (still one
+column each) but would also be handled fine if they start.
