@@ -67,23 +67,32 @@ Objective types (index.html):
 Each rep's customer-line drill-down (lineTableNewAccounts()) collapses to
 ONE row per customer -- not one per transaction. For sources whose lines
 carry a PERIOD field ("base"/"current" -- currently August's Angry Orchard
-and Molson Coors, see "90-Day Non-Buy" below), it shows the customer's
-most recent date in EACH period plus a status (per Gavin, 2026-08-08):
+and Molson Coors, see "90-Day Non-Buy" below), it classifies each account
+per Gavin, 2026-08-08:
   New Buyer              bought this month, never in the base period.
                            Eligible for the incentive.
   Repeat Buyer            bought in BOTH the base period and this month.
                            Not new, but actively reordering.
   Bought in Base Period   bought in the base period only, no this-month
                            purchase yet. Already carries the brand, not
-                           an incentive-eligible target -- this replaced
-                           a confusing blank-date/"—" row for these
-                           accounts (they used to look identical to
-                           accounts with literally no activity at all).
+                           an incentive-eligible target.
+Only New Buyer rows are shown directly (with both the base-period and
+this-month date, since a rep confirming a fresh placement still wants to
+see when it happened) -- per Gavin, 2026-08-08: "the target accounts and
+new placement accounts should be the focus of what the rep sees when
+they open the program." Repeat Buyer and Bought in Base Period rows are
+NOT the focus (they're accounts a rep already has, nothing to act on),
+so they're tucked behind a collapsed "N Existing Accounts" dropdown
+(existingAccountsBlockHtml()) using the exact same collapsed-by-default
+pattern as Target Accounts -- fully available for traceability, just not
+cluttering the default view. If an objective has zero new placements
+this month, the drill-down just says "No new placements yet this month."
+instead of an empty table.
 For sources with no PERIOD field (July's Carbliss/Sapporo, and buyer_count
-sources like Wine & Spirits) there's no base-period concept, so
-lineTableNewAccounts() falls back to the original single-date "New
-Buyer"/"Regular Buyer"/"—" table rather than showing a pointless
-always-empty base-period column.
+sources like Wine & Spirits) there's no base-period concept and no
+Target Accounts either, so lineTableNewAccounts() falls back to the
+original single-date "New Buyer"/"Regular Buyer"/"—" table, all rows
+shown directly, unchanged.
 
 Off-premise exclusion applies to EVERY on-prem August dataset, not just
 Target Accounts (per Kohler, 2026-08-07: "off premise accounts should not
