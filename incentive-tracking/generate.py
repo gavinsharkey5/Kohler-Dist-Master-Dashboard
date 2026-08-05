@@ -28,7 +28,7 @@ DATE_RE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
 
 
 def to_num(s):
-    s = (s or "").strip()
+    s = (s or "").strip().replace(",", "")
     if not s:
         return 0.0
     try:
@@ -803,6 +803,80 @@ def build_mollys():
     return {"byRep": by_rep}
 
 
+def build_garage_beer_summer_sequel():
+    """Garage Beer Summer Sequel -- volume-push tiers only (no account/
+    product-level data in this file, so the draft bonus and iSellBeer
+    feature components aren't built). File gives each rep their OWN
+    individual Tiered/Bonus/Super Bonus CE goals (not a single
+    company-wide number) plus their current-period Case Equiv.
+    Data quality note: the file is sorted by Case Equiv descending and
+    its first data row (nominally "Shane Barreca", CE 5152.07) is a
+    mislabeled grand-total row -- that value matches the sum of every
+    other rep's CE almost exactly, and is wildly inconsistent with
+    Shane Barreca's own real row further down (CE 226.92, matching his
+    goals of 168/203/227). When a rep name appears twice, the larger
+    value is dropped as the total-row artifact."""
+    rows = read_rows("garage_beer_summer_sequel.csv")
+    by_name_rows = {}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        by_name_rows.setdefault(rep, []).append(row)
+
+    by_rep = {rep: {
+        "caseEquiv": 0.0, "tieredGoal": None, "bonusGoal": None, "superBonusGoal": None,
+        "tier": None,
+    } for rep in ROSTER}
+
+    for rep, rrows in by_name_rows.items():
+        if rep not in by_rep:
+            continue
+        row = min(rrows, key=lambda r: to_num(r["Case Equiv   6/1/2026 - 8/31/2026"]))
+        ce = to_num(row["Case Equiv   6/1/2026 - 8/31/2026"])
+        tiered = to_num(row["Tiered Goal   6/1/2026 - 8/31/2026"]) if row["Tiered Goal   6/1/2026 - 8/31/2026"].strip() else None
+        bonus = to_num(row["Bonus Goal   6/1/2026 - 8/31/2026"]) if row["Bonus Goal   6/1/2026 - 8/31/2026"].strip() else None
+        super_bonus = to_num(row["Super Bonus Goal   6/1/2026 - 8/31/2026"]) if row["Super Bonus Goal   6/1/2026 - 8/31/2026"].strip() else None
+        by_rep[rep]["caseEquiv"] = round(ce, 2)
+        by_rep[rep]["tieredGoal"] = tiered
+        by_rep[rep]["bonusGoal"] = bonus
+        by_rep[rep]["superBonusGoal"] = super_bonus
+        if super_bonus is not None and ce >= super_bonus:
+            by_rep[rep]["tier"] = "Super Bonus"
+        elif bonus is not None and ce >= bonus:
+            by_rep[rep]["tier"] = "Bonus"
+        elif tiered is not None and ce >= tiered:
+            by_rep[rep]["tier"] = "Tiered"
+
+    return {"byRep": by_rep}
+
+
+def build_garage_beer_president():
+    """Garage Beer President's Incentive -- $1.00/CE over last year,
+    once the company-wide total crosses 9,305 CE (Jun-Sep per the
+    deck). Sourced from the year-over-year Comparison export: its
+    "Total"/"Garage Beer" rows give the company-wide current CE
+    directly, and its precomputed +/- column gives each rep's CE
+    growth over last year. Rows whose first column isn't a roster name
+    (Total, Garage Beer, John Neukum, Default) are skipped."""
+    rows = read_rows("garage_beer_president_comparison.csv")
+    key = "Supplier / Sales Rep Assigned"
+
+    company_total_this_year = 0.0
+    for row in rows:
+        if row[key] == "Garage Beer":
+            company_total_this_year = to_num(row["Case Equiv 6/1/2026 - 9/30/2026"])
+            break
+
+    by_rep = {rep: {"caseGrowthOverLastYear": 0.0} for rep in ROSTER}
+    for row in rows:
+        rep = row[key]
+        if rep not in by_rep:
+            continue
+        growth = to_num(row["Case Equiv 6/1/2026 - 9/30/2026"]) - to_num(row["Case Equiv 6/1/2025 - 9/30/2025"])
+        by_rep[rep]["caseGrowthOverLastYear"] = round(growth, 2)
+
+    return {"byRep": by_rep, "companyTotalThisYear": round(company_total_this_year, 2), "houseGoal": 9305}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -817,6 +891,8 @@ def main():
         "sun_cruiser": build_sun_cruiser(),
         "yave": build_yave(),
         "mollys": build_mollys(),
+        "garage_beer_summer_sequel": build_garage_beer_summer_sequel(),
+        "garage_beer_president": build_garage_beer_president(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -851,6 +927,8 @@ def main():
           f"{sum(d['unclassifiedAccountCount'] for d in data['yave']['byRep'].values())} unclassified")
     print(f"mollys: {sum(d['newPodCount'] for d in data['mollys']['byRep'].values())} new PODs, "
           f"{sum(d['rebuyCount'] for d in data['mollys']['byRep'].values())} rebuys")
+    print(f"garage_beer_summer_sequel: {sum(1 for d in data['garage_beer_summer_sequel']['byRep'].values() if d['tier'])} reps in a tier")
+    print(f"garage_beer_president: {data['garage_beer_president']['companyTotalThisYear']} / {data['garage_beer_president']['houseGoal']} house CE")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

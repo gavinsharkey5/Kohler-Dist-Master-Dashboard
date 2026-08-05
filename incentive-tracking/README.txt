@@ -16,7 +16,14 @@ Files:
   generate.py        Rebuilds the embedded JSON in index.html from the
                       raw data files in data/. Run: python3 generate.py
   index.html          The dashboard itself. Rep-chip nav like the MPO
-                      tracker; pick a rep to see all 4 built programs.
+                      tracker; pick a rep to see their progress, split
+                      into two sections per Gavin, 2026-08-1x: "New
+                      Incentives" (the original 9 deck programs, slides
+                      2-12) and "Ongoing Incentives" (the continuing
+                      programs, slides 13-25) -- matches the deck's own
+                      "CONTINUING PROGRAMS..." divider slide, so the
+                      section labels track the deck's own framing
+                      rather than an arbitrary split.
   data/               Raw source RDE exports, one CSV per program
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
@@ -27,12 +34,13 @@ a file exists). All three planned batches delivered.
 
 CONTINUING PROGRAMS (slides 13-25, added 2026-08-1x): Gavin asked to
 add 8 more programs from the deck's "continuing programs" section,
-originally deferred on 2026-08-05. 3 of 8 built so far -- Sun Cruiser
-Volume, Yave Tequila Launch, Molly's 1.75L. See "CONTINUING PROGRAMS"
-section below for all 8, including the 5 not yet built (Sammy's Beach
-Bar Rum -- no data yet; New Belgium Distribution/Volume, Garage Beer
-President's Incentive, Garage Beer Summer Sequel, Summer of Success
-THC Volume -- not yet sent, several need goal-threshold numbers not on
+originally deferred on 2026-08-05. 5 of 8 built so far -- Sun Cruiser
+Volume, Yave Tequila Launch, Molly's 1.75L, Garage Beer Summer Sequel
+(volume-push tiers only), Garage Beer President's Incentive. See
+"CONTINUING PROGRAMS" section below for all 8, including the 3 not yet
+built (Sammy's Beach Bar Rum -- no data yet; New Belgium Distribution/
+Volume, Summer of Success THC Volume -- not yet sent, need goal-
+threshold numbers not on
 the slides). The iSellBeer Summer Display Auction (slides 14-15) is
 NOT part of this dashboard -- it's covered by the separate
 isellbeer/display-auction-tracker/, and the Chelada/Corona Premier
@@ -345,25 +353,48 @@ logic, flag anything that contradicts the deck.
    numbers not stated on the slide. Ask which scope when the file
    arrives, and ask for the goal numbers if achieve/retain is wanted.
 
-3. GARAGE BEER PRESIDENT'S INCENTIVE -- Jun-Sep [NOT STARTED]
+3. GARAGE BEER PRESIDENT'S INCENTIVE -- Jun-Sep [BUILT]
    - Flat $1.00/CE over last year, once total Garage Beer CEs (company-
      wide) cross 9,305 for the period
-   Straightforward once the file arrives -- house-wide CE gate (same
-   shape as Le Grand Noir's 70-case gate) plus per-rep CE-over-LY
-   tracking.
+   Sourced from a "Comparison_GSHARKEY_..." export -- a year-over-year
+   Case Equivalent report (2025 vs 2026, Jun-Sep window) with "Total"
+   and "Garage Beer" subtotal rows plus one row per rep. This wasn't
+   an obvious match at first (no file was explicitly labeled "President's
+   Incentive"), but the date window (Jun-Sep) matches the deck exactly,
+   and its "Garage Beer" row gives the company-wide current CE needed
+   for the 9,305 house gate directly. Built: house-wide CE progress bar
+   (companyTotalThisYear / 9305) and each rep's own CE growth over last
+   year (this-year minus last-year from the file's own two columns,
+   not its precomputed +/- column, since that column is parenthesis-
+   formatted for negatives and not needed once computed directly).
+   Rows matching "Total", "Garage Beer", "John Neukum", or "Default"
+   are skipped (not real per-rep rows / not reps).
 
-4. GARAGE BEER SUMMER SEQUEL -- Jun-Aug [NOT STARTED]
+4. GARAGE BEER SUMMER SEQUEL -- Jun-Aug [BUILT, volume-push tiers only]
    - Volume Push: 3 tiers over 2025 CEs -- Tiered ($1/CE), Bonus
-     ($1.50/CE), Super Bonus ($2/CE) -- goal thresholds not on the slide
+     ($1.50/CE), Super Bonus ($2/CE)
    - Draft Bonus: $50 new draft placement / $100 re-purchase (after
      account purchases 3 kegs total), half payout on 1/6bbl
    - $5 per on-premise iSellBeer feature submitted
-   Need the 3 tier goal thresholds (CE counts) from Gavin before the
-   volume-push piece can show tier status; draft bonus is buildable
-   once the file arrives (same per-account cumulative-keg-threshold
-   pattern as 1911/Woodchuck, at a 3-keg gate instead of barrels).
-   iSellBeer feature count is out of scope (separate system, per the
-   Path to Victory / Boston Beer precedent).
+   The "GARAGE_BEER_SUMMER_SEQUEL..." file resolved the goal-threshold
+   gap directly -- it gives each rep their OWN individual Tiered/Bonus/
+   Super Bonus CE goals (not one company-wide number), plus their
+   current-period Case Equiv. Built: per-rep tier status (their CE vs
+   their own 3 goals) and a progress bar toward Super Bonus.
+   DATA QUALITY ISSUE (2026-08-1x): the file is sorted by Case Equiv
+   descending and its first data row -- nominally "Shane Barreca", CE
+   5152.07 -- is a mislabeled grand-total row: that value is (within
+   rounding) the sum of every other rep's CE in the file, and is
+   wildly inconsistent with Shane Barreca's own real row further down
+   (CE 226.92, matching goals of 168/203/227). build_garage_beer_
+   summer_sequel() in generate.py handles this generically: when a rep
+   name appears twice, the row with the LARGER Case Equiv is dropped
+   as the total-row artifact. Watch for this same pattern in any
+   future Comparison/pivot-style exports.
+   No account/product-level data in this file, so the Draft Bonus and
+   iSellBeer feature components aren't built -- would need a separate
+   export (same shape as 1911/Woodchuck's per-account draft data) if
+   Gavin wants those tracked.
 
 5. YAVE TEQUILA LAUNCH -- Jul-Aug [BUILT]
    - On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25,
