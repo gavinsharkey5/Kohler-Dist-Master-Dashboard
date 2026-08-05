@@ -133,6 +133,21 @@ def find_col(fieldnames, prefix):
     return next(c for c in fieldnames if c.startswith(prefix))
 
 
+def sum_cols(row, prefix):
+    """RDE sometimes splits a metric into multiple date-windowed columns
+    sharing one prefix (e.g. "Placement Count   5/1/2026 - 7/31/2026" AND
+    "Placement Count   8/1/2026 - 8/31/2026" on the same export, each row
+    populated in only one of the two since a row has a single Date) --
+    sum whichever of them are present/non-blank rather than grabbing just
+    the first match, so a value in the second column isn't silently
+    dropped. Works the same when there's only one matching column."""
+    total = 0.0
+    for c, v in row.items():
+        if c.startswith(prefix) and (v or "").strip():
+            total += float(v)
+    return total
+
+
 def classify_new_placements(rows, brand_key):
     """Shared 90-day-non-buy classifier. `brand_key(row)` returns the
     per-row key (e.g. Brand Family) that purchase history is scoped to --
@@ -170,8 +185,6 @@ def build_corona_premier():
     rows = load_csv(CORONA_PREMIER_CSV)
     if not rows:
         return []
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     out = []
     for r in rows:
         out.append({
@@ -181,8 +194,8 @@ def build_corona_premier():
             "CUSTOMER_NUM": int(r["Customer Num"]),
             "CUSTOMER_NAME": r["Customer Name"].strip(),
             "DATE": NEW_BUYER_WINDOW_START.isoformat(),
-            "PLACEMENT_COUNT": float(r[placement_col]),
-            "CASES": float(r[cases_col]),
+            "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+            "CASES": sum_cols(r, "Cases"),
         })
     out.sort(key=lambda row: row["CUSTOMER_NAME"])
     return out
@@ -190,8 +203,6 @@ def build_corona_premier():
 
 def build_molson_coors():
     rows = load_csv(MOLSON_COORS_CSV)
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
     out = [{
         "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
@@ -199,8 +210,8 @@ def build_molson_coors():
         "CUSTOMER_NAME": r["Customer Name"].strip(),
         "BRAND_FAMILY": r["Brand Family"].strip(),
         "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
+        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+        "CASES": sum_cols(r, "Cases"),
         "NEW_PLACEMENT": is_new,
     } for d, r, is_new in classified]
     out.sort(key=lambda row: row["DATE"], reverse=True)
@@ -209,8 +220,6 @@ def build_molson_coors():
 
 def build_wine_spirits():
     rows = load_csv(WINE_SPIRITS_CSV)
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
     out = [{
         "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
@@ -220,8 +229,8 @@ def build_wine_spirits():
         "CUSTOMER_NAME": r["Customer Name"].strip(),
         "BRAND_FAMILY": r["Brand Family"].strip(),
         "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
+        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+        "CASES": sum_cols(r, "Cases"),
         "NEW_PLACEMENT": is_new,
     } for d, r, is_new in classified]
     out.sort(key=lambda row: row["DATE"], reverse=True)

@@ -1,5 +1,15 @@
 Off-Prem MPO Tracker
 
+Same warm barrel-wood + amber-beer + Kohler-blue visual theme as the
+on-premise dashboard (see on-prem/index.html's :root CSS vars) --
+matched 2026-08-05 so both dashboards read as one system. index.html's
+<style> block is the only place that differs meaningfully from
+on-prem's (plus off-prem's own extra classes: a 5-column KPI strip,
+.table-scroll for the July New Belgium goals table, and
+.pkg-group-row for its package-group drill-down) -- carry any future
+on-prem theme tweak (color vars, hero banner, card/table treatment)
+over to off-prem's <style> block too so they don't drift apart again.
+
 Tracks each rep's progress toward the off-premise Monthly Program
 Objectives. Each month's objectives are tracked on their own tab --
 July 2026 (New Belgium / Wine & Spirits 2XO+Le Grand+Yave / Sapporo
@@ -198,3 +208,15 @@ To refresh August manually:
      placements/rows qualified out of how many were exported, worth a
      sanity check against what you'd expect.
   3. Commit and push.
+
+Note (2026-08-05): as of that refresh, RDE started splitting Molson
+Coors' and Wine & Spirits' "Placement Count"/"Cases" columns into TWO
+date-windowed columns on the same export (e.g. "Placement Count
+5/1/2026 - 7/31/2026" AND "Placement Count 8/1/2026 - 8/31/2026")
+instead of one combined column -- each row is only ever populated in
+whichever of the two matches its own Date. generate_2026-08.py's
+sum_cols() handles this by summing every column sharing the prefix
+(treating blank as 0) rather than find_col()'s old single-match
+lookup, so it works whether RDE exports one combined column or several
+split ones. Corona Premier and BBC Lytt haven't split (still one
+column each) but would also be handled fine if they start.
