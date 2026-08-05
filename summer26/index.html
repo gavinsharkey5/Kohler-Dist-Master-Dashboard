@@ -297,16 +297,34 @@
 .thc-search{margin:16px 0 0}
 .thc-search input{width:100%;font:inherit;font-size:14.5px;padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .thc-search input:focus{outline:none;border-color:var(--accent)}
+/* Four columns only (Rep / each supplier / Total) instead of one column
+   per metric -- each supplier's volume+tier+amplify stack INSIDE one
+   cell, so the whole table fits on an iPhone with no horizontal scroll
+   instead of spreading 9-10 columns sideways. overflow-x stays as a
+   safety net, not the expected way to read it. */
 .thc-table-wrap{margin:14px 0 0;overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-.thc-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
-.thc-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
-  padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--card2)}
-.thc-table td{padding:9px 12px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+.thc-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.thc-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;
+  padding:9px 8px;border-bottom:1px solid var(--line);background:var(--card2)}
+.thc-table td{padding:9px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top}
 .thc-table tr:last-child td{border-bottom:none}
+.thc-table th:first-child,.thc-table td:first-child{width:26%}
 .thc-table .num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+.thc-rep{font-weight:600;overflow-wrap:anywhere}
 .thc-hit{color:var(--good);font-weight:600}
 .thc-miss{color:var(--ink-soft)}
-@media(max-width:560px){.thc-table{font-size:12px}.thc-table th,.thc-table td{padding:8px 8px}}
+.thc-sc-vol{font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-weight:700;font-size:14px}
+.thc-sc-ly{font-family:"Inter";font-weight:500;font-size:11px;color:var(--ink-soft)}
+.thc-sc-tier{font-size:11.5px;margin-top:2px}
+.thc-sc-amp{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
+.thc-sc-amp b{color:var(--accent)}
+.thc-total{font-family:"Space Grotesk";font-weight:700;font-size:15px}
+@media(max-width:560px){
+  .thc-table{font-size:11.5px}
+  .thc-table th,.thc-table td{padding:8px 5px}
+  .thc-table th:first-child,.thc-table td:first-child{width:22%}
+  .thc-sc-vol{font-size:12.5px}
+}
 </style>
 </head>
 <body>
@@ -794,21 +812,25 @@ function thcRenderStats(rows){
     <div class="stat"><p class="k">Total Tier Payout</p><p class="v">${money(totalPayout)}</p></div>
     <div class="stat"><p class="k">Total Amplify</p><p class="v">${money(totalAmplify)}</p></div>`;
 }
-function thcTierCell(s){
-  if(!s.tier) return `<span class="thc-miss">—</span>`;
-  return `<span class="thc-hit">✓ ${s.tier.label} · ${money(s.payout)}</span>`;
+// One cell per supplier stacks volume, tier, and Amplify $ instead of
+// spreading them across four separate columns -- keeps the table to
+// Rep/Delta/Crescent Canna/Total (4 columns total) so it fits an
+// iPhone's width without horizontal scrolling, without dropping any
+// of the same data a 9-column layout would have shown.
+function thcSupCell(s){
+  const vol = `<div class="thc-sc-vol">${s.c26||0}<span class="thc-sc-ly"> (${s.c25||0} LY)</span></div>`;
+  if(!s.tier) return vol + `<div class="thc-sc-tier thc-miss">Not yet</div>`;
+  const amp = s.amplify ? `<div class="thc-sc-amp">+<b>${money(s.amplify)}</b> Amplify</div>` : '';
+  return vol + `<div class="thc-sc-tier thc-hit">✓ ${s.tier.label} · ${money(s.payout)}</div>` + amp;
 }
 function thcRenderTable(rows, filter){
   const supKeys = Object.keys(THC_TIERS);
   const f = (filter||"").toLowerCase();
   const shown = f ? rows.filter(r=>r.rep.toLowerCase().includes(f)) : rows;
-  const head = `<thead><tr><th>Rep</th>${supKeys.map(k=>`<th class="num">${THC_TIERS[k].label} 2025</th><th class="num">${THC_TIERS[k].label} 2026</th><th>${THC_TIERS[k].label} Tier</th><th class="num">Amplify $</th>`).join('')}<th class="num">Total $</th></tr></thead>`;
+  const head = `<thead><tr><th>Rep</th>${supKeys.map(k=>`<th>${THC_TIERS[k].label}</th>`).join('')}<th class="num">Total</th></tr></thead>`;
   const body = shown.map(r=>{
-    const cells = supKeys.map(k=>{
-      const s = r.sups[k];
-      return `<td class="num">${s.c25||'—'}</td><td class="num">${s.c26||'—'}</td><td>${thcTierCell(s)}</td><td class="num">${s.amplify?money(s.amplify):'—'}</td>`;
-    }).join('');
-    return `<tr><td>${esc(r.rep)}</td>${cells}<td class="num">${money(r.totalPayout+r.totalAmplify)}</td></tr>`;
+    const cells = supKeys.map(k=>`<td>${thcSupCell(r.sups[k])}</td>`).join('');
+    return `<tr><td class="thc-rep">${esc(r.rep)}</td>${cells}<td class="num thc-total">${money(r.totalPayout+r.totalAmplify)}</td></tr>`;
   }).join('');
   document.getElementById("thc-table").innerHTML = head + `<tbody>${body}</tbody>`;
 }
