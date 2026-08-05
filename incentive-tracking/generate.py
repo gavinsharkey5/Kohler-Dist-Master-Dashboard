@@ -115,7 +115,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     by_rep = {rep: {
         "offPremNew": [], "offPremNewCount": 0,
         "draftNew": [], "draftNewCount": 0,
-        "cumulativeBbl": 0.0, "qualifiesDraft": False,
+        "draftAccounts": [], "draftAccountsQualified": 0,
         "caseVolume": 0.0,
         "totalNewPlacements": 0,
     } for rep in ROSTER}
@@ -123,14 +123,24 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
     new_keys, by_key = new_rows_dual(rows, place_base_col, place_current_col, key_fields)
 
+    # Barrel threshold is PER ACCOUNT (per Gavin, 2026-08-05): sum each
+    # account's current-period keg volume across all its draft SKUs,
+    # keyed by Customer Num alone (not by rep) since the account is the
+    # unit the threshold applies to.
+    account_bbl = {}
+    account_name = {}
+    account_rep = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
         by_rep[rep]["caseVolume"] += to_num(row[current_col])
         if row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
+            cust = row["Customer Num"]
             bbl_each = keg_bbl(row["Package"]) or 0.0
-            by_rep[rep]["cumulativeBbl"] += bbl_each * to_num(row[current_col])
+            account_bbl[cust] = account_bbl.get(cust, 0.0) + bbl_each * to_num(row[current_col])
+            account_name.setdefault(cust, row["Customer Name"])
+            account_rep.setdefault(cust, rep)
 
     for key, krows in by_key.items():
         rep, cust_num, prod_num = key
@@ -150,17 +160,30 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             by_rep[rep]["offPremNew"].append(entry)
             by_rep[rep]["offPremNewCount"] += 1
         elif is_draft:
+            acct_bbl = account_bbl.get(cust_num, 0.0)
+            entry["accountCumulativeBbl"] = round(acct_bbl, 2)
+            entry["accountQualifies"] = acct_bbl >= bbl_threshold
             by_rep[rep]["draftNew"].append(entry)
             by_rep[rep]["draftNewCount"] += 1
+
+    for cust, bbl in account_bbl.items():
+        rep = account_rep[cust]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["draftAccounts"].append({
+            "customer": account_name[cust],
+            "cumulativeBbl": round(bbl, 2),
+            "qualifies": bbl >= bbl_threshold,
+        })
 
     leaderboard = []
     for rep, d in by_rep.items():
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
-        d["qualifiesDraft"] = d["cumulativeBbl"] >= bbl_threshold
-        d["cumulativeBbl"] = round(d["cumulativeBbl"], 2)
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["draftNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["draftAccounts"].sort(key=lambda a: -a["cumulativeBbl"])
+        d["draftAccountsQualified"] = sum(1 for a in d["draftAccounts"] if a["qualifies"])
         leaderboard.append({"rep": rep, "newPlacements": d["totalNewPlacements"], "caseVolume": d["caseVolume"]})
 
     leaderboard.sort(key=lambda x: (-x["newPlacements"], -x["caseVolume"]))

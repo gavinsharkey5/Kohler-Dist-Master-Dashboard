@@ -48,25 +48,28 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    - $100 per new placement of 1911 Draft, paid after 2 barrels
    - Bonus: top 3 performers (by distribution + volume) win a trip to
      the 1911 Cidery in Upstate NY
-   Per Gavin, 2026-08-05: the barrel threshold is PER REP, not per
-   account or company-wide -- a rep's cumulative current-period draft
-   volume (across all their 1911 accounts, converted from keg size to
-   barrels: 5.2 Gal / "1/6 BBL Keg" = 1/6 bbl, 15.5 Gal = 1/2 bbl) must
-   cross 2 barrels. Built: off-prem new-placement count + list, draft
-   cumulative-bbl progress bar + new-placement list, company-wide
-   leaderboard (new placements desc, then case volume desc) with a
-   top-3 badge for the Cidery-trip bonus.
+   Per Gavin, 2026-08-05 (correcting an earlier "per rep" answer): the
+   barrel threshold is PER ACCOUNT -- each account's own cumulative
+   current-period draft volume (summed across all its keg SKUs,
+   converted from keg size to barrels: 5.2 Gal / "1/6 BBL Keg" = 1/6
+   bbl, 15.5 Gal = 1/2 bbl) must cross 2 barrels before that account's
+   draft placements qualify, not the rep's total across all accounts.
+   Built: off-prem new-placement count + list, a per-account draft
+   volume table (each account's cumulative bbl vs. the 2-bbl goal and
+   qualified/building status), new draft placements tagged with their
+   account's bbl progress, company-wide leaderboard (new placements
+   desc, then case volume desc) with a top-3 badge for the trip bonus.
 
 2. WOODCHUCK CIDER REWARDS -- Aug-Sept [BUILT]
    - $10 per new Off-Premise placement of Woodchuck Cider
    - $100 per new Woodchuck Draft placement, paid after 3 barrels
    - $1.00 per case sold during the period
    - Qualifier: 3 placements minimum for ANY payout
-   Same per-rep barrel-threshold mechanic as 1911 above, at 3 bbl.
+   Same per-account barrel-threshold mechanic as 1911 above, at 3 bbl.
    3-placement qualifier assumed to be off-prem + draft new placements
    combined per rep (not corrected by Gavin, keeping this assumption).
    Built: qualifier progress bar (0-3), off-prem + draft new-placement
-   lists, draft cumulative-bbl progress bar, total case volume.
+   lists, per-account draft volume table, total case volume.
 
 3. TONA DISTRIBUTION AND VOLUME REWARDS -- Aug-Sept [BUILT]
    - $10 per new Off-Premise placement of TONA 24oz Cans
