@@ -71,7 +71,45 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           addresses); the account-base
                                           size per rep is the count of
                                           DISTINCT Customer Num, computed
-                                          client-side.
+                                          client-side. This is the FULL
+                                          off-prem book (every county a rep
+                                          covers) -- BBC Lytt's denominator,
+                                          since Lytt isn't territory-
+                                          restricted.
+  sales_reps_customer_base_core.csv     RDE "Sales Reps: Customer Base
+                                          Core Off Prem" export: Sales Rep
+                                          Assigned, Customer Num, Customer
+                                          Name, Shipping Address,
+                                          Distribution Area, Area, County,
+                                          City, Premise, Buyer Count,
+                                          Cases. Per Kohler (2026-08-05),
+                                          Corona Premier and Molson Coors
+                                          Peroni/Banquet can ONLY be sold in
+                                          this narrower "core" off-premise
+                                          territory (Bergen/Morris/Passaic/
+                                          Sussex, 503 accounts across 26
+                                          reps as of this export) -- unlike
+                                          on-prem, where the source file
+                                          covers a broader area and needs an
+                                          ALLOWED_TARGET_COUNTIES whitelist
+                                          applied in code, this file is
+                                          already pre-scoped to exactly the
+                                          authorized-to-sell accounts, so
+                                          every row in it is fair game for
+                                          Target Accounts with no additional
+                                          county filter. Used ONLY for
+                                          Target Accounts (Corona Premier,
+                                          Molson Coors Peroni/Banquet) --
+                                          NOT for BBC Lytt's account-base
+                                          denominator, which stays the
+                                          full sales_reps_customer_base.csv
+                                          (Lytt isn't territory-restricted).
+                                          Wine & Spirits (Le Grand/Leyenda/
+                                          Green River) is sold in every
+                                          county per Kohler, so it gets no
+                                          Target Accounts at all -- same
+                                          precedent as on-prem's Yave/
+                                          Leyenda.
 
 Classification -- "90-Day Non-Buy" new placement (Molson Coors Peroni/
 Banquet independently, and each Wine & Spirits brand family
@@ -96,6 +134,23 @@ size), computed client-side from sales_reps_customer_base.json (the
 denominator) against bbc_lytt_distro's distinct Lytt-carrying accounts
 per rep (the numerator) -- see buildPctOfBaseDataset() in index.html.
 
+Target accounts (Corona Premier, Molson Coors Peroni/Banquet only, per
+Kohler 2026-08-05 -- Wine & Spirits isn't territory-restricted so it gets
+none): a per-rep "who to go after" list, answering which of a rep's OWN
+core-territory accounts don't carry the brand yet. Same approach as
+on-prem's build_targets() (see on-prem/generate_2026-08.py) minus the
+county whitelist, since sales_reps_customer_base_core.csv is already
+scoped to the core territory:
+  1. sales_reps_customer_base_core.csv -- the rep's core account base,
+     deduped by Customer Num.
+  2. corona_premier_suitcase.csv / molson_coors_off_peroni_banquet.csv --
+     ANY customer appearing here at all (placement flagged new or not)
+     already has recent purchase history of that brand, so they're
+     excluded -- a "hasn't bought it recently" list, not just "hasn't
+     been flagged new this month".
+Molson Coors' Peroni and Coors (Banquet) targets are computed
+independently per brand, same as the placement classification.
+
 Run: python3 generate_2026-08.py
 """
 import csv
@@ -112,6 +167,7 @@ MOLSON_COORS_CSV = HERE / "molson_coors_off_peroni_banquet.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_legrand_leyenda_greenriver.csv"
 BBC_LYTT_CSV = HERE / "bbc_lytt_distro.csv"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
+CUSTOMER_BASE_CORE_CSV = HERE / "sales_reps_customer_base_core.csv"
 
 NEW_BUYER_WINDOW_START = date(2026, 8, 1)
 NEW_BUYER_WINDOW_END = date(2026, 8, 31)
@@ -131,6 +187,21 @@ def load_csv(path):
 
 def find_col(fieldnames, prefix):
     return next(c for c in fieldnames if c.startswith(prefix))
+
+
+def sum_cols(row, prefix):
+    """RDE sometimes splits a metric into multiple date-windowed columns
+    sharing one prefix (e.g. "Placement Count   5/1/2026 - 7/31/2026" AND
+    "Placement Count   8/1/2026 - 8/31/2026" on the same export, each row
+    populated in only one of the two since a row has a single Date) --
+    sum whichever of them are present/non-blank rather than grabbing just
+    the first match, so a value in the second column isn't silently
+    dropped. Works the same when there's only one matching column."""
+    total = 0.0
+    for c, v in row.items():
+        if c.startswith(prefix) and (v or "").strip():
+            total += float(v)
+    return total
 
 
 def classify_new_placements(rows, brand_key):
@@ -170,8 +241,6 @@ def build_corona_premier():
     rows = load_csv(CORONA_PREMIER_CSV)
     if not rows:
         return []
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     out = []
     for r in rows:
         out.append({
@@ -181,8 +250,8 @@ def build_corona_premier():
             "CUSTOMER_NUM": int(r["Customer Num"]),
             "CUSTOMER_NAME": r["Customer Name"].strip(),
             "DATE": NEW_BUYER_WINDOW_START.isoformat(),
-            "PLACEMENT_COUNT": float(r[placement_col]),
-            "CASES": float(r[cases_col]),
+            "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+            "CASES": sum_cols(r, "Cases"),
         })
     out.sort(key=lambda row: row["CUSTOMER_NAME"])
     return out
@@ -190,8 +259,6 @@ def build_corona_premier():
 
 def build_molson_coors():
     rows = load_csv(MOLSON_COORS_CSV)
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
     out = [{
         "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
@@ -199,8 +266,8 @@ def build_molson_coors():
         "CUSTOMER_NAME": r["Customer Name"].strip(),
         "BRAND_FAMILY": r["Brand Family"].strip(),
         "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
+        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+        "CASES": sum_cols(r, "Cases"),
         "NEW_PLACEMENT": is_new,
     } for d, r, is_new in classified]
     out.sort(key=lambda row: row["DATE"], reverse=True)
@@ -209,8 +276,6 @@ def build_molson_coors():
 
 def build_wine_spirits():
     rows = load_csv(WINE_SPIRITS_CSV)
-    cases_col = find_col(rows[0].keys(), "Cases")
-    placement_col = find_col(rows[0].keys(), "Placement Count")
     classified, new_count, total_pairs = classify_new_placements(rows, brand_key=lambda r: r["Brand Family"])
     out = [{
         "SALES_REP_ASSIGNED": r["Sales Rep Assigned"].strip(),
@@ -220,8 +285,8 @@ def build_wine_spirits():
         "CUSTOMER_NAME": r["Customer Name"].strip(),
         "BRAND_FAMILY": r["Brand Family"].strip(),
         "DATE": d.isoformat(),
-        "PLACEMENT_COUNT": float(r[placement_col]),
-        "CASES": float(r[cases_col]),
+        "PLACEMENT_COUNT": sum_cols(r, "Placement Count"),
+        "CASES": sum_cols(r, "Cases"),
         "NEW_PLACEMENT": is_new,
     } for d, r, is_new in classified]
     out.sort(key=lambda row: row["DATE"], reverse=True)
@@ -269,12 +334,80 @@ def build_sales_reps_customer_base():
     return out
 
 
+def load_core_customer_base():
+    """Dedupes to one entry per (rep, customer) -- the same account can
+    have more than one row in the export in principle (multiple ship-to
+    addresses), same as sales_reps_customer_base.csv. Already scoped to
+    the off-premise core territory (see this script's docstring), so no
+    county whitelist is applied here -- every row is fair game."""
+    rows = load_csv(CUSTOMER_BASE_CORE_CSV)
+    by_rep = {}
+    seen = set()
+    for r in rows:
+        rep = (r.get("Sales Rep Assigned") or "").strip()
+        cust_num = (r.get("Customer Num") or "").strip()
+        if not rep or not cust_num:
+            continue
+        key = (rep, cust_num)
+        if key in seen:
+            continue
+        seen.add(key)
+        area = (r.get("Distribution Area") or "").strip()
+        if area == "Sales":
+            area = (r.get("County") or "").strip() or area
+        by_rep.setdefault(rep, []).append({
+            "customer_num": cust_num,
+            "customer_name": (r.get("Customer Name") or "").strip(),
+            "area": area,
+        })
+    return by_rep
+
+
+def already_carrying(path, brand_filter=None):
+    """Customer Nums with ANY row in a brand's raw export -- recent
+    purchase history, whether or not that row was flagged NEW_PLACEMENT."""
+    rows = load_csv(path)
+    out = set()
+    for r in rows:
+        if brand_filter and r.get("Brand Family", "").strip().lower() != brand_filter.lower():
+            continue
+        out.add(r["Customer Num"].strip())
+    return out
+
+
+def build_targets(customer_base_by_rep, carrying):
+    out = []
+    for rep, accounts in customer_base_by_rep.items():
+        for a in accounts:
+            if a["customer_num"] in carrying:
+                continue
+            out.append({
+                "SALES_REP_ASSIGNED": rep,
+                "CUSTOMER_NUM": int(a["customer_num"]) if a["customer_num"].isdigit() else a["customer_num"],
+                "CUSTOMER_NAME": a["customer_name"],
+                "AREA": a["area"],
+            })
+    out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"]))
+    return out
+
+
 def main():
     corona_premier_rows = build_corona_premier()
     molson_coors_rows, mc_new, mc_total = build_molson_coors()
     wine_spirits_rows, ws_new, ws_total = build_wine_spirits()
     bbc_lytt_rows = build_bbc_lytt_numerator()
     customer_base_rows = build_sales_reps_customer_base()
+
+    core_by_rep = load_core_customer_base()
+    targets_corona_premier = build_targets(core_by_rep, already_carrying(CORONA_PREMIER_CSV))
+
+    targets_peroni = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni"))
+    for row in targets_peroni:
+        row["BRAND_FAMILY"] = "Peroni"
+    targets_coors = build_targets(core_by_rep, already_carrying(MOLSON_COORS_CSV, "Coors"))
+    for row in targets_coors:
+        row["BRAND_FAMILY"] = "Coors"
+    targets_molson_coors = sorted(targets_peroni + targets_coors, key=lambda r: (r["SALES_REP_ASSIGNED"], r["BRAND_FAMILY"], r["CUSTOMER_NAME"]))
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
@@ -283,11 +416,14 @@ def main():
     (month_dir / "mpo_wine_spirits.json").write_text(json.dumps(wine_spirits_rows, indent=2))
     (month_dir / "mpo_bbc_lytt_numerator.json").write_text(json.dumps(bbc_lytt_rows, indent=2))
     (month_dir / "mpo_sales_reps_customer_base.json").write_text(json.dumps(customer_base_rows, indent=2))
+    (month_dir / "mpo_targets_corona_premier.json").write_text(json.dumps(targets_corona_premier, indent=2))
+    (month_dir / "mpo_targets_molson_coors.json").write_text(json.dumps(targets_molson_coors, indent=2))
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
 
     distinct_base = len({(r["SALES_REP_ASSIGNED"], r["CUSTOMER_NUM"]) for r in customer_base_rows})
+    distinct_core = sum(len(v) for v in core_by_rep.values())
     print(f"Corona Premier: {len(corona_premier_rows)} rows written (no per-row Date in source; "
           f"placeholder DATE={NEW_BUYER_WINDOW_START.isoformat()} stamped on every row)")
     print(f"Molson Coors (Peroni+Coors/Banquet independently): {mc_new} new placements out of {mc_total} "
@@ -296,6 +432,10 @@ def main():
           f"{ws_total} customer+brand pairs ({len(wine_spirits_rows)} transaction rows written)")
     print(f"BBC Lytt: {len(bbc_lytt_rows)} distro rows written")
     print(f"Sales Reps Customer Base: {len(customer_base_rows)} rows written ({distinct_base} distinct rep+customer pairs)")
+    print(f"Off-Premise Core Territory: {distinct_core} distinct rep+customer pairs across {len(core_by_rep)} reps")
+    print(f"Target accounts -- Corona Premier: {len(targets_corona_premier)} prospects across all reps (core territory only)")
+    print(f"Target accounts -- Molson Coors: {len(targets_peroni)} Peroni + {len(targets_coors)} Coors/Banquet "
+          f"prospects (core territory only)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 
