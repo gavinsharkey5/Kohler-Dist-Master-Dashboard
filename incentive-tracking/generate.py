@@ -53,6 +53,8 @@ def keg_bbl(package):
     p = (package or "").lower()
     if "1/6 bbl" in p or "5.2 gal" in p:
         return 1.0 / 6.0
+    if "1/4 bbl" in p or "7.75 gal" in p:
+        return 1.0 / 4.0
     if "15.5 gal" in p:
         return 0.5
     if "gal keg" in p or "keg" in p:
@@ -89,6 +91,28 @@ def new_rows_dual(rows, base_col, current_col, key_fields):
         if has_current and not has_base:
             new_keys.add(key)
     return new_keys, by_key
+
+
+def classify_dual(rows, base_col, current_col, key_fields):
+    """Group rows by key_fields; classify each key as 'new' (populated in
+    current_col only), 'rebuy' (populated in both), 'base_only', or
+    omitted (populated in neither). Returns (classification dict, by_key
+    dict) so callers can look up detail rows for a key."""
+    by_key = {}
+    for row in rows:
+        key = tuple(row[k] for k in key_fields)
+        by_key.setdefault(key, []).append(row)
+    classified = {}
+    for key, krows in by_key.items():
+        has_current = any(r[current_col].strip() != "" for r in krows)
+        has_base = any(r[base_col].strip() != "" for r in krows)
+        if has_current and has_base:
+            classified[key] = "rebuy"
+        elif has_current:
+            classified[key] = "new"
+        elif has_base:
+            classified[key] = "base_only"
+    return classified, by_key
 
 
 def latest_date(krows, col):
@@ -331,6 +355,137 @@ def build_sam_adams():
     return {"byRep": by_rep}
 
 
+def build_boston_beer():
+    """Boston Beer August Draft Blitz. Product Type cleanly separates
+    Draft (Keg Beer/Keg Cider) from Package (Case Beer/Case Cider) --
+    no premise inference needed. Per Gavin, 2026-08-1x: the "one on-prem
+    rep, one off-prem rep" trip bonus can't be split without a rep-channel
+    mapping we don't have, so no leaderboard is built -- each rep just
+    sees their own points total."""
+    rows = read_rows("boston_beer.csv")
+    fieldnames = rows[0].keys() if rows else []
+    base_col, current_col = find_period_cols(fieldnames, "Placement Count")
+
+    by_rep = {rep: {
+        "draftNew": [], "draftNewCount": 0,
+        "draftRebuy": [], "draftRebuyCount": 0,
+        "packageNew": [], "packageNewCount": 0,
+        "points": 0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    classified, by_key = classify_dual(rows, base_col, current_col, key_fields)
+
+    for key, status in classified.items():
+        rep, cust_num, prod_num = key
+        if rep not in by_rep or status == "base_only":
+            continue
+        krows = by_key[key]
+        sample = krows[0]
+        is_draft = sample["Product Type"].startswith("Keg")
+        is_package = sample["Product Type"].startswith("Case")
+        entry = {
+            "customer": sample["Customer Name"],
+            "product": sample["Product Name"],
+            "date": latest_date(krows, current_col),
+        }
+        if is_draft:
+            if status == "new":
+                by_rep[rep]["draftNew"].append(entry)
+                by_rep[rep]["draftNewCount"] += 1
+            elif status == "rebuy":
+                by_rep[rep]["draftRebuy"].append(entry)
+                by_rep[rep]["draftRebuyCount"] += 1
+        elif is_package and status == "new":
+            by_rep[rep]["packageNew"].append(entry)
+            by_rep[rep]["packageNewCount"] += 1
+
+    for rep, d in by_rep.items():
+        d["points"] = (d["draftNewCount"] + d["draftRebuyCount"]) * 2 + d["packageNewCount"] * 1
+        for k in ("draftNew", "draftRebuy", "packageNew"):
+            d[k].sort(key=lambda e: e["date"] or "", reverse=True)
+
+    return {"byRep": by_rep}
+
+
+NEW_BELGIUM_FEATURED = ("juicy haze", "two hearted")
+NEW_BELGIUM_OTHER_NAMED = ("voodoo ranger", "fat tire")
+
+
+def new_belgium_tier(product_name):
+    name = product_name.lower()
+    if any(t in name for t in NEW_BELGIUM_FEATURED):
+        return "featured"
+    if any(t in name for t in NEW_BELGIUM_OTHER_NAMED):
+        return "other_named"
+    return None  # generic New Belgium Brewing Company SKUs -- out of scope per Gavin, 2026-08-1x
+
+
+def build_new_belgium():
+    """New Belgium Draft (Summer Draft Focus). Per Gavin, 2026-08-1x: only
+    the named tiers (Juicy Haze/Two Hearted, Voodoo Ranger/Fat Tire)
+    count toward anything -- the file's 3 generic "New Belgium Brewing
+    Company" SKUs (Ha Chi Keg, House Golden Pilsner, House Hazy IPA) are
+    out of scope and will be removed from future pulls, so they're
+    skipped here entirely. The 70-POD house goal spans the whole
+    May-Aug window (not just August), so it's a distinct-account count
+    across both period columns combined, not a new-vs-base comparison --
+    the $100/$50 new-vs-rebuy split is a separate, August-only classification."""
+    rows = read_rows("new_belgium.csv")
+    fieldnames = rows[0].keys() if rows else []
+    base_col, current_col = find_period_cols(fieldnames, "Units")
+
+    by_rep = {rep: {
+        "featuredNew": [], "featuredNewCount": 0,
+        "featuredRebuy": [], "featuredRebuyCount": 0,
+        "otherNamedKegCount": 0, "otherNamedKegVolumeBbl": 0.0,
+        "housePods": 0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    classified, by_key = classify_dual(rows, base_col, current_col, key_fields)
+
+    house_pods_total = 0
+    for key, status in classified.items():
+        rep, cust_num, prod_num = key
+        krows = by_key[key]
+        sample = krows[0]
+        tier = new_belgium_tier(sample["Product Name"])
+        if tier is None:
+            continue
+        if tier == "featured":
+            house_pods_total += 1
+            if rep in by_rep:
+                by_rep[rep]["housePods"] += 1
+        if rep not in by_rep:
+            continue
+        entry = {
+            "customer": sample["Customer Name"],
+            "product": sample["Product Name"],
+            "date": latest_date(krows, current_col if status != "base_only" else base_col),
+            "isHalfBbl": (keg_bbl(sample["Package"]) or 0.0) >= 0.5,
+        }
+        if tier == "featured":
+            if status == "new":
+                by_rep[rep]["featuredNew"].append(entry)
+                by_rep[rep]["featuredNewCount"] += 1
+            elif status == "rebuy":
+                by_rep[rep]["featuredRebuy"].append(entry)
+                by_rep[rep]["featuredRebuyCount"] += 1
+        elif tier == "other_named" and status in ("new", "rebuy"):
+            by_rep[rep]["otherNamedKegCount"] += 1
+            bbl_each = keg_bbl(sample["Package"]) or 0.0
+            current_units = sum(to_num(r[current_col]) for r in krows)
+            by_rep[rep]["otherNamedKegVolumeBbl"] += bbl_each * current_units
+
+    for rep, d in by_rep.items():
+        d["featuredNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["featuredRebuy"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["otherNamedKegVolumeBbl"] = round(d["otherNamedKegVolumeBbl"], 2)
+
+    return {"byRep": by_rep, "housePodsTotal": house_pods_total, "houseGoal": 70}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -338,6 +493,8 @@ def main():
         "tona": build_tona(),
         "path_to_victory": build_path_to_victory(),
         "sam_adams": build_sam_adams(),
+        "boston_beer": build_boston_beer(),
+        "new_belgium": build_new_belgium(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -352,6 +509,10 @@ def main():
           f"{sum(d['nineteenTwoAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 19.2oz activity")
     print(f"sam_adams: {sum(1 for d in data['sam_adams']['byRep'].values() if d['isPositive'])} reps positive YoY, "
           f"{sum(d['octoberfestGrowth'] for d in data['sam_adams']['byRep'].values() if d['octoberfestGrowth']>0):.0f} total positive Octoberfest case growth")
+    print(f"boston_beer: {sum(d['draftNewCount'] for d in data['boston_beer']['byRep'].values())} new draft PODs, "
+          f"{sum(d['draftRebuyCount'] for d in data['boston_beer']['byRep'].values())} draft rebuys, "
+          f"{sum(d['packageNewCount'] for d in data['boston_beer']['byRep'].values())} new package placements")
+    print(f"new_belgium: {data['new_belgium']['housePodsTotal']} / {data['new_belgium']['houseGoal']} house PODs (featured tier)")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

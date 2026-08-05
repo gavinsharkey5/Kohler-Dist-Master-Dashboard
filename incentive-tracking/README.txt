@@ -21,15 +21,14 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
-STATUS (2026-08-05): batch 1 of 3 built and live -- 1911 Rewards,
+STATUS (2026-08-05): 7 of 11 programs built and live -- 1911 Rewards,
 Woodchuck Cider Rewards, Tona Distribution & Volume, The Path to
-Victory (programs 1-3 and 8 below). Batch 2 arrived with 3 of its 4
-files usable: Sam Adams Octoberfest Fast Start is BUILT (program 5).
-Boston Beer August Draft Blitz and New Belgium Draft (programs 4 and 7)
-are HELD -- see their entries below for why; Gavin is sending updated
-files for both. Le Grand Noir (program 11) has no data yet, held until
-a file exists. Programs 6 and 9 (Lytt Launch, Fall Seasonal Fast Start)
-are the planned batch 3.
+Victory, Sam Adams Octoberfest Fast Start, Boston Beer August Draft
+Blitz, New Belgium Draft (programs 1, 2, 3, 4, 5, 7, 8 below -- Boston
+Beer and New Belgium closed out on updated files after being held from
+the first batch-2 drop). Le Grand Noir (program 11) has no data yet,
+held until a file exists. Programs 6 and 9 (Lytt Launch, Fall Seasonal
+Fast Start) are the planned batch 3.
 
 Batch-1 schema notes (apply to any future refreshed pull of these same
 4 files): 1911/Woodchuck/Tona share the same dual-period RDE shape as
@@ -87,20 +86,24 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    Tona accounts in the data are off-premise liquor stores) and no
    draft component, matching the deck.
 
-4. BOSTON BEER AUGUST DRAFT BLITZ [HELD]
+4. BOSTON BEER AUGUST DRAFT BLITZ [BUILT]
    - Draft (Angry Orchard 15.5 / Dogfish Head 15.5): $100/new POD,
      $50/rebuy
    - Package: $10/placement on all Single Serve Packages
    - Bonus: trip to the AO Cidery (one on-prem rep, one off-prem rep),
      scored by points -- draft placement = 2pts, package placement = 1pt
-   Batch-2 file (2026-08-05) contains ONLY draft/keg rows -- Angry
-   Orchard Crisp Apple 15.5 Gal Keg, Dogfish 60 Minute IPA 15.5 Gal
-   Keg, Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg, all
-   "Product Type: Keg Beer/Keg Cider" -- no single-serve package SKUs
-   at all, so the $10/placement Package component and the full
-   draft+package points leaderboard can't be built from it. Per
-   Gavin, 2026-08-05: "i will update the file to include single serve.
-   hold off on this one" -- held until that updated file arrives.
+   First batch-2 file (2026-08-05) had draft/keg rows only; Gavin sent
+   an updated file same day adding single-serve Case Beer/Case Cider
+   rows (Angry Orchard 19.2oz cans, Dogfish 60/90 Minute IPA and
+   Grateful Dead 19.2oz cans) -- Product Type ("Keg Beer"/"Keg Cider"
+   vs "Case Beer"/"Case Cider") cleanly separates draft from package,
+   no premise inference needed. Built: draft new-POD/rebuy counts +
+   lists ($100/$50), package new-placement count + list ($10), and a
+   points total per rep (draft placements x2, package placements x1).
+   Per Gavin, 2026-08-05: skipped the company-wide leaderboard for the
+   "one on-prem rep, one off-prem rep" trip bonus -- no rep-to-channel
+   mapping is available in this data to split it; each rep just sees
+   their own points total.
 
 5. SAM ADAMS OCTOBERFEST FAST START -- August [BUILT]
    - Double commission on all Sam Adams if positive
@@ -134,26 +137,36 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    Tracking: per-rep penetration %, tier reached, ranking for the
    bonus.
 
-7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [HELD]
+7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [BUILT]
    - Juicy Haze / Two Hearted Draft: $100 new 1/2bbl POD / $50 rebuy;
      $50 new 1/6bbl POD (must sell 2) / $25 rebuy
-   - Team bonus: $200/rep if 4 new lines
+   - Team bonus: $200/rep if 4 new lines [not built -- no line-count
+     signal beyond individual PODs in this file]
    - House goal: 70 PODs by Aug 31 (period May-Aug); was at 42 as of
      July 15
    - All other Voodoo & Fat Tire: $25/keg
-   Per Gavin, 2026-08-05: the raw data file will include the full
-   May-Aug history (confirmed: file has Units 5/1-7/31 and Units
-   8/1-8/31, no separate Buyer/Placement Count columns -- "new POD"
-   and volume both derive from Units), so the running POD count
-   toward the 70-POD house goal is computed directly from the file --
-   no manual baseline needed.
-   Batch-2 file (2026-08-05) only has 3 actual SKUs -- New Belgium
-   House Hazy IPA, House Golden Pilsner, Ha Chi Keg, all 15.5 Gal
-   kegs -- none literally named "Two Hearted", "Voodoo", or "Fat
-   Tire" from the deck, and no 1/6bbl sixtel packages. Asked whether
-   all 3 count toward the 70-POD goal; Gavin: "i will add these to
-   that file. please hold off for now" -- held until the updated file
-   arrives with the missing SKUs.
+   File has Units 5/1-7/31 and Units 8/1-8/31 only (no separate
+   Buyer/Placement Count columns) -- "new POD" and volume both derive
+   from Units. First batch-2 file only had 3 generic "New Belgium
+   Brewing Company" SKUs (Ha Chi Keg, House Golden Pilsner, House
+   Hazy IPA); Gavin sent an updated file adding the actually-named
+   SKUs -- Bell's Two Hearted (both keg sizes), New Belgium Voodoo
+   Juicy Haze (both sizes), New Belgium Voodoo Ranger IPA (both
+   sizes), New Belgium Fat Tire (both sizes). keg_bbl() extended for
+   the new "1/4 BBL Keg (7.75 Gal)" size seen on Two Hearted. Per
+   Gavin, 2026-08-05: only the named tiers count toward anything --
+   "Juicy Haze"/"Two Hearted" = featured tier ($100 half-bbl new POD/
+   $50 rebuy, $50 sixtel-or-quarter-bbl new POD/$25 rebuy), "Voodoo
+   Ranger"/"Fat Tire" = other-named tier ($25/keg flat, tracked as
+   count + bbl volume, no new-vs-rebuy split since the rate doesn't
+   depend on it). The 3 generic SKUs are matched to neither tier and
+   are silently excluded (Gavin: "I will remove those generic names
+   from the next rde file upload"). The 70-POD house goal is a
+   COMPANY-WIDE count of distinct featured-tier (customer, product)
+   pairs with ANY volume across the full May-Aug window (not an
+   August-only new-vs-base comparison, since the goal explicitly spans
+   "Period May-Aug") -- separate from the August-only new/rebuy $
+   classification used for the per-rep POD lists.
 
 8. THE PATH TO VICTORY (Victory Monkey Family) -- August [BUILT, partial]
    - Five For Fighting 6pk Can Distribution: $25 for any account
