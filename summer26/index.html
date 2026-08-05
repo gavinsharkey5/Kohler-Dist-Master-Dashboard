@@ -297,33 +297,31 @@
 .thc-search{margin:16px 0 0}
 .thc-search input{width:100%;font:inherit;font-size:14.5px;padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .thc-search input:focus{outline:none;border-color:var(--accent)}
-/* Four columns only (Rep / each supplier / Total) instead of one column
-   per metric -- each supplier's volume+tier+amplify stack INSIDE one
-   cell, so the whole table fits on an iPhone with no horizontal scroll
-   instead of spreading 9-10 columns sideways. overflow-x stays as a
-   safety net, not the expected way to read it. */
+/* Five columns (Rep + 2025/2026 per supplier) -- volume-only for now
+   (see thcRenderTable's comment for why tier/Amplify $ aren't shown),
+   which keeps this comfortably narrower than the page even on an
+   iPhone SE without needing table-layout tricks. Each supplier's pair
+   of year columns is headed by its logo (once provided -- see
+   THC_LOGOS) with the year underneath, instead of a repeated
+   "Supplier 2025"/"Supplier 2026" text label. */
 .thc-table-wrap{margin:14px 0 0;overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-.thc-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+.thc-table{width:100%;border-collapse:collapse;font-size:13px}
 .thc-table th{text-align:left;color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;
   padding:9px 8px;border-bottom:1px solid var(--line);background:var(--card2)}
-.thc-table td{padding:9px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.thc-table td{padding:10px 8px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
 .thc-table tr:last-child td{border-bottom:none}
-.thc-table th:first-child,.thc-table td:first-child{width:26%}
-.thc-table .num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+.thc-table .num{text-align:right;font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:14px}
 .thc-rep{font-weight:600;overflow-wrap:anywhere}
-.thc-hit{color:var(--good);font-weight:600}
-.thc-miss{color:var(--ink-soft)}
-.thc-sc-vol{font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-weight:700;font-size:14px}
-.thc-sc-ly{font-family:"Inter";font-weight:500;font-size:11px;color:var(--ink-soft)}
-.thc-sc-tier{font-size:11.5px;margin-top:2px}
-.thc-sc-amp{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
-.thc-sc-amp b{color:var(--accent)}
-.thc-total{font-family:"Space Grotesk";font-weight:700;font-size:15px}
+.thc-col-head{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.thc-col-logotxt{font-family:"Space Grotesk";font-weight:700;font-size:11.5px;letter-spacing:.02em;color:var(--ink);text-transform:none}
+.thc-col-logoimg{height:20px;width:auto;max-width:64px;object-fit:contain;display:block}
+.thc-col-yr{font-size:9.5px;font-weight:600;color:var(--ink-soft);letter-spacing:.04em}
 @media(max-width:560px){
-  .thc-table{font-size:11.5px}
-  .thc-table th,.thc-table td{padding:8px 5px}
-  .thc-table th:first-child,.thc-table td:first-child{width:22%}
-  .thc-sc-vol{font-size:12.5px}
+  .thc-table{font-size:12px}
+  .thc-table th,.thc-table td{padding:8px 6px}
+  .thc-table .num{font-size:13px}
+  .thc-col-logotxt{font-size:10.5px}
+  .thc-col-logoimg{height:16px}
 }
 </style>
 </head>
@@ -799,38 +797,51 @@ function thcRenderSups(){
     return `<div class="thc-sup"><h4>${cfg.label}</h4><div class="thc-tiers">${tiersHtml}</div><p class="thc-amp">Clear <b>Tier 1</b> to also earn <b>$${cfg.amplifyRate}/case</b> Amplify on every case sold over last summer.</p></div>`;
   }).join('');
 }
+// Volume-only KPIs (no tier/$ judgment) -- per Gavin, 2026-08-05, the
+// computed tier/payout/Amplify $ figures are hidden pending confirmation
+// (see thcRenderTable below), so these stats stick to plain case-equiv
+// sums by supplier/year instead of "reps qualifying" or dollar totals.
 function thcRenderStats(rows){
   const el = document.getElementById("thc-stats");
   const supKeys = Object.keys(THC_TIERS);
-  const tier1Count = rows.filter(r=>r.sups[supKeys[0]].tier===THC_TIERS[supKeys[0]].tiers[0]).length;
-  const anyTierCount = rows.filter(r=>!!r.sups[supKeys[1]].tier).length;
-  const totalPayout = rows.reduce((s,r)=>s+r.totalPayout,0);
-  const totalAmplify = rows.reduce((s,r)=>s+r.totalAmplify,0);
-  el.innerHTML = `
-    <div class="stat"><p class="k">Delta Tier 1</p><p class="v accent">${tier1Count}<small> / ${rows.length} reps</small></p></div>
-    <div class="stat"><p class="k">Crescent Canna — any tier</p><p class="v accent">${anyTierCount}<small> / ${rows.length} reps</small></p></div>
-    <div class="stat"><p class="k">Total Tier Payout</p><p class="v">${money(totalPayout)}</p></div>
-    <div class="stat"><p class="k">Total Amplify</p><p class="v">${money(totalAmplify)}</p></div>`;
+  const sum = (k,yr) => rows.reduce((s,r)=>s+(r.sups[k][yr]||0),0);
+  el.innerHTML = supKeys.map(k=>`
+    <div class="stat"><p class="k">${THC_TIERS[k].label} — 2025</p><p class="v">${sum(k,'c25').toLocaleString()}<small> CE</small></p></div>
+    <div class="stat"><p class="k">${THC_TIERS[k].label} — 2026</p><p class="v accent">${sum(k,'c26').toLocaleString()}<small> CE</small></p></div>`
+  ).join('');
 }
-// One cell per supplier stacks volume, tier, and Amplify $ instead of
-// spreading them across four separate columns -- keeps the table to
-// Rep/Delta/Crescent Canna/Total (4 columns total) so it fits an
-// iPhone's width without horizontal scrolling, without dropping any
-// of the same data a 9-column layout would have shown.
-function thcSupCell(s){
-  const vol = `<div class="thc-sc-vol">${s.c26||0}<span class="thc-sc-ly"> (${s.c25||0} LY)</span></div>`;
-  if(!s.tier) return vol + `<div class="thc-sc-tier thc-miss">Not yet</div>`;
-  const amp = s.amplify ? `<div class="thc-sc-amp">+<b>${money(s.amplify)}</b> Amplify</div>` : '';
-  return vol + `<div class="thc-sc-tier thc-hit">✓ ${s.tier.label} · ${money(s.payout)}</div>` + amp;
+// Fill in once Kohler sends the actual logo image files (PNG/SVG) --
+// same base64-data-URI pattern as the LOGOS map above (search for
+// "const LOGOS="). Until then, the header falls back to the supplier's
+// short name as plain text so the column header still reads clearly.
+const THC_LOGOS = {};
+function thcLogoChip(supKey){
+  const label = THC_TIERS[supKey].label;
+  return THC_LOGOS[supKey]
+    ? `<img class="thc-col-logoimg" src="${THC_LOGOS[supKey]}" alt="${label}">`
+    : `<span class="thc-col-logotxt">${label}</span>`;
 }
+// Tier/Amplify $ are computed in thcCompute() (row.sups[k].tier/.payout/
+// .amplify) but deliberately NOT rendered here -- per Gavin, 2026-08-05,
+// hold off showing any dollar figures or tier status until he's
+// confirmed the computed $ values are correct. Table is volume-only
+// (2025 vs 2026 case equivalents per supplier) until that's given the
+// go-ahead; re-adding the tier/Amplify display only means putting back
+// what's in git history for this file, the compute logic never left.
 function thcRenderTable(rows, filter){
   const supKeys = Object.keys(THC_TIERS);
   const f = (filter||"").toLowerCase();
   const shown = f ? rows.filter(r=>r.rep.toLowerCase().includes(f)) : rows;
-  const head = `<thead><tr><th>Rep</th>${supKeys.map(k=>`<th>${THC_TIERS[k].label}</th>`).join('')}<th class="num">Total</th></tr></thead>`;
+  const yearHeadCells = k => ['2025','2026'].map(yr=>
+    `<th class="num"><div class="thc-col-head">${thcLogoChip(k)}<span class="thc-col-yr">${yr}</span></div></th>`
+  ).join('');
+  const head = `<thead><tr><th>Rep</th>${supKeys.map(yearHeadCells).join('')}</tr></thead>`;
   const body = shown.map(r=>{
-    const cells = supKeys.map(k=>`<td>${thcSupCell(r.sups[k])}</td>`).join('');
-    return `<tr><td class="thc-rep">${esc(r.rep)}</td>${cells}<td class="num thc-total">${money(r.totalPayout+r.totalAmplify)}</td></tr>`;
+    const cells = supKeys.map(k=>{
+      const s = r.sups[k];
+      return `<td class="num">${s.c25||'—'}</td><td class="num">${s.c26||'—'}</td>`;
+    }).join('');
+    return `<tr><td class="thc-rep">${esc(r.rep)}</td>${cells}</tr>`;
   }).join('');
   document.getElementById("thc-table").innerHTML = head + `<tbody>${body}</tbody>`;
 }
@@ -844,7 +855,7 @@ async function bootTHC(){
     thcRenderSups();
     thcRenderStats(rows);
     thcRenderTable(rows, "");
-    document.getElementById("thc-foot").innerHTML = "<b>Tier</b> payouts are flat case-volume thresholds — the same 50/20/10-case minimums for every rep, not personalized by book size like the Summer of Success tab's Qualifier goals. <b>Amplify</b> only unlocks once Tier 1 is cleared, then pays every case sold over last year at the rate shown above.";
+    document.getElementById("thc-foot").innerHTML = "Table shows raw case-equivalent volume only for now. Tier/Amplify $ status per rep is computed but hidden pending sign-off on the numbers -- see the Tier cards above for the flat 50/20/10-case thresholds and dollar amounts.";
     document.getElementById("thc-search").addEventListener("input", e=>thcRenderTable(rows, e.target.value));
     try{
       const rm = await fetch("data/thc_sync_meta.json"+cb,{cache:"no-store"});
