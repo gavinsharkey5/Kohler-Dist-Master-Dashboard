@@ -150,11 +150,23 @@ Files:
     molson_coors_off_peroni_banquet.csv
                                        RDE "Molson Coors OFF (4) New
                                         Peroni Placements (4) New Banquet
-                                        Placements 90 Day Non Buy" export
-                                        -- Brand Family is "Peroni" or
-                                        "Coors" (Coors = the Banquet
-                                        objective's raw brand label in
-                                        RDE).
+                                        Placements 90 Day Non Buy" export.
+                                        As of 2026-08-05, per Kohler's
+                                        manager, this dropped its Brand
+                                        Family column for one row per
+                                        PRODUCT (Product Num/Product
+                                        Name) -- new-placement
+                                        classification is now keyed on
+                                        Product Num, NOT brand, so a
+                                        second, different Peroni SKU at
+                                        an account that already carries
+                                        one Peroni SKU still counts as a
+                                        new placement. derive_brand_family()
+                                        recovers the Peroni/Banquet
+                                        grouping from the product name
+                                        for display and Target Accounts
+                                        only -- see generate_2026-08.py's
+                                        docstring.
     wine_spirits_legrand_leyenda_greenriver.csv
                                        RDE "5 New Placements -- (2) Le
                                         Grand Wines (2) Leyenda (1) Green
