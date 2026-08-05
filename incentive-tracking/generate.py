@@ -486,6 +486,141 @@ def build_new_belgium():
     return {"byRep": by_rep, "housePodsTotal": house_pods_total, "houseGoal": 70}
 
 
+LYTT_TIERS = [(0.75, 2.00, "Lytt-Faced"), (0.50, 1.00, "Lytty City"), (0.25, 0.50, "Gettin' Lytt")]
+
+
+def build_lytt_launch():
+    """Lytt Launch penetration tracking. Per Gavin, 2026-08-1x: the
+    Core Off-Prem customer base file is the eligible-account universe --
+    confirmed empirically (54 of 55 Lytt-buying accounts across the
+    roster are in the off-prem base, only 1 in on-prem), so penetration
+    = distinct off-prem accounts buying Lytt / rep's total off-prem
+    account count."""
+    rows = read_rows("lytt_launch.csv")
+    fieldnames = rows[0].keys() if rows else []
+    cases_col = find_single_col(fieldnames, "Cases")
+
+    base_rows = read_rows("customer_base_off_prem.csv")
+    eligible_by_rep = {}
+    for row in base_rows:
+        eligible_by_rep.setdefault(row["Sales Rep Assigned"], set()).add(row["Customer Num"])
+
+    by_rep = {rep: {
+        "buyingAccounts": [], "buyingAccountCount": 0,
+        "eligibleAccountCount": len(eligible_by_rep.get(rep, set())),
+        "caseVolume": 0.0,
+        "penetrationPct": 0.0, "tier": None, "rate": 0.0,
+    } for rep in ROSTER}
+
+    seen = {}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["caseVolume"] += to_num(row[cases_col])
+        cust_key = (rep, row["Customer Num"])
+        if cust_key not in seen:
+            seen[cust_key] = True
+            by_rep[rep]["buyingAccounts"].append({
+                "customer": row["Customer Name"], "date": row["Date"],
+            })
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["buyingAccountCount"] = len(d["buyingAccounts"])
+        d["caseVolume"] = round(d["caseVolume"], 2)
+        d["penetrationPct"] = round(100.0 * d["buyingAccountCount"] / d["eligibleAccountCount"], 1) if d["eligibleAccountCount"] else 0.0
+        for threshold, rate, label in LYTT_TIERS:
+            if d["penetrationPct"] / 100.0 >= threshold:
+                d["tier"] = label
+                d["rate"] = rate
+                break
+        leaderboard.append({"rep": rep, "penetrationPct": d["penetrationPct"]})
+
+    leaderboard.sort(key=lambda x: -x["penetrationPct"])
+    for i, entry in enumerate(leaderboard):
+        entry["rank"] = i + 1
+
+    return {"byRep": by_rep, "leaderboard": leaderboard}
+
+
+FALL_KEG_TIERS = {1.0 / 6.0: ("sixtel", 5.0), 0.5: ("half-keg", 10.0)}
+
+
+def build_fall_seasonal_bucket(filename, has_units):
+    """Shared logic for both Fall Seasonal files -- single-period (Aug
+    2026 only), no new-vs-rebuy split. Package rows (Product Type
+    starting 'Case') earn $0.50/CE flat; keg rows (Product Type 'Keg
+    Beer', packages_and_draft only) are bucketed by size into sixtel
+    ($5) / half-keg ($10) per the deck, or an 'other' bucket for sizes
+    the deck doesn't name (7.75 Gal quarter-barrel, 13.2 Gal/50L
+    European keg -- both appear in this data) -- tracked as volume only,
+    no assumed $ rate."""
+    rows = read_rows(filename)
+    fieldnames = rows[0].keys() if rows else []
+    ce_col = find_single_col(fieldnames, "Case Equivalents")
+    units_col = find_single_col(fieldnames, "Units") if has_units else None
+
+    by_rep = {rep: {
+        "packagePlacements": [], "packagePlacementCount": 0, "packageCaseEquivalents": 0.0,
+        "sixtelCount": 0, "sixtelVolumeBbl": 0.0,
+        "halfKegCount": 0, "halfKegVolumeBbl": 0.0,
+        "otherKegCount": 0, "otherKegVolumeBbl": 0.0,
+    } for rep in ROSTER}
+
+    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
+    by_key = {}
+    for row in rows:
+        key = tuple(row[k] for k in key_fields)
+        by_key.setdefault(key, []).append(row)
+
+    for key, krows in by_key.items():
+        rep = key[0]
+        if rep not in by_rep:
+            continue
+        sample = krows[0]
+        is_keg = has_units and sample["Product Type"].startswith("Keg")
+        if is_keg:
+            bbl_each = keg_bbl(sample["Package"]) or 0.0
+            unit_count = sum(to_num(r[units_col]) for r in krows)
+            bucket = FALL_KEG_TIERS.get(round(bbl_each, 4))
+            if bucket and bucket[0] == "sixtel":
+                by_rep[rep]["sixtelCount"] += 1
+                by_rep[rep]["sixtelVolumeBbl"] += bbl_each * unit_count
+            elif bucket and bucket[0] == "half-keg":
+                by_rep[rep]["halfKegCount"] += 1
+                by_rep[rep]["halfKegVolumeBbl"] += bbl_each * unit_count
+            else:
+                by_rep[rep]["otherKegCount"] += 1
+                by_rep[rep]["otherKegVolumeBbl"] += bbl_each * unit_count
+        else:
+            ce_total = sum(to_num(r[ce_col]) for r in krows)
+            by_rep[rep]["packageCaseEquivalents"] += ce_total
+            by_rep[rep]["packagePlacements"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "date": latest_date(krows, ce_col),
+                "caseEquivalents": round(ce_total, 2),
+            })
+            by_rep[rep]["packagePlacementCount"] += 1
+
+    for rep, d in by_rep.items():
+        d["packageCaseEquivalents"] = round(d["packageCaseEquivalents"], 2)
+        d["sixtelVolumeBbl"] = round(d["sixtelVolumeBbl"], 2)
+        d["halfKegVolumeBbl"] = round(d["halfKegVolumeBbl"], 2)
+        d["otherKegVolumeBbl"] = round(d["otherKegVolumeBbl"], 2)
+        d["packagePlacements"].sort(key=lambda e: e["date"] or "", reverse=True)
+
+    return {"byRep": by_rep}
+
+
+def build_fall_seasonal():
+    return {
+        "package_only": build_fall_seasonal_bucket("fall_seasonal_packages_only.csv", has_units=False),
+        "packages_and_draft": build_fall_seasonal_bucket("fall_seasonal_packages_and_draft.csv", has_units=True),
+    }
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -495,6 +630,8 @@ def main():
         "sam_adams": build_sam_adams(),
         "boston_beer": build_boston_beer(),
         "new_belgium": build_new_belgium(),
+        "lytt": build_lytt_launch(),
+        "fall_seasonal": build_fall_seasonal(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -513,6 +650,15 @@ def main():
           f"{sum(d['draftRebuyCount'] for d in data['boston_beer']['byRep'].values())} draft rebuys, "
           f"{sum(d['packageNewCount'] for d in data['boston_beer']['byRep'].values())} new package placements")
     print(f"new_belgium: {data['new_belgium']['housePodsTotal']} / {data['new_belgium']['houseGoal']} house PODs (featured tier)")
+    top_lytt = max(data['lytt']['byRep'].values(), key=lambda d: d['penetrationPct'])
+    print(f"lytt: top penetration {top_lytt['penetrationPct']}%, "
+          f"{sum(1 for d in data['lytt']['byRep'].values() if d['tier'])} reps in a tier")
+    po = data['fall_seasonal']['package_only']['byRep']
+    pd_ = data['fall_seasonal']['packages_and_draft']['byRep']
+    print(f"fall_seasonal package_only: {sum(d['packageCaseEquivalents'] for d in po.values()):.1f} total CE")
+    print(f"fall_seasonal packages_and_draft: {sum(d['packageCaseEquivalents'] for d in pd_.values()):.1f} total CE, "
+          f"{sum(d['sixtelCount'] for d in pd_.values())} sixtels, {sum(d['halfKegCount'] for d in pd_.values())} half-kegs, "
+          f"{sum(d['otherKegCount'] for d in pd_.values())} other-size kegs")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

@@ -21,14 +21,9 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
-STATUS (2026-08-05): 7 of 11 programs built and live -- 1911 Rewards,
-Woodchuck Cider Rewards, Tona Distribution & Volume, The Path to
-Victory, Sam Adams Octoberfest Fast Start, Boston Beer August Draft
-Blitz, New Belgium Draft (programs 1, 2, 3, 4, 5, 7, 8 below -- Boston
-Beer and New Belgium closed out on updated files after being held from
-the first batch-2 drop). Le Grand Noir (program 11) has no data yet,
-held until a file exists. Programs 6 and 9 (Lytt Launch, Fall Seasonal
-Fast Start) are the planned batch 3.
+STATUS (2026-08-05): 9 of 11 programs built and live -- everything
+except Le Grand Noir (program 11, no data yet -- held until a file
+exists). All three planned batches delivered.
 
 Batch-1 schema notes (apply to any future refreshed pull of these same
 4 files): 1911/Woodchuck/Tona share the same dual-period RDE shape as
@@ -123,19 +118,32 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    reps until later in the month -- flagged in the card copy so it
    doesn't read as reps being behind.
 
-6. LYTT LAUNCH -- Aug/Sept
+6. LYTT LAUNCH -- Aug/Sept [BUILT]
    - Tier 1 "Gettin' Lytt": 25% account penetration -> $0.50/case
    - Tier 2 "Lytty City": 50% penetration -> $1.00/case
    - Tier 3 "Lytt-Faced": 75% penetration -> $2.00/case
    - Once a tier is hit, that payout rate continues through Dec 31
    - Bonus: highest penetration after Aug 1 wins 2 tickets to a
      Giants or Jets home game
-   OPEN QUESTION: penetration = accounts carrying Lytt / total eligible
-   account universe. Need the denominator (a target/eligible-account
-   list per rep, similar to on-prem's Target Accounts) -- will ask
-   when this file arrives if it isn't self-evident from the data.
-   Tracking: per-rep penetration %, tier reached, ranking for the
-   bonus.
+   The Lytt RDE file only lists accounts that already bought Lytt --
+   no eligible-account universe, so the denominator had to come from
+   elsewhere. Gavin provided two "Sales Reps' Customer Base" files
+   (Core Off-Prem, Core On-Prem, same shape as on-prem's customer-base
+   source: Sales Rep Assigned, Customer Num, Distribution Area, County,
+   Premise). Cross-checked empirically: 54 of the 55 Lytt-buying
+   accounts across the roster are in the Off-Prem file (only 1 in
+   On-Prem), so Off-Prem is the eligible-account universe. Built:
+   per-rep penetration % = distinct off-prem accounts buying Lytt /
+   rep's total off-prem account count, tier reached + rate, buying
+   -account list, case volume, and a penetration leaderboard for the
+   tickets bonus.
+
+   Note: the on-prem/off-prem customer base files this program's
+   penetration math depends on live in incentive-tracking/data/ as
+   customer_base_off_prem.csv / customer_base_on_prem.csv -- re-pull
+   these periodically since the eligible-account universe (and
+   therefore every rep's penetration %) shifts as the customer base
+   changes, independent of new Lytt RDE pulls.
 
 7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [BUILT]
    - Juicy Haze / Two Hearted Draft: $100 new 1/2bbl POD / $50 rebuy;
@@ -186,16 +194,47 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    this file (Product Type "Keg Beer") are out of scope -- the deck's
    Path to Victory rewards only cover the two can formats.
 
-9. FALL SEASONAL FAST START
+9. FALL SEASONAL FAST START [BUILT]
    - $0.50/CE on all qualifying packages
    - $5.00 per sixtel
    - $10.00 per half-keg
    - $5.00 per case on qualifying Spirits
    - Objective: be first to market with all Fall Seasonal products
-   Scope: the qualifying SKU list is the Oktoberfest & Pumpkin list
-   below (slide 11) -- Draft & Package / Spirits / Package Only.
-   Tracking: new-placement counts against the SKU list, by package
-   type (case/CE, sixtel, half-keg, spirits case).
+   Two RDE files cover this program -- "Packages Only" and "Packages
+   and Draft" -- matching the deck's two-column SKU split (see slide
+   11 screenshot, Gavin 2026-08-05): "Package Only" (1911 Cider Donut/
+   Haunted Hayride, Athletic Dark & Gourdy/Oktoberfest, Flying Dog The
+   Fear, Great Lakes Biergarten, Leinenkugel, Long Trail Harvest, New
+   Belgium Atomic Pumpkin, Sam Adams Jack-O Pumpkin, Saranac x2, Shiner
+   Oktoberfest, Shipyard Smashed Pumpkin, Sierra Nevada West Ghost,
+   Southern Tier Nitro Warlock/Pumqueen, Woodchuck Spiced Apple, Whole
+   Hog Pumpkin Ale) vs. "Draft & Package" (Cape May x2, Doc's Pumpkin
+   Cider, Dogfish Head Punkin, Evil Genius, Flying Fish Oktoberfish,
+   Great Lakes Oktoberfest, Hofbrau Oktoberfest, Montauk Pumpkin,
+   Paulaner x2, Shipyard Pumpkinhead, Sierra Nevada Oktoberfest,
+   Sixpoint, Southern Tier Harvest/Pumking/Maple Warlock, Victory
+   Festbier, Whole Hog Pumpkin Ale, Weihenstephan, Yuengling
+   Oktoberfest). "Whole Hog Pumpkin Ale" legitimately appears in both
+   lists per the deck (package form in one tier, draft form in the
+   other), which explains why early pulls of the two files had
+   overlapping rows for that product -- resolved once Gavin confirmed
+   (2026-08-05) to keep the two files/tiers fully separate rather than
+   merge/dedupe, matching the screenshot.
+   Both files are single-period (August 2026 only, no 90-day-non-buy
+   base period), so there's no new-vs-rebuy split -- every row is just
+   this month's activity against the $0.50/CE (package) rate, or for
+   "Packages and Draft" only, keg rows classified by size into sixtel
+   ($5, 1/6bbl e.g. Dogfish Head Punkin Ale) or half-keg ($10, 1/2bbl
+   e.g. Southern Tier Maple Warlock/Pumking). Two keg sizes present in
+   the data aren't named in the deck's two draft tiers -- 1/4bbl/7.75
+   Gal (Point Whole Hog Pumpkin Ale) and 50L/13.2 Gal (Hofbrau/Paulaner
+   Oktoberfest Bier, a European keg format) -- tracked as an "other keg
+   sizes" bucket (count + bbl volume) with no assumed $ rate rather
+   than guessing which named tier they'd fall into. No Spirits
+   (Southern Tier Pumking Whiskey) rows in either file yet, so that
+   line item isn't built -- add it if/when spirits activity appears.
+   Team bonus ("first to market") isn't built -- no ranking signal for
+   it beyond the per-rep CE/keg counts already shown.
 
 10. OKTOBERFEST & PUMPKIN SKU LIST (slide 11, appendix to #9)
     Not a standalone incentive -- this is the qualifying product list
