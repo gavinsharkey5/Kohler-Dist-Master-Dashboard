@@ -23,8 +23,13 @@ Files:
 
 STATUS (2026-08-05): batch 1 of 3 built and live -- 1911 Rewards,
 Woodchuck Cider Rewards, Tona Distribution & Volume, The Path to
-Victory (programs 1-3 and 8 below). Programs 4-7, 9, 11 still need
-their raw data files (batches 2 and 3, per Gavin's 4/4/3 cadence).
+Victory (programs 1-3 and 8 below). Batch 2 arrived with 3 of its 4
+files usable: Sam Adams Octoberfest Fast Start is BUILT (program 5).
+Boston Beer August Draft Blitz and New Belgium Draft (programs 4 and 7)
+are HELD -- see their entries below for why; Gavin is sending updated
+files for both. Le Grand Noir (program 11) has no data yet, held until
+a file exists. Programs 6 and 9 (Lytt Launch, Fall Seasonal Fast Start)
+are the planned batch 3.
 
 Batch-1 schema notes (apply to any future refreshed pull of these same
 4 files): 1911/Woodchuck/Tona share the same dual-period RDE shape as
@@ -82,30 +87,38 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    Tona accounts in the data are off-premise liquor stores) and no
    draft component, matching the deck.
 
-4. BOSTON BEER AUGUST DRAFT BLITZ
+4. BOSTON BEER AUGUST DRAFT BLITZ [HELD]
    - Draft (Angry Orchard 15.5 / Dogfish Head 15.5): $100/new POD,
      $50/rebuy
    - Package: $10/placement on all Single Serve Packages
    - Bonus: trip to the AO Cidery (one on-prem rep, one off-prem rep),
      scored by points -- draft placement = 2pts, package placement = 1pt
-   OPEN QUESTION: "all Single Serve Packages" -- assuming this means
-   Boston Beer portfolio single-serve SKUs (Angry Orchard / Dogfish
-   Head), not literally every brand in the warehouse. Will confirm
-   against the actual file's SKU list when it arrives.
-   Tracking: new POD / rebuy counts by brand, package placement count,
-   points leaderboard for the trip bonus.
+   Batch-2 file (2026-08-05) contains ONLY draft/keg rows -- Angry
+   Orchard Crisp Apple 15.5 Gal Keg, Dogfish 60 Minute IPA 15.5 Gal
+   Keg, Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg, all
+   "Product Type: Keg Beer/Keg Cider" -- no single-serve package SKUs
+   at all, so the $10/placement Package component and the full
+   draft+package points leaderboard can't be built from it. Per
+   Gavin, 2026-08-05: "i will update the file to include single serve.
+   hold off on this one" -- held until that updated file arrives.
 
-5. SAM ADAMS OCTOBERFEST FAST START -- August
+5. SAM ADAMS OCTOBERFEST FAST START -- August [BUILT]
    - Double commission on all Sam Adams if positive
    - $1.00 per case on Octoberfest over last year (Aug 2025 vs Aug 2026)
    Per Gavin, 2026-08-05: skip the dollar math on the "double
    commission" piece entirely -- no standard per-case commission rate
    is available to calculate from. Track it as a status flag only
    (rep's Sam Adams volume positive vs. negative year-over-year).
-   The $1/case Octoberfest year-over-year growth piece IS trackable
-   from volume data (this-Aug cases minus last-Aug cases) and will
-   show as a progress/case-count figure, not a $ figure, per the
-   "progress only" scope decision above.
+   Built: this file compares the SAME August window year-over-year
+   (Units 8/1-8/31/2025 vs 8/1-8/31/2026, not a 90-day-non-buy base
+   period like the other programs) across the full Sam Adams
+   portfolio (48 SKUs). Per-rep total volume this-year vs last-year
+   drives the positive/negative flag; Octoberfest-named SKUs only
+   drive the case-growth figure for the $1/case piece. Note: since
+   data was pulled 5 days into August, this-year totals are compared
+   against ALL of last August and will read low/negative for most
+   reps until later in the month -- flagged in the card copy so it
+   doesn't read as reps being behind.
 
 6. LYTT LAUNCH -- Aug/Sept
    - Tier 1 "Gettin' Lytt": 25% account penetration -> $0.50/case
@@ -121,7 +134,7 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    Tracking: per-rep penetration %, tier reached, ranking for the
    bonus.
 
-7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August
+7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [HELD]
    - Juicy Haze / Two Hearted Draft: $100 new 1/2bbl POD / $50 rebuy;
      $50 new 1/6bbl POD (must sell 2) / $25 rebuy
    - Team bonus: $200/rep if 4 new lines
@@ -129,12 +142,18 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
      July 15
    - All other Voodoo & Fat Tire: $25/keg
    Per Gavin, 2026-08-05: the raw data file will include the full
-   May-Aug history, so the running POD count toward the 70-POD house
-   goal is computed directly from the file -- no manual baseline
-   needed.
-   Tracking: new POD / rebuy counts by keg size, running May-Aug POD
-   total vs. the 70-POD house goal, 4-new-lines team bonus flag per
-   rep, other-brand keg volume.
+   May-Aug history (confirmed: file has Units 5/1-7/31 and Units
+   8/1-8/31, no separate Buyer/Placement Count columns -- "new POD"
+   and volume both derive from Units), so the running POD count
+   toward the 70-POD house goal is computed directly from the file --
+   no manual baseline needed.
+   Batch-2 file (2026-08-05) only has 3 actual SKUs -- New Belgium
+   House Hazy IPA, House Golden Pilsner, Ha Chi Keg, all 15.5 Gal
+   kegs -- none literally named "Two Hearted", "Voodoo", or "Fat
+   Tire" from the deck, and no 1/6bbl sixtel packages. Asked whether
+   all 3 count toward the 70-POD goal; Gavin: "i will add these to
+   that file. please hold off for now" -- held until the updated file
+   arrives with the missing SKUs.
 
 8. THE PATH TO VICTORY (Victory Monkey Family) -- August [BUILT, partial]
    - Five For Fighting 6pk Can Distribution: $25 for any account
@@ -189,15 +208,16 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
         IPA, Southern Tier Nitro Warlock, Southern Tier Pumqueen
         Cider, Woodchuck Spiced Apple, Whole Hog Pumpkin Ale
 
-11. LE GRAND NOIR VOLUME INCENTIVE -- Aug, Sept, Oct
+11. LE GRAND NOIR VOLUME INCENTIVE -- Aug, Sept, Oct [HELD -- no data yet]
     - Qualifier: 70 cases House Goal
     - Payout: $10 per case of Le Grand Noir
     Per Gavin, 2026-08-05: the 70-case goal is a COMPANY-WIDE gate,
-    not a per-rep goal. OPEN QUESTION (resolve when the file arrives):
-    once the house hits 70 total cases, does the $10/case rate apply
-    retroactively to every case sold this period, or only to cases
-    sold after the threshold is crossed? Will ask when building this
-    program's module -- flagging here so it isn't missed.
+    not a per-rep goal. Per Gavin, 2026-08-1x (batch 2): "there is no
+    data for le grand noir volume so we will hold off on that until
+    there is data in the rde file" -- not part of batch 2, no file
+    exists yet. Still open once a file arrives: does the $10/case rate
+    apply retroactively to every case sold this period once the house
+    hits 70, or only to cases sold after the threshold is crossed?
     Tracking: running company-wide case total vs. the 70-case gate,
     per-rep case volume once trackable/payable.
 

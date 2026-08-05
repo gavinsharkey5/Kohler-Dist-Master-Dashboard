@@ -293,12 +293,51 @@ def build_path_to_victory():
     return {"byRep": by_rep}
 
 
+def build_sam_adams():
+    """Sam Adams Octoberfest Fast Start. Unlike the other programs, this
+    file compares the SAME August window year-over-year (8/1-8/31 2025
+    vs 8/1-8/31 2026), not a 90-day-non-buy base period -- find_period_cols
+    still works since it just sorts the two dated columns chronologically.
+    Per Gavin, 2026-08-05: the "double commission if positive" piece has
+    no available per-case commission rate to calculate from, so it's
+    tracked as a positive/negative flag only, not a dollar figure."""
+    rows = read_rows("sam_adams_octoberfest.csv")
+    fieldnames = rows[0].keys() if rows else []
+    units_last_col, units_this_col = find_period_cols(fieldnames, "Units")
+
+    by_rep = {rep: {
+        "allSkuUnitsLastYear": 0.0, "allSkuUnitsThisYear": 0.0, "isPositive": False,
+        "octoberfestUnitsLastYear": 0.0, "octoberfestUnitsThisYear": 0.0, "octoberfestGrowth": 0.0,
+    } for rep in ROSTER}
+
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        last = to_num(row[units_last_col])
+        cur = to_num(row[units_this_col])
+        by_rep[rep]["allSkuUnitsLastYear"] += last
+        by_rep[rep]["allSkuUnitsThisYear"] += cur
+        if "Octoberfest" in row["Product Name"]:
+            by_rep[rep]["octoberfestUnitsLastYear"] += last
+            by_rep[rep]["octoberfestUnitsThisYear"] += cur
+
+    for rep, d in by_rep.items():
+        d["isPositive"] = d["allSkuUnitsThisYear"] > d["allSkuUnitsLastYear"]
+        d["octoberfestGrowth"] = round(d["octoberfestUnitsThisYear"] - d["octoberfestUnitsLastYear"], 2)
+        for k in ("allSkuUnitsLastYear", "allSkuUnitsThisYear", "octoberfestUnitsLastYear", "octoberfestUnitsThisYear"):
+            d[k] = round(d[k], 2)
+
+    return {"byRep": by_rep}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
         "woodchuck": build_1911_or_woodchuck("woodchuck_rewards.csv", bbl_threshold=3.0),
         "tona": build_tona(),
         "path_to_victory": build_path_to_victory(),
+        "sam_adams": build_sam_adams(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -311,6 +350,8 @@ def main():
     print(f"tona: {sum(d['new24ozCount'] for d in data['tona']['byRep'].values())} total new 24oz placements")
     print(f"path_to_victory: {sum(d['sixPackAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 6pk activity, "
           f"{sum(d['nineteenTwoAccountCount'] for d in data['path_to_victory']['byRep'].values())} accounts w/ 19.2oz activity")
+    print(f"sam_adams: {sum(1 for d in data['sam_adams']['byRep'].values() if d['isPositive'])} reps positive YoY, "
+          f"{sum(d['octoberfestGrowth'] for d in data['sam_adams']['byRep'].values() if d['octoberfestGrowth']>0):.0f} total positive Octoberfest case growth")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
