@@ -1,39 +1,43 @@
 # Kohler Dist Master Dashboard
 
-Static dashboards (GitHub Pages, deployed from `main` by
-`.github/workflows/pages-deploy.yml` on every push) tracking rep
-performance against various Kohler Distributing incentive programs.
-Each dashboard folder (`summer26/`, `MPOs/off-prem/`, `MPOs/on-prem/`,
-etc.) has its own README.txt with that dashboard's specific refresh
-steps (which CSVs to overwrite, which `generate*.py` to run) -- read
-that first.
+Static dashboards (GitHub Pages) tracking rep performance against
+various Kohler Distributing incentive programs. Each dashboard folder
+(`summer26/`, `MPOs/off-prem/`, `MPOs/on-prem/`, etc.) has its own
+README.txt with that dashboard's specific refresh steps (which CSVs to
+overwrite, which `generate*.py` to run) -- read that first.
 
-## After every manual data refresh, verify the deploy actually went out
+## Pages deploy: back on "Deploy from a branch" (2026-08-06)
 
-Pushing to `main` is not the end of the job -- GitHub Pages deploys on
-this repo have intermittently gotten stuck in `deployment_in_progress`
-for ~10 minutes and then failed with `Timeout reached, aborting!`
-(seen repeatedly 2026-08-06). When that happens the live site keeps
-serving whatever the last *successful* deploy was, silently ignoring
-every commit pushed since -- including `sync_meta.json` timestamp
-bumps, so the "Data refreshed" pill on the page can be stale even
-though the underlying JSON on `main` is current.
+This repo briefly had an explicit `.github/workflows/pages-deploy.yml`
+(added 13:49 UTC, removed later the same day) that deployed via
+`actions/deploy-pages`. It was added because the built-in "Deploy from
+a branch" pipeline had been repeatedly hanging in `deployment_in_progress`
+for ~10 minutes and failing with `Timeout reached, aborting!` after a
+deploy got cancelled mid-flight by a rapid follow-up push. The Actions
+workflow didn't reliably fix it either -- deploys kept hanging/timing
+out (sometimes succeeding after ~9 minutes, sometimes not at all), and
+switching to it required a manual repo Settings -> Pages -> Source
+toggle that a Claude session has no way to verify or set (GitHub API
+access to `/repos/.../pages` returns 403 through this environment's
+proxy). So the user reverted: the workflow file is deleted and Pages
+Settings -> Source should be back on "Deploy from a branch."
 
-So after pushing a data refresh (or a manual sync_meta.json bump):
-  1. Check the latest "Deploy static site to Pages" run for that
-     commit (GitHub Actions -- gh_actions tools, or the Actions tab).
-  2. If it succeeded, done.
-  3. If it failed or is still stuck several minutes in, push an empty
-     commit (`git commit --allow-empty -m "Retrigger Pages deploy"`)
-     to fire the workflow again via its `push` trigger -- this has
-     been the reliable fix. The GitHub App token available in this
-     environment does NOT have `actions:write`, so re-running the
-     failed run via the Actions API (`rerun_workflow_run`/
-     `run_workflow`) returns 403 -- don't bother trying that, go
-     straight to the empty-commit retrigger.
-  4. Re-check the new run; repeat step 3 if it fails again.
+That means: pushing to `main` is GitHub's job to publish, same as
+before this whole episode -- no workflow run to check, nothing to
+retrigger from this environment. If the site doesn't reflect a push
+after a few minutes, that's the legacy pipeline's own
+`deployment_in_progress` stall, and there is no tool available in this
+environment to inspect or clear it (no repo Settings/Environments API
+access). Tell the user -- they can check repo Settings -> Environments
+-> github-pages (or the Pages deployment history) in the browser for a
+stuck deployment to cancel, or just wait, since these locks have
+self-cleared before. Don't re-add a `pages-deploy.yml` workflow to
+"fix" this without the user explicitly asking for it again -- it was
+tried and explicitly undone.
 
-Only after a run actually succeeds is the "Data refreshed" pill (which
-reads `data/.../sync_meta.json`'s `synced_at`, not any HTTP header --
-see each dashboard's index.html) guaranteed to reflect the latest
-push.
+The "Data refreshed" pill on each dashboard (reads
+`data/.../sync_meta.json`'s `synced_at`, not any HTTP header -- see
+each dashboard's index.html) reflects whatever `main` last had
+*published*, which now depends entirely on the legacy pipeline
+actually completing -- there's no run status to confirm that from here
+anymore, only what the live site shows.
