@@ -1387,12 +1387,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 231316,
-    "CUSTOMER_NAME": "Patricks Wine Barn",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230431,
     "CUSTOMER_NAME": "Seplow's Liquors",
     "AREA": "Sussex"
@@ -2071,12 +2065,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77016,
-    "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31004,
     "CUSTOMER_NAME": "Metro Liquors (East Rutherford)",
     "AREA": "Bergen"
@@ -2119,12 +2107,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36007,
-    "CUSTOMER_NAME": "Shop Rite Of Wallington",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36038,
     "CUSTOMER_NAME": "Tatra Haus Restaurant",
     "AREA": "Bergen"
@@ -2157,12 +2139,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "AREA": "Bergen"
   },
   {
@@ -2728,12 +2704,6 @@
     "CUSTOMER_NUM": 20106,
     "CUSTOMER_NAME": "Super Wine Warehse(P)Pate",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",

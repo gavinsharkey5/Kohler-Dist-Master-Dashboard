@@ -7030,15 +7030,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 25034,
-    "CUSTOMER_NAME": "Figlar's (P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38007,
     "CUSTOMER_NAME": "Garden Liquors (P)",
     "AREA": "Bergen",
@@ -7309,15 +7300,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 25034,
-    "CUSTOMER_NAME": "Figlar's (P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38001,
     "CUSTOMER_NAME": "JR Sports Bar & Liquors(Z)",
     "AREA": "Bergen",
@@ -7365,15 +7347,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 39003,
     "CUSTOMER_NAME": "Pompei's Little Market",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 50020,
-    "CUSTOMER_NAME": "Wineland",
     "AREA": "Bergen",
     "PRODUCT_NUM": "112",
     "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
@@ -12529,15 +12502,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 48006,
-    "CUSTOMER_NAME": "Andres Wine & Spirits",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "118",
-    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46024,
     "CUSTOMER_NAME": "Anthony's Pharmacy",
     "AREA": "Bergen",
@@ -13728,15 +13692,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49044,
     "CUSTOMER_NAME": "Linwood Wine-Hudson Light",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44016,
-    "CUSTOMER_NAME": "Liquor City(A)Cliffside",
     "AREA": "Bergen",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -48664,15 +48619,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77007,
     "CUSTOMER_NAME": "Wine Land",
     "AREA": "Bergen",
@@ -53113,15 +53059,6 @@
     "CUSTOMER_NUM": 83003,
     "CUSTOMER_NAME": "Beekman's Wines and Liquors",
     "AREA": "Bergen",
-    "PRODUCT_NUM": "101",
-    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 12011,
-    "CUSTOMER_NAME": "Bottle King (A) Wayne",
-    "AREA": "Passaic",
     "PRODUCT_NUM": "101",
     "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
     "BRAND_FAMILY": "Coors"
