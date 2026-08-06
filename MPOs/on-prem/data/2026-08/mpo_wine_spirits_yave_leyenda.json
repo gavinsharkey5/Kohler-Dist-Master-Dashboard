@@ -1,12 +1,12 @@
 [
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200385",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
-    "DATE": "2026-08-05",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200217",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 15006,
+    "CUSTOMER_NAME": "Great Notch Inn(Z)",
+    "DATE": "2026-08-07",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
   },
@@ -17,8 +17,41 @@
     "BRAND_FAMILY": "YaVe Tequila",
     "CUSTOMER_NUM": 40032,
     "CUSTOMER_NAME": "Side Bar",
-    "DATE": "2026-08-05",
+    "DATE": "2026-08-07",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200384",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 34016,
+    "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
+    "DATE": "2026-08-06",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200217",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 34016,
+    "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
+    "DATE": "2026-08-06",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200385",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
+    "DATE": "2026-08-05",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
   }
 ]
