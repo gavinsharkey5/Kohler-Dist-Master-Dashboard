@@ -14,9 +14,11 @@ to reproduce identical aggregate totals):
     else its raw "Brand" column (a handful of brands — Carbliss, Monaco,
     Monaco Cocktails, Sinless RTD, Sun Cruisers RTD — have no Brand
     Family populated in the source export).
-  - Each display's canonical brand(s) must all agree on Priority vs. All
-    Other classification (mixed-classification displays haven't been
-    observed; the script errors out if one appears rather than guess).
+  - Each display's canonical brand(s) are usually all Priority or all All
+    Other. When a display mixes both (first seen 2026-08-06, Report_34),
+    it's classified by whichever side has more cases, then scored on the
+    display's TOTAL cases against that classification's tier table --
+    confirmed with the user (see the cases_by_class block in main()).
   - Tier is by total cases: 0 (<10, non-qualifying), 1 (10-19),
     2 (20-39), 3 (40-69), 4 (70+).
   - Points = TIER_POINTS[classification][tier]. allother/tier1 first
@@ -65,6 +67,8 @@ ALLOTHER_BRANDS = {
     'NOCA', 'NOCA BEVERAGES', 'SARATOGA WATER',
     # Confirmed with the user 2026-08-05.
     "REDD'S", 'VICTORY BREWING COMPANY',
+    # Confirmed with the user 2026-08-06.
+    'HACKER-PSCHORR', 'HOFBRAU', 'PAULANER',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
@@ -172,8 +176,16 @@ def main():
         brands = sorted({canonical_brand(g) for g in grp})
         classes = {classify(b) for b in brands}
         if len(classes) > 1:
-            raise SystemExit(f"Mixed-classification display for {taker}/{acct}/{dt}: {brands}")
-        classification = classes.pop()
+            # First seen 2026-08-06 (Report_34): a display mixing Priority and
+            # All Other brands. Confirmed with the user: classify the whole
+            # display by whichever side has more cases, then score the
+            # display's TOTAL cases against that classification's tier table.
+            cases_by_class = defaultdict(int)
+            for g in grp:
+                cases_by_class[classify(canonical_brand(g))] += g['qty']
+            classification = max(cases_by_class, key=cases_by_class.get)
+        else:
+            classification = classes.pop()
         t = tier_for(cases)
         points = TIER_POINTS.get(classification, {}).get(t, 0) if t else 0
         photos = sorted({g['photo_url'] for g in grp if g['photo_url']})

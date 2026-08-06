@@ -34,6 +34,10 @@ re-derive it from scratch again):
   - Canonical brand is matched against PRIORITY_BRANDS / ALLOTHER_BRANDS
     to pick the tier table, then scored by total cases:
     10-19 / 20-39 / 40-69 / 70+ → tier 1/2/3/4.
+  - If a display's brands mix Priority and All Other (first seen
+    2026-08-06, Report_34), it's classified by whichever side has more
+    cases, then scored on the display's TOTAL cases against that side's
+    tier table -- confirmed with the user, don't re-derive from scratch.
   - Points = TIER_POINTS[classification][tier]:
       priority: 200 / 300 / 500 / 1000
       allother: 100 / 200 / 300 / 600
