@@ -1195,12 +1195,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 22024,
-    "CUSTOMER_NAME": "Edwards (P) Wine & Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20117,
     "CUSTOMER_NAME": "El Cantaro Liquors",
     "AREA": "Passaic"
@@ -1215,12 +1209,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20031,
-    "CUSTOMER_NAME": "La Joya Liquors",
     "AREA": "Passaic"
   },
   {
@@ -2067,12 +2055,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31004,
     "CUSTOMER_NAME": "Metro Liquors (East Rutherford)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 31008,
-    "CUSTOMER_NAME": "Metro Wine And Liq(A)",
     "AREA": "Bergen"
   },
   {

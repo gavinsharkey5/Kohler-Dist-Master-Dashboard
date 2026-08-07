@@ -29764,15 +29764,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27002,
-    "CUSTOMER_NAME": "President Liqrs (A)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20069,
     "CUSTOMER_NAME": "Segundo's (P)",
     "AREA": "Passaic",
@@ -33546,15 +33537,6 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230918,
     "CUSTOMER_NAME": "Market Place Liquor",
-    "AREA": "Sussex",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 231316,
-    "CUSTOMER_NAME": "Patricks Wine Barn",
     "AREA": "Sussex",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -38658,15 +38640,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24002,
     "CUSTOMER_NAME": "Swizzle Stick Liq (A)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24020,
-    "CUSTOMER_NAME": "US#1 Wine & Liquor",
     "AREA": "Passaic",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -49420,15 +49393,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77012,
-    "CUSTOMER_NAME": "Payless Liquor & Dell",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7142",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37027,
     "CUSTOMER_NAME": "Piast Meats & Prov.",
     "AREA": "Bergen",
@@ -49810,15 +49774,6 @@
     "CUSTOMER_NUM": 26001,
     "CUSTOMER_NAME": "Luigi's Liquor (A)",
     "AREA": "Passaic",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77012,
-    "CUSTOMER_NAME": "Payless Liquor & Dell",
-    "AREA": "Bergen",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
     "BRAND_FAMILY": "Peroni"
