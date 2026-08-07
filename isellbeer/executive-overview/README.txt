@@ -20,17 +20,52 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
                  actually disambiguates. Legend % is share of the shown top
                  20, not the side's full total; a coverage line under each
                  chart states what fraction of the side that top 20 covers.
-                 Area cards: each core area lists its own top 10 brands per
-                 side (from that area's full allUs/allThem ranked lists,
-                 already computed for the Full Detail tab's area customizer
-                 -- no generate.py change needed), each row showing both its
-                 handle count and its % of that side's total in that area
-                 (per Kohler, 2026-08-07). A handful of surveyed taps across
-                 both brand sides have no Brand Family recorded in the
-                 source export at all (blank, not "Other Supplier") -- labeled
-                 "(Brand Not Specified)" rather than shown blank or dropped,
-                 same spirit as this page's other documented data-quality
-                 fixes below.
+                 Area cards (per Kohler, 2026-08-07): each core area now
+                 shows its own top 10 brands per side (from that area's full
+                 allUs/allThem ranked lists, already computed for the Full
+                 Detail tab's area customizer -- no generate.py change
+                 needed) as two donut charts, not a text list -- hover (or
+                 tap, on touch) any slice for that brand's name, handle
+                 count, and % (of that side's top 10 shown, in parens: see
+                 the "Interactivity" note below). %s at the county level
+                 (the Us/Them split line, and every pie slice) render in
+                 parens per Kohler, 2026-08-07. A handful of surveyed taps
+                 across both brand sides have no Brand Family recorded in
+                 the source export at all (blank, not "Other Supplier") --
+                 labeled "(Brand Not Specified)" rather than shown blank or
+                 dropped, same spirit as this page's other documented
+                 data-quality fixes below.
+                 The county cards grid (auto-fit, min 400px per card) flows
+                 into multiple columns on wide screens instead of stacking
+                 vertically one-per-row -- per Kohler, 2026-08-07 ("use the
+                 whole page ... spread it out horizontally"). The Snapshot
+                 tab's own <div class="wrap"> is widened to 1400px (Full
+                 Detail stays at the page default, 840px) for the same
+                 reason.
+                 Segment breakdown ("Core Market by Segment", per Kohler,
+                 2026-08-07): one donut, Craft / Domestic / Import / Cider &
+                 Other / Unclassified, summed across allBrandsUs +
+                 allBrandsThem. THIS IS A PLACEHOLDER -- Kohler has not yet
+                 supplied an authoritative brand-to-segment mapping; see
+                 BRAND_SEGMENTS / classifySegment() in index.html for the
+                 interim heuristic (an exact-match table for this core
+                 market's higher-volume brands, then a keyword fallback,
+                 then a genuine "Unclassified" bucket rather than a guess).
+                 classifySegment() checks `b.segment` first, so a future
+                 generate.py that emits a real per-brand segment field
+                 (once Kohler provides the mapping) overrides this map
+                 automatically -- no index.html change needed at that point.
+                 A "What's in each bucket?" toggle under the chart explains
+                 each segment in plain language.
+                 Interactivity: every donut on this page (top-level and
+                 per-county) now supports hover-for-desktop / tap-for-touch
+                 on any slice, showing brand + handle count + % in a
+                 tooltip (see renderDonut()'s shared tooltip in index.html).
+                 Each slice draws as two overlapping circles: a thin visible
+                 ring and a much wider invisible one that actually owns the
+                 hover/click handlers, so the tap target is comfortably
+                 larger than the visible ring (true even on the small
+                 22px-wide county mini-pies).
   Full Detail  The original page described below, unchanged -- every
                section, the brand customizers, the area customizer, the
                brand-by-area lookup, and the velocity table.
