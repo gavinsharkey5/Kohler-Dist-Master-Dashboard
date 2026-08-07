@@ -10,6 +10,20 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
                Purely a condensed client-side render of the same DATA blob
                the Full Detail tab uses -- nothing here needs its own data
                or its own refresh step.
+                 Fast Facts (per Kohler, 2026-08-07: "facts my manager can
+                 relay to suppliers"): a card above the hero box with a
+                 handful of one-line, sales-conversation-ready facts --
+                 segment leader, our #1 brand and the leading competitor
+                 brand core-market-wide, how many core counties we lead
+                 outright, our fastest-turning top brand -- plus a "Leading
+                 Brand by County" tile row (one brand + handle count per
+                 core area, US and THEM combined by name so a brand that
+                 appears on both sides in different accounts still shows as
+                 one number, same spirit as brandLookup). Catch-all/generic
+                 names (Other Supplier, blank, etc.) are excluded from every
+                 fact and county tile -- a rep can't cite a brand that isn't
+                 a real brand. See renderFastFacts()/topNamedBrand()/
+                 topNamedBrandCombined() in index.html.
                  Top Brands pies: top 20 brands per side, every slice shown,
                  no "All Other" fold (per Kohler, 2026-08-07 -- explicit
                  override of this page's normal top-8-then-fold pattern).
