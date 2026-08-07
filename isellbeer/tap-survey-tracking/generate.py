@@ -113,10 +113,154 @@ def audit_reason(t_row):
     return 'Confirmed against the product catalog and territory rules'
 
 
+# ---------- segment (per Kohler, 2026-08-07: "Brand Segments (iSell)" and
+# "Product Segments (Enc)", two new sheets in this same workbook, added
+# specifically to answer "what segment is this brand" -- Encompass is the
+# stated final source of truth when the two disagree) ----------
+ACRONYMS = {'Ipa': 'IPA', 'Pos': 'POS', 'Fmb': 'FMB', 'Fab': 'FAB'}
+
+
+def titleize(s):
+    """iSell's Segment values are ALL CAPS in the source sheet; title-case
+    for display but keep known acronyms (IPA, POS, ...) from being mangled
+    into 'Ipa'/'Pos' by str.title()."""
+    if not s:
+        return s
+    t = s.title()
+    for wrong, right in ACRONYMS.items():
+        t = re.sub(r'\b' + wrong + r'\b', right, t)
+    return t
+
+
+_KEG_SIZE_PATTERNS = [
+    r'\s*\(\s*\d+(\.\d+)?\s*gal(lon)?\s*(keg)?\s*\)\s*$',
+    r'\s+\d+(\.\d+)?\s*(l|liter|litre)s?\s*keg\s*$',
+    r'\s+\d+/\d+\s*(bbl|barrel|keg)\s*$',
+    r'\s*keg\s*\d+(\.\d+)?\s*(gal(lon)?\s*keg)?\s*$',
+    r'\s+\d+(\.\d+)?\s*(gal(lon)?\s*keg|gal(lon)?|bbl|barrel)\s*$',
+    r'\s+keg\s*$',
+    r'\s+\d+(\.\d+)?\s*$',
+]
+
+
+def strip_keg_size(name):
+    """'Coors Light 15.5 Gal Keg' -> 'Coors Light'. Product Segments (Enc)
+    is a per-SKU catalog (one row per keg size); this collapses it to a
+    base product name comparable against the tap survey's Brand text.
+    Iterates since some names carry more than one trailing size/keg token
+    (e.g. 'Sierra Nevada Big Little Thing Keg15.5 Gal Keg')."""
+    n = name
+    changed = True
+    while changed:
+        changed = False
+        for pattern in _KEG_SIZE_PATTERNS:
+            n2 = re.sub(pattern, '', n, flags=re.I).strip()
+            if n2 != n:
+                n, changed = n2, True
+    return n
+
+
+def build_segment_resolver(wb):
+    """Returns (resolve_segment(brand, brand_family) -> str|None, stats dict).
+
+    Two sources, per Kohler 2026-08-07:
+      - 'Brand Segments (iSell)': one row per surveyed tap (same row count
+        as the raw survey sheet, joined here by Brand/Brand Family text
+        instead of by row number since its own "#" doesn't line up with
+        the raw sheet's) giving that brand's Segment. Covers ~100% of taps
+        by volume (it's effectively the same catalog, just re-exported)
+        but its "Segment" column mixes two different ideas row to row --
+        sometimes a beer style (Wheat Beer, Pilsner And Pale Lager),
+        sometimes a price tier (Craft, Import, Domestic) -- because that's
+        genuinely what's in the source column, not a bug here.
+      - 'Product Segments (Enc)': Encompass's own product catalog (Sub-
+        Segments: Beer - Craft/Import/Premium/Economy, Cider, ...), joined
+        by stripping each SKU's keg-size suffix down to a base product
+        name and matching that against the tap's Brand / Brand Family --
+        directly, or via 'Brand Crosswalk' (the same sheet used for the
+        executive-overview dashboard's velocity join) when the names
+        don't line up as-is. Encompass only ever carries what WE sell, so
+        this resolves for a minority of competitor brands by design.
+    Final value = Encompass's Sub-Segment when resolvable (stated source of
+    truth), else iSell's Segment, else None -- never a guess.
+    """
+    seg_by_brand, seg_by_bf = {}, {}
+    isell = wb['Brand Segments (iSell)']
+    isell_idx = {c.value: i for i, c in enumerate(isell[1])}
+    for r in isell.iter_rows(min_row=2, values_only=True):
+        seg = r[isell_idx['Segment']]
+        if not seg:
+            continue
+        b = r[isell_idx['Brand']]
+        bf = r[isell_idx['Brand Family']]
+        if b:
+            seg_by_brand.setdefault(b.strip().upper(), {}).setdefault(seg, 0)
+            seg_by_brand[b.strip().upper()][seg] += 1
+        if bf:
+            seg_by_bf.setdefault(bf.strip().upper(), {}).setdefault(seg, 0)
+            seg_by_bf[bf.strip().upper()][seg] += 1
+    seg_by_brand = {k: max(v, key=v.get) for k, v in seg_by_brand.items()}
+    seg_by_bf = {k: max(v, key=v.get) for k, v in seg_by_bf.items()}
+
+    enc_sub_by_base = {}
+    enc = wb['Product Segments (Enc)']
+    enc_idx = {c.value: i for i, c in enumerate(enc[1])}
+    for r in enc.iter_rows(min_row=2, values_only=True):
+        name = r[enc_idx['Product Name']]
+        sub = r[enc_idx['Sub-Segments']]
+        if not name or not sub:
+            continue
+        base = strip_keg_size(name).strip().upper()
+        enc_sub_by_base.setdefault(base, {}).setdefault(sub, 0)
+        enc_sub_by_base[base][sub] += 1
+    enc_sub_by_base = {k: max(v, key=v.get) for k, v in enc_sub_by_base.items()}
+    enc_base_keys = list(enc_sub_by_base.keys())
+
+    crosswalk = {}
+    cw = wb['Brand Crosswalk']
+    cw_idx = {c.value: i for i, c in enumerate(cw[1])}
+    for r in cw.iter_rows(min_row=2, values_only=True):
+        rb = r[cw_idx['Report Brand Family']]
+        mapped = r[cw_idx['Mapped Encompass Brand Family']]
+        if rb:
+            crosswalk[rb.strip().upper()] = mapped.strip().upper() if mapped else None
+
+    def enc_lookup(key):
+        if key in enc_sub_by_base:
+            return enc_sub_by_base[key]
+        hits = {k for k in enc_base_keys if k.startswith(key + ' ') or key.startswith(k + ' ')}
+        if len(hits) == 1:
+            return enc_sub_by_base[hits.pop()]
+        return None
+
+    stats = {'enc': 0, 'isell': 0, 'none': 0}
+
+    def resolve_segment(brand, brand_family):
+        key_b = (brand or '').strip().upper()
+        key_bf = (brand_family or '').strip().upper()
+        enc_val = enc_lookup(key_b) if key_b else None
+        if enc_val is None and key_bf:
+            enc_val = enc_lookup(key_bf)
+        if enc_val is None and key_bf in crosswalk and crosswalk[key_bf]:
+            enc_val = enc_lookup(crosswalk[key_bf])
+        if enc_val is not None:
+            stats['enc'] += 1
+            return enc_val
+        isell_val = seg_by_brand.get(key_b) or seg_by_bf.get(key_bf)
+        if isell_val is not None:
+            stats['isell'] += 1
+            return titleize(isell_val)
+        stats['none'] += 1
+        return None
+
+    return resolve_segment, stats
+
+
 # ---------- load ----------
 wb = load_workbook(XLSX_PATH, data_only=True)
 raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS, with_photo_link=True)
 tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Audit Result', 'Canonical Brand Family'])
+resolve_segment, segment_stats = build_segment_resolver(wb)
 
 records = []
 for n, raw in raw_by_num.items():
@@ -144,6 +288,7 @@ for n, raw in raw_by_num.items():
         'brand': raw['Brand'].strip(),
         'brandFamily': raw['Brand Family'].strip(),
         'supplier': raw['Supplier'].strip(),
+        'segment': resolve_segment(raw['Brand'], raw['Brand Family']) or 'Unclassified',
         'taps': num(raw['# of Taps']),
         'status': corrected,
         'flipped': corrected != raw_status,
@@ -155,6 +300,7 @@ for n, raw in raw_by_num.items():
 counties = sorted(set(r['county'] for r in records))
 reps = sorted(set(r['rep'] for r in records))
 district_managers = sorted(set(r['districtManager'] for r in records if r['districtManager']))
+segments = sorted(set(r['segment'] for r in records), key=lambda s: (s == 'Unclassified', s))
 accounts = set((r['account'], r['dba']) for r in records)
 
 total_taps = sum(r['taps'] for r in records)
@@ -170,6 +316,7 @@ payload = {
     'counties': counties,
     'reps': reps,
     'districtManagers': district_managers,
+    'segments': segments,
     'summary': {
         'taps': total_taps, 'us': total_us, 'them': total_them, 'unv': total_unv,
         'usPct': round(total_us / total_taps * 100, 1) if total_taps else 0,
@@ -196,3 +343,9 @@ print(f"{len(reps)} reps, {len(accounts)} accounts, {total_taps} taps "
       f"({total_us} ours / {total_them} competitor / {total_unv} unverified)")
 print(f"Corrected vs. iSellBeer's own raw flag: {total_flipped} of {len(records)} rows")
 print(f"Accounts with a photo on file: {photos_available} of {len(accounts)}")
+seg_total = sum(segment_stats.values())
+print(f"Segment resolution ({len(segments)} distinct values): "
+      f"{segment_stats['enc']} rows from Product Segments (Enc), "
+      f"{segment_stats['isell']} rows from Brand Segments (iSell) only, "
+      f"{segment_stats['none']} unclassified"
+      + (f" (of {seg_total})" if seg_total else ""))
