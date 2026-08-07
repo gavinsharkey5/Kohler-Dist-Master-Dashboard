@@ -205,14 +205,17 @@ Files:
                                         Core Territory" export: one row
                                         per rep/account/shipping-address
                                         (so some accounts appear more
-                                        than once) -- this is the
-                                        DENOMINATOR; account-base size
-                                        per rep is the count of DISTINCT
-                                        Customer Num, computed
-                                        client-side. Full off-prem book
-                                        (every county); BBC Lytt only,
-                                        since Lytt isn't territory-
-                                        restricted.
+                                        than once). Full off-prem book
+                                        (every county a rep covers).
+                                        Was BBC Lytt's denominator until
+                                        2026-08-07, when the user
+                                        confirmed Lytt is ALSO core-
+                                        territory-only (see
+                                        sales_reps_customer_base_core.csv
+                                        below) -- kept and still built
+                                        (mpo_sales_reps_customer_base.json)
+                                        as a general full-book reference,
+                                        but no objective reads it anymore.
     sales_reps_customer_base_core.csv RDE "Sales Reps: Customer Base
                                         Core Off Prem" export -- added
                                         2026-08-05. Narrower than the
@@ -223,17 +226,37 @@ Files:
                                         2026-08-05), pre-scoped by RDE
                                         (no county whitelist needed in
                                         code, unlike on-prem). Drives
-                                        Target Accounts for those two
-                                        objectives only -- see
+                                        Target Accounts for Corona
+                                        Premier/Molson Coors -- see
                                         generate_2026-08.py's own
                                         docstring for the full field
-                                        list and build_targets() logic.
-                                        Wine & Spirits gets no Target
-                                        Accounts since it's sold in
-                                        every county (same precedent as
-                                        on-prem's Yave/Leyenda).
-    generate_2026-08.py               Rebuilds the seven JSON files
-                                        above (five datasets + two
+                                        list and build_targets() logic --
+                                        AND, as of 2026-08-07 (confirmed
+                                        with the user: Lytt can only be
+                                        sold in this same core territory,
+                                        correcting the earlier "Lytt
+                                        isn't territory-restricted"
+                                        assumption), BBC Lytt's account-
+                                        base DENOMINATOR too, via
+                                        build_sales_reps_customer_base_core()
+                                        -> mpo_sales_reps_customer_base_core.json.
+                                        Reps with zero core-territory
+                                        accounts (Alex Rodriguez, Allison
+                                        Scott, Andrew Lundy, Hakan Sadik
+                                        as of this refresh) simply have no
+                                        row in that JSON, which the
+                                        existing pct_of_base rendering
+                                        already treats as "no data" --
+                                        greyed-out .rep-row-nodata row in
+                                        the objective table, "No data yet"
+                                        in the rep view -- no extra code
+                                        needed for that. Wine & Spirits
+                                        gets no Target Accounts since it's
+                                        sold in every county (same
+                                        precedent as on-prem's
+                                        Yave/Leyenda).
+    generate_2026-08.py               Rebuilds the eight JSON files
+                                        above (six datasets + two
                                         Target Accounts files).
 
   index.html   The page itself (shared by every month).

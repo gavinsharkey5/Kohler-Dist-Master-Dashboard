@@ -308,7 +308,7 @@ const MONTHS = [
   {key:'2026-08', label:'August 2026', dir:'data/2026-08/', objectives: OBJECTIVES_2026_08, tables: [
     {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements',
       targetsFile:'mpo_targets_corona_premier.json'},
-    {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25},
+    {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25},
     {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts',
       targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},

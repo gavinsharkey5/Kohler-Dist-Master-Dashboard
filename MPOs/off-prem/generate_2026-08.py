@@ -97,9 +97,13 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           DISTINCT Customer Num, computed
                                           client-side. This is the FULL
                                           off-prem book (every county a rep
-                                          covers) -- BBC Lytt's denominator,
-                                          since Lytt isn't territory-
-                                          restricted.
+                                          covers). Kept and still built
+                                          (mpo_sales_reps_customer_base.json)
+                                          as a general full-book reference,
+                                          but as of 2026-08-07 no longer
+                                          feeds any objective -- see
+                                          sales_reps_customer_base_core.csv
+                                          below.
   sales_reps_customer_base_core.csv     RDE "Sales Reps: Customer Base
                                           Core Off Prem" export: Sales Rep
                                           Assigned, Customer Num, Customer
@@ -121,13 +125,17 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           authorized-to-sell accounts, so
                                           every row in it is fair game for
                                           Target Accounts with no additional
-                                          county filter. Used ONLY for
-                                          Target Accounts (Corona Premier,
-                                          Molson Coors Peroni/Banquet) --
-                                          NOT for BBC Lytt's account-base
-                                          denominator, which stays the
-                                          full sales_reps_customer_base.csv
-                                          (Lytt isn't territory-restricted).
+                                          county filter. Originally used
+                                          ONLY for Target Accounts (Corona
+                                          Premier, Molson Coors Peroni/
+                                          Banquet); as of 2026-08-07,
+                                          confirmed with the user that Lytt
+                                          is ALSO core-territory-only
+                                          (correcting the earlier assumption
+                                          that it was unrestricted), so this
+                                          file now doubles as BBC Lytt's
+                                          account-base denominator too --
+                                          see build_sales_reps_customer_base_core().
                                           Wine & Spirits (Le Grand/Leyenda/
                                           Green River) is sold in every
                                           county per Kohler, so it gets no
@@ -489,6 +497,35 @@ def build_sales_reps_customer_base():
     return out
 
 
+def build_sales_reps_customer_base_core():
+    """BBC Lytt's account-base denominator (confirmed with the user,
+    2026-08-07: Lytt can ONLY be sold in the core off-premise territory,
+    correcting the earlier assumption that it was unrestricted) -- same
+    row shape as build_sales_reps_customer_base() so buildPctOfBaseDataset()
+    in index.html doesn't care which file it's reading, just pointed at
+    CUSTOMER_BASE_CORE_CSV instead of the full book."""
+    rows = load_csv(CUSTOMER_BASE_CORE_CSV)
+    cases_col = find_col(rows[0].keys(), "Cases")
+    out = []
+    for r in rows:
+        rep = (r.get("Sales Rep Assigned") or "").strip()
+        if not rep:
+            continue
+        cases_raw = r.get(cases_col)
+        out.append({
+            "SALES_REP_ASSIGNED": rep,
+            "CUSTOMER_NUM": int(r["Customer Num"]),
+            "CUSTOMER_NAME": (r.get("Customer Name") or "").strip(),
+            "SHIPPING_ADDRESS": (r.get("Shipping Address") or "").strip(),
+            "CITY": (r.get("City") or "").strip(),
+            "AREA": (r.get("Area") or "").strip(),
+            "COUNTY": (r.get("County") or "").strip(),
+            "CASES": float(cases_raw) if cases_raw not in (None, "") else 0.0,
+        })
+    out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"]))
+    return out
+
+
 def load_core_customer_base():
     """Dedupes to one entry per (rep, customer) -- the same account can
     have more than one row in the export in principle (multiple ship-to
@@ -618,6 +655,7 @@ def main():
     wine_spirits_rows, ws_new, ws_total = build_wine_spirits()
     bbc_lytt_rows = build_bbc_lytt_numerator()
     customer_base_rows = build_sales_reps_customer_base()
+    customer_base_core_rows = build_sales_reps_customer_base_core()
 
     core_by_rep = load_core_customer_base()
     targets_corona_premier = build_targets(core_by_rep, already_carrying(CORONA_PREMIER_CSV))
@@ -636,6 +674,7 @@ def main():
     (month_dir / "mpo_wine_spirits.json").write_text(json.dumps(wine_spirits_rows, indent=2))
     (month_dir / "mpo_bbc_lytt_numerator.json").write_text(json.dumps(bbc_lytt_rows, indent=2))
     (month_dir / "mpo_sales_reps_customer_base.json").write_text(json.dumps(customer_base_rows, indent=2))
+    (month_dir / "mpo_sales_reps_customer_base_core.json").write_text(json.dumps(customer_base_core_rows, indent=2))
     (month_dir / "mpo_targets_corona_premier.json").write_text(json.dumps(targets_corona_premier, indent=2))
     (month_dir / "mpo_targets_molson_coors.json").write_text(json.dumps(targets_molson_coors, indent=2))
 
@@ -651,7 +690,10 @@ def main():
     print(f"Wine & Spirits (Le Grand/Leyenda/Green River independently): {ws_new} new placements out of "
           f"{ws_total} customer+brand pairs ({len(wine_spirits_rows)} transaction rows written)")
     print(f"BBC Lytt: {len(bbc_lytt_rows)} distro rows written")
-    print(f"Sales Reps Customer Base: {len(customer_base_rows)} rows written ({distinct_base} distinct rep+customer pairs)")
+    print(f"Sales Reps Customer Base: {len(customer_base_rows)} rows written ({distinct_base} distinct rep+customer pairs) -- "
+          f"kept as a general full-book reference; no longer feeds BBC Lytt")
+    print(f"Sales Reps Customer Base (Core, BBC Lytt's account-base denominator): "
+          f"{len(customer_base_core_rows)} rows written")
     print(f"Off-Premise Core Territory: {distinct_core} distinct rep+customer pairs across {len(core_by_rep)} reps")
     print(f"Target accounts -- Corona Premier: {len(targets_corona_premier)} prospects across all reps (core territory only)")
     peroni_products = len(list_products(molson_coors_raw_rows, molson_coors_brand_of, "Peroni"))
