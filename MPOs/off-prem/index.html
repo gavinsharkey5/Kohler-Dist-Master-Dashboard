@@ -143,6 +143,19 @@
   .tgt-county-table{display:none;}
   .tgt-county-table.open{display:block;}
 
+  /* Dual-brand objectives (Molson Coors Peroni/Banquet, Wine & Spirits Le
+     Grand/Leyenda/Green River) -- each brand needs to read as its own
+     clearly separated section instead of a small dim label that blends
+     into the surrounding text, since a rep's status/targets/existing
+     accounts for one brand are easy to misattribute to the other otherwise. */
+  .brand-group{padding:12px 0 14px 26px;border-top:1px solid var(--line-soft);}
+  .brand-group:first-child{border-top:none;padding-top:0;}
+  .brand-group-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .brand-pill{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;color:var(--accent);
+    background:var(--accent-soft);border:1px solid rgba(78,124,232,0.35);padding:3px 11px;border-radius:20px;
+    text-transform:uppercase;letter-spacing:.04em;}
+  .brand-group-progress{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--text);}
+
   .rep-row{cursor:pointer;}
   .rep-row:hover{background:var(--card-alt);}
   .rep-row td:first-child{display:flex;align-items:center;gap:8px;}
@@ -974,11 +987,29 @@ function existingAccountsBlockHtml(existing, hasProduct){
   </div>`;
 }
 // BBC Lytt's numerator file has no per-row Date (it's a distro snapshot,
-// not a transaction log), so this is Customer/Product only.
+// not a transaction log), so each line is just a Customer/Product pair.
+// Grouped by Customer (collapsed by default, same .tgt-county* toggle
+// pattern as Target Accounts) rather than one flat row per customer+product
+// -- a rep can carry Lytt in several flavors at the same account, which
+// made the old flat table run long and repeat the customer name on every
+// row. Clicking a customer reveals just their products.
 function lineTableLytt(lines){
   if(!lines || lines.length===0) return '<div class="no-lines">No Lytt-carrying accounts recorded this month.</div>';
-  const rows = lines.map(l=>`<tr><td>${l.customer}</td><td>${l.product}</td></tr>`).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Customer</th><th>Product</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  const byCustomer = new Map();
+  lines.forEach(l=>{
+    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, []);
+    byCustomer.get(l.customer).push(l.product);
+  });
+  const customers = [...byCustomer.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+  const rows = customers.map(([customer, products])=>{
+    const gid = 'tgtc'+(uid++);
+    const prodRows = products.slice().sort().map(p=>`<tr><td>${p}</td></tr>`).join('');
+    return `<div class="tgt-county">
+      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}<span class="tgt-county-count">${products.length}</span></div>
+      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th></tr></thead><tbody>${prodRows}</tbody></table></div></div>
+    </div>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px">${rows}</div>`;
 }
 
 function renderRepView(){
@@ -1024,9 +1055,9 @@ function renderRepView(){
         const pct=Math.min(sv.val/sv.sub.target,1)*100, over=sv.val>sv.sub.target, hit=sv.val>=sv.sub.target;
         const tgtHtml = targetsBlockHtml((sv.sub.targetsByRep||{})[activeRep], sv.sub.label);
         return `<div style="margin-bottom:18px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:12px">
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px">${sv.sub.label}</span>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
+          <div class="brand-group-head" style="justify-content:space-between">
+            <span class="brand-pill" style="font-size:13.5px">${sv.sub.label}</span>
+            <span class="brand-group-progress" style="font-size:14px">${sv.val} / ${sv.sub.target}${over?'<span class="over-badge">+'+(sv.val-sv.sub.target)+' over</span>':''} ${hit?'<span class="flag-hit">✓</span>':''}</span>
           </div>
           <div class="obj-bar-track" style="max-width:100%;margin-bottom:10px"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
           ${sv.r ? lineTableNewAccounts(sv.r.lines, sv.sub.flagLabel, tgtHtml) : '<div class="no-lines" style="padding-left:2px">No activity recorded for this rep.</div>'+tgtHtml}
@@ -1197,7 +1228,9 @@ function renderObjectiveView(){
         bodyRows += `<tr class="rep-row" data-target="${rowId}"><td><span class="rep-chev">▶</span>${repName}</td>${cells}<td>${statusHtml}</td></tr>`;
         const subTables = d.subs.map((s,i)=>{
           const tgtHtml = targetsBlockHtml((s.targetsByRep||{})[repName], s.label);
-          return `<div style="margin-bottom:10px"><div style="font-weight:600;font-size:12px;color:var(--text-dim);padding:8px 0 4px 26px">${s.label}</div>${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel, tgtHtml):'<div class="no-lines">No activity recorded this month.</div>'+tgtHtml}</div>`;
+          const val=subVals[i].val, over=val>s.target, hit=val>=s.target;
+          const headHtml = `<div class="brand-group-head"><span class="brand-pill">${s.label}</span><span class="brand-group-progress">${val} / ${s.target}${over?'<span class="over-badge">+'+(val-s.target)+' over</span>':''}${hit?' <span class="flag-hit">✓</span>':''}</span></div>`;
+          return `<div class="brand-group">${headHtml}${subVals[i].r?lineTableNewAccounts(subVals[i].r.lines, s.flagLabel, tgtHtml):'<div class="no-lines">No activity recorded this month.</div>'+tgtHtml}</div>`;
         }).join('');
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="${d.subs.length+2}">${subTables}</td></tr>`;
       });
