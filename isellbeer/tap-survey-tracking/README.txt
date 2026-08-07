@@ -18,6 +18,35 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
+Segment column + filter (added 2026-08-07, per Kohler): every brand row in
+an expanded account's table now shows a "Segment" next to Supplier, plus a
+Segment dropdown in the toolbar (applies across both tabs, same as the
+other filters). Resolved in generate.py by build_segment_resolver(), from
+two sheets Kohler added to this same workbook specifically for this:
+  - "Brand Segments (iSell)": one row per surveyed tap (same row count as
+    the raw survey sheet, though its own "#" doesn't line up 1:1 with the
+    raw sheet's -- joined here by Brand/Brand Family text instead) giving
+    that brand's Segment. Covers ~100% of taps by volume, but its Segment
+    column mixes two different ideas row to row -- sometimes a beer style
+    ("Wheat Beer", "Pilsner And Pale Lager"), sometimes a price tier
+    ("Craft", "Import", "Domestic") -- because that's genuinely what's in
+    the source column, not something normalized here.
+  - "Product Segments (Enc)": Encompass's own product catalog (Sub-
+    Segments: "Beer - Craft", "Beer - Import", "Beer - Premium", "Beer -
+    Economy", "Cider", ...), joined by stripping each SKU's keg-size
+    suffix ("Coors Light 15.5 Gal Keg" -> "Coors Light") and matching that
+    against the tap's Brand / Brand Family -- directly, or via "Brand
+    Crosswalk" (the same reference sheet the executive-overview
+    dashboard's velocity section uses) when the names don't line up as-is.
+    Encompass only ever carries what WE sell, so this only ever resolves a
+    minority of competitor-brand rows, by design.
+  Per Kohler, 2026-08-07: Encompass is the stated final source of truth
+  when the two disagree, so the final value is Encompass's Sub-Segment
+  when resolvable, else iSell's Segment, else "Unclassified" -- never a
+  guess. Re-running generate.py prints a one-line coverage summary (rows
+  resolved from each source vs. unclassified) so a refresh's match rate is
+  visible without opening the workbook.
+
 60-day resurvey warning (added 2026-07-23, per Kohler): reps are expected
 to resurvey every account within 60 days. Shown three ways, all computed
 live in the browser against today's date (refreshStatus() in the inline
@@ -63,11 +92,14 @@ Files:
                      tap gets a "corrected" badge with a tooltip explaining
                      why.
                  The two sheets are joined on "#" (row number).
-                 The rest of the workbook (Master - US vs THEM, Brand
-                 Family Territory(ies), Whitelist (Blackout Reverse), Brand
-                 Crosswalk, Brands (Enc), Customers Table (Enc), Master
-                 Matrix View) are the audit engine's reference tables --
-                 kept here for provenance, not parsed by generate.py yet.
+                 generate.py additionally reads "Brand Segments (iSell)",
+                 "Product Segments (Enc)", and "Brand Crosswalk" for the
+                 Segment column/filter (see "Segment column + filter"
+                 below). The rest of the workbook (Master - US vs THEM,
+                 Brand Family Territory(ies), Whitelist (Blackout Reverse),
+                 Brands (Enc), Customers Table (Enc), Master Matrix View)
+                 are the audit engine's reference tables -- kept here for
+                 provenance, not parsed by generate.py yet.
                  A from-scratch reimplementation of that engine in Python
                  (so a bare raw survey export could be self-audited every
                  month without the manual Excel process) is a natural next
