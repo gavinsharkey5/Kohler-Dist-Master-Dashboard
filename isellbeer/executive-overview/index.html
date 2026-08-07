@@ -230,6 +230,23 @@ details.notes li{margin-bottom:6px}
 .ig-brand-card .legend .item{justify-content:space-between}
 .ig-brand-coverage{color:var(--ink-mute);font-size:14px;margin-top:10px}
 
+.ig-facts-card{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;
+  padding:22px 20px;box-shadow:var(--shadow);margin-bottom:20px}
+.ig-facts-lbl{font-family:"Space Grotesk";font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:14px}
+.ig-facts-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.ig-facts-list li{position:relative;padding-left:22px;font-size:17px;line-height:1.45;color:var(--ink-soft)}
+.ig-facts-list li::before{content:'\2022';color:var(--accent);font-weight:700;position:absolute;left:2px;top:0}
+.ig-facts-list strong{color:var(--ink)}
+.ig-facts-counties{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.ig-facts-counties-lbl{font-family:"Space Grotesk";font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:10px}
+.ig-facts-county-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.ig-facts-county-tile{background:var(--card2);border:1px solid var(--line-soft);border-radius:12px;padding:10px 12px}
+.ig-facts-county-tile .cname{font-family:"Space Grotesk";font-weight:700;font-size:13px;color:var(--ink-soft)}
+.ig-facts-county-tile .cbrand{font-family:"Space Grotesk";font-weight:700;font-size:15.5px;margin-top:2px}
+.ig-facts-county-tile .ccnt{color:var(--ink-mute);font-size:12.5px;margin-top:1px}
+
 .ig-segment-note{color:var(--ink-mute);font-size:14px;text-align:center;margin:0 0 16px}
 .ig-segment-info-btn{background:none;border:none;color:var(--accent);font:inherit;font-size:14px;font-weight:600;
   cursor:pointer;padding:0;text-decoration:underline}
@@ -308,6 +325,15 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
 
 <div class="wrap tabpanel" id="snapshotTab">
   <p class="ig-updated" id="igUpdated"></p>
+
+  <div class="ig-facts-card">
+    <div class="ig-facts-lbl">Fast Facts for Supplier Conversations</div>
+    <ul class="ig-facts-list" id="igFastFacts"></ul>
+    <div class="ig-facts-counties">
+      <div class="ig-facts-counties-lbl">Leading Brand by County</div>
+      <div class="ig-facts-county-grid" id="igFastFactsCounties"></div>
+    </div>
+  </div>
 
   <div class="ig-hero">
     <div class="lbl">Tap Handles in Our Core Market</div>
@@ -788,12 +814,16 @@ function classifySegment(brand){
   if (/brewing|brewery|brew co\b|beer co\b|beer company/.test(n)) return 'craft';
   return 'unclassified';
 }
-function renderSegmentBreakdown(){
+function getSegmentTotals(){
   const totals = {domestic:0, craft:0, import:0, cider:0, unclassified:0};
   DATA.allBrandsUs.concat(DATA.allBrandsThem).forEach(b => {
     const seg = b.segment || classifySegment(b.brand); // future generate.py output wins, once supplied
     totals[seg] = (totals[seg] || 0) + b.taps;
   });
+  return totals;
+}
+function renderSegmentBreakdown(){
+  const totals = getSegmentTotals();
   const grand = Object.values(totals).reduce((a,v)=>a+v, 0);
   const segs = SEGMENT_ORDER.map(key => ({label: SEGMENT_LABELS[key], value: totals[key], color: SEGMENT_COLORS[key]}));
   renderDonut(document.getElementById('igSegmentDonut'), segs, 220, 38, fmtInt(grand), 'core market handles');
@@ -809,9 +839,66 @@ function renderSegmentBreakdown(){
   });
 }
 
+// ---- Fast Facts: a handful of scannable, sales-conversation-ready lines
+// above the hero box (per Kohler, 2026-08-07: "facts my manager can relay
+// to suppliers") -- generic catch-all buckets (Other Supplier, blank, etc.)
+// are excluded since a rep can't cite a brand that isn't a real brand.
+const FACT_EXCLUDE_NAMES = new Set(['Other Supplier', 'Other Brand Family', 'Other', 'Other Supplier (In-House)', '']);
+function topNamedBrand(sortedList){
+  return sortedList.find(b => !FACT_EXCLUDE_NAMES.has((b.brand || '').trim()));
+}
+function topNamedBrandCombined(listA, listB){
+  const merged = {};
+  listA.concat(listB).forEach(b => {
+    const name = (b.brand || '').trim();
+    if (!name || FACT_EXCLUDE_NAMES.has(name)) return;
+    merged[name] = (merged[name] || 0) + b.taps;
+  });
+  let best = null;
+  Object.entries(merged).forEach(([brand, taps]) => { if (!best || taps > best.taps) best = {brand, taps}; });
+  return best;
+}
+function renderFastFacts(){
+  const segTotals = getSegmentTotals();
+  const segGrand = Object.values(segTotals).reduce((a,v)=>a+v, 0);
+  const segRanked = SEGMENT_ORDER.filter(k => k !== 'unclassified')
+    .map(k => ({label: SEGMENT_LABELS[k], taps: segTotals[k]}))
+    .sort((a,b) => b.taps - a.taps);
+
+  const ourTop = topNamedBrand(DATA.allBrandsUs);
+  const theirTop = topNamedBrand(DATA.allBrandsThem);
+  const leadingCount = DATA.areas.core.filter(a => a.usPct >= 50).length;
+
+  const v = DATA.velocity;
+  const topVel = v.brands.filter(b => b.unitsPerTap != null && v.defaultBrands.includes(b.brand))
+    .slice().sort((a,b) => b.unitsPerTap - a.unitsPerTap)[0];
+
+  const facts = [];
+  if (segRanked.length >= 2){
+    const [top, second] = segRanked;
+    facts.push(`<strong>${top.label}</strong> leads the core market by segment at ${fmtPct(segGrand ? top.taps/segGrand*100 : 0)} of all handles, ahead of <strong>${second.label}</strong> (${fmtPct(segGrand ? second.taps/segGrand*100 : 0)}).`);
+  }
+  if (ourTop) facts.push(`<strong>${ourTop.brand}</strong> is our #1 brand core-market-wide &mdash; ${fmtInt(ourTop.taps)} handles, ${fmtPct(ourTop.pct)} of everything we pour.`);
+  if (theirTop) facts.push(`On the competitive side, <strong>${theirTop.brand}</strong> leads with ${fmtInt(theirTop.taps)} handles (${fmtPct(theirTop.pct)} of competitor pours).`);
+  facts.push(`We hold the outright lead (over 50% share) in <strong>${leadingCount} of ${DATA.areas.core.length}</strong> core counties.`);
+  if (topVel) facts.push(`<strong>${topVel.brand}</strong> is our fastest-turning tap among our top brands &mdash; ${topVel.unitsPerTap.toFixed(1)} units sold per handle in 2026.`);
+
+  document.getElementById('igFastFacts').innerHTML = facts.map(f => `<li>${f}</li>`).join('');
+
+  document.getElementById('igFastFactsCounties').innerHTML = DATA.areas.core.map(a => {
+    const leader = topNamedBrandCombined(a.allUs, a.allThem);
+    return `<div class="ig-facts-county-tile">
+      <div class="cname">${a.area}</div>
+      <div class="cbrand">${leader ? leader.brand : '&mdash;'}</div>
+      <div class="ccnt">${leader ? fmtInt(leader.taps) + ' lines' : ''}</div>
+    </div>`;
+  }).join('');
+}
+
 // ---- Snapshot tab: the same DATA, condensed to big KPIs + pies for a
 // non-technical, glance-and-go reader (no tables, no customize panels).
 function renderSnapshot(){
+  renderFastFacts();
   const s = DATA.summary;
   document.getElementById('igUpdated').textContent = `Data refreshed ${DATA.generatedAt}`;
   document.getElementById('igHeroTotal').textContent = fmtInt(s.totalTaps);
