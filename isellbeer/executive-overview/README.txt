@@ -4,12 +4,31 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
 "Full Detail":
   Snapshot     Default tab. Built for a non-technical, glance-and-go reader
                (per Kohler, 2026-08-07: the VP of Sales, who doesn't want to
-               click around) -- one scroll, big KPI numbers, a handful of
-               donut charts, a 5-tile area scoreboard, and two auto-picked
-               callouts ("Strongest Area" / "Area to Watch"), no tables, no
-               customize panels, no dropdowns. Purely a condensed client-side
-               render of the same DATA blob the Full Detail tab uses --
-               nothing here needs its own data or its own refresh step.
+               click around) -- one scroll, big KPI numbers, donut charts, a
+               per-area scoreboard, and two auto-picked callouts ("Strongest
+               Area" / "Area to Watch"), no customize panels, no dropdowns.
+               Purely a condensed client-side render of the same DATA blob
+               the Full Detail tab uses -- nothing here needs its own data
+               or its own refresh step.
+                 Top Brands pies: top 20 brands per side, every slice shown,
+                 no "All Other" fold (per Kohler, 2026-08-07 -- explicit
+                 override of this page's normal top-8-then-fold pattern).
+                 Beyond the page's 8 fixed brand hues, slices 9-20 reuse
+                 those same hues at a lighter/darker step (see brandColor()
+                 in index.html) since color alone can't carry 20 distinct
+                 identities -- the always-visible legend (name + %) is what
+                 actually disambiguates. Legend % is share of the shown top
+                 20, not the side's full total; a coverage line under each
+                 chart states what fraction of the side that top 20 covers.
+                 Area cards: each core area lists its own top 10 brands per
+                 side (from that area's full allUs/allThem ranked lists,
+                 already computed for the Full Detail tab's area customizer
+                 -- no generate.py change needed). A handful of surveyed taps
+                 across both brand sides have no Brand Family recorded in the
+                 source export at all (blank, not "Other Supplier") -- labeled
+                 "(Brand Not Specified)" rather than shown blank or dropped,
+                 same spirit as this page's other documented data-quality
+                 fixes below.
   Full Detail  The original page described below, unchanged -- every
                section, the brand customizers, the area customizer, the
                brand-by-area lookup, and the velocity table.
