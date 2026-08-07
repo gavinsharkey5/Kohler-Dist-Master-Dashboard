@@ -27,6 +27,9 @@ body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
 body, body *{font-family:Calibri,"Segoe UI",system-ui,-apple-system,Roboto,sans-serif !important}
 .num{font-variant-numeric:tabular-nums}
 .wrap{max-width:840px;margin:0 auto;padding:0 18px}
+/* Snapshot tab spreads out on wide screens instead of staying phone-width
+   -- per Kohler, 2026-08-07: "use the whole page." Full Detail is untouched. */
+#snapshotTab.wrap{max-width:1400px}
 a{color:inherit}
 
 .backlink{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);text-decoration:none;font-size:16.5px;font-weight:600;margin:20px 0 0}
@@ -78,6 +81,13 @@ section{margin:34px 0}
 .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
 .legend .lname{color:var(--ink)}
 .legend .lpct{color:var(--ink-soft);font-family:"Space Grotesk";font-variant-numeric:tabular-nums}
+
+.donut-slice{cursor:pointer;transition:opacity .1s}
+.chart-tooltip{position:fixed;z-index:1000;pointer-events:none;background:var(--card2);border:1px solid var(--line);
+  color:var(--ink);border-radius:10px;padding:9px 12px;font-size:14px;line-height:1.4;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s;max-width:220px}
+.chart-tooltip.visible{opacity:1;transform:translateY(0)}
+.chart-tooltip strong{color:var(--ink)}
 
 /* ---- brand columns ---- */
 .brand-cols{display:grid;grid-template-columns:1fr;gap:22px}
@@ -220,7 +230,22 @@ details.notes li{margin-bottom:6px}
 .ig-brand-card .legend .item{justify-content:space-between}
 .ig-brand-coverage{color:var(--ink-mute);font-size:14px;margin-top:10px}
 
-.ig-area-cards{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.ig-segment-note{color:var(--ink-mute);font-size:14px;text-align:center;margin:0 0 16px}
+.ig-segment-info-btn{background:none;border:none;color:var(--accent);font:inherit;font-size:14px;font-weight:600;
+  cursor:pointer;padding:0;text-decoration:underline}
+.ig-segment-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 18px;
+  text-align:center;box-shadow:var(--shadow);margin-bottom:28px}
+.ig-segment-card .legend{font-size:16.5px;margin-top:16px}
+.ig-segment-detail{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:left;font-size:14px;
+  color:var(--ink-soft)}
+.ig-segment-detail dt{font-family:"Space Grotesk";font-weight:700;color:var(--ink);margin-top:10px}
+.ig-segment-detail dt:first-child{margin-top:0}
+.ig-segment-detail dd{margin:2px 0 0}
+
+/* County cards spread horizontally (auto-fit grid, not a forced single
+   column) -- per Kohler, 2026-08-07: "use the whole page ... spread it
+   out horizontally rather than a vertical stack." */
+.ig-area-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:16px;margin-bottom:24px}
 .ig-area-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 18px;box-shadow:var(--shadow)}
 .ig-area-card .ahead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .ig-area-card h3{font-family:"Space Grotesk";font-size:23.5px;margin:0}
@@ -229,13 +254,14 @@ details.notes li{margin-bottom:6px}
 .ig-area-card .abar i.us{background:var(--us)} .ig-area-card .abar i.them{background:var(--them)}
 .ig-area-card .apcts{display:flex;justify-content:space-between;font-size:15.5px;margin-bottom:14px;font-family:"Space Grotesk";font-weight:700}
 .ig-area-card .apcts .us{color:var(--us)} .ig-area-card .apcts .them{color:var(--them)}
-.ig-area-brands{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.ig-area-brands h4{font-family:"Space Grotesk";font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
-.ig-area-brands h4.us{color:var(--us)} .ig-area-brands h4.them{color:var(--them)}
-.ig-area-brands ol{list-style:none;margin:0;padding:0;font-size:15.5px}
-.ig-area-brands li{display:flex;justify-content:space-between;gap:6px;padding:3px 0}
-.ig-area-brands li .n{color:var(--ink-soft);flex:none;font-variant-numeric:tabular-nums}
-.ig-area-brands li .n .p{color:var(--ink-mute);font-size:0.85em}
+.ig-area-pies{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ig-area-pies h4{font-family:"Space Grotesk";font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;text-align:center}
+.ig-area-pies h4.us{color:var(--us)} .ig-area-pies h4.them{color:var(--them)}
+.ig-area-pies .donut-wrap{gap:10px}
+.ig-area-pies .legend{flex-direction:column;align-items:stretch;gap:4px;font-size:12.5px;text-align:left}
+.ig-area-pies .legend .item{justify-content:space-between}
+.ig-area-pies .donut-center-lbl{font-size:17px}
+.ig-area-pies .donut-center-sub{font-size:10px}
 
 .ig-callouts{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:28px}
 @media (min-width:640px){.ig-callouts{grid-template-columns:1fr 1fr}}
@@ -319,6 +345,13 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
       <div class="donut-wrap" id="igThemBrandDonut"></div>
       <div class="ig-brand-coverage" id="igThemBrandCoverage"></div>
     </div>
+  </div>
+
+  <div class="ig-section-lbl">Core Market by Segment</div>
+  <p class="ig-segment-note">Best-effort categorization (Kohler hasn't supplied an official brand-to-segment mapping yet) &mdash; treat as directional. <button type="button" id="igSegmentInfoBtn" class="ig-segment-info-btn">What's in each bucket?</button></p>
+  <div class="ig-segment-card">
+    <div class="donut-wrap" id="igSegmentDonut"></div>
+    <div class="ig-segment-detail" id="igSegmentDetail" hidden></div>
   </div>
 
   <div class="ig-section-lbl">Core Market, Area by Area</div>
@@ -494,15 +527,54 @@ function svgEl(tag, attrs){
   return el;
 }
 
+// ---- shared hover/click tooltip for every donut slice on the page (per
+// Kohler, 2026-08-07: "hover/click on a slice ... tells you the % and
+// brand"). One floating element, reused by every chart; click doubles as
+// the touch-device equivalent of hover since touch never fires mouseenter.
+let tooltipEl = null;
+function ensureTooltip(){
+  if (!tooltipEl){
+    tooltipEl = document.createElement('div');
+    tooltipEl.className = 'chart-tooltip';
+    document.body.appendChild(tooltipEl);
+  }
+  return tooltipEl;
+}
+function showTooltip(x, y, html){
+  const t = ensureTooltip();
+  t.innerHTML = html;
+  t.classList.add('visible');
+  positionTooltip(x, y);
+}
+function positionTooltip(x, y){
+  if (!tooltipEl || !tooltipEl.classList.contains('visible')) return;
+  const pad = 14;
+  const tw = tooltipEl.offsetWidth, th = tooltipEl.offsetHeight;
+  let left = x + pad, top = y + pad;
+  if (left + tw > window.innerWidth - 8) left = x - tw - pad;
+  if (top + th > window.innerHeight - 8) top = y - th - pad;
+  tooltipEl.style.left = Math.max(8, left) + 'px';
+  tooltipEl.style.top = Math.max(8, top) + 'px';
+}
+function hideTooltip(){
+  if (tooltipEl) tooltipEl.classList.remove('visible');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.donut-slice')) hideTooltip();
+});
+
 // Renders a donut chart into container `el` from segments [{label, value, color}],
 // with a center label, then a legend of name + %. size/thickness in px.
-function renderDonut(el, segments, size, thickness, centerBig, centerSmall){
+// opts: {pctFormat(pct)->string, legend:boolean (default true)}
+function renderDonut(el, segments, size, thickness, centerBig, centerSmall, opts){
+  opts = opts || {};
+  const pctFormat = opts.pctFormat || fmtPct;
   const total = segments.reduce((a,s)=>a+s.value,0);
   const R = size/2;
   const r = R - thickness/2;
   const C = 2*Math.PI*r;
   const gapPx = 3;
-  const svg = svgEl('svg', {width:size, height:size, viewBox:`0 0 ${size} ${size}`});
+  const svg = svgEl('svg', {width:size, height:size, viewBox:`0 0 ${size} ${size}`, overflow:'visible'});
   const g = svgEl('g', {transform:`rotate(-90 ${R} ${R})`});
   let cum = 0;
   segments.forEach(s => {
@@ -510,11 +582,27 @@ function renderDonut(el, segments, size, thickness, centerBig, centerSmall){
     const frac = s.value/total;
     const arcLen = Math.max(frac*C - gapPx, 1);
     const offset = -(cum/total)*C;
-    const circle = svgEl('circle', {
-      cx:R, cy:R, r:r, fill:'none', stroke:s.color, 'stroke-width':thickness,
-      'stroke-dasharray':`${arcLen} ${C-arcLen}`, 'stroke-dashoffset':offset,
+    const dash = {'stroke-dasharray':`${arcLen} ${C-arcLen}`, 'stroke-dashoffset':offset};
+    // Two circles per slice: a thin decorative ring (what's seen) plus a
+    // much fatter transparent one carrying the actual hover/click handlers
+    // (pointer-events:stroke hit-tests its geometry even though it's
+    // invisible) -- the visible ring alone is too thin a target to
+    // reliably tap on a phone, especially the 22px-wide county mini-pies.
+    const visible = svgEl('circle', {
+      cx:R, cy:R, r:r, fill:'none', stroke:s.color, 'stroke-width':thickness, ...dash,
+      'pointer-events':'none',
     });
-    g.appendChild(circle);
+    const hit = svgEl('circle', {
+      cx:R, cy:R, r:r, fill:'none', stroke:'transparent', 'stroke-width':thickness+18, ...dash,
+      class:'donut-slice', 'pointer-events':'stroke',
+    });
+    const tip = () => `<strong>${s.label}</strong><br>${fmtInt(s.value)} handles &middot; ${pctFormat(s.value/total*100)}`;
+    hit.addEventListener('mouseenter', e => { visible.style.opacity = '0.78'; showTooltip(e.clientX, e.clientY, tip()); });
+    hit.addEventListener('mousemove', e => positionTooltip(e.clientX, e.clientY));
+    hit.addEventListener('mouseleave', () => { visible.style.opacity = ''; hideTooltip(); });
+    hit.addEventListener('click', e => { e.stopPropagation(); showTooltip(e.clientX, e.clientY, tip()); });
+    g.appendChild(visible);
+    g.appendChild(hit);
     cum += s.value;
   });
   svg.appendChild(g);
@@ -526,20 +614,22 @@ function renderDonut(el, segments, size, thickness, centerBig, centerSmall){
     t2.textContent = centerSmall || '';
     svg.appendChild(t2);
   }
-  const legend = document.createElement('div');
-  legend.className = 'legend';
-  segments.forEach(s=>{
-    if (s.value <= 0) return;
-    const item = document.createElement('div'); item.className = 'item';
-    const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = s.color;
-    const nm = document.createElement('span'); nm.className = 'lname'; nm.textContent = s.label;
-    const pc = document.createElement('span'); pc.className = 'lpct'; pc.textContent = fmtPct(s.value/total*100);
-    item.append(sw, nm, pc);
-    legend.appendChild(item);
-  });
   el.innerHTML = '';
   el.appendChild(svg);
-  el.appendChild(legend);
+  if (opts.legend !== false){
+    const legend = document.createElement('div');
+    legend.className = 'legend';
+    segments.forEach(s=>{
+      if (s.value <= 0) return;
+      const item = document.createElement('div'); item.className = 'item';
+      const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = s.color;
+      const nm = document.createElement('span'); nm.className = 'lname'; nm.textContent = s.label;
+      const pc = document.createElement('span'); pc.className = 'lpct'; pc.textContent = pctFormat(s.value/total*100);
+      item.append(sw, nm, pc);
+      legend.appendChild(item);
+    });
+    el.appendChild(legend);
+  }
 }
 
 // ---- extend the page's fixed 8-hue brand palette to 20 slots for the
@@ -586,6 +676,139 @@ function brandColor(i){
   return hslToHex(h, s, newL);
 }
 
+// ---- Segment breakdown (Craft / Domestic / Import / Cider & Other) --
+// per Kohler, 2026-08-07: no authoritative brand-to-segment mapping exists
+// yet (Kohler said a real one will come with the next data upload), so
+// this is a best-effort placeholder: an exact-match table for this core
+// market's higher-volume brands, a keyword fallback for the long tail
+// below that, and a genuine "Unclassified" bucket for anything neither
+// catches rather than guessing. FORWARD-COMPATIBLE: if a brand object ever
+// carries its own `segment` field (future generate.py output, once Kohler
+// supplies the real mapping), that value wins over this map automatically
+// -- see classifySegment() below.
+const SEGMENT_LABELS = {domestic:'Domestic', craft:'Craft', import:'Import', cider:'Cider & Other', unclassified:'Unclassified'};
+const SEGMENT_ORDER = ['craft','domestic','import','cider','unclassified'];
+const SEGMENT_COLORS = {domestic:'var(--b2)', craft:'var(--us)', import:'var(--accent)', cider:'var(--b5)', unclassified:'var(--other-gray)'};
+const SEGMENT_DESC = {
+  craft: 'Independent/craft breweries and craft-marketed lines (e.g. Blue Moon, Sam Adams, Sierra Nevada, Allagash, Goose Island).',
+  domestic: 'Mainstream American macro brands (e.g. Bud Light, Miller Lite, Coors Light, Michelob Ultra, Yuengling).',
+  import: 'Brewed outside the US (e.g. Stella Artois, Guinness, Modelo, Corona, Heineken, Peroni).',
+  cider: 'Ciders and other non-beer taps (e.g. Angry Orchard, Downeast Cider, Truly, Twisted Tea).',
+  unclassified: 'Brand family too small or too ambiguous (or explicitly logged as "Other Supplier") for this placeholder heuristic to place with confidence.',
+};
+const BRAND_SEGMENTS = {
+  // -- domestic --
+  'Yuengling':'domestic', 'Yuengling Brewery':'domestic', 'Miller Lite':'domestic', 'Coors Light':'domestic',
+  'Pabst':'domestic', 'Pabst Blue Ribbon':'domestic', 'Miller High Life':'domestic', 'Coors':'domestic',
+  'Michelob Ultra':'domestic', 'Michelob':'domestic', 'Bud Light':'domestic', 'Budweiser':'domestic',
+  'Busch Light':'domestic', 'Natural Light':'domestic', 'Landshark':'domestic',
+  // -- craft --
+  'Blue Moon':'craft', 'Sam Adams Seasonal':'craft', 'New Belgium Voodoo Ranger':'craft',
+  'Sierra Nevada Brewing Company':'craft', 'Sierra Nevada':'craft', 'Cape May Brewing':'craft', 'Cape May':'craft',
+  'Dogfish':'craft', 'Dogfish Head Brewery':'craft', "Leinenkugel'S":'craft', 'Samuel Adams':'craft', 'Sam Adams':'craft',
+  'Montauk Brewing Company':'craft', 'New Belgium':'craft', 'Stone Brewing Company':'craft', 'Lagunitas':'craft',
+  'Lagunitas Brewing Company':'craft', 'Evil Genius Year Round':'craft', 'Evil Genius Seasonal':'craft',
+  "Bj'S Brewhouse":'craft', "Bj'S Brewery Reno":'craft', "Bj'S Brewery Beer":'craft', 'Victory Brewing Monkey Series':'craft',
+  'Victory Brewing Core Favorites':'craft', 'Victory Brewing Seasonal':'craft', 'Six Point':'craft', 'Sixpoint':'craft',
+  'Sixpoint Brewery':'craft', "Bell'S Brewing Company":'craft', 'Braxton':'craft', 'Stone Yard House':'craft',
+  'Narragansett Brewing Co.':'craft', 'Newburgh Brewing Company':'craft', 'Kona Brewing Company':'craft',
+  'Kona Brewing Company (X90)':'craft', 'Kona':'craft', 'Allagash Brewing Company':'craft', 'Allagash Merch':'craft',
+  'Golden Road Brewing':'craft', 'Fiddlehead Brewing Company':'craft', 'Goose Island':'craft',
+  'Goose Island Beer Company':'craft', 'Founders All Day Series':'craft', 'Founders Seasonal Series':'craft',
+  'Founders Venture Series':'craft', 'Founders Nitro Draft Series':'craft', "Founder'S Oak":'craft',
+  'Founders Year-Round Barrel-Aged Series':'craft', 'Maine Beer':'craft', 'Other Half Brewing':'craft',
+  'Brix City Brewing':'craft', 'Brooklyn Brewery':'craft', 'Sloop Brewing Company':'craft',
+  'Industrial Arts Brewing Company':'craft', 'Troegs Brewing Company':'craft', 'Blue Point':'craft',
+  'Blue Point Brewing Company':'craft', 'Elysian Brewing Company':'craft', 'Elysian':'craft', 'Shock Top':'craft',
+  'Flying Fish Brewing Company':'craft', "Lawson'S Finest Year Round":'craft', "Lawson'S Finest Limited Release":'craft',
+  'Departed Soles Brewing Co':'craft', 'Trillium Brewing':'craft', 'Trillium':'craft', 'Great Lakes Year-Round':'craft',
+  'Great Lakes Seasonal':'craft', 'Great Lakes Brewing Company':'craft', 'Great Lakes':'craft',
+  'Flying Dog Brewery':'craft', 'Southern Tier Brewing Company':'craft', 'Southern Tier Specialty Series':'craft',
+  'Southern Tier Seasonal':'craft', 'Ithaca Beer Company':'craft', 'Ithaca':'craft', 'Saranac Brewery':'craft',
+  'Stone Smoked Porter':'craft', 'Source Brewing':'craft', "Sullivan'S Brewing Company":'craft', 'Weldwerks':'craft',
+  'Oskar Blues':'craft', 'Deschutes Brewery':'craft', 'Firestone Walker':'craft',
+  'Firestone Walker Mind Haze Series':'craft', 'Cigar City Brewing':'craft', 'Three Floyds Brewing Company':'craft',
+  'Bronx Brewery':'craft', 'New Trail Brewing Company':'craft', 'Phase Three Brewing':'craft',
+  'Belhaven Brewery':'craft', 'Left Hand Beer':'craft', 'Mason Ale Works':'craft', 'Equilibrium Brewing':'craft',
+  'Equilibrium Collaboration Beers':'craft', 'Bottle Logic':'craft', 'Zero Gravity Beer':'craft',
+  'Abita Brewing Beer':'craft', 'Singlecut Beersmiths':'craft', 'Wicked Weed':'craft', 'Magnify Brewing':'craft',
+  'Bolero Snort Brewery':'craft', 'Drekker Brewing Co':'craft', 'Drekker Fluff Stuff Series':'craft',
+  'Brewery Ommegang':'craft', 'Thin Man':'craft', 'Alementary Brewing Co':'craft', 'Boulevard Brewing Company':'craft',
+  'Boulevard':'craft', 'Beer Tree Brew Co.':'craft', 'Mortalis Brewing Company':'craft', 'Sea Dog Brewing Company':'craft',
+  'Palmetto Brewing Company':'craft', 'Schilling Beers':'craft', 'Von Trapp Brewing':'craft', 'Foundation Brewing':'craft',
+  'Port City Brewing':'craft', '21St Amendment':'craft', 'Tired Hands Brewing Company':'craft',
+  'Captain Lawrence Brewing':'craft', 'Aslin Beer Company':'craft', 'Uncommon Path Brewing':'craft',
+  'Lancaster Brewing Company':'craft', 'Bissell Brothers':'craft', 'Mighty Squirrel Year Round':'craft',
+  'Fat Orange Cat Brewing Company':'craft', 'Rogue Ales':'craft', 'Mayflower Brewing Company':'craft',
+  'Brick & Feather':'craft', 'Night Shift Brewing Collaborations':'craft', 'Crooked Stave Artisan Beer Project':'craft',
+  'Youngs':'craft', 'Peak':'craft', 'Settle Down Easy':'craft', 'Barn Brew Co.':'craft', 'Arrow Lodge':'craft',
+  'Garage Beer - Contract Brewing':'craft',
+  // -- import --
+  'Modelo Cerveza':'import', 'Modelo Oro':'import', 'Peroni Nastro Azzurro':'import', 'Pacifico':'import',
+  'Corona':'import', 'Heineken':'import', 'Dos Equis':'import', 'Sapporo':'import', 'Magners':'import',
+  'Magners Cider':'import', 'Weihenstephan':'import', 'Weihenstephaner':'import', 'Schofferhofer':'import',
+  'Forged Irish Stout':'import', 'Stella Artois':'import', 'Guinness':'import', "Smithwick'S":'import',
+  'Harp':'import', 'Spaten':'import', 'Warsteiner':'import', 'Warsteiner Brauerei':'import',
+  'Carlsberg Bryggerierne':'import', 'Brasserie De Silly':'import', 'Orion Beer':'import', 'Paulaner':'import',
+  "George Killian'S":'import', 'Pilsner Urquell':'import', 'Kirin Ichiban':'import', 'Hofbrau':'import',
+  'Stiegl Classic Beers':'import', 'Stiegl':'import', 'Hacker-Pschorr':'import', 'Hacker-Pschorr Brewery':'import',
+  'Brouwerij De Brabandere Petrus':'import', 'Brouwerij De Brabandere':'import', 'Petrus Nitro':'import',
+  'Piraat':'import', 'Gulden Draak':'import', 'Shiner':'import', "Foster'S":'import', '1911 Hard Cider':'import',
+  'Radeberger Exportbierbrauerei':'import', 'Dab':'import', 'Dortmunder Actien Brauerei (Dab)':'import',
+  'Vansteenberg':'import', 'Super Bock':'import', 'Estrella Galicia':'import', 'Estrella Galicia 1906':'import',
+  'Estrella Damm':'import', 'Franziskaner':'import', 'Chimay Brewery':'import', 'Ramstein':'import',
+  'Asahi Beer':'import', "Mckenzie'S":'import', '4 Hands':'import', 'Schnider Weisse':'import', 'Gaffel':'import',
+  'Brlo Beer':'import', "Brasserie D'Achouffe":'import', 'Lexington Kentucky Beers':'import', 'St Bernardus':'import',
+  'Delirium':'import', 'Ayinger Privatbrauerei':'import', 'Bitburger':'import', "Kilkenny'S":'import',
+  'Duvel Beer':'import', 'Brouwerij Lindemans':'import', 'Lindemans':'import', 'Kostritzer':'import',
+  'G Schneider And Sohn':'import', 'Kronenbourg Brewery':'import', 'Hoegaarden':'import', 'Labatt Blue':'import',
+  'Greater Good Imperial':'import', 'Arrogant Consortia':'import', 'Bold Rock Spirits':'import',
+  'Sturgis Brewing Core':'import', 'Ao Suntory World Whisky':'import',
+  // -- cider & other (incl. hard tea/seltzer, not beer) --
+  'Angry Orchard':'cider', "Doc'S Hard Ciders":'cider', 'Twisted Tea':'cider', 'Woodchuck Hard Cider':'cider',
+  'Woodchuck':'cider', 'Truly':'cider', 'Truly Flavored Vodka':'cider', 'Downeast Cider':'cider',
+  'Citizen Cider':'cider', 'Hoop Tea':'cider',
+  // -- explicitly unresolvable buckets already logged as such in the source data --
+  'Other Brand Family':'unclassified', 'Other Supplier (In-House)':'unclassified', 'Other Supplier':'unclassified',
+  'Other':'unclassified', '':'unclassified',
+};
+const IMPORT_KEYWORDS = ['heinek','stella','guinness','corona','modelo','dos equis','peroni','sapporo','kirin','asahi',
+  'paulaner','hofbrau','warsteiner','spaten','franziskaner','bitburger','hoegaarden','kronenbourg','carlsberg',
+  'super bock','estrella','labatt','harp','smithwick','pilsner urquell','weihenstephan','schofferhofer','magners',
+  'orion beer','gaffel','ayinger','delirium','duvel','chimay','brouwerij','brasserie','hacker-pschorr','st bernardus',
+  'singha','tsingtao','moretti','brauerei','stiegl'];
+const DOMESTIC_KEYWORDS = ['budweiser','bud light','miller','coors','michelob','busch','natural light','pabst','landshark','yuengling'];
+function classifySegment(brand){
+  if (BRAND_SEGMENTS[brand]) return BRAND_SEGMENTS[brand];
+  const n = (brand || '').toLowerCase().trim();
+  if (!n) return 'unclassified';
+  if (n.includes('cider') || n.includes('hard tea') || n.includes('seltzer') || n === 'truly') return 'cider';
+  if (IMPORT_KEYWORDS.some(k => n.includes(k))) return 'import';
+  if (DOMESTIC_KEYWORDS.some(k => n.includes(k))) return 'domestic';
+  if (/brewing|brewery|brew co\b|beer co\b|beer company/.test(n)) return 'craft';
+  return 'unclassified';
+}
+function renderSegmentBreakdown(){
+  const totals = {domestic:0, craft:0, import:0, cider:0, unclassified:0};
+  DATA.allBrandsUs.concat(DATA.allBrandsThem).forEach(b => {
+    const seg = b.segment || classifySegment(b.brand); // future generate.py output wins, once supplied
+    totals[seg] = (totals[seg] || 0) + b.taps;
+  });
+  const grand = Object.values(totals).reduce((a,v)=>a+v, 0);
+  const segs = SEGMENT_ORDER.map(key => ({label: SEGMENT_LABELS[key], value: totals[key], color: SEGMENT_COLORS[key]}));
+  renderDonut(document.getElementById('igSegmentDonut'), segs, 220, 38, fmtInt(grand), 'core market handles');
+  const detail = document.getElementById('igSegmentDetail');
+  detail.innerHTML = SEGMENT_ORDER.map(key =>
+    `<dt>${SEGMENT_LABELS[key]}</dt><dd>${SEGMENT_DESC[key]}</dd>`
+  ).join('');
+  const btn = document.getElementById('igSegmentInfoBtn');
+  btn.addEventListener('click', () => {
+    const open = !detail.hidden;
+    detail.hidden = open;
+    btn.textContent = open ? "What's in each bucket?" : 'Hide bucket definitions';
+  });
+}
+
 // ---- Snapshot tab: the same DATA, condensed to big KPIs + pies for a
 // non-technical, glance-and-go reader (no tables, no customize panels).
 function renderSnapshot(){
@@ -628,27 +851,30 @@ function renderSnapshot(){
   renderBrandDonut('igUsBrandDonut', 'igUsBrandCoverage', DATA.allBrandsUs, DATA.brandsUs.total);
   renderBrandDonut('igThemBrandDonut', 'igThemBrandCoverage', DATA.allBrandsThem, DATA.brandsThem.total);
 
-  // Each core area's card: win/lose bar plus its own top-10 brands per side
-  // (from the area's full allUs/allThem ranked lists -- per Kohler, 2026-08-07).
+  renderSegmentBreakdown();
+
+  // Each core area's card: win/lose bar plus its own top-10-per-side pie
+  // charts (from the area's full allUs/allThem ranked lists), hover/click
+  // on any slice for brand + % (via renderDonut's shared tooltip) --
+  // per Kohler, 2026-08-07. County-level %s render in parens.
+  const parenPct = pct => `(${fmtPct(pct)})`;
   const areaGrid = document.getElementById('igAreaGrid');
   areaGrid.innerHTML = '';
   DATA.areas.core.forEach(a=>{
-    const usTop10 = a.allUs.slice(0, 10);
-    const themTop10 = a.allThem.slice(0, 10);
-    // % = this brand's share of OUR (or THEIR) handles in this area specifically,
-    // not share of the area's grand total -- per Kohler, 2026-08-07.
-    const brandRows = (list, sideTotal) => list.map((b,i)=>
-      `<li><span>${i+1}. ${brandLabel(b.brand)}</span><span class="n">${fmtInt(b.taps)} <span class="p">${fmtPct(sideTotal ? b.taps/sideTotal*100 : 0)}</span></span></li>`
-    ).join('') || '<li><span>&mdash;</span></li>';
+    const usSegs = a.allUs.slice(0, 10).map((b,i)=>({label:brandLabel(b.brand), value:b.taps, color:brandColor(i)}));
+    const themSegs = a.allThem.slice(0, 10).map((b,i)=>({label:brandLabel(b.brand), value:b.taps, color:brandColor(i)}));
     const card = document.createElement('div'); card.className = 'ig-area-card';
     card.innerHTML = `
       <div class="ahead"><h3>${a.area}</h3><span class="atotal">${fmtInt(a.totalTaps)} handles</span></div>
       <div class="abar"><i class="us" style="width:${a.usPct}%"></i><i class="them" style="width:${a.themPct}%"></i></div>
-      <div class="apcts"><span class="us">Us ${fmtPct(a.usPct)}</span><span class="them">Them ${fmtPct(a.themPct)}</span></div>
-      <div class="ig-area-brands">
-        <div><h4 class="us">Our Top 10</h4><ol>${brandRows(usTop10, a.usTaps)}</ol></div>
-        <div><h4 class="them">Competitor Top 10</h4><ol>${brandRows(themTop10, a.themTaps)}</ol></div>
+      <div class="apcts"><span class="us">Us ${parenPct(a.usPct)}</span><span class="them">Them ${parenPct(a.themPct)}</span></div>
+      <div class="ig-area-pies">
+        <div><h4 class="us">Our Top 10</h4><div class="donut-wrap us-pie"></div></div>
+        <div><h4 class="them">Competitor Top 10</h4><div class="donut-wrap them-pie"></div></div>
       </div>`;
+    const usTotal = usSegs.reduce((s,x)=>s+x.value,0), themTotal = themSegs.reduce((s,x)=>s+x.value,0);
+    renderDonut(card.querySelector('.us-pie'), usSegs, 130, 22, fmtInt(usTotal), 'handles', {pctFormat:parenPct});
+    renderDonut(card.querySelector('.them-pie'), themSegs, 130, 22, fmtInt(themTotal), 'handles', {pctFormat:parenPct});
     areaGrid.appendChild(card);
   });
 
