@@ -23,8 +23,10 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
                  Area cards: each core area lists its own top 10 brands per
                  side (from that area's full allUs/allThem ranked lists,
                  already computed for the Full Detail tab's area customizer
-                 -- no generate.py change needed). A handful of surveyed taps
-                 across both brand sides have no Brand Family recorded in the
+                 -- no generate.py change needed), each row showing both its
+                 handle count and its % of that side's total in that area
+                 (per Kohler, 2026-08-07). A handful of surveyed taps across
+                 both brand sides have no Brand Family recorded in the
                  source export at all (blank, not "Other Supplier") -- labeled
                  "(Brand Not Specified)" rather than shown blank or dropped,
                  same spirit as this page's other documented data-quality
@@ -35,6 +37,19 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
 Switching tabs is pure client-side show/hide (renderSnapshot() +
 CUSTOMIZERS wiring in index.html); refreshing data (see "To refresh with new
 exports" below) updates both tabs at once.
+
+Theme (per Kohler, 2026-08-07): re-skinned to match ../../MPOs/off-prem/'s
+"warm barrel-wood + amber-beer + Kohler-blue" palette (see that file's own
+:root comment) instead of this page's original neutral blue-black/pink UI --
+:root custom properties only (--canvas/--card/--ink/--accent/--us/--them/
+etc.), same component structure. --us/--them now ride that theme's green/red
+status colors; --b1..--b8 (this page's own brand-pie categorical set, off-
+prem has no equivalent) were re-picked and validated with the dataviz
+skill's validate_palette.js against this page's new dark canvas -- all six
+checks pass at the documented order. Body text is set to Calibri (falls
+back to Segoe UI / system-ui where Calibri isn't installed) and every
+font-size in the stylesheet was scaled up ~18% off the previous values, per
+Kohler, 2026-08-07.
 
 A phone-friendly, top-line summary of our tap-handle share vs. competitors',
 built for the head of the company (not the reps -- see ../tap-survey-tracking/
