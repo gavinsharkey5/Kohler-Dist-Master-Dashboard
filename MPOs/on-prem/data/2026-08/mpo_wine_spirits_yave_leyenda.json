@@ -11,15 +11,15 @@
     "CASES": 0.17
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 40032,
-    "CUSTOMER_NAME": "Side Bar",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "Leyenda 1925 Anejo Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200216",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 93018,
+    "CUSTOMER_NAME": "Courtyard Mahwah",
     "DATE": "2026-08-07",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.33
+    "CASES": 0.17
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
