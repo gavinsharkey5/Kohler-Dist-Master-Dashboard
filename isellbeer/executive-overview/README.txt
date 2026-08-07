@@ -1,5 +1,22 @@
 Tap Share — Executive Overview
 
+Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
+"Full Detail":
+  Snapshot     Default tab. Built for a non-technical, glance-and-go reader
+               (per Kohler, 2026-08-07: the VP of Sales, who doesn't want to
+               click around) -- one scroll, big KPI numbers, a handful of
+               donut charts, a 5-tile area scoreboard, and two auto-picked
+               callouts ("Strongest Area" / "Area to Watch"), no tables, no
+               customize panels, no dropdowns. Purely a condensed client-side
+               render of the same DATA blob the Full Detail tab uses --
+               nothing here needs its own data or its own refresh step.
+  Full Detail  The original page described below, unchanged -- every
+               section, the brand customizers, the area customizer, the
+               brand-by-area lookup, and the velocity table.
+Switching tabs is pure client-side show/hide (renderSnapshot() +
+CUSTOMIZERS wiring in index.html); refreshing data (see "To refresh with new
+exports" below) updates both tabs at once.
+
 A phone-friendly, top-line summary of our tap-handle share vs. competitors',
 built for the head of the company (not the reps -- see ../tap-survey-tracking/
 for the rep-facing account-by-account drill-down; this page reads a separate
