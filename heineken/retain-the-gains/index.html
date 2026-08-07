@@ -82,7 +82,7 @@
   </header>
 
   <p class="section-label">HUSA T2 Retainment — EP's / DB's vs. Goal</p>
-  <p class="sub" style="margin:0 0 12px">Heineken's own top-line distribution metric from the T2 slide &mdash; current point-of-distribution counts against their fixed goal. Off Premise (EP's) counts Large-format outlets only; On Premise (DB's) counts all tracked outlets. Goal is a fixed HUSA target, not something we calculate.</p>
+  <p class="sub" style="margin:0 0 12px">Heineken's own top-line distribution metric from the T2 slide &mdash; current point-of-distribution counts against their fixed goal. Off Premise (EP's) sums every SKU/format Total column per outlet; On Premise (DB's) counts distinct outlets carrying at least one Heineken-family SKU. Goal is a fixed HUSA target, not something we calculate.</p>
   <div class="channel-cards" id="epDbCards"></div>
 
   <p class="scroll-hint">&larr; scroll for more &rarr;</p>
@@ -176,7 +176,7 @@
     Source of truth: HUSA's official Retained-PODs export (ON PREMISE + OFF PREMISE), refreshed manually as HUSA sends new files.
     Rep attribution is matched against Kohler's own customer roster (address/city), since HUSA and Kohler use different outlet ID systems (VIP vs. Encompass) — outlets that couldn't be matched are grouped under &ldquo;Unmatched &mdash; Needs Review&rdquo; rather than guessed.
     Confirmed directly with a HUSA rep on 7/17: this file has no &ldquo;successfully retained&rdquo; state — every flagged cell is Unretained (a longstanding gap), a Lost New Gain (won in Mar&ndash;Apr, not yet regained in Jun&ndash;Aug — higher priority since it's a fresh loss), or an Open Opportunity (never filled in either period, not a loss at all). There's intentionally no retention-rate percentage on this page.<br>
-    EP's / DB's come from a separate HUSA current-state POD export (not the retained/unretained file) &mdash; Off Premise (EP's) sums Large-format outlets only, which matched HUSA's reported 645 almost exactly (650); On Premise (DB's) sums all tracked outlets (382 vs. HUSA's 374). Goal figures are fixed HUSA targets, not calculated from any file we have.
+    EP's / DB's come from HUSA's separate T2 Core Distribution exports (not the retained/unretained file above) &mdash; Off Premise (EP's) sums every SKU/format Total column per outlet (730, exact match to HUSA's T2 slide); On Premise (DB's) counts distinct outlets carrying at least one Heineken-family SKU, from a hierarchical Route&rarr;Account&rarr;Brand&rarr;Package export (655, exact match). Goal figures are fixed HUSA targets, not calculated from any file we have.
   </footer>
 </div>
 
@@ -26429,32 +26429,36 @@
   "epDbSummary": {
     "Off Premise": {
       "goal": 794,
-      "current": 650,
-      "diff": 144,
-      "pct": 81.9,
+      "current": 730,
+      "diff": 64,
+      "pct": 91.9,
       "byRep": [
         {
           "rep": "Dan Lagala",
-          "total": 73
+          "total": 90
         },
         {
           "rep": "Mike Ast",
-          "total": 71
+          "total": 78
         },
         {
           "rep": "Chris Payton",
-          "total": 64
+          "total": 73
         },
         {
           "rep": "Javier Melo",
-          "total": 64
+          "total": 69
         },
         {
           "rep": "Jim Heaney",
-          "total": 59
+          "total": 66
         },
         {
           "rep": "Matt Powierski",
+          "total": 62
+        },
+        {
+          "rep": "Derrick Laws",
           "total": 59
         },
         {
@@ -26462,28 +26466,24 @@
           "total": 55
         },
         {
-          "rep": "Derrick Laws",
-          "total": 52
-        },
-        {
-          "rep": "Shane Barreca",
-          "total": 41
-        },
-        {
           "rep": "Pablo Lopez",
-          "total": 40
+          "total": 48
         },
         {
           "rep": "Phil Ernst",
-          "total": 39
+          "total": 44
+        },
+        {
+          "rep": "Shane Barreca",
+          "total": 43
         },
         {
           "rep": "Michael Harboy",
-          "total": 18
+          "total": 23
         },
         {
           "rep": "Anthony Palmisano",
-          "total": 15
+          "total": 20
         },
         {
           "rep": "Alex Rodriguez",
@@ -26497,36 +26497,44 @@
     },
     "On Premise": {
       "goal": 873,
-      "current": 382,
-      "diff": 491,
-      "pct": 43.8,
+      "current": 655,
+      "diff": 218,
+      "pct": 75.0,
       "byRep": [
         {
           "rep": "Nick Melissari",
-          "total": 85
-        },
-        {
-          "rep": "Allison Scott",
-          "total": 76
+          "total": 142
         },
         {
           "rep": "Paul Mclaughlin",
-          "total": 66
+          "total": 105
         },
         {
-          "rep": "Pablo Lopez",
-          "total": 38
-        },
-        {
-          "rep": "Javier Melo",
-          "total": 28
+          "rep": "Allison Scott",
+          "total": 102
         },
         {
           "rep": "Robin Feldman",
-          "total": 19
+          "total": 91
+        },
+        {
+          "rep": "Pablo Lopez",
+          "total": 46
         },
         {
           "rep": "Dan Lagala",
+          "total": 40
+        },
+        {
+          "rep": "Javier Melo",
+          "total": 33
+        },
+        {
+          "rep": "Chris Payton",
+          "total": 19
+        },
+        {
+          "rep": "Matt Powierski",
           "total": 18
         },
         {
@@ -26534,24 +26542,56 @@
           "total": 17
         },
         {
-          "rep": "Matt Powierski",
-          "total": 11
-        },
-        {
-          "rep": "Chris Payton",
-          "total": 10
+          "rep": "Anthony Palmisano",
+          "total": 14
         },
         {
           "rep": "Mike Ast",
-          "total": 7
+          "total": 13
         },
         {
-          "rep": "Anthony Palmisano",
-          "total": 6
+          "rep": "Office Tell Sell",
+          "total": 9
+        },
+        {
+          "rep": "Chris Politano",
+          "total": 1
         },
         {
           "rep": "Jaime Colonna",
           "total": 1
+        },
+        {
+          "rep": "Jim Heaney",
+          "total": 1
+        },
+        {
+          "rep": "Theresa Wilmot",
+          "total": 1
+        },
+        {
+          "rep": "John O Donoghue",
+          "total": 1
+        },
+        {
+          "rep": "Dave Ehlers",
+          "total": 1
+        },
+        {
+          "rep": "Alex Rodriguez",
+          "total": 0
+        },
+        {
+          "rep": "Brian Sengebush",
+          "total": 0
+        },
+        {
+          "rep": "Dylan Rubino",
+          "total": 0
+        },
+        {
+          "rep": "Alisa Acciardi",
+          "total": 0
         }
       ]
     }
@@ -26560,7 +26600,7 @@
 <script>
 const DATA = JSON.parse(document.getElementById('retain-gains-data').textContent);
 
-function pct(n){ return n === null || n === undefined ? '&mdash;' : n.toFixed(1) + '%'; }
+function pct(n){ return n === null || n === undefined ? '&mdash;' : Math.round(n) + '%'; }
 
 function renderEpDbCards(){
   const wrap = document.getElementById('epDbCards');

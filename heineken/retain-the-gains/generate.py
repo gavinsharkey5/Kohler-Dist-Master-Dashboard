@@ -55,8 +55,8 @@ HERE = Path(__file__).parent
 ON_XLSX = HERE / "HUSA_Retained_PODS_ON.xlsx"
 OFF_XLSX = HERE / "HUSA_Retained_PODS_OFF.xlsx"
 CUSTOMER_CSV = HERE / "Kohler_Customer_Data.csv"
-CURRENT_ON_XLSX = HERE / "HUSA_CurrentPOD_ON.xlsx"
-CURRENT_OFF_XLSX = HERE / "HUSA_CurrentPOD_OFF.xlsx"
+T2_OFF_XLSX = HERE / "T2_Off_Premise_Core_Distribution.xlsx"
+T2_ON_XLSX = HERE / "T2_On_Premise_Core_Distribution.xlsx"
 OUT_HTML = HERE / "index.html"
 
 # HUSA's own goal figures from the T2 "Retain the Gains" slide. Not
@@ -156,32 +156,19 @@ def parse_sheet(xlsx_path, sheet_name, sku_cols, channel):
     return outlets
 
 
-def parse_current_pod_on(path):
-    """HUSA_CurrentPOD_ON.xlsx: simple current-state POD flags (0/1) per
-    SKU family, with a per-outlet Total column — this is what sums to
-    HUSA's "DB's" (On Premise) figure."""
-    wb = openpyxl.load_workbook(path, data_only=True)
-    ws = wb["Export"]
-    total_col = next(c for c in range(1, ws.max_column + 1) if ws.cell(row=1, column=c).value == "Total")
-    outlets = []
-    for row in range(3, ws.max_row + 1):
-        outlet_name = ws.cell(row=row, column=6).value
-        if not outlet_name or not str(outlet_name).strip():
-            continue
-        total = ws.cell(row=row, column=total_col).value
-        if total is None:
-            continue
-        rep = (ws.cell(row=row, column=11).value or "").strip().title()
-        outlets.append({"outlet": outlet_name, "rep": rep or "Unmatched — Needs Review", "total": total})
-    return outlets
-
-
-def parse_current_pod_off(path):
-    """HUSA_CurrentPOD_OFF.xlsx: same idea as the ON file, but split by
-    outlet Format (Large/Small) with a separate Total column per format.
-    Confirmed against HUSA's own PDF that "EP's" (Off Premise) sums only
-    the Large-format Total column (650 vs. HUSA's reported 645) — Large +
-    Small combined overshoots (657)."""
+def parse_t2_off_distribution(path):
+    """T2_Off_Premise_Core_Distribution.xlsx (added 2026-08-07, replaces
+    the old HUSA_CurrentPOD_OFF.xlsx this superseded): one row per outlet,
+    an individual 1/0/blank column per SKU package (1 = gained
+    distribution, 0 = opportunity/gap, blank = SKU not applicable to that
+    outlet — confirmed directly from HUSA), split into Large-format and
+    Small-format column groups, each with its own Total column. EP's (Off
+    Premise current) = SUM of BOTH Total columns across every outlet —
+    confirmed 2026-08-07 against HUSA's own T2 slide (goal 794, current
+    730, 92%). This supersedes the old file's "Large-format Total only"
+    approximation (which no longer had a documented source of truth to
+    verify against); summing both totals is what actually reproduces
+    HUSA's reported figure exactly with this export."""
     wb = openpyxl.load_workbook(path, data_only=True)
     ws = wb["Export"]
     fmt_by_col = {}
@@ -191,20 +178,65 @@ def parse_current_pod_off(path):
         if label:
             current_fmt = label
         fmt_by_col[c] = current_fmt
-    large_total_col = next(
+    total_cols = [
         c for c in range(1, ws.max_column + 1)
-        if ws.cell(row=2, column=c).value == "Total" and fmt_by_col[c] == "Large"
-    )
+        if ws.cell(row=2, column=c).value == "Total" and fmt_by_col[c] in ("Large", "Small")
+    ]
     outlets = []
     for row in range(4, ws.max_row + 1):
         outlet_name = ws.cell(row=row, column=5).value
         if not outlet_name or not str(outlet_name).strip():
             continue
-        total = ws.cell(row=row, column=large_total_col).value
-        if total is None:
-            continue
+        total = sum((ws.cell(row=row, column=c).value or 0) for c in total_cols)
         rep = (ws.cell(row=row, column=10).value or "").strip().title()
         outlets.append({"outlet": outlet_name, "rep": rep or "Unmatched — Needs Review", "total": total})
+    return outlets
+
+
+REP_CODE_RE = re.compile(r"^(.*?)\s*\d")
+
+
+def parse_t2_on_distribution(path):
+    """T2_On_Premise_Core_Distribution.xlsx (added 2026-08-07, replaces
+    the old HUSA_CurrentPOD_ON.xlsx this superseded): a hierarchical
+    drill-down export (Distributor Route > Retail Account > Brand >
+    Draft/Package) with a "Did Buys" 0/1 flag and a 'Total' subtotal row
+    rolled up at every level -- NOT a flat per-outlet table like the OFF
+    file or the file this replaces. DB's (On Premise current) = COUNT of
+    distinct outlets whose own Brand=Total/Draft-Package=Total row is 1
+    (i.e. carries at least one Heineken-family SKU in any format) --
+    confirmed 2026-08-07 against HUSA's own T2 slide (goal 873, current
+    655, 75%). Only "Kohler Distributing Company" routes are counted --
+    this export also carries a handful of other NJ distributors' routes
+    (Peerless Beverage, High Grade Beverage, etc.) mixed in; none had a
+    positive flag in this export (excluding them didn't change the 655
+    total), but they're filtered out on principle so they never pollute
+    Kohler's own rep breakdown if a future export includes one. Rep name
+    is parsed off the front of the Route label (e.g. "NICK MELISSARI 27-
+    Kohler Distributing Company, NJ" -> "Nick Melissari") by splitting at
+    the first digit, since the route/store code and distributor name
+    after it get truncated inconsistently in this export -- taking
+    everything before the first digit is robust to that."""
+    wb = openpyxl.load_workbook(path, data_only=True)
+    ws = wb["Sheet0"]
+    outlets = []
+    for row in range(8, ws.max_row + 1):
+        route = ws.cell(row=row, column=1).value
+        outlet_name = ws.cell(row=row, column=2).value
+        brand = ws.cell(row=row, column=6).value
+        fmt = ws.cell(row=row, column=7).value
+        val = ws.cell(row=row, column=8).value
+        if not route or route in ("Total", "(none)"):
+            continue
+        if not outlet_name or outlet_name == "Total":
+            continue
+        if brand != "Total" or fmt != "Total":
+            continue
+        if "kohler distributing company" not in route.lower():
+            continue
+        m = REP_CODE_RE.match(route)
+        rep = re.sub(r"\s+", " ", (m.group(1) if m else route)).strip().title()
+        outlets.append({"outlet": outlet_name, "rep": rep or "Unmatched — Needs Review", "total": val or 0})
     return outlets
 
 
@@ -335,13 +367,13 @@ def main():
     gap_list.sort(key=lambda g: (g["rep"] == "Unmatched — Needs Review", g["rep"], g["channel"], g["sku"]))
     opportunity_list.sort(key=lambda g: (g["rep"] == "Unmatched — Needs Review", g["rep"], g["channel"], g["sku"]))
 
-    current_on = parse_current_pod_on(CURRENT_ON_XLSX)
-    current_off = parse_current_pod_off(CURRENT_OFF_XLSX)
+    current_on = parse_t2_on_distribution(T2_ON_XLSX)
+    current_off = parse_t2_off_distribution(T2_OFF_XLSX)
     ep_db_summary = {
         "Off Premise": current_pod_summary(current_off, "Off Premise"),
         "On Premise": current_pod_summary(current_on, "On Premise"),
     }
-    print(f"EP's (Off Premise, Large format): {ep_db_summary['Off Premise']['current']} vs. goal {EP_DB_GOAL['Off Premise']}")
+    print(f"EP's (Off Premise): {ep_db_summary['Off Premise']['current']} vs. goal {EP_DB_GOAL['Off Premise']}")
     print(f"DB's (On Premise): {ep_db_summary['On Premise']['current']} vs. goal {EP_DB_GOAL['On Premise']}")
 
     data = {
