@@ -304,6 +304,49 @@ absolute-count row (twRow(), still casesPrior/casesCurrent since that
 one stays Cases-based) since it's showing this year's mix, not
 movement.
 
+Suppliers Overview widget no longer scrolls (fixed 2026-08-10, per
+Gavin): its .tw-body now carries a "fit" modifier class
+(.tw-body.fit{max-height:none;overflow-y:visible}) instead of the
+generic 225px cap/scroll every other trend-widget panel uses --
+Suppliers Overview's content is fixed-size (2 short sections, unlike
+Segment/Package Trend's variable-length top-10 lists), so it should
+just always fit rather than fight over a magic max-height number. Also
+added overflow-x:hidden to the base .tw-body rule itself, since a
+child element's own overflow-y:auto creates ITS OWN independent
+horizontal scroll box regardless of the parent .trend-widget's own
+overflow-x:hidden (that's why the widget briefly had a visible
+horizontal scrollbar even after .trend-widget got that property in an
+earlier pass -- the fix needed to be on .tw-body specifically, not
+just its parent).
+
+Top Headlines expanded to 7 lines (2026-08-10, per Gavin's "I want
+more headlines" ask) -- 2 new sentences plus more names in the
+existing ones:
+  - TOP_BRAND_MOVERS and TOP_PACKAGE_MOVERS both bumped 3 -> 4 in
+    generate.py, so the growth-drivers/declines/package-movers
+    sentences each name one more brand or package (also widens the
+    Supplier + Brand "i" popovers by one row each, same constants).
+  - New "By premise" sentence: On-Premise vs. Off-Premise CE trend %,
+    from this file's own Premise column (On Premise / Off Premise) --
+    a dimension brand_package_trend.csv already carried but nothing
+    used yet. See premise_row()/premise_split in
+    parse_brand_package_trend(), payload["premiseSplit"].
+  - New "Among suppliers with real volume..." sentence: the single
+    best- and worst-trending supplier by TREND %, not raw CE (so a
+    huge supplier's small % move can't automatically beat a small
+    supplier's big %, and vice versa) -- computed client-side in
+    overallHeadlineLines() from DATA.comboGroups (the Supplier + Brand
+    tab's own dataset, not DATA.overallInsight, since supplier-level
+    trend % already lives there and doesn't need re-deriving). Floored
+    at MIN_SUPPLIER_CE (5,000 CE prior-year) in index.html so a
+    near-zero-volume supplier's noisy swing (e.g. 55 -> 743 CE reads
+    as +1250%) can't win this headline -- checked empirically before
+    picking that number: unfloored, the top mover was a supplier with
+    55 CE prior-year; at a 5,000 CE floor, 31 suppliers qualify and the
+    range (Garage Beer +73.4% best, Artisanal Imports -36.1% worst as
+    of this refresh) reads as real supplier-level performance, not
+    noise.
+
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
 Costenita) -- has brand-level goals in the workbook but never got its
@@ -409,15 +452,25 @@ Files:
                                   grouping, per Gavin 2026-08-10: the
                                   point is to name the exact package
                                   worth pushing, not a category) grew vs.
-                                  shrank. Top 3 brand movers and top 3
-                                  package movers each direction, floored
-                                  at MIN_MOVER_CE (0.5 CE) so rounding
-                                  dust can't show up as a "driver."
+                                  shrank. Top 4 brand movers and top 4
+                                  package movers each direction (was 3;
+                                  bumped 2026-08-10 for more Top
+                                  Headlines detail -- TOP_BRAND_MOVERS/
+                                  TOP_PACKAGE_MOVERS in generate.py),
+                                  floored at MIN_MOVER_CE (0.5 CE) so
+                                  rounding dust can't show up as a
+                                  "driver."
                                 - The Top Headlines KPI tile (also
                                   2026-08-10) on the Supplier + Brand tab
                                   -- same company-wide brand/package
                                   mover data as the "i" popovers, written
-                                  as plain-English sentences.
+                                  as plain-English sentences. Also uses
+                                  this file's Premise column (On Premise/
+                                  Off Premise CE trend, payload
+                                  ["premiseSplit"]) for one headline
+                                  sentence, and DATA.comboGroups (not
+                                  this file) for a best-/worst-trending-
+                                  supplier sentence.
                                 - Package Trend's CE override (also
                                   2026-08-10) -- see segment_package_
                                   trend.csv above; this file's own

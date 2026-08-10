@@ -72,7 +72,12 @@
   .tw-select{width:100%;background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
     border-radius:8px;padding:6px 9px;font:inherit;font-size:12px;margin:0 0 12px;font-weight:600;flex:none}
   .tw-select:focus{outline:2px solid var(--kohler);outline-offset:1px;border-color:var(--kohler)}
-  .tw-body{overflow-y:auto;max-height:225px;padding-right:2px}
+  .tw-body{overflow-y:auto;overflow-x:hidden;max-height:225px;padding-right:2px}
+  /* Suppliers Overview's content is fixed-size (2 short sections, unlike
+     Segment/Package Trend's variable-length lists), so it should just fit
+     without ever needing to scroll -- drop the height cap entirely for it
+     rather than fight over a magic max-height number. */
+  .tw-body.fit{max-height:none;overflow-y:visible}
   .tw-section{margin:0 0 12px}
   .tw-section:last-child{margin-bottom:0}
   .tw-section-lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:6px;
@@ -1515,6 +1520,13 @@ function overallHeadlineLines(){
   lines.push(`Company-wide Case Equivalents were <b class="${up(insight.trendPct)?'hl-up':'hl-down'}">${fmtPct(insight.trendPct)}</b> ` +
     `(${rangeTxt}), landing at <b>${fmtCE(insight.ceCurrent)} CE</b> vs. ${fmtCE(insight.cePrior)} CE a year ago.`);
 
+  const premise = DATA.premiseSplit;
+  const onP = premise && premise['On Premise'], offP = premise && premise['Off Premise'];
+  if (onP && offP && onP.trendPct!=null && offP.trendPct!=null){
+    lines.push(`By premise: Off-Premise was <b class="${up(offP.trendPct)?'hl-up':'hl-down'}">${fmtPct(offP.trendPct)}</b> ` +
+      `(${fmtCE(offP.ceCurrent)} CE), On-Premise was <b class="${up(onP.trendPct)?'hl-up':'hl-down'}">${fmtPct(onP.trendPct)}</b> (${fmtCE(onP.ceCurrent)} CE).`);
+  }
+
   if (insight.brandGainers && insight.brandGainers.length){
     const parts = insight.brandGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
     lines.push(`Biggest growth drivers: ${joinList(parts)}.`);
@@ -1535,6 +1547,26 @@ function overallHeadlineLines(){
     lines.push(`<b class="hl-down">${esc(top.label)}</b> fell the most, down ${fmtCE(Math.abs(top.ceDiff))} CE (${pctOf(top)})` +
       `${restTxt.length?`, followed by ${joinList(restTxt)}`:''}.`);
   }
+
+  // Best/worst supplier by TREND %, not raw CE (a big supplier's small %
+  // move would otherwise never lose to a small supplier's huge %) --
+  // floored at MIN_SUPPLIER_CE so a near-zero-volume supplier's noisy
+  // swing (e.g. 55 -> 743 CE reads as +1250%) can't win this headline.
+  // Uses DATA.comboGroups (Supplier + Brand tab's own dataset), not
+  // DATA.overallInsight, since supplier-level trend % isn't something
+  // brand_package_trend.csv computes -- comboGroups already has it.
+  const MIN_SUPPLIER_CE = 5000;
+  const suppliers = (DATA.comboGroups||[])
+    .map(g=>({supplier:g.supplier, cePrior:g.ce_prior, trendPct:g.ce_prior?(g.ce_current/g.ce_prior-1):null}))
+    .filter(g=>g.trendPct!=null && g.cePrior>=MIN_SUPPLIER_CE);
+  if (suppliers.length){
+    const best = suppliers.reduce((a,b)=>b.trendPct>a.trendPct?b:a);
+    const worst = suppliers.reduce((a,b)=>b.trendPct<a.trendPct?b:a);
+    lines.push(`Among suppliers with real volume (&ge; ${fmtCE(MIN_SUPPLIER_CE)} CE prior year), ` +
+      `<b class="hl-up">${esc(best.supplier)}</b> posted the strongest trend (${fmtPct(best.trendPct)}), while ` +
+      `<b class="hl-down">${esc(worst.supplier)}</b> fell the most (${fmtPct(worst.trendPct)}).`);
+  }
+
   return lines;
 }
 
@@ -1728,7 +1760,7 @@ function renderSuppliersWidget(){
   el.innerHTML = `
     <p class="tw-title">Suppliers Overview</p>
     <p class="tw-sub">Supplier + Brand tab &middot; ${fmtCE(all.length)} suppliers, ${fmtCE(totalBrands)} brand families</p>
-    <div class="tw-body">
+    <div class="tw-body fit">
       <div class="tw-section">
         <p class="tw-section-lbl">Vs. Goal <span class="tw-hint">&mdash; click to filter</span></p>
         <div class="statusgrid">
@@ -1792,6 +1824,7 @@ async function init(){
   DATA.segmentPackageTrend = DATA.segmentPackageTrend || null;
   DATA.overallInsight = DATA.overallInsight || null;
   DATA.insightRange = DATA.insightRange || null;
+  DATA.premiseSplit = DATA.premiseSplit || null;
 
   DATA.brands = DATA.brands.map((r,i)=>({...r, _key: `${r.supplier}|${r.brand}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));

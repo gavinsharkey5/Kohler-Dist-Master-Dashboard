@@ -429,8 +429,8 @@ def parse_segment_package_trend(path):
 # Supplier + Brand tab.
 # ---------------------------------------------------------------------------
 MIN_MOVER_CE = 0.5  # floor below which a Case Equiv swing is rounding noise, not a real mover
-TOP_BRAND_MOVERS = 3
-TOP_PACKAGE_MOVERS = 3
+TOP_BRAND_MOVERS = 4
+TOP_PACKAGE_MOVERS = 4
 
 
 def _top_movers(totals, limit):
@@ -464,6 +464,7 @@ def parse_brand_package_trend(path):
 
         overall_brand = defaultdict(lambda: [0.0, 0.0])
         overall_pkg = defaultdict(lambda: [0.0, 0.0])
+        overall_premise = defaultdict(lambda: [0.0, 0.0])
         by_supplier_brand = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
         by_supplier_pkg = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
         supplier_totals = defaultdict(lambda: [0.0, 0.0])
@@ -476,11 +477,14 @@ def parse_brand_package_trend(path):
             prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
             brand = (r.get("Brand Family") or "").strip() or "Unclassified"
             pkg = (r.get("Package") or "").strip() or "Unspecified"
+            premise = (r.get("Premise") or "").strip() or "Unclassified"
 
             overall_brand[brand][0] += prior
             overall_brand[brand][1] += current
             overall_pkg[pkg][0] += prior
             overall_pkg[pkg][1] += current
+            overall_premise[premise][0] += prior
+            overall_premise[premise][1] += current
             overall_totals[0] += prior
             overall_totals[1] += current
 
@@ -522,11 +526,20 @@ def parse_brand_package_trend(path):
     # whenever this file is present, so the whole page agrees on CE.
     package_movers_ce = build_package_movers(overall_pkg, MIN_PACKAGE_VOLUME)
 
+    # On/Off Premise split (added 2026-08-10, per Gavin's "more headlines"
+    # request) -- this file's own Premise column, not derived from anything
+    # else, feeding one more Top Headlines sentence.
+    def premise_row(prior, current):
+        trend = (current / prior - 1) if prior else None
+        return {"cePrior": round(prior, 1), "ceCurrent": round(current, 1), "trendPct": round(trend, 4) if trend is not None else None}
+    premise_split = {label: premise_row(p, c) for label, (p, c) in overall_premise.items()}
+
     return {
         "rangePrior": range_prior, "rangeCurrent": range_current,
         "overall": overall_insight,
         "bySupplier": by_supplier,
         "packageMoversCE": package_movers_ce,
+        "premiseSplit": premise_split,
     }
 
 
@@ -1114,6 +1127,7 @@ def main():
         "segmentPackageTrend": segment_package_trend,
         "overallInsight": brand_package_trend["overall"] if brand_package_trend else None,
         "insightRange": {"prior": brand_package_trend["rangePrior"], "current": brand_package_trend["rangeCurrent"]} if brand_package_trend else None,
+        "premiseSplit": brand_package_trend["premiseSplit"] if brand_package_trend else None,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
