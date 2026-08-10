@@ -105,9 +105,14 @@
   @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
 
   .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:2px}
-  .statusgrid .srow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
+  .statusgrid .srow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:600;
+    border-radius:7px;padding:2px 4px;margin:-2px -4px}
   .statusgrid .srow .dot{width:9px;height:9px;border-radius:50%;flex:none}
   .statusgrid .srow .n{font-family:"Space Grotesk";font-weight:700;color:var(--ink);font-size:16px;margin-left:auto}
+  .statusgrid .srow.clickable{cursor:pointer}
+  .statusgrid .srow.clickable:hover{background:var(--card-h);color:var(--ink)}
+  .statusgrid .srow.active{background:rgba(78,124,232,.16);color:var(--ink);outline:1px solid var(--kohler)}
+  .tw-hint{font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-mute);font-size:9.5px}
 
   section.panel{background:var(--card);border:1px solid var(--line);border-radius:0 14px 14px 14px;padding:20px 22px;margin:0 0 20px;box-shadow:var(--shadow)}
   section.panel h2{font-family:"Space Grotesk";font-size:17px;margin:0 0 4px}
@@ -686,6 +691,12 @@ function updateSelectionSum(){
 function clearSelection(){
   document.querySelectorAll('.cell-selected').forEach(td=>td.classList.remove('cell-selected'));
   updateSelectionSum();
+}
+
+function switchTab(view){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.view===view));
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active', x.id==='view-'+view));
+  clearSelection();
 }
 
 document.addEventListener('click', e=>{
@@ -1462,8 +1473,11 @@ function renderComboKPIs(){
   // "Suppliers Tracked" and "Suppliers vs. Goal" moved to the page-header
   // suppliersWidget (2026-08-10, per Gavin) -- combined into one widget
   // there instead of 2 separate tiles here.
+  const rangeSub = (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent)
+    ? `${DATA.meta.ytdRangePrior} vs. ${DATA.meta.ytdRangeCurrent}` : '2025 vs. 2026, Jan 1 – Jul 31';
   const tiles = [
     {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked suppliers'},
+    {lbl:'YTD Case Equiv', val:`${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}`, sub:rangeSub},
     {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
   ];
   const kpisEl = document.getElementById('comboKpis');
@@ -1585,6 +1599,25 @@ function renderPackageWidget(){
 // wherever renderComboKPIs() used to own this data (init, a Goal % edit,
 // and Reset edited goals), since editing a goal can move a supplier
 // between On Pace/Behind Brewery/Behind Kohler/Behind Both.
+//
+// The 4 Vs. Goal rows are clickable filters (added 2026-08-10, per Gavin):
+// clicking one jumps to the Supplier + Brand tab and filters its rollup to
+// just that status (same COMBO_FILTER.status the #comboStatusFilter
+// dropdown already drives -- clicking here just sets it and keeps the
+// dropdown in sync, rather than being a second independent filter).
+// Clicking the same status again clears it back to "All Statuses". The New
+// Brand Families / Terminated Brands rows underneath aren't part of that
+// same status filter (they're a different tab's dataset entirely, not a
+// Supplier + Brand status) -- clicking one just jumps to that tab.
+function comboFilterByStatus(status){
+  switchTab('combo');
+  COMBO_FILTER.status = (COMBO_FILTER.status===status) ? '' : status;
+  const sel = document.getElementById('comboStatusFilter');
+  if (sel) sel.value = COMBO_FILTER.status;
+  renderComboTable();
+  renderSuppliersWidget();
+}
+
 function renderSuppliersWidget(){
   const el = document.getElementById('suppliersWidget');
   if (!el) return;
@@ -1592,25 +1625,43 @@ function renderSuppliersWidget(){
   if (!all.length){ el.innerHTML = ''; return; }
   const totalBrands = DATA.comboGroups.reduce((a,g)=>a+g.children.length,0);
   const statuses = all.map(r=>statusOf(r).label);
-  const onPace = statuses.filter(s=>s==='On Pace').length;
-  const behindBrewery = statuses.filter(s=>s==='Behind Brewery').length;
-  const behindKohler = statuses.filter(s=>s==='Behind Kohler').length;
-  const behindBoth = statuses.filter(s=>s==='Behind Both').length;
+  const counts = {
+    'On Pace': statuses.filter(s=>s==='On Pace').length,
+    'Behind Brewery': statuses.filter(s=>s==='Behind Brewery').length,
+    'Behind Kohler': statuses.filter(s=>s==='Behind Kohler').length,
+    'Behind Both': statuses.filter(s=>s==='Behind Both').length,
+  };
+  const statusRow = (label, color) => `<span class="srow clickable${COMBO_FILTER.status===label?' active':''}" data-status="${esc(label)}">` +
+    `<i class="dot" style="background:${color}"></i>${label}<span class="n num">${counts[label]}</span></span>`;
 
   el.innerHTML = `
     <p class="tw-title">Suppliers Overview</p>
     <p class="tw-sub">Supplier + Brand tab &middot; ${fmtCE(all.length)} suppliers, ${fmtCE(totalBrands)} brand families</p>
     <div class="tw-body">
       <div class="tw-section">
-        <p class="tw-section-lbl">Vs. Goal</p>
+        <p class="tw-section-lbl">Vs. Goal <span class="tw-hint">&mdash; click to filter</span></p>
         <div class="statusgrid">
-          <span class="srow"><i class="dot" style="background:var(--good)"></i>On Pace<span class="n num">${onPace}</span></span>
-          <span class="srow"><i class="dot" style="background:var(--brewery)"></i>Behind Brewery<span class="n num">${behindBrewery}</span></span>
-          <span class="srow"><i class="dot" style="background:var(--kohler)"></i>Behind Kohler<span class="n num">${behindKohler}</span></span>
-          <span class="srow"><i class="dot" style="background:var(--bad)"></i>Behind Both<span class="n num">${behindBoth}</span></span>
+          ${statusRow('On Pace','var(--good)')}
+          ${statusRow('Behind Brewery','var(--brewery)')}
+          ${statusRow('Behind Kohler','var(--kohler)')}
+          ${statusRow('Behind Both','var(--bad)')}
+        </div>
+      </div>
+      <div class="tw-section">
+        <p class="tw-section-lbl">Brand Lifecycle</p>
+        <div class="statusgrid">
+          <span class="srow clickable" data-jump="new"><i class="dot" style="background:var(--ink-soft)"></i>New Brand Families<span class="n num">${fmtCE(DATA.meta.totalNoGoal)}</span></span>
+          <span class="srow clickable" data-jump="terminated"><i class="dot" style="background:var(--ink-mute)"></i>Terminated Brands<span class="n num">${fmtCE(DATA.meta.totalTerminated)}</span></span>
         </div>
       </div>
     </div>`;
+
+  el.querySelectorAll('.srow[data-status]').forEach(row=>{
+    row.addEventListener('click', ()=>comboFilterByStatus(row.dataset.status));
+  });
+  el.querySelectorAll('.srow[data-jump]').forEach(row=>{
+    row.addEventListener('click', ()=>switchTab(row.dataset.jump));
+  });
 }
 
 function renderCaveats(){
@@ -1752,7 +1803,7 @@ async function init(){
 
   document.getElementById('comboSearch').addEventListener('input', e=>{ COMBO_FILTER.search = e.target.value; renderComboTable(); });
   document.getElementById('comboManagerFilter').addEventListener('change', e=>{ COMBO_FILTER.manager = e.target.value; renderComboTable(); });
-  document.getElementById('comboStatusFilter').addEventListener('change', e=>{ COMBO_FILTER.status = e.target.value; renderComboTable(); });
+  document.getElementById('comboStatusFilter').addEventListener('change', e=>{ COMBO_FILTER.status = e.target.value; renderComboTable(); renderSuppliersWidget(); });
   document.getElementById('comboExpandAllBtn').addEventListener('click', ()=>{
     DATA.comboGroups.forEach(g=>COMBO_EXPANDED.add(g.supplier));
     renderComboTable();
@@ -1774,13 +1825,7 @@ async function init(){
   document.getElementById('clearSelectionBtn').addEventListener('click', clearSelection);
 
   document.querySelectorAll('.tab').forEach(t=>{
-    t.addEventListener('click', ()=>{
-      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-      document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      document.getElementById('view-'+t.dataset.view).classList.add('active');
-      clearSelection();
-    });
+    t.addEventListener('click', ()=>switchTab(t.dataset.view));
   });
 }
 init();

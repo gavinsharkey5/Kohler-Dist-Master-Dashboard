@@ -207,8 +207,27 @@ DATA.comboGroups (the Supplier + Brand tab's own dataset).
 renderSuppliersWidget() re-renders automatically any time
 renderComboKPIs() does (initial load, a live Goal % edit, or Reset
 edited goals), since editing a goal can move a supplier between
-statuses. The Supplier + Brand tab's own KPI row now has just 2 tiles
-left: Company Trend (YTD) and 2026 Projected Finish.
+statuses. The Supplier + Brand tab's own KPI row now has 3 tiles:
+Company Trend (YTD), YTD Case Equiv (the raw 2025 vs. 2026 Jan-Jul CE
+totals behind that %, added 2026-08-10 per Gavin), and 2026 Projected
+Finish.
+
+The widget's 4 Vs. Goal rows are clickable filters (added 2026-08-10,
+per Gavin): clicking one (e.g. "Behind Both") jumps to the Supplier +
+Brand tab (switchTab('combo'), from wherever you were) and filters its
+rollup to just that status -- comboFilterByStatus() just sets
+COMBO_FILTER.status and keeps the #comboStatusFilter dropdown in sync,
+rather than being a second independent filter, so the two stay
+interchangeable no matter which one you used. Clicking the same status
+again clears it back to "All Statuses" (same toggle-off convention as
+the rest of the page). The dropdown's own change handler now also
+calls renderSuppliersWidget() so the widget's highlighted row stays in
+sync if you use the dropdown instead of clicking here. Two more rows
+underneath, "New Brand Families" and "Terminated Brands" (their tab's
+own counts, DATA.meta.totalNoGoal/totalTerminated), aren't part of
+that same status filter -- they're a different tab's dataset entirely
+-- clicking one just jumps to that tab (switchTab('new') /
+switchTab('terminated')).
 
 Package Trend units-first format (changed 2026-08-10, per Gavin): each
 mover row used to show that package's absolute CURRENT-year Cases
