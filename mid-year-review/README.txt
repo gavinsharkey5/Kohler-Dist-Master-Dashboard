@@ -227,7 +227,42 @@ underneath, "New Brand Families" and "Terminated Brands" (their tab's
 own counts, DATA.meta.totalNoGoal/totalTerminated), aren't part of
 that same status filter -- they're a different tab's dataset entirely
 -- clicking one just jumps to that tab (switchTab('new') /
-switchTab('terminated')).
+switchTab('terminated')). Every row's label text is wrapped in its own
+.lbl-txt span with overflow:hidden/text-overflow:ellipsis (and
+.trend-widget itself got overflow-x:hidden as a backstop) so a long
+label truncates cleanly instead of forcing the card to scroll
+horizontally -- it was doing that before this fix, once "Brand
+Lifecycle" was added as a 2nd statusgrid section underneath.
+
+Top Headlines combined KPI tile (added 2026-08-10, per Gavin): the
+Supplier + Brand tab's Company Trend (YTD) / YTD Case Equiv / 2026
+Projected Finish tiles are now ONE wide tile (kpi-headline, spans the
+full .kpis row) instead of 3 separate ones, with an ESPN-headlines-
+style plain-English summary on TOP (what grew, what didn't, and why)
+and those 3 numbers as a compact stat strip underneath. Built by
+overallHeadlineLines() in index.html from DATA.overallInsight -- same
+brand/package top-mover data that feeds the Supplier + Brand "i"
+popovers, just company-wide instead of per-supplier: the overall
+Jan-Jul CE trend, the top 3 brand families driving growth, the top 3
+dragging it down, and the #1 package (plus 2 runners-up) each for
+growth and decline. Deliberately sourced from DATA.overallInsight (the
+TRUE 131-supplier company-wide total from brand_package_trend.csv),
+NOT DATA.comboGroups (the Supplier + Brand tab's own 86-supplier
+subset the stat strip below still uses) -- "what happened overall"
+should reflect literally everything, not just the goal-tracked subset
+one tab happens to show, so the two numbers can differ very slightly
+(e.g. -1.6% headline vs. -1.7% Company Trend stat) by design.
+
+The headline package figures are in Case Equivalents (CE, ceDiff from
+brand_package_trend.csv), NOT the raw Cases the header's Package Trend
+panel (fed by the separate segment_package_trend.csv) ranks by -- the
+SAME package can show a different unit count in each (e.g. "15/25oz
+Can" +25,074 CE here vs. +19,257 Cases up there) even though the %
+change matches exactly (CE is a fixed multiple of Cases per package,
+so the ratio is unit-independent even though the absolute count
+isn't). A caveat line under the headline list on the page says as
+much; don't "fix" a mismatch between the two panels' package numbers
+without reading that line first -- it's expected, not a bug.
 
 Package Trend units-first format (changed 2026-08-10, per Gavin): each
 mover row used to show that package's absolute CURRENT-year Cases

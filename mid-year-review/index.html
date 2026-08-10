@@ -65,7 +65,7 @@
      before the tabs/tables start. */
   .trend-widget{flex:1 1 300px;max-width:380px;min-width:260px;background:var(--card);border:1px solid var(--line);
     border-top:2px solid var(--kohler);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);
-    display:flex;flex-direction:column}
+    display:flex;flex-direction:column;overflow-x:hidden}
   .trend-widget:empty{display:none;padding:0;border:none;box-shadow:none}
   .tw-title{font-family:"Space Grotesk";font-size:14px;font-weight:700;margin:0;color:var(--ink)}
   .tw-sub{font-size:11px;color:var(--ink-soft);margin:0 0 10px}
@@ -104,11 +104,32 @@
   @media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
 
-  .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:2px}
-  .statusgrid .srow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:600;
-    border-radius:7px;padding:2px 4px;margin:-2px -4px}
-  .statusgrid .srow .dot{width:9px;height:9px;border-radius:50%;flex:none}
-  .statusgrid .srow .n{font-family:"Space Grotesk";font-weight:700;color:var(--ink);font-size:16px;margin-left:auto}
+  /* Top Headlines combined KPI tile (added 2026-08-10, per Gavin) --
+     spans the full .kpis row (grid-column:1/-1) instead of sitting in one
+     grid cell like a normal .kpi tile; headline sentences on top, the
+     Company Trend / YTD Case Equiv / 2026 Projected Finish numbers this
+     replaced as 3 separate tiles now sit as a compact stat strip underneath. */
+  .kpi-headline{grid-column:1/-1;padding:20px 24px}
+  .headline-eyebrow{margin:0 0 12px}
+  .headline-list{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:7px}
+  .headline-list li{font-size:13.5px;line-height:1.55;color:var(--ink-soft);padding-left:18px;position:relative}
+  .headline-list li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--kohler)}
+  .headline-list li b{color:var(--ink);font-weight:700}
+  .headline-list li b.hl-up{color:var(--good)}
+  .headline-list li b.hl-down{color:var(--bad)}
+  .headline-note{font-size:10.5px;color:var(--ink-mute);line-height:1.4;margin:0 0 16px}
+  .headline-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line-soft)}
+  .headline-stat{display:flex;flex-direction:column;gap:3px;min-width:150px}
+  .headline-stat .hs-lbl{font-size:11px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .headline-stat .hs-val{font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
+  .headline-stat .hs-sub{font-size:11.5px;color:var(--ink-mute)}
+
+  .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin-top:2px}
+  .statusgrid .srow{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);font-weight:600;
+    border-radius:7px;padding:2px 4px;margin:-2px -4px;min-width:0}
+  .statusgrid .srow .dot{width:8px;height:8px;border-radius:50%;flex:none}
+  .statusgrid .srow .lbl-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .statusgrid .srow .n{font-family:"Space Grotesk";font-weight:700;color:var(--ink);font-size:14px;margin-left:auto;flex:none;padding-left:4px}
   .statusgrid .srow.clickable{cursor:pointer}
   .statusgrid .srow.clickable:hover{background:var(--card-h);color:var(--ink)}
   .statusgrid .srow.active{background:rgba(78,124,232,.16);color:var(--ink);outline:1px solid var(--kohler)}
@@ -1463,6 +1484,60 @@ function renderComboTable(){
   renderComboRows(comboFilteredGroups());
 }
 
+// Natural-language "X, Y, and Z" join for the headline sentences below.
+function joinList(items){
+  if (items.length<=1) return items.join('');
+  if (items.length===2) return items.join(' and ');
+  return items.slice(0,-1).join(', ') + ', and ' + items[items.length-1];
+}
+
+// Top Headlines (added 2026-08-10, per Gavin): an ESPN-headlines-style
+// plain-English summary of what drove the Jan 1 - Jul 31 trend, replacing
+// the 3 separate KPI tiles this used to be (Company Trend / YTD Case
+// Equiv / 2026 Projected Finish -- those are now a compact stat strip at
+// the BOTTOM of the same combined tile, headlines on top per the ask).
+// Built from DATA.overallInsight -- the TRUE company-wide totals from
+// brand_package_trend.csv (131 suppliers), not DATA.comboGroups' own
+// 86-supplier Supplier + Brand subset the stat strip below still uses --
+// deliberately, since "what happened overall" should reflect literally
+// everything, not just the goal-tracked subset one tab happens to show.
+function overallHeadlineLines(){
+  const insight = DATA.overallInsight;
+  if (!insight) return [];
+  const range = DATA.insightRange || (DATA.meta && DATA.meta.ytdRangePrior
+    ? {prior:DATA.meta.ytdRangePrior, current:DATA.meta.ytdRangeCurrent} : null);
+  const rangeTxt = range ? `${esc(range.prior)} vs. ${esc(range.current)}` : 'Jan 1 – Jul 31, 2025 vs. 2026';
+  const up = n => n>=0;
+  const signed = n => `${n>=0?'+':''}${fmtCE(n)}`;
+  const pctOf = r => r.cePrior ? fmtPct(r.ceDiff/r.cePrior) : '';
+
+  const lines = [];
+  lines.push(`Company-wide Case Equivalents were <b class="${up(insight.trendPct)?'hl-up':'hl-down'}">${fmtPct(insight.trendPct)}</b> ` +
+    `(${rangeTxt}), landing at <b>${fmtCE(insight.ceCurrent)} CE</b> vs. ${fmtCE(insight.cePrior)} CE a year ago.`);
+
+  if (insight.brandGainers && insight.brandGainers.length){
+    const parts = insight.brandGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Biggest growth drivers: ${joinList(parts)}.`);
+  }
+  if (insight.brandDecliners && insight.brandDecliners.length){
+    const parts = insight.brandDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Steepest declines came from ${joinList(parts)}.`);
+  }
+  if (insight.pkgGainers && insight.pkgGainers.length){
+    const [top, ...rest] = insight.pkgGainers;
+    const restTxt = rest.map(r=>`<b class="hl-up">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`<b class="hl-up">${esc(top.label)}</b> led package growth, up ${fmtCE(top.ceDiff)} CE (${pctOf(top)})` +
+      `${restTxt.length?`, followed by ${joinList(restTxt)}`:''}.`);
+  }
+  if (insight.pkgDecliners && insight.pkgDecliners.length){
+    const [top, ...rest] = insight.pkgDecliners;
+    const restTxt = rest.map(r=>`<b class="hl-down">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`<b class="hl-down">${esc(top.label)}</b> fell the most, down ${fmtCE(Math.abs(top.ceDiff))} CE (${pctOf(top)})` +
+      `${restTxt.length?`, followed by ${joinList(restTxt)}`:''}.`);
+  }
+  return lines;
+}
+
 function renderComboKPIs(){
   const all = DATA.comboGroups.map(r=>({...r, ...derive(r)}));
   const totalPrior = all.reduce((a,r)=>a+(r.ce_prior||0),0);
@@ -1472,16 +1547,29 @@ function renderComboKPIs(){
 
   // "Suppliers Tracked" and "Suppliers vs. Goal" moved to the page-header
   // suppliersWidget (2026-08-10, per Gavin) -- combined into one widget
-  // there instead of 2 separate tiles here.
+  // there instead of 2 separate tiles here. Company Trend / YTD Case
+  // Equiv / 2026 Projected Finish are combined into ONE headline tile
+  // below (also 2026-08-10) instead of 3 separate ones.
   const rangeSub = (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent)
     ? `${DATA.meta.ytdRangePrior} vs. ${DATA.meta.ytdRangeCurrent}` : '2025 vs. 2026, Jan 1 – Jul 31';
-  const tiles = [
-    {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked suppliers'},
-    {lbl:'YTD Case Equiv', val:`${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}`, sub:rangeSub},
-    {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
-  ];
+  const headlines = overallHeadlineLines();
   const kpisEl = document.getElementById('comboKpis');
-  kpisEl.innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
+  kpisEl.innerHTML = `<div class="kpi kpi-headline">
+    ${headlines.length ? `
+    <div class="headline-eyebrow">
+      <p class="lbl" style="margin:0">Top Headlines</p>
+      <p class="sub2" style="margin:0">What drove the Jan 1 &ndash; Jul 31 trend, company-wide</p>
+    </div>
+    <ul class="headline-list">${headlines.map(h=>`<li>${h}</li>`).join('')}</ul>
+    <p class="headline-note">Brand and package figures are in Case Equivalents (CE), same unit as the rest of this
+      page &mdash; not the raw Cases the Package Trend panel above ranks packages by, so the same package can show a
+      different unit count in each (percentages match; CE just isn't a 1:1 count of physical cases).</p>` : ''}
+    <div class="headline-stats">
+      <div class="headline-stat"><span class="hs-lbl">Company Trend (YTD)</span><span class="hs-val">${fmtPct(companyTrend)}</span><span class="hs-sub">across all tracked suppliers</span></div>
+      <div class="headline-stat"><span class="hs-lbl">YTD Case Equiv</span><span class="hs-val">${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}</span><span class="hs-sub">${rangeSub}</span></div>
+      <div class="headline-stat"><span class="hs-lbl">2026 Projected Finish</span><span class="hs-val">${fmtCE(totalProjFinish)} CE</span><span class="hs-sub">if current trend holds</span></div>
+    </div>
+  </div>`;
 
   renderSuppliersWidget();
 }
@@ -1631,8 +1719,8 @@ function renderSuppliersWidget(){
     'Behind Kohler': statuses.filter(s=>s==='Behind Kohler').length,
     'Behind Both': statuses.filter(s=>s==='Behind Both').length,
   };
-  const statusRow = (label, color) => `<span class="srow clickable${COMBO_FILTER.status===label?' active':''}" data-status="${esc(label)}">` +
-    `<i class="dot" style="background:${color}"></i>${label}<span class="n num">${counts[label]}</span></span>`;
+  const statusRow = (label, shortLabel, color) => `<span class="srow clickable${COMBO_FILTER.status===label?' active':''}" data-status="${esc(label)}" title="${esc(label)}">` +
+    `<i class="dot" style="background:${color}"></i><span class="lbl-txt">${esc(shortLabel)}</span><span class="n num">${counts[label]}</span></span>`;
 
   el.innerHTML = `
     <p class="tw-title">Suppliers Overview</p>
@@ -1641,17 +1729,17 @@ function renderSuppliersWidget(){
       <div class="tw-section">
         <p class="tw-section-lbl">Vs. Goal <span class="tw-hint">&mdash; click to filter</span></p>
         <div class="statusgrid">
-          ${statusRow('On Pace','var(--good)')}
-          ${statusRow('Behind Brewery','var(--brewery)')}
-          ${statusRow('Behind Kohler','var(--kohler)')}
-          ${statusRow('Behind Both','var(--bad)')}
+          ${statusRow('On Pace','On Pace','var(--good)')}
+          ${statusRow('Behind Brewery','Behind Brewery','var(--brewery)')}
+          ${statusRow('Behind Kohler','Behind Kohler','var(--kohler)')}
+          ${statusRow('Behind Both','Behind Both','var(--bad)')}
         </div>
       </div>
       <div class="tw-section">
         <p class="tw-section-lbl">Brand Lifecycle</p>
         <div class="statusgrid">
-          <span class="srow clickable" data-jump="new"><i class="dot" style="background:var(--ink-soft)"></i>New Brand Families<span class="n num">${fmtCE(DATA.meta.totalNoGoal)}</span></span>
-          <span class="srow clickable" data-jump="terminated"><i class="dot" style="background:var(--ink-mute)"></i>Terminated Brands<span class="n num">${fmtCE(DATA.meta.totalTerminated)}</span></span>
+          <span class="srow clickable" data-jump="new" title="New Brand Families in 2026"><i class="dot" style="background:var(--ink-soft)"></i><span class="lbl-txt">New Brands</span><span class="n num">${fmtCE(DATA.meta.totalNoGoal)}</span></span>
+          <span class="srow clickable" data-jump="terminated" title="Terminated Brands"><i class="dot" style="background:var(--ink-mute)"></i><span class="lbl-txt">Terminated</span><span class="n num">${fmtCE(DATA.meta.totalTerminated)}</span></span>
         </div>
       </div>
     </div>`;
