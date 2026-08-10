@@ -12207,7 +12207,7 @@ const PROGRAM_LIST = [
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
-   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account buys 3 barrels total · $1 per case sold · a 3-placement minimum (packages + draft combined) must be hit before any payout on this program unlocks`,
+   desc:`Same structure as 1911, just a 3-barrel goal instead of 2: $10 per new off-premise package placement (unconditional) · $100 per new draft (keg/bbl) placement once that account buys 3 barrels total (unconditional) · $1 per case sold once a rep reaches 3 new package placements`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
@@ -12369,20 +12369,17 @@ function card1911(rep){
 function cardWoodchuck(rep){
   const d = (PROGRAM_DATA['woodchuck']||{}).byRep?.[rep];
   if(!d) return '';
-  const totalNew = d.offPremNewCount + d.draftNewCount;
-  const qualifies = totalNew >= 3;
-  const qualifierNote = (qualifies
-    ? '<span class="flag-hit">Qualified — payouts unlocked</span>'
-    : '<span class="flag-miss">Not yet qualified — no payout on this program until 3 is hit</span>')
-    + ' · counts packages AND draft together, but this is only an on/off switch for the whole program — it does not feed the 3-barrel purchase goal below, which is tracked separately per account.';
+  const caseQualifies = d.offPremNewCount >= 3;
+  const caseQualifierNote = caseQualifies
+    ? '<span class="flag-hit">Qualified — $1/case payout is active</span>'
+    : '<span class="flag-miss">Not yet qualified — the $1/case payout below is not active yet</span>';
   const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account buys 3 barrels total');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 3 barrels total — plus $1 per case sold. Package activity never counts toward the barrel goal. A combined 3-placement minimum (packages + draft) must be hit before ANY of this program's payouts unlock.</div>
+      <div class="prog-desc">Same structure as 1911, just a 3-barrel (not 2-barrel) goal: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 3 barrels total — both paid unconditionally, package activity never counts toward the barrel goal. Separately, once a rep reaches 3 new package placements, the $1-per-case payout (all cases sold this period) switches on.</div>
     </div>
     <div class="prog-body">
-      ${metricRow('Qualifier — Unlocks Any Payout on This Program','3 new placements minimum, packages + draft combined', totalNew+' / 3', qualifierNote, Math.min(totalNew/3,1)*100, false)}
       ${sec.pkg}
       ${metricRow('New Package Placements','$10 each — off-premise cans/bottles only', d.offPremNewCount, null, null)}
       ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
@@ -12390,7 +12387,9 @@ function cardWoodchuck(rep){
       ${metricRow('Accounts Crossing the 3-bbl Goal','$100 per new keg placement, paid once the account (not the rep) buys 3 barrels total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
       ${draftAccountsBlock(d.draftAccounts, 3, d.draftAccountsQualified)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},bblCol(3)], 'No new draft placements yet this period.', 'new draft placements')}
-      ${metricRow('Case Volume (All Formats)','$1 per case sold, packages + kegs combined', d.caseVolume.toFixed(0)+' cases', null, null)}
+      <div class="sub-brand-title" style="margin-top:6px">Case Volume — $1 per Case (All Formats)</div>
+      ${metricRow('Qualifier — Unlocks the $1/Case Payout','3 new package placements minimum', d.offPremNewCount+' / 3', caseQualifierNote, Math.min(d.offPremNewCount/3,1)*100, false)}
+      ${metricRow('Case Volume This Period','$1 per case once qualified above, packages + kegs combined', d.caseVolume.toFixed(0)+' cases', null, null)}
     </div>
   </div>`;
 }
