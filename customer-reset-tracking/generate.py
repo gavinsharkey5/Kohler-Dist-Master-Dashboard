@@ -6,22 +6,31 @@ dashboard: does resetting an off-premise account's shelf/cooler space (the
 -- the 2025 resets and the 2026 resets -- each against its own prior-year
 baseline.
 
-Methodology (per Kohler, 2026-08-07 -- monthly, not daily, since that's the
+Methodology (per Kohler, 2026-08-10 -- monthly, not daily, since that's the
 grain the RDE/Fusion exports below actually come in; kept deliberately
 simple):
   - Sales inputs are monthly account totals (Customer Num x Year Month x
     Cases), not a dated transaction ledger, so windows are whole calendar
     months, not a rolling N-day window from the exact reset date.
-  - 3-MONTH window: the reset's own month plus the following two calendar
-    months (e.g. a March reset -> March+April+May), that same window one
-    year earlier for the PRE side -- a year-over-year comparison at each
-    account's own reset anchor, not a same-year before/after, so it isn't
-    just normal seasonal variation.
+  - Two different "3-month" comparisons are computed per account, shown
+    side by side rather than picking one:
+      - Year-over-year (pre3/post3/lift3): the reset's own month plus the
+        following two calendar months (e.g. a March reset -> March+April+
+        May), compared against that exact same 3-month window one year
+        earlier. Controls for normal seasonal variation, at the cost of
+        not showing the immediate before/after bump.
+      - Same-year before -> after (preAdj/liftAdj, sharing post3 as its
+        "after" side): the 3 calendar months immediately before the
+        reset's month, compared against the reset month + the following
+        two months, both within the same year. Shows the immediate change
+        around the reset itself, but does NOT control for seasonality --
+        read it alongside the year-over-year number, not instead of it.
   - YTD window: January through the latest fully-elapsed calendar month
     present in that cohort's sales file (the current in-progress month, if
     the file's newest month equals today's real month, is dropped so a
     half-finished month doesn't understate YTD), same Jan-through-that-month
-    range one year earlier for the PRE side.
+    range one year earlier for the PRE side. For the 2025 cohort this is
+    effectively full-year 2024 vs. 2025.
   - Lift % = (post total - pre total) / pre total, on Cases (the only
     metric in these exports -- no $ Volume / Gross Profit here, unlike the
     old daily-ledger build; see README). An account with zero prior-year
@@ -29,9 +38,10 @@ simple):
     first-time RESET of an existing account) has no baseline to divide by
     -- flagged as "no prior baseline" rather than an invented or infinite
     percentage.
-  - First-time resets (a store's first-ever SFS reset) are tracked
-    SEPARATELY from repeat resets, same as the prior build -- blending
-    them together has previously hidden a large gap between the two.
+  - A "Misc" Brand Family bucket in both source exports (opaque, not tied
+    to any real brand or supplier -- see load_monthly_sales() below) is
+    removed from the sales data before anything else runs, so it never
+    enters any total on this page.
 
 Inputs (keep these filenames when refreshing -- see README for the full
 refresh steps):
@@ -58,13 +68,10 @@ refresh steps):
                               back (Jan 2024 - Dec 2025), from a different
                               source system ("Fusion" vs. RDE) -- column
                               names are otherwise identical.
-  reset_history_2024.xlsx    Prior program years (keyed by TD Linx #) --
-  reset_history_2025.xlsx    used only to tag first-time vs. repeat resets,
-                              not for their own sales figures. The 2025
-                              cohort can only be checked against
-                              reset_history_2024.xlsx (there's no 2023
-                              history file), so "Repeat" there means
-                              specifically "also reset in 2024."
+
+  (reset_history_2024.xlsx / reset_history_2025.xlsx are no longer read --
+  they only fed the first-time-vs-repeat split, which has been removed.
+  Kept on disk for provenance.)
 
 Run: python3 generate.py
 """
@@ -78,8 +85,6 @@ from pathlib import Path
 from openpyxl import load_workbook
 
 HERE = Path(__file__).parent
-HISTORY_2024 = HERE / "reset_history_2024.xlsx"
-HISTORY_2025 = HERE / "reset_history_2025.xlsx"
 HTML = HERE / "index.html"
 
 WINDOW_MONTHS = 3
@@ -97,16 +102,6 @@ def to_num(raw):
         return None
     val = float(raw)
     return -val if neg else val
-
-
-def load_tdlinx_set(path, sheet, header_row):
-    wb = load_workbook(path, data_only=True)
-    ws = wb[sheet]
-    out = set()
-    for r in ws.iter_rows(min_row=header_row + 1, values_only=True):
-        if r[0]:
-            out.add(r[0])
-    return out
 
 
 def load_roster_2026():
@@ -210,6 +205,13 @@ def month_range(year, month, count):
     return out
 
 
+def month_range_before(year, month, count):
+    """The `count` calendar months immediately BEFORE (year, month), same
+    year unless the window crosses a January boundary."""
+    start_total = (year * 12 + (month - 1)) - count
+    return month_range(start_total // 12, start_total % 12 + 1, count)
+
+
 def sum_months(cases_by_ym, account, months):
     return round(sum(cases_by_ym.get((account, y, m), 0.0) for y, m in months), 2)
 
@@ -238,8 +240,7 @@ def latest_complete_month(cases_by_ym):
     return latest
 
 
-def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
-    """repeat_sets: list of (label, tdlinx_set) checked for the Repeat tag."""
+def evaluate_cohort(roster, cases_by_ym, reset_year):
     sales_accounts = {a for (a, _, _) in cases_by_ym.keys()}
     cutoff = latest_complete_month(cases_by_ym)
     cutoff_month = cutoff[1] if cutoff and cutoff[0] == reset_year else 12
@@ -250,13 +251,10 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
     evaluated, pending = [], []
     for a in roster:
         reset_date = a["resetDate"]
-        hits = [label for label, s in repeat_sets if a["tdLinx"] in s]
         entry = {
             "account": a["account"], "name": a["name"].title(), "city": a["city"],
             "segment": a["segment"], "resetDate": reset_date.isoformat(),
             "resetMonth": reset_date.strftime("%B %Y"),
-            "resetType": "Repeat" if hits else "First-Time",
-            "repeatYears": hits,
         }
         if a["account"] not in sales_accounts:
             entry["status"] = "pending"
@@ -265,14 +263,17 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
 
         post_months = month_range(reset_date.year, reset_date.month, WINDOW_MONTHS)
         pre_months = month_range(reset_date.year - 1, reset_date.month, WINDOW_MONTHS)
+        adj_pre_months = month_range_before(reset_date.year, reset_date.month, WINDOW_MONTHS)
         post3 = sum_months(cases_by_ym, a["account"], post_months)
         pre3 = sum_months(cases_by_ym, a["account"], pre_months)
+        preAdj = sum_months(cases_by_ym, a["account"], adj_pre_months)
         ytdPost = sum_months(cases_by_ym, a["account"], ytd_post_months)
         ytdPre = sum_months(cases_by_ym, a["account"], ytd_pre_months)
 
         entry.update({
             "status": "evaluated",
             "post3": post3, "pre3": pre3, "lift3": lift_pct(post3, pre3),
+            "preAdj": preAdj, "liftAdj": lift_pct(post3, preAdj),
             "ytdPost": ytdPost, "ytdPre": ytdPre, "liftYtd": lift_pct(ytdPost, ytdPre),
         })
         evaluated.append(entry)
@@ -288,6 +289,7 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
         return {
             "accountCount": len(group),
             "cases3": blended(group, "post3", "pre3"),
+            "cases3Adj": blended(group, "post3", "preAdj"),
             "casesYtd": blended(group, "ytdPost", "ytdPre"),
             "upCount": sum(1 for e in group if e["lift3"] is not None and e["lift3"] > 0),
             "downCount": sum(1 for e in group if e["lift3"] is not None and e["lift3"] < 0),
@@ -295,7 +297,6 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
         }
 
     overall = cohort_summary(evaluated)
-    by_reset_type = {t: cohort_summary([e for e in evaluated if e["resetType"] == t]) for t in ("First-Time", "Repeat")}
     by_month = {}
     for e in evaluated:
         by_month.setdefault(e["resetMonth"], []).append(e)
@@ -313,7 +314,6 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
         "evaluatedCount": len(evaluated),
         "pendingCount": len(pending),
         "overall": overall,
-        "byResetType": by_reset_type,
         "byMonth": by_month_summary,
         "bySegment": by_segment_summary,
         "accounts": evaluated,
@@ -322,20 +322,11 @@ def evaluate_cohort(roster, cases_by_ym, reset_year, repeat_sets):
 
 
 def main():
-    tdlinx_2024 = load_tdlinx_set(HISTORY_2024, "2024 Store Reset Data", 2)
-    tdlinx_2025 = load_tdlinx_set(HISTORY_2025, "Store Reset Data", 3)
-
     sales_2026, misc_2026 = load_monthly_sales(HERE / "sales_2026.csv")
     sales_2025, misc_2025 = load_monthly_sales(HERE / "sales_2025.csv")
 
-    cohort_2026 = evaluate_cohort(
-        load_roster_2026(), sales_2026, 2026,
-        [("2024", tdlinx_2024), ("2025", tdlinx_2025)],
-    )
-    cohort_2025 = evaluate_cohort(
-        load_roster_2025(), sales_2025, 2025,
-        [("2024", tdlinx_2024)],
-    )
+    cohort_2026 = evaluate_cohort(load_roster_2026(), sales_2026, 2026)
+    cohort_2025 = evaluate_cohort(load_roster_2025(), sales_2025, 2025)
 
     payload = {
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -354,16 +345,15 @@ def main():
     HTML.write_text(new_html, encoding="utf-8")
 
     for year, misc in (("2026", misc_2026), ("2025", misc_2025)):
-        print(f"{year} sales file: excluded {round(misc):,} Brand Family \"Misc\" cases (opaque, unattributed -- see generate.py)")
+        print(f"{year} sales file: removed {round(misc):,} Brand Family \"Misc\" cases (opaque, unattributed -- see generate.py)")
     for year, c in (("2026", cohort_2026), ("2025", cohort_2025)):
         o = c["overall"]
         print(f"{year} cohort: {c['evaluatedCount']} of {c['rosterTotal']} accounts evaluated "
               f"({c['pendingCount']} pending), YTD = {c['ytdLabel']}")
-        print(f"  Overall: {o['upCount']} up / {o['downCount']} down / {o['noBaselineCount']} no baseline "
-              f"-- blended 3-month Cases lift {o['cases3']['liftPct']}%, YTD lift {o['casesYtd']['liftPct']}%")
-        ft, rp = c["byResetType"]["First-Time"], c["byResetType"]["Repeat"]
-        print(f"  First-Time: {ft['accountCount']} accounts, blended 3-month lift {ft['cases3']['liftPct']}%")
-        print(f"  Repeat: {rp['accountCount']} accounts, blended 3-month lift {rp['cases3']['liftPct']}%")
+        print(f"  Overall: {o['upCount']} up / {o['downCount']} down / {o['noBaselineCount']} no baseline")
+        print(f"  Blended 3-month Cases lift (YoY): {o['cases3']['liftPct']}%")
+        print(f"  Blended 3-month Cases lift (before->after, same year): {o['cases3Adj']['liftPct']}%")
+        print(f"  Blended YTD lift: {o['casesYtd']['liftPct']}%")
 
 
 if __name__ == "__main__":

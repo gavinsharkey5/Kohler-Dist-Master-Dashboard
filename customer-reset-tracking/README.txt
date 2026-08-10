@@ -3,38 +3,49 @@ Customer Reset Tracking — Does a Reset Lift Sales?
 Evaluates whether Kohler's off-premise shelf/cooler resets (the "SFS"
 program) actually increase sales, using each account's own reset date as
 the anchor. Two cohorts, evaluated and shown separately (a tab switcher at
-the top of the page): the 2026 resets and the 2025 resets. Each is its own
-roster + sales export + methodology run -- they aren't blended together.
+the top of the page): the 2026 resets (the main focus, and the default tab)
+and the 2025 resets. Each is its own roster + sales export + methodology
+run -- they aren't blended together.
 
-Methodology (v2, 2026-08-07 -- see "v1 -> v2" below for what changed):
+Methodology (v3, 2026-08-10 -- see "v2 -> v3" below for what changed):
   - Sales inputs are monthly account totals (Customer Num x Year Month x
     Cases), not a dated transaction ledger, so windows are whole calendar
     months, not a rolling day count from the exact reset date.
-  - 3-MONTH window: the reset's own month plus the following two calendar
-    months (e.g. a March reset -> March+April+May), that same window one
-    year earlier for the PRE side -- a year-over-year comparison anchored
-    at each account's own reset date, not a same-year before/after, so it
-    isn't just normal seasonal variation.
+  - Two different 3-month comparisons are shown side by side per account,
+    not just one:
+      - Year-over-year (pre3/post3/lift3): the reset's own month plus the
+        following two calendar months (e.g. a March reset -> March+April+
+        May), vs. that exact same 3-month window one year earlier.
+        Controls for normal seasonal variation.
+      - Before -> after, same year (preAdj/liftAdj): the 3 calendar months
+        immediately before the reset's month, vs. the same "after" window
+        above (reset month + next two), both within the same year. Shows
+        the immediate change around the reset, but does NOT control for
+        seasonality -- read it alongside the year-over-year number, not
+        instead of it. In this data it runs much higher than the YoY
+        number in both cohorts (2026: +37.9% vs. +0.6%; 2025: +48.4% vs.
+        -3.8%), which is itself informative: most of that gap is likely
+        normal seasonal lift (resets cluster earlier in the year, and
+        cases/demand generally climb through spring into summer), not the
+        reset's own effect -- exactly why both numbers are shown rather
+        than just one.
   - YTD window: January through the latest fully-elapsed calendar month
     present in that cohort's sales file (today's real in-progress month,
     if the file happens to include it, is dropped so a half-finished month
     doesn't understate YTD), vs. the same January-through-that-month range
-    one year earlier.
+    one year earlier. For the 2025 cohort (a complete calendar year) this
+    is effectively full-year 2024 vs. 2025.
   - Lift % = (post total - pre total) / pre total, on Cases -- the only
     metric in these exports (no $ Volume / Gross Profit, unlike v1's daily
     ledger). A non-positive baseline (zero, or -- at a couple of small
     accounts -- net-negative, where returns/credits outweighed purchases in
     that window) has no meaningful "% growth" reading: shown as "No
     baseline" rather than an invented, infinite, or sign-flipped number.
-  - First-time resets (a store's first-ever SFS reset) are tracked
-    SEPARATELY from repeat resets rather than blended together -- in both
-    cohorts First-Time shows a clearly better blended lift than Repeat (see
-    "Key findings" below), same pattern v1 found.
   - A "Misc" Brand Family bucket in BOTH source exports (~30% of raw case
-    volume in each) is excluded from every number on this page -- see
-    "Data quality: the 'Misc' bucket" below. This is not a small rounding
-    choice; it changed the headline numbers by roughly two orders of
-    magnitude (see "v1 -> v2").
+    volume in each) is removed entirely from the sales data before any
+    total is computed -- see "Data quality: the 'Misc' bucket" below.
+  - First-time vs. repeat reset tracking has been REMOVED (was in v1/v2) --
+    see "v2 -> v3" below.
 
 Data quality: the "Misc" bucket (found 2026-08-07, load_monthly_sales() in
 generate.py) -- both sales_2026.csv and sales_2025.csv carry rows with
@@ -46,16 +57,32 @@ wildly lumpy per account/month: single rows worth tens of thousands of
 cases at ONE account in ONE month, then nothing for that account for
 months at a stretch. In aggregate they're ~30% of total raw case volume in
 BOTH files (751,153 of ~2.41M cases in sales_2026.csv; 838,959 of ~3.05M in
-sales_2025.csv) -- not a fringe artifact. Before they were excluded, an
-early build of this v2 methodology showed blended lifts in the tens to
+sales_2025.csv) -- not a fringe artifact. Before they were removed, an
+early build of this methodology showed blended lifts in the tens to
 hundreds of percent (one account: +983.6%, driven by a single ~38,200-case
 "Misc" row landing inside its post-reset window) that had nothing to do
 with resets -- purely which accounts happened to have a "Misc" spike land
-inside their evaluation window. Excluded, the numbers land close to v1's
-independently-built, differently-sourced result (see below) -- a
-consistency check that this exclusion was the right call, not just a
-number that "looks nicer." Re-running generate.py prints the excluded
-total per file so this stays visible on every refresh.
+inside their evaluation window. With it removed, the numbers land close to
+v1's independently-built, differently-sourced result (see below) -- a
+consistency check that this exclusion was the right call. Re-running
+generate.py prints the removed total per file so this stays visible on
+every refresh.
+
+v2 -> v3 (2026-08-10): three changes at Kohler's request --
+  1. First-time-vs-repeat tracking (its own dashboard section, plus the
+     account table's "Type" column/filter) has been removed entirely --
+     the dashboard was doing too much. generate.py no longer reads
+     reset_history_2024.xlsx / reset_history_2025.xlsx at all (kept on
+     disk for provenance, just unused).
+  2. Added the "before -> after, same year" 3-month comparison (preAdj/
+     liftAdj/cases3Adj) alongside the existing year-over-year one -- see
+     methodology above.
+  3. The "Misc" data-quality notice banner is kept (per Kohler request, so
+     it's visible on every load that this data doesn't include Misc), but
+     its wording changed from "excluded from every number" to "removed
+     entirely" to be unambiguous that it's gone, not just downweighted.
+  2026 is now called out as the main-focus cohort in the page copy (it was
+  already the default/first tab).
 
 v1 -> v2 (2026-08-07): v1 covered only the 2026 cohort's Jan/Feb/Mar
 sub-set (38 of 73 accounts) from a daily transaction ledger (Case
@@ -64,51 +91,44 @@ a full 2026 roster + a consolidated monthly sales export covering all 73
 accounts, AND a full 2025 roster + its own monthly sales export -- both
 new exports are Cases-only and monthly-grain, not daily, which is why the
 methodology moved to calendar-month windows (see above) instead of v1's
-exact 90-day span. v1's own numbers (+0.2% blended, First-Time +12.3%,
-Repeat -3.4%, all 38 accounts) are close to v2's 2026-cohort numbers
-below despite the completely different data source, window definition,
-and metric -- read that agreement as corroboration, not a coincidence to
-wave away.
+exact 90-day span. v1's own blended number (+0.2%, all 38 accounts) is
+close to v2/v3's 2026-cohort year-over-year number below despite the
+completely different data source, window definition, and metric -- read
+that agreement as corroboration, not a coincidence to wave away.
 
-Key findings so far (v2, 2026-08-07):
-  2026 cohort (73 of 73 accounts evaluated):
-    - Blended 3-month Cases lift: +0.6% (33 up / 38 down / 2 no baseline).
-    - First-Time (15 accounts): +14.9% blended 3-month lift.
-    - Repeat (58 accounts): -1.2% blended 3-month lift.
+Key findings so far (v3, 2026-08-10):
+  2026 cohort (73 of 73 accounts evaluated) -- MAIN FOCUS:
+    - Blended 3-month Cases lift (year-over-year): +0.6% (33 up / 38 down /
+      2 no baseline).
+    - Blended 3-month Cases lift (before -> after, same year): +37.9% --
+      see the seasonality caveat above; not directly comparable to the
+      year-over-year number.
     - YTD (Jan-Jul 2026 vs. Jan-Jul 2025): +0.6% blended.
   2025 cohort (69 of 69 accounts evaluated):
-    - Blended 3-month Cases lift: -3.8% (20 up / 45 down / 4 no baseline).
-    - First-Time (25 accounts): +2.2% blended 3-month lift.
-    - Repeat (44 accounts): -6.1% blended 3-month lift.
+    - Blended 3-month Cases lift (year-over-year): -3.8% (20 up / 45 down /
+      4 no baseline).
+    - Blended 3-month Cases lift (before -> after, same year): +48.4% --
+      same seasonality caveat as above.
     - YTD (Jan-Dec 2025 vs. Jan-Dec 2024, i.e. full calendar year): -3.3%
       blended.
-  - Same pattern in both cohorts and consistent with v1: First-Time resets
-    outperform Repeat resets by a wide margin, and most of the roster in
-    both years is repeat resets (a recurring annual program), so the
-    blended/overall number is pulled toward Repeat's weaker (here,
-    negative in both cohorts) result.
   - The 2024/2025 program-year workbooks' own methodology (YoY anchored to
     reset date, plus a non-reset control-store baseline) found reset
     stores performed roughly in line with a control group's own decline --
     i.e. resets may not be beating "doing nothing." Still no 2026 or 2025
     control-store pull to check that directly here (see "Still open").
 
-Still open / not yet in v2:
+Still open / not yet in v3:
   - A non-reset "control" account sales pull for both 2026 and 2025, so
     the control comparison can be verified directly rather than relying on
     the prior program's own summary number.
   - Confirmation of what Segmentation A/B/C actually measures (assumed to
     be a volume tier, not confirmed) -- carried through and shown as a
     grouping in the dashboard, not treated as an endorsed metric.
-  - What's actually inside the "Misc" bucket, and whether Kohler wants it
-    included under a different (e.g. brand-blind but still real) treatment
-    rather than excluded outright.
+  - What's actually inside the "Misc" bucket -- it's removed outright now,
+    not held as an open question the way it was in v2.
   - The Constellation Brands in-store benchmark used in the 2024/2025
     program-year workbooks isn't in either of these monthly exports --
     not included here.
-  - The 2025 cohort's "Repeat" tag only checks reset_history_2024.xlsx (no
-    2023 history file exists) -- some 2025 "First-Time" accounts may
-    actually be repeats of an even earlier reset this build can't see.
 
 Files:
   reset_accounts_2026.xlsx  2026 reset roster -- Kohler Account #, TD Linx
@@ -147,26 +167,21 @@ Files:
                               source system ("Fusion" vs. RDE -- column
                               names are otherwise identical, right down to
                               the "Misc" bucket, see above).
-  reset_history_2024.xlsx    Prior program years (keyed by TD Linx #) --
-  reset_history_2025.xlsx    used only to tag each account as a first-time
-                              reset vs. a repeat, not for their own sales
-                              figures. reset_history_2025.xlsx is only
-                              consulted for the 2026 cohort (checking "was
-                              this 2026 account also reset in 2025") -- the
-                              2025 cohort obviously can't be checked against
-                              its own year, and there's no 2023 file to
-                              check further back for it.
+  reset_history_2024.xlsx    NOT read by generate.py as of v3 -- kept on
+  reset_history_2025.xlsx    disk for provenance only. Previously used to
+                              tag first-time vs. repeat resets, a feature
+                              removed in v3 (see "v2 -> v3" above).
   generate.py                Rebuilds the embedded data in index.html for
                               BOTH cohorts. Requires openpyxl (pip install
                               openpyxl).
   index.html                  The dashboard itself -- a "2026 Resets" /
                               "2025 Resets" tab switcher at the top, each
-                              rendering the same layout (KPIs, First-Time
-                              vs. Repeat split, by-month, by-segment, full
-                              sortable account table, methodology) against
-                              that cohort's own data. Data is embedded in
-                              the <script id="reset-data"> tag as
-                              {"cohorts": {"2026": {...}, "2025": {...}}}.
+                              rendering the same layout (Overall KPIs,
+                              by-month, by-segment, full sortable account
+                              table, methodology) against that cohort's own
+                              data. Data is embedded in the <script
+                              id="reset-data"> tag as {"cohorts": {"2026":
+                              {...}, "2025": {...}}}.
 
 To refresh:
   - 2026 cohort: pull a fresh RDE "SFS Reset Accounts" export (same
@@ -177,20 +192,17 @@ To refresh:
     from the Fusion source system. (In practice this cohort is complete --
     2025 is over -- so this mainly matters if a correction ever comes in.)
   - Either way: run python3 generate.py -- it prints, per cohort, how many
-    accounts evaluated (should be the full roster now, not a partial
-    cohort like v1) and the blended First-Time / Repeat / overall lift, and
-    prints the excluded "Misc" case total per sales file -- worth a sanity
-    check that it's still in the same ballpark (~30% of raw volume) rather
-    than newly dominant or newly absent, either of which would mean the
-    export's shape changed. Then commit and push.
+    accounts evaluated and the blended year-over-year / before-after /
+    YTD lift, and prints the removed "Misc" case total per sales file --
+    worth a sanity check that it's still in the same ballpark (~30% of raw
+    volume) rather than newly dominant or newly absent, either of which
+    would mean the export's shape changed. Then commit and push.
 
 Notes:
   - Segmentation (A/B/C) is carried through from each roster as-is; its
     exact definition hasn't been confirmed (assumed to be a volume tier).
-  - "Repeat" resets are checked against reset_history_2024.xlsx and (2026
-    cohort only) reset_history_2025.xlsx, keyed by TD Linx #.
   - index.html does the per-cohort table sort/filter/search entirely
     client-side from the flat account list generate.py emits per cohort --
     switching tabs resets the table's filters/sort back to the default
-    (3-Mo Lift %, descending) rather than trying to carry a filter that
-    might not even apply to the other cohort's accounts.
+    (3-Mo Lift % (YoY), descending) rather than trying to carry a filter
+    that might not even apply to the other cohort's accounts.
