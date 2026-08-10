@@ -95,16 +95,24 @@
   .detail-table.open{display:block;}
   .no-lines{color:var(--text-dim);font-size:12.5px;}
 
-  .leader-row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line-soft);font-size:13px;}
-  .leader-row:last-child{border-bottom:none;}
-  .leader-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-dim);width:24px;}
+  .leader-row{display:flex;justify-content:space-between;align-items:center;padding:10px;font-size:13px;
+    width:100%;background:none;border:none;font:inherit;cursor:pointer;border-radius:8px;}
+  .leader-row:hover{background:var(--card-alt);}
+  .leader-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-dim);width:24px;text-align:left;}
   .leader-rank.top3{color:var(--amber);}
-  .leader-name{flex:1;padding:0 8px;font-weight:600;color:var(--text);}
+  .leader-name{flex:1;padding:0 8px;font-weight:600;color:var(--text);text-align:left;}
   .leader-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:12px;}
-  .leader-list{padding:4px 10px 8px;}
-  .leader-row-link{width:100%;background:none;border:none;font:inherit;cursor:pointer;border-radius:8px;}
-  .leader-row-link:hover{background:var(--card-alt);}
-  .leader-chev{color:var(--accent);font-size:17px;font-weight:700;margin-left:4px;}
+  .leader-list{padding:4px 6px 8px;}
+  .leader-item{border-bottom:1px solid var(--line-soft);}
+  .leader-item:last-child{border-bottom:none;}
+  .leader-chev{color:var(--accent);font-size:10px;margin-left:10px;transition:transform .15s;display:inline-block;}
+  .leader-toggle.open .leader-chev{transform:rotate(90deg);}
+  .leader-detail{display:none;padding:2px 4px 18px;}
+  .leader-detail.open{display:block;}
+  .leader-detail .prog-card{box-shadow:none;}
+  .gotorep-btn{display:block;margin:14px 0 2px;background:var(--accent-soft);border:1px solid var(--accent);
+    color:var(--accent);font:inherit;font-weight:700;font-size:12.5px;padding:9px 15px;border-radius:10px;cursor:pointer;}
+  .gotorep-btn:hover{background:var(--accent);color:var(--canvas);}
 
   .prog-grid{display:flex;flex-direction:column;gap:20px;}
   .prog-section{display:flex;flex-direction:column;gap:20px;}
@@ -12146,6 +12154,15 @@ const PROGRAM_LIST = [
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
 ];
 
+const PROGRAM_CARD_FN = {
+  '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
+  'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
+  'new_belgium': cardNewBelgium, 'lytt': cardLytt, 'fall_seasonal': cardFallSeasonal,
+  'sun_cruiser': cardSunCruiser, 'yave': cardYave, 'mollys': cardMollys,
+  'garage_beer_summer_sequel': cardGarageBeerSummerSequel, 'garage_beer_president': cardGarageBeerPresident,
+  'new_belgium_distribution': cardNewBelgiumDistribution,
+};
+
 function rankProgram(entry){
   const rows = ROSTER.map(rep=>{
     const d = entry.getRep(rep);
@@ -12599,13 +12616,24 @@ function renderProgramDetail(key){
   const main = document.getElementById('main');
   if(!entry){ activeProgram=null; renderOverview(); return; }
   const rows = rankProgram(entry);
+  const cardFn = PROGRAM_CARD_FN[key];
   const listHtml = rows.length
-    ? rows.map(r=>`<button class="leader-row leader-row-link" data-rep="${esc(r.rep)}">
-        <span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span>
-        <span class="leader-name">${esc(r.rep)}</span>
-        <span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span>
-        <span class="leader-chev">&rsaquo;</span>
-      </button>`).join('')
+    ? rows.map(r=>{
+        const did = 'progrep'+(uid++);
+        const cardHtml = cardFn ? cardFn(r.rep) : '<div class="no-lines">No detail available for this program.</div>';
+        return `<div class="leader-item">
+          <button class="leader-row leader-toggle" data-target="${did}">
+            <span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span>
+            <span class="leader-name">${esc(r.rep)}</span>
+            <span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span>
+            <span class="leader-chev">▶</span>
+          </button>
+          <div class="leader-detail" id="${did}">
+            ${cardHtml}
+            <button class="gotorep-btn" data-rep="${esc(r.rep)}">Full Rep Detailed View &rsaquo;</button>
+          </div>
+        </div>`;
+      }).join('')
     : '<div class="empty-state">No activity yet for this program.</div>';
   main.innerHTML = `
     <button class="backbtn" id="backbtn">&lsaquo; All programs</button>
@@ -12616,7 +12644,7 @@ function renderProgramDetail(key){
     <div class="prog-card">
       <div class="prog-head">
         <div class="prog-name-row"><span class="prog-name">Rep Rankings</span></div>
-        <div class="prog-desc">${rows.length} rep${rows.length===1?'':'s'} with activity, ranked by ${esc(entry.metricLabel)} · tap a rep for their full breakdown</div>
+        <div class="prog-desc">${rows.length} rep${rows.length===1?'':'s'} with activity, ranked by ${esc(entry.metricLabel)} · tap a rep to see their detail for this program</div>
       </div>
       <div class="prog-body leader-list">${listHtml}</div>
     </div>
@@ -12626,7 +12654,13 @@ function renderProgramDetail(key){
     renderMain();
     window.scrollTo({top:0,behavior:'smooth'});
   });
-  main.querySelectorAll('.leader-row-link').forEach(b=>b.addEventListener('click', ()=>{
+  main.querySelectorAll('.leader-toggle').forEach(b=>b.addEventListener('click', ()=>{
+    const panel = document.getElementById(b.dataset.target);
+    b.classList.toggle('open');
+    if(panel) panel.classList.toggle('open');
+  }));
+  main.querySelectorAll('.gotorep-btn').forEach(b=>b.addEventListener('click', (e)=>{
+    e.stopPropagation();
     const rep = b.dataset.rep;
     activeProgram = null;
     activeRep = rep;
