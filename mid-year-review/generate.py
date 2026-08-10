@@ -124,6 +124,7 @@ DENISE_PRODUCT_DETAIL = HERE / "denise_food_bev_product_detail.csv"
 CSV_SEGMENT_PACKAGE = HERE / "segment_package_trend.csv"
 CSV_BRAND_PACKAGE = HERE / "brand_package_trend.csv"
 CSV_BRAND_GEOGRAPHY = HERE / "brand_geography_trend.csv"
+CSV_DISTRICT_MANAGER = HERE / "district_manager_trend.csv"
 HTML = HERE / "index.html"
 OUT = HERE / "data" / "data.json"
 
@@ -628,6 +629,13 @@ def parse_brand_geography_trend(path):
         overall_county = defaultdict(lambda: [0.0, 0.0])
         by_supplier_county = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
         by_brand_county = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: [0.0, 0.0])))
+        # Sales Rep Assigned -> County -> [prior, current] -- this file's
+        # rep dimension, unused by the Supplier + Brand tab's own popovers
+        # but reused by parse_district_manager_trend() (added 2026-08-10)
+        # to add a Counties section to the District Manager Trends tab's
+        # popovers too, joined by rep name (confirmed 100% name overlap
+        # against district_manager_trend.csv before relying on this).
+        by_rep_county = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
 
         for r in reader:
             brand = (r.get("Brand Family") or "").strip()
@@ -638,6 +646,7 @@ def parse_brand_geography_trend(path):
                 continue
             prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
             county = (r.get("County") or "").strip() or "Unclassified"
+            rep = (r.get("Sales Rep Assigned") or "").strip()
 
             oc = overall_county[county]
             oc[0] += prior
@@ -648,6 +657,10 @@ def parse_brand_geography_trend(path):
             bc = by_brand_county[supplier][brand][county]
             bc[0] += prior
             bc[1] += current
+            if rep:
+                rc = by_rep_county[rep][county]
+                rc[0] += prior
+                rc[1] += current
 
     overall_gainers, overall_decliners = _top_movers(overall_county, TOP_COUNTY_MOVERS)
     by_supplier = {}
@@ -665,6 +678,175 @@ def parse_brand_geography_trend(path):
         "overallCountyGainers": overall_gainers, "overallCountyDecliners": overall_decliners,
         "bySupplier": by_supplier,
         "byBrand": by_brand,
+        "byRepCounty": by_rep_county,
+    }
+
+
+TOP_PRODUCT_TYPE_MOVERS = 4
+# "None"/blank District Manager and its lone "Default" rep are a tiny
+# catch-all bucket (1,881 -> 3,255 CE as of the export this was built
+# from, +73% swing off a near-zero base -- noise, not a real district),
+# not an actual district manager -- excluded entirely rather than shown
+# as a misleading "Unassigned" row.
+DM_EXCLUDE_NAMES = {"none", ""}
+REP_EXCLUDE_NAMES = {"default"}
+# These 2 Product Types carry $0 CE in every row of the export this was
+# built from (accounting adjustments, not real volume) -- excluded from
+# product-type aggregation specifically (not from the rep/DM CE totals
+# overall, though the effect is the same either way since they're zero).
+PRODUCT_TYPE_EXCLUDE = {"finance charges", "hh finance charges"}
+
+
+# ---------------------------------------------------------------------------
+# District Manager Trends tab (added 2026-08-10, per Gavin, from an
+# Encompass "Comparison" export the user attached in chat: District
+# Manager, Sales Rep Assigned, Brand Family, Package, Product Type,
+# On-Off Premise, Case Equiv for the same two YTD windows -- Total row
+# again reconciles exactly to ytd_comparison.csv's own). Builds a
+# District Manager -> Sales Rep tree (same collapsed-parent/expandable-
+# children UI pattern as the Supplier + Brand combo tab, just without any
+# goal-% machinery -- there's no rep-level goal data on hand) with an "i"
+# popover at both levels covering: top brand families driving growth/
+# decline, top Product Types (Case Beer/Keg Beer/Liquor/Wine/etc.) growing/
+# shrinking, the On/Off-Premise CE split, and -- IF brand_geography_trend's
+# byRepCounty came back non-None -- top Counties growing/shrinking too,
+# joined by Sales Rep Assigned name (100% overlap confirmed against that
+# file before relying on this join).
+# ---------------------------------------------------------------------------
+def build_dm_level_insight(brand_totals, ptype_totals, premise_totals, prior, current, county_totals=None):
+    brand_gainers, brand_decliners = _top_movers(brand_totals, TOP_BRAND_MOVERS)
+    ptype_gainers, ptype_decliners = _top_movers(ptype_totals, TOP_PRODUCT_TYPE_MOVERS)
+    trend = (current / prior - 1) if prior else None
+    premise_split = {}
+    for label, (p, c) in premise_totals.items():
+        t = (c / p - 1) if p else None
+        premise_split[label] = {"cePrior": round(p, 1), "ceCurrent": round(c, 1), "trendPct": round(t, 4) if t is not None else None}
+    result = {
+        "cePrior": round(prior, 1), "ceCurrent": round(current, 1), "trendPct": round(trend, 4) if trend is not None else None,
+        "brandGainers": brand_gainers, "brandDecliners": brand_decliners,
+        "productTypeGainers": ptype_gainers, "productTypeDecliners": ptype_decliners,
+        "premiseSplit": premise_split,
+    }
+    if county_totals is not None:
+        county_gainers, county_decliners = _top_movers(county_totals, TOP_COUNTY_MOVERS)
+        result["countyGainers"] = county_gainers
+        result["countyDecliners"] = county_decliners
+    return result
+
+
+def parse_district_manager_trend(path, rep_county_totals=None):
+    if not path.exists():
+        return None
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and "±" not in c]
+        if len(ce_cols) < 2:
+            return None
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+        range_prior = prior_col.replace("Case Equiv", "").strip()
+        range_current = current_col.replace("Case Equiv", "").strip()
+
+        dm_totals = defaultdict(lambda: [0.0, 0.0])
+        dm_brand = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        dm_ptype = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        dm_premise = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        dm_reps = defaultdict(set)
+        rep_totals = defaultdict(lambda: [0.0, 0.0])
+        rep_brand = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        rep_ptype = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        rep_premise = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        overall_totals = [0.0, 0.0]
+        overall_brand = defaultdict(lambda: [0.0, 0.0])
+        overall_ptype = defaultdict(lambda: [0.0, 0.0])
+        overall_premise = defaultdict(lambda: [0.0, 0.0])
+
+        for r in reader:
+            dm = (r.get("District Manager") or "").strip()
+            if dm.lower() in DM_EXCLUDE_NAMES:
+                continue
+            rep = (r.get("Sales Rep Assigned") or "").strip()
+            if not rep or rep.lower() in REP_EXCLUDE_NAMES:
+                continue
+            prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
+            brand = (r.get("Brand Family") or "").strip() or "Unclassified"
+            ptype = (r.get("Product Type") or "").strip()
+            premise = (r.get("On-Off Premise") or "").strip() or "Unclassified"
+
+            dm_totals[dm][0] += prior
+            dm_totals[dm][1] += current
+            dm_brand[dm][brand][0] += prior
+            dm_brand[dm][brand][1] += current
+            dm_premise[dm][premise][0] += prior
+            dm_premise[dm][premise][1] += current
+            dm_reps[dm].add(rep)
+
+            rep_totals[rep][0] += prior
+            rep_totals[rep][1] += current
+            rep_brand[rep][brand][0] += prior
+            rep_brand[rep][brand][1] += current
+            rep_premise[rep][premise][0] += prior
+            rep_premise[rep][premise][1] += current
+
+            overall_totals[0] += prior
+            overall_totals[1] += current
+            overall_brand[brand][0] += prior
+            overall_brand[brand][1] += current
+            overall_premise[premise][0] += prior
+            overall_premise[premise][1] += current
+
+            if ptype.lower() not in PRODUCT_TYPE_EXCLUDE:
+                dm_ptype[dm][ptype][0] += prior
+                dm_ptype[dm][ptype][1] += current
+                rep_ptype[rep][ptype][0] += prior
+                rep_ptype[rep][ptype][1] += current
+                overall_ptype[ptype][0] += prior
+                overall_ptype[ptype][1] += current
+
+    def county_totals_for_reps(reps):
+        if rep_county_totals is None:
+            return None
+        totals = defaultdict(lambda: [0.0, 0.0])
+        for rep in reps:
+            for county, (p, c) in rep_county_totals.get(rep, {}).items():
+                totals[county][0] += p
+                totals[county][1] += c
+        return totals
+
+    overall_insight = build_dm_level_insight(
+        overall_brand, overall_ptype, overall_premise, overall_totals[0], overall_totals[1],
+        county_totals=county_totals_for_reps(rep_totals.keys()))
+
+    dm_rollup = []
+    for dm, (prior, current) in dm_totals.items():
+        insight = build_dm_level_insight(
+            dm_brand[dm], dm_ptype[dm], dm_premise[dm], prior, current,
+            county_totals=county_totals_for_reps(dm_reps[dm]))
+        children = []
+        for rep in dm_reps[dm]:
+            rp, rc = rep_totals[rep]
+            rep_trend = (rc / rp - 1) if rp else None
+            rep_insight = build_dm_level_insight(
+                rep_brand[rep], rep_ptype[rep], rep_premise[rep], rp, rc,
+                county_totals=county_totals_for_reps([rep]))
+            children.append({
+                "rep": rep, "cePrior": round(rp, 1), "ceCurrent": round(rc, 1),
+                "trendPct": round(rep_trend, 4) if rep_trend is not None else None,
+                "insight": rep_insight,
+            })
+        children.sort(key=lambda c: -(c["ceCurrent"] or 0))
+        dm_trend = (current / prior - 1) if prior else None
+        dm_rollup.append({
+            "manager": dm, "cePrior": round(prior, 1), "ceCurrent": round(current, 1),
+            "trendPct": round(dm_trend, 4) if dm_trend is not None else None,
+            "repCount": len(dm_reps[dm]), "insight": insight, "children": children,
+        })
+    dm_rollup.sort(key=lambda g: -(g["ceCurrent"] or 0))
+
+    return {
+        "rangePrior": range_prior, "rangeCurrent": range_current,
+        "overall": overall_insight,
+        "rollup": dm_rollup,
     }
 
 
@@ -856,6 +1038,15 @@ def main():
     elif brand_geography_trend and not brand_package_trend:
         print(f"WARNING: {CSV_BRAND_GEOGRAPHY.name} is present but {CSV_BRAND_PACKAGE.name} isn't -- "
               f"county data has nothing to merge into, so no county sections will render.")
+
+    district_manager_trend = parse_district_manager_trend(
+        CSV_DISTRICT_MANAGER, brand_geography_trend["byRepCounty"] if brand_geography_trend else None)
+    if district_manager_trend:
+        total_reps = sum(g["repCount"] for g in district_manager_trend["rollup"])
+        print(f"District Manager Trends: {len(district_manager_trend['rollup'])} districts / {total_reps} reps "
+              f"from {CSV_DISTRICT_MANAGER.name} ({district_manager_trend['rangePrior']}  vs.  "
+              f"{district_manager_trend['rangeCurrent']})"
+              f"{', with county data joined in' if brand_geography_trend else ' (no county data -- brand_geography_trend.csv absent)'}.")
 
     # Per Gavin, 2026-08-10: switch the header's Package Trend panel from
     # Cases (segment_package_trend.csv) to Case Equivalents
@@ -1298,6 +1489,7 @@ def main():
         "overallInsight": brand_package_trend["overall"] if brand_package_trend else None,
         "insightRange": {"prior": brand_package_trend["rangePrior"], "current": brand_package_trend["rangeCurrent"]} if brand_package_trend else None,
         "premiseSplit": brand_package_trend["premiseSplit"] if brand_package_trend else None,
+        "dmTrend": district_manager_trend,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))

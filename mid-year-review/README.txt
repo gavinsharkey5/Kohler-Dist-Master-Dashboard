@@ -29,6 +29,17 @@ then "By Supplier", then "By Brand Family" (the original brand-level
 table, renamed from "Vs. Goal"), then "New Brand Families in 2026"
 (renamed from "New in 2026"), then "Terminated Brands" last.
 
+"By Supplier" and "By Brand Family" hidden (2026-08-10, per Gavin --
+"they are redundant" against Supplier + Brand, which covers the same
+ground in one place). Hidden via a .tab-hidden{display:none} CSS class
+on those 2 tab buttons only -- everything else (their render
+functions, DATA.supplierRollup/DATA.brands, the KPI tiles, the goal-%
+edit machinery) is untouched and still works if navigated to directly
+(e.g. someone had a bookmark) or un-hidden later; this was a
+visibility change, not a feature removal. "District Manager Trends"
+(also 2026-08-10) added as a new tab, last in the bar -- see its own
+section below.
+
 "New Brand Families in 2026" lists brands with zero prior-year sales
 (regardless of whether a goal exists for them in the workbook -- per
 Kohler, 2026-07-28, a handful of brands do have a goal % on file
@@ -432,6 +443,71 @@ existing ones:
     of this refresh) reads as real supplier-level performance, not
     noise.
 
+District Manager Trends tab (added 2026-08-10, per Gavin, from an
+Encompass "Comparison" export the user attached in chat: District
+Manager, Sales Rep Assigned, Brand Family, Package, Product Type,
+On-Off Premise, Case Equiv for the same two YTD windows -- Total row
+again reconciles exactly to ytd_comparison.csv's own): an entirely
+different org axis from the rest of this page -- District Manager ->
+Sales Rep, not Supplier -> Brand -- so it's its own tab rather than
+folded into an existing one. Same collapsed-parent/expandable-children
+UI as the Supplier + Brand tab (click a district row or its chevron to
+expand/collapse; search force-expands matches; Expand All/Collapse
+All; click a '26 YTD CE cell to select it, same running-sum bar at the
+page bottom), but with NO goal-% columns or editing -- there's no
+rep-level goal data on hand, so this tab is pure Jan 1 - Jul 31 CE
+trend, nothing to compare it against. 5 real districts (Mike Engel,
+Denise Montes, Paul Deady, Chris McCrohan, Mike Kennedy), 30 reps
+total across them.
+
+A "None" District Manager / "Default" rep combination in the raw
+export (1,881 -> 3,255 CE as of the export this was built from, a
++73% swing off a near-zero base) is a catch-all bucket, not a real
+district -- excluded entirely (DM_EXCLUDE_NAMES/REP_EXCLUDE_NAMES in
+generate.py) rather than shown as a misleading "Unassigned" row, same
+treatment Buzbee's Beverages USA LLC gets on the Supplier + Brand tab.
+Two Product Types, "Finance Charges" and "HH Finance Charges", carry
+$0 CE in every row of the export this was built from (accounting
+adjustments, not real volume) -- excluded from product-type
+aggregation specifically (PRODUCT_TYPE_EXCLUDE), though the effect on
+totals is nil either way since they're already zero.
+
+Each district's (and each rep's) "i" popover covers 4 things, more
+than the Supplier + Brand tab's popovers since this file carries more
+dimensions: top brand families driving growth/decline, top Product
+Types (Case Beer / Keg Beer / Liquor / Wine / Cider / Cocktails / etc.
+-- a genuinely new axis this page didn't have before) growing/
+shrinking, the On/Off-Premise CE split (2 stat lines, not a mover
+list, since there are only ever 2 buckets -- see premiseSplitHtml() in
+index.html), and -- ONLY if brand_geography_trend.csv is also present
+-- top Counties growing/shrinking, joined by Sales Rep Assigned name
+(100% overlap between the two files' 31 rep names confirmed before
+relying on this join; see parse_brand_geography_trend()'s byRepCounty
+output, built in the SAME pass that already produces its by-supplier/
+by-brand county data for the Supplier + Brand tab, not a second file
+read). insightTooltipHtml() in index.html was generalized to render
+each of its now-5 possible sections (Brands, Product Types, Packages,
+Counties, Premise) independently based on which fields are actually
+present on a given insight object, since different tabs' insight
+shapes now carry different subsets -- see the comment directly above
+that function for the full field-presence matrix.
+
+Asked at the time whether other data would "fortify" this tab further
+-- worth revisiting if pursued:
+  - Rep-level goals/quotas: none exist today (workbook goals are
+    brand-level only), so reps can only be compared against LAST
+    YEAR's own volume here, not a target.
+  - Rep tenure/start date: would explain a big trend swing as "new rep
+    ramping up" rather than a real performance signal.
+  - Target Accounts / distribution-gap data per rep (the pattern the
+    off-prem/on-prem MPO dashboards already use) -- would turn this
+    from a pure retrospective into an actionable "here's what to sell
+    next" view too.
+  - Call/visit activity data (iSellBeer) -- ties trend results to
+    activity level, not just outcome.
+Not pursued without that data on hand; documented here so the next
+person doesn't have to rediscover the idea.
+
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
 Costenita) -- has brand-level goals in the workbook but never got its
@@ -597,7 +673,42 @@ Files:
                               present (nothing to merge county data into
                               otherwise); optional -- if this file is
                               absent, the existing "i" popovers just
-                              don't get a Counties section.
+                              don't get a Counties section. Also feeds
+                              byRepCounty (Sales Rep Assigned -> County
+                              totals, same single pass) for the District
+                              Manager Trends tab's own Counties sections
+                              -- see that file's entry below.
+  district_manager_trend.csv (optional)
+                              Encompass "Comparison" export (District
+                              Manager, Sales Rep Assigned, Brand Family,
+                              Package, Product Type, On-Off Premise,
+                              Case Equiv for the same two YTD windows --
+                              reconciles exactly to ytd_comparison.csv's
+                              own Total row). Powers the whole "District
+                              Manager Trends" tab (added 2026-08-10, per
+                              Gavin) -- the District Manager -> Sales Rep
+                              rollup table, its KPI/Top-Headlines tile,
+                              and the "i" popovers' Brands/Product Types/
+                              Premise sections at both the district and
+                              rep level (Counties too, if
+                              brand_geography_trend.csv is ALSO present --
+                              joined by Sales Rep Assigned name). See
+                              parse_district_manager_trend() and
+                              build_dm_level_insight() in generate.py.
+                              A "None" District Manager / "Default" rep
+                              combination in the raw export (a tiny
+                              catch-all bucket, not a real district) is
+                              excluded entirely -- see
+                              DM_EXCLUDE_NAMES/REP_EXCLUDE_NAMES. Two
+                              Product Types, "Finance Charges" and "HH
+                              Finance Charges" ($0 CE in every row of the
+                              export this was built from), are excluded
+                              from product-type aggregation specifically
+                              -- see PRODUCT_TYPE_EXCLUDE.
+                              Optional -- if this file is absent, the
+                              District Manager Trends tab shows no data
+                              (DATA.dmTrend is null; the tab and its
+                              controls still render, just empty).
   generate.py                 Rebuilds data/data.json from the files
                               above.
   index.html                  The page itself.
@@ -620,8 +731,12 @@ To refresh (e.g. at each month-end check-in):
   6. If refreshing the "i" popovers' Counties section, re-pull the
      Encompass "Comparison" export and save it over
      brand_geography_trend.csv.
-  7. Run: python3 generate.py
-  8. Commit and push.
+  7. If refreshing the District Manager Trends tab, re-pull the
+     Encompass "Comparison" export (District Manager / Sales Rep
+     Assigned / Brand Family / Package / Product Type / On-Off Premise)
+     and save it over district_manager_trend.csv.
+  8. Run: python3 generate.py
+  9. Commit and push.
 
 Notes:
   - A brand whose name is also used as its own supplier label in the

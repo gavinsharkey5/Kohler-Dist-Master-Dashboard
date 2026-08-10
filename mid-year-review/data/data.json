@@ -30645,5 +30645,5185 @@
       "ceCurrent": 3434060.4,
       "trendPct": -0.0133
     }
+  },
+  "dmTrend": {
+    "rangePrior": "1/1/2025 - 7/31/2025",
+    "rangeCurrent": "1/1/2026 - 7/31/2026",
+    "overall": {
+      "cePrior": 4042575.3,
+      "ceCurrent": 3978243.5,
+      "trendPct": -0.0159,
+      "brandGainers": [
+        {
+          "label": "Sun Cruiser",
+          "cePrior": 28386.0,
+          "ceCurrent": 55045.0,
+          "ceDiff": 26659.0
+        },
+        {
+          "label": "Modelo Chelada",
+          "cePrior": 46208.0,
+          "ceCurrent": 59212.0,
+          "ceDiff": 13004.0
+        },
+        {
+          "label": "Modelo Especial",
+          "cePrior": 595188.6,
+          "ceCurrent": 607400.8,
+          "ceDiff": 12212.2
+        },
+        {
+          "label": "Sapporo",
+          "cePrior": 46000.2,
+          "ceCurrent": 55510.1,
+          "ceDiff": 9509.9
+        }
+      ],
+      "brandDecliners": [
+        {
+          "label": "Heineken USA",
+          "cePrior": 252333.6,
+          "ceCurrent": 225211.7,
+          "ceDiff": -27121.8
+        },
+        {
+          "label": "White Claw",
+          "cePrior": 177294.5,
+          "ceCurrent": 157033.7,
+          "ceDiff": -20260.7
+        },
+        {
+          "label": "Coors Light",
+          "cePrior": 452798.9,
+          "ceCurrent": 439647.5,
+          "ceDiff": -13151.4
+        },
+        {
+          "label": "Corona Extra",
+          "cePrior": 700187.4,
+          "ceCurrent": 687619.9,
+          "ceDiff": -12567.5
+        }
+      ],
+      "productTypeGainers": [
+        {
+          "label": "Cocktails",
+          "cePrior": 38546.7,
+          "ceCurrent": 68827.9,
+          "ceDiff": 30281.2
+        },
+        {
+          "label": "Case Soda",
+          "cePrior": 7600.8,
+          "ceCurrent": 11526.6,
+          "ceDiff": 3925.8
+        },
+        {
+          "label": "Case Non-Alcoholic",
+          "cePrior": 44462.4,
+          "ceCurrent": 47499.0,
+          "ceDiff": 3036.6
+        },
+        {
+          "label": "Case THC",
+          "cePrior": 4105.6,
+          "ceCurrent": 5135.2,
+          "ceDiff": 1029.6
+        }
+      ],
+      "productTypeDecliners": [
+        {
+          "label": "Case Beer",
+          "cePrior": 3660468.6,
+          "ceCurrent": 3567321.2,
+          "ceDiff": -93147.4
+        },
+        {
+          "label": "Keg Beer",
+          "cePrior": 231163.0,
+          "ceCurrent": 224758.9,
+          "ceDiff": -6404.1
+        },
+        {
+          "label": "Liquor",
+          "cePrior": 11951.6,
+          "ceCurrent": 8826.2,
+          "ceDiff": -3125.4
+        },
+        {
+          "label": "Red Bull",
+          "cePrior": 4231.5,
+          "ceCurrent": 3470.5,
+          "ceDiff": -761.0
+        }
+      ],
+      "premiseSplit": {
+        "Off Premise": {
+          "cePrior": 3478523.8,
+          "ceCurrent": 3430805.2,
+          "trendPct": -0.0137
+        },
+        "On Premise": {
+          "cePrior": 564051.6,
+          "ceCurrent": 547438.3,
+          "trendPct": -0.0295
+        }
+      },
+      "countyGainers": [
+        {
+          "label": "Morris",
+          "cePrior": 342072.5,
+          "ceCurrent": 345668.2,
+          "ceDiff": 3595.7
+        },
+        {
+          "label": "Warren",
+          "cePrior": 79.9,
+          "ceCurrent": 135.4,
+          "ceDiff": 55.5
+        }
+      ],
+      "countyDecliners": [
+        {
+          "label": "Passaic",
+          "cePrior": 1440016.1,
+          "ceCurrent": 1408451.6,
+          "ceDiff": -31564.5
+        },
+        {
+          "label": "Bergen",
+          "cePrior": 1741682.6,
+          "ceCurrent": 1728430.5,
+          "ceDiff": -13252.1
+        },
+        {
+          "label": "Sussex",
+          "cePrior": 308927.1,
+          "ceCurrent": 300203.4,
+          "ceDiff": -8723.7
+        }
+      ]
+    },
+    "rollup": [
+      {
+        "manager": "Mike Engel",
+        "cePrior": 1247831.2,
+        "ceCurrent": 1243045.0,
+        "trendPct": -0.0038,
+        "repCount": 5,
+        "insight": {
+          "cePrior": 1247831.2,
+          "ceCurrent": 1243045.0,
+          "trendPct": -0.0038,
+          "brandGainers": [
+            {
+              "label": "Sun Cruiser",
+              "cePrior": 5376.5,
+              "ceCurrent": 10755.6,
+              "ceDiff": 5379.1
+            },
+            {
+              "label": "Modelo Chelada",
+              "cePrior": 16311.0,
+              "ceCurrent": 21258.0,
+              "ceDiff": 4947.0
+            },
+            {
+              "label": "Sapporo",
+              "cePrior": 16744.3,
+              "ceCurrent": 20924.1,
+              "ceDiff": 4179.9
+            },
+            {
+              "label": "Coors",
+              "cePrior": 15285.1,
+              "ceCurrent": 18585.6,
+              "ceDiff": 3300.5
+            }
+          ],
+          "brandDecliners": [
+            {
+              "label": "Heineken USA",
+              "cePrior": 109868.5,
+              "ceCurrent": 100563.6,
+              "ceDiff": -9304.9
+            },
+            {
+              "label": "Corona Extra",
+              "cePrior": 286056.7,
+              "ceCurrent": 279690.5,
+              "ceDiff": -6366.2
+            },
+            {
+              "label": "White Claw",
+              "cePrior": 47204.1,
+              "ceCurrent": 41806.0,
+              "ceDiff": -5398.1
+            },
+            {
+              "label": "Twisted Tea",
+              "cePrior": 14280.1,
+              "ceCurrent": 11191.9,
+              "ceDiff": -3088.2
+            }
+          ],
+          "productTypeGainers": [
+            {
+              "label": "Cocktails",
+              "cePrior": 7172.7,
+              "ceCurrent": 13588.8,
+              "ceDiff": 6416.1
+            },
+            {
+              "label": "Case Non-Alcoholic",
+              "cePrior": 14434.6,
+              "ceCurrent": 17210.8,
+              "ceDiff": 2776.2
+            },
+            {
+              "label": "Case THC",
+              "cePrior": 1164.8,
+              "ceCurrent": 1624.2,
+              "ceDiff": 459.4
+            },
+            {
+              "label": "Case Soda",
+              "cePrior": 2471.6,
+              "ceCurrent": 2925.0,
+              "ceDiff": 453.4
+            }
+          ],
+          "productTypeDecliners": [
+            {
+              "label": "Case Beer",
+              "cePrior": 1202713.9,
+              "ceCurrent": 1188819.2,
+              "ceDiff": -13894.7
+            },
+            {
+              "label": "Keg Beer",
+              "cePrior": 11441.0,
+              "ceCurrent": 10361.0,
+              "ceDiff": -1080.0
+            },
+            {
+              "label": "Liquor",
+              "cePrior": 1014.9,
+              "ceCurrent": 681.4,
+              "ceDiff": -333.6
+            },
+            {
+              "label": "Red Bull",
+              "cePrior": 143.8,
+              "ceCurrent": 95.4,
+              "ceDiff": -48.4
+            }
+          ],
+          "premiseSplit": {
+            "Off Premise": {
+              "cePrior": 1223091.5,
+              "ceCurrent": 1217769.1,
+              "trendPct": -0.0044
+            },
+            "On Premise": {
+              "cePrior": 24739.6,
+              "ceCurrent": 25276.0,
+              "trendPct": 0.0217
+            }
+          },
+          "countyGainers": [
+            {
+              "label": "Bergen",
+              "cePrior": 982102.2,
+              "ceCurrent": 983727.0,
+              "ceDiff": 1624.7
+            },
+            {
+              "label": "Hudson",
+              "cePrior": 0.0,
+              "ceCurrent": 1241.0,
+              "ceDiff": 1241.0
+            },
+            {
+              "label": "Morris",
+              "cePrior": 0.0,
+              "ceCurrent": 1000.0,
+              "ceDiff": 1000.0
+            }
+          ],
+          "countyDecliners": [
+            {
+              "label": "Passaic",
+              "cePrior": 265602.2,
+              "ceCurrent": 256777.9,
+              "ceDiff": -8824.4
+            }
+          ]
+        },
+        "children": [
+          {
+            "rep": "John Neukum",
+            "cePrior": 338579.4,
+            "ceCurrent": 338662.6,
+            "trendPct": 0.0002,
+            "insight": {
+              "cePrior": 338579.4,
+              "ceCurrent": 338662.6,
+              "trendPct": 0.0002,
+              "brandGainers": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 24836.2,
+                  "ceCurrent": 31490.2,
+                  "ceDiff": 6654.1
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 4241.5,
+                  "ceCurrent": 7526.5,
+                  "ceDiff": 3285.0
+                },
+                {
+                  "label": "Coors",
+                  "cePrior": 2547.0,
+                  "ceCurrent": 5443.0,
+                  "ceDiff": 2896.0
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 6720.0,
+                  "ceCurrent": 8777.0,
+                  "ceDiff": 2057.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 103928.9,
+                  "ceCurrent": 97153.9,
+                  "ceDiff": -6775.0
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 110495.5,
+                  "ceCurrent": 105517.5,
+                  "ceDiff": -4978.0
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 31018.5,
+                  "ceCurrent": 26954.2,
+                  "ceDiff": -4064.3
+                },
+                {
+                  "label": "White Claw",
+                  "cePrior": 8538.0,
+                  "ceCurrent": 5705.0,
+                  "ceDiff": -2833.0
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 994.0,
+                  "ceCurrent": 3550.3,
+                  "ceDiff": 2556.3
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 317.0,
+                  "ceCurrent": 598.6,
+                  "ceDiff": 281.6
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 569.5,
+                  "ceCurrent": 829.2,
+                  "ceDiff": 259.8
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 0.0,
+                  "ceCurrent": 95.0,
+                  "ceDiff": 95.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 336630.3,
+                  "ceCurrent": 333585.9,
+                  "ceDiff": -3044.4
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 47.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -47.0
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 21.6,
+                  "ceCurrent": 3.5,
+                  "ceDiff": -18.1
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 338579.4,
+                  "ceCurrent": 338662.6,
+                  "trendPct": 0.0002
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 226228.3,
+                  "ceCurrent": 229330.1,
+                  "ceDiff": 3101.7
+                },
+                {
+                  "label": "Hudson",
+                  "cePrior": 0.0,
+                  "ceCurrent": 1241.0,
+                  "ceDiff": 1241.0
+                },
+                {
+                  "label": "Morris",
+                  "cePrior": 0.0,
+                  "ceCurrent": 1000.0,
+                  "ceDiff": 1000.0
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 112224.3,
+                  "ceCurrent": 106792.2,
+                  "ceDiff": -5432.1
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Dave Ehlers",
+            "cePrior": 281297.1,
+            "ceCurrent": 291889.1,
+            "trendPct": 0.0377,
+            "insight": {
+              "cePrior": 281297.1,
+              "ceCurrent": 291889.1,
+              "trendPct": 0.0377,
+              "brandGainers": [
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 56060.8,
+                  "ceCurrent": 59876.5,
+                  "ceDiff": 3815.7
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 43513.2,
+                  "ceCurrent": 46454.3,
+                  "ceDiff": 2941.2
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 2012.0,
+                  "ceCurrent": 4374.4,
+                  "ceDiff": 2362.4
+                },
+                {
+                  "label": "Victoria",
+                  "cePrior": 2936.3,
+                  "ceCurrent": 3719.7,
+                  "ceDiff": 783.3
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Truly",
+                  "cePrior": 3156.9,
+                  "ceCurrent": 2187.3,
+                  "ceDiff": -969.6
+                },
+                {
+                  "label": "Twisted Tea",
+                  "cePrior": 4800.0,
+                  "ceCurrent": 3878.4,
+                  "ceDiff": -921.7
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 22505.4,
+                  "ceCurrent": 21851.1,
+                  "ceDiff": -654.3
+                },
+                {
+                  "label": "Mike's Hard Lemonade",
+                  "cePrior": 2217.2,
+                  "ceCurrent": 1756.6,
+                  "ceDiff": -460.6
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 269153.1,
+                  "ceCurrent": 276293.7,
+                  "ceDiff": 7140.7
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 2730.1,
+                  "ceCurrent": 5254.5,
+                  "ceDiff": 2524.4
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 2599.4,
+                  "ceCurrent": 2920.0,
+                  "ceDiff": 320.6
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 3760.5,
+                  "ceCurrent": 4049.1,
+                  "ceDiff": 288.6
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Liquor",
+                  "cePrior": 248.2,
+                  "ceCurrent": 201.9,
+                  "ceDiff": -46.3
+                },
+                {
+                  "label": "Sparkling Wine",
+                  "cePrior": 18.0,
+                  "ceCurrent": 11.0,
+                  "ceDiff": -7.0
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 281237.6,
+                  "ceCurrent": 291841.5,
+                  "trendPct": 0.0377
+                },
+                "On Premise": {
+                  "cePrior": 59.5,
+                  "ceCurrent": 47.6,
+                  "trendPct": -0.1997
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 53544.9,
+                  "ceCurrent": 59094.4,
+                  "ceDiff": 5549.5
+                },
+                {
+                  "label": "Bergen",
+                  "cePrior": 227752.3,
+                  "ceCurrent": 232794.7,
+                  "ceDiff": 5042.4
+                }
+              ],
+              "countyDecliners": []
+            }
+          },
+          {
+            "rep": "Phil Ernst",
+            "cePrior": 238506.5,
+            "ceCurrent": 224721.0,
+            "trendPct": -0.0578,
+            "insight": {
+              "cePrior": 238506.5,
+              "ceCurrent": 224721.0,
+              "trendPct": -0.0578,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 1825.0,
+                  "ceCurrent": 3177.2,
+                  "ceDiff": 1352.2
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 1717.0,
+                  "ceCurrent": 2192.0,
+                  "ceDiff": 475.0
+                },
+                {
+                  "label": "Fever Tree",
+                  "cePrior": 162.6,
+                  "ceCurrent": 617.1,
+                  "ceDiff": 454.5
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 1390.4,
+                  "ceCurrent": 1766.8,
+                  "ceDiff": 376.4
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 29708.0,
+                  "ceCurrent": 27393.3,
+                  "ceDiff": -2314.8
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 39345.3,
+                  "ceCurrent": 37241.7,
+                  "ceDiff": -2103.5
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 26855.8,
+                  "ceCurrent": 25418.2,
+                  "ceDiff": -1437.5
+                },
+                {
+                  "label": "White Claw",
+                  "cePrior": 10446.6,
+                  "ceCurrent": 9016.6,
+                  "ceDiff": -1430.0
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 2432.3,
+                  "ceCurrent": 4109.7,
+                  "ceDiff": 1677.4
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 694.1,
+                  "ceCurrent": 941.2,
+                  "ceDiff": 247.1
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 0.0,
+                  "ceCurrent": 23.1,
+                  "ceDiff": 23.1
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 22.2,
+                  "ceCurrent": 38.1,
+                  "ceDiff": 15.9
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 223032.8,
+                  "ceCurrent": 208333.7,
+                  "ceDiff": -14699.1
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1939.1,
+                  "ceCurrent": 1506.7,
+                  "ceDiff": -432.4
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 5460.1,
+                  "ceCurrent": 5126.7,
+                  "ceDiff": -333.4
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 387.3,
+                  "ceCurrent": 257.7,
+                  "ceDiff": -129.6
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 234677.2,
+                  "ceCurrent": 219766.0,
+                  "trendPct": -0.0635
+                },
+                "On Premise": {
+                  "cePrior": 3829.3,
+                  "ceCurrent": 4955.0,
+                  "trendPct": 0.294
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 55016.3,
+                  "ceCurrent": 46886.8,
+                  "ceDiff": -8129.6
+                },
+                {
+                  "label": "Bergen",
+                  "cePrior": 183490.3,
+                  "ceCurrent": 177834.3,
+                  "ceDiff": -5656.0
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Chris Payton",
+            "cePrior": 198000.9,
+            "ceCurrent": 199038.9,
+            "trendPct": 0.0052,
+            "insight": {
+              "cePrior": 198000.9,
+              "ceCurrent": 199038.9,
+              "trendPct": 0.0052,
+              "brandGainers": [
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 34212.2,
+                  "ceCurrent": 35715.6,
+                  "ceDiff": 1503.3
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 734.0,
+                  "ceCurrent": 1820.4,
+                  "ceDiff": 1086.4
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 2737.0,
+                  "ceCurrent": 3444.0,
+                  "ceDiff": 707.0
+                },
+                {
+                  "label": "Cayman Jack",
+                  "cePrior": 1637.7,
+                  "ceCurrent": 2067.2,
+                  "ceDiff": 429.5
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 23309.1,
+                  "ceCurrent": 21709.1,
+                  "ceDiff": -1600.0
+                },
+                {
+                  "label": "Twisted Tea",
+                  "cePrior": 3733.2,
+                  "ceCurrent": 2889.7,
+                  "ceDiff": -843.5
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 17409.5,
+                  "ceCurrent": 16987.5,
+                  "ceDiff": -422.1
+                },
+                {
+                  "label": "Mike's Hard Lemonade",
+                  "cePrior": 1327.9,
+                  "ceCurrent": 971.0,
+                  "ceDiff": -356.9
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 1061.9,
+                  "ceCurrent": 2514.0,
+                  "ceDiff": 1452.1
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 58.5,
+                  "ceCurrent": 414.7,
+                  "ceDiff": 356.2
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 2121.4,
+                  "ceCurrent": 2293.0,
+                  "ceDiff": 171.6
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 1221.0,
+                  "ceCurrent": 1322.8,
+                  "ceDiff": 101.8
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 190656.0,
+                  "ceCurrent": 189986.9,
+                  "ceDiff": -669.1
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 2478.9,
+                  "ceCurrent": 2054.1,
+                  "ceDiff": -424.8
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 199.3,
+                  "ceCurrent": 136.6,
+                  "ceDiff": -62.7
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 191873.6,
+                  "ceCurrent": 193112.3,
+                  "trendPct": 0.0065
+                },
+                "On Premise": {
+                  "cePrior": 6127.2,
+                  "ceCurrent": 5926.5,
+                  "trendPct": -0.0328
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 153184.0,
+                  "ceCurrent": 155034.5,
+                  "ceDiff": 1850.5
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 44816.7,
+                  "ceCurrent": 44004.5,
+                  "ceDiff": -812.2
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Dan Lagala",
+            "cePrior": 191447.3,
+            "ceCurrent": 188733.5,
+            "trendPct": -0.0142,
+            "insight": {
+              "cePrior": 191447.3,
+              "ceCurrent": 188733.5,
+              "trendPct": -0.0142,
+              "brandGainers": [
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 41370.9,
+                  "ceCurrent": 44939.4,
+                  "ceDiff": 3568.4
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 5031.0,
+                  "ceCurrent": 6569.7,
+                  "ceDiff": 1538.7
+                },
+                {
+                  "label": "Kirin Ichiban",
+                  "cePrior": 1132.0,
+                  "ceCurrent": 2468.8,
+                  "ceDiff": 1336.8
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 4480.9,
+                  "ceCurrent": 5172.4,
+                  "ceDiff": 691.5
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 21687.8,
+                  "ceCurrent": 18550.6,
+                  "ceDiff": -3137.2
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 26718.0,
+                  "ceCurrent": 24400.9,
+                  "ceDiff": -2317.2
+                },
+                {
+                  "label": "Famosa",
+                  "cePrior": 3997.5,
+                  "ceCurrent": 2606.4,
+                  "ceDiff": -1391.1
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 43337.9,
+                  "ceCurrent": 41960.2,
+                  "ceDiff": -1377.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 379.0,
+                  "ceCurrent": 881.4,
+                  "ceDiff": 502.4
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 85.7,
+                  "ceCurrent": 232.9,
+                  "ceDiff": 147.3
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 2098.6,
+                  "ceCurrent": 2191.7,
+                  "ceDiff": 93.1
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 183241.7,
+                  "ceCurrent": 180619.0,
+                  "ceDiff": -2622.7
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 4423.5,
+                  "ceCurrent": 3880.2,
+                  "ceDiff": -543.4
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 773.2,
+                  "ceCurrent": 667.8,
+                  "ceDiff": -105.4
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 158.5,
+                  "ceCurrent": 81.7,
+                  "ceDiff": -76.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 176723.7,
+                  "ceCurrent": 174386.7,
+                  "trendPct": -0.0132
+                },
+                "On Premise": {
+                  "cePrior": 14723.6,
+                  "ceCurrent": 14346.8,
+                  "trendPct": -0.0256
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 191447.3,
+                  "ceCurrent": 188733.4,
+                  "ceDiff": -2713.9
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "manager": "Denise Montes",
+        "cePrior": 1031722.1,
+        "ceCurrent": 1008034.7,
+        "trendPct": -0.023,
+        "repCount": 5,
+        "insight": {
+          "cePrior": 1031722.1,
+          "ceCurrent": 1008034.7,
+          "trendPct": -0.023,
+          "brandGainers": [
+            {
+              "label": "Modelo Chelada",
+              "cePrior": 19166.0,
+              "ceCurrent": 22788.3,
+              "ceDiff": 3622.3
+            },
+            {
+              "label": "Victoria",
+              "cePrior": 16907.3,
+              "ceCurrent": 19710.0,
+              "ceDiff": 2802.7
+            },
+            {
+              "label": "Pacifico",
+              "cePrior": 6122.4,
+              "ceCurrent": 8249.8,
+              "ceDiff": 2127.3
+            },
+            {
+              "label": "Sun Cruiser",
+              "cePrior": 2093.2,
+              "ceCurrent": 3988.2,
+              "ceDiff": 1894.9
+            }
+          ],
+          "brandDecliners": [
+            {
+              "label": "Heineken USA",
+              "cePrior": 93730.7,
+              "ceCurrent": 82187.6,
+              "ceDiff": -11543.1
+            },
+            {
+              "label": "Coors Light",
+              "cePrior": 135827.1,
+              "ceCurrent": 127459.2,
+              "ceDiff": -8368.0
+            },
+            {
+              "label": "Corona Extra",
+              "cePrior": 272328.7,
+              "ceCurrent": 268357.5,
+              "ceDiff": -3971.2
+            },
+            {
+              "label": "Mike's Hard Lemonade",
+              "cePrior": 5822.2,
+              "ceCurrent": 4453.9,
+              "ceDiff": -1368.3
+            }
+          ],
+          "productTypeGainers": [
+            {
+              "label": "Cocktails",
+              "cePrior": 2959.2,
+              "ceCurrent": 5292.6,
+              "ceDiff": 2333.4
+            },
+            {
+              "label": "Case Soda",
+              "cePrior": 97.8,
+              "ceCurrent": 578.8,
+              "ceDiff": 481.0
+            },
+            {
+              "label": "Case Non-Alcoholic",
+              "cePrior": 7707.5,
+              "ceCurrent": 8011.5,
+              "ceDiff": 304.0
+            },
+            {
+              "label": "Case Cider",
+              "cePrior": 3260.2,
+              "ceCurrent": 3444.9,
+              "ceDiff": 184.7
+            }
+          ],
+          "productTypeDecliners": [
+            {
+              "label": "Case Beer",
+              "cePrior": 1008557.9,
+              "ceCurrent": 982955.5,
+              "ceDiff": -25602.4
+            },
+            {
+              "label": "Keg Beer",
+              "cePrior": 4881.1,
+              "ceCurrent": 4265.2,
+              "ceDiff": -615.9
+            },
+            {
+              "label": "Red Bull",
+              "cePrior": 1220.4,
+              "ceCurrent": 735.8,
+              "ceDiff": -484.7
+            },
+            {
+              "label": "Liquor",
+              "cePrior": 2764.1,
+              "ceCurrent": 2421.6,
+              "ceDiff": -342.5
+            }
+          ],
+          "premiseSplit": {
+            "Off Premise": {
+              "cePrior": 938421.7,
+              "ceCurrent": 914197.9,
+              "trendPct": -0.0258
+            },
+            "On Premise": {
+              "cePrior": 93300.5,
+              "ceCurrent": 93836.8,
+              "trendPct": 0.0057
+            }
+          },
+          "countyGainers": [
+            {
+              "label": "Bergen",
+              "cePrior": 193388.0,
+              "ceCurrent": 194030.5,
+              "ceDiff": 642.6
+            }
+          ],
+          "countyDecliners": [
+            {
+              "label": "Passaic",
+              "cePrior": 838334.2,
+              "ceCurrent": 814004.1,
+              "ceDiff": -24330.0
+            }
+          ]
+        },
+        "children": [
+          {
+            "rep": "Javier Melo",
+            "cePrior": 237698.0,
+            "ceCurrent": 237343.4,
+            "trendPct": -0.0015,
+            "insight": {
+              "cePrior": 237698.0,
+              "ceCurrent": 237343.4,
+              "trendPct": -0.0015,
+              "brandGainers": [
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 63447.2,
+                  "ceCurrent": 64976.7,
+                  "ceDiff": 1529.5
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 5165.0,
+                  "ceCurrent": 6121.7,
+                  "ceDiff": 956.7
+                },
+                {
+                  "label": "Pacifico",
+                  "cePrior": 1744.0,
+                  "ceCurrent": 2539.0,
+                  "ceDiff": 795.0
+                },
+                {
+                  "label": "Victoria",
+                  "cePrior": 5835.0,
+                  "ceCurrent": 6420.7,
+                  "ceDiff": 585.7
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 22144.3,
+                  "ceCurrent": 20170.5,
+                  "ceDiff": -1973.8
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 31073.4,
+                  "ceCurrent": 29344.0,
+                  "ceDiff": -1729.4
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 73443.2,
+                  "ceCurrent": 73082.1,
+                  "ceDiff": -361.0
+                },
+                {
+                  "label": "Cusquena",
+                  "cePrior": 814.0,
+                  "ceCurrent": 472.0,
+                  "ceDiff": -342.0
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 1192.5,
+                  "ceCurrent": 1391.7,
+                  "ceDiff": 199.2
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 120.0,
+                  "ceCurrent": 215.0,
+                  "ceDiff": 95.0
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 80.7,
+                  "ceCurrent": 121.4,
+                  "ceDiff": 40.7
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 21.2,
+                  "ceCurrent": 48.9,
+                  "ceDiff": 27.7
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 235152.1,
+                  "ceCurrent": 234536.8,
+                  "ceDiff": -615.3
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 303.0,
+                  "ceCurrent": 236.4,
+                  "ceDiff": -66.6
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 775.7,
+                  "ceCurrent": 722.0,
+                  "ceDiff": -53.7
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 42.0,
+                  "ceCurrent": 24.0,
+                  "ceDiff": -18.0
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 191880.0,
+                  "ceCurrent": 192013.6,
+                  "trendPct": 0.0007
+                },
+                "On Premise": {
+                  "cePrior": 45818.1,
+                  "ceCurrent": 45329.8,
+                  "trendPct": -0.0107
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 2208.4,
+                  "ceCurrent": 2684.1,
+                  "ceDiff": 475.7
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 235489.6,
+                  "ceCurrent": 234659.3,
+                  "ceDiff": -830.3
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Derrick Laws",
+            "cePrior": 243091.6,
+            "ceCurrent": 229283.2,
+            "trendPct": -0.0568,
+            "insight": {
+              "cePrior": 243091.6,
+              "ceCurrent": 229283.2,
+              "trendPct": -0.0568,
+              "brandGainers": [
+                {
+                  "label": "Victoria",
+                  "cePrior": 2197.3,
+                  "ceCurrent": 2807.7,
+                  "ceDiff": 610.3
+                },
+                {
+                  "label": "Aguila",
+                  "cePrior": 143.0,
+                  "ceCurrent": 579.0,
+                  "ceDiff": 436.0
+                },
+                {
+                  "label": "Cayman Jack",
+                  "cePrior": 1166.3,
+                  "ceCurrent": 1585.7,
+                  "ceDiff": 419.3
+                },
+                {
+                  "label": "Miller High Life",
+                  "cePrior": 1345.8,
+                  "ceCurrent": 1662.3,
+                  "ceDiff": 316.5
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 25146.0,
+                  "ceCurrent": 21278.8,
+                  "ceDiff": -3867.2
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 77548.5,
+                  "ceCurrent": 74013.7,
+                  "ceDiff": -3534.8
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 48853.6,
+                  "ceCurrent": 46088.9,
+                  "ceDiff": -2764.7
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 32616.9,
+                  "ceCurrent": 30523.6,
+                  "ceDiff": -2093.3
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 389.8,
+                  "ceCurrent": 759.7,
+                  "ceDiff": 369.9
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 2.9,
+                  "ceCurrent": 37.4,
+                  "ceDiff": 34.5
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 35.1,
+                  "ceCurrent": 40.0,
+                  "ceDiff": 4.9
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 3.2,
+                  "ceCurrent": 7.4,
+                  "ceDiff": 4.2
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 239015.9,
+                  "ceCurrent": 225208.4,
+                  "ceDiff": -13807.6
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 768.0,
+                  "ceCurrent": 466.4,
+                  "ceDiff": -301.6
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 747.8,
+                  "ceCurrent": 643.1,
+                  "ceDiff": -104.8
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 547.3,
+                  "ceCurrent": 541.5,
+                  "ceDiff": -5.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 229997.2,
+                  "ceCurrent": 216552.4,
+                  "trendPct": -0.0585
+                },
+                "On Premise": {
+                  "cePrior": 13094.5,
+                  "ceCurrent": 12730.9,
+                  "trendPct": -0.0278
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 243091.7,
+                  "ceCurrent": 229283.2,
+                  "ceDiff": -13808.4
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Jim Heaney",
+            "cePrior": 203563.8,
+            "ceCurrent": 196050.9,
+            "trendPct": -0.0369,
+            "insight": {
+              "cePrior": 203563.8,
+              "ceCurrent": 196050.9,
+              "trendPct": -0.0369,
+              "brandGainers": [
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 33521.4,
+                  "ceCurrent": 34547.4,
+                  "ceDiff": 1026.0
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 3042.0,
+                  "ceCurrent": 3986.3,
+                  "ceDiff": 944.3
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 1201.0,
+                  "ceCurrent": 2127.4,
+                  "ceDiff": 926.4
+                },
+                {
+                  "label": "Victoria",
+                  "cePrior": 2549.7,
+                  "ceCurrent": 3306.7,
+                  "ceDiff": 757.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 26200.7,
+                  "ceCurrent": 23651.5,
+                  "ceDiff": -2549.1
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 13639.9,
+                  "ceCurrent": 11920.1,
+                  "ceDiff": -1719.8
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 34936.4,
+                  "ceCurrent": 33300.5,
+                  "ceDiff": -1635.9
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 15398.6,
+                  "ceCurrent": 14123.5,
+                  "ceDiff": -1275.1
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 1564.2,
+                  "ceCurrent": 2607.0,
+                  "ceDiff": 1042.9
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 36.9,
+                  "ceCurrent": 267.5,
+                  "ceDiff": 230.5
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 5.3,
+                  "ceCurrent": 14.8,
+                  "ceDiff": 9.5
+                },
+                {
+                  "label": "Sparkling Wine",
+                  "cePrior": -1.9,
+                  "ceCurrent": 2.1,
+                  "ceDiff": 4.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 196698.2,
+                  "ceCurrent": 188699.6,
+                  "ceDiff": -7998.6
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1294.6,
+                  "ceCurrent": 700.6,
+                  "ceDiff": -594.1
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 2028.6,
+                  "ceCurrent": 1894.5,
+                  "ceDiff": -134.1
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 1466.9,
+                  "ceCurrent": 1435.3,
+                  "ceDiff": -31.6
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 203436.7,
+                  "ceCurrent": 195854.3,
+                  "trendPct": -0.0373
+                },
+                "On Premise": {
+                  "cePrior": 127.1,
+                  "ceCurrent": 196.6,
+                  "trendPct": 0.5468
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 149056.5,
+                  "ceCurrent": 144233.2,
+                  "ceDiff": -4823.3
+                },
+                {
+                  "label": "Bergen",
+                  "cePrior": 54507.3,
+                  "ceCurrent": 51817.7,
+                  "ceDiff": -2689.6
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Pablo Lopez",
+            "cePrior": 172775.2,
+            "ceCurrent": 172862.4,
+            "trendPct": 0.0005,
+            "insight": {
+              "cePrior": 172775.2,
+              "ceCurrent": 172862.4,
+              "trendPct": 0.0005,
+              "brandGainers": [
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 52879.5,
+                  "ceCurrent": 54941.2,
+                  "ceDiff": 2061.7
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 4095.0,
+                  "ceCurrent": 4929.3,
+                  "ceDiff": 834.3
+                },
+                {
+                  "label": "Coors",
+                  "cePrior": 2027.2,
+                  "ceCurrent": 2641.2,
+                  "ceDiff": 613.9
+                },
+                {
+                  "label": "Victoria",
+                  "cePrior": 4392.0,
+                  "ceCurrent": 4994.3,
+                  "ceDiff": 602.3
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 16310.5,
+                  "ceCurrent": 14074.2,
+                  "ceDiff": -2236.4
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 22952.3,
+                  "ceCurrent": 22154.3,
+                  "ceDiff": -798.0
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 780.6,
+                  "ceCurrent": 387.9,
+                  "ceDiff": -392.8
+                },
+                {
+                  "label": "Steel Reserve",
+                  "cePrior": 1611.7,
+                  "ceCurrent": 1244.3,
+                  "ceDiff": -367.3
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 1036.4,
+                  "ceCurrent": 1333.0,
+                  "ceDiff": 296.5
+                },
+                {
+                  "label": "Case Beer",
+                  "cePrior": 169683.9,
+                  "ceCurrent": 169844.6,
+                  "ceDiff": 160.6
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 0.0,
+                  "ceCurrent": 126.6,
+                  "ceDiff": 126.6
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 41.2,
+                  "ceCurrent": 73.4,
+                  "ceDiff": 32.2
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Red Bull",
+                  "cePrior": 780.6,
+                  "ceCurrent": 387.9,
+                  "ceDiff": -392.8
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 581.0,
+                  "ceCurrent": 512.4,
+                  "ceDiff": -68.6
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 123.0,
+                  "ceCurrent": 89.0,
+                  "ceDiff": -34.0
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 490.6,
+                  "ceCurrent": 469.1,
+                  "ceDiff": -21.5
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 143253.3,
+                  "ceCurrent": 142477.3,
+                  "trendPct": -0.0054
+                },
+                "On Premise": {
+                  "cePrior": 29521.9,
+                  "ceCurrent": 30385.1,
+                  "trendPct": 0.0292
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 3262.9,
+                  "ceCurrent": 3506.3,
+                  "ceDiff": 243.3
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 169512.2,
+                  "ceCurrent": 169356.1,
+                  "ceDiff": -156.1
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Matt Powierski",
+            "cePrior": 174593.5,
+            "ceCurrent": 172494.7,
+            "trendPct": -0.012,
+            "insight": {
+              "cePrior": 174593.5,
+              "ceCurrent": 172494.7,
+              "trendPct": -0.012,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 617.2,
+                  "ceCurrent": 1311.0,
+                  "ceDiff": 693.8
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 2819.0,
+                  "ceCurrent": 3393.7,
+                  "ceDiff": 574.7
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 8555.1,
+                  "ceCurrent": 9112.1,
+                  "ceDiff": 557.0
+                },
+                {
+                  "label": "Pacifico",
+                  "cePrior": 1037.0,
+                  "ceCurrent": 1477.8,
+                  "ceDiff": 440.8
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 14731.3,
+                  "ceCurrent": 12540.6,
+                  "ceDiff": -2190.7
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 22983.8,
+                  "ceCurrent": 21785.7,
+                  "ceDiff": -1198.1
+                },
+                {
+                  "label": "Tyskie Gronie",
+                  "cePrior": 6750.4,
+                  "ceCurrent": 5842.3,
+                  "ceDiff": -908.1
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 33521.2,
+                  "ceCurrent": 33019.9,
+                  "ceDiff": -501.2
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 883.3,
+                  "ceCurrent": 1731.1,
+                  "ceDiff": 847.8
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 2230.6,
+                  "ceCurrent": 2552.4,
+                  "ceDiff": 321.9
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 1003.0,
+                  "ceCurrent": 1164.1,
+                  "ceDiff": 161.1
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 36.8,
+                  "ceCurrent": 98.4,
+                  "ceDiff": 61.7
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 168007.7,
+                  "ceCurrent": 164666.1,
+                  "ceDiff": -3341.6
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 365.4,
+                  "ceCurrent": 221.0,
+                  "ceDiff": -144.4
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 1903.9,
+                  "ceCurrent": 1847.0,
+                  "ceDiff": -56.8
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 100.3,
+                  "ceCurrent": 71.5,
+                  "ceDiff": -28.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 169854.6,
+                  "ceCurrent": 167300.4,
+                  "trendPct": -0.015
+                },
+                "On Premise": {
+                  "cePrior": 4738.9,
+                  "ceCurrent": 5194.3,
+                  "trendPct": 0.0961
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 133409.3,
+                  "ceCurrent": 136022.5,
+                  "ceDiff": 2613.2
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 41184.3,
+                  "ceCurrent": 36472.3,
+                  "ceDiff": -4712.0
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "manager": "Paul Deady",
+        "cePrior": 902733.1,
+        "ceCurrent": 904460.3,
+        "trendPct": 0.0019,
+        "repCount": 4,
+        "insight": {
+          "cePrior": 902733.1,
+          "ceCurrent": 904460.3,
+          "trendPct": 0.0019,
+          "brandGainers": [
+            {
+              "label": "Sun Cruiser",
+              "cePrior": 10663.0,
+              "ceCurrent": 24861.9,
+              "ceDiff": 14198.9
+            },
+            {
+              "label": "Modelo Especial",
+              "cePrior": 78133.9,
+              "ceCurrent": 85740.4,
+              "ceDiff": 7606.5
+            },
+            {
+              "label": "Modelo Chelada",
+              "cePrior": 8524.0,
+              "ceCurrent": 12634.7,
+              "ceDiff": 4110.7
+            },
+            {
+              "label": "Pacifico",
+              "cePrior": 4048.0,
+              "ceCurrent": 5493.9,
+              "ceDiff": 1445.8
+            }
+          ],
+          "brandDecliners": [
+            {
+              "label": "White Claw",
+              "cePrior": 70974.2,
+              "ceCurrent": 64117.1,
+              "ceDiff": -6857.1
+            },
+            {
+              "label": "Arnold Palmer",
+              "cePrior": 6953.0,
+              "ceCurrent": 4655.0,
+              "ceDiff": -2298.0
+            },
+            {
+              "label": "Truly",
+              "cePrior": 10119.4,
+              "ceCurrent": 7910.6,
+              "ceDiff": -2208.8
+            },
+            {
+              "label": "Twisted Tea",
+              "cePrior": 26354.1,
+              "ceCurrent": 24147.1,
+              "ceDiff": -2206.9
+            }
+          ],
+          "productTypeGainers": [
+            {
+              "label": "Cocktails",
+              "cePrior": 14994.3,
+              "ceCurrent": 30103.6,
+              "ceDiff": 15109.3
+            },
+            {
+              "label": "Case Soda",
+              "cePrior": 838.1,
+              "ceCurrent": 1901.4,
+              "ceDiff": 1063.2
+            },
+            {
+              "label": "Case THC",
+              "cePrior": 1227.0,
+              "ceCurrent": 1717.4,
+              "ceDiff": 490.4
+            },
+            {
+              "label": "Case Cider",
+              "cePrior": 11349.2,
+              "ceCurrent": 11478.7,
+              "ceDiff": 129.5
+            }
+          ],
+          "productTypeDecliners": [
+            {
+              "label": "Case Beer",
+              "cePrior": 841067.3,
+              "ceCurrent": 827640.4,
+              "ceDiff": -13426.9
+            },
+            {
+              "label": "Keg Beer",
+              "cePrior": 16813.7,
+              "ceCurrent": 15828.1,
+              "ceDiff": -985.6
+            },
+            {
+              "label": "Case Non-Alcoholic",
+              "cePrior": 14646.0,
+              "ceCurrent": 14219.9,
+              "ceDiff": -426.2
+            },
+            {
+              "label": "Liquor",
+              "cePrior": 1155.5,
+              "ceCurrent": 995.5,
+              "ceDiff": -160.1
+            }
+          ],
+          "premiseSplit": {
+            "Off Premise": {
+              "cePrior": 895327.8,
+              "ceCurrent": 897201.8,
+              "trendPct": 0.0021
+            },
+            "On Premise": {
+              "cePrior": 7405.3,
+              "ceCurrent": 7258.6,
+              "trendPct": -0.0198
+            }
+          },
+          "countyGainers": [
+            {
+              "label": "Morris",
+              "cePrior": 208650.2,
+              "ceCurrent": 216456.4,
+              "ceDiff": 7806.2
+            },
+            {
+              "label": "Bergen",
+              "cePrior": 351586.2,
+              "ceCurrent": 354848.5,
+              "ceDiff": 3262.3
+            }
+          ],
+          "countyDecliners": [
+            {
+              "label": "Sussex",
+              "cePrior": 249332.9,
+              "ceCurrent": 242552.9,
+              "ceDiff": -6779.9
+            },
+            {
+              "label": "Passaic",
+              "cePrior": 93164.0,
+              "ceCurrent": 90602.7,
+              "ceDiff": -2561.3
+            }
+          ]
+        },
+        "children": [
+          {
+            "rep": "Shane Barreca",
+            "cePrior": 259056.3,
+            "ceCurrent": 258861.6,
+            "trendPct": -0.0008,
+            "insight": {
+              "cePrior": 259056.3,
+              "ceCurrent": 258861.6,
+              "trendPct": -0.0008,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 3330.0,
+                  "ceCurrent": 7434.0,
+                  "ceDiff": 4104.0
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 3438.0,
+                  "ceCurrent": 5752.7,
+                  "ceDiff": 2314.7
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 26794.2,
+                  "ceCurrent": 29103.8,
+                  "ceDiff": 2309.5
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 20698.9,
+                  "ceCurrent": 21894.4,
+                  "ceDiff": 1195.5
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "White Claw",
+                  "cePrior": 17380.1,
+                  "ceCurrent": 14254.1,
+                  "ceDiff": -3126.1
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 12201.4,
+                  "ceCurrent": 10980.0,
+                  "ceDiff": -1221.4
+                },
+                {
+                  "label": "Twisted Tea",
+                  "cePrior": 4761.3,
+                  "ceCurrent": 3611.8,
+                  "ceDiff": -1149.5
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 28475.3,
+                  "ceCurrent": 27609.1,
+                  "ceDiff": -866.3
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 4125.0,
+                  "ceCurrent": 8508.2,
+                  "ceDiff": 4383.2
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 162.0,
+                  "ceCurrent": 687.9,
+                  "ceDiff": 525.9
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 197.0,
+                  "ceCurrent": 284.1,
+                  "ceDiff": 87.1
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 37.0,
+                  "ceCurrent": 92.2,
+                  "ceDiff": 55.2
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 240467.5,
+                  "ceCurrent": 235505.6,
+                  "ceDiff": -4961.8
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 5725.1,
+                  "ceCurrent": 5546.8,
+                  "ceDiff": -178.3
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 288.8,
+                  "ceCurrent": 216.2,
+                  "ceDiff": -72.6
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 4884.1,
+                  "ceCurrent": 4821.3,
+                  "ceDiff": -62.7
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 259056.3,
+                  "ceCurrent": 258861.6,
+                  "trendPct": -0.0008
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 259056.2,
+                  "ceCurrent": 258861.8,
+                  "ceDiff": -194.5
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Jayson Romine",
+            "cePrior": 248940.2,
+            "ceCurrent": 245348.0,
+            "trendPct": -0.0144,
+            "insight": {
+              "cePrior": 248940.2,
+              "ceCurrent": 245348.0,
+              "trendPct": -0.0144,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 2943.0,
+                  "ceCurrent": 6796.0,
+                  "ceDiff": 3853.0
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 14884.8,
+                  "ceCurrent": 16501.7,
+                  "ceDiff": 1616.9
+                },
+                {
+                  "label": "Pabst Light",
+                  "cePrior": 241.8,
+                  "ceCurrent": 889.2,
+                  "ceDiff": 647.4
+                },
+                {
+                  "label": "Voodoo Family",
+                  "cePrior": 2608.3,
+                  "ceCurrent": 3090.3,
+                  "ceDiff": 482.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "White Claw",
+                  "cePrior": 22451.4,
+                  "ceCurrent": 21126.7,
+                  "ceDiff": -1324.7
+                },
+                {
+                  "label": "Yuengling Lager",
+                  "cePrior": 14380.1,
+                  "ceCurrent": 13182.0,
+                  "ceDiff": -1198.1
+                },
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 9688.5,
+                  "ceCurrent": 8704.9,
+                  "ceDiff": -983.5
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 39299.5,
+                  "ceCurrent": 38480.3,
+                  "ceDiff": -819.2
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 4418.8,
+                  "ceCurrent": 8487.3,
+                  "ceDiff": 4068.5
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 2601.5,
+                  "ceCurrent": 2770.9,
+                  "ceDiff": 169.4
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 185.8,
+                  "ceCurrent": 334.9,
+                  "ceDiff": 149.1
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 2.1,
+                  "ceCurrent": 18.0,
+                  "ceDiff": 15.9
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 233627.2,
+                  "ceCurrent": 226377.4,
+                  "ceDiff": -7249.8
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 3383.5,
+                  "ceCurrent": 2966.3,
+                  "ceDiff": -417.2
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 480.1,
+                  "ceCurrent": 289.8,
+                  "ceDiff": -190.3
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 3898.3,
+                  "ceCurrent": 3824.0,
+                  "ceDiff": -74.3
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 248940.2,
+                  "ceCurrent": 245348.0,
+                  "trendPct": -0.0144
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Morris",
+                  "cePrior": 28343.8,
+                  "ceCurrent": 29247.5,
+                  "ceDiff": 903.7
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Sussex",
+                  "cePrior": 220596.5,
+                  "ceCurrent": 216100.6,
+                  "ceDiff": -4495.9
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Klejdi Lamo",
+            "cePrior": 203112.9,
+            "ceCurrent": 207398.4,
+            "trendPct": 0.0211,
+            "insight": {
+              "cePrior": 203112.9,
+              "ceCurrent": 207398.4,
+              "trendPct": 0.0211,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 2489.0,
+                  "ceCurrent": 5249.5,
+                  "ceDiff": 2760.5
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 18666.9,
+                  "ceCurrent": 20351.8,
+                  "ceDiff": 1684.9
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 22145.9,
+                  "ceCurrent": 23679.7,
+                  "ceDiff": 1533.8
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 2713.0,
+                  "ceCurrent": 3497.0,
+                  "ceDiff": 784.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "White Claw",
+                  "cePrior": 18417.9,
+                  "ceCurrent": 16673.3,
+                  "ceDiff": -1744.7
+                },
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 7402.3,
+                  "ceCurrent": 6619.2,
+                  "ceDiff": -783.1
+                },
+                {
+                  "label": "Truly",
+                  "cePrior": 2875.1,
+                  "ceCurrent": 2246.9,
+                  "ceDiff": -628.1
+                },
+                {
+                  "label": "Blue Moon",
+                  "cePrior": 4171.7,
+                  "ceCurrent": 3609.7,
+                  "ceDiff": -562.0
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 3587.7,
+                  "ceCurrent": 6648.4,
+                  "ceDiff": 3060.7
+                },
+                {
+                  "label": "Case Beer",
+                  "cePrior": 192284.9,
+                  "ceCurrent": 193411.1,
+                  "ceDiff": 1126.2
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 297.3,
+                  "ceCurrent": 541.5,
+                  "ceDiff": 244.2
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 48.4,
+                  "ceCurrent": 192.7,
+                  "ceDiff": 144.2
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 1961.1,
+                  "ceCurrent": 1789.2,
+                  "ceDiff": -171.9
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 193.0,
+                  "ceCurrent": 100.2,
+                  "ceDiff": -92.8
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 2396.4,
+                  "ceCurrent": 2306.7,
+                  "ceDiff": -89.7
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 36.9,
+                  "ceCurrent": 6.9,
+                  "ceDiff": -30.0
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 202211.5,
+                  "ceCurrent": 206600.1,
+                  "trendPct": 0.0217
+                },
+                "On Premise": {
+                  "cePrior": 901.4,
+                  "ceCurrent": 798.3,
+                  "trendPct": -0.1144
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Morris",
+                  "cePrior": 167430.2,
+                  "ceCurrent": 174287.6,
+                  "ceDiff": 6857.4
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Sussex",
+                  "cePrior": 28736.3,
+                  "ceCurrent": 26452.3,
+                  "ceDiff": -2284.0
+                },
+                {
+                  "label": "Passaic",
+                  "cePrior": 6946.4,
+                  "ceCurrent": 6658.4,
+                  "ceDiff": -288.0
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Mike Ast",
+            "cePrior": 191623.8,
+            "ceCurrent": 192852.4,
+            "trendPct": 0.0064,
+            "insight": {
+              "cePrior": 191623.8,
+              "ceCurrent": 192852.4,
+              "trendPct": 0.0064,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 1901.0,
+                  "ceCurrent": 5382.4,
+                  "ceDiff": 3481.4
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 17788.0,
+                  "ceCurrent": 19783.2,
+                  "ceDiff": 1995.2
+                },
+                {
+                  "label": "Modelo Chelada",
+                  "cePrior": 1094.0,
+                  "ceCurrent": 1846.0,
+                  "ceDiff": 752.0
+                },
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 3256.7,
+                  "ceCurrent": 3677.3,
+                  "ceDiff": 420.6
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Truly",
+                  "cePrior": 1403.6,
+                  "ceCurrent": 709.4,
+                  "ceDiff": -694.2
+                },
+                {
+                  "label": "White Claw",
+                  "cePrior": 12724.7,
+                  "ceCurrent": 12063.0,
+                  "ceDiff": -661.7
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 22665.7,
+                  "ceCurrent": 22142.8,
+                  "ceDiff": -522.9
+                },
+                {
+                  "label": "Mike's Hard Lemonade",
+                  "cePrior": 1692.6,
+                  "ceCurrent": 1242.3,
+                  "ceDiff": -450.2
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 2862.7,
+                  "ceCurrent": 6459.6,
+                  "ceDiff": 3596.9
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 252.6,
+                  "ceCurrent": 602.0,
+                  "ceDiff": 349.4
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 441.9,
+                  "ceCurrent": 685.9,
+                  "ceDiff": 244.0
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 2052.9,
+                  "ceCurrent": 2141.0,
+                  "ceDiff": 88.1
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 174687.7,
+                  "ceCurrent": 172346.2,
+                  "ceDiff": -2341.5
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 6149.7,
+                  "ceCurrent": 5733.8,
+                  "ceDiff": -415.9
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 4358.3,
+                  "ceCurrent": 4113.0,
+                  "ceDiff": -245.3
+                },
+                {
+                  "label": "Sparkling Wine",
+                  "cePrior": 95.6,
+                  "ceCurrent": 43.4,
+                  "ceDiff": -52.2
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 185119.9,
+                  "ceCurrent": 186392.2,
+                  "trendPct": 0.0069
+                },
+                "On Premise": {
+                  "cePrior": 6503.8,
+                  "ceCurrent": 6460.3,
+                  "trendPct": -0.0067
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 92530.0,
+                  "ceCurrent": 95986.7,
+                  "ceDiff": 3456.7
+                },
+                {
+                  "label": "Morris",
+                  "cePrior": 12876.2,
+                  "ceCurrent": 12921.3,
+                  "ceDiff": 45.1
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 86217.7,
+                  "ceCurrent": 83944.4,
+                  "ceDiff": -2273.3
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "manager": "Chris McCrohan",
+        "cePrior": 583423.8,
+        "ceCurrent": 562527.0,
+        "trendPct": -0.0358,
+        "repCount": 8,
+        "insight": {
+          "cePrior": 583423.8,
+          "ceCurrent": 562527.0,
+          "trendPct": -0.0358,
+          "brandGainers": [
+            {
+              "label": "Sun Cruiser",
+              "cePrior": 9529.2,
+              "ceCurrent": 14299.5,
+              "ceDiff": 4770.2
+            },
+            {
+              "label": "Modelo Especial",
+              "cePrior": 42629.1,
+              "ceCurrent": 45597.8,
+              "ceDiff": 2968.7
+            },
+            {
+              "label": "Peroni",
+              "cePrior": 7575.6,
+              "ceCurrent": 9178.9,
+              "ceDiff": 1603.3
+            },
+            {
+              "label": "Fever Tree",
+              "cePrior": 212.6,
+              "ceCurrent": 1183.5,
+              "ceDiff": 970.9
+            }
+          ],
+          "brandDecliners": [
+            {
+              "label": "White Claw",
+              "cePrior": 29880.5,
+              "ceCurrent": 23123.8,
+              "ceDiff": -6756.7
+            },
+            {
+              "label": "Coors Light",
+              "cePrior": 74457.9,
+              "ceCurrent": 68668.3,
+              "ceDiff": -5789.6
+            },
+            {
+              "label": "Heineken USA",
+              "cePrior": 24337.8,
+              "ceCurrent": 19814.9,
+              "ceDiff": -4522.9
+            },
+            {
+              "label": "Twisted Tea",
+              "cePrior": 13056.4,
+              "ceCurrent": 10117.7,
+              "ceDiff": -2938.8
+            }
+          ],
+          "productTypeGainers": [
+            {
+              "label": "Cocktails",
+              "cePrior": 10683.5,
+              "ceCurrent": 16535.0,
+              "ceDiff": 5851.5
+            },
+            {
+              "label": "Case Soda",
+              "cePrior": 2793.0,
+              "ceCurrent": 4282.4,
+              "ceDiff": 1489.4
+            },
+            {
+              "label": "Case Non-Alcoholic",
+              "cePrior": 5730.3,
+              "ceCurrent": 6191.8,
+              "ceDiff": 461.5
+            },
+            {
+              "label": "Still Wine",
+              "cePrior": 0.0,
+              "ceCurrent": 61.3,
+              "ceDiff": 61.3
+            }
+          ],
+          "productTypeDecliners": [
+            {
+              "label": "Case Beer",
+              "cePrior": 372337.5,
+              "ceCurrent": 347113.3,
+              "ceDiff": -25224.2
+            },
+            {
+              "label": "Keg Beer",
+              "cePrior": 178975.4,
+              "ceCurrent": 175879.4,
+              "ceDiff": -3096.0
+            },
+            {
+              "label": "Keg Cider",
+              "cePrior": 4420.8,
+              "ceCurrent": 4167.5,
+              "ceDiff": -253.3
+            },
+            {
+              "label": "Red Bull",
+              "cePrior": 2631.6,
+              "ceCurrent": 2421.2,
+              "ceDiff": -210.4
+            }
+          ],
+          "premiseSplit": {
+            "Off Premise": {
+              "cePrior": 173245.6,
+              "ceCurrent": 171541.7,
+              "trendPct": -0.0098
+            },
+            "On Premise": {
+              "cePrior": 410178.1,
+              "ceCurrent": 390985.3,
+              "trendPct": -0.0468
+            }
+          },
+          "countyGainers": [
+            {
+              "label": "Passaic",
+              "cePrior": 219912.8,
+              "ceCurrent": 223165.3,
+              "ceDiff": 3252.5
+            },
+            {
+              "label": "Warren",
+              "cePrior": 79.9,
+              "ceCurrent": 135.4,
+              "ceDiff": 55.5
+            },
+            {
+              "label": "Hudson",
+              "cePrior": 476.0,
+              "ceCurrent": 501.5,
+              "ceDiff": 25.5
+            }
+          ],
+          "countyDecliners": [
+            {
+              "label": "Bergen",
+              "cePrior": 207411.4,
+              "ceCurrent": 188985.2,
+              "ceDiff": -18426.3
+            },
+            {
+              "label": "Morris",
+              "cePrior": 95269.9,
+              "ceCurrent": 91494.2,
+              "ceDiff": -3775.7
+            },
+            {
+              "label": "Sussex",
+              "cePrior": 59594.3,
+              "ceCurrent": 57650.5,
+              "ceDiff": -1943.8
+            }
+          ]
+        },
+        "children": [
+          {
+            "rep": "Anthony Palmisano",
+            "cePrior": 191821.5,
+            "ceCurrent": 191634.7,
+            "trendPct": -0.001,
+            "insight": {
+              "cePrior": 191821.5,
+              "ceCurrent": 191634.7,
+              "trendPct": -0.001,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 3575.8,
+                  "ceCurrent": 6485.0,
+                  "ceDiff": 2909.2
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 15981.7,
+                  "ceCurrent": 18224.9,
+                  "ceDiff": 2243.2
+                },
+                {
+                  "label": "Voodoo Family",
+                  "cePrior": 1892.7,
+                  "ceCurrent": 2276.0,
+                  "ceDiff": 383.3
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 13479.9,
+                  "ceCurrent": 13857.7,
+                  "ceDiff": 377.8
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "White Claw",
+                  "cePrior": 16694.3,
+                  "ceCurrent": 14721.9,
+                  "ceDiff": -1972.4
+                },
+                {
+                  "label": "Twisted Tea",
+                  "cePrior": 7827.4,
+                  "ceCurrent": 6356.7,
+                  "ceDiff": -1470.6
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 5538.7,
+                  "ceCurrent": 4800.3,
+                  "ceDiff": -738.4
+                },
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 5704.6,
+                  "ceCurrent": 5129.8,
+                  "ceDiff": -574.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 4370.0,
+                  "ceCurrent": 7753.3,
+                  "ceDiff": 3383.3
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 13672.5,
+                  "ceCurrent": 14290.3,
+                  "ceDiff": 617.8
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 2176.6,
+                  "ceCurrent": 2386.0,
+                  "ceDiff": 209.4
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 54.7,
+                  "ceCurrent": 199.0,
+                  "ceDiff": 144.3
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 168098.9,
+                  "ceCurrent": 163548.4,
+                  "ceDiff": -4550.5
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 162.7,
+                  "ceCurrent": 103.8,
+                  "ceDiff": -58.9
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 467.8,
+                  "ceCurrent": 430.8,
+                  "ceDiff": -37.0
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 101.5,
+                  "ceCurrent": 82.3,
+                  "ceDiff": -19.2
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 155584.0,
+                  "ceCurrent": 153663.4,
+                  "trendPct": -0.0123
+                },
+                "On Premise": {
+                  "cePrior": 36237.5,
+                  "ceCurrent": 37971.4,
+                  "trendPct": 0.0478
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 130955.7,
+                  "ceCurrent": 133783.0,
+                  "ceDiff": 2827.2
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Morris",
+                  "cePrior": 34932.3,
+                  "ceCurrent": 32191.1,
+                  "ceDiff": -2741.2
+                },
+                {
+                  "label": "Sussex",
+                  "cePrior": 25933.5,
+                  "ceCurrent": 25660.7,
+                  "ceDiff": -272.8
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Nick Melissari",
+            "cePrior": 99958.2,
+            "ceCurrent": 101110.8,
+            "trendPct": 0.0115,
+            "insight": {
+              "cePrior": 99958.2,
+              "ceCurrent": 101110.8,
+              "trendPct": 0.0115,
+              "brandGainers": [
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 10946.1,
+                  "ceCurrent": 11651.8,
+                  "ceDiff": 705.6
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 6984.5,
+                  "ceCurrent": 7576.2,
+                  "ceDiff": 591.8
+                },
+                {
+                  "label": "Peroni",
+                  "cePrior": 1794.6,
+                  "ceCurrent": 2252.3,
+                  "ceDiff": 457.7
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 823.0,
+                  "ceCurrent": 1168.6,
+                  "ceDiff": 345.6
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 11991.5,
+                  "ceCurrent": 10935.0,
+                  "ceDiff": -1056.6
+                },
+                {
+                  "label": "Samuel Adams",
+                  "cePrior": 4852.4,
+                  "ceCurrent": 4472.7,
+                  "ceDiff": -379.8
+                },
+                {
+                  "label": "White Claw",
+                  "cePrior": 1611.2,
+                  "ceCurrent": 1284.2,
+                  "ceDiff": -327.0
+                },
+                {
+                  "label": "Bell's Hearted Family",
+                  "cePrior": 512.4,
+                  "ceCurrent": 201.8,
+                  "ceDiff": -310.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Soda",
+                  "cePrior": 984.0,
+                  "ceCurrent": 1492.1,
+                  "ceDiff": 508.1
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 977.0,
+                  "ceCurrent": 1480.7,
+                  "ceDiff": 503.7
+                },
+                {
+                  "label": "Case Beer",
+                  "cePrior": 42729.4,
+                  "ceCurrent": 43186.1,
+                  "ceDiff": 456.6
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 1077.6,
+                  "ceCurrent": 1236.0,
+                  "ceDiff": 158.4
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 51076.0,
+                  "ceCurrent": 50775.2,
+                  "ceDiff": -300.8
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 1518.8,
+                  "ceCurrent": 1360.0,
+                  "ceDiff": -158.8
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 679.6,
+                  "ceCurrent": 655.8,
+                  "ceDiff": -23.9
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 905.4,
+                  "ceCurrent": 894.3,
+                  "ceDiff": -11.1
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 99130.3,
+                  "ceCurrent": 100194.4,
+                  "trendPct": 0.0107
+                },
+                "Off Premise": {
+                  "cePrior": 827.9,
+                  "ceCurrent": 916.4,
+                  "trendPct": 0.107
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 97427.3,
+                  "ceCurrent": 98636.5,
+                  "ceDiff": 1209.1
+                },
+                {
+                  "label": "Hudson",
+                  "cePrior": 476.0,
+                  "ceCurrent": 501.5,
+                  "ceDiff": 25.5
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 2054.7,
+                  "ceCurrent": 1972.8,
+                  "ceDiff": -82.0
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Allison Scott",
+            "cePrior": 88043.1,
+            "ceCurrent": 89278.6,
+            "trendPct": 0.014,
+            "insight": {
+              "cePrior": 88043.1,
+              "ceCurrent": 89278.6,
+              "trendPct": 0.014,
+              "brandGainers": [
+                {
+                  "label": "Lite",
+                  "cePrior": 12983.9,
+                  "ceCurrent": 13902.4,
+                  "ceDiff": 918.5
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 1535.5,
+                  "ceCurrent": 2316.0,
+                  "ceDiff": 780.5
+                },
+                {
+                  "label": "Peroni",
+                  "cePrior": 1155.5,
+                  "ceCurrent": 1911.5,
+                  "ceDiff": 755.9
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 6438.2,
+                  "ceCurrent": 6793.7,
+                  "ceDiff": 355.5
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 11889.2,
+                  "ceCurrent": 11222.4,
+                  "ceDiff": -666.8
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 4580.9,
+                  "ceCurrent": 4044.7,
+                  "ceDiff": -536.2
+                },
+                {
+                  "label": "Samuel Adams",
+                  "cePrior": 3536.8,
+                  "ceCurrent": 3020.5,
+                  "ceDiff": -516.3
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 9956.6,
+                  "ceCurrent": 9761.7,
+                  "ceDiff": -194.9
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 1657.5,
+                  "ceCurrent": 2533.0,
+                  "ceDiff": 875.5
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 44336.6,
+                  "ceCurrent": 45025.4,
+                  "ceDiff": 688.8
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 607.9,
+                  "ceCurrent": 869.3,
+                  "ceDiff": 261.3
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 802.9,
+                  "ceCurrent": 935.9,
+                  "ceDiff": 133.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 37987.5,
+                  "ceCurrent": 37333.9,
+                  "ceDiff": -653.6
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 1372.3,
+                  "ceCurrent": 1317.4,
+                  "ceDiff": -54.9
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 726.6,
+                  "ceCurrent": 683.1,
+                  "ceDiff": -43.5
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 33.0,
+                  "ceCurrent": 11.0,
+                  "ceDiff": -22.0
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 88043.1,
+                  "ceCurrent": 89278.6,
+                  "trendPct": 0.014
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Morris",
+                  "cePrior": 8181.2,
+                  "ceCurrent": 8842.9,
+                  "ceDiff": 661.7
+                },
+                {
+                  "label": "Passaic",
+                  "cePrior": 79265.0,
+                  "ceCurrent": 79816.9,
+                  "ceDiff": 551.9
+                },
+                {
+                  "label": "Bergen",
+                  "cePrior": 597.0,
+                  "ceCurrent": 618.8,
+                  "ceDiff": 21.8
+                }
+              ],
+              "countyDecliners": []
+            }
+          },
+          {
+            "rep": "Brian Sengebush",
+            "cePrior": 77769.1,
+            "ceCurrent": 74180.1,
+            "trendPct": -0.0461,
+            "insight": {
+              "cePrior": 77769.1,
+              "ceCurrent": 74180.1,
+              "trendPct": -0.0461,
+              "brandGainers": [
+                {
+                  "label": "Coors",
+                  "cePrior": 804.0,
+                  "ceCurrent": 1049.5,
+                  "ceDiff": 245.5
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 2949.3,
+                  "ceCurrent": 3179.7,
+                  "ceDiff": 230.4
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 1064.8,
+                  "ceCurrent": 1290.2,
+                  "ceDiff": 225.5
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 39.0,
+                  "ceCurrent": 180.3,
+                  "ceDiff": 141.3
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Lite",
+                  "cePrior": 19259.0,
+                  "ceCurrent": 18414.5,
+                  "ceDiff": -844.5
+                },
+                {
+                  "label": "Yuengling Lager",
+                  "cePrior": 10523.6,
+                  "ceCurrent": 9679.3,
+                  "ceDiff": -844.3
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 10707.7,
+                  "ceCurrent": 10031.6,
+                  "ceDiff": -676.1
+                },
+                {
+                  "label": "White Claw",
+                  "cePrior": 3244.1,
+                  "ceCurrent": 2594.4,
+                  "ceDiff": -649.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 1080.8,
+                  "ceCurrent": 1449.5,
+                  "ceDiff": 368.7
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 59.1,
+                  "ceCurrent": 178.7,
+                  "ceDiff": 119.6
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 547.2,
+                  "ceCurrent": 551.6,
+                  "ceDiff": 4.4
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 2.2,
+                  "ceCurrent": 6.6,
+                  "ceDiff": 4.4
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 43306.8,
+                  "ceCurrent": 41291.6,
+                  "ceDiff": -2015.2
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 31332.6,
+                  "ceCurrent": 29441.1,
+                  "ceDiff": -1891.5
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 587.0,
+                  "ceCurrent": 524.7,
+                  "ceDiff": -62.3
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 470.6,
+                  "ceCurrent": 408.9,
+                  "ceDiff": -61.7
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 62052.6,
+                  "ceCurrent": 58303.8,
+                  "trendPct": -0.0604
+                },
+                "Off Premise": {
+                  "cePrior": 15716.6,
+                  "ceCurrent": 15876.3,
+                  "trendPct": 0.0102
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Warren",
+                  "cePrior": 79.9,
+                  "ceCurrent": 135.4,
+                  "ceDiff": 55.5
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Sussex",
+                  "cePrior": 30966.8,
+                  "ceCurrent": 29122.4,
+                  "ceDiff": -1844.4
+                },
+                {
+                  "label": "Morris",
+                  "cePrior": 46722.6,
+                  "ceCurrent": 44922.4,
+                  "ceDiff": -1800.3
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Paul Mclaughlin",
+            "cePrior": 61276.2,
+            "ceCurrent": 62212.3,
+            "trendPct": 0.0153,
+            "insight": {
+              "cePrior": 61276.2,
+              "ceCurrent": 62212.3,
+              "trendPct": 0.0153,
+              "brandGainers": [
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 4724.9,
+                  "ceCurrent": 7044.6,
+                  "ceDiff": 2319.8
+                },
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 917.0,
+                  "ceCurrent": 1330.0,
+                  "ceDiff": 413.0
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 17.1,
+                  "ceCurrent": 343.9,
+                  "ceDiff": 326.8
+                },
+                {
+                  "label": "Pacifico",
+                  "cePrior": 294.4,
+                  "ceCurrent": 442.1,
+                  "ceDiff": 147.7
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 1603.2,
+                  "ceCurrent": 1026.5,
+                  "ceDiff": -576.7
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 8549.1,
+                  "ceCurrent": 8026.7,
+                  "ceDiff": -522.4
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 3527.4,
+                  "ceCurrent": 3046.9,
+                  "ceDiff": -480.5
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 7401.8,
+                  "ceCurrent": 7237.7,
+                  "ceDiff": -164.1
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Cocktails",
+                  "cePrior": 950.0,
+                  "ceCurrent": 1513.0,
+                  "ceDiff": 563.0
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 24481.6,
+                  "ceCurrent": 24796.6,
+                  "ceDiff": 315.0
+                },
+                {
+                  "label": "Case Beer",
+                  "cePrior": 32689.7,
+                  "ceCurrent": 32763.5,
+                  "ceDiff": 73.8
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 769.6,
+                  "ceCurrent": 832.4,
+                  "ceDiff": 62.7
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Red Bull",
+                  "cePrior": 463.6,
+                  "ceCurrent": 383.7,
+                  "ceDiff": -80.0
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 650.1,
+                  "ceCurrent": 598.9,
+                  "ceDiff": -51.2
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 477.9,
+                  "ceCurrent": 466.3,
+                  "ceDiff": -11.6
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 5.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -5.0
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 60603.6,
+                  "ceCurrent": 61544.3,
+                  "trendPct": 0.0155
+                },
+                "Off Premise": {
+                  "cePrior": 672.6,
+                  "ceCurrent": 668.1,
+                  "trendPct": -0.0067
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 60596.6,
+                  "ceCurrent": 61617.5,
+                  "ceDiff": 1020.9
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Essex",
+                  "cePrior": 679.7,
+                  "ceCurrent": 594.8,
+                  "ceDiff": -84.9
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Robin Feldman",
+            "cePrior": 34468.7,
+            "ceCurrent": 34975.5,
+            "trendPct": 0.0147,
+            "insight": {
+              "cePrior": 34468.7,
+              "ceCurrent": 34975.5,
+              "trendPct": 0.0147,
+              "brandGainers": [
+                {
+                  "label": "Bell's Hearted Family",
+                  "cePrior": 17.2,
+                  "ceCurrent": 485.0,
+                  "ceDiff": 467.8
+                },
+                {
+                  "label": "Kirin Ichiban",
+                  "cePrior": 48.4,
+                  "ceCurrent": 501.0,
+                  "ceDiff": 452.6
+                },
+                {
+                  "label": "Saratoga",
+                  "cePrior": 315.5,
+                  "ceCurrent": 690.7,
+                  "ceDiff": 375.2
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 6928.9,
+                  "ceCurrent": 7251.0,
+                  "ceDiff": 322.1
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Coors Light",
+                  "cePrior": 6789.8,
+                  "ceCurrent": 6056.6,
+                  "ceDiff": -733.1
+                },
+                {
+                  "label": "Heineken USA",
+                  "cePrior": 1675.9,
+                  "ceCurrent": 1395.5,
+                  "ceDiff": -280.4
+                },
+                {
+                  "label": "Yuengling Lager",
+                  "cePrior": 2834.2,
+                  "ceCurrent": 2673.3,
+                  "ceDiff": -160.8
+                },
+                {
+                  "label": "Twisted Tea",
+                  "cePrior": 433.7,
+                  "ceCurrent": 277.0,
+                  "ceDiff": -156.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Soda",
+                  "cePrior": 317.6,
+                  "ceCurrent": 703.5,
+                  "ceDiff": 385.9
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 324.2,
+                  "ceCurrent": 605.6,
+                  "ceDiff": 281.4
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 408.4,
+                  "ceCurrent": 495.4,
+                  "ceDiff": 87.1
+                },
+                {
+                  "label": "Red Bull",
+                  "cePrior": 128.3,
+                  "ceCurrent": 185.9,
+                  "ceDiff": 57.5
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 23327.4,
+                  "ceCurrent": 23139.6,
+                  "ceDiff": -187.9
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 9691.7,
+                  "ceCurrent": 9525.6,
+                  "ceDiff": -166.1
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 14.0,
+                  "ceCurrent": 4.2,
+                  "ceDiff": -9.8
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 23.0,
+                  "ceCurrent": 19.0,
+                  "ceDiff": -4.0
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 34077.7,
+                  "ceCurrent": 34622.7,
+                  "trendPct": 0.016
+                },
+                "Off Premise": {
+                  "cePrior": 391.0,
+                  "ceCurrent": 352.8,
+                  "trendPct": -0.0976
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 19168.0,
+                  "ceCurrent": 19685.6,
+                  "ceDiff": 517.7
+                },
+                {
+                  "label": "Sussex",
+                  "cePrior": 2600.9,
+                  "ceCurrent": 2767.8,
+                  "ceDiff": 166.9
+                },
+                {
+                  "label": "Morris",
+                  "cePrior": 5433.8,
+                  "ceCurrent": 5537.8,
+                  "ceDiff": 104.1
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 7266.1,
+                  "ceCurrent": 6984.2,
+                  "ceDiff": -281.9
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Chris Politano",
+            "cePrior": 28750.5,
+            "ceCurrent": 7613.5,
+            "trendPct": -0.7352,
+            "insight": {
+              "cePrior": 28750.5,
+              "ceCurrent": 7613.5,
+              "trendPct": -0.7352,
+              "brandGainers": [
+                {
+                  "label": "Amstel",
+                  "cePrior": -51.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": 51.0
+                },
+                {
+                  "label": "Corona Light",
+                  "cePrior": 83.0,
+                  "ceCurrent": 97.1,
+                  "ceDiff": 14.1
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "White Claw",
+                  "cePrior": 3885.3,
+                  "ceCurrent": 408.0,
+                  "ceDiff": -3477.3
+                },
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 4349.7,
+                  "ceCurrent": 1206.6,
+                  "ceDiff": -3143.1
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 4329.3,
+                  "ceCurrent": 1340.3,
+                  "ceDiff": -2989.0
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 3963.1,
+                  "ceCurrent": 1076.6,
+                  "ceDiff": -2886.6
+                }
+              ],
+              "productTypeGainers": [],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 23126.5,
+                  "ceCurrent": 4793.2,
+                  "ceDiff": -18333.4
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 4165.0,
+                  "ceCurrent": 1601.3,
+                  "ceDiff": -2563.7
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 1320.0,
+                  "ceCurrent": 1200.0,
+                  "ceDiff": -120.0
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 117.9,
+                  "ceCurrent": 28.0,
+                  "ceDiff": -89.9
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 28750.5,
+                  "ceCurrent": 7613.5,
+                  "trendPct": -0.7352
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 28750.5,
+                  "ceCurrent": 7613.5,
+                  "ceDiff": -21136.9
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Office Tell Sell",
+            "cePrior": 1336.5,
+            "ceCurrent": 1521.3,
+            "trendPct": 0.1383,
+            "insight": {
+              "cePrior": 1336.5,
+              "ceCurrent": 1521.3,
+              "trendPct": 0.1383,
+              "brandGainers": [
+                {
+                  "label": "Corona Extra",
+                  "cePrior": 307.9,
+                  "ceCurrent": 374.0,
+                  "ceDiff": 66.0
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 37.0,
+                  "ceCurrent": 86.4,
+                  "ceDiff": 49.4
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 252.0,
+                  "ceCurrent": 291.2,
+                  "ceDiff": 39.2
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 24.8,
+                  "ceCurrent": 58.1,
+                  "ceDiff": 33.3
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Mythos",
+                  "cePrior": 28.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -28.0
+                },
+                {
+                  "label": "Blue Moon",
+                  "cePrior": 47.9,
+                  "ceCurrent": 23.4,
+                  "ceDiff": -24.4
+                },
+                {
+                  "label": "Dogfish Head Beer",
+                  "cePrior": 33.6,
+                  "ceCurrent": 12.0,
+                  "ceDiff": -21.6
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 77.8,
+                  "ceCurrent": 64.9,
+                  "ceDiff": -12.9
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 219.4,
+                  "ceCurrent": 423.9,
+                  "ceDiff": 204.4
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 0.0,
+                  "ceCurrent": 7.4,
+                  "ceDiff": 7.4
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 26.5,
+                  "ceCurrent": 28.3,
+                  "ceDiff": 1.9
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 1071.1,
+                  "ceCurrent": 1057.1,
+                  "ceDiff": -14.1
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 6.9,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -6.9
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 4.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -4.0
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 8.5,
+                  "ceCurrent": 4.7,
+                  "ceDiff": -3.9
+                }
+              ],
+              "premiseSplit": {
+                "On Premise": {
+                  "cePrior": 1282.9,
+                  "ceCurrent": 1456.6,
+                  "trendPct": 0.1353
+                },
+                "Off Premise": {
+                  "cePrior": 53.6,
+                  "ceCurrent": 64.8,
+                  "trendPct": 0.2097
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 371.3,
+                  "ceCurrent": 608.5,
+                  "ceDiff": 237.2
+                },
+                {
+                  "label": "Sussex",
+                  "cePrior": 93.1,
+                  "ceCurrent": 99.6,
+                  "ceDiff": 6.5
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 872.1,
+                  "ceCurrent": 813.2,
+                  "ceDiff": -58.9
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "manager": "Mike Kennedy",
+        "cePrior": 276865.2,
+        "ceCurrent": 260176.5,
+        "trendPct": -0.0603,
+        "repCount": 8,
+        "insight": {
+          "cePrior": 276865.2,
+          "ceCurrent": 260176.5,
+          "trendPct": -0.0603,
+          "brandGainers": [
+            {
+              "label": "Sapporo",
+              "cePrior": 20767.5,
+              "ceCurrent": 24391.6,
+              "ceDiff": 3624.1
+            },
+            {
+              "label": "Garage Beer",
+              "cePrior": 3335.3,
+              "ceCurrent": 6072.7,
+              "ceDiff": 2737.4
+            },
+            {
+              "label": "Pabst Light",
+              "cePrior": 885.6,
+              "ceCurrent": 1915.5,
+              "ceDiff": 1029.9
+            },
+            {
+              "label": "Hofbrau Usa",
+              "cePrior": 3694.5,
+              "ceCurrent": 4662.9,
+              "ceDiff": 968.4
+            }
+          ],
+          "brandDecliners": [
+            {
+              "label": "Famosa",
+              "cePrior": 15533.8,
+              "ceCurrent": 10178.6,
+              "ceDiff": -5355.2
+            },
+            {
+              "label": "St Ides",
+              "cePrior": 9522.3,
+              "ceCurrent": 7102.4,
+              "ceDiff": -2419.8
+            },
+            {
+              "label": "Pabst Blue Ribbon",
+              "cePrior": 35725.7,
+              "ceCurrent": 33416.5,
+              "ceDiff": -2309.1
+            },
+            {
+              "label": "Pride & Clarke",
+              "cePrior": 5372.7,
+              "ceCurrent": 3156.6,
+              "ceDiff": -2216.1
+            }
+          ],
+          "productTypeGainers": [
+            {
+              "label": "Cocktails",
+              "cePrior": 2736.9,
+              "ceCurrent": 3307.8,
+              "ceDiff": 570.9
+            },
+            {
+              "label": "Case Soda",
+              "cePrior": 1400.3,
+              "ceCurrent": 1839.1,
+              "ceDiff": 438.8
+            },
+            {
+              "label": "Case Cider",
+              "cePrior": 5932.1,
+              "ceCurrent": 6224.5,
+              "ceDiff": 292.4
+            },
+            {
+              "label": "Case THC",
+              "cePrior": 1160.8,
+              "ceCurrent": 1277.0,
+              "ceDiff": 116.2
+            }
+          ],
+          "productTypeDecliners": [
+            {
+              "label": "Case Beer",
+              "cePrior": 235792.0,
+              "ceCurrent": 220792.8,
+              "ceDiff": -14999.2
+            },
+            {
+              "label": "Liquor",
+              "cePrior": 6801.1,
+              "ceCurrent": 4474.2,
+              "ceDiff": -2326.9
+            },
+            {
+              "label": "Keg Beer",
+              "cePrior": 19051.7,
+              "ceCurrent": 18425.2,
+              "ceDiff": -626.6
+            },
+            {
+              "label": "Keg Cider",
+              "cePrior": 1902.4,
+              "ceCurrent": 1801.0,
+              "ceDiff": -101.3
+            }
+          ],
+          "premiseSplit": {
+            "Off Premise": {
+              "cePrior": 248437.1,
+              "ceCurrent": 230094.8,
+              "trendPct": -0.0738
+            },
+            "On Premise": {
+              "cePrior": 28428.1,
+              "ceCurrent": 30081.7,
+              "trendPct": 0.0582
+            }
+          },
+          "countyGainers": [
+            {
+              "label": "Passaic",
+              "cePrior": 23002.8,
+              "ceCurrent": 23901.5,
+              "ceDiff": 898.7
+            }
+          ],
+          "countyDecliners": [
+            {
+              "label": "Essex",
+              "cePrior": 85754.9,
+              "ceCurrent": 77720.1,
+              "ceDiff": -8034.7
+            },
+            {
+              "label": "Union",
+              "cePrior": 41654.1,
+              "ceCurrent": 37864.8,
+              "ceDiff": -3789.4
+            },
+            {
+              "label": "Hudson",
+              "cePrior": 80539.0,
+              "ceCurrent": 76774.0,
+              "ceDiff": -3765.0
+            }
+          ]
+        },
+        "children": [
+          {
+            "rep": "Michael Harboy",
+            "cePrior": 50018.3,
+            "ceCurrent": 50879.7,
+            "trendPct": 0.0172,
+            "insight": {
+              "cePrior": 50018.3,
+              "ceCurrent": 50879.7,
+              "trendPct": 0.0172,
+              "brandGainers": [
+                {
+                  "label": "Sun Cruiser",
+                  "cePrior": 683.0,
+                  "ceCurrent": 1096.4,
+                  "ceDiff": 413.4
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 453.2,
+                  "ceCurrent": 830.8,
+                  "ceDiff": 377.6
+                },
+                {
+                  "label": "Modelo Especial",
+                  "cePrior": 3372.7,
+                  "ceCurrent": 3706.5,
+                  "ceDiff": 333.8
+                },
+                {
+                  "label": "Lite",
+                  "cePrior": 3694.2,
+                  "ceCurrent": 3963.1,
+                  "ceDiff": 268.9
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Victory",
+                  "cePrior": 417.8,
+                  "ceCurrent": 223.5,
+                  "ceDiff": -194.3
+                },
+                {
+                  "label": "Miller High Life",
+                  "cePrior": 525.2,
+                  "ceCurrent": 343.8,
+                  "ceDiff": -181.4
+                },
+                {
+                  "label": "Truly",
+                  "cePrior": 281.0,
+                  "ceCurrent": 118.0,
+                  "ceDiff": -163.0
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 4329.2,
+                  "ceCurrent": 4167.3,
+                  "ceDiff": -161.9
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 44546.4,
+                  "ceCurrent": 45376.5,
+                  "ceDiff": 830.1
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 977.6,
+                  "ceCurrent": 1502.0,
+                  "ceDiff": 524.4
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 985.1,
+                  "ceCurrent": 1136.3,
+                  "ceDiff": 151.2
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 163.2,
+                  "ceCurrent": 195.2,
+                  "ceDiff": 32.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1478.5,
+                  "ceCurrent": 1154.8,
+                  "ceDiff": -323.8
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 535.0,
+                  "ceCurrent": 381.7,
+                  "ceDiff": -153.3
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 896.5,
+                  "ceCurrent": 753.2,
+                  "ceDiff": -143.3
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 213.5,
+                  "ceCurrent": 145.7,
+                  "ceDiff": -67.7
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 47318.0,
+                  "ceCurrent": 48818.1,
+                  "trendPct": 0.0317
+                },
+                "On Premise": {
+                  "cePrior": 2700.4,
+                  "ceCurrent": 2061.5,
+                  "trendPct": -0.2366
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Passaic",
+                  "cePrior": 22925.0,
+                  "ceCurrent": 23842.4,
+                  "ceDiff": 917.4
+                },
+                {
+                  "label": "Morris",
+                  "cePrior": 11294.5,
+                  "ceCurrent": 11420.4,
+                  "ceDiff": 125.9
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Essex",
+                  "cePrior": 15798.7,
+                  "ceCurrent": 15616.9,
+                  "ceDiff": -181.8
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Hakan Sadik",
+            "cePrior": 54031.1,
+            "ceCurrent": 47395.1,
+            "trendPct": -0.1228,
+            "insight": {
+              "cePrior": 54031.1,
+              "ceCurrent": 47395.1,
+              "trendPct": -0.1228,
+              "brandGainers": [
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 36.3,
+                  "ceCurrent": 1229.6,
+                  "ceDiff": 1193.2
+                },
+                {
+                  "label": "Carib",
+                  "cePrior": 3070.0,
+                  "ceCurrent": 3310.0,
+                  "ceDiff": 240.0
+                },
+                {
+                  "label": "Jack Daniels Country Cocktails",
+                  "cePrior": 1790.5,
+                  "ceCurrent": 2029.0,
+                  "ceDiff": 238.6
+                },
+                {
+                  "label": "Delta",
+                  "cePrior": 10.0,
+                  "ceCurrent": 75.0,
+                  "ceDiff": 65.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Famosa",
+                  "cePrior": 4978.4,
+                  "ceCurrent": 3109.2,
+                  "ceDiff": -1869.2
+                },
+                {
+                  "label": "St Ides",
+                  "cePrior": 6537.0,
+                  "ceCurrent": 5071.4,
+                  "ceDiff": -1465.6
+                },
+                {
+                  "label": "Colt 45",
+                  "cePrior": 7814.4,
+                  "ceCurrent": 6903.0,
+                  "ceDiff": -911.4
+                },
+                {
+                  "label": "Pride & Clarke",
+                  "cePrior": 2456.3,
+                  "ceCurrent": 1621.2,
+                  "ceDiff": -835.2
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case THC",
+                  "cePrior": 67.5,
+                  "ceCurrent": 111.0,
+                  "ceDiff": 43.5
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 78.6,
+                  "ceCurrent": 81.8,
+                  "ceDiff": 3.2
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 47167.5,
+                  "ceCurrent": 42121.4,
+                  "ceDiff": -5046.1
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 2883.6,
+                  "ceCurrent": 2085.1,
+                  "ceDiff": -798.5
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 2499.1,
+                  "ceCurrent": 1954.5,
+                  "ceDiff": -544.6
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 608.5,
+                  "ceCurrent": 447.8,
+                  "ceDiff": -160.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 50939.8,
+                  "ceCurrent": 43739.1,
+                  "trendPct": -0.1414
+                },
+                "On Premise": {
+                  "cePrior": 3091.4,
+                  "ceCurrent": 3656.0,
+                  "trendPct": 0.1826
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Hudson",
+                  "cePrior": 89.7,
+                  "ceCurrent": 100.0,
+                  "ceDiff": 10.3
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Essex",
+                  "cePrior": 53941.5,
+                  "ceCurrent": 47295.1,
+                  "ceDiff": -6646.4
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Jaime Colonna",
+            "cePrior": 36322.2,
+            "ceCurrent": 36160.2,
+            "trendPct": -0.0045,
+            "insight": {
+              "cePrior": 36322.2,
+              "ceCurrent": 36160.2,
+              "trendPct": -0.0045,
+              "brandGainers": [
+                {
+                  "label": "Hofbrau Usa",
+                  "cePrior": 2043.3,
+                  "ceCurrent": 2832.4,
+                  "ceDiff": 789.1
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 2662.8,
+                  "ceCurrent": 3331.2,
+                  "ceDiff": 668.4
+                },
+                {
+                  "label": "Saratoga",
+                  "cePrior": 193.2,
+                  "ceCurrent": 744.8,
+                  "ceDiff": 551.7
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 634.7,
+                  "ceCurrent": 1041.1,
+                  "ceDiff": 406.4
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Four Loko",
+                  "cePrior": 4156.6,
+                  "ceCurrent": 2261.9,
+                  "ceDiff": -1894.7
+                },
+                {
+                  "label": "St Ides",
+                  "cePrior": 707.7,
+                  "ceCurrent": 31.2,
+                  "ceDiff": -676.4
+                },
+                {
+                  "label": "Montauk",
+                  "cePrior": 4263.8,
+                  "ceCurrent": 3693.0,
+                  "ceDiff": -570.8
+                },
+                {
+                  "label": "Colt 45",
+                  "cePrior": 230.3,
+                  "ceCurrent": 52.7,
+                  "ceDiff": -177.7
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 8222.9,
+                  "ceCurrent": 9743.7,
+                  "ceDiff": 1520.8
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 194.6,
+                  "ceCurrent": 745.3,
+                  "ceDiff": 550.7
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 259.5,
+                  "ceCurrent": 509.0,
+                  "ceDiff": 249.5
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 1405.7,
+                  "ceCurrent": 1585.7,
+                  "ceDiff": 180.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 25077.6,
+                  "ceCurrent": 22638.6,
+                  "ceDiff": -2439.1
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 272.7,
+                  "ceCurrent": 186.0,
+                  "ceDiff": -86.7
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 268.7,
+                  "ceCurrent": 192.2,
+                  "ceDiff": -76.5
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 441.3,
+                  "ceCurrent": 372.1,
+                  "ceDiff": -69.1
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 25139.8,
+                  "ceCurrent": 22329.7,
+                  "trendPct": -0.1118
+                },
+                "On Premise": {
+                  "cePrior": 11182.4,
+                  "ceCurrent": 13830.5,
+                  "trendPct": 0.2368
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 1921.6,
+                  "ceCurrent": 1785.5,
+                  "ceDiff": -136.1
+                },
+                {
+                  "label": "Hudson",
+                  "cePrior": 34400.6,
+                  "ceCurrent": 34374.8,
+                  "ceDiff": -25.8
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Dylan Rubino",
+            "cePrior": 35925.4,
+            "ceCurrent": 32457.3,
+            "trendPct": -0.0965,
+            "insight": {
+              "cePrior": 35925.4,
+              "ceCurrent": 32457.3,
+              "trendPct": -0.0965,
+              "brandGainers": [
+                {
+                  "label": "Sapporo",
+                  "cePrior": 6122.8,
+                  "ceCurrent": 7824.8,
+                  "ceDiff": 1702.0
+                },
+                {
+                  "label": "Cerveza Republica La Tuya 5.0 La Dura",
+                  "cePrior": 1.4,
+                  "ceCurrent": 266.2,
+                  "ceDiff": 264.8
+                },
+                {
+                  "label": "Magners",
+                  "cePrior": 252.5,
+                  "ceCurrent": 374.4,
+                  "ceDiff": 121.9
+                },
+                {
+                  "label": "Schofferhofer",
+                  "cePrior": 185.2,
+                  "ceCurrent": 269.4,
+                  "ceDiff": 84.2
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Famosa",
+                  "cePrior": 5214.5,
+                  "ceCurrent": 3109.9,
+                  "ceDiff": -2104.6
+                },
+                {
+                  "label": "Pride & Clarke",
+                  "cePrior": 1906.3,
+                  "ceCurrent": 997.1,
+                  "ceDiff": -909.1
+                },
+                {
+                  "label": "Palma",
+                  "cePrior": 1249.0,
+                  "ceCurrent": 530.0,
+                  "ceDiff": -719.0
+                },
+                {
+                  "label": "Schlitz Malt",
+                  "cePrior": 548.7,
+                  "ceCurrent": 226.9,
+                  "ceDiff": -321.8
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 68.9,
+                  "ceCurrent": 184.2,
+                  "ceDiff": 115.3
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 344.3,
+                  "ceCurrent": 433.0,
+                  "ceDiff": 88.7
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 243.5,
+                  "ceCurrent": 316.9,
+                  "ceDiff": 73.4
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 112.3,
+                  "ceCurrent": 134.0,
+                  "ceDiff": 21.7
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 30776.2,
+                  "ceCurrent": 28172.0,
+                  "ceDiff": -2604.1
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 2289.7,
+                  "ceCurrent": 1323.5,
+                  "ceDiff": -966.2
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1710.4,
+                  "ceCurrent": 1515.2,
+                  "ceDiff": -195.2
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 365.2,
+                  "ceCurrent": 357.3,
+                  "ceDiff": -7.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 33037.6,
+                  "ceCurrent": 29528.6,
+                  "trendPct": -0.1062
+                },
+                "On Premise": {
+                  "cePrior": 2887.8,
+                  "ceCurrent": 2928.7,
+                  "trendPct": 0.0142
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Bergen",
+                  "cePrior": 1279.2,
+                  "ceCurrent": 1333.7,
+                  "ceDiff": 54.5
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Hudson",
+                  "cePrior": 34646.2,
+                  "ceCurrent": 31123.7,
+                  "ceDiff": -3522.4
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Andrew Lundy",
+            "cePrior": 31444.6,
+            "ceCurrent": 29721.0,
+            "trendPct": -0.0548,
+            "insight": {
+              "cePrior": 31444.6,
+              "ceCurrent": 29721.0,
+              "trendPct": -0.0548,
+              "brandGainers": [
+                {
+                  "label": "Sapporo",
+                  "cePrior": 3187.7,
+                  "ceCurrent": 3690.6,
+                  "ceDiff": 502.9
+                },
+                {
+                  "label": "Pabst Light",
+                  "cePrior": 225.1,
+                  "ceCurrent": 526.8,
+                  "ceDiff": 301.7
+                },
+                {
+                  "label": "Source Brewing",
+                  "cePrior": 0.0,
+                  "ceCurrent": 213.6,
+                  "ceDiff": 213.6
+                },
+                {
+                  "label": "Genesee",
+                  "cePrior": 850.5,
+                  "ceCurrent": 1022.2,
+                  "ceDiff": 171.8
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Palma",
+                  "cePrior": 1345.0,
+                  "ceCurrent": 620.0,
+                  "ceDiff": -725.0
+                },
+                {
+                  "label": "Tona",
+                  "cePrior": 1178.0,
+                  "ceCurrent": 631.0,
+                  "ceDiff": -547.0
+                },
+                {
+                  "label": "Famosa",
+                  "cePrior": 1714.1,
+                  "ceCurrent": 1216.7,
+                  "ceDiff": -497.4
+                },
+                {
+                  "label": "Colt 45",
+                  "cePrior": 3071.1,
+                  "ceCurrent": 2674.6,
+                  "ceDiff": -396.4
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Cider",
+                  "cePrior": 639.9,
+                  "ceCurrent": 701.7,
+                  "ceDiff": 61.8
+                },
+                {
+                  "label": "Case Non-Alcoholic",
+                  "cePrior": 137.4,
+                  "ceCurrent": 182.6,
+                  "ceDiff": 45.2
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 74.7,
+                  "ceCurrent": 104.2,
+                  "ceDiff": 29.5
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 0.0,
+                  "ceCurrent": 6.4,
+                  "ceDiff": 6.4
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 28645.8,
+                  "ceCurrent": 27139.8,
+                  "ceDiff": -1506.0
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 665.6,
+                  "ceCurrent": 493.1,
+                  "ceDiff": -172.5
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 874.9,
+                  "ceCurrent": 703.2,
+                  "ceDiff": -171.7
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 27.6,
+                  "ceCurrent": 13.8,
+                  "ceDiff": -13.8
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 30268.1,
+                  "ceCurrent": 28542.0,
+                  "trendPct": -0.057
+                },
+                "On Premise": {
+                  "cePrior": 1176.5,
+                  "ceCurrent": 1179.0,
+                  "trendPct": 0.0022
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Essex",
+                  "cePrior": 355.4,
+                  "ceCurrent": 414.6,
+                  "ceDiff": 59.2
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Union",
+                  "cePrior": 31089.3,
+                  "ceCurrent": 29306.5,
+                  "ceDiff": -1782.8
+                }
+              ]
+            }
+          },
+          {
+            "rep": "John O'Donoghue",
+            "cePrior": 29562.6,
+            "ceCurrent": 27829.5,
+            "trendPct": -0.0586,
+            "insight": {
+              "cePrior": 29562.6,
+              "ceCurrent": 27829.5,
+              "trendPct": -0.0586,
+              "brandGainers": [
+                {
+                  "label": "Pabst Light",
+                  "cePrior": 270.5,
+                  "ceCurrent": 659.9,
+                  "ceDiff": 389.4
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 1072.4,
+                  "ceCurrent": 1454.0,
+                  "ceDiff": 381.6
+                },
+                {
+                  "label": "Noca",
+                  "cePrior": 0.0,
+                  "ceCurrent": 349.0,
+                  "ceDiff": 349.0
+                },
+                {
+                  "label": "Source Brewing",
+                  "cePrior": 0.0,
+                  "ceCurrent": 265.2,
+                  "ceDiff": 265.2
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Pabst Blue Ribbon",
+                  "cePrior": 10304.6,
+                  "ceCurrent": 9095.9,
+                  "ceDiff": -1208.7
+                },
+                {
+                  "label": "Montauk",
+                  "cePrior": 2041.8,
+                  "ceCurrent": 1699.6,
+                  "ceDiff": -342.2
+                },
+                {
+                  "label": "River Horse Brewing Co",
+                  "cePrior": 243.5,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -243.5
+                },
+                {
+                  "label": "Flying Dog Brewing Co",
+                  "cePrior": 905.2,
+                  "ceCurrent": 717.1,
+                  "ceDiff": -188.1
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case Soda",
+                  "cePrior": 73.0,
+                  "ceCurrent": 229.3,
+                  "ceDiff": 156.3
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 335.5,
+                  "ceCurrent": 360.9,
+                  "ceDiff": 25.4
+                },
+                {
+                  "label": "Cocktails",
+                  "cePrior": 337.7,
+                  "ceCurrent": 355.7,
+                  "ceDiff": 18.0
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 25244.0,
+                  "ceCurrent": 23881.1,
+                  "ceDiff": -1362.9
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1212.4,
+                  "ceCurrent": 878.4,
+                  "ceDiff": -334.0
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 1420.2,
+                  "ceCurrent": 1303.3,
+                  "ceDiff": -116.9
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 132.7,
+                  "ceCurrent": 80.8,
+                  "ceDiff": -51.9
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 26938.8,
+                  "ceCurrent": 25232.0,
+                  "trendPct": -0.0634
+                },
+                "On Premise": {
+                  "cePrior": 2623.8,
+                  "ceCurrent": 2597.4,
+                  "trendPct": -0.01
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Morris",
+                  "cePrior": 26858.0,
+                  "ceCurrent": 25297.1,
+                  "ceDiff": -1560.8
+                },
+                {
+                  "label": "Union",
+                  "cePrior": 1145.9,
+                  "ceCurrent": 986.6,
+                  "ceDiff": -159.2
+                },
+                {
+                  "label": "Essex",
+                  "cePrior": 413.5,
+                  "ceCurrent": 406.7,
+                  "ceDiff": -6.7
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Alisa Acciardi",
+            "cePrior": 27535.1,
+            "ceCurrent": 26076.0,
+            "trendPct": -0.053,
+            "insight": {
+              "cePrior": 27535.1,
+              "ceCurrent": 26076.0,
+              "trendPct": -0.053,
+              "brandGainers": [
+                {
+                  "label": "Schaefer",
+                  "cePrior": 156.2,
+                  "ceCurrent": 372.5,
+                  "ceDiff": 216.2
+                },
+                {
+                  "label": "Garage Beer",
+                  "cePrior": 296.7,
+                  "ceCurrent": 506.0,
+                  "ceDiff": 209.3
+                },
+                {
+                  "label": "Delta",
+                  "cePrior": 30.0,
+                  "ceCurrent": 186.0,
+                  "ceDiff": 156.0
+                },
+                {
+                  "label": "Sapporo",
+                  "cePrior": 2764.2,
+                  "ceCurrent": 2911.0,
+                  "ceDiff": 146.7
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Famosa",
+                  "cePrior": 1530.7,
+                  "ceCurrent": 1045.0,
+                  "ceDiff": -485.6
+                },
+                {
+                  "label": "Sixpoint",
+                  "cePrior": 1281.8,
+                  "ceCurrent": 1040.0,
+                  "ceDiff": -241.9
+                },
+                {
+                  "label": "Coors Light",
+                  "cePrior": 526.4,
+                  "ceCurrent": 295.0,
+                  "ceDiff": -231.4
+                },
+                {
+                  "label": "Dab",
+                  "cePrior": 736.4,
+                  "ceCurrent": 525.6,
+                  "ceDiff": -210.8
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Case THC",
+                  "cePrior": 130.5,
+                  "ceCurrent": 274.1,
+                  "ceDiff": 143.6
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 0.0,
+                  "ceCurrent": 14.8,
+                  "ceDiff": 14.8
+                },
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 55.3,
+                  "ceCurrent": 59.9,
+                  "ceDiff": 4.7
+                },
+                {
+                  "label": "Sparkling Wine",
+                  "cePrior": 1.9,
+                  "ceCurrent": 4.2,
+                  "ceDiff": 2.3
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 24112.5,
+                  "ceCurrent": 22878.8,
+                  "ceDiff": -1233.8
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 339.1,
+                  "ceCurrent": 173.8,
+                  "ceDiff": -165.3
+                },
+                {
+                  "label": "Case Soda",
+                  "cePrior": 137.8,
+                  "ceCurrent": 15.7,
+                  "ceDiff": -122.2
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1907.7,
+                  "ceCurrent": 1823.0,
+                  "ceDiff": -84.7
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 24658.7,
+                  "ceCurrent": 23379.3,
+                  "trendPct": -0.0519
+                },
+                "On Premise": {
+                  "cePrior": 2876.3,
+                  "ceCurrent": 2696.7,
+                  "trendPct": -0.0625
+                }
+              },
+              "countyGainers": [
+                {
+                  "label": "Union",
+                  "cePrior": 13.1,
+                  "ceCurrent": 18.7,
+                  "ceDiff": 5.6
+                }
+              ],
+              "countyDecliners": [
+                {
+                  "label": "Essex",
+                  "cePrior": 13192.8,
+                  "ceCurrent": 12241.6,
+                  "ceDiff": -951.2
+                },
+                {
+                  "label": "Bergen",
+                  "cePrior": 2848.8,
+                  "ceCurrent": 2581.0,
+                  "ceDiff": -267.8
+                },
+                {
+                  "label": "Hudson",
+                  "cePrior": 11402.6,
+                  "ceCurrent": 11175.5,
+                  "ceDiff": -227.1
+                }
+              ]
+            }
+          },
+          {
+            "rep": "Alex Rodriguez",
+            "cePrior": 12025.9,
+            "ceCurrent": 9657.8,
+            "trendPct": -0.1969,
+            "insight": {
+              "cePrior": 12025.9,
+              "ceCurrent": 9657.8,
+              "trendPct": -0.1969,
+              "brandGainers": [
+                {
+                  "label": "Sapporo",
+                  "cePrior": 1153.7,
+                  "ceCurrent": 1448.2,
+                  "ceDiff": 294.5
+                },
+                {
+                  "label": "Colt 45",
+                  "cePrior": 2276.7,
+                  "ceCurrent": 2341.6,
+                  "ceDiff": 64.9
+                },
+                {
+                  "label": "Costenita",
+                  "cePrior": 28.1,
+                  "ceCurrent": 88.7,
+                  "ceDiff": 60.6
+                },
+                {
+                  "label": "Old Milwaukee",
+                  "cePrior": 234.7,
+                  "ceCurrent": 269.6,
+                  "ceDiff": 35.0
+                }
+              ],
+              "brandDecliners": [
+                {
+                  "label": "Famosa",
+                  "cePrior": 1571.7,
+                  "ceCurrent": 1018.0,
+                  "ceDiff": -553.7
+                },
+                {
+                  "label": "Palma",
+                  "cePrior": 873.0,
+                  "ceCurrent": 388.0,
+                  "ceDiff": -485.0
+                },
+                {
+                  "label": "Poker Import",
+                  "cePrior": 352.3,
+                  "ceCurrent": 162.3,
+                  "ceDiff": -190.1
+                },
+                {
+                  "label": "Pride & Clarke",
+                  "cePrior": 381.9,
+                  "ceCurrent": 192.4,
+                  "ceDiff": -189.5
+                }
+              ],
+              "productTypeGainers": [
+                {
+                  "label": "Keg Cider",
+                  "cePrior": 27.6,
+                  "ceCurrent": 34.4,
+                  "ceDiff": 6.9
+                },
+                {
+                  "label": "Still Wine",
+                  "cePrior": 0.0,
+                  "ceCurrent": 6.3,
+                  "ceDiff": 6.3
+                },
+                {
+                  "label": "Case Cider",
+                  "cePrior": 37.2,
+                  "ceCurrent": 39.5,
+                  "ceDiff": 2.4
+                }
+              ],
+              "productTypeDecliners": [
+                {
+                  "label": "Case Beer",
+                  "cePrior": 10222.0,
+                  "ceCurrent": 8584.6,
+                  "ceDiff": -1637.4
+                },
+                {
+                  "label": "Keg Beer",
+                  "cePrior": 1145.8,
+                  "ceCurrent": 652.3,
+                  "ceDiff": -493.5
+                },
+                {
+                  "label": "Liquor",
+                  "cePrior": 475.3,
+                  "ceCurrent": 283.6,
+                  "ceDiff": -191.6
+                },
+                {
+                  "label": "Case THC",
+                  "cePrior": 37.0,
+                  "ceCurrent": 0.0,
+                  "ceDiff": -37.0
+                }
+              ],
+              "premiseSplit": {
+                "Off Premise": {
+                  "cePrior": 10136.3,
+                  "ceCurrent": 8526.1,
+                  "trendPct": -0.1589
+                },
+                "On Premise": {
+                  "cePrior": 1889.5,
+                  "ceCurrent": 1131.7,
+                  "trendPct": -0.4011
+                }
+              },
+              "countyGainers": [],
+              "countyDecliners": [
+                {
+                  "label": "Union",
+                  "cePrior": 9405.9,
+                  "ceCurrent": 7553.0,
+                  "ceDiff": -1852.9
+                },
+                {
+                  "label": "Essex",
+                  "cePrior": 2053.0,
+                  "ceCurrent": 1745.2,
+                  "ceDiff": -307.8
+                },
+                {
+                  "label": "Middlesex",
+                  "cePrior": 567.0,
+                  "ceCurrent": 359.6,
+                  "ceDiff": -207.4
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
   }
 }

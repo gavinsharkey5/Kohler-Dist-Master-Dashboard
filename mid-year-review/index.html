@@ -105,6 +105,12 @@
   .tab:hover{color:var(--ink)}
   .tab.active{background:var(--card-h);color:var(--ink);border-top-color:var(--kohler)}
   .tab .count{color:var(--ink-mute);font-weight:400;margin-left:4px}
+  /* By Supplier / By Brand Family hidden 2026-08-10 per Gavin ("they are
+     redundant" -- Supplier + Brand already covers the same ground). Hidden
+     rather than removed: the tabs, their render functions, and their KPI/
+     table code all stay intact and still work if navigated to directly or
+     un-hidden later -- this is a visibility change, not a feature removal. */
+  .tab-hidden{display:none}
   .view{display:none}
   .view.active{display:block}
 
@@ -301,10 +307,11 @@
 
   <div class="tabs" id="tabs">
     <div class="tab active" data-view="combo">Supplier + Brand <span class="count" id="tab-combo-count"></span></div>
-    <div class="tab" data-view="suppliers">By Supplier <span class="count" id="tab-suppliers-count"></span></div>
-    <div class="tab" data-view="goal">By Brand Family <span class="count" id="tab-goal-count"></span></div>
+    <div class="tab tab-hidden" data-view="suppliers">By Supplier <span class="count" id="tab-suppliers-count"></span></div>
+    <div class="tab tab-hidden" data-view="goal">By Brand Family <span class="count" id="tab-goal-count"></span></div>
     <div class="tab" data-view="new">New Brand Families in 2026 <span class="count" id="tab-new-count"></span></div>
     <div class="tab" data-view="terminated">Terminated Brands <span class="count" id="tab-terminated-count"></span></div>
+    <div class="tab" data-view="dm">District Manager Trends <span class="count" id="tab-dm-count"></span></div>
   </div>
 
   <!-- VS GOAL -->
@@ -562,6 +569,41 @@
           </colgroup>
           <thead><tr id="comboTheadRow"></tr></thead>
           <tbody id="comboTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- DISTRICT MANAGER TRENDS -->
+  <div class="view" id="view-dm">
+    <div class="kpis" id="dmKpis"></div>
+
+    <section class="panel">
+      <h2>District Manager rollup</h2>
+      <p class="desc">Each district manager's own row (bold) with their sales reps listed underneath &mdash; same
+        collapsed/expandable pattern as the Supplier + Brand tab, but no goal % (there's no rep-level goal data on
+        hand, so this is pure Jan 1 &ndash; Jul 31 trend). Click a district row (or the chevron) to expand or
+        collapse its reps. Click the <b>"i"</b> next to any name for a synopsis of what drove that trend: brand
+        families, product types (Case Beer / Keg Beer / Liquor / Wine / etc.), On/Off-Premise split, and counties
+        where available. Click a column header to sort the <b>district</b> rows &mdash; reps within a district are
+        always sorted by 2026 YTD CE, largest first.</p>
+
+      <div class="controls">
+        <input type="search" id="dmSearch" placeholder="Search district manager or rep&hellip;">
+        <button class="btn" id="dmExpandAllBtn">Expand all</button>
+        <button class="btn" id="dmCollapseAllBtn">Collapse all</button>
+        <button class="btn" id="dmExportBtn">Export CSV</button>
+        <div class="spacer"></div>
+        <span class="rowcount" id="dmRowcount"></span>
+      </div>
+
+      <div class="tablewrap">
+        <table style="width:100%;min-width:640px">
+          <colgroup>
+            <col style="width:46%"><col style="width:18%"><col style="width:18%"><col style="width:18%">
+          </colgroup>
+          <thead><tr id="dmTheadRow"></tr></thead>
+          <tbody id="dmTbody"></tbody>
         </table>
       </div>
     </section>
@@ -1319,45 +1361,56 @@ function itMoverRows(rows, dir){
     `<span class="it-val ${dir}">${r.ceDiff>0?'+':''}${fmtCE(r.ceDiff)}</span></div>`).join('');
 }
 
-// Brand-level insight (added 2026-08-10, per Gavin) has no brandGainers/
-// brandDecliners -- there's nothing below "brand family" to compare
-// against, so those 2 sections are skipped entirely for it (checked via
-// insight.brandGainers!==undefined, present only on supplier/overall
-// insight objects -- see build_insight() vs. build_brand_insight() in
-// generate.py).
+// On/Off Premise mini-section (added 2026-08-10, per Gavin, for the
+// District Manager Trends "i" popovers) -- 2 stat lines, not a mover
+// list, since there are only ever 2 premise buckets, not a top-N.
+function premiseSplitHtml(premiseSplit){
+  if (!premiseSplit) return '';
+  const labels = Object.keys(premiseSplit);
+  if (!labels.length) return '';
+  const rows = labels.map(label=>{
+    const p = premiseSplit[label];
+    const dir = (p.trendPct||0)>=0 ? 'up' : 'down';
+    return `<div class="it-row"><span class="it-lbl">${esc(label)}</span><span class="it-val ${dir}">${fmtPct(p.trendPct)}</span></div>`;
+  }).join('');
+  return `<div class="it-section"><p class="it-section-lbl">On/Off Premise</p>${rows}</div>`;
+}
+
+// Each mover-list section only renders if its data is actually present on
+// this insight object -- different levels carry different sections:
+//   - brandGainers/brandDecliners: supplier/overall/DM/rep insight (NOT
+//     brand-family insight -- nothing below "brand family" to compare).
+//   - pkgGainers/pkgDecliners: supplier/brand-family/overall insight (NOT
+//     DM/rep insight -- district_manager_trend.csv has no Package split
+//     used for this; it's Product Type instead).
+//   - productTypeGainers/productTypeDecliners: DM/rep/overall-DM insight
+//     only (added 2026-08-10, District Manager Trends tab).
+//   - countyGainers/countyDecliners: anywhere brand_geography_trend.csv's
+//     county data got merged/joined in (supplier/brand/overall via
+//     Supplier match, DM/rep via Sales Rep Assigned match).
+//   - premiseSplit: DM/rep/overall-DM insight only.
+// See generate.py's build_insight()/build_brand_insight() (Supplier +
+// Brand tab) vs. build_dm_level_insight() (District Manager Trends tab)
+// for which fields each actually populates.
 function insightTooltipHtml(title, sub, insight){
   if (!insight) return '';
-  const hasBrandSections = insight.brandGainers !== undefined;
-  const hasCountySections = insight.countyGainers !== undefined;
+  const section = (label, verb1, verb2, gainers, decliners) => `
+    <div class="it-section">
+      <p class="it-section-lbl up">${esc(label)} ${verb1}</p>
+      ${itMoverRows(gainers,'up')}
+    </div>
+    <div class="it-section">
+      <p class="it-section-lbl down">${esc(label)} ${verb2}</p>
+      ${itMoverRows(decliners,'down')}
+    </div>`;
   return `
     <p class="it-title">${esc(title)}</p>
     <p class="it-sub">${esc(sub)} &middot; ${fmtCE(insight.cePrior)} &rarr; ${fmtCE(insight.ceCurrent)} CE (${fmtPct(insight.trendPct)})</p>
-    ${hasBrandSections ? `
-    <div class="it-section">
-      <p class="it-section-lbl up">Brands driving growth</p>
-      ${itMoverRows(insight.brandGainers,'up')}
-    </div>
-    <div class="it-section">
-      <p class="it-section-lbl down">Brands dragging it down</p>
-      ${itMoverRows(insight.brandDecliners,'down')}
-    </div>` : ''}
-    <div class="it-section">
-      <p class="it-section-lbl up">Packages growing</p>
-      ${itMoverRows(insight.pkgGainers,'up')}
-    </div>
-    <div class="it-section">
-      <p class="it-section-lbl down">Packages shrinking</p>
-      ${itMoverRows(insight.pkgDecliners,'down')}
-    </div>
-    ${hasCountySections ? `
-    <div class="it-section">
-      <p class="it-section-lbl up">Counties growing</p>
-      ${itMoverRows(insight.countyGainers,'up')}
-    </div>
-    <div class="it-section">
-      <p class="it-section-lbl down">Counties shrinking</p>
-      ${itMoverRows(insight.countyDecliners,'down')}
-    </div>` : ''}`;
+    ${insight.brandGainers!==undefined ? section('Brands','driving growth','dragging it down', insight.brandGainers, insight.brandDecliners) : ''}
+    ${insight.productTypeGainers!==undefined ? section('Product types','growing','shrinking', insight.productTypeGainers, insight.productTypeDecliners) : ''}
+    ${insight.pkgGainers!==undefined ? section('Packages','growing','shrinking', insight.pkgGainers, insight.pkgDecliners) : ''}
+    ${insight.countyGainers!==undefined ? section('Counties','growing','shrinking', insight.countyGainers, insight.countyDecliners) : ''}
+    ${premiseSplitHtml(insight.premiseSplit)}`;
 }
 
 let INFO_PINNED = null; // the .info-icon element currently pinned open (tap/click), or null
@@ -1660,6 +1713,226 @@ function exportComboCSV(){
   a.click();
 }
 
+// ---- District Manager Trends tab (added 2026-08-10, per Gavin) --
+// District Manager -> Sales Rep tree, same collapsed-parent/expandable-
+// children UI as the Supplier + Brand combo tab, but no goal-% machinery
+// (no rep-level goal data on hand) -- just Jan 1 - Jul 31 CE trend, plus
+// "i" popovers (brands, product types, premise, counties where joined)
+// built server-side in generate.py's parse_district_manager_trend(). All
+// field names on DATA.dmTrend/DATA.dmGroups are camelCase (cePrior/
+// ceCurrent/trendPct/manager/rep), NOT the combo tab's snake_case
+// (ce_prior/ce_current/trend_pct) -- two different, independently-added
+// data shapes; don't assume they interchange.
+let DM_SORT = {key:'ceCurrent', dir:'desc'};
+let DM_FILTER = {search:''};
+let DM_EXPANDED = new Set();
+
+const DM_COLS = [
+  {key:'manager', label:'District Manager / Rep', kind:'text'},
+  {key:'cePrior', label:"'25 YTD CE", kind:'ce'},
+  {key:'ceCurrent', label:"'26 YTD CE", kind:'ce'},
+  {key:'trendPct', label:'Trend %', kind:'pct'},
+];
+
+// ESPN-headlines-style summary, same pattern as overallHeadlineLines()
+// (Supplier + Brand tab) but sourced from DATA.dmTrend instead of
+// DATA.overallInsight -- district ranking by trend %, then brand/
+// product-type movers, then the premise split, all from
+// DATA.dmTrend.overall (built in generate.py from EVERY district
+// manager's rows combined, i.e. company-wide within this file's own
+// scope -- excludes the tiny "None"/"Default" catch-all bucket, unlike
+// DATA.overallInsight which doesn't have that exclusion, so the two
+// company-wide totals can differ by a negligible amount).
+function dmHeadlineLines(){
+  const dm = DATA.dmTrend;
+  if (!dm) return [];
+  const insight = dm.overall;
+  const rangeTxt = `${esc(dm.rangePrior)} vs. ${esc(dm.rangeCurrent)}`;
+  const up = n => n>=0;
+  const signed = n => `${n>=0?'+':''}${fmtCE(n)}`;
+  const lines = [];
+
+  lines.push(`District-wide Case Equivalents were <b class="${up(insight.trendPct)?'hl-up':'hl-down'}">${fmtPct(insight.trendPct)}</b> ` +
+    `(${rangeTxt}), landing at <b>${fmtCE(insight.ceCurrent)} CE</b> vs. ${fmtCE(insight.cePrior)} CE a year ago.`);
+
+  const ranked = dm.rollup.filter(g=>g.trendPct!=null).slice().sort((a,b)=>b.trendPct-a.trendPct);
+  if (ranked.length){
+    const best = ranked[0], worst = ranked[ranked.length-1];
+    lines.push(`<b class="hl-up">${esc(best.manager)}</b>'s district posted the strongest trend (${fmtPct(best.trendPct)}), while ` +
+      `<b class="hl-down">${esc(worst.manager)}</b>'s fell the most (${fmtPct(worst.trendPct)}).`);
+  }
+
+  if (insight.brandGainers && insight.brandGainers.length){
+    const parts = insight.brandGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Biggest brand growth drivers: ${joinList(parts)}.`);
+  }
+  if (insight.brandDecliners && insight.brandDecliners.length){
+    const parts = insight.brandDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Steepest brand declines: ${joinList(parts)}.`);
+  }
+  if (insight.productTypeGainers && insight.productTypeGainers.length){
+    const parts = insight.productTypeGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Product types growing: ${joinList(parts)}.`);
+  }
+  if (insight.productTypeDecliners && insight.productTypeDecliners.length){
+    const parts = insight.productTypeDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signed(r.ceDiff)})</b>`);
+    lines.push(`Product types shrinking: ${joinList(parts)}.`);
+  }
+  const premise = insight.premiseSplit || {};
+  const off = premise['Off Premise'], on = premise['On Premise'];
+  if (off && on && off.trendPct!=null && on.trendPct!=null){
+    lines.push(`By premise: Off-Premise was <b class="${up(off.trendPct)?'hl-up':'hl-down'}">${fmtPct(off.trendPct)}</b> ` +
+      `(${fmtCE(off.ceCurrent)} CE), On-Premise was <b class="${up(on.trendPct)?'hl-up':'hl-down'}">${fmtPct(on.trendPct)}</b> (${fmtCE(on.ceCurrent)} CE).`);
+  }
+  return lines;
+}
+
+function renderDMKPIs(){
+  const dm = DATA.dmTrend;
+  const kpisEl = document.getElementById('dmKpis');
+  if (!dm){ kpisEl.innerHTML = ''; return; }
+  const districtCount = dm.rollup.length;
+  const repCount = dm.rollup.reduce((a,g)=>a+g.repCount,0);
+  const headlines = dmHeadlineLines();
+  kpisEl.innerHTML = `<div class="kpi kpi-headline">
+    ${headlines.length ? `
+    <div class="headline-eyebrow">
+      <p class="lbl" style="margin:0">Top Headlines</p>
+      <p class="sub2" style="margin:0">What drove the Jan 1 &ndash; Jul 31 trend, by district</p>
+    </div>
+    <ul class="headline-list">${headlines.map(h=>`<li>${h}</li>`).join('')}</ul>` : ''}
+    <div class="headline-stats">
+      <div class="headline-stat"><span class="hs-lbl">Districts Tracked</span><span class="hs-val">${fmtCE(districtCount)}</span><span class="hs-sub">${fmtCE(repCount)} sales reps</span></div>
+      <div class="headline-stat"><span class="hs-lbl">Company Trend (YTD)</span><span class="hs-val">${fmtPct(dm.overall.trendPct)}</span><span class="hs-sub">across tracked districts</span></div>
+      <div class="headline-stat"><span class="hs-lbl">YTD Case Equiv</span><span class="hs-val">${fmtCE(dm.overall.cePrior)} &rarr; ${fmtCE(dm.overall.ceCurrent)}</span><span class="hs-sub">${esc(dm.rangePrior)} vs. ${esc(dm.rangeCurrent)}</span></div>
+    </div>
+  </div>`;
+}
+
+function renderDMHead(){
+  const tr = document.getElementById('dmTheadRow');
+  tr.innerHTML = '';
+  DM_COLS.forEach(c=>{
+    const th = document.createElement('th');
+    if (c.kind!=='text') th.classList.add('num');
+    th.textContent = c.label;
+    if (DM_SORT.key===c.key){
+      const a = document.createElement('span'); a.className='arrow'; a.textContent = DM_SORT.dir==='asc'?'▲':'▼';
+      th.appendChild(a);
+    }
+    th.addEventListener('click', ()=>{
+      if (DM_SORT.key===c.key) DM_SORT.dir = DM_SORT.dir==='asc'?'desc':'asc'; else { DM_SORT.key=c.key; DM_SORT.dir = c.key==='manager'?'asc':'desc'; }
+      renderDMTable();
+    });
+    tr.appendChild(th);
+  });
+}
+
+function buildDMCommonCells(r){
+  const tdPrior = document.createElement('td'); tdPrior.className='num'; tdPrior.textContent = fmtCE(r.cePrior);
+  const tdCurrent = document.createElement('td'); tdCurrent.className='num ce-selectable'; tdCurrent.dataset.ceval = r.ceCurrent==null?'':r.ceCurrent; tdCurrent.textContent = fmtCE(r.ceCurrent);
+  const tdTrend = document.createElement('td'); tdTrend.className='num'; tdTrend.innerHTML = trendCell(r.trendPct);
+  return [tdPrior, tdCurrent, tdTrend];
+}
+
+function toggleDMGroup(manager){
+  if (DM_EXPANDED.has(manager)) DM_EXPANDED.delete(manager); else DM_EXPANDED.add(manager);
+  renderDMTable();
+}
+
+function dmFilteredGroups(){
+  const s = (DM_FILTER.search||'').toLowerCase();
+  let groups = DATA.dmGroups.map(g=>{
+    let children = g.children;
+    if (s) children = children.filter(c=>(c.rep||'').toLowerCase().includes(s));
+    children = children.slice().sort((a,b)=>(b.ceCurrent==null?-Infinity:b.ceCurrent)-(a.ceCurrent==null?-Infinity:a.ceCurrent));
+    return {...g, children};
+  });
+  groups = groups.filter(g=>{
+    if (s){
+      const managerMatches = (g.manager||'').toLowerCase().includes(s);
+      if (!managerMatches && g.children.length===0) return false;
+    }
+    return true;
+  });
+  groups.sort((a,b)=>{
+    let av=a[DM_SORT.key], bv=b[DM_SORT.key];
+    if (typeof av==='string'||typeof bv==='string'){ av=(av||''); bv=(bv||''); return DM_SORT.dir==='asc'? String(av).localeCompare(bv) : String(bv).localeCompare(av); }
+    av = av==null?Infinity:av; bv = bv==null?Infinity:bv;
+    return DM_SORT.dir==='asc'? av-bv : bv-av;
+  });
+  return groups;
+}
+
+function renderDMRows(groups){
+  const frag = document.createDocumentFragment();
+  const searching = !!DM_FILTER.search;
+  let visibleRepCount = 0;
+  const range = DATA.dmTrend ? {prior: DATA.dmTrend.rangePrior, current: DATA.dmTrend.rangeCurrent} : null;
+
+  groups.forEach(g=>{
+    const expanded = searching || DM_EXPANDED.has(g.manager);
+    const trMgr = document.createElement('tr');
+    trMgr.className = 'combo-suprow';
+    const tdName = document.createElement('td');
+    tdName.className = 'combo-name';
+    tdName.title = g.manager;
+    tdName.innerHTML = `<span class="combo-chevron">${expanded?'▾':'▸'}</span><span class="brandname">${esc(g.manager)}</span><span class="combo-childcount">(${g.repCount})</span>${infoIconHtml(g.manager, range?`${range.prior} vs. ${range.current}`:'Jan–Jul, 2025 vs. 2026', g.insight)}`;
+    tdName.addEventListener('click', ()=>toggleDMGroup(g.manager));
+    trMgr.appendChild(tdName);
+    buildDMCommonCells(g).forEach(td=>trMgr.appendChild(td));
+    frag.appendChild(trMgr);
+
+    if (expanded){
+      g.children.forEach(c=>{
+        visibleRepCount++;
+        const trRep = document.createElement('tr');
+        trRep.className = 'combo-childrow';
+        const tdRName = document.createElement('td');
+        tdRName.className = 'combo-name';
+        tdRName.title = c.rep;
+        tdRName.innerHTML = `<span class="brandname">${esc(c.rep)}</span>${infoIconHtml(c.rep, range?`${g.manager} · ${range.prior} vs. ${range.current}`:`${g.manager} · Jan–Jul, 2025 vs. 2026`, c.insight)}`;
+        trRep.appendChild(tdRName);
+        buildDMCommonCells(c).forEach(td=>trRep.appendChild(td));
+        frag.appendChild(trRep);
+      });
+    } else {
+      visibleRepCount += g.children.length;
+    }
+  });
+
+  const tbodyEl = document.getElementById('dmTbody');
+  tbodyEl.innerHTML = '';
+  tbodyEl.appendChild(frag);
+  document.getElementById('dmRowcount').textContent =
+    `${groups.length.toLocaleString()} of ${DATA.dmGroups.length.toLocaleString()} districts, ${visibleRepCount.toLocaleString()} reps`;
+}
+
+function renderDMTable(){
+  renderDMHead();
+  renderDMRows(dmFilteredGroups());
+}
+
+function exportDMCSV(){
+  const groups = dmFilteredGroups();
+  const header = ['Type','District Manager / Rep',"'25 YTD CE","'26 YTD CE",'Trend %'];
+  const lines = [header.join(',')];
+  const rowLine = (type, name, r) => [type, name,
+      r.cePrior!=null?r.cePrior.toFixed(0):'',
+      r.ceCurrent!=null?r.ceCurrent.toFixed(0):'',
+      r.trendPct!=null?(r.trendPct*100).toFixed(1):'']
+      .map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(',');
+  groups.forEach(g=>{
+    lines.push(rowLine('District', g.manager, g));
+    g.children.forEach(c=>lines.push(rowLine('Rep', c.rep, c)));
+  });
+  const blob = new Blob([lines.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mid-year-review-district-manager.csv';
+  a.click();
+}
+
 // ---- Segment Trend + Package Trend (header panels) -- company-wide Cases
 // YoY, from the Fusion segment/package export. Both are page-level (not
 // scoped to the active tab/brand). ----
@@ -1850,6 +2123,7 @@ async function init(){
   DATA.overallInsight = DATA.overallInsight || null;
   DATA.insightRange = DATA.insightRange || null;
   DATA.premiseSplit = DATA.premiseSplit || null;
+  DATA.dmTrend = DATA.dmTrend || null;
 
   DATA.brands = DATA.brands.map((r,i)=>({...r, _key: `${r.supplier}|${r.brand}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
@@ -1870,6 +2144,12 @@ async function init(){
     })),
   }));
 
+  // District Manager Trends tab: DATA.dmTrend.rollup already IS the
+  // District Manager -> Sales Rep tree, built server-side in
+  // generate.py's parse_district_manager_trend() -- no goal-edit state to
+  // wrap it in (no goal data here at all), so just use it directly.
+  DATA.dmGroups = DATA.dmTrend ? DATA.dmTrend.rollup : [];
+
   populateSelect('managerFilter', DATA.managers);
   populateSelect('supplierFilter', DATA.suppliers);
   populateSelect('newManagerFilter', DATA.managers);
@@ -1881,6 +2161,7 @@ async function init(){
   document.getElementById('tab-terminated-count').textContent = `(${DATA.terminatedBrands.length})`;
   document.getElementById('tab-suppliers-count').textContent = `(${DATA.supplierRollup.length})`;
   document.getElementById('tab-combo-count').textContent = `(${DATA.comboGroups.length})`;
+  document.getElementById('tab-dm-count').textContent = `(${DATA.dmGroups.length})`;
 
   if (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent){
     document.getElementById('subtitle').innerHTML = `
@@ -1907,6 +2188,8 @@ async function init(){
   renderComboKPIs();
   renderComboTable();
   renderComboOverallInfo();
+  renderDMKPIs();
+  renderDMTable();
 
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('managerFilter').addEventListener('change', e=>{
@@ -1970,6 +2253,17 @@ async function init(){
     renderComboTable();
   });
   document.getElementById('comboExportBtn').addEventListener('click', exportComboCSV);
+
+  document.getElementById('dmSearch').addEventListener('input', e=>{ DM_FILTER.search = e.target.value; renderDMTable(); });
+  document.getElementById('dmExpandAllBtn').addEventListener('click', ()=>{
+    DATA.dmGroups.forEach(g=>DM_EXPANDED.add(g.manager));
+    renderDMTable();
+  });
+  document.getElementById('dmCollapseAllBtn').addEventListener('click', ()=>{
+    DM_EXPANDED.clear();
+    renderDMTable();
+  });
+  document.getElementById('dmExportBtn').addEventListener('click', exportDMCSV);
 
   document.getElementById('clearSelectionBtn').addEventListener('click', clearSelection);
 
