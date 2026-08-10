@@ -215,17 +215,40 @@ handful that don't are raw-CSV-vs-workbook brand-name mismatches, same
 kind of thing documented elsewhere in this file -- e.g. Kirin/Lech --
 not a bug).
 
-Asked about geography (city/county) for brand-level growth/decline,
-2026-08-10: no file in this folder carries a location field --
-brand_package_trend.csv's columns are Supplier/Brand Family/Product
-Name/Package/Premise/Year Month only, no customer geography at all.
-Would need a NEW Fusion export: Brand Family + City (or County) + the
-same two Jan 1 - Jul 31 Case Equiv windows (SUM(NumUnits * CaseEquiv)),
-joined off the Customer/Account table for location rather than the
-Product table this export joins off of for Package -- structurally
-like the off-prem/on-prem MPO dashboards' customer-base exports
-(Customer Num/Area/County columns), just for this CE trend instead of
-placement counts. Not pursued without that file.
+County "i" popover sections (added 2026-08-10, per Gavin, from an
+Encompass "Comparison" export the user attached in chat -- confirmed
+first that no existing file carried a location field, then confirmed
+this NEW file's Total row reconciles exactly to ytd_comparison.csv's,
+so it's the same underlying scope, just with City/County/Package/
+Sales Rep Assigned added): a "Counties growing"/"Counties shrinking"
+section, same collapsed-list-of-movers format as Packages, added to
+the SAME "i" popovers brand_package_trend.csv already feeds (overall,
+supplier-level, and brand-family-level) -- not a separate feature, a
+3rd section on the existing tooltip. Only County is used (9 distinct
+in the territory, small enough for a top-3 mover list per
+TOP_COUNTY_MOVERS); City (219 distinct, also in the file) is unused
+for now -- would need its own top-N-with-volume-floor treatment like
+Package Trend's if ever wanted, since 219 is too many to just top-3.
+See parse_brand_geography_trend() in generate.py: builds its own
+overall/bySupplier/byBrand structure independently, then main() MERGES
+countyGainers/countyDecliners keys directly into brand_package_trend's
+already-built insight objects (requires brand_package_trend.csv to
+also be present -- nothing to merge county data into otherwise) rather
+than keeping geography as a parallel structure, so index.html's
+insightTooltipHtml() needed only one small addition (a 3rd
+hasXSections check, same pattern as hasBrandSections) instead of new
+plumbing. 131 suppliers / 334 brand families got county data merged in
+as of this refresh.
+  CAUTION for future edits to this merge loop: it iterates
+  brand_package_trend["byBrand"].items() as (supplier, <dict-of-
+  brand-insights>) -- do NOT name that loop variable "brands", since
+  load_workbook_taxonomy() already returns an outer "brands" dict (the
+  workbook taxonomy) that's read again later in main() for the
+  unbroken-out-brand relabeling logic. Reusing the name silently
+  rebinds it for the rest of the function (Python has no block
+  scoping), which surfaced as a bare "KeyError: 'supplier'" many lines
+  away, in code that never changed -- confusing to debug blind. Fixed
+  by naming it supplier_brand_insights instead.
 
 Suppliers Overview header widget (moved 2026-08-10, per Gavin): what
 used to be 2 separate tiles in the Supplier + Brand tab's own KPI row
@@ -521,7 +544,12 @@ Files:
                                   TOP_PACKAGE_MOVERS in generate.py),
                                   floored at MIN_MOVER_CE (0.5 CE) so
                                   rounding dust can't show up as a
-                                  "driver."
+                                  "driver." Same icon also sits next to
+                                  each individual brand family row
+                                  (also 2026-08-10) -- Packages only
+                                  there, no brand-comparison section,
+                                  since there's nothing below "brand
+                                  family" to compare against.
                                 - The Top Headlines KPI tile (also
                                   2026-08-10) on the Supplier + Brand tab
                                   -- same company-wide brand/package
@@ -545,6 +573,31 @@ Files:
                               icons or Top Headlines render, and Package
                               Trend falls back to Cases from
                               segment_package_trend.csv.
+  brand_geography_trend.csv (optional)
+                              Encompass "Comparison" export (Brand
+                              Family, Supplier, Package, City, County,
+                              Sales Rep Assigned, Case Equiv for the same
+                              two YTD windows -- reconciles exactly to
+                              ytd_comparison.csv's own Total row). Adds a
+                              "Counties growing/shrinking" section
+                              (added 2026-08-10, per Gavin) to the SAME
+                              "i" popovers brand_package_trend.csv feeds
+                              -- overall, supplier-level, and brand-
+                              family-level alike -- rather than being its
+                              own separate feature. Only County is used
+                              (9 distinct, small enough for a top-3 mover
+                              list); City (219 distinct) is in the file
+                              but unused for now. See
+                              parse_brand_geography_trend() in
+                              generate.py -- merges countyGainers/
+                              countyDecliners keys directly into
+                              brand_package_trend's already-built insight
+                              objects in main().
+                              Requires brand_package_trend.csv to also be
+                              present (nothing to merge county data into
+                              otherwise); optional -- if this file is
+                              absent, the existing "i" popovers just
+                              don't get a Counties section.
   generate.py                 Rebuilds data/data.json from the files
                               above.
   index.html                  The page itself.
@@ -564,8 +617,11 @@ To refresh (e.g. at each month-end check-in):
   5. If refreshing the Supplier + Brand tab's "i" trend-driver popovers,
      re-pull the Fusion product-level export and save it over
      brand_package_trend.csv.
-  6. Run: python3 generate.py
-  7. Commit and push.
+  6. If refreshing the "i" popovers' Counties section, re-pull the
+     Encompass "Comparison" export and save it over
+     brand_geography_trend.csv.
+  7. Run: python3 generate.py
+  8. Commit and push.
 
 Notes:
   - A brand whose name is also used as its own supplier label in the

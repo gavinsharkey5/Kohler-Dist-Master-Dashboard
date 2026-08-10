@@ -1328,6 +1328,7 @@ function itMoverRows(rows, dir){
 function insightTooltipHtml(title, sub, insight){
   if (!insight) return '';
   const hasBrandSections = insight.brandGainers !== undefined;
+  const hasCountySections = insight.countyGainers !== undefined;
   return `
     <p class="it-title">${esc(title)}</p>
     <p class="it-sub">${esc(sub)} &middot; ${fmtCE(insight.cePrior)} &rarr; ${fmtCE(insight.ceCurrent)} CE (${fmtPct(insight.trendPct)})</p>
@@ -1347,7 +1348,16 @@ function insightTooltipHtml(title, sub, insight){
     <div class="it-section">
       <p class="it-section-lbl down">Packages shrinking</p>
       ${itMoverRows(insight.pkgDecliners,'down')}
-    </div>`;
+    </div>
+    ${hasCountySections ? `
+    <div class="it-section">
+      <p class="it-section-lbl up">Counties growing</p>
+      ${itMoverRows(insight.countyGainers,'up')}
+    </div>
+    <div class="it-section">
+      <p class="it-section-lbl down">Counties shrinking</p>
+      ${itMoverRows(insight.countyDecliners,'down')}
+    </div>` : ''}`;
 }
 
 let INFO_PINNED = null; // the .info-icon element currently pinned open (tap/click), or null

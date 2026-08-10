@@ -75,6 +75,26 @@ Inputs (keep these filenames when refreshing):
                               entirely, with no popovers and Package Trend
                               falling back to Cases, if this file isn't
                               present.
+  brand_geography_trend.csv (optional)
+                              Encompass "Comparison" export (Brand Family,
+                              Supplier, Package, City, County, Sales Rep
+                              Assigned, Case Equiv for the same two YTD
+                              windows -- reconciles exactly to
+                              ytd_comparison.csv's own Total row). Adds a
+                              "Counties growing/shrinking" section to the
+                              SAME "i" popovers brand_package_trend.csv
+                              feeds (added 2026-08-10, per Gavin) -- merged
+                              into those insight objects in main()
+                              (countyGainers/countyDecliners keys), not
+                              kept as its own structure. Only County is
+                              used (9 distinct, small enough for a top-3
+                              mover list); City (219 distinct) is in the
+                              file but unused for now. See
+                              parse_brand_geography_trend(). Requires
+                              brand_package_trend.csv to also be present
+                              (nothing to merge county data into
+                              otherwise); skipped entirely, with no county
+                              sections, if this file isn't present.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -103,6 +123,7 @@ CSV_YTD = HERE / "ytd_comparison.csv"
 DENISE_PRODUCT_DETAIL = HERE / "denise_food_bev_product_detail.csv"
 CSV_SEGMENT_PACKAGE = HERE / "segment_package_trend.csv"
 CSV_BRAND_PACKAGE = HERE / "brand_package_trend.csv"
+CSV_BRAND_GEOGRAPHY = HERE / "brand_geography_trend.csv"
 HTML = HERE / "index.html"
 OUT = HERE / "data" / "data.json"
 
@@ -576,6 +597,77 @@ def parse_brand_package_trend(path):
     }
 
 
+TOP_COUNTY_MOVERS = 3  # only 9 counties in the territory total, so top 3 each direction covers most of it
+
+
+# ---------------------------------------------------------------------------
+# County-level "i" popover data (added 2026-08-10, per Gavin, from an
+# Encompass "Comparison" export the user attached in chat -- same
+# methodology/totals as ytd_comparison.csv and brand_package_trend.csv,
+# reconciles to the same Total row, just with City/County added and broken
+# out to Brand Family + Supplier + Package + Sales Rep grain). Only County
+# is used here (City is available too -- 219 distinct vs. County's 9 -- but
+# County alone is answers "where did this brand grow/shrink" at a glance;
+# City would need its own top-N-movers treatment like Package Trend's if
+# ever wanted). Merged into brand_package_trend's overall/bySupplier/
+# byBrand insight objects in main() (adding countyGainers/countyDecliners
+# keys to each) rather than kept as a separate top-level structure, so the
+# existing "i" popovers just gain one more section with no new UI plumbing.
+# ---------------------------------------------------------------------------
+def parse_brand_geography_trend(path):
+    if not path.exists():
+        return None
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and "±" not in c]
+        if len(ce_cols) < 2:
+            return None
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+
+        overall_county = defaultdict(lambda: [0.0, 0.0])
+        by_supplier_county = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        by_brand_county = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: [0.0, 0.0])))
+
+        for r in reader:
+            brand = (r.get("Brand Family") or "").strip()
+            if not brand or brand == "Total":
+                continue
+            supplier = (r.get("Supplier") or "").strip()
+            if not supplier:
+                continue
+            prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
+            county = (r.get("County") or "").strip() or "Unclassified"
+
+            oc = overall_county[county]
+            oc[0] += prior
+            oc[1] += current
+            sc = by_supplier_county[supplier][county]
+            sc[0] += prior
+            sc[1] += current
+            bc = by_brand_county[supplier][brand][county]
+            bc[0] += prior
+            bc[1] += current
+
+    overall_gainers, overall_decliners = _top_movers(overall_county, TOP_COUNTY_MOVERS)
+    by_supplier = {}
+    for supplier, counties in by_supplier_county.items():
+        gainers, decliners = _top_movers(counties, TOP_COUNTY_MOVERS)
+        by_supplier[supplier] = {"countyGainers": gainers, "countyDecliners": decliners}
+    by_brand = {}
+    for supplier, brands in by_brand_county.items():
+        by_brand[supplier] = {}
+        for brand, counties in brands.items():
+            gainers, decliners = _top_movers(counties, TOP_COUNTY_MOVERS)
+            by_brand[supplier][brand] = {"countyGainers": gainers, "countyDecliners": decliners}
+
+    return {
+        "overallCountyGainers": overall_gainers, "overallCountyDecliners": overall_decliners,
+        "bySupplier": by_supplier,
+        "byBrand": by_brand,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Raw Supplier -> Brand Family hierarchy, reconstructed straight from
 # ytd_comparison.csv's own row order -- for the "Supplier + Brand" combo tab.
@@ -729,6 +821,41 @@ def main():
     if brand_package_trend:
         print(f"Brand/Package trend popovers: {len(brand_package_trend['bySupplier'])} suppliers from "
               f"{CSV_BRAND_PACKAGE.name} ({brand_package_trend['rangePrior']}  vs.  {brand_package_trend['rangeCurrent']}).")
+
+    # Per Gavin, 2026-08-10: merge County movers into the SAME insight
+    # objects brand_package_trend already built (overall / bySupplier /
+    # byBrand), adding countyGainers/countyDecliners keys to each, rather
+    # than keeping geography as a separate structure -- the existing "i"
+    # popovers just pick up one more section with no new UI plumbing this
+    # way. Requires brand_package_trend to exist first (nothing to merge
+    # county data INTO otherwise); geography-only with no brand/package
+    # file present is not supported since combo_rollup's insight
+    # attachment loop below reads from brand_package_trend either way.
+    brand_geography_trend = parse_brand_geography_trend(CSV_BRAND_GEOGRAPHY)
+    if brand_geography_trend and brand_package_trend:
+        brand_package_trend["overall"]["countyGainers"] = brand_geography_trend["overallCountyGainers"]
+        brand_package_trend["overall"]["countyDecliners"] = brand_geography_trend["overallCountyDecliners"]
+        matched_supplier_counties = 0
+        for supplier, insight in brand_package_trend["bySupplier"].items():
+            geo = brand_geography_trend["bySupplier"].get(supplier)
+            if geo:
+                matched_supplier_counties += 1
+                insight["countyGainers"] = geo["countyGainers"]
+                insight["countyDecliners"] = geo["countyDecliners"]
+        matched_brand_counties = 0
+        for supplier, supplier_brand_insights in brand_package_trend["byBrand"].items():
+            geo_brands = brand_geography_trend["byBrand"].get(supplier, {})
+            for brand, insight in supplier_brand_insights.items():
+                geo = geo_brands.get(brand)
+                if geo:
+                    matched_brand_counties += 1
+                    insight["countyGainers"] = geo["countyGainers"]
+                    insight["countyDecliners"] = geo["countyDecliners"]
+        print(f"County trend-driver data: merged into {matched_supplier_counties} supplier and "
+              f"{matched_brand_counties} brand-family insight objects from {CSV_BRAND_GEOGRAPHY.name}.")
+    elif brand_geography_trend and not brand_package_trend:
+        print(f"WARNING: {CSV_BRAND_GEOGRAPHY.name} is present but {CSV_BRAND_PACKAGE.name} isn't -- "
+              f"county data has nothing to merge into, so no county sections will render.")
 
     # Per Gavin, 2026-08-10: switch the header's Package Trend panel from
     # Cases (segment_package_trend.csv) to Case Equivalents
