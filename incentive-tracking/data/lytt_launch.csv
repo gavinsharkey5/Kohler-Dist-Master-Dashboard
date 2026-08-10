@@ -1,271 +1,427 @@
 Sales Rep Assigned,Customer Num,Customer Name,Product Num,Product Name,Product Type,Package,Brand Family,Date,Buyer Count   8/1/2026 - 9/30/2026,Placement Count   8/1/2026 - 9/30/2026,Cases   8/1/2026 - 9/30/2026
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,6002,Roserne Liquors North,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,6002,Roserne Liquors North,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,6002,Roserne Liquors North,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Anthony Palmisano,6002,Roserne Liquors North,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Anthony Palmisano,6002,Roserne Liquors North,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,6002,Roserne Liquors North,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,6002,Roserne Liquors North,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Anthony Palmisano,6002,Roserne Liquors North,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Anthony Palmisano,6002,Roserne Liquors North,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,2003,Ringwood W&L,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Chris Payton,25045,Clifton Disc Liq (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
 Chris Payton,47005,Exquisite W & L (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/13/2026,1.00,1.00,1
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Chris Payton,47005,Exquisite W & L (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/13/2026,1.00,1.00,1
-Chris Payton,35002,Woodridge Wines & Liq(A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Chris Payton,47005,Exquisite W & L (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/13/2026,1.00,1.00,1
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Chris Payton,35002,Woodridge Wines & Liq(A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,25045,Clifton Disc Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,47005,Exquisite W & L (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/13/2026,1.00,1.00,1
+Chris Payton,25045,Clifton Disc Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
 Chris Payton,35002,Woodridge Wines & Liq(A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Dan Lagala,43004,Boulevard Liq.(Fairview),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,45004,Ridgefield Liq (Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Dan Lagala,49027,Linwood Wine-Linwood Plaza,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Dan Lagala,44040,Stop N Go Conven. (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,44009,Metro Liquor (Cliffside Park),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,45004,Ridgefield Liq (Z),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Dan Lagala,45004,Ridgefield Liq (Z),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Dan Lagala,44009,Metro Liquor (Cliffside Park),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,44040,Stop N Go Conven. (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43004,Boulevard Liq.(Fairview),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,49027,Linwood Wine-Linwood Plaza,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Dan Lagala,43005,Rome Liquors (Fairview),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43005,Rome Liquors (Fairview),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43005,Rome Liquors (Fairview),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,45004,Ridgefield Liq (Z),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,35002,Woodridge Wines & Liq(A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,47005,Exquisite W & L (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/13/2026,1.00,1.00,1
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Chris Payton,35002,Woodridge Wines & Liq(A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Dan Lagala,49027,Linwood Wine-Linwood Plaza,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Dan Lagala,43004,Boulevard Liq.(Fairview),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43004,Boulevard Liq.(Fairview),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43005,Rome Liquors (Fairview),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43004,Boulevard Liq.(Fairview),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,43004,Boulevard Liq.(Fairview),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,44040,Stop N Go Conven. (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,44009,Metro Liquor (Cliffside Park),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Dan Lagala,45004,Ridgefield Liq (Z),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Dan Lagala,43005,Rome Liquors (Fairview),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Dan Lagala,49027,Linwood Wine-Linwood Plaza,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Dan Lagala,44010,Garden State Food&Liq (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,45004,Ridgefield Liq (Z),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,45004,Ridgefield Liq (Z),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,44010,Garden State Food&Liq (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,49027,Linwood Wine-Linwood Plaza,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
 Dan Lagala,44009,Metro Liquor (Cliffside Park),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Dan Lagala,49027,Linwood Wine-Linwood Plaza,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Dan Lagala,43005,Rome Liquors (Fairview),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,49035,Gulf Express Fort Lee,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Dan Lagala,44040,Stop N Go Conven. (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,44010,Garden State Food&Liq (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,44040,Stop N Go Conven. (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,49035,Gulf Express Fort Lee,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
 Dan Lagala,45004,Ridgefield Liq (Z),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,49027,Linwood Wine-Linwood Plaza,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Dan Lagala,49027,Linwood Wine-Linwood Plaza,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
 Dan Lagala,49027,Linwood Wine-Linwood Plaza,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Dan Lagala,44009,Metro Liquor (Cliffside Park),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,44010,Garden State Food&Liq (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43004,Boulevard Liq.(Fairview),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,44040,Stop N Go Conven. (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,43005,Rome Liquors (Fairview),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dan Lagala,45004,Ridgefield Liq (Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,44010,Garden State Food&Liq (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,45004,Ridgefield Liq (Z),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dan Lagala,49035,Gulf Express Fort Lee,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Dan Lagala,44010,Garden State Food&Liq (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Dave Ehlers,51018,Teaneck Discount Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Dave Ehlers,51018,Teaneck Discount Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,51012,Teaneck Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,51012,Teaneck Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Dave Ehlers,51018,Teaneck Discount Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,21048,Ferraro's Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15037,Liquor Gallery (Paterson),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21048,Ferraro's Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15013,El Oasis,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,15037,Liquor Gallery (Paterson),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,21050,Quis Queya Liquor(P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,15037,Liquor Gallery (Paterson),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20080,Raphael & Angel Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,22022,C Town (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15020,Angel's Wine & Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,15020,Angel's Wine & Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,15013,El Oasis,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21048,Ferraro's Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,22022,C Town (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21048,Ferraro's Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21050,Quis Queya Liquor(P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,21050,Quis Queya Liquor(P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,23004,Shop Rite Wines/Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,15020,Angel's Wine & Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,20080,Raphael & Angel Liq (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15037,Liquor Gallery (Paterson),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,22022,C Town (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21050,Quis Queya Liquor(P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,15020,Angel's Wine & Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,20080,Raphael & Angel Liq (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15013,El Oasis,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,21050,Quis Queya Liquor(P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,15020,Angel's Wine & Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,15037,Liquor Gallery (Paterson),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20080,Raphael & Angel Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,52019,W E Beverage (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,41005,George's Liq,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,51018,Teaneck Discount Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,52019,W E Beverage (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,52019,W E Beverage (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,57003,Joes Beer Wine & Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,40004,Simple Simon's (Z),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,51012,Teaneck Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Dave Ehlers,58001,Total Wine & More (River Edge),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Dave Ehlers,57006,New Milford Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Derrick Laws,21048,Ferraro's Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,15013,El Oasis,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,15013,El Oasis,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Derrick Laws,15013,El Oasis,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20080,Raphael & Angel Liq (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Derrick Laws,21050,Quis Queya Liquor(P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Derrick Laws,15020,Angel's Wine & Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
-Derrick Laws,20080,Raphael & Angel Liq (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Derrick Laws,20025,Mercer Bar & Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15023,Santana's Sport(P)Bella,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,21048,Ferraro's Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Derrick Laws,20080,Raphael & Angel Liq (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,21050,Quis Queya Liquor(P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,21048,Ferraro's Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,20040,Hiciano Liquor Store,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,21050,Quis Queya Liquor(P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,22022,C Town (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15020,Angel's Wine & Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,20080,Raphael & Angel Liq (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15023,Santana's Sport(P)Bella,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Derrick Laws,15037,Liquor Gallery (Paterson),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Derrick Laws,21048,Ferraro's Liquor,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Javier Melo,20069,Segundo's (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,20055,Paruta's (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Javier Melo,15059,Belmont Liqrs (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,20055,Paruta's (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Javier Melo,20069,Segundo's (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,20069,Segundo's (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,20069,Segundo's (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15037,Liquor Gallery (Paterson),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15023,Santana's Sport(P)Bella,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20040,Hiciano Liquor Store,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20040,Hiciano Liquor Store,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20080,Raphael & Angel Liq (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,21050,Quis Queya Liquor(P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15037,Liquor Gallery (Paterson),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15020,Angel's Wine & Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,22022,C Town (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,21050,Quis Queya Liquor(P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15023,Santana's Sport(P)Bella,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,20025,Mercer Bar & Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,20080,Raphael & Angel Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15023,Santana's Sport(P)Bella,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15020,Angel's Wine & Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,22022,C Town (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15020,Angel's Wine & Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,15023,Santana's Sport(P)Bella,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,23004,Shop Rite Wines/Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Derrick Laws,15013,El Oasis,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,15037,Liquor Gallery (Paterson),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15020,Angel's Wine & Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,15020,Angel's Wine & Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,2
+Derrick Laws,21048,Ferraro's Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15037,Liquor Gallery (Paterson),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,20080,Raphael & Angel Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,15037,Liquor Gallery (Paterson),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Derrick Laws,21050,Quis Queya Liquor(P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Derrick Laws,21048,Ferraro's Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Javier Melo,15059,Belmont Liqrs (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,20069,Segundo's (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Javier Melo,15059,Belmont Liqrs (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20069,Segundo's (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,15059,Belmont Liqrs (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Javier Melo,25047,Parker Liquors (Z),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20069,Segundo's (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,15059,Belmont Liqrs (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,27002,President Liqrs (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20055,Paruta's (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Javier Melo,20069,Segundo's (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,21044,Farm Boy,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20055,Paruta's (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Javier Melo,20055,Paruta's (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191408,Super Saver Liq,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191010,Liquor Factory II Jefferson,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230911,The Right Bottle,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191010,Liquor Factory II Jefferson,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230911,The Right Bottle,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231316,Patricks Wine Barn,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191010,Liquor Factory II Jefferson,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231215,Mac & Lindy's W & S (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230911,The Right Bottle,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230911,The Right Bottle,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231316,Patricks Wine Barn,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191010,Liquor Factory II Jefferson,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191408,Super Saver Liq,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231316,Patricks Wine Barn,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,191302,Liquor Factory I Landing,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191010,Liquor Factory II Jefferson,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231215,Mac & Lindy's W & S (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231316,Patricks Wine Barn,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,231215,Mac & Lindy's W & S (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,191408,Super Saver Liq,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230911,The Right Bottle,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Javier Melo,20069,Segundo's (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20069,Segundo's (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Javier Melo,20069,Segundo's (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Jayson Romine,191010,Liquor Factory II Jefferson,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Jayson Romine,231316,Patricks Wine Barn,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,230911,The Right Bottle,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230911,The Right Bottle,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Jayson Romine,230911,The Right Bottle,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230911,The Right Bottle,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191408,Super Saver Liq,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,191010,Liquor Factory II Jefferson,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230911,The Right Bottle,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,231316,Patricks Wine Barn,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191408,Super Saver Liq,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,191010,Liquor Factory II Jefferson,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,231215,Mac & Lindy's W & S (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,231316,Patricks Wine Barn,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,231316,Patricks Wine Barn,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,231316,Patricks Wine Barn,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230911,The Right Bottle,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191010,Liquor Factory II Jefferson,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191010,Liquor Factory II Jefferson,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Jayson Romine,231316,Patricks Wine Barn,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Jim Heaney,29011,World of Wine & Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,29011,World of Wine & Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24002,Swizzle Stick Liq (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,29009,Quick Buy,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jim Heaney,29003,Liquor Shed,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,29009,Quick Buy,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jim Heaney,29009,Quick Buy,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24002,Swizzle Stick Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24002,Swizzle Stick Liq (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,2
-Jim Heaney,29011,World of Wine & Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,29009,Quick Buy,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,29003,Liquor Shed,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24002,Swizzle Stick Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,29003,Liquor Shed,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,191010,Liquor Factory II Jefferson,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,191302,Liquor Factory I Landing,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230441,Wine Country Newton,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jayson Romine,231215,Mac & Lindy's W & S (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,191408,Super Saver Liq,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Jayson Romine,231215,Mac & Lindy's W & S (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,25031,Lexington Liquors (Z),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Jim Heaney,29011,World of Wine & Liquor,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,24002,Swizzle Stick Liq (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24017,Rainbow Liquor (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jim Heaney,29011,World of Wine & Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,28012,Lucky 7 (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Jim Heaney,29011,World of Wine & Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
-Jim Heaney,29013,Lyndhurst Liquors (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29003,Liquor Shed,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,29011,World of Wine & Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
+Jim Heaney,24002,Swizzle Stick Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29009,Quick Buy,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,29013,Lyndhurst Liquors (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,29011,World of Wine & Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
+Jim Heaney,29013,Lyndhurst Liquors (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,29011,World of Wine & Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Jim Heaney,29009,Quick Buy,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,24002,Swizzle Stick Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29013,Lyndhurst Liquors (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,25031,Lexington Liquors (Z),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,29003,Liquor Shed,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29011,World of Wine & Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
+Jim Heaney,24002,Swizzle Stick Liq (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29011,World of Wine & Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/12/2026,1.00,1.00,1
+Jim Heaney,29009,Quick Buy,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,24002,Swizzle Stick Liq (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29009,Quick Buy,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Jim Heaney,29009,Quick Buy,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Jim Heaney,24009,Quik Stop Conv(Z),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Michael Harboy,11014,Wayne Liquor Locker,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,29009,Quick Buy,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,29003,Liquor Shed,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,29013,Lyndhurst Liquors (P),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,24017,Rainbow Liquor (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,25031,Lexington Liquors (Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,29013,Lyndhurst Liquors (P),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Jim Heaney,13008,Little Falls Liq(P),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,28012,Lucky 7 (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Jim Heaney,25008,Clifton Commons S & W,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Jim Heaney,24002,Swizzle Stick Liq (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,2
+Jim Heaney,29013,Lyndhurst Liquors (P),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36007,Shop Rite Of Wallington,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,37068,Whoopee Liq (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,31004,Metro Liquors (East Rutherford),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Matt Powierski,36006,Wallington Liquor and Wine,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Matt Powierski,32017,Wine Grand (Carlstadt),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Michael Harboy,11014,Wayne Liquor Locker,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Michael Harboy,12005,Shay's Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,2
 Michael Harboy,11014,Wayne Liquor Locker,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Michael Harboy,12005,Shay's Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,2
+Michael Harboy,12005,Shay's Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,2
+Michael Harboy,11014,Wayne Liquor Locker,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Michael Harboy,12005,Shay's Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,2
 Mike Ast,17011,Nico's Wine & Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Mike Ast,19027,Goffle Road Wine and More,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Mike Ast,19027,Goffle Road Wine and More,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Mike Ast,19027,Goffle Road Wine and More,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Mike Ast,19027,Goffle Road Wine and More,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Mike Ast,19009,Diamond Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Mike Ast,17011,Nico's Wine & Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Mike Ast,17011,Nico's Wine & Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Mike Ast,19027,Goffle Road Wine and More,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Mike Ast,19009,Diamond Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Mike Ast,19027,Goffle Road Wine and More,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Mike Ast,17011,Nico's Wine & Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Mike Ast,19009,Diamond Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Mike Ast,19027,Goffle Road Wine and More,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Mike Ast,17011,Nico's Wine & Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Mike Ast,17011,Nico's Wine & Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Mike Ast,19027,Goffle Road Wine and More,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Mike Ast,17011,Nico's Wine & Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Mike Ast,19027,Goffle Road Wine and More,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Mike Ast,19009,Diamond Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Pablo Lopez,26014,Regalado Liq,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Pablo Lopez,27072,Passaic Discount Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Pablo Lopez,27072,Passaic Discount Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Mike Ast,19027,Goffle Road Wine and More,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Mike Ast,17011,Nico's Wine & Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Mike Ast,19027,Goffle Road Wine and More,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Mike Ast,17011,Nico's Wine & Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Pablo Lopez,26014,Regalado Liq,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Pablo Lopez,27072,Passaic Discount Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Pablo Lopez,20114,Ronny's Liqrs (Z),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/11/2026,1.00,1.00,1
+Pablo Lopez,27072,Passaic Discount Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Pablo Lopez,20068,Florida Drugs (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Pablo Lopez,26014,Regalado Liq,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Pablo Lopez,27072,Passaic Discount Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
 Pablo Lopez,26014,Regalado Liq,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
-Phil Ernst,46019,Palisades Wine And Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,38018,THE BOTTLE SHOP,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,38018,THE BOTTLE SHOP,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Phil Ernst,43001,City Supermarket,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Phil Ernst,46019,Palisades Wine And Liquor,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Phil Ernst,46019,Palisades Wine And Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,47004,Wides Deli & Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83010,Bottle King (A) Glen Rock,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,2
+Phil Ernst,38018,THE BOTTLE SHOP,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,47004,Wides Deli & Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,38018,THE BOTTLE SHOP,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Phil Ernst,46019,Palisades Wine And Liquor,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83001,Food Universe Marketplace,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83001,Food Universe Marketplace,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,38018,THE BOTTLE SHOP,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83010,Bottle King (A) Glen Rock,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,2
+Phil Ernst,47004,Wides Deli & Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83001,Food Universe Marketplace,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83001,Food Universe Marketplace,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83001,Food Universe Marketplace,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,46019,Palisades Wine And Liquor,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Phil Ernst,43001,City Supermarket,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Phil Ernst,46019,Palisades Wine And Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,46019,Palisades Wine And Liquor,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,38018,THE BOTTLE SHOP,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,80005,Shop Rite Liq (Paramus),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Phil Ernst,83010,Bottle King (A) Glen Rock,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,2
+Phil Ernst,83001,Food Universe Marketplace,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Phil Ernst,43001,City Supermarket,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
 Phil Ernst,46019,Palisades Wine And Liquor,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,74005,Winemart Discount,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,59004,Royal Wine & Spirits II,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,59004,Royal Wine & Spirits II,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Phil Ernst,46019,Palisades Wine And Liquor,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Phil Ernst,46019,Palisades Wine And Liquor,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/4/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
 Shane Barreca,59004,Royal Wine & Spirits II,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,74005,Winemart Discount,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,70003,Montvale Wines & Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,74005,Winemart Discount,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Shane Barreca,74005,Winemart Discount,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Shane Barreca,74005,Winemart Discount,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
-Shane Barreca,74005,Winemart Discount,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
 Shane Barreca,74005,Winemart Discount,83053,Lytt Peach Mango 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,74005,Winemart Discount,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,59004,Royal Wine & Spirits II,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83054,Lytt Long Island Iced Tea 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83055,Lytt Grape 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,55001,Coasters Liquors,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,74005,Winemart Discount,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,74005,Winemart Discount,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,71003,Brand Bar & Bev (A),83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/6/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83051,Lytt Tropical Punch 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1
+Shane Barreca,59004,Royal Wine & Spirits II,83056,Lytt Blue Raspberry 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/5/2026,1.00,1.00,1
+Shane Barreca,70003,Montvale Wines & Spirits,83052,Lytt Strawberry Rita 1/24/6.8 oz Btl,Case Beer,1/24/6.8oz BTL,Lytt,8/7/2026,1.00,1.00,1

@@ -1,504 +1,497 @@
 Sales Rep Assigned,Customer Num,Customer Name,Shipping Address,Distribution Area,Area,County,City,Premise,Buyer Count   2026,Cases   2026
-Alisa Acciardi,78002,Super K Food (A) Store,190 W Passaic St,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,1255.00
-Alisa Acciardi,29010,Paradise Liquors,500 Stuyvesant Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,16182.55
-Anthony Palmisano,3005,Usa Wine Traders (Wanaque),207 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,5165.00
-Anthony Palmisano,1009,Hootch Hut (P),717 Otterhole Rd,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,1531.00
-Anthony Palmisano,8008,Shoppers Disc(A)Pompton,744 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,5274.50
-Anthony Palmisano,3006,Wine 2 Spirits (P),662 Ringwood Avenue,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,4004.00
-Anthony Palmisano,4009,Usa Wine Traders Club (Bloomingdale),29 Main St,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,14100.00
-Anthony Palmisano,7001,Home Wine and Liquors,92 RT 23,Morris 3,Morris 3,Morris,Riverdale,Off Premise,1,1278.00
-Anthony Palmisano,1031,Highland Wine&Liquor Inc,1926 Union Valley Rd K,Passaic-FF,Passaic-FF,Passaic,Hewitt,Off Premise,1,16344.15
-Anthony Palmisano,9003,B & B Wine&Liq,613 Newark Pompton Tpke,Morris 3,Morris 3,Morris,Pompton Plains,Off Premise,1,4765.00
-Anthony Palmisano,231805,Meloi Liquors,10 NJ-23,Sussex,Sussex,Sussex,Montague,Off Premise,1,2415.00
-Anthony Palmisano,4005,Turnpike Discount Liquors,139 Hamburg Turnpike,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,7441.00
-Anthony Palmisano,3001,Best Cellars (Wanaque),1069 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,10064.17
-Anthony Palmisano,2003,Ringwood W&L,130 Skyline Drive,Passaic-FF,Passaic-FF,Passaic,Ringwood,Off Premise,1,7555.00
-Anthony Palmisano,6002,Roserne Liquors North,1150 NJ-23,Morris 3,Morris 3,Morris,Kinnelon,Off Premise,1,5054.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),9 Marshall Hill Road,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,14375.00
-Anthony Palmisano,8007,Krauszer's Liquor Wine and Spirits,714-716 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,7465.00
-Anthony Palmisano,1021,M & M Discount Liq,574 A Macopin Rd,Passaic,Passaic,Passaic,West Milford,Off Premise,1,1851.00
-Anthony Palmisano,1029,Vault Liquors,1618 Union Valley Rd Fl 1,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,2620.75
-Anthony Palmisano,5006,Roserne Pkg Store South,1477 NJ-23,Morris 3,Morris 3,Morris,Butler,Off Premise,1,5836.00
-Anthony Palmisano,1015,Greenwood Lake Disc.(P),2019 Greenwood Lake Tpk,Passaic-FF,Passaic-FF,Passaic,Hewitt,Off Premise,1,7506.00
-Anthony Palmisano,2002,Ringwood Discount Liquors,38 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Ringwood,Off Premise,1,4758.00
-Anthony Palmisano,10003,Buy Rite W &L Pompton(P),500 NJ-23,Morris 3,Morris 3,Morris,Pompton Plains,Off Premise,1,6812.00
-Anthony Palmisano,5001,River Place Food Store,1284 Rt. 23,Morris 3,Morris 3,Morris,Butler,Off Premise,1,9001.15
-Anthony Palmisano,8005,Empire Wine & Liquor,119 Wanaque Ave,Passaic-FF,Passaic-FF,Passaic,Pompton Lakes,Off Premise,1,2674.00
-Anthony Palmisano,8010,George's Market (A),766 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,6139.00
-Anthony Palmisano,8002,Country Convenience Store,430 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Pompton Lakes,Off Premise,1,3554.00
-Anthony Palmisano,4002,Bloomingdale Discount Liq,82 Main St,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,2690.00
-Anthony Palmisano,8009,Appio's Liquors,211 Wanaque Ave,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,6047.00
-Brian Sengebush,230313,Swartswood,911 Swartswood Rd,Sussex,Sussex,Sussex,Newton,Off Premise,1,376.00
-Brian Sengebush,231717,Culver Liquor and Bar,364 Us-206,Sussex,Sussex,Sussex,Branchville,Off Premise,1,6200.00
-Brian Sengebush,190809,Picatinny Main Exch,Bldg 3324 Belt Road,Morris 1,Morris 1,Morris,Picatinny,Off Premise,1,617.00
-Brian Sengebush,231609,Point 5 Lafayette,75 State Route 15,Sussex,Sussex,Sussex,Lafayette,Off Premise,1,20.00
-Brian Sengebush,230401,The Greek's,470 Us-206,Sussex,Sussex,Sussex,Newton,Off Premise,1,1520.00
-Brian Sengebush,191003,Chabons Ii Liq/Bar (A),138 Esponong Rd,Morris 1,Morris 1,Morris,Lake Hopatcong,Off Premise,1,6415.00
-Chris Payton,81001,B & B Liquors (Fair Lawn),13-05 River Road,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,3539.00
-Chris Payton,34009,The Wine Rack Hasbrouck Hts,69 Route 17 South,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,2160.83
-Chris Payton,38001,JR Sports Bar & Liquors(Z),452 Passaic Ave,Bergen,Bergen,Bergen,Lodi,Off Premise,1,2296.00
-Chris Payton,76018,Krauszer Liquor,216 Midland Ave,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3575.33
-Chris Payton,80025,Paramus Food Center,548 Paramus Rd,Bergen,Bergen,Bergen,Paramus,Off Premise,1,1682.00
-Chris Payton,47005,Exquisite W & L (A),215 Main St,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,9286.50
-Chris Payton,35001,Westmont Liquors 64,611 Avalon Drive,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,9242.95
-Chris Payton,78003,Ani Service Station Inc,178 RT 17 North,Sales,Sales,Bergen,Rochelle Park,Off Premise,1,140.00
-Chris Payton,79007,Maywood Market(A),78 W Pleasant Avenue,Bergen,Bergen,Bergen,Maywood,Off Premise,1,1198.00
-Chris Payton,81010,Morlot W & L (A),22-10 Morlot Ave,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,1471.00
-Chris Payton,79005,Maywood Wine&Liq (A),117 E Passaic St,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2817.00
-Chris Payton,46033,Discount Lqr(A) Outlet,15 Grand Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,147120.27
-Chris Payton,78013,J R W & Liq (A),332 Rochelle Ave,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,2310.25
-Chris Payton,38016,Lodi Liquor Store(P),25 C WASHINGTON STREET,Bergen,Bergen,Bergen,Lodi,Off Premise,1,4990.00
-Chris Payton,76015,Discount Liq & Bar,606 Midland Ave,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3783.00
-Chris Payton,50020,Wineland,247 Degraw Ave,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,15429.00
-Chris Payton,25045,Clifton Disc Liq (A),73 Ackerman Ave Botony Pl,Passaic,Passaic,Passaic,Clifton,Off Premise,1,30238.50
-Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),66 Market St,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,14992.33
-Chris Payton,38019,Circle Liquors,1- 6 South Main Street,Bergen,Bergen,Bergen,Lodi,Off Premise,1,6442.35
-Chris Payton,38007,Garden Liquors (P),300 Harrison Ave,Bergen,Bergen,Bergen,Lodi,Off Premise,1,16467.33
-Chris Payton,79002,Hollywd Liq&Deli (A),40 W Pleasant Ave,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2537.00
-Chris Payton,34003,Yoshi Liq/Wine (P),244 Boulevard,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,871.00
-Chris Payton,34004,Princess Liquor's(P),441 Boulevard,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,965.00
-Chris Payton,25034,Figlar's (P),327 Hope Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,7485.00
-Chris Payton,34001,Meadowland Wine & Liquor,280 Valley Blvd,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,1329.00
-Chris Payton,38008,Shop Rite Liq.(A)Lodi,150 Main Str,Bergen,Bergen,Bergen,Lodi,Off Premise,1,6171.00
-Chris Payton,47011,Ridgefield Deli & Liq,284 Teaneck Road,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,44383.32
-Chris Payton,34007,Liquor Masters (P),459 Route 17,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,2622.00
-Chris Payton,38017,Quick Stop Food & Liq,93 S. Main St,Bergen,Bergen,Bergen,Lodi,Off Premise,1,3042.00
-Chris Payton,50012,Ma'adan Catering,446 Cedar Lane,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,17.00
-Chris Payton,38021,Buy Rite Of Main St Lodi,449 Main St,Bergen,Bergen,Bergen,Lodi,Off Premise,1,8660.83
-Chris Payton,39003,Pompei's Little Market,31 Calicooneck Rd,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,179.00
-Chris Payton,23006,46 Discount Liquor Store,519 Rt 46e (Piaget Ave),Passaic,Passaic,Passaic,Clifton,Off Premise,1,9629.00
-Chris Payton,38040,Buy Rite Discount Liquor,183 Route 46 West,Bergen,Bergen,Bergen,Lodi,Off Premise,1,7856.17
-Chris Payton,50016,Teaneck Quickshop(P)Conv,725 Cedar Lane,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,5189.00
-Chris Payton,79004,Coronet Variety,138 West Pleasant Ave,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2005.00
-Chris Payton,81011,Radburn Liquors (A,14-35 Plaza Rd,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,2251.00
-Chris Payton,35002,Woodridge Wines & Liq(A),206 Hackensack St,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,5618.67
-Chris Payton,50007,Welsh Farms,55 Queen Anne Road,Bergen,Bergen,Bergen,Bogota,Off Premise,1,3480.00
-Chris Payton,47009,Iga Supermarkets (A),201-205 Main St,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,678.00
-Dan Lagala,43002,Checo Supermarket,210 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,3587.00
-Dan Lagala,48006,Andres Wine & Spirits,322 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,1618.00
-Dan Lagala,49056,Hmart Fresh (P),1379 16th Street,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,962.00
-Dan Lagala,54007,Wine Ventures,7 Washington St,Bergen,Bergen,Bergen,Tenafly,Off Premise,1,1404.00
-Dan Lagala,49027,Linwood Wine-Linwood Plaza,102 Linwood Plaza,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,7286.33
-Dan Lagala,49019,Bp Gas Station,1671 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,2552.00
-Dan Lagala,43006,Fairview Liq & Groc.(A),36 Anderson Avenue,Bergen,Bergen,Bergen,Fairview,Off Premise,1,8636.00
-Dan Lagala,45004,Ridgefield Liq (Z),520 Shaler Blvd,Bergen,Bergen,Bergen,Ridgefield,Off Premise,1,2824.33
-Dan Lagala,46013,Boulevard Food Store,520a Bergen Blvd,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,1766.00
-Dan Lagala,49035,Gulf Express Fort Lee,1651 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,1686.00
-Dan Lagala,46002,Best Choice Liqrs (P),23 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,2112.00
-Dan Lagala,44040,Stop N Go Conven. (P),81 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,6409.00
-Dan Lagala,48005,Leonia Wine & Spirits,307 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,605.00
-Dan Lagala,49032,Fairway Mkt & Gift(A),1214 Anderson Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,950.00
-Dan Lagala,44009,Metro Liquor (Cliffside Park),341 Gorge Rd.,Sales,Sales,Bergen,Cliffside Park,Off Premise,1,5072.17
-Dan Lagala,46012,Jay Cee (P) Deli & Liq.,246 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,5212.00
-Dan Lagala,49031,Top Shelf Liquors,2450 Lemoine Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,1587.00
-Dan Lagala,201096,Whole Foods #10102 (Edgewater),905 River Rd,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,605.00
-Dan Lagala,44005,Winston Wine & Liq,659 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,10092.35
-Dan Lagala,49066,Mitsuwa Market (A),595 River Rd,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,1975.00
-Dan Lagala,43007,American Classic Liq,157 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,4065.00
-Dan Lagala,43005,Rome Liquors (Fairview),174 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,9137.67
-Dan Lagala,44052,Minit Mart_2,237 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,2630.00
-Dan Lagala,43015,Kikos Liquors Ii,321 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,6044.00
-Dan Lagala,49045,Liquor World,1475 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,10819.00
-Dan Lagala,49033,Banner Liquor Iii,1175 Palisade Avenue,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,4415.00
-Dan Lagala,49044,Linwood Wine-Hudson Light,675 Park Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,4466.00
-Dan Lagala,43004,Boulevard Liq.(Fairview),153 Bergen Blvd,Bergen,Bergen,Bergen,Fairview,Off Premise,1,8787.00
-Dan Lagala,54006,Tenafly Fine Wine & Spirits,14 Riveredge Rd,Bergen,Bergen,Bergen,Tenafly,Off Premise,1,3929.00
-Dan Lagala,46015,Mukeunji (Z),421 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,5210.00
-Dan Lagala,44010,Garden State Food&Liq (P),666 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,4745.00
-Dan Lagala,44016,Liquor City(A)Cliffside,494 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,10012.00
-Dan Lagala,43013,Buy Rite Of Fairview,201 Broad Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,16707.00
-Dan Lagala,44049,Rome Liquor (Cliffside Park),743 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,3596.00
-Dan Lagala,44014,Campbell's Wines & Liquor,730 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,171.00
-Dan Lagala,44002,Wine And Food Mart (Z),589 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,1613.00
-Dan Lagala,46009,Banner Delicatessen,400 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,73231.91
-Dan Lagala,49036,Junction Liquors,266 Columbia Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,495.00
-Dan Lagala,46024,Anthony's Pharmacy,341 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,348.00
-Dan Lagala,48002,Manor Wine & Liquor,430 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,2044.50
-Dan Lagala,49055,Edgewater Liquor (A),547 River Road,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,28407.88
-Dan Lagala,46003,Palisades Park Liq(P),100 E Columbia Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,3032.00
-Dan Lagala,46011,Han Mi Supermkt (A),220 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,2855.00
-Dan Lagala,45002,JC&D Best Wine & Liquor,321 Broad Ave,Bergen,Bergen,Bergen,Ridgefield,Off Premise,1,2788.00
-Dave Ehlers,40022,Buy Rite Of Hackensack,410 River St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,19305.50
-Dave Ehlers,52004,Grand Liquor & Delicatesen,124 Grand Ave.,Bergen,Bergen,Bergen,Englewood,Off Premise,1,701.00
-Dave Ehlers,51008,H & R Disc. Liq (P),1350-1352 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,5413.00
-Dave Ehlers,40037,Parisi Deli,89 S State St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,167.00
-Dave Ehlers,40010,Hackensack Liquors,500 South River St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,13852.00
-Dave Ehlers,52015,Shop Rite Liq (A)Englewd,53 Nathaniel Pl,Bergen,Bergen,Bergen,Englewood,Off Premise,1,24972.00
-Dave Ehlers,57001,Barrel & Brew Bar & Liq,868-872 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,20096.20
-Dave Ehlers,58001,Total Wine & More (River Edge),1001 Main St,Bergen,Bergen,Bergen,River Edge,Off Premise,1,62507.00
-Dave Ehlers,52025,Englewood Wine and Spirits,481 N Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,2691.00
-Dave Ehlers,41005,George's Liq,130 Anderson St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,5826.00
-Dave Ehlers,52011,Englewood Wine (A),1 Engle St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,17.00
-Dave Ehlers,41015,99 Ranch Market,450 Hackensack Ave,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,977.00
-Dave Ehlers,51013,G & G Liquors,1435 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,4705.00
-Dave Ehlers,56015,VINEYARD,89 New Bridge Rd,Sales,Sales,Bergen,Bergenfield,Off Premise,1,482.00
-Dave Ehlers,52029,Santa Barbara,79 Slocum Ave,Bergen,Bergen,Bergen,Englewood,Off Premise,1,495.00
-Dave Ehlers,52040,Burgundy Convenience Store,4 W Palisade Ave,Sales,Sales,Bergen,Englewood,Off Premise,1,29744.15
-Dave Ehlers,58002,River Edge Wine & Liquor,504 Kinderkamack Rd,Bergen,Bergen,Bergen,River Edge,Off Premise,1,2204.00
-Dave Ehlers,57006,New Milford Liquors,401 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,2761.00
-Dave Ehlers,40017,Essex St Liquor and Wine,214 Essex St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,5747.00
-Dave Ehlers,58004,Country Wine & Liquors,842 Kinderkamack Rd,Bergen,Bergen,Bergen,River Edge,Off Premise,1,1677.95
-Dave Ehlers,52019,W E Beverage (A),91 W Palisade Ave,Bergen,Bergen,Bergen,Englewood,Off Premise,1,7307.00
-Dave Ehlers,40001,Bottle & Cork,380 W Pleasantview Ave,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,6515.00
-Dave Ehlers,51004,Fill Er Up Kosher Wine(P),174 West Englewood Ave,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,611.00
-Dave Ehlers,41012,Deli Mart (A),789 Main St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,5276.00
-Dave Ehlers,14007,Total Wine & More (Totowa),465 US Highway 46,Passaic,Passaic,Passaic,Totowa,Off Premise,1,62733.00
-Dave Ehlers,40004,Simple Simon's (Z),337 Essex St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,6929.00
-Dave Ehlers,39012,Wine And Liq Depot(A),310 Huyler St,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,14083.00
-Dave Ehlers,56008,Bergenfield Liq & Fw,5 S Washington Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,11213.00
-Dave Ehlers,52008,Englewood Liq (A),42 E Palisade Ave,Bergen,Bergen,Bergen,Englewood,Off Premise,1,1349.00
-Dave Ehlers,56007,Portland Wine & Liquor,22 Portland Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,14788.00
-Dave Ehlers,51018,Teaneck Discount Liquor,764 New Bridge Road,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,2516.17
-Dave Ehlers,57003,Joes Beer Wine & Spirits,710 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,4348.00
-Dave Ehlers,50013,Wine & More (P),953 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,13110.71
-Dave Ehlers,51012,Teaneck Liquors,1531 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,802.00
-Dave Ehlers,56013,Time Lounge And Liq (A),487-489 S Washington Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,7222.00
-Default,1001,Watershed Pub & Deli (P),62 Old Route 23,Passaic,Passaic,Passaic,Newfoundland,Off Premise,1,0.00
-Default,12089,FRANKFORD FD / NJ STATE FAIR,34 PLAINS ROAD,Passaic,Passaic,Sussex,Augusta,Off Premise,1,1347.00
-Default,120002,PICNIC,150 Wagaraw Road,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,759.00
-Derrick Laws,15037,Liquor Gallery (Paterson),459 Mcbride Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6260.50
-Derrick Laws,17002,Hillcrest Liqrs (A),168 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4432.00
-Derrick Laws,22032,Economy Liquors,186 5th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,16489.00
-Derrick Laws,13001,Shop Rite Liq (A)Littlefl,171 Browertown Rd,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,24081.00
-Derrick Laws,15012,Pal's Liquor,241 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10035.00
-Derrick Laws,20080,Raphael & Angel Liq (A),390 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8612.00
-Derrick Laws,20037,The Point Liquor & Bar,620 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,20740.53
-Derrick Laws,15020,Angel's Wine & Liquors,78 North 6th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3448.00
-Derrick Laws,21048,Ferraro's Liquor,423 21st Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10119.00
-Derrick Laws,22022,C Town (A),680 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,25894.73
-Derrick Laws,20041,Yaremy Liquors,29 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,1160.00
-Derrick Laws,20040,Hiciano Liquor Store,71 73 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5805.00
-Derrick Laws,22067,Gonzalez Liq & Bar(A),105 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,35414.82
-Derrick Laws,23004,Shop Rite Wines/Spirits,895 Paulison Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,176504.01
-Derrick Laws,20076,Moca Liquors Ii,497 Broadway,Sales,Sales,Passaic,Paterson,Off Premise,1,994.00
-Derrick Laws,20027,230 Liq & Groc.(A),230 Rosa Parks Blvd,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8210.00
-Derrick Laws,21001,Rocky's Liquor Store,48-50 Third Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3089.00
-Derrick Laws,20079,Limestone Liquors (A),349 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9840.00
-Derrick Laws,15023,Santana's Sport(P)Bella,215 Market St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9618.75
-Derrick Laws,15013,El Oasis,450 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8350.00
-Derrick Laws,21045,Dorta Liquor (A),353 21st Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,7703.00
-Derrick Laws,21033,The Liquor Shop,498 E 30th Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,23526.00
-Derrick Laws,21035,M & R Disc (A) Liqs.,408 21st Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5672.00
-Derrick Laws,21050,Quis Queya Liquor(P),586 21st Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,11603.00
-Derrick Laws,21031,Broadway Liq (A),732 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5426.50
-Derrick Laws,20030,10th Ave Liq & Food (P),350 10th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6023.00
-Derrick Laws,20025,Mercer Bar & Liquors,73 Mercer St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6370.00
-Derrick Laws,20005,La Sorpresa Liq (P),115 4th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9664.00
-Derrick Laws,20060,Moya E.Bar&Liq.(Z),428 East 18th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4683.50
-Derrick Laws,20129,Main Discount (P) Liqs.,1137 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,235.00
-Derrick Laws,22006,Ant's Bar & Liquors,16 Mary Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,71076.15
-Derrick Laws,20066,J & B Bar & Liq (Z),468 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3706.00
-Dylan Rubino,28006,J B Liquors_2,46 Ridge Road,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,1343.00
-Jaime Colonna,28001,One Stop Wine (A) & Liq,592 Ridge Road,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,1299.00
-Javier Melo,27037,Shanik Liqs.(P),952 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,9782.00
-Javier Melo,27046,New Eagle Liquors,126 Passaic St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11740.00
-Javier Melo,21044,Farm Boy,465 Getty Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,12836.00
-Javier Melo,27040,Danny's Liquor,268 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10502.00
-Javier Melo,21021,Park Avenue Liquors,307 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3544.00
-Javier Melo,27071,Mariana's Liquors,266 Passaic Street,Passaic,Passaic,Passaic,Passaic,Off Premise,1,3575.00
-Javier Melo,22024,Edwards (P) Wine & Liq,910 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,42042.65
-Javier Melo,25012,Bottle Liquor (P),550 Lexington Avenue,Passaic,Passaic,Passaic,Clifton,Off Premise,1,12230.00
-Javier Melo,20031,La Joya Liquors,15 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6564.00
-Javier Melo,21028,Estevez Liquors & Grocery 2 LLC,262 22nd Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5367.00
-Javier Melo,15014,Deli Parchardo Liquors,111 N Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2407.00
-Javier Melo,24003,Paulison Liquors (P),621 Paulison Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,6369.00
-Javier Melo,27012,ESTEVEZ LIQUORS LLC,110 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10075.00
-Javier Melo,25047,Parker Liquors (Z),203 Parker Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,11703.00
-Javier Melo,27034,Liquor Stop (Passaic),321 Broadway,Passaic,Passaic,Passaic,Passaic,Off Premise,1,6307.00
-Javier Melo,21054,C & S Lucky Liquors (P),299 Grand Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5584.00
-Javier Melo,20069,Segundo's (P),293 Madison Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6560.00
-Javier Melo,21055,C & S Lucky Liquors II,460 Chamberlain Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5232.00
-Javier Melo,15031,Pete's Family Liqs,49 N Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3101.00
-Javier Melo,27002,President Liqrs (A),158 President St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,18218.05
-Javier Melo,20056,East Side Bar Liquors,442 10th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8144.00
-Javier Melo,20117,El Cantaro Liquors,416 Market Street,Sales,Sales,Passaic,Paterson,Off Premise,1,24952.78
-Javier Melo,21006,Camilo Liquors(A),424 6th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4061.00
-Javier Melo,21023,Luna Liquors,291 Park Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10071.00
-Javier Melo,20021,Diamond Liquors (P),507 Summer St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10136.00
-Javier Melo,27008,Bermuda Liquors (P),177 Hope Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8310.00
-Javier Melo,15059,Belmont Liqrs (P),146 Belmont Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3124.00
-Javier Melo,21026,C Town Supermarket(P),444 20th Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6453.00
-Javier Melo,27059,D'bar Liquors (P),898 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,27177.98
-Jayson Romine,230431,Seplow's Liquors,5 Woodside Ave,Sussex,Sussex,Sussex,Newton,Off Premise,1,5089.00
-Jayson Romine,230440,"Brix - Wine, Spirits, Beer (Fredon)",403 NJ-94,Sussex,Sussex,Sussex,Fredon Township,Off Premise,1,3320.00
-Jayson Romine,191010,Liquor Factory II Jefferson,725 NJ-15,Morris 1,Morris 1,Morris,Lake Hopatcong,Off Premise,1,12626.00
-Jayson Romine,191526,Liquor Factory IV Hopatcong,128 Lakeside Blvd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,10532.00
-Jayson Romine,231315,Woody's Liq Shop (A),83 Hamburg Ave,Sussex,Sussex,Sussex,Wantage,Off Premise,1,3557.00
-Jayson Romine,231502,Lake Wanda Store,812 Canistear Rd,Sussex,Sussex,Sussex,Highland Lakes,Off Premise,1,989.00
-Jayson Romine,191302,Liquor Factory I Landing,175 Lakeside Blvd # 9,Morris 1,Morris 1,Morris,Landing,Off Premise,1,7596.00
-Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,16 North Village Blvd,Sussex,Sussex,Sussex,Sparta,Off Premise,1,18147.00
-Jayson Romine,230438,Weiss Super Market 147 Franklin,140-146 Rt 23,Sales,Sales,Sussex,Franklin,Off Premise,1,11.00
-Jayson Romine,230920,Hamburg Liquor,90-92 NJ-23,Sussex,Sussex,Morris,Hamburg,Off Premise,1,3333.00
-Jayson Romine,230924,Sussex Co.Discount Liq(P),3235 NJ-94,Sussex,Sussex,Sussex,Franklin,Off Premise,1,4109.00
-Jayson Romine,230437,Weis Supermarkets 143 Newton,121 Water St Rt 206,Sales,Sales,Sussex,Newton,Off Premise,1,11.00
-Jayson Romine,230902,Buy Rite Liquors Franklin,244 NJ-23,Sussex,Sussex,Sussex,Franklin,Off Premise,1,13541.00
-Jayson Romine,191408,Super Saver Liq,322 Howard Blvd,Morris 1,Morris 1,Morris,Mt Arlington,Off Premise,1,5806.00
-Jayson Romine,231308,Wantage Plaza Liq Outlet,205 NJ-23,Sussex,Sussex,Sussex,Wantage,Off Premise,1,7571.00
-Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,125 Water St,Sussex,Sussex,Sussex,Newton,Off Premise,1,13917.00
-Jayson Romine,231316,Patricks Wine Barn,38 Hamburg Ave,Sussex,Sussex,Sussex,Sussex,Off Premise,1,19236.00
-Jayson Romine,231501,Highland General Store,111 Highland Lakes Rd,Sussex,Sussex,Sussex,Highland Lakes,Off Premise,1,3448.00
-Jayson Romine,230918,Market Place Liquor,99 NJ-23,Sussex,Sussex,Sussex,Hamburg,Off Premise,1,1365.00
-Jayson Romine,230412,USA Wine Traders Club Of Newton (A),17 Hampton House Road,Sussex,Sussex,Sussex,Newton,Off Premise,1,18527.00
-Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,100 Rt 23,Sussex,Sussex,Sussex,Franklin,Off Premise,1,12003.00
-Jayson Romine,230314,Liquor Factory V Andover,231 Newton Sparta Rd # 3,Sussex,Sussex,Sussex,Newton,Off Premise,1,8405.00
-Jayson Romine,230420,Spring Street Liquors,110 Spring Street,Sussex,Sussex,Sussex,Newton,Off Premise,1,7231.00
-Jayson Romine,231215,Mac & Lindy's W & S (A),530 Co Rd 515,Sussex,Sussex,Sussex,Vernon,Off Premise,1,12587.83
-Jayson Romine,230106,Burkes,6 Sparta Ave N,Sussex,Sussex,Sussex,Sparta,Off Premise,1,1559.17
-Jayson Romine,230441,Wine Country Newton,49 Hampton House Road,Sussex,Sussex,Sussex,Newton,Off Premise,1,6158.00
-Jayson Romine,231203,The George Inn,84 NJ-94,Sussex,Sussex,Sussex,Vernon,Off Premise,1,9139.00
-Jayson Romine,230911,The Right Bottle,190 Munsonhurst Rd,Sussex,Sussex,Sussex,Franklin,Off Premise,1,4287.00
-Jayson Romine,191702,Liquor Factory VI Byram,8 Route 206 N,Morris 1,Morris 1,Sussex,Byram,Off Premise,1,8436.00
-Jayson Romine,230913,Wine Grand (Franklin),288 Rt 23 North,Sussex,Sussex,Sussex,Franklin,Off Premise,1,1585.35
-Jayson Romine,231701,George's Wine & Spirits,12 Morris Ave.,Sussex,Sussex,Sussex,Branchville,Off Premise,1,3277.00
-Jayson Romine,230121,White Deer Inn,4 White Deer Plaza,Sussex,Sussex,Sussex,Sparta,Off Premise,1,3109.00
-Jayson Romine,408,Fredon Liquor (Fredon Deli),428 RT 94,Sussex,Sussex,Sussex,Fredon Township,Off Premise,1,2807.00
-Jayson Romine,231707,Kent's Liquors,333 Rte 206,Sussex,Sussex,Sussex,Branchville,Off Premise,1,1608.00
-Jayson Romine,230114,Liquor Factory III Sparta,41 Woodport Road,Sussex,Sussex,Sussex,Sparta,Off Premise,1,15894.83
-Jim Heaney,23007,Field Liquors (A),1006 W Rt 46 W,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1951.00
-Jim Heaney,25008,Clifton Commons S & W,132 Kingsland Rd Suite 4,Passaic,Passaic,Passaic,Clifton,Off Premise,1,13173.00
-Jim Heaney,23003,Pete's Liquors,383 Valley Road,Passaic,Passaic,Passaic,Clifton,Off Premise,1,3414.00
-Jim Heaney,30007,Village Wine (P),75 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,2461.15
-Jim Heaney,25023,Clifton Wine & Liquor,111 Lakeview Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1711.00
-Jim Heaney,28011,Liquor Mart (North Arlington),126 Ridge Rd,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,2978.17
-Jim Heaney,24002,Swizzle Stick Liq (A),137 3rd St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,3909.00
-Jim Heaney,30006,Forest Dairy (A),10 Spring Dell,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,1801.00
-Jim Heaney,25032,Liquor Mart 46,1081 US-46,Passaic,Passaic,Passaic,Clifton,Off Premise,1,688.00
-Jim Heaney,23002,Valley Liquors (A),343 Hazel St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4996.00
-Jim Heaney,30004,West End Wine & Liq,311 Union Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,4157.00
-Jim Heaney,29011,World of Wine & Liquor,419 Valley Brook Ave.,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,27754.08
-Jim Heaney,27016,Marina's Wine & Spirits,497 Van Houten Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8483.94
-Jim Heaney,24014,Bottleneck Liquors,120 Market St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1718.00
-Jim Heaney,14001,Wine & Bev. Depot (A),823 Riverview Dr N,Passaic,Passaic,Passaic,Totowa,Off Premise,1,150504.97
-Jim Heaney,24001,Richfield Liquors,1362 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,2074.00
-Jim Heaney,30010,Krauser Food & Liq(A),275 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,2119.00
-Jim Heaney,28004,Schuyler Food,574 Schuyler Ave,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,2187.00
-Jim Heaney,24005,Henry's Liquors,1224 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,2751.00
-Jim Heaney,30005,Rutherford Wine (A),270 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,6217.94
-Jim Heaney,28012,Lucky 7 (A),77 River Rd,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,9827.50
-Jim Heaney,29012,Riverside Liquors,601 Riverside Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,3157.00
-Jim Heaney,24021,Liquor Stop (P) (Clifton),565 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,745.00
-Jim Heaney,24017,Rainbow Liquor (P),292 Lakeview Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,9573.17
-Jim Heaney,29003,Liquor Shed,740 Ridge Road,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,4179.33
-Jim Heaney,24012,Dante's Liquor & Wine,729 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4210.00
-Jim Heaney,24011,Shoppers Vineyard (A),875 Bloomfield Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,30052.00
-Jim Heaney,13017,On The Rocks,101 Newark Pompton Turnpike,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,3484.00
-Jim Heaney,25042,Town Liquors,805 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,5301.00
-Jim Heaney,24009,Quik Stop Conv(Z),261 Clifton Avenue,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4444.00
-Jim Heaney,24037,Vasel's (A),586 Bloomfield Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1827.00
-Jim Heaney,24016,Broad Liquors (A),1187 Broad Street,Passaic,Passaic,Passaic,Clifton,Off Premise,1,11167.00
-Jim Heaney,29013,Lyndhurst Liquors (P),298 Ridge Road,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,2527.33
-Jim Heaney,25031,Lexington Liquors (Z),430 Lexington Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,14808.00
-Jim Heaney,28007,Metro Liquors (North Arlington),17 Schuyler Ave,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,4663.00
-Jim Heaney,29017,Meadow Fine Liquors,425 Lewandowski St.,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,3248.00
-Jim Heaney,29009,Quick Buy,149 Ridge Rd,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,2267.00
-Jim Heaney,25017,Savers Club Liquor Locker,314 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,7498.00
-Jim Heaney,29008,Krauszers Food,121-123 Valley Brook Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,802.00
-Jim Heaney,24020,US#1 Wine & Liquor,534 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,6105.00
-Jim Heaney,13008,Little Falls Liq(P),315 Main Street,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,7331.00
-John Neukum,24059,Costco 306 Clifton (NA),20 Bridewell Place,Passaic,Passaic,Passaic,Clifton,Off Premise,1,500.00
-John Neukum,12060,Costco Whlse V#32366-Wayn,149 Rt. 23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,45206.00
-John Neukum,39016,NB Liquors,2 Teterboro Landing Dr,Bergen,Bergen,Bergen,Teterboro,Off Premise,1,43151.00
-John Neukum,39019,Costco 1214 Teterboro (NA),2 Teterboro Landing Dr,Bergen,Bergen,Bergen,Teterboro,Off Premise,1,1297.00
-John Neukum,190931,Costco 315 Wharton (NA),315 Rt. 15 North,Bergen,Bergen,Morris,Wharton,Off Premise,1,1000.00
-John Neukum,24010,Western Bev 21088 Clift,20 Bridewell Place,Passaic,Passaic,Passaic,Clifton,Off Premise,1,68818.00
-John Neukum,31019,Bj's Warehouse E Rutherfo,300 Rt 17 N,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,200958.00
-John O'Donoghue,63001,X Plor Wine,27 Park Street,Bergen,Bergen,Bergen,Demarest,Off Premise,1,195.00
-John O'Donoghue,60003,Charlie's Liquor and Convenience,68 E Madison Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,722.00
-John O'Donoghue,61001,Haworth Fine Wine/Spirits,155 Terrace St,Bergen,Bergen,Bergen,Haworth,Off Premise,1,192.00
-Klejdi Lamo,190302,Basket Of Cheer Ii (Lake Hiawatha),149 N Beverwyck Rd,Morris 1,Morris 1,Morris,Lake Hiawatha,Off Premise,1,4919.00
-Klejdi Lamo,190802,Sam's Liq Wine (P),325 W Clinton St,Morris 1,Morris 1,Morris,Dover,Off Premise,1,5362.00
-Klejdi Lamo,190603,Denville W & L,43 Broadway,Morris 1,Morris 1,Morris,Denville,Off Premise,1,3436.00
-Klejdi Lamo,191608,Shop-Rite(A) Netcong,75 Us-46 Lackawanna Plaza,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,7727.00
-Klejdi Lamo,191713,Stanhope Liquors,141 Rt 183,Sussex,Sussex,Sussex,Stanhope,Off Premise,1,3293.00
-Klejdi Lamo,191710,Shop Rite Wine & Spirits Stanhope,90 Route 206,Sussex,Sussex,Sussex,Stanhope,Off Premise,1,18413.00
-Klejdi Lamo,191812,Patel Liqr & Gro(P),114 Us-46,Morris 1,Morris 1,Morris,Budd Lake,Off Premise,1,3375.33
-Klejdi Lamo,191511,Nova Liquors,49 Lakeside Blvd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,8660.89
-Klejdi Lamo,190208,Boonton Liquor Locker,119 Hawkins Pl,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,4761.00
-Klejdi Lamo,191210,Milton Inn,3 Ridge Rd & Berkshire,Morris 1,Morris 1,Morris,Oak Ridge,Off Premise,1,16913.00
-Klejdi Lamo,191606,Quick Check Liquor (A),70 Main St,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,11564.65
-Klejdi Lamo,190216,House of Wine & Liquor,308 E Wootton St,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,87257.76
-Klejdi Lamo,1003,23 liquor & Tobacco,3051 Route 23,Sales,Sales,Passaic,Oak Ridge,Off Premise,1,676.00
-Klejdi Lamo,191803,Kingston Liquors,7 Naughright Rd,Morris 1,Morris 1,Morris,Hackettstown,Off Premise,1,4030.00
-Klejdi Lamo,190913,Main Street Liquor,340 S Main St,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,4461.33
-Klejdi Lamo,191213,Island Of Spirits (P),3025 Rt 23 N,Passaic,Passaic,Passaic,Oak Ridge,Off Premise,1,5616.00
-Klejdi Lamo,190907,Wharton Liquor Store,41 N Main St,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,4903.00
-Klejdi Lamo,191518,3 IN 1 LIQUORS INC,47 Hopatchung Rd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,3333.33
-Klejdi Lamo,190304,Shoppers Disc Liquor,65-69 N Beverwyck Rd,Morris 1,Morris 1,Morris,Lake Hiawatha,Off Premise,1,8565.67
-Klejdi Lamo,190705,Rockaway W/L,73 W Main St,Morris 1,Morris 1,Morris,Rockaway,Off Premise,1,7904.00
-Klejdi Lamo,190917,Shop Rite Liq (A)Wharton,306 NJ-15,Morris 3,Morris 3,Morris,Wharton,Off Premise,1,28543.00
-Klejdi Lamo,190101,Montville Wine & Spirits,223 Changebridge Road,Morris 1,Morris 1,Morris,Montville,Off Premise,1,4047.17
-Klejdi Lamo,190901,Berkshire(P) Bot. Shop,915 Berkshire Valley Rd,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,1032.00
-Klejdi Lamo,190804,Midtown Liq,101 White Meadow Rd,Morris 1,Morris 1,Morris,Rockaway,Off Premise,1,5515.17
-Klejdi Lamo,191814,Sandy's Wine & Spirit (P) (Budd Lake),98 US Highway 46,Morris 1,Morris 1,Morris,Budd Lake,Off Premise,1,17522.00
-Klejdi Lamo,190207,Liquor Outlet,289 Myrtle Ave,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,26487.50
-Klejdi Lamo,191604,The Village Place,31 Allen St,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,818.00
-Matt Powierski,42012,Vinny's Disc Liq (P),315 Main St,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,3632.00
-Matt Powierski,27063,Archies (P),229 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,7916.00
-Matt Powierski,37002,Garfield Bar & Liq (P),46 Wood St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,2631.00
-Matt Powierski,77007,Wine Land,894 River Dr,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,3592.00
-Matt Powierski,32017,Wine Grand (Carlstadt),675 Paterson Ave,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,4190.00
-Matt Powierski,37029,River Drive Bar (P),85 River Dr,Bergen,Bergen,Bergen,Garfield,Off Premise,1,3946.00
-Matt Powierski,31060,Bottle Republic (Rutherford),10 NJ-17,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,6776.00
-Matt Powierski,36038,Tatra Haus Restaurant,115 Main Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,33.00
-Matt Powierski,77022,All Star Wine & Liquor,21 Midland Ave,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,4539.00
-Matt Powierski,36007,Shop Rite Of Wallington,375 Paterson Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,9924.17
-Matt Powierski,37025,All Nations Liq,80 Passaic St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,617.00
-Matt Powierski,77016,Metro Liquor (Elmwood Park),100 Broadway,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,9499.00
-Matt Powierski,31008,Metro Wine And Liq(A),89 NJ-17,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,4717.67
-Matt Powierski,37013,Joe's Liquors,114 Outwater Lane,Bergen,Bergen,Bergen,Garfield,Off Premise,1,1442.00
-Matt Powierski,37023,Worldwide Liquors (A),68 Van Winkle Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,1402.00
-Matt Powierski,27032,Cork and Barrel,217 Brook Ave.,Sales,Sales,Passaic,Passaic,Off Premise,1,738.00
-Matt Powierski,37006,Garfield Discount Liquors,76 Jewell St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,3001.00
-Matt Powierski,77004,Lidl Elmwood Park,58 Broadway,Sales,Sales,Bergen,Elmwood Park,Off Premise,1,1617.00
-Matt Powierski,37044,Riverview Liquors & Bar,800 River Dr.,Sales,Sales,Bergen,Garfield,Off Premise,1,1727.00
-Matt Powierski,36016,King Liquors,434 Main Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,3149.05
-Matt Powierski,31033,Capri Deli&Liq (P),226 Paterson Ave,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,4064.00
-Matt Powierski,42004,Wine And People,260 Bergen Tpk,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,16291.38
-Matt Powierski,42011,Buzzzrite Liquors,269 Route Rt 46 West,Sales,Sales,Bergen,Little Ferry,Off Premise,1,4263.00
-Matt Powierski,37007,Jay's Liquormart,142 Division Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,987.00
-Matt Powierski,37068,Whoopee Liq (A),194 Van Winkle Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,9076.33
-Matt Powierski,36006,Wallington Liquor and Wine,168 Main Ave,Sales,Sales,Bergen,Wallington,Off Premise,1,2795.00
-Matt Powierski,36008,Vicki's Bar & Liquors,166 Maple Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,1743.00
-Matt Powierski,26001,Luigi's Liquor (A),175 Jefferson St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,5848.00
-Matt Powierski,27031,Home Wine Liquor (Passaic),593 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,24542.00
-Matt Powierski,77009,M & M Wine & Spirits,429 Market St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,12089.17
-Matt Powierski,33002,Moonachie Liquors,46 Moonachie Rd,Bergen,Bergen,Bergen,Moonachie,Off Premise,1,3795.00
-Matt Powierski,37027,Piast Meats & Prov.,1 Passaic St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,554.00
-Matt Powierski,31004,Metro Liquors (East Rutherford),576 Paterson Ave,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,7782.50
-Matt Powierski,32014,Wine Liquor Shop,434 Hackensack St,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,2154.00
-Matt Powierski,32016,Cobblestone Hill Deli,287 Broad St,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,3881.00
-Matt Powierski,42002,L. F. Wine Country (P),299 Bergen Pike,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,2499.00
-Matt Powierski,77001,Food Mart Liquor,430 Market St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,967.00
-Matt Powierski,42010,Little Ferry Wines/Liquor,66 Marshall Ave,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,2226.00
-Matt Powierski,77012,Payless Liquor & Dell,251 Elm St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,2240.00
-Matt Powierski,77002,Birchwood Liq & Deli (Z),545 Boulevard,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,4783.00
-Michael Harboy,12005,Shay's Liquors,1166 Hamburg Tnpk,Passaic,Passaic,Passaic,Wayne,Off Premise,1,10407.17
-Michael Harboy,12017,Shays Liquors,1489 NJ-23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,8127.00
-Michael Harboy,11001,Lincoln Center Liq,261 Comly Road,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,11624.64
-Michael Harboy,11014,Wayne Liquor Locker,598 Valley Rd,Passaic,Passaic,Passaic,Wayne,Off Premise,1,4969.00
-Michael Harboy,11005,Wolfson Market,480 Boonton Turnpike,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,4179.00
-Michael Harboy,6004,Kinnelon Country Wine & Liquor,86 Boonton Ave,Morris 3,Morris 3,Morris,Kinnelon,Off Premise,1,13000.45
-Mike Ast,19009,Diamond Liquor,203 Diamond Bridge Ave,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,5781.00
-Mike Ast,84010,Ridgewood Super Cellar,32 South Broad,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,3687.50
-Mike Ast,93009,Scherer & Company,7 Miller Road,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,3933.00
-Mike Ast,84008,The Wine Seller,6 W Ridgewood Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,466.00
-Mike Ast,87002,Wine & Spirits World (Hohokus),626 N Maple Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,264.33
-Mike Ast,95004,Franklin Lake Liq,799 Franklin Ave,Bergen,Bergen,Bergen,Franklin Lakes,Off Premise,1,4147.00
-Mike Ast,87004,Garbo's Ital Deli&Liq(Z),7 Sheridan Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,552.20
-Mike Ast,96002,Wine & Spirit World(W),303 Franklin Ave,Bergen,Bergen,Bergen,Wyckoff,Off Premise,1,13195.00
-Mike Ast,19027,Goffle Road Wine and More,1100 Goffle Rd,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,6456.83
-Mike Ast,94001,Long Hill Liquors (A),14 Post Rd,Bergen,Bergen,Bergen,Oakland,Off Premise,1,12516.00
-Mike Ast,17012,Speedy Mart (P),311 Haledon Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,5734.00
-Mike Ast,89005,Allendale Wine Shoppe,101 W Allendale Ave,Bergen,Bergen,Bergen,Allendale,Off Premise,1,5385.00
-Mike Ast,84004,Quick Stop Liquor & Wine,83 Godwin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1838.67
-Mike Ast,11003,Lincoln Park Fine Wines & Spirits,60 Beaverbrook Road,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,12927.50
-Mike Ast,84002,GREEN WAY MARKETS,112 N. Maple Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1294.00
-Mike Ast,84003,Stop & Shop (A)Ridgewood,175 Franklin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1838.00
-Mike Ast,81006,Fair Lawn Wine & Spirits,21-00 Maple Ave,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,16970.82
-Mike Ast,12011,Bottle King (A) Wayne,1950 NJ-23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,33254.00
-Mike Ast,94008,Oakland Wine (A),390 Ramapo Valley Rd,Bergen,Bergen,Bergen,Oakland,Off Premise,1,6177.00
-Mike Ast,18001,Grand Opening Liq (A)_2,1068 High Mountain Road,Passaic,Passaic,Passaic,North Haledon,Off Premise,1,7731.00
-Mike Ast,83003,Beekman's Wines and Liquors,246 Rock Rd,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,1493.00
-Mike Ast,93003,Mahwah Liqrs (P),139 Franklin Tpk,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,7780.17
-Mike Ast,87001,Uncorked Wine & Spirits (Hohokus),611 N Maple Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,2031.00
-Mike Ast,88005,Waldwick Wine/Spirits,23 Wyckoff Ave,Bergen,Bergen,Bergen,Waldwick,Off Premise,1,17673.53
-Mike Ast,88004,Discount Liq (P)_2,28 Franklin Tpke,Bergen,Bergen,Bergen,Waldwick,Off Premise,1,4163.00
-Mike Ast,201099,Whole Foods #10106 (Ridgewood),44 Godwin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,398.00
-Mike Ast,93006,Mahwah Wine & Liquor (A),340 Ridge Rd Unit B,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,3209.00
-Mike Ast,84001,Public Ridgewood,6 Van Neste Sq,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,376.00
-Mike Ast,17010,Frank's Fine Wine & Foods,431 Belmont Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,11976.00
-Mike Ast,17011,Nico's Wine & Spirits,408 Haledon Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,10108.00
-Mike Ast,19008,Hawthorne Liq (A),610 Lafayette Ave,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,14801.42
-Nick Melissari,120147,Port Imperial HOQ LLC,1 American Dream Way,Passaic,Passaic,Bergen,East Rutherford,Off Premise,1,4076.93
-Nick Melissari,31046,H Mart Inc (Space A101-A),1 American Dream Way,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,786.00
-Office Tell Sell,15002,Cost Plus,1730 Rt 46,Passaic,Passaic,Passaic,Woodland Park,Off Premise,1,63.00
-Pablo Lopez,27043,Monroe Wine & Liq(P),199 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10981.00
-Pablo Lopez,20014,Bombolon Liquor & Grocery,192 E 16th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,69970.72
-Pablo Lopez,20062,Intensity Lounge/Angie's Liquors,109 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4820.00
-Pablo Lopez,27072,Passaic Discount Liquors,49 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10726.00
-Pablo Lopez,15061,Boulevard Wine & Spirits,467 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4939.00
-Pablo Lopez,15034,Allen's Liquors,209 Mcbride Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,18015.15
-Pablo Lopez,20042,Midtown Liquors,274 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,37585.00
-Pablo Lopez,27066,Sunny's Liqs.(P),413 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10294.00
-Pablo Lopez,20029,Star Liquor Store,13 12th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,1529.00
-Pablo Lopez,15016,Gene's Liquor,26 N Straight St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,11109.00
-Pablo Lopez,20114,Ronny's Liqrs (Z),389 Madison Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2107.00
-Pablo Lopez,20070,Joe's Liquor (A),328 11th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5716.50
-Pablo Lopez,20068,Florida Drugs (A),507 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,438.00
-Pablo Lopez,21032,Carisma Liq & Groc (P),230 Vreeland Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3805.00
-Pablo Lopez,26014,Regalado Liq,168 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11236.00
-Pablo Lopez,20124,Lena y Carbon Broaster,21 Mill St.,Sales,Sales,Passaic,Paterson,Off Premise,1,47.00
-Pablo Lopez,27069,Broadway W&L,62 Broadway,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10649.00
+Derrick Laws,23004,Shop Rite Wines/Spirits,895 Paulison Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,183974.44
+Derrick Laws,22006,Ant's Bar & Liquors,16 Mary Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,80092.95
+Derrick Laws,22067,Gonzalez Liq & Bar(A),105 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,35607.82
+Derrick Laws,22022,C Town (A),680 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,25947.73
+Derrick Laws,13001,Shop Rite Liq (A)Littlefl,171 Browertown Rd,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,24406
+Derrick Laws,21033,The Liquor Shop,498 E 30th Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,24112
+Derrick Laws,20037,The Point Liquor & Bar,620 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,21004.53
+Derrick Laws,22032,Economy Liquors,186 5th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,16524
+Derrick Laws,21050,Quis Queya Liquor(P),586 21st Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,12136
+Derrick Laws,21048,Ferraro's Liquor,423 21st Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10379
+Derrick Laws,15012,Pal's Liquor,241 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10035
+Derrick Laws,20079,Limestone Liquors (A),349 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9860
+Derrick Laws,15023,Santana's Sport(P)Bella,215 Market St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9821.75
+Derrick Laws,20005,La Sorpresa Liq (P),115 4th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,9695
+Derrick Laws,20080,Raphael & Angel Liq (A),390 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8727
+Derrick Laws,20027,230 Liq & Groc.(A),230 Rosa Parks Blvd,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8568
+Derrick Laws,15013,El Oasis,450 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8514
+Derrick Laws,21045,Dorta Liquor (A),353 21st Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8082
+Derrick Laws,20025,Mercer Bar & Liquors,73 Mercer St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6426
+Derrick Laws,20030,10th Ave Liq & Food (P),350 10th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6282
+Derrick Laws,15037,Liquor Gallery (Paterson),459 Mcbride Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6273.5
+Derrick Laws,20040,Hiciano Liquor Store,71 73 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6088
+Derrick Laws,21035,M & R Disc (A) Liqs.,408 21st Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5672
+Derrick Laws,21031,Broadway Liq (A),732 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5598.5
+Derrick Laws,20060,Moya E.Bar&Liq.(Z),428 East 18th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4683.5
+Derrick Laws,17002,Hillcrest Liqrs (A),168 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4489
+Derrick Laws,20066,J & B Bar & Liq (Z),468 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3848
+Derrick Laws,15020,Angel's Wine & Liquors,78 North 6th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3701
+Derrick Laws,20041,Yaremy Liquors,29 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3643.25
+Derrick Laws,21001,Rocky's Liquor Store,48-50 Third Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3239
+Derrick Laws,20076,Moca Liquors Ii,497 Broadway,Sales,Sales,Passaic,Paterson,Off Premise,1,994
+Derrick Laws,20129,Main Discount (P) Liqs.,1137 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,235
+Pablo Lopez,20014,Bombolon Liquor & Grocery,192 E 16th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,109512.77
+Pablo Lopez,21024,Altiero Liquors,498 Ellison St.,Passaic,Passaic,Passaic,Paterson,Off Premise,1,63038.01
+Pablo Lopez,20022,Caraballo's,495 Market Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,49605.9
+Pablo Lopez,20042,Midtown Liquors,274 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,37797
+Pablo Lopez,15030,EL BOHEMIO 2 LIQUOR STORE & BAR,92 Belmont Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,29864.4
+Pablo Lopez,15034,Allen's Liquors,209 Mcbride Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,18155.15
+Pablo Lopez,26014,Regalado Liq,168 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11368
+Pablo Lopez,15016,Gene's Liquor,26 N Straight St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,11319
+Pablo Lopez,27043,Monroe Wine & Liq(P),199 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11160
+Pablo Lopez,27072,Passaic Discount Liquors,49 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11146
+Pablo Lopez,27069,Broadway W&L,62 Broadway,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10649
+Pablo Lopez,27066,Sunny's Liqs.(P),413 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10399
+Pablo Lopez,27021,Johnny's Liqs (P),370 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8784
+Pablo Lopez,27005,#1 Liqrs (P),130 Howe Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,7216
+Pablo Lopez,20070,Joe's Liquor (A),328 11th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5716.5
+Pablo Lopez,15061,Boulevard Wine & Spirits,467 Union Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5184
+Pablo Lopez,20062,Intensity Lounge/Angie's Liquors,109 Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4988
 Pablo Lopez,21034,Schulman's (P) Deli,521 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4672.33
-Pablo Lopez,27021,Johnny's Liqs (P),370 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8538.00
-Pablo Lopez,27005,#1 Liqrs (P),130 Howe Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,6926.00
-Pablo Lopez,20022,Caraballo's,495 Market Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,49605.90
-Pablo Lopez,21024,Altiero Liquors,498 Ellison St.,Passaic,Passaic,Passaic,Paterson,Off Premise,1,56322.36
-Pablo Lopez,15047,Freddie's Corner,295 Mt Pleasant Ave,Passaic,Passaic,Passaic,West Paterson,Off Premise,1,2514.00
-Pablo Lopez,15030,EL BOHEMIO 2 LIQUOR STORE & BAR,92 Belmont Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,28887.40
-Pablo Lopez,20051,Costambar Bar & Liquor Corp.,292-294 Market Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2579.50
+Pablo Lopez,21032,Carisma Liq & Groc (P),230 Vreeland Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3805
+Pablo Lopez,20051,Costambar Bar & Liquor Corp.,292-294 Market Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2579.5
+Pablo Lopez,15047,Freddie's Corner,295 Mt Pleasant Ave,Passaic,Passaic,Passaic,West Paterson,Off Premise,1,2514
+Pablo Lopez,20114,Ronny's Liqrs (Z),389 Madison Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2166
+Pablo Lopez,20032,Riverside Liquors (Paterson),402 River St,Sales,Sales,Passaic,Paterson,Off Premise,1,1655
+Pablo Lopez,20029,Star Liquor Store,13 12th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,1616
 Pablo Lopez,15040,Legacy Bar & Liquor,1019 Mcbride Ave,Passaic,Passaic,Passaic,Woodland Park,Off Premise,1,1397.33
-Pablo Lopez,20032,Riverside Liquors (Paterson),402 River St,Sales,Sales,Passaic,Paterson,Off Premise,1,1600.00
-Paul Mclaughlin,67011,Mykos,416 Tappan Rd,Bergen,Bergen,Bergen,Northvale,Off Premise,1,66.00
-Paul Mclaughlin,52043,Balthazar Bakery (A),214 South Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,96.00
-Phil Ernst,25075,Stew Leonard's Wines & Spirits of Clifton (NA),467 Allwood Rd,Passaic,Passaic,Passaic,Clifton,Off Premise,1,170.00
-Phil Ernst,47004,Wides Deli & Liquor,81-85 Central Ave,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,1140.00
-Phil Ernst,83001,Food Universe Marketplace,937 Lincoln Ave,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,8818.00
-Phil Ernst,20106,Super Wine Warehse(P)Pate,42 E 30th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,40908.00
-Phil Ernst,50005,Megha Liquor & Groc. (P),8 East Fort Lee Rd,Bergen,Bergen,Bergen,Bogota,Off Premise,1,432.00
-Phil Ernst,85002,Acme Markets (Midland Park),136 Lake Avenue,Sales,Sales,Bergen,Midland Park,Off Premise,1,4299.00
-Phil Ernst,80005,Shop Rite Liq (Paramus),224 Rt 4 E,Bergen,Bergen,Bergen,Paramus,Off Premise,1,9861.00
-Phil Ernst,80026,Stew Leonard's(A) Paramus Wine,700 Paramus Park,Bergen,Bergen,Bergen,Paramus,Off Premise,1,9712.00
-Phil Ernst,40019,Budy's Wine & Liq (A),139 Hudson St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,11799.00
-Phil Ernst,39001,Home Wines & Liq 75 (A) (South Hackensack),75 Saddle River Ave,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,6936.00
-Phil Ernst,12007,Gary's Wine & Marketplace (Wayne),1308 Rte 23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,2026.00
-Phil Ernst,208026,Stew Leonard's(A) Paramu (NA),700 Paramus Park,Bergen,Bergen,Bergen,Paramus,Off Premise,1,1240.00
-Phil Ernst,78008,Shop Rite Liq(A) Roch Pk,220 W Passaic St,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,15700.00
-Phil Ernst,50003,"Agave Liquor, Wine & Spirits",74 W Main St,Bergen,Bergen,Bergen,Bogota,Off Premise,1,47366.58
-Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,35-07 Broadway,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,14136.00
+Pablo Lopez,20068,Florida Drugs (A),507 Broadway,Passaic,Passaic,Passaic,Paterson,Off Premise,1,448
+Pablo Lopez,20124,Lena y Carbon Broaster,21 Mill St.,Sales,Sales,Passaic,Paterson,Off Premise,1,47
+Chris Payton,46033,Discount Lqr(A) Outlet,15 Grand Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,161849.85
+Chris Payton,47011,Ridgefield Deli & Liq,284 Teaneck Road,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,44434.32
+Chris Payton,25045,Clifton Disc Liq (A),73 Ackerman Ave Botony Pl,Passaic,Passaic,Passaic,Clifton,Off Premise,1,30578.5
+Chris Payton,38007,Garden Liquors (P),300 Harrison Ave,Bergen,Bergen,Bergen,Lodi,Off Premise,1,16898.33
+Chris Payton,50020,Wineland,247 Degraw Ave,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,15667
+Chris Payton,76010,Usa Wine Traders Club (Saddle Brook),66 Market St,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,15112.33
+Chris Payton,35001,Westmont Liquors 64,611 Avalon Drive,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,10496.75
+Chris Payton,23006,46 Discount Liquor Store,519 Rt 46e (Piaget Ave),Passaic,Passaic,Passaic,Clifton,Off Premise,1,9851
+Chris Payton,47005,Exquisite W & L (A),215 Main St,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,9286.5
+Chris Payton,38021,Buy Rite Of Main St Lodi,449 Main St,Bergen,Bergen,Bergen,Lodi,Off Premise,1,8687.83
+Chris Payton,38040,Buy Rite Discount Liquor,183 Route 46 West,Bergen,Bergen,Bergen,Lodi,Off Premise,1,8102.17
+Chris Payton,25034,Figlar's (P),327 Hope Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,7627
+Chris Payton,38019,Circle Liquors,1- 6 South Main Street,Bergen,Bergen,Bergen,Lodi,Off Premise,1,6442.35
+Chris Payton,38008,Shop Rite Liq.(A)Lodi,150 Main Str,Bergen,Bergen,Bergen,Lodi,Off Premise,1,6309
+Chris Payton,35002,Woodridge Wines & Liq(A),206 Hackensack St,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,5678.67
+Chris Payton,50016,Teaneck Quickshop(P)Conv,725 Cedar Lane,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,5189
+Chris Payton,38016,Lodi Liquor Store(P),25 C WASHINGTON STREET,Bergen,Bergen,Bergen,Lodi,Off Premise,1,4990
+Chris Payton,76015,Discount Liq & Bar,606 Midland Ave,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3824
+Chris Payton,76018,Krauszer Liquor,216 Midland Ave,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3693.33
+Chris Payton,50007,Welsh Farms,55 Queen Anne Road,Bergen,Bergen,Bergen,Bogota,Off Premise,1,3631
+Chris Payton,81001,B & B Liquors (Fair Lawn),13-05 River Road,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,3619
+Chris Payton,38017,Quick Stop Food & Liq,93 S. Main St,Bergen,Bergen,Bergen,Lodi,Off Premise,1,3103
+Chris Payton,79005,Maywood Wine&Liq (A),117 E Passaic St,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2922
+Chris Payton,34007,Liquor Masters (P),459 Route 17,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,2692
+Chris Payton,79002,Hollywd Liq&Deli (A),40 W Pleasant Ave,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2578
+Chris Payton,38001,JR Sports Bar & Liquors(Z),452 Passaic Ave,Bergen,Bergen,Bergen,Lodi,Off Premise,1,2390
+Chris Payton,78013,J R W & Liq (A),332 Rochelle Ave,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,2310.25
+Chris Payton,81011,Radburn Liquors (A,14-35 Plaza Rd,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,2265
+Chris Payton,34009,The Wine Rack Hasbrouck Hts,69 Route 17 South,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,2160.83
+Chris Payton,79004,Coronet Variety,138 West Pleasant Ave,Bergen,Bergen,Bergen,Maywood,Off Premise,1,2005
+Chris Payton,80025,Paramus Food Center,548 Paramus Rd,Bergen,Bergen,Bergen,Paramus,Off Premise,1,1682
+Chris Payton,81010,Morlot W & L (A),22-10 Morlot Ave,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,1498
+Chris Payton,34001,Meadowland Wine & Liquor,280 Valley Blvd,Bergen,Bergen,Bergen,Woodridge,Off Premise,1,1351
+Chris Payton,79007,Maywood Market(A),78 W Pleasant Avenue,Bergen,Bergen,Bergen,Maywood,Off Premise,1,1198
+Chris Payton,34004,Princess Liquor's(P),441 Boulevard,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,998
+Chris Payton,34003,Yoshi Liq/Wine (P),244 Boulevard,Bergen,Bergen,Bergen,Hasbrouck Heights,Off Premise,1,890
+Chris Payton,47009,Iga Supermarkets (A),201-205 Main St,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,678
+Chris Payton,39003,Pompei's Little Market,31 Calicooneck Rd,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,191
+Chris Payton,78003,Ani Service Station Inc,178 RT 17 North,Sales,Sales,Bergen,Rochelle Park,Off Premise,1,165
+Chris Payton,50012,Ma'adan Catering,446 Cedar Lane,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,17
+Jim Heaney,14001,Wine & Bev. Depot (A),823 Riverview Dr N,Passaic,Passaic,Passaic,Totowa,Off Premise,1,150504.97
+Jim Heaney,24011,Shoppers Vineyard (A),875 Bloomfield Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,30393
+Jim Heaney,29011,World of Wine & Liquor,419 Valley Brook Ave.,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,27973.08
+Jim Heaney,25031,Lexington Liquors (Z),430 Lexington Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,14976
+Jim Heaney,25008,Clifton Commons S & W,132 Kingsland Rd Suite 4,Passaic,Passaic,Passaic,Clifton,Off Premise,1,13349
+Jim Heaney,24016,Broad Liquors (A),1187 Broad Street,Passaic,Passaic,Passaic,Clifton,Off Premise,1,11167
+Jim Heaney,28012,Lucky 7 (A),77 River Rd,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,10069.5
+Jim Heaney,24017,Rainbow Liquor (P),292 Lakeview Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,9596.17
+Jim Heaney,27016,Marina's Wine & Spirits,497 Van Houten Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8544.94
+Jim Heaney,25017,Savers Club Liquor Locker,314 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,7688
+Jim Heaney,13008,Little Falls Liq(P),315 Main Street,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,7543
+Jim Heaney,30005,Rutherford Wine (A),270 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,6299.94
+Jim Heaney,24020,US#1 Wine & Liquor,534 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,6132
+Jim Heaney,25042,Town Liquors,805 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,5400
+Jim Heaney,23002,Valley Liquors (A),343 Hazel St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,5047
+Jim Heaney,28007,Metro Liquors (North Arlington),17 Schuyler Ave,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,4817
+Jim Heaney,24009,Quik Stop Conv(Z),261 Clifton Avenue,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4469
+Jim Heaney,29003,Liquor Shed,740 Ridge Road,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,4271.33
+Jim Heaney,24012,Dante's Liquor & Wine,729 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4268
+Jim Heaney,30004,West End Wine & Liq,311 Union Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,4237
+Jim Heaney,24002,Swizzle Stick Liq (A),137 3rd St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,4133
+Jim Heaney,23003,Pete's Liquors,383 Valley Road,Passaic,Passaic,Passaic,Clifton,Off Premise,1,3639
+Jim Heaney,13017,On The Rocks,101 Newark Pompton Turnpike,Passaic,Passaic,Passaic,Little Falls,Off Premise,1,3484
+Jim Heaney,29012,Riverside Liquors,601 Riverside Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,3271
+Jim Heaney,29017,Meadow Fine Liquors,425 Lewandowski St.,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,3248
+Jim Heaney,28011,Liquor Mart (North Arlington),126 Ridge Rd,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,3070.17
+Jim Heaney,24005,Henry's Liquors,1224 Van Houten Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,2798
+Jim Heaney,29013,Lyndhurst Liquors (P),298 Ridge Road,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,2594.33
+Jim Heaney,30007,Village Wine (P),75 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,2461.15
+Jim Heaney,29009,Quick Buy,149 Ridge Rd,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,2314
+Jim Heaney,30010,Krauser Food & Liq(A),275 Park Ave,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,2236
+Jim Heaney,28004,Schuyler Food,574 Schuyler Ave,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,2187
+Jim Heaney,24001,Richfield Liquors,1362 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,2084
+Jim Heaney,23007,Field Liquors (A),1006 W Rt 46 W,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1951
+Jim Heaney,24037,Vasel's (A),586 Bloomfield Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1845
+Jim Heaney,30006,Forest Dairy (A),10 Spring Dell,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,1801
+Jim Heaney,25023,Clifton Wine & Liquor,111 Lakeview Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1752
+Jim Heaney,24014,Bottleneck Liquors,120 Market St,Passaic,Passaic,Passaic,Clifton,Off Premise,1,1740
+Jim Heaney,29008,Krauszers Food,121-123 Valley Brook Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,818
+Jim Heaney,24021,Liquor Stop (P) (Clifton),565 Clifton Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,770
+Jim Heaney,25032,Liquor Mart 46,1081 US-46,Passaic,Passaic,Passaic,Clifton,Off Premise,1,688
+John Neukum,31019,Bj's Warehouse E Rutherfo,300 Rt 17 N,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,205031
+John Neukum,24010,Western Bev 21088 Clift,20 Bridewell Place,Passaic,Passaic,Passaic,Clifton,Off Premise,1,70448
+John Neukum,12060,Costco Whlse V#32366-Wayn,149 Rt. 23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,45206
+John Neukum,39016,NB Liquors,2 Teterboro Landing Dr,Bergen,Bergen,Bergen,Teterboro,Off Premise,1,44019
+John Neukum,39019,Costco 1214 Teterboro (NA),2 Teterboro Landing Dr,Bergen,Bergen,Bergen,Teterboro,Off Premise,1,1297
+John Neukum,190931,Costco 315 Wharton (NA),315 Rt. 15 North,Bergen,Bergen,Morris,Wharton,Off Premise,1,1000
+John Neukum,24059,Costco 306 Clifton (NA),20 Bridewell Place,Passaic,Passaic,Passaic,Clifton,Off Premise,1,500
+Dave Ehlers,14007,Total Wine & More (Totowa),465 US Highway 46,Passaic,Passaic,Passaic,Totowa,Off Premise,1,64944
+Dave Ehlers,58001,Total Wine & More (River Edge),1001 Main St,Bergen,Bergen,Bergen,River Edge,Off Premise,1,63618
+Dave Ehlers,52015,Shop Rite Liq (A)Englewd,53 Nathaniel Pl,Bergen,Bergen,Bergen,Englewood,Off Premise,1,25115
+Dave Ehlers,57001,Barrel & Brew Bar & Liq,868-872 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,20096.2
+Dave Ehlers,40022,Buy Rite Of Hackensack,410 River St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,20014.5
+Dave Ehlers,56007,Portland Wine & Liquor,22 Portland Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,14815
+Dave Ehlers,39012,Wine And Liq Depot(A),310 Huyler St,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,14727
+Dave Ehlers,50013,Wine & More (P),953 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,14351.04
+Dave Ehlers,40010,Hackensack Liquors,500 South River St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,13917
+Dave Ehlers,56008,Bergenfield Liq & Fw,5 S Washington Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,11546
+Dave Ehlers,52019,W E Beverage (A),91 W Palisade Ave,Bergen,Bergen,Bergen,Englewood,Off Premise,1,7368
+Dave Ehlers,56013,Time Lounge And Liq (A),487-489 S Washington Ave,Bergen,Bergen,Bergen,Bergenfield,Off Premise,1,7249
+Dave Ehlers,40004,Simple Simon's (Z),337 Essex St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,7070
+Dave Ehlers,40001,Bottle & Cork,380 W Pleasantview Ave,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,6643
+Dave Ehlers,40017,Essex St Liquor and Wine,214 Essex St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,6011
+Dave Ehlers,41005,George's Liq,130 Anderson St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,5985
+Dave Ehlers,51008,H & R Disc. Liq (P),1350-1352 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,5453
+Dave Ehlers,41012,Deli Mart (A),789 Main St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,5435
+Dave Ehlers,51013,G & G Liquors,1435 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,4820
+Dave Ehlers,57003,Joes Beer Wine & Spirits,710 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,4606
+Dave Ehlers,52025,Englewood Wine and Spirits,481 N Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,2834
+Dave Ehlers,57006,New Milford Liquors,401 River Rd,Bergen,Bergen,Bergen,New Milford,Off Premise,1,2797
+Dave Ehlers,51018,Teaneck Discount Liquor,764 New Bridge Road,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,2547.17
+Dave Ehlers,58002,River Edge Wine & Liquor,504 Kinderkamack Rd,Bergen,Bergen,Bergen,River Edge,Off Premise,1,2232
+Dave Ehlers,58004,Country Wine & Liquors,842 Kinderkamack Rd,Bergen,Bergen,Bergen,River Edge,Off Premise,1,1677.95
+Dave Ehlers,52008,Englewood Liq (A),42 E Palisade Ave,Bergen,Bergen,Bergen,Englewood,Off Premise,1,1349
+Dave Ehlers,51012,Teaneck Liquors,1531 Teaneck Rd,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,917
+Dave Ehlers,52004,Grand Liquor & Delicatesen,124 Grand Ave.,Bergen,Bergen,Bergen,Englewood,Off Premise,1,701
+Dave Ehlers,51004,Fill Er Up Kosher Wine(P),174 West Englewood Ave,Bergen,Bergen,Bergen,Teaneck,Off Premise,1,611
+Dave Ehlers,40037,Parisi Deli,89 S State St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,167
+Javier Melo,22024,Edwards (P) Wine & Liq,910 Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,43059.21
+Javier Melo,27059,D'bar Liquors (P),898 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,36743.24
+Javier Melo,20117,El Cantaro Liquors,416 Market Street,Sales,Sales,Passaic,Paterson,Off Premise,1,24952.78
+Javier Melo,27002,President Liqrs (A),158 President St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,18280.05
+Javier Melo,21044,Farm Boy,465 Getty Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,12843
+Javier Melo,25012,Bottle Liquor (P),550 Lexington Avenue,Passaic,Passaic,Passaic,Clifton,Off Premise,1,12230
+Javier Melo,25047,Parker Liquors (Z),203 Parker Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,11799
+Javier Melo,27046,New Eagle Liquors,126 Passaic St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,11740
+Javier Melo,20021,Diamond Liquors (P),507 Summer St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10535
+Javier Melo,27040,Danny's Liquor,268 Monroe St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10502
+Javier Melo,21023,Luna Liquors,291 Park Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,10409
+Javier Melo,27012,ESTEVEZ LIQUORS LLC,110 Market St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,10075
+Javier Melo,27037,Shanik Liqs.(P),952 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,9782
+Javier Melo,20056,East Side Bar Liquors,442 10th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,8665
+Javier Melo,27008,Bermuda Liquors (P),177 Hope Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,8360
+Javier Melo,20031,La Joya Liquors,15 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6849
+Javier Melo,21026,C Town Supermarket(P),444 20th Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6621
+Javier Melo,20069,Segundo's (P),293 Madison Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,6600
+Javier Melo,24003,Paulison Liquors (P),621 Paulison Ave,Passaic,Passaic,Passaic,Clifton,Off Premise,1,6550
+Javier Melo,27034,Liquor Stop (Passaic),321 Broadway,Passaic,Passaic,Passaic,Passaic,Off Premise,1,6317
+Javier Melo,21054,C & S Lucky Liquors (P),299 Grand Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5584
+Javier Melo,21028,Estevez Liquors & Grocery 2 LLC,262 22nd Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5511
+Javier Melo,21055,C & S Lucky Liquors II,460 Chamberlain Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,5277
+Javier Melo,21006,Camilo Liquors(A),424 6th Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,4061
+Javier Melo,27071,Mariana's Liquors,266 Passaic Street,Passaic,Passaic,Passaic,Passaic,Off Premise,1,3813
+Javier Melo,21021,Park Avenue Liquors,307 Park Ave,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3756
+Javier Melo,15059,Belmont Liqrs (P),146 Belmont Avenue,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3272
+Javier Melo,15031,Pete's Family Liqs,49 N Main Street,Passaic,Passaic,Passaic,Paterson,Off Premise,1,3165
+Javier Melo,15014,Deli Parchardo Liquors,111 N Main St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,2481
+Klejdi Lamo,190216,House of Wine & Liquor,308 E Wootton St,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,91412.91
+Klejdi Lamo,190917,Shop Rite Liq (A)Wharton,306 NJ-15,Morris 3,Morris 3,Morris,Wharton,Off Premise,1,28626
+Klejdi Lamo,190207,Liquor Outlet,289 Myrtle Ave,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,27179.5
+Klejdi Lamo,191710,Shop Rite Wine & Spirits Stanhope,90 Route 206,Sussex,Sussex,Sussex,Stanhope,Off Premise,1,18491
+Klejdi Lamo,191814,Sandy's Wine & Spirit (P) (Budd Lake),98 US Highway 46,Morris 1,Morris 1,Morris,Budd Lake,Off Premise,1,17522
+Klejdi Lamo,191210,Milton Inn,3 Ridge Rd & Berkshire,Morris 1,Morris 1,Morris,Oak Ridge,Off Premise,1,16913
+Klejdi Lamo,191606,Quick Check Liquor (A),70 Main St,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,11564.65
+Klejdi Lamo,191511,Nova Liquors,49 Lakeside Blvd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,8706.89
+Klejdi Lamo,190304,Shoppers Disc Liquor,65-69 N Beverwyck Rd,Morris 1,Morris 1,Morris,Lake Hiawatha,Off Premise,1,8578.67
+Klejdi Lamo,190705,Rockaway W/L,73 W Main St,Morris 1,Morris 1,Morris,Rockaway,Off Premise,1,8055
+Klejdi Lamo,191608,Shop-Rite(A) Netcong,75 Us-46 Lackawanna Plaza,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,7919
+Klejdi Lamo,191213,Island Of Spirits (P),3025 Rt 23 N,Passaic,Passaic,Passaic,Oak Ridge,Off Premise,1,5711
+Klejdi Lamo,190802,Sam's Liq Wine (P),325 W Clinton St,Morris 1,Morris 1,Morris,Dover,Off Premise,1,5541
+Klejdi Lamo,190804,Midtown Liq,101 White Meadow Rd,Morris 1,Morris 1,Morris,Rockaway,Off Premise,1,5514.17
+Klejdi Lamo,190208,Boonton Liquor Locker,119 Hawkins Pl,Morris 1,Morris 1,Morris,Boonton,Off Premise,1,4933
+Klejdi Lamo,190302,Basket Of Cheer Ii (Lake Hiawatha),149 N Beverwyck Rd,Morris 1,Morris 1,Morris,Lake Hiawatha,Off Premise,1,4932
+Klejdi Lamo,190907,Wharton Liquor Store,41 N Main St,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,4913
+Klejdi Lamo,190913,Main Street Liquor,340 S Main St,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,4582.33
+Klejdi Lamo,191803,Kingston Liquors,7 Naughright Rd,Morris 1,Morris 1,Morris,Hackettstown,Off Premise,1,4212
+Klejdi Lamo,190101,Montville Wine & Spirits,223 Changebridge Road,Morris 1,Morris 1,Morris,Montville,Off Premise,1,4141.17
+Klejdi Lamo,190603,Denville W & L,43 Broadway,Morris 1,Morris 1,Morris,Denville,Off Premise,1,3494
+Klejdi Lamo,191518,3 IN 1 LIQUORS INC,47 Hopatchung Rd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,3397.33
+Klejdi Lamo,191812,Patel Liqr & Gro(P),114 Us-46,Morris 1,Morris 1,Morris,Budd Lake,Off Premise,1,3375.33
+Klejdi Lamo,191713,Stanhope Liquors,141 Rt 183,Sussex,Sussex,Sussex,Stanhope,Off Premise,1,3306
+Klejdi Lamo,190901,Berkshire(P) Bot. Shop,915 Berkshire Valley Rd,Morris 1,Morris 1,Morris,Wharton,Off Premise,1,1032
+Klejdi Lamo,191604,The Village Place,31 Allen St,Morris 1,Morris 1,Morris,Netcong,Off Premise,1,818
+Klejdi Lamo,1003,23 liquor & Tobacco,3051 Route 23,Sales,Sales,Passaic,Oak Ridge,Off Premise,1,676
+Dan Lagala,46009,Banner Delicatessen,400 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,76916.81
+Dan Lagala,49055,Edgewater Liquor (A),547 River Road,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,28407.88
+Dan Lagala,43013,Buy Rite Of Fairview,201 Broad Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,16882
+Dan Lagala,49045,Liquor World,1475 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,10819
+Dan Lagala,44016,Liquor City(A)Cliffside,494 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,10461
+Dan Lagala,44005,Winston Wine & Liq,659 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,10119.35
+Dan Lagala,43005,Rome Liquors (Fairview),174 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,9209.67
+Dan Lagala,43004,Boulevard Liq.(Fairview),153 Bergen Blvd,Bergen,Bergen,Bergen,Fairview,Off Premise,1,8898
+Dan Lagala,43006,Fairview Liq & Groc.(A),36 Anderson Avenue,Bergen,Bergen,Bergen,Fairview,Off Premise,1,8843
+Dan Lagala,49027,Linwood Wine-Linwood Plaza,102 Linwood Plaza,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,7315.33
+Dan Lagala,44040,Stop N Go Conven. (P),81 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,6669
+Dan Lagala,43015,Kikos Liquors Ii,321 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,6044
+Dan Lagala,46015,Mukeunji (Z),421 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,5440
+Dan Lagala,46012,Jay Cee (P) Deli & Liq.,246 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,5212
+Dan Lagala,44009,Metro Liquor (Cliffside Park),341 Gorge Rd.,Sales,Sales,Bergen,Cliffside Park,Off Premise,1,5175.17
+Dan Lagala,44010,Garden State Food&Liq (P),666 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,4774
+Dan Lagala,49044,Linwood Wine-Hudson Light,675 Park Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,4618
+Dan Lagala,49033,Banner Liquor Iii,1175 Palisade Avenue,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,4415
+Dan Lagala,43007,American Classic Liq,157 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,4182
+Dan Lagala,54006,Tenafly Fine Wine & Spirits,14 Riveredge Rd,Bergen,Bergen,Bergen,Tenafly,Off Premise,1,4037
+Dan Lagala,44049,Rome Liquor (Cliffside Park),743 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,3641
+Dan Lagala,43002,Checo Supermarket,210 Anderson Ave,Bergen,Bergen,Bergen,Fairview,Off Premise,1,3587
+Dan Lagala,46003,Palisades Park Liq(P),100 E Columbia Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,3057
+Dan Lagala,45004,Ridgefield Liq (Z),520 Shaler Blvd,Bergen,Bergen,Bergen,Ridgefield,Off Premise,1,2865.33
+Dan Lagala,46011,Han Mi Supermkt (A),220 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,2865
+Dan Lagala,45002,JC&D Best Wine & Liquor,321 Broad Ave,Bergen,Bergen,Bergen,Ridgefield,Off Premise,1,2788
+Dan Lagala,44052,Minit Mart_2,237 Palisade Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,2677
+Dan Lagala,49019,Bp Gas Station,1671 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,2552
+Dan Lagala,46002,Best Choice Liqrs (P),23 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,2176
+Dan Lagala,48002,Manor Wine & Liquor,430 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,2064.5
+Dan Lagala,49066,Mitsuwa Market (A),595 River Rd,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,1975
+Dan Lagala,46013,Boulevard Food Store,520a Bergen Blvd,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,1918
+Dan Lagala,49035,Gulf Express Fort Lee,1651 Bergen Blvd,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,1796
+Dan Lagala,44002,Wine And Food Mart (Z),589 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,1793
+Dan Lagala,48006,Andres Wine & Spirits,322 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,1651
+Dan Lagala,49031,Top Shelf Liquors,2450 Lemoine Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,1646
+Dan Lagala,54007,Wine Ventures,7 Washington St,Bergen,Bergen,Bergen,Tenafly,Off Premise,1,1404
+Dan Lagala,49056,Hmart Fresh (P),1379 16th Street,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,962
+Dan Lagala,49032,Fairway Mkt & Gift(A),1214 Anderson Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,950
+Dan Lagala,48005,Leonia Wine & Spirits,307 Broad Ave,Bergen,Bergen,Bergen,Leonia,Off Premise,1,636
+Dan Lagala,201096,Whole Foods #10102 (Edgewater),905 River Rd,Bergen,Bergen,Bergen,Edgewater,Off Premise,1,626
+Dan Lagala,49036,Junction Liquors,266 Columbia Ave,Bergen,Bergen,Bergen,Fort Lee,Off Premise,1,495
+Dan Lagala,46024,Anthony's Pharmacy,341 Broad Ave,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,348
+Dan Lagala,44014,Campbell's Wines & Liquor,730 Anderson Ave,Bergen,Bergen,Bergen,Cliffside Park,Off Premise,1,171
+Phil Ernst,50003,"Agave Liquor, Wine & Spirits",74 W Main St,Bergen,Bergen,Bergen,Bogota,Off Premise,1,50921.38
+Phil Ernst,20106,Super Wine Warehse(P)Pate,42 E 30th St,Passaic,Passaic,Passaic,Paterson,Off Premise,1,41908
+Phil Ernst,83010,Bottle King (A) Glen Rock,909 Prospect St,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,31013
+Phil Ernst,78008,Shop Rite Liq(A) Roch Pk,220 W Passaic St,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,15810
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,35-07 Broadway,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,14165
+Phil Ernst,46019,Palisades Wine And Liquor,534 Bergen Blvd,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,13388
+Phil Ernst,40019,Budy's Wine & Liq (A),139 Hudson St,Bergen,Bergen,Bergen,Hackensack,Off Premise,1,11822
 Phil Ernst,29004,Shop-Rite Liq Lyndhurst,542 New York Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,11789.33
-Phil Ernst,89007,Acme Markets (Allendale),45 De Mercurio Dr.,Bergen,Bergen,Bergen,Allendale,Off Premise,1,2712.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,909 Prospect St,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,30218.00
-Phil Ernst,80002,Whole Foods Market (Paramus),300 Bergen Town Center,Bergen,Bergen,Bergen,Paramus,Off Premise,1,2734.00
-Phil Ernst,25010,Stew Leonard's Wines & Spirits of Clifton,467 Allwood Rd,Passaic,Passaic,Passaic,Clifton,Off Premise,1,8068.00
-Phil Ernst,50009,Riverview Liq (P),55 River Rd,Bergen,Bergen,Bergen,Bogota,Off Premise,1,2699.00
-Phil Ernst,80041,PRIME WINE CELLAR Liquor & Beer,396 Rt 17 North,Sales,Sales,Bergen,Paramus,Off Premise,1,5062.00
-Phil Ernst,43001,City Supermarket,289 Bergen Blvd,Bergen,Bergen,Bergen,Fairview,Off Premise,1,10018.00
-Phil Ernst,38018,THE BOTTLE SHOP,366 Essex St,Sales,Sales,Bergen,Lodi,Off Premise,1,1054.00
-Phil Ernst,46019,Palisades Wine And Liquor,534 Bergen Blvd,Bergen,Bergen,Bergen,Palisades Park,Off Premise,1,13290.00
-Phil Ernst,49039,Acme Markets (Fort Lee),2160 Lemoine Ave,Sales,Sales,Bergen,Fort Lee,Off Premise,1,3643.00
-Phil Ernst,50002,Lushka Liquors,358 Palisades Ave,Bergen,Bergen,Bergen,Bogota,Off Premise,1,890.00
-Phil Ernst,76006,Wine Country Of Saddle Brook (A),195 Market St,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3833.00
-Robin Feldman,77008,Pizza Town USA,95-111 RT 46 W,Sales,Sales,Bergen,Elmwood Park,Off Premise,1,69.00
-Robin Feldman,52023,Jerry's Outlet,410 S Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,291.00
-Shane Barreca,62001,Garden State Deli (A),135 Oakland Ave,Bergen,Bergen,Bergen,Closter,Off Premise,1,5771.00
-Shane Barreca,67008,Woori Mart,206 Pegasus Ave.,Sales,Sales,Bergen,Northvale,Off Premise,1,941.00
-Shane Barreca,65001,Wine & Whiskey (A),7 Broad St,Bergen,Bergen,Bergen,Norwood,Off Premise,1,2999.00
-Shane Barreca,75004,Cork & Keg (A),89 Kinderkamack Rd,Bergen,Bergen,Bergen,Emerson,Off Premise,1,10391.83
-Shane Barreca,62009,Gary's Wine & Marketplace (Closter),67 Ver Valen St,Bergen,Bergen,Bergen,Closter,Off Premise,1,5626.00
-Shane Barreca,59004,Royal Wine & Spirits II,50 Kinderkamack Rd,Bergen,Bergen,Bergen,Oradell,Off Premise,1,2235.00
-Shane Barreca,71006,Ridgemont Liquors (A),195 Kinderkamack Rd,Bergen,Bergen,Bergen,Park Ridge,Off Premise,1,2643.67
-Shane Barreca,71003,Brand Bar & Bev (A),73 Park Ave,Bergen,Bergen,Bergen,Park Ridge,Off Premise,1,6132.00
-Shane Barreca,60010,D & L Dumont Liquors,46 Grant Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,1823.00
-Shane Barreca,62006,Murphy's Fine Wines & Liquors (UNI 4H Inc.),230 Closter Dock Rd,Bergen,Bergen,Bergen,Closter,Off Premise,1,1110.00
-Shane Barreca,67004,Beverage Barn (A),224 Livingston St,Bergen,Bergen,Bergen,Northvale,Off Premise,1,21449.00
-Shane Barreca,60001,Bottle King (A) Dumont,95 Washington Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,31664.00
-Shane Barreca,59003,Oradell Mini Mart(P),219 Kinderkamack Road,Bergen,Bergen,Bergen,Oradell,Off Premise,1,1376.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,110 Farm View,Bergen,Bergen,Bergen,Montvale,Off Premise,1,18555.00
-Shane Barreca,201097,Whole Foods #10381 (Closter),45 Vervalen St.,Bergen,Bergen,Bergen,Closter,Off Premise,1,325.00
-Shane Barreca,92011,Bottle King (A) Ramsey,476 Rt 17 N,Bergen,Bergen,Bergen,Ramsey,Off Premise,1,38222.00
-Shane Barreca,55001,Coasters Liquors,37 Union Ave,Bergen,Bergen,Bergen,Cresskill,Off Premise,1,2528.00
-Shane Barreca,74007,Djm Liq Inc. (P)(Andrew),48 Washington Ave,Bergen,Bergen,Bergen,Westwood,Off Premise,1,2424.00
-Shane Barreca,70003,Montvale Wines & Spirits,18 S. Kinderkamack Rd,Bergen,Bergen,Bergen,Montvale,Off Premise,1,1580.00
-Shane Barreca,86003,Township Liq (P),309 Pascack Rd,Bergen,Bergen,Bergen,Washington Twsp,Off Premise,1,6428.00
-Shane Barreca,75002,Shop Rite Liq (A)Emerson,425 Old Hook Rd,Bergen,Bergen,Bergen,Emerson,Off Premise,1,7277.00
-Shane Barreca,72001,Cambridge Wines (Woodcliff Lake),500 Chestnut Ridge Rd #4,Sales,Sales,Bergen,Woodcliff Lake,Off Premise,1,1431.00
-Shane Barreca,74009,Westwood Wine and Liquors,725 Broadway,Bergen,Bergen,Bergen,Westwood,Off Premise,1,4442.17
-Shane Barreca,92008,Ramsey Wine & Liquor,47 W Main St,Bergen,Bergen,Bergen,Ramsey,Off Premise,1,21129.00
-Shane Barreca,68002,Wine And Beverage Spirits,14 Bi State Shop Ctr 72d,Bergen,Bergen,Bergen,Old Tappan,Off Premise,1,4158.00
-Shane Barreca,73003,Bottle King (A) Hillsdale,381 Washington Ave,Bergen,Bergen,Bergen,Hillsdale,Off Premise,1,17125.00
-Shane Barreca,74005,Winemart Discount,700 Broadway Suite 42,Bergen,Bergen,Bergen,Westwood,Off Premise,1,6732.33
-Shane Barreca,64002,The Store,102 La Roche Ave,Bergen,Bergen,Bergen,Harrington Park,Off Premise,1,130.00
-Shane Barreca,201098,Whole Foods #8407 (Woodcliff Lake),500 Chestnut Ridge Rd.,Bergen,Bergen,Bergen,Woodcliff Lake,Off Premise,1,363.00
-Shane Barreca,67005,Shoprite Liq (A)Northvle,254 F Livingston St.,Bergen,Bergen,Bergen,Northvale,Off Premise,1,15501.00
-Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,371 Broadway,Bergen,Bergen,Bergen,Hillsdale,Off Premise,1,13230.50
+Phil Ernst,43001,City Supermarket,289 Bergen Blvd,Bergen,Bergen,Bergen,Fairview,Off Premise,1,10018
+Phil Ernst,80005,Shop Rite Liq (Paramus),224 Rt 4 E,Bergen,Bergen,Bergen,Paramus,Off Premise,1,9919
+Phil Ernst,80026,Stew Leonard's(A) Paramus Wine,700 Paramus Park,Bergen,Bergen,Bergen,Paramus,Off Premise,1,9915
+Phil Ernst,83001,Food Universe Marketplace,937 Lincoln Ave,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,8890
+Phil Ernst,25010,Stew Leonard's Wines & Spirits of Clifton,467 Allwood Rd,Passaic,Passaic,Passaic,Clifton,Off Premise,1,8277
+Phil Ernst,39001,Home Wines & Liq 75 (A) (South Hackensack),75 Saddle River Ave,Bergen,Bergen,Bergen,South Hackensac,Off Premise,1,6937
+Phil Ernst,80041,PRIME WINE CELLAR Liquor & Beer,396 Rt 17 North,Sales,Sales,Bergen,Paramus,Off Premise,1,5238
+Phil Ernst,85002,Acme Markets (Midland Park),136 Lake Avenue,Sales,Sales,Bergen,Midland Park,Off Premise,1,4452
+Phil Ernst,76006,Wine Country Of Saddle Brook (A),195 Market St,Bergen,Bergen,Bergen,Saddle Brook,Off Premise,1,3999
+Phil Ernst,49039,Acme Markets (Fort Lee),2160 Lemoine Ave,Sales,Sales,Bergen,Fort Lee,Off Premise,1,3688
+Phil Ernst,80002,Whole Foods Market (Paramus),300 Bergen Town Center,Bergen,Bergen,Bergen,Paramus,Off Premise,1,2853
+Phil Ernst,50009,Riverview Liq (P),55 River Rd,Bergen,Bergen,Bergen,Bogota,Off Premise,1,2804
+Phil Ernst,89007,Acme Markets (Allendale),45 De Mercurio Dr.,Bergen,Bergen,Bergen,Allendale,Off Premise,1,2738
+Phil Ernst,12007,Gary's Wine & Marketplace (Wayne),1308 Rte 23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,2026
+Phil Ernst,208026,Stew Leonard's(A) Paramu (NA),700 Paramus Park,Bergen,Bergen,Bergen,Paramus,Off Premise,1,1240
+Phil Ernst,47004,Wides Deli & Liquor,81-85 Central Ave,Bergen,Bergen,Bergen,Ridgefield Park,Off Premise,1,1178
+Phil Ernst,38018,THE BOTTLE SHOP,366 Essex St,Sales,Sales,Bergen,Lodi,Off Premise,1,1131
+Phil Ernst,50002,Lushka Liquors,358 Palisades Ave,Bergen,Bergen,Bergen,Bogota,Off Premise,1,911
+Phil Ernst,50005,Megha Liquor & Groc. (P),8 East Fort Lee Rd,Bergen,Bergen,Bergen,Bogota,Off Premise,1,425
+Phil Ernst,25075,Stew Leonard's Wines & Spirits of Clifton (NA),467 Allwood Rd,Passaic,Passaic,Passaic,Clifton,Off Premise,1,234
+Shane Barreca,92011,Bottle King (A) Ramsey,476 Rt 17 N,Bergen,Bergen,Bergen,Ramsey,Off Premise,1,38770
+Shane Barreca,60001,Bottle King (A) Dumont,95 Washington Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,32277
+Shane Barreca,67004,Beverage Barn (A),224 Livingston St,Bergen,Bergen,Bergen,Northvale,Off Premise,1,21732
+Shane Barreca,92008,Ramsey Wine & Liquor,47 W Main St,Bergen,Bergen,Bergen,Ramsey,Off Premise,1,21426
+Shane Barreca,70001,Montvale Wine/Liq & Beer,110 Farm View,Bergen,Bergen,Bergen,Montvale,Off Premise,1,18642
+Shane Barreca,73003,Bottle King (A) Hillsdale,381 Washington Ave,Bergen,Bergen,Bergen,Hillsdale,Off Premise,1,17389
+Shane Barreca,67005,Shoprite Liq (A)Northvle,254 F Livingston St.,Bergen,Bergen,Bergen,Northvale,Off Premise,1,15899
+Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,371 Broadway,Bergen,Bergen,Bergen,Hillsdale,Off Premise,1,13230.5
+Shane Barreca,75004,Cork & Keg (A),89 Kinderkamack Rd,Bergen,Bergen,Bergen,Emerson,Off Premise,1,10549.83
+Shane Barreca,75002,Shop Rite Liq (A)Emerson,425 Old Hook Rd,Bergen,Bergen,Bergen,Emerson,Off Premise,1,7321
+Shane Barreca,74005,Winemart Discount,700 Broadway Suite 42,Bergen,Bergen,Bergen,Westwood,Off Premise,1,7181.33
+Shane Barreca,86003,Township Liq (P),309 Pascack Rd,Bergen,Bergen,Bergen,Washington Twsp,Off Premise,1,6428
+Shane Barreca,71003,Brand Bar & Bev (A),73 Park Ave,Bergen,Bergen,Bergen,Park Ridge,Off Premise,1,6212
+Shane Barreca,62001,Garden State Deli (A),135 Oakland Ave,Bergen,Bergen,Bergen,Closter,Off Premise,1,5771
+Shane Barreca,62009,Gary's Wine & Marketplace (Closter),67 Ver Valen St,Bergen,Bergen,Bergen,Closter,Off Premise,1,5740
+Shane Barreca,74009,Westwood Wine and Liquors,725 Broadway,Bergen,Bergen,Bergen,Westwood,Off Premise,1,4594.17
+Shane Barreca,72001,Cambridge Wines (Woodcliff Lake),500 Chestnut Ridge Rd #4,Sales,Sales,Bergen,Woodcliff Lake,Off Premise,1,4547.85
+Shane Barreca,68002,Wine And Beverage Spirits,14 Bi State Shop Ctr 72d,Bergen,Bergen,Bergen,Old Tappan,Off Premise,1,4233
+Shane Barreca,65001,Wine & Whiskey (A),7 Broad St,Bergen,Bergen,Bergen,Norwood,Off Premise,1,3036
+Shane Barreca,71006,Ridgemont Liquors (A),195 Kinderkamack Rd,Bergen,Bergen,Bergen,Park Ridge,Off Premise,1,2778.67
+Shane Barreca,55001,Coasters Liquors,37 Union Ave,Bergen,Bergen,Bergen,Cresskill,Off Premise,1,2555
+Shane Barreca,74007,Djm Liq Inc. (P)(Andrew),48 Washington Ave,Bergen,Bergen,Bergen,Westwood,Off Premise,1,2459
+Shane Barreca,59004,Royal Wine & Spirits II,50 Kinderkamack Rd,Bergen,Bergen,Bergen,Oradell,Off Premise,1,2289
+Shane Barreca,60010,D & L Dumont Liquors,46 Grant Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,1823
+Shane Barreca,70003,Montvale Wines & Spirits,18 S. Kinderkamack Rd,Bergen,Bergen,Bergen,Montvale,Off Premise,1,1661
+Shane Barreca,59003,Oradell Mini Mart(P),219 Kinderkamack Road,Bergen,Bergen,Bergen,Oradell,Off Premise,1,1413
+Shane Barreca,62006,Murphy's Fine Wines & Liquors (UNI 4H Inc.),230 Closter Dock Rd,Bergen,Bergen,Bergen,Closter,Off Premise,1,1110
+Shane Barreca,67008,Woori Mart,206 Pegasus Ave.,Sales,Sales,Bergen,Northvale,Off Premise,1,988
+Shane Barreca,64002,The Store,102 La Roche Ave,Bergen,Bergen,Bergen,Harrington Park,Off Premise,1,130
+Jayson Romine,231316,Patricks Wine Barn,38 Hamburg Ave,Sussex,Sussex,Sussex,Sussex,Off Premise,1,19555
+Jayson Romine,230412,USA Wine Traders Club Of Newton (A),17 Hampton House Road,Sussex,Sussex,Sussex,Newton,Off Premise,1,18537
+Jayson Romine,230105,ShopRite Wines & Spirits of Sparta,16 North Village Blvd,Sussex,Sussex,Sussex,Sparta,Off Premise,1,18154
+Jayson Romine,230114,Liquor Factory III Sparta,41 Woodport Road,Sussex,Sussex,Sussex,Sparta,Off Premise,1,15899.83
+Jayson Romine,230427,ShopRite Wine & Spirits of Newton#830,125 Water St,Sussex,Sussex,Sussex,Newton,Off Premise,1,14144
+Jayson Romine,230902,Buy Rite Liquors Franklin,244 NJ-23,Sussex,Sussex,Sussex,Franklin,Off Premise,1,13707
+Jayson Romine,231215,Mac & Lindy's W & S (A),530 Co Rd 515,Sussex,Sussex,Sussex,Vernon,Off Premise,1,13036.83
+Jayson Romine,191010,Liquor Factory II Jefferson,725 NJ-15,Morris 1,Morris 1,Morris,Lake Hopatcong,Off Premise,1,12689
+Jayson Romine,230905,ShopRite Wines & Spirits of Franklin,100 Rt 23,Sussex,Sussex,Sussex,Franklin,Off Premise,1,12312
+Jayson Romine,191526,Liquor Factory IV Hopatcong,128 Lakeside Blvd,Sussex,Sussex,Sussex,Hopatcong,Off Premise,1,10532
+Jayson Romine,231203,The George Inn,84 NJ-94,Sussex,Sussex,Sussex,Vernon,Off Premise,1,9149
+Jayson Romine,191702,Liquor Factory VI Byram,8 Route 206 N,Morris 1,Morris 1,Sussex,Byram,Off Premise,1,8436
+Jayson Romine,230314,Liquor Factory V Andover,231 Newton Sparta Rd # 3,Sussex,Sussex,Sussex,Newton,Off Premise,1,8405
+Jayson Romine,191302,Liquor Factory I Landing,175 Lakeside Blvd # 9,Morris 1,Morris 1,Morris,Landing,Off Premise,1,7644
+Jayson Romine,230420,Spring Street Liquors,110 Spring Street,Sussex,Sussex,Sussex,Newton,Off Premise,1,7627
+Jayson Romine,231308,Wantage Plaza Liq Outlet,205 NJ-23,Sussex,Sussex,Sussex,Wantage,Off Premise,1,7571
+Jayson Romine,230441,Wine Country Newton,49 Hampton House Road,Sussex,Sussex,Sussex,Newton,Off Premise,1,6258
+Jayson Romine,191408,Super Saver Liq,322 Howard Blvd,Morris 1,Morris 1,Morris,Mt Arlington,Off Premise,1,5976
+Jayson Romine,230431,Seplow's Liquors,5 Woodside Ave,Sussex,Sussex,Sussex,Newton,Off Premise,1,5248
+Jayson Romine,230911,The Right Bottle,190 Munsonhurst Rd,Sussex,Sussex,Sussex,Franklin,Off Premise,1,4447
+Jayson Romine,230924,Sussex Co.Discount Liq(P),3235 NJ-94,Sussex,Sussex,Sussex,Franklin,Off Premise,1,4125
+Jayson Romine,231315,Woody's Liq Shop (A),83 Hamburg Ave,Sussex,Sussex,Sussex,Wantage,Off Premise,1,3609
+Jayson Romine,231501,Highland General Store,111 Highland Lakes Rd,Sussex,Sussex,Sussex,Highland Lakes,Off Premise,1,3547
+Jayson Romine,230440,"Brix - Wine, Spirits, Beer (Fredon)",403 NJ-94,Sussex,Sussex,Sussex,Fredon Township,Off Premise,1,3450
+Jayson Romine,231701,George's Wine & Spirits,12 Morris Ave.,Sussex,Sussex,Sussex,Branchville,Off Premise,1,3440
+Jayson Romine,230920,Hamburg Liquor,90-92 NJ-23,Sussex,Sussex,Morris,Hamburg,Off Premise,1,3343
+Jayson Romine,230121,White Deer Inn,4 White Deer Plaza,Sussex,Sussex,Sussex,Sparta,Off Premise,1,3227
+Jayson Romine,408,Fredon Liquor (Fredon Deli),428 RT 94,Sussex,Sussex,Sussex,Fredon Township,Off Premise,1,2807
+Jayson Romine,231707,Kent's Liquors,333 Rte 206,Sussex,Sussex,Sussex,Branchville,Off Premise,1,1730
+Jayson Romine,230106,Burkes,6 Sparta Ave N,Sussex,Sussex,Sussex,Sparta,Off Premise,1,1588.17
+Jayson Romine,230913,Wine Grand (Franklin),288 Rt 23 North,Sussex,Sussex,Sussex,Franklin,Off Premise,1,1585.35
+Jayson Romine,230918,Market Place Liquor,99 NJ-23,Sussex,Sussex,Sussex,Hamburg,Off Premise,1,1446
+Jayson Romine,231502,Lake Wanda Store,812 Canistear Rd,Sussex,Sussex,Sussex,Highland Lakes,Off Premise,1,1032
+Jayson Romine,230438,Weiss Super Market 147 Franklin,140-146 Rt 23,Sales,Sales,Sussex,Franklin,Off Premise,1,11
+Jayson Romine,230437,Weis Supermarkets 143 Newton,121 Water St Rt 206,Sales,Sales,Sussex,Newton,Off Premise,1,11
+Mike Ast,12011,Bottle King (A) Wayne,1950 NJ-23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,33682
+Mike Ast,88005,Waldwick Wine/Spirits,23 Wyckoff Ave,Bergen,Bergen,Bergen,Waldwick,Off Premise,1,18219.05
+Mike Ast,81006,Fair Lawn Wine & Spirits,21-00 Maple Ave,Bergen,Bergen,Bergen,Fair Lawn,Off Premise,1,17173.82
+Mike Ast,19008,Hawthorne Liq (A),610 Lafayette Ave,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,14993.42
+Mike Ast,96002,Wine & Spirit World(W),303 Franklin Ave,Bergen,Bergen,Bergen,Wyckoff,Off Premise,1,13398
+Mike Ast,11003,Lincoln Park Fine Wines & Spirits,60 Beaverbrook Road,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,12929.5
+Mike Ast,94001,Long Hill Liquors (A),14 Post Rd,Bergen,Bergen,Bergen,Oakland,Off Premise,1,12753
+Mike Ast,17010,Frank's Fine Wine & Foods,431 Belmont Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,11976
+Mike Ast,17011,Nico's Wine & Spirits,408 Haledon Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,10507
+Mike Ast,18001,Grand Opening Liq (A)_2,1068 High Mountain Road,Passaic,Passaic,Passaic,North Haledon,Off Premise,1,7835
+Mike Ast,93003,Mahwah Liqrs (P),139 Franklin Tpk,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,7780.17
+Mike Ast,19027,Goffle Road Wine and More,1100 Goffle Rd,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,6484.83
+Mike Ast,94008,Oakland Wine (A),390 Ramapo Valley Rd,Bergen,Bergen,Bergen,Oakland,Off Premise,1,6324.5
+Mike Ast,19009,Diamond Liquor,203 Diamond Bridge Ave,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,5811
+Mike Ast,17012,Speedy Mart (P),311 Haledon Ave,Passaic,Passaic,Passaic,Haledon,Off Premise,1,5754
+Mike Ast,89005,Allendale Wine Shoppe,101 W Allendale Ave,Bergen,Bergen,Bergen,Allendale,Off Premise,1,5473
+Mike Ast,88004,Discount Liq (P)_2,28 Franklin Tpke,Bergen,Bergen,Bergen,Waldwick,Off Premise,1,4203
+Mike Ast,95004,Franklin Lake Liq,799 Franklin Ave,Bergen,Bergen,Bergen,Franklin Lakes,Off Premise,1,4198
+Mike Ast,93009,Scherer & Company,7 Miller Road,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,3957
+Mike Ast,84010,Ridgewood Super Cellar,32 South Broad,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,3823.5
+Mike Ast,93006,Mahwah Wine & Liquor (A),340 Ridge Rd Unit B,Bergen,Bergen,Bergen,Mahwah,Off Premise,1,3209
+Mike Ast,87001,Uncorked Wine & Spirits (Hohokus),611 N Maple Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,2155
+Mike Ast,84003,Stop & Shop (A)Ridgewood,175 Franklin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1896
+Mike Ast,84004,Quick Stop Liquor & Wine,83 Godwin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1879.67
+Mike Ast,83003,Beekman's Wines and Liquors,246 Rock Rd,Bergen,Bergen,Bergen,Glen Rock,Off Premise,1,1493
+Mike Ast,84002,GREEN WAY MARKETS,112 N. Maple Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,1351
+Mike Ast,87004,Garbo's Ital Deli&Liq(Z),7 Sheridan Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,1058.4
+Mike Ast,84008,The Wine Seller,6 W Ridgewood Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,483
+Mike Ast,201099,Whole Foods #10106 (Ridgewood),44 Godwin Ave,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,408
+Mike Ast,84001,Public Ridgewood,6 Van Neste Sq,Bergen,Bergen,Bergen,Ridgewood,Off Premise,1,376
+Mike Ast,87002,Wine & Spirits World (Hohokus),626 N Maple Ave,Bergen,Bergen,Bergen,Hohokus,Off Premise,1,274.33
+Matt Powierski,27031,Home Wine Liquor (Passaic),593 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,25345
+Matt Powierski,42004,Wine And People,260 Bergen Tpk,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,16341.38
+Matt Powierski,31033,Capri Deli&Liq (P),226 Paterson Ave,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,12657.4
+Matt Powierski,77009,M & M Wine & Spirits,429 Market St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,12149.17
+Matt Powierski,36007,Shop Rite Of Wallington,375 Paterson Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,10136.17
+Matt Powierski,77016,Metro Liquor (Elmwood Park),100 Broadway,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,9922
+Matt Powierski,37068,Whoopee Liq (A),194 Van Winkle Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,9753.33
+Matt Powierski,27063,Archies (P),229 Main Ave,Passaic,Passaic,Passaic,Passaic,Off Premise,1,7916
+Matt Powierski,31004,Metro Liquors (East Rutherford),576 Paterson Ave,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,7869.5
+Matt Powierski,31060,Bottle Republic (Rutherford),10 NJ-17,Bergen,Bergen,Bergen,Rutherford,Off Premise,1,6977
+Matt Powierski,26001,Luigi's Liquor (A),175 Jefferson St,Passaic,Passaic,Passaic,Passaic,Off Premise,1,5848
+Matt Powierski,77002,Birchwood Liq & Deli (Z),545 Boulevard,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,4966
+Matt Powierski,31008,Metro Wine And Liq(A),89 NJ-17,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,4801.67
+Matt Powierski,77022,All Star Wine & Liquor,21 Midland Ave,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,4539
+Matt Powierski,32017,Wine Grand (Carlstadt),675 Paterson Ave,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,4441
+Matt Powierski,42011,Buzzzrite Liquors,269 Route Rt 46 West,Sales,Sales,Bergen,Little Ferry,Off Premise,1,4263
+Matt Powierski,37029,River Drive Bar (P),85 River Dr,Bergen,Bergen,Bergen,Garfield,Off Premise,1,3946
+Matt Powierski,32016,Cobblestone Hill Deli,287 Broad St,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,3913
+Matt Powierski,33002,Moonachie Liquors,46 Moonachie Rd,Bergen,Bergen,Bergen,Moonachie,Off Premise,1,3903
+Matt Powierski,42012,Vinny's Disc Liq (P),315 Main St,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,3716
+Matt Powierski,77007,Wine Land,894 River Dr,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,3621
+Matt Powierski,36016,King Liquors,434 Main Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,3164.05
+Matt Powierski,37006,Garfield Discount Liquors,76 Jewell St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,3105
+Matt Powierski,36006,Wallington Liquor and Wine,168 Main Ave,Sales,Sales,Bergen,Wallington,Off Premise,1,2795
+Matt Powierski,37002,Garfield Bar & Liq (P),46 Wood St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,2763
+Matt Powierski,42002,L. F. Wine Country (P),299 Bergen Pike,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,2538
+Matt Powierski,77012,Payless Liquor & Dell,251 Elm St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,2487
+Matt Powierski,42010,Little Ferry Wines/Liquor,66 Marshall Ave,Bergen,Bergen,Bergen,Little Ferry,Off Premise,1,2226
+Matt Powierski,32014,Wine Liquor Shop,434 Hackensack St,Bergen,Bergen,Bergen,Carlstadt,Off Premise,1,2219
+Matt Powierski,36008,Vicki's Bar & Liquors,166 Maple Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,2178.39
+Matt Powierski,37044,Riverview Liquors & Bar,800 River Dr.,Sales,Sales,Bergen,Garfield,Off Premise,1,1780
+Matt Powierski,77004,Lidl Elmwood Park,58 Broadway,Sales,Sales,Bergen,Elmwood Park,Off Premise,1,1684
+Matt Powierski,37023,Worldwide Liquors,68 Van Winkle Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,1601
+Matt Powierski,37013,Joe's Liquors,114 Outwater Lane,Bergen,Bergen,Bergen,Garfield,Off Premise,1,1442
+Matt Powierski,37007,Jay's Liquormart,142 Division Ave,Bergen,Bergen,Bergen,Garfield,Off Premise,1,987
+Matt Powierski,77001,Food Mart Liquor,430 Market St,Bergen,Bergen,Bergen,Elmwood Park,Off Premise,1,963
+Matt Powierski,27032,Cork and Barrel,217 Brook Ave.,Sales,Sales,Passaic,Passaic,Off Premise,1,792
+Matt Powierski,37025,All Nations Liq,80 Passaic St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,657
+Matt Powierski,37027,Piast Meats & Prov.,1 Passaic St,Bergen,Bergen,Bergen,Garfield,Off Premise,1,634
+Matt Powierski,36038,Tatra Haus Restaurant,115 Main Ave,Bergen,Bergen,Bergen,Wallington,Off Premise,1,33
+Anthony Palmisano,1031,Highland Wine&Liquor Inc,1926 Union Valley Rd K,Passaic-FF,Passaic-FF,Passaic,Hewitt,Off Premise,1,16742.15
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),9 Marshall Hill Road,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,14616
+Anthony Palmisano,4009,Usa Wine Traders Club (Bloomingdale),29 Main St,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,14100
+Anthony Palmisano,3001,Best Cellars (Wanaque),1069 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,10150.17
+Anthony Palmisano,5001,River Place Food Store,1284 Rt. 23,Morris 3,Morris 3,Morris,Butler,Off Premise,1,9206.15
+Anthony Palmisano,1015,Greenwood Lake Disc.(P),2019 Greenwood Lake Tpk,Passaic-FF,Passaic-FF,Passaic,Hewitt,Off Premise,1,7888.33
+Anthony Palmisano,2003,Ringwood W&L,130 Skyline Drive,Passaic-FF,Passaic-FF,Passaic,Ringwood,Off Premise,1,7737
+Anthony Palmisano,8007,Krauszer's Liquor Wine and Spirits,714-716 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,7623
+Anthony Palmisano,4005,Turnpike Discount Liquors,139 Hamburg Turnpike,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,7475
+Anthony Palmisano,10003,Buy Rite W &L Pompton(P),500 NJ-23,Morris 3,Morris 3,Morris,Pompton Plains,Off Premise,1,6812
+Anthony Palmisano,8010,George's Market (A),766 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,6432
+Anthony Palmisano,8009,Appio's Liquors,211 Wanaque Ave,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,6207
+Anthony Palmisano,5006,Roserne Pkg Store South,1477 NJ-23,Morris 3,Morris 3,Morris,Butler,Off Premise,1,5836
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),207 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,5356
+Anthony Palmisano,8008,Shoppers Disc(A)Pompton,744 Hamburg Tpke,Passaic,Passaic,Passaic,Pompton Lakes,Off Premise,1,5321.5
+Anthony Palmisano,6002,Roserne Liquors North,1150 NJ-23,Morris 3,Morris 3,Morris,Kinnelon,Off Premise,1,5127
+Anthony Palmisano,9003,B & B Wine&Liq,613 Newark Pompton Tpke,Morris 3,Morris 3,Morris,Pompton Plains,Off Premise,1,4883
+Anthony Palmisano,2002,Ringwood Discount Liquors,38 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Ringwood,Off Premise,1,4868
+Anthony Palmisano,3006,Wine 2 Spirits (P),662 Ringwood Avenue,Passaic-FF,Passaic-FF,Passaic,Wanaque,Off Premise,1,4090
+Anthony Palmisano,8002,Country Convenience Store,430 Ringwood Ave,Passaic-FF,Passaic-FF,Passaic,Pompton Lakes,Off Premise,1,3677
+Anthony Palmisano,4002,Bloomingdale Discount Liq,82 Main St,Passaic,Passaic,Passaic,Bloomingdale,Off Premise,1,2792
+Anthony Palmisano,8005,Empire Wine & Liquor,119 Wanaque Ave,Passaic-FF,Passaic-FF,Passaic,Pompton Lakes,Off Premise,1,2713
+Anthony Palmisano,1029,Vault Liquors,1618 Union Valley Rd Fl 1,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,2638.75
+Anthony Palmisano,231805,Meloi Liquors,10 NJ-23,Sussex,Sussex,Sussex,Montague,Off Premise,1,2501
+Anthony Palmisano,1021,M & M Discount Liq,574 A Macopin Rd,Passaic,Passaic,Passaic,West Milford,Off Premise,1,1984
+Anthony Palmisano,1009,Hootch Hut (P),717 Otterhole Rd,Passaic-FF,Passaic-FF,Passaic,West Milford,Off Premise,1,1554
+Anthony Palmisano,7001,Home Wine and Liquors,92 RT 23,Morris 3,Morris 3,Morris,Riverdale,Off Premise,1,1344
+Michael Harboy,6004,Kinnelon Country Wine & Liquor,86 Boonton Ave,Morris 3,Morris 3,Morris,Kinnelon,Off Premise,1,13000.45
+Michael Harboy,11001,Lincoln Center Liq,261 Comly Road,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,11629.64
+Michael Harboy,12005,Shay's Liquors,1166 Hamburg Tnpk,Passaic,Passaic,Passaic,Wayne,Off Premise,1,10606.17
+Michael Harboy,12017,Shays Liquors,1489 NJ-23,Passaic,Passaic,Passaic,Wayne,Off Premise,1,8276
+Michael Harboy,11014,Wayne Liquor Locker,598 Valley Rd,Passaic,Passaic,Passaic,Wayne,Off Premise,1,5194
+Michael Harboy,11005,Wolfson Market,480 Boonton Turnpike,Morris 3,Morris 3,Morris,Lincoln Park,Off Premise,1,4179
+Alisa Acciardi,29010,Paradise Liquors,500 Stuyvesant Ave,Bergen,Bergen,Bergen,Lyndhurst,Off Premise,1,19043.58
+Alisa Acciardi,78002,Super K Food (A) Store,190 W Passaic St,Bergen,Bergen,Bergen,Rochelle Park,Off Premise,1,1307
+Brian Sengebush,191003,Chabons Ii Liq/Bar (A),138 Esponong Rd,Morris 1,Morris 1,Morris,Lake Hopatcong,Off Premise,1,6538
+Brian Sengebush,231717,Culver Liquor and Bar,364 Us-206,Sussex,Sussex,Sussex,Branchville,Off Premise,1,6200
+Brian Sengebush,230401,The Greek's,470 Us-206,Sussex,Sussex,Sussex,Newton,Off Premise,1,1554
+Brian Sengebush,190809,Picatinny Main Exch,Bldg 3324 Belt Road,Morris 1,Morris 1,Morris,Picatinny,Off Premise,1,680
+Brian Sengebush,230313,Swartswood,911 Swartswood Rd,Sussex,Sussex,Sussex,Newton,Off Premise,1,395
+Brian Sengebush,231609,Point 5 Lafayette,75 State Route 15,Sussex,Sussex,Sussex,Lafayette,Off Premise,1,20
+Nick Melissari,120147,Port Imperial HOQ LLC,1 American Dream Way,Passaic,Passaic,Bergen,East Rutherford,Off Premise,1,4076.93
+Nick Melissari,31046,H Mart Inc (Space A101-A),1 American Dream Way,Bergen,Bergen,Bergen,East Rutherford,Off Premise,1,786
+Default,12089,FRANKFORD FD / NJ STATE FAIR,34 PLAINS ROAD,Passaic,Passaic,Sussex,Augusta,Off Premise,1,1381
+Default,120002,PICNIC,150 Wagaraw Road,Passaic,Passaic,Passaic,Hawthorne,Off Premise,1,869
+Default,1001,Watershed Pub & Deli (P),62 Old Route 23,Passaic,Passaic,Passaic,Newfoundland,Off Premise,1,0
+Dylan Rubino,28006,J B Liquors_2,46 Ridge Road,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,1373
+Jaime Colonna,28001,One Stop Wine (A) & Liq,592 Ridge Road,Bergen,Bergen,Bergen,North Arlington,Off Premise,1,1369
+John O'Donoghue,60003,Charlie's Liquor and Convenience,68 E Madison Ave,Bergen,Bergen,Bergen,Dumont,Off Premise,1,739
+John O'Donoghue,63001,X Plor Wine,27 Park Street,Bergen,Bergen,Bergen,Demarest,Off Premise,1,195
+John O'Donoghue,61001,Haworth Fine Wine/Spirits,155 Terrace St,Bergen,Bergen,Bergen,Haworth,Off Premise,1,192
+Robin Feldman,52023,Jerry's Outlet,410 S Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,333
+Robin Feldman,77008,Pizza Town USA,95-111 RT 46 W,Sales,Sales,Bergen,Elmwood Park,Off Premise,1,69
+Paul Mclaughlin,52043,Balthazar Bakery (A),214 South Dean St,Bergen,Bergen,Bergen,Englewood,Off Premise,1,96
+Paul Mclaughlin,67011,Mykos,416 Tappan Rd,Bergen,Bergen,Bergen,Northvale,Off Premise,1,66
+Office Tell Sell,15002,Cost Plus,1730 Rt 46,Passaic,Passaic,Passaic,Woodland Park,Off Premise,1,63
