@@ -99,8 +99,12 @@
   .leader-row:last-child{border-bottom:none;}
   .leader-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-dim);width:24px;}
   .leader-rank.top3{color:var(--amber);}
-  .leader-name{flex:1;padding:0 8px;}
+  .leader-name{flex:1;padding:0 8px;font-weight:600;color:var(--text);}
   .leader-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:12px;}
+  .leader-list{padding:4px 10px 8px;}
+  .leader-row-link{width:100%;background:none;border:none;font:inherit;cursor:pointer;border-radius:8px;}
+  .leader-row-link:hover{background:var(--card-alt);}
+  .leader-chev{color:var(--accent);font-size:17px;font-weight:700;margin-left:4px;}
 
   .prog-grid{display:flex;flex-direction:column;gap:20px;}
   .prog-section{display:flex;flex-direction:column;gap:20px;}
@@ -111,9 +115,24 @@
 
   .empty-state{color:var(--text-dim);font-size:14px;padding:30px 10px;text-align:center;}
 
-  .tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;align-items:start;}
-  .prog-tile .prog-head{padding:16px 18px 14px;}
-  .prog-tile .prog-body{padding:12px 18px 16px;gap:6px;}
+  .tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;align-items:stretch;}
+  .prog-tile .prog-head{padding:18px 20px 14px;}
+  .prog-tile .prog-body{padding:12px 20px 18px;gap:6px;}
+  .prog-tile-link{display:flex;flex-direction:column;width:100%;text-align:left;font:inherit;color:inherit;
+    padding:0;margin:0;cursor:pointer;appearance:none;-webkit-appearance:none;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;}
+  .prog-tile-link:hover{border-color:var(--accent);transform:translateY(-3px);background:var(--card-alt);
+    box-shadow:0 2px 6px rgba(0,0,0,.4),0 22px 50px rgba(0,0,0,.5);}
+  .prog-tile-link:active{transform:translateY(-1px);}
+  .prog-tile-link .prog-desc{margin-top:4px;}
+  .prog-tile-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin-top:auto;padding-top:10px;border-top:1px solid var(--line-soft);}
+  .tile-cta-text{font-size:12px;color:var(--text-dim);}
+  .tile-cta-text b{color:var(--text);}
+  .tile-chev{color:var(--accent);font-size:20px;font-weight:700;flex-shrink:0;}
+
+  .prog-detail-hero{padding:2px 2px 4px;}
+  .prog-name-lg{font-size:24px;}
 
   .pill-nav-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
   .pill-nav{display:flex;flex-wrap:wrap;gap:7px;}
@@ -12066,48 +12085,63 @@ const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty C
 
 const PROGRAM_LIST = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
+   desc:`$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
+   desc:`$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 3 barrels · $1 per case sold · 3 new placements minimum to earn anything`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
+   desc:`$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything`,
    getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
    metric:d=>d.caseVolume24oz, metricLabel:'24oz cases', fmt:v=>v.toFixed(0)},
   {key:'path_to_victory', group:'new', title:'The Path to Victory', shortTitle:'Path to Victory', tag:'August',
+   desc:`Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.`,
    getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
    metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
   {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'August',
+   desc:`Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
+   desc:`Draft (Angry Orchard / Dogfish Head): $100 new POD, $50 rebuy · Package: $10 per new single-serve placement · trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.`,
    getRep:rep=>(PROGRAM_DATA['boston_beer']||{}).byRep?.[rep],
    metric:d=>d.points, metricLabel:'trip bonus points', fmt:v=>v.toFixed(0)},
   {key:'new_belgium', group:'new', title:'New Belgium Draft (Summer Draft Focus)', shortTitle:'New Belgium Draft', tag:'August',
+   desc:`Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger & Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May–Aug), featured tier only.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium']||{}).byRep?.[rep],
    metric:d=>d.featuredNewCount+d.featuredRebuyCount, metricLabel:'featured PODs', fmt:v=>v.toFixed(0)},
   {key:'lytt', group:'new', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
+   desc:`Account penetration tiers: 25% "Gettin' Lytt" = $0.50/case, 50% "Lytty City" = $1.00/case, 75% "Lytt-Faced" = $2.00/case, rate locks in through Dec 31 once hit. Highest penetration after Aug 1 wins 2 tickets to a Giants or Jets game.`,
    getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
    metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
   {key:'fall_seasonal', group:'new', title:'Fall Seasonal Fast Start', shortTitle:'Fall Seasonal', tag:'August',
+   desc:`$0.50 per case-equivalent on all qualifying packages · $5.00 per sixtel · $10.00 per half-keg. Two separate SKU tiers per the deck: "Package Only" and "Draft & Package" (tracked independently, not combined).`,
    getRep:rep=>{ const po=(PROGRAM_DATA['fall_seasonal']||{}).package_only?.byRep?.[rep]; const pd=(PROGRAM_DATA['fall_seasonal']||{}).packages_and_draft?.byRep?.[rep]; return (po||pd) ? {po,pd} : null; },
    metric:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), metricLabel:'package CE', fmt:v=>v.toFixed(1)},
   {key:'sun_cruiser', group:'ongoing', title:'Sun Cruiser Volume', shortTitle:'Sun Cruiser', tag:'May–Aug',
+   desc:`Earn payout for cases sold over last year's May–Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve).`,
    getRep:rep=>(PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep],
    metric:d=>d.rate1CaseGrowth+d.rate3CaseGrowth, metricLabel:'case growth', fmt:v=>v.toFixed(0)},
   {key:'yave', group:'ongoing', title:'Yave Tequila Launch', shortTitle:'Yave', tag:'Jul–Aug',
+   desc:`On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25. Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50, 5 PODs = $125. No base period in this file, so accounts shown reflect qualifying activity this period, not confirmed new placements.`,
    getRep:rep=>(PROGRAM_DATA['yave']||{}).byRep?.[rep],
    metric:d=>d.onPremAccountCount+d.offPremAccountCount, metricLabel:'qualifying accounts', fmt:v=>v.toFixed(0)},
   {key:'mollys', group:'ongoing', title:"Molly's 1.75L", shortTitle:"Molly's", tag:'Jul–Aug',
+   desc:`90-day-unsold qualifier · $50 per new POD · $10 per case on rebuys during the period.`,
    getRep:rep=>(PROGRAM_DATA['mollys']||{}).byRep?.[rep],
    metric:d=>d.newPodCount+d.rebuyCount, metricLabel:'PODs + rebuys', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_summer_sequel', group:'ongoing', title:'Garage Beer Summer Sequel', shortTitle:'GB Summer Sequel', tag:'Jun–Aug',
+   desc:`Volume push, individual per-rep goals: Tiered = $1.00/CE over 2025, Bonus = $1.50/CE, Super Bonus = $2.00/CE. Draft bonus and iSellBeer feature aren't tracked here — no account-level data in this file.`,
    getRep:rep=>{ const d=(PROGRAM_DATA['garage_beer_summer_sequel']||{}).byRep?.[rep]; return (d && d.tieredGoal!=null) ? d : null; },
    metric:d=>d.caseEquiv, metricLabel:'CE', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_president', group:'ongoing', title:"Garage Beer President's Incentive", shortTitle:"GB President's", tag:'Jun–Sep',
+   desc:`$1.00 per CE over last year, once the company sells 9,305 CEs of Garage Beer for the period.`,
    getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
    metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'new_belgium_distribution', group:'ongoing', title:'New Belgium Distribution — Push Volume', shortTitle:'NB Distribution', tag:'Jul–Aug',
+   desc:`Push Volume phase only (Achieve and Retain aren't tracked here yet). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
 ];
@@ -12126,6 +12160,7 @@ function rankProgram(entry){
 }
 
 let activeRep = null;
+let activeProgram = null;
 let uid = 0;
 
 function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -12518,38 +12553,29 @@ function renderRep(){
   document.getElementById('backbtn').addEventListener('click', ()=>{ activeRep=null; renderMain(); });
 }
 
-function renderTile(entry){
+function renderProgramTile(entry){
   const rows = rankProgram(entry);
-  const top = rows.slice(0,5);
-  const topHtml = top.length
-    ? top.map(r=>`<div class="leader-row"><span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span><span class="leader-name">${esc(r.rep)}</span><span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span></div>`).join('')
-    : '<div class="no-lines">No activity yet.</div>';
-  let moreToggle = '';
-  if(rows.length > top.length){
-    const did = 'tile'+(uid++);
-    const fullRows = rows.map(r=>`<tr><td class="num">#${r.rank}</td><td>${esc(r.rep)}</td><td class="num">${entry.fmt(r.val)}</td></tr>`).join('');
-    moreToggle = `<div class="detail-block">
-      <div class="detail-toggle" data-target="${did}"><span class="detail-chev">▶</span>view all ${rows.length} reps</div>
-      <div class="detail-table" id="${did}"><table><thead><tr><th>Rank</th><th>Rep</th><th>${esc(entry.metricLabel)}</th></tr></thead><tbody>${fullRows}</tbody></table></div>
-    </div>`;
-  }
-  return `<div class="prog-card prog-tile">
+  const cta = rows.length
+    ? `${rows.length} rep${rows.length===1?'':'s'} tracked · leader: <b>${esc(rows[0].rep)}</b> (${entry.fmt(rows[0].val)} ${esc(entry.metricLabel)})`
+    : 'No activity yet';
+  return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      <div class="prog-desc">${entry.desc}</div>
     </div>
-    <div class="prog-body">
-      ${topHtml}
-      ${moreToggle}
+    <div class="prog-body prog-tile-cta">
+      <span class="tile-cta-text">${cta}</span>
+      <span class="tile-chev">&rsaquo;</span>
     </div>
-  </div>`;
+  </button>`;
 }
 
 function renderOverview(){
   const main = document.getElementById('main');
-  const newTiles = PROGRAM_LIST.filter(e=>e.group==='new').map(renderTile).join('');
-  const ongoingTiles = PROGRAM_LIST.filter(e=>e.group==='ongoing').map(renderTile).join('');
+  const newTiles = PROGRAM_LIST.filter(e=>e.group==='new').map(renderProgramTile).join('');
+  const ongoingTiles = PROGRAM_LIST.filter(e=>e.group==='ongoing').map(renderProgramTile).join('');
   main.innerHTML = `
-    <div class="empty-state" style="text-align:left;padding:0 0 4px;">Pick a rep above for their full breakdown — or see where everyone stands on each program below.</div>
+    <div class="empty-state" style="text-align:left;padding:0 0 4px;">Pick a rep above for their full breakdown — or tap a program below to see where everyone stands.</div>
     <div class="prog-grid">
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
@@ -12561,10 +12587,63 @@ function renderOverview(){
       </div>
     </div>
   `;
+  main.querySelectorAll('.prog-tile-link').forEach(b=>b.addEventListener('click', ()=>{
+    activeProgram = b.dataset.program;
+    renderMain();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+}
+
+function renderProgramDetail(key){
+  const entry = PROGRAM_LIST.find(e=>e.key===key);
+  const main = document.getElementById('main');
+  if(!entry){ activeProgram=null; renderOverview(); return; }
+  const rows = rankProgram(entry);
+  const listHtml = rows.length
+    ? rows.map(r=>`<button class="leader-row leader-row-link" data-rep="${esc(r.rep)}">
+        <span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span>
+        <span class="leader-name">${esc(r.rep)}</span>
+        <span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span>
+        <span class="leader-chev">&rsaquo;</span>
+      </button>`).join('')
+    : '<div class="empty-state">No activity yet for this program.</div>';
+  main.innerHTML = `
+    <button class="backbtn" id="backbtn">&lsaquo; All programs</button>
+    <div class="prog-detail-hero">
+      <div class="prog-name-row"><span class="prog-name prog-name-lg">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      <div class="prog-desc">${entry.desc}</div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-head">
+        <div class="prog-name-row"><span class="prog-name">Rep Rankings</span></div>
+        <div class="prog-desc">${rows.length} rep${rows.length===1?'':'s'} with activity, ranked by ${esc(entry.metricLabel)} · tap a rep for their full breakdown</div>
+      </div>
+      <div class="prog-body leader-list">${listHtml}</div>
+    </div>
+  `;
+  document.getElementById('backbtn').addEventListener('click', ()=>{
+    activeProgram = null;
+    renderMain();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  main.querySelectorAll('.leader-row-link').forEach(b=>b.addEventListener('click', ()=>{
+    const rep = b.dataset.rep;
+    activeProgram = null;
+    activeRep = rep;
+    const bar = document.getElementById('repbar');
+    bar.querySelectorAll('.repchip').forEach(x=>x.classList.toggle('active', x.dataset.rep===rep));
+    renderMain();
+    requestAnimationFrame(()=>{
+      const el = document.getElementById('card-'+key);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }));
 }
 
 function renderMain(){
-  if(activeRep) renderRep(); else renderOverview();
+  if(activeRep) renderRep();
+  else if(activeProgram) renderProgramDetail(activeProgram);
+  else renderOverview();
 }
 
 function boot(){
