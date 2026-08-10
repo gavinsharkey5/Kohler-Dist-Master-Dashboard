@@ -103,6 +103,17 @@
   details.caveats ul{margin:10px 0 0;padding-left:20px;color:var(--ink-soft);font-size:13px}
   details.caveats li{margin:0 0 8px}
 
+  details.explain{margin:0 0 16px}
+  details.explain summary{cursor:pointer;font-weight:700;color:var(--accent);font-size:13px;font-family:"Space Grotesk"}
+  details.explain summary:hover{text-decoration:underline}
+  details.explain .exp-body{margin:10px 0 0;padding:12px 16px;background:rgba(91,141,239,.08);
+    border:1px solid rgba(91,141,239,.25);border-radius:10px;color:var(--ink-soft);font-size:13px;line-height:1.65}
+  details.explain .exp-body p{margin:0 0 8px}
+  details.explain .exp-body p:last-child{margin-bottom:0}
+  details.explain .exp-body b{color:var(--ink)}
+  details.explain .exp-body ul{margin:6px 0;padding-left:18px}
+  details.explain .exp-body li{margin:0 0 6px}
+
   footer{color:var(--ink-mute);font-size:12px;text-align:center;padding:30px 0 10px}
 </style>
 </head>
@@ -139,30 +150,71 @@
   <section class="panel">
     <h2>Overall</h2>
     <p class="desc" id="overallDesc"></p>
+    <details class="explain">
+      <summary>What am I looking at? (plain-English explainer)</summary>
+      <div class="exp-body">
+        <p>Picture every reset store lined up together, like one giant store. This box is that giant store's report card.</p>
+        <p><b>Accounts Evaluated</b> &mdash; how many real stores got counted to build this report card.</p>
+        <p><b>Blended 3-Mo Cases Lift</b> &mdash; add up every case of product all those stores sold in the 3 months right after their reset happened. Then add up what those exact same stores sold in that same 3-month stretch, but one year earlier (before any reset). Compare the two totals: did the "after" number end up bigger or smaller, and by what percent? A green plus means the after-total won; a red minus means the before-total won.</p>
+        <p><b>Blended YTD Cases Lift</b> &mdash; the identical idea, just zoomed out to cover the whole year-to-date instead of only 3 months.</p>
+        <p><b>Up / Down</b> &mdash; instead of blending every store into one big number, this counts stores one at a time: how many individually sold more cases after their own reset ("up"), and how many sold fewer ("down")? A few stores don't get counted here because they sold nothing (or had more returns than sales) in the comparison window last year, so there's no real "before" number to compare against.</p>
+      </div>
+    </details>
     <div class="kpis" id="overallKpis"></div>
   </section>
 
   <section class="panel">
     <h2>First-Time vs. Repeat Resets</h2>
     <p class="desc" id="resetTypeDesc"></p>
+    <details class="explain">
+      <summary>What am I looking at? (plain-English explainer)</summary>
+      <div class="exp-body">
+        <p>Not every store here is new to this. <b>First-Time</b> means this was that store's very first-ever reset. <b>Repeat</b> means it already got reset in an earlier year and is going through it again.</p>
+        <p>This box runs the exact same "3-month lift" math from the Overall section above &mdash; but calculates it separately for each group instead of mixing them together. That matters because a brand-new reset and a repeat reset can behave very differently: blending them into one number can hide the fact that new resets are working great while repeats aren't moving the needle (or are sliding backward).</p>
+      </div>
+    </details>
     <div class="split" id="resetTypeSplit"></div>
   </section>
 
   <section class="panel">
     <h2>By Reset Month</h2>
     <p class="desc" id="monthDesc"></p>
+    <details class="explain">
+      <summary>What am I looking at? (plain-English explainer)</summary>
+      <div class="exp-body">
+        <p>Same "3-month lift" math again, but this time stores are grouped by the calendar month their reset happened in (all the March resets together, all the April resets together, and so on). Each bar shows that month-group's own blended lift, so you can spot whether resets done earlier or later in the year tend to work better.</p>
+      </div>
+    </details>
     <div id="monthRows"></div>
   </section>
 
   <section class="panel">
     <h2>By Segment</h2>
     <p class="desc">Segmentation (A/B/C) comes from the reset roster as-is; its exact definition hasn't been confirmed (assumed to be a volume tier) &mdash; shown here as a grouping, not an endorsed metric.</p>
+    <details class="explain">
+      <summary>What am I looking at? (plain-English explainer)</summary>
+      <div class="exp-body">
+        <p>Same idea as "By Reset Month," but grouped by each store's Segment letter (A, B, or C) instead of by month. It's basically a size/tier label Kohler assigns to stores &mdash; think of it like grouping students by grade level before comparing test scores. We're not 100% sure what A/B/C officially stands for, so treat this as "here's how the lift looks broken out by that label," not a confirmed ranking.</p>
+      </div>
+    </details>
     <div id="segRows"></div>
   </section>
 
   <section class="panel">
     <h2>Every Evaluated Account</h2>
     <p class="desc">Click a column header to sort.</p>
+    <details class="explain">
+      <summary>What am I looking at? (plain-English explainer)</summary>
+      <div class="exp-body">
+        <p>This is the full list &mdash; one row per store &mdash; that everything above gets built from.</p>
+        <ul>
+          <li><b>Pre Cases (3mo)</b> &mdash; how many cases that store sold in the 3-month window one year before its reset.</li>
+          <li><b>Post Cases (3mo)</b> &mdash; how many cases that same store sold in the 3-month window right after its reset.</li>
+          <li><b>3-Mo Lift %</b> &mdash; how much bigger (or smaller) "Post" is than "Pre," as a percent. This is that one store's own version of the "lift" number from the top of the page.</li>
+          <li><b>YTD Lift %</b> &mdash; the same before/after comparison, just stretched to cover the whole year-to-date instead of 3 months.</li>
+        </ul>
+      </div>
+    </details>
     <div class="controls">
       <input type="search" id="search" placeholder="Search account or city&hellip;">
       <select id="typeFilter">
