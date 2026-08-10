@@ -305,19 +305,47 @@ one stays Cases-based) since it's showing this year's mix, not
 movement.
 
 Suppliers Overview widget no longer scrolls (fixed 2026-08-10, per
-Gavin): its .tw-body now carries a "fit" modifier class
-(.tw-body.fit{max-height:none;overflow-y:visible}) instead of the
-generic 225px cap/scroll every other trend-widget panel uses --
-Suppliers Overview's content is fixed-size (2 short sections, unlike
-Segment/Package Trend's variable-length top-10 lists), so it should
-just always fit rather than fight over a magic max-height number. Also
-added overflow-x:hidden to the base .tw-body rule itself, since a
-child element's own overflow-y:auto creates ITS OWN independent
-horizontal scroll box regardless of the parent .trend-widget's own
-overflow-x:hidden (that's why the widget briefly had a visible
-horizontal scrollbar even after .trend-widget got that property in an
-earlier pass -- the fix needed to be on .tw-body specifically, not
-just its parent).
+Gavin, two passes -- see both below): its .tw-body carries a "fit"
+modifier class (.tw-body.fit{max-height:none;overflow:visible})
+instead of the generic 225px cap/scroll every other trend-widget panel
+uses -- Suppliers Overview's content is fixed-size (2 short sections,
+unlike Segment/Package Trend's variable-length top-10 lists), so it
+should just always fit rather than fight over a magic max-height
+number.
+
+First pass added overflow-x:hidden to .trend-widget itself and to the
+base .tw-body rule, and set .tw-body.fit's overflow-y (only) to
+visible. Verified clean in this session's own headless-browser testing
+at the time -- but Gavin's own browser still showed a scrollbar, and
+re-testing found why: CSS's overflow-x/overflow-y are a linked pair --
+per spec, if ONE axis is "hidden"/"scroll"/"auto" and the OTHER is
+still "visible", the visible one gets silently recomputed to "auto"
+(never actually visible) UNLESS both axes agree. .trend-widget's own
+overflow-x:hidden was therefore forcing ITS OWN overflow-y to compute
+as auto (not the "visible" the CSS block seemed to promise), and
+.tw-body.fit's inherited overflow-x:hidden (from the base .tw-body
+rule) was doing the same to its explicit overflow-y:visible --
+turning it into overflow-y:auto too, right back into a scrollbar the
+instant content was a pixel taller than the box in Gavin's actual
+render (this session's own test render happened to land exactly at
+the boundary, scrollHeight===clientHeight, so it looked fixed here
+even though the underlying computed style was already wrong -- lesson
+for next time: check computed overflow-y via getComputedStyle, not
+just scrollHeight vs. clientHeight, since "auto with no visible
+overflow yet" and "true visible" render identically until content
+grows by one pixel).
+
+Second-pass fix: removed overflow-x:hidden from .trend-widget
+entirely (not needed there -- .tw-body's own rule already handles
+Segment/Package Trend's horizontal clipping, and .fit's inner rows are
+already ellipsis-truncated so they can't overflow it either), and
+changed .tw-body.fit to set BOTH axes to visible explicitly
+(overflow:visible, not just overflow-y) so neither axis is "hidden"
+and the auto-recompute rule never triggers. Confirmed via
+getComputedStyle in this session that suppliersWidget and its .tw-body
+both now report overflow-x/overflow-y as literally "visible" (not
+"auto"), while packageWidget's .tw-body still correctly reports
+"hidden"/"auto" with its 225px cap intact.
 
 Top Headlines expanded to 7 lines (2026-08-10, per Gavin's "I want
 more headlines" ask) -- 2 new sentences plus more names in the

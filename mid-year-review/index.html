@@ -65,7 +65,7 @@
      before the tabs/tables start. */
   .trend-widget{flex:1 1 300px;max-width:380px;min-width:260px;background:var(--card);border:1px solid var(--line);
     border-top:2px solid var(--kohler);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;overflow-x:hidden}
+    display:flex;flex-direction:column}
   .trend-widget:empty{display:none;padding:0;border:none;box-shadow:none}
   .tw-title{font-family:"Space Grotesk";font-size:14px;font-weight:700;margin:0;color:var(--ink)}
   .tw-sub{font-size:11px;color:var(--ink-soft);margin:0 0 10px}
@@ -76,8 +76,15 @@
   /* Suppliers Overview's content is fixed-size (2 short sections, unlike
      Segment/Package Trend's variable-length lists), so it should just fit
      without ever needing to scroll -- drop the height cap entirely for it
-     rather than fight over a magic max-height number. */
-  .tw-body.fit{max-height:none;overflow-y:visible}
+     rather than fight over a magic max-height number. Sets BOTH axes to
+     visible (not just overflow-y), and .trend-widget itself no longer sets
+     overflow-x at all -- per the CSS overflow-x/y interop rule, "hidden"
+     on one axis silently forces the OTHER axis to compute as "auto" (never
+     "visible") even when written explicitly, which is what was still
+     showing a scrollbar here after the first fix: overflow-x:hidden
+     (inherited from .tw-body) was turning this rule's own
+     overflow-y:visible into overflow-y:auto under the hood. */
+  .tw-body.fit{max-height:none;overflow:visible}
   .tw-section{margin:0 0 12px}
   .tw-section:last-child{margin-bottom:0}
   .tw-section-lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:6px;
