@@ -10,9 +10,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4007,
+    "CUSTOMER_NAME": "Karls Stumble Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-07",
     "PERIOD": "current",
@@ -20,9 +20,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4007,
-    "CUSTOMER_NAME": "Karls Stumble Inn",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-07",
     "PERIOD": "current",
@@ -80,129 +80,19 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83011,
-    "CUSTOMER_NAME": "Stone & Rail",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80009,
-    "CUSTOMER_NAME": "Houlihans (Para)(A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191207,
-    "CUSTOMER_NAME": "Daily Planet (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28008,
-    "CUSTOMER_NAME": "Tavern On Ridge",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 10001,
-    "CUSTOMER_NAME": "cherry's",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1024,
-    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-08-03",
-    "PERIOD": "current",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190601,
     "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -221,8 +111,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -250,9 +150,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1024,
+    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -261,8 +161,58 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 83011,
+    "CUSTOMER_NAME": "Stone & Rail",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80009,
+    "CUSTOMER_NAME": "Houlihans (Para)(A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 191207,
+    "CUSTOMER_NAME": "Daily Planet (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -290,9 +240,29 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 10001,
+    "CUSTOMER_NAME": "cherry's",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -310,9 +280,39 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28008,
+    "CUSTOMER_NAME": "Tavern On Ridge",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 34002,
     "CUSTOMER_NAME": "Heights Bar (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-08-03",
+    "PERIOD": "current",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-08-03",
     "PERIOD": "current",
@@ -330,16 +330,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 34002,
-    "CUSTOMER_NAME": "Heights Bar (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-29",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 190601,
     "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
@@ -351,10 +341,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "CUSTOMER_NUM": 34002,
+    "CUSTOMER_NAME": "Heights Bar (P)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-28",
+    "DATE": "2026-07-29",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -370,11 +360,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17001,
-    "CUSTOMER_NAME": "Underdog Lounge(P)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-24",
+    "DATE": "2026-07-28",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -383,6 +373,16 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 73002,
     "CUSTOMER_NAME": "The Cornerstone (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-24",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17001,
+    "CUSTOMER_NAME": "Underdog Lounge(P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-24",
     "PERIOD": "base",
@@ -400,9 +400,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28031,
+    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-22",
     "PERIOD": "base",
@@ -420,21 +420,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28031,
-    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-22",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41023,
-    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-21",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -450,11 +440,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-17",
+    "DATE": "2026-07-21",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -481,8 +471,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-17",
     "PERIOD": "base",
@@ -490,11 +480,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-16",
+    "DATE": "2026-07-17",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -511,10 +501,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17003,
-    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-15",
+    "DATE": "2026-07-16",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -533,6 +523,16 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 24019,
     "CUSTOMER_NAME": "Sharky's Wings(P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-15",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17003,
+    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-15",
     "PERIOD": "base",
@@ -570,16 +570,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 81005,
-    "CUSTOMER_NAME": "The Craftsman",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-09",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 38020,
     "CUSTOMER_NAME": "Lodi Lanes (A)",
@@ -590,11 +580,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28008,
-    "CUSTOMER_NAME": "Tavern On Ridge",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 81005,
+    "CUSTOMER_NAME": "The Craftsman",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-08",
+    "DATE": "2026-07-09",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -603,16 +593,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 83011,
     "CUSTOMER_NAME": "Stone & Rail",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-08",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39017,
-    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-08",
     "PERIOD": "base",
@@ -630,6 +610,26 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 39017,
+    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-08",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28008,
+    "CUSTOMER_NAME": "Tavern On Ridge",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-08",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12057,
     "CUSTOMER_NAME": "YARD HOUSE 8384",
@@ -637,26 +637,6 @@
     "DATE": "2026-07-07",
     "PERIOD": "base",
     "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-07",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-07",
-    "PERIOD": "base",
-    "UNITS": 2,
     "NEW_PLACEMENT": 0
   },
   {
@@ -680,6 +660,26 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-07",
+    "PERIOD": "base",
+    "UNITS": 2,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-07",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 191207,
     "CUSTOMER_NAME": "Daily Planet (A)",
@@ -691,18 +691,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -720,29 +710,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4007,
-    "CUSTOMER_NAME": "Karls Stumble Inn",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31026,
-    "CUSTOMER_NAME": "Rockafella's",
+    "CUSTOMER_NUM": 28031,
+    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -750,39 +720,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 34002,
-    "CUSTOMER_NAME": "Heights Bar (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41023,
-    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 12023,
+    "CUSTOMER_NAME": "The Village Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -800,9 +740,19 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13002,
-    "CUSTOMER_NAME": "The Little Falls Tavern",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -821,18 +771,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12065,
-    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
-    "UNITS": 0,
+    "UNITS": 1,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -841,18 +791,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28031,
-    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
+    "CUSTOMER_NUM": 13002,
+    "CUSTOMER_NAME": "The Little Falls Tavern",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -861,28 +801,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 72002,
-    "CUSTOMER_NAME": "Bareburger (Woodcliff Lake)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12023,
-    "CUSTOMER_NAME": "The Village Inn",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39017,
-    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -891,12 +811,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "CUSTOMER_NUM": 12065,
+    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
-    "UNITS": 1,
+    "UNITS": 0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -920,6 +840,46 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1024,
+    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 72002,
+    "CUSTOMER_NAME": "Bareburger (Woodcliff Lake)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 34002,
+    "CUSTOMER_NAME": "Heights Bar (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 80018,
     "CUSTOMER_NAME": "Millers Paramus Ale House",
@@ -930,9 +890,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4007,
+    "CUSTOMER_NAME": "Karls Stumble Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -940,19 +900,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-07-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1024,
-    "CUSTOMER_NAME": "Buffalo Wild Wings (Rockaway)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31026,
+    "CUSTOMER_NAME": "Rockafella's",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-07-01",
     "PERIOD": "base",
@@ -971,8 +921,58 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 39017,
+    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-07-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-30",
     "PERIOD": "base",
@@ -990,9 +990,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-30",
     "PERIOD": "base",
@@ -1015,16 +1015,6 @@
     "CUSTOMER_NAME": "House of Que (East Rutherford)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-29",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 8014,
-    "CUSTOMER_NAME": "Macks American Bar/Grill",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-25",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1071,10 +1061,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "CUSTOMER_NUM": 8014,
+    "CUSTOMER_NAME": "Macks American Bar/Grill",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-24",
+    "DATE": "2026-06-25",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1090,11 +1080,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-23",
+    "DATE": "2026-06-24",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1120,6 +1110,16 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-23",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 31039,
     "CUSTOMER_NAME": "Yard House 8390",
@@ -1150,16 +1150,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80054,
-    "CUSTOMER_NAME": "Chili's Paramus",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-18",
-    "PERIOD": "base",
-    "UNITS": -1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 14002,
     "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
@@ -1181,8 +1171,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "CUSTOMER_NUM": 80054,
+    "CUSTOMER_NAME": "Chili's Paramus",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-18",
+    "PERIOD": "base",
+    "UNITS": -1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 29052,
+    "CUSTOMER_NAME": "Polish American Club",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-17",
     "PERIOD": "base",
@@ -1190,9 +1190,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29052,
-    "CUSTOMER_NAME": "Polish American Club",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-17",
     "PERIOD": "base",
@@ -1210,9 +1210,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190601,
-    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-16",
     "PERIOD": "base",
@@ -1220,9 +1220,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190601,
+    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-16",
     "PERIOD": "base",
@@ -1260,9 +1260,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31026,
+    "CUSTOMER_NAME": "Rockafella's",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-15",
     "PERIOD": "base",
@@ -1270,9 +1270,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31026,
-    "CUSTOMER_NAME": "Rockafella's",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-15",
     "PERIOD": "base",
@@ -1290,16 +1290,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-12",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 13002,
     "CUSTOMER_NAME": "The Little Falls Tavern",
@@ -1310,11 +1300,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13016,
-    "CUSTOMER_NAME": "THE TIES",
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-10",
+    "DATE": "2026-06-12",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1331,10 +1321,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "CUSTOMER_NUM": 13016,
+    "CUSTOMER_NAME": "THE TIES",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-09",
+    "DATE": "2026-06-10",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1350,11 +1340,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 34002,
-    "CUSTOMER_NAME": "Heights Bar (P)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-08",
+    "DATE": "2026-06-09",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1367,6 +1357,16 @@
     "DATE": "2026-06-08",
     "PERIOD": "base",
     "UNITS": 2,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 34002,
+    "CUSTOMER_NAME": "Heights Bar (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-08",
+    "PERIOD": "base",
+    "UNITS": 1,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1391,8 +1391,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 8004,
-    "CUSTOMER_NAME": "The Side Door (P)",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-04",
     "PERIOD": "base",
@@ -1410,6 +1410,16 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 8004,
+    "CUSTOMER_NAME": "The Side Door (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-04",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 191207,
     "CUSTOMER_NAME": "Daily Planet (A)",
@@ -1420,29 +1430,19 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-04",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-02",
     "PERIOD": "base",
-    "UNITS": 1,
+    "UNITS": 2,
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-02",
     "PERIOD": "base",
@@ -1470,13 +1470,23 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-02",
     "PERIOD": "base",
-    "UNITS": 2,
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-02",
+    "PERIOD": "base",
+    "UNITS": 1,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1491,18 +1501,38 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-02",
+    "DATE": "2026-06-01",
     "PERIOD": "base",
-    "UNITS": 1,
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
     "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 80018,
     "CUSTOMER_NAME": "Millers Paramus Ale House",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1520,39 +1550,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24019,
-    "CUSTOMER_NAME": "Sharky's Wings(P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28008,
-    "CUSTOMER_NAME": "Tavern On Ridge",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 34002,
-    "CUSTOMER_NAME": "Heights Bar (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190601,
-    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4007,
+    "CUSTOMER_NAME": "Karls Stumble Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1571,8 +1571,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17001,
-    "CUSTOMER_NAME": "Underdog Lounge(P)",
+    "CUSTOMER_NUM": 12036,
+    "CUSTOMER_NAME": "Brokedown Palace",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1580,9 +1580,19 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 73002,
-    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 2004,
+    "CUSTOMER_NAME": "Sam's Bar and Grill",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 10001,
+    "CUSTOMER_NAME": "cherry's",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1591,18 +1601,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1621,8 +1621,108 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12065,
+    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 34002,
+    "CUSTOMER_NAME": "Heights Bar (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 73002,
+    "CUSTOMER_NAME": "The Cornerstone (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190601,
+    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24019,
+    "CUSTOMER_NAME": "Sharky's Wings(P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12022,
     "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13015,
+    "CUSTOMER_NAME": "Rare The Steakhouse (Z)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1641,58 +1741,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12036,
-    "CUSTOMER_NAME": "Brokedown Palace",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41023,
-    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "CUSTOMER_NUM": 17001,
+    "CUSTOMER_NAME": "Underdog Lounge(P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1703,46 +1753,6 @@
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 191207,
     "CUSTOMER_NAME": "Daily Planet (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 10001,
-    "CUSTOMER_NAME": "cherry's",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13015,
-    "CUSTOMER_NAME": "Rare The Steakhouse (Z)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 2004,
-    "CUSTOMER_NAME": "Sam's Bar and Grill",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4007,
-    "CUSTOMER_NAME": "Karls Stumble Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-06-01",
     "PERIOD": "base",
@@ -1770,36 +1780,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12065,
-    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-06-01",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84012,
     "CUSTOMER_NAME": "Bareburger (Ridgewood)",
@@ -1807,6 +1787,36 @@
     "DATE": "2026-06-01",
     "PERIOD": "base",
     "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28008,
+    "CUSTOMER_NAME": "Tavern On Ridge",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-06-01",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-29",
+    "PERIOD": "base",
+    "UNITS": 1,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1820,11 +1830,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 81005,
+    "CUSTOMER_NAME": "The Craftsman",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-29",
+    "DATE": "2026-05-28",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1850,31 +1860,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 81005,
-    "CUSTOMER_NAME": "The Craftsman",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-28",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 28008,
     "CUSTOMER_NAME": "Tavern On Ridge",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-27",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-26",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1901,10 +1891,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-26",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 24026,
     "CUSTOMER_NAME": "Rock Bar",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-26",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17003,
+    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-21",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1921,10 +1931,10 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17003,
-    "CUSTOMER_NAME": "D'CARBON BAR AND GRILL haledon",
+    "CUSTOMER_NUM": 24019,
+    "CUSTOMER_NAME": "Sharky's Wings(P)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-21",
+    "DATE": "2026-05-20",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -1933,16 +1943,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 80018,
     "CUSTOMER_NAME": "Millers Paramus Ale House",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-20",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24019,
-    "CUSTOMER_NAME": "Sharky's Wings(P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-20",
     "PERIOD": "base",
@@ -1960,9 +1960,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31039,
-    "CUSTOMER_NAME": "Yard House 8390",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-19",
     "PERIOD": "base",
@@ -1980,9 +1980,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31039,
+    "CUSTOMER_NAME": "Yard House 8390",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-19",
     "PERIOD": "base",
@@ -1995,36 +1995,6 @@
     "CUSTOMER_NAME": "Karls Stumble Inn",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-14",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-13",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92010,
-    "CUSTOMER_NAME": "Houlihan's Ramsey",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-13",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-13",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -2050,11 +2020,31 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 92010,
+    "CUSTOMER_NAME": "Houlihan's Ramsey",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-12",
+    "DATE": "2026-05-13",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-13",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-13",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -2070,11 +2060,11 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 2004,
-    "CUSTOMER_NAME": "Sam's Bar and Grill",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-08",
+    "DATE": "2026-05-12",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -2090,9 +2080,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28031,
-    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 2004,
+    "CUSTOMER_NAME": "Sam's Bar and Grill",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-08",
     "PERIOD": "base",
@@ -2107,6 +2097,16 @@
     "DATE": "2026-05-08",
     "PERIOD": "base",
     "UNITS": 2,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28031,
+    "CUSTOMER_NAME": "Shawn's Crazy Saloon",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-08",
+    "PERIOD": "base",
+    "UNITS": 1,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2130,16 +2130,6 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 39017,
-    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-06",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84012,
     "CUSTOMER_NAME": "Bareburger (Ridgewood)",
@@ -2155,6 +2145,36 @@
     "CUSTOMER_NAME": "Daily Planet (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-06",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 39017,
+    "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-06",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-05",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-05",
     "PERIOD": "base",
     "UNITS": 1,
     "NEW_PLACEMENT": 0
@@ -2200,29 +2220,19 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 38020,
+    "CUSTOMER_NAME": "Lodi Lanes (A)",
     "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-05",
+    "DATE": "2026-05-04",
     "PERIOD": "base",
-    "UNITS": 1,
+    "UNITS": 0,
     "NEW_PLACEMENT": 0
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-05",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13018,
-    "CUSTOMER_NAME": "Chili's Little Falls",
+    "CUSTOMER_NUM": 12022,
+    "CUSTOMER_NAME": "Grasshopper Too (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2241,8 +2251,18 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12065,
-    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 11011,
+    "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2250,9 +2270,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14002,
-    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 80018,
+    "CUSTOMER_NAME": "Millers Paramus Ale House",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2280,89 +2300,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31043,
-    "CUSTOMER_NAME": "House of Que (East Rutherford)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190601,
-    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17009,
-    "CUSTOMER_NAME": "Jimmy Geez (P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 17001,
-    "CUSTOMER_NAME": "Underdog Lounge(P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 1017,
-    "CUSTOMER_NAME": "Millers Ale House Rockawa",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31026,
-    "CUSTOMER_NAME": "Rockafella's",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12022,
-    "CUSTOMER_NAME": "Grasshopper Too (A)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12057,
-    "CUSTOMER_NAME": "YARD HOUSE 8384",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 10001,
-    "CUSTOMER_NAME": "cherry's",
+    "CUSTOMER_NUM": 8004,
+    "CUSTOMER_NAME": "The Side Door (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2381,38 +2321,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24019,
-    "CUSTOMER_NAME": "Sharky's Wings(P)",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13016,
-    "CUSTOMER_NAME": "THE TIES",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 2004,
-    "CUSTOMER_NAME": "Sam's Bar and Grill",
+    "CUSTOMER_NUM": 14002,
+    "CUSTOMER_NAME": "Applebee's (Totowa) (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2430,39 +2340,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80018,
-    "CUSTOMER_NAME": "Millers Paramus Ale House",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4007,
-    "CUSTOMER_NAME": "Karls Stumble Inn",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 0,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28008,
-    "CUSTOMER_NAME": "Tavern On Ridge",
-    "BRAND_FAMILY": "Angry Orchard",
-    "DATE": "2026-05-04",
-    "PERIOD": "base",
-    "UNITS": 1,
-    "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38020,
-    "CUSTOMER_NAME": "Lodi Lanes (A)",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24019,
+    "CUSTOMER_NAME": "Sharky's Wings(P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2480,9 +2360,29 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24029,
-    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 4007,
+    "CUSTOMER_NAME": "Karls Stumble Inn",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 1017,
+    "CUSTOMER_NAME": "Millers Ale House Rockawa",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 190601,
+    "CUSTOMER_NAME": "Thatcher Mcghee's (A)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2500,9 +2400,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 11011,
-    "CUSTOMER_NAME": "Sunset Pub & Grill(Z)",
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 2004,
+    "CUSTOMER_NAME": "Sam's Bar and Grill",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2511,8 +2411,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 8004,
-    "CUSTOMER_NAME": "The Side Door (P)",
+    "CUSTOMER_NUM": 17009,
+    "CUSTOMER_NAME": "Jimmy Geez (P)",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-04",
     "PERIOD": "base",
@@ -2521,8 +2421,108 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24026,
-    "CUSTOMER_NAME": "Rock Bar",
+    "CUSTOMER_NUM": 13018,
+    "CUSTOMER_NAME": "Chili's Little Falls",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31026,
+    "CUSTOMER_NAME": "Rockafella's",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 10001,
+    "CUSTOMER_NAME": "cherry's",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 13016,
+    "CUSTOMER_NAME": "THE TIES",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 28008,
+    "CUSTOMER_NAME": "Tavern On Ridge",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 1,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12065,
+    "CUSTOMER_NAME": "Buffalo Wild Wings - Wayne, NJ",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 12057,
+    "CUSTOMER_NAME": "YARD HOUSE 8384",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 17001,
+    "CUSTOMER_NAME": "Underdog Lounge(P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24029,
+    "CUSTOMER_NAME": "Dingo's Den (P)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 31043,
+    "CUSTOMER_NAME": "House of Que (East Rutherford)",
+    "BRAND_FAMILY": "Angry Orchard",
+    "DATE": "2026-05-04",
+    "PERIOD": "base",
+    "UNITS": 0,
+    "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 57004,
+    "CUSTOMER_NAME": "River & Henley",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-01",
     "PERIOD": "base",
@@ -2530,9 +2530,9 @@
     "NEW_PLACEMENT": 0
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 57004,
-    "CUSTOMER_NAME": "River & Henley",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 24026,
+    "CUSTOMER_NAME": "Rock Bar",
     "BRAND_FAMILY": "Angry Orchard",
     "DATE": "2026-05-01",
     "PERIOD": "base",
