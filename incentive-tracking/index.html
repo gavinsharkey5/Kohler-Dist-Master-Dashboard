@@ -79,6 +79,14 @@
   .flag-hit{color:var(--good);font-weight:600;}
   .flag-miss{color:var(--text-dim);}
 
+  .track-section-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;
+    text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;}
+  .track-section-label.track-pkg{background:var(--accent-soft);color:var(--accent);border-left:3px solid var(--accent);}
+  .track-section-label.track-keg{background:var(--amber-soft);color:var(--amber);border-left:3px solid var(--amber);}
+  .sub-brand-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;
+    text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;
+    background:var(--card-alt);color:var(--text-dim);border-left:3px solid var(--border);}
+
   table{width:100%;border-collapse:collapse;font-size:13px;}
   th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:7px 10px;background:var(--card-alt);border-bottom:1px solid var(--border);white-space:nowrap;}
   td{padding:8px 10px;border-bottom:1px solid var(--line-soft);}
@@ -2386,87 +2394,104 @@ const PROGRAM_DATA = {
           {
             "customer": "Outback",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/4/2026"
           },
           {
             "customer": "Dingo's Den (P)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/4/2026"
+            "date": "8/4/2026",
+            "baseDate": "5/5/2026, 6/1/2026, 7/14/2026"
           },
           {
             "customer": "Outback Stkhse(P)Wayne",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/26/2026, 6/1/2026, 6/15/2026, 7/1/2026, 7/8/2026"
           },
           {
             "customer": "Sharky's Wings(P)",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 6/9/2026, 6/24/2026, 7/1/2026, 7/8/2026, 7/28/2026"
           },
           {
             "customer": "Rock Bar",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/1/2026, 5/4/2026, 5/13/2026, 5/20/2026, 5/26/2026, 6/1/2026, 6/5/2026, 6/15/2026, 7/1/2026, 7/10/2026, 7/21/2026, 7/31/2026"
           },
           {
             "customer": "The Little Falls Tavern",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/21/2026, 6/1/2026, 7/16/2026"
           },
           {
             "customer": "Grasshopper Too (A)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/8/2026, 5/29/2026, 6/1/2026, 6/19/2026, 7/1/2026, 7/17/2026"
           },
           {
             "customer": "Brokedown Palace",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/21/2026, 6/1/2026, 7/9/2026, 7/16/2026"
           },
           {
             "customer": "The Celtic Knot",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/7/2026, 5/28/2026, 6/1/2026, 6/5/2026, 6/11/2026, 6/17/2026, 7/1/2026, 7/3/2026, 7/9/2026, 7/24/2026"
           },
           {
             "customer": "YARD HOUSE 8384",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/5/2026, 5/19/2026, 6/1/2026, 6/2/2026, 6/9/2026, 6/16/2026, 6/23/2026, 7/1/2026, 7/7/2026, 7/14/2026, 7/28/2026"
           },
           {
             "customer": "Sharky's Wings(P)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/20/2026, 5/26/2026, 6/1/2026, 7/1/2026, 7/15/2026"
           },
           {
             "customer": "Cheesecake Fact (A)Wayne",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/6/2026, 5/28/2026, 6/25/2026, 7/23/2026"
           },
           {
             "customer": "Brokedown Palace",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/9/2026"
           },
           {
             "customer": "Johnny A's (P) Hitchn Pos",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/28/2026, 6/1/2026, 6/19/2026, 7/1/2026, 7/31/2026"
           },
           {
             "customer": "YARD HOUSE 8384",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 6/9/2026, 7/1/2026, 7/14/2026"
           },
           {
             "customer": "YARD HOUSE 8384",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/19/2026, 6/1/2026, 7/21/2026"
           },
           {
             "customer": "Tommy's Tavern & Tap (Clifton)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "6/9/2026, 7/28/2026"
           }
         ],
         "draftRebuyCount": 17,
@@ -2490,22 +2515,26 @@ const PROGRAM_DATA = {
           {
             "customer": "Black Bear Golf(A)",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/1/2026, 5/7/2026, 6/1/2026, 6/4/2026, 7/1/2026, 7/14/2026"
           },
           {
             "customer": "Early American Tavern",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/29/2026, 6/1/2026, 7/23/2026"
           },
           {
             "customer": "Whiskey Wolf Tavern (P)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/2/2026"
           },
           {
             "customer": "Bally Owen Golf Club",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/21/2026, 6/1/2026, 7/2/2026, 7/29/2026"
           }
         ],
         "draftRebuyCount": 4,
@@ -2526,47 +2555,56 @@ const PROGRAM_DATA = {
           {
             "customer": "Reservoir Tavern(A)",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/6/2026"
+            "date": "8/6/2026",
+            "baseDate": "5/14/2026, 6/2/2026, 7/8/2026"
           },
           {
             "customer": "Buffalo Wild Wings (Rockaway)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/4/2026, 6/2/2026, 7/1/2026, 7/8/2026"
           },
           {
             "customer": "Johnnie's Tavern",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 7/6/2026"
           },
           {
             "customer": "Millers Ale House Rockawa",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/5/2026, 6/1/2026, 6/2/2026, 6/9/2026, 6/23/2026, 6/30/2026, 7/1/2026, 7/7/2026"
           },
           {
             "customer": "Lola's Restaurant",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/5/2026, 6/1/2026, 6/5/2026, 6/22/2026, 7/1/2026, 7/3/2026, 7/9/2026, 7/29/2026"
           },
           {
             "customer": "Millers Ale House Rockawa",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/12/2026, 6/1/2026, 6/30/2026, 7/1/2026, 7/9/2026"
           },
           {
             "customer": "Patricks Pub (P)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/8/2026, 6/1/2026, 7/16/2026"
           },
           {
             "customer": "Thatcher Mcghee's (A)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/12/2026, 5/26/2026, 6/1/2026, 6/16/2026, 7/1/2026, 7/7/2026, 7/29/2026"
           },
           {
             "customer": "Mason Street Grille",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/2/2026"
           }
         ],
         "draftRebuyCount": 9,
@@ -2611,7 +2649,8 @@ const PROGRAM_DATA = {
           {
             "customer": "Total Wine & More (Totowa)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/13/2026"
           }
         ],
         "draftRebuyCount": 1,
@@ -2753,17 +2792,20 @@ const PROGRAM_DATA = {
           {
             "customer": "Stone & Rail",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/8/2026"
           },
           {
             "customer": "Steel Wheel Tavern",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/20/2026, 5/28/2026, 6/1/2026, 6/17/2026, 7/1/2026, 7/21/2026, 7/28/2026"
           },
           {
             "customer": "The Office 2131 Ridgewood",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/16/2026"
           }
         ],
         "draftRebuyCount": 3,
@@ -2778,82 +2820,98 @@ const PROGRAM_DATA = {
           {
             "customer": "Outback Steakhouse(Z)Edg",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/6/2026"
+            "date": "8/6/2026",
+            "baseDate": "5/4/2026, 5/27/2026, 6/1/2026, 7/1/2026"
           },
           {
             "customer": "The Orange Lantern",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/4/2026, 5/20/2026, 6/1/2026, 6/17/2026, 6/24/2026, 7/1/2026, 7/15/2026"
           },
           {
             "customer": "Nellie's Place (P)",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/4/2026, 5/6/2026, 5/13/2026, 5/21/2026, 6/1/2026, 6/3/2026, 6/18/2026, 6/30/2026, 7/1/2026, 7/2/2026, 7/8/2026, 7/22/2026"
           },
           {
             "customer": "Lodi Lanes (A)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/4/2026"
+            "date": "8/4/2026",
+            "baseDate": "5/4/2026, 5/13/2026, 6/1/2026, 6/8/2026, 7/1/2026, 7/9/2026"
           },
           {
             "customer": "Tommy's Tavern + Tap (Edgewater)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/4/2026"
+            "date": "8/4/2026",
+            "baseDate": "5/4/2026, 5/26/2026, 6/1/2026"
           },
           {
             "customer": "Yard House 8390",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/19/2026, 6/1/2026, 6/2/2026, 6/23/2026, 6/30/2026, 7/1/2026, 7/7/2026, 7/28/2026"
           },
           {
             "customer": "Kinchley's",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/12/2026, 5/19/2026, 6/1/2026, 6/2/2026, 6/8/2026, 6/16/2026, 6/24/2026, 6/30/2026, 7/1/2026, 7/7/2026, 7/15/2026, 7/21/2026, 7/28/2026"
           },
           {
             "customer": "Millers Paramus Ale House",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/5/2026, 5/20/2026, 6/1/2026, 6/2/2026, 6/17/2026, 6/30/2026, 7/1/2026, 7/7/2026, 7/17/2026"
           },
           {
             "customer": "Millers Paramus Ale House",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/5/2026, 5/13/2026, 6/2/2026, 6/9/2026, 7/1/2026, 7/7/2026, 7/15/2026"
           },
           {
             "customer": "House of Que (East Rutherford)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/28/2026, 6/1/2026, 6/29/2026, 7/1/2026, 7/17/2026"
           },
           {
             "customer": "Bj's Rest & Brewhouse(A)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/6/2026, 6/1/2026, 6/18/2026, 7/1/2026, 7/8/2026"
           },
           {
             "customer": "Heights Bar (P)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 6/1/2026, 6/8/2026, 7/1/2026, 7/29/2026"
           },
           {
             "customer": "Texas Roadhouse",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/5/2026, 6/3/2026, 6/10/2026, 7/1/2026, 7/21/2026, 7/30/2026"
           },
           {
             "customer": "Houlihan's Ramsey",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 6/18/2026, 7/1/2026, 7/22/2026"
           },
           {
             "customer": "Tavern On Ridge",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/27/2026, 6/1/2026, 7/8/2026"
           },
           {
             "customer": "Houlihans (Para)(A)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 7/15/2026"
           }
         ],
         "draftRebuyCount": 16,
@@ -2888,52 +2946,62 @@ const PROGRAM_DATA = {
           {
             "customer": "Brady's Fox Hunt Inn",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/4/2026, 5/22/2026, 6/1/2026, 6/19/2026, 7/1/2026"
           },
           {
             "customer": "Gerry's Place",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/5/2026"
+            "date": "8/5/2026",
+            "baseDate": "5/28/2026, 6/1/2026, 6/26/2026, 7/1/2026"
           },
           {
             "customer": "Tommy Fox's Pub Hse(P)",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/21/2026, 6/1/2026, 6/4/2026, 6/27/2026, 7/1/2026, 7/17/2026, 7/24/2026"
           },
           {
             "customer": "Blue Akai",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/1/2026, 5/26/2026, 6/1/2026, 6/5/2026, 6/27/2026, 7/1/2026, 7/29/2026"
           },
           {
             "customer": "The Whiskey Priest (Hackensack)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/26/2026, 6/1/2026, 7/1/2026"
           },
           {
             "customer": "The Whiskey Priest (Hackensack)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/5/2026, 6/1/2026, 6/16/2026, 7/1/2026, 7/21/2026"
           },
           {
             "customer": "The Cornerstone (P)",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/8/2026, 6/1/2026, 6/5/2026, 6/12/2026, 7/1/2026, 7/24/2026"
           },
           {
             "customer": "Hearth & Tap Co.",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 6/5/2026, 6/11/2026, 7/1/2026, 7/9/2026, 7/23/2026"
           },
           {
             "customer": "The Cornerstone (P)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/8/2026, 5/11/2026, 6/12/2026, 7/31/2026"
           },
           {
             "customer": "101 Pub (A)",
             "product": "Dogfish Head Grateful Dead Juicy Pale Ale 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/13/2026"
           }
         ],
         "draftRebuyCount": 10,
@@ -2957,12 +3025,14 @@ const PROGRAM_DATA = {
           {
             "customer": "Perona Farms",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/4/2026"
+            "date": "8/4/2026",
+            "baseDate": "5/12/2026, 5/20/2026, 6/2/2026, 6/11/2026, 6/16/2026, 7/1/2026, 7/7/2026"
           },
           {
             "customer": "Indian Trail Club",
             "product": "Dogfish 60 Minute IPA 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "5/4/2026, 5/13/2026, 6/1/2026, 6/16/2026, 7/1/2026, 7/28/2026"
           }
         ],
         "draftRebuyCount": 2,
@@ -2977,7 +3047,8 @@ const PROGRAM_DATA = {
           {
             "customer": "Bottle King (A) Hillsdale",
             "product": "Angry Orchard Crisp Apple 15.5 Gal Keg",
-            "date": "8/3/2026"
+            "date": "8/3/2026",
+            "baseDate": "7/13/2026"
           }
         ],
         "draftRebuyCount": 1,
@@ -3015,67 +3086,78 @@ const PROGRAM_DATA = {
             "customer": "Dante's",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/29/2026, 6/1/2026, 7/1/2026"
           },
           {
             "customer": "YARD HOUSE 8384",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/4/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "6/2/2026, 7/1/2026"
           },
           {
             "customer": "Celtic Crossings",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/27/2026, 6/1/2026, 6/25/2026, 7/1/2026, 7/15/2026"
           },
           {
             "customer": "Bask 46",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/6/2026, 5/27/2026, 6/1/2026, 6/24/2026, 7/1/2026, 7/14/2026"
           },
           {
             "customer": "Tommy's Tavern & Tap (Clifton)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/5/2026, 5/26/2026, 6/1/2026, 6/2/2026, 6/24/2026, 7/1/2026, 7/16/2026, 7/28/2026"
           },
           {
             "customer": "Anthonys CF Pizza (Wayne)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/4/2026, 5/15/2026, 5/22/2026, 6/25/2026, 7/1/2026, 7/17/2026, 7/24/2026"
           },
           {
             "customer": "Tommy's Tavern + Tap (Wayne)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/15/2026, 6/1/2026, 6/16/2026, 6/24/2026, 7/1/2026, 7/15/2026"
           },
           {
             "customer": "Chili's Little Falls",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 6/2/2026, 6/23/2026, 7/1/2026, 7/7/2026, 7/28/2026"
           },
           {
             "customer": "Double Ai Asian Bistro",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "6/5/2026, 6/17/2026, 7/1/2026, 7/2/2026, 7/29/2026"
           },
           {
             "customer": "PF Changs China Bistro (Wayne)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "7/30/2026"
           },
           {
             "customer": "PF Changs China Bistro (Wayne)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/4/2026, 5/20/2026, 5/27/2026, 6/1/2026, 6/18/2026, 7/15/2026"
           }
         ],
         "featuredRebuyCount": 11,
@@ -3109,55 +3191,64 @@ const PROGRAM_DATA = {
             "customer": "PF Changs",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "6/17/2026"
           },
           {
             "customer": "Sharky's West (P)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/4/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/8/2026, 6/1/2026, 6/19/2026, 7/1/2026, 7/16/2026"
           },
           {
             "customer": "Millers Ale House Rockawa",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/4/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/20/2026, 6/1/2026, 6/9/2026, 6/30/2026"
           },
           {
             "customer": "Millers Ale House Rockawa",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/4/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/26/2026, 6/1/2026"
           },
           {
             "customer": "Patricks Pub (P)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 6/5/2026, 7/1/2026, 7/29/2026"
           },
           {
             "customer": "Thatcher Mcghee's (A)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/6/2026, 6/1/2026, 6/9/2026, 6/30/2026, 7/1/2026, 7/21/2026"
           },
           {
             "customer": "Buffalo Wild Wings (Rockaway)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 6/11/2026, 7/1/2026, 7/16/2026"
           },
           {
             "customer": "Mason Street Grille",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "7/13/2026"
           },
           {
             "customer": "Hyde-Away Rest & Tap Room",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "7/23/2026"
           }
         ],
         "featuredRebuyCount": 9,
@@ -3182,13 +3273,15 @@ const PROGRAM_DATA = {
             "customer": "354 Steakhouse (A)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/4/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/1/2026, 5/20/2026, 6/1/2026, 6/17/2026, 6/25/2026, 7/9/2026"
           },
           {
             "customer": "JJ Dak",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/8/2026, 6/1/2026, 6/5/2026, 6/11/2026, 7/1/2026, 7/9/2026, 7/31/2026"
           }
         ],
         "featuredRebuyCount": 2,
@@ -3312,7 +3405,8 @@ const PROGRAM_DATA = {
             "customer": "Bottle King (A) Wayne",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/19/2026, 7/23/2026"
           }
         ],
         "featuredRebuyCount": 1,
@@ -3328,55 +3422,64 @@ const PROGRAM_DATA = {
             "customer": "Allendale Bar & Grill",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 7/2/2026, 7/30/2026"
           },
           {
             "customer": "Amc- Shops @ Riverside P",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/14/2026, 5/21/2026, 5/28/2026, 6/1/2026, 6/10/2026, 6/15/2026, 7/1/2026, 7/15/2026, 7/30/2026"
           },
           {
             "customer": "Chili's B & G E Rutherfor",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "6/15/2026, 7/1/2026, 7/6/2026, 7/28/2026"
           },
           {
             "customer": "Bj's Rest & Brewhouse(A)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/6/2026, 6/1/2026, 6/25/2026, 7/1/2026"
           },
           {
             "customer": "Millers Paramus Ale House",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/4/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/26/2026, 6/1/2026, 6/9/2026, 6/22/2026, 7/7/2026"
           },
           {
             "customer": "Jojo's Bar & Grill",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/21/2026, 6/18/2026, 7/2/2026"
           },
           {
             "customer": "Millers Paramus Ale House",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/13/2026, 6/1/2026, 6/22/2026, 7/1/2026, 7/14/2026"
           },
           {
             "customer": "Yard House 8390",
             "product": "Bell's Two Hearted Keg 15.5BBL",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "6/9/2026, 7/1/2026, 7/14/2026"
           },
           {
             "customer": "Blackjack Mulligans (Hawthorne)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "7/10/2026"
           }
         ],
         "featuredRebuyCount": 9,
@@ -3401,19 +3504,22 @@ const PROGRAM_DATA = {
             "customer": "Wallington Lane (Bowlero)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/5/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/6/2026, 6/2/2026, 7/1/2026"
           },
           {
             "customer": "Anthony's Coal Fired Pizza (Fair Lawn)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/4/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/4/2026, 5/6/2026, 5/14/2026, 5/21/2026, 5/27/2026, 6/1/2026, 6/25/2026, 7/1/2026, 7/8/2026, 7/15/2026, 7/29/2026"
           },
           {
             "customer": "Fair Lawn Lanes (P)",
             "product": "New Belgium Voodoo Juicy Haze 15.5 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": true
+            "isHalfBbl": true,
+            "baseDate": "5/4/2026, 5/5/2026, 5/26/2026, 6/1/2026, 6/2/2026, 6/9/2026, 6/23/2026, 7/1/2026, 7/15/2026, 7/22/2026"
           }
         ],
         "featuredRebuyCount": 3,
@@ -3447,13 +3553,15 @@ const PROGRAM_DATA = {
             "customer": "Cork & Keg (A)",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/4/2026, 5/18/2026, 6/1/2026, 6/12/2026, 6/22/2026, 7/1/2026, 7/6/2026"
           },
           {
             "customer": "Bottle King (A) Hillsdale",
             "product": "New Belgium Voodoo Juicy Haze IPA 5.2 Gal Keg",
             "date": "8/3/2026",
-            "isHalfBbl": false
+            "isHalfBbl": false,
+            "baseDate": "5/14/2026, 6/1/2026, 7/9/2026, 7/30/2026"
           }
         ],
         "featuredRebuyCount": 2,
@@ -9522,7 +9630,8 @@ const PROGRAM_DATA = {
           {
             "customer": "Edgewater Liquor (A)",
             "date": "7/29/2026",
-            "cases": 1.0
+            "cases": 1.0,
+            "baseDate": "4/30/2026"
           }
         ],
         "rebuyCount": 1,
@@ -9621,7 +9730,8 @@ const PROGRAM_DATA = {
           {
             "customer": "Total Wine & More (West Orange)",
             "date": "7/16/2026",
-            "cases": 3.0
+            "cases": 3.0,
+            "baseDate": "4/16/2026, 5/14/2026, 6/18/2026"
           }
         ],
         "rebuyCount": 1,
@@ -12093,13 +12203,13 @@ const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty C
 
 const PROGRAM_LIST = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
-   desc:`$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
+   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account's combined keg volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
-   metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
-   desc:`$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 3 barrels · $1 per case sold · 3 new placements minimum to earn anything`,
+   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account's combined keg volume crosses 3 barrels · $1 per case sold · a 3-placement minimum (packages + draft combined) must be hit before any payout on this program unlocks`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
-   metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
    desc:`$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything`,
    getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
@@ -12225,20 +12335,30 @@ function metricRow(label, reward, valHtml, subHtml, barPct, barOver){
   </div>`;
 }
 
+function pkgKegSectionLabels(pkgReward, kegReward){
+  return {
+    pkg: `<div class="track-section-label track-pkg">Off-Premise Packages — ${esc(pkgReward)}</div>`,
+    keg: `<div class="track-section-label track-keg">Draft / Kegs (On-Premise) — ${esc(kegReward)}</div>`,
+  };
+}
+
 function card1911(rep){
   const d = (PROGRAM_DATA['1911']||{}).byRep?.[rep];
   if(!d) return '';
   const rank = (PROGRAM_DATA['1911'].leaderboard||[]).find(r=>r.rep===rep);
   const rankHtml = rank ? `Rank <b>#${rank.rank}</b> of ${PROGRAM_DATA['1911'].leaderboard.length} on new placements + volume${rank.rank<=3?' <span class="flag-hit">— in the running for the Cidery trip</span>':''}` : '';
+  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account’s combined keg volume crosses 2 barrels');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery</div>
+      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account's total keg volume crosses 2 barrels. Package activity never counts toward the barrel goal. Top 3 reps (distribution + volume) win a trip to the 1911 Cidery.</div>
     </div>
     <div class="prog-body">
-      ${metricRow('Off-Premise New Placements','$10 each', d.offPremNewCount, null, null)}
+      ${sec.pkg}
+      ${metricRow('New Package Placements','$10 each — off-premise cans/bottles only', d.offPremNewCount, null, null)}
       ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
-      ${metricRow('Draft — Accounts Qualified','$100 per new placement, after 2 bbl per account', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
+      ${sec.keg}
+      ${metricRow('Accounts Crossing the 2-bbl Goal','$100 per new keg placement, paid once the account (not the rep) hits 2 bbl total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
       ${draftAccountsBlock(d.draftAccounts, 2, d.draftAccountsQualified)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},bblCol(2)], 'No new draft placements yet this period.', 'new draft placements')}
       <div class="metric-sub">${rankHtml}</div>
@@ -12251,19 +12371,26 @@ function cardWoodchuck(rep){
   if(!d) return '';
   const totalNew = d.offPremNewCount + d.draftNewCount;
   const qualifies = totalNew >= 3;
+  const qualifierNote = (qualifies
+    ? '<span class="flag-hit">Qualified — payouts unlocked</span>'
+    : '<span class="flag-miss">Not yet qualified — no payout on this program until 3 is hit</span>')
+    + ' · counts packages AND draft together, but this is only an on/off switch for the whole program — it does not feed the 3-bbl keg goal below, which is tracked separately per account.';
+  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account’s combined keg volume crosses 3 barrels');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">$10 per new off-premise placement · $100 per new draft placement once that account's cumulative draft volume crosses 3 barrels · $1 per case sold · 3 new placements minimum to earn anything</div>
+      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account's total keg volume crosses 3 barrels — plus $1 per case sold. Package activity never counts toward the barrel goal. A combined 3-placement minimum (packages + draft) must be hit before ANY of this program's payouts unlock.</div>
     </div>
     <div class="prog-body">
-      ${metricRow('Qualifier — Total New Placements','3 minimum to earn any payout', totalNew+' / 3', qualifies?'<span class="flag-hit">Qualified</span>':'<span class="flag-miss">Not yet qualified</span>', Math.min(totalNew/3,1)*100, false)}
-      ${metricRow('Off-Premise New Placements','$10 each', d.offPremNewCount, null, null)}
+      ${metricRow('Qualifier — Unlocks Any Payout on This Program','3 new placements minimum, packages + draft combined', totalNew+' / 3', qualifierNote, Math.min(totalNew/3,1)*100, false)}
+      ${sec.pkg}
+      ${metricRow('New Package Placements','$10 each — off-premise cans/bottles only', d.offPremNewCount, null, null)}
       ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
-      ${metricRow('Draft — Accounts Qualified','$100 per new placement, after 3 bbl per account', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
+      ${sec.keg}
+      ${metricRow('Accounts Crossing the 3-bbl Goal','$100 per new keg placement, paid once the account (not the rep) hits 3 bbl total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
       ${draftAccountsBlock(d.draftAccounts, 3, d.draftAccountsQualified)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},bblCol(3)], 'No new draft placements yet this period.', 'new draft placements')}
-      ${metricRow('Case Volume','$1 per case sold', d.caseVolume.toFixed(0)+' cases', null, null)}
+      ${metricRow('Case Volume (All Formats)','$1 per case sold, packages + kegs combined', d.caseVolume.toFixed(0)+' cases', null, null)}
     </div>
   </div>`;
 }
@@ -12275,10 +12402,10 @@ function cardTona(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Tona Distribution &amp; Volume</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything</div>
+      <div class="prog-desc">$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · none of this pays out until 20 cases of 24oz cans are sold — that 20-case minimum gates the whole program, not just the case-volume payout.</div>
     </div>
     <div class="prog-body">
-      ${metricRow('Qualifier — 24oz Case Volume','20 cases minimum to earn any payout', d.caseVolume24oz.toFixed(0)+' / 20', d.qualifies?'<span class="flag-hit">Qualified</span>':'<span class="flag-miss">Not yet qualified</span>', pct, false)}
+      ${metricRow('Qualifier — Unlocks Any Payout on This Program','20 cases of 24oz cans minimum', d.caseVolume24oz.toFixed(0)+' / 20', d.qualifies?'<span class="flag-hit">Qualified — payouts unlocked</span>':'<span class="flag-miss">Not yet qualified — no payout on this program until 20 is hit</span>', pct, false)}
       ${metricRow('New 24oz Can Placements','$10 each', d.new24ozCount, null, null)}
       ${detailBlock(d.new24ozNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new 24oz can placements yet this period.', 'new 24oz placements')}
       ${metricRow('Other Tona Case Volume','$0.50 per case sold', d.caseVolumeOther.toFixed(0)+' cases', null, null)}
@@ -12324,14 +12451,14 @@ function cardBostonBeer(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Boston Beer August Draft Blitz</span><span class="prog-tag">August</span></div>
-      <div class="prog-desc">Draft (Angry Orchard / Dogfish Head): $100 new POD, $50 rebuy · Package: $10 per new single-serve placement · trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.</div>
+      <div class="prog-desc">Draft (kegs only — Angry Orchard 15.5 / Dogfish Head 15.5): $100 new POD, $50 rebuy · Package (single-serve cans only — Angry Orchard 19.2oz, Dogfish 60/90 Minute IPA, Grateful Dead 19.2oz): $10 per new placement. Draft and package are tracked completely separately — package placements never count as draft. Trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.</div>
     </div>
     <div class="prog-body">
-      ${metricRow('Draft — New PODs','$100 each', d.draftNewCount, null, null)}
+      ${metricRow('Draft (Kegs) — New PODs','$100 each', d.draftNewCount, null, null)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new draft PODs yet this period.', 'new draft PODs')}
-      ${metricRow('Draft — Rebuys','$50 each', d.draftRebuyCount, null, null)}
-      ${detailBlock(d.draftRebuy, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No draft rebuys yet this period.', 'draft rebuys')}
-      ${metricRow('Package — New Placements','$10 each', d.packageNewCount, null, null)}
+      ${metricRow('Draft (Kegs) — Rebuys','$50 each', d.draftRebuyCount, null, null)}
+      ${detailBlock(d.draftRebuy, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'baseDate',label:'First Bought (Base Period)'},{key:'date',label:'Rebought (This Period)'}], 'No draft rebuys yet this period.', 'draft rebuys')}
+      ${metricRow('Package (Single-Serve Cans) — New Placements','$10 each', d.packageNewCount, null, null)}
       ${detailBlock(d.packageNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new package placements yet this period.', 'new package placements')}
       ${metricRow('Trip Bonus Points','Draft = 2pts, Package = 1pt', d.points, null, null)}
     </div>
@@ -12360,7 +12487,7 @@ function cardNewBelgium(rep){
       ${metricRow('Featured — New PODs (this rep)','$100 (1/2bbl) or $50 (1/6-1/4bbl) each', d.featuredNewCount, null, null)}
       ${detailBlock(d.featuredNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},nbRateCol('new')], 'No new featured-tier PODs yet this period.', 'new featured-tier PODs')}
       ${metricRow('Featured — Rebuys (this rep)','$50 (1/2bbl) or $25 (1/6-1/4bbl) each', d.featuredRebuyCount, null, null)}
-      ${detailBlock(d.featuredRebuy, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},nbRateCol('rebuy')], 'No featured-tier rebuys yet this period.', 'featured-tier rebuys')}
+      ${detailBlock(d.featuredRebuy, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'baseDate',label:'First Bought (Base Period)'},{key:'date',label:'Rebought (This Period)'},nbRateCol('rebuy')], 'No featured-tier rebuys yet this period.', 'featured-tier rebuys')}
       ${metricRow('Other Named — Voodoo Ranger &amp; Fat Tire','$25 per keg', d.otherNamedKegCount+' kegs', d.otherNamedKegVolumeBbl.toFixed(2)+' bbl this period', null)}
     </div>
   </div>`;
@@ -12463,7 +12590,7 @@ function cardMollys(rep){
       ${metricRow('New PODs','$50 each', d.newPodCount, null, null)}
       ${detailBlock(d.newPod, [{key:'customer',label:'Customer'},{key:'date',label:'Date'}], 'No new PODs yet this period.', 'new PODs')}
       ${metricRow('Rebuys','$10 per case', d.rebuyCount, d.rebuyCaseVolume.toFixed(0)+' cases this period', null)}
-      ${detailBlock(d.rebuy, [{key:'customer',label:'Customer'},{key:'cases',label:'Cases'},{key:'date',label:'Date'}], 'No rebuys yet this period.', 'rebuys')}
+      ${detailBlock(d.rebuy, [{key:'customer',label:'Customer'},{key:'baseDate',label:'First Bought (Base Period)'},{key:'date',label:'Rebought (This Period)'},{key:'cases',label:'Cases'}], 'No rebuys yet this period.', 'rebuys')}
     </div>
   </div>`;
 }

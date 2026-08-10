@@ -134,6 +134,23 @@ def latest_date(krows, col):
     return dates[-1][1]
 
 
+def period_dates(krows, col):
+    """All distinct dates where `col` is populated for these rows,
+    chronologically sorted and comma-joined -- used to show a rebuy
+    customer's full base-period purchase history (there can be more
+    than one), not just the latest."""
+    seen = {}
+    for r in krows:
+        if r[col].strip():
+            m = DATE_RE.search(r["Date"])
+            if m:
+                mo, da, yr = int(m.group(1)), int(m.group(2)), int(m.group(3))
+                seen[(yr, mo, da)] = r["Date"]
+    if not seen:
+        return None
+    return ", ".join(seen[k] for k in sorted(seen))
+
+
 def build_1911_or_woodchuck(filename, bbl_threshold):
     rows = read_rows(filename)
     fieldnames = rows[0].keys() if rows else []
@@ -399,6 +416,7 @@ def build_boston_beer():
                 by_rep[rep]["draftNew"].append(entry)
                 by_rep[rep]["draftNewCount"] += 1
             elif status == "rebuy":
+                entry["baseDate"] = period_dates(krows, base_col)
                 by_rep[rep]["draftRebuy"].append(entry)
                 by_rep[rep]["draftRebuyCount"] += 1
         elif is_package and status == "new":
@@ -475,6 +493,7 @@ def build_new_belgium():
                 by_rep[rep]["featuredNew"].append(entry)
                 by_rep[rep]["featuredNewCount"] += 1
             elif status == "rebuy":
+                entry["baseDate"] = period_dates(krows, base_col)
                 by_rep[rep]["featuredRebuy"].append(entry)
                 by_rep[rep]["featuredRebuyCount"] += 1
         elif tier == "other_named" and status in ("new", "rebuy"):
@@ -791,6 +810,7 @@ def build_mollys():
         elif status == "rebuy":
             case_vol = sum(to_num(r[case_current_col]) for r in krows)
             entry["cases"] = round(case_vol, 2)
+            entry["baseDate"] = period_dates(krows, place_base_col)
             by_rep[rep]["rebuy"].append(entry)
             by_rep[rep]["rebuyCount"] += 1
             by_rep[rep]["rebuyCaseVolume"] += case_vol
