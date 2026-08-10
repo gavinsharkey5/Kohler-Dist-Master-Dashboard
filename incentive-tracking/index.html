@@ -16735,6 +16735,7 @@ function rankProgram(entry){
   const rows = ROSTER.map(rep=>{
     const d = entry.getRep(rep);
     if(!d) return null;
+    if(d.territoryEligible===false) return null;
     const val = entry.metric(d);
     if(val==null || Number.isNaN(val)) return null;
     return {rep, val};

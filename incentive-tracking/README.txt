@@ -520,11 +520,7 @@ plain "Not Eligible -- Outside Your Territory" notice naming the
 brand and the six allowed counties, rather than a misleading all-zero
 card. All six programs' overview-tile descriptions also got a
 one-line note about the Core Market restriction so reps understand
-upfront why a tile might not apply to them. Ranking pages /
-leaderboards were left untouched (ineligible reps just show 0 there,
-mixed in with genuinely inactive-but-eligible reps) -- per Gavin,
-2026-08-10, this wasn't asked for and the "clear notice" treatment is
-scoped to the card level only.
+upfront why a tile might not apply to them.
 
 RESOLVED 2026-08-10: Tona, Lytt, and Yave's territory status (an open
 gap when this feature first shipped, since none of the three appear
@@ -533,3 +529,18 @@ Gavin the same day -- Lytt is Core Market (now in
 CORE_MARKET_PROGRAMS), Tona and YaVe Tequila are All 7 Counties (no
 restriction, left out of CORE_MARKET_PROGRAMS same as 1911/Woodchuck/
 Molly's/Garage Beer).
+
+Ranking pages / leaderboards (added same day, 2026-08-10, per Gavin:
+"alex rodriguez shouldn't be the leader for any boston beer company
+incentives as he can not sell this brand on his route"): rankProgram()
+in index.html now excludes any rep with territoryEligible===false
+entirely -- not just from the "leader" preview on the overview tile,
+but from the full ranked list on the program's detail page too, and
+from the tile's "N reps tracked" count. An ineligible rep's metric is
+always a default/zero value (they structurally can't generate real
+activity), so leaving them in the ranking let them "win" against
+genuinely-active-but-currently-behind eligible reps whenever the
+latter's growth metric went negative (confirmed live: Sam Adams'
+leader was Alex Rodriguez at a hollow "0 case growth" before this
+fix, ahead of every real rep who was mid-negative -- since-fixed to
+John O'Donoghue).
