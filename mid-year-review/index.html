@@ -1259,9 +1259,10 @@ function comboFilteredGroups(){
 // ---- Brand/Package trend-driver "i" popovers (added 2026-08-10, per a
 // manager's suggestion) -- a quick "why does this trend % look like this"
 // synopsis: which brand families are driving a supplier's (or the whole
-// company's) growth vs. dragging it down, and which package group (Cans /
-// Bottles (NR) / Kegs / Bottles (Wine & Spirits) / Other) is growing vs.
-// shrinking. Data comes from brand_package_trend.csv via generate.py's
+// company's) growth vs. dragging it down, and which SPECIFIC package (the
+// raw Fusion Package label, e.g. "1/15/19.2oz Can" -- not a coarse Cans/
+// Bottles/Kegs grouping, per Gavin 2026-08-10) is growing vs. shrinking.
+// Data comes from brand_package_trend.csv via generate.py's
 // parse_brand_package_trend() -- see DATA.overallInsight (company-wide) and
 // each supplier row's own .insight (from DATA.comboRollup). Rendered into
 // one shared #infoTooltip element positioned in JS, not nested per-row, so
@@ -1286,11 +1287,11 @@ function insightTooltipHtml(title, sub, insight){
       ${itMoverRows(insight.brandDecliners,'down')}
     </div>
     <div class="it-section">
-      <p class="it-section-lbl up">Package types growing</p>
+      <p class="it-section-lbl up">Packages growing</p>
       ${itMoverRows(insight.pkgGainers,'up')}
     </div>
     <div class="it-section">
-      <p class="it-section-lbl down">Package types shrinking</p>
+      <p class="it-section-lbl down">Packages shrinking</p>
       ${itMoverRows(insight.pkgDecliners,'down')}
     </div>`;
 }

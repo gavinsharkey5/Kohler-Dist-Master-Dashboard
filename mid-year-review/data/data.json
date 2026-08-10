@@ -6306,24 +6306,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 447622.5,
-            "ceCurrent": 484187.2,
-            "ceDiff": 36564.7
+            "label": "2/12/12oz Can",
+            "cePrior": 180383.0,
+            "ceCurrent": 196436.0,
+            "ceDiff": 16053.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "2/12/7oz BTL",
             "cePrior": 0.0,
             "ceCurrent": 11986.4,
             "ceDiff": 11986.4
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 81809.0,
+            "ceCurrent": 93705.0,
+            "ceDiff": 11896.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 1026673.5,
-            "ceCurrent": 1000770.0,
-            "ceDiff": -25903.5
+            "label": "24/12oz NR",
+            "cePrior": 349480.0,
+            "ceCurrent": 336048.0,
+            "ceDiff": -13432.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 253362.0,
+            "ceCurrent": 242109.0,
+            "ceDiff": -11253.0
+          },
+          {
+            "label": "4/6/7oz NR",
+            "cePrior": 25788.0,
+            "ceCurrent": 21150.5,
+            "ceDiff": -4637.5
           }
         ]
       }
@@ -6736,19 +6754,44 @@
             "ceDiff": -4144.0
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 276837.7,
-            "ceCurrent": 259012.3,
-            "ceDiff": -17825.4
+            "label": "36/12oz Can",
+            "cePrior": 25275.0,
+            "ceCurrent": 49465.5,
+            "ceDiff": 24190.5
           },
           {
-            "label": "Cans",
-            "cePrior": 647216.3,
-            "ceCurrent": 640086.9,
-            "ceDiff": -7129.4
+            "label": "1/12/24oz Can",
+            "cePrior": 164457.0,
+            "ceCurrent": 174756.0,
+            "ceDiff": 10299.0
+          },
+          {
+            "label": "6/4/200 ML",
+            "cePrior": 705.0,
+            "ceCurrent": 2606.7,
+            "ceDiff": 1901.7
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "30/12oz Can",
+            "cePrior": 222073.8,
+            "ceCurrent": 199058.8,
+            "ceDiff": -23015.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 100801.0,
+            "ceCurrent": 93129.0,
+            "ceDiff": -7672.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 59511.0,
+            "ceCurrent": 53857.0,
+            "ceDiff": -5654.0
           }
         ]
       }
@@ -6943,24 +6986,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Other",
-            "cePrior": 0.0,
-            "ceCurrent": 368.7,
-            "ceDiff": 368.7
+            "label": "2/12/11.2oz NR",
+            "cePrior": 3115.9,
+            "ceCurrent": 3832.3,
+            "ceDiff": 716.4
+          },
+          {
+            "label": "4/6/11.2oz NR",
+            "cePrior": 12950.3,
+            "ceCurrent": 13462.1,
+            "ceDiff": 511.8
+          },
+          {
+            "label": "18/12oz NR",
+            "cePrior": 1780.5,
+            "ceCurrent": 2163.0,
+            "ceDiff": 382.5
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 228992.0,
-            "ceCurrent": 204993.7,
-            "ceDiff": -23998.3
+            "label": "4/6/12oz NR",
+            "cePrior": 66949.0,
+            "ceCurrent": 58144.0,
+            "ceDiff": -8805.0
           },
           {
-            "label": "Cans",
-            "cePrior": 82694.3,
-            "ceCurrent": 76402.1,
-            "ceDiff": -6292.2
+            "label": "24/12oz NR",
+            "cePrior": 73740.0,
+            "ceCurrent": 65791.0,
+            "ceDiff": -7949.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 49605.0,
+            "ceCurrent": 43211.0,
+            "ceDiff": -6394.0
           }
         ]
       }
@@ -7111,30 +7172,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 141233.1,
-            "ceCurrent": 154487.5,
-            "ceDiff": 13254.4
+            "label": "3/8/12oz Can",
+            "cePrior": 19060.0,
+            "ceCurrent": 27019.0,
+            "ceDiff": 7959.0
           },
           {
-            "label": "Other",
-            "cePrior": 456.0,
-            "ceCurrent": 1229.0,
-            "ceDiff": 773.0
+            "label": "1/24/12oz Can",
+            "cePrior": 8397.0,
+            "ceCurrent": 12076.0,
+            "ceDiff": 3679.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 76783.0,
+            "ceCurrent": 79679.0,
+            "ceDiff": 2896.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 60519.5,
-            "ceCurrent": 55858.0,
-            "ceDiff": -4661.5
+            "label": "4/6/12oz NR",
+            "cePrior": 47228.0,
+            "ceCurrent": 43648.0,
+            "ceDiff": -3580.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 24203.5,
-            "ceCurrent": 22894.5,
-            "ceDiff": -1309.0
+            "label": "1/12/24oz Can",
+            "cePrior": 22668.0,
+            "ceCurrent": 20158.0,
+            "ceDiff": -2510.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 13140.0,
+            "ceCurrent": 12087.0,
+            "ceDiff": -1053.0
           }
         ]
       }
@@ -7261,19 +7334,44 @@
             "ceDiff": -526.9
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 194944.3,
-            "ceCurrent": 178490.8,
-            "ceDiff": -16453.5
+            "label": "4/6/12oz NR",
+            "cePrior": 686.0,
+            "ceCurrent": 1878.0,
+            "ceDiff": 1192.0
           },
           {
-            "label": "Other",
-            "cePrior": 6970.9,
-            "ceCurrent": 4560.0,
-            "ceDiff": -2410.9
+            "label": "12/19.2oz Can",
+            "cePrior": 23310.4,
+            "ceCurrent": 23910.4,
+            "ceDiff": 600.0
+          },
+          {
+            "label": "1/12/19.2oz",
+            "cePrior": 285.6,
+            "ceCurrent": 868.0,
+            "ceDiff": 582.4
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 100628.0,
+            "ceCurrent": 88356.0,
+            "ceDiff": -12272.0
+          },
+          {
+            "label": "1/24/12oz Can",
+            "cePrior": 25414.0,
+            "ceCurrent": 22172.0,
+            "ceDiff": -3242.0
+          },
+          {
+            "label": "4/6/11.2oz NR",
+            "cePrior": 21591.9,
+            "ceCurrent": 18694.6,
+            "ceDiff": -2897.3
           }
         ]
       }
@@ -7466,19 +7564,44 @@
             "ceDiff": -1597.4
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 129097.0,
-            "ceCurrent": 119739.0,
-            "ceDiff": -9358.0
+            "label": "15/25oz Can",
+            "cePrior": 3891.9,
+            "ceCurrent": 28966.1,
+            "ceDiff": 25074.2
           },
           {
-            "label": "Kegs",
-            "cePrior": 7529.6,
-            "ceCurrent": 5166.7,
-            "ceDiff": -2362.9
+            "label": "2/15/12oz Can",
+            "cePrior": 407.5,
+            "ceCurrent": 3779.4,
+            "ceDiff": 3371.9
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 17188.0,
+            "ceCurrent": 18120.0,
+            "ceDiff": 932.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 29754.0,
+            "ceCurrent": -15.0,
+            "ceDiff": -29769.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 3895.0,
+            "ceCurrent": 592.0,
+            "ceDiff": -3303.0
+          },
+          {
+            "label": "30/12oz Can",
+            "cePrior": 40737.5,
+            "ceCurrent": 37633.8,
+            "ceDiff": -3103.8
           }
         ]
       }
@@ -7632,19 +7755,44 @@
             "ceDiff": -233.1
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 49438.5,
-            "ceCurrent": 46037.8,
-            "ceDiff": -3400.7
+            "label": "15/24oz Can",
+            "cePrior": 9686.2,
+            "ceCurrent": 10210.0,
+            "ceDiff": 523.8
           },
           {
-            "label": "Kegs",
-            "cePrior": 32897.9,
-            "ceCurrent": 32178.0,
-            "ceDiff": -719.9
+            "label": "2/12/16oz Can",
+            "cePrior": 500.0,
+            "ceCurrent": 689.3,
+            "ceDiff": 189.3
+          },
+          {
+            "label": "4/6/16oz Can",
+            "cePrior": 2542.7,
+            "ceCurrent": 2566.7,
+            "ceDiff": 24.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": 14894.0,
+            "ceCurrent": 13671.0,
+            "ceDiff": -1223.0
+          },
+          {
+            "label": "24/12oz NR",
+            "cePrior": 17409.0,
+            "ceCurrent": 16265.0,
+            "ceDiff": -1144.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 13933.0,
+            "ceCurrent": 12981.0,
+            "ceDiff": -952.0
           }
         ]
       }
@@ -7687,19 +7835,32 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 34929.3,
-            "ceCurrent": 43405.6,
-            "ceDiff": 8476.3
+            "label": "1/24/12oz Can",
+            "cePrior": 7503.0,
+            "ceCurrent": 11146.0,
+            "ceDiff": 3643.0
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 7929.0,
-            "ceCurrent": 8869.0,
-            "ceDiff": 940.0
+            "label": "2/12/12oz Can",
+            "cePrior": 14191.0,
+            "ceCurrent": 16192.0,
+            "ceDiff": 2001.0
+          },
+          {
+            "label": "12/22oz Can",
+            "cePrior": 12284.3,
+            "ceCurrent": 14271.6,
+            "ceDiff": 1987.3
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 2431.8,
+            "ceCurrent": 2252.7,
+            "ceDiff": -179.1
+          }
+        ]
       }
     },
     {
@@ -7837,24 +7998,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 24680.3,
-            "ceCurrent": 28341.0,
-            "ceDiff": 3660.8
+            "label": "1/15/19.2oz Can",
+            "cePrior": 4448.0,
+            "ceCurrent": 6452.0,
+            "ceDiff": 2004.0
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 4561.8,
-            "ceCurrent": 4781.8,
-            "ceDiff": 220.0
+            "label": "2/12/12oz Can",
+            "cePrior": 8443.0,
+            "ceCurrent": 9520.0,
+            "ceDiff": 1077.0
+          },
+          {
+            "label": "1/24/12oz Can",
+            "cePrior": 1775.0,
+            "ceCurrent": 2488.0,
+            "ceDiff": 713.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Other",
+            "label": "6/4/16.9oz",
             "cePrior": 346.4,
-            "ceCurrent": 18.1,
-            "ceDiff": -328.3
+            "ceCurrent": 1.4,
+            "ceDiff": -345.0
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 1475.5,
+            "ceCurrent": 1177.1,
+            "ceDiff": -298.4
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 681.0,
+            "ceCurrent": 440.0,
+            "ceDiff": -241.0
           }
         ]
       }
@@ -7897,30 +8076,42 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 15850.0,
-            "ceCurrent": 18348.1,
-            "ceDiff": 2498.1
+            "label": "2/12/12oz Can",
+            "cePrior": 8729.0,
+            "ceCurrent": 9733.0,
+            "ceDiff": 1004.0
           },
           {
-            "label": "Other",
-            "cePrior": 303.0,
-            "ceCurrent": 459.0,
-            "ceDiff": 156.0
+            "label": "1/24/12oz Can",
+            "cePrior": 1100.0,
+            "ceCurrent": 2097.0,
+            "ceDiff": 997.0
+          },
+          {
+            "label": "3/8/8.4oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 352.1,
+            "ceDiff": 352.1
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 5930.0,
-            "ceCurrent": 5533.0,
-            "ceDiff": -397.0
+            "label": "2/12/12oz NR",
+            "cePrior": 1703.0,
+            "ceCurrent": 1444.0,
+            "ceDiff": -259.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 5.3,
-            "ceCurrent": 0.0,
-            "ceDiff": -5.3
+            "label": "4/6/12oz NR",
+            "cePrior": 4227.0,
+            "ceCurrent": 4089.0,
+            "ceDiff": -138.0
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 3210.2,
+            "ceCurrent": 3162.0,
+            "ceDiff": -48.2
           }
         ]
       }
@@ -8015,24 +8206,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Kegs",
+            "label": "50 Liter Keg (13.2 Gal)",
             "cePrior": 1861.0,
             "ceCurrent": 2559.5,
             "ceDiff": 698.6
+          },
+          {
+            "label": "2/12/11.2oz NR",
+            "cePrior": 1748.5,
+            "ceCurrent": 1820.4,
+            "ceDiff": 71.9
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 167.0,
+            "ceCurrent": 179.0,
+            "ceDiff": 12.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 12739.8,
-            "ceCurrent": 11892.8,
-            "ceDiff": -847.0
+            "label": "6/4/16.9oz Can",
+            "cePrior": 8830.5,
+            "ceCurrent": 8306.1,
+            "ceDiff": -524.4
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 6225.3,
-            "ceCurrent": 6080.5,
-            "ceDiff": -144.8
+            "label": "4/6/16.9oz Can",
+            "cePrior": 2564.3,
+            "ceCurrent": 2331.7,
+            "ceDiff": -232.6
+          },
+          {
+            "label": "4/6/11.2oz NR",
+            "cePrior": 4476.8,
+            "ceCurrent": 4260.1,
+            "ceDiff": -216.7
           }
         ]
       }
@@ -8155,19 +8364,44 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 12162.6,
-            "ceCurrent": 13336.2,
-            "ceDiff": 1173.5
+            "label": "4/6/12oz NR",
+            "cePrior": 9356.0,
+            "ceCurrent": 10208.0,
+            "ceDiff": 852.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 3192.7,
-            "ceCurrent": 3722.0,
-            "ceDiff": 529.3
+            "label": "50 Liter Keg (13.2 Gal)",
+            "cePrior": 1649.6,
+            "ceCurrent": 1960.7,
+            "ceDiff": 311.1
+          },
+          {
+            "label": "4/6/11.2oz NR",
+            "cePrior": 2642.3,
+            "ceCurrent": 2921.6,
+            "ceDiff": 279.3
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "6/4/11.2oz Can",
+            "cePrior": 229.8,
+            "ceCurrent": 212.9,
+            "ceDiff": -16.8
+          },
+          {
+            "label": "4/5/16.9oz NR",
+            "cePrior": 3.5,
+            "ceCurrent": 0.0,
+            "ceDiff": -3.5
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 0.0,
+            "ceCurrent": -2.3,
+            "ceDiff": -2.3
+          }
+        ]
       }
     },
     {
@@ -8213,19 +8447,44 @@
             "ceDiff": -7349.3
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 17514.0,
-            "ceCurrent": 11594.0,
-            "ceDiff": -5920.0
+            "label": "2/12/12oz NR",
+            "cePrior": 448.0,
+            "ceCurrent": 744.0,
+            "ceDiff": 296.0
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 6728.9,
-            "ceCurrent": 5305.6,
-            "ceDiff": -1423.3
+            "label": "4/6/7oz NR",
+            "cePrior": 0.0,
+            "ceCurrent": 288.8,
+            "ceDiff": 288.8
+          },
+          {
+            "label": "12/32oz NR",
+            "cePrior": 0.0,
+            "ceCurrent": 21.3,
+            "ceDiff": 21.3
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 10580.0,
+            "ceCurrent": 6182.0,
+            "ceDiff": -4398.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 6934.0,
+            "ceCurrent": 5412.0,
+            "ceDiff": -1522.0
+          },
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": 4062.0,
+            "ceCurrent": 2784.0,
+            "ceDiff": -1278.0
           }
         ]
       }
@@ -8273,19 +8532,44 @@
             "ceDiff": -1645.1
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 4432.9,
-            "ceCurrent": 3876.8,
-            "ceDiff": -556.1
+            "label": "5.2 Gal Keg",
+            "cePrior": 976.2,
+            "ceCurrent": 1359.0,
+            "ceDiff": 382.7
           },
           {
-            "label": "Cans",
-            "cePrior": 13367.0,
-            "ceCurrent": 12823.0,
-            "ceDiff": -544.0
+            "label": "1/15/19.2oz Can",
+            "cePrior": 218.0,
+            "ceCurrent": 403.0,
+            "ceDiff": 185.0
+          },
+          {
+            "label": "6/4/16oz Can",
+            "cePrior": 44.0,
+            "ceCurrent": 100.0,
+            "ceDiff": 56.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 3354.9,
+            "ceCurrent": 2362.9,
+            "ceDiff": -992.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 9241.0,
+            "ceCurrent": 8536.0,
+            "ceDiff": -705.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 3864.0,
+            "ceCurrent": 3784.0,
+            "ceDiff": -80.0
           }
         ]
       }
@@ -8328,19 +8612,44 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 2168.5,
-            "ceCurrent": 2905.4,
-            "ceDiff": 737.0
+            "label": "2/12/12oz Can",
+            "cePrior": 3452.0,
+            "ceCurrent": 4338.0,
+            "ceDiff": 886.0
           },
           {
-            "label": "Cans",
-            "cePrior": 13714.5,
-            "ceCurrent": 13729.5,
-            "ceDiff": 15.0
+            "label": "15.5 Gal Keg",
+            "cePrior": 1391.6,
+            "ceCurrent": 2039.1,
+            "ceDiff": 647.5
+          },
+          {
+            "label": "5.2 Gal Keg",
+            "cePrior": 776.9,
+            "ceCurrent": 866.3,
+            "ceDiff": 89.4
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 9553.0,
+            "ceCurrent": 8715.0,
+            "ceDiff": -838.0
+          },
+          {
+            "label": "6/4/16oz Can",
+            "cePrior": 325.3,
+            "ceCurrent": 289.3,
+            "ceDiff": -36.0
+          },
+          {
+            "label": "12/19.2oz Can",
+            "cePrior": 403.2,
+            "ceCurrent": 387.2,
+            "ceDiff": -16.0
+          }
+        ]
       }
     },
     {
@@ -8455,7 +8764,19 @@
         ],
         "pkgGainers": [
           {
-            "label": "Other",
+            "label": "1/15/19.2oz Can",
+            "cePrior": 58.0,
+            "ceCurrent": 659.0,
+            "ceDiff": 601.0
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 318.0,
+            "ceCurrent": 546.0,
+            "ceDiff": 228.0
+          },
+          {
+            "label": "1/15/19.2 oz",
             "cePrior": 0.0,
             "ceCurrent": 172.5,
             "ceDiff": 172.5
@@ -8463,16 +8784,22 @@
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 12391.3,
-            "ceCurrent": 10740.4,
-            "ceDiff": -1650.9
+            "label": "4/6/12oz NR",
+            "cePrior": 10652.0,
+            "ceCurrent": 9643.0,
+            "ceDiff": -1009.0
           },
           {
-            "label": "Cans",
-            "cePrior": 4028.3,
-            "ceCurrent": 2574.0,
-            "ceDiff": -1454.3
+            "label": "2/12/12oz Can",
+            "cePrior": 1795.0,
+            "ceCurrent": 849.0,
+            "ceDiff": -946.0
+          },
+          {
+            "label": "12/19.2oz Can",
+            "cePrior": 855.2,
+            "ceCurrent": -1.6,
+            "ceDiff": -856.8
           }
         ]
       }
@@ -8515,19 +8842,38 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 12286.0,
-            "ceCurrent": 13092.0,
-            "ceDiff": 806.0
+            "label": "1/24/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 1700.0,
+            "ceDiff": 1700.0
           },
           {
-            "label": "Kegs",
+            "label": "2/12/12oz Can",
+            "cePrior": 3128.0,
+            "ceCurrent": 3897.0,
+            "ceDiff": 769.0
+          },
+          {
+            "label": "6/4/12oz Can",
             "cePrior": 0.0,
-            "ceCurrent": 13.8,
-            "ceDiff": 13.8
+            "ceCurrent": 234.0,
+            "ceDiff": 234.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 9117.0,
+            "ceCurrent": 7237.0,
+            "ceDiff": -1880.0
+          },
+          {
+            "label": "1/15/19.2oz Can",
+            "cePrior": 41.0,
+            "ceCurrent": 24.0,
+            "ceDiff": -17.0
+          }
+        ]
       }
     },
     {
@@ -8568,19 +8914,32 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 6752.6,
-            "ceCurrent": 9947.0,
-            "ceDiff": 3194.3
+            "label": "2/12/12oz Can",
+            "cePrior": 4053.0,
+            "ceCurrent": 5890.0,
+            "ceDiff": 1837.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 498.2,
-            "ceCurrent": 1729.1,
-            "ceDiff": 1230.9
+            "label": "15.5 Gal Keg",
+            "cePrior": 447.8,
+            "ceCurrent": 1708.4,
+            "ceDiff": 1260.7
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 271.0,
+            "ceCurrent": 1315.0,
+            "ceDiff": 1044.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "5.2 Gal Keg",
+            "cePrior": 50.4,
+            "ceCurrent": 20.6,
+            "ceDiff": -29.8
+          }
+        ]
       }
     },
     {
@@ -8638,24 +8997,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 7109.0,
-            "ceCurrent": 7301.2,
-            "ceDiff": 192.2
+            "label": "1/24/12oz Can",
+            "cePrior": 224.0,
+            "ceCurrent": 431.0,
+            "ceDiff": 207.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 3734.0,
+            "ceCurrent": 3815.0,
+            "ceDiff": 81.0
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 1005.8,
+            "ceCurrent": 1040.2,
+            "ceDiff": 34.4
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 3828.0,
-            "ceCurrent": 3491.0,
-            "ceDiff": -337.0
+            "label": "4/6/12oz NR",
+            "cePrior": 2484.0,
+            "ceCurrent": 2249.0,
+            "ceDiff": -235.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 1322.7,
-            "ceCurrent": 1250.3,
-            "ceDiff": -72.3
+            "label": "1/4 BBL Keg (7.75 Gal)",
+            "cePrior": 316.9,
+            "ceCurrent": 210.1,
+            "ceDiff": -106.8
+          },
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 1320.0,
+            "ceCurrent": 1232.0,
+            "ceDiff": -88.0
           }
         ]
       }
@@ -8713,19 +9090,38 @@
             "ceDiff": -669.8
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 10722.6,
-            "ceCurrent": 9837.0,
-            "ceDiff": -885.6
+            "label": "2/12/12oz Can",
+            "cePrior": 2206.0,
+            "ceCurrent": 2265.0,
+            "ceDiff": 59.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 1810.8,
-            "ceCurrent": 1301.1,
-            "ceDiff": -509.7
+            "label": "6/4/16oz Can",
+            "cePrior": 46.6,
+            "ceCurrent": 64.0,
+            "ceDiff": 17.4
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 6780.0,
+            "ceCurrent": 5985.0,
+            "ceDiff": -795.0
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 1405.4,
+            "ceCurrent": 950.7,
+            "ceDiff": -454.7
+          },
+          {
+            "label": "1/15/19.2oz Can",
+            "cePrior": 1690.0,
+            "ceCurrent": 1523.0,
+            "ceDiff": -167.0
           }
         ]
       }
@@ -8766,19 +9162,44 @@
             "ceDiff": -761.2
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 9763.5,
-            "ceCurrent": 9205.0,
-            "ceDiff": -558.5
+            "label": "5.2 Gal Keg",
+            "cePrior": 511.0,
+            "ceCurrent": 653.1,
+            "ceDiff": 142.1
           },
           {
-            "label": "Kegs",
-            "cePrior": 1838.7,
-            "ceCurrent": 1636.0,
-            "ceDiff": -202.7
+            "label": "2/12/12oz Can",
+            "cePrior": 469.0,
+            "ceCurrent": 553.0,
+            "ceDiff": 84.0
+          },
+          {
+            "label": "1/15/19.2oz Can",
+            "cePrior": 460.0,
+            "ceCurrent": 506.0,
+            "ceDiff": 46.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 5617.0,
+            "ceCurrent": 4891.0,
+            "ceDiff": -726.0
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 1281.4,
+            "ceCurrent": 978.3,
+            "ceDiff": -303.1
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 46.2,
+            "ceCurrent": 4.6,
+            "ceDiff": -41.6
           }
         ]
       }
@@ -8940,30 +9361,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 249.2,
-            "ceCurrent": 280.8,
-            "ceDiff": 31.6
+            "label": "2/12/12oz Can",
+            "cePrior": 72.0,
+            "ceCurrent": 584.0,
+            "ceDiff": 512.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 0.0,
-            "ceCurrent": 16.3,
-            "ceDiff": 16.3
+            "label": "4/6/12oz Can",
+            "cePrior": 6.0,
+            "ceCurrent": 449.0,
+            "ceDiff": 443.0
+          },
+          {
+            "label": "4/6/11.2oz NR",
+            "cePrior": 2042.7,
+            "ceCurrent": 2237.0,
+            "ceDiff": 194.3
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 9224.0,
-            "ceCurrent": 8258.6,
-            "ceDiff": -965.4
+            "label": "3/8/12oz Can",
+            "cePrior": 1471.0,
+            "ceCurrent": 113.0,
+            "ceDiff": -1358.0
           },
           {
-            "label": "Cans",
-            "cePrior": 2563.6,
-            "ceCurrent": 1728.3,
-            "ceDiff": -835.3
+            "label": "2/12/12oz NR",
+            "cePrior": 722.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -722.0
+          },
+          {
+            "label": "6/4/16.9oz Can",
+            "cePrior": 517.4,
+            "ceCurrent": 0.0,
+            "ceDiff": -517.4
           }
         ]
       }
@@ -9022,19 +9455,32 @@
             "ceDiff": -1139.8
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "4/6/16oz Can",
+            "cePrior": 1598.7,
+            "ceCurrent": 1750.7,
+            "ceDiff": 152.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 7366.7,
-            "ceCurrent": 6592.5,
-            "ceDiff": -774.2
+            "label": "4/6/12oz Can",
+            "cePrior": 1707.0,
+            "ceCurrent": 1181.0,
+            "ceDiff": -526.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 2798.9,
-            "ceCurrent": 2610.5,
-            "ceDiff": -188.4
+            "label": "1/24/12oz Can",
+            "cePrior": 1300.0,
+            "ceCurrent": 1100.0,
+            "ceDiff": -200.0
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 2376.7,
+            "ceCurrent": 2218.2,
+            "ceDiff": -158.5
           }
         ]
       }
@@ -9112,16 +9558,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 12664.7,
-            "ceCurrent": 9787.8,
-            "ceDiff": -2876.9
+            "label": "12/23.5oz Can",
+            "cePrior": 10685.7,
+            "ceCurrent": 8616.8,
+            "ceDiff": -2068.9
           },
           {
-            "label": "Other",
-            "cePrior": 504.3,
-            "ceCurrent": 287.9,
-            "ceDiff": -216.4
+            "label": "3/8/12oz Can",
+            "cePrior": 749.0,
+            "ceCurrent": 406.0,
+            "ceDiff": -343.0
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 1049.0,
+            "ceCurrent": 758.0,
+            "ceDiff": -291.0
           }
         ]
       }
@@ -9186,19 +9638,32 @@
             "ceDiff": -105.0
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "30/12oz Can",
+            "cePrior": 4471.2,
+            "ceCurrent": 5131.2,
+            "ceDiff": 660.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 746.0,
             "ceCurrent": 200.0,
             "ceDiff": -546.0
           },
           {
-            "label": "Cans",
-            "cePrior": 8762.2,
-            "ceCurrent": 8745.2,
-            "ceDiff": -17.0
+            "label": "2/12/12oz Can",
+            "cePrior": 703.0,
+            "ceCurrent": 318.0,
+            "ceDiff": -385.0
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 3588.0,
+            "ceCurrent": 3296.0,
+            "ceDiff": -292.0
           }
         ]
       }
@@ -9282,19 +9747,44 @@
         ],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 1293.7,
-            "ceCurrent": 1363.0,
-            "ceDiff": 69.3
+            "label": "24/12oz NR",
+            "cePrior": 711.0,
+            "ceCurrent": 813.0,
+            "ceDiff": 102.0
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 4989.7,
-            "ceCurrent": 5011.3,
-            "ceDiff": 21.6
+            "label": "2/12/11.2oz NR",
+            "cePrior": 225.1,
+            "ceCurrent": 311.9,
+            "ceDiff": 86.8
+          },
+          {
+            "label": "1/12/24oz Can",
+            "cePrior": 15.0,
+            "ceCurrent": 76.0,
+            "ceDiff": 61.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "6/4/11.2oz NR",
+            "cePrior": 83.1,
+            "ceCurrent": 0.0,
+            "ceDiff": -83.1
+          },
+          {
+            "label": "12/19.2oz Can",
+            "cePrior": 72.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -72.0
+          },
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": 1415.0,
+            "ceCurrent": 1357.0,
+            "ceDiff": -58.0
+          }
+        ]
       }
     },
     {
@@ -9335,21 +9825,33 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 2935.6,
-            "ceCurrent": 3244.1,
-            "ceDiff": 308.4
+            "label": "4/6/11.2oz NR",
+            "cePrior": 2836.6,
+            "ceCurrent": 3620.3,
+            "ceDiff": 783.7
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 3492.3,
-            "ceCurrent": 3620.3,
-            "ceDiff": 128.0
+            "label": "50 Liter Keg (13.2 Gal)",
+            "cePrior": 2647.6,
+            "ceCurrent": 3234.6,
+            "ceDiff": 587.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "24/11.2oz NR",
+            "cePrior": 655.7,
+            "ceCurrent": 0.0,
+            "ceDiff": -655.7
+          },
+          {
+            "label": "2/5 Liter Keg",
+            "cePrior": 288.1,
+            "ceCurrent": 9.5,
+            "ceDiff": -278.6
+          },
+          {
+            "label": "6/4/16.9oz Can",
             "cePrior": 167.8,
             "ceCurrent": 0.0,
             "ceDiff": -167.8
@@ -9414,24 +9916,36 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "6/750ml Btl",
             "cePrior": 0.0,
             "ceCurrent": 17.5,
             "ceDiff": 17.5
+          },
+          {
+            "label": "12/22oz NR",
+            "cePrior": 198.0,
+            "ceCurrent": 211.8,
+            "ceDiff": 13.7
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 2341.9,
-            "ceCurrent": 1934.9,
-            "ceDiff": -407.0
+            "label": "15.5 Gal Keg",
+            "cePrior": 1701.5,
+            "ceCurrent": 1405.3,
+            "ceDiff": -296.2
           },
           {
-            "label": "Cans",
-            "cePrior": 3820.3,
-            "ceCurrent": 3674.6,
-            "ceDiff": -145.7
+            "label": "4/6/12oz Can",
+            "cePrior": 1923.0,
+            "ceCurrent": 1808.0,
+            "ceDiff": -115.0
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 617.5,
+            "ceCurrent": 529.6,
+            "ceDiff": -87.9
           }
         ]
       }
@@ -9491,19 +10005,38 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Other",
+            "label": "4/6/16oz Can",
+            "cePrior": 2692.0,
+            "ceCurrent": 2973.4,
+            "ceDiff": 281.4
+          },
+          {
+            "label": "1/30/12.00 oz",
             "cePrior": 418.8,
             "ceCurrent": 626.2,
             "ceDiff": 207.5
           },
           {
-            "label": "Cans",
-            "cePrior": 4604.0,
-            "ceCurrent": 4744.4,
-            "ceDiff": 140.4
+            "label": "15.5 Gal Keg",
+            "cePrior": 461.6,
+            "ceCurrent": 482.2,
+            "ceDiff": 20.7
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 1912.0,
+            "ceCurrent": 1776.0,
+            "ceDiff": -136.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": -5.0,
+            "ceDiff": -5.0
+          }
+        ]
       }
     },
     {
@@ -9542,13 +10075,32 @@
             "ceDiff": -2999.1
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "12/1 Liter Btl",
+            "cePrior": 446.6,
+            "ceCurrent": 521.3,
+            "ceDiff": 74.7
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 8426.1,
-            "ceCurrent": 5427.0,
-            "ceDiff": -2999.1
+            "label": "24/375ml Btl",
+            "cePrior": 3577.0,
+            "ceCurrent": 1342.0,
+            "ceDiff": -2235.0
+          },
+          {
+            "label": "1/12/750ml Btl",
+            "cePrior": 823.2,
+            "ceCurrent": 329.7,
+            "ceDiff": -493.5
+          },
+          {
+            "label": "48/200ml Btl",
+            "cePrior": 2514.1,
+            "ceCurrent": 2327.5,
+            "ceDiff": -186.7
           }
         ]
       }
@@ -9591,10 +10143,16 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 3617.0,
-            "ceCurrent": 5400.0,
-            "ceDiff": 1783.0
+            "label": "12/28oz Btl",
+            "cePrior": 2835.0,
+            "ceCurrent": 4578.0,
+            "ceDiff": 1743.0
+          },
+          {
+            "label": "24/12oz Btl",
+            "cePrior": 782.0,
+            "ceCurrent": 822.0,
+            "ceDiff": 40.0
           }
         ],
         "pkgDecliners": []
@@ -9653,19 +10211,38 @@
             "ceDiff": -324.0
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 4920.0,
-            "ceCurrent": 2641.0,
-            "ceDiff": -2279.0
+            "label": "2/12/12oz NR",
+            "cePrior": 331.0,
+            "ceCurrent": 430.0,
+            "ceDiff": 99.0
           },
           {
-            "label": "Bottles (NR)",
-            "cePrior": 1663.0,
-            "ceCurrent": 1566.0,
-            "ceDiff": -97.0
+            "label": "1/12/24oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 38.0,
+            "ceDiff": 38.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 2405.0,
+            "ceCurrent": 1135.0,
+            "ceDiff": -1270.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 2515.0,
+            "ceCurrent": 1468.0,
+            "ceDiff": -1047.0
+          },
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": 1332.0,
+            "ceCurrent": 1136.0,
+            "ceDiff": -196.0
           }
         ]
       }
@@ -9725,24 +10302,42 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 3285.3,
-            "ceCurrent": 4005.8,
-            "ceDiff": 720.5
+            "label": "6/4/16oz Can",
+            "cePrior": 3001.3,
+            "ceCurrent": 3840.0,
+            "ceDiff": 838.7
           },
           {
-            "label": "Kegs",
-            "cePrior": 18.4,
-            "ceCurrent": 137.7,
+            "label": "5.2 Gal Keg",
+            "cePrior": 0.0,
+            "ceCurrent": 119.2,
             "ceDiff": 119.2
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 11.6,
+            "ceCurrent": 18.5,
+            "ceDiff": 6.9
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 0.5,
+            "label": "6/4/12oz Can",
+            "cePrior": 93.0,
+            "ceCurrent": 24.0,
+            "ceDiff": -69.0
+          },
+          {
+            "label": "12/19.2oz Can",
+            "cePrior": 76.0,
+            "ceCurrent": 20.8,
+            "ceDiff": -55.2
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 6.9,
             "ceCurrent": 0.0,
-            "ceDiff": -0.5
+            "ceDiff": -6.9
           }
         ]
       }
@@ -9872,19 +10467,38 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Other",
-            "cePrior": 2341.0,
-            "ceCurrent": 2960.2,
-            "ceDiff": 619.2
+            "label": "4/6/11.15oz",
+            "cePrior": 878.1,
+            "ceCurrent": 1879.7,
+            "ceDiff": 1001.7
           },
           {
-            "label": "Cans",
+            "label": "6/6/5.91oz",
+            "cePrior": 150.7,
+            "ceCurrent": 206.1,
+            "ceDiff": 55.4
+          },
+          {
+            "label": "4/6/12oz Can",
             "cePrior": 814.0,
             "ceCurrent": 819.0,
             "ceDiff": 5.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "1/24/11.15oz",
+            "cePrior": 1299.0,
+            "ceCurrent": 874.4,
+            "ceDiff": -424.6
+          },
+          {
+            "label": "1/36/5.91oz",
+            "cePrior": 13.3,
+            "ceCurrent": 0.0,
+            "ceDiff": -13.3
+          }
+        ]
       }
     },
     {
@@ -9926,7 +10540,7 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "24/8.4oz Can",
             "cePrior": 4266.5,
             "ceCurrent": 3470.4,
             "ceDiff": -796.1
@@ -9989,24 +10603,36 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 1335.0,
-            "ceCurrent": 2116.0,
-            "ceDiff": 781.0
+            "label": "2/12/12oz Can",
+            "cePrior": 884.0,
+            "ceCurrent": 1401.0,
+            "ceDiff": 517.0
+          },
+          {
+            "label": "1/24/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 400.0,
+            "ceDiff": 400.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 678.5,
-            "ceCurrent": 372.0,
-            "ceDiff": -306.6
+            "label": "15.5 Gal Keg",
+            "cePrior": 592.4,
+            "ceCurrent": 351.3,
+            "ceDiff": -241.1
           },
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 700.0,
             "ceCurrent": 550.0,
             "ceDiff": -150.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 299.0,
+            "ceCurrent": 229.0,
+            "ceDiff": -70.0
           }
         ]
       }
@@ -10073,13 +10699,13 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/11.2oz NR",
             "cePrior": 1614.0,
             "ceCurrent": 2527.5,
             "ceDiff": 913.5
           },
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/12/750ml Btl",
             "cePrior": 0.0,
             "ceCurrent": 11.6,
             "ceDiff": 11.6
@@ -10087,10 +10713,16 @@
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 1302.3,
-            "ceCurrent": 272.3,
-            "ceDiff": -1030.1
+            "label": "4/6/16.9oz Can",
+            "cePrior": 961.4,
+            "ceCurrent": -1.4,
+            "ceDiff": -962.8
+          },
+          {
+            "label": "4/6/11.2oz Can",
+            "cePrior": 340.9,
+            "ceCurrent": 273.7,
+            "ceDiff": -67.2
           }
         ]
       }
@@ -10133,13 +10765,13 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
+            "label": "6/4/12oz Can",
             "cePrior": 769.0,
             "ceCurrent": 2753.0,
             "ceDiff": 1984.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/6/750 mL",
             "cePrior": 0.0,
             "ceCurrent": 5.3,
             "ceDiff": 5.3
@@ -10305,24 +10937,42 @@
         ],
         "pkgGainers": [
           {
-            "label": "Other",
+            "label": "6/4/16oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 74.7,
+            "ceDiff": 74.7
+          },
+          {
+            "label": "6/4/13.7oz",
             "cePrior": 0.0,
             "ceCurrent": 37.7,
             "ceDiff": 37.7
+          },
+          {
+            "label": "12/25.4oz NR",
+            "cePrior": 0.0,
+            "ceCurrent": 22.2,
+            "ceDiff": 22.2
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 889.2,
-            "ceCurrent": 506.1,
-            "ceDiff": -383.1
+            "label": "4/6/11.2oz NR",
+            "cePrior": 809.8,
+            "ceCurrent": 402.6,
+            "ceDiff": -407.2
           },
           {
-            "label": "Cans",
-            "cePrior": 738.0,
-            "ceCurrent": 591.1,
-            "ceDiff": -146.9
+            "label": "6/4/14.9oz Can",
+            "cePrior": 615.3,
+            "ceCurrent": 406.5,
+            "ceDiff": -208.9
+          },
+          {
+            "label": "50 Liter Keg (13.2 Gal)",
+            "cePrior": 816.0,
+            "ceCurrent": 692.7,
+            "ceDiff": -123.3
           }
         ]
       }
@@ -10366,16 +11016,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 2030.2,
-            "ceCurrent": 1690.4,
-            "ceDiff": -339.8
+            "label": "15.5 Gal Keg",
+            "cePrior": 1625.8,
+            "ceCurrent": 1302.0,
+            "ceDiff": -323.8
           },
           {
-            "label": "Cans",
-            "cePrior": 784.2,
-            "ceCurrent": 626.8,
-            "ceDiff": -157.4
+            "label": "4/6/12oz Can",
+            "cePrior": 624.0,
+            "ceCurrent": 500.0,
+            "ceDiff": -124.0
+          },
+          {
+            "label": "12/19.2oz Can",
+            "cePrior": 67.2,
+            "ceCurrent": 44.8,
+            "ceDiff": -22.4
           }
         ]
       }
@@ -10416,13 +11072,38 @@
             "ceDiff": -53.1
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "24/375ml Btl",
+            "cePrior": 550.0,
+            "ceCurrent": 756.0,
+            "ceDiff": 206.0
+          },
+          {
+            "label": "12/1 Liter Btl",
+            "cePrior": 178.7,
+            "ceCurrent": 186.7,
+            "ceDiff": 8.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 2360.8,
-            "ceCurrent": 2307.7,
-            "ceDiff": -53.1
+            "label": "6/1.75 Liter Btl",
+            "cePrior": 1255.3,
+            "ceCurrent": 1048.8,
+            "ceDiff": -206.5
+          },
+          {
+            "label": "48/200ml Btl",
+            "cePrior": 283.7,
+            "ceCurrent": 250.7,
+            "ceDiff": -33.1
+          },
+          {
+            "label": "1/12/750ml Btl",
+            "cePrior": 93.0,
+            "ceCurrent": 65.5,
+            "ceDiff": -27.5
           }
         ]
       }
@@ -10465,21 +11146,27 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Kegs",
+            "label": "15.5 Gal Keg",
             "cePrior": 1998.0,
             "ceCurrent": 2101.3,
             "ceDiff": 103.3
           },
           {
-            "label": "Cans",
-            "cePrior": 80.0,
-            "ceCurrent": 93.0,
-            "ceDiff": 13.0
+            "label": "6/4/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 11.0,
+            "ceDiff": 11.0
+          },
+          {
+            "label": "6/4/12oz NR",
+            "cePrior": 1.0,
+            "ceCurrent": 7.0,
+            "ceDiff": 6.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Other",
+            "label": "1/1/264.00 oz",
             "cePrior": 21.1,
             "ceCurrent": 12.8,
             "ceDiff": -8.3
@@ -10525,21 +11212,27 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 1185.5,
-            "ceCurrent": 1331.0,
-            "ceDiff": 145.5
+            "label": "2/12/12oz Can",
+            "cePrior": 162.0,
+            "ceCurrent": 259.0,
+            "ceDiff": 97.0
           },
           {
-            "label": "Kegs",
-            "cePrior": 455.6,
-            "ceCurrent": 487.8,
-            "ceDiff": 32.2
+            "label": "4/6/12oz Can",
+            "cePrior": 1023.5,
+            "ceCurrent": 1072.0,
+            "ceDiff": 48.5
+          },
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 303.1,
+            "ceCurrent": 323.8,
+            "ceDiff": 20.6
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Other",
+            "label": "1/15/12.00 oz",
             "cePrior": 73.8,
             "ceCurrent": 0.0,
             "ceDiff": -73.8
@@ -10586,16 +11279,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 1165.0,
-            "ceCurrent": 1010.0,
-            "ceDiff": -155.0
+            "label": "4/6/12oz NR",
+            "cePrior": 1082.0,
+            "ceCurrent": 946.0,
+            "ceDiff": -136.0
           },
           {
-            "label": "Cans",
-            "cePrior": 778.0,
-            "ceCurrent": 715.0,
-            "ceDiff": -63.0
+            "label": "4/6/12oz Can",
+            "cePrior": 503.0,
+            "ceCurrent": 464.0,
+            "ceDiff": -39.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 275.0,
+            "ceCurrent": 251.0,
+            "ceDiff": -24.0
           }
         ]
       }
@@ -10690,19 +11389,32 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
-            "cePrior": 1423.4,
-            "ceCurrent": 1583.2,
-            "ceDiff": 159.8
+            "label": "4/6/11.2oz NR",
+            "cePrior": 1345.0,
+            "ceCurrent": 1547.7,
+            "ceDiff": 202.7
           },
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/12/750ml Btl",
             "cePrior": 95.1,
-            "ceCurrent": 112.0,
-            "ceDiff": 16.8
+            "ceCurrent": 111.0,
+            "ceDiff": 15.8
+          },
+          {
+            "label": "6/750ml Btl",
+            "cePrior": 0.0,
+            "ceCurrent": 1.0,
+            "ceDiff": 1.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "24/11.2oz NR",
+            "cePrior": 78.5,
+            "ceCurrent": 35.5,
+            "ceDiff": -43.0
+          }
+        ]
       }
     },
     {
@@ -10761,13 +11473,19 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 1236.7,
-            "ceCurrent": 1009.0,
-            "ceDiff": -227.7
+            "label": "4/6/12oz Can",
+            "cePrior": 964.0,
+            "ceCurrent": 844.0,
+            "ceDiff": -120.0
           },
           {
-            "label": "Bottles (NR)",
+            "label": "2/12/12oz Can",
+            "cePrior": 197.0,
+            "ceCurrent": 153.0,
+            "ceDiff": -44.0
+          },
+          {
+            "label": "4/6/12oz NR",
             "cePrior": 320.0,
             "ceCurrent": 282.0,
             "ceDiff": -38.0
@@ -10828,19 +11546,44 @@
             "ceDiff": -75.9
           }
         ],
-        "pkgGainers": [],
-        "pkgDecliners": [
+        "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 1403.2,
-            "ceCurrent": 920.7,
-            "ceDiff": -482.6
+            "label": "2/12/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 83.0,
+            "ceDiff": 83.0
           },
           {
-            "label": "Cans",
-            "cePrior": 767.7,
-            "ceCurrent": 654.3,
-            "ceDiff": -113.4
+            "label": "1/15/19.2oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 25.0,
+            "ceDiff": 25.0
+          },
+          {
+            "label": "6/4/12oz Can",
+            "cePrior": 6.0,
+            "ceCurrent": 15.0,
+            "ceDiff": 9.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "15.5 Gal Keg",
+            "cePrior": 1102.2,
+            "ceCurrent": 750.9,
+            "ceDiff": -351.3
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 659.0,
+            "ceCurrent": 466.0,
+            "ceDiff": -193.0
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 85.6,
+            "ceCurrent": 18.5,
+            "ceDiff": -67.1
           }
         ]
       }
@@ -10883,7 +11626,7 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 849.0,
             "ceCurrent": 1552.0,
             "ceDiff": 703.0
@@ -10928,19 +11671,32 @@
             "ceDiff": -476.0
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": -13.0,
+            "ceCurrent": 0.0,
+            "ceDiff": 13.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 338.3,
-            "ceCurrent": 87.3,
-            "ceDiff": -251.0
+            "label": "15.5 Gal Keg",
+            "cePrior": 144.7,
+            "ceCurrent": 6.9,
+            "ceDiff": -137.8
           },
           {
-            "label": "Cans",
-            "cePrior": 1496.8,
-            "ceCurrent": 1300.8,
-            "ceDiff": -196.0
+            "label": "4/6/12oz Can",
+            "cePrior": 499.0,
+            "ceCurrent": 373.0,
+            "ceDiff": -126.0
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 122.6,
+            "ceCurrent": 25.4,
+            "ceDiff": -97.2
           }
         ]
       }
@@ -10983,19 +11739,32 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 734.0,
-            "ceCurrent": 831.0,
-            "ceDiff": 97.0
+            "ceCurrent": 843.0,
+            "ceDiff": 109.0
           },
           {
-            "label": "Kegs",
+            "label": "1/4 BBL Keg (7.75 Gal)",
             "cePrior": 82.7,
             "ceCurrent": 106.8,
             "ceDiff": 24.1
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 194.0,
+            "ceCurrent": 207.0,
+            "ceDiff": 13.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "2/12/12oz NR",
+            "cePrior": 0.0,
+            "ceCurrent": -12.0,
+            "ceDiff": -12.0
+          }
+        ]
       }
     },
     {
@@ -11036,10 +11805,22 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 246.0,
-            "ceCurrent": 1025.0,
-            "ceDiff": 779.0
+            "label": "3/8/12oz Can",
+            "cePrior": 203.0,
+            "ceCurrent": 720.0,
+            "ceDiff": 517.0
+          },
+          {
+            "label": "6/4/12oz Can",
+            "cePrior": 43.0,
+            "ceCurrent": 303.0,
+            "ceDiff": 260.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 2.0,
+            "ceDiff": 2.0
           }
         ],
         "pkgDecliners": []
@@ -11083,13 +11864,20 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 798.0,
-            "ceCurrent": 956.0,
-            "ceDiff": 158.0
+            "label": "6/4/12oz Can",
+            "cePrior": 505.0,
+            "ceCurrent": 685.0,
+            "ceDiff": 180.0
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "3/8/12oz Can",
+            "cePrior": 293.0,
+            "ceCurrent": 271.0,
+            "ceDiff": -22.0
+          }
+        ]
       }
     },
     {
@@ -11182,15 +11970,21 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 419.5,
-            "ceCurrent": 656.7,
-            "ceDiff": 237.2
+            "label": "2/6/750 ML",
+            "cePrior": 0.0,
+            "ceCurrent": 598.6,
+            "ceDiff": 598.6
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "1/12/750ml Btl",
+            "cePrior": 419.5,
+            "ceCurrent": 58.1,
+            "ceDiff": -361.4
+          },
+          {
+            "label": "1/12/12oz Can",
             "cePrior": 230.9,
             "ceCurrent": 129.7,
             "ceDiff": -101.3
@@ -11242,16 +12036,22 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 55.0,
-            "ceCurrent": 742.0,
-            "ceDiff": 687.0
+            "label": "2/12/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 538.0,
+            "ceDiff": 538.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 0.0,
-            "ceCurrent": 1.0,
-            "ceDiff": 1.0
+            "label": "6/4/12oz Can",
+            "cePrior": 40.0,
+            "ceCurrent": 158.0,
+            "ceDiff": 118.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 15.0,
+            "ceCurrent": 46.0,
+            "ceDiff": 31.0
           }
         ],
         "pkgDecliners": []
@@ -11295,15 +12095,21 @@
         ],
         "pkgGainers": [
           {
-            "label": "Kegs",
-            "cePrior": 220.4,
-            "ceCurrent": 280.0,
-            "ceDiff": 59.6
+            "label": "15.5 Gal Keg",
+            "cePrior": 165.3,
+            "ceCurrent": 199.8,
+            "ceDiff": 34.4
+          },
+          {
+            "label": "5.2 Gal Keg",
+            "cePrior": 55.0,
+            "ceCurrent": 80.2,
+            "ceDiff": 25.2
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "6/4/14.9oz Can",
             "cePrior": 578.0,
             "ceCurrent": 437.6,
             "ceDiff": -140.5
@@ -11350,7 +12156,7 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 804.0,
             "ceCurrent": 672.0,
             "ceDiff": -132.0
@@ -11397,16 +12203,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 480.6,
-            "ceCurrent": 335.6,
-            "ceDiff": -145.0
+            "label": "15.5 Gal Keg",
+            "cePrior": 378.9,
+            "ceCurrent": 282.4,
+            "ceDiff": -96.4
           },
           {
-            "label": "Cans",
+            "label": "6/4/16oz Can",
             "cePrior": 349.4,
             "ceCurrent": 277.3,
             "ceDiff": -72.0
+          },
+          {
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 97.1,
+            "ceCurrent": 53.2,
+            "ceDiff": -43.9
           }
         ]
       }
@@ -11465,13 +12277,32 @@
             "ceDiff": -221.5
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "1/6/750 mL (BO)",
+            "cePrior": 0.0,
+            "ceCurrent": 64.1,
+            "ceDiff": 64.1
+          },
+          {
+            "label": "1/10/50 ML (Sleeve)",
+            "cePrior": 0.0,
+            "ceCurrent": 1.0,
+            "ceDiff": 1.0
+          },
+          {
+            "label": "1/1LTR",
+            "cePrior": 0.0,
+            "ceCurrent": 0.9,
+            "ceDiff": 0.9
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/750ML",
             "cePrior": 689.4,
-            "ceCurrent": 529.1,
-            "ceDiff": -160.3
+            "ceCurrent": 463.2,
+            "ceDiff": -226.2
           }
         ]
       }
@@ -11514,10 +12345,16 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 448.0,
-            "ceCurrent": 492.0,
-            "ceDiff": 44.0
+            "label": "2/12/12oz Can",
+            "cePrior": 58.0,
+            "ceCurrent": 84.0,
+            "ceDiff": 26.0
+          },
+          {
+            "label": "6/4/12oz Can",
+            "cePrior": 390.0,
+            "ceCurrent": 408.0,
+            "ceDiff": 18.0
           }
         ],
         "pkgDecliners": []
@@ -11559,13 +12396,20 @@
             "ceDiff": -1429.0
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "1/24/12oz Can",
+            "cePrior": 19.0,
+            "ceCurrent": 67.0,
+            "ceDiff": 48.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 1859.0,
-            "ceCurrent": 430.0,
-            "ceDiff": -1429.0
+            "label": "3/8/12oz Can",
+            "cePrior": 1840.0,
+            "ceCurrent": 363.0,
+            "ceDiff": -1477.0
           }
         ]
       }
@@ -11608,18 +12452,36 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Kegs",
+            "label": "5.2 Gal Keg",
             "cePrior": 43.5,
             "ceCurrent": 100.8,
             "ceDiff": 57.3
+          },
+          {
+            "label": "3/8/12oz Can",
+            "cePrior": 62.0,
+            "ceCurrent": 83.0,
+            "ceDiff": 21.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 340.3,
-            "ceCurrent": 289.0,
-            "ceDiff": -51.3
+            "label": "6/4/12oz Can",
+            "cePrior": 65.0,
+            "ceCurrent": 9.0,
+            "ceDiff": -56.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 92.0,
+            "ceCurrent": 81.0,
+            "ceDiff": -11.0
+          },
+          {
+            "label": "6/4/16oz Can",
+            "cePrior": 121.3,
+            "ceCurrent": 116.0,
+            "ceDiff": -5.3
           }
         ]
       }
@@ -11662,15 +12524,21 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Cans",
-            "cePrior": 328.0,
-            "ceCurrent": 332.0,
-            "ceDiff": 4.0
+            "label": "3/8/12oz Can",
+            "cePrior": 24.0,
+            "ceCurrent": 42.0,
+            "ceDiff": 18.0
           }
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "6/4/12oz Can",
+            "cePrior": 304.0,
+            "ceCurrent": 290.0,
+            "ceDiff": -14.0
+          },
+          {
+            "label": "1/6/750 mL (BO)",
             "cePrior": 3.0,
             "ceCurrent": 1.0,
             "ceDiff": -2.0
@@ -11721,13 +12589,20 @@
             "ceDiff": -105.0
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 0.0,
+            "ceCurrent": 63.0,
+            "ceDiff": 63.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "3/8/12oz Can",
             "cePrior": 364.0,
-            "ceCurrent": 322.0,
-            "ceDiff": -42.0
+            "ceCurrent": 259.0,
+            "ceDiff": -105.0
           }
         ]
       }
@@ -11792,13 +12667,20 @@
             "ceDiff": -277.0
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 3.0,
+            "ceCurrent": 46.0,
+            "ceDiff": 43.0
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 1158.0,
-            "ceCurrent": 295.0,
-            "ceDiff": -863.0
+            "label": "6/4/12oz Can",
+            "cePrior": 1155.0,
+            "ceCurrent": 249.0,
+            "ceDiff": -906.0
           }
         ]
       }
@@ -11897,7 +12779,7 @@
         ],
         "pkgGainers": [
           {
-            "label": "Other",
+            "label": "4/6/2.5oz",
             "cePrior": 0.0,
             "ceCurrent": 5.0,
             "ceDiff": 5.0
@@ -11905,10 +12787,16 @@
         ],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 968.0,
-            "ceCurrent": 257.0,
-            "ceDiff": -711.0
+            "label": "6/4/12oz Can",
+            "cePrior": 894.0,
+            "ceCurrent": 224.0,
+            "ceDiff": -670.0
+          },
+          {
+            "label": "4/6/12oz Can",
+            "cePrior": 74.0,
+            "ceCurrent": 33.0,
+            "ceDiff": -41.0
           }
         ]
       }
@@ -11952,16 +12840,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 209.5,
-            "ceCurrent": 55.5,
-            "ceDiff": -154.0
+            "label": "15.5 Gal Keg",
+            "cePrior": 110.2,
+            "ceCurrent": 0.0,
+            "ceDiff": -110.2
           },
           {
-            "label": "Cans",
-            "cePrior": 54.7,
+            "label": "6/4/16oz Can",
+            "cePrior": 52.0,
             "ceCurrent": 8.0,
-            "ceDiff": -46.7
+            "ceDiff": -44.0
+          },
+          {
+            "label": "4/6/12oz NR",
+            "cePrior": 225.0,
+            "ceCurrent": 193.0,
+            "ceDiff": -32.0
           }
         ]
       }
@@ -12005,10 +12899,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 643.8,
-            "ceCurrent": 241.0,
-            "ceDiff": -402.8
+            "label": "4/6/12oz Can",
+            "cePrior": 277.0,
+            "ceCurrent": 37.0,
+            "ceDiff": -240.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 322.0,
+            "ceCurrent": 204.0,
+            "ceDiff": -118.0
+          },
+          {
+            "label": "4/6/11.2oz Can",
+            "cePrior": 44.8,
+            "ceCurrent": 0.0,
+            "ceDiff": -44.8
           }
         ]
       }
@@ -12049,13 +12955,38 @@
             "ceDiff": -34.6
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "60/50ml Btl",
+            "cePrior": 2.0,
+            "ceCurrent": 5.3,
+            "ceDiff": 3.3
+          },
+          {
+            "label": "6/750ml Btl",
+            "cePrior": 0.0,
+            "ceCurrent": 1.5,
+            "ceDiff": 1.5
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 264.4,
-            "ceCurrent": 229.8,
-            "ceDiff": -34.6
+            "label": "6/1.75 Liter Btl",
+            "cePrior": 141.2,
+            "ceCurrent": 117.8,
+            "ceDiff": -23.3
+          },
+          {
+            "label": "1/12/750ml Btl",
+            "cePrior": 97.2,
+            "ceCurrent": 82.4,
+            "ceDiff": -14.8
+          },
+          {
+            "label": "12/1 Liter Btl",
+            "cePrior": 24.0,
+            "ceCurrent": 22.7,
+            "ceDiff": -1.3
           }
         ]
       }
@@ -12098,13 +13029,13 @@
         ],
         "pkgGainers": [
           {
-            "label": "Kegs",
+            "label": "1/6 BBL Keg (5.2 Gal)",
             "cePrior": 4.6,
             "ceCurrent": 6.9,
             "ceDiff": 2.3
           },
           {
-            "label": "Cans",
+            "label": "6/4/16oz Can",
             "cePrior": 177.3,
             "ceCurrent": 178.7,
             "ceDiff": 1.3
@@ -12112,13 +13043,13 @@
         ],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
+            "label": "6/4/12oz NR",
             "cePrior": 23.0,
             "ceCurrent": 2.0,
             "ceDiff": -21.0
           },
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/12/750ml Btl",
             "cePrior": 4.2,
             "ceCurrent": 0.0,
             "ceDiff": -4.2
@@ -12165,16 +13096,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 147.0,
+            "label": "15.5 Gal Keg",
+            "cePrior": 144.7,
             "ceCurrent": 68.9,
-            "ceDiff": -78.1
+            "ceDiff": -75.8
           },
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/12oz NR",
             "cePrior": 137.0,
             "ceCurrent": 73.0,
             "ceDiff": -64.0
+          },
+          {
+            "label": "2/12/12oz Can",
+            "cePrior": 44.0,
+            "ceCurrent": 12.0,
+            "ceDiff": -32.0
           }
         ]
       }
@@ -12217,7 +13154,7 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Other",
+            "label": "1/24/12.00 oz",
             "cePrior": 83.0,
             "ceCurrent": 120.0,
             "ceDiff": 37.0
@@ -12262,13 +13199,26 @@
             "ceDiff": -43.3
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "6/750ml Btl",
+            "cePrior": 0.0,
+            "ceCurrent": 43.5,
+            "ceDiff": 43.5
+          },
+          {
+            "label": "1/6/750 mL",
+            "cePrior": 20.6,
+            "ceCurrent": 32.8,
+            "ceDiff": 12.2
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 147.6,
-            "ceCurrent": 104.3,
-            "ceDiff": -43.3
+            "label": "48/60 ML",
+            "cePrior": 127.0,
+            "ceCurrent": 28.0,
+            "ceDiff": -99.0
           }
         ]
       }
@@ -12312,10 +13262,16 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 110.8,
+            "label": "1/12/750 mL (BO)",
+            "cePrior": 110.0,
             "ceCurrent": 87.1,
-            "ceDiff": -23.7
+            "ceDiff": -22.9
+          },
+          {
+            "label": "3/750ML Btl",
+            "cePrior": 0.8,
+            "ceCurrent": 0.0,
+            "ceDiff": -0.8
           }
         ]
       }
@@ -12359,13 +13315,13 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/11.2oz NR",
             "cePrior": 148.5,
             "ceCurrent": 76.6,
             "ceDiff": -71.9
           },
           {
-            "label": "Cans",
+            "label": "4/6/11.2oz Can",
             "cePrior": 12.2,
             "ceCurrent": 0.0,
             "ceDiff": -12.2
@@ -12412,7 +13368,7 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (NR)",
+            "label": "4/6/11.2oz NR",
             "cePrior": 88.7,
             "ceCurrent": 76.6,
             "ceDiff": -12.2
@@ -12459,7 +13415,7 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
+            "label": "6/4/12oz Can",
             "cePrior": 71.0,
             "ceCurrent": 30.0,
             "ceDiff": -41.0
@@ -12505,7 +13461,7 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/12/750ml Btl",
             "cePrior": 6.3,
             "ceCurrent": 24.3,
             "ceDiff": 18.0
@@ -12559,10 +13515,16 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 1050.3,
+            "label": "3/8/11.5oz Can",
+            "cePrior": 1047.4,
             "ceCurrent": 17.2,
-            "ceDiff": -1033.1
+            "ceDiff": -1030.2
+          },
+          {
+            "label": "6/4/11.5oz Can",
+            "cePrior": 2.9,
+            "ceCurrent": 0.0,
+            "ceDiff": -2.9
           }
         ]
       }
@@ -12606,10 +13568,22 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 538.4,
+            "label": "6/4/16oz Can",
+            "cePrior": 472.0,
             "ceCurrent": 14.7,
-            "ceDiff": -523.7
+            "ceDiff": -457.3
+          },
+          {
+            "label": "2/12/16oz Can",
+            "cePrior": 65.3,
+            "ceCurrent": 0.0,
+            "ceDiff": -65.3
+          },
+          {
+            "label": "6/4/12oz Can",
+            "cePrior": 1.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -1.0
           }
         ]
       }
@@ -12680,7 +13654,7 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "6/750ml Btl",
             "cePrior": 12.5,
             "ceCurrent": 14.0,
             "ceDiff": 1.5
@@ -12725,13 +13699,20 @@
             "ceDiff": -6.3
           }
         ],
-        "pkgGainers": [],
+        "pkgGainers": [
+          {
+            "label": "1/12/750ml Btl",
+            "cePrior": 3.2,
+            "ceCurrent": 7.4,
+            "ceDiff": 4.2
+          }
+        ],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 18.3,
-            "ceCurrent": 12.1,
-            "ceDiff": -6.3
+            "label": "6/1.75 Liter Btl",
+            "cePrior": 15.2,
+            "ceCurrent": 4.7,
+            "ceDiff": -10.5
           }
         ]
       }
@@ -12804,19 +13785,32 @@
         ],
         "pkgGainers": [
           {
-            "label": "Bottles (NR)",
+            "label": "1/12/750ml Btl",
+            "cePrior": 0.0,
+            "ceCurrent": 5.3,
+            "ceDiff": 5.3
+          },
+          {
+            "label": "4/6/12oz NR",
             "cePrior": 2.0,
             "ceCurrent": 3.0,
             "ceDiff": 1.0
-          },
-          {
-            "label": "Bottles (Wine & Spirits)",
-            "cePrior": 5.5,
-            "ceCurrent": 6.3,
-            "ceDiff": 0.8
           }
         ],
-        "pkgDecliners": []
+        "pkgDecliners": [
+          {
+            "label": "750ML",
+            "cePrior": 5.5,
+            "ceCurrent": 2.0,
+            "ceDiff": -3.5
+          },
+          {
+            "label": "1/12/1 LTR",
+            "cePrior": 0.0,
+            "ceCurrent": -0.9,
+            "ceDiff": -0.9
+          }
+        ]
       }
     },
     {
@@ -12858,7 +13852,7 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "1/6/946 ML",
             "cePrior": 42.7,
             "ceCurrent": 9.4,
             "ceDiff": -33.3
@@ -12905,13 +13899,19 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Kegs",
-            "cePrior": 277.5,
-            "ceCurrent": 6.9,
-            "ceDiff": -270.6
+            "label": "50 Liter Keg (13.2 Gal)",
+            "cePrior": 152.6,
+            "ceCurrent": 0.0,
+            "ceDiff": -152.6
           },
           {
-            "label": "Cans",
+            "label": "1/6 BBL Keg (5.2 Gal)",
+            "cePrior": 124.9,
+            "ceCurrent": 6.9,
+            "ceDiff": -117.9
+          },
+          {
+            "label": "6/4/16oz Can",
             "cePrior": 104.0,
             "ceCurrent": 0.0,
             "ceDiff": -104.0
@@ -12957,7 +13957,7 @@
         "brandDecliners": [],
         "pkgGainers": [
           {
-            "label": "Bottles (Wine & Spirits)",
+            "label": "12/375ml Btl",
             "cePrior": 5.0,
             "ceCurrent": 6.0,
             "ceDiff": 1.0
@@ -13006,10 +14006,16 @@
         "pkgGainers": [],
         "pkgDecliners": [
           {
-            "label": "Cans",
-            "cePrior": 21.0,
-            "ceCurrent": 0.7,
-            "ceDiff": -20.3
+            "label": "6/4/12oz Can",
+            "cePrior": 13.0,
+            "ceCurrent": 2.0,
+            "ceDiff": -11.0
+          },
+          {
+            "label": "6/4/16oz Can",
+            "cePrior": 8.0,
+            "ceCurrent": -1.3,
+            "ceDiff": -9.3
           }
         ]
       }
@@ -13463,30 +14469,42 @@
     ],
     "pkgGainers": [
       {
-        "label": "Cans",
-        "cePrior": 1948761.4,
-        "ceCurrent": 1963979.4,
-        "ceDiff": 15218.0
+        "label": "15/25oz Can",
+        "cePrior": 3891.9,
+        "ceCurrent": 28966.1,
+        "ceDiff": 25074.2
       },
       {
-        "label": "Bottles (Wine & Spirits)",
-        "cePrior": 72258.3,
-        "ceCurrent": 81528.6,
-        "ceDiff": 9270.3
+        "label": "36/12oz Can",
+        "cePrior": 25275.0,
+        "ceCurrent": 49465.5,
+        "ceDiff": 24190.5
+      },
+      {
+        "label": "1/24/12oz Can",
+        "cePrior": 256709.0,
+        "ceCurrent": 269077.0,
+        "ceDiff": 12368.0
       }
     ],
     "pkgDecliners": [
       {
-        "label": "Bottles (NR)",
-        "cePrior": 1770525.1,
-        "ceCurrent": 1689698.1,
-        "ceDiff": -80827.1
+        "label": "2/12/12oz NR",
+        "cePrior": 396065.0,
+        "ceCurrent": 370027.0,
+        "ceDiff": -26038.0
       },
       {
-        "label": "Kegs",
-        "cePrior": 240707.5,
-        "ceCurrent": 234189.8,
-        "ceDiff": -6517.7
+        "label": "30/12oz Can",
+        "cePrior": 269196.2,
+        "ceCurrent": 243743.8,
+        "ceDiff": -25452.5
+      },
+      {
+        "label": "24/12oz NR",
+        "cePrior": 532356.0,
+        "ceCurrent": 506992.0,
+        "ceDiff": -25364.0
       }
     ]
   },

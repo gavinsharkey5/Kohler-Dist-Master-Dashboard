@@ -54,11 +54,13 @@ Inputs (keep these filenames when refreshing):
                               suggestion): for each supplier (and one
                               company-wide "Overall" popover by the tab
                               heading), which brand families drove growth
-                              vs. dragged it down, and which package
-                              groups (Cans / Bottles (NR) / Kegs /
-                              Bottles (Wine & Spirits) / Other -- see
-                              package_group()) grew vs. shrank. See
-                              parse_brand_package_trend(). Skipped
+                              vs. dragged it down, and which SPECIFIC
+                              package (the raw Package label, e.g.
+                              "1/15/19.2oz Can" -- deliberately not
+                              bucketed into a coarse Cans/Bottles/Kegs
+                              grouping, per Gavin 2026-08-10) grew vs.
+                              shrank. See parse_brand_package_trend().
+                              Skipped
                               entirely, with no popovers, if this file
                               isn't present.
 
@@ -383,35 +385,16 @@ def parse_segment_package_trend(path):
 # Brand + package trend-driver popovers ("i" icons on the Supplier + Brand
 # tab, added 2026-08-10 per a manager's suggestion): for each supplier, and
 # once company-wide, which brand families are driving growth vs. dragging it
-# down, and which coarse package group (Cans / Bottles / Kegs / etc.) is
-# growing vs. shrinking -- a quick read on WHY a supplier's trend % looks the
-# way it does, without leaving the Supplier + Brand tab.
+# down, and which SPECIFIC package (the raw Fusion Package label, e.g.
+# "1/15/19.2oz Can" -- per Gavin, 2026-08-10, deliberately NOT bucketed into
+# a coarse Cans/Bottles/Kegs grouping, since the point is to name the exact
+# package a manager should go push) is growing vs. shrinking -- a quick read
+# on WHY a supplier's trend % looks the way it does, without leaving the
+# Supplier + Brand tab.
 # ---------------------------------------------------------------------------
 MIN_MOVER_CE = 0.5  # floor below which a Case Equiv swing is rounding noise, not a real mover
 TOP_BRAND_MOVERS = 3
-TOP_PACKAGE_MOVERS = 2
-
-# Fusion's raw Package strings are extremely granular (144+ distinct values
-# in a typical export, e.g. "2/12/12oz Can" vs "4/6/12oz Can" vs "1/24/12oz
-# Can") -- too fine-grained for a "which package TYPE is trending" popover.
-# Bucketed by keyword instead of parsed structurally since the format isn't
-# fully consistent (kegs carry a gallon size, NR/Can suffixes aren't always
-# present on single-unit oz formats). Order matters: Keg/Can/NR checked
-# before the broader ml/Btl bucket so e.g. "50 Liter Keg" doesn't fall into
-# Bottles.
-def package_group(pkg):
-    p = (pkg or "").strip().lower()
-    if not p:
-        return "Other"
-    if "keg" in p or "bbl" in p:
-        return "Kegs"
-    if "can" in p:
-        return "Cans"
-    if p.endswith("nr") or " nr" in p:
-        return "Bottles (NR)"
-    if "btl" in p or "ml" in p or "liter" in p or "ltr" in p:
-        return "Bottles (Wine & Spirits)"
-    return "Other"
+TOP_PACKAGE_MOVERS = 3
 
 
 def _top_movers(totals, limit):
@@ -456,7 +439,7 @@ def parse_brand_package_trend(path):
                 continue
             prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
             brand = (r.get("Brand Family") or "").strip() or "Unclassified"
-            pkg = package_group(r.get("Package"))
+            pkg = (r.get("Package") or "").strip() or "Unspecified"
 
             overall_brand[brand][0] += prior
             overall_brand[brand][1] += current

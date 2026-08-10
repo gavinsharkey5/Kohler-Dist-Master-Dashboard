@@ -179,8 +179,9 @@ built from a one-off Fusion export the user attached in chat): a small
 (hover on desktop, tap to pin on touch -- click elsewhere, or the icon
 again, to unpin) shows a quick synopsis of WHY that supplier's Trend %
 looks the way it does -- its top brand families driving growth vs.
-dragging it down, and which package group (Cans / Bottles (NR) / Kegs
-/ Bottles (Wine & Spirits) / Other) is growing vs. shrinking within
+dragging it down, and which SPECIFIC package (the raw Fusion Package
+label, e.g. "1/15/19.2oz Can" -- not a coarse Cans/Bottles/Kegs
+grouping, per Gavin 2026-08-10) is growing vs. shrinking within
 that supplier. A matching icon next to the "Supplier + Brand rollup"
 heading itself shows the same thing rolled up company-wide. Data comes
 from brand_package_trend.csv (see that file's own entry above) via
@@ -276,19 +277,18 @@ Files:
                               one next to the tab's own heading, for the
                               company-wide version) to see which brand
                               families drove that supplier's growth vs.
-                              dragged it down, and which package group
-                              (Cans / Bottles (NR) / Kegs / Bottles (Wine
-                              & Spirits) / Other -- bucketed from the raw
-                              Package column by package_group() in
-                              generate.py, since the raw values are far
-                              too granular, e.g. "2/12/12oz Can" vs.
-                              "4/6/12oz Can" vs. "1/24/12oz Can", to show
-                              as their own trend line) grew vs. shrank.
-                              Top 3 brand movers and top 2 package-group
-                              movers each direction, floored at
-                              MIN_MOVER_CE (0.5 CE) so rounding dust can't
-                              show up as a "driver." See
-                              parse_brand_package_trend() in generate.py.
+                              dragged it down, and which SPECIFIC package
+                              (the raw Package column value as-is, e.g.
+                              "1/15/19.2oz Can" -- deliberately NOT
+                              bucketed into a coarse Cans/Bottles/Kegs
+                              grouping, per Gavin 2026-08-10: the point is
+                              to name the exact package worth pushing, not
+                              a package category) grew vs. shrank. Top 3
+                              brand movers and top 3 package movers each
+                              direction, floored at MIN_MOVER_CE (0.5 CE)
+                              so rounding dust can't show up as a
+                              "driver." See parse_brand_package_trend()
+                              in generate.py.
                               Optional -- if this file is absent, no "i"
                               icons render at all.
   generate.py                 Rebuilds data/data.json from the files
