@@ -467,6 +467,13 @@ def parse_brand_package_trend(path):
         overall_premise = defaultdict(lambda: [0.0, 0.0])
         by_supplier_brand = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
         by_supplier_pkg = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        # supplier -> brand -> package -> [prior, current] -- package movers
+        # scoped to ONE brand family, not the whole supplier, for the
+        # brand-level "i" popover added 2026-08-10 per Gavin ("just want to
+        # see the packages that have grown and declined" at the brand
+        # level, no brand-vs-brand comparison needed since there's nothing
+        # below a brand family to compare against here).
+        by_brand_pkg = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: [0.0, 0.0])))
         supplier_totals = defaultdict(lambda: [0.0, 0.0])
         overall_totals = [0.0, 0.0]
 
@@ -494,6 +501,9 @@ def parse_brand_package_trend(path):
             sp = by_supplier_pkg[supplier][pkg]
             sp[0] += prior
             sp[1] += current
+            bp = by_brand_pkg[supplier][brand][pkg]
+            bp[0] += prior
+            bp[1] += current
             st = supplier_totals[supplier]
             st[0] += prior
             st[1] += current
@@ -511,6 +521,28 @@ def parse_brand_package_trend(path):
     overall_insight = build_insight(overall_brand, overall_pkg, overall_totals[0], overall_totals[1])
     by_supplier = {
         supplier: build_insight(by_supplier_brand[supplier], by_supplier_pkg[supplier], *supplier_totals[supplier])
+        for supplier in by_supplier_brand
+    }
+
+    # Brand-level "i" popover data (added 2026-08-10, per Gavin): package
+    # movers only (no brandGainers/brandDecliners section -- there's
+    # nothing below "brand family" to compare against, unlike the
+    # supplier-level popover above). Nested supplier -> brand, matching how
+    # the Supplier + Brand combo tree already looks a child brand up (see
+    # main()'s attachment loop).
+    def build_brand_insight(pkg_totals, prior, current):
+        pkg_gainers, pkg_decliners = _top_movers(pkg_totals, TOP_PACKAGE_MOVERS)
+        trend = (current / prior - 1) if prior else None
+        return {
+            "cePrior": round(prior, 1), "ceCurrent": round(current, 1), "trendPct": round(trend, 4) if trend is not None else None,
+            "pkgGainers": pkg_gainers, "pkgDecliners": pkg_decliners,
+        }
+
+    by_brand = {
+        supplier: {
+            brand: build_brand_insight(by_brand_pkg[supplier][brand], *by_supplier_brand[supplier][brand])
+            for brand in by_supplier_brand[supplier]
+        }
         for supplier in by_supplier_brand
     }
 
@@ -538,6 +570,7 @@ def parse_brand_package_trend(path):
         "rangePrior": range_prior, "rangeCurrent": range_current,
         "overall": overall_insight,
         "bySupplier": by_supplier,
+        "byBrand": by_brand,
         "packageMoversCE": package_movers_ce,
         "premiseSplit": premise_split,
     }
@@ -1085,13 +1118,23 @@ def main():
 
     if brand_package_trend:
         matched_insight_count = 0
+        matched_brand_insight_count = 0
+        total_children_count = 0
         for group in combo_rollup:
             insight = brand_package_trend["bySupplier"].get(group["supplier"])
             if insight:
                 matched_insight_count += 1
             group["insight"] = insight
-        print(f"Matched trend-driver popovers to {matched_insight_count} / {len(combo_rollup)} suppliers on the "
-              f"Supplier + Brand tab (suppliers absent from {CSV_BRAND_PACKAGE.name} simply get no popover).")
+            brand_insights = brand_package_trend["byBrand"].get(group["supplier"], {})
+            for child in group["children"]:
+                total_children_count += 1
+                child_insight = brand_insights.get(child["brand"])
+                if child_insight:
+                    matched_brand_insight_count += 1
+                child["insight"] = child_insight
+        print(f"Matched trend-driver popovers to {matched_insight_count} / {len(combo_rollup)} suppliers and "
+              f"{matched_brand_insight_count} / {total_children_count} brand families on the Supplier + Brand tab "
+              f"(rows absent from {CSV_BRAND_PACKAGE.name} simply get no popover).")
 
     combo_rollup.sort(key=lambda r: -(r["ce_current"] or 0))
     total_combo_children = sum(len(g["children"]) for g in combo_rollup)

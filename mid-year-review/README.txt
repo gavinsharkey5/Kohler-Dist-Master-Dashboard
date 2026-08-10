@@ -193,6 +193,40 @@ nested inside each row) specifically so it can't get clipped by
 .tablewrap's horizontal scroll container or by a long supplier name's
 own text-overflow ellipsis.
 
+Brand-family-level "i" popovers (added 2026-08-10, per Gavin): the
+same icon, now ALSO next to each individual brand family row (a
+supplier's expanded children) on the Supplier + Brand tab -- per
+Gavin, "just want to see the packages that have grown and declined"
+at that level, so this popover skips the Brands driving growth/
+Brands dragging it down sections entirely (there's nothing below
+"brand family" to compare against) and shows only that brand's own
+Packages growing/shrinking, same CE units and MIN_MOVER_CE floor as
+the supplier-level version. insightTooltipHtml() in index.html detects
+which shape it got (insight.brandGainers!==undefined) and renders the
+brand-comparison sections only when present, so one function serves
+both levels. Backend: generate.py's parse_brand_package_trend() now
+also aggregates by_brand_pkg[supplier][brand][package] (package movers
+scoped to ONE brand family, not the whole supplier) via a new
+build_brand_insight() helper, returned as payload["byBrand"][supplier]
+[brand] and attached to each combo_rollup child as child["insight"] in
+main(), alongside the existing supplier-level attachment. 238 of 241
+brand families on the tab matched a popover as of this refresh (the
+handful that don't are raw-CSV-vs-workbook brand-name mismatches, same
+kind of thing documented elsewhere in this file -- e.g. Kirin/Lech --
+not a bug).
+
+Asked about geography (city/county) for brand-level growth/decline,
+2026-08-10: no file in this folder carries a location field --
+brand_package_trend.csv's columns are Supplier/Brand Family/Product
+Name/Package/Premise/Year Month only, no customer geography at all.
+Would need a NEW Fusion export: Brand Family + City (or County) + the
+same two Jan 1 - Jul 31 Case Equiv windows (SUM(NumUnits * CaseEquiv)),
+joined off the Customer/Account table for location rather than the
+Product table this export joins off of for Package -- structurally
+like the off-prem/on-prem MPO dashboards' customer-base exports
+(Customer Num/Area/County columns), just for this CE trend instead of
+placement counts. Not pursued without that file.
+
 Suppliers Overview header widget (moved 2026-08-10, per Gavin): what
 used to be 2 separate tiles in the Supplier + Brand tab's own KPI row
 -- "Suppliers Tracked" (count + brand-family rollup) and "Suppliers

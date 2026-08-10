@@ -1319,11 +1319,19 @@ function itMoverRows(rows, dir){
     `<span class="it-val ${dir}">${r.ceDiff>0?'+':''}${fmtCE(r.ceDiff)}</span></div>`).join('');
 }
 
+// Brand-level insight (added 2026-08-10, per Gavin) has no brandGainers/
+// brandDecliners -- there's nothing below "brand family" to compare
+// against, so those 2 sections are skipped entirely for it (checked via
+// insight.brandGainers!==undefined, present only on supplier/overall
+// insight objects -- see build_insight() vs. build_brand_insight() in
+// generate.py).
 function insightTooltipHtml(title, sub, insight){
   if (!insight) return '';
+  const hasBrandSections = insight.brandGainers !== undefined;
   return `
     <p class="it-title">${esc(title)}</p>
     <p class="it-sub">${esc(sub)} &middot; ${fmtCE(insight.cePrior)} &rarr; ${fmtCE(insight.ceCurrent)} CE (${fmtPct(insight.trendPct)})</p>
+    ${hasBrandSections ? `
     <div class="it-section">
       <p class="it-section-lbl up">Brands driving growth</p>
       ${itMoverRows(insight.brandGainers,'up')}
@@ -1331,7 +1339,7 @@ function insightTooltipHtml(title, sub, insight){
     <div class="it-section">
       <p class="it-section-lbl down">Brands dragging it down</p>
       ${itMoverRows(insight.brandDecliners,'down')}
-    </div>
+    </div>` : ''}
     <div class="it-section">
       <p class="it-section-lbl up">Packages growing</p>
       ${itMoverRows(insight.pkgGainers,'up')}
@@ -1474,7 +1482,7 @@ function renderComboRows(groups){
         const tdCName = document.createElement('td');
         tdCName.className = 'combo-name';
         tdCName.title = c.brand;
-        tdCName.innerHTML = `<span class="brandname">${esc(c.brand)}</span>`;
+        tdCName.innerHTML = `<span class="brandname">${esc(c.brand)}</span>${infoIconHtml(c.brand, supRange?`${g.supplier} · ${supRange.prior} vs. ${supRange.current}`:`${g.supplier} · Jan–Jul, 2025 vs. 2026`, c.insight)}`;
         trChild.appendChild(tdCName);
         buildComboCommonCells(c).forEach(td=>trChild.appendChild(td));
         frag.appendChild(trChild);
