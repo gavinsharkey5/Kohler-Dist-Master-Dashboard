@@ -12203,11 +12203,11 @@ const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty C
 
 const PROGRAM_LIST = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
-   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account's combined keg volume crosses 2 barrels · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
+   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account buys 2 barrels total · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
-   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account's combined keg volume crosses 3 barrels · $1 per case sold · a 3-placement minimum (packages + draft combined) must be hit before any payout on this program unlocks`,
+   desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account buys 3 barrels total · $1 per case sold · a 3-placement minimum (packages + draft combined) must be hit before any payout on this program unlocks`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
@@ -12347,18 +12347,18 @@ function card1911(rep){
   if(!d) return '';
   const rank = (PROGRAM_DATA['1911'].leaderboard||[]).find(r=>r.rep===rep);
   const rankHtml = rank ? `Rank <b>#${rank.rank}</b> of ${PROGRAM_DATA['1911'].leaderboard.length} on new placements + volume${rank.rank<=3?' <span class="flag-hit">— in the running for the Cidery trip</span>':''}` : '';
-  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account’s combined keg volume crosses 2 barrels');
+  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account buys 2 barrels total');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account's total keg volume crosses 2 barrels. Package activity never counts toward the barrel goal. Top 3 reps (distribution + volume) win a trip to the 1911 Cidery.</div>
+      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 2 barrels total. Package activity never counts toward the barrel goal. Top 3 reps (distribution + volume) win a trip to the 1911 Cidery.</div>
     </div>
     <div class="prog-body">
       ${sec.pkg}
       ${metricRow('New Package Placements','$10 each — off-premise cans/bottles only', d.offPremNewCount, null, null)}
       ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
       ${sec.keg}
-      ${metricRow('Accounts Crossing the 2-bbl Goal','$100 per new keg placement, paid once the account (not the rep) hits 2 bbl total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
+      ${metricRow('Accounts Crossing the 2-bbl Goal','$100 per new keg placement, paid once the account (not the rep) buys 2 barrels total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
       ${draftAccountsBlock(d.draftAccounts, 2, d.draftAccountsQualified)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},bblCol(2)], 'No new draft placements yet this period.', 'new draft placements')}
       <div class="metric-sub">${rankHtml}</div>
@@ -12374,12 +12374,12 @@ function cardWoodchuck(rep){
   const qualifierNote = (qualifies
     ? '<span class="flag-hit">Qualified — payouts unlocked</span>'
     : '<span class="flag-miss">Not yet qualified — no payout on this program until 3 is hit</span>')
-    + ' · counts packages AND draft together, but this is only an on/off switch for the whole program — it does not feed the 3-bbl keg goal below, which is tracked separately per account.';
-  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account’s combined keg volume crosses 3 barrels');
+    + ' · counts packages AND draft together, but this is only an on/off switch for the whole program — it does not feed the 3-barrel purchase goal below, which is tracked separately per account.';
+  const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account buys 3 barrels total');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row"><span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
-      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account's total keg volume crosses 3 barrels — plus $1 per case sold. Package activity never counts toward the barrel goal. A combined 3-placement minimum (packages + draft) must be hit before ANY of this program's payouts unlock.</div>
+      <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 3 barrels total — plus $1 per case sold. Package activity never counts toward the barrel goal. A combined 3-placement minimum (packages + draft) must be hit before ANY of this program's payouts unlock.</div>
     </div>
     <div class="prog-body">
       ${metricRow('Qualifier — Unlocks Any Payout on This Program','3 new placements minimum, packages + draft combined', totalNew+' / 3', qualifierNote, Math.min(totalNew/3,1)*100, false)}
@@ -12387,7 +12387,7 @@ function cardWoodchuck(rep){
       ${metricRow('New Package Placements','$10 each — off-premise cans/bottles only', d.offPremNewCount, null, null)}
       ${detailBlock(d.offPremNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'}], 'No new off-premise placements yet this period.', 'new off-premise placements')}
       ${sec.keg}
-      ${metricRow('Accounts Crossing the 3-bbl Goal','$100 per new keg placement, paid once the account (not the rep) hits 3 bbl total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
+      ${metricRow('Accounts Crossing the 3-bbl Goal','$100 per new keg placement, paid once the account (not the rep) buys 3 barrels total', d.draftAccountsQualified+' / '+d.draftAccounts.length+' accounts', null, null)}
       ${draftAccountsBlock(d.draftAccounts, 3, d.draftAccountsQualified)}
       ${detailBlock(d.draftNew, [{key:'customer',label:'Customer'},{key:'product',label:'Product'},{key:'date',label:'Date'},bblCol(3)], 'No new draft placements yet this period.', 'new draft placements')}
       ${metricRow('Case Volume (All Formats)','$1 per case sold, packages + kegs combined', d.caseVolume.toFixed(0)+' cases', null, null)}
