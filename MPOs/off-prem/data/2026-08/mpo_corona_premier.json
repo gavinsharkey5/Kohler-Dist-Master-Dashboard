@@ -10,6 +10,26 @@
     "CASES": 2.0
   },
   {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 43007,
+    "CUSTOMER_NAME": "American Classic Liq",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 67004,
+    "CUSTOMER_NAME": "Beverage Barn (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 3.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -40,6 +60,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 62001,
+    "CUSTOMER_NAME": "Garden State Deli (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -55,6 +85,16 @@
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
     "CUSTOMER_NUM": 46011,
     "CUSTOMER_NAME": "Han Mi Supermkt (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 46012,
+    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -128,6 +168,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 3.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 27002,
+    "CUSTOMER_NAME": "President Liqrs (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",

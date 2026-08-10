@@ -7,7 +7,17 @@
     "CITY": "Lyndhurst",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 18999.58
+    "CASES": 19043.58
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "CUSTOMER_NUM": 78002,
+    "CUSTOMER_NAME": "Super K Food (A) Store",
+    "SHIPPING_ADDRESS": "500 Stuyvesant Ave",
+    "CITY": "Rochelle Park",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 20350.58
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
@@ -17,7 +27,7 @@
     "CITY": "Rochelle Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1255.0
+    "CASES": 1307.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -37,7 +47,7 @@
     "CITY": "Pompton Plains",
     "AREA": "Morris 3",
     "COUNTY": "Morris",
-    "CASES": 4765.0
+    "CASES": 4883.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -47,7 +57,7 @@
     "CITY": "Wanaque",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 10140.17
+    "CASES": 10150.17
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -87,7 +97,7 @@
     "CITY": "Pompton Lakes",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 2674.0
+    "CASES": 2713.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -97,7 +107,7 @@
     "CITY": "Pompton Lakes",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6139.0
+    "CASES": 6432.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -117,7 +127,7 @@
     "CITY": "Hewitt",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 16419.15
+    "CASES": 16742.15
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -147,7 +157,7 @@
     "CITY": "Pompton Lakes",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 7465.0
+    "CASES": 7623.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -157,7 +167,7 @@
     "CITY": "West Milford",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 1972.0
+    "CASES": 1984.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -197,7 +207,7 @@
     "CITY": "Butler",
     "AREA": "Morris 3",
     "COUNTY": "Morris",
-    "CASES": 9126.15
+    "CASES": 9206.15
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -237,7 +247,7 @@
     "CITY": "Bloomingdale",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 7441.0
+    "CASES": 7475.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -247,7 +257,7 @@
     "CITY": "West Milford",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 14620.0
+    "CASES": 14616.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -257,7 +267,7 @@
     "CITY": "Wanaque",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 5335.0
+    "CASES": 5356.0
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -277,7 +287,17 @@
     "CITY": "West Milford",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 2620.75
+    "CASES": 2638.75
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 231805,
+    "CUSTOMER_NAME": "Wine 2 Spirits (P)",
+    "SHIPPING_ADDRESS": "92 RT 23",
+    "CITY": "West Milford",
+    "AREA": "Sussex",
+    "COUNTY": "Sussex",
+    "CASES": 169674.05
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -287,7 +307,7 @@
     "CITY": "Wanaque",
     "AREA": "Passaic-FF",
     "COUNTY": "Passaic",
-    "CASES": 4062.0
+    "CASES": 4090.0
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -297,7 +317,7 @@
     "CITY": "Lake Hopatcong",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 6528.0
+    "CASES": 6538.0
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -338,6 +358,16 @@
     "AREA": "Sussex",
     "COUNTY": "Sussex",
     "CASES": 395.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Brian Sengebush",
+    "CUSTOMER_NUM": 231717,
+    "CUSTOMER_NAME": "The Greek's",
+    "SHIPPING_ADDRESS": "Bldg 3324 Belt Road",
+    "CITY": "Picatinny",
+    "AREA": "Sussex",
+    "COUNTY": "Sussex",
+    "CASES": 15387.0
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -387,7 +417,7 @@
     "CITY": "Lodi",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 7856.17
+    "CASES": 8102.17
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -417,7 +447,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 30238.5
+    "CASES": 30578.5
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -437,7 +467,7 @@
     "CITY": "Saddle Brook",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3783.0
+    "CASES": 3824.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -447,7 +477,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 161759.85
+    "CASES": 161849.85
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -467,7 +497,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 7604.0
+    "CASES": 7627.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -487,7 +517,7 @@
     "CITY": "Maywood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2553.0
+    "CASES": 2578.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -527,7 +557,7 @@
     "CITY": "Saddle Brook",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3575.33
+    "CASES": 3693.33
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -537,7 +567,7 @@
     "CITY": "Hasbrouck Heights",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2622.0
+    "CASES": 2692.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -587,7 +617,7 @@
     "CITY": "Woodridge",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1329.0
+    "CASES": 1351.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -597,7 +627,7 @@
     "CITY": "Fair Lawn",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1471.0
+    "CASES": 1498.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -647,7 +677,7 @@
     "CITY": "Fair Lawn",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2251.0
+    "CASES": 2265.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -657,7 +687,7 @@
     "CITY": "Ridgefield Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 44383.32
+    "CASES": 44434.32
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -697,7 +727,7 @@
     "CITY": "Saddle Brook",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 14989.33
+    "CASES": 15112.33
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -707,7 +737,7 @@
     "CITY": "Bogota",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3599.0
+    "CASES": 3631.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -727,7 +757,7 @@
     "CITY": "Teaneck",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 15429.0
+    "CASES": 15667.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -737,7 +767,17 @@
     "CITY": "Woodridge",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 5618.67
+    "CASES": 5678.67
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 81011,
+    "CUSTOMER_NAME": "Yoshi Liq/Wine (P)",
+    "SHIPPING_ADDRESS": "93 S. Main St",
+    "CITY": "Woodridge",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 413062.02
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -747,7 +787,7 @@
     "CITY": "Hasbrouck Heights",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 871.0
+    "CASES": 890.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -767,7 +807,7 @@
     "CITY": "Leonia",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1618.0
+    "CASES": 1651.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -807,7 +847,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2112.0
+    "CASES": 2176.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -817,7 +857,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1821.0
+    "CASES": 1918.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -827,7 +867,7 @@
     "CITY": "Fairview",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 8849.0
+    "CASES": 8898.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -847,7 +887,7 @@
     "CITY": "Fairview",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 16707.0
+    "CASES": 16882.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -887,7 +927,7 @@
     "CITY": "Fairview",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 8806.0
+    "CASES": 8843.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -907,7 +947,7 @@
     "CITY": "Cliffside Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4745.0
+    "CASES": 4774.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -927,7 +967,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2855.0
+    "CASES": 2865.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -987,7 +1027,7 @@
     "CITY": "Leonia",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 605.0
+    "CASES": 636.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1017,7 +1057,7 @@
     "CITY": "Cliffside Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 10012.0
+    "CASES": 10461.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1037,7 +1077,7 @@
     "CITY": "Leonia",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2044.5
+    "CASES": 2064.5
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1087,7 +1127,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3032.0
+    "CASES": 3057.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1097,7 +1137,7 @@
     "CITY": "Ridgefield",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2824.33
+    "CASES": 2865.33
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1117,7 +1157,7 @@
     "CITY": "Fairview",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 9203.67
+    "CASES": 9209.67
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1147,7 +1187,7 @@
     "CITY": "Fort Lee",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1587.0
+    "CASES": 1646.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1157,7 +1197,7 @@
     "CITY": "Edgewater",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 605.0
+    "CASES": 626.0
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1181,23 +1221,23 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 201096,
+    "CUSTOMER_NAME": "Winston Wine & Liq",
+    "SHIPPING_ADDRESS": "905 River Rd",
+    "CITY": "Tenafly",
+    "AREA": "Sales",
+    "COUNTY": "Bergen",
+    "CASES": 283082.04
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44005,
     "CUSTOMER_NAME": "Winston Wine & Liq",
     "SHIPPING_ADDRESS": "659 Palisade Ave",
     "CITY": "Cliffside Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 10092.35
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 41015,
-    "CUSTOMER_NAME": "99 Ranch Market",
-    "SHIPPING_ADDRESS": "450 Hackensack Ave",
-    "CITY": "Hackensack",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 991.0
+    "CASES": 10119.35
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1231,16 +1271,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52040,
-    "CUSTOMER_NAME": "Burgundy Convenience Store",
-    "SHIPPING_ADDRESS": "4 W Palisade Ave",
-    "CITY": "Englewood",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 30973.65
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "SHIPPING_ADDRESS": "410 River St",
@@ -1267,7 +1297,7 @@
     "CITY": "Hackensack",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 5276.0
+    "CASES": 5435.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1281,23 +1311,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52011,
-    "CUSTOMER_NAME": "Englewood Wine (A)",
-    "SHIPPING_ADDRESS": "1 Engle St",
-    "CITY": "Englewood",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 17.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52025,
     "CUSTOMER_NAME": "Englewood Wine and Spirits",
     "SHIPPING_ADDRESS": "481 N Dean St",
     "CITY": "Englewood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2691.0
+    "CASES": 2834.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1337,7 +1357,7 @@
     "CITY": "Hackensack",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 5846.0
+    "CASES": 5985.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1357,7 +1377,7 @@
     "CITY": "Teaneck",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 5413.0
+    "CASES": 5453.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1367,7 +1387,7 @@
     "CITY": "Hackensack",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 13852.0
+    "CASES": 13917.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1377,7 +1397,7 @@
     "CITY": "New Milford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4462.0
+    "CASES": 4606.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1387,7 +1407,7 @@
     "CITY": "New Milford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2761.0
+    "CASES": 2797.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1407,7 +1427,7 @@
     "CITY": "Bergenfield",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 14788.0
+    "CASES": 14815.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1417,17 +1437,7 @@
     "CITY": "River Edge",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2204.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52029,
-    "CUSTOMER_NAME": "Santa Barbara",
-    "SHIPPING_ADDRESS": "79 Slocum Ave",
-    "CITY": "Englewood",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 495.0
+    "CASES": 2232.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1437,7 +1447,7 @@
     "CITY": "Englewood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 24972.0
+    "CASES": 25115.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1447,7 +1457,7 @@
     "CITY": "Hackensack",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 6929.0
+    "CASES": 7070.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1477,7 +1487,7 @@
     "CITY": "Bergenfield",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 7222.0
+    "CASES": 7249.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1487,7 +1497,7 @@
     "CITY": "River Edge",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 62507.0
+    "CASES": 63618.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1497,17 +1507,7 @@
     "CITY": "Totowa",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 64368.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56015,
-    "CUSTOMER_NAME": "VINEYARD",
-    "SHIPPING_ADDRESS": "89 New Bridge Rd",
-    "CITY": "Bergenfield",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 493.0
+    "CASES": 64944.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1531,13 +1531,23 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 58004,
+    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
+    "SHIPPING_ADDRESS": "953 Teaneck Rd",
+    "CITY": "Totowa",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 339616.86
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 39012,
     "CUSTOMER_NAME": "Wine And Liq Depot(A)",
     "SHIPPING_ADDRESS": "310 Huyler St",
     "CITY": "South Hackensac",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 14709.0
+    "CASES": 14727.0
   },
   {
     "SALES_REP_ASSIGNED": "Default",
@@ -1547,7 +1557,7 @@
     "CITY": "Augusta",
     "AREA": "Passaic",
     "COUNTY": "Sussex",
-    "CASES": 1371.0
+    "CASES": 1381.0
   },
   {
     "SALES_REP_ASSIGNED": "Default",
@@ -1557,7 +1567,17 @@
     "CITY": "Hawthorne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 844.0
+    "CASES": 869.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Default",
+    "CUSTOMER_NUM": 120002,
+    "CUSTOMER_NAME": "Watershed Pub & Deli (P)",
+    "SHIPPING_ADDRESS": "62 Old Route 23",
+    "CITY": "Newfoundland",
+    "AREA": "Passaic",
+    "COUNTY": "Sussex",
+    "CASES": 2250.0
   },
   {
     "SALES_REP_ASSIGNED": "Default",
@@ -1577,7 +1597,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6023.0
+    "CASES": 6282.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1597,7 +1617,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3606.0
+    "CASES": 3701.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1607,7 +1627,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 80077.95
+    "CASES": 80092.95
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1617,7 +1637,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5588.5
+    "CASES": 5598.5
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1627,7 +1647,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 25894.73
+    "CASES": 25947.73
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1677,7 +1697,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 35414.82
+    "CASES": 35607.82
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1687,7 +1707,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5919.0
+    "CASES": 6088.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1707,7 +1727,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3706.0
+    "CASES": 3848.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1827,7 +1847,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3089.0
+    "CASES": 3239.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1837,7 +1857,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 9618.75
+    "CASES": 9821.75
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1857,7 +1877,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 183485.44
+    "CASES": 183974.44
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1867,7 +1887,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 23526.0
+    "CASES": 24112.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1877,7 +1897,17 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 20740.53
+    "CASES": 21004.53
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Yaremy Liquors",
+    "SHIPPING_ADDRESS": "895 Paulison Ave",
+    "CITY": "Paterson",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 568659.97
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1900,6 +1930,26 @@
     "CASES": 1373.0
   },
   {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "CUSTOMER_NUM": 28006,
+    "CUSTOMER_NAME": "J B Liquors_2",
+    "SHIPPING_ADDRESS": "46 Ridge Road",
+    "CITY": "North Arlington",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 1373.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "CUSTOMER_NUM": 28001,
+    "CUSTOMER_NAME": "One Stop Wine (A) & Liq",
+    "SHIPPING_ADDRESS": "592 Ridge Road",
+    "CITY": "North Arlington",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 1369.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
     "CUSTOMER_NUM": 28001,
     "CUSTOMER_NAME": "One Stop Wine (A) & Liq",
@@ -1917,7 +1967,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3242.0
+    "CASES": 3272.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -1927,7 +1977,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 8310.0
+    "CASES": 8360.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -1957,7 +2007,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5232.0
+    "CASES": 5277.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2007,7 +2057,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 2407.0
+    "CASES": 2481.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2047,7 +2097,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 42935.21
+    "CASES": 43059.21
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2067,7 +2117,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5367.0
+    "CASES": 5511.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2087,7 +2137,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6564.0
+    "CASES": 6849.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2107,7 +2157,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 10071.0
+    "CASES": 10409.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2117,7 +2167,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3753.0
+    "CASES": 3813.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2157,7 +2207,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6369.0
+    "CASES": 6550.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2167,7 +2217,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3101.0
+    "CASES": 3165.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2177,7 +2227,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 18218.05
+    "CASES": 18280.05
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2188,6 +2238,16 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 6600.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "CUSTOMER_NUM": 27071,
+    "CUSTOMER_NAME": "Shanik Liqs.(P)",
+    "SHIPPING_ADDRESS": "952 Main Ave",
+    "CITY": "Paterson",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 309832.28
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2207,7 +2267,7 @@
     "CITY": "Fredon Township",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 3440.0
+    "CASES": 3450.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2217,7 +2277,7 @@
     "CITY": "Sparta",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 1578.17
+    "CASES": 1588.17
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2227,7 +2287,7 @@
     "CITY": "Franklin",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 13635.0
+    "CASES": 13707.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2257,7 +2317,7 @@
     "CITY": "Hamburg",
     "AREA": "Sussex",
     "COUNTY": "Morris",
-    "CASES": 3333.0
+    "CASES": 3343.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2277,7 +2337,7 @@
     "CITY": "Branchville",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 1714.0
+    "CASES": 1730.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2367,7 +2427,7 @@
     "CITY": "Hamburg",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 1421.0
+    "CASES": 1446.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2377,7 +2437,7 @@
     "CITY": "Sussex",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 19503.0
+    "CASES": 19555.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2387,7 +2447,7 @@
     "CITY": "Newton",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 5089.0
+    "CASES": 5248.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2407,7 +2467,7 @@
     "CITY": "Franklin",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 12245.0
+    "CASES": 12312.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2427,7 +2487,7 @@
     "CITY": "Newton",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 7429.0
+    "CASES": 7627.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2437,7 +2497,7 @@
     "CITY": "Mt Arlington",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 5967.0
+    "CASES": 5976.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2467,7 +2527,7 @@
     "CITY": "Franklin",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 4430.0
+    "CASES": 4447.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2477,7 +2537,7 @@
     "CITY": "Newton",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 18527.0
+    "CASES": 18537.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2527,7 +2587,7 @@
     "CITY": "Newton",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 6158.0
+    "CASES": 6258.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2538,6 +2598,16 @@
     "AREA": "Sussex",
     "COUNTY": "Sussex",
     "CASES": 1585.35
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "CUSTOMER_NUM": 231707,
+    "CUSTOMER_NAME": "Woody's Liq Shop (A)",
+    "SHIPPING_ADDRESS": "99 NJ-23",
+    "CITY": "Wantage",
+    "AREA": "Sussex",
+    "COUNTY": "Sussex",
+    "CASES": 254279.18
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2577,7 +2647,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 13316.0
+    "CASES": 13349.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2587,7 +2657,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 1742.0
+    "CASES": 1752.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2597,7 +2667,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 4210.0
+    "CASES": 4268.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2627,7 +2697,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 2751.0
+    "CASES": 2798.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2657,7 +2727,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 14808.0
+    "CASES": 14976.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2667,7 +2737,7 @@
     "CITY": "North Arlington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3002.17
+    "CASES": 3070.17
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2697,7 +2767,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 745.0
+    "CASES": 770.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2707,7 +2777,7 @@
     "CITY": "Little Falls",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 7476.0
+    "CASES": 7543.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2717,7 +2787,7 @@
     "CITY": "North Arlington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 9988.5
+    "CASES": 10069.5
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2737,7 +2807,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 8483.94
+    "CASES": 8544.94
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2757,7 +2827,7 @@
     "CITY": "North Arlington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4663.0
+    "CASES": 4817.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2777,7 +2847,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 3433.0
+    "CASES": 3639.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2807,7 +2877,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 9573.17
+    "CASES": 9596.17
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2817,7 +2887,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 2074.0
+    "CASES": 2084.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2827,7 +2897,7 @@
     "CITY": "Lyndhurst",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3236.0
+    "CASES": 3271.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2837,7 +2907,7 @@
     "CITY": "Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 6274.94
+    "CASES": 6299.94
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2867,7 +2937,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 30052.0
+    "CASES": 30393.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2877,7 +2947,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 4123.0
+    "CASES": 4133.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2887,7 +2957,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5363.0
+    "CASES": 5400.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2897,7 +2967,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6105.0
+    "CASES": 6132.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2907,7 +2977,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 4996.0
+    "CASES": 5047.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2937,7 +3007,7 @@
     "CITY": "Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4207.0
+    "CASES": 4237.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2948,6 +3018,16 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 150504.97
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 30010,
+    "CUSTOMER_NAME": "World of Wine & Liquor",
+    "SHIPPING_ADDRESS": "875 Bloomfield Ave",
+    "CITY": "Totowa",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 385630.58
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2967,7 +3047,7 @@
     "CITY": "East Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 203041.0
+    "CASES": 205031.0
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3017,7 +3097,17 @@
     "CITY": "Teterboro",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 43693.0
+    "CASES": 44019.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "John Neukum",
+    "CUSTOMER_NUM": 190931,
+    "CUSTOMER_NAME": "Western Bev 21088 Clift",
+    "SHIPPING_ADDRESS": "315 Rt. 15 North",
+    "CITY": "Wharton",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 367501.0
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3027,7 +3117,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 69839.0
+    "CASES": 70448.0
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3037,7 +3127,7 @@
     "CITY": "Dumont",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 722.0
+    "CASES": 739.0
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3048,6 +3138,16 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 192.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "CUSTOMER_NUM": 63001,
+    "CUSTOMER_NAME": "X Plor Wine",
+    "SHIPPING_ADDRESS": "68 E Madison Ave",
+    "CITY": "Haworth",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 1126.0
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3087,7 +3187,7 @@
     "CITY": "Lake Hiawatha",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 4919.0
+    "CASES": 4932.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3107,7 +3207,7 @@
     "CITY": "Boonton",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 4761.0
+    "CASES": 4933.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3127,7 +3227,7 @@
     "CITY": "Boonton",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 91204.91
+    "CASES": 91412.91
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3147,7 +3247,7 @@
     "CITY": "Hackettstown",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 4030.0
+    "CASES": 4212.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3157,7 +3257,7 @@
     "CITY": "Boonton",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 27139.5
+    "CASES": 27179.5
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3167,7 +3267,7 @@
     "CITY": "Wharton",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 4572.33
+    "CASES": 4582.33
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3267,7 +3367,7 @@
     "CITY": "Wharton",
     "AREA": "Morris 3",
     "COUNTY": "Morris",
-    "CASES": 28543.0
+    "CASES": 28626.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3307,7 +3407,7 @@
     "CITY": "Stanhope",
     "AREA": "Sussex",
     "COUNTY": "Sussex",
-    "CASES": 3293.0
+    "CASES": 3306.0
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3321,13 +3421,23 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Wharton Liquor Store",
+    "SHIPPING_ADDRESS": "98 US Highway 46",
+    "CITY": "Wharton",
+    "AREA": "Sussex",
+    "COUNTY": "Sussex",
+    "CASES": 305546.95
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190907,
     "CUSTOMER_NAME": "Wharton Liquor Store",
     "SHIPPING_ADDRESS": "41 N Main St",
     "CITY": "Wharton",
     "AREA": "Morris 1",
     "COUNTY": "Morris",
-    "CASES": 4903.0
+    "CASES": 4913.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3367,7 +3477,7 @@
     "CITY": "Elmwood Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4783.0
+    "CASES": 4966.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3377,7 +3487,7 @@
     "CITY": "Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 6869.0
+    "CASES": 6977.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3397,7 +3507,7 @@
     "CITY": "East Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 12567.4
+    "CASES": 12657.4
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3407,7 +3517,7 @@
     "CITY": "Carlstadt",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3881.0
+    "CASES": 3913.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3487,7 +3597,7 @@
     "CITY": "Wallington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3149.05
+    "CASES": 3164.05
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3497,7 +3607,7 @@
     "CITY": "Little Ferry",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2499.0
+    "CASES": 2538.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3547,7 +3657,7 @@
     "CITY": "Elmwood Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 9705.0
+    "CASES": 9922.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3557,7 +3667,7 @@
     "CITY": "East Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 7880.5
+    "CASES": 7869.5
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3567,7 +3677,7 @@
     "CITY": "East Rutherford",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4717.67
+    "CASES": 4801.67
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3577,7 +3687,7 @@
     "CITY": "Moonachie",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3795.0
+    "CASES": 3903.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3587,7 +3697,7 @@
     "CITY": "Elmwood Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2412.0
+    "CASES": 2487.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3627,7 +3737,7 @@
     "CITY": "Wallington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 9924.17
+    "CASES": 10136.17
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3647,7 +3757,7 @@
     "CITY": "Wallington",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2154.39
+    "CASES": 2178.39
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3657,7 +3767,7 @@
     "CITY": "Little Ferry",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3632.0
+    "CASES": 3716.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3687,7 +3797,7 @@
     "CITY": "Little Ferry",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 16291.38
+    "CASES": 16341.38
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3717,7 +3827,17 @@
     "CITY": "Carlstadt",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2154.0
+    "CASES": 2219.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "CUSTOMER_NUM": 77022,
+    "CUSTOMER_NAME": "Worldwide Liquors",
+    "SHIPPING_ADDRESS": "894 River Dr",
+    "CITY": "Wallington",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 201073.06
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3727,7 +3847,7 @@
     "CITY": "Garfield",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1402.0
+    "CASES": 1601.0
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -3747,7 +3867,7 @@
     "CITY": "Lincoln Park",
     "AREA": "Morris 3",
     "COUNTY": "Morris",
-    "CASES": 11624.64
+    "CASES": 11629.64
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -3767,7 +3887,7 @@
     "CITY": "Wayne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 8242.0
+    "CASES": 8276.0
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -3777,7 +3897,17 @@
     "CITY": "Wayne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5189.0
+    "CASES": 5194.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "CUSTOMER_NUM": 12017,
+    "CUSTOMER_NAME": "Wolfson Market",
+    "SHIPPING_ADDRESS": "86 Boonton Ave",
+    "CITY": "Wayne",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 52885.26
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -3827,7 +3957,7 @@
     "CITY": "Hawthorne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 5781.0
+    "CASES": 5811.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3867,7 +3997,7 @@
     "CITY": "Franklin Lakes",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4181.0
+    "CASES": 4198.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3897,7 +4027,7 @@
     "CITY": "Hawthorne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 6456.83
+    "CASES": 6484.83
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3917,7 +4047,7 @@
     "CITY": "Hawthorne",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 14807.42
+    "CASES": 14993.42
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3927,7 +4057,7 @@
     "CITY": "Lincoln Park",
     "AREA": "Morris 3",
     "COUNTY": "Morris",
-    "CASES": 12927.5
+    "CASES": 12929.5
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3937,7 +4067,7 @@
     "CITY": "Oakland",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 12585.0
+    "CASES": 12753.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3967,7 +4097,7 @@
     "CITY": "Haledon",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 10306.0
+    "CASES": 10507.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -3977,7 +4107,7 @@
     "CITY": "Oakland",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 6177.0
+    "CASES": 6324.5
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4017,7 +4147,7 @@
     "CITY": "Mahwah",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 3933.0
+    "CASES": 3957.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4067,7 +4197,7 @@
     "CITY": "Waldwick",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 17797.05
+    "CASES": 18219.05
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4077,7 +4207,7 @@
     "CITY": "Ridgewood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 398.0
+    "CASES": 408.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4087,7 +4217,17 @@
     "CITY": "Wyckoff",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 13195.0
+    "CASES": 13398.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 201099,
+    "CUSTOMER_NAME": "Wine & Spirits World (Hohokus)",
+    "SHIPPING_ADDRESS": "83 Godwin Ave",
+    "CITY": "Wyckoff",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 221859.19
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4117,7 +4257,27 @@
     "CITY": "East Rutherford",
     "AREA": "Passaic",
     "COUNTY": "Bergen",
+    "CASES": 4862.93
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "CUSTOMER_NUM": 120147,
+    "CUSTOMER_NAME": "Port Imperial HOQ LLC",
+    "SHIPPING_ADDRESS": "1 American Dream Way",
+    "CITY": "East Rutherford",
+    "AREA": "Passaic",
+    "COUNTY": "Bergen",
     "CASES": 4076.93
+  },
+  {
+    "SALES_REP_ASSIGNED": "Office Tell Sell",
+    "CUSTOMER_NUM": 15002,
+    "CUSTOMER_NAME": "Cost Plus",
+    "SHIPPING_ADDRESS": "1730 Rt 46",
+    "CITY": "Woodland Park",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 63.0
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
@@ -4137,7 +4297,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 7201.0
+    "CASES": 7216.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4167,7 +4327,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 109318.77
+    "CASES": 109512.77
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4177,7 +4337,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 4939.0
+    "CASES": 5184.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4237,7 +4397,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 438.0
+    "CASES": 448.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4257,7 +4417,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 11213.0
+    "CASES": 11319.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4267,7 +4427,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 4968.0
+    "CASES": 4988.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4287,7 +4447,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 8723.0
+    "CASES": 8784.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4327,7 +4487,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 10981.0
+    "CASES": 11160.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4337,7 +4497,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 11066.0
+    "CASES": 11146.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4357,7 +4517,7 @@
     "CITY": "Paterson",
     "AREA": "Sales",
     "COUNTY": "Passaic",
-    "CASES": 1600.0
+    "CASES": 1655.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4367,7 +4527,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 2112.0
+    "CASES": 2166.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4387,7 +4547,17 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 1529.0
+    "CASES": 1616.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "CUSTOMER_NUM": 27072,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "SHIPPING_ADDRESS": "92 Belmont Ave",
+    "CITY": "Woodland Park",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 426802.9
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4397,7 +4567,7 @@
     "CITY": "Passaic",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 10404.0
+    "CASES": 10399.0
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -4417,6 +4587,16 @@
     "CITY": "Northvale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
+    "CASES": 162.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "CUSTOMER_NUM": 67011,
+    "CUSTOMER_NAME": "Mykos",
+    "SHIPPING_ADDRESS": "416 Tappan Rd",
+    "CITY": "Northvale",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
     "CASES": 66.0
   },
   {
@@ -4427,7 +4607,7 @@
     "CITY": "Allendale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2712.0
+    "CASES": 2738.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4437,7 +4617,7 @@
     "CITY": "Fort Lee",
     "AREA": "Sales",
     "COUNTY": "Bergen",
-    "CASES": 3643.0
+    "CASES": 3688.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4447,7 +4627,7 @@
     "CITY": "Midland Park",
     "AREA": "Sales",
     "COUNTY": "Bergen",
-    "CASES": 4299.0
+    "CASES": 4452.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4467,7 +4647,7 @@
     "CITY": "Glen Rock",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 30873.0
+    "CASES": 31013.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4497,7 +4677,7 @@
     "CITY": "Glen Rock",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 8880.0
+    "CASES": 8890.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4527,7 +4707,7 @@
     "CITY": "Bogota",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 890.0
+    "CASES": 911.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4537,7 +4717,7 @@
     "CITY": "Bogota",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 432.0
+    "CASES": 425.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4547,7 +4727,7 @@
     "CITY": "Paramus",
     "AREA": "Sales",
     "COUNTY": "Bergen",
-    "CASES": 5224.0
+    "CASES": 5238.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4557,7 +4737,7 @@
     "CITY": "Palisades Park",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 13290.0
+    "CASES": 13388.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4587,7 +4767,7 @@
     "CITY": "Fair Lawn",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 14163.0
+    "CASES": 14165.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4627,7 +4807,7 @@
     "CITY": "Clifton",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 186.0
+    "CASES": 234.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4647,7 +4827,7 @@
     "CITY": "Paramus",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 9905.0
+    "CASES": 9915.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4657,7 +4837,7 @@
     "CITY": "Paterson",
     "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 41834.0
+    "CASES": 41908.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4691,6 +4871,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 208026,
+    "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
+    "SHIPPING_ADDRESS": "937 Lincoln Ave",
+    "CITY": "Wayne",
+    "AREA": "Sales",
+    "COUNTY": "Passaic",
+    "CASES": 277689.71
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 76006,
     "CUSTOMER_NAME": "Wine Country Of Saddle Brook (A)",
     "SHIPPING_ADDRESS": "195 Market St",
@@ -4714,6 +4904,16 @@
     "CUSTOMER_NUM": 77008,
     "CUSTOMER_NAME": "Pizza Town USA",
     "SHIPPING_ADDRESS": "95-111 RT 46 W",
+    "CITY": "Englewood",
+    "AREA": "Sales",
+    "COUNTY": "Bergen",
+    "CASES": 402.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 77008,
+    "CUSTOMER_NAME": "Pizza Town USA",
+    "SHIPPING_ADDRESS": "95-111 RT 46 W",
     "CITY": "Elmwood Park",
     "AREA": "Sales",
     "COUNTY": "Bergen",
@@ -4727,7 +4927,7 @@
     "CITY": "Northvale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 21449.0
+    "CASES": 21732.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4747,7 +4947,7 @@
     "CITY": "Hillsdale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 17380.0
+    "CASES": 17389.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4767,7 +4967,7 @@
     "CITY": "Park Ridge",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 6215.0
+    "CASES": 6212.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4787,7 +4987,7 @@
     "CITY": "Cresskill",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2528.0
+    "CASES": 2555.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4797,7 +4997,7 @@
     "CITY": "Emerson",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 10391.83
+    "CASES": 10549.83
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4817,7 +5017,7 @@
     "CITY": "Westwood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2424.0
+    "CASES": 2459.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4847,7 +5047,7 @@
     "CITY": "Montvale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 18555.0
+    "CASES": 18642.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4857,7 +5057,7 @@
     "CITY": "Montvale",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 1580.0
+    "CASES": 1661.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4917,7 +5117,7 @@
     "CITY": "Emerson",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 7277.0
+    "CASES": 7321.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4971,33 +5171,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 201097,
-    "CUSTOMER_NAME": "Whole Foods #10381 (Closter)",
-    "SHIPPING_ADDRESS": "45 Vervalen St.",
-    "CITY": "Closter",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 325.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 201098,
-    "CUSTOMER_NAME": "Whole Foods #8407 (Woodcliff Lake)",
-    "SHIPPING_ADDRESS": "500 Chestnut Ridge Rd.",
-    "CITY": "Woodcliff Lake",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 363.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 65001,
     "CUSTOMER_NAME": "Wine & Whiskey (A)",
     "SHIPPING_ADDRESS": "7 Broad St",
     "CITY": "Norwood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 2999.0
+    "CASES": 3036.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -5007,7 +5187,7 @@
     "CITY": "Old Tappan",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 4236.0
+    "CASES": 4233.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -5017,7 +5197,17 @@
     "CITY": "Westwood",
     "AREA": "Bergen",
     "COUNTY": "Bergen",
-    "CASES": 7028.33
+    "CASES": 7181.33
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Woori Mart",
+    "SHIPPING_ADDRESS": "95 Washington Ave",
+    "CITY": "Woodcliff Lake",
+    "AREA": "Sales",
+    "COUNTY": "Bergen",
+    "CASES": 262186.35
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
