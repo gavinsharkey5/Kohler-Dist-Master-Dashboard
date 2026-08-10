@@ -63,6 +63,11 @@
   .prog-head{padding:20px 24px;border-bottom:1px solid var(--border);}
   .prog-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
   .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;}
+  .prog-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:40px;min-width:40px;
+    background:#fff;border-radius:9px;padding:5px 7px;flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,.35);}
+  .prog-logo-chip img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+  .prog-tile .prog-logo-chip{height:30px;min-width:30px;border-radius:7px;padding:4px 6px;}
+  .prog-detail-hero .prog-logo-chip{height:44px;min-width:44px;border-radius:10px;padding:6px 8px;}
   .prog-tag{font-size:11px;color:var(--text-dim);background:var(--card-alt);border:1px solid var(--border);padding:2px 9px;border-radius:20px;}
   .prog-desc{font-size:13px;color:var(--text-dim);}
   .prog-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:18px;}
@@ -12201,6 +12206,28 @@ const PROGRAM_DATA = {
 /* PROGRAM_DATA_END */
 
 const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+
+const PROGRAM_LOGOS = {
+  '1911': 'assets/logos/1911.png',
+  'woodchuck': 'assets/logos/woodchuck.png',
+  'tona': 'assets/logos/tona.png',
+  'path_to_victory': 'assets/logos/victory.png',
+  'sam_adams': 'assets/logos/sam_adams.png',
+  'boston_beer': 'assets/logos/boston_beer.png',
+  'new_belgium': 'assets/logos/new_belgium.png',
+  'lytt': 'assets/logos/lytt.png',
+  'fall_seasonal': '../assets/kohler-logo-badge.png',
+  'sun_cruiser': 'assets/logos/sun_cruiser.png',
+  'yave': 'assets/logos/yave.png',
+  'mollys': 'assets/logos/mollys.png',
+  'garage_beer_summer_sequel': 'assets/logos/garage_beer.png',
+  'garage_beer_president': 'assets/logos/garage_beer.png',
+  'new_belgium_distribution': 'assets/logos/new_belgium.png',
+};
+function progLogo(key){
+  const src = PROGRAM_LOGOS[key];
+  return src ? `<span class="prog-logo-chip"><img src="${esc(src)}" alt="" loading="lazy"></span>` : '';
+}
 const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty City'},{pct:0.75,label:'Lytt-Faced'}];
 
 const PROGRAM_LIST = [
@@ -12352,7 +12379,7 @@ function card1911(rep){
   const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account buys 2 barrels total');
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-name-row">${progLogo('1911')}<span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
       <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 2 barrels total. Package activity never counts toward the barrel goal. Top 3 reps (distribution + volume) win a trip to the 1911 Cidery.</div>
     </div>
     <div class="prog-body">
@@ -12378,7 +12405,7 @@ function cardWoodchuck(rep){
   const sec = pkgKegSectionLabels('$10 per new placement', '$100 per new placement, once that account buys 3 barrels total');
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-name-row">${progLogo('woodchuck')}<span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
       <div class="prog-desc">Same structure as 1911, just a 3-barrel (not 2-barrel) goal: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 3 barrels total — both paid unconditionally, package activity never counts toward the barrel goal. Separately, once a rep reaches 3 new package placements, the $1-per-case payout (all cases sold this period) switches on.</div>
     </div>
     <div class="prog-body">
@@ -12402,7 +12429,7 @@ function cardTona(rep){
   const pct = Math.min(d.caseVolume24oz / 20, 1)*100;
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Tona Distribution &amp; Volume</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-name-row">${progLogo('tona')}<span class="prog-name">Tona Distribution &amp; Volume</span><span class="prog-tag">Aug&ndash;Sept</span></div>
       <div class="prog-desc">$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · none of this pays out until 20 cases of 24oz cans are sold — that 20-case minimum gates the whole program, not just the case-volume payout.</div>
     </div>
     <div class="prog-body">
@@ -12419,7 +12446,7 @@ function cardPathToVictory(rep){
   if(!d) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">The Path to Victory</span><span class="prog-tag">August</span></div>
+      <div class="prog-name-row">${progLogo('path_to_victory')}<span class="prog-name">The Path to Victory</span><span class="prog-tag">August</span></div>
       <div class="prog-desc">Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.</div>
     </div>
     <div class="prog-body">
@@ -12436,7 +12463,7 @@ function cardSamAdams(rep){
   if(!d) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Sam Adams Octoberfest Fast Start</span><span class="prog-tag">August</span></div>
+      <div class="prog-name-row">${progLogo('sam_adams')}<span class="prog-name">Sam Adams Octoberfest Fast Start</span><span class="prog-tag">August</span></div>
       <div class="prog-desc">Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August.</div>
     </div>
     <div class="prog-body">
@@ -12451,7 +12478,7 @@ function cardBostonBeer(rep){
   if(!d) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Boston Beer August Draft Blitz</span><span class="prog-tag">August</span></div>
+      <div class="prog-name-row">${progLogo('boston_beer')}<span class="prog-name">Boston Beer August Draft Blitz</span><span class="prog-tag">August</span></div>
       <div class="prog-desc">Draft (kegs only — Angry Orchard 15.5 / Dogfish Head 15.5): $100 new POD, $50 rebuy · Package (single-serve cans only — Angry Orchard 19.2oz, Dogfish 60/90 Minute IPA, Grateful Dead 19.2oz): $10 per new placement. Draft and package are tracked completely separately — package placements never count as draft. Trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.</div>
     </div>
     <div class="prog-body">
@@ -12480,7 +12507,7 @@ function cardNewBelgium(rep){
   const housePct = Math.min((prog.housePodsTotal||0) / (prog.houseGoal||70), 1)*100;
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">New Belgium Draft (Summer Draft Focus)</span><span class="prog-tag">August</span></div>
+      <div class="prog-name-row">${progLogo('new_belgium')}<span class="prog-name">New Belgium Draft (Summer Draft Focus)</span><span class="prog-tag">August</span></div>
       <div class="prog-desc">Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger &amp; Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May&ndash;Aug), featured tier only.</div>
     </div>
     <div class="prog-body">
@@ -12505,7 +12532,7 @@ function cardLytt(rep){
     : (nextTier ? `<span class="flag-miss">${(nextTier.pct*100-d.penetrationPct).toFixed(1)}pp to ${esc(nextTier.label)} (25%)</span>` : '');
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Lytt Launch</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      <div class="prog-name-row">${progLogo('lytt')}<span class="prog-name">Lytt Launch</span><span class="prog-tag">Aug&ndash;Sept</span></div>
       <div class="prog-desc">Account penetration tiers: 25% "Gettin' Lytt" = $0.50/case, 50% "Lytty City" = $1.00/case, 75% "Lytt-Faced" = $2.00/case, rate locks in through Dec 31 once hit. Highest penetration after Aug 1 wins 2 tickets to a Giants or Jets game. Eligible-account universe = this rep's Core Off-Premise book.</div>
     </div>
     <div class="prog-body">
@@ -12524,7 +12551,7 @@ function cardFallSeasonal(rep){
   if(!po && !pd) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Fall Seasonal Fast Start</span><span class="prog-tag">August</span></div>
+      <div class="prog-name-row">${progLogo('fall_seasonal')}<span class="prog-name">Fall Seasonal Fast Start</span><span class="prog-tag">August</span></div>
       <div class="prog-desc">$0.50 per case-equivalent on all qualifying packages · $5.00 per sixtel · $10.00 per half-keg. Two separate SKU tiers per the deck: "Package Only" and "Draft &amp; Package" (tracked independently, not combined).</div>
     </div>
     <div class="prog-body">
@@ -12546,7 +12573,7 @@ function cardSunCruiser(rep){
   if(!d) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Sun Cruiser Volume</span><span class="prog-tag">May&ndash;Aug</span></div>
+      <div class="prog-name-row">${progLogo('sun_cruiser')}<span class="prog-name">Sun Cruiser Volume</span><span class="prog-tag">May&ndash;Aug</span></div>
       <div class="prog-desc">Earn payout for cases sold over last year's May&ndash;Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve).</div>
     </div>
     <div class="prog-body">
@@ -12566,7 +12593,7 @@ function cardYave(rep){
   const offTier = d.offPremAccountCount>=5 ? '$125 (5 PODs)' : (d.offPremAccountCount>=3 ? '$50 (3 PODs)' : (d.offPremAccountCount>=1 ? '$15 (1 POD)' : 'not yet at a tier'));
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Yave Tequila Launch</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      <div class="prog-name-row">${progLogo('yave')}<span class="prog-name">Yave Tequila Launch</span><span class="prog-tag">Jul&ndash;Aug</span></div>
       <div class="prog-desc">On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25, cocktail feature/permanent and rebuys tracked separately via iSellBeer. Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50, 5 PODs = $125. This file has no base period, so new-vs-rebuy can't be split — accounts below show qualifying activity this period, not confirmed new placements.</div>
     </div>
     <div class="prog-body">
@@ -12584,7 +12611,7 @@ function cardMollys(rep){
   if(!d) return '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Molly's 1.75L</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      <div class="prog-name-row">${progLogo('mollys')}<span class="prog-name">Molly's 1.75L</span><span class="prog-tag">Jul&ndash;Aug</span></div>
       <div class="prog-desc">90-day-unsold qualifier · $50 per new POD · $10 per case on rebuys during the period.</div>
     </div>
     <div class="prog-body">
@@ -12603,7 +12630,7 @@ function cardGarageBeerSummerSequel(rep){
   const tierHtml = d.tier ? `<span class="flag-hit">${esc(d.tier)} tier reached</span>` : '<span class="flag-miss">Not yet at Tiered goal</span>';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Garage Beer Summer Sequel</span><span class="prog-tag">Jun&ndash;Aug</span></div>
+      <div class="prog-name-row">${progLogo('garage_beer_summer_sequel')}<span class="prog-name">Garage Beer Summer Sequel</span><span class="prog-tag">Jun&ndash;Aug</span></div>
       <div class="prog-desc">Volume push, individual per-rep goals: Tiered = $1.00/CE over 2025, Bonus = $1.50/CE, Super Bonus = $2.00/CE. Draft bonus ($50 new/$100 rebuy after 3 kegs) and the $5 iSellBeer feature aren't tracked here — no account-level data in this file.</div>
     </div>
     <div class="prog-body">
@@ -12620,7 +12647,7 @@ function cardGarageBeerPresident(rep){
   const pct = Math.min((prog.companyTotalThisYear||0) / (prog.houseGoal||9305), 1)*100;
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">Garage Beer President's Incentive</span><span class="prog-tag">Jun&ndash;Sep</span></div>
+      <div class="prog-name-row">${progLogo('garage_beer_president')}<span class="prog-name">Garage Beer President's Incentive</span><span class="prog-tag">Jun&ndash;Sep</span></div>
       <div class="prog-desc">$1.00 per CE over last year, once the company sells 9,305 CEs of Garage Beer for the period.</div>
     </div>
     <div class="prog-body">
@@ -12641,7 +12668,7 @@ function cardNewBelgiumDistribution(rep){
     </table>` : '';
   return `<div class="prog-card">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">New Belgium Distribution &mdash; Push Volume</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      <div class="prog-name-row">${progLogo('new_belgium_distribution')}<span class="prog-name">New Belgium Distribution &mdash; Push Volume</span><span class="prog-tag">Jul&ndash;Aug</span></div>
       <div class="prog-desc">Push Volume phase only (Achieve and Retain phases aren't tracked here yet — pending brand-specific goal numbers). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window. This file has no year-ago data, so the May&ndash;Jul monthly average is shown only as a reference rate, not a growth target.</div>
     </div>
     <div class="prog-body">
@@ -12705,7 +12732,7 @@ function renderProgramTile(entry){
     : 'No activity yet';
   return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
-      <div class="prog-name-row"><span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
       <div class="prog-desc">${entry.desc}</div>
     </div>
     <div class="prog-body prog-tile-cta">
@@ -12766,7 +12793,7 @@ function renderProgramDetail(key){
   main.innerHTML = `
     <button class="backbtn" id="backbtn">&lsaquo; All programs</button>
     <div class="prog-detail-hero">
-      <div class="prog-name-row"><span class="prog-name prog-name-lg">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name prog-name-lg">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
       <div class="prog-desc">${entry.desc}</div>
     </div>
     <div class="prog-card">
