@@ -253,27 +253,56 @@ should reflect literally everything, not just the goal-tracked subset
 one tab happens to show, so the two numbers can differ very slightly
 (e.g. -1.6% headline vs. -1.7% Company Trend stat) by design.
 
-The headline package figures are in Case Equivalents (CE, ceDiff from
-brand_package_trend.csv), NOT the raw Cases the header's Package Trend
-panel (fed by the separate segment_package_trend.csv) ranks by -- the
-SAME package can show a different unit count in each (e.g. "15/25oz
-Can" +25,074 CE here vs. +19,257 Cases up there) even though the %
-change matches exactly (CE is a fixed multiple of Cases per package,
-so the ratio is unit-independent even though the absolute count
-isn't). A caveat line under the headline list on the page says as
-much; don't "fix" a mismatch between the two panels' package numbers
-without reading that line first -- it's expected, not a bug.
+The headline package figures are in Case Equivalents (CE, valDiff from
+brand_package_trend.csv). Package Trend (the header panel above the
+Top Headlines tile) is ALSO CE-based as of the same day (see next
+paragraph) -- the two used to disagree on units (this tile CE, that
+panel Cases), which briefly showed up as the same package having two
+different unit counts for a matching %; both now source from
+brand_package_trend.csv's Case Equivalents, so they agree.
 
-Package Trend units-first format (changed 2026-08-10, per Gavin): each
-mover row used to show that package's absolute CURRENT-year Cases
-count next to a %-change pill (e.g. "22,248  +644.3%"). Now shows the
-UNIT swing first with the % in parens right after (e.g. "+19,257
-(+644.3%)"), colored green/up or red/down as one unit -- the point of
-this panel is "how many cases moved," not an absolute count that only
-means something alongside the % pill next to it. This is
-Package-Trend-only (pkgTwRow() in index.html); Segment Trend keeps the
-plain absolute-count row (twRow()) since it's showing this year's mix,
-not movement.
+Package Trend switched from Cases to Case Equivalents (changed
+2026-08-10, per Gavin, same request as the header/i-popover CE
+push): originally sourced from segment_package_trend.csv's Cases
+columns -- the one Cases-based panel on an otherwise all-CE page,
+which is what caused the Top-Headlines-vs-Package-Trend unit mismatch
+above. main() now OVERRIDES segment_package_trend's packageMovers
+with brand_package_trend.csv's Case-Equiv version (build_package_
+movers(overall_pkg, MIN_PACKAGE_VOLUME) in parse_brand_package_
+trend()) whenever that file is present -- same top-10-up/top-10-down-
+by-%, same MIN_PACKAGE_VOLUME=500 floor (reused as-is; 500 CE excludes
+a similar-sized tail as 500 Cases did), just Case Equivalents instead
+of Cases. Falls back to the original Cases-based version (unchanged)
+if brand_package_trend.csv isn't present. A packageMoversUnit field
+("CE" or "Cases") tells index.html which unit it's showing, so the
+panel's subtitle/note text ("Top movers by CE %" / "&ge; 500 CE") stay
+accurate either way. Segment Trend (the Beer/Seltzer/FMB/etc.
+breakdown) stays Cases-based regardless -- brand_package_trend.csv has
+no Segment/Sub-Segment column to derive it from; that would need a
+re-pull of segment_package_trend.csv itself using the Case Equiv
+formula (SUM(NumUnits * CaseEquiv)) instead of the Cases formula
+(SUM(NumUnits / WholesaleUnitsPerCase)) it currently uses -- per
+Gavin, 2026-08-10, a per-package CONVERSION file wouldn't work for
+this: those two formulas pull from different per-product fields
+(CaseEquiv vs. WholesaleUnitsPerCase), and a single raw Package label
+can span multiple products with different values for each, so there's
+no single fixed multiplier to convert existing Cases numbers into
+exact CE after the fact -- only a fresh CE-formula pull gives exact
+numbers.
+
+Package Trend units-first row format (changed 2026-08-10, per Gavin,
+independent of the Cases-to-CE switch above): each mover row used to
+show that package's absolute CURRENT-year count next to a %-change
+pill (e.g. "22,248  +644.3%"). Now shows the UNIT swing first with the
+% in parens right after (e.g. "+25,074 (+644.3%)"), colored green/up
+or red/down as one unit -- the point of this panel is "how much
+moved," not an absolute count that only means something alongside the
+% pill next to it. Package-Trend-only (pkgTwRow() in index.html,
+reading the unit-agnostic valPrior/valCurrent/valDiff fields
+build_package_movers() emits); Segment Trend keeps the plain
+absolute-count row (twRow(), still casesPrior/casesCurrent since that
+one stays Cases-based) since it's showing this year's mix, not
+movement.
 
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
@@ -325,24 +354,36 @@ Files:
                               Package, Cases for the same two YTD
                               windows as ytd_comparison.csv, $Vol for
                               both). Feeds two panels in the page header
-                              (visible on every tab), both company-wide
-                              Cases YoY:
+                              (visible on every tab), company-wide:
                                 - Segment Trend: a dropdown starts on all
                                   9 Segments (Beer/RTD/Spirits/etc.);
                                   picking one drills into that segment's
-                                  own Sub-Segments instead.
+                                  own Sub-Segments instead. Always Cases
+                                  -- this file is the only source for
+                                  Segment/Sub-Segment classification.
                                 - Package Trend: the top 10 individual
                                   packages (raw Package column, e.g.
                                   "2/12/12oz Can") trending up and top 10
-                                  trending down by Cases %, restricted to
+                                  trending down by %, restricted to
                                   packages with real volume in both years
-                                  and at least MIN_PACKAGE_VOLUME cases
-                                  (500) in generate.py, so small-package
-                                  noise and brand-new/discontinued
-                                  packages (an undefined % swing) can't
-                                  crowd out genuine trends.
+                                  and at least MIN_PACKAGE_VOLUME (500)
+                                  of whichever unit it's ranked in, so
+                                  small-package noise and brand-new/
+                                  discontinued packages (an undefined %
+                                  swing) can't crowd out genuine trends.
+                                  This file's OWN Cases figures are used
+                                  here only as a FALLBACK -- see
+                                  brand_package_trend.csv below, which
+                                  overrides Package Trend with Case
+                                  Equivalents whenever it's present
+                                  (added 2026-08-10, per Gavin -- CE is
+                                  this whole page's native unit).
                               Optional -- if this file is absent, both
-                              panels are just left off the page.
+                              panels are just left off the page (Package
+                              Trend still needs THIS file even when CE-
+                              overridden, since Segment Trend needs it
+                              regardless and both panels are gated on it
+                              together in index.html).
   brand_package_trend.csv (optional)
                               Fusion product-level export (Supplier, Brand
                               Family, Product Name, Package, Premise, Year
@@ -352,27 +393,43 @@ Files:
                               in whichever year column matches its own
                               Year Month, so generate.py sums across all
                               months present to get each window's total.
-                              Feeds the "i" trend-driver popovers added
-                              2026-08-10 (a manager's suggestion): hover or
-                              tap the small "i" next to each supplier's
-                              name on the Supplier + Brand tab (and the
-                              one next to the tab's own heading, for the
-                              company-wide version) to see which brand
-                              families drove that supplier's growth vs.
-                              dragged it down, and which SPECIFIC package
-                              (the raw Package column value as-is, e.g.
-                              "1/15/19.2oz Can" -- deliberately NOT
-                              bucketed into a coarse Cans/Bottles/Kegs
-                              grouping, per Gavin 2026-08-10: the point is
-                              to name the exact package worth pushing, not
-                              a package category) grew vs. shrank. Top 3
-                              brand movers and top 3 package movers each
-                              direction, floored at MIN_MOVER_CE (0.5 CE)
-                              so rounding dust can't show up as a
-                              "driver." See parse_brand_package_trend()
-                              in generate.py.
+                              Feeds:
+                                - The "i" trend-driver popovers added
+                                  2026-08-10 (a manager's suggestion):
+                                  hover or tap the small "i" next to each
+                                  supplier's name on the Supplier + Brand
+                                  tab (and the one next to the tab's own
+                                  heading, for the company-wide version)
+                                  to see which brand families drove that
+                                  supplier's growth vs. dragged it down,
+                                  and which SPECIFIC package (the raw
+                                  Package column value as-is, e.g.
+                                  "1/15/19.2oz Can" -- deliberately NOT
+                                  bucketed into a coarse Cans/Bottles/Kegs
+                                  grouping, per Gavin 2026-08-10: the
+                                  point is to name the exact package
+                                  worth pushing, not a category) grew vs.
+                                  shrank. Top 3 brand movers and top 3
+                                  package movers each direction, floored
+                                  at MIN_MOVER_CE (0.5 CE) so rounding
+                                  dust can't show up as a "driver."
+                                - The Top Headlines KPI tile (also
+                                  2026-08-10) on the Supplier + Brand tab
+                                  -- same company-wide brand/package
+                                  mover data as the "i" popovers, written
+                                  as plain-English sentences.
+                                - Package Trend's CE override (also
+                                  2026-08-10) -- see segment_package_
+                                  trend.csv above; this file's own
+                                  Package-level totals replace that
+                                  file's Cases-based ones whenever both
+                                  are present.
+                              See parse_brand_package_trend() in
+                              generate.py.
                               Optional -- if this file is absent, no "i"
-                              icons render at all.
+                              icons or Top Headlines render, and Package
+                              Trend falls back to Cases from
+                              segment_package_trend.csv.
   generate.py                 Rebuilds data/data.json from the files
                               above.
   index.html                  The page itself.

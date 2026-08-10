@@ -1562,8 +1562,8 @@ function renderComboKPIs(){
     </div>
     <ul class="headline-list">${headlines.map(h=>`<li>${h}</li>`).join('')}</ul>
     <p class="headline-note">Brand and package figures are in Case Equivalents (CE), same unit as the rest of this
-      page &mdash; not the raw Cases the Package Trend panel above ranks packages by, so the same package can show a
-      different unit count in each (percentages match; CE just isn't a 1:1 count of physical cases).</p>` : ''}
+      page and the Package Trend panel above. Segment Trend is still Cases-based (no Case-Equiv version of that
+      export exists yet).</p>` : ''}
     <div class="headline-stats">
       <div class="headline-stat"><span class="hs-lbl">Company Trend (YTD)</span><span class="hs-val">${fmtPct(companyTrend)}</span><span class="hs-sub">across all tracked suppliers</span></div>
       <div class="headline-stat"><span class="hs-lbl">YTD Case Equiv</span><span class="hs-val">${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}</span><span class="hs-sub">${rangeSub}</span></div>
@@ -1639,17 +1639,19 @@ function renderSegmentWidget(){
   });
 }
 
-// Package Trend rows show the UNIT swing (Cases, current - prior) first,
-// with the % change in parens right after -- per Gavin, 2026-08-10, so the
-// headline number is "how many cases moved" rather than an absolute
-// current-year count that needs the % pill next to it to mean anything.
-// Segment Trend keeps the plain twRow() (absolute current-year count, no
-// diff) since that panel isn't about movement, just this year's mix.
+// Package Trend rows show the UNIT swing (current - prior) first, with the
+// % change in parens right after -- per Gavin, 2026-08-10, so the headline
+// number is "how much moved" rather than an absolute current-year count
+// that needs the % pill next to it to mean anything. Segment Trend keeps
+// the plain twRow() (absolute current-year count, no diff) since that
+// panel isn't about movement, just this year's mix. Field names are
+// unit-agnostic (valPrior/valCurrent/valDiff) -- unit is whatever
+// DATA.segmentPackageTrend.packageMoversUnit says (see renderPackageWidget,
+// and generate.py's build_package_movers()/main() override).
 function pkgTwRow(r){
-  const diff = r.casesCurrent - r.casesPrior;
-  const dir = diff>=0?'up':'down';
+  const dir = r.valDiff>=0?'up':'down';
   return `<div class="tw-row"><span class="tw-lbl" title="${esc(r.label)}">${esc(r.label)}</span>` +
-    `<span class="tw-val ${dir}">${diff>=0?'+':''}${fmtCE(diff)} (${fmtPct(r.pctChange)})</span></div>`;
+    `<span class="tw-val ${dir}">${r.valDiff>=0?'+':''}${fmtCE(r.valDiff)} (${fmtPct(r.pctChange)})</span></div>`;
 }
 
 function renderPackageWidget(){
@@ -1657,10 +1659,11 @@ function renderPackageWidget(){
   const t = DATA.segmentPackageTrend;
   if (!t || !t.packageMovers || (!t.packageMovers.up.length && !t.packageMovers.down.length)){ el.innerHTML = ''; return; }
   const pm = t.packageMovers;
+  const unit = t.packageMoversUnit || 'Cases';
 
   el.innerHTML = `
     <p class="tw-title">Package Trend</p>
-    <p class="tw-sub">Top movers by Cases %, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)}</p>
+    <p class="tw-sub">Top movers by ${esc(unit)} %, ${esc(t.rangePrior)} vs. ${esc(t.rangeCurrent)}</p>
     <div class="tw-body">
       <div class="tw-section">
         <p class="tw-section-lbl up">Trending up (top ${pm.up.length})</p>
@@ -1671,7 +1674,7 @@ function renderPackageWidget(){
         ${pm.down.map(pkgTwRow).join('')}
       </div>
     </div>
-    <p class="tw-note">Ranked among packages with &ge; ${fmtCE(pm.minVolumeCases)} cases in either year and volume
+    <p class="tw-note">Ranked among packages with &ge; ${fmtCE(pm.minVolume)} ${esc(unit)} in either year and volume
       in both years, so a tiny package's swing can't outrank a real trend. ${pm.newCount} new-this-year and
       ${pm.discontinuedCount} discontinued package(s) of that size aren't rankable by % and are excluded here;
       ${pm.belowMinCount} smaller packages are also excluded.</p>`;

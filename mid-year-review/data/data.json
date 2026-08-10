@@ -14296,132 +14296,153 @@
       "up": [
         {
           "label": "15/25oz Can",
-          "casesPrior": 2989.0,
-          "casesCurrent": 22246.0,
+          "valPrior": 3891.9,
+          "valCurrent": 28966.1,
+          "valDiff": 25074.2,
           "pctChange": 6.4426
         },
         {
           "label": "3/8/150ML",
-          "casesPrior": 472.0,
-          "casesCurrent": 2502.0,
-          "pctChange": 4.3008
+          "valPrior": 199.4,
+          "valCurrent": 1057.2,
+          "valDiff": 857.8,
+          "pctChange": 4.3013
         },
         {
           "label": "6/4/200 ML",
-          "casesPrior": 1297.0,
-          "casesCurrent": 4601.0,
-          "pctChange": 2.5474
+          "valPrior": 735.0,
+          "valCurrent": 2607.3,
+          "valDiff": 1872.3,
+          "pctChange": 2.5473
         },
         {
           "label": "1/12/19.2oz",
-          "casesPrior": 809.0,
-          "casesCurrent": 2802.0,
+          "valPrior": 647.2,
+          "valCurrent": 2241.6,
+          "valDiff": 1594.4,
           "pctChange": 2.4635
         },
         {
           "label": "4/6/11.15oz",
-          "casesPrior": 945.0,
-          "casesCurrent": 2023.0,
+          "valPrior": 878.1,
+          "valCurrent": 1879.7,
+          "valDiff": 1001.7,
           "pctChange": 1.1407
         },
         {
           "label": "36/12oz Can",
-          "casesPrior": 16850.0,
-          "casesCurrent": 32977.0,
+          "valPrior": 25275.0,
+          "valCurrent": 49465.5,
+          "valDiff": 24190.5,
           "pctChange": 0.9571
         },
         {
           "label": "2/15/12oz Can",
-          "casesPrior": 1829.0,
-          "casesCurrent": 3374.5,
+          "valPrior": 2286.2,
+          "valCurrent": 4218.1,
+          "valDiff": 1931.9,
           "pctChange": 0.845
         },
         {
           "label": "12/28oz Btl",
-          "casesPrior": 2430.0,
-          "casesCurrent": 3924.0,
+          "valPrior": 2835.0,
+          "valCurrent": 4578.0,
+          "valDiff": 1743.0,
           "pctChange": 0.6148
         },
         {
           "label": "1/30/12.00 oz",
-          "casesPrior": 335.0,
-          "casesCurrent": 501.0,
+          "valPrior": 418.8,
+          "valCurrent": 626.2,
+          "valDiff": 207.5,
           "pctChange": 0.4955
         },
         {
           "label": "1/15/19.2oz Can",
-          "casesPrior": 7251.0,
-          "casesCurrent": 9944.0,
+          "valPrior": 7251.0,
+          "valCurrent": 9944.0,
+          "valDiff": 2693.0,
           "pctChange": 0.3714
         }
       ],
       "down": [
         {
           "label": "3/8/11.5oz Can",
-          "casesPrior": 1093.0,
-          "casesCurrent": 18.0,
-          "pctChange": -0.9835
+          "valPrior": 1047.4,
+          "valCurrent": 17.2,
+          "valDiff": -1030.2,
+          "pctChange": -0.9836
         },
         {
           "label": "24/11.2oz NR",
-          "casesPrior": 1790.0,
-          "casesCurrent": 38.0,
+          "valPrior": 1671.9,
+          "valCurrent": 35.5,
+          "valDiff": -1636.4,
           "pctChange": -0.9788
         },
         {
           "label": "24/16OZ can",
-          "casesPrior": 729.0,
-          "casesCurrent": 178.0,
+          "valPrior": 729.0,
+          "valCurrent": 178.0,
+          "valDiff": -551.0,
           "pctChange": -0.7558
         },
         {
           "label": "6/4/12.7oz NR",
-          "casesPrior": 883.0,
-          "casesCurrent": 340.0,
-          "pctChange": -0.6149
+          "valPrior": 934.5,
+          "valCurrent": 359.8,
+          "valDiff": -574.7,
+          "pctChange": -0.615
         },
         {
           "label": "4/6/8oz Can",
-          "casesPrior": 4715.0,
-          "casesCurrent": 2279.0,
+          "valPrior": 4715.0,
+          "valCurrent": 2279.0,
+          "valDiff": -2436.0,
           "pctChange": -0.5166
         },
         {
           "label": "24/375ml Btl",
-          "casesPrior": 4127.0,
-          "casesCurrent": 2098.0,
+          "valPrior": 4127.0,
+          "valCurrent": 2098.0,
+          "valDiff": -2029.0,
           "pctChange": -0.4916
         },
         {
           "label": "1/24/16.00 oz",
-          "casesPrior": 5216.0,
-          "casesCurrent": 2892.0,
+          "valPrior": 6954.6,
+          "valCurrent": 3856.0,
+          "valDiff": -3098.6,
           "pctChange": -0.4456
         },
         {
           "label": "1/12/23.50 oz",
-          "casesPrior": 515.0,
-          "casesCurrent": 294.0,
+          "valPrior": 504.3,
+          "valCurrent": 287.9,
+          "valDiff": -216.4,
           "pctChange": -0.4291
         },
         {
           "label": "1/12/750ml Btl",
-          "casesPrior": 1464.0,
-          "casesCurrent": 875.0,
+          "valPrior": 1547.0,
+          "valCurrent": 924.7,
+          "valDiff": -622.3,
           "pctChange": -0.4023
         },
         {
-          "label": "3/8/7.5oz Can",
-          "casesPrior": 522.0,
-          "casesCurrent": 330.0,
-          "pctChange": -0.3678
+          "label": "4/6/16.9oz Can",
+          "valPrior": 3545.5,
+          "valCurrent": 2335.9,
+          "valDiff": -1209.6,
+          "pctChange": -0.3412
         }
       ],
-      "minVolumeCases": 500,
-      "newCount": 5,
+      "minVolume": 500,
+      "newCount": 4,
       "discontinuedCount": 0,
-      "belowMinCount": 56
-    }
+      "belowMinCount": 59
+    },
+    "packageMoversUnit": "CE"
   },
   "overallInsight": {
     "cePrior": 4044455.7,

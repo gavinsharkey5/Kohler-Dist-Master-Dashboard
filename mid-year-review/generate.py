@@ -32,15 +32,21 @@ Inputs (keep these filenames when refreshing):
                               Fusion "Segment / Package" export (Supplier,
                               Brand Family, Segment, Sub-Segments, Package,
                               Cases for the same two YTD windows as
-                              ytd_comparison.csv, $Vol for both). Feeds two
-                              header panels: a Segment Trend panel (a
-                              dropdown drills from Segment down to that
-                              segment's Sub-Segments) and a Package Trend
-                              panel (top 10 individual packages trending
-                              up / top 10 trending down by Cases %, above
-                              MIN_PACKAGE_VOLUME cases). Both skipped
-                              entirely, with their panels left off the
-                              page, if this file isn't present.
+                              ytd_comparison.csv, $Vol for both). Feeds the
+                              Segment Trend header panel (a dropdown drills
+                              from Segment down to that segment's Sub-
+                              Segments) -- Cases-based, since there's no
+                              Case Equiv version of this export yet (would
+                              need a re-pull with the CE formula instead of
+                              Cases; see brand_package_trend.csv below).
+                              Also feeds a Cases-based Package Trend panel
+                              as a FALLBACK only -- see
+                              brand_package_trend.csv, which overrides it
+                              with a Case-Equiv version whenever that file
+                              is present (added 2026-08-10, per Gavin: CE
+                              is this whole page's native unit, and Cases
+                              was the odd one out). Both panels skipped
+                              entirely if this file isn't present.
   brand_package_trend.csv (optional)
                               Fusion product-level export (Supplier, Brand
                               Family, Product Name, Package, Premise, Year
@@ -48,21 +54,27 @@ Inputs (keep these filenames when refreshing):
                               windows as ytd_comparison.csv -- one row per
                               product/package/premise/month, each row's
                               Case Equiv landing in whichever year column
-                              matches its own Year Month). Feeds the "i"
-                              trend-driver popovers on the Supplier + Brand
-                              tab (added 2026-08-10 per a manager's
-                              suggestion): for each supplier (and one
-                              company-wide "Overall" popover by the tab
+                              matches its own Year Month). Feeds:
+                              (1) the "i" trend-driver popovers on the
+                              Supplier + Brand tab (added 2026-08-10 per a
+                              manager's suggestion): for each supplier (and
+                              one company-wide "Overall" popover by the tab
                               heading), which brand families drove growth
                               vs. dragged it down, and which SPECIFIC
                               package (the raw Package label, e.g.
                               "1/15/19.2oz Can" -- deliberately not
                               bucketed into a coarse Cans/Bottles/Kegs
                               grouping, per Gavin 2026-08-10) grew vs.
-                              shrank. See parse_brand_package_trend().
-                              Skipped
-                              entirely, with no popovers, if this file
-                              isn't present.
+                              shrank; and
+                              (2) the header's Package Trend panel (also
+                              2026-08-10), OVERRIDING segment_package_
+                              trend.csv's Cases-based version with this
+                              file's Case-Equiv one -- see main()'s
+                              override right after both files are parsed.
+                              See parse_brand_package_trend(). Skipped
+                              entirely, with no popovers and Package Trend
+                              falling back to Cases, if this file isn't
+                              present.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -306,6 +318,43 @@ def parse_ytd_csv(path, brands, brands_lower, supplier_names):
 MIN_PACKAGE_VOLUME = 500
 
 
+# Shared by parse_segment_package_trend() (Cases, its original unit) and
+# parse_brand_package_trend() (Case Equiv, added 2026-08-10 per Gavin --
+# see that function's own docstring for why the Package Trend header panel
+# now overrides its packageMovers with THIS unit instead). Field names are
+# deliberately unit-agnostic (valPrior/valCurrent/valDiff, not
+# casesPrior/casesCurrent) since which of the two units populates them is a
+# call-site decision, not baked into the shape -- a field named
+# "casesCurrent" holding Case Equivalents is exactly the kind of mislabeling
+# that caused the Package-Trend-vs-Top-Headlines mismatch this was added to
+# fix.
+def build_package_movers(pkg_totals, min_volume):
+    def to_row(label, prior, current):
+        diff = current - prior
+        pct = (current / prior - 1) if prior else (1.0 if current else 0.0)
+        return {"label": label, "valPrior": round(prior, 1), "valCurrent": round(current, 1),
+                "valDiff": round(diff, 1), "pctChange": round(pct, 4)}
+
+    # Top movers: require real (nonzero) volume in BOTH years -- a package
+    # that's brand-new this year or fully discontinued has an undefined /
+    # infinite % swing that isn't a comparable "trend" and would otherwise
+    # crowd out genuine percentage movers -- those counts are surfaced
+    # separately instead (newCount/discontinuedCount) so nothing's hidden,
+    # just not force-ranked on an undefined percentage.
+    comparable = [(label, p, c) for label, (p, c) in pkg_totals.items()
+                  if p > 0 and c > 0 and max(p, c) >= min_volume]
+    new_count = sum(1 for p, c in pkg_totals.values() if p == 0 and c >= min_volume)
+    discontinued_count = sum(1 for p, c in pkg_totals.values() if c == 0 and p >= min_volume)
+    below_min_count = sum(1 for p, c in pkg_totals.values() if max(p, c) < min_volume)
+    movers = [to_row(label, p, c) for label, p, c in comparable]
+    return {
+        "up": sorted(movers, key=lambda x: -x["pctChange"])[:10],
+        "down": sorted(movers, key=lambda x: x["pctChange"])[:10],
+        "minVolume": min_volume,
+        "newCount": new_count, "discontinuedCount": discontinued_count, "belowMinCount": below_min_count,
+    }
+
+
 def parse_segment_package_trend(path):
     if not path.exists():
         return None
@@ -355,29 +404,16 @@ def parse_segment_package_trend(path):
         for segment, subs in subseg_totals.items()
     }
 
-    # Top movers: require real (nonzero) volume in BOTH years -- a package
-    # that's brand-new this year or fully discontinued has an undefined /
-    # infinite % swing that isn't a comparable "trend" and would otherwise
-    # crowd out genuine percentage movers -- those counts are surfaced
-    # separately instead (newCount/discontinuedCount) so nothing's hidden,
-    # just not force-ranked on an undefined percentage.
-    comparable = [(label, p, c) for label, (p, c) in pkg_totals.items()
-                  if p > 0 and c > 0 and max(p, c) >= MIN_PACKAGE_VOLUME]
-    new_count = sum(1 for p, c in pkg_totals.values() if p == 0 and c >= MIN_PACKAGE_VOLUME)
-    discontinued_count = sum(1 for p, c in pkg_totals.values() if c == 0 and p >= MIN_PACKAGE_VOLUME)
-    below_min_count = sum(1 for p, c in pkg_totals.values() if max(p, c) < MIN_PACKAGE_VOLUME)
-    movers = [to_row(label, p, c) for label, p, c in comparable]
-
     return {
         "rangePrior": range_prior, "rangeCurrent": range_current,
         "segments": segments,
         "subSegments": sub_segments,
-        "packageMovers": {
-            "up": sorted(movers, key=lambda x: -x["pctChange"])[:10],
-            "down": sorted(movers, key=lambda x: x["pctChange"])[:10],
-            "minVolumeCases": MIN_PACKAGE_VOLUME,
-            "newCount": new_count, "discontinuedCount": discontinued_count, "belowMinCount": below_min_count,
-        },
+        # Cases-based -- the fallback if brand_package_trend.csv isn't
+        # present. main() overrides this with a Case-Equiv version from
+        # that file when it is (see parse_brand_package_trend()), since CE
+        # is this whole page's native unit everywhere else.
+        "packageMovers": build_package_movers(pkg_totals, MIN_PACKAGE_VOLUME),
+        "packageMoversUnit": "Cases",
     }
 
 
@@ -474,10 +510,23 @@ def parse_brand_package_trend(path):
         for supplier in by_supplier_brand
     }
 
+    # Case-Equiv package movers (added 2026-08-10, per Gavin): the header's
+    # Package Trend panel used to source its top-10-up/top-10-down list from
+    # segment_package_trend.csv, in Cases -- a different unit than every
+    # other number on this page, which reconciled a package's % change but
+    # not its absolute unit count against the CE-based Top Headlines tile
+    # (same package, same %, different raw number -- Cases and CE come from
+    # different per-product fields, WholesaleUnitsPerCase vs CaseEquiv, so
+    # they're not a fixed ratio at the Package-label level). main()
+    # overrides segment_package_trend's packageMovers with THIS instead
+    # whenever this file is present, so the whole page agrees on CE.
+    package_movers_ce = build_package_movers(overall_pkg, MIN_PACKAGE_VOLUME)
+
     return {
         "rangePrior": range_prior, "rangeCurrent": range_current,
         "overall": overall_insight,
         "bySupplier": by_supplier,
+        "packageMoversCE": package_movers_ce,
     }
 
 
@@ -627,17 +676,32 @@ def main():
 
     segment_package_trend = parse_segment_package_trend(CSV_SEGMENT_PACKAGE)
     if segment_package_trend:
-        pm = segment_package_trend["packageMovers"]
         print(f"Segment Trend: {len(segment_package_trend['segments'])} segments from {CSV_SEGMENT_PACKAGE.name} "
-              f"({segment_package_trend['rangePrior']}  vs.  {segment_package_trend['rangeCurrent']}).")
-        print(f"Package Trend: {len(pm['up'])} up / {len(pm['down'])} down movers "
-              f"(>= {pm['minVolumeCases']} cases; {pm['newCount']} new, {pm['discontinuedCount']} discontinued, "
-              f"{pm['belowMinCount']} below the volume floor, excluded from ranking).")
+              f"({segment_package_trend['rangePrior']}  vs.  {segment_package_trend['rangeCurrent']}), Cases-based.")
 
     brand_package_trend = parse_brand_package_trend(CSV_BRAND_PACKAGE)
     if brand_package_trend:
         print(f"Brand/Package trend popovers: {len(brand_package_trend['bySupplier'])} suppliers from "
               f"{CSV_BRAND_PACKAGE.name} ({brand_package_trend['rangePrior']}  vs.  {brand_package_trend['rangeCurrent']}).")
+
+    # Per Gavin, 2026-08-10: switch the header's Package Trend panel from
+    # Cases (segment_package_trend.csv) to Case Equivalents
+    # (brand_package_trend.csv) -- CE is this whole page's native unit
+    # everywhere else, and the two units disagreeing on the same package's
+    # absolute count (while agreeing on its %) read as a bug. Segment Trend
+    # itself stays Cases-based -- brand_package_trend.csv has no Segment/
+    # Sub-Segment column to convert it with; that needs a re-pull of
+    # segment_package_trend.csv using the Case Equiv formula instead of
+    # Cases, not something derivable from data already in hand.
+    if segment_package_trend and brand_package_trend:
+        segment_package_trend["packageMovers"] = brand_package_trend["packageMoversCE"]
+        segment_package_trend["packageMoversUnit"] = "CE"
+    if segment_package_trend:
+        pm = segment_package_trend["packageMovers"]
+        print(f"Package Trend: {len(pm['up'])} up / {len(pm['down'])} down movers, "
+              f"{segment_package_trend['packageMoversUnit']}-based "
+              f"(>= {pm['minVolume']} {segment_package_trend['packageMoversUnit']}; {pm['newCount']} new, "
+              f"{pm['discontinuedCount']} discontinued, {pm['belowMinCount']} below the volume floor, excluded from ranking).")
 
     if DENISE_PRODUCT_DETAIL.exists():
         overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
