@@ -490,9 +490,15 @@ every Core Market brand is blacked out in the exact same six
 counties (Essex, Hudson, Middlesex, Morris 2, Rockland, Union) per
 the "Blackout Brand Fam Areas (Enc)" sheet -- i.e. authorized in
 exactly the same six-county set already used elsewhere in this repo
-(MPOs/on-prem's ALLOWED_TARGET_COUNTIES). 1911, Woodchuck, Molly's,
-and both Garage Beer programs are "All Counties" brands and were
-never in scope for this.
+(MPOs/on-prem's ALLOWED_TARGET_COUNTIES). Lytt Launch was added to
+the same restriction 2026-08-10 per Gavin directly ("Lytt is core
+market (Boston Beer Company brand)") -- Lytt isn't in the whitelist
+workbook itself (too new), so that one entry rests on Gavin's word
+rather than the workbook, unlike the other five. 1911, Woodchuck,
+Molly's, and both Garage Beer programs are "All Counties" brands and
+were never in scope for this; Tona and YaVe Tequila were confirmed
+"All 7 counties" by Gavin the same day, so they're deliberately not
+in scope either.
 
 Rather than parsing the workbook, generate.py's load_core_market_reps()
 (see CORE_MARKET_PROGRAMS docstring in generate.py for the full
@@ -506,24 +512,24 @@ in both Core Market and non-Core-Market counties is still fully
 eligible (per Gavin, 2026-08-10: any Core Market account is enough,
 no partial-eligibility treatment).
 
-For an ineligible rep, each of the five affected programs' cards
+For an ineligible rep, each of the six affected programs' cards
 (cardBostonBeer/cardSamAdams/cardNewBelgium/
-cardNewBelgiumDistribution/cardSunCruiser in index.html) render
-territoryBlockedCard() instead of their normal metrics -- a plain
-"Not Eligible -- Outside Your Territory" notice naming the brand and
-the six allowed counties, rather than a misleading all-zero card. The
-five programs' overview-tile descriptions also got a one-line note
-about the Core Market restriction so reps understand upfront why a
-tile might not apply to them. Ranking pages / leaderboards were left
-untouched (ineligible reps just show 0 there, mixed in with genuinely
-inactive-but-eligible reps) -- per Gavin, 2026-08-10, this wasn't
-asked for and the "clear notice" treatment is scoped to the card
-level only.
+cardNewBelgiumDistribution/cardSunCruiser/cardLytt in index.html)
+render territoryBlockedCard() instead of their normal metrics -- a
+plain "Not Eligible -- Outside Your Territory" notice naming the
+brand and the six allowed counties, rather than a misleading all-zero
+card. All six programs' overview-tile descriptions also got a
+one-line note about the Core Market restriction so reps understand
+upfront why a tile might not apply to them. Ranking pages /
+leaderboards were left untouched (ineligible reps just show 0 there,
+mixed in with genuinely inactive-but-eligible reps) -- per Gavin,
+2026-08-10, this wasn't asked for and the "clear notice" treatment is
+scoped to the card level only.
 
-KNOWN GAP: Tona, Lytt, and Yave don't appear anywhere in
-kohler_brands_whitelist_blacklist.xlsx's 293-brand territory list
-(likely just too new to have been added to Kohler's tracker yet), so
-they are deliberately NOT included in CORE_MARKET_PROGRAMS -- every
-rep is treated as eligible for all three regardless of territory.
-Do not guess a territory for them; wait for Kohler's workbook to add
-them, or ask Gavin directly.
+RESOLVED 2026-08-10: Tona, Lytt, and Yave's territory status (an open
+gap when this feature first shipped, since none of the three appear
+in kohler_brands_whitelist_blacklist.xlsx) was confirmed directly by
+Gavin the same day -- Lytt is Core Market (now in
+CORE_MARKET_PROGRAMS), Tona and YaVe Tequila are All 7 Counties (no
+restriction, left out of CORE_MARKET_PROGRAMS same as 1911/Woodchuck/
+Molly's/Garage Beer).

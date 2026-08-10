@@ -713,13 +713,14 @@ def load_premise_map():
 
 
 # Per kohler_brands_whitelist_blacklist.xlsx ("Blackout Brand Fam Areas
-# (Enc)" sheet, 2026-08-10 pull): every brand family used by these five
-# programs is tagged "Core Market" territory in the workbook's "Brand
-# Family Territory (Enc)" sheet (Angry Orchard, Dogfish Head Beer,
-# Samuel Adams, Bell's/Bell's Hearted Family/Kirin Ichiban/Kirin
-# Light/Voodoo Family, Sun Cruiser), and every Core Market brand is
-# blacked out in the exact same six counties: Essex, Hudson, Middlesex,
-# Morris 2, Rockland, Union -- i.e. authorized ONLY in Bergen, Passaic,
+# (Enc)" sheet, 2026-08-10 pull): every brand family used by boston_beer,
+# sam_adams, new_belgium, new_belgium_distribution, and sun_cruiser is
+# tagged "Core Market" territory in the workbook's "Brand Family
+# Territory (Enc)" sheet (Angry Orchard, Dogfish Head Beer, Samuel
+# Adams, Bell's/Bell's Hearted Family/Kirin Ichiban/Kirin Light/Voodoo
+# Family, Sun Cruiser), and every Core Market brand is blacked out in
+# the exact same six counties: Essex, Hudson, Middlesex, Morris 2,
+# Rockland, Union -- i.e. authorized ONLY in Bergen, Passaic,
 # Passaic-FF, Sussex, Morris 1, Morris 3. Reference file kept for audit
 # only (not parsed programmatically -- same "reference only" treatment
 # as MPOs/on-prem's copy of this same workbook), because both
@@ -727,13 +728,17 @@ def load_premise_map():
 # pre-filtered to exactly that six-area Core Market set (verified
 # 2026-08-10: neither file contains a single non-Core-Market county),
 # so a rep's mere presence in either file already proves they have a
-# Core Market account. 1911, Woodchuck, Molly's, and both Garage Beer
-# programs are "All Counties" territory (no blackout at all) and are
-# not in this set. Tona, Lytt, and Yave don't appear anywhere in the
-# whitelist workbook (likely too new to have been added yet), so they
-# are deliberately left out of this restriction until Kohler's
-# territory tracker catches up -- do not guess a territory for them.
-CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser"}
+# Core Market account. lytt was added 2026-08-10 per Gavin directly
+# ("Lytt is core market (Boston Beer Company brand)") -- Lytt doesn't
+# appear anywhere in the whitelist workbook itself (too new to have
+# been added to Kohler's tracker), so this one entry is NOT verified
+# against the workbook the way the other five are; it's taken on
+# Gavin's word. 1911, Woodchuck, Molly's, and both Garage Beer programs
+# are "All Counties" territory (no blackout at all) and are not in this
+# set. Tona and YaVe Tequila were also confirmed "All 7 counties" by
+# Gavin, 2026-08-10 (i.e. no blackout) -- also not in this set, and no
+# longer an open question.
+CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt"}
 
 
 def load_core_market_reps():
