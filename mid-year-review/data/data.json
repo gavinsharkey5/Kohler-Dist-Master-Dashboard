@@ -6259,7 +6259,74 @@
           "goal_brewery_pct": -1,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1495071.2,
+        "ceCurrent": 1518436.5,
+        "trendPct": 0.0156,
+        "brandGainers": [
+          {
+            "label": "Modelo Chelada",
+            "cePrior": 46208.0,
+            "ceCurrent": 59212.0,
+            "ceDiff": 13004.0
+          },
+          {
+            "label": "Modelo Especial",
+            "cePrior": 595188.6,
+            "ceCurrent": 607469.6,
+            "ceDiff": 12281.0
+          },
+          {
+            "label": "Victoria",
+            "cePrior": 33877.7,
+            "ceCurrent": 40206.7,
+            "ceDiff": 6329.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Corona Extra",
+            "cePrior": 700345.2,
+            "ceCurrent": 687713.3,
+            "ceDiff": -12631.9
+          },
+          {
+            "label": "Corona Refresca",
+            "cePrior": 1097.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -1097.0
+          },
+          {
+            "label": "Corona Premier",
+            "cePrior": 19829.7,
+            "ceCurrent": 18744.9,
+            "ceDiff": -1084.8
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 447622.5,
+            "ceCurrent": 484187.2,
+            "ceDiff": 36564.7
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 11986.4,
+            "ceDiff": 11986.4
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 1026673.5,
+            "ceCurrent": 1000770.0,
+            "ceDiff": -25903.5
+          }
+        ]
+      }
     },
     {
       "supplier": "MolsonCoors Beverage Company",
@@ -6624,7 +6691,67 @@
           "goal_brewery_pct": -0.1,
           "goal_kohler_pct": -0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1078830.3,
+        "ceCurrent": 1050528.9,
+        "trendPct": -0.0262,
+        "brandGainers": [
+          {
+            "label": "Coors",
+            "cePrior": 65259.1,
+            "ceCurrent": 70002.6,
+            "ceDiff": 4743.5
+          },
+          {
+            "label": "Peroni",
+            "cePrior": 32459.6,
+            "ceCurrent": 36653.8,
+            "ceDiff": 4194.2
+          },
+          {
+            "label": "Fever Tree",
+            "cePrior": 985.3,
+            "ceCurrent": 3985.0,
+            "ceDiff": 2999.7
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Coors Light",
+            "cePrior": 452964.8,
+            "ceCurrent": 439931.7,
+            "ceDiff": -13033.1
+          },
+          {
+            "label": "Blue Moon",
+            "cePrior": 72556.7,
+            "ceCurrent": 66777.1,
+            "ceDiff": -5779.6
+          },
+          {
+            "label": "Arnold Palmer",
+            "cePrior": 11657.0,
+            "ceCurrent": 7513.0,
+            "ceDiff": -4144.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 276837.7,
+            "ceCurrent": 259012.3,
+            "ceDiff": -17825.4
+          },
+          {
+            "label": "Cans",
+            "cePrior": 647216.3,
+            "ceCurrent": 640086.9,
+            "ceDiff": -7129.4
+          }
+        ]
+      }
     },
     {
       "supplier": "Heineken USA",
@@ -6769,7 +6896,74 @@
           "goal_brewery_pct": 0.195,
           "goal_kohler_pct": -0.2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 316974.5,
+        "ceCurrent": 286872.3,
+        "trendPct": -0.095,
+        "brandGainers": [
+          {
+            "label": "Heineken 0.0 Ultimate",
+            "cePrior": 0.0,
+            "ceCurrent": 566.0,
+            "ceDiff": 566.0
+          },
+          {
+            "label": "Newcastle",
+            "cePrior": 0.0,
+            "ceCurrent": 305.4,
+            "ceDiff": 305.4
+          },
+          {
+            "label": "Murphy's",
+            "cePrior": 945.9,
+            "ceCurrent": 1130.0,
+            "ceDiff": 184.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Heineken USA",
+            "cePrior": 252345.4,
+            "ceCurrent": 225229.3,
+            "ceDiff": -27116.0
+          },
+          {
+            "label": "Heineken Light",
+            "cePrior": 20764.0,
+            "ceCurrent": 18679.0,
+            "ceDiff": -2085.0
+          },
+          {
+            "label": "Heineken Silver",
+            "cePrior": 2262.0,
+            "ceCurrent": 1446.0,
+            "ceDiff": -816.0
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 0.0,
+            "ceCurrent": 368.7,
+            "ceDiff": 368.7
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 228992.0,
+            "ceCurrent": 204993.7,
+            "ceDiff": -23998.3
+          },
+          {
+            "label": "Cans",
+            "cePrior": 82694.3,
+            "ceCurrent": 76402.1,
+            "ceDiff": -6292.2
+          }
+        ]
+      }
     },
     {
       "supplier": "Boston Beer Company",
@@ -6870,7 +7064,80 @@
           "goal_brewery_pct": 0.364,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 226609.2,
+        "ceCurrent": 234662.2,
+        "trendPct": 0.0355,
+        "brandGainers": [
+          {
+            "label": "Sun Cruiser",
+            "cePrior": 28450.0,
+            "ceCurrent": 55423.0,
+            "ceDiff": 26973.0
+          },
+          {
+            "label": "Angry Orchard",
+            "cePrior": 20945.0,
+            "ceCurrent": 21938.4,
+            "ceDiff": 993.4
+          },
+          {
+            "label": "Sinless Vodka Cocktail",
+            "cePrior": 0.0,
+            "ceCurrent": 850.0,
+            "ceDiff": 850.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Twisted Tea",
+            "cePrior": 65734.3,
+            "ceCurrent": 56650.6,
+            "ceDiff": -9083.8
+          },
+          {
+            "label": "Truly",
+            "cePrior": 24094.8,
+            "ceCurrent": 18150.9,
+            "ceDiff": -5943.9
+          },
+          {
+            "label": "Samuel Adams",
+            "cePrior": 58451.6,
+            "ceCurrent": 54238.3,
+            "ceDiff": -4213.3
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 141233.1,
+            "ceCurrent": 154487.5,
+            "ceDiff": 13254.4
+          },
+          {
+            "label": "Other",
+            "cePrior": 456.0,
+            "ceCurrent": 1229.0,
+            "ceDiff": 773.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 60519.5,
+            "ceCurrent": 55858.0,
+            "ceDiff": -4661.5
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 24203.5,
+            "ceCurrent": 22894.5,
+            "ceDiff": -1309.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Mark Anthony",
@@ -6949,7 +7216,67 @@
           "goal_brewery_pct": 1.65,
           "goal_kohler_pct": 1.65
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 226648.7,
+        "ceCurrent": 205397.1,
+        "trendPct": -0.0938,
+        "brandGainers": [
+          {
+            "label": "Cayman Jack",
+            "cePrior": 17751.3,
+            "ceCurrent": 20840.0,
+            "ceDiff": 3088.8
+          },
+          {
+            "label": "Mxd Cocktails",
+            "cePrior": 1702.7,
+            "ceCurrent": 2373.6,
+            "ceDiff": 671.0
+          },
+          {
+            "label": "Ole",
+            "cePrior": 0.0,
+            "ceCurrent": 633.2,
+            "ceDiff": 633.2
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "White Claw",
+            "cePrior": 177368.5,
+            "ceCurrent": 157276.7,
+            "ceDiff": -20091.7
+          },
+          {
+            "label": "Mike's Hard Lemonade",
+            "cePrior": 22795.8,
+            "ceCurrent": 17110.8,
+            "ceDiff": -5685.0
+          },
+          {
+            "label": "Mike's Harder",
+            "cePrior": 6664.5,
+            "ceCurrent": 6137.7,
+            "ceDiff": -526.9
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 194944.3,
+            "ceCurrent": 178490.8,
+            "ceDiff": -16453.5
+          },
+          {
+            "label": "Other",
+            "cePrior": 6970.9,
+            "ceCurrent": 4560.0,
+            "ceDiff": -2410.9
+          }
+        ]
+      }
     },
     {
       "supplier": "Pabst Brewing Company",
@@ -7094,7 +7421,67 @@
           "goal_brewery_pct": 0.307,
           "goal_kohler_pct": 0.015
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 148129.2,
+        "ceCurrent": 136036.3,
+        "trendPct": -0.0816,
+        "brandGainers": [
+          {
+            "label": "Pabst Light",
+            "cePrior": 1920.0,
+            "ceCurrent": 4930.4,
+            "ceDiff": 3010.4
+          },
+          {
+            "label": "Schaefer",
+            "cePrior": 2565.0,
+            "ceCurrent": 3220.0,
+            "ceDiff": 655.0
+          },
+          {
+            "label": "Lone Star",
+            "cePrior": 532.0,
+            "ceCurrent": 758.0,
+            "ceDiff": 226.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Pabst Blue Ribbon",
+            "cePrior": 88554.6,
+            "ceCurrent": 80681.8,
+            "ceDiff": -7872.8
+          },
+          {
+            "label": "St Ides",
+            "cePrior": 10155.2,
+            "ceCurrent": 7632.2,
+            "ceDiff": -2523.0
+          },
+          {
+            "label": "Colt 45",
+            "cePrior": 18201.6,
+            "ceCurrent": 16604.2,
+            "ceDiff": -1597.4
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 129097.0,
+            "ceCurrent": 119739.0,
+            "ceDiff": -9358.0
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 7529.6,
+            "ceCurrent": 5166.7,
+            "ceDiff": -2362.9
+          }
+        ]
+      }
     },
     {
       "supplier": "DG Yuengling Inc",
@@ -7206,7 +7593,61 @@
           "goal_brewery_pct": -0.039,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 126932.3,
+        "ceCurrent": 122727.9,
+        "trendPct": -0.0331,
+        "brandGainers": [
+          {
+            "label": "Yuengling Premium",
+            "cePrior": 2317.0,
+            "ceCurrent": 2388.0,
+            "ceDiff": 71.0
+          },
+          {
+            "label": "Yuengling Premium Light",
+            "cePrior": 943.0,
+            "ceCurrent": 979.0,
+            "ceDiff": 36.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Yuengling Lager",
+            "cePrior": 108947.5,
+            "ceCurrent": 105653.4,
+            "ceDiff": -3294.0
+          },
+          {
+            "label": "Yuengling Golden Pilsner",
+            "cePrior": 1476.0,
+            "ceCurrent": 1123.0,
+            "ceDiff": -353.0
+          },
+          {
+            "label": "Yuengling Black & Tan",
+            "cePrior": 3349.1,
+            "ceCurrent": 3116.0,
+            "ceDiff": -233.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 49438.5,
+            "ceCurrent": 46037.8,
+            "ceDiff": -3400.7
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 32897.9,
+            "ceCurrent": 32178.0,
+            "ceDiff": -719.9
+          }
+        ]
+      }
     },
     {
       "supplier": "Sapporo",
@@ -7230,7 +7671,36 @@
           "goal_brewery_pct": 0.05,
           "goal_kohler_pct": 0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 46027.7,
+        "ceCurrent": 55510.1,
+        "trendPct": 0.206,
+        "brandGainers": [
+          {
+            "label": "Sapporo",
+            "cePrior": 46027.7,
+            "ceCurrent": 55510.1,
+            "ceDiff": 9482.3
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 34929.3,
+            "ceCurrent": 43405.6,
+            "ceDiff": 8476.3
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 7929.0,
+            "ceCurrent": 8869.0,
+            "ceDiff": 940.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "New Belgium Brewing Company",
@@ -7320,7 +7790,74 @@
           "goal_brewery_pct": 0.2,
           "goal_kohler_pct": 0.2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 34952.8,
+        "ceCurrent": 38644.3,
+        "trendPct": 0.1056,
+        "brandGainers": [
+          {
+            "label": "Voodoo Family",
+            "cePrior": 24225.7,
+            "ceCurrent": 27294.9,
+            "ceDiff": 3069.2
+          },
+          {
+            "label": "Kirin Ichiban",
+            "cePrior": 1837.4,
+            "ceCurrent": 4039.3,
+            "ceDiff": 2201.9
+          },
+          {
+            "label": "Kirin Light",
+            "cePrior": 148.0,
+            "ceCurrent": 214.0,
+            "ceDiff": 66.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Voodoo Hardcharged",
+            "cePrior": 1498.0,
+            "ceCurrent": 629.0,
+            "ceDiff": -869.0
+          },
+          {
+            "label": "Fat Tire Family",
+            "cePrior": 4591.7,
+            "ceCurrent": 4203.2,
+            "ceDiff": -388.5
+          },
+          {
+            "label": "Lightstrike",
+            "cePrior": 346.4,
+            "ceCurrent": 18.1,
+            "ceDiff": -328.3
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 24680.3,
+            "ceCurrent": 28341.0,
+            "ceDiff": 3660.8
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 4561.8,
+            "ceCurrent": 4781.8,
+            "ceDiff": 220.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Other",
+            "cePrior": 346.4,
+            "ceCurrent": 18.1,
+            "ceDiff": -328.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Sierra Nevada Brewing Company",
@@ -7344,7 +7881,49 @@
           "goal_brewery_pct": 0.031,
           "goal_kohler_pct": 0.031
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 26636.3,
+        "ceCurrent": 29035.3,
+        "trendPct": 0.0901,
+        "brandGainers": [
+          {
+            "label": "Sierra Nevada",
+            "cePrior": 26636.3,
+            "ceCurrent": 29035.3,
+            "ceDiff": 2399.1
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 15850.0,
+            "ceCurrent": 18348.1,
+            "ceDiff": 2498.1
+          },
+          {
+            "label": "Other",
+            "cePrior": 303.0,
+            "ceCurrent": 459.0,
+            "ceDiff": 156.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 5930.0,
+            "ceCurrent": 5533.0,
+            "ceDiff": -397.0
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 5.3,
+            "ceCurrent": 0.0,
+            "ceDiff": -5.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Radeberger USA",
@@ -7401,7 +7980,62 @@
           "goal_brewery_pct": 0.009,
           "goal_kohler_pct": -0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 20826.1,
+        "ceCurrent": 20532.8,
+        "trendPct": -0.0141,
+        "brandGainers": [
+          {
+            "label": "Radeberger",
+            "cePrior": 3550.8,
+            "ceCurrent": 3646.5,
+            "ceDiff": 95.6
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Dab",
+            "cePrior": 9763.6,
+            "ceCurrent": 9547.8,
+            "ceDiff": -215.8
+          },
+          {
+            "label": "Clausthaler",
+            "cePrior": 1548.4,
+            "ceCurrent": 1385.8,
+            "ceDiff": -162.7
+          },
+          {
+            "label": "Schofferhofer",
+            "cePrior": 5963.2,
+            "ceCurrent": 5952.8,
+            "ceDiff": -10.4
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 1861.0,
+            "ceCurrent": 2559.5,
+            "ceDiff": 698.6
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 12739.8,
+            "ceCurrent": 11892.8,
+            "ceDiff": -847.0
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 6225.3,
+            "ceCurrent": 6080.5,
+            "ceDiff": -144.8
+          }
+        ]
+      }
     },
     {
       "supplier": "Total Beverage Solutions",
@@ -7480,7 +8114,61 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": -0.06
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 16034.9,
+        "ceCurrent": 17836.8,
+        "trendPct": 0.1124,
+        "brandGainers": [
+          {
+            "label": "Magners",
+            "cePrior": 4703.2,
+            "ceCurrent": 5486.2,
+            "ceDiff": 783.0
+          },
+          {
+            "label": "Weihenstephaner",
+            "cePrior": 4604.2,
+            "ceCurrent": 5235.5,
+            "ceDiff": 631.3
+          },
+          {
+            "label": "Carib",
+            "cePrior": 6118.0,
+            "ceCurrent": 6487.0,
+            "ceDiff": 369.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Rekorderlig",
+            "cePrior": 229.8,
+            "ceCurrent": 212.9,
+            "ceDiff": -16.8
+          },
+          {
+            "label": "Banks",
+            "cePrior": 176.0,
+            "ceCurrent": 175.0,
+            "ceDiff": -1.0
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 12162.6,
+            "ceCurrent": 13336.2,
+            "ceDiff": 1173.5
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 3192.7,
+            "ceCurrent": 3722.0,
+            "ceDiff": 529.3
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Famosa",
@@ -7504,7 +8192,43 @@
           "goal_brewery_pct": 0.025,
           "goal_kohler_pct": 0.025
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 24242.9,
+        "ceCurrent": 16899.6,
+        "trendPct": -0.3029,
+        "brandGainers": [
+          {
+            "label": "Monte Carlo",
+            "cePrior": -6.0,
+            "ceCurrent": 0.0,
+            "ceDiff": 6.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Famosa",
+            "cePrior": 24248.9,
+            "ceCurrent": 16899.6,
+            "ceDiff": -7349.3
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 17514.0,
+            "ceCurrent": 11594.0,
+            "ceDiff": -5920.0
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 6728.9,
+            "ceCurrent": 5305.6,
+            "ceDiff": -1423.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Montauk Brewing Co",
@@ -7528,7 +8252,43 @@
           "goal_brewery_pct": 0.065,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 17799.9,
+        "ceCurrent": 16699.8,
+        "trendPct": -0.0618,
+        "brandGainers": [
+          {
+            "label": "Popsicle Hard",
+            "cePrior": 0.0,
+            "ceCurrent": 545.0,
+            "ceDiff": 545.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Montauk",
+            "cePrior": 17799.9,
+            "ceCurrent": 16154.8,
+            "ceDiff": -1645.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 4432.9,
+            "ceCurrent": 3876.8,
+            "ceDiff": -556.1
+          },
+          {
+            "label": "Cans",
+            "cePrior": 13367.0,
+            "ceCurrent": 12823.0,
+            "ceDiff": -544.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Cape May",
@@ -7552,7 +8312,36 @@
           "goal_brewery_pct": 0.013,
           "goal_kohler_pct": -0.03
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 15883.0,
+        "ceCurrent": 16635.0,
+        "trendPct": 0.0473,
+        "brandGainers": [
+          {
+            "label": "Cape May",
+            "cePrior": 15883.0,
+            "ceCurrent": 16635.0,
+            "ceDiff": 752.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 2168.5,
+            "ceCurrent": 2905.4,
+            "ceDiff": 737.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 13714.5,
+            "ceCurrent": 13729.5,
+            "ceDiff": 15.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "FX Matt",
@@ -7631,7 +8420,62 @@
           "goal_brewery_pct": -0.1,
           "goal_kohler_pct": -0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 17257.8,
+        "ceCurrent": 14191.9,
+        "trendPct": -0.1777,
+        "brandGainers": [
+          {
+            "label": "Kingfisher Premium",
+            "cePrior": 920.0,
+            "ceCurrent": 997.0,
+            "ceDiff": 77.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Saranac",
+            "cePrior": 5956.3,
+            "ceCurrent": 4858.4,
+            "ceDiff": -1097.9
+          },
+          {
+            "label": "Right Coast",
+            "cePrior": 1421.3,
+            "ceCurrent": 551.4,
+            "ceDiff": -869.9
+          },
+          {
+            "label": "Flying Dog Brewing Co",
+            "cePrior": 8047.1,
+            "ceCurrent": 7197.8,
+            "ceDiff": -849.3
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 0.0,
+            "ceCurrent": 172.5,
+            "ceDiff": 172.5
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 12391.3,
+            "ceCurrent": 10740.4,
+            "ceDiff": -1650.9
+          },
+          {
+            "label": "Cans",
+            "cePrior": 4028.3,
+            "ceCurrent": 2574.0,
+            "ceDiff": -1454.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Athletic Brewing Company",
@@ -7655,7 +8499,36 @@
           "goal_brewery_pct": 0.16,
           "goal_kohler_pct": 0.16
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 12286.0,
+        "ceCurrent": 13105.8,
+        "trendPct": 0.0667,
+        "brandGainers": [
+          {
+            "label": "Athletic",
+            "cePrior": 12286.0,
+            "ceCurrent": 13105.8,
+            "ceDiff": 819.8
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 12286.0,
+            "ceCurrent": 13092.0,
+            "ceDiff": 806.0
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 0.0,
+            "ceCurrent": 13.8,
+            "ceDiff": 13.8
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Garage Beer",
@@ -7679,7 +8552,36 @@
           "goal_brewery_pct": 0.506,
           "goal_kohler_pct": 0.506
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 7250.8,
+        "ceCurrent": 12573.0,
+        "trendPct": 0.734,
+        "brandGainers": [
+          {
+            "label": "Garage Beer",
+            "cePrior": 7250.8,
+            "ceCurrent": 12573.0,
+            "ceDiff": 5322.2
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 6752.6,
+            "ceCurrent": 9947.0,
+            "ceDiff": 3194.3
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 498.2,
+            "ceCurrent": 1729.1,
+            "ceDiff": 1230.9
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Lagunitas Brewing Co",
@@ -7714,7 +8616,49 @@
           "goal_brewery_pct": -0.05,
           "goal_kohler_pct": -0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 12294.9,
+        "ceCurrent": 12047.3,
+        "trendPct": -0.0201,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Lagunitas NA",
+            "cePrior": 388.0,
+            "ceCurrent": 241.0,
+            "ceDiff": -147.0
+          },
+          {
+            "label": "Lagunitas",
+            "cePrior": 11906.9,
+            "ceCurrent": 11806.3,
+            "ceDiff": -100.5
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 7109.0,
+            "ceCurrent": 7301.2,
+            "ceDiff": 192.2
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 3828.0,
+            "ceCurrent": 3491.0,
+            "ceDiff": -337.0
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 1322.7,
+            "ceCurrent": 1250.3,
+            "ceDiff": -72.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Victory Brewing Company",
@@ -7749,7 +8693,42 @@
           "goal_brewery_pct": -0.04,
           "goal_kohler_pct": -0.2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 12686.4,
+        "ceCurrent": 11185.1,
+        "trendPct": -0.1183,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Victory",
+            "cePrior": 3278.2,
+            "ceCurrent": 2446.7,
+            "ceDiff": -831.5
+          },
+          {
+            "label": "Monkey Family",
+            "cePrior": 9408.3,
+            "ceCurrent": 8738.4,
+            "ceDiff": -669.8
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 10722.6,
+            "ceCurrent": 9837.0,
+            "ceDiff": -885.6
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 1810.8,
+            "ceCurrent": 1301.1,
+            "ceDiff": -509.7
+          }
+        ]
+      }
     },
     {
       "supplier": "Sixpoint Brewing",
@@ -7773,7 +8752,36 @@
           "goal_brewery_pct": 0.025,
           "goal_kohler_pct": -0.06
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 11602.2,
+        "ceCurrent": 10841.0,
+        "trendPct": -0.0656,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Sixpoint",
+            "cePrior": 11602.2,
+            "ceCurrent": 10841.0,
+            "ceDiff": -761.2
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 9763.5,
+            "ceCurrent": 9205.0,
+            "ceDiff": -558.5
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 1838.7,
+            "ceCurrent": 1636.0,
+            "ceDiff": -202.7
+          }
+        ]
+      }
     },
     {
       "supplier": "US Beverage",
@@ -7885,7 +8893,80 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 12058.4,
+        "ceCurrent": 10289.0,
+        "trendPct": -0.1467,
+        "brandGainers": [
+          {
+            "label": "Birra Moretti",
+            "cePrior": 1015.0,
+            "ceCurrent": 1313.0,
+            "ceDiff": 298.0
+          },
+          {
+            "label": "Daura",
+            "cePrior": 984.4,
+            "ceCurrent": 1200.2,
+            "ceDiff": 215.8
+          },
+          {
+            "label": "Sagres Cerveja",
+            "cePrior": 50.4,
+            "ceCurrent": 140.1,
+            "ceDiff": 89.7
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Malibu Splash",
+            "cePrior": 1558.0,
+            "ceCurrent": 123.0,
+            "ceDiff": -1435.0
+          },
+          {
+            "label": "Moosehead",
+            "cePrior": 1594.0,
+            "ceCurrent": 1033.0,
+            "ceDiff": -561.0
+          },
+          {
+            "label": "Krusovice",
+            "cePrior": 517.4,
+            "ceCurrent": 0.0,
+            "ceDiff": -517.4
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 249.2,
+            "ceCurrent": 280.8,
+            "ceDiff": 31.6
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 16.3,
+            "ceDiff": 16.3
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 9224.0,
+            "ceCurrent": 8258.6,
+            "ceDiff": -965.4
+          },
+          {
+            "label": "Cans",
+            "cePrior": 2563.6,
+            "ceCurrent": 1728.3,
+            "ceDiff": -835.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Stone Brewing",
@@ -7920,7 +9001,43 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 11116.5,
+        "ceCurrent": 10087.0,
+        "trendPct": -0.0926,
+        "brandGainers": [
+          {
+            "label": "Stone Premium & Smooth Beer Co",
+            "cePrior": 1136.7,
+            "ceCurrent": 1246.9,
+            "ceDiff": 110.2
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Stone Brewing",
+            "cePrior": 9979.9,
+            "ceCurrent": 8840.1,
+            "ceDiff": -1139.8
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 7366.7,
+            "ceCurrent": 6592.5,
+            "ceDiff": -774.2
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 2798.9,
+            "ceCurrent": 2610.5,
+            "ceDiff": -188.4
+          }
+        ]
+      }
     },
     {
       "supplier": "Phusion Projects",
@@ -7966,7 +9083,48 @@
           "goal_brewery_pct": 0.05,
           "goal_kohler_pct": 0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 13169.0,
+        "ceCurrent": 10075.7,
+        "trendPct": -0.2349,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Four Loko",
+            "cePrior": 11190.0,
+            "ceCurrent": 8904.7,
+            "ceDiff": -2285.3
+          },
+          {
+            "label": "Mamita's",
+            "cePrior": 930.0,
+            "ceCurrent": 413.0,
+            "ceDiff": -517.0
+          },
+          {
+            "label": "Earthquake",
+            "cePrior": 1049.0,
+            "ceCurrent": 758.0,
+            "ceDiff": -291.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 12664.7,
+            "ceCurrent": 9787.8,
+            "ceDiff": -2876.9
+          },
+          {
+            "label": "Other",
+            "cePrior": 504.3,
+            "ceCurrent": 287.9,
+            "ceDiff": -216.4
+          }
+        ]
+      }
     },
     {
       "supplier": "FIFCO",
@@ -8001,7 +9159,49 @@
           "goal_brewery_pct": 0.099,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 9508.2,
+        "ceCurrent": 8945.2,
+        "trendPct": -0.0592,
+        "brandGainers": [
+          {
+            "label": "Genesee",
+            "cePrior": 8221.2,
+            "ceCurrent": 8495.2,
+            "ceDiff": 274.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Imperial",
+            "cePrior": 1182.0,
+            "ceCurrent": 450.0,
+            "ceDiff": -732.0
+          },
+          {
+            "label": "Honey Brown",
+            "cePrior": 105.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -105.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 746.0,
+            "ceCurrent": 200.0,
+            "ceDiff": -546.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 8762.2,
+            "ceCurrent": 8745.2,
+            "ceDiff": -17.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Paulaner",
@@ -8047,7 +9247,55 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 6903.4,
+        "ceCurrent": 7004.9,
+        "trendPct": 0.0147,
+        "brandGainers": [
+          {
+            "label": "Tsingtao",
+            "cePrior": 2214.2,
+            "ceCurrent": 2412.5,
+            "ceDiff": 198.3
+          },
+          {
+            "label": "Paulaner",
+            "cePrior": 3843.7,
+            "ceCurrent": 3884.3,
+            "ceDiff": 40.6
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Fuller's",
+            "cePrior": 83.1,
+            "ceCurrent": 0.0,
+            "ceDiff": -83.1
+          },
+          {
+            "label": "Hacker-Pschorr",
+            "cePrior": 762.4,
+            "ceCurrent": 708.1,
+            "ceDiff": -54.3
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 1293.7,
+            "ceCurrent": 1363.0,
+            "ceDiff": 69.3
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 4989.7,
+            "ceCurrent": 5011.3,
+            "ceDiff": 21.6
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Hofbrauhaus USA",
@@ -8071,7 +9319,43 @@
           "goal_brewery_pct": 0.02,
           "goal_kohler_pct": 0.02
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 6595.7,
+        "ceCurrent": 6864.4,
+        "trendPct": 0.0407,
+        "brandGainers": [
+          {
+            "label": "Hofbrau Usa",
+            "cePrior": 6595.7,
+            "ceCurrent": 6864.4,
+            "ceDiff": 268.7
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 2935.6,
+            "ceCurrent": 3244.1,
+            "ceDiff": 308.4
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 3492.3,
+            "ceCurrent": 3620.3,
+            "ceDiff": 128.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 167.8,
+            "ceCurrent": 0.0,
+            "ceDiff": -167.8
+          }
+        ]
+      }
     },
     {
       "supplier": "Warwick Valley",
@@ -8095,7 +9379,62 @@
           "goal_brewery_pct": -0.065,
           "goal_kohler_pct": 0.01
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 7167.3,
+        "ceCurrent": 6622.8,
+        "trendPct": -0.076,
+        "brandGainers": [
+          {
+            "label": "Warwick Gin",
+            "cePrior": 0.0,
+            "ceCurrent": 12.5,
+            "ceDiff": 12.5
+          },
+          {
+            "label": "Gin Pig",
+            "cePrior": 0.0,
+            "ceCurrent": 4.0,
+            "ceDiff": 4.0
+          },
+          {
+            "label": "Vodka Hog",
+            "cePrior": 0.0,
+            "ceCurrent": 1.0,
+            "ceDiff": 1.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Doc's",
+            "cePrior": 7167.3,
+            "ceCurrent": 6605.3,
+            "ceDiff": -562.0
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 17.5,
+            "ceDiff": 17.5
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 2341.9,
+            "ceCurrent": 1934.9,
+            "ceDiff": -407.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 3820.3,
+            "ceCurrent": 3674.6,
+            "ceDiff": -145.7
+          }
+        ]
+      }
     },
     {
       "supplier": "Narragansett",
@@ -8130,7 +9469,42 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 5484.3,
+        "ceCurrent": 5852.8,
+        "trendPct": 0.0672,
+        "brandGainers": [
+          {
+            "label": "Narragansett",
+            "cePrior": 4853.6,
+            "ceCurrent": 5157.5,
+            "ceDiff": 303.9
+          },
+          {
+            "label": "Del's Shandy",
+            "cePrior": 630.7,
+            "ceCurrent": 695.3,
+            "ceDiff": 64.7
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 418.8,
+            "ceCurrent": 626.2,
+            "ceDiff": 207.5
+          },
+          {
+            "label": "Cans",
+            "cePrior": 4604.0,
+            "ceCurrent": 4744.4,
+            "ceDiff": 140.4
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Pride & Clarke",
@@ -8154,7 +9528,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 8426.1,
+        "ceCurrent": 5427.0,
+        "trendPct": -0.3559,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Pride & Clarke",
+            "cePrior": 8426.1,
+            "ceCurrent": 5427.0,
+            "ceDiff": -2999.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 8426.1,
+            "ceCurrent": 5427.0,
+            "ceDiff": -2999.1
+          }
+        ]
+      }
     },
     {
       "supplier": "Saratoga",
@@ -8178,7 +9575,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 3617.0,
+        "ceCurrent": 5400.0,
+        "trendPct": 0.4929,
+        "brandGainers": [
+          {
+            "label": "Saratoga",
+            "cePrior": 3617.0,
+            "ceCurrent": 5400.0,
+            "ceDiff": 1783.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 3617.0,
+            "ceCurrent": 5400.0,
+            "ceDiff": 1783.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Artisanal Imports",
@@ -8213,7 +9633,42 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 6583.0,
+        "ceCurrent": 4207.0,
+        "trendPct": -0.3609,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Palma",
+            "cePrior": 3928.0,
+            "ceCurrent": 1876.0,
+            "ceDiff": -2052.0
+          },
+          {
+            "label": "Tona",
+            "cePrior": 2655.0,
+            "ceCurrent": 2331.0,
+            "ceDiff": -324.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 4920.0,
+            "ceCurrent": 2641.0,
+            "ceDiff": -2279.0
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 1663.0,
+            "ceCurrent": 1566.0,
+            "ceDiff": -97.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Beak & Skiff",
@@ -8248,7 +9703,49 @@
           "goal_brewery_pct": -1,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 3304.3,
+        "ceCurrent": 4143.4,
+        "trendPct": 0.254,
+        "brandGainers": [
+          {
+            "label": "1911 Hard Cider",
+            "cePrior": 3291.8,
+            "ceCurrent": 4128.4,
+            "ceDiff": 836.7
+          },
+          {
+            "label": "1911 Spirits",
+            "cePrior": 12.5,
+            "ceCurrent": 15.0,
+            "ceDiff": 2.5
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 3285.3,
+            "ceCurrent": 4005.8,
+            "ceDiff": 720.5
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 18.4,
+            "ceCurrent": 137.7,
+            "ceDiff": 119.2
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.5,
+            "ceCurrent": 0.0,
+            "ceDiff": -0.5
+          }
+        ]
+      }
     },
     {
       "supplier": "Food & Bev Enterprise LLC",
@@ -8347,7 +9844,48 @@
           "gap_brewery": null,
           "gap_kohler": 0.1109657087917959
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 3155.0,
+        "ceCurrent": 3779.2,
+        "trendPct": 0.1978,
+        "brandGainers": [
+          {
+            "label": "Aguila Import",
+            "cePrior": 780.1,
+            "ceCurrent": 1070.4,
+            "ceDiff": 290.3
+          },
+          {
+            "label": "Food & Bev",
+            "cePrior": 1105.6,
+            "ceCurrent": 1379.0,
+            "ceDiff": 273.4
+          },
+          {
+            "label": "Costenita",
+            "cePrior": 164.0,
+            "ceCurrent": 206.1,
+            "ceDiff": 42.1
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 2341.0,
+            "ceCurrent": 2960.2,
+            "ceDiff": 619.2
+          },
+          {
+            "label": "Cans",
+            "cePrior": 814.0,
+            "ceCurrent": 819.0,
+            "ceDiff": 5.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Red Bull",
@@ -8371,7 +9909,30 @@
           "goal_brewery_pct": 0.06,
           "goal_kohler_pct": 0.06
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 4266.5,
+        "ceCurrent": 3470.4,
+        "trendPct": -0.1866,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Red Bull",
+            "cePrior": 4266.5,
+            "ceCurrent": 3470.4,
+            "ceDiff": -796.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 4266.5,
+            "ceCurrent": 3470.4,
+            "ceDiff": -796.1
+          }
+        ]
+      }
     },
     {
       "supplier": "Bell's",
@@ -8406,7 +9967,49 @@
           "goal_brewery_pct": -0.02,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2713.5,
+        "ceCurrent": 3038.0,
+        "trendPct": 0.1196,
+        "brandGainers": [
+          {
+            "label": "Bell's",
+            "cePrior": 535.3,
+            "ceCurrent": 762.0,
+            "ceDiff": 226.7
+          },
+          {
+            "label": "Bell's Hearted Family",
+            "cePrior": 2178.2,
+            "ceCurrent": 2276.0,
+            "ceDiff": 97.8
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 1335.0,
+            "ceCurrent": 2116.0,
+            "ceDiff": 781.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 678.5,
+            "ceCurrent": 372.0,
+            "ceDiff": -306.6
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 700.0,
+            "ceCurrent": 550.0,
+            "ceDiff": -150.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Vinaio Imports LTD",
@@ -8441,7 +10044,56 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2916.3,
+        "ceCurrent": 2811.4,
+        "trendPct": -0.036,
+        "brandGainers": [
+          {
+            "label": "Cerveza Republica La Tuya 5.0 La Dura",
+            "cePrior": 2030.0,
+            "ceCurrent": 2533.6,
+            "ceDiff": 503.6
+          },
+          {
+            "label": "Carinoso",
+            "cePrior": 0.0,
+            "ceCurrent": 11.6,
+            "ceDiff": 11.6
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Cerveza Republica LA Tuya",
+            "cePrior": 886.4,
+            "ceCurrent": 266.2,
+            "ceDiff": -620.2
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 1614.0,
+            "ceCurrent": 2527.5,
+            "ceDiff": 913.5
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 11.6,
+            "ceDiff": 11.6
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 1302.3,
+            "ceCurrent": 272.3,
+            "ceDiff": -1030.1
+          }
+        ]
+      }
     },
     {
       "supplier": "Delta Beverage LLC",
@@ -8465,7 +10117,36 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 769.0,
+        "ceCurrent": 2758.3,
+        "trendPct": 2.5868,
+        "brandGainers": [
+          {
+            "label": "Delta",
+            "cePrior": 769.0,
+            "ceCurrent": 2758.3,
+            "ceDiff": 1989.3
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 769.0,
+            "ceCurrent": 2753.0,
+            "ceDiff": 1984.0
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 5.3,
+            "ceDiff": 5.3
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Global Beer",
@@ -8577,7 +10258,74 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": -0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2997.4,
+        "ceCurrent": 2368.7,
+        "trendPct": -0.2098,
+        "brandGainers": [
+          {
+            "label": "Bavik",
+            "cePrior": 34.4,
+            "ceCurrent": 75.8,
+            "ceDiff": 41.3
+          },
+          {
+            "label": "Van Steenberge",
+            "cePrior": 0.0,
+            "ceCurrent": 22.2,
+            "ceDiff": 22.2
+          },
+          {
+            "label": "Baptist Wit",
+            "cePrior": 17.6,
+            "ceCurrent": 35.2,
+            "ceDiff": 17.6
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Czechvar",
+            "cePrior": 665.0,
+            "ceCurrent": 256.2,
+            "ceDiff": -408.8
+          },
+          {
+            "label": "Stiegl",
+            "cePrior": 1065.8,
+            "ceCurrent": 911.0,
+            "ceDiff": -154.8
+          },
+          {
+            "label": "Sullivan's",
+            "cePrior": 842.7,
+            "ceCurrent": 697.9,
+            "ceDiff": -144.7
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 0.0,
+            "ceCurrent": 37.7,
+            "ceDiff": 37.7
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 889.2,
+            "ceCurrent": 506.1,
+            "ceDiff": -383.1
+          },
+          {
+            "label": "Cans",
+            "cePrior": 738.0,
+            "ceCurrent": 591.1,
+            "ceDiff": -146.9
+          }
+        ]
+      }
     },
     {
       "supplier": "Evil Genius",
@@ -8601,7 +10349,36 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2814.4,
+        "ceCurrent": 2317.2,
+        "trendPct": -0.1767,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Evil Genius",
+            "cePrior": 2814.4,
+            "ceCurrent": 2317.2,
+            "ceDiff": -497.2
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 2030.2,
+            "ceCurrent": 1690.4,
+            "ceDiff": -339.8
+          },
+          {
+            "label": "Cans",
+            "cePrior": 784.2,
+            "ceCurrent": 626.8,
+            "ceDiff": -157.4
+          }
+        ]
+      }
     },
     {
       "supplier": "Travelers Club",
@@ -8625,7 +10402,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.03
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2360.8,
+        "ceCurrent": 2307.7,
+        "trendPct": -0.0225,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Travelers Club",
+            "cePrior": 2360.8,
+            "ceCurrent": 2307.7,
+            "ceDiff": -53.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 2360.8,
+            "ceCurrent": 2307.7,
+            "ceDiff": -53.1
+          }
+        ]
+      }
     },
     {
       "supplier": "BJ'S Private Label Brew",
@@ -8649,7 +10449,43 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2100.1,
+        "ceCurrent": 2214.1,
+        "trendPct": 0.0543,
+        "brandGainers": [
+          {
+            "label": "BJ'S Private Label Brewa",
+            "cePrior": 2100.1,
+            "ceCurrent": 2214.1,
+            "ceDiff": 114.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 1998.0,
+            "ceCurrent": 2101.3,
+            "ceDiff": 103.3
+          },
+          {
+            "label": "Cans",
+            "cePrior": 80.0,
+            "ceCurrent": 93.0,
+            "ceDiff": 13.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Other",
+            "cePrior": 21.1,
+            "ceCurrent": 12.8,
+            "ceDiff": -8.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Great Lakes",
@@ -8673,7 +10509,43 @@
           "goal_brewery_pct": -0.03,
           "goal_kohler_pct": -0.03
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1713.9,
+        "ceCurrent": 1818.8,
+        "trendPct": 0.0612,
+        "brandGainers": [
+          {
+            "label": "Great Lakes",
+            "cePrior": 1713.9,
+            "ceCurrent": 1818.8,
+            "ceDiff": 104.9
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 1185.5,
+            "ceCurrent": 1331.0,
+            "ceDiff": 145.5
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 455.6,
+            "ceCurrent": 487.8,
+            "ceDiff": 32.2
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Other",
+            "cePrior": 73.8,
+            "ceCurrent": 0.0,
+            "ceDiff": -73.8
+          }
+        ]
+      }
     },
     {
       "supplier": "Harpoon Brewery",
@@ -8697,7 +10569,36 @@
           "goal_brewery_pct": -0.15,
           "goal_kohler_pct": -0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2067.7,
+        "ceCurrent": 1805.9,
+        "trendPct": -0.1266,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Long Trail",
+            "cePrior": 2067.7,
+            "ceCurrent": 1805.9,
+            "ceDiff": -261.8
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 1165.0,
+            "ceCurrent": 1010.0,
+            "ceDiff": -155.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 778.0,
+            "ceCurrent": 715.0,
+            "ceDiff": -63.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Prestige",
@@ -8754,7 +10655,55 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1518.6,
+        "ceCurrent": 1695.1,
+        "trendPct": 0.1163,
+        "brandGainers": [
+          {
+            "label": "Mythos",
+            "cePrior": 1345.0,
+            "ceCurrent": 1547.7,
+            "ceDiff": 202.7
+          },
+          {
+            "label": "Greek Wines",
+            "cePrior": 89.8,
+            "ceCurrent": 105.7,
+            "ceDiff": 15.9
+          },
+          {
+            "label": "Greek Spirits",
+            "cePrior": 5.3,
+            "ceCurrent": 6.3,
+            "ceDiff": 1.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Fix Hellas",
+            "cePrior": 78.5,
+            "ceCurrent": 35.5,
+            "ceDiff": -43.0
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 1423.4,
+            "ceCurrent": 1583.2,
+            "ceDiff": 159.8
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 95.1,
+            "ceCurrent": 112.0,
+            "ceDiff": 16.8
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Vermont Hard Cider",
@@ -8789,7 +10738,42 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1956.2,
+        "ceCurrent": 1683.7,
+        "trendPct": -0.1393,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Woodchuck",
+            "cePrior": 1872.1,
+            "ceCurrent": 1628.6,
+            "ceDiff": -243.5
+          },
+          {
+            "label": "Day Chaser",
+            "cePrior": 29.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -29.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 1236.7,
+            "ceCurrent": 1009.0,
+            "ceDiff": -227.7
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 320.0,
+            "ceCurrent": 282.0,
+            "ceDiff": -38.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Flying Fish",
@@ -8824,7 +10808,42 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 2170.9,
+        "ceCurrent": 1575.0,
+        "trendPct": -0.2745,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Flying Fish",
+            "cePrior": 2035.2,
+            "ceCurrent": 1515.1,
+            "ceDiff": -520.0
+          },
+          {
+            "label": "Big Mans Brew",
+            "cePrior": 135.7,
+            "ceCurrent": 59.8,
+            "ceDiff": -75.9
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 1403.2,
+            "ceCurrent": 920.7,
+            "ceDiff": -482.6
+          },
+          {
+            "label": "Cans",
+            "cePrior": 767.7,
+            "ceCurrent": 654.3,
+            "ceDiff": -113.4
+          }
+        ]
+      }
     },
     {
       "supplier": "Pampa Beverages",
@@ -8848,7 +10867,30 @@
           "goal_brewery_pct": -0.2,
           "goal_kohler_pct": -0.2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 849.0,
+        "ceCurrent": 1552.0,
+        "trendPct": 0.828,
+        "brandGainers": [
+          {
+            "label": "Quilmes",
+            "cePrior": 849.0,
+            "ceCurrent": 1552.0,
+            "ceDiff": 703.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 849.0,
+            "ceCurrent": 1552.0,
+            "ceDiff": 703.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Southern Tier Brewing Company",
@@ -8872,7 +10914,36 @@
           "goal_brewery_pct": 0.01,
           "goal_kohler_pct": 0.01
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1909.1,
+        "ceCurrent": 1433.1,
+        "trendPct": -0.2493,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Southern Tier",
+            "cePrior": 1909.1,
+            "ceCurrent": 1433.1,
+            "ceDiff": -476.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 338.3,
+            "ceCurrent": 87.3,
+            "ceDiff": -251.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 1496.8,
+            "ceCurrent": 1300.8,
+            "ceDiff": -196.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Gambrinus Imports",
@@ -8896,7 +10967,36 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1010.7,
+        "ceCurrent": 1144.8,
+        "trendPct": 0.1327,
+        "brandGainers": [
+          {
+            "label": "Shiner",
+            "cePrior": 1010.7,
+            "ceCurrent": 1144.8,
+            "ceDiff": 134.1
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 734.0,
+            "ceCurrent": 831.0,
+            "ceDiff": 97.0
+          },
+          {
+            "label": "Kegs",
+            "cePrior": 82.7,
+            "ceCurrent": 106.8,
+            "ceDiff": 24.1
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Cavalier Ventures, LLC",
@@ -8920,7 +11020,30 @@
           "goal_brewery_pct": 8.5,
           "goal_kohler_pct": 6
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 246.0,
+        "ceCurrent": 1025.0,
+        "trendPct": 3.1667,
+        "brandGainers": [
+          {
+            "label": "Coastal Cocktails",
+            "cePrior": 246.0,
+            "ceCurrent": 1025.0,
+            "ceDiff": 779.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 246.0,
+            "ceCurrent": 1025.0,
+            "ceDiff": 779.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Talkhouse Encore",
@@ -8944,7 +11067,30 @@
           "goal_brewery_pct": 0.25,
           "goal_kohler_pct": 0.25
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 798.0,
+        "ceCurrent": 956.0,
+        "trendPct": 0.198,
+        "brandGainers": [
+          {
+            "label": "Talkhouse Encore",
+            "cePrior": 798.0,
+            "ceCurrent": 956.0,
+            "ceDiff": 158.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 798.0,
+            "ceCurrent": 956.0,
+            "ceDiff": 158.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Caravella Inc",
@@ -9001,7 +11147,56 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 650.5,
+        "ceCurrent": 786.4,
+        "trendPct": 0.2089,
+        "brandGainers": [
+          {
+            "label": "2 Canos",
+            "cePrior": 327.6,
+            "ceCurrent": 607.0,
+            "ceDiff": 279.5
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Caravella",
+            "cePrior": 230.9,
+            "ceCurrent": 129.7,
+            "ceDiff": -101.3
+          },
+          {
+            "label": "Poca Loca",
+            "cePrior": 71.8,
+            "ceCurrent": 35.9,
+            "ceDiff": -35.9
+          },
+          {
+            "label": "Dancing Vines",
+            "cePrior": 20.1,
+            "ceCurrent": 13.7,
+            "ceDiff": -6.3
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 419.5,
+            "ceCurrent": 656.7,
+            "ceDiff": 237.2
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 230.9,
+            "ceCurrent": 129.7,
+            "ceDiff": -101.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Modern Infusions",
@@ -9025,7 +11220,42 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 55.0,
+        "ceCurrent": 743.0,
+        "trendPct": 12.5091,
+        "brandGainers": [
+          {
+            "label": "Fiveislands",
+            "cePrior": 0.0,
+            "ceCurrent": 662.0,
+            "ceDiff": 662.0
+          },
+          {
+            "label": "Hi5",
+            "cePrior": 55.0,
+            "ceCurrent": 81.0,
+            "ceDiff": 26.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 55.0,
+            "ceCurrent": 742.0,
+            "ceDiff": 687.0
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 0.0,
+            "ceCurrent": 1.0,
+            "ceDiff": 1.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Forged Irish Stout",
@@ -9049,7 +11279,37 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 798.4,
+        "ceCurrent": 717.6,
+        "trendPct": -0.1012,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Forged Irish Stout",
+            "cePrior": 798.4,
+            "ceCurrent": 717.6,
+            "ceDiff": -80.8
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 220.4,
+            "ceCurrent": 280.0,
+            "ceDiff": 59.6
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 578.0,
+            "ceCurrent": 437.6,
+            "ceDiff": -140.5
+          }
+        ]
+      }
     },
     {
       "supplier": "Global Village Imp.",
@@ -9073,7 +11333,30 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": -0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 804.0,
+        "ceCurrent": 672.0,
+        "trendPct": -0.1642,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Augustiner",
+            "cePrior": 804.0,
+            "ceCurrent": 672.0,
+            "ceDiff": -132.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 804.0,
+            "ceCurrent": 672.0,
+            "ceDiff": -132.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Newburgh Brewing",
@@ -9097,7 +11380,36 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 829.9,
+        "ceCurrent": 613.0,
+        "trendPct": -0.2614,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Newburgh",
+            "cePrior": 829.9,
+            "ceCurrent": 613.0,
+            "ceDiff": -216.9
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 480.6,
+            "ceCurrent": 335.6,
+            "ceDiff": -145.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 349.4,
+            "ceCurrent": 277.3,
+            "ceDiff": -72.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Bardstown Bourbon Co",
@@ -9132,7 +11444,37 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.25
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 689.4,
+        "ceCurrent": 529.1,
+        "trendPct": -0.2325,
+        "brandGainers": [
+          {
+            "label": "Bardstown Green River",
+            "cePrior": 215.2,
+            "ceCurrent": 276.5,
+            "ceDiff": 61.2
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Bardstown Bourbon",
+            "cePrior": 474.2,
+            "ceCurrent": 252.7,
+            "ceDiff": -221.5
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 689.4,
+            "ceCurrent": 529.1,
+            "ceDiff": -160.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Crescent Canna",
@@ -9156,7 +11498,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 448.0,
+        "ceCurrent": 492.0,
+        "trendPct": 0.0982,
+        "brandGainers": [
+          {
+            "label": "Crescent 9",
+            "cePrior": 448.0,
+            "ceCurrent": 492.0,
+            "ceDiff": 44.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 448.0,
+            "ceCurrent": 492.0,
+            "ceDiff": 44.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Hornell Brewing Company",
@@ -9180,7 +11545,30 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1859.0,
+        "ceCurrent": 430.0,
+        "trendPct": -0.7687,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Arizona Hard",
+            "cePrior": 1859.0,
+            "ceCurrent": 430.0,
+            "ceDiff": -1429.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 1859.0,
+            "ceCurrent": 430.0,
+            "ceDiff": -1429.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Barn Brew Co",
@@ -9204,7 +11592,37 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 383.8,
+        "ceCurrent": 389.8,
+        "trendPct": 0.0156,
+        "brandGainers": [
+          {
+            "label": "Barn Brew",
+            "cePrior": 383.8,
+            "ceCurrent": 389.8,
+            "ceDiff": 6.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 43.5,
+            "ceCurrent": 100.8,
+            "ceDiff": 57.3
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 340.3,
+            "ceCurrent": 289.0,
+            "ceDiff": -51.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Southern Tier Distilling Company",
@@ -9228,7 +11646,37 @@
           "goal_brewery_pct": 0.01,
           "goal_kohler_pct": 0.01
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 331.0,
+        "ceCurrent": 333.0,
+        "trendPct": 0.006,
+        "brandGainers": [
+          {
+            "label": "Victory House Pour Vodka",
+            "cePrior": 0.0,
+            "ceCurrent": 2.0,
+            "ceDiff": 2.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Cans",
+            "cePrior": 328.0,
+            "ceCurrent": 332.0,
+            "ceDiff": 4.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 3.0,
+            "ceCurrent": 1.0,
+            "ceDiff": -2.0
+          }
+        ]
+      }
     },
     {
       "supplier": "SAZERAC INC",
@@ -9252,7 +11700,37 @@
           "goal_brewery_pct": -1,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 364.0,
+        "ceCurrent": 322.0,
+        "trendPct": -0.1154,
+        "brandGainers": [
+          {
+            "label": "Fresca Hard Sparkling",
+            "cePrior": 0.0,
+            "ceCurrent": 63.0,
+            "ceDiff": 63.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Fresca Mixed",
+            "cePrior": 364.0,
+            "ceCurrent": 259.0,
+            "ceDiff": -105.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 364.0,
+            "ceCurrent": 322.0,
+            "ceDiff": -42.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Tilray Alternative Beverage",
@@ -9287,7 +11765,43 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1158.0,
+        "ceCurrent": 295.0,
+        "trendPct": -0.7453,
+        "brandGainers": [
+          {
+            "label": "Happy Flower",
+            "cePrior": 15.0,
+            "ceCurrent": 166.0,
+            "ceDiff": 151.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Herb & Bloom",
+            "cePrior": 693.0,
+            "ceCurrent": -44.0,
+            "ceDiff": -737.0
+          },
+          {
+            "label": "Fizzy Jane",
+            "cePrior": 450.0,
+            "ceCurrent": 173.0,
+            "ceDiff": -277.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 1158.0,
+            "ceCurrent": 295.0,
+            "ceDiff": -863.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Emergent Beverage Partners",
@@ -9355,7 +11869,49 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 970.0,
+        "ceCurrent": 264.0,
+        "trendPct": -0.7278,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Boldt Infused D9",
+            "cePrior": 323.0,
+            "ceCurrent": 71.0,
+            "ceDiff": -252.0
+          },
+          {
+            "label": "Hectare's",
+            "cePrior": 350.0,
+            "ceCurrent": 184.0,
+            "ceDiff": -166.0
+          },
+          {
+            "label": "Crooked Beverage",
+            "cePrior": 129.0,
+            "ceCurrent": 2.0,
+            "ceDiff": -127.0
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 0.0,
+            "ceCurrent": 5.0,
+            "ceDiff": 5.0
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 968.0,
+            "ceCurrent": 257.0,
+            "ceDiff": -711.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Ithaca",
@@ -9379,7 +11935,36 @@
           "goal_brewery_pct": -0.25,
           "goal_kohler_pct": -0.25
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 489.2,
+        "ceCurrent": 256.5,
+        "trendPct": -0.4756,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Ithaca",
+            "cePrior": 489.2,
+            "ceCurrent": 256.5,
+            "ceDiff": -232.7
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 209.5,
+            "ceCurrent": 55.5,
+            "ceDiff": -154.0
+          },
+          {
+            "label": "Cans",
+            "cePrior": 54.7,
+            "ceCurrent": 8.0,
+            "ceDiff": -46.7
+          }
+        ]
+      }
     },
     {
       "supplier": "HOP WTR",
@@ -9403,7 +11988,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 643.8,
+        "ceCurrent": 241.0,
+        "trendPct": -0.6257,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "HOP WTR",
+            "cePrior": 643.8,
+            "ceCurrent": 241.0,
+            "ceDiff": -402.8
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 643.8,
+            "ceCurrent": 241.0,
+            "ceDiff": -402.8
+          }
+        ]
+      }
     },
     {
       "supplier": "Molly's",
@@ -9427,7 +12035,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 264.4,
+        "ceCurrent": 229.8,
+        "trendPct": -0.1309,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Molly's",
+            "cePrior": 264.4,
+            "ceCurrent": 229.8,
+            "ceDiff": -34.6
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 264.4,
+            "ceCurrent": 229.8,
+            "ceDiff": -34.6
+          }
+        ]
+      }
     },
     {
       "supplier": "Unibroue",
@@ -9451,7 +12082,49 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": 0
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 209.2,
+        "ceCurrent": 187.6,
+        "trendPct": -0.1032,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Unibroue",
+            "cePrior": 209.2,
+            "ceCurrent": 187.6,
+            "ceDiff": -21.6
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Kegs",
+            "cePrior": 4.6,
+            "ceCurrent": 6.9,
+            "ceDiff": 2.3
+          },
+          {
+            "label": "Cans",
+            "cePrior": 177.3,
+            "ceCurrent": 178.7,
+            "ceDiff": 1.3
+          }
+        ],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 23.0,
+            "ceCurrent": 2.0,
+            "ceDiff": -21.0
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 4.2,
+            "ceCurrent": 0.0,
+            "ceDiff": -4.2
+          }
+        ]
+      }
     },
     {
       "supplier": "Bold Rock Hard Cider",
@@ -9475,7 +12148,36 @@
           "goal_brewery_pct": 0.01,
           "goal_kohler_pct": 0.01
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 362.7,
+        "ceCurrent": 166.5,
+        "trendPct": -0.5409,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Bold Rock",
+            "cePrior": 362.7,
+            "ceCurrent": 166.5,
+            "ceDiff": -196.2
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 147.0,
+            "ceCurrent": 68.9,
+            "ceDiff": -78.1
+          },
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 137.0,
+            "ceCurrent": 73.0,
+            "ceDiff": -64.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Park Street Imports",
@@ -9499,7 +12201,30 @@
           "goal_brewery_pct": 1,
           "goal_kohler_pct": 1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 83.0,
+        "ceCurrent": 120.0,
+        "trendPct": 0.4458,
+        "brandGainers": [
+          {
+            "label": "Plaid Duck",
+            "cePrior": 83.0,
+            "ceCurrent": 120.0,
+            "ceDiff": 37.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Other",
+            "cePrior": 83.0,
+            "ceCurrent": 120.0,
+            "ceDiff": 37.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Lodo Brands",
@@ -9523,7 +12248,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 147.6,
+        "ceCurrent": 104.3,
+        "trendPct": -0.2936,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "LoDo",
+            "cePrior": 147.6,
+            "ceCurrent": 104.3,
+            "ceDiff": -43.3
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 147.6,
+            "ceCurrent": 104.3,
+            "ceDiff": -43.3
+          }
+        ]
+      }
     },
     {
       "supplier": "OVO Vodka LLC",
@@ -9547,7 +12295,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 110.8,
+        "ceCurrent": 87.1,
+        "trendPct": -0.2137,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "OVO Vodka",
+            "cePrior": 110.8,
+            "ceCurrent": 87.1,
+            "ceDiff": -23.7
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 110.8,
+            "ceCurrent": 87.1,
+            "ceDiff": -23.7
+          }
+        ]
+      }
     },
     {
       "supplier": "Ever Grand Group LLC",
@@ -9571,7 +12342,36 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 160.7,
+        "ceCurrent": 76.6,
+        "trendPct": -0.5233,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Snow Beer",
+            "cePrior": 160.7,
+            "ceCurrent": 76.6,
+            "ceDiff": -84.1
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 148.5,
+            "ceCurrent": 76.6,
+            "ceDiff": -71.9
+          },
+          {
+            "label": "Cans",
+            "cePrior": 12.2,
+            "ceCurrent": 0.0,
+            "ceDiff": -12.2
+          }
+        ]
+      }
     },
     {
       "supplier": "Efes",
@@ -9595,7 +12395,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 88.7,
+        "ceCurrent": 76.6,
+        "trendPct": -0.1369,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Efes",
+            "cePrior": 88.7,
+            "ceCurrent": 76.6,
+            "ceDiff": -12.2
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 88.7,
+            "ceCurrent": 76.6,
+            "ceDiff": -12.2
+          }
+        ]
+      }
     },
     {
       "supplier": "Dad Grass",
@@ -9619,7 +12442,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 0.05
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 71.0,
+        "ceCurrent": 30.0,
+        "trendPct": -0.5775,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Dad Grass",
+            "cePrior": 71.0,
+            "ceCurrent": 30.0,
+            "ceDiff": -41.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 71.0,
+            "ceCurrent": 30.0,
+            "ceDiff": -41.0
+          }
+        ]
+      }
     },
     {
       "supplier": "Oceano",
@@ -9643,7 +12489,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 6.3,
+        "ceCurrent": 24.3,
+        "trendPct": 2.8328,
+        "brandGainers": [
+          {
+            "label": "Oceano",
+            "cePrior": 6.3,
+            "ceCurrent": 24.3,
+            "ceDiff": 18.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 6.3,
+            "ceCurrent": 24.3,
+            "ceDiff": 18.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Crook & Marker",
@@ -9667,7 +12536,36 @@
           "goal_brewery_pct": 0,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 1050.3,
+        "ceCurrent": 17.2,
+        "trendPct": -0.9836,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Crooked Tea",
+            "cePrior": 986.1,
+            "ceCurrent": 22.0,
+            "ceDiff": -964.1
+          },
+          {
+            "label": "Crook&Marker",
+            "cePrior": 64.2,
+            "ceCurrent": -4.8,
+            "ceDiff": -69.0
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 1050.3,
+            "ceCurrent": 17.2,
+            "ceDiff": -1033.1
+          }
+        ]
+      }
     },
     {
       "supplier": "Citizen Cider",
@@ -9691,7 +12589,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 538.4,
+        "ceCurrent": 14.7,
+        "trendPct": -0.9728,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Citizen Cider",
+            "cePrior": 538.4,
+            "ceCurrent": 14.7,
+            "ceDiff": -523.7
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 538.4,
+            "ceCurrent": 14.7,
+            "ceDiff": -523.7
+          }
+        ]
+      }
     },
     {
       "supplier": "Little Water Distillery",
@@ -9737,7 +12658,36 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 2
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 12.5,
+        "ceCurrent": 14.0,
+        "trendPct": 0.12,
+        "brandGainers": [
+          {
+            "label": "Whitecap",
+            "cePrior": 0.5,
+            "ceCurrent": 1.5,
+            "ceDiff": 1.0
+          },
+          {
+            "label": "48 Blocks",
+            "cePrior": 9.5,
+            "ceCurrent": 10.0,
+            "ceDiff": 0.5
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 12.5,
+            "ceCurrent": 14.0,
+            "ceDiff": 1.5
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Jerzey Jungle LLC",
@@ -9761,7 +12711,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": 1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 18.3,
+        "ceCurrent": 12.1,
+        "trendPct": -0.3424,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Jerzey Jungle",
+            "cePrior": 18.3,
+            "ceCurrent": 12.1,
+            "ceDiff": -6.3
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 18.3,
+            "ceCurrent": 12.1,
+            "ceDiff": -6.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Primos Imports LLC",
@@ -9796,7 +12769,55 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 7.5,
+        "ceCurrent": 9.3,
+        "trendPct": 0.2453,
+        "brandGainers": [
+          {
+            "label": "Monte Xanic",
+            "cePrior": 5.0,
+            "ceCurrent": 7.3,
+            "ceDiff": 2.3
+          },
+          {
+            "label": "Charro",
+            "cePrior": 2.0,
+            "ceCurrent": 3.0,
+            "ceDiff": 1.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Guaname Rompope",
+            "cePrior": 0.0,
+            "ceCurrent": -0.9,
+            "ceDiff": -0.9
+          },
+          {
+            "label": "Rompe Corazon",
+            "cePrior": 0.5,
+            "ceCurrent": 0.0,
+            "ceDiff": -0.5
+          }
+        ],
+        "pkgGainers": [
+          {
+            "label": "Bottles (NR)",
+            "cePrior": 2.0,
+            "ceCurrent": 3.0,
+            "ceDiff": 1.0
+          },
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 5.5,
+            "ceCurrent": 6.3,
+            "ceDiff": 0.8
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Brewt's LLC",
@@ -9820,7 +12841,30 @@
           "goal_brewery_pct": 4.25,
           "goal_kohler_pct": 0.25
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 42.7,
+        "ceCurrent": 9.4,
+        "trendPct": -0.7807,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Brewt's",
+            "cePrior": 42.7,
+            "ceCurrent": 9.4,
+            "ceDiff": -33.3
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 42.7,
+            "ceCurrent": 9.4,
+            "ceDiff": -33.3
+          }
+        ]
+      }
     },
     {
       "supplier": "Cricket Hill",
@@ -9844,7 +12888,36 @@
           "goal_brewery_pct": -1,
           "goal_kohler_pct": -1
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 381.5,
+        "ceCurrent": 6.9,
+        "trendPct": -0.9818,
+        "brandGainers": [],
+        "brandDecliners": [
+          {
+            "label": "Cricket Hill",
+            "cePrior": 381.5,
+            "ceCurrent": 6.9,
+            "ceDiff": -374.6
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Kegs",
+            "cePrior": 277.5,
+            "ceCurrent": 6.9,
+            "ceDiff": -270.6
+          },
+          {
+            "label": "Cans",
+            "cePrior": 104.0,
+            "ceCurrent": 0.0,
+            "ceDiff": -104.0
+          }
+        ]
+      }
     },
     {
       "supplier": "American Fruits",
@@ -9868,7 +12941,30 @@
           "goal_brewery_pct": null,
           "goal_kohler_pct": null
         }
-      ]
+      ],
+      "insight": {
+        "cePrior": 5.0,
+        "ceCurrent": 6.0,
+        "trendPct": 0.2,
+        "brandGainers": [
+          {
+            "label": "American Fruit",
+            "cePrior": 5.0,
+            "ceCurrent": 6.0,
+            "ceDiff": 1.0
+          }
+        ],
+        "brandDecliners": [],
+        "pkgGainers": [
+          {
+            "label": "Bottles (Wine & Spirits)",
+            "cePrior": 5.0,
+            "ceCurrent": 6.0,
+            "ceDiff": 1.0
+          }
+        ],
+        "pkgDecliners": []
+      }
     },
     {
       "supplier": "Blaze Life LLC",
@@ -9880,7 +12976,43 @@
       "proj_finish_2026_ce": 5.333336285714459,
       "goal_brewery_pct": 0,
       "goal_kohler_pct": -0.8511904699900791,
-      "children": []
+      "children": [],
+      "insight": {
+        "cePrior": 21.0,
+        "ceCurrent": 0.7,
+        "trendPct": -0.9681,
+        "brandGainers": [
+          {
+            "label": "Bodega Quarters",
+            "cePrior": 0.0,
+            "ceCurrent": 6.0,
+            "ceDiff": 6.0
+          }
+        ],
+        "brandDecliners": [
+          {
+            "label": "Bodega Chiller",
+            "cePrior": 13.0,
+            "ceCurrent": -4.0,
+            "ceDiff": -17.0
+          },
+          {
+            "label": "Mota'Lada",
+            "cePrior": 8.0,
+            "ceCurrent": -1.3,
+            "ceDiff": -9.3
+          }
+        ],
+        "pkgGainers": [],
+        "pkgDecliners": [
+          {
+            "label": "Cans",
+            "cePrior": 21.0,
+            "ceCurrent": 0.7,
+            "ceDiff": -20.3
+          }
+        ]
+      }
     }
   ],
   "segmentPackageTrend": {
@@ -10284,5 +13416,82 @@
       "discontinuedCount": 0,
       "belowMinCount": 56
     }
+  },
+  "overallInsight": {
+    "cePrior": 4044455.7,
+    "ceCurrent": 3981499.0,
+    "trendPct": -0.0156,
+    "brandGainers": [
+      {
+        "label": "Sun Cruiser",
+        "cePrior": 28450.0,
+        "ceCurrent": 55423.0,
+        "ceDiff": 26973.0
+      },
+      {
+        "label": "Modelo Chelada",
+        "cePrior": 46208.0,
+        "ceCurrent": 59212.0,
+        "ceDiff": 13004.0
+      },
+      {
+        "label": "Modelo Especial",
+        "cePrior": 595188.6,
+        "ceCurrent": 607469.6,
+        "ceDiff": 12281.0
+      }
+    ],
+    "brandDecliners": [
+      {
+        "label": "Heineken USA",
+        "cePrior": 252345.4,
+        "ceCurrent": 225229.3,
+        "ceDiff": -27116.0
+      },
+      {
+        "label": "White Claw",
+        "cePrior": 177368.5,
+        "ceCurrent": 157276.7,
+        "ceDiff": -20091.7
+      },
+      {
+        "label": "Coors Light",
+        "cePrior": 452964.8,
+        "ceCurrent": 439931.7,
+        "ceDiff": -13033.1
+      }
+    ],
+    "pkgGainers": [
+      {
+        "label": "Cans",
+        "cePrior": 1948761.4,
+        "ceCurrent": 1963979.4,
+        "ceDiff": 15218.0
+      },
+      {
+        "label": "Bottles (Wine & Spirits)",
+        "cePrior": 72258.3,
+        "ceCurrent": 81528.6,
+        "ceDiff": 9270.3
+      }
+    ],
+    "pkgDecliners": [
+      {
+        "label": "Bottles (NR)",
+        "cePrior": 1770525.1,
+        "ceCurrent": 1689698.1,
+        "ceDiff": -80827.1
+      },
+      {
+        "label": "Kegs",
+        "cePrior": 240707.5,
+        "ceCurrent": 234189.8,
+        "ceDiff": -6517.7
+      }
+    ]
+  },
+  "insightRange": {
+    "prior": "1/1/2025 - 7/31/2025",
+    "current": "1/1/2026 - 7/31/2026"
   }
 }

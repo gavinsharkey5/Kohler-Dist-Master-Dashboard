@@ -173,6 +173,25 @@ Supplier tab actually matches the sum of its individual brands (or
 vice versa). Selections are local to whichever tab is open and clear
 automatically when you switch tabs or re-sort/re-filter the table.
 
+Trend-driver "i" popovers (added 2026-08-10, a manager's suggestion,
+built from a one-off Fusion export the user attached in chat): a small
+"i" icon next to each supplier's name on the Supplier + Brand tab
+(hover on desktop, tap to pin on touch -- click elsewhere, or the icon
+again, to unpin) shows a quick synopsis of WHY that supplier's Trend %
+looks the way it does -- its top brand families driving growth vs.
+dragging it down, and which package group (Cans / Bottles (NR) / Kegs
+/ Bottles (Wine & Spirits) / Other) is growing vs. shrinking within
+that supplier. A matching icon next to the "Supplier + Brand rollup"
+heading itself shows the same thing rolled up company-wide. Data comes
+from brand_package_trend.csv (see that file's own entry above) via
+generate.py's parse_brand_package_trend() -- entirely independent of
+the workbook-goal machinery the rest of this tab uses, so a supplier
+with no popover data just gets no icon rather than a blank/broken one.
+Rendered into one shared #infoTooltip element positioned in JS (not
+nested inside each row) specifically so it can't get clipped by
+.tablewrap's horizontal scroll container or by a long supplier name's
+own text-overflow ellipsis.
+
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
 Costenita) -- has brand-level goals in the workbook but never got its
@@ -241,6 +260,37 @@ Files:
                                   crowd out genuine trends.
                               Optional -- if this file is absent, both
                               panels are just left off the page.
+  brand_package_trend.csv (optional)
+                              Fusion product-level export (Supplier, Brand
+                              Family, Product Name, Package, Premise, Year
+                              Month, Case Equiv for the same two YTD
+                              windows). One row per product/package/
+                              premise/month -- each row's Case Equiv lands
+                              in whichever year column matches its own
+                              Year Month, so generate.py sums across all
+                              months present to get each window's total.
+                              Feeds the "i" trend-driver popovers added
+                              2026-08-10 (a manager's suggestion): hover or
+                              tap the small "i" next to each supplier's
+                              name on the Supplier + Brand tab (and the
+                              one next to the tab's own heading, for the
+                              company-wide version) to see which brand
+                              families drove that supplier's growth vs.
+                              dragged it down, and which package group
+                              (Cans / Bottles (NR) / Kegs / Bottles (Wine
+                              & Spirits) / Other -- bucketed from the raw
+                              Package column by package_group() in
+                              generate.py, since the raw values are far
+                              too granular, e.g. "2/12/12oz Can" vs.
+                              "4/6/12oz Can" vs. "1/24/12oz Can", to show
+                              as their own trend line) grew vs. shrank.
+                              Top 3 brand movers and top 2 package-group
+                              movers each direction, floored at
+                              MIN_MOVER_CE (0.5 CE) so rounding dust can't
+                              show up as a "driver." See
+                              parse_brand_package_trend() in generate.py.
+                              Optional -- if this file is absent, no "i"
+                              icons render at all.
   generate.py                 Rebuilds data/data.json from the files
                               above.
   index.html                  The page itself.
@@ -257,8 +307,11 @@ To refresh (e.g. at each month-end check-in):
   4. If refreshing the header's Segment Trend / Package Trend panels, re-pull
      the Fusion segment/package export and save it over
      segment_package_trend.csv.
-  5. Run: python3 generate.py
-  6. Commit and push.
+  5. If refreshing the Supplier + Brand tab's "i" trend-driver popovers,
+     re-pull the Fusion product-level export and save it over
+     brand_package_trend.csv.
+  6. Run: python3 generate.py
+  7. Commit and push.
 
 Notes:
   - A brand whose name is also used as its own supplier label in the

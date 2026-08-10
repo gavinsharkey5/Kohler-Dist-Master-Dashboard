@@ -179,6 +179,37 @@
   .combo-childrow .brandname{font-weight:500;font-size:12.8px}
   .combo-childrow td{border-bottom:1px solid var(--line-soft)}
 
+  /* Brand/Package trend-driver "i" icons (added 2026-08-10 per a manager's
+     suggestion): a small info glyph next to a supplier's name (and one
+     next to the tab heading for the company-wide version) that shows a
+     quick "why is this trend % what it is" synopsis on hover/tap. Content
+     is rendered into one shared #infoTooltip element positioned in JS
+     (see showInfoTooltip()) rather than nested per-row, so it can't be
+     clipped by .tablewrap's overflow-x:auto or by a truncated .combo-name
+     cell -- it floats above everything at a fixed screen position. */
+  .info-icon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:6px;
+    border-radius:50%;background:var(--line);color:var(--ink-soft);font-family:"Space Grotesk";font-size:10px;font-weight:700;
+    font-style:italic;cursor:pointer;flex:none;vertical-align:middle}
+  .info-icon:hover,.info-icon.pinned{background:var(--kohler);color:#fff}
+  .heading-info{display:inline-flex;vertical-align:middle}
+  #infoTooltip{display:none;position:fixed;z-index:200;width:300px;max-width:88vw;background:var(--card-h);
+    border:1px solid var(--kohler);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow);pointer-events:none}
+  #infoTooltip.show{display:block}
+  #infoTooltip .it-title{font-family:"Space Grotesk";font-size:12.5px;font-weight:700;color:var(--ink);margin:0 0 2px}
+  #infoTooltip .it-sub{font-size:10.5px;color:var(--ink-mute);margin:0 0 10px}
+  #infoTooltip .it-section{margin:0 0 9px}
+  #infoTooltip .it-section:last-child{margin-bottom:0}
+  #infoTooltip .it-section-lbl{font-family:"Space Grotesk";font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--ink-mute);font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:5px}
+  #infoTooltip .it-section-lbl.up::before{content:"▲";color:var(--good);font-size:7px}
+  #infoTooltip .it-section-lbl.down::before{content:"▼";color:var(--bad);font-size:7px}
+  #infoTooltip .it-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:11.5px;padding:2px 0}
+  #infoTooltip .it-row .it-lbl{color:var(--ink-soft);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #infoTooltip .it-row .it-val{font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  #infoTooltip .it-row .it-val.up{color:var(--good)}
+  #infoTooltip .it-row .it-val.down{color:var(--bad)}
+  #infoTooltip .it-empty{font-size:11px;color:var(--ink-mute);font-style:italic}
+
   .pctinput{width:100%;max-width:64px;background:var(--input-bg);border:1px solid var(--input-border);color:var(--brewery);
     font:inherit;font-family:"Space Grotesk";font-weight:700;font-size:12.3px;text-align:center;border-radius:6px;padding:3px 5px}
   .pctinput.kohler{color:var(--kohler)}
@@ -446,7 +477,7 @@
     <div class="kpis" id="comboKpis"></div>
 
     <section class="panel">
-      <h2>Supplier + Brand rollup</h2>
+      <h2>Supplier + Brand rollup <span class="heading-info" id="comboOverallInfoWrap"></span></h2>
       <p class="desc">Mirrors the layout of the "2026 Planning by Brand" workbook sheet &mdash; each supplier's own
         row (bold) with its brand families listed underneath. Click a supplier row (or the chevron) to expand or
         collapse its brands. Only brands that have a 2026 goal appear here, same set as the By Brand Family tab;
@@ -503,6 +534,8 @@
   <span id="selectionSumText"></span>
   <button class="btn" id="clearSelectionBtn">Clear</button>
 </div>
+
+<div id="infoTooltip"></div>
 
 <script>
 const fmtCE = n => n==null?'—':Math.round(n).toLocaleString('en-US');
@@ -1223,6 +1256,124 @@ function comboFilteredGroups(){
   return groups;
 }
 
+// ---- Brand/Package trend-driver "i" popovers (added 2026-08-10, per a
+// manager's suggestion) -- a quick "why does this trend % look like this"
+// synopsis: which brand families are driving a supplier's (or the whole
+// company's) growth vs. dragging it down, and which package group (Cans /
+// Bottles (NR) / Kegs / Bottles (Wine & Spirits) / Other) is growing vs.
+// shrinking. Data comes from brand_package_trend.csv via generate.py's
+// parse_brand_package_trend() -- see DATA.overallInsight (company-wide) and
+// each supplier row's own .insight (from DATA.comboRollup). Rendered into
+// one shared #infoTooltip element positioned in JS, not nested per-row, so
+// it floats above .tablewrap's overflow-x:auto and any truncated cell. ----
+function itMoverRows(rows, dir){
+  if (!rows || !rows.length) return '<p class="it-empty">None material</p>';
+  return rows.map(r=>`<div class="it-row"><span class="it-lbl" title="${esc(r.label)}">${esc(r.label)}</span>` +
+    `<span class="it-val ${dir}">${r.ceDiff>0?'+':''}${fmtCE(r.ceDiff)}</span></div>`).join('');
+}
+
+function insightTooltipHtml(title, sub, insight){
+  if (!insight) return '';
+  return `
+    <p class="it-title">${esc(title)}</p>
+    <p class="it-sub">${esc(sub)} &middot; ${fmtCE(insight.cePrior)} &rarr; ${fmtCE(insight.ceCurrent)} CE (${fmtPct(insight.trendPct)})</p>
+    <div class="it-section">
+      <p class="it-section-lbl up">Brands driving growth</p>
+      ${itMoverRows(insight.brandGainers,'up')}
+    </div>
+    <div class="it-section">
+      <p class="it-section-lbl down">Brands dragging it down</p>
+      ${itMoverRows(insight.brandDecliners,'down')}
+    </div>
+    <div class="it-section">
+      <p class="it-section-lbl up">Package types growing</p>
+      ${itMoverRows(insight.pkgGainers,'up')}
+    </div>
+    <div class="it-section">
+      <p class="it-section-lbl down">Package types shrinking</p>
+      ${itMoverRows(insight.pkgDecliners,'down')}
+    </div>`;
+}
+
+let INFO_PINNED = null; // the .info-icon element currently pinned open (tap/click), or null
+
+function positionInfoTooltip(anchorEl){
+  const tip = document.getElementById('infoTooltip');
+  const rect = anchorEl.getBoundingClientRect();
+  const tipW = tip.offsetWidth || 300, tipH = tip.offsetHeight || 200;
+  let left = rect.left;
+  let top = rect.bottom + 6;
+  if (left + tipW > window.innerWidth - 10) left = window.innerWidth - tipW - 10;
+  if (left < 10) left = 10;
+  if (top + tipH > window.innerHeight - 10) top = rect.top - tipH - 6;
+  if (top < 10) top = 10;
+  tip.style.left = left+'px';
+  tip.style.top = top+'px';
+}
+
+function showInfoTooltip(anchorEl, html){
+  const tip = document.getElementById('infoTooltip');
+  tip.innerHTML = html;
+  tip.classList.add('show');
+  positionInfoTooltip(anchorEl);
+}
+
+function hideInfoTooltip(){
+  document.getElementById('infoTooltip').classList.remove('show');
+}
+
+function unpinInfo(){
+  if (INFO_PINNED){ INFO_PINNED.classList.remove('pinned'); INFO_PINNED = null; hideInfoTooltip(); }
+}
+
+// Event delegation (not a per-row listener) since combo rows re-render on
+// every search/sort/expand -- attached once, works for rows that don't
+// exist yet at page load.
+document.addEventListener('mouseover', e=>{
+  const icon = e.target.closest('.info-icon');
+  if (!icon || INFO_PINNED) return;
+  const html = icon.dataset.tip ? decodeURIComponent(icon.dataset.tip) : '';
+  if (html) showInfoTooltip(icon, html);
+});
+document.addEventListener('mouseout', e=>{
+  const icon = e.target.closest('.info-icon');
+  if (!icon || INFO_PINNED===icon) return;
+  if (icon.contains(e.relatedTarget)) return;
+  hideInfoTooltip();
+});
+// Capture phase (3rd arg true), not bubble: an info-icon sits inside
+// .combo-name, which has its OWN bubble-phase click listener (toggles the
+// supplier row expand/collapse). Capture runs top-down BEFORE that listener
+// ever fires, so stopPropagation() here actually prevents it -- a bubble-
+// phase listener on document would run too late, after .combo-name's click
+// handler already toggled the row.
+document.addEventListener('click', e=>{
+  const icon = e.target.closest('.info-icon');
+  if (icon){
+    e.stopPropagation();
+    if (INFO_PINNED===icon){ unpinInfo(); return; }
+    unpinInfo();
+    const html = icon.dataset.tip ? decodeURIComponent(icon.dataset.tip) : '';
+    if (html){ showInfoTooltip(icon, html); icon.classList.add('pinned'); INFO_PINNED = icon; }
+    return;
+  }
+  if (!e.target.closest('#infoTooltip')) unpinInfo();
+}, true);
+
+function infoIconHtml(title, sub, insight){
+  if (!insight) return '';
+  const tip = insightTooltipHtml(title, sub, insight);
+  return `<span class="info-icon" data-tip="${encodeURIComponent(tip)}" title="Trend drivers">i</span>`;
+}
+
+function renderComboOverallInfo(){
+  const wrap = document.getElementById('comboOverallInfoWrap');
+  if (!wrap) return;
+  const insight = DATA.overallInsight;
+  const range = DATA.insightRange;
+  wrap.innerHTML = insight ? infoIconHtml('Company-Wide', range?`${range.prior} vs. ${range.current}`:'Jan–Jul, 2025 vs. 2026', insight) : '';
+}
+
 function renderComboHead(){
   const tr = document.getElementById('comboTheadRow');
   tr.innerHTML = '';
@@ -1260,7 +1411,8 @@ function renderComboRows(groups){
     const tdName = document.createElement('td');
     tdName.className = 'combo-name';
     tdName.title = g.supplier;
-    tdName.innerHTML = `<span class="combo-chevron">${expanded?'▾':'▸'}</span><span class="brandname">${esc(g.supplier)}</span><span class="combo-childcount">(${g.children.length})</span>`;
+    const supRange = DATA.insightRange;
+    tdName.innerHTML = `<span class="combo-chevron">${expanded?'▾':'▸'}</span><span class="brandname">${esc(g.supplier)}</span><span class="combo-childcount">(${g.children.length})</span>${infoIconHtml(g.supplier, supRange?`${supRange.prior} vs. ${supRange.current}`:'Jan–Jul, 2025 vs. 2026', g.insight)}`;
     tdName.addEventListener('click', ()=>toggleComboGroup(g.supplier));
     trSup.appendChild(tdName);
     buildComboCommonCells(g).forEach(td=>trSup.appendChild(td));
@@ -1457,6 +1609,8 @@ async function init(){
   DATA.suppliers = DATA.suppliers || [];
   DATA.meta = DATA.meta || {};
   DATA.segmentPackageTrend = DATA.segmentPackageTrend || null;
+  DATA.overallInsight = DATA.overallInsight || null;
+  DATA.insightRange = DATA.insightRange || null;
 
   DATA.brands = DATA.brands.map((r,i)=>({...r, _key: `${r.supplier}|${r.brand}|${i}`,
     goal_brewery_pct_orig: r.goal_brewery_pct, goal_kohler_pct_orig: r.goal_kohler_pct}));
@@ -1513,6 +1667,7 @@ async function init(){
   renderSupplierTable();
   renderComboKPIs();
   renderComboTable();
+  renderComboOverallInfo();
 
   document.getElementById('search').addEventListener('input', e=>{ FILTER.search = e.target.value; renderTable(); });
   document.getElementById('managerFilter').addEventListener('change', e=>{

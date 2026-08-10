@@ -41,6 +41,26 @@ Inputs (keep these filenames when refreshing):
                               MIN_PACKAGE_VOLUME cases). Both skipped
                               entirely, with their panels left off the
                               page, if this file isn't present.
+  brand_package_trend.csv (optional)
+                              Fusion product-level export (Supplier, Brand
+                              Family, Product Name, Package, Premise, Year
+                              Month, Case Equiv for the same two YTD
+                              windows as ytd_comparison.csv -- one row per
+                              product/package/premise/month, each row's
+                              Case Equiv landing in whichever year column
+                              matches its own Year Month). Feeds the "i"
+                              trend-driver popovers on the Supplier + Brand
+                              tab (added 2026-08-10 per a manager's
+                              suggestion): for each supplier (and one
+                              company-wide "Overall" popover by the tab
+                              heading), which brand families drove growth
+                              vs. dragged it down, and which package
+                              groups (Cans / Bottles (NR) / Kegs /
+                              Bottles (Wine & Spirits) / Other -- see
+                              package_group()) grew vs. shrank. See
+                              parse_brand_package_trend(). Skipped
+                              entirely, with no popovers, if this file
+                              isn't present.
 
 A brand with no Brewery/Kohler goal set in the workbook (new items launched
 after the plan was built, e.g. Carbliss, Monaco, Noca) is kept OUT of the
@@ -68,6 +88,7 @@ WORKBOOK = HERE / "2026_planning_source.xlsx"
 CSV_YTD = HERE / "ytd_comparison.csv"
 DENISE_PRODUCT_DETAIL = HERE / "denise_food_bev_product_detail.csv"
 CSV_SEGMENT_PACKAGE = HERE / "segment_package_trend.csv"
+CSV_BRAND_PACKAGE = HERE / "brand_package_trend.csv"
 HTML = HERE / "index.html"
 OUT = HERE / "data" / "data.json"
 
@@ -359,6 +380,125 @@ def parse_segment_package_trend(path):
 
 
 # ---------------------------------------------------------------------------
+# Brand + package trend-driver popovers ("i" icons on the Supplier + Brand
+# tab, added 2026-08-10 per a manager's suggestion): for each supplier, and
+# once company-wide, which brand families are driving growth vs. dragging it
+# down, and which coarse package group (Cans / Bottles / Kegs / etc.) is
+# growing vs. shrinking -- a quick read on WHY a supplier's trend % looks the
+# way it does, without leaving the Supplier + Brand tab.
+# ---------------------------------------------------------------------------
+MIN_MOVER_CE = 0.5  # floor below which a Case Equiv swing is rounding noise, not a real mover
+TOP_BRAND_MOVERS = 3
+TOP_PACKAGE_MOVERS = 2
+
+# Fusion's raw Package strings are extremely granular (144+ distinct values
+# in a typical export, e.g. "2/12/12oz Can" vs "4/6/12oz Can" vs "1/24/12oz
+# Can") -- too fine-grained for a "which package TYPE is trending" popover.
+# Bucketed by keyword instead of parsed structurally since the format isn't
+# fully consistent (kegs carry a gallon size, NR/Can suffixes aren't always
+# present on single-unit oz formats). Order matters: Keg/Can/NR checked
+# before the broader ml/Btl bucket so e.g. "50 Liter Keg" doesn't fall into
+# Bottles.
+def package_group(pkg):
+    p = (pkg or "").strip().lower()
+    if not p:
+        return "Other"
+    if "keg" in p or "bbl" in p:
+        return "Kegs"
+    if "can" in p:
+        return "Cans"
+    if p.endswith("nr") or " nr" in p:
+        return "Bottles (NR)"
+    if "btl" in p or "ml" in p or "liter" in p or "ltr" in p:
+        return "Bottles (Wine & Spirits)"
+    return "Other"
+
+
+def _top_movers(totals, limit):
+    """totals: {label: [prior, current]}. Returns (gainers, decliners), each
+    a list of {label, cePrior, ceCurrent, ceDiff} sorted by magnitude,
+    largest swing first, floored at MIN_MOVER_CE so rounding dust doesn't
+    crowd out real movers."""
+    rows = []
+    for label, (prior, current) in totals.items():
+        diff = current - prior
+        if abs(diff) < MIN_MOVER_CE:
+            continue
+        rows.append({"label": label, "cePrior": round(prior, 1), "ceCurrent": round(current, 1), "ceDiff": round(diff, 1)})
+    gainers = sorted((r for r in rows if r["ceDiff"] > 0), key=lambda r: -r["ceDiff"])[:limit]
+    decliners = sorted((r for r in rows if r["ceDiff"] < 0), key=lambda r: r["ceDiff"])[:limit]
+    return gainers, decliners
+
+
+def parse_brand_package_trend(path):
+    if not path.exists():
+        return None
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        ce_cols = [c for c in fieldnames if c.startswith("Case Equiv") and "Difference" not in c]
+        if len(ce_cols) < 2:
+            return None
+        prior_col, current_col = ce_cols[0], ce_cols[1]
+        range_prior = prior_col.replace("Case Equiv", "").strip()
+        range_current = current_col.replace("Case Equiv", "").strip()
+
+        overall_brand = defaultdict(lambda: [0.0, 0.0])
+        overall_pkg = defaultdict(lambda: [0.0, 0.0])
+        by_supplier_brand = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        by_supplier_pkg = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+        supplier_totals = defaultdict(lambda: [0.0, 0.0])
+        overall_totals = [0.0, 0.0]
+
+        for r in reader:
+            supplier = (r.get("Supplier") or "").strip()
+            if not supplier:
+                continue
+            prior, current = to_num(r.get(prior_col)), to_num(r.get(current_col))
+            brand = (r.get("Brand Family") or "").strip() or "Unclassified"
+            pkg = package_group(r.get("Package"))
+
+            overall_brand[brand][0] += prior
+            overall_brand[brand][1] += current
+            overall_pkg[pkg][0] += prior
+            overall_pkg[pkg][1] += current
+            overall_totals[0] += prior
+            overall_totals[1] += current
+
+            sb = by_supplier_brand[supplier][brand]
+            sb[0] += prior
+            sb[1] += current
+            sp = by_supplier_pkg[supplier][pkg]
+            sp[0] += prior
+            sp[1] += current
+            st = supplier_totals[supplier]
+            st[0] += prior
+            st[1] += current
+
+    def build_insight(brand_totals, pkg_totals, prior, current):
+        brand_gainers, brand_decliners = _top_movers(brand_totals, TOP_BRAND_MOVERS)
+        pkg_gainers, pkg_decliners = _top_movers(pkg_totals, TOP_PACKAGE_MOVERS)
+        trend = (current / prior - 1) if prior else None
+        return {
+            "cePrior": round(prior, 1), "ceCurrent": round(current, 1), "trendPct": round(trend, 4) if trend is not None else None,
+            "brandGainers": brand_gainers, "brandDecliners": brand_decliners,
+            "pkgGainers": pkg_gainers, "pkgDecliners": pkg_decliners,
+        }
+
+    overall_insight = build_insight(overall_brand, overall_pkg, overall_totals[0], overall_totals[1])
+    by_supplier = {
+        supplier: build_insight(by_supplier_brand[supplier], by_supplier_pkg[supplier], *supplier_totals[supplier])
+        for supplier in by_supplier_brand
+    }
+
+    return {
+        "rangePrior": range_prior, "rangeCurrent": range_current,
+        "overall": overall_insight,
+        "bySupplier": by_supplier,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Raw Supplier -> Brand Family hierarchy, reconstructed straight from
 # ytd_comparison.csv's own row order -- for the "Supplier + Brand" combo tab.
 # ---------------------------------------------------------------------------
@@ -510,6 +650,11 @@ def main():
         print(f"Package Trend: {len(pm['up'])} up / {len(pm['down'])} down movers "
               f"(>= {pm['minVolumeCases']} cases; {pm['newCount']} new, {pm['discontinuedCount']} discontinued, "
               f"{pm['belowMinCount']} below the volume floor, excluded from ranking).")
+
+    brand_package_trend = parse_brand_package_trend(CSV_BRAND_PACKAGE)
+    if brand_package_trend:
+        print(f"Brand/Package trend popovers: {len(brand_package_trend['bySupplier'])} suppliers from "
+              f"{CSV_BRAND_PACKAGE.name} ({brand_package_trend['rangePrior']}  vs.  {brand_package_trend['rangeCurrent']}).")
 
     if DENISE_PRODUCT_DETAIL.exists():
         overrides = parse_product_detail_overrides(DENISE_PRODUCT_DETAIL)
@@ -878,6 +1023,16 @@ def main():
     managers = sorted({r["brand_manager"] for r in with_goal + no_goal + terminated if r.get("brand_manager")})
     suppliers = sorted({r["supplier"] for r in with_goal + no_goal if r.get("supplier")})
 
+    if brand_package_trend:
+        matched_insight_count = 0
+        for group in combo_rollup:
+            insight = brand_package_trend["bySupplier"].get(group["supplier"])
+            if insight:
+                matched_insight_count += 1
+            group["insight"] = insight
+        print(f"Matched trend-driver popovers to {matched_insight_count} / {len(combo_rollup)} suppliers on the "
+              f"Supplier + Brand tab (suppliers absent from {CSV_BRAND_PACKAGE.name} simply get no popover).")
+
     combo_rollup.sort(key=lambda r: -(r["ce_current"] or 0))
     total_combo_children = sum(len(g["children"]) for g in combo_rollup)
     print(f"Supplier + Brand combo rollup: {len(combo_rollup)} suppliers, {total_combo_children} brand families "
@@ -910,6 +1065,8 @@ def main():
         "supplierRollup": supplier_rollup,
         "comboRollup": combo_rollup,
         "segmentPackageTrend": segment_package_trend,
+        "overallInsight": brand_package_trend["overall"] if brand_package_trend else None,
+        "insightRange": {"prior": brand_package_trend["rangePrior"], "current": brand_package_trend["rangeCurrent"]} if brand_package_trend else None,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2))
