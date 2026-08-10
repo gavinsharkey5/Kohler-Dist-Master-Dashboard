@@ -82,6 +82,8 @@
   .tw-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:8px;font-size:11.5px;padding:3px 0}
   .tw-row .tw-lbl{color:var(--ink-soft);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .tw-row .tw-val{color:var(--ink-mute);font-family:"Space Grotesk";font-variant-numeric:tabular-nums;font-size:11px}
+  .tw-row .tw-val.up{color:var(--good);font-weight:700}
+  .tw-row .tw-val.down{color:var(--bad);font-weight:700}
   .tw-note{font-size:10.5px;color:var(--ink-mute);margin:10px 0 0;line-height:1.4;flex:none}
   @media(max-width:640px){.trend-widget{max-width:none}}
 
@@ -102,7 +104,6 @@
   @media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
 
-  .kpi.breakdown{padding:18px 22px 20px}
   .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:2px}
   .statusgrid .srow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
   .statusgrid .srow .dot{width:9px;height:9px;border-radius:50%;flex:none}
@@ -254,6 +255,7 @@
             keep a copy.</li>
         </ul>
       </div>
+      <div class="trend-widget" id="suppliersWidget"></div>
       <div class="trend-widget" id="segmentWidget"></div>
       <div class="trend-widget" id="packageWidget"></div>
     </div>
@@ -1452,37 +1454,22 @@ function renderComboTable(){
 
 function renderComboKPIs(){
   const all = DATA.comboGroups.map(r=>({...r, ...derive(r)}));
-  const total = all.length;
   const totalPrior = all.reduce((a,r)=>a+(r.ce_prior||0),0);
   const totalCurrent = all.reduce((a,r)=>a+(r.ce_current||0),0);
   const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
   const totalProjFinish = all.reduce((a,r)=>a+(r.proj_finish_2026_ce||0),0);
-  const totalBrands = DATA.comboGroups.reduce((a,g)=>a+g.children.length,0);
 
-  const statuses = all.map(r=>statusOf(r).label);
-  const onPace = statuses.filter(s=>s==='On Pace').length;
-  const behindBrewery = statuses.filter(s=>s==='Behind Brewery').length;
-  const behindKohler = statuses.filter(s=>s==='Behind Kohler').length;
-  const behindBoth = statuses.filter(s=>s==='Behind Both').length;
-
+  // "Suppliers Tracked" and "Suppliers vs. Goal" moved to the page-header
+  // suppliersWidget (2026-08-10, per Gavin) -- combined into one widget
+  // there instead of 2 separate tiles here.
   const tiles = [
-    {lbl:'Suppliers Tracked', val:fmtCE(total), sub:`rolling up ${fmtCE(totalBrands)} brand families`},
     {lbl:'Company Trend (YTD)', val:fmtPct(companyTrend), sub:'across all tracked suppliers'},
     {lbl:'2026 Projected Finish', val:fmtCE(totalProjFinish)+' CE', sub:'if current trend holds'},
   ];
   const kpisEl = document.getElementById('comboKpis');
   kpisEl.innerHTML = tiles.map(t=>`<div class="kpi"><p class="lbl">${t.lbl}</p><p class="val num">${t.val}</p><p class="sub2">${t.sub||''}</p></div>`).join('');
 
-  const breakdown = document.createElement('div');
-  breakdown.className = 'kpi breakdown';
-  breakdown.innerHTML = `<p class="lbl">Suppliers vs. Goal</p>
-    <div class="statusgrid">
-      <span class="srow"><i class="dot" style="background:var(--good)"></i>On Pace<span class="n num">${onPace}</span></span>
-      <span class="srow"><i class="dot" style="background:var(--brewery)"></i>Behind Brewery<span class="n num">${behindBrewery}</span></span>
-      <span class="srow"><i class="dot" style="background:var(--kohler)"></i>Behind Kohler<span class="n num">${behindKohler}</span></span>
-      <span class="srow"><i class="dot" style="background:var(--bad)"></i>Behind Both<span class="n num">${behindBoth}</span></span>
-    </div>`;
-  kpisEl.appendChild(breakdown);
+  renderSuppliersWidget();
 }
 
 function exportComboCSV(){
@@ -1550,6 +1537,19 @@ function renderSegmentWidget(){
   });
 }
 
+// Package Trend rows show the UNIT swing (Cases, current - prior) first,
+// with the % change in parens right after -- per Gavin, 2026-08-10, so the
+// headline number is "how many cases moved" rather than an absolute
+// current-year count that needs the % pill next to it to mean anything.
+// Segment Trend keeps the plain twRow() (absolute current-year count, no
+// diff) since that panel isn't about movement, just this year's mix.
+function pkgTwRow(r){
+  const diff = r.casesCurrent - r.casesPrior;
+  const dir = diff>=0?'up':'down';
+  return `<div class="tw-row"><span class="tw-lbl" title="${esc(r.label)}">${esc(r.label)}</span>` +
+    `<span class="tw-val ${dir}">${diff>=0?'+':''}${fmtCE(diff)} (${fmtPct(r.pctChange)})</span></div>`;
+}
+
 function renderPackageWidget(){
   const el = document.getElementById('packageWidget');
   const t = DATA.segmentPackageTrend;
@@ -1562,17 +1562,55 @@ function renderPackageWidget(){
     <div class="tw-body">
       <div class="tw-section">
         <p class="tw-section-lbl up">Trending up (top ${pm.up.length})</p>
-        ${pm.up.map(twRow).join('')}
+        ${pm.up.map(pkgTwRow).join('')}
       </div>
       <div class="tw-section">
         <p class="tw-section-lbl down">Trending down (top ${pm.down.length})</p>
-        ${pm.down.map(twRow).join('')}
+        ${pm.down.map(pkgTwRow).join('')}
       </div>
     </div>
     <p class="tw-note">Ranked among packages with &ge; ${fmtCE(pm.minVolumeCases)} cases in either year and volume
       in both years, so a tiny package's swing can't outrank a real trend. ${pm.newCount} new-this-year and
       ${pm.discontinuedCount} discontinued package(s) of that size aren't rankable by % and are excluded here;
       ${pm.belowMinCount} smaller packages are also excluded.</p>`;
+}
+
+// Suppliers Overview widget (moved out of the Supplier + Brand tab's own
+// KPI tile row and into the page header, 2026-08-10 per Gavin -- combines
+// what used to be 2 separate tiles there, "Suppliers Tracked" and
+// "Suppliers vs. Goal", into one, and makes it page-level like Segment
+// Trend/Package Trend (visible on every tab, not just when Supplier +
+// Brand is active) so it fills the header whitespace instead of an empty
+// gap. Sourced from DATA.comboGroups same as before -- re-rendered
+// wherever renderComboKPIs() used to own this data (init, a Goal % edit,
+// and Reset edited goals), since editing a goal can move a supplier
+// between On Pace/Behind Brewery/Behind Kohler/Behind Both.
+function renderSuppliersWidget(){
+  const el = document.getElementById('suppliersWidget');
+  if (!el) return;
+  const all = (DATA.comboGroups||[]).map(r=>({...r, ...derive(r)}));
+  if (!all.length){ el.innerHTML = ''; return; }
+  const totalBrands = DATA.comboGroups.reduce((a,g)=>a+g.children.length,0);
+  const statuses = all.map(r=>statusOf(r).label);
+  const onPace = statuses.filter(s=>s==='On Pace').length;
+  const behindBrewery = statuses.filter(s=>s==='Behind Brewery').length;
+  const behindKohler = statuses.filter(s=>s==='Behind Kohler').length;
+  const behindBoth = statuses.filter(s=>s==='Behind Both').length;
+
+  el.innerHTML = `
+    <p class="tw-title">Suppliers Overview</p>
+    <p class="tw-sub">Supplier + Brand tab &middot; ${fmtCE(all.length)} suppliers, ${fmtCE(totalBrands)} brand families</p>
+    <div class="tw-body">
+      <div class="tw-section">
+        <p class="tw-section-lbl">Vs. Goal</p>
+        <div class="statusgrid">
+          <span class="srow"><i class="dot" style="background:var(--good)"></i>On Pace<span class="n num">${onPace}</span></span>
+          <span class="srow"><i class="dot" style="background:var(--brewery)"></i>Behind Brewery<span class="n num">${behindBrewery}</span></span>
+          <span class="srow"><i class="dot" style="background:var(--kohler)"></i>Behind Kohler<span class="n num">${behindKohler}</span></span>
+          <span class="srow"><i class="dot" style="background:var(--bad)"></i>Behind Both<span class="n num">${behindBoth}</span></span>
+        </div>
+      </div>
+    </div>`;
 }
 
 function renderCaveats(){

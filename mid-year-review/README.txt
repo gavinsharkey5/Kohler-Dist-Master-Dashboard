@@ -193,6 +193,34 @@ nested inside each row) specifically so it can't get clipped by
 .tablewrap's horizontal scroll container or by a long supplier name's
 own text-overflow ellipsis.
 
+Suppliers Overview header widget (moved 2026-08-10, per Gavin): what
+used to be 2 separate tiles in the Supplier + Brand tab's own KPI row
+-- "Suppliers Tracked" (count + brand-family rollup) and "Suppliers
+vs. Goal" (the On Pace / Behind Brewery / Behind Kohler / Behind Both
+breakdown) -- are now combined into ONE "Suppliers Overview" card in
+the page header, sitting in the row alongside Segment Trend and
+Package Trend (between the lede text and Segment Trend, filling what
+was previously empty whitespace there). Like those two, it's
+page-level -- visible on every tab, not just when Supplier + Brand is
+active -- even though its underlying numbers still come from
+DATA.comboGroups (the Supplier + Brand tab's own dataset).
+renderSuppliersWidget() re-renders automatically any time
+renderComboKPIs() does (initial load, a live Goal % edit, or Reset
+edited goals), since editing a goal can move a supplier between
+statuses. The Supplier + Brand tab's own KPI row now has just 2 tiles
+left: Company Trend (YTD) and 2026 Projected Finish.
+
+Package Trend units-first format (changed 2026-08-10, per Gavin): each
+mover row used to show that package's absolute CURRENT-year Cases
+count next to a %-change pill (e.g. "22,248  +644.3%"). Now shows the
+UNIT swing first with the % in parens right after (e.g. "+19,257
+(+644.3%)"), colored green/up or red/down as one unit -- the point of
+this panel is "how many cases moved," not an absolute count that only
+means something alongside the % pill next to it. This is
+Package-Trend-only (pkgTwRow() in index.html); Segment Trend keeps the
+plain absolute-count row (twRow()) since it's showing this year's mix,
+not movement.
+
 One supplier -- Food & Bev Enterprise LLC (Denise Montes' brands:
 Aguila Import/Light, Club Colombia Dorada/Roja, Poker Import,
 Costenita) -- has brand-level goals in the workbook but never got its
