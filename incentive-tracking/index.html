@@ -92,6 +92,12 @@
     text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;
     background:var(--card-alt);color:var(--text-dim);border-left:3px solid var(--border);}
 
+  .territory-block{background:var(--card-alt);border:1px solid var(--border);border-left:3px solid var(--text-dim);
+    border-radius:10px;padding:16px 18px;}
+  .territory-block-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;
+    color:var(--text);margin-bottom:6px;}
+  .territory-block-text{font-size:13px;color:var(--text-dim);line-height:1.5;}
+
   table{width:100%;border-collapse:collapse;font-size:13px;}
   th{text-align:left;color:var(--text-dim);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:7px 10px;background:var(--card-alt);border-bottom:1px solid var(--border);white-space:nowrap;}
   td{padding:8px 10px;border-bottom:1px solid var(--line-soft);}
@@ -200,7 +206,7 @@
   <div class="eyebrow">Incentive Tracking · August 2026</div>
   <h1>Incentive Tracker</h1>
   <p class="sub">Every August 2026 supplier incentive program in one place, so you can see where you stand and where to focus. Progress shown against each program's tiers and qualifiers.</p>
-  <p class="updated"><span class="livedot"></span> Data refreshed Aug 5, 2026</p>
+  <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 10, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
 <div class="repbar-wrap">
@@ -2317,7 +2323,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": 0.0
+        "octoberfestGrowth": 0.0,
+        "territoryEligible": false
       },
       "Alisa Acciardi": {
         "allSkuUnitsLastYear": 10.0,
@@ -2325,7 +2332,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -2.0
+        "octoberfestGrowth": -2.0,
+        "territoryEligible": true
       },
       "Allison Scott": {
         "allSkuUnitsLastYear": 103.0,
@@ -2333,7 +2341,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 76.0,
         "octoberfestUnitsThisYear": 24.0,
-        "octoberfestGrowth": -52.0
+        "octoberfestGrowth": -52.0,
+        "territoryEligible": true
       },
       "Andrew Lundy": {
         "allSkuUnitsLastYear": 0.0,
@@ -2341,7 +2350,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": 0.0
+        "octoberfestGrowth": 0.0,
+        "territoryEligible": false
       },
       "Anthony Palmisano": {
         "allSkuUnitsLastYear": 760.0,
@@ -2349,7 +2359,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 446.0,
         "octoberfestUnitsThisYear": 73.0,
-        "octoberfestGrowth": -373.0
+        "octoberfestGrowth": -373.0,
+        "territoryEligible": true
       },
       "Brian Sengebush": {
         "allSkuUnitsLastYear": 143.0,
@@ -2357,7 +2368,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 103.0,
         "octoberfestUnitsThisYear": 14.0,
-        "octoberfestGrowth": -89.0
+        "octoberfestGrowth": -89.0,
+        "territoryEligible": true
       },
       "Chris Payton": {
         "allSkuUnitsLastYear": 469.0,
@@ -2365,7 +2377,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 286.0,
         "octoberfestUnitsThisYear": 18.0,
-        "octoberfestGrowth": -268.0
+        "octoberfestGrowth": -268.0,
+        "territoryEligible": true
       },
       "Dan Lagala": {
         "allSkuUnitsLastYear": 240.0,
@@ -2373,7 +2386,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 125.0,
         "octoberfestUnitsThisYear": 6.0,
-        "octoberfestGrowth": -119.0
+        "octoberfestGrowth": -119.0,
+        "territoryEligible": true
       },
       "Dave Ehlers": {
         "allSkuUnitsLastYear": 1035.0,
@@ -2381,7 +2395,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 499.0,
         "octoberfestUnitsThisYear": 119.0,
-        "octoberfestGrowth": -380.0
+        "octoberfestGrowth": -380.0,
+        "territoryEligible": true
       },
       "Derrick Laws": {
         "allSkuUnitsLastYear": 184.0,
@@ -2389,7 +2404,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 109.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -109.0
+        "octoberfestGrowth": -109.0,
+        "territoryEligible": true
       },
       "Dylan Rubino": {
         "allSkuUnitsLastYear": 2.0,
@@ -2397,7 +2413,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -2.0
+        "octoberfestGrowth": -2.0,
+        "territoryEligible": true
       },
       "Hakan Sadik": {
         "allSkuUnitsLastYear": 0.0,
@@ -2405,7 +2422,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": 0.0
+        "octoberfestGrowth": 0.0,
+        "territoryEligible": false
       },
       "Jaime Colonna": {
         "allSkuUnitsLastYear": 3.0,
@@ -2413,7 +2431,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -2.0
+        "octoberfestGrowth": -2.0,
+        "territoryEligible": true
       },
       "Javier Melo": {
         "allSkuUnitsLastYear": 10.0,
@@ -2421,7 +2440,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 8.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -8.0
+        "octoberfestGrowth": -8.0,
+        "territoryEligible": true
       },
       "Jayson Romine": {
         "allSkuUnitsLastYear": 1497.0,
@@ -2429,7 +2449,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 800.0,
         "octoberfestUnitsThisYear": 65.0,
-        "octoberfestGrowth": -735.0
+        "octoberfestGrowth": -735.0,
+        "territoryEligible": true
       },
       "Jim Heaney": {
         "allSkuUnitsLastYear": 551.0,
@@ -2437,7 +2458,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 281.0,
         "octoberfestUnitsThisYear": 40.0,
-        "octoberfestGrowth": -241.0
+        "octoberfestGrowth": -241.0,
+        "territoryEligible": true
       },
       "John O'Donoghue": {
         "allSkuUnitsLastYear": 0.0,
@@ -2445,7 +2467,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 0.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": 0.0
+        "octoberfestGrowth": 0.0,
+        "territoryEligible": true
       },
       "Klejdi Lamo": {
         "allSkuUnitsLastYear": 1157.0,
@@ -2453,7 +2476,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 632.0,
         "octoberfestUnitsThisYear": 46.0,
-        "octoberfestGrowth": -586.0
+        "octoberfestGrowth": -586.0,
+        "territoryEligible": true
       },
       "Matt Powierski": {
         "allSkuUnitsLastYear": 319.0,
@@ -2461,7 +2485,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 180.0,
         "octoberfestUnitsThisYear": 21.0,
-        "octoberfestGrowth": -159.0
+        "octoberfestGrowth": -159.0,
+        "territoryEligible": true
       },
       "Michael Harboy": {
         "allSkuUnitsLastYear": 138.0,
@@ -2469,7 +2494,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 84.0,
         "octoberfestUnitsThisYear": 15.0,
-        "octoberfestGrowth": -69.0
+        "octoberfestGrowth": -69.0,
+        "territoryEligible": true
       },
       "Mike Ast": {
         "allSkuUnitsLastYear": 848.0,
@@ -2477,7 +2503,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 458.0,
         "octoberfestUnitsThisYear": 85.0,
-        "octoberfestGrowth": -373.0
+        "octoberfestGrowth": -373.0,
+        "territoryEligible": true
       },
       "Nick Melissari": {
         "allSkuUnitsLastYear": 186.0,
@@ -2485,7 +2512,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 122.0,
         "octoberfestUnitsThisYear": 46.0,
-        "octoberfestGrowth": -76.0
+        "octoberfestGrowth": -76.0,
+        "territoryEligible": true
       },
       "Pablo Lopez": {
         "allSkuUnitsLastYear": 11.0,
@@ -2493,7 +2521,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 2.0,
         "octoberfestUnitsThisYear": 0.0,
-        "octoberfestGrowth": -2.0
+        "octoberfestGrowth": -2.0,
+        "territoryEligible": true
       },
       "Paul Mclaughlin": {
         "allSkuUnitsLastYear": 75.0,
@@ -2501,7 +2530,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 46.0,
         "octoberfestUnitsThisYear": 9.0,
-        "octoberfestGrowth": -37.0
+        "octoberfestGrowth": -37.0,
+        "territoryEligible": true
       },
       "Phil Ernst": {
         "allSkuUnitsLastYear": 977.0,
@@ -2509,7 +2539,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 408.0,
         "octoberfestUnitsThisYear": 17.0,
-        "octoberfestGrowth": -391.0
+        "octoberfestGrowth": -391.0,
+        "territoryEligible": true
       },
       "Robin Feldman": {
         "allSkuUnitsLastYear": 95.0,
@@ -2517,7 +2548,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 39.0,
         "octoberfestUnitsThisYear": 5.0,
-        "octoberfestGrowth": -34.0
+        "octoberfestGrowth": -34.0,
+        "territoryEligible": true
       },
       "Shane Barreca": {
         "allSkuUnitsLastYear": 1287.0,
@@ -2525,7 +2557,8 @@ const PROGRAM_DATA = {
         "isPositive": false,
         "octoberfestUnitsLastYear": 601.0,
         "octoberfestUnitsThisYear": 109.0,
-        "octoberfestGrowth": -492.0
+        "octoberfestGrowth": -492.0,
+        "territoryEligible": true
       }
     }
   },
@@ -2538,7 +2571,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": false
       },
       "Alisa Acciardi": {
         "draftNew": [],
@@ -2547,7 +2581,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Allison Scott": {
         "draftNew": [],
@@ -2659,7 +2694,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 17,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 34
+        "points": 34,
+        "territoryEligible": true
       },
       "Andrew Lundy": {
         "draftNew": [],
@@ -2668,7 +2704,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": false
       },
       "Anthony Palmisano": {
         "draftNew": [],
@@ -2714,7 +2751,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 1,
-        "points": 11
+        "points": 11,
+        "territoryEligible": true
       },
       "Brian Sengebush": {
         "draftNew": [],
@@ -2778,7 +2816,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 9,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 18
+        "points": 18,
+        "territoryEligible": true
       },
       "Chris Payton": {
         "draftNew": [
@@ -2804,7 +2843,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 2,
-        "points": 4
+        "points": 4,
+        "territoryEligible": true
       },
       "Dan Lagala": {
         "draftNew": [],
@@ -2813,7 +2853,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Dave Ehlers": {
         "draftNew": [],
@@ -2870,7 +2911,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 8,
-        "points": 10
+        "points": 10,
+        "territoryEligible": true
       },
       "Derrick Laws": {
         "draftNew": [],
@@ -2879,7 +2921,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Dylan Rubino": {
         "draftNew": [],
@@ -2888,7 +2931,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Hakan Sadik": {
         "draftNew": [],
@@ -2897,7 +2941,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": false
       },
       "Jaime Colonna": {
         "draftNew": [],
@@ -2906,7 +2951,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Javier Melo": {
         "draftNew": [],
@@ -2915,7 +2961,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Jayson Romine": {
         "draftNew": [],
@@ -2924,7 +2971,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Jim Heaney": {
         "draftNew": [],
@@ -2939,7 +2987,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 1,
-        "points": 1
+        "points": 1,
+        "territoryEligible": true
       },
       "John O'Donoghue": {
         "draftNew": [],
@@ -2948,7 +2997,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Klejdi Lamo": {
         "draftNew": [],
@@ -2968,7 +3018,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 2,
-        "points": 2
+        "points": 2,
+        "territoryEligible": true
       },
       "Matt Powierski": {
         "draftNew": [],
@@ -2983,7 +3034,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 1,
-        "points": 1
+        "points": 1,
+        "territoryEligible": true
       },
       "Michael Harboy": {
         "draftNew": [],
@@ -2992,7 +3044,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Mike Ast": {
         "draftNew": [
@@ -3026,7 +3079,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 3,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 8
+        "points": 8,
+        "territoryEligible": true
       },
       "Nick Melissari": {
         "draftNew": [],
@@ -3144,7 +3198,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 18,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 36
+        "points": 36,
+        "territoryEligible": true
       },
       "Pablo Lopez": {
         "draftNew": [],
@@ -3153,7 +3208,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Paul Mclaughlin": {
         "draftNew": [
@@ -3240,7 +3296,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 11,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 26
+        "points": 26,
+        "territoryEligible": true
       },
       "Phil Ernst": {
         "draftNew": [],
@@ -3249,7 +3306,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 0,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 0
+        "points": 0,
+        "territoryEligible": true
       },
       "Robin Feldman": {
         "draftNew": [],
@@ -3277,7 +3335,8 @@ const PROGRAM_DATA = {
         "draftRebuyCount": 3,
         "packageNew": [],
         "packageNewCount": 0,
-        "points": 6
+        "points": 6,
+        "territoryEligible": true
       },
       "Shane Barreca": {
         "draftNew": [],
@@ -3299,7 +3358,8 @@ const PROGRAM_DATA = {
           }
         ],
         "packageNewCount": 1,
-        "points": 3
+        "points": 3,
+        "territoryEligible": true
       }
     }
   },
@@ -3312,7 +3372,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": false
       },
       "Alisa Acciardi": {
         "featuredNew": [],
@@ -3321,7 +3382,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Allison Scott": {
         "featuredNew": [
@@ -3415,7 +3477,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 11,
         "otherNamedKegCount": 10,
         "otherNamedKegVolumeBbl": 1.0,
-        "housePods": 16
+        "housePods": 16,
+        "territoryEligible": true
       },
       "Andrew Lundy": {
         "featuredNew": [],
@@ -3424,7 +3487,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": false
       },
       "Anthony Palmisano": {
         "featuredNew": [],
@@ -3433,7 +3497,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 2,
         "otherNamedKegVolumeBbl": 0.17,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Brian Sengebush": {
         "featuredNew": [],
@@ -3506,7 +3571,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 9,
         "otherNamedKegCount": 3,
         "otherNamedKegVolumeBbl": 0.17,
-        "housePods": 12
+        "housePods": 12,
+        "territoryEligible": true
       },
       "Chris Payton": {
         "featuredNew": [],
@@ -3515,7 +3581,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Dan Lagala": {
         "featuredNew": [],
@@ -3539,7 +3606,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 2,
         "otherNamedKegCount": 2,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 3
+        "housePods": 3,
+        "territoryEligible": true
       },
       "Dave Ehlers": {
         "featuredNew": [],
@@ -3548,7 +3616,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 1,
         "otherNamedKegVolumeBbl": 0.83,
-        "housePods": 1
+        "housePods": 1,
+        "territoryEligible": true
       },
       "Derrick Laws": {
         "featuredNew": [],
@@ -3557,7 +3626,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Dylan Rubino": {
         "featuredNew": [],
@@ -3566,7 +3636,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Hakan Sadik": {
         "featuredNew": [],
@@ -3575,7 +3646,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": false
       },
       "Jaime Colonna": {
         "featuredNew": [],
@@ -3584,7 +3656,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Javier Melo": {
         "featuredNew": [],
@@ -3593,7 +3666,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Jayson Romine": {
         "featuredNew": [],
@@ -3602,7 +3676,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 1
+        "housePods": 1,
+        "territoryEligible": true
       },
       "Jim Heaney": {
         "featuredNew": [],
@@ -3611,7 +3686,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "John O'Donoghue": {
         "featuredNew": [],
@@ -3620,7 +3696,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Klejdi Lamo": {
         "featuredNew": [],
@@ -3629,7 +3706,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 2
+        "housePods": 2,
+        "territoryEligible": true
       },
       "Matt Powierski": {
         "featuredNew": [],
@@ -3638,7 +3716,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 3,
         "otherNamedKegVolumeBbl": 0.33,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Michael Harboy": {
         "featuredNew": [],
@@ -3647,7 +3726,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Mike Ast": {
         "featuredNew": [],
@@ -3664,7 +3744,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 1,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 2
+        "housePods": 2,
+        "territoryEligible": true
       },
       "Nick Melissari": {
         "featuredNew": [],
@@ -3744,7 +3825,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 10,
         "otherNamedKegCount": 7,
         "otherNamedKegVolumeBbl": 0.5,
-        "housePods": 17
+        "housePods": 17,
+        "territoryEligible": true
       },
       "Pablo Lopez": {
         "featuredNew": [],
@@ -3753,7 +3835,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Paul Mclaughlin": {
         "featuredNew": [],
@@ -3784,7 +3867,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 3,
         "otherNamedKegCount": 9,
         "otherNamedKegVolumeBbl": 0.83,
-        "housePods": 5
+        "housePods": 5,
+        "territoryEligible": true
       },
       "Phil Ernst": {
         "featuredNew": [],
@@ -3793,7 +3877,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 1
+        "housePods": 1,
+        "territoryEligible": true
       },
       "Robin Feldman": {
         "featuredNew": [],
@@ -3802,7 +3887,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 0,
         "otherNamedKegCount": 2,
         "otherNamedKegVolumeBbl": 0.5,
-        "housePods": 0
+        "housePods": 0,
+        "territoryEligible": true
       },
       "Shane Barreca": {
         "featuredNew": [],
@@ -3826,7 +3912,8 @@ const PROGRAM_DATA = {
         "featuredRebuyCount": 2,
         "otherNamedKegCount": 0,
         "otherNamedKegVolumeBbl": 0.0,
-        "housePods": 2
+        "housePods": 2,
+        "territoryEligible": true
       }
     },
     "housePodsTotal": 63,
@@ -10865,7 +10952,8 @@ const PROGRAM_DATA = {
         "rate1Lines": [],
         "rate3Lines": [],
         "totalCasesThisYear": 0.0,
-        "totalCasesLastYear": 20.0
+        "totalCasesLastYear": 20.0,
+        "territoryEligible": false
       },
       "Alisa Acciardi": {
         "rate1CaseGrowth": 16.0,
@@ -10935,7 +11023,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 20.0,
-        "totalCasesLastYear": 4.0
+        "totalCasesLastYear": 4.0,
+        "territoryEligible": true
       },
       "Allison Scott": {
         "rate1CaseGrowth": 641.0,
@@ -10985,7 +11074,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 1276.0,
-        "totalCasesLastYear": 1227.0
+        "totalCasesLastYear": 1227.0,
+        "territoryEligible": true
       },
       "Andrew Lundy": {
         "rate1CaseGrowth": 0.0,
@@ -10993,7 +11083,8 @@ const PROGRAM_DATA = {
         "rate1Lines": [],
         "rate3Lines": [],
         "totalCasesThisYear": 0.0,
-        "totalCasesLastYear": 0.0
+        "totalCasesLastYear": 0.0,
+        "territoryEligible": false
       },
       "Anthony Palmisano": {
         "rate1CaseGrowth": 1882.0,
@@ -11088,7 +11179,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 4742.0,
-        "totalCasesLastYear": 3455.0
+        "totalCasesLastYear": 3455.0,
+        "territoryEligible": true
       },
       "Brian Sengebush": {
         "rate1CaseGrowth": 484.0,
@@ -11153,7 +11245,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 868.0,
-        "totalCasesLastYear": 871.0
+        "totalCasesLastYear": 871.0,
+        "territoryEligible": true
       },
       "Chris Payton": {
         "rate1CaseGrowth": 342.0,
@@ -11248,7 +11341,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 1071.0,
-        "totalCasesLastYear": 852.0
+        "totalCasesLastYear": 852.0,
+        "territoryEligible": true
       },
       "Dan Lagala": {
         "rate1CaseGrowth": 233.0,
@@ -11338,7 +11432,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 411.0,
-        "totalCasesLastYear": 187.0
+        "totalCasesLastYear": 187.0,
+        "territoryEligible": true
       },
       "Dave Ehlers": {
         "rate1CaseGrowth": 1398.0,
@@ -11418,7 +11513,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 3289.0,
-        "totalCasesLastYear": 2177.0
+        "totalCasesLastYear": 2177.0,
+        "territoryEligible": true
       },
       "Derrick Laws": {
         "rate1CaseGrowth": 116.0,
@@ -11478,7 +11574,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 296.0,
-        "totalCasesLastYear": 238.0
+        "totalCasesLastYear": 238.0,
+        "territoryEligible": true
       },
       "Dylan Rubino": {
         "rate1CaseGrowth": 9.0,
@@ -11513,7 +11610,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 19.0,
-        "totalCasesLastYear": 5.0
+        "totalCasesLastYear": 5.0,
+        "territoryEligible": true
       },
       "Hakan Sadik": {
         "rate1CaseGrowth": 0.0,
@@ -11521,7 +11619,8 @@ const PROGRAM_DATA = {
         "rate1Lines": [],
         "rate3Lines": [],
         "totalCasesThisYear": 0.0,
-        "totalCasesLastYear": 0.0
+        "totalCasesLastYear": 0.0,
+        "territoryEligible": false
       },
       "Jaime Colonna": {
         "rate1CaseGrowth": 3.0,
@@ -11546,7 +11645,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 5.0,
-        "totalCasesLastYear": 0.0
+        "totalCasesLastYear": 0.0,
+        "territoryEligible": true
       },
       "Javier Melo": {
         "rate1CaseGrowth": 0.0,
@@ -11560,7 +11660,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 10.0,
-        "totalCasesLastYear": 32.0
+        "totalCasesLastYear": 32.0,
+        "territoryEligible": true
       },
       "Jayson Romine": {
         "rate1CaseGrowth": 2105.0,
@@ -11665,7 +11766,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 4921.0,
-        "totalCasesLastYear": 3147.0
+        "totalCasesLastYear": 3147.0,
+        "territoryEligible": true
       },
       "Jim Heaney": {
         "rate1CaseGrowth": 440.0,
@@ -11750,7 +11852,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 1560.0,
-        "totalCasesLastYear": 1254.0
+        "totalCasesLastYear": 1254.0,
+        "territoryEligible": true
       },
       "John O'Donoghue": {
         "rate1CaseGrowth": 0.0,
@@ -11758,7 +11861,8 @@ const PROGRAM_DATA = {
         "rate1Lines": [],
         "rate3Lines": [],
         "totalCasesThisYear": 0.0,
-        "totalCasesLastYear": 3.0
+        "totalCasesLastYear": 3.0,
+        "territoryEligible": true
       },
       "Klejdi Lamo": {
         "rate1CaseGrowth": 1667.0,
@@ -11843,7 +11947,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 4094.0,
-        "totalCasesLastYear": 2669.0
+        "totalCasesLastYear": 2669.0,
+        "territoryEligible": true
       },
       "Matt Powierski": {
         "rate1CaseGrowth": 351.0,
@@ -11928,7 +12033,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 932.0,
-        "totalCasesLastYear": 736.0
+        "totalCasesLastYear": 736.0,
+        "territoryEligible": true
       },
       "Michael Harboy": {
         "rate1CaseGrowth": 328.0,
@@ -12023,7 +12129,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 877.0,
-        "totalCasesLastYear": 606.0
+        "totalCasesLastYear": 606.0,
+        "territoryEligible": true
       },
       "Mike Ast": {
         "rate1CaseGrowth": 2183.0,
@@ -12133,7 +12240,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 4185.0,
-        "totalCasesLastYear": 2100.0
+        "totalCasesLastYear": 2100.0,
+        "territoryEligible": true
       },
       "Nick Melissari": {
         "rate1CaseGrowth": 327.0,
@@ -12193,7 +12301,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 641.0,
-        "totalCasesLastYear": 612.0
+        "totalCasesLastYear": 612.0,
+        "territoryEligible": true
       },
       "Pablo Lopez": {
         "rate1CaseGrowth": 0.0,
@@ -12201,7 +12310,8 @@ const PROGRAM_DATA = {
         "rate1Lines": [],
         "rate3Lines": [],
         "totalCasesThisYear": 0.0,
-        "totalCasesLastYear": 7.0
+        "totalCasesLastYear": 7.0,
+        "territoryEligible": true
       },
       "Paul Mclaughlin": {
         "rate1CaseGrowth": 391.0,
@@ -12230,7 +12340,8 @@ const PROGRAM_DATA = {
         ],
         "rate3Lines": [],
         "totalCasesThisYear": 741.0,
-        "totalCasesLastYear": 656.0
+        "totalCasesLastYear": 656.0,
+        "territoryEligible": true
       },
       "Phil Ernst": {
         "rate1CaseGrowth": 889.0,
@@ -12310,7 +12421,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 2217.0,
-        "totalCasesLastYear": 1693.0
+        "totalCasesLastYear": 1693.0,
+        "territoryEligible": true
       },
       "Robin Feldman": {
         "rate1CaseGrowth": 118.0,
@@ -12375,7 +12487,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 286.0,
-        "totalCasesLastYear": 235.0
+        "totalCasesLastYear": 235.0,
+        "territoryEligible": true
       },
       "Shane Barreca": {
         "rate1CaseGrowth": 2449.0,
@@ -12480,7 +12593,8 @@ const PROGRAM_DATA = {
           }
         ],
         "totalCasesThisYear": 5837.0,
-        "totalCasesLastYear": 3639.0
+        "totalCasesLastYear": 3639.0,
+        "territoryEligible": true
       }
     }
   },
@@ -13335,7 +13449,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": false
       },
       "Alisa Acciardi": {
         "pushVolumeCE": 1.0,
@@ -13375,7 +13490,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/7/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Allison Scott": {
         "pushVolumeCE": 1.0,
@@ -13415,7 +13531,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/5/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Andrew Lundy": {
         "pushVolumeCE": 0.0,
@@ -13447,7 +13564,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": false
       },
       "Anthony Palmisano": {
         "pushVolumeCE": 65.0,
@@ -13739,7 +13857,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/4/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Brian Sengebush": {
         "pushVolumeCE": 1.0,
@@ -13779,7 +13898,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/6/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Chris Payton": {
         "pushVolumeCE": 43.0,
@@ -13994,7 +14114,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/5/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Dan Lagala": {
         "pushVolumeCE": 107.0,
@@ -14230,7 +14351,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/11/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Dave Ehlers": {
         "pushVolumeCE": 79.0,
@@ -14473,7 +14595,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/7/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Derrick Laws": {
         "pushVolumeCE": 2.0,
@@ -14513,7 +14636,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 2.0,
             "date": "8/5/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Dylan Rubino": {
         "pushVolumeCE": 0.0,
@@ -14545,7 +14669,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Hakan Sadik": {
         "pushVolumeCE": 0.0,
@@ -14577,7 +14702,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": false
       },
       "Jaime Colonna": {
         "pushVolumeCE": 0.0,
@@ -14609,7 +14735,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 1.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Javier Melo": {
         "pushVolumeCE": 0.0,
@@ -14641,7 +14768,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 8.33
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Jayson Romine": {
         "pushVolumeCE": 82.0,
@@ -14919,7 +15047,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/11/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Jim Heaney": {
         "pushVolumeCE": 32.0,
@@ -15071,7 +15200,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/10/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "John O'Donoghue": {
         "pushVolumeCE": 0.0,
@@ -15103,7 +15233,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Klejdi Lamo": {
         "pushVolumeCE": 59.0,
@@ -15402,7 +15533,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/3/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Matt Powierski": {
         "pushVolumeCE": 33.0,
@@ -15533,7 +15665,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/10/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Michael Harboy": {
         "pushVolumeCE": 5.0,
@@ -15601,7 +15734,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/4/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Mike Ast": {
         "pushVolumeCE": 45.0,
@@ -15809,7 +15943,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/7/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Nick Melissari": {
         "pushVolumeCE": 0.0,
@@ -15841,7 +15976,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 7.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Pablo Lopez": {
         "pushVolumeCE": 6.0,
@@ -15895,7 +16031,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/4/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Paul Mclaughlin": {
         "pushVolumeCE": 0.0,
@@ -15927,7 +16064,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.0
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Phil Ernst": {
         "pushVolumeCE": 47.0,
@@ -16198,7 +16336,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/11/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       },
       "Robin Feldman": {
         "pushVolumeCE": 0.0,
@@ -16230,7 +16369,8 @@ const PROGRAM_DATA = {
             "baseMonthlyAvgCE": 0.33
           }
         ],
-        "lines": []
+        "lines": [],
+        "territoryEligible": true
       },
       "Shane Barreca": {
         "pushVolumeCE": 56.0,
@@ -16459,7 +16599,8 @@ const PROGRAM_DATA = {
             "caseEquivalents": 1.0,
             "date": "8/3/2026"
           }
-        ]
+        ],
+        "territoryEligible": true
       }
     }
   }
@@ -16509,15 +16650,15 @@ const PROGRAM_LIST = [
    getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
    metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
   {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'August',
-   desc:`Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August.`,
+   desc:`Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
-   desc:`Draft (Angry Orchard / Dogfish Head): $100 new POD, $50 rebuy · Package: $10 per new single-serve placement · trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.`,
+   desc:`Draft (Angry Orchard / Dogfish Head): $100 new POD, $50 rebuy · Package: $10 per new single-serve placement · trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['boston_beer']||{}).byRep?.[rep],
    metric:d=>d.points, metricLabel:'trip bonus points', fmt:v=>v.toFixed(0)},
   {key:'new_belgium', group:'new', title:'New Belgium Draft (Summer Draft Focus)', shortTitle:'New Belgium Draft', tag:'August',
-   desc:`Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger & Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May–Aug), featured tier only.`,
+   desc:`Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger & Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May–Aug), featured tier only. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium']||{}).byRep?.[rep],
    metric:d=>d.featuredNewCount+d.featuredRebuyCount, metricLabel:'featured PODs', fmt:v=>v.toFixed(0)},
   {key:'lytt', group:'new', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
@@ -16529,7 +16670,7 @@ const PROGRAM_LIST = [
    getRep:rep=>{ const po=(PROGRAM_DATA['fall_seasonal']||{}).package_only?.byRep?.[rep]; const pd=(PROGRAM_DATA['fall_seasonal']||{}).packages_and_draft?.byRep?.[rep]; return (po||pd) ? {po,pd} : null; },
    metric:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), metricLabel:'package CE', fmt:v=>v.toFixed(1)},
   {key:'sun_cruiser', group:'ongoing', title:'Sun Cruiser Volume', shortTitle:'Sun Cruiser', tag:'May–Aug',
-   desc:`Earn payout for cases sold over last year's May–Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve).`,
+   desc:`Earn payout for cases sold over last year's May–Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve). Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep],
    metric:d=>d.rate1CaseGrowth+d.rate3CaseGrowth, metricLabel:'case growth', fmt:v=>v.toFixed(0)},
   {key:'yave', group:'ongoing', title:'Yave Tequila Launch', shortTitle:'Yave', tag:'Jul–Aug',
@@ -16549,7 +16690,7 @@ const PROGRAM_LIST = [
    getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
    metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'new_belgium_distribution', group:'ongoing', title:'New Belgium Distribution — Push Volume', shortTitle:'NB Distribution', tag:'Jul–Aug',
-   desc:`Push Volume phase only (Achieve and Retain aren't tracked here yet). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window.`,
+   desc:`Push Volume phase only (Achieve and Retain aren't tracked here yet). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
 ];
@@ -16622,6 +16763,20 @@ function metricRow(label, reward, valHtml, subHtml, barPct, barOver){
     </div>
     ${bar}
     ${subHtml?`<div class="metric-sub">${subHtml}</div>`:''}
+  </div>`;
+}
+
+function territoryBlockedCard(logoKey, title, tag, brandLabel){
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo(logoKey)}<span class="prog-name">${esc(title)}</span><span class="prog-tag">${esc(tag)}</span></div>
+    </div>
+    <div class="prog-body">
+      <div class="territory-block">
+        <div class="territory-block-title">Not Eligible — Outside Your Territory</div>
+        <div class="territory-block-text">${esc(brandLabel)} is a Core Market brand, authorized for sale only in Bergen, Passaic, Passaic-FF, Sussex, Morris 1, and Morris 3. Your route has no accounts in those counties, so this program isn't applicable to you.</div>
+      </div>
+    </div>
   </div>`;
 }
 
@@ -16722,6 +16877,7 @@ function cardPathToVictory(rep){
 function cardSamAdams(rep){
   const d = (PROGRAM_DATA['sam_adams']||{}).byRep?.[rep];
   if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('sam_adams','Sam Adams Octoberfest Fast Start','August','Samuel Adams');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('sam_adams')}<span class="prog-name">Sam Adams Octoberfest Fast Start</span><span class="prog-tag">August</span></div>
@@ -16737,6 +16893,7 @@ function cardSamAdams(rep){
 function cardBostonBeer(rep){
   const d = (PROGRAM_DATA['boston_beer']||{}).byRep?.[rep];
   if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('boston_beer','Boston Beer August Draft Blitz','August','Angry Orchard / Dogfish Head');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('boston_beer')}<span class="prog-name">Boston Beer August Draft Blitz</span><span class="prog-tag">August</span></div>
@@ -16765,6 +16922,7 @@ function cardNewBelgium(rep){
   const d = (PROGRAM_DATA['new_belgium']||{}).byRep?.[rep];
   const prog = PROGRAM_DATA['new_belgium']||{};
   if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('new_belgium','New Belgium Draft (Summer Draft Focus)','August',"Bell's / Voodoo Ranger / Fat Tire");
   const housePct = Math.min((prog.housePodsTotal||0) / (prog.houseGoal||70), 1)*100;
   return `<div class="prog-card">
     <div class="prog-head">
@@ -16832,6 +16990,7 @@ function cardFallSeasonal(rep){
 function cardSunCruiser(rep){
   const d = (PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep];
   if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('sun_cruiser','Sun Cruiser Volume','May–Aug','Sun Cruiser');
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('sun_cruiser')}<span class="prog-name">Sun Cruiser Volume</span><span class="prog-tag">May&ndash;Aug</span></div>
@@ -16921,6 +17080,7 @@ function cardGarageBeerPresident(rep){
 function cardNewBelgiumDistribution(rep){
   const d = (PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep];
   if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('new_belgium_distribution','New Belgium Distribution — Push Volume','Jul–Aug',"Bell's / Kirin / Voodoo Family");
   const brandRows = (d.brands||[]).filter(b=>b.pushVolumeCE>0 || b.baseMonthlyAvgCE>0)
     .map(b=>`<tr><td>${esc(b.label)}</td><td>${b.pushVolumeCE.toFixed(0)}</td><td>${b.baseMonthlyAvgCE.toFixed(0)}</td></tr>`).join('');
   const brandTable = brandRows ? `<table class="detail-table" style="display:table;margin-top:8px;">

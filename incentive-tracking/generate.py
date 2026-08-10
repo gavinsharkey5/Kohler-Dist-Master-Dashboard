@@ -6,6 +6,7 @@ Reads everything from data/, writes the PROGRAM_DATA JSON block into
 index.html between the START/END markers.
 """
 import csv
+import datetime
 import json
 import re
 from pathlib import Path
@@ -711,6 +712,41 @@ def load_premise_map():
     return premise
 
 
+# Per kohler_brands_whitelist_blacklist.xlsx ("Blackout Brand Fam Areas
+# (Enc)" sheet, 2026-08-10 pull): every brand family used by these five
+# programs is tagged "Core Market" territory in the workbook's "Brand
+# Family Territory (Enc)" sheet (Angry Orchard, Dogfish Head Beer,
+# Samuel Adams, Bell's/Bell's Hearted Family/Kirin Ichiban/Kirin
+# Light/Voodoo Family, Sun Cruiser), and every Core Market brand is
+# blacked out in the exact same six counties: Essex, Hudson, Middlesex,
+# Morris 2, Rockland, Union -- i.e. authorized ONLY in Bergen, Passaic,
+# Passaic-FF, Sussex, Morris 1, Morris 3. Reference file kept for audit
+# only (not parsed programmatically -- same "reference only" treatment
+# as MPOs/on-prem's copy of this same workbook), because both
+# customer_base_off_prem.csv and customer_base_on_prem.csv are already
+# pre-filtered to exactly that six-area Core Market set (verified
+# 2026-08-10: neither file contains a single non-Core-Market county),
+# so a rep's mere presence in either file already proves they have a
+# Core Market account. 1911, Woodchuck, Molly's, and both Garage Beer
+# programs are "All Counties" territory (no blackout at all) and are
+# not in this set. Tona, Lytt, and Yave don't appear anywhere in the
+# whitelist workbook (likely too new to have been added yet), so they
+# are deliberately left out of this restriction until Kohler's
+# territory tracker catches up -- do not guess a territory for them.
+CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser"}
+
+
+def load_core_market_reps():
+    """Reps with at least one account in a Core Market county -- see
+    CORE_MARKET_PROGRAMS docstring above for why simple presence in
+    either customer-base file is sufficient."""
+    reps = set()
+    for filename in ("customer_base_off_prem.csv", "customer_base_on_prem.csv"):
+        for row in read_rows(filename):
+            reps.add(row["Sales Rep Assigned"])
+    return reps
+
+
 def build_yave():
     """Yave Tequila Launch. Single-period file (7/1-8/31, no base
     period) -- like Path to Victory, there's no way to split new-POD
@@ -985,6 +1021,13 @@ def main():
         for rep, d in data[key]["byRep"].items():
             d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
 
+    core_market_reps = load_core_market_reps()
+    for key in CORE_MARKET_PROGRAMS:
+        for rep, d in data[key]["byRep"].items():
+            d["territoryEligible"] = rep in core_market_reps
+    ineligible_counts = {key: sum(1 for d in data[key]["byRep"].values() if not d["territoryEligible"]) for key in CORE_MARKET_PROGRAMS}
+    print(f"territory blackout: {ineligible_counts} reps marked ineligible (no Core Market account) per Core-Market-restricted program")
+
     for key in ("1911", "woodchuck"):
         total_new = sum(d["totalNewPlacements"] for d in data[key]["byRep"].values())
         print(f"{key}: {total_new} total new placements across roster")
@@ -1024,8 +1067,16 @@ def main():
     start = html.index(start_marker) + len(start_marker)
     end = html.index(end_marker)
     html = html[:start] + f"\nconst PROGRAM_DATA = {payload};\n" + html[end:]
+
+    today = datetime.date.today().strftime("%b %-d, %Y")
+    date_start_marker = "<!-- DATA_REFRESHED_START -->"
+    date_end_marker = "<!-- DATA_REFRESHED_END -->"
+    date_start = html.index(date_start_marker) + len(date_start_marker)
+    date_end = html.index(date_end_marker)
+    html = html[:date_start] + today + html[date_end:]
+
     INDEX_HTML.write_text(html)
-    print("Wrote PROGRAM_DATA into index.html")
+    print(f"Wrote PROGRAM_DATA into index.html, stamped Data Refreshed as {today}")
 
 
 if __name__ == "__main__":

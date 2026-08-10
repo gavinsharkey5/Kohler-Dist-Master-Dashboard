@@ -464,3 +464,66 @@ NOT part of this dashboard:
     isellbeer/display-auction-tracker/, not duplicated here.
   - Chelada / Corona Premier Summer of Success Volume Rewards (slides
     24-25) -- not requested.
+
+"Data refreshed" date (added 2026-08-10): generate.py now stamps
+today's date into the header's "Data refreshed" pill on every run
+(datetime.date.today(), written between the <!-- DATA_REFRESHED_START
+--> / <!-- DATA_REFRESHED_END --> HTML comment markers, same
+find-and-replace-between-markers pattern as PROGRAM_DATA). No more
+manually editing that string by hand.
+
+Territory blackout (added 2026-08-10, per Gavin): some brands are
+"Core Market" authorized -- sellable ONLY in Bergen, Passaic,
+Passaic-FF, Sussex, Morris 1, and Morris 3 -- while others are "All
+Counties" (sellable everywhere). A rep whose entire route falls
+outside Core Market territory (e.g. Alex Rodriguez: Union/Essex/
+Middlesex only) can never earn anything on a Core Market program, and
+showing them a "$0 / no activity" card read as underperformance
+rather than the structural ineligibility it actually is. Confirmed
+via kohler_brands_whitelist_blacklist.xlsx (kept in data/ for
+reference/audit only, NOT parsed programmatically -- same treatment
+as MPOs/on-prem's copy of this workbook): every brand family used by
+Boston Beer Draft Blitz, Sam Adams Octoberfest, New Belgium Draft,
+New Belgium Distribution, and Sun Cruiser Volume is tagged "Core
+Market" in the workbook's "Brand Family Territory (Enc)" sheet, and
+every Core Market brand is blacked out in the exact same six
+counties (Essex, Hudson, Middlesex, Morris 2, Rockland, Union) per
+the "Blackout Brand Fam Areas (Enc)" sheet -- i.e. authorized in
+exactly the same six-county set already used elsewhere in this repo
+(MPOs/on-prem's ALLOWED_TARGET_COUNTIES). 1911, Woodchuck, Molly's,
+and both Garage Beer programs are "All Counties" brands and were
+never in scope for this.
+
+Rather than parsing the workbook, generate.py's load_core_market_reps()
+(see CORE_MARKET_PROGRAMS docstring in generate.py for the full
+reasoning) exploits a shortcut: both customer_base_off_prem.csv and
+customer_base_on_prem.csv are ALREADY pre-filtered to exactly that
+six-county Core Market set (verified 2026-08-10 -- neither file has
+ever contained a non-Core-Market county), so a rep's mere presence in
+either file already proves they have a Core Market account. No
+county-name matching or workbook parsing needed. A rep with accounts
+in both Core Market and non-Core-Market counties is still fully
+eligible (per Gavin, 2026-08-10: any Core Market account is enough,
+no partial-eligibility treatment).
+
+For an ineligible rep, each of the five affected programs' cards
+(cardBostonBeer/cardSamAdams/cardNewBelgium/
+cardNewBelgiumDistribution/cardSunCruiser in index.html) render
+territoryBlockedCard() instead of their normal metrics -- a plain
+"Not Eligible -- Outside Your Territory" notice naming the brand and
+the six allowed counties, rather than a misleading all-zero card. The
+five programs' overview-tile descriptions also got a one-line note
+about the Core Market restriction so reps understand upfront why a
+tile might not apply to them. Ranking pages / leaderboards were left
+untouched (ineligible reps just show 0 there, mixed in with genuinely
+inactive-but-eligible reps) -- per Gavin, 2026-08-10, this wasn't
+asked for and the "clear notice" treatment is scoped to the card
+level only.
+
+KNOWN GAP: Tona, Lytt, and Yave don't appear anywhere in
+kohler_brands_whitelist_blacklist.xlsx's 293-brand territory list
+(likely just too new to have been added to Kohler's tracker yet), so
+they are deliberately NOT included in CORE_MARKET_PROGRAMS -- every
+rep is treated as eligible for all three regardless of territory.
+Do not guess a territory for them; wait for Kohler's workbook to add
+them, or ask Gavin directly.
