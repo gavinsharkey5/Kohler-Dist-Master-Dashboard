@@ -255,8 +255,8 @@ Files:
                                         sold in every county (same
                                         precedent as on-prem's
                                         Yave/Leyenda).
-    generate_2026-08.py               Rebuilds the eight JSON files
-                                        above (six datasets + two
+    generate_2026-08.py               Rebuilds the nine JSON files
+                                        above (six datasets + three
                                         Target Accounts files).
 
   index.html   The page itself (shared by every month).
@@ -287,20 +287,26 @@ To refresh August manually:
      sanity check against what you'd expect.
   3. Commit and push.
 
-Target Accounts (added 2026-08-05): a per-rep "who to go after"
-prospect list -- accounts in a rep's OWN off-premise core territory
-that don't carry the brand yet -- shown as a collapsed amber toggle
-under that rep's activity table on both the Corona Premier and Molson
-Coors Peroni/Banquet cards (rep view and objective view alike). Same
-groupTargetsByRep()/targetsBlockHtml() pattern as on-prem's Angry
-Orchard/Molson Coors (see on-prem/index.html), fed by
-mpo_targets_corona_premier.json and mpo_targets_molson_coors.json
+Target Accounts (added 2026-08-05, extended to BBC Lytt 2026-08-10): a
+per-rep "who to go after" prospect list -- accounts in a rep's OWN
+off-premise core territory that don't carry the brand yet -- shown as
+a collapsed amber toggle under that rep's activity table on the
+Corona Premier, Molson Coors Peroni/Banquet, and BBC Lytt cards (rep
+view and objective view alike). Same groupTargetsByRep()/
+targetsBlockHtml() pattern as on-prem's Angry Orchard/Molson Coors
+(see on-prem/index.html), fed by mpo_targets_corona_premier.json,
+mpo_targets_molson_coors.json, and mpo_targets_bbc_lytt.json
 (generate_2026-08.py's build_targets(), scoped by
 sales_reps_customer_base_core.csv -- see that file's entry above).
 Wine & Spirits has no Target Accounts card since it isn't
-territory-restricted, and BBC Lytt already IS a "which of your
-accounts don't carry it yet" objective by construction, so it doesn't
-need a separate Target Accounts block.
+territory-restricted. BBC Lytt's Target Accounts sits alongside its
+existing "Lytt Accounts" list (lineTableLytt() -- accounts that
+ALREADY carry Lytt, grouped by customer) rather than replacing it: the
+"Lytt Accounts" list shows progress made, Target Accounts shows what's
+left to reach 25% of the account base. already_carrying() reads BBC
+Lytt's numerator export by its "Customer ID" column (id_col param --
+every other Target Accounts source uses "Customer Num") since
+bbc_lytt_distro.csv names that column differently.
 
 Note (2026-08-05): as of that refresh, RDE started splitting Molson
 Coors' and Wine & Spirits' "Placement Count"/"Cases" columns into TWO

@@ -321,7 +321,8 @@ const MONTHS = [
   {key:'2026-08', label:'August 2026', dir:'data/2026-08/', objectives: OBJECTIVES_2026_08, tables: [
     {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements',
       targetsFile:'mpo_targets_corona_premier.json'},
-    {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25},
+    {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25,
+      targetsFile:'mpo_targets_bbc_lytt.json'},
     {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts',
       targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},
@@ -730,7 +731,13 @@ async function loadMonth(monthKey){
         const [baseRows, numRows] = await Promise.all([loadJSON(t.baseFile), loadJSON(t.numFile)]);
         if(baseRows){
           const built=buildPctOfBaseDataset(baseRows, numRows||[], t.pct);
-          if(built) DATA[t.objKey]=built;
+          if(built){
+            DATA[t.objKey]=built;
+            if(t.targetsFile){
+              const trows=await loadJSON(t.targetsFile);
+              if(trows) built.targetsByRep=groupTargetsByRep(trows);
+            }
+          }
         }
         continue;
       }
@@ -1094,7 +1101,7 @@ function renderRepView(){
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = lineTableLytt(r.lines);
+      inner.innerHTML = lineTableLytt(r.lines) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1364,7 +1371,8 @@ function renderObjectiveView(){
           <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.qualifying} / ${r.target}${over?'<span class="over-badge">+'+(r.qualifying-r.target)+' over</span>':''}</td>
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="4">${lineTableLytt(r.lines)}</td></tr>`;
+        const tgtHtml = targetsBlockHtml((d.targetsByRep||{})[repName], o.shortName||o.name);
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="4">${lineTableLytt(r.lines)}${tgtHtml}</td></tr>`;
       });
       table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);

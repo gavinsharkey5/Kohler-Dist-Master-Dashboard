@@ -555,14 +555,16 @@ def load_core_customer_base():
     return by_rep
 
 
-def already_carrying(path, brand_filter=None, brand_of=None):
+def already_carrying(path, brand_filter=None, brand_of=None, id_col="Customer Num"):
     """Customer Nums with ANY row in a brand's raw export -- recent
     purchase history, whether or not that row was flagged NEW_PLACEMENT.
     This stays BRAND-level even for Molson Coors (pass brand_of to derive
     a brand from a column other than "Brand Family", e.g. Product Name)
     -- Target Accounts is a "hasn't touched this brand at all" prospect
     list, a different question from the product-level 90-day-non-buy
-    classification in build_molson_coors()/classify_dual_period()."""
+    classification in build_molson_coors()/classify_dual_period(). BBC
+    Lytt's export names the id column "Customer ID" instead of "Customer
+    Num" (see build_bbc_lytt_numerator()), hence id_col."""
     rows = load_csv(path)
     out = set()
     for r in rows:
@@ -570,7 +572,7 @@ def already_carrying(path, brand_filter=None, brand_of=None):
             brand = brand_of(r) if brand_of else r.get("Brand Family", "")
             if brand.strip().lower() != brand_filter.lower():
                 continue
-        out.add(r["Customer Num"].strip())
+        out.add(r[id_col].strip())
     return out
 
 
@@ -659,6 +661,7 @@ def main():
 
     core_by_rep = load_core_customer_base()
     targets_corona_premier = build_targets(core_by_rep, already_carrying(CORONA_PREMIER_CSV))
+    targets_bbc_lytt = build_targets(core_by_rep, already_carrying(BBC_LYTT_CSV, id_col="Customer ID"))
 
     molson_coors_raw_rows = load_csv(MOLSON_COORS_CSV)
     molson_coors_brand_of = lambda r: derive_brand_family(r["Product Name"])
@@ -676,6 +679,7 @@ def main():
     (month_dir / "mpo_sales_reps_customer_base.json").write_text(json.dumps(customer_base_rows, indent=2))
     (month_dir / "mpo_sales_reps_customer_base_core.json").write_text(json.dumps(customer_base_core_rows, indent=2))
     (month_dir / "mpo_targets_corona_premier.json").write_text(json.dumps(targets_corona_premier, indent=2))
+    (month_dir / "mpo_targets_bbc_lytt.json").write_text(json.dumps(targets_bbc_lytt, indent=2))
     (month_dir / "mpo_targets_molson_coors.json").write_text(json.dumps(targets_molson_coors, indent=2))
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -696,6 +700,7 @@ def main():
           f"{len(customer_base_core_rows)} rows written")
     print(f"Off-Premise Core Territory: {distinct_core} distinct rep+customer pairs across {len(core_by_rep)} reps")
     print(f"Target accounts -- Corona Premier: {len(targets_corona_premier)} prospects across all reps (core territory only)")
+    print(f"Target accounts -- BBC Lytt: {len(targets_bbc_lytt)} prospects across all reps (core territory only)")
     peroni_products = len(list_products(molson_coors_raw_rows, molson_coors_brand_of, "Peroni"))
     coors_products = len(list_products(molson_coors_raw_rows, molson_coors_brand_of, "Coors"))
     peroni_distinct = len({(r["SALES_REP_ASSIGNED"], r["CUSTOMER_NUM"]) for r in targets_peroni})
