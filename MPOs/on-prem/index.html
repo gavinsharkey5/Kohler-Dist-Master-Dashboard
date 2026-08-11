@@ -147,6 +147,11 @@
   .no-lines{color:var(--text-dim);font-size:12.5px;padding:10px 24px 14px 38px;}
   .empty-state{color:var(--text-dim);font-size:13px;padding:6px 2px 2px;}
   .rep-row-nodata td{color:var(--text-dim);opacity:0.6;}
+  /* Reps with only 1 remaining Target Account for a "new_accounts" objective
+     have almost no room left to hit goal off fresh prospects -- greyed out
+     so the list reads as low-opportunity rather than under-performing,
+     per Gavin, 2026-08-11 (Angry Orchard specifically). */
+  .rep-row-lowtarget td{color:var(--text-dim);opacity:0.55;}
 
   .empty-obj{padding:22px 24px;color:var(--text-dim);font-size:14px;display:flex;align-items:center;justify-content:space-between;}
   .empty-tag{font-size:11px;background:var(--card-alt);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--text-dim);}
@@ -933,7 +938,8 @@ function renderObjectiveView(){
         const rp = Math.min(qualifying/target,1)*100;
         const hit = qualifying>=target;
         const over = qualifying>target;
-        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+        const lowTarget = o.key==='angry_orchard' && myTargets && myTargets.length===1;
+        bodyRows += `<tr class="rep-row${lowTarget?' rep-row-lowtarget':''}" data-target="${rowId}">
           <td><span class="rep-chev">▶</span>${repName}</td>
           <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${qualifying} / ${target}${over?'<span class="over-badge">+'+(qualifying-target)+' over</span>':''}</td>
           <td>${r?(hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'):'<span class="flag-miss">No activity</span>'}</td>
