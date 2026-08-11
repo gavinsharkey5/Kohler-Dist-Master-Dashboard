@@ -249,6 +249,15 @@
   tbody tr:hover td.grp-brewery{background:rgba(244,184,62,.16)}
   tbody tr:hover td.grp-kohler{background:rgba(78,124,232,.16)}
 
+  /* Toolbar labels (added 2026-08-11, per Gavin) pointing at the Goal %/
+     Goal CE/Gap column pairs below -- same colors as their thead th.grp-*
+     styling above, so it's obvious which 3-column group is which before
+     your eye even gets to the table header. */
+  .goal-col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    padding:6px 12px;border-radius:7px;white-space:nowrap}
+  .goal-col-label.brewery{background:rgba(244,184,62,.22);color:var(--brewery)}
+  .goal-col-label.kohler{background:rgba(78,124,232,.22);color:var(--kohler)}
+
   .combo-suprow td{background:#100B06;font-weight:600;border-bottom:1px solid var(--line)}
   .combo-suprow:hover td{background:#1A130C}
   .combo-name{text-align:left!important;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -389,6 +398,8 @@
         <span class="rowcount" id="editBadge"></span>
         <button class="btn" id="exportBtn">Export CSV</button>
         <div class="spacer"></div>
+        <span class="goal-col-label brewery">Brewery Goal</span>
+        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="rowcount"></span>
       </div>
 
@@ -524,6 +535,8 @@
         <span class="rowcount" id="supplierEditBadge"></span>
         <button class="btn" id="supplierExportBtn">Export CSV</button>
         <div class="spacer"></div>
+        <span class="goal-col-label brewery">Brewery Goal</span>
+        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="supplierRowcount"></span>
       </div>
 
@@ -593,6 +606,8 @@
         <span class="rowcount" id="comboEditBadge"></span>
         <button class="btn" id="comboExportBtn">Export CSV</button>
         <div class="spacer"></div>
+        <span class="goal-col-label brewery">Brewery Goal</span>
+        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="comboRowcount"></span>
       </div>
 
