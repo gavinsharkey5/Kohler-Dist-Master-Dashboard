@@ -210,13 +210,32 @@
   .legend .item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);font-weight:600}
   .legend .sw{width:13px;height:13px;border-radius:4px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
 
-  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  /* overflow-y:auto + max-height (added 2026-08-11, per Gavin, "freeze
+     column headers on scroll") is load-bearing, not decorative -- with
+     only overflow-x:auto set, the CSS spec forces overflow-y to also
+     compute as "auto" (you can't have one axis visible and the other
+     not), which silently makes .tablewrap itself the sticky containing
+     block for thead th below. Since .tablewrap's height used to be
+     unbounded (auto-sized to fit every row), it never actually scrolled
+     internally, so thead th's position:sticky had nothing to stick
+     against and just scrolled off with the page -- confirmed by direct
+     testing, not a hunch. Bounding the height here gives .tablewrap a
+     real internal scrollbar, which makes the sticky header actually
+     freeze at the top of the table as you scroll it. */
+  .tablewrap{overflow-x:auto;overflow-y:auto;max-height:70vh;border:1px solid var(--line);border-radius:12px}
   table{border-collapse:collapse;table-layout:fixed;margin:0 auto}
-  thead th{position:sticky;top:0;background:#1C130C;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
+  thead th{position:sticky;top:0;z-index:2;background:#1C130C;text-align:center;font-size:11px;font-weight:600;color:var(--ink-soft);
     text-transform:uppercase;letter-spacing:.02em;padding:9px 6px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;
     overflow:hidden;text-overflow:ellipsis}
   thead th:hover{color:var(--ink)}
   thead th .arrow{opacity:.5;font-size:9px;margin-left:2px}
+  /* Group-label row (added 2026-08-11, per Gavin) -- "Brewery Goal"/
+     "Kohler Goal" spanning their 3-column group, not individually
+     sortable, so no pointer cursor/hover like the real column headers. */
+  thead th.grouphead{cursor:default;z-index:3}
+  thead th.grouphead:hover{color:var(--ink-soft)}
+  thead th.grouphead.grp-brewery:hover{color:var(--brewery)}
+  thead th.grouphead.grp-kohler:hover{color:var(--kohler)}
   tbody td{padding:8px 7px;border-bottom:1px solid var(--line-soft);font-size:13.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
   tbody tr:hover td{background:var(--card-h)}
   .brandname{font-weight:600;color:var(--ink)}
@@ -240,23 +259,21 @@
 
   .grp-brewery{background:rgba(244,184,62,.10)}
   .grp-kohler{background:rgba(78,124,232,.10)}
-  thead th.grp-brewery{background:rgba(244,184,62,.22);color:var(--brewery)}
-  thead th.grp-kohler{background:rgba(78,124,232,.22);color:var(--kohler)}
+  /* Solid, NOT rgba like the tbody's own .grp-brewery/.grp-kohler tint --
+     these headers are position:sticky, stacked two rows deep (added
+     2026-08-11), so a semi-transparent background would let scrolled-past
+     table rows show through underneath as the user scrolls. Values are
+     rgba(244,184,62,.22) / rgba(78,124,232,.22) pre-composited over the
+     thead's own #1C130C base, so they look identical to the old
+     translucent version but are actually opaque. */
+  thead th.grp-brewery{background:#4C3717;color:var(--brewery)}
+  thead th.grp-kohler{background:#272A3C;color:var(--kohler)}
   thead th.grp-brewery:hover,thead th.grp-kohler:hover{color:var(--ink)}
   th.grp-first,td.grp-first{border-left:3px solid var(--line)}
   th.grp-brewery.grp-first{border-left-color:var(--brewery)}
   th.grp-kohler.grp-first{border-left-color:var(--kohler)}
   tbody tr:hover td.grp-brewery{background:rgba(244,184,62,.16)}
   tbody tr:hover td.grp-kohler{background:rgba(78,124,232,.16)}
-
-  /* Toolbar labels (added 2026-08-11, per Gavin) pointing at the Goal %/
-     Goal CE/Gap column pairs below -- same colors as their thead th.grp-*
-     styling above, so it's obvious which 3-column group is which before
-     your eye even gets to the table header. */
-  .goal-col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
-    padding:6px 12px;border-radius:7px;white-space:nowrap}
-  .goal-col-label.brewery{background:rgba(244,184,62,.22);color:var(--brewery)}
-  .goal-col-label.kohler{background:rgba(78,124,232,.22);color:var(--kohler)}
 
   .combo-suprow td{background:#100B06;font-weight:600;border-bottom:1px solid var(--line)}
   .combo-suprow:hover td{background:#1A130C}
@@ -398,8 +415,6 @@
         <span class="rowcount" id="editBadge"></span>
         <button class="btn" id="exportBtn">Export CSV</button>
         <div class="spacer"></div>
-        <span class="goal-col-label brewery">Brewery Goal</span>
-        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="rowcount"></span>
       </div>
 
@@ -412,7 +427,7 @@
             <col style="width:4.40%"><col style="width:4.83%"><col style="width:6.33%">
             <col style="width:7.78%">
           </colgroup>
-          <thead><tr id="theadRow"></tr></thead>
+          <thead><tr id="theadGroupRow"></tr><tr id="theadRow"></tr></thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
@@ -535,8 +550,6 @@
         <span class="rowcount" id="supplierEditBadge"></span>
         <button class="btn" id="supplierExportBtn">Export CSV</button>
         <div class="spacer"></div>
-        <span class="goal-col-label brewery">Brewery Goal</span>
-        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="supplierRowcount"></span>
       </div>
 
@@ -549,7 +562,7 @@
             <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
             <col style="width:8.82%">
           </colgroup>
-          <thead><tr id="supplierTheadRow"></tr></thead>
+          <thead><tr id="supplierTheadGroupRow"></tr><tr id="supplierTheadRow"></tr></thead>
           <tbody id="supplierTbody"></tbody>
         </table>
       </div>
@@ -606,8 +619,6 @@
         <span class="rowcount" id="comboEditBadge"></span>
         <button class="btn" id="comboExportBtn">Export CSV</button>
         <div class="spacer"></div>
-        <span class="goal-col-label brewery">Brewery Goal</span>
-        <span class="goal-col-label kohler">Kohler Goal</span>
         <span class="rowcount" id="comboRowcount"></span>
       </div>
 
@@ -620,7 +631,7 @@
             <col style="width:4.99%"><col style="width:5.47%"><col style="width:7.18%">
             <col style="width:8.82%">
           </colgroup>
-          <thead><tr id="comboTheadRow"></tr></thead>
+          <thead><tr id="comboTheadGroupRow"></tr><tr id="comboTheadRow"></tr></thead>
           <tbody id="comboTbody"></tbody>
         </table>
       </div>
@@ -825,6 +836,13 @@ function switchTab(view){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.view===view));
   document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active', x.id==='view-'+view));
   clearSelection();
+  // Re-measure the 2-row sticky header's offset now that this tab's table
+  // is actually visible (see syncSubHeadTop() for why the very first
+  // measurement, taken while every tab renders during init(), can be
+  // wrong for whichever tabs aren't active yet).
+  if (view==='goal') syncSubHeadTop(document.getElementById('theadGroupRow'), document.getElementById('theadRow'));
+  if (view==='suppliers') syncSubHeadTop(document.getElementById('supplierTheadGroupRow'), document.getElementById('supplierTheadRow'));
+  if (view==='combo') syncSubHeadTop(document.getElementById('comboTheadGroupRow'), document.getElementById('comboTheadRow'));
 }
 
 document.addEventListener('click', e=>{
@@ -855,27 +873,95 @@ function filteredSorted(){
   return rows;
 }
 
-function renderHead(){
-  const tr = document.getElementById('theadRow');
-  tr.innerHTML = '';
-  COLS.forEach(c=>{
-    const th = document.createElement('th');
-    if (c.kind!=='text') th.classList.add('num');
-    if (c.group) th.classList.add('grp-'+c.group);
-    if (c.first) th.classList.add('grp-first');
-    th.textContent = c.label;
-    th.title = c.full || c.label;
-    if (SORT.key===c.key){
-      const a = document.createElement('span'); a.className='arrow'; a.textContent = SORT.dir==='asc'?'▲':'▼';
-      th.appendChild(a);
-    }
-    th.addEventListener('click', ()=>{
-      if (c.kind==='editpct') return; // editing col isn't sortable
-      if (SORT.key===c.key) SORT.dir = SORT.dir==='asc'?'desc':'asc'; else { SORT.key=c.key; SORT.dir='asc'; }
-      renderTable();
-    });
-    tr.appendChild(th);
+// Shared by renderHead()/renderSupplierHead()/renderComboHead() -- builds
+// one column's real <th> (label, sort arrow, click-to-sort) for the
+// sub-header row.
+function buildColTh(c, sortState, onSortClick){
+  const th = document.createElement('th');
+  if (c.kind!=='text') th.classList.add('num');
+  if (c.group) th.classList.add('grp-'+c.group);
+  if (c.first) th.classList.add('grp-first');
+  th.textContent = c.label;
+  th.title = c.full || c.label;
+  if (sortState.key===c.key){
+    const a = document.createElement('span'); a.className='arrow'; a.textContent = sortState.dir==='asc'?'▲':'▼';
+    th.appendChild(a);
+  }
+  th.addEventListener('click', ()=>{
+    if (c.kind==='editpct') return; // editing col isn't sortable
+    if (sortState.key===c.key) sortState.dir = sortState.dir==='asc'?'desc':'asc'; else { sortState.key=c.key; sortState.dir='asc'; }
+    onSortClick();
   });
+  return th;
+}
+
+// Builds both header rows for a goal-tracking table: a "Brewery Goal" /
+// "Kohler Goal" group-label row on top (added 2026-08-11, per Gavin, so
+// the labels sit directly above their own 3-column group instead of
+// floating in the toolbar -- colspan guarantees exact alignment no matter
+// the table's width or horizontal scroll position) with blank filler
+// cells over every non-grouped column, and the existing sub-header row
+// underneath with every column's own label (unchanged from before this
+// was a 2-row header). Deliberately NOT using rowspan on the filler
+// cells to merge them visually into one tall cell -- Chromium has a
+// long-standing bug where a sticky <th rowspan> breaks position:sticky
+// for the ENTIRE header row it's in (confirmed by hand: swapping rowspan
+// for two independently-sticky rows, one of them blank, was the fix).
+// Both rows are position:sticky (see thead th CSS) -- the sub-header
+// row's own "top" offset is pinned to the group row's rendered height
+// here so the two stack correctly under each other on scroll instead of
+// overlapping. Shared by the By Brand Family, By Supplier, and
+// Supplier + Brand tabs, which all use the same column-group shape.
+function renderHeadRows(groupRowEl, subRowEl, cols, sortState, onSortClick){
+  groupRowEl.innerHTML = '';
+  subRowEl.innerHTML = '';
+  let i = 0;
+  while (i < cols.length){
+    const c = cols[i];
+    if (c.group){
+      let j = i;
+      while (j < cols.length && cols[j].group === c.group) j++;
+      const gth = document.createElement('th');
+      gth.className = `grp-${c.group} grouphead`;
+      gth.colSpan = j - i;
+      gth.textContent = c.group === 'brewery' ? 'Brewery Goal' : 'Kohler Goal';
+      groupRowEl.appendChild(gth);
+      i = j;
+    } else {
+      const blank = document.createElement('th');
+      blank.className = 'grouphead-blank';
+      if (c.kind!=='text') blank.classList.add('num');
+      groupRowEl.appendChild(blank);
+      i++;
+    }
+  }
+  cols.forEach(c=>subRowEl.appendChild(buildColTh(c, sortState, onSortClick)));
+  // "top" for position:sticky has to be set on each individual <th> cell,
+  // not the <tr> itself -- a <tr> is always position:static (sticky only
+  // ever applies to actual table cells), so setting it on the row is a
+  // silent no-op: every sub-header cell keeps inheriting the base
+  // thead th{top:0} rule and sticks flush at the very top of the
+  // scrollport, overlapping the group row above it instead of sitting
+  // right below it.
+  requestAnimationFrame(()=>syncSubHeadTop(groupRowEl, subRowEl));
+}
+
+// groupRowEl.offsetHeight reads 0 if this table's tab isn't the active one
+// yet (an inactive .view is display:none, so nothing inside it has a
+// layout box) -- renderHeadRows() gets called for every tab up front
+// during init(), well before the user has switched to most of them, so
+// the very first offsetHeight read for an inactive tab bakes in a wrong
+// "0px" that never gets corrected once display:none lifts. switchTab()
+// calls this again for whichever tab just became visible, by which point
+// offsetHeight reads correctly.
+function syncSubHeadTop(groupRowEl, subRowEl){
+  if (!groupRowEl || !subRowEl) return;
+  const top = groupRowEl.offsetHeight + 'px';
+  Array.from(subRowEl.children).forEach(th=>{ th.style.top = top; });
+}
+
+function renderHead(){
+  renderHeadRows(document.getElementById('theadGroupRow'), document.getElementById('theadRow'), COLS, SORT, renderTable);
 }
 
 // ---- "What-if" goal-edit persistence (added 2026-08-11, per Gavin) ----
@@ -1227,26 +1313,7 @@ function supplierFilteredSorted(){
 }
 
 function renderSupplierHead(){
-  const tr = document.getElementById('supplierTheadRow');
-  tr.innerHTML = '';
-  SUP_COLS.forEach(c=>{
-    const th = document.createElement('th');
-    if (c.kind!=='text') th.classList.add('num');
-    if (c.group) th.classList.add('grp-'+c.group);
-    if (c.first) th.classList.add('grp-first');
-    th.textContent = c.label;
-    th.title = c.full || c.label;
-    if (SUP_SORT.key===c.key){
-      const a = document.createElement('span'); a.className='arrow'; a.textContent = SUP_SORT.dir==='asc'?'▲':'▼';
-      th.appendChild(a);
-    }
-    th.addEventListener('click', ()=>{
-      if (c.kind==='editpct') return;
-      if (SUP_SORT.key===c.key) SUP_SORT.dir = SUP_SORT.dir==='asc'?'desc':'asc'; else { SUP_SORT.key=c.key; SUP_SORT.dir='asc'; }
-      renderSupplierTable();
-    });
-    tr.appendChild(th);
-  });
+  renderHeadRows(document.getElementById('supplierTheadGroupRow'), document.getElementById('supplierTheadRow'), SUP_COLS, SUP_SORT, renderSupplierTable);
 }
 
 function onSupplierPctEdit(key, field, val){
@@ -1623,26 +1690,7 @@ function renderComboOverallInfo(){
 }
 
 function renderComboHead(){
-  const tr = document.getElementById('comboTheadRow');
-  tr.innerHTML = '';
-  COMBO_COLS.forEach(c=>{
-    const th = document.createElement('th');
-    if (c.kind!=='text') th.classList.add('num');
-    if (c.group) th.classList.add('grp-'+c.group);
-    if (c.first) th.classList.add('grp-first');
-    th.textContent = c.label;
-    th.title = c.full || c.label;
-    if (COMBO_SORT.key===c.key){
-      const a = document.createElement('span'); a.className='arrow'; a.textContent = COMBO_SORT.dir==='asc'?'▲':'▼';
-      th.appendChild(a);
-    }
-    th.addEventListener('click', ()=>{
-      if (c.kind==='editpct') return;
-      if (COMBO_SORT.key===c.key) COMBO_SORT.dir = COMBO_SORT.dir==='asc'?'desc':'asc'; else { COMBO_SORT.key=c.key; COMBO_SORT.dir='asc'; }
-      renderComboTable();
-    });
-    tr.appendChild(th);
-  });
+  renderHeadRows(document.getElementById('comboTheadGroupRow'), document.getElementById('comboTheadRow'), COMBO_COLS, COMBO_SORT, renderComboTable);
 }
 
 function renderComboRows(groups){

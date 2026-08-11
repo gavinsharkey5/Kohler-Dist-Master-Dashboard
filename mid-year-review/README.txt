@@ -832,3 +832,34 @@ Notes:
     that manager would otherwise show up blank: New Brand Families
     (Snow Beer, under Ever Grand Group LLC), By Brand Family (Fresca
     Mixed, under Sazerac Inc), By Supplier, and Supplier + Brand.
+  - "Brewery Goal"/"Kohler Goal" group-label header row + frozen
+    (position:sticky) column headers (added 2026-08-11, per Gavin) on
+    all three goal-tracking tabs. Two real gotchas worth knowing if
+    this ever needs touching again:
+      1. Chromium breaks position:sticky for an ENTIRE header row if
+         any <th> in it has rowspan > 1 -- confirmed by hand, not just
+         a hunch. The group-label row therefore uses blank filler <th>
+         cells over the non-grouped columns instead of one rowspan=2
+         cell, styled to look merged with the sub-header row below.
+      2. A <tr> is always position:static -- only actual <th>/<td>
+         cells can be sticky -- so the sub-header row's "sit right
+         below the group row" offset has to be set on each of ITS
+         OWN <th> cells' inline top (see syncSubHeadTop() in
+         index.html), not on the <tr>. That offset is measured via
+         groupRowEl.offsetHeight, which reads 0 for any tab that isn't
+         the active/visible one yet (display:none has no layout box) --
+         switchTab() re-syncs it for whichever tab just became visible,
+         on top of the one-time measurement in renderHeadRows() itself.
+      3. .tablewrap needed a real max-height + overflow-y:auto to make
+         position:sticky do anything at all -- with only overflow-x:auto
+         set, the CSS spec forces overflow-y to also compute "auto",
+         which silently makes .tablewrap the sticky containing block,
+         but since it had no height limit before, it never actually
+         scrolled internally and the sticky header just scrolled off
+         with the rest of the page. The table now scrolls in its own
+         bounded box (max-height:70vh) instead of the whole page
+         growing arbitrarily tall.
+    Also: thead th.grp-brewery/.grp-kohler had to switch from a
+    translucent rgba() tint to an opaque solid color once two sticky
+    rows were genuinely stacking -- the old rgba let scrolled-past
+    rows show through underneath as bleed-through.
