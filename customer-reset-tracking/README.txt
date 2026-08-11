@@ -7,7 +7,7 @@ the top of the page): the 2026 resets (the main focus, and the default tab)
 and the 2025 resets. Each is its own roster + sales export + methodology
 run -- they aren't blended together.
 
-Methodology (v7, 2026-08-11 -- see the changelog below for what changed
+Methodology (v8, 2026-08-11 -- see the changelog below for what changed
 and when):
   - The account table has two date-view modes, switched with a button pair
     above it:
@@ -64,19 +64,19 @@ and when):
     "Data quality: the 'Misc' bucket" below.
   - First-time vs. repeat reset tracking has been REMOVED (was in v1/v2) --
     see "v2 -> v3" below.
-  - The 3-Mo and YTD Lift KPI tiles each carry a "supplier spotlight"
-    (added 2026-08-11, replacing an earlier version of this page's
-    per-tile "best Segment" / "top riser" callouts, which were removed
-    the same day at Kohler's request): every Brand Family under
-    SPOTLIGHT_SUPPLIER ("Constellation Brands" -- Corona, Modelo,
-    Pacifico, Victoria, The Drop; 15 Brand Families in the 2026 cohort's
-    data, 16 in 2025's, since only 2025 has any "Corona Seltzer" rows),
-    blended across every evaluated account using that tile's own window
-    (each account's reset-anchored window for 3-Mo, the cohort's YTD
-    window for YTD) -- same math as the tile's own overall number, just
-    filtered to one supplier, plus each individual brand's own number
-    listed underneath. This is its OWN total, not a subset that sums into
-    the tile's overall number above it (it only covers one supplier's
+  - Accounts Evaluated / 3-Mo Lift / YTD Lift are ONE combined card (the
+    "kpi-mega" -- was three separate tiles through v7, merged 2026-08-11)
+    with a single "supplier spotlight" underneath, collapsed by default
+    behind a <details> (click "Constellation Brands ..." to expand): every
+    Brand Family under SPOTLIGHT_SUPPLIER ("Constellation Brands" --
+    Corona, Modelo, Pacifico, Victoria, The Drop; 15 Brand Families in the
+    2026 cohort's data, 16 in 2025's, since only 2025 has any "Corona
+    Seltzer" rows), blended across every evaluated account, with BOTH a
+    3-Mo column (each account's own reset-anchored window) and a YTD
+    column (the cohort's YTD window) per brand side by side -- same math
+    as the card's own 3-Mo/YTD numbers above it, just filtered to one
+    supplier. This is its OWN total, not a subset that sums into the
+    card's overall numbers above it (it only covers one supplier's
     brands, not the full roster). Constellation's own resets are running
     well ahead of the full-roster blended number in both cohorts (2026:
     +3.6% 3-mo / +3.1% YTD vs. the overall +0.6% either way).
@@ -146,6 +146,18 @@ independently released before v6's changes landed on top of it):
      NOT changed to match; Kohler explicitly asked to leave 2025 as
      full-year Jan-Dec, only fix 2026.
 
+v7 -> v8 (2026-08-11, same day as v6->v7 above): two more changes at
+Kohler's request --
+  1. The three Overall tiles (Accounts Evaluated, 3-Mo Lift, YTD Lift)
+     were merged into one combined card ("kpi-mega" in index.html) instead
+     of three separate boxes.
+  2. The Constellation Brands spotlight -- previously duplicated once
+     under the 3-Mo tile (3-Mo numbers only) and once under the YTD tile
+     (YTD numbers only) -- is now ONE spotlight shared by the combined
+     card, showing both a 3-Mo and a YTD column per brand side by side,
+     and it's collapsed behind a <details>/<summary> by default (click to
+     expand the 15/16-brand list) instead of always being fully expanded.
+
 v6 -> v7 (2026-08-11, same day as v4->v6 above): two more changes at
 Kohler's request --
   1. Removed the "of N total accounts / up / down YTD / no comparison"
@@ -205,7 +217,7 @@ close to v2/v3's 2026-cohort year-over-year number below despite the
 completely different data source, window definition, and metric -- read
 that agreement as corroboration, not a coincidence to wave away.
 
-Key findings so far (v7, 2026-08-11 -- the "before -> after" numbers below
+Key findings so far (v8, 2026-08-11 -- the "before -> after" numbers below
 are computed but no longer shown on the page itself, see methodology):
   2026 cohort (73 of 73 accounts evaluated) -- MAIN FOCUS:
     - Blended 3-month Cases lift (year-over-year): +0.6% (33 up / 38 down /
