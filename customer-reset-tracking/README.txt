@@ -7,7 +7,7 @@ the top of the page): the 2026 resets (the main focus, and the default tab)
 and the 2025 resets. Each is its own roster + sales export + methodology
 run -- they aren't blended together.
 
-Methodology (v6, 2026-08-11 -- see the changelog below for what changed
+Methodology (v7, 2026-08-11 -- see the changelog below for what changed
 and when):
   - The account table has two date-view modes, switched with a button pair
     above it:
@@ -64,16 +64,22 @@ and when):
     "Data quality: the 'Misc' bucket" below.
   - First-time vs. repeat reset tracking has been REMOVED (was in v1/v2) --
     see "v2 -> v3" below.
-  - Each Overall KPI tile carries a small highlighted callout (best
-    Segment on Accounts Evaluated; top-riser account on the two Lift
-    tiles). One account, Costambar Bar & Liquor (2026 cohort), is
-    deliberately excluded from ever being picked as a highlight -- its
-    tiny base (a couple hundred cases) turns ordinary swings into 800%+
-    headline numbers that would dominate every callout without meaning
-    much. It's still fully counted in every blended total, chart, and
-    table row -- see HIGHLIGHT_EXCLUDE_ACCOUNT in index.html. The 2025
-    cohort has a similar small-base outlier (Joes Liquors, +1224.1% 3-mo)
-    that has NOT been excluded -- only asked about Costambar so far.
+  - The 3-Mo and YTD Lift KPI tiles each carry a "supplier spotlight"
+    (added 2026-08-11, replacing an earlier version of this page's
+    per-tile "best Segment" / "top riser" callouts, which were removed
+    the same day at Kohler's request): every Brand Family under
+    SPOTLIGHT_SUPPLIER ("Constellation Brands" -- Corona, Modelo,
+    Pacifico, Victoria, The Drop; 15 Brand Families in the 2026 cohort's
+    data, 16 in 2025's, since only 2025 has any "Corona Seltzer" rows),
+    blended across every evaluated account using that tile's own window
+    (each account's reset-anchored window for 3-Mo, the cohort's YTD
+    window for YTD) -- same math as the tile's own overall number, just
+    filtered to one supplier, plus each individual brand's own number
+    listed underneath. This is its OWN total, not a subset that sums into
+    the tile's overall number above it (it only covers one supplier's
+    brands, not the full roster). Constellation's own resets are running
+    well ahead of the full-roster blended number in both cohorts (2026:
+    +3.6% 3-mo / +3.1% YTD vs. the overall +0.6% either way).
 
 2026 YTD fix (2026-08-10 -> 2026-08-11): Kohler initially supplied
 fusion_ytd_2026.csv, a Fusion "Case Equivalent" export giving Jan 1-Jul 31
@@ -133,12 +139,24 @@ independently released before v6's changes landed on top of it):
      rewritten in plainer language (dropped "blended," "cohort," bare
      "YoY," etc., in favor of "vs. Last Year" and concrete examples).
   4. Added a small highlighted callout to each Overall KPI tile (best
-     Segment; top-riser account) -- see methodology above for the
-     Costambar exclusion.
+     Segment; top-riser account, excluding Costambar Bar & Liquor as a
+     tiny-base outlier) -- SUPERSEDED the same day, see "v6 -> v7" below.
   5. The 2026 YTD fix described above (Fusion source dropped, back to
      computed-from-sales_2026.csv) -- the 2025 cohort's YTD window was
      NOT changed to match; Kohler explicitly asked to leave 2025 as
      full-year Jan-Dec, only fix 2026.
+
+v6 -> v7 (2026-08-11, same day as v4->v6 above): two more changes at
+Kohler's request --
+  1. Removed the "of N total accounts / up / down YTD / no comparison"
+     subtext AND the "best Segment" / "top riser" highlighted callout from
+     every Overall KPI tile -- the "Accounts Evaluated" tile is now just
+     the bare count, nothing else.
+  2. Added the "Constellation Brands" supplier spotlight described in the
+     methodology above to the 3-Mo and YTD Lift tiles, filling the space
+     freed up by (1) -- this is a materially different feature from the
+     "top riser" callout it replaced (a full per-brand breakdown for one
+     named supplier, not a single top-performing account/segment pick).
 
 v3 -> v4 (2026-08-10): four changes at Kohler's request --
   1. The account table's default view changed to a Jan 1-Jul 31 (2026) /
@@ -187,7 +205,7 @@ close to v2/v3's 2026-cohort year-over-year number below despite the
 completely different data source, window definition, and metric -- read
 that agreement as corroboration, not a coincidence to wave away.
 
-Key findings so far (v6, 2026-08-11 -- the "before -> after" numbers below
+Key findings so far (v7, 2026-08-11 -- the "before -> after" numbers below
 are computed but no longer shown on the page itself, see methodology):
   2026 cohort (73 of 73 accounts evaluated) -- MAIN FOCUS:
     - Blended 3-month Cases lift (year-over-year): +0.6% (33 up / 38 down /
@@ -197,6 +215,8 @@ are computed but no longer shown on the page itself, see methodology):
       year-over-year number.
     - YTD (Jan-Jul 2025 vs. Jan-Jul 2026, computed from sales_2026.csv):
       +0.6% blended.
+    - Constellation Brands spotlight (15 Brand Families): +3.6% 3-mo,
+      +3.1% YTD -- notably ahead of the full-roster blended number.
   2025 cohort (69 of 69 accounts evaluated):
     - Blended 3-month Cases lift (year-over-year): -3.8% (20 up / 45 down /
       4 no baseline).
@@ -204,6 +224,8 @@ are computed but no longer shown on the page itself, see methodology):
       same seasonality caveat as above.
     - YTD (Jan-Dec 2025 vs. Jan-Dec 2024, i.e. full calendar year): -3.3%
       blended.
+    - Constellation Brands spotlight (16 Brand Families): -0.1% 3-mo,
+      +0.1% YTD -- roughly flat, unlike the 2026 cohort's clear lead.
   - The 2024/2025 program-year workbooks' own methodology (YoY anchored to
     reset date, plus a non-reset control-store baseline) found reset
     stores performed roughly in line with a control group's own decline --

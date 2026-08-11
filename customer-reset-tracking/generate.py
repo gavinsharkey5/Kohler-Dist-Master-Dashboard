@@ -53,6 +53,18 @@ simple):
     computed from that cohort's own monthly sales file (sales_2026.csv /
     sales_2025.csv, the only source with brand-level detail), so it
     always sums exactly to that account's own top-line total.
+  - The Overall section's 3-Mo and YTD Lift KPI tiles each carry a
+    "supplier spotlight" (added 2026-08-11, per Kohler request): every
+    Brand Family under SPOTLIGHT_SUPPLIER ("Constellation Brands" --
+    Corona/Modelo/Pacifico/Victoria/The Drop, 15 Brand Families in both
+    cohorts' data), blended across every evaluated account using that
+    account's own reset-anchored window (3-Mo tile) or the cohort's YTD
+    window (YTD tile), same math as the overall number just filtered to
+    that one supplier. Shown for both cohorts (Constellation Brands is a
+    real supplier in both sales files). Sums to its own supplier-only
+    total, not the page's overall total -- it's a spotlight on one
+    supplier's brands, not a full reconciliation of the "Accounts
+    Evaluated" number.
 
 2026 YTD source, and the fix (2026-08-10 -> 2026-08-11): Kohler initially
 supplied fusion_ytd_2026.csv, a Fusion "Case Equivalent" export giving
@@ -127,6 +139,7 @@ HERE = Path(__file__).parent
 HTML = HERE / "index.html"
 
 WINDOW_MONTHS = 3
+SPOTLIGHT_SUPPLIER = "Constellation Brands"
 
 
 def to_num(raw):
@@ -190,10 +203,12 @@ def parse_year_month(s):
 
 
 def load_monthly_sales(path):
-    """Returns (totals, by_brand, brands_by_account, misc_cases).
+    """Returns (totals, by_brand, brands_by_account, brand_supplier, misc_cases).
     totals: {(account, year, month): total cases across every brand}.
     by_brand: {(account, brand, year, month): cases for that brand}.
     brands_by_account: {account: set of brand names ever seen for it}.
+    brand_supplier: {brand: supplier} -- a Brand Family always maps to
+    exactly one Supplier in this data (checked), so first-seen wins.
 
     Each row's two "Cases <year>" columns are mutually exclusive (whichever
     one matches the row's own Year Month is populated, same pattern as the
@@ -215,6 +230,7 @@ def load_monthly_sales(path):
     totals = defaultdict(float)
     by_brand = defaultdict(float)
     brands_by_account = defaultdict(set)
+    brand_supplier = {}
     misc_cases = 0.0
     with open(path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
@@ -242,7 +258,8 @@ def load_monthly_sales(path):
             totals[(account, year, month)] += cases
             by_brand[(account, brand, year, month)] += cases
             brands_by_account[account].add(brand)
-    return totals, by_brand, brands_by_account, misc_cases
+            brand_supplier.setdefault(brand, (r.get("Supplier") or "").strip())
+    return totals, by_brand, brands_by_account, brand_supplier, misc_cases
 
 
 def format_date_range(d0, d1):
@@ -295,6 +312,12 @@ def sum_months_brand(by_brand, account, brand, months):
     return round(sum(by_brand.get((account, brand, y, m), 0.0) for y, m in months), 2)
 
 
+def blended(group, post_key, pre_key):
+    pre_sum = sum(e[pre_key] for e in group)
+    post_sum = sum(e[post_key] for e in group)
+    return {"pre": round(pre_sum, 2), "post": round(post_sum, 2), "liftPct": lift_pct(post_sum, pre_sum)}
+
+
 def lift_pct(post, pre):
     # A non-positive baseline (zero, or negative -- a window where returns/
     # credits outweighed purchases, seen at a couple of small accounts) has
@@ -319,7 +342,7 @@ def latest_complete_month(cases_by_ym):
     return latest
 
 
-def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year):
+def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, brand_supplier, reset_year):
     sales_accounts = {a for (a, _, _) in cases_by_ym.keys()}
     cutoff = latest_complete_month(cases_by_ym)
     cutoff_month = cutoff[1] if cutoff and cutoff[0] == reset_year else 12
@@ -328,6 +351,12 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
     ytd_label = f"Jan–{date(reset_year, cutoff_month, 1).strftime('%b')} {reset_year}"
     ytd_pre_label = full_month_span_label(ytd_pre_months)
     ytd_post_label = full_month_span_label(ytd_post_months)
+
+    # Accumulated alongside each account's own Brand Family breakdown below
+    # (same per-account, per-window sums), filtered to SPOTLIGHT_SUPPLIER --
+    # a cohort-wide blended view of one supplier's brands, not tied to any
+    # single account.
+    spotlight_totals = defaultdict(lambda: {"post3": 0.0, "pre3": 0.0, "ytdPost": 0.0, "ytdPre": 0.0})
 
     evaluated, pending = [], []
     for a in roster:
@@ -359,6 +388,12 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
             b_preAdj = sum_months_brand(by_brand, a["account"], brand, adj_pre_months)
             b_ytdPost = sum_months_brand(by_brand, a["account"], brand, ytd_post_months)
             b_ytdPre = sum_months_brand(by_brand, a["account"], brand, ytd_pre_months)
+            if brand_supplier.get(brand) == SPOTLIGHT_SUPPLIER:
+                st = spotlight_totals[brand]
+                st["post3"] += b_post3
+                st["pre3"] += b_pre3
+                st["ytdPost"] += b_ytdPost
+                st["ytdPre"] += b_ytdPre
             if not any((b_post3, b_pre3, b_preAdj, b_ytdPost, b_ytdPre)):
                 continue
             brand_list.append({
@@ -381,10 +416,20 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
 
     evaluated.sort(key=lambda e: (e["lift3"] is None, -(e["lift3"] or 0)))
 
-    def blended(group, post_key, pre_key):
-        pre_sum = sum(e[pre_key] for e in group)
-        post_sum = sum(e[post_key] for e in group)
-        return {"pre": round(pre_sum, 2), "post": round(post_sum, 2), "liftPct": lift_pct(post_sum, pre_sum)}
+    spotlight_brands = []
+    for name, t in spotlight_totals.items():
+        spotlight_brands.append({
+            "name": name,
+            "pre3": round(t["pre3"], 2), "post3": round(t["post3"], 2), "lift3": lift_pct(t["post3"], t["pre3"]),
+            "ytdPre": round(t["ytdPre"], 2), "ytdPost": round(t["ytdPost"], 2), "liftYtd": lift_pct(t["ytdPost"], t["ytdPre"]),
+        })
+    spotlight_brands.sort(key=lambda b: -b["post3"])
+    supplier_spotlight = {
+        "supplier": SPOTLIGHT_SUPPLIER,
+        "cases3": blended(spotlight_brands, "post3", "pre3"),
+        "casesYtd": blended(spotlight_brands, "ytdPost", "ytdPre"),
+        "brands": spotlight_brands,
+    }
 
     def cohort_summary(group):
         return {
@@ -420,6 +465,7 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
         "evaluatedCount": len(evaluated),
         "pendingCount": len(pending),
         "overall": overall,
+        "supplierSpotlight": supplier_spotlight,
         "byMonth": by_month_summary,
         "bySegment": by_segment_summary,
         "accounts": evaluated,
@@ -428,11 +474,11 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
 
 
 def main():
-    sales_2026, by_brand_2026, brands_by_account_2026, misc_2026 = load_monthly_sales(HERE / "sales_2026.csv")
-    sales_2025, by_brand_2025, brands_by_account_2025, misc_2025 = load_monthly_sales(HERE / "sales_2025.csv")
+    sales_2026, by_brand_2026, brands_by_account_2026, brand_supplier_2026, misc_2026 = load_monthly_sales(HERE / "sales_2026.csv")
+    sales_2025, by_brand_2025, brands_by_account_2025, brand_supplier_2025, misc_2025 = load_monthly_sales(HERE / "sales_2025.csv")
 
-    cohort_2026 = evaluate_cohort(load_roster_2026(), sales_2026, by_brand_2026, brands_by_account_2026, 2026)
-    cohort_2025 = evaluate_cohort(load_roster_2025(), sales_2025, by_brand_2025, brands_by_account_2025, 2025)
+    cohort_2026 = evaluate_cohort(load_roster_2026(), sales_2026, by_brand_2026, brands_by_account_2026, brand_supplier_2026, 2026)
+    cohort_2025 = evaluate_cohort(load_roster_2025(), sales_2025, by_brand_2025, brands_by_account_2025, brand_supplier_2025, 2025)
 
     payload = {
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -460,6 +506,9 @@ def main():
         print(f"  Blended 3-month Cases lift (YoY): {o['cases3']['liftPct']}%")
         print(f"  Blended 3-month Cases lift (before->after, same year): {o['cases3Adj']['liftPct']}%")
         print(f"  Blended YTD lift: {o['casesYtd']['liftPct']}%")
+        sp = c["supplierSpotlight"]
+        print(f"  {sp['supplier']} spotlight: {len(sp['brands'])} brands, "
+              f"3-mo {sp['cases3']['liftPct']}%, YTD {sp['casesYtd']['liftPct']}%")
 
 
 if __name__ == "__main__":
