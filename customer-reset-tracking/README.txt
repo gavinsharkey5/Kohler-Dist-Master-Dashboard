@@ -7,50 +7,51 @@ the top of the page): the 2026 resets (the main focus, and the default tab)
 and the 2025 resets. Each is its own roster + sales export + methodology
 run -- they aren't blended together.
 
-Methodology (v4, 2026-08-10 -- see "v3 -> v4" below for what changed):
+Methodology (v6, 2026-08-11 -- see the changelog below for what changed
+and when):
   - The account table has two date-view modes, switched with a button pair
     above it:
       - YTD (the default view): each account's total for one calendar-date
-        range this year vs. the same range last year, plus Lift %. For the
-        2026 cohort this comes directly from fusion_ytd_2026.csv rather
-        than being computed -- see "2026 YTD source" below. Column headers
-        show the literal date range (e.g. "Jan 1-Jul 31, 2025").
-      - 3-Month Reset Window: the two reset-anchored comparisons described
-        below, with the exact months each account is being compared over
-        shown inline under each number (since every account's reset date,
-        and therefore its window, differs).
+        range this year vs. the same range last year, plus Lift %. Column
+        headers show the literal date range (e.g. "Jan 1-Jul 31, 2025").
+        Computed directly from each cohort's own monthly sales file
+        (sales_2026.csv / sales_2025.csv) -- see "2026 YTD fix" below for
+        a prior version of this page that briefly sourced the 2026
+        cohort's YTD from a separate, since-corrected-away Fusion export.
+      - 3-Month Reset Window: the year-over-year 3-month comparison
+        (pre3/post3/lift3 -- the reset's own month plus the following two
+        calendar months, e.g. a March reset -> March+April+May, vs. that
+        exact same 3-month window one year earlier), with the exact months
+        each account is being compared over shown inline under each number
+        (since every account's reset date, and therefore its window,
+        differs).
     Every account row can be expanded (click the small arrow) to show the
     same numbers broken out by Brand Family, for whichever window is
-    currently selected -- see "2026 YTD source" below for the one case
-    where that creates a visible mismatch against the account's own
-    top-line total.
+    currently selected -- always computed from that cohort's own monthly
+    sales file (the only source with brand-level detail), so it always
+    sums exactly to the account's own top-line total.
   - Sales inputs are monthly account totals (Customer Num x Year Month x
     Cases), not a dated transaction ledger, so windows are whole calendar
     months, not a rolling day count from the exact reset date.
-  - Two different 3-month comparisons are shown side by side per account,
-    not just one:
-      - Year-over-year (pre3/post3/lift3): the reset's own month plus the
-        following two calendar months (e.g. a March reset -> March+April+
-        May), vs. that exact same 3-month window one year earlier.
-        Controls for normal seasonal variation.
-      - Before -> after, same year (preAdj/liftAdj): the 3 calendar months
-        immediately before the reset's month, vs. the same "after" window
-        above (reset month + next two), both within the same year. Shows
-        the immediate change around the reset, but does NOT control for
-        seasonality -- read it alongside the year-over-year number, not
-        instead of it. In this data it runs much higher than the YoY
-        number in both cohorts (2026: +37.9% vs. +0.6%; 2025: +48.4% vs.
-        -3.8%), which is itself informative: most of that gap is likely
-        normal seasonal lift (resets cluster earlier in the year, and
-        cases/demand generally climb through spring into summer), not the
-        reset's own effect -- exactly why both numbers are shown rather
-        than just one.
+  - A same-year "before -> after" 3-month comparison (preAdj/liftAdj,
+    the 3 calendar months immediately before the reset vs. the reset
+    month + the following two) is still computed by generate.py and sits
+    in the embedded JSON (cases3Adj/preAdj/liftAdj) but is NOT shown
+    anywhere on the page as of 2026-08-11 -- it ran much higher than the
+    year-over-year number in both cohorts (2026: +37.9% vs. +0.6%; 2025:
+    +48.4% vs. -3.8%), almost certainly normal seasonal lift rather than
+    the reset's own effect, and Kohler asked to drop it from the UI rather
+    than keep explaining that caveat. Still computable from the data for
+    anyone who wants it.
   - YTD window: January through the latest fully-elapsed calendar month
     present in that cohort's sales file (today's real in-progress month,
     if the file happens to include it, is dropped so a half-finished month
     doesn't understate YTD), vs. the same January-through-that-month range
-    one year earlier. For the 2025 cohort (a complete calendar year) this
-    is effectively full-year 2024 vs. 2025.
+    one year earlier. For the 2026 cohort this lands on Jan-Jul (the
+    current in-progress month is August); for the 2025 cohort (a complete
+    calendar year) this is the full year, Jan-Dec 2024 vs. 2025 -- these
+    two cohorts are on DIFFERENT YTD windows on purpose, confirmed with
+    Kohler 2026-08-11 (see "2026 YTD fix" below).
   - Lift % = (post total - pre total) / pre total, on Cases -- the only
     metric in these exports (no $ Volume / Gross Profit, unlike v1's daily
     ledger). A non-positive baseline (zero, or -- at a couple of small
@@ -63,27 +64,39 @@ Methodology (v4, 2026-08-10 -- see "v3 -> v4" below for what changed):
     "Data quality: the 'Misc' bucket" below.
   - First-time vs. repeat reset tracking has been REMOVED (was in v1/v2) --
     see "v2 -> v3" below.
+  - Each Overall KPI tile carries a small highlighted callout (best
+    Segment on Accounts Evaluated; top-riser account on the two Lift
+    tiles). One account, Costambar Bar & Liquor (2026 cohort), is
+    deliberately excluded from ever being picked as a highlight -- its
+    tiny base (a couple hundred cases) turns ordinary swings into 800%+
+    headline numbers that would dominate every callout without meaning
+    much. It's still fully counted in every blended total, chart, and
+    table row -- see HIGHLIGHT_EXCLUDE_ACCOUNT in index.html. The 2025
+    cohort has a similar small-base outlier (Joes Liquors, +1224.1% 3-mo)
+    that has NOT been excluded -- only asked about Costambar so far.
 
-2026 YTD source (v4, 2026-08-10): Kohler supplied fusion_ytd_2026.csv, a
-Fusion "Case Equivalent" export giving Jan 1-Jul 31 totals for both 2025
-and 2026 directly, at the account level -- all 73 2026-roster accounts
-matched it by account number. Its numbers do NOT match what generate.py
-would otherwise compute by summing sales_2026.csv's monthly Cases over the
-same Jan-Jul window (different source system -- RDE vs. Fusion -- and
-possibly a different unit, Case Equivalent vs. raw Cases; differences run
-up to double digits at some accounts, e.g. the blended YTD lift moves from
-+0.6% computed to +0.4% Fusion-sourced). Per Kohler's direction, the
-Fusion file is now the source of truth for the 2026 cohort's default/YTD
-account table view AND the "YTD Cases Lift" KPI in the Overall section --
-but each account's Brand Family breakdown (the expand/collapse rows) is
-still computed from sales_2026.csv, since no Fusion brand-level export
-exists. That means an expanded 2026 account's Brand Family rows will NOT
-sum to exactly match that account's own Fusion-sourced YTD total -- the
-dashboard captions this explicitly (a persistent note under the date-view
-buttons, plus a caveats-list entry). The 2025 cohort has no equivalent
-override file and doesn't need one: sales_2025.csv is already a Fusion
-export, so its YTD numbers and Brand Family breakdown already come from
-the same source and agree exactly.
+2026 YTD fix (2026-08-10 -> 2026-08-11): Kohler initially supplied
+fusion_ytd_2026.csv, a Fusion "Case Equivalent" export giving Jan 1-Jul 31
+totals for both 2025 and 2026 directly, which briefly overrode this
+script's own computed YTD numbers for the 2026 cohort only. Its numbers
+did NOT match what generate.py computes by summing sales_2026.csv's
+monthly Cases over the same window (differences ran up to double digits
+at some accounts, e.g. blended YTD lift read +0.4% Fusion-sourced vs.
++0.6% computed) -- and that mismatch turned out to BE the bug: Kohler had
+pulled fusion_ytd_2026.csv with the wrong date range on their end. They
+confirmed this 2026-08-11 by sending two corrected RDE exports (one per
+cohort, both Jan-Jul both years) -- cross-checked here and their numbers
+match sales_2026.csv / sales_2025.csv's own existing Jan-Jul subset
+EXACTLY (0 of 73 2026 accounts differ, 0 of 68 2025 accounts differ --
+not new data, just confirmation the existing files were always right).
+So fusion_ytd_2026.csv is deleted and no longer read; the 2026 cohort's
+YTD is back to being computed directly from sales_2026.csv, same as the
+2025 cohort's always was. Kohler explicitly declined to also change the
+2025 cohort's YTD window to match 2026's (Jan-Jul) -- it stays full-year
+(Jan-Dec), untouched by any of this. This fix also means the account-level
+Brand Family breakdown (always computed from the same monthly sales file)
+now sums exactly to the top-line total for BOTH cohorts, removing the
+mismatch caveat that used to be on the 2026 cohort's account table.
 
 Data quality: the "Misc" bucket (found 2026-08-07, load_monthly_sales() in
 generate.py) -- both sales_2026.csv and sales_2025.csv carry rows with
@@ -105,6 +118,27 @@ v1's independently-built, differently-sourced result (see below) -- a
 consistency check that this exclusion was the right call. Re-running
 generate.py prints the removed total per file so this stays visible on
 every refresh.
+
+v4 -> v6 (2026-08-11, two rounds of feedback -- v5 was skipped, never
+independently released before v6's changes landed on top of it):
+  1. Overall section: "Accounts Evaluated" and "Up / Down" merged into one
+     KPI tile (was two) -- the up/down split now counts against YTD lift
+     instead of the 3-month year-over-year lift it used before.
+  2. The standalone "3-Mo Lift (Before -> After)" KPI tile was removed,
+     and later the same comparison's two columns ("Pre (Before->After)" /
+     "Lift % (Before->After)") were also removed from the account table's
+     3-Month Reset Window view -- that comparison isn't shown ANYWHERE on
+     the page now (still computed, see methodology above).
+  3. Every remaining KPI label and "What am I looking at?" explainer was
+     rewritten in plainer language (dropped "blended," "cohort," bare
+     "YoY," etc., in favor of "vs. Last Year" and concrete examples).
+  4. Added a small highlighted callout to each Overall KPI tile (best
+     Segment; top-riser account) -- see methodology above for the
+     Costambar exclusion.
+  5. The 2026 YTD fix described above (Fusion source dropped, back to
+     computed-from-sales_2026.csv) -- the 2025 cohort's YTD window was
+     NOT changed to match; Kohler explicitly asked to leave 2025 as
+     full-year Jan-Dec, only fix 2026.
 
 v3 -> v4 (2026-08-10): four changes at Kohler's request --
   1. The account table's default view changed to a Jan 1-Jul 31 (2026) /
@@ -153,14 +187,16 @@ close to v2/v3's 2026-cohort year-over-year number below despite the
 completely different data source, window definition, and metric -- read
 that agreement as corroboration, not a coincidence to wave away.
 
-Key findings so far (v3, 2026-08-10):
+Key findings so far (v6, 2026-08-11 -- the "before -> after" numbers below
+are computed but no longer shown on the page itself, see methodology):
   2026 cohort (73 of 73 accounts evaluated) -- MAIN FOCUS:
     - Blended 3-month Cases lift (year-over-year): +0.6% (33 up / 38 down /
       2 no baseline).
     - Blended 3-month Cases lift (before -> after, same year): +37.9% --
       see the seasonality caveat above; not directly comparable to the
       year-over-year number.
-    - YTD (Jan-Jul 2026 vs. Jan-Jul 2025): +0.6% blended.
+    - YTD (Jan-Jul 2025 vs. Jan-Jul 2026, computed from sales_2026.csv):
+      +0.6% blended.
   2025 cohort (69 of 69 accounts evaluated):
     - Blended 3-month Cases lift (year-over-year): -3.8% (20 up / 45 down /
       4 no baseline).
@@ -205,20 +241,13 @@ Files:
                               were a daily ledger covering only Jan/Feb/Mar
                               for 38 of the 73 accounts; this covers the
                               full roster and all five 2026 cohort months
-                              in one file). Still used for the 2026
-                              cohort's 3-Month Reset Window numbers and its
-                              Brand Family breakdown (see "2026 YTD source"
-                              above) even though fusion_ytd_2026.csv now
-                              drives its default YTD view.
-  fusion_ytd_2026.csv        Fusion "Case Equivalent" export -- Customer Num
-                              & Company, plus two "Case Equiv <date range>"
-                              columns (currently Jan 1-Jul 31 both years).
-                              Source of truth for the 2026 cohort's default
-                              YTD table view and Overall "YTD Cases Lift"
-                              KPI -- see "2026 YTD source" above. Optional:
-                              if this file is deleted, generate.py falls
-                              back to computing the 2026 cohort's YTD from
-                              sales_2026.csv, same as the 2025 cohort.
+                              in one file). Drives BOTH the account table's
+                              YTD default view and its 3-Month Reset Window
+                              view for the 2026 cohort, plus its Brand
+                              Family breakdown -- see "2026 YTD fix" above
+                              (there used to be a separate fusion_ytd_2026
+                              .csv override file for the YTD view; it was
+                              wrong and has been deleted).
   reset_accounts_2025.xlsx  2025 reset roster -- TD Linx #, Account Name,
                              Address, City, State, Zip, Segmentation, Reset
                              Date, and a "Customer ID" column that's
@@ -257,24 +286,18 @@ To refresh:
   - 2026 cohort: pull a fresh RDE "SFS Reset Accounts" export (same
     columns as sales_2026.csv) and save it over sales_2026.csv. If the
     roster or segmentation changed, save the updated workbook over
-    reset_accounts_2026.xlsx. Also pull a fresh Fusion Case Equivalent
-    export (same two-date-range-column shape as fusion_ytd_2026.csv) and
-    save it over that file -- this is what actually drives the default
-    YTD view and the "YTD Cases Lift" KPI for this cohort (see "2026 YTD
-    source" above); sales_2026.csv still matters for the 3-Month Reset
-    Window numbers and the Brand Family breakdown.
+    reset_accounts_2026.xlsx. This one file now drives everything for the
+    2026 cohort -- YTD view, 3-Month Reset Window, and Brand Family
+    breakdown -- no separate YTD file needed (see "2026 YTD fix" above).
   - 2025 cohort: same idea with sales_2025.csv / reset_accounts_2025.xlsx,
-    from the Fusion source system. No separate YTD override file needed --
-    sales_2025.csv already is the Fusion source. (In practice this cohort
-    is complete -- 2025 is over -- so this mainly matters if a correction
-    ever comes in.)
+    from the Fusion source system. (In practice this cohort is complete --
+    2025 is over -- so this mainly matters if a correction ever comes in.)
   - Either way: run python3 generate.py -- it prints, per cohort, how many
-    accounts evaluated, whether that cohort's YTD is Fusion-sourced or
-    computed, and the blended year-over-year / before-after / YTD lift,
-    and prints the removed "Misc" case total per sales file -- worth a
-    sanity check that it's still in the same ballpark (~30% of raw volume)
-    rather than newly dominant or newly absent, either of which would mean
-    the export's shape changed. Then commit and push.
+    accounts evaluated and the blended year-over-year / before-after / YTD
+    lift, and prints the removed "Misc" case total per sales file -- worth
+    a sanity check that it's still in the same ballpark (~30% of raw
+    volume) rather than newly dominant or newly absent, either of which
+    would mean the export's shape changed. Then commit and push.
 
 Notes:
   - Segmentation (A/B/C) is carried through from each roster as-is; its
