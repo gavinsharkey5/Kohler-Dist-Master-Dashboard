@@ -784,3 +784,30 @@ Notes:
     (e.g. "Modelo Especial" works, bare "Modelo" doesn't since there
     are 5 different Modelo brands and no way to guess which one); the
     fallback message points users at a chip example when nothing matches.
+  - "Food & Bev Enterprise LLC" displays as "Columbian Roots" on the
+    dashboard (per Gavin, 2026-08-11) -- FOOD_BEV_DISPLAY_NAME in
+    generate.py, applied as the very last step before writing
+    data.json so the underlying FOOD_BEV_SUPPLIER match against RDE's
+    raw export name (ytd_comparison.csv, denise_food_bev_product_detail.csv)
+    is unaffected. This supplier has no grey header row in
+    2026_planning_source.xlsx at all, so its supplier-level 2025
+    Finish is a manual override (ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES
+    in generate.py, currently 5,470 CE per Gavin) rather than sourced
+    from the workbook -- update that constant if the real number
+    changes. Any other orphan supplier without a grey row (e.g.
+    Sazerac Inc) falls back to summing its own children's individual
+    2025 Finish figures instead.
+  - Vinaio Imports LTD's supplier-level 2026 Brewery/Kohler Goal % (row
+    234 in 2026_planning_source.xlsx, columns K/N) was hand-set to a
+    static 10%/10% (per Gavin, 2026-08-11), overwriting the formulas
+    that used to derive it from Goal CE / 2025 Finish. Edited via
+    direct XML surgery on the .xlsx's zip contents (xl/worksheets/
+    sheet1.xml + xl/calcChain.xml) rather than a full openpyxl
+    load+save round-trip -- openpyxl doesn't preserve OTHER cells'
+    cached formula results on save (it only ever writes the formula
+    string, not Excel's last-computed value), so a full re-save wipes
+    out cached values workbook-wide until the file is next opened and
+    recalculated in real Excel. If this row's goal ever needs to
+    change again, edit the same two cells the same way (or open in
+    real Excel, edit, and save -- that recalculates everything
+    correctly and is the safer option for a broader edit).

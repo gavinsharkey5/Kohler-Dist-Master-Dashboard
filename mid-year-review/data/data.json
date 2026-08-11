@@ -46,6 +46,7 @@
     "Cavalier Ventures, LLC",
     "Chateau Diana Winery",
     "Citizen Cider",
+    "Columbian Roots",
     "Constellation Brands",
     "Crescent Canna",
     "Cricket Hill",
@@ -63,7 +64,6 @@
     "FX Matt",
     "Famosa",
     "Flying Fish",
-    "Food & Bev Enterprise LLC",
     "Forged Irish Stout",
     "Gambrinus Imports",
     "Garage Beer",
@@ -2936,7 +2936,7 @@
     },
     {
       "brand": "Poker Import",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 1105.29191,
       "ce_current": 1123.621141,
@@ -2950,7 +2950,7 @@
     },
     {
       "brand": "Aguila Import",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 485.71,
       "ce_current": 671.98,
@@ -2964,7 +2964,7 @@
     },
     {
       "brand": "Costenita",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 164.0025,
       "ce_current": 206.11125,
@@ -3384,7 +3384,7 @@
     },
     {
       "brand": "Club Colombia Dorada",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 729.55,
       "ce_current": 1128.8600000000001,
@@ -3398,7 +3398,7 @@
     },
     {
       "brand": "Aguila Light",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 294.45,
       "ce_current": 398.45000000000005,
@@ -3412,7 +3412,7 @@
     },
     {
       "brand": "Club Colombia Roja",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 187.22,
       "ce_current": 254.8,
@@ -4051,7 +4051,7 @@
     },
     {
       "brand": "Pilsen Import",
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
       "ce_prior": 188.83,
       "ce_current": -4.65,
@@ -4858,19 +4858,6 @@
       "gap_kohler": -0.436753
     },
     {
-      "supplier": "Vinaio Imports LTD",
-      "brand_manager": "Denise Montes",
-      "finish_2025_ce": 6596.351288,
-      "ce_prior": 2916.351008,
-      "ce_current": 2811.363818,
-      "trend_pct": -0.036,
-      "proj_finish_2026_ce": 6358.88408792,
-      "goal_brewery_pct": 0.3736008964375216,
-      "goal_kohler_pct": 0.3736008964375216,
-      "gap_brewery": -0.40960089643752157,
-      "gap_kohler": -0.40960089643752157
-    },
-    {
       "supplier": "Artisanal Imports",
       "brand_manager": "Steve Halloran",
       "finish_2025_ce": 10737,
@@ -5090,6 +5077,19 @@
       "goal_kohler_pct": 0.0015527083100363688,
       "gap_brewery": -0.14087970831003638,
       "gap_kohler": -0.14087970831003638
+    },
+    {
+      "supplier": "Vinaio Imports LTD",
+      "brand_manager": "Denise Montes",
+      "finish_2025_ce": 6596.351288,
+      "ce_prior": 2916.351008,
+      "ce_current": 2811.363818,
+      "trend_pct": -0.036,
+      "proj_finish_2026_ce": 6358.88408792,
+      "goal_brewery_pct": 0.1,
+      "goal_kohler_pct": 0.1,
+      "gap_brewery": -0.136,
+      "gap_kohler": -0.136
     },
     {
       "supplier": "Molly's",
@@ -6069,24 +6069,24 @@
     {
       "supplier": "Sazerac Inc",
       "brand_manager": null,
-      "finish_2025_ce": null,
+      "finish_2025_ce": 605,
       "ce_prior": 364.0,
       "ce_current": 259.0,
       "trend_pct": -0.28846153846153844,
-      "proj_finish_2026_ce": null,
+      "proj_finish_2026_ce": 430.4807692307692,
       "goal_brewery_pct": null,
       "goal_kohler_pct": null,
       "gap_brewery": null,
       "gap_kohler": null
     },
     {
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
-      "finish_2025_ce": null,
+      "finish_2025_ce": 5470,
       "ce_prior": 2966.2244099999994,
       "ce_current": 3783.8223910000006,
       "trend_pct": 0.27563591555771794,
-      "proj_finish_2026_ce": null,
+      "proj_finish_2026_ce": 6977.728458100717,
       "goal_brewery_pct": null,
       "goal_kohler_pct": null,
       "gap_brewery": null,
@@ -20790,13 +20790,13 @@
       }
     },
     {
-      "supplier": "Food & Bev Enterprise LLC",
+      "supplier": "Columbian Roots",
       "brand_manager": "Denise Montes",
-      "finish_2025_ce": null,
+      "finish_2025_ce": 5470,
       "ce_prior": 2966.2244099999994,
       "ce_current": 3783.8223910000006,
       "trend_pct": 0.27563591555771794,
-      "proj_finish_2026_ce": null,
+      "proj_finish_2026_ce": 6977.728458100717,
       "goal_brewery_pct": null,
       "goal_kohler_pct": null,
       "gap_brewery": null,
@@ -21566,8 +21566,8 @@
       "ce_current": 2811.363818,
       "trend_pct": -0.03599950407615693,
       "proj_finish_2026_ce": 6358.885912919881,
-      "goal_brewery_pct": 0.3736008964375216,
-      "goal_kohler_pct": 0.3736008964375216,
+      "goal_brewery_pct": 0.1,
+      "goal_kohler_pct": 0.1,
       "children": [
         {
           "brand": "Cerveza Republica La Tuya 5.0 La Dura",

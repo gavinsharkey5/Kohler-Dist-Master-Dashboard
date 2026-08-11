@@ -1238,20 +1238,42 @@ def main():
         if sup and sup not in covered_suppliers:
             orphan_suppliers[sup].append(r)
 
+    # No supplier-level grey row to source a 2025 Finish from directly for
+    # these -- confirmed with Gavin, 2026-08-11: Food & Bev Enterprise LLC's
+    # (soon "Columbian Roots") real 2025 Finish is 5,470 CE, which doesn't
+    # exactly match summing its own children's individual finish_2025_ce
+    # figures (~5,147 CE) closely enough to trust the sum blindly, so it's a
+    # direct override here instead. Any OTHER orphan supplier (e.g. Sazerac
+    # Inc) falls back to summing its children's own figures, which is at
+    # least directionally correct with no better number on hand.
+    ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES = {
+        "Food & Bev Enterprise LLC": 5470,
+    }
+
     for supplier_name, children in orphan_suppliers.items():
         ce_prior = sum(c["ce_prior"] for c in children if c["ce_prior"] is not None)
         ce_current = sum(c["ce_current"] for c in children if c["ce_current"] is not None)
         trend = (ce_current / ce_prior - 1) if ce_prior else None
         manager = brand_manager_by_supplier.get(supplier_name) or next(
             (c.get("brand_manager") for c in children if c.get("brand_manager")), None)
+        if supplier_name in ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES:
+            finish_2025 = ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES[supplier_name]
+        else:
+            child_finishes = [c["finish_2025_ce"] for c in children if c.get("finish_2025_ce") is not None]
+            finish_2025 = sum(child_finishes) if child_finishes else None
+        if finish_2025 is not None:
+            remainder_2025 = finish_2025 - ce_prior
+            proj_finish = ce_current + remainder_2025 * (1 + (trend or 0))
+        else:
+            proj_finish = None
         supplier_rollup.append({
             "supplier": supplier_name,
             "brand_manager": manager,
-            "finish_2025_ce": None,
+            "finish_2025_ce": finish_2025,
             "ce_prior": ce_prior,
             "ce_current": ce_current,
             "trend_pct": trend,
-            "proj_finish_2026_ce": None,
+            "proj_finish_2026_ce": proj_finish,
             "goal_brewery_pct": None,
             "goal_kohler_pct": None,
             "gap_brewery": None,
@@ -1462,6 +1484,23 @@ def main():
           f"tab; moved {len(newly_terminated)} previously-unlisted brand(s) into Terminated Brands.")
     print(f"Dropped {dropped_new_supplier_count} supplier(s) with 0 2025 CE and their brands from the combo tab; "
           f"moved {len(newly_new)} previously-unlisted brand(s) into New Brand Families in 2026.")
+
+    # Display-name rename (per Gavin, 2026-08-11): "Food & Bev Enterprise
+    # LLC" -> "Columbian Roots" everywhere it surfaces on the dashboard.
+    # Applied here, as the LAST step before assembling the payload, so
+    # FOOD_BEV_SUPPLIER's literal RDE name keeps matching ytd_comparison.csv
+    # and denise_food_bev_product_detail.csv correctly everywhere above this
+    # point -- this only touches the "supplier" field callers actually
+    # render, not the matching key used to build it.
+    FOOD_BEV_DISPLAY_NAME = "Columbian Roots"
+    for pool in (with_goal, no_goal, terminated, supplier_rollup):
+        for r in pool:
+            if r.get("supplier") == FOOD_BEV_SUPPLIER:
+                r["supplier"] = FOOD_BEV_DISPLAY_NAME
+    for group in combo_rollup:
+        if group.get("supplier") == FOOD_BEV_SUPPLIER:
+            group["supplier"] = FOOD_BEV_DISPLAY_NAME
+    suppliers = sorted(FOOD_BEV_DISPLAY_NAME if s == FOOD_BEV_SUPPLIER else s for s in suppliers)
 
     payload = {
         "generatedNote": "Built from 2026_planning_source.xlsx (goals) + ytd_comparison.csv (current trend). "
