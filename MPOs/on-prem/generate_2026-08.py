@@ -45,6 +45,14 @@ Inputs (keep these filenames when re-exporting from RDE):
                                     prior-month columns since this
                                     objective is a plain buyer count, not
                                     a new-vs-repeat classification.
+  core_on_prem_draft_package.csv  RDE "Sales Reps Customer Base Core On
+                                    Prem" export: Core-Market on-premise
+                                    accounts only, with a Draft Package
+                                    column classifying each as "2) Draft
+                                    and Package" or "3) Package Only" --
+                                    used only to narrow Angry Orchard's
+                                    Target Accounts to accounts that can
+                                    actually take a keg.
 
 Classification -- "90-Day Non-Buy" new placement (Angry Orchard, and each
 brand within Molson Coors independently), per Kohler, 2026-08-04: a
@@ -89,10 +97,11 @@ Kohler, 2026-08-04, Wine & Spirits' Yave/Leyenda are sold in every county
 so no territory filter applies there): a per-rep "who to go after" list,
 answering which of a rep's OWN accounts don't carry the brand yet and are
 worth chasing. Built by crossing three sources:
-  1. sales_reps_customer_base.csv  -- the rep's full account base (every
-     customer they cover), deduped by Customer Num since an account can
-     appear more than once with a different Shipping Address. On-Premise
-     only, via the export's own Premise column.
+  1. sales_reps_customer_base.csv (Molson Coors) / core_on_prem_draft_
+     package.csv (Angry Orchard, see below) -- the rep's full account
+     base, deduped by Customer Num since an account can appear more than
+     once with a different Shipping Address. On-Premise only, via the
+     export's own Premise column.
   2. angry_orchard_new_lines.csv / molson_coors_peroni_banquet.csv -- ANY
      customer appearing here at all (new-placement flag or not) already
      has recent purchase history of that brand, so they're excluded --
@@ -113,6 +122,16 @@ worth chasing. Built by crossing three sources:
 Molson Coors' Peroni and Coors (Banquet) targets are computed
 independently per brand, same as the placement classification.
 
+Angry Orchard Target Accounts additionally exclude "3) Package Only"
+accounts (per Kohler, 2026-08-11: those accounts can't take a keg at all,
+so they're not real Angry Orchard draft prospects no matter how much
+volume they move). core_on_prem_draft_package.csv is a separate Core-
+Market-only export carrying RDE's own Draft Package classification
+(observed values: "2) Draft and Package", "3) Package Only" -- Angry
+Orchard Target Accounts keep "2) Draft and Package" only, see
+load_draft_line_customer_base()). Molson Coors still uses the regular
+sales_reps_customer_base.csv/load_customer_base() and is unaffected.
+
 Run: python3 generate_2026-08.py
 """
 import csv
@@ -129,6 +148,7 @@ ANGRY_ORCHARD_CSV = HERE / "angry_orchard_new_lines.csv"
 MOLSON_COORS_CSV = HERE / "molson_coors_peroni_banquet.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_yave_leyenda.csv"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
+DRAFT_PACKAGE_CSV = HERE / "core_on_prem_draft_package.csv"
 
 # Angry Orchard / Peroni / Coors (Banquet) are only sold on-premise in
 # these counties (per Kohler, 2026-08-06) -- everything else (Middlesex,
@@ -351,6 +371,42 @@ def load_customer_base():
     return by_rep
 
 
+def load_draft_line_customer_base():
+    """Angry Orchard-only refinement of load_customer_base() above, per
+    Kohler, 2026-08-11: "3) Package Only" accounts (RDE's own Draft
+    Package classification) can't take a keg at all, so they should never
+    show up as an Angry Orchard Target Account no matter how promising
+    their volume looks. core_on_prem_draft_package.csv is a separate,
+    Core-Market-only export carrying that classification (which the
+    regular sales_reps_customer_base.csv export doesn't have) -- every row
+    in it is already On Premise and already in a Core Market county, so
+    this only needs the Draft Package + dedupe filtering, not the
+    Premise/Area logic load_customer_base() has to do."""
+    rows = load_csv(DRAFT_PACKAGE_CSV)
+    by_rep = {}
+    seen = set()
+    for r in rows:
+        if r["Draft Package"].strip() != "2) Draft and Package":
+            continue
+        rep = r["Sales Rep Assigned"].strip()
+        cust_num = r["Customer Num"].strip()
+        if not rep or not cust_num:
+            continue
+        key = (rep, cust_num)
+        if key in seen:
+            continue
+        seen.add(key)
+        area = r["Distribution Area"].strip()
+        if area == "Sales":
+            area = r["County"].strip() or area
+        by_rep.setdefault(rep, []).append({
+            "customer_num": cust_num,
+            "customer_name": r["Customer Name"].strip(),
+            "area": area,
+        })
+    return by_rep
+
+
 def already_carrying(path, brand_filter=None):
     """Customer Nums with ANY row in a brand's raw export -- recent
     purchase history, whether or not that row was flagged NEW_PLACEMENT."""
@@ -388,8 +444,9 @@ def main():
     wine_spirits_rows = build_wine_spirits(off_premise_ids)
 
     customer_base_by_rep = load_customer_base()
+    draft_line_customer_base_by_rep = load_draft_line_customer_base()
 
-    targets_angry_orchard = build_targets(customer_base_by_rep, already_carrying(ANGRY_ORCHARD_CSV))
+    targets_angry_orchard = build_targets(draft_line_customer_base_by_rep, already_carrying(ANGRY_ORCHARD_CSV))
 
     targets_peroni = build_targets(customer_base_by_rep, already_carrying(MOLSON_COORS_CSV, "Peroni"))
     for row in targets_peroni:
@@ -417,7 +474,7 @@ def main():
           f"customer+brand pairs ({len(molson_coors_rows)} transaction rows written)")
     print(f"Wine & Spirits (Yave/Leyenda): {len(wine_spirits_rows)} rows written")
     print(f"Target accounts -- Angry Orchard: {len(targets_angry_orchard)} prospects across all reps "
-          f"(on-premise, {', '.join(sorted(ALLOWED_TARGET_COUNTIES))} only)")
+          f"(on-premise, Draft and Package accounts only, {', '.join(sorted(ALLOWED_TARGET_COUNTIES))} only)")
     print(f"Target accounts -- Molson Coors: {len(targets_peroni)} Peroni + {len(targets_coors)} Coors/Banquet "
           f"prospects (on-premise, {', '.join(sorted(ALLOWED_TARGET_COUNTIES))} only)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")

@@ -13,18 +13,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14006,
-    "CUSTOMER_NAME": "46 Lounge (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13013,
-    "CUSTOMER_NAME": "Amer Lgn L Falls (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12048,
     "CUSTOMER_NAME": "Anthonys CF Pizza (Wayne)",
     "AREA": "Passaic"
@@ -97,12 +85,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12032,
-    "CUSTOMER_NAME": "Casa Don Manuel",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 19005,
     "CUSTOMER_NAME": "Celtic Corner",
     "AREA": "Passaic"
@@ -139,26 +121,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 23020,
-    "CUSTOMER_NAME": "Clifton City Tavern(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25082,
-    "CUSTOMER_NAME": "Crab Island Cajun Seafood & Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 19028,
     "CUSTOMER_NAME": "D'Carbon Restaurant Hawthorne",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15048,
-    "CUSTOMER_NAME": "D'carbon Restaurant",
     "AREA": "Passaic"
   },
   {
@@ -171,12 +135,6 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12034,
     "CUSTOMER_NAME": "Dave & Buster's Nj, Inc",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25036,
-    "CUSTOMER_NAME": "Dingbatz (P)",
     "AREA": "Passaic"
   },
   {
@@ -229,12 +187,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12015,
-    "CUSTOMER_NAME": "Izumi Hibachi Steak House",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 24038,
     "CUSTOMER_NAME": "J. Alexander's Restaurant",
     "AREA": "Passaic"
@@ -243,24 +195,6 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 14016,
     "CUSTOMER_NAME": "JINYA Ramen Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24056,
-    "CUSTOMER_NAME": "Jaime's (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 12013,
-    "CUSTOMER_NAME": "Jalapenos Mexican Grill",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 19016,
-    "CUSTOMER_NAME": "Jiggle's",
     "AREA": "Passaic"
   },
   {
@@ -315,12 +249,6 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 24027,
     "CUSTOMER_NAME": "Mario's Rest",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25004,
-    "CUSTOMER_NAME": "Matthews Italian Rest",
     "AREA": "Passaic"
   },
   {
@@ -421,32 +349,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24045,
-    "CUSTOMER_NAME": "Red Robin Gourmet Burger (Clifton)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15036,
-    "CUSTOMER_NAME": "River Terrace Inn(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 20010,
-    "CUSTOMER_NAME": "Riverside Grill(D'carbon)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 25083,
     "CUSTOMER_NAME": "Rutt's Hut (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 13005,
-    "CUSTOMER_NAME": "Sear",
     "AREA": "Passaic"
   },
   {
@@ -466,12 +370,6 @@
     "CUSTOMER_NUM": 25009,
     "CUSTOMER_NAME": "Spuntino Wine Bar/Italian",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 10010,
-    "CUSTOMER_NAME": "Sunset Valley G C (A)",
-    "AREA": "Morris 3"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -511,12 +409,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14017,
-    "CUSTOMER_NAME": "The Chariot",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 24025,
     "CUSTOMER_NAME": "The Clif (P)",
     "AREA": "Passaic"
@@ -526,24 +418,6 @@
     "CUSTOMER_NUM": 19021,
     "CUSTOMER_NAME": "The Front Porch (Z)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14005,
-    "CUSTOMER_NAME": "The Grand",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 24006,
-    "CUSTOMER_NAME": "The Grand Saloon",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 9005,
-    "CUSTOMER_NAME": "The Legacy Castle",
-    "AREA": "Morris 3"
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -567,12 +441,6 @@
     "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12038,
     "CUSTOMER_NAME": "Tommy's Tavern + Tap (Wayne)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 14010,
-    "CUSTOMER_NAME": "Uncorked (P)",
     "AREA": "Passaic"
   },
   {
@@ -679,12 +547,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 4003,
-    "CUSTOMER_NAME": "Cinco De Mayo (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 1002,
     "CUSTOMER_NAME": "Country Cottage Rest (P)",
     "AREA": "Passaic-FF"
@@ -739,12 +601,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 3014,
-    "CUSTOMER_NAME": "Il Palazzo (Z)",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 231311,
     "CUSTOMER_NAME": "Indian Spice Route 23",
     "AREA": "Sussex"
@@ -754,12 +610,6 @@
     "CUSTOMER_NUM": 230907,
     "CUSTOMER_NAME": "Irish Cottage Inn",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1028,
-    "CUSTOMER_NAME": "J & S Roadhouse",
-    "AREA": "Passaic-FF"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -808,12 +658,6 @@
     "CUSTOMER_NUM": 231002,
     "CUSTOMER_NAME": "Stew N Dolly's Place",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1007,
-    "CUSTOMER_NAME": "The Greenwood Tavern",
-    "AREA": "Passaic-FF"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -877,21 +721,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 191209,
-    "CUSTOMER_NAME": "Valley Tavern",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 231206,
     "CUSTOMER_NAME": "Vfw 8441 Vernon",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1214,
-    "CUSTOMER_NAME": "Whiskey Wolf Tavern (P)",
-    "AREA": "Passaic-FF"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -963,18 +795,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230422,
     "CUSTOMER_NAME": "Boomer Bar (P) & Grill",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190203,
-    "CUSTOMER_NAME": "Boonton Lanes",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230411,
-    "CUSTOMER_NAME": "Cesco's Pizza (P)",
     "AREA": "Sussex"
   },
   {
@@ -1075,12 +895,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191818,
-    "CUSTOMER_NAME": "Holiday Inn",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230702,
     "CUSTOMER_NAME": "Hyde-Away Rest & Tap Room",
     "AREA": "Sussex"
@@ -1089,12 +903,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230113,
     "CUSTOMER_NAME": "Industry",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231607,
-    "CUSTOMER_NAME": "JJ's Bar and Package Goods LLC",
     "AREA": "Sussex"
   },
   {
@@ -1141,12 +949,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191500,
-    "CUSTOMER_NAME": "Lake Hopatcong Cruises",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230116,
     "CUSTOMER_NAME": "Lake Mohawk Country Club",
     "AREA": "Sussex"
@@ -1180,12 +982,6 @@
     "CUSTOMER_NUM": 191510,
     "CUSTOMER_NAME": "Lola's Restaurant",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190918,
-    "CUSTOMER_NAME": "Luna Restaurant & Bar",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1471,20 +1267,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 190312,
-    "CUSTOMER_NAME": "The Knoll Country Club & Catering",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231606,
     "CUSTOMER_NAME": "The Lafayette House",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230426,
-    "CUSTOMER_NAME": "The Newton Theatre",
     "AREA": "Sussex"
   },
   {
@@ -1519,12 +1303,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191816,
-    "CUSTOMER_NAME": "Vasa Park",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230432,
     "CUSTOMER_NAME": "Vfw 5360 Newton(P)",
     "AREA": "Sussex"
@@ -1533,12 +1311,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 230120,
     "CUSTOMER_NAME": "Village Saloon (P)",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231806,
-    "CUSTOMER_NAME": "Walpack Inn",
     "AREA": "Sussex"
   },
   {
@@ -1585,12 +1357,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 76012,
-    "CUSTOMER_NAME": "Excelsior (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 35009,
     "CUSTOMER_NAME": "Fiesta (A)",
     "AREA": "Bergen"
@@ -1621,36 +1387,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47003,
-    "CUSTOMER_NAME": "Mk Valencia Rest & Lg(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 78011,
-    "CUSTOMER_NAME": "Nanni's (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 80053,
-    "CUSTOMER_NAME": "Paramus Courtyard",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 76014,
-    "CUSTOMER_NAME": "Que Pasta (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 81031,
-    "CUSTOMER_NAME": "Rail Yard Tavern (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 80023,
     "CUSTOMER_NAME": "Red Lobster Paramus",
     "AREA": "Bergen"
@@ -1663,20 +1399,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 80029,
-    "CUSTOMER_NAME": "Seoul Galbi",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 80010,
     "CUSTOMER_NAME": "Suburban Diner",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47017,
-    "CUSTOMER_NAME": "Westside Village (A)",
     "AREA": "Bergen"
   },
   {
@@ -1699,26 +1423,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44028,
-    "CUSTOMER_NAME": "512 Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44012,
     "CUSTOMER_NAME": "690 Park",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49050,
-    "CUSTOMER_NAME": "Bada Story (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44033,
-    "CUSTOMER_NAME": "Brass Rail Pub_2",
     "AREA": "Bergen"
   },
   {
@@ -1735,44 +1441,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43022,
-    "CUSTOMER_NAME": "C & C Bar Factory",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43019,
-    "CUSTOMER_NAME": "Cast Iron Pot (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49071,
     "CUSTOMER_NAME": "Chillers Grill (A)",
     "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 53005,
-    "CUSTOMER_NAME": "Cliffs Steakhouse(A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44048,
     "CUSTOMER_NAME": "Clubhouse Cafe (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49083,
-    "CUSTOMER_NAME": "Courtyard By Marriott Edgewater",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49074,
-    "CUSTOMER_NAME": "Dong Bang Grill",
     "AREA": "Bergen"
   },
   {
@@ -1789,24 +1465,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43032,
-    "CUSTOMER_NAME": "El Caporal Mexican Food",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43029,
-    "CUSTOMER_NAME": "El Tio Taco Ii",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46030,
-    "CUSTOMER_NAME": "Elks Post 2475 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44017,
     "CUSTOMER_NAME": "Frankie's Gastro",
     "AREA": "Bergen"
@@ -1815,12 +1473,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44008,
     "CUSTOMER_NAME": "GOGIYA",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49057,
-    "CUSTOMER_NAME": "Gammeeok",
     "AREA": "Bergen"
   },
   {
@@ -1837,38 +1489,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46029,
-    "CUSTOMER_NAME": "Hanam Daeji",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49065,
-    "CUSTOMER_NAME": "Haven Rest/Bar (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49090,
-    "CUSTOMER_NAME": "Homewood Suites Edgewater",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49034,
-    "CUSTOMER_NAME": "In Napoli (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49016,
     "CUSTOMER_NAME": "Ipic Theaters",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49072,
-    "CUSTOMER_NAME": "JJ Dak",
     "AREA": "Bergen"
   },
   {
@@ -1879,32 +1501,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46031,
-    "CUSTOMER_NAME": "Kang Ho Dong",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43031,
-    "CUSTOMER_NAME": "La Fortuna (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 53004,
-    "CUSTOMER_NAME": "Lefkes Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46017,
     "CUSTOMER_NAME": "Mariachi (Roku) (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 53002,
-    "CUSTOMER_NAME": "Mr Bbq",
     "AREA": "Bergen"
   },
   {
@@ -1917,18 +1515,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44035,
     "CUSTOMER_NAME": "O'Malleys Pub LLC DBA Blackbird Pub",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49029,
-    "CUSTOMER_NAME": "Obaltan",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44038,
-    "CUSTOMER_NAME": "Palisadium Club",
     "AREA": "Bergen"
   },
   {
@@ -1951,12 +1537,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46006,
-    "CUSTOMER_NAME": "Rock 21",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44025,
     "CUSTOMER_NAME": "Rudys (A)",
     "AREA": "Bergen"
@@ -1975,18 +1555,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49053,
-    "CUSTOMER_NAME": "Soho (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44044,
-    "CUSTOMER_NAME": "Sonsonate Rest(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46014,
     "CUSTOMER_NAME": "Soosang Hand Pocha",
     "AREA": "Bergen"
@@ -1999,20 +1567,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 45015,
-    "CUSTOMER_NAME": "Tivoli Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49024,
     "CUSTOMER_NAME": "Ventana's Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44039,
-    "CUSTOMER_NAME": "Villa Amalfi",
     "AREA": "Bergen"
   },
   {
@@ -2035,74 +1591,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20127,
-    "CUSTOMER_NAME": "Brothers A&C Pizza (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20089,
-    "CUSTOMER_NAME": "Carlitto's Bar(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20048,
-    "CUSTOMER_NAME": "Downtown Cafe (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20125,
     "CUSTOMER_NAME": "El Escondite Bar and Restaurant",
     "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20131,
-    "CUSTOMER_NAME": "El Fogon Rest",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 21012,
-    "CUSTOMER_NAME": "Elks Ldge 333 (Z) Pater.",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20075,
-    "CUSTOMER_NAME": "Griselda Rest.(A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20028,
-    "CUSTOMER_NAME": "Integrity Masonic",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20058,
-    "CUSTOMER_NAME": "Krystal Bar(P) & Liqs.",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 15069,
-    "CUSTOMER_NAME": "Mexico Bar & Grill",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20038,
     "CUSTOMER_NAME": "Patsy's (A) Tavern",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22053,
-    "CUSTOMER_NAME": "Rincon Centroamericano",
     "AREA": "Passaic"
   },
   {
@@ -2125,51 +1621,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 24018,
-    "CUSTOMER_NAME": "Agave Cantina Mexicana",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 36026,
     "CUSTOMER_NAME": "Agave Cocina Mexicana",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27018,
-    "CUSTOMER_NAME": "Cantina Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27085,
-    "CUSTOMER_NAME": "Cazadores Bar (Z) LLC",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27044,
-    "CUSTOMER_NAME": "Clary's Restaurant & Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27095,
-    "CUSTOMER_NAME": "Club Sq (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27111,
-    "CUSTOMER_NAME": "Davids' Place (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27055,
-    "CUSTOMER_NAME": "Don Lalo Restaurant",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2179,50 +1633,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27094,
-    "CUSTOMER_NAME": "El Anochecer",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27076,
-    "CUSTOMER_NAME": "El Asadero Mexican Grill (Passaic)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27110,
     "CUSTOMER_NAME": "El Camaron Mazatleco",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27119,
-    "CUSTOMER_NAME": "El Chever (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27051,
-    "CUSTOMER_NAME": "Factory 220",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27001,
-    "CUSTOMER_NAME": "Fiesta Night Club(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27146,
-    "CUSTOMER_NAME": "Foxes Place",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27102,
-    "CUSTOMER_NAME": "Fragancia Sports Bar",
     "AREA": "Passaic"
   },
   {
@@ -2239,80 +1651,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 32011,
-    "CUSTOMER_NAME": "La Fortaleza (Carlstadt)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 24034,
-    "CUSTOMER_NAME": "La Fortaleza (Clifton)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 37066,
-    "CUSTOMER_NAME": "La Fortaleza (Garfield)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 38046,
-    "CUSTOMER_NAME": "La Fortaleza (Lodi)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27144,
-    "CUSTOMER_NAME": "La Fortaleza (Passaic)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21005,
-    "CUSTOMER_NAME": "La Fuente Bar (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27106,
-    "CUSTOMER_NAME": "La Posada",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27009,
-    "CUSTOMER_NAME": "La Rancherita",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 25053,
-    "CUSTOMER_NAME": "Lamayoria Bar Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27108,
-    "CUSTOMER_NAME": "Los Arcos (P) Rest.",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 24042,
     "CUSTOMER_NAME": "Made in Miami Bar Bistro",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 22065,
-    "CUSTOMER_NAME": "Mambo Lounge (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27077,
-    "CUSTOMER_NAME": "Mojito Bar",
     "AREA": "Passaic"
   },
   {
@@ -2335,30 +1675,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27053,
-    "CUSTOMER_NAME": "Rumba Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20061,
-    "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20110,
-    "CUSTOMER_NAME": "The Cathedral Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27039,
-    "CUSTOMER_NAME": "Venus Bar & Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 37065,
     "CUSTOMER_NAME": "Voraz Fuision",
     "AREA": "Bergen"
@@ -2374,12 +1690,6 @@
     "CUSTOMER_NUM": 30030,
     "CUSTOMER_NAME": "Sonoma Bistro",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 26013,
-    "CUSTOMER_NAME": "Tiny Tijuana",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -2413,12 +1723,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 33006,
-    "CUSTOMER_NAME": "Bazzarellis (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77014,
     "CUSTOMER_NAME": "Blvd Bar & Grill (Z)",
     "AREA": "Bergen"
@@ -2431,26 +1735,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37075,
-    "CUSTOMER_NAME": "Deja Vu (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37047,
     "CUSTOMER_NAME": "Dp's Pub & Seafood Grill",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37001,
-    "CUSTOMER_NAME": "Good Fella's (Z) Rest.",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 33004,
-    "CUSTOMER_NAME": "Gray Cliff (A)",
     "AREA": "Bergen"
   },
   {
@@ -2473,24 +1759,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37060,
-    "CUSTOMER_NAME": "Pazza Luna (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37050,
-    "CUSTOMER_NAME": "Royal Manor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 33003,
-    "CUSTOMER_NAME": "Segovia",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42014,
     "CUSTOMER_NAME": "Segovia Steak House(A)",
     "AREA": "Bergen"
@@ -2502,27 +1770,9 @@
     "AREA": "Bergen"
   },
   {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37040,
-    "CUSTOMER_NAME": "The Venetian",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37038,
-    "CUSTOMER_NAME": "Wisla Center (Z)",
-    "AREA": "Bergen"
-  },
-  {
     "SALES_REP_ASSIGNED": "Michael Harboy",
     "CUSTOMER_NUM": 12003,
     "CUSTOMER_NAME": "Whole Foods Market (Wayne)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 18002,
-    "CUSTOMER_NAME": "Cinco De Mayo",
     "AREA": "Passaic"
   },
   {
@@ -2551,12 +1801,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17013,
-    "CUSTOMER_NAME": "Joe's pub",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84009,
     "CUSTOMER_NAME": "Mac Murphy",
     "AREA": "Bergen"
@@ -2565,18 +1809,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84022,
     "CUSTOMER_NAME": "Park West Tavern",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 95001,
-    "CUSTOMER_NAME": "Pazza",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84006,
-    "CUSTOMER_NAME": "Roots Ridgewood (A)",
     "AREA": "Bergen"
   },
   {
@@ -2637,12 +1869,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 88006,
     "CUSTOMER_NAME": "Andrea's Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 29028,
-    "CUSTOMER_NAME": "Angelo's Restaurant",
     "AREA": "Bergen"
   },
   {
@@ -2821,18 +2047,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94005,
-    "CUSTOMER_NAME": "Cenzino's (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 37022,
-    "CUSTOMER_NAME": "Ceviche Peruvian Cuisine",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 88007,
     "CUSTOMER_NAME": "Charlie's Place",
     "AREA": "Bergen"
@@ -2851,12 +2065,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 35005,
-    "CUSTOMER_NAME": "Chile",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 31020,
     "CUSTOMER_NAME": "Chili's B & G E Rutherfor",
     "AREA": "Bergen"
@@ -2865,12 +2073,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 92006,
     "CUSTOMER_NAME": "Chili's Ramsey (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 32015,
-    "CUSTOMER_NAME": "Cjd 2l Corp(Sofive)",
     "AREA": "Bergen"
   },
   {
@@ -2917,12 +2119,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80063,
-    "CUSTOMER_NAME": "Eddie V's",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 78017,
     "CUSTOMER_NAME": "El Asadero Mexican Grill (Rochelle Park)",
     "AREA": "Bergen"
@@ -2947,12 +2143,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31036,
-    "CUSTOMER_NAME": "Eros Cafe",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 80008,
     "CUSTOMER_NAME": "Fogo de Chao (Paramus)",
     "AREA": "Bergen"
@@ -2961,12 +2151,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 49060,
     "CUSTOMER_NAME": "Franco's Metro Rest (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 32026,
-    "CUSTOMER_NAME": "Gianna's (Z)",
     "AREA": "Bergen"
   },
   {
@@ -2983,12 +2167,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80062,
-    "CUSTOMER_NAME": "Hampton Inn Paramus",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 94004,
     "CUSTOMER_NAME": "Hansil's Bar (P)",
     "AREA": "Bergen"
@@ -2997,12 +2175,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 94006,
     "CUSTOMER_NAME": "Harvest and Ale",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49040,
-    "CUSTOMER_NAME": "Healing Karaoke",
     "AREA": "Bergen"
   },
   {
@@ -3027,18 +2199,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 41031,
     "CUSTOMER_NAME": "Houstons (A)Hackensack",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49021,
-    "CUSTOMER_NAME": "Hyatt Place Fort Lee",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28016,
-    "CUSTOMER_NAME": "Inka Flames",
     "AREA": "Bergen"
   },
   {
@@ -3069,18 +2229,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 34017,
     "CUSTOMER_NAME": "Ktb Coffee Shop",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28003,
-    "CUSTOMER_NAME": "Ktb Coffee Shop & Lounge",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 46007,
-    "CUSTOMER_NAME": "Kumade",
     "AREA": "Bergen"
   },
   {
@@ -3151,12 +2299,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 41025,
-    "CUSTOMER_NAME": "Morton's The Stkhse Hacke",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 31052,
     "CUSTOMER_NAME": "Mozzarella Bar",
     "AREA": "Bergen"
@@ -3175,12 +2317,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 30029,
-    "CUSTOMER_NAME": "Native Union Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 88002,
     "CUSTOMER_NAME": "Nellie's Place (P)",
     "AREA": "Bergen"
@@ -3193,26 +2329,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31007,
-    "CUSTOMER_NAME": "Nizi Japanese",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 93008,
     "CUSTOMER_NAME": "Nonna's Pizza",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80015,
-    "CUSTOMER_NAME": "Nordstrom Garden Court",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94009,
-    "CUSTOMER_NAME": "Oakland Diner",
     "AREA": "Bergen"
   },
   {
@@ -3277,12 +2395,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 94013,
-    "CUSTOMER_NAME": "Portobello Feasts",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 92014,
     "CUSTOMER_NAME": "Ramsey Country Clb",
     "AREA": "Bergen"
@@ -3301,20 +2413,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31042,
-    "CUSTOMER_NAME": "Residence Inn East Rutherford",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 28027,
     "CUSTOMER_NAME": "Roma Rest. (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 41017,
-    "CUSTOMER_NAME": "Rosa Mexicano (A)",
     "AREA": "Bergen"
   },
   {
@@ -3333,24 +2433,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 79010,
     "CUSTOMER_NAME": "Ruth's Chris Steakhouse (Maywood)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 38002,
-    "CUSTOMER_NAME": "Satin Dolls (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 89001,
-    "CUSTOMER_NAME": "Savini Rest (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80017,
-    "CUSTOMER_NAME": "Season's 52",
     "AREA": "Bergen"
   },
   {
@@ -3391,12 +2473,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 41009,
-    "CUSTOMER_NAME": "TRUE FOOD",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 28020,
     "CUSTOMER_NAME": "Tejo Bar & Rest",
     "AREA": "Bergen"
@@ -3417,18 +2493,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 96005,
     "CUSTOMER_NAME": "The Brick House (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80003,
-    "CUSTOMER_NAME": "The Capital Grille (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 35006,
-    "CUSTOMER_NAME": "The Concourse #728",
     "AREA": "Bergen"
   },
   {
@@ -3459,12 +2523,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 32012,
     "CUSTOMER_NAME": "The Local Pub",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49049,
-    "CUSTOMER_NAME": "The Metropolitan Lounge",
     "AREA": "Bergen"
   },
   {
@@ -3523,12 +2581,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 28019,
-    "CUSTOMER_NAME": "Turf and Barrel",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 45020,
     "CUSTOMER_NAME": "Tutto A Modo Mio",
     "AREA": "Bergen"
@@ -3537,12 +2589,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 29021,
     "CUSTOMER_NAME": "Uncle Vinnys Bar & Grill",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 92013,
-    "CUSTOMER_NAME": "Varka",
     "AREA": "Bergen"
   },
   {
@@ -3595,44 +2641,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 15054,
-    "CUSTOMER_NAME": "Blue Palace (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 53006,
-    "CUSTOMER_NAME": "Cafe Italiano (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 78018,
     "CUSTOMER_NAME": "Columbian Club (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 42005,
-    "CUSTOMER_NAME": "Empire Club (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 31032,
-    "CUSTOMER_NAME": "Fiesta Hut (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 49042,
-    "CUSTOMER_NAME": "Fire Company 3 Ft Lee",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 49025,
-    "CUSTOMER_NAME": "Flemings Stkhse (P)",
     "AREA": "Bergen"
   },
   {
@@ -3649,24 +2659,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 49051,
-    "CUSTOMER_NAME": "Gopchang Story",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 52038,
-    "CUSTOMER_NAME": "Grissini's Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 36035,
-    "CUSTOMER_NAME": "Hillside (A) S A C",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 230110,
     "CUSTOMER_NAME": "Homestead Rest",
     "AREA": "Sussex"
@@ -3679,32 +2671,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 4008,
-    "CUSTOMER_NAME": "Lina's Ristorante",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 47007,
     "CUSTOMER_NAME": "Luigi's Rest (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 76007,
-    "CUSTOMER_NAME": "Matsuya",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 20103,
-    "CUSTOMER_NAME": "Moonlight (P) Lounge",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 42016,
-    "CUSTOMER_NAME": "Palermo Cafe (A)",
     "AREA": "Bergen"
   },
   {
@@ -3715,62 +2683,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 43014,
-    "CUSTOMER_NAME": "Patsy's Bistro",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 21020,
-    "CUSTOMER_NAME": "Rincon Criollo Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 49003,
-    "CUSTOMER_NAME": "Roberto's Restaurant (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
     "CUSTOMER_NUM": 44032,
     "CUSTOMER_NAME": "Rustica Bar & Restaurant",
     "AREA": "Bergen"
   },
   {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 76008,
-    "CUSTOMER_NAME": "Saddle Brook (A) Diner",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 77038,
-    "CUSTOMER_NAME": "Taverna Mykonos",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 38035,
-    "CUSTOMER_NAME": "The Elan (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Office Tell Sell",
-    "CUSTOMER_NUM": 15053,
-    "CUSTOMER_NAME": "Wrights Tavern(Z)",
-    "AREA": "Passaic"
-  },
-  {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20130,
     "CUSTOMER_NAME": "412 Lounge & Latin Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20108,
-    "CUSTOMER_NAME": "5th Avenue (P) Tavern",
     "AREA": "Passaic"
   },
   {
@@ -3781,38 +2701,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25073,
-    "CUSTOMER_NAME": "Aruba Lounge (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15045,
-    "CUSTOMER_NAME": "Bacchus Sport Bar & Grill",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20004,
-    "CUSTOMER_NAME": "Bocaditos Bistro",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21030,
-    "CUSTOMER_NAME": "Bonfire Mofongo House (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27100,
     "CUSTOMER_NAME": "Buenaaazo",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20046,
-    "CUSTOMER_NAME": "Circle Cafe (A)",
     "AREA": "Passaic"
   },
   {
@@ -3823,50 +2713,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25086,
-    "CUSTOMER_NAME": "Con Sabor A Peru (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21022,
-    "CUSTOMER_NAME": "Costa Marina Lounge(A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20090,
-    "CUSTOMER_NAME": "D'classico (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15018,
-    "CUSTOMER_NAME": "Diana's Bar (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27015,
-    "CUSTOMER_NAME": "Dona Maria Rest",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 22025,
     "CUSTOMER_NAME": "Dulce Patria",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 24032,
-    "CUSTOMER_NAME": "El Dorado Rest (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 24030,
-    "CUSTOMER_NAME": "El Mexicano Rest (P)",
     "AREA": "Passaic"
   },
   {
@@ -3877,20 +2725,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21038,
-    "CUSTOMER_NAME": "Freddie's Dugout",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27093,
     "CUSTOMER_NAME": "Galleria",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27050,
-    "CUSTOMER_NAME": "Grand Rodeo Night Club(Z)",
     "AREA": "Passaic"
   },
   {
@@ -3901,26 +2737,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22013,
-    "CUSTOMER_NAME": "Hi-Beams (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 24049,
     "CUSTOMER_NAME": "Hornitos Bakery",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25071,
-    "CUSTOMER_NAME": "Jaimito's Crtside(Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25046,
-    "CUSTOMER_NAME": "Jay Aldo's (Z) Bar & Pizz",
     "AREA": "Passaic"
   },
   {
@@ -3931,86 +2749,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20102,
-    "CUSTOMER_NAME": "La Fiesta",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 33005,
-    "CUSTOMER_NAME": "La Havana 59",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22001,
-    "CUSTOMER_NAME": "Lena Y Carbon Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27142,
     "CUSTOMER_NAME": "Lena y Carbon Restaurant & Bar (Passaic)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22044,
-    "CUSTOMER_NAME": "Los Cristales (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27099,
-    "CUSTOMER_NAME": "Mama Sushi Rest & Lounge",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21042,
-    "CUSTOMER_NAME": "Marcet Cafe",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 24063,
-    "CUSTOMER_NAME": "Noches De Colombia (Clifton)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 41008,
-    "CUSTOMER_NAME": "Noches De Colombia (Hackensack)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27073,
-    "CUSTOMER_NAME": "Noches De Colombia (Passaic)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22019,
-    "CUSTOMER_NAME": "Noches De Colombia (Paterson)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 39004,
-    "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 52005,
-    "CUSTOMER_NAME": "Noches De Colombia(Englewood))",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25040,
-    "CUSTOMER_NAME": "Palenque Bar & Grill(A)",
     "AREA": "Passaic"
   },
   {
@@ -4021,56 +2761,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15062,
-    "CUSTOMER_NAME": "Ragtime Gentlemen's Club",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21014,
-    "CUSTOMER_NAME": "Ranchito Mi Peru",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15046,
-    "CUSTOMER_NAME": "Romo Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22031,
-    "CUSTOMER_NAME": "Roxxie's (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 25087,
-    "CUSTOMER_NAME": "Sarina Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27070,
-    "CUSTOMER_NAME": "Saritas Mexican Rest(A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20100,
     "CUSTOMER_NAME": "Serie 92 Bar & Liquor",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22021,
-    "CUSTOMER_NAME": "Super Korona (Z) Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 22036,
-    "CUSTOMER_NAME": "Tease (P)",
     "AREA": "Passaic"
   },
   {
@@ -4083,12 +2775,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 50008,
     "CUSTOMER_NAME": "101 Pub (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71007,
-    "CUSTOMER_NAME": "103 Prime Time",
     "AREA": "Bergen"
   },
   {
@@ -4147,12 +2833,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86007,
-    "CUSTOMER_NAME": "Bacari",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 74021,
     "CUSTOMER_NAME": "Bar Mutz",
     "AREA": "Bergen"
@@ -4189,26 +2869,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39008,
-    "CUSTOMER_NAME": "Blush Gentleman's Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 40021,
-    "CUSTOMER_NAME": "Bowler City Bowling",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 67002,
     "CUSTOMER_NAME": "Brady's Fox Hunt Inn",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 40026,
-    "CUSTOMER_NAME": "Brooklyn's (A)",
     "AREA": "Bergen"
   },
   {
@@ -4245,12 +2907,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 56016,
     "CUSTOMER_NAME": "Chapala Grill - Bergenfield",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39007,
-    "CUSTOMER_NAME": "Club Flamingo (A)",
     "AREA": "Bergen"
   },
   {
@@ -4297,12 +2953,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 65005,
-    "CUSTOMER_NAME": "Dimora Ristorante (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 86002,
     "CUSTOMER_NAME": "Doghouse Saloon (Z)",
     "AREA": "Bergen"
@@ -4311,12 +2961,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 69003,
     "CUSTOMER_NAME": "Edgewood Country Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 52014,
-    "CUSTOMER_NAME": "El Tango",
     "AREA": "Bergen"
   },
   {
@@ -4423,20 +3067,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 56011,
-    "CUSTOMER_NAME": "International Bar/Rest",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 74012,
     "CUSTOMER_NAME": "Iron Horse",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 56004,
-    "CUSTOMER_NAME": "Jack E Pooh's",
     "AREA": "Bergen"
   },
   {
@@ -4537,32 +3169,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41002,
-    "CUSTOMER_NAME": "Mi Tierrita (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 76005,
     "CUSTOMER_NAME": "Midland Brewhouse (A)",
     "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 70005,
-    "CUSTOMER_NAME": "Montvale Bowl (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 57012,
     "CUSTOMER_NAME": "N Milford Ath Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 57007,
-    "CUSTOMER_NAME": "New Bridge Inn(A)",
     "AREA": "Bergen"
   },
   {
@@ -4579,12 +3193,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 81019,
-    "CUSTOMER_NAME": "Oceanos Osyter Bar Grill",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 67001,
     "CUSTOMER_NAME": "Olar Noso",
     "AREA": "Bergen"
@@ -4593,12 +3201,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 68011,
     "CUSTOMER_NAME": "Old Tappan Golf Course",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 68006,
-    "CUSTOMER_NAME": "Old Tappan Manor (P)",
     "AREA": "Bergen"
   },
   {
@@ -4645,12 +3247,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 60014,
-    "CUSTOMER_NAME": "Pop(xo) Taco",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 60002,
     "CUSTOMER_NAME": "QB's Bar and Grill",
     "AREA": "Bergen"
@@ -4669,32 +3265,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 41029,
-    "CUSTOMER_NAME": "Riviera Lounge (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 62002,
-    "CUSTOMER_NAME": "Rudy's Pizzeria (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 55009,
     "CUSTOMER_NAME": "Samdan Mediterranean Restaurant And Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 62011,
-    "CUSTOMER_NAME": "Sear House (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 86006,
-    "CUSTOMER_NAME": "Seasons Catering (A)",
     "AREA": "Bergen"
   },
   {
@@ -4707,18 +3279,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 40032,
     "CUSTOMER_NAME": "Side Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 52049,
-    "CUSTOMER_NAME": "Sini Bistro",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 52030,
-    "CUSTOMER_NAME": "Sofia",
     "AREA": "Bergen"
   },
   {
@@ -4743,24 +3303,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 40008,
     "CUSTOMER_NAME": "Tavern 61 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 54001,
-    "CUSTOMER_NAME": "Tenafly Pizza (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 54005,
-    "CUSTOMER_NAME": "The 130 Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 62007,
-    "CUSTOMER_NAME": "The Hill",
     "AREA": "Bergen"
   },
   {
@@ -4801,12 +3343,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 52036,
-    "CUSTOMER_NAME": "Vida Garden",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 36015,
     "CUSTOMER_NAME": "Wallington Lane (Bowlero)",
     "AREA": "Bergen"
@@ -4815,12 +3351,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 61003,
     "CUSTOMER_NAME": "White Beeches Golf Club",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 51005,
-    "CUSTOMER_NAME": "Zina's Steakhouse & Grill",
     "AREA": "Bergen"
   },
   {
@@ -4837,18 +3367,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 37055,
-    "CUSTOMER_NAME": "82 OAK BAR & BISTRO",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 50028,
-    "CUSTOMER_NAME": "Amarone (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 42015,
     "CUSTOMER_NAME": "Amer Lgn (Z) Little Ferry",
     "AREA": "Bergen"
@@ -4861,21 +3379,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 38047,
-    "CUSTOMER_NAME": "American Legion Lodi Post 136",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 1026,
     "CUSTOMER_NAME": "American Legion Post 289 (A) West Milford",
     "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 11012,
-    "CUSTOMER_NAME": "American Lg 279 Lincoln Park",
-    "AREA": "Morris 3"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -4897,45 +3403,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 76022,
-    "CUSTOMER_NAME": "American Lgn (Z) (Saddle Brook)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74014,
-    "CUSTOMER_NAME": "American Lgn (Z) (Westwood)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 13007,
-    "CUSTOMER_NAME": "American Lgn 108 (Z) Little Falls",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 30002,
-    "CUSTOMER_NAME": "American Lgn 109 (P) Rutherford",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 12047,
     "CUSTOMER_NAME": "American Lgn 174 Wayne",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231306,
-    "CUSTOMER_NAME": "American Lgn 213 Sussex",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 52027,
-    "CUSTOMER_NAME": "American Lgn 58 (A) Englewood",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -4957,39 +3427,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230910,
-    "CUSTOMER_NAME": "American Lgn Franklin",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190301,
-    "CUSTOMER_NAME": "American Lgn Lake Hiawath",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 29044,
     "CUSTOMER_NAME": "American Lgn Lyndhurst #139",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 67009,
-    "CUSTOMER_NAME": "American Lgn Northvale",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 65008,
-    "CUSTOMER_NAME": "American Lgn Norwood",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191203,
-    "CUSTOMER_NAME": "American Lgn Oak Ridge Post 423",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5023,12 +3463,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 51011,
-    "CUSTOMER_NAME": "American Lgn Teaneck (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 15079,
     "CUSTOMER_NAME": "American Lgn Totowa",
     "AREA": "Passaic"
@@ -5041,21 +3475,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28025,
-    "CUSTOMER_NAME": "Arlington Diner (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 2005,
     "CUSTOMER_NAME": "Arta Trattoria (P)",
     "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 41011,
-    "CUSTOMER_NAME": "Bangkok Garden(P) Thai",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5071,26 +3493,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 34006,
-    "CUSTOMER_NAME": "Bensi (P) (Shoprite Plza)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 191219,
     "CUSTOMER_NAME": "Berkshire Valley Gc",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 4011,
-    "CUSTOMER_NAME": "Bloomingdale Fire Dept",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190202,
-    "CUSTOMER_NAME": "Boonton Elks",
     "AREA": "Morris 1"
   },
   {
@@ -5098,24 +3502,6 @@
     "CUSTOMER_NUM": 5012,
     "CUSTOMER_NAME": "Butler Fire Department(P)",
     "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 31022,
-    "CUSTOMER_NAME": "Candlewick",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231802,
-    "CUSTOMER_NAME": "Candy's Pizza",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230305,
-    "CUSTOMER_NAME": "Casa Bellisma (A)",
-    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5137,18 +3523,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 40035,
-    "CUSTOMER_NAME": "Chit Chat Diner",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230429,
-    "CUSTOMER_NAME": "Chun Bo (P) Restaurant",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 40027,
     "CUSTOMER_NAME": "Cigarro Bar and Lounge",
     "AREA": "Bergen"
@@ -5161,20 +3535,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 93018,
-    "CUSTOMER_NAME": "Courtyard Mahwah",
+    "CUSTOMER_NUM": 34010,
+    "CUSTOMER_NAME": "Costillas Colombian Bar & Grill",
     "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191406,
-    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29033,
-    "CUSTOMER_NAME": "Courtyard Marriott(A)",
+    "CUSTOMER_NUM": 93018,
+    "CUSTOMER_NAME": "Courtyard Mahwah",
     "AREA": "Bergen"
   },
   {
@@ -5215,45 +3583,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 15077,
-    "CUSTOMER_NAME": "E & V (A) Restaurant",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 191815,
     "CUSTOMER_NAME": "Eastern Asian Bistro/Bar",
     "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231314,
-    "CUSTOMER_NAME": "Elks Lodge 2288",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 62015,
-    "CUSTOMER_NAME": "Elks Lodge 2304(Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 8016,
-    "CUSTOMER_NAME": "Elks Pompton Lakes",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 29047,
     "CUSTOMER_NAME": "Elks Post (P)",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 24036,
-    "CUSTOMER_NAME": "Elks Post (Z) #1569",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5275,26 +3613,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 40007,
-    "CUSTOMER_NAME": "Elks Post 153 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 74002,
     "CUSTOMER_NAME": "Elks Post 1562",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 93013,
-    "CUSTOMER_NAME": "Elks Post 1941 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28026,
-    "CUSTOMER_NAME": "Elks Post 1992 (Z)",
     "AREA": "Bergen"
   },
   {
@@ -5317,50 +3637,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 71010,
-    "CUSTOMER_NAME": "Elks Post 2234",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 1030,
     "CUSTOMER_NAME": "Elks Post 2236 (P)",
     "AREA": "Passaic-FF"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 54014,
-    "CUSTOMER_NAME": "Elks Post 2271 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 57015,
-    "CUSTOMER_NAME": "Elks Post 2290 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230115,
-    "CUSTOMER_NAME": "Elks Post 2356",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 77033,
-    "CUSTOMER_NAME": "Elmwood Pk-Pater Elks #60",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 15081,
     "CUSTOMER_NAME": "Evolution Restaurant & Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12042,
-    "CUSTOMER_NAME": "Exotic Indian Cuisine",
     "AREA": "Passaic"
   },
   {
@@ -5371,45 +3655,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 2009,
-    "CUSTOMER_NAME": "Frungillo Caterers",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230124,
-    "CUSTOMER_NAME": "Fu's Chinese (P) Rest.",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191524,
-    "CUSTOMER_NAME": "GRIFFIN & HOWE",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 42001,
-    "CUSTOMER_NAME": "Garden Shabu",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191527,
-    "CUSTOMER_NAME": "Garden State Yacht Club",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 18005,
     "CUSTOMER_NAME": "Giuseppe (P) Rest.",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190714,
-    "CUSTOMER_NAME": "Green Pond Yacht Club (Z)",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5419,27 +3667,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230417,
-    "CUSTOMER_NAME": "Hampton (P) Diner",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 50038,
-    "CUSTOMER_NAME": "Hampton Inn & Suites",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 192156,
     "CUSTOMER_NAME": "Hapgoods Restaurant",
     "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 34014,
-    "CUSTOMER_NAME": "Hasbrouck Heights Elks",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5467,42 +3697,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28033,
-    "CUSTOMER_NAME": "Homewood Suites By Hilton",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230126,
-    "CUSTOMER_NAME": "Hudson Farm Club",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190605,
-    "CUSTOMER_NAME": "Hunan Taste (Z)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 81032,
-    "CUSTOMER_NAME": "Hyatt Place Fair Lawn (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 52032,
-    "CUSTOMER_NAME": "Ideal Lodge 470 (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 32020,
-    "CUSTOMER_NAME": "Il Villaggio Rest",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 12019,
     "CUSTOMER_NAME": "In The Crease (P)",
     "AREA": "Passaic"
@@ -5517,12 +3711,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 86005,
     "CUSTOMER_NAME": "K Of C (Z) Washing. Twsp",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 47014,
-    "CUSTOMER_NAME": "K Of C 2229 (Z)",
     "AREA": "Bergen"
   },
   {
@@ -5545,18 +3733,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28015,
-    "CUSTOMER_NAME": "K Of C N Arlington (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 5009,
-    "CUSTOMER_NAME": "K Of C Pequannock Valley",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 92016,
     "CUSTOMER_NAME": "K Of C Ramsey",
     "AREA": "Bergen"
@@ -5569,32 +3745,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 51015,
-    "CUSTOMER_NAME": "K Of C Teaneck",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 81023,
     "CUSTOMER_NAME": "K Of C W Bergen",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 74019,
-    "CUSTOMER_NAME": "K Of C Westwood",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 66002,
-    "CUSTOMER_NAME": "Kiku (Z) Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 80019,
-    "CUSTOMER_NAME": "Kiku Restaurant",
     "AREA": "Bergen"
   },
   {
@@ -5617,45 +3769,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190716,
-    "CUSTOMER_NAME": "Lake Telemark Country Clu",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 28017,
-    "CUSTOMER_NAME": "Lassoni Ristorante(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29039,
-    "CUSTOMER_NAME": "Lee's Hawaiian (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 41034,
     "CUSTOMER_NAME": "Lodi Moose Lodge 1971",
     "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190717,
-    "CUSTOMER_NAME": "Luzzi's (Z)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 19014,
     "CUSTOMER_NAME": "Macaluso's (P)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190718,
-    "CUSTOMER_NAME": "Marcella Community Club",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5677,12 +3799,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 88009,
-    "CUSTOMER_NAME": "Matthew Colonial Rest(A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 66001,
     "CUSTOMER_NAME": "Montammy Golf Club (P)",
     "AREA": "Bergen"
@@ -5698,12 +3814,6 @@
     "CUSTOMER_NUM": 23012,
     "CUSTOMER_NAME": "Moose Lodge (Z)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 50036,
-    "CUSTOMER_NAME": "Moose Lodge 961 (Z)",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5725,36 +3835,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12006,
-    "CUSTOMER_NAME": "Novelli (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231005,
-    "CUSTOMER_NAME": "Ogdensburg Fire Dept",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 25043,
-    "CUSTOMER_NAME": "Ooka Sushi Hibachi",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 73004,
-    "CUSTOMER_NAME": "Osso Buco",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12046,
-    "CUSTOMER_NAME": "Packanack Lake Comm Asso",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 18008,
     "CUSTOMER_NAME": "Papa Joe's (Z)",
     "AREA": "Passaic"
@@ -5767,51 +3847,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12024,
-    "CUSTOMER_NAME": "Park Wayne Diner",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 13014,
-    "CUSTOMER_NAME": "Park West Diner",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 230302,
     "CUSTOMER_NAME": "Perona Farms",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29018,
-    "CUSTOMER_NAME": "Pietro's Trattoria",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 9001,
-    "CUSTOMER_NAME": "Pompton Queen (P)",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 1032,
-    "CUSTOMER_NAME": "Prime 374 - Seafood & Steak",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 30017,
-    "CUSTOMER_NAME": "Renaissance Meadowlands",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12066,
-    "CUSTOMER_NAME": "Residence Inn",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -5827,44 +3865,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190613,
-    "CUSTOMER_NAME": "Rock Ridge Community",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 190607,
     "CUSTOMER_NAME": "Rockaway River Cc(P)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 39015,
-    "CUSTOMER_NAME": "Rudy's Inflight Caterers",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 43035,
-    "CUSTOMER_NAME": "S & A Society (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29054,
-    "CUSTOMER_NAME": "San Carlo Restaurant",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 93016,
-    "CUSTOMER_NAME": "Sangria Taps/Rest(Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 191306,
-    "CUSTOMER_NAME": "Shore Hills Country Club",
     "AREA": "Morris 1"
   },
   {
@@ -5881,56 +3883,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12058,
-    "CUSTOMER_NAME": "Sports Friends Soccer (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 32031,
-    "CUSTOMER_NAME": "Spring Hill Suites Carlstadt",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 40040,
-    "CUSTOMER_NAME": "St Paul Lodge#7",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 93001,
     "CUSTOMER_NAME": "Stateline Diner (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230433,
-    "CUSTOMER_NAME": "Stillwater Area Vol Fire",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 52017,
-    "CUSTOMER_NAME": "Tapas De Espana (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 49067,
-    "CUSTOMER_NAME": "Taverna Veranda",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 46022,
-    "CUSTOMER_NAME": "Te Min Quan (P) Rest.",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 54017,
-    "CUSTOMER_NAME": "Tenafly Classic Diner",
     "AREA": "Bergen"
   },
   {
@@ -5941,32 +3895,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 18007,
-    "CUSTOMER_NAME": "The Tides",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 25018,
     "CUSTOMER_NAME": "Tick-Tock Diner (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 3012,
-    "CUSTOMER_NAME": "Tree Tavern (A)",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 84021,
-    "CUSTOMER_NAME": "Upper Ridgewood Tennis(A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 24043,
-    "CUSTOMER_NAME": "Valley Regency",
     "AREA": "Passaic"
   },
   {
@@ -5977,39 +3907,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 17017,
-    "CUSTOMER_NAME": "Veterans Club (Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 8013,
     "CUSTOMER_NAME": "Vfw 2906 Pompt. Lks.(Z)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 57013,
-    "CUSTOMER_NAME": "Vfw 4290 New Milford(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 50032,
-    "CUSTOMER_NAME": "Vfw 5561 Bogota",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 56018,
-    "CUSTOMER_NAME": "Vfw 6467 (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 230108,
-    "CUSTOMER_NAME": "Vfw 7248 Sparta",
-    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6019,20 +3919,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 5016,
-    "CUSTOMER_NAME": "Vfw Butler",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 34016,
     "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 29055,
-    "CUSTOMER_NAME": "Vfw Lyndhurst (P)",
     "AREA": "Bergen"
   },
   {
@@ -6045,18 +3933,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 37010,
     "CUSTOMER_NAME": "Vfw Outwater (Z) Lane",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 12025,
-    "CUSTOMER_NAME": "Vila Verde (P) Rest.",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 85005,
-    "CUSTOMER_NAME": "Vol Fire Co Midland Pk.",
     "AREA": "Bergen"
   },
   {
