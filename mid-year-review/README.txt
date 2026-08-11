@@ -764,3 +764,23 @@ Notes:
     the By Brand Family tab's Supplier column; the Supplier + Brand
     tab doesn't need it since that tab's grouping already comes
     straight from the raw CSV hierarchy, independent of the workbook.
+  - "Ask the Data" (added 2026-08-11, per Gavin): the small chat panel
+    next to Top Headlines on the Supplier + Brand tab. It is NOT a
+    real AI/LLM -- this is a static GitHub Pages site with no backend,
+    so an embedded API key would be publicly visible in page source.
+    It's pure client-side JS (buildQAIndex()/answerQuestion() and
+    friends in index.html) that matches the longest entity name it
+    finds in your question (brand, supplier, district manager, rep,
+    package, county, or product type) against DATA already loaded for
+    this page, then formats an answer from that record's own fields --
+    same fmtCE/fmtPct/insight machinery the Top Headlines tile and "i"
+    popovers already use. A handful of general keyword questions
+    (best/worst district, packages growing/shrinking, brands behind
+    goal, new/terminated brand counts, premise split) are tried when
+    no entity name matches. No generate.py changes needed -- it reads
+    whatever's already in data/data.json, so it refreshes for free
+    every time the rest of the page does. Since it's plain substring
+    matching, a question has to contain a full entity name to match
+    (e.g. "Modelo Especial" works, bare "Modelo" doesn't since there
+    are 5 different Modelo brands and no way to guess which one); the
+    fallback message points users at a chip example when nothing matches.

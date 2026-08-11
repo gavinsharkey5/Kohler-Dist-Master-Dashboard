@@ -142,6 +142,40 @@
   .headline-stat .hs-val{font-family:"Space Grotesk";font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
   .headline-stat .hs-sub{font-size:11.5px;color:var(--ink-mute)}
 
+  /* "Ask the Data" smart-lookup chat panel (added 2026-08-11, per Gavin,
+     next to Top Headlines) -- NOT a real AI/LLM: pure client-side JS that
+     pattern-matches the question against entity names already loaded in
+     DATA (brands, suppliers, districts, reps, packages, counties, product
+     types) and formats an answer from that record, plus a handful of
+     regex-keyword "general" questions (best district, packages growing,
+     behind goal, etc). No backend, no API key, no new data -- see
+     buildQAIndex()/answerQuestion() below. .kpis-flex-row wraps the
+     existing .kpi-headline tile and this panel side by side, itself taking
+     .kpi-headline's old grid-column:1/-1 so the pair still spans the full
+     .kpis row. */
+  .kpis-flex-row{grid-column:1/-1;display:flex;gap:18px;align-items:stretch;flex-wrap:wrap}
+  .kpis-flex-row .kpi-headline{grid-column:auto;flex:2 1 480px;min-width:320px}
+  .qa-panel{flex:1 1 300px;min-width:280px;max-width:400px;display:flex;flex-direction:column}
+  .qa-panel .lbl{margin-bottom:4px}
+  .qa-panel .sub2{margin:0 0 12px}
+  .qa-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+  .qa-chip{background:none;border:1px solid var(--input-border);color:var(--ink-soft);font:inherit;font-size:11px;font-weight:600;
+    padding:5px 10px;border-radius:20px;cursor:pointer}
+  .qa-chip:hover{color:var(--kohler);border-color:var(--kohler)}
+  .qa-log{flex:1;min-height:90px;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin:0 0 10px;padding-right:2px}
+  .qa-msg{font-size:12.5px;line-height:1.5;padding:8px 11px;border-radius:10px;max-width:92%}
+  .qa-msg.user{align-self:flex-end;background:var(--kohler-deep);color:var(--ink)}
+  .qa-msg.bot{align-self:flex-start;background:var(--card-h);color:var(--ink-soft);border:1px solid var(--line-soft)}
+  .qa-msg.bot b{color:var(--ink);font-weight:700}
+  .qa-msg.bot b.hl-up{color:var(--good)}
+  .qa-msg.bot b.hl-down{color:var(--bad)}
+  .qa-empty{font-size:11.5px;color:var(--ink-mute);font-style:italic;margin:auto}
+  .qa-form{display:flex;gap:8px}
+  .qa-input{flex:1;background:var(--input-bg);border:1px solid var(--input-border);color:var(--ink);
+    border-radius:9px;padding:8px 12px;font:inherit;font-size:12.5px;min-width:0}
+  .qa-input:focus{outline:2px solid var(--kohler);outline-offset:1px;border-color:var(--kohler)}
+  @media (max-width:900px){.qa-panel{max-width:none}}
+
   .statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin-top:2px}
   .statusgrid .srow{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);font-weight:600;
     border-radius:7px;padding:2px 4px;margin:-2px -4px;min-width:0}
@@ -1664,7 +1698,8 @@ function renderComboKPIs(){
     ? `${DATA.meta.ytdRangePrior} vs. ${DATA.meta.ytdRangeCurrent}` : '2025 vs. 2026, Jan 1 – Jul 31';
   const headlines = overallHeadlineLines();
   const kpisEl = document.getElementById('comboKpis');
-  kpisEl.innerHTML = `<div class="kpi kpi-headline">
+  kpisEl.innerHTML = `<div class="kpis-flex-row">
+  <div class="kpi kpi-headline">
     ${headlines.length ? `
     <div class="headline-eyebrow">
       <p class="lbl" style="margin:0">Top Headlines</p>
@@ -1679,9 +1714,351 @@ function renderComboKPIs(){
       <div class="headline-stat"><span class="hs-lbl">YTD Case Equiv</span><span class="hs-val">${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}</span><span class="hs-sub">${rangeSub}</span></div>
       <div class="headline-stat"><span class="hs-lbl">2026 Projected Finish</span><span class="hs-val">${fmtCE(totalProjFinish)} CE</span><span class="hs-sub">if current trend holds</span></div>
     </div>
+  </div>
+  <div class="kpi qa-panel">
+    <p class="lbl">Ask the Data</p>
+    <p class="sub2">Quick lookups over what's loaded on this page &mdash; not a general AI, just answers from the data on file.</p>
+    <div class="qa-chips">
+      <button type="button" class="qa-chip" data-qa-chip="Corona Extra">Corona Extra</button>
+      <button type="button" class="qa-chip" data-qa-chip="Best district">Best district</button>
+      <button type="button" class="qa-chip" data-qa-chip="Packages growing">Packages growing</button>
+      <button type="button" class="qa-chip" data-qa-chip="Behind goal">Behind goal</button>
+    </div>
+    <div class="qa-log" id="qaLog"><p class="qa-empty">Ask about a brand, supplier, district, rep, package, county, or product type &mdash; or try a chip above.</p></div>
+    <form class="qa-form" id="qaForm">
+      <input type="text" class="qa-input" id="qaInput" placeholder="e.g. How's Modelo doing?" autocomplete="off">
+      <button type="submit" class="btn">Ask</button>
+    </form>
+  </div>
   </div>`;
+  initQAPanel();
 
   renderSuppliersWidget();
+}
+
+// ---- "Ask the Data" smart-lookup chat (added 2026-08-11, per Gavin) ----
+// NOT a real AI/LLM -- no backend, no API key (this is a static GitHub
+// Pages site, so an embedded key would be publicly visible in page
+// source). Pure client-side pattern matching against the DATA object
+// already loaded for this page: find the longest entity name (brand,
+// supplier, district, rep, package, county, product type) that appears in
+// the question, then format an answer from that record's own fields --
+// same fmtCE/fmtPct/joinList/insight-mover-list machinery the Top
+// Headlines tile and "i" popovers already use elsewhere on this page. A
+// handful of regex-keyword "general" questions (best district, packages
+// growing, behind goal, etc) are tried when no entity name matches.
+let QA_INDEX = null;
+let QA_LOG = [];
+
+const absPct = n => n==null ? '—' : `${(Math.abs(n)*100).toFixed(1)}%`;
+const signedCE = n => n==null ? '—' : `${n>=0?'+':''}${fmtCE(n)}`;
+
+function buildQAIndex(){
+  const idx = {brands:new Map(), suppliers:new Map(), districts:new Map(), reps:new Map(),
+    packages:new Map(), counties:new Map(), productTypes:new Map()};
+
+  (DATA.comboGroups||[]).forEach(g=>{
+    const supKey = String(g.supplier||'').toLowerCase();
+    if (supKey) idx.suppliers.set(supKey, {...g, ...derive(g)});
+    (g.children||[]).forEach(c=>{
+      const brandKey = String(c.brand||'').toLowerCase();
+      if (brandKey) idx.brands.set(brandKey, {...c, ...derive(c), supplier:g.supplier});
+    });
+  });
+  (DATA.newBrands||[]).forEach(r=>{
+    const key = String(r.brand||'').toLowerCase();
+    if (key && !idx.brands.has(key)) idx.brands.set(key, {...r, _status:'new'});
+  });
+  (DATA.terminatedBrands||[]).forEach(r=>{
+    const key = String(r.brand||'').toLowerCase();
+    if (key && !idx.brands.has(key)) idx.brands.set(key, {...r, _status:'terminated'});
+  });
+
+  (DATA.dmGroups||[]).forEach(g=>{
+    const dmKey = String(g.manager||'').toLowerCase();
+    if (dmKey) idx.districts.set(dmKey, g);
+    (g.children||[]).forEach(c=>{
+      const repKey = String(c.rep||'').toLowerCase();
+      if (repKey) idx.reps.set(repKey, {...c, manager:g.manager});
+    });
+  });
+
+  const pm = DATA.segmentPackageTrend && DATA.segmentPackageTrend.packageMovers;
+  if (pm){
+    [...(pm.up||[]), ...(pm.down||[])].forEach(r=>{
+      const key = String(r.label||'').toLowerCase();
+      if (key) idx.packages.set(key, r);
+    });
+  }
+
+  const insight = DATA.overallInsight;
+  if (insight){
+    [...(insight.countyGainers||[]), ...(insight.countyDecliners||[])].forEach(r=>{
+      const key = String(r.label||'').toLowerCase();
+      if (key) idx.counties.set(key, r);
+    });
+  }
+  const dmOverall = DATA.dmTrend && DATA.dmTrend.overall;
+  if (dmOverall){
+    [...(dmOverall.countyGainers||[]), ...(dmOverall.countyDecliners||[])].forEach(r=>{
+      const key = String(r.label||'').toLowerCase();
+      if (key && !idx.counties.has(key)) idx.counties.set(key, r);
+    });
+    [...(dmOverall.productTypeGainers||[]), ...(dmOverall.productTypeDecliners||[])].forEach(r=>{
+      const key = String(r.label||'').toLowerCase();
+      if (key) idx.productTypes.set(key, r);
+    });
+  }
+
+  return idx;
+}
+
+// Longest-match wins so e.g. "Coors Light" beats a shorter "Coors" hit;
+// keys under 3 chars are skipped to dodge trivial false positives.
+function findEntityInText(text){
+  if (!QA_INDEX) QA_INDEX = buildQAIndex();
+  const lower = (text||'').toLowerCase();
+  let best = null;
+  Object.keys(QA_INDEX).forEach(type=>{
+    QA_INDEX[type].forEach((rec, key)=>{
+      if (key.length < 3) return;
+      if (lower.includes(key) && (!best || key.length > best.key.length)){
+        best = {type, key, rec};
+      }
+    });
+  });
+  return best;
+}
+
+function qaBrandAnswer(rec){
+  if (rec._status==='new'){
+    return `<b>${esc(rec.brand)}</b> is a new brand family in 2026 (supplier: ${esc(rec.supplier||'—')}), at <b>${fmtCE(rec.ce_current)} CE</b> YTD. No prior-year comparison or goal data since it didn't exist last year.`;
+  }
+  if (rec._status==='terminated'){
+    return `<b>${esc(rec.brand)}</b> (supplier: ${esc(rec.supplier||'—')}) was terminated &mdash; it ran ${fmtCE(rec.ce_prior)} CE last year vs. ${fmtCE(rec.ce_current)} CE this year.`;
+  }
+  const parts = [];
+  parts.push(`<b>${esc(rec.brand)}</b> (${esc(rec.supplier||'—')}) is <b class="${rec.trend_pct>=0?'hl-up':'hl-down'}">${fmtPct(rec.trend_pct)}</b> YTD, ${fmtCE(rec.ce_prior)} &rarr; ${fmtCE(rec.ce_current)} CE.`);
+  if (rec.gap_brewery!=null || rec.gap_kohler!=null){
+    const gaps = [];
+    if (rec.gap_brewery!=null) gaps.push(`${rec.gap_brewery>=0?'ahead of':'behind'} Brewery Goal by ${absPct(rec.gap_brewery)}`);
+    if (rec.gap_kohler!=null) gaps.push(`${rec.gap_kohler>=0?'ahead of':'behind'} Kohler Goal by ${absPct(rec.gap_kohler)}`);
+    parts.push(`That's ${joinList(gaps)}.`);
+  }
+  const ins = rec.insight;
+  if (ins){
+    if (ins.pkgGainers && ins.pkgGainers.length) parts.push(`Packages growing: ${joinList(ins.pkgGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.pkgDecliners && ins.pkgDecliners.length) parts.push(`Packages shrinking: ${joinList(ins.pkgDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.countyGainers && ins.countyGainers.length) parts.push(`Counties growing: ${joinList(ins.countyGainers.map(r=>`<b class="hl-up">${esc(r.label)} County (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.countyDecliners && ins.countyDecliners.length) parts.push(`Counties shrinking: ${joinList(ins.countyDecliners.map(r=>`<b class="hl-down">${esc(r.label)} County (${signedCE(r.ceDiff)})</b>`))}.`);
+  }
+  return parts.join(' ');
+}
+
+function qaSupplierAnswer(rec){
+  const childCount = (rec.children||[]).length;
+  const parts = [];
+  parts.push(`<b>${esc(rec.supplier)}</b> is <b class="${rec.trend_pct>=0?'hl-up':'hl-down'}">${fmtPct(rec.trend_pct)}</b> YTD, ${fmtCE(rec.ce_prior)} &rarr; ${fmtCE(rec.ce_current)} CE across ${childCount} brand famil${childCount===1?'y':'ies'}.`);
+  if (rec.gap_brewery!=null || rec.gap_kohler!=null){
+    const gaps = [];
+    if (rec.gap_brewery!=null) gaps.push(`${rec.gap_brewery>=0?'ahead of':'behind'} Brewery Goal by ${absPct(rec.gap_brewery)}`);
+    if (rec.gap_kohler!=null) gaps.push(`${rec.gap_kohler>=0?'ahead of':'behind'} Kohler Goal by ${absPct(rec.gap_kohler)}`);
+    parts.push(`That's ${joinList(gaps)}.`);
+  }
+  const ins = rec.insight;
+  if (ins){
+    if (ins.brandGainers && ins.brandGainers.length) parts.push(`Brands driving growth: ${joinList(ins.brandGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.brandDecliners && ins.brandDecliners.length) parts.push(`Brands dragging it down: ${joinList(ins.brandDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.pkgGainers && ins.pkgGainers.length) parts.push(`Packages growing: ${joinList(ins.pkgGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.pkgDecliners && ins.pkgDecliners.length) parts.push(`Packages shrinking: ${joinList(ins.pkgDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+  }
+  return parts.join(' ');
+}
+
+function qaDMAnswer(rec, isRep){
+  const who = isRep ? `<b>${esc(rec.rep)}</b> (${esc(rec.manager)}'s district)` : `<b>${esc(rec.manager)}</b>'s district`;
+  const parts = [];
+  parts.push(`${who} is <b class="${rec.trendPct>=0?'hl-up':'hl-down'}">${fmtPct(rec.trendPct)}</b> YTD, ${fmtCE(rec.cePrior)} &rarr; ${fmtCE(rec.ceCurrent)} CE${!isRep && rec.repCount!=null?` across ${rec.repCount} rep${rec.repCount===1?'':'s'}`:''}.`);
+  const ins = rec.insight;
+  if (ins){
+    if (ins.brandGainers && ins.brandGainers.length) parts.push(`Brand growth drivers: ${joinList(ins.brandGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.brandDecliners && ins.brandDecliners.length) parts.push(`Brand declines: ${joinList(ins.brandDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.productTypeGainers && ins.productTypeGainers.length) parts.push(`Product types growing: ${joinList(ins.productTypeGainers.map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.productTypeDecliners && ins.productTypeDecliners.length) parts.push(`Product types shrinking: ${joinList(ins.productTypeDecliners.map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.countyGainers && ins.countyGainers.length) parts.push(`Counties growing: ${joinList(ins.countyGainers.map(r=>`<b class="hl-up">${esc(r.label)} County (${signedCE(r.ceDiff)})</b>`))}.`);
+    if (ins.countyDecliners && ins.countyDecliners.length) parts.push(`Counties shrinking: ${joinList(ins.countyDecliners.map(r=>`<b class="hl-down">${esc(r.label)} County (${signedCE(r.ceDiff)})</b>`))}.`);
+    const premise = ins.premiseSplit;
+    if (premise){
+      const on = premise['On Premise'], off = premise['Off Premise'];
+      if (on && off && on.trendPct!=null && off.trendPct!=null){
+        parts.push(`By premise: Off-Premise ${fmtPct(off.trendPct)}, On-Premise ${fmtPct(on.trendPct)}.`);
+      }
+    }
+  }
+  return parts.join(' ');
+}
+
+function qaPackageAnswer(rec){
+  const unit = (DATA.segmentPackageTrend && DATA.segmentPackageTrend.packageMoversUnit) || 'CE';
+  return `<b>${esc(rec.label)}</b> went from ${fmtCE(rec.valPrior)} to ${fmtCE(rec.valCurrent)} ${esc(unit)} ` +
+    `(<b class="${rec.valDiff>=0?'hl-up':'hl-down'}">${rec.valDiff>=0?'+':''}${fmtCE(rec.valDiff)}</b>, ${fmtPct(rec.pctChange)}).`;
+}
+
+function qaCountyAnswer(rec){
+  const pct = rec.cePrior ? (rec.ceDiff/rec.cePrior) : null;
+  return `<b>${esc(rec.label)} County</b> moved <b class="${rec.ceDiff>=0?'hl-up':'hl-down'}">${signedCE(rec.ceDiff)} CE</b> YTD` +
+    `${rec.cePrior!=null?` (${fmtCE(rec.cePrior)} &rarr; ${fmtCE(rec.ceCurrent)} CE${pct!=null?`, ${fmtPct(pct)}`:''})`:''}.`;
+}
+
+function qaProductTypeAnswer(rec){
+  const pct = rec.cePrior ? (rec.ceDiff/rec.cePrior) : null;
+  return `<b>${esc(rec.label)}</b> moved <b class="${rec.ceDiff>=0?'hl-up':'hl-down'}">${signedCE(rec.ceDiff)} CE</b> YTD` +
+    `${rec.cePrior!=null?` (${fmtCE(rec.cePrior)} &rarr; ${fmtCE(rec.ceCurrent)} CE${pct!=null?`, ${fmtPct(pct)}`:''})`:''}.`;
+}
+
+// Keyword-based fallback for questions that don't name a specific entity.
+function qaGeneralAnswer(lower){
+  const insight = DATA.overallInsight;
+
+  if (/(company|overall|total).*trend|trend.*(company|overall|total)|how.*(company|we).*doing/.test(lower)){
+    if (insight){
+      return `Company-wide Case Equivalents are <b class="${insight.trendPct>=0?'hl-up':'hl-down'}">${fmtPct(insight.trendPct)}</b> YTD, ${fmtCE(insight.cePrior)} &rarr; ${fmtCE(insight.ceCurrent)} CE.`;
+    }
+  }
+
+  if (/best district|top district|strongest district/.test(lower)){
+    const ranked = (DATA.dmGroups||[]).filter(g=>g.trendPct!=null).slice().sort((a,b)=>b.trendPct-a.trendPct);
+    if (ranked.length){
+      const best = ranked[0];
+      return `<b class="hl-up">${esc(best.manager)}</b>'s district has the strongest trend: <b class="hl-up">${fmtPct(best.trendPct)}</b> YTD (${fmtCE(best.cePrior)} &rarr; ${fmtCE(best.ceCurrent)} CE).`;
+    }
+  }
+  if (/worst district|weakest district|lowest district/.test(lower)){
+    const ranked = (DATA.dmGroups||[]).filter(g=>g.trendPct!=null).slice().sort((a,b)=>a.trendPct-b.trendPct);
+    if (ranked.length){
+      const worst = ranked[0];
+      return `<b class="hl-down">${esc(worst.manager)}</b>'s district has the weakest trend: <b class="hl-down">${fmtPct(worst.trendPct)}</b> YTD (${fmtCE(worst.cePrior)} &rarr; ${fmtCE(worst.ceCurrent)} CE).`;
+    }
+  }
+
+  if (/behind goal|behind pace|behind brewery|behind kohler/.test(lower)){
+    const all = (DATA.brands||[]).map(r=>({...r, ...derive(r)}))
+      .filter(r=>(r.gap_brewery!=null && r.gap_brewery<0) || (r.gap_kohler!=null && r.gap_kohler<0));
+    if (all.length){
+      const worst = all.slice().sort((a,b)=>{
+        const am = Math.min(a.gap_brewery??0, a.gap_kohler??0);
+        const bm = Math.min(b.gap_brewery??0, b.gap_kohler??0);
+        return am-bm;
+      }).slice(0,5);
+      const parts = worst.map(r=>{
+        const gap = Math.min(r.gap_brewery??Infinity, r.gap_kohler??Infinity);
+        return `<b class="hl-down">${esc(r.brand)} (${absPct(gap)} behind)</b>`;
+      });
+      return `${all.length} brand famil${all.length===1?'y is':'ies are'} behind at least one goal. Furthest behind: ${joinList(parts)}.`;
+    }
+    return `No brand families are currently behind their goal.`;
+  }
+
+  if (/packages?.*(growing|up\b|increasing)|growing.*packages?/.test(lower)){
+    const pm = DATA.segmentPackageTrend && DATA.segmentPackageTrend.packageMovers;
+    if (pm && pm.up && pm.up.length){
+      const parts = pm.up.slice(0,5).map(r=>`<b class="hl-up">${esc(r.label)} (${signedCE(r.valDiff)})</b>`);
+      return `Packages growing the most: ${joinList(parts)}.`;
+    }
+  }
+  if (/packages?.*(shrinking|down\b|declin)|shrinking.*packages?/.test(lower)){
+    const pm = DATA.segmentPackageTrend && DATA.segmentPackageTrend.packageMovers;
+    if (pm && pm.down && pm.down.length){
+      const parts = pm.down.slice(0,5).map(r=>`<b class="hl-down">${esc(r.label)} (${signedCE(r.valDiff)})</b>`);
+      return `Packages shrinking the most: ${joinList(parts)}.`;
+    }
+  }
+
+  if (/new brand/.test(lower)){
+    const n = DATA.newBrands.length;
+    return `There ${n===1?'is':'are'} <b>${n}</b> new brand famil${n===1?'y':'ies'} tracked in 2026.`;
+  }
+  if (/terminated|discontinued/.test(lower)){
+    const n = DATA.terminatedBrands.length;
+    return `<b>${n}</b> brand famil${n===1?'y was':'ies were'} terminated.`;
+  }
+
+  if (/premise|on.?prem|off.?prem/.test(lower)){
+    const premise = DATA.premiseSplit;
+    if (premise){
+      const on = premise['On Premise'], off = premise['Off Premise'];
+      if (on && off){
+        return `Off-Premise is <b class="${off.trendPct>=0?'hl-up':'hl-down'}">${fmtPct(off.trendPct)}</b> (${fmtCE(off.ceCurrent)} CE), ` +
+          `On-Premise is <b class="${on.trendPct>=0?'hl-up':'hl-down'}">${fmtPct(on.trendPct)}</b> (${fmtCE(on.ceCurrent)} CE).`;
+      }
+    }
+  }
+
+  return null;
+}
+
+function answerQuestion(text){
+  if (!QA_INDEX) QA_INDEX = buildQAIndex();
+  const trimmed = (text||'').trim();
+  if (!trimmed) return `Type a question, or click one of the example chips above.`;
+  const lower = trimmed.toLowerCase();
+
+  const match = findEntityInText(trimmed);
+  if (match){
+    switch(match.type){
+      case 'brands': return qaBrandAnswer(match.rec);
+      case 'suppliers': return qaSupplierAnswer(match.rec);
+      case 'districts': return qaDMAnswer(match.rec, false);
+      case 'reps': return qaDMAnswer(match.rec, true);
+      case 'packages': return qaPackageAnswer(match.rec);
+      case 'counties': return qaCountyAnswer(match.rec);
+      case 'productTypes': return qaProductTypeAnswer(match.rec);
+    }
+  }
+
+  const general = qaGeneralAnswer(lower);
+  if (general) return general;
+
+  const sampleDM = (DATA.dmGroups && DATA.dmGroups[0] && DATA.dmGroups[0].manager) || 'a district manager';
+  return `I couldn't match that to a brand, supplier, district, rep, package, county, or product type on this page. ` +
+    `Try a specific name (e.g. "Corona Extra" or "${esc(sampleDM)}"), or a chip above.`;
+}
+
+function qaRenderLog(){
+  const el = document.getElementById('qaLog');
+  if (!el) return;
+  if (!QA_LOG.length){
+    el.innerHTML = `<p class="qa-empty">Ask about a brand, supplier, district, rep, package, county, or product type &mdash; or try a chip above.</p>`;
+    return;
+  }
+  el.innerHTML = QA_LOG.map(m=>`<div class="qa-msg ${m.role}">${m.role==='user'?esc(m.text):m.text}</div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function qaAsk(text){
+  const trimmed = (text||'').trim();
+  if (!trimmed) return;
+  QA_LOG.push({role:'user', text:trimmed});
+  QA_LOG.push({role:'bot', text:answerQuestion(trimmed)});
+  qaRenderLog();
+}
+
+// Re-bound every render since #comboKpis' innerHTML (and its listeners)
+// get replaced whenever renderComboKPIs() re-runs (search, goal edits,
+// tab switch) -- QA_LOG itself persists across those re-renders so the
+// conversation doesn't reset.
+function initQAPanel(){
+  qaRenderLog();
+  const form = document.getElementById('qaForm');
+  const input = document.getElementById('qaInput');
+  if (form) form.addEventListener('submit', e=>{
+    e.preventDefault();
+    qaAsk(input.value);
+    input.value = '';
+  });
+  document.querySelectorAll('[data-qa-chip]').forEach(btn=>{
+    btn.addEventListener('click', ()=>qaAsk(btn.dataset.qaChip));
+  });
 }
 
 function exportComboCSV(){
