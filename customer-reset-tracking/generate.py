@@ -452,6 +452,9 @@ def evaluate_cohort(roster, cases_by_ym, by_brand, brands_by_account, reset_year
             "upCount": sum(1 for e in group if e["lift3"] is not None and e["lift3"] > 0),
             "downCount": sum(1 for e in group if e["lift3"] is not None and e["lift3"] < 0),
             "noBaselineCount": sum(1 for e in group if e["lift3"] is None),
+            "upCountYtd": sum(1 for e in group if e["liftYtd"] is not None and e["liftYtd"] > 0),
+            "downCountYtd": sum(1 for e in group if e["liftYtd"] is not None and e["liftYtd"] < 0),
+            "noBaselineCountYtd": sum(1 for e in group if e["liftYtd"] is None),
         }
 
     overall = cohort_summary(evaluated)
