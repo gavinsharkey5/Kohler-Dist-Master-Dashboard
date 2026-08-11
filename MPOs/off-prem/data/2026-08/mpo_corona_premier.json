@@ -30,6 +30,46 @@
     "CASES": 3.0
   },
   {
+    "SALES_REP_ASSIGNED": "John Neukum",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 31019,
+    "CUSTOMER_NAME": "Bj's Warehouse E Rutherfo",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 84.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 38021,
+    "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 25045,
+    "CUSTOMER_NAME": "Clifton Disc Liq (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 32016,
+    "CUSTOMER_NAME": "Cobblestone Hill Deli",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 2.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -38,6 +78,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 6.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 46033,
+    "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -125,6 +175,16 @@
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
     "CUSTOMER_NUM": 27071,
     "CUSTOMER_NAME": "Mariana's Liquors",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 79007,
+    "CUSTOMER_NAME": "Maywood Market(A)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -227,7 +287,7 @@
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 7.0
+    "CASES": 12.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",

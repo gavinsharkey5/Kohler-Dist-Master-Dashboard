@@ -223,12 +223,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 25045,
-    "CUSTOMER_NAME": "Clifton Disc Liq (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 79004,
     "CUSTOMER_NAME": "Coronet Variety",
     "AREA": "Bergen"
@@ -493,12 +487,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49035,
-    "CUSTOMER_NAME": "Gulf Express Fort Lee",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46011,
     "CUSTOMER_NAME": "Han Mi Supermkt (A)",
     "AREA": "Bergen"
@@ -631,6 +619,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen"
@@ -649,6 +643,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen"
@@ -663,6 +663,12 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen"
   },
   {
@@ -703,12 +709,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40010,
-    "CUSTOMER_NAME": "Hackensack Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40037,
     "CUSTOMER_NAME": "Parisi Deli",
     "AREA": "Bergen"
@@ -723,6 +723,12 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 58002,
     "CUSTOMER_NAME": "River Edge Wine & Liquor",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen"
   },
   {
@@ -742,6 +748,12 @@
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "AREA": "Passaic"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1465,12 +1477,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190901,
     "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
     "AREA": "Morris 1"
@@ -1581,12 +1587,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191608,
     "CUSTOMER_NAME": "Shop-Rite(A) Netcong",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190304,
-    "CUSTOMER_NAME": "Shoppers Disc Liquor",
     "AREA": "Morris 1"
   },
   {
@@ -1777,12 +1777,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36007,
-    "CUSTOMER_NAME": "Shop Rite Of Wallington",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36038,
     "CUSTOMER_NAME": "Tatra Haus Restaurant",
     "AREA": "Bergen"
@@ -1797,18 +1791,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42012,
     "CUSTOMER_NAME": "Vinny's Disc Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 42004,
-    "CUSTOMER_NAME": "Wine And People",
     "AREA": "Bergen"
   },
   {
@@ -2163,12 +2145,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20032,
     "CUSTOMER_NAME": "Riverside Liquors (Paterson)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20114,
-    "CUSTOMER_NAME": "Ronny's Liqrs (Z)",
     "AREA": "Passaic"
   },
   {

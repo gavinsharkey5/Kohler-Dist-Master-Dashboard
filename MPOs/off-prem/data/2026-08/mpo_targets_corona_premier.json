@@ -235,21 +235,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38021,
-    "CUSTOMER_NAME": "Buy Rite Of Main St Lodi",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38019,
     "CUSTOMER_NAME": "Circle Liquors",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 25045,
-    "CUSTOMER_NAME": "Clifton Disc Liq (A)",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -261,12 +249,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 76015,
     "CUSTOMER_NAME": "Discount Liq & Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 46033,
-    "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
     "AREA": "Bergen"
   },
   {
@@ -333,12 +315,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 50012,
     "CUSTOMER_NAME": "Ma'adan Catering",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79007,
-    "CUSTOMER_NAME": "Maywood Market(A)",
     "AREA": "Bergen"
   },
   {
@@ -691,6 +667,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen"
@@ -709,6 +691,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen"
@@ -723,6 +711,12 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen"
   },
   {
@@ -805,6 +799,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen"
@@ -831,6 +831,12 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen"
   },
   {
@@ -1669,12 +1675,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
-    "CUSTOMER_NUM": 31019,
-    "CUSTOMER_NAME": "Bj's Warehouse E Rutherfo",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "John Neukum",
     "CUSTOMER_NUM": 39019,
     "CUSTOMER_NAME": "Costco 1214 Teterboro (NA)",
     "AREA": "Bergen"
@@ -1923,12 +1923,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32016,
-    "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen"
   },
   {

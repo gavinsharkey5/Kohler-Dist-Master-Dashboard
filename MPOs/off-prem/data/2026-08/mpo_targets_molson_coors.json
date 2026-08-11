@@ -9586,15 +9586,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46013,
-    "CUSTOMER_NAME": "Boulevard Food Store",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49019,
     "CUSTOMER_NAME": "Bp Gas Station",
     "AREA": "Bergen",
@@ -16360,6 +16351,24 @@
     "PRODUCT_NUM": "7140",
     "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -16372,8 +16381,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51004,
     "CUSTOMER_NAME": "Fill Er Up Kosher Wine(P)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen",
     "PRODUCT_NUM": "123",
     "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
@@ -16399,6 +16426,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "124",
+    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -16417,6 +16462,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "124",
+    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -16428,6 +16482,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "124",
+    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "124",
     "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
@@ -16516,6 +16579,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "124",
+    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -16579,6 +16651,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "124",
+    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -16615,6 +16696,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "119",
+    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -16626,6 +16716,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56008,
     "CUSTOMER_NAME": "Bergenfield Liq & Fw",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "119",
+    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
     "PRODUCT_NUM": "119",
     "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
@@ -16653,6 +16752,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "119",
+    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "119",
     "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
@@ -16759,6 +16867,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "119",
+    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -16804,6 +16921,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "119",
+    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -16840,6 +16966,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "111",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -16867,6 +17002,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "111",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -16887,6 +17031,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "111",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "111",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
@@ -17011,6 +17164,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "111",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -17074,6 +17236,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "111",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -17110,6 +17281,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -17137,6 +17317,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -17157,6 +17346,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "120",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
@@ -17272,6 +17470,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -17326,6 +17533,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -17362,8 +17578,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "121",
+    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "121",
+    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
     "PRODUCT_NUM": "121",
     "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
@@ -17382,6 +17616,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "121",
+    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "121",
     "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
@@ -17470,6 +17713,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "121",
+    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)",
     "AREA": "Bergen",
@@ -17499,6 +17751,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "121",
+    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "121",
     "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
@@ -17542,6 +17803,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "101",
+    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -17569,6 +17839,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "101",
+    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -17589,6 +17868,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "101",
+    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "101",
     "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
@@ -17713,6 +18001,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "101",
+    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -17776,6 +18073,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "101",
+    "PRODUCT_NAME": "Coors Banquet 15.5 Gal Keg",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -17812,8 +18118,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "113",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "113",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
     "PRODUCT_NUM": "113",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
@@ -17832,6 +18156,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "113",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "113",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
@@ -17938,6 +18271,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "113",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51018,
     "CUSTOMER_NAME": "Teaneck Discount Liquor",
     "AREA": "Bergen",
@@ -17949,6 +18291,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "113",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "113",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
@@ -17992,6 +18343,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "118",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -18001,8 +18361,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "118",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "118",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "118",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
@@ -18064,8 +18442,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "118",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "118",
+    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "118",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
@@ -18109,6 +18505,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "127",
+    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -18136,6 +18541,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "127",
+    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -18147,6 +18561,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "127",
+    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "127",
     "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
@@ -18253,6 +18676,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "127",
+    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -18316,6 +18748,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "127",
+    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -18352,8 +18793,35 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "112",
+    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "112",
+    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "112",
+    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "112",
     "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
@@ -18433,8 +18901,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "112",
+    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "112",
+    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "112",
     "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
@@ -18469,6 +18955,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "9018",
+    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -18487,6 +18982,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "9018",
+    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 41012,
     "CUSTOMER_NAME": "Deli Mart (A)",
     "AREA": "Bergen",
@@ -18498,6 +19002,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "9018",
+    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -18595,6 +19108,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "9018",
+    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)",
     "AREA": "Bergen",
@@ -18624,6 +19146,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "9018",
+    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -18667,6 +19198,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7157",
+    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -18694,6 +19234,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7157",
+    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -18714,6 +19263,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7157",
+    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7157",
     "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
@@ -18802,6 +19360,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7157",
+    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -18865,6 +19432,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7157",
+    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -18901,8 +19477,35 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7142",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7142",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7142",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7142",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
@@ -18982,6 +19585,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7142",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)",
     "AREA": "Bergen",
@@ -19002,6 +19614,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51012,
     "CUSTOMER_NAME": "Teaneck Liquors",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7142",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7142",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
@@ -19036,6 +19657,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7147",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -19047,6 +19677,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56008,
     "CUSTOMER_NAME": "Bergenfield Liq & Fw",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7147",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7147",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
@@ -19074,6 +19713,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7147",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7147",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
@@ -19189,6 +19837,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7147",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -19234,6 +19891,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7147",
+    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -19270,8 +19936,35 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7143",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7143",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52004,
     "CUSTOMER_NAME": "Grand Liquor & Delicatesen",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7143",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
@@ -19288,6 +19981,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7144",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -19299,6 +20001,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56008,
     "CUSTOMER_NAME": "Bergenfield Liq & Fw",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7144",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7144",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
@@ -19326,6 +20037,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7144",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7144",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
@@ -19432,6 +20152,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7144",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -19477,6 +20206,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7144",
+    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -19513,6 +20251,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7148",
+    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -19540,6 +20287,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7148",
+    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -19560,6 +20316,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7148",
+    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7148",
     "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
@@ -19659,6 +20424,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 58002,
     "CUSTOMER_NAME": "River Edge Wine & Liquor",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7148",
+    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7148",
     "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
@@ -19729,6 +20503,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7148",
+    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -19765,6 +20548,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7141",
+    "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -19792,6 +20584,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7141",
+    "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -19812,6 +20613,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7141",
+    "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7141",
     "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
@@ -19936,6 +20746,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7141",
+    "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -19990,6 +20809,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7141",
+    "PRODUCT_NAME": "Peroni 7.75 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "AREA": "Bergen",
@@ -20026,6 +20854,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 41015,
+    "CUSTOMER_NAME": "99 Ranch Market",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7140",
+    "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
@@ -20053,6 +20890,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7140",
+    "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen",
@@ -20073,6 +20919,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52008,
     "CUSTOMER_NAME": "Englewood Liq (A)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7140",
+    "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52011,
+    "CUSTOMER_NAME": "Englewood Wine (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7140",
     "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
@@ -20197,6 +21052,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 52029,
+    "CUSTOMER_NAME": "Santa Barbara",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "7140",
+    "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52015,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
     "AREA": "Bergen",
@@ -20245,6 +21109,15 @@
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "AREA": "Passaic",
+    "PRODUCT_NUM": "7140",
+    "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "CUSTOMER_NUM": 56015,
+    "CUSTOMER_NAME": "VINEYARD",
+    "AREA": "Bergen",
     "PRODUCT_NUM": "7140",
     "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "Peroni"
@@ -43921,15 +44794,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190901,
-    "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
-    "AREA": "Morris 1",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191213,
     "CUSTOMER_NAME": "Island Of Spirits (P)",
     "AREA": "Passaic",
@@ -50785,15 +51649,6 @@
     "PRODUCT_NUM": "7140",
     "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 83003,
-    "CUSTOMER_NAME": "Beekman's Wines and Liquors",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -61833,15 +62688,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 78008,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7157",
     "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
