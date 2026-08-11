@@ -811,3 +811,17 @@ Notes:
     change again, edit the same two cells the same way (or open in
     real Excel, edit, and save -- that recalculates everything
     correctly and is the safer option for a broader edit).
+  - "What-if" Goal % edits now persist across reloads via localStorage
+    (added 2026-08-11, per Gavin), on the By Brand Family, By Supplier,
+    and Supplier + Brand tabs -- previously pure in-memory scratch that
+    vanished on refresh. Still NOT the real goal data (that's the
+    workbook, see above); this is a personal what-if scratchpad that
+    now happens to survive a reload/browser restart, in that one
+    browser only. Keyed by supplier/brand NAME (goalEditStoreKey() in
+    index.html), not the table's own _key (which embeds an array index
+    that can shift between data refreshes), so a saved edit still finds
+    its row after the next month's data reload. Each tab's own "Reset
+    edited goals" button clears both the in-memory edit and its
+    localStorage entries, same as before, and now also shows a small
+    "N what-if edits saved in this browser" badge next to the button
+    when any are active.

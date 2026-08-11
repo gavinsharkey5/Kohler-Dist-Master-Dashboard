@@ -329,8 +329,9 @@
             years (a true apples-to-apples comparison).</li>
           <li>Goal % is editable per brand &mdash; adjust either track up or down to see its case target and gap
             recalculate live.</li>
-          <li>Edits are local to your browser only and don't save back to the workbook; use <b>Export CSV</b> to
-            keep a copy.</li>
+          <li>Edits are a personal "what-if" scratchpad &mdash; saved in this browser only (not the real workbook),
+            so they'll still be here next time you load this page on this device, but nobody else sees them. Hit
+            <b>Reset edited goals</b> to clear them, or <b>Export CSV</b> to keep a copy elsewhere.</li>
         </ul>
       </div>
       <div class="trend-widget" id="suppliersWidget"></div>
@@ -385,6 +386,7 @@
           <option value="No Goal">No Goal</option>
         </select>
         <button class="btn" id="resetBtn">Reset edited goals</button>
+        <span class="rowcount" id="editBadge"></span>
         <button class="btn" id="exportBtn">Export CSV</button>
         <div class="spacer"></div>
         <span class="rowcount" id="rowcount"></span>
@@ -519,6 +521,7 @@
           <option value="No Goal">No Goal</option>
         </select>
         <button class="btn" id="supplierResetBtn">Reset edited goals</button>
+        <span class="rowcount" id="supplierEditBadge"></span>
         <button class="btn" id="supplierExportBtn">Export CSV</button>
         <div class="spacer"></div>
         <span class="rowcount" id="supplierRowcount"></span>
@@ -587,6 +590,7 @@
         <button class="btn" id="comboExpandAllBtn">Expand all</button>
         <button class="btn" id="comboCollapseAllBtn">Collapse all</button>
         <button class="btn" id="comboResetBtn">Reset edited goals</button>
+        <span class="rowcount" id="comboEditBadge"></span>
         <button class="btn" id="comboExportBtn">Export CSV</button>
         <div class="spacer"></div>
         <span class="rowcount" id="comboRowcount"></span>
@@ -859,11 +863,84 @@ function renderHead(){
   });
 }
 
+// ---- "What-if" goal-edit persistence (added 2026-08-11, per Gavin) ----
+// Goal % edits used to be pure in-memory scratch, gone on reload. Now
+// mirrored into localStorage so they survive a reload/browser restart --
+// but ONLY in this one browser, on this one device. This is still NOT the
+// real goal data (that lives in 2026_planning_source.xlsx and only
+// changes when Kohler asks for that); it's a personal what-if scratchpad
+// that now happens to stick around. Keyed by supplier/brand NAME rather
+// than the table's own _key (which embeds an array index that can shift
+// between monthly data refreshes) so a saved edit still finds its row
+// next time, as long as the brand/supplier name itself hasn't changed.
+const GOAL_EDITS_STORAGE_KEY = 'kohlerMidYearGoalEdits';
+
+function loadGoalEdits(){
+  try { return JSON.parse(localStorage.getItem(GOAL_EDITS_STORAGE_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+
+function saveGoalEdits(edits){
+  try { localStorage.setItem(GOAL_EDITS_STORAGE_KEY, JSON.stringify(edits)); }
+  catch (e) { /* private browsing / storage full / disabled -- edits just won't survive a reload this time */ }
+}
+
+// ns is one of 'brand' / 'supplier' / 'combo-sup' / 'combo-brand' -- the
+// latter two so the Supplier + Brand tab's own independent editable copy
+// doesn't collide with the By Brand Family tab's, matching how each tab
+// already has its own separate "Reset edited goals" button.
+function goalEditStoreKey(ns, supplierName, brandName){
+  return (ns==='supplier' || ns==='combo-sup') ? `${ns}:${supplierName}` : `${ns}:${supplierName}|${brandName}`;
+}
+
+function persistGoalEdit(storeKey, field, value){
+  const edits = loadGoalEdits();
+  const entry = edits[storeKey] || {};
+  entry[field==='goal_brewery_pct' ? 'b' : 'k'] = value;
+  if (entry.b==null && entry.k==null) delete edits[storeKey]; else edits[storeKey] = entry;
+  saveGoalEdits(edits);
+}
+
+function clearGoalEdits(namespaces){
+  const edits = loadGoalEdits();
+  Object.keys(edits).forEach(key=>{
+    if (namespaces.some(ns=>key.startsWith(ns+':'))) delete edits[key];
+  });
+  saveGoalEdits(edits);
+}
+
+// Applies saved what-if edits onto freshly-loaded rows -- call AFTER each
+// row's _orig fields are captured, so "Reset edited goals" still reverts
+// to the real generate.py-sourced value, not the restored what-if. Returns
+// how many rows actually got an edit applied, for the small badge text.
+function applyStoredGoalEdits(rows, keyFn){
+  const edits = loadGoalEdits();
+  let count = 0;
+  rows.forEach(r=>{
+    const entry = edits[keyFn(r)];
+    if (!entry) return;
+    if (entry.b !== undefined) r.goal_brewery_pct = entry.b;
+    if (entry.k !== undefined) r.goal_kohler_pct = entry.k;
+    count++;
+  });
+  return count;
+}
+
+function refreshEditBadge(elId, ...namespaces){
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const edits = loadGoalEdits();
+  const count = Object.keys(edits).filter(k=>namespaces.some(ns=>k.startsWith(ns+':'))).length;
+  el.textContent = count ? `${count} what-if edit${count===1?'':'s'} saved in this browser` : '';
+}
+
 function onPctEdit(key, field, val){
   const r = DATA.brands.find(x=>x._key===key);
   if (!r) return;
   const num = parseFloat(val);
   r[field] = isNaN(num) ? null : num/100;
+  persistGoalEdit(goalEditStoreKey('brand', r.supplier, r.brand), field, r[field]);
+  refreshEditBadge('editBadge', 'brand');
   renderKPIs();
   updateRowTargets(r);
 }
@@ -1162,6 +1239,8 @@ function onSupplierPctEdit(key, field, val){
   if (!r) return;
   const num = parseFloat(val);
   r[field] = isNaN(num) ? null : num/100;
+  persistGoalEdit(goalEditStoreKey('supplier', r.supplier), field, r[field]);
+  refreshEditBadge('supplierEditBadge', 'supplier');
   renderSupplierKPIs();
   updateSupplierRowTargets(r);
 }
@@ -1310,15 +1389,17 @@ function buildComboCommonCells(r){
 }
 
 function onComboPctEdit(key, field, val){
-  let target = null;
+  let target = null, storeKey = null;
   for (const g of DATA.comboGroups){
-    if (g._key===key){ target = g; break; }
+    if (g._key===key){ target = g; storeKey = goalEditStoreKey('combo-sup', g.supplier); break; }
     const child = g.children.find(c=>c._key===key);
-    if (child){ target = child; break; }
+    if (child){ target = child; storeKey = goalEditStoreKey('combo-brand', g.supplier, child.brand); break; }
   }
   if (!target) return;
   const num = parseFloat(val);
   target[field] = isNaN(num) ? null : num/100;
+  persistGoalEdit(storeKey, field, target[field]);
+  refreshEditBadge('comboEditBadge', 'combo-sup', 'combo-brand');
   renderComboKPIs();
   updateComboRowTargets(target);
 }
@@ -2521,6 +2602,19 @@ async function init(){
     })),
   }));
 
+  // Restore any "what-if" goal-% edits saved in THIS browser from a
+  // previous visit -- applied after _orig is captured above so "Reset
+  // edited goals" still reverts to the real generate.py-sourced value.
+  applyStoredGoalEdits(DATA.brands, r=>goalEditStoreKey('brand', r.supplier, r.brand));
+  applyStoredGoalEdits(DATA.supplierRollup, r=>goalEditStoreKey('supplier', r.supplier));
+  DATA.comboGroups.forEach(g=>{
+    applyStoredGoalEdits([g], r=>goalEditStoreKey('combo-sup', r.supplier));
+    applyStoredGoalEdits(g.children, c=>goalEditStoreKey('combo-brand', g.supplier, c.brand));
+  });
+  refreshEditBadge('editBadge', 'brand');
+  refreshEditBadge('supplierEditBadge', 'supplier');
+  refreshEditBadge('comboEditBadge', 'combo-sup', 'combo-brand');
+
   // District Manager Trends tab: DATA.dmTrend.rollup already IS the
   // District Manager -> Sales Rep tree, built server-side in
   // generate.py's parse_district_manager_trend() -- no goal-edit state to
@@ -2549,8 +2643,9 @@ async function init(){
         apples-to-apples comparison).</li>
       <li>Goal % is editable per brand &mdash; adjust either track up or down to see its case target and gap
         recalculate live.</li>
-      <li>Edits are local to your browser only and don't save back to the workbook; use <b>Export CSV</b> to keep
-        a copy.</li>`;
+      <li>Edits are a personal "what-if" scratchpad &mdash; saved in this browser only (not the real workbook),
+        so they'll still be here next time you load this page on this device, but nobody else sees them. Hit
+        <b>Reset edited goals</b> to clear them, or <b>Export CSV</b> to keep a copy elsewhere.</li>`;
   }
 
   renderKPIs();
@@ -2580,6 +2675,8 @@ async function init(){
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
   document.getElementById('resetBtn').addEventListener('click', ()=>{
     DATA.brands.forEach(r=>{ r.goal_brewery_pct = r.goal_brewery_pct_orig; r.goal_kohler_pct = r.goal_kohler_pct_orig; });
+    clearGoalEdits(['brand']);
+    refreshEditBadge('editBadge', 'brand');
     renderKPIs();
     renderTable();
   });
@@ -2605,6 +2702,8 @@ async function init(){
   document.getElementById('supplierStatusFilter').addEventListener('change', e=>{ SUP_FILTER.status = e.target.value; renderSupplierTable(); });
   document.getElementById('supplierResetBtn').addEventListener('click', ()=>{
     DATA.supplierRollup.forEach(r=>{ r.goal_brewery_pct = r.goal_brewery_pct_orig; r.goal_kohler_pct = r.goal_kohler_pct_orig; });
+    clearGoalEdits(['supplier']);
+    refreshEditBadge('supplierEditBadge', 'supplier');
     renderSupplierKPIs();
     renderSupplierTable();
   });
@@ -2626,6 +2725,8 @@ async function init(){
       g.goal_brewery_pct = g.goal_brewery_pct_orig; g.goal_kohler_pct = g.goal_kohler_pct_orig;
       g.children.forEach(c=>{ c.goal_brewery_pct = c.goal_brewery_pct_orig; c.goal_kohler_pct = c.goal_kohler_pct_orig; });
     });
+    clearGoalEdits(['combo-sup','combo-brand']);
+    refreshEditBadge('comboEditBadge', 'combo-sup', 'combo-brand');
     renderComboKPIs();
     renderComboTable();
   });
