@@ -2713,7 +2713,7 @@
     {
       "brand": "Fresca Mixed",
       "supplier": "Sazerac Inc",
-      "brand_manager": null,
+      "brand_manager": "Jason Koo",
       "ce_prior": 364.0,
       "ce_current": 259.0,
       "trend_pct": -0.288462,
@@ -3616,7 +3616,7 @@
     {
       "brand": "Snow Beer",
       "supplier": "Ever Grand Group LLC",
-      "brand_manager": null,
+      "brand_manager": "Jason Koo",
       "ce_prior": 160.652816,
       "ce_current": 76.590296,
       "trend_pct": -0.523256,
@@ -4833,7 +4833,7 @@
     },
     {
       "supplier": "Ever Grand Group LLC",
-      "brand_manager": null,
+      "brand_manager": "Jason Koo",
       "finish_2025_ce": 246.583392,
       "ce_prior": 160.652816,
       "ce_current": 76.590296,
@@ -6068,7 +6068,7 @@
     },
     {
       "supplier": "Sazerac Inc",
-      "brand_manager": null,
+      "brand_manager": "Jason Koo",
       "finish_2025_ce": 605,
       "ce_prior": 364.0,
       "ce_current": 259.0,
@@ -28354,7 +28354,7 @@
     },
     {
       "supplier": "Ever Grand Group LLC",
-      "brand_manager": null,
+      "brand_manager": "Jason Koo",
       "finish_2025_ce": 246.583392,
       "ce_prior": 160.652816,
       "ce_current": 76.590296,
@@ -28365,7 +28365,7 @@
       "children": [
         {
           "brand": "Snow Beer",
-          "brand_manager": null,
+          "brand_manager": "Jason Koo",
           "finish_2025_ce": 246.583392,
           "ce_prior": 160.652816,
           "ce_current": 76.590296,

@@ -984,6 +984,14 @@ EXCLUDED_BRANDS = {"shipyard", "jersey girl", "soda birch", "whole hog"}
 # year baseline to show a trend against either way.
 FORCE_VS_GOAL_MANAGERS = {"Denise Montes"}
 
+# Manual Brand Manager assignments for suppliers the workbook doesn't carry
+# a manager for at all (no grey row, and no brand row of theirs has one
+# either) -- confirmed with Gavin, 2026-08-11.
+SUPPLIER_MANAGER_OVERRIDES = {
+    "Ever Grand Group LLC": "Jason Koo",
+    "Sazerac Inc": "Jason Koo",
+}
+
 
 def main():
     brands, brands_lower, supplier_names, brand_manager_by_supplier, supplier_goals = load_workbook_taxonomy()
@@ -1088,7 +1096,7 @@ def main():
         brewery_pct = base.get("goal2026_brewery_pct")
         kohler_pct = base.get("goal2026_kohler_pct")
         finish_2025 = base.get("finish_2025_ce")
-        manager = base.get("brand_manager") or brand_manager_by_supplier.get(supplier)
+        manager = base.get("brand_manager") or brand_manager_by_supplier.get(supplier) or SUPPLIER_MANAGER_OVERRIDES.get(supplier)
         trend = metrics["pct_change"]
         ce_prior, ce_current = metrics["ce_prior"], metrics["ce_current"]
 
@@ -1147,7 +1155,7 @@ def main():
             brands_by_supplier[b_rec["supplier"]].append(b_name)
 
     for supplier, name, metrics in unclassified:
-        manager = brand_manager_by_supplier.get(supplier)
+        manager = brand_manager_by_supplier.get(supplier) or SUPPLIER_MANAGER_OVERRIDES.get(supplier)
         unbroken_out = [b for b in brands_by_supplier.get(supplier, []) if b not in matched_brand_names]
         brand_label = f"{name} ({', '.join(sorted(unbroken_out))})" if unbroken_out else name
         rec = {
@@ -1211,7 +1219,7 @@ def main():
 
         supplier_rollup.append({
             "supplier": supplier_name,
-            "brand_manager": goal.get("brand_manager"),
+            "brand_manager": goal.get("brand_manager") or SUPPLIER_MANAGER_OVERRIDES.get(supplier_name),
             "finish_2025_ce": finish_2025,
             "ce_prior": ce_prior,
             "ce_current": ce_current,
@@ -1255,7 +1263,8 @@ def main():
         ce_current = sum(c["ce_current"] for c in children if c["ce_current"] is not None)
         trend = (ce_current / ce_prior - 1) if ce_prior else None
         manager = brand_manager_by_supplier.get(supplier_name) or next(
-            (c.get("brand_manager") for c in children if c.get("brand_manager")), None)
+            (c.get("brand_manager") for c in children if c.get("brand_manager")), None) \
+            or SUPPLIER_MANAGER_OVERRIDES.get(supplier_name)
         if supplier_name in ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES:
             finish_2025 = ORPHAN_SUPPLIER_FINISH_2025_OVERRIDES[supplier_name]
         else:
@@ -1325,7 +1334,8 @@ def main():
         finish_2025 = goal.get("finish_2025_ce") if goal else None
         brewery_pct = goal.get("goal2026_brewery_pct") if goal else None
         kohler_pct = goal.get("goal2026_kohler_pct") if goal else None
-        manager = (goal.get("brand_manager") if goal else None) or brand_manager_by_supplier.get(supplier_name)
+        manager = (goal.get("brand_manager") if goal else None) or brand_manager_by_supplier.get(supplier_name) \
+            or SUPPLIER_MANAGER_OVERRIDES.get(supplier_name)
         proj_finish = (ce_current + (finish_2025 - ce_prior) * (1 + (trend or 0))) if finish_2025 is not None else None
 
         children_recs = []

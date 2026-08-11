@@ -825,3 +825,10 @@ Notes:
     localStorage entries, same as before, and now also shows a small
     "N what-if edits saved in this browser" badge next to the button
     when any are active.
+  - SUPPLIER_MANAGER_OVERRIDES in generate.py assigns Jason Koo as
+    Brand Manager for Ever Grand Group LLC and Sazerac Inc (per Gavin,
+    2026-08-11) -- neither has a manager in the workbook itself (blank
+    grey-row/brand-row manager column), so this fills the gap wherever
+    that manager would otherwise show up blank: New Brand Families
+    (Snow Beer, under Ever Grand Group LLC), By Brand Family (Fresca
+    Mixed, under Sazerac Inc), By Supplier, and Supplier + Brand.
