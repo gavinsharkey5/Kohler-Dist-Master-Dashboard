@@ -57,6 +57,12 @@ PRIORITY_BRANDS = {
     'WHITE CLAW ZERO', 'SIMPLY SPIKED LEMONADE',
     # Confirmed with the user 2026-08-06.
     'LYTT',
+    # Confirmed with the user 2026-08-11: CERVEZA VICTORIA is a Constellation
+    # Brands portfolio-mate of CORONA/MODELO/PACIFICO (same supplier), all
+    # already Priority. MONTAUK BREWING COMPANY confirmed Priority same day
+    # (despite being a craft brewery like several All Other entries below --
+    # explicitly asked, don't re-derive from the craft-brewery pattern).
+    'CERVEZA VICTORIA', 'MONTAUK BREWING COMPANY',
 }
 ALLOTHER_BRANDS = {
     'ATHLETIC BREWING COMPANY', 'CARIB BREWERY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN',
@@ -71,6 +77,8 @@ ALLOTHER_BRANDS = {
     "REDD'S", 'VICTORY BREWING COMPANY',
     # Confirmed with the user 2026-08-06.
     'HACKER-PSCHORR', 'HOFBRAU', 'PAULANER',
+    # Confirmed with the user 2026-08-11.
+    'SOUTHERN TIER BREWING COMPANY',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
@@ -84,6 +92,8 @@ ALLOTHER_BRANDS = {
 # Confirmed with the user 2026-07-30: "ATHLETIC BREWING CO" and "CARBLISS
 # COCKTAILS" are the same shorter-label pattern for "ATHLETIC BREWING
 # COMPANY" and "CARBLISS" respectively.
+# Confirmed with the user 2026-08-11: "HACKER-PSCHORR BREWERY" is the same
+# longer-label pattern for "HACKER-PSCHORR" (already All Other).
 BRAND_FAMILY_ALIASES = {
     'BRAXTON': 'GARAGE BEER - CONTRACT BREWING',
     'GARAGE BEER': 'GARAGE BEER - CONTRACT BREWING',
@@ -91,6 +101,7 @@ BRAND_FAMILY_ALIASES = {
     'YUENGLING': 'YUENGLING BREWERY',
     'ATHLETIC BREWING CO': 'ATHLETIC BREWING COMPANY',
     'CARBLISS COCKTAILS': 'CARBLISS',
+    'HACKER-PSCHORR BREWERY': 'HACKER-PSCHORR',
 }
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
