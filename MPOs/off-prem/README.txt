@@ -119,22 +119,27 @@ Objective types (index.html):
                   photo-count data source exists yet for any month.
 
 "90-Day Non-Buy" new-placement classification (Molson Coors Peroni/
-Banquet independently, and each Wine & Spirits brand family
-independently -- per Kohler, 2026-08-04): a customer's row on a given
-date is a NEW placement only if they have NO purchase of that brand
-before NEW_BUYER_WINDOW_START (i.e. in the prior ~3 months) AND DO
-have a purchase of it in the current month. A customer who bought
-before the window and buys again in it is a regular repeat placement
-and does NOT count. Same date-based, per-transaction-row approach as
-on-prem's August classification (see on-prem/generate_2026-08.py) --
-every transaction row is kept in the output, NEW_PLACEMENT is set to
-1 on exactly the customer's first qualifying row and 0 on every other
-row for that customer+brand, so a repeat purchase never double-counts.
-See generate_2026-08.py's classify_new_placements() -- it's
-brand-scoped (the `brand_key` argument), so Molson Coors classifies
-Peroni and Coors/Banquet independently, and Wine & Spirits classifies
-Le Grand Noir, Leyenda 1925, and Bardstown Green River independently
-per customer.
+Banquet and Wine & Spirits, both independently per PRODUCT as of
+2026-08-12 -- see below): a customer's row on a given date is a NEW
+placement only if they have NO purchase of that product before
+NEW_BUYER_WINDOW_START (i.e. in the prior ~3 months) AND DO have a
+purchase of it in the current month. A customer who bought before the
+window and buys again in it is a regular repeat placement and does NOT
+count. Same date-based, per-transaction-row approach as on-prem's
+August classification (see on-prem/generate_2026-08.py) -- every
+transaction row is kept in the output, NEW_PLACEMENT is set to 1 on
+exactly the customer's first qualifying row and 0 on every other row
+for that customer+product, so a repeat purchase never double-counts.
+See generate_2026-08.py's classify_dual_period() -- it's scoped by the
+`brand_key` argument, which BOTH Molson Coors and Wine & Spirits pass
+Product Num to, so a customer already carrying one SKU (e.g. one
+Peroni, or one Leyenda 1925 expression) can still be a genuine new
+placement for a different SKU under the same brand/family. Molson
+Coors moved to Product Num on 2026-08-05 (per Kohler's manager); Wine &
+Spirits followed the same reasoning on 2026-08-12. The dual-objective
+UI still buckets Wine & Spirits results by Brand Family (Le Grand Noir/
+Leyenda 1925/Bardstown Green River) for the 2/2/1 goals -- only the
+new-vs-repeat classification itself is product-scoped now.
 
 Files:
   July 2026:

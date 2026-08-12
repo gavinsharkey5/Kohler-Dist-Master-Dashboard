@@ -23,7 +23,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -75,7 +75,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -88,7 +88,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -114,7 +114,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -166,7 +166,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -179,7 +179,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -192,7 +192,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.5,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -270,7 +270,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -283,7 +283,7 @@
     "PERIOD": "current",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.33,
-    "NEW_PLACEMENT": 0
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",

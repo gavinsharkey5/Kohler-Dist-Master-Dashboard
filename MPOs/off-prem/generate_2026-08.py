@@ -72,7 +72,17 @@ Inputs (keep these filenames when re-exporting from RDE):
                                           Brand Family is "Le Grand Noir",
                                           "Leyenda 1925", or "Bardstown
                                           Green River", windowed
-                                          5/1/2026-8/31/2026.
+                                          5/1/2026-8/31/2026. Unlike
+                                          Molson Coors, this export keeps
+                                          its Brand Family column -- it's
+                                          used for the dual-objective
+                                          bucketing/goal display, but as
+                                          of 2026-08-12 the 90-day-non-buy
+                                          classification itself keys on
+                                          Product Num instead, same
+                                          product-level reasoning as
+                                          Molson Coors' 2026-08-05 fix
+                                          (see build_wine_spirits()).
   bbc_lytt_distro.csv                   RDE "BBC -- Achieve distro Lytt
                                           25% of Account Base" export:
                                           Sales Rep Assigned, Product
@@ -158,22 +168,27 @@ output, tagged with which period it belongs to (PERIOD: "base" or
 qualifying current-period row and 0 on every other row for that
 customer+key, so a repeat purchase in August never double-counts.
 
-The "KEY" is NOT the same granularity for both objectives:
-  Molson Coors  PRODUCT NUM, independently per product -- per Kohler's
-                manager (2026-08-05), a customer who already carries one
-                Peroni SKU but adds a DIFFERENT Peroni SKU in August is a
-                new placement for that SKU. Classifying by Brand Family
-                (the original approach) wrongly treated "already carries
-                any Peroni" as disqualifying, undercounting genuine new
-                SKU placements. See molson_coors_off_peroni_banquet.csv's
-                entry above and derive_brand_family().
-  Wine & Spirits  Brand Family, independently per family (Le Grand Noir,
-                Leyenda 1925, Bardstown Green River) -- confirmed with
-                Gavin (2026-08-04) that all three sub-targets are
-                required (not a combined pool of 5). Unchanged by the
-                Molson Coors product-level fix above; revisit if Kohler's
-                manager gives the same product-level correction for
-                Wine & Spirits.
+Both objectives now key on PRODUCT NUM, independently per product (as of
+2026-08-12, Wine & Spirits was brought in line with Molson Coors' earlier
+2026-08-05 fix):
+  Molson Coors  per Kohler's manager (2026-08-05), a customer who already
+                carries one Peroni SKU but adds a DIFFERENT Peroni SKU in
+                August is a new placement for that SKU. Classifying by
+                Brand Family (the original approach) wrongly treated
+                "already carries any Peroni" as disqualifying,
+                undercounting genuine new SKU placements. See
+                molson_coors_off_peroni_banquet.csv's entry above and
+                derive_brand_family().
+  Wine & Spirits  same reasoning applied 2026-08-12: a customer who
+                already carries one Leyenda 1925 SKU but adds a
+                DIFFERENT Leyenda SKU (e.g. Blanco then Reposado) is a
+                new placement for that SKU. The three sub-targets (Le
+                Grand Noir / Leyenda 1925 / Bardstown Green River) still
+                bucket by Brand Family for counting against the 2/2/1
+                goals -- confirmed with Gavin (2026-08-04) that all
+                three are required, not a combined pool of 5 -- only the
+                new-vs-repeat classification itself moved from Brand
+                Family to Product Num.
 
 BBC Lytt (25% of Account Base) is a per-rep VARIABLE target, not a fixed
 number: each rep's target is ceil(25% * their distinct account-base
@@ -429,11 +444,19 @@ def build_molson_coors():
 
 
 def build_wine_spirits():
+    """Classification keys on Product Num, not Brand Family (changed
+    2026-08-12 -- see this script's docstring): a customer who already
+    carries one Leyenda 1925 SKU but adds a different one this month is a
+    new placement for that SKU, same reasoning as Molson Coors' 2026-08-05
+    fix. BRAND_FAMILY is still carried on every output row (read straight
+    from the CSV's own Brand Family column, unlike Molson Coors which had
+    to derive it) purely so the dual-objective UI can keep bucketing by
+    Le Grand Noir/Leyenda 1925/Bardstown Green River for the 2/2/1 goals."""
     rows = load_csv(WINE_SPIRITS_CSV)
     base_col, current_col = find_period_cols(rows[0].keys(), "Placement Count")
     cases_base_col, cases_current_col = find_period_cols(rows[0].keys(), "Cases")
     classified, new_count, total_pairs = classify_dual_period(
-        rows, brand_key=lambda r: r["Brand Family"], base_col=base_col, current_col=current_col)
+        rows, brand_key=lambda r: r["Product Num"], base_col=base_col, current_col=current_col)
     out = []
     for r, period, is_new in classified:
         if not period:
@@ -691,8 +714,8 @@ def main():
           f"placeholder DATE={NEW_BUYER_WINDOW_START.isoformat()} stamped on every row)")
     print(f"Molson Coors (Peroni+Coors/Banquet independently): {mc_new} new placements out of {mc_total} "
           f"customer+brand pairs ({len(molson_coors_rows)} transaction rows written)")
-    print(f"Wine & Spirits (Le Grand/Leyenda/Green River independently): {ws_new} new placements out of "
-          f"{ws_total} customer+brand pairs ({len(wine_spirits_rows)} transaction rows written)")
+    print(f"Wine & Spirits (per-product, bucketed Le Grand/Leyenda/Green River): {ws_new} new placements out of "
+          f"{ws_total} customer+product pairs ({len(wine_spirits_rows)} transaction rows written)")
     print(f"BBC Lytt: {len(bbc_lytt_rows)} distro rows written")
     print(f"Sales Reps Customer Base: {len(customer_base_rows)} rows written ({distinct_base} distinct rep+customer pairs) -- "
           f"kept as a general full-book reference; no longer feeds BBC Lytt")
