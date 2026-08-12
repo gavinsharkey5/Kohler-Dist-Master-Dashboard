@@ -618,6 +618,7 @@
         <button class="btn" id="comboResetBtn">Reset edited goals</button>
         <span class="rowcount" id="comboEditBadge"></span>
         <button class="btn" id="comboExportBtn">Export CSV</button>
+        <button class="btn" id="exportExcelBtn">Export Excel</button>
         <div class="spacer"></div>
         <span class="rowcount" id="comboRowcount"></span>
       </div>
@@ -2483,6 +2484,399 @@ function exportDMCSV(){
   a.click();
 }
 
+// ---- Export Excel (all tabs) (added 2026-08-12, per Gavin) ----
+// A real, multi-sheet .xlsx -- NOT a library. This dashboard has zero
+// external JS dependencies anywhere (no CDN scripts at all), and the
+// smallest real xlsx-writing library is still ~900KB; hand-rolling the
+// small subset of OOXML this needs keeps that true. What it writes:
+//   - One sheet per tab (Supplier + Brand, By Brand Family, By Supplier,
+//     New Brand Families, Terminated Brands, District Manager Trends),
+//     using the SAME derive()/statusOf() every on-screen table already
+//     uses -- so if a Goal % has been edited (the "what-if" scratchpad),
+//     the export reflects that edit's current Gap/Goal CE/Status, exactly
+//     like the live page.
+//   - Goal CE, Gap, and '26 Projected Finish are written as REAL EXCEL
+//     FORMULAS (not just static numbers) referencing the row's own Goal %
+//     cell -- so opening the file and typing a different Goal % into that
+//     cell recalculates Gap/Goal CE/Projection live, in Excel, the same
+//     relationship the website itself uses. Status stays a static label
+//     (colored to match its value at export time) since replicating the
+//     exact multi-condition status logic as a native Excel formula isn't
+//     worth the complexity for a text badge.
+//   - Supplier + Brand and District Manager Trends keep their parent/child
+//     hierarchy via Excel's native row outline grouping (collapsible, same
+//     spirit as the on-page expand/collapse), with a frozen header row on
+//     every sheet (same idea as this page's own frozen table headers).
+//
+// ---- Minimal ZIP (STORED/uncompressed entries -- Excel doesn't require
+// Deflate) + OOXML writer. Uses inline strings (t="inlineStr"), not a
+// shared-strings table, to avoid needing to pool/dedupe strings by hand. ----
+function xlsxCrc32(bytes){
+  let crc = ~0;
+  for (let i=0;i<bytes.length;i++){
+    crc ^= bytes[i];
+    for (let j=0;j<8;j++) crc = (crc >>> 1) ^ (0xEDB88320 & -(crc & 1));
+  }
+  return (~crc) >>> 0;
+}
+function xlsxU16(n){ return new Uint8Array([n&0xFF,(n>>8)&0xFF]); }
+function xlsxU32(n){ return new Uint8Array([n&0xFF,(n>>8)&0xFF,(n>>16)&0xFF,(n>>24)&0xFF]); }
+function xlsxConcat(parts){
+  const total = parts.reduce((a,p)=>a+p.length,0);
+  const out = new Uint8Array(total);
+  let off=0;
+  for (const p of parts){ out.set(p, off); off += p.length; }
+  return out;
+}
+function xlsxBuildZip(files){
+  const localParts = [], centralParts = [];
+  let offset = 0;
+  const enc = new TextEncoder();
+  const dosTime = 0, dosDate = ((2026-1980)<<9) | (8<<5) | 1; // fixed, doesn't need to be exact
+  files.forEach(f=>{
+    const nameBytes = enc.encode(f.name);
+    const data = f.data;
+    const crc = xlsxCrc32(data);
+    const local = xlsxConcat([
+      xlsxU32(0x04034b50), xlsxU16(20), xlsxU16(0), xlsxU16(0),
+      xlsxU16(dosTime), xlsxU16(dosDate),
+      xlsxU32(crc), xlsxU32(data.length), xlsxU32(data.length),
+      xlsxU16(nameBytes.length), xlsxU16(0),
+      nameBytes,
+    ]);
+    localParts.push(local, data);
+    centralParts.push(xlsxConcat([
+      xlsxU32(0x02014b50), xlsxU16(20), xlsxU16(20), xlsxU16(0), xlsxU16(0),
+      xlsxU16(dosTime), xlsxU16(dosDate),
+      xlsxU32(crc), xlsxU32(data.length), xlsxU32(data.length),
+      xlsxU16(nameBytes.length), xlsxU16(0), xlsxU16(0), xlsxU16(0), xlsxU16(0),
+      xlsxU32(0), xlsxU32(offset),
+      nameBytes,
+    ]));
+    offset += local.length + data.length;
+  });
+  const centralStart = offset;
+  const centralBytes = xlsxConcat(centralParts);
+  const eocd = xlsxConcat([
+    xlsxU32(0x06054b50), xlsxU16(0), xlsxU16(0),
+    xlsxU16(files.length), xlsxU16(files.length),
+    xlsxU32(centralBytes.length), xlsxU32(centralStart),
+    xlsxU16(0),
+  ]);
+  return xlsxConcat([...localParts, centralBytes, eocd]);
+}
+function xlsxEsc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Fixed style palette -- indices are load-bearing, referenced by number
+// from the row-building code below via these named constants.
+const XSTYLE = {
+  DEFAULT:0, HEAD_DEFAULT:1, HEAD_BREWERY:2, HEAD_KOHLER:3, TEXT:4, TEXT_BOLD:5,
+  NUM:6, NUM_BOLD:7, PCT:8, PCT_BOLD:9, PCT_GREEN:10, PCT_RED:11,
+  STATUS_GREEN:12, STATUS_RED:13, STATUS_AMBER:14, STATUS_GRAY:15,
+};
+function xlsxStylesXml(){
+  const fonts = [
+    `<font><sz val="11"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FFF7F1E6"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FF3A2A0D"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FF006100"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FF9C0006"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FF9C6500"/><name val="Calibri"/></font>`,
+    `<font><b/><sz val="11"/><color rgb="FF666666"/><name val="Calibri"/></font>`,
+  ];
+  const fills = [
+    `<fill><patternFill patternType="none"/></fill>`,
+    `<fill><patternFill patternType="gray125"/></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FF2F3542"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFF4B83E"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FF4E7CE8"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFEDEDED"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFC6EFCE"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFFFC7CE"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFFFEB9C"/><bgColor indexed="64"/></patternFill></fill>`,
+    `<fill><patternFill patternType="solid"><fgColor rgb="FFF2F2F2"/><bgColor indexed="64"/></patternFill></fill>`,
+  ];
+  const borders = [
+    `<border><left/><right/><top/><bottom/><diagonal/></border>`,
+    `<border><left/><right/><top/><bottom style="thin"><color rgb="FFD9D9D9"/></bottom><diagonal/></border>`,
+  ];
+  const numFmts = [`<numFmt numFmtId="164" formatCode="#,##0"/>`, `<numFmt numFmtId="165" formatCode="0.0%"/>`];
+  const xf = (numFmtId, fontId, fillId, borderId, align) => {
+    const a = align ? `<alignment horizontal="${align}" vertical="center" wrapText="1"/>` : '';
+    return `<xf numFmtId="${numFmtId}" fontId="${fontId}" fillId="${fillId}" borderId="${borderId}" xfId="0" applyFont="1" applyFill="1" applyBorder="1"${numFmtId?' applyNumberFormat="1"':''}${a?' applyAlignment="1"':''}>${a}</xf>`;
+  };
+  const cellXfs = [
+    xf(0,0,0,0),               // 0 DEFAULT
+    xf(0,1,2,0,'center'),      // 1 HEAD_DEFAULT
+    xf(0,2,3,0,'center'),      // 2 HEAD_BREWERY
+    xf(0,1,4,0,'center'),      // 3 HEAD_KOHLER
+    xf(0,0,0,1,'left'),        // 4 TEXT
+    xf(0,3,5,1,'left'),        // 5 TEXT_BOLD
+    xf(164,0,0,1,'right'),     // 6 NUM
+    xf(164,3,5,1,'right'),     // 7 NUM_BOLD
+    xf(165,0,0,1,'right'),     // 8 PCT
+    xf(165,3,5,1,'right'),     // 9 PCT_BOLD
+    xf(165,4,6,1,'right'),     // 10 PCT_GREEN
+    xf(165,5,7,1,'right'),     // 11 PCT_RED
+    xf(0,4,6,1,'center'),      // 12 STATUS_GREEN
+    xf(0,5,7,1,'center'),      // 13 STATUS_RED
+    xf(0,6,8,1,'center'),      // 14 STATUS_AMBER
+    xf(0,7,9,1,'center'),      // 15 STATUS_GRAY
+  ];
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<numFmts count="${numFmts.length}">${numFmts.join('')}</numFmts>
+<fonts count="${fonts.length}">${fonts.join('')}</fonts>
+<fills count="${fills.length}">${fills.join('')}</fills>
+<borders count="${borders.length}">${borders.join('')}</borders>
+<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+<cellXfs count="${cellXfs.length}">${cellXfs.join('')}</cellXfs>
+<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>`;
+}
+function xlsxColLetter(colIdx0){
+  let c = colIdx0+1, s='';
+  while (c>0){ const m=(c-1)%26; s=String.fromCharCode(65+m)+s; c=Math.floor((c-1)/26); }
+  return s;
+}
+function xlsxCellXml(cell, colIdx0, rowIdx1){
+  if (cell==null) return '';
+  const ref = xlsxColLetter(colIdx0)+rowIdx1;
+  const sAttr = cell.s!=null ? ` s="${cell.s}"` : '';
+  if (cell.f){
+    const vTag = (cell.v!=null && cell.v!=='') ? `<v>${cell.v}</v>` : '';
+    return `<c r="${ref}"${sAttr}><f>${xlsxEsc(cell.f)}</f>${vTag}</c>`;
+  }
+  if (cell.t==='n'){
+    if (cell.v==null || cell.v==='') return `<c r="${ref}"${sAttr}/>`;
+    return `<c r="${ref}"${sAttr}><v>${cell.v}</v></c>`;
+  }
+  if (cell.v==null || cell.v===''){ return `<c r="${ref}"${sAttr}/>`; }
+  return `<c r="${ref}"${sAttr} t="inlineStr"><is><t xml:space="preserve">${xlsxEsc(cell.v)}</t></is></c>`;
+}
+function xlsxSheetXml(sheetDef){
+  const cols = sheetDef.columns || [];
+  const colsXml = cols.length
+    ? `<cols>${cols.map((c,i)=>`<col min="${i+1}" max="${i+1}" width="${c.width||14}" customWidth="1"/>`).join('')}</cols>`
+    : '';
+  const freeze = sheetDef.freezeRows
+    ? `<sheetViews><sheetView workbookViewId="0"><pane ySplit="${sheetDef.freezeRows}" topLeftCell="A${sheetDef.freezeRows+1}" activePane="bottomLeft" state="frozen"/><selection pane="bottomLeft"/></sheetView></sheetViews>`
+    : `<sheetViews><sheetView workbookViewId="0"/></sheetViews>`;
+  const rowsXml = sheetDef.rows.map((row, ri)=>{
+    const rowIdx1 = ri+1;
+    const cellsXml = row.cells.map((c, ci)=>xlsxCellXml(c, ci, rowIdx1)).join('');
+    const outlineAttr = row.outlineLevel ? ` outlineLevel="${row.outlineLevel}" collapsed="0"` : '';
+    return `<row r="${rowIdx1}"${outlineAttr}>${cellsXml}</row>`;
+  }).join('');
+  const sheetPr = sheetDef.rows.some(r=>r.outlineLevel) ? `<sheetPr><outlinePr summaryBelow="0"/></sheetPr>` : '';
+  const dim = cols.length ? `A1:${xlsxColLetter(cols.length-1)}${sheetDef.rows.length}` : 'A1';
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+${sheetPr}<dimension ref="${dim}"/>
+${freeze}
+${colsXml}
+<sheetData>${rowsXml}</sheetData>
+</worksheet>`;
+}
+function xlsxBuildWorkbook(sheetDefs){
+  const enc = new TextEncoder();
+  const b = s=>enc.encode(s);
+  const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
+${sheetDefs.map((s,i)=>`<Override PartName="/xl/worksheets/sheet${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')}
+</Types>`;
+  const rootRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+</Relationships>`;
+  const workbookXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<bookViews><workbookView/></bookViews>
+<sheets>${sheetDefs.map((s,i)=>`<sheet name="${xlsxEsc(s.name)}" sheetId="${i+1}" r:id="rId${i+1}"/>`).join('')}</sheets>
+<calcPr calcId="0" fullCalcOnLoad="1"/>
+</workbook>`;
+  const workbookRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+${sheetDefs.map((s,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i+1}.xml"/>`).join('')}
+<Relationship Id="rId${sheetDefs.length+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>`;
+  const files = [
+    {name:'[Content_Types].xml', data: b(contentTypes)},
+    {name:'_rels/.rels', data: b(rootRels)},
+    {name:'xl/workbook.xml', data: b(workbookXml)},
+    {name:'xl/_rels/workbook.xml.rels', data: b(workbookRels)},
+    {name:'xl/styles.xml', data: b(xlsxStylesXml())},
+    ...sheetDefs.map((s,i)=>({name:`xl/worksheets/sheet${i+1}.xml`, data: b(xlsxSheetXml(s))})),
+  ];
+  return xlsxBuildZip(files);
+}
+
+// ---- Dashboard-specific sheet builders ----
+function xlsxGapStyle(v){ if (v==null) return XSTYLE.PCT; return v>=0 ? XSTYLE.PCT_GREEN : XSTYLE.PCT_RED; }
+function xlsxStatusStyle(label){
+  if (label==='On Pace') return XSTYLE.STATUS_GREEN;
+  if (label==='Behind Both') return XSTYLE.STATUS_RED;
+  if (label==='Behind Brewery' || label==='Behind Kohler') return XSTYLE.STATUS_AMBER;
+  return XSTYLE.STATUS_GRAY;
+}
+function xlsxGoalHeaderRow(nameLabels){
+  const labels = [...nameLabels, 'Manager', "'25 Finish CE", "'25 YTD CE", "'26 YTD CE", 'Trend %', "'26 Proj CE",
+    'Brewery Goal %', 'Brewery Goal CE', 'Gap Brewery', 'Kohler Goal %', 'Kohler Goal CE', 'Gap Kohler', 'Status'];
+  const groupStart = nameLabels.length + 6;
+  return {cells: labels.map((label,i)=>{
+    let s = XSTYLE.HEAD_DEFAULT;
+    if (i>=groupStart && i<groupStart+3) s = XSTYLE.HEAD_BREWERY;
+    else if (i>=groupStart+3 && i<groupStart+6) s = XSTYLE.HEAD_KOHLER;
+    return {t:'s', v:label, s};
+  })};
+}
+// nameCells: [{v}] (Supplier / Supplier+Brand tabs) or [{v:brand},{v:supplier}] (By Brand Family only).
+// r must already have gap_brewery/gap_kohler/goal_brewery_ce/goal_kohler_ce/status/
+// proj_finish_2026_ce computed via derive()/statusOf() -- same "current, possibly
+// what-if-edited" values the on-screen table itself is showing.
+function xlsxGoalDataRow(nameCells, r, rowIdx1, isParent, outlineLevel){
+  const nOff = nameCells.length;
+  const L = i => xlsxColLetter(nOff+i)+rowIdx1;
+  const finishRef = L(1), priorRef = L(2), currentRef = L(3), trendRef = L(4), bgoalRef = L(6), kgoalRef = L(9);
+  const nameStyle = isParent ? XSTYLE.TEXT_BOLD : XSTYLE.TEXT;
+  const numStyle = isParent ? XSTYLE.NUM_BOLD : XSTYLE.NUM;
+  const cells = nameCells.map(nc=>({t:'s', v:nc.v, s:nameStyle}));
+  cells.push({t:'s', v:r.brand_manager||'', s:nameStyle});
+  cells.push({t:'n', v:r.finish_2025_ce, s:numStyle});
+  cells.push({t:'n', v:r.ce_prior, s:numStyle});
+  cells.push({t:'n', v:r.ce_current, s:numStyle});
+  cells.push({t:'n', f:`IFERROR(${currentRef}/${priorRef}-1,"")`, v:r.trend_pct, s:XSTYLE.PCT});
+  cells.push({t:'n', f:`IF(${finishRef}="","",${currentRef}+(${finishRef}-${priorRef})*(1+${trendRef}))`, v:r.proj_finish_2026_ce, s:numStyle});
+  cells.push({t:'n', v:r.goal_brewery_pct, s:XSTYLE.PCT});
+  cells.push({t:'n', f:`IF(OR(${finishRef}="",${bgoalRef}=""),"",${finishRef}*(1+${bgoalRef}))`, v:r.goal_brewery_ce, s:numStyle});
+  cells.push({t:'n', f:`IF(${bgoalRef}="","",${trendRef}-${bgoalRef})`, v:r.gap_brewery, s:xlsxGapStyle(r.gap_brewery)});
+  cells.push({t:'n', v:r.goal_kohler_pct, s:XSTYLE.PCT});
+  cells.push({t:'n', f:`IF(OR(${finishRef}="",${kgoalRef}=""),"",${finishRef}*(1+${kgoalRef}))`, v:r.goal_kohler_ce, s:numStyle});
+  cells.push({t:'n', f:`IF(${kgoalRef}="","",${trendRef}-${kgoalRef})`, v:r.gap_kohler, s:xlsxGapStyle(r.gap_kohler)});
+  cells.push({t:'s', v:r.status||'', s:xlsxStatusStyle(r.status)});
+  return {cells, outlineLevel};
+}
+function xlsxDmHeaderRow(){
+  return {cells: ['District Manager / Rep',"'25 YTD CE","'26 YTD CE",'Trend %'].map(label=>({t:'s',v:label,s:XSTYLE.HEAD_DEFAULT}))};
+}
+function xlsxDmDataRow(name, r, rowIdx1, isParent, outlineLevel){
+  const priorRef = xlsxColLetter(1)+rowIdx1, currentRef = xlsxColLetter(2)+rowIdx1;
+  const nameStyle = isParent?XSTYLE.TEXT_BOLD:XSTYLE.TEXT, numStyle = isParent?XSTYLE.NUM_BOLD:XSTYLE.NUM;
+  return {outlineLevel, cells: [
+    {t:'s', v:name, s:nameStyle},
+    {t:'n', v:r.cePrior, s:numStyle},
+    {t:'n', v:r.ceCurrent, s:numStyle},
+    {t:'n', f:`IFERROR(${currentRef}/${priorRef}-1,"")`, v:r.trendPct, s:XSTYLE.PCT},
+  ]};
+}
+function xlsxFlatHeaderRow(labels){
+  return {cells: labels.map(label=>({t:'s',v:label,s:XSTYLE.HEAD_DEFAULT}))};
+}
+
+const XLSX_GOAL_COLS = [{width:30},{width:16},{width:12},{width:12},{width:12},{width:9},{width:12},{width:11},{width:12},{width:10},{width:11},{width:12},{width:10},{width:14}];
+const XLSX_BRAND_COLS = [{width:22},{width:22},{width:16},{width:12},{width:12},{width:12},{width:9},{width:12},{width:11},{width:12},{width:10},{width:11},{width:12},{width:10},{width:14}];
+
+// Builds the full 6-sheet workbook from the current DATA -- deliberately
+// NOT the currently-filtered/sorted view any one tab happens to have
+// active (this is a single "export everything" button, and per-tab
+// filters wouldn't mean much combined into one file); does run every row
+// through derive()/statusOf() first though, same as the live tables, so
+// edited Goal %s are reflected. Skips the District Manager Trends sheet
+// entirely if that data isn't present (district_manager_trend.csv is
+// optional server-side).
+function buildDashboardExcelSheets(){
+  const sheets = [];
+
+  // Supplier + Brand (hierarchical)
+  {
+    const rows = [xlsxGoalHeaderRow(['Supplier / Brand Family'])];
+    let r1 = 2;
+    DATA.comboGroups.forEach(g=>{
+      const gd = {...g, ...derive(g)}; gd.status = statusOf(gd).label;
+      rows.push(xlsxGoalDataRow([{v:g.supplier}], gd, r1, true, 0)); r1++;
+      g.children.forEach(c=>{
+        const cd = {...c, ...derive(c)}; cd.status = statusOf(cd).label;
+        rows.push(xlsxGoalDataRow([{v:c.brand}], cd, r1, false, 1)); r1++;
+      });
+    });
+    sheets.push({name:'Supplier + Brand', freezeRows:1, columns:XLSX_GOAL_COLS, rows});
+  }
+  // By Brand Family
+  {
+    const rows = [xlsxGoalHeaderRow(['Brand','Supplier'])];
+    DATA.brands.forEach((r,i)=>{
+      const rd = {...r, ...derive(r)}; rd.status = statusOf(rd).label;
+      rows.push(xlsxGoalDataRow([{v:r.brand},{v:r.supplier||''}], rd, i+2, false));
+    });
+    sheets.push({name:'By Brand Family', freezeRows:1, columns:XLSX_BRAND_COLS, rows});
+  }
+  // By Supplier
+  {
+    const rows = [xlsxGoalHeaderRow(['Supplier'])];
+    DATA.supplierRollup.forEach((r,i)=>{
+      const rd = {...r, ...derive(r)}; rd.status = statusOf(rd).label;
+      rows.push(xlsxGoalDataRow([{v:r.supplier}], rd, i+2, false));
+    });
+    sheets.push({name:'By Supplier', freezeRows:1, columns:XLSX_GOAL_COLS, rows});
+  }
+  // New Brand Families in 2026
+  {
+    const rows = [xlsxFlatHeaderRow(['Brand','Supplier','Brand Manager',"2026 CE (YTD)"])];
+    DATA.newBrands.forEach(r=>rows.push({cells:[
+      {t:'s', v:r.brand, s:XSTYLE.TEXT}, {t:'s', v:r.supplier||'', s:XSTYLE.TEXT},
+      {t:'s', v:r.brand_manager||'', s:XSTYLE.TEXT}, {t:'n', v:r.ce_current, s:XSTYLE.NUM},
+    ]}));
+    sheets.push({name:'New Brand Families', freezeRows:1, columns:[{width:26},{width:26},{width:16},{width:14}], rows});
+  }
+  // Terminated Brands
+  {
+    const rows = [xlsxFlatHeaderRow(['Brand','Supplier','Brand Manager',"2025 CE (YTD)","2026 CE (YTD)"])];
+    DATA.terminatedBrands.forEach(r=>rows.push({cells:[
+      {t:'s', v:r.brand, s:XSTYLE.TEXT}, {t:'s', v:r.supplier||'', s:XSTYLE.TEXT},
+      {t:'s', v:r.brand_manager||'', s:XSTYLE.TEXT}, {t:'n', v:r.ce_prior, s:XSTYLE.NUM}, {t:'n', v:r.ce_current, s:XSTYLE.NUM},
+    ]}));
+    sheets.push({name:'Terminated Brands', freezeRows:1, columns:[{width:26},{width:26},{width:16},{width:14},{width:14}], rows});
+  }
+  // District Manager Trends (hierarchical; skipped if no DM data at all)
+  if (DATA.dmGroups && DATA.dmGroups.length){
+    const rows = [xlsxDmHeaderRow()];
+    let r1 = 2;
+    DATA.dmGroups.forEach(g=>{
+      rows.push(xlsxDmDataRow(g.manager, g, r1, true, 0)); r1++;
+      g.children.forEach(c=>{ rows.push(xlsxDmDataRow(c.rep, c, r1, false, 1)); r1++; });
+    });
+    sheets.push({name:'District Manager Trends', freezeRows:1, columns:[{width:26},{width:12},{width:12},{width:9}], rows});
+  }
+  return sheets;
+}
+
+function exportExcelWorkbook(){
+  const btn = document.getElementById('exportExcelBtn');
+  const origLabel = btn ? btn.textContent : null;
+  if (btn){ btn.textContent = 'Building…'; btn.disabled = true; }
+  try {
+    const sheets = buildDashboardExcelSheets();
+    const bytes = xlsxBuildWorkbook(sheets);
+    const blob = new Blob([bytes], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mid-year-review.xlsx';
+    a.click();
+  } catch (e){
+    console.error('Excel export failed:', e);
+    alert('Excel export failed -- check the console for details.');
+  } finally {
+    if (btn){ btn.textContent = origLabel; btn.disabled = false; }
+  }
+}
+
 // ---- Segment Trend + Package Trend (header panels) -- company-wide Cases
 // YoY, from the Fusion segment/package export. Both are page-level (not
 // scoped to the active tab/brand). ----
@@ -2823,6 +3217,7 @@ async function init(){
     renderComboTable();
   });
   document.getElementById('comboExportBtn').addEventListener('click', exportComboCSV);
+  document.getElementById('exportExcelBtn').addEventListener('click', exportExcelWorkbook);
 
   document.getElementById('dmSearch').addEventListener('input', e=>{ DM_FILTER.search = e.target.value; renderDMTable(); });
   document.getElementById('dmExpandAllBtn').addEventListener('click', ()=>{

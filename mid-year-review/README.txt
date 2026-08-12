@@ -883,3 +883,60 @@ Notes:
     suppliers only" to flag that it's a narrower scope than the 4
     stats next to it, rather than silently mixing two supplier
     universes into what looks like one consistent stat row.
+  - "Export Excel" button (added 2026-08-12, per Gavin), next to the
+    Supplier + Brand tab's "Export CSV" button: downloads one
+    mirror.xlsx-style workbook with all 6 tabs as separate sheets
+    (Supplier + Brand, By Brand Family, By Supplier, New Brand
+    Families, Terminated Brands, District Manager Trends -- the last
+    one skipped if DATA.dmGroups is empty), styled to echo the site
+    (dark-slate default headers, gold Brewery Goal columns, blue Kohler
+    Goal columns, green/red/amber/gray status and gap coloring), with
+    a frozen header row and native Excel row-outline grouping on the
+    hierarchical sheets (collapsible supplier->brand / district->rep,
+    same spirit as the page's own expand/collapse).
+      Zero dependencies, by explicit choice (asked Gavin hand-written
+      vs. a ~900KB CDN library like ExcelJS; picked hand-written) --
+      this repo has never loaded an external <script src>, and this
+      doesn't start now. xlsxBuildZip()/xlsxBuildWorkbook() in
+      index.html hand-build a minimal OOXML .xlsx from scratch: a
+      bare-bones ZIP writer (STORED/uncompressed entries -- Excel
+      doesn't require Deflate) with inline strings (t="inlineStr")
+      instead of a shared-strings table, plus [Content_Types].xml,
+      workbook.xml, styles.xml, and one worksheets/sheetN.xml per tab.
+      Validated during development against real exported files with
+      openpyxl (structure, formulas, cached values, styles, freeze
+      panes, outline levels) and xmllint (well-formed XML), not just
+      "it opens."
+      Trend %, '26 Proj CE, Goal CE (both tracks), and Gap (both
+      tracks) are written as REAL Excel formulas (<f>...</f>,
+      referencing other cells in the same row by A1 ref, e.g.
+      I2=IF(OR(C2="",H2=""),"",C2*(1+H2)) for Brewery Goal CE) with a
+      cached <v> value alongside for instant preview -- so typing a
+      new Goal % into the downloaded file, IN EXCEL ITSELF, live-
+      recalculates Goal CE/Gap/Projection exactly the way editing that
+      same cell on the live page already does. workbook.xml sets
+      fullCalcOnLoad="1" so Excel recalculates everything the moment
+      the file opens rather than trusting the cached values as final.
+      Every export runs the CURRENT (possibly what-if-edited, whether
+      from this session or restored from localStorage) row data
+      through the same derive()/statusOf() the on-screen tables use --
+      not a separate copy of that math -- so an active Goal % edit on
+      the page is reflected in the export too. Status stays a static
+      color-coded text value (not a formula) -- replicating the full
+      multi-condition status logic as a native Excel formula wasn't
+      worth it for a text badge.
+      Deliberately NOT scoped to whatever filter/sort/search/collapse
+      state any one tab's UI happens to be in -- this is a single
+      "export everything" button, and one tab's local filter wouldn't
+      mean much carried into a 6-sheet file. Tested end-to-end via
+      Playwright against the live page (not just the prototype's fixture
+      data): clicked the button, downloaded the real .xlsx, and
+      confirmed with openpyxl against real DATA -- correct sheet
+      names/order/row counts, correct formulas + cached values on real
+      rows, correct colors, correct freeze panes (A2 on every sheet),
+      correct outline levels, and confirmed a live what-if Goal % edit
+      made on the combo tab just before export shows up in the
+      downloaded file's formula, cached value, and recalculated Gap
+      alike. Zero browser console errors from the export path itself
+      (the only console error seen in testing was the pre-existing,
+      unrelated Google Fonts CDN block in this sandbox).
