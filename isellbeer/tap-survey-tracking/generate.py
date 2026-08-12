@@ -50,6 +50,23 @@ import json, re, os, datetime
 from collections import defaultdict
 from openpyxl import load_workbook
 
+# Policy override confirmed with the user 2026-08-12 (per the workbook's own
+# "Unverified Brands" sheet): taps from these suppliers count as US even
+# though the Import Template's Corrected Distributor formula hasn't been
+# updated to match yet -- it still defaults them to THEM under the older
+# "No Encompass Match" rule. The raw sheet's own Distributor column already
+# carries the corrected value (manually ruled, green-highlighted at the
+# source), so trust that instead of Corrected Distributor for just these
+# rows. Don't re-derive this from scratch -- ask the user if a future export
+# still disagrees.
+SUPPLIER_STATUS_OVERRIDE_KEYWORDS = ('(IN-HOUSE)', 'OTHER HALF', 'INDUSTRIAL ARTS', 'PABST')
+
+
+def resolve_status(raw_status, corrected, supplier):
+    if raw_status == 'US' and corrected == 'THEM' and any(k in (supplier or '').upper() for k in SUPPLIER_STATUS_OVERRIDE_KEYWORDS):
+        return raw_status
+    return corrected
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX_PATH = os.path.join(HERE, 'iSellBeer_TAPS_US_THEM_Mediator.xlsx')
 HTML = os.path.join(HERE, 'index.html')
@@ -275,6 +292,10 @@ for n, raw in raw_by_num.items():
     visited = parse_datetime(raw['Date/Time'])
     corrected = (t['Corrected Distributor'] or '').strip().upper() or 'UNVERIFIED'
     raw_status = (t['Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    # Sheet9's own Distributor (not Import Template's copy of it) is where the
+    # manual "Unverified Brands" green-highlight corrections actually live.
+    sheet_status = (raw['Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    final_status = resolve_status(sheet_status, corrected, raw['Supplier'])
     records.append({
         'account': raw['Account #'].strip(),
         'dba': raw['DBA'].strip(),
@@ -290,8 +311,8 @@ for n, raw in raw_by_num.items():
         'supplier': raw['Supplier'].strip(),
         'segment': resolve_segment(raw['Brand'], raw['Brand Family']) or 'Unclassified',
         'taps': num(raw['# of Taps']),
-        'status': corrected,
-        'flipped': corrected != raw_status,
+        'status': final_status,
+        'flipped': final_status != raw_status,
         'rawStatus': raw_status,
         'reason': audit_reason(t),
         'photo': raw['photo'],

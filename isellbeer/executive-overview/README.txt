@@ -199,6 +199,21 @@ To refresh with new exports:
      worth a sanity check against what you'd expect.
   4. Commit and push.
 
+Supplier policy override (confirmed with the user 2026-08-12): the 8.12.26
+source file added an "Unverified Brands" sheet ruling that taps from
+suppliers marked "(In-House)", Other Half, Industrial Arts, and Pabst count
+as US -- reflected in the raw survey sheet's own Distributor column
+(green-highlighted at the source) but not yet in the Import Template's
+Corrected Distributor formula, which still defaults them to THEM under the
+older "No Encompass Match" rule. generate.py special-cases exactly these
+four supplier keywords (SUPPLIER_STATUS_OVERRIDE_KEYWORDS, resolve_status(),
+same rule as ../tap-survey-tracking/generate.py) to trust the raw sheet's
+Distributor over Corrected Distributor for just those rows. Shifted the
+core-market split from 49.2%/48.6% to 50.1%/47.7% (US now over 50%). If a
+future export's Import Template formula catches up to this ruling, the
+override becomes a no-op automatically; only revisit it if a future export
+disagrees with this policy for these suppliers.
+
 Distribution-area data-quality fix (per Kohler, 2026-07-30): three area
 labels in the source export aren't real distribution areas, corrected here
 rather than left as-is or silently dropped:

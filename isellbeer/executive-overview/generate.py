@@ -49,6 +49,23 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+# Policy override confirmed with the user 2026-08-12 (per the workbook's own
+# "Unverified Brands" sheet): taps from these suppliers count as US even
+# though the Import Template's Corrected Distributor formula hasn't been
+# updated to match yet -- it still defaults them to THEM under the older
+# "No Encompass Match" rule. The raw sheet's own Distributor column already
+# carries the corrected value (manually ruled, green-highlighted at the
+# source), so trust that instead of Corrected Distributor for just these
+# rows. Same rule as ../tap-survey-tracking/generate.py -- don't re-derive
+# from scratch, ask the user if a future export still disagrees.
+SUPPLIER_STATUS_OVERRIDE_KEYWORDS = ('(IN-HOUSE)', 'OTHER HALF', 'INDUSTRIAL ARTS', 'PABST')
+
+
+def resolve_status(raw_status, corrected, supplier):
+    if raw_status == 'US' and corrected == 'THEM' and any(k in (supplier or '').upper() for k in SUPPLIER_STATUS_OVERRIDE_KEYWORDS):
+        return raw_status
+    return corrected
+
 HERE = Path(__file__).parent
 XLSX_PATH = HERE / "iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx"
 UNITS_CSV = HERE / "encompass_units_sold.csv"
@@ -114,6 +131,9 @@ for n, raw in raw_by_num.items():
     if area == 'PASSAIC-FF':
         area = 'PASSAIC'
     corrected = (t['Corrected Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    # Sheet9's own Distributor (not Import Template's copy of it) is where the
+    # manual "Unverified Brands" green-highlight corrections actually live.
+    sheet_status = (raw['Distributor'] or '').strip().upper() or 'UNVERIFIED'
     records.append({
         'account': raw['Account #'].strip(),
         'dba': raw['DBA'].strip(),
@@ -124,7 +144,7 @@ for n, raw in raw_by_num.items():
         'brandFamily': raw['Brand Family'].strip().upper(),
         'supplier': raw['Supplier'].strip(),
         'taps': num(raw['# of Taps']),
-        'status': corrected,
+        'status': resolve_status(sheet_status, corrected, raw['Supplier']),
     })
 
 # ---------- fix the "Sales" placeholder area via city majority-vote ----------

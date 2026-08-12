@@ -135,7 +135,21 @@ Notes:
     column lag the Import Template's Corrected Distributor for a handful of
     rows (an incomplete write-back, not a judgment call). generate.py
     always uses Import Template's Corrected Distributor as the
-    authoritative status, not the raw sheet's, to avoid that gap.
+    authoritative status, not the raw sheet's, to avoid that gap -- with one
+    confirmed exception (below).
+  - Supplier policy override (confirmed with the user 2026-08-12): the
+    8.12.26 source file added an "Unverified Brands" sheet ruling that taps
+    from suppliers marked "(In-House)", Other Half, Industrial Arts, and
+    Pabst count as US -- reflected in Sheet9's own Distributor column
+    (green-highlighted at the source) but not yet in the Import Template's
+    Corrected Distributor formula, which still defaults them to THEM under
+    the older "No Encompass Match" rule. generate.py special-cases exactly
+    these four supplier keywords (SUPPLIER_STATUS_OVERRIDE_KEYWORDS,
+    resolve_status()) to trust Sheet9's Distributor over Corrected
+    Distributor. If a future export's Import Template formula catches up to
+    this ruling, the override becomes a no-op automatically (raw and
+    corrected will already agree); it only needs to be revisited if a
+    future export disagrees with this policy for these suppliers.
   - District Manager is a clean 1-to-1 mapping onto Route / Sales Rep (each
     rep reports to exactly one DM) as of this build's source file --
     generate.py doesn't enforce that, so if a future export ever gives one
