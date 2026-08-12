@@ -1827,19 +1827,46 @@ function overallHeadlineLines(){
 }
 
 function renderComboKPIs(){
-  const all = DATA.comboGroups.map(r=>({...r, ...derive(r)}));
-  const totalPrior = all.reduce((a,r)=>a+(r.ce_prior||0),0);
-  const totalCurrent = all.reduce((a,r)=>a+(r.ce_current||0),0);
-  const companyTrend = totalPrior ? (totalCurrent/totalPrior - 1) : null;
-  const totalProjFinish = all.reduce((a,r)=>a+(r.proj_finish_2026_ce||0),0);
+  // Company Trend / YTD Case Equiv now come from DATA.overallInsight (the
+  // TRUE company-wide totals from brand_package_trend.csv, 131 suppliers)
+  // instead of summing DATA.comboGroups (this tab's own 86-supplier
+  // goal-tracked subset) -- per Gavin, 2026-08-11: the combo-subset total
+  // (was 4,041,110 -> 3,973,354, -1.7%) didn't match Encompass's own
+  // company-wide Case Equiv export (4,044,456 -> 3,981,499, -1.6%), and
+  // Encompass is the source of truth here. overallHeadlineLines() above
+  // already used overallInsight for its "Company-wide Case Equivalents
+  // were X%" sentence; this stat strip was the one place still quietly
+  // using the narrower subset instead of matching it.
+  //
+  // 2026 Projected Finish still has to come from DATA.comboGroups --
+  // overallInsight has no 2025 Finish figure to project from (that only
+  // exists per-brand/per-supplier in the planning workbook, which only
+  // the goal-tracked subset carries), so "if trend holds" is scoped to
+  // that subset and labeled as such below rather than silently mixing
+  // two different supplier universes into one number.
+  const oi = DATA.overallInsight || {};
+  const totalPrior = oi.cePrior;
+  const totalCurrent = oi.ceCurrent;
+  const companyTrend = oi.trendPct;
+  const ceDiff = (totalCurrent!=null && totalPrior!=null) ? (totalCurrent - totalPrior) : null;
+  const totalProjFinish = DATA.comboGroups
+    .map(r=>({...r, ...derive(r)}))
+    .reduce((a,r)=>a+(r.proj_finish_2026_ce||0),0);
 
   // "Suppliers Tracked" and "Suppliers vs. Goal" moved to the page-header
   // suppliersWidget (2026-08-10, per Gavin) -- combined into one widget
   // there instead of 2 separate tiles here. Company Trend / YTD Case
   // Equiv / 2026 Projected Finish are combined into ONE headline tile
   // below (also 2026-08-10) instead of 3 separate ones.
-  const rangeSub = (DATA.meta && DATA.meta.ytdRangePrior && DATA.meta.ytdRangeCurrent)
-    ? `${DATA.meta.ytdRangePrior} vs. ${DATA.meta.ytdRangeCurrent}` : '2025 vs. 2026, Jan 1 – Jul 31';
+  //
+  // Restructured 2026-08-11, per Gavin ("make date ranges and CEs more
+  // clear") to mirror Encompass's own 4-column export layout (CE for the
+  // prior-year window, CE for the current-year window, the CE +/-, and
+  // the CE % +/- -- each its own labeled stat with the actual date range
+  // attached) instead of one cramped "X -> Y" line with the date range
+  // buried in a generic subtitle underneath.
+  const priorRangeLabel = (DATA.meta && DATA.meta.ytdRangePrior) || 'prior year';
+  const currentRangeLabel = (DATA.meta && DATA.meta.ytdRangeCurrent) || 'current year';
   const headlines = overallHeadlineLines();
   const kpisEl = document.getElementById('comboKpis');
   kpisEl.innerHTML = `<div class="kpis-flex-row">
@@ -1854,9 +1881,11 @@ function renderComboKPIs(){
       page and the Package Trend panel above. Segment Trend is still Cases-based (no Case-Equiv version of that
       export exists yet).</p>` : ''}
     <div class="headline-stats">
-      <div class="headline-stat"><span class="hs-lbl">Company Trend (YTD)</span><span class="hs-val">${fmtPct(companyTrend)}</span><span class="hs-sub">across all tracked suppliers</span></div>
-      <div class="headline-stat"><span class="hs-lbl">YTD Case Equiv</span><span class="hs-val">${fmtCE(totalPrior)} &rarr; ${fmtCE(totalCurrent)}</span><span class="hs-sub">${rangeSub}</span></div>
-      <div class="headline-stat"><span class="hs-lbl">2026 Projected Finish</span><span class="hs-val">${fmtCE(totalProjFinish)} CE</span><span class="hs-sub">if current trend holds</span></div>
+      <div class="headline-stat"><span class="hs-lbl">CE, ${esc(priorRangeLabel)}</span><span class="hs-val">${fmtCE(totalPrior)}</span><span class="hs-sub">Case Equivalents, prior year</span></div>
+      <div class="headline-stat"><span class="hs-lbl">CE, ${esc(currentRangeLabel)}</span><span class="hs-val">${fmtCE(totalCurrent)}</span><span class="hs-sub">Case Equivalents, current year</span></div>
+      <div class="headline-stat"><span class="hs-lbl">CE Change</span><span class="hs-val">${signedCE(ceDiff)}</span><span class="hs-sub">year-over-year, same window</span></div>
+      <div class="headline-stat"><span class="hs-lbl">CE % Change</span><span class="hs-val">${fmtPct(companyTrend)}</span><span class="hs-sub">across all tracked suppliers</span></div>
+      <div class="headline-stat"><span class="hs-lbl">2026 Projected Finish</span><span class="hs-val">${fmtCE(totalProjFinish)} CE</span><span class="hs-sub">if trend holds, goal-tracked suppliers only</span></div>
     </div>
   </div>
   <div class="kpi qa-panel">

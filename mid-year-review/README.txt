@@ -863,3 +863,23 @@ Notes:
     translucent rgba() tint to an opaque solid color once two sticky
     rows were genuinely stacking -- the old rgba let scrolled-past
     rows show through underneath as bleed-through.
+  - Supplier + Brand tab's stat strip (Company Trend / YTD Case Equiv)
+    was quietly summing DATA.comboGroups (this tab's own 86-supplier
+    goal-tracked subset) instead of using DATA.overallInsight (the
+    TRUE company-wide total from brand_package_trend.csv, 131
+    suppliers) -- confirmed against Encompass's own Case Equiv export
+    directly, 2026-08-11, per Gavin: the subset total (4,041,110 ->
+    3,973,354, -1.7%) didn't match Encompass (4,044,456 -> 3,981,499,
+    -1.6%). Fixed in renderComboKPIs() to source from overallInsight,
+    same as the Top Headlines sentence above it already did -- and
+    restructured from one cramped "X -> Y" line into 4 separate stats
+    (CE prior year / CE current year / CE change / CE % change) with
+    the actual date range attached to each, mirroring Encompass's own
+    4-column export layout instead of burying the range in a generic
+    subtitle. 2026 Projected Finish still has to come from
+    DATA.comboGroups (overallInsight has no 2025 Finish figure to
+    project from -- only the goal-tracked subset carries that from the
+    planning workbook), so its own subtitle now says "goal-tracked
+    suppliers only" to flag that it's a narrower scope than the 4
+    stats next to it, rather than silently mixing two supplier
+    universes into what looks like one consistent stat row.
