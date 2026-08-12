@@ -985,7 +985,15 @@ function existingAccountsBlockHtml(existing, hasProduct){
   if(!existing.length) return '';
   const eid = 'exist'+(uid++);
   const rows = existing.map(c=>{
-    const status = (c.baseDate && c.currentDate) ? 'Repeat Buyer' : 'Bought in Base Period';
+    // baseDate-only -> genuinely only bought in the base period. currentDate-only
+    // (not new) can only happen for a customer+product/key that already had an
+    // earlier current-period row claim the new-placement flag (e.g. two separate
+    // transactions of the same product/key in the same month) -- that's a repeat
+    // within this month, NOT "Bought in Base Period", which was the bug that hid
+    // genuinely-new per-product placements (see generate_2026-08.py's docstring).
+    const status = (c.baseDate && c.currentDate) ? 'Repeat Buyer'
+      : c.baseDate ? 'Bought in Base Period'
+      : 'Repeat This Month';
     return `<tr>${hasProduct?`<td>${c.product}</td>`:''}<td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-miss">${status}</span></td></tr>`;
   }).join('');
   return `<div class="targets-block">
