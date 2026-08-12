@@ -5,8 +5,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 578,
-    "CASE_EQUIV_2026": 725,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 148
+    "CASE_EQUIV_2026": 735,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 158
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
@@ -113,8 +113,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 1600,
-    "CASE_EQUIV_2026": 1193,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -407
+    "CASE_EQUIV_2026": 1270,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -329
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
@@ -257,8 +257,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 180,
-    "CASE_EQUIV_2026": 158,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -22
+    "CASE_EQUIV_2026": 165,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -15
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -275,8 +275,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 520,
-    "CASE_EQUIV_2026": 650,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 129
+    "CASE_EQUIV_2026": 651,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 131
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -302,8 +302,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 234,
-    "CASE_EQUIV_2026": 214,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -21
+    "CASE_EQUIV_2026": 216,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -19
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -311,8 +311,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 180,
-    "CASE_EQUIV_2026": 132,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -48
+    "CASE_EQUIV_2026": 133,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -47
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -338,8 +338,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 124,
-    "CASE_EQUIV_2026": 124,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1
+    "CASE_EQUIV_2026": 126,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 1
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -356,8 +356,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 169,
-    "CASE_EQUIV_2026": 199,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 30
+    "CASE_EQUIV_2026": 221,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 52
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -374,8 +374,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 85,
-    "CASE_EQUIV_2026": 76,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -9
+    "CASE_EQUIV_2026": 78,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -7
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -392,8 +392,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 321,
-    "CASE_EQUIV_2026": 339,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 18
+    "CASE_EQUIV_2026": 348,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 27
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -410,8 +410,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2750,
-    "CASE_EQUIV_2026": 2335,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -416
+    "CASE_EQUIV_2026": 2383,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -367
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -419,8 +419,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 4899,
-    "CASE_EQUIV_2026": 3837,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1062
+    "CASE_EQUIV_2026": 3918,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -981
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -428,8 +428,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 5479,
-    "CASE_EQUIV_2026": 4603,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -876
+    "CASE_EQUIV_2026": 4662,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -817
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -437,8 +437,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 1964,
-    "CASE_EQUIV_2026": 1477,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -487
+    "CASE_EQUIV_2026": 1499,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -465
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -446,8 +446,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 4538,
-    "CASE_EQUIV_2026": 3740,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -798
+    "CASE_EQUIV_2026": 3789,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -749
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -455,8 +455,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 2719,
-    "CASE_EQUIV_2026": 2446,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -273
+    "CASE_EQUIV_2026": 2468,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -250
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -473,8 +473,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 244,
-    "CASE_EQUIV_2026": 182,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -62
+    "CASE_EQUIV_2026": 183,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -61
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -482,8 +482,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 1044,
-    "CASE_EQUIV_2026": 713,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -332
+    "CASE_EQUIV_2026": 730,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -315
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -491,8 +491,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 2818,
-    "CASE_EQUIV_2026": 2390,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -428
+    "CASE_EQUIV_2026": 2422,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -396
   },
   {
     "SALES_REP_ASSIGNED": "Andrew Lundy",
@@ -509,8 +509,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 1730,
-    "CASE_EQUIV_2026": 1506,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -224
+    "CASE_EQUIV_2026": 1549,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -180
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -545,8 +545,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2237,
-    "CASE_EQUIV_2026": 1944,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -292
+    "CASE_EQUIV_2026": 1954,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -282
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -554,8 +554,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 74,
-    "CASE_EQUIV_2026": 90,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 16
+    "CASE_EQUIV_2026": 91,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 17
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -563,8 +563,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 577,
-    "CASE_EQUIV_2026": 640,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 63
+    "CASE_EQUIV_2026": 643,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 66
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -590,8 +590,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 336,
-    "CASE_EQUIV_2026": 288,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -49
+    "CASE_EQUIV_2026": 289,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -48
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -599,8 +599,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 400,
-    "CASE_EQUIV_2026": 259,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -141
+    "CASE_EQUIV_2026": 270,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -130
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -617,8 +617,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1056,
-    "CASE_EQUIV_2026": 993,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -63
+    "CASE_EQUIV_2026": 1016,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -40
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -626,8 +626,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 503,
-    "CASE_EQUIV_2026": 573,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 70
+    "CASE_EQUIV_2026": 586,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 83
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -635,8 +635,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 1199,
-    "CASE_EQUIV_2026": 968,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -232
+    "CASE_EQUIV_2026": 983,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -216
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -662,8 +662,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 112,
-    "CASE_EQUIV_2026": 101,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -11
+    "CASE_EQUIV_2026": 103,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -9
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -680,8 +680,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 887,
-    "CASE_EQUIV_2026": 822,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -65
+    "CASE_EQUIV_2026": 832,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -55
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -707,8 +707,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2051,
-    "CASE_EQUIV_2026": 1507,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -544
+    "CASE_EQUIV_2026": 1518,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -533
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -716,8 +716,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 11304,
-    "CASE_EQUIV_2026": 8506,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2798
+    "CASE_EQUIV_2026": 8590,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2714
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -725,8 +725,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 16332,
-    "CASE_EQUIV_2026": 12182,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4150
+    "CASE_EQUIV_2026": 12354,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3977
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -734,8 +734,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 2985,
-    "CASE_EQUIV_2026": 2076,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -909
+    "CASE_EQUIV_2026": 2143,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -842
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -743,8 +743,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 8419,
-    "CASE_EQUIV_2026": 7112,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1307
+    "CASE_EQUIV_2026": 7154,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1265
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -752,8 +752,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 9731,
-    "CASE_EQUIV_2026": 8074,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1656
+    "CASE_EQUIV_2026": 8189,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1542
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -770,8 +770,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 4038,
-    "CASE_EQUIV_2026": 2529,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1509
+    "CASE_EQUIV_2026": 2545,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1493
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -779,8 +779,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 7406,
-    "CASE_EQUIV_2026": 5761,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1646
+    "CASE_EQUIV_2026": 5806,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1600
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -788,8 +788,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 4420,
-    "CASE_EQUIV_2026": 3410,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1009
+    "CASE_EQUIV_2026": 3488,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -932
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -824,8 +824,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 416,
-    "CASE_EQUIV_2026": 447,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 31
+    "CASE_EQUIV_2026": 456,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 40
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -842,8 +842,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 72,
-    "CASE_EQUIV_2026": 128,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 55
+    "CASE_EQUIV_2026": 122,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 49
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -860,8 +860,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 137,
-    "CASE_EQUIV_2026": 104,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -33
+    "CASE_EQUIV_2026": 105,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -32
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -878,8 +878,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 233,
-    "CASE_EQUIV_2026": 151,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -82
+    "CASE_EQUIV_2026": 152,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -81
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -887,8 +887,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 24,
-    "CASE_EQUIV_2026": 28,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 4
+    "CASE_EQUIV_2026": 29,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 5
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -941,8 +941,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 60,
-    "CASE_EQUIV_2026": 47,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -13
+    "CASE_EQUIV_2026": 45,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -15
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -950,8 +950,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1761,
-    "CASE_EQUIV_2026": 1177,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -584
+    "CASE_EQUIV_2026": 1185,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -575
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -959,8 +959,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 5116,
-    "CASE_EQUIV_2026": 3892,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1223
+    "CASE_EQUIV_2026": 3920,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1195
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -968,8 +968,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 9447,
-    "CASE_EQUIV_2026": 6795,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2652
+    "CASE_EQUIV_2026": 6858,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2589
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -977,8 +977,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 3811,
-    "CASE_EQUIV_2026": 2807,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1004
+    "CASE_EQUIV_2026": 2853,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -958
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -986,8 +986,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 1643,
-    "CASE_EQUIV_2026": 1330,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -314
+    "CASE_EQUIV_2026": 1354,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -290
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1004,8 +1004,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 1383,
-    "CASE_EQUIV_2026": 824,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -559
+    "CASE_EQUIV_2026": 829,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -554
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1013,8 +1013,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 1634,
-    "CASE_EQUIV_2026": 962,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -672
+    "CASE_EQUIV_2026": 979,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -654
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
@@ -1022,8 +1022,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 4960,
-    "CASE_EQUIV_2026": 3435,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1524
+    "CASE_EQUIV_2026": 3470,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1490
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1031,8 +1031,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 247,
-    "CASE_EQUIV_2026": 176,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -70
+    "CASE_EQUIV_2026": 182,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -64
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1040,8 +1040,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 1005,
-    "CASE_EQUIV_2026": 1061,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 57
+    "CASE_EQUIV_2026": 1073,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 69
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1049,8 +1049,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 224,
-    "CASE_EQUIV_2026": 199,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -25
+    "CASE_EQUIV_2026": 202,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -22
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1067,8 +1067,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 1308,
-    "CASE_EQUIV_2026": 1064,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -244
+    "CASE_EQUIV_2026": 1085,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -223
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1085,8 +1085,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1033,
-    "CASE_EQUIV_2026": 891,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -143
+    "CASE_EQUIV_2026": 904,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -129
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1094,8 +1094,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 334,
-    "CASE_EQUIV_2026": 277,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -57
+    "CASE_EQUIV_2026": 282,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -52
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1112,8 +1112,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 560,
-    "CASE_EQUIV_2026": 503,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -58
+    "CASE_EQUIV_2026": 515,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -46
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1130,8 +1130,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 837,
-    "CASE_EQUIV_2026": 597,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -240
+    "CASE_EQUIV_2026": 612,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -225
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1139,8 +1139,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1716,
-    "CASE_EQUIV_2026": 1676,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -40
+    "CASE_EQUIV_2026": 1732,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 16
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1148,8 +1148,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 824,
-    "CASE_EQUIV_2026": 845,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 21
+    "CASE_EQUIV_2026": 866,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 42
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1157,8 +1157,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 1055,
-    "CASE_EQUIV_2026": 830,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -225
+    "CASE_EQUIV_2026": 842,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -213
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1166,8 +1166,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 762,
-    "CASE_EQUIV_2026": 776,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 15
+    "CASE_EQUIV_2026": 805,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 43
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1184,8 +1184,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 54,
-    "CASE_EQUIV_2026": 29,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -25
+    "CASE_EQUIV_2026": 31,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -23
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1202,8 +1202,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 764,
-    "CASE_EQUIV_2026": 738,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -26
+    "CASE_EQUIV_2026": 763,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1211,8 +1211,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 113,
-    "CASE_EQUIV_2026": 55,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -58
+    "CASE_EQUIV_2026": 57,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -56
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1229,8 +1229,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1525,
-    "CASE_EQUIV_2026": 1151,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -374
+    "CASE_EQUIV_2026": 1168,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -357
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1238,8 +1238,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 12733,
-    "CASE_EQUIV_2026": 8785,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3948
+    "CASE_EQUIV_2026": 8838,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3894
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1247,8 +1247,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 4677,
-    "CASE_EQUIV_2026": 3794,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -883
+    "CASE_EQUIV_2026": 3813,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -864
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1256,8 +1256,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 9290,
-    "CASE_EQUIV_2026": 7651,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1639
+    "CASE_EQUIV_2026": 7688,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1602
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1265,8 +1265,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 25560,
-    "CASE_EQUIV_2026": 20365,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5195
+    "CASE_EQUIV_2026": 20605,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4955
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1274,8 +1274,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 19685,
-    "CASE_EQUIV_2026": 16548,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3138
+    "CASE_EQUIV_2026": 16768,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2917
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1292,8 +1292,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 1897,
-    "CASE_EQUIV_2026": 1272,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -625
+    "CASE_EQUIV_2026": 1298,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -599
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1301,8 +1301,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 4785,
-    "CASE_EQUIV_2026": 3214,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1571
+    "CASE_EQUIV_2026": 3396,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1389
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1310,8 +1310,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1783,
-    "CASE_EQUIV_2026": 1481,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -302
+    "CASE_EQUIV_2026": 1524,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -260
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1328,8 +1328,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 162,
-    "CASE_EQUIV_2026": 161,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1
+    "CASE_EQUIV_2026": 166,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 4
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1337,8 +1337,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 54,
-    "CASE_EQUIV_2026": 25,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -29
+    "CASE_EQUIV_2026": 27,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -27
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1346,8 +1346,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 777,
-    "CASE_EQUIV_2026": 703,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -74
+    "CASE_EQUIV_2026": 714,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -63
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1373,8 +1373,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 308,
-    "CASE_EQUIV_2026": 217,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -91
+    "CASE_EQUIV_2026": 229,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -79
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1391,8 +1391,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 387,
-    "CASE_EQUIV_2026": 343,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -44
+    "CASE_EQUIV_2026": 348,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -38
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1409,8 +1409,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 313,
-    "CASE_EQUIV_2026": 207,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -106
+    "CASE_EQUIV_2026": 212,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -101
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1418,8 +1418,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 2985,
-    "CASE_EQUIV_2026": 3012,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 27
+    "CASE_EQUIV_2026": 3035,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 50
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1436,8 +1436,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 229,
-    "CASE_EQUIV_2026": 208,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -21
+    "CASE_EQUIV_2026": 210,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -19
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1445,8 +1445,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 2081,
-    "CASE_EQUIV_2026": 2141,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 60
+    "CASE_EQUIV_2026": 2250,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 169
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1472,8 +1472,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Kirin Ichiban",
     "CASE_EQUIV_2025": 1365,
-    "CASE_EQUIV_2026": 1143,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -222
+    "CASE_EQUIV_2026": 1243,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -122
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1490,8 +1490,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 39,
-    "CASE_EQUIV_2026": 28,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -11
+    "CASE_EQUIV_2026": 32,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -7
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1499,8 +1499,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 9,
-    "CASE_EQUIV_2026": 10,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 1
+    "CASE_EQUIV_2026": 12,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 3
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1508,8 +1508,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1598,
-    "CASE_EQUIV_2026": 1188,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -410
+    "CASE_EQUIV_2026": 1210,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -388
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1517,8 +1517,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 13085,
-    "CASE_EQUIV_2026": 9831,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3253
+    "CASE_EQUIV_2026": 9961,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3124
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1526,8 +1526,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 2010,
-    "CASE_EQUIV_2026": 1706,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -303
+    "CASE_EQUIV_2026": 1787,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -223
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1535,8 +1535,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 11040,
-    "CASE_EQUIV_2026": 7502,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3538
+    "CASE_EQUIV_2026": 7575,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3465
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1544,8 +1544,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 24372,
-    "CASE_EQUIV_2026": 17156,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -7217
+    "CASE_EQUIV_2026": 17519,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -6854
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1553,8 +1553,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 22417,
-    "CASE_EQUIV_2026": 18301,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4116
+    "CASE_EQUIV_2026": 18704,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3714
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1571,8 +1571,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 625,
-    "CASE_EQUIV_2026": 371,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -254
+    "CASE_EQUIV_2026": 372,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -253
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1580,8 +1580,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 2950,
-    "CASE_EQUIV_2026": 2149,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -801
+    "CASE_EQUIV_2026": 2199,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -752
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1589,8 +1589,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1220,
-    "CASE_EQUIV_2026": 852,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -368
+    "CASE_EQUIV_2026": 873,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -347
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1598,8 +1598,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 462,
-    "CASE_EQUIV_2026": 511,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 49
+    "CASE_EQUIV_2026": 523,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 61
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1607,8 +1607,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 1373,
-    "CASE_EQUIV_2026": 1404,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 32
+    "CASE_EQUIV_2026": 1445,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 72
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1616,8 +1616,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 373,
-    "CASE_EQUIV_2026": 313,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -60
+    "CASE_EQUIV_2026": 320,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -52
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1634,8 +1634,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2121,
-    "CASE_EQUIV_2026": 1832,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -289
+    "CASE_EQUIV_2026": 1924,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -197
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1643,8 +1643,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 33,
-    "CASE_EQUIV_2026": 30,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4
+    "CASE_EQUIV_2026": 33,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1652,8 +1652,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1215,
-    "CASE_EQUIV_2026": 1313,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 98
+    "CASE_EQUIV_2026": 1342,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 126
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1661,8 +1661,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 624,
-    "CASE_EQUIV_2026": 548,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -76
+    "CASE_EQUIV_2026": 573,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -51
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1670,8 +1670,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Spirits",
     "CASE_EQUIV_2025": 161,
-    "CASE_EQUIV_2026": 118,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -43
+    "CASE_EQUIV_2026": 128,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -33
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1679,8 +1679,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 719,
-    "CASE_EQUIV_2026": 558,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -162
+    "CASE_EQUIV_2026": 572,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -148
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1688,8 +1688,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 773,
-    "CASE_EQUIV_2026": 581,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -192
+    "CASE_EQUIV_2026": 591,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -182
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1697,8 +1697,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 1169,
-    "CASE_EQUIV_2026": 1118,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -51
+    "CASE_EQUIV_2026": 1165,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1706,8 +1706,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 3087,
-    "CASE_EQUIV_2026": 2909,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -178
+    "CASE_EQUIV_2026": 3050,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -37
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1715,8 +1715,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 1115,
-    "CASE_EQUIV_2026": 1231,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 116
+    "CASE_EQUIV_2026": 1262,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 147
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1724,8 +1724,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 1714,
-    "CASE_EQUIV_2026": 1573,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -141
+    "CASE_EQUIV_2026": 1637,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -78
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1733,8 +1733,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 1419,
-    "CASE_EQUIV_2026": 1438,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 18
+    "CASE_EQUIV_2026": 1521,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 102
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1778,8 +1778,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 217,
-    "CASE_EQUIV_2026": 155,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -62
+    "CASE_EQUIV_2026": 162,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -55
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1787,8 +1787,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 260,
-    "CASE_EQUIV_2026": 253,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -7
+    "CASE_EQUIV_2026": 276,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 16
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1796,8 +1796,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2531,
-    "CASE_EQUIV_2026": 1928,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -603
+    "CASE_EQUIV_2026": 2004,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -526
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1805,8 +1805,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 13586,
-    "CASE_EQUIV_2026": 10845,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2741
+    "CASE_EQUIV_2026": 11229,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2357
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1814,8 +1814,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 7226,
-    "CASE_EQUIV_2026": 5966,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1260
+    "CASE_EQUIV_2026": 6177,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1049
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1823,8 +1823,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 12384,
-    "CASE_EQUIV_2026": 9727,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2657
+    "CASE_EQUIV_2026": 9927,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2457
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1832,8 +1832,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 32998,
-    "CASE_EQUIV_2026": 27100,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5899
+    "CASE_EQUIV_2026": 28178,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4821
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1841,8 +1841,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 24789,
-    "CASE_EQUIV_2026": 20747,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4042
+    "CASE_EQUIV_2026": 21537,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3252
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1850,8 +1850,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 841,
-    "CASE_EQUIV_2026": 832,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -9
+    "CASE_EQUIV_2026": 846,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 5
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1859,8 +1859,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 2539,
-    "CASE_EQUIV_2026": 1761,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -778
+    "CASE_EQUIV_2026": 1770,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -769
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1868,8 +1868,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 6394,
-    "CASE_EQUIV_2026": 5662,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -733
+    "CASE_EQUIV_2026": 5775,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -620
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1877,8 +1877,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 2411,
-    "CASE_EQUIV_2026": 2346,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -65
+    "CASE_EQUIV_2026": 2431,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 20
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1895,8 +1895,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 770,
-    "CASE_EQUIV_2026": 723,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -47
+    "CASE_EQUIV_2026": 728,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -42
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1904,8 +1904,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 136,
-    "CASE_EQUIV_2026": 91,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -45
+    "CASE_EQUIV_2026": 94,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -42
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1913,8 +1913,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mxd Cocktails",
     "CASE_EQUIV_2025": 268,
-    "CASE_EQUIV_2026": 345,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 77
+    "CASE_EQUIV_2026": 351,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 83
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1922,8 +1922,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 1888,
-    "CASE_EQUIV_2026": 1518,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -370
+    "CASE_EQUIV_2026": 1551,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -337
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1967,8 +1967,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 494,
-    "CASE_EQUIV_2026": 364,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -130
+    "CASE_EQUIV_2026": 370,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -124
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1976,8 +1976,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 1583,
-    "CASE_EQUIV_2026": 1061,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -522
+    "CASE_EQUIV_2026": 1066,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -517
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1994,8 +1994,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 2407,
-    "CASE_EQUIV_2026": 1951,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -456
+    "CASE_EQUIV_2026": 2038,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -369
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2003,8 +2003,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 543,
-    "CASE_EQUIV_2026": 480,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -63
+    "CASE_EQUIV_2026": 482,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -61
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2012,8 +2012,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 1223,
-    "CASE_EQUIV_2026": 1211,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -12
+    "CASE_EQUIV_2026": 1216,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -7
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2084,8 +2084,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 729,
-    "CASE_EQUIV_2026": 507,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -222
+    "CASE_EQUIV_2026": 517,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -212
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2093,8 +2093,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 16713,
-    "CASE_EQUIV_2026": 12327,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4386
+    "CASE_EQUIV_2026": 12623,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4090
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2102,8 +2102,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 1946,
-    "CASE_EQUIV_2026": 1423,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -523
+    "CASE_EQUIV_2026": 1432,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -514
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2111,8 +2111,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 13154,
-    "CASE_EQUIV_2026": 8706,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4448
+    "CASE_EQUIV_2026": 8915,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4238
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2120,8 +2120,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 43496,
-    "CASE_EQUIV_2026": 32930,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -10566
+    "CASE_EQUIV_2026": 33498,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -9998
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2129,8 +2129,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 26363,
-    "CASE_EQUIV_2026": 20145,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -6217
+    "CASE_EQUIV_2026": 20622,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -5741
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2147,8 +2147,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 743,
-    "CASE_EQUIV_2026": 494,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -249
+    "CASE_EQUIV_2026": 510,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -233
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2156,8 +2156,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 1801,
-    "CASE_EQUIV_2026": 1241,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -560
+    "CASE_EQUIV_2026": 1252,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -550
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2165,8 +2165,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 658,
-    "CASE_EQUIV_2026": 482,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -177
+    "CASE_EQUIV_2026": 490,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -169
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -2264,8 +2264,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 3432,
-    "CASE_EQUIV_2026": 3319,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -113
+    "CASE_EQUIV_2026": 3382,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -51
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -2363,8 +2363,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 25,
-    "CASE_EQUIV_2026": 20,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5
+    "CASE_EQUIV_2026": 19,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -6
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -2399,8 +2399,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 917,
-    "CASE_EQUIV_2026": 707,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -210
+    "CASE_EQUIV_2026": 741,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -176
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -2444,8 +2444,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 4,
-    "CASE_EQUIV_2026": 6,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 2
+    "CASE_EQUIV_2026": 7,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 3
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2471,8 +2471,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 5,
-    "CASE_EQUIV_2026": 5,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 0
+    "CASE_EQUIV_2026": 9,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 5
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2543,8 +2543,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 1580,
-    "CASE_EQUIV_2026": 1434,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -146
+    "CASE_EQUIV_2026": 1453,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -127
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2570,8 +2570,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 28,
-    "CASE_EQUIV_2026": 15,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -13
+    "CASE_EQUIV_2026": 16,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -12
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2579,8 +2579,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 131,
-    "CASE_EQUIV_2026": 77,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -54
+    "CASE_EQUIV_2026": 78,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -53
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2588,8 +2588,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 38,
-    "CASE_EQUIV_2026": 10,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -28
+    "CASE_EQUIV_2026": 13,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -26
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2606,8 +2606,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 253,
-    "CASE_EQUIV_2026": 258,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 5
+    "CASE_EQUIV_2026": 259,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 6
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2615,8 +2615,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 183,
-    "CASE_EQUIV_2026": 169,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -14
+    "CASE_EQUIV_2026": 172,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -11
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
@@ -2660,8 +2660,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 603,
-    "CASE_EQUIV_2026": 763,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 161
+    "CASE_EQUIV_2026": 787,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 185
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2732,8 +2732,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 469,
-    "CASE_EQUIV_2026": 478,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 9
+    "CASE_EQUIV_2026": 481,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 12
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2741,8 +2741,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 739,
-    "CASE_EQUIV_2026": 615,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -124
+    "CASE_EQUIV_2026": 625,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -114
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2750,8 +2750,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 277,
-    "CASE_EQUIV_2026": 262,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -15
+    "CASE_EQUIV_2026": 269,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -8
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2759,8 +2759,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 3102,
-    "CASE_EQUIV_2026": 2645,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -457
+    "CASE_EQUIV_2026": 2707,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -395
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2768,8 +2768,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 975,
-    "CASE_EQUIV_2026": 1233,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 258
+    "CASE_EQUIV_2026": 1268,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 293
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2777,8 +2777,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 3216,
-    "CASE_EQUIV_2026": 2752,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -464
+    "CASE_EQUIV_2026": 2810,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -406
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2795,8 +2795,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 45,
-    "CASE_EQUIV_2026": 22,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -23
+    "CASE_EQUIV_2026": 25,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -20
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2813,8 +2813,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 325,
-    "CASE_EQUIV_2026": 266,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -58
+    "CASE_EQUIV_2026": 265,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -59
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2822,8 +2822,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 14909,
-    "CASE_EQUIV_2026": 11535,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3374
+    "CASE_EQUIV_2026": 11563,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3346
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2840,8 +2840,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 10573,
-    "CASE_EQUIV_2026": 8400,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2173
+    "CASE_EQUIV_2026": 8548,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2026
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2849,8 +2849,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 38291,
-    "CASE_EQUIV_2026": 31752,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -6540
+    "CASE_EQUIV_2026": 32379,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -5912
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2858,8 +2858,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 33298,
-    "CASE_EQUIV_2026": 27528,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5770
+    "CASE_EQUIV_2026": 27948,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -5350
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2876,8 +2876,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 429,
-    "CASE_EQUIV_2026": 288,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -141
+    "CASE_EQUIV_2026": 293,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -136
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2885,8 +2885,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 1116,
-    "CASE_EQUIV_2026": 1003,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -114
+    "CASE_EQUIV_2026": 1056,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -60
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2894,8 +2894,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 148,
-    "CASE_EQUIV_2026": 118,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -30
+    "CASE_EQUIV_2026": 123,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -25
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2903,8 +2903,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 1211,
-    "CASE_EQUIV_2026": 996,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -214
+    "CASE_EQUIV_2026": 1061,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -150
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2912,8 +2912,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 837,
-    "CASE_EQUIV_2026": 588,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -249
+    "CASE_EQUIV_2026": 609,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -229
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2921,8 +2921,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 632,
-    "CASE_EQUIV_2026": 454,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -178
+    "CASE_EQUIV_2026": 471,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -161
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2939,8 +2939,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 4024,
-    "CASE_EQUIV_2026": 3619,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -404
+    "CASE_EQUIV_2026": 3718,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -306
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2957,8 +2957,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 680,
-    "CASE_EQUIV_2026": 508,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -172
+    "CASE_EQUIV_2026": 517,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -163
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2966,8 +2966,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 1276,
-    "CASE_EQUIV_2026": 890,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -385
+    "CASE_EQUIV_2026": 914,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -361
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2984,8 +2984,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 1112,
-    "CASE_EQUIV_2026": 949,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -163
+    "CASE_EQUIV_2026": 983,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -129
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2993,8 +2993,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 873,
-    "CASE_EQUIV_2026": 848,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -25
+    "CASE_EQUIV_2026": 862,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -11
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3002,8 +3002,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 290,
-    "CASE_EQUIV_2026": 332,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 42
+    "CASE_EQUIV_2026": 335,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 45
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3011,8 +3011,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 263,
-    "CASE_EQUIV_2026": 178,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -84
+    "CASE_EQUIV_2026": 183,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -80
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3020,8 +3020,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 182,
-    "CASE_EQUIV_2026": 165,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -17
+    "CASE_EQUIV_2026": 179,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3038,8 +3038,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 265,
-    "CASE_EQUIV_2026": 219,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -45
+    "CASE_EQUIV_2026": 225,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -39
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3056,8 +3056,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 1306,
-    "CASE_EQUIV_2026": 1191,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -115
+    "CASE_EQUIV_2026": 1207,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -99
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3065,8 +3065,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 769,
-    "CASE_EQUIV_2026": 596,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -172
+    "CASE_EQUIV_2026": 604,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -165
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3074,8 +3074,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 710,
-    "CASE_EQUIV_2026": 584,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -126
+    "CASE_EQUIV_2026": 589,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -121
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3083,8 +3083,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2086,
-    "CASE_EQUIV_2026": 1498,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -588
+    "CASE_EQUIV_2026": 1557,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -529
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3092,8 +3092,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 15712,
-    "CASE_EQUIV_2026": 11291,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4422
+    "CASE_EQUIV_2026": 11760,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3952
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3101,8 +3101,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 20583,
-    "CASE_EQUIV_2026": 15770,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4813
+    "CASE_EQUIV_2026": 16429,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4154
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3110,8 +3110,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 10040,
-    "CASE_EQUIV_2026": 7770,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2270
+    "CASE_EQUIV_2026": 8028,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2012
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3119,8 +3119,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 8734,
-    "CASE_EQUIV_2026": 7747,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -987
+    "CASE_EQUIV_2026": 7942,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -792
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3128,8 +3128,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 1864,
-    "CASE_EQUIV_2026": 1171,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -693
+    "CASE_EQUIV_2026": 1251,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -613
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3137,8 +3137,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 5858,
-    "CASE_EQUIV_2026": 3587,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2271
+    "CASE_EQUIV_2026": 3671,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2187
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3146,8 +3146,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 11796,
-    "CASE_EQUIV_2026": 8245,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3550
+    "CASE_EQUIV_2026": 8389,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3406
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3155,8 +3155,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 7208,
-    "CASE_EQUIV_2026": 5244,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1963
+    "CASE_EQUIV_2026": 5394,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1814
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3164,8 +3164,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 417,
-    "CASE_EQUIV_2026": 334,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -83
+    "CASE_EQUIV_2026": 345,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -72
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3173,8 +3173,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 1074,
-    "CASE_EQUIV_2026": 989,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -85
+    "CASE_EQUIV_2026": 1009,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -66
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3182,8 +3182,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 130,
-    "CASE_EQUIV_2026": 96,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -34
+    "CASE_EQUIV_2026": 103,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -27
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3191,8 +3191,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mxd Cocktails",
     "CASE_EQUIV_2025": 5,
-    "CASE_EQUIV_2026": 3,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3
+    "CASE_EQUIV_2026": 5,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3200,8 +3200,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2076,
-    "CASE_EQUIV_2026": 1373,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -702
+    "CASE_EQUIV_2026": 1406,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -669
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3209,8 +3209,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 41,
-    "CASE_EQUIV_2026": 39,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2
+    "CASE_EQUIV_2026": 41,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3218,8 +3218,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1038,
-    "CASE_EQUIV_2026": 854,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -184
+    "CASE_EQUIV_2026": 864,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -174
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3227,8 +3227,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 318,
-    "CASE_EQUIV_2026": 229,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -89
+    "CASE_EQUIV_2026": 235,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -83
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3245,8 +3245,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 454,
-    "CASE_EQUIV_2026": 397,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -57
+    "CASE_EQUIV_2026": 400,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -54
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3254,8 +3254,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 750,
-    "CASE_EQUIV_2026": 491,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -259
+    "CASE_EQUIV_2026": 492,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -258
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3263,8 +3263,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 810,
-    "CASE_EQUIV_2026": 618,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -192
+    "CASE_EQUIV_2026": 629,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -181
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3272,8 +3272,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1923,
-    "CASE_EQUIV_2026": 1914,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -9
+    "CASE_EQUIV_2026": 1950,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 27
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3281,8 +3281,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 853,
-    "CASE_EQUIV_2026": 798,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -55
+    "CASE_EQUIV_2026": 824,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -29
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3290,8 +3290,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 1464,
-    "CASE_EQUIV_2026": 1423,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -41
+    "CASE_EQUIV_2026": 1441,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -23
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3299,8 +3299,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 409,
-    "CASE_EQUIV_2026": 440,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 32
+    "CASE_EQUIV_2026": 441,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 33
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3344,8 +3344,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 58,
-    "CASE_EQUIV_2026": 42,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -16
+    "CASE_EQUIV_2026": 43,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -15
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3353,8 +3353,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 98,
-    "CASE_EQUIV_2026": 56,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -42
+    "CASE_EQUIV_2026": 62,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -36
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3362,8 +3362,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1433,
-    "CASE_EQUIV_2026": 1028,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -405
+    "CASE_EQUIV_2026": 1069,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -363
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3371,8 +3371,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 13808,
-    "CASE_EQUIV_2026": 8800,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5008
+    "CASE_EQUIV_2026": 8954,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4854
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3380,8 +3380,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 7105,
-    "CASE_EQUIV_2026": 4501,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2604
+    "CASE_EQUIV_2026": 4556,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2549
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3389,8 +3389,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 8243,
-    "CASE_EQUIV_2026": 5815,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2428
+    "CASE_EQUIV_2026": 5854,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2389
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3398,8 +3398,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 20142,
-    "CASE_EQUIV_2026": 15003,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5139
+    "CASE_EQUIV_2026": 15534,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4608
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3407,8 +3407,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 19039,
-    "CASE_EQUIV_2026": 15399,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3641
+    "CASE_EQUIV_2026": 15665,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3374
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3416,8 +3416,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 662,
-    "CASE_EQUIV_2026": 444,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -218
+    "CASE_EQUIV_2026": 473,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -190
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3425,8 +3425,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 2387,
-    "CASE_EQUIV_2026": 1532,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -854
+    "CASE_EQUIV_2026": 1557,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -829
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3434,8 +3434,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 5194,
-    "CASE_EQUIV_2026": 3763,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1431
+    "CASE_EQUIV_2026": 3834,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1360
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3443,8 +3443,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 2077,
-    "CASE_EQUIV_2026": 1444,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -633
+    "CASE_EQUIV_2026": 1503,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -574
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3578,8 +3578,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 16065,
-    "CASE_EQUIV_2026": 11367,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4697
+    "CASE_EQUIV_2026": 11439,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4625
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3587,8 +3587,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 57715,
-    "CASE_EQUIV_2026": 43599,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -14116
+    "CASE_EQUIV_2026": 43719,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -13996
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3596,8 +3596,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 58570,
-    "CASE_EQUIV_2026": 45995,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -12575
+    "CASE_EQUIV_2026": 46095,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -12475
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -3758,8 +3758,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 1004,
-    "CASE_EQUIV_2026": 731,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -272
+    "CASE_EQUIV_2026": 754,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -249
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3794,8 +3794,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 46,
-    "CASE_EQUIV_2026": 50,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 4
+    "CASE_EQUIV_2026": 52,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 6
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3821,8 +3821,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 98,
-    "CASE_EQUIV_2026": 120,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 22
+    "CASE_EQUIV_2026": 125,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 27
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3830,8 +3830,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 136,
-    "CASE_EQUIV_2026": 182,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 46
+    "CASE_EQUIV_2026": 187,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 51
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
@@ -3857,8 +3857,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 11,
-    "CASE_EQUIV_2026": 2,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -9
+    "CASE_EQUIV_2026": 4,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -7
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3866,8 +3866,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 1198,
-    "CASE_EQUIV_2026": 1044,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -154
+    "CASE_EQUIV_2026": 1070,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -128
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3875,8 +3875,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 617,
-    "CASE_EQUIV_2026": 597,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -20
+    "CASE_EQUIV_2026": 605,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -13
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3884,8 +3884,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 462,
-    "CASE_EQUIV_2026": 329,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -133
+    "CASE_EQUIV_2026": 338,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -125
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3902,8 +3902,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2628,
-    "CASE_EQUIV_2026": 2118,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -510
+    "CASE_EQUIV_2026": 2265,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -363
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3920,8 +3920,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 697,
-    "CASE_EQUIV_2026": 591,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -106
+    "CASE_EQUIV_2026": 613,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -83
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3929,8 +3929,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 1333,
-    "CASE_EQUIV_2026": 1146,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -187
+    "CASE_EQUIV_2026": 1193,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -140
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3938,8 +3938,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Spirits",
     "CASE_EQUIV_2025": 441,
-    "CASE_EQUIV_2026": 325,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -116
+    "CASE_EQUIV_2026": 336,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -105
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3965,8 +3965,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 982,
-    "CASE_EQUIV_2026": 861,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -121
+    "CASE_EQUIV_2026": 877,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -105
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3974,8 +3974,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1919,
-    "CASE_EQUIV_2026": 1713,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -206
+    "CASE_EQUIV_2026": 1732,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -187
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3983,8 +3983,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 459,
-    "CASE_EQUIV_2026": 435,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -24
+    "CASE_EQUIV_2026": 450,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -9
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3992,8 +3992,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 595,
-    "CASE_EQUIV_2026": 615,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 20
+    "CASE_EQUIV_2026": 621,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 26
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4010,8 +4010,8 @@
     "SUPPLIER": "Bell's",
     "BRAND_FAMILY": "Bell's",
     "CASE_EQUIV_2025": 67,
-    "CASE_EQUIV_2026": 25,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -42
+    "CASE_EQUIV_2026": 29,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -38
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4019,8 +4019,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 133,
-    "CASE_EQUIV_2026": 108,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -25
+    "CASE_EQUIV_2026": 111,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -22
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4037,8 +4037,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 1118,
-    "CASE_EQUIV_2026": 959,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -159
+    "CASE_EQUIV_2026": 1009,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -109
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4046,8 +4046,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 489,
-    "CASE_EQUIV_2026": 355,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -134
+    "CASE_EQUIV_2026": 370,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -119
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4055,8 +4055,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 275,
-    "CASE_EQUIV_2026": 271,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4
+    "CASE_EQUIV_2026": 298,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 23
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4064,8 +4064,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2210,
-    "CASE_EQUIV_2026": 1564,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -646
+    "CASE_EQUIV_2026": 1615,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -595
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4073,8 +4073,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 12823,
-    "CASE_EQUIV_2026": 9288,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3535
+    "CASE_EQUIV_2026": 9753,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3070
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4082,8 +4082,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 15185,
-    "CASE_EQUIV_2026": 11103,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4082
+    "CASE_EQUIV_2026": 11645,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3540
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4100,8 +4100,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 13842,
-    "CASE_EQUIV_2026": 10458,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3384
+    "CASE_EQUIV_2026": 10543,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3299
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4109,8 +4109,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 11681,
-    "CASE_EQUIV_2026": 9529,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2152
+    "CASE_EQUIV_2026": 9747,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1935
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4118,8 +4118,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 1598,
-    "CASE_EQUIV_2026": 817,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -781
+    "CASE_EQUIV_2026": 850,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -748
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4127,8 +4127,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 3583,
-    "CASE_EQUIV_2026": 2437,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1146
+    "CASE_EQUIV_2026": 2470,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1113
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4136,8 +4136,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 9390,
-    "CASE_EQUIV_2026": 6650,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2740
+    "CASE_EQUIV_2026": 6885,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2504
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -4145,8 +4145,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 4145,
-    "CASE_EQUIV_2026": 3238,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -907
+    "CASE_EQUIV_2026": 3370,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -775
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4163,8 +4163,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 833,
-    "CASE_EQUIV_2026": 886,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 53
+    "CASE_EQUIV_2026": 887,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 54
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4190,8 +4190,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 1701,
-    "CASE_EQUIV_2026": 1494,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -207
+    "CASE_EQUIV_2026": 1522,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -178
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4208,8 +4208,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 998,
-    "CASE_EQUIV_2026": 908,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -90
+    "CASE_EQUIV_2026": 922,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -77
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4217,8 +4217,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 214,
-    "CASE_EQUIV_2026": 178,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -35
+    "CASE_EQUIV_2026": 188,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -25
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4253,8 +4253,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 619,
-    "CASE_EQUIV_2026": 550,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -70
+    "CASE_EQUIV_2026": 555,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -65
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4262,8 +4262,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1608,
-    "CASE_EQUIV_2026": 1692,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 84
+    "CASE_EQUIV_2026": 1708,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 100
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4271,8 +4271,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 651,
-    "CASE_EQUIV_2026": 715,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 64
+    "CASE_EQUIV_2026": 716,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 65
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4289,8 +4289,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 643,
-    "CASE_EQUIV_2026": 652,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 9
+    "CASE_EQUIV_2026": 672,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 29
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4325,8 +4325,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 482,
-    "CASE_EQUIV_2026": 495,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 12
+    "CASE_EQUIV_2026": 505,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 22
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4334,8 +4334,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 134,
-    "CASE_EQUIV_2026": 94,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -41
+    "CASE_EQUIV_2026": 100,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -35
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4352,8 +4352,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1326,
-    "CASE_EQUIV_2026": 1044,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -283
+    "CASE_EQUIV_2026": 1048,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -278
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4361,8 +4361,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 11633,
-    "CASE_EQUIV_2026": 8462,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3171
+    "CASE_EQUIV_2026": 8665,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2967
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4370,8 +4370,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 4041,
-    "CASE_EQUIV_2026": 3756,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -285
+    "CASE_EQUIV_2026": 3769,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -273
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4379,8 +4379,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 7327,
-    "CASE_EQUIV_2026": 5310,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2017
+    "CASE_EQUIV_2026": 5338,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1989
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4388,8 +4388,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 18754,
-    "CASE_EQUIV_2026": 15462,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3292
+    "CASE_EQUIV_2026": 15550,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3204
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4397,8 +4397,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 14021,
-    "CASE_EQUIV_2026": 11624,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2397
+    "CASE_EQUIV_2026": 11707,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2314
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4415,8 +4415,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 1827,
-    "CASE_EQUIV_2026": 1273,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -553
+    "CASE_EQUIV_2026": 1291,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -535
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4424,8 +4424,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 4472,
-    "CASE_EQUIV_2026": 3568,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -905
+    "CASE_EQUIV_2026": 3695,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -778
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4433,8 +4433,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1296,
-    "CASE_EQUIV_2026": 1158,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -138
+    "CASE_EQUIV_2026": 1196,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -100
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4442,8 +4442,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 115,
-    "CASE_EQUIV_2026": 108,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -7
+    "CASE_EQUIV_2026": 113,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4469,8 +4469,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 314,
-    "CASE_EQUIV_2026": 351,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 38
+    "CASE_EQUIV_2026": 368,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 54
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4532,8 +4532,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 210,
-    "CASE_EQUIV_2026": 194,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -16
+    "CASE_EQUIV_2026": 195,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -15
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4541,8 +4541,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 290,
-    "CASE_EQUIV_2026": 228,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -62
+    "CASE_EQUIV_2026": 242,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -48
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4550,8 +4550,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 89,
-    "CASE_EQUIV_2026": 84,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5
+    "CASE_EQUIV_2026": 87,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4559,8 +4559,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 160,
-    "CASE_EQUIV_2026": 114,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -46
+    "CASE_EQUIV_2026": 124,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -36
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4568,8 +4568,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 422,
-    "CASE_EQUIV_2026": 469,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 47
+    "CASE_EQUIV_2026": 493,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 71
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4640,8 +4640,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 2426,
-    "CASE_EQUIV_2026": 1725,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -701
+    "CASE_EQUIV_2026": 1767,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -660
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4649,8 +4649,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 2241,
-    "CASE_EQUIV_2026": 1423,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -818
+    "CASE_EQUIV_2026": 1478,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -763
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4667,8 +4667,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 2212,
-    "CASE_EQUIV_2026": 1775,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -436
+    "CASE_EQUIV_2026": 1801,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -411
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4676,8 +4676,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 2231,
-    "CASE_EQUIV_2026": 1804,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -427
+    "CASE_EQUIV_2026": 1922,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -309
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4712,8 +4712,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 486,
-    "CASE_EQUIV_2026": 429,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -57
+    "CASE_EQUIV_2026": 439,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -47
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4721,8 +4721,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 1034,
-    "CASE_EQUIV_2026": 834,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -199
+    "CASE_EQUIV_2026": 852,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -181
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4757,8 +4757,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2060,
-    "CASE_EQUIV_2026": 1633,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -428
+    "CASE_EQUIV_2026": 1645,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -416
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4766,8 +4766,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 129,
-    "CASE_EQUIV_2026": 164,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 35
+    "CASE_EQUIV_2026": 167,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 38
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4775,8 +4775,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1309,
-    "CASE_EQUIV_2026": 1249,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -60
+    "CASE_EQUIV_2026": 1257,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -52
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4784,8 +4784,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 848,
-    "CASE_EQUIV_2026": 811,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -37
+    "CASE_EQUIV_2026": 823,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -25
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4820,8 +4820,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 832,
-    "CASE_EQUIV_2026": 651,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -181
+    "CASE_EQUIV_2026": 655,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -177
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4838,8 +4838,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 590,
-    "CASE_EQUIV_2026": 713,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 123
+    "CASE_EQUIV_2026": 668,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 78
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4856,8 +4856,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 454,
-    "CASE_EQUIV_2026": 382,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -71
+    "CASE_EQUIV_2026": 406,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -48
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4892,8 +4892,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 669,
-    "CASE_EQUIV_2026": 594,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -75
+    "CASE_EQUIV_2026": 608,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -61
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4901,8 +4901,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 160,
-    "CASE_EQUIV_2026": 89,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -71
+    "CASE_EQUIV_2026": 91,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -69
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4910,8 +4910,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 143,
-    "CASE_EQUIV_2026": 99,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -44
+    "CASE_EQUIV_2026": 102,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -41
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4919,8 +4919,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1937,
-    "CASE_EQUIV_2026": 1516,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -421
+    "CASE_EQUIV_2026": 1528,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -409
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4928,8 +4928,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 12575,
-    "CASE_EQUIV_2026": 9434,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3141
+    "CASE_EQUIV_2026": 9506,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3069
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4937,8 +4937,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 10816,
-    "CASE_EQUIV_2026": 8602,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2214
+    "CASE_EQUIV_2026": 8622,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2193
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4946,8 +4946,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 4994,
-    "CASE_EQUIV_2026": 3747,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1248
+    "CASE_EQUIV_2026": 3757,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1238
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4955,8 +4955,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 13633,
-    "CASE_EQUIV_2026": 10662,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2971
+    "CASE_EQUIV_2026": 10744,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2889
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4964,8 +4964,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 10957,
-    "CASE_EQUIV_2026": 9305,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1652
+    "CASE_EQUIV_2026": 9355,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1601
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4982,8 +4982,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 2088,
-    "CASE_EQUIV_2026": 1158,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -930
+    "CASE_EQUIV_2026": 1161,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -927
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4991,8 +4991,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 6286,
-    "CASE_EQUIV_2026": 5398,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -888
+    "CASE_EQUIV_2026": 5430,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -855
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -5009,8 +5009,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 244,
-    "CASE_EQUIV_2026": 255,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 11
+    "CASE_EQUIV_2026": 262,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 18
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5045,8 +5045,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 157,
-    "CASE_EQUIV_2026": 128,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -29
+    "CASE_EQUIV_2026": 130,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -27
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5063,8 +5063,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 769,
-    "CASE_EQUIV_2026": 1010,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 241
+    "CASE_EQUIV_2026": 1015,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 246
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5090,8 +5090,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 293,
-    "CASE_EQUIV_2026": 276,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -17
+    "CASE_EQUIV_2026": 281,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -12
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5099,8 +5099,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 103,
-    "CASE_EQUIV_2026": 110,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 7
+    "CASE_EQUIV_2026": 111,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 8
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5117,8 +5117,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 24,
-    "CASE_EQUIV_2026": 16,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -8
+    "CASE_EQUIV_2026": 17,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -7
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5144,8 +5144,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 142,
-    "CASE_EQUIV_2026": 213,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 71
+    "CASE_EQUIV_2026": 219,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 77
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5198,8 +5198,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 3378,
-    "CASE_EQUIV_2026": 2762,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -616
+    "CASE_EQUIV_2026": 2830,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -548
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5207,8 +5207,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 4829,
-    "CASE_EQUIV_2026": 3638,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1191
+    "CASE_EQUIV_2026": 3692,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1138
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5216,8 +5216,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 5922,
-    "CASE_EQUIV_2026": 4752,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1170
+    "CASE_EQUIV_2026": 4823,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1099
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5225,8 +5225,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 2493,
-    "CASE_EQUIV_2026": 2257,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -237
+    "CASE_EQUIV_2026": 2268,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -226
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5234,8 +5234,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 4916,
-    "CASE_EQUIV_2026": 5026,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 110
+    "CASE_EQUIV_2026": 5068,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 152
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5243,8 +5243,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 2825,
-    "CASE_EQUIV_2026": 3189,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 364
+    "CASE_EQUIV_2026": 3228,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 404
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5270,8 +5270,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 665,
-    "CASE_EQUIV_2026": 434,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -231
+    "CASE_EQUIV_2026": 439,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -226
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -5279,8 +5279,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 2666,
-    "CASE_EQUIV_2026": 2284,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -382
+    "CASE_EQUIV_2026": 2322,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -344
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5297,8 +5297,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 414,
-    "CASE_EQUIV_2026": 451,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 37
+    "CASE_EQUIV_2026": 458,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 44
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5306,8 +5306,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 52,
-    "CASE_EQUIV_2026": 39,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -13
+    "CASE_EQUIV_2026": 40,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -12
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5315,8 +5315,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mxd Cocktails",
     "CASE_EQUIV_2025": 284,
-    "CASE_EQUIV_2026": 296,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 12
+    "CASE_EQUIV_2026": 305,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 21
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5324,8 +5324,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 1139,
-    "CASE_EQUIV_2026": 1006,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -133
+    "CASE_EQUIV_2026": 1044,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -95
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5360,8 +5360,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 385,
-    "CASE_EQUIV_2026": 504,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 120
+    "CASE_EQUIV_2026": 527,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 142
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5369,8 +5369,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 1031,
-    "CASE_EQUIV_2026": 588,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -443
+    "CASE_EQUIV_2026": 603,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -428
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5378,8 +5378,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 165,
-    "CASE_EQUIV_2026": 108,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -57
+    "CASE_EQUIV_2026": 110,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -55
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5387,8 +5387,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 2440,
-    "CASE_EQUIV_2026": 2118,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -322
+    "CASE_EQUIV_2026": 2142,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -298
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5396,8 +5396,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 735,
-    "CASE_EQUIV_2026": 724,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -11
+    "CASE_EQUIV_2026": 722,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -13
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5405,8 +5405,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 2491,
-    "CASE_EQUIV_2026": 1945,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -546
+    "CASE_EQUIV_2026": 1951,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -540
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5414,8 +5414,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 103,
-    "CASE_EQUIV_2026": 150,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 46
+    "CASE_EQUIV_2026": 160,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 56
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5459,8 +5459,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 306,
-    "CASE_EQUIV_2026": 300,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -6
+    "CASE_EQUIV_2026": 302,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -5
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5468,8 +5468,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 12403,
-    "CASE_EQUIV_2026": 8455,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3948
+    "CASE_EQUIV_2026": 8892,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3511
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5486,8 +5486,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 8733,
-    "CASE_EQUIV_2026": 6306,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2427
+    "CASE_EQUIV_2026": 6452,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2281
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5495,8 +5495,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 28310,
-    "CASE_EQUIV_2026": 23267,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5043
+    "CASE_EQUIV_2026": 23957,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4353
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5504,8 +5504,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 22393,
-    "CASE_EQUIV_2026": 16982,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -5410
+    "CASE_EQUIV_2026": 17480,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4913
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5531,8 +5531,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 896,
-    "CASE_EQUIV_2026": 744,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -152
+    "CASE_EQUIV_2026": 749,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -147
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -5549,8 +5549,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 119,
-    "CASE_EQUIV_2026": 180,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 61
+    "CASE_EQUIV_2026": 189,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 70
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5585,8 +5585,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1086,
-    "CASE_EQUIV_2026": 863,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -223
+    "CASE_EQUIV_2026": 898,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -187
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5594,8 +5594,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 392,
-    "CASE_EQUIV_2026": 353,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -39
+    "CASE_EQUIV_2026": 359,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -33
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5612,8 +5612,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 234,
-    "CASE_EQUIV_2026": 178,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -56
+    "CASE_EQUIV_2026": 180,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -54
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5621,8 +5621,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 211,
-    "CASE_EQUIV_2026": 135,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -76
+    "CASE_EQUIV_2026": 139,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -72
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5720,8 +5720,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 1244,
-    "CASE_EQUIV_2026": 989,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -255
+    "CASE_EQUIV_2026": 994,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -250
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5729,8 +5729,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 3679,
-    "CASE_EQUIV_2026": 2690,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -989
+    "CASE_EQUIV_2026": 2728,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -951
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5738,8 +5738,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 3085,
-    "CASE_EQUIV_2026": 2334,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -751
+    "CASE_EQUIV_2026": 2398,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -688
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5747,8 +5747,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 1593,
-    "CASE_EQUIV_2026": 1122,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -471
+    "CASE_EQUIV_2026": 1165,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -428
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5756,8 +5756,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 3752,
-    "CASE_EQUIV_2026": 3088,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -664
+    "CASE_EQUIV_2026": 3138,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -614
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5765,8 +5765,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 2225,
-    "CASE_EQUIV_2026": 2492,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 266
+    "CASE_EQUIV_2026": 2515,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 290
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5783,8 +5783,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 109,
-    "CASE_EQUIV_2026": 97,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -12
+    "CASE_EQUIV_2026": 95,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -14
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5792,8 +5792,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 430,
-    "CASE_EQUIV_2026": 269,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -161
+    "CASE_EQUIV_2026": 271,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -159
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
@@ -5801,8 +5801,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1616,
-    "CASE_EQUIV_2026": 1195,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -421
+    "CASE_EQUIV_2026": 1206,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -410
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5810,8 +5810,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 635,
-    "CASE_EQUIV_2026": 452,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -182
+    "CASE_EQUIV_2026": 459,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -175
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5819,8 +5819,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Cayman Jack",
     "CASE_EQUIV_2025": 795,
-    "CASE_EQUIV_2026": 688,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -106
+    "CASE_EQUIV_2026": 691,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -103
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5846,8 +5846,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 2177,
-    "CASE_EQUIV_2026": 1909,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -268
+    "CASE_EQUIV_2026": 1960,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -217
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5855,8 +5855,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 244,
-    "CASE_EQUIV_2026": 267,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 23
+    "CASE_EQUIV_2026": 286,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 42
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5864,8 +5864,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 1625,
-    "CASE_EQUIV_2026": 1296,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -329
+    "CASE_EQUIV_2026": 1298,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -327
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5873,8 +5873,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 705,
-    "CASE_EQUIV_2026": 547,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -158
+    "CASE_EQUIV_2026": 548,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -157
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5891,8 +5891,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 731,
-    "CASE_EQUIV_2026": 552,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -179
+    "CASE_EQUIV_2026": 566,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -165
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5900,8 +5900,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken Light",
     "CASE_EQUIV_2025": 1273,
-    "CASE_EQUIV_2026": 904,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -369
+    "CASE_EQUIV_2026": 924,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -349
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5909,8 +5909,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 1217,
-    "CASE_EQUIV_2026": 808,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -409
+    "CASE_EQUIV_2026": 828,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -389
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5918,8 +5918,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 1081,
-    "CASE_EQUIV_2026": 1130,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 49
+    "CASE_EQUIV_2026": 1150,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 69
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5927,8 +5927,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 433,
-    "CASE_EQUIV_2026": 366,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -67
+    "CASE_EQUIV_2026": 387,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -46
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5936,8 +5936,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 539,
-    "CASE_EQUIV_2026": 346,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -193
+    "CASE_EQUIV_2026": 354,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -185
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5945,8 +5945,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 769,
-    "CASE_EQUIV_2026": 718,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -51
+    "CASE_EQUIV_2026": 723,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -46
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5963,8 +5963,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 134,
-    "CASE_EQUIV_2026": 86,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -48
+    "CASE_EQUIV_2026": 87,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -47
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5972,8 +5972,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Kirin Ichiban",
     "CASE_EQUIV_2025": 21,
-    "CASE_EQUIV_2026": 33,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 12
+    "CASE_EQUIV_2026": 34,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 13
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -5981,8 +5981,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 775,
-    "CASE_EQUIV_2026": 702,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -73
+    "CASE_EQUIV_2026": 709,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -66
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6008,8 +6008,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2387,
-    "CASE_EQUIV_2026": 1669,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -718
+    "CASE_EQUIV_2026": 1717,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -670
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6017,8 +6017,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 15426,
-    "CASE_EQUIV_2026": 11372,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4054
+    "CASE_EQUIV_2026": 11548,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3878
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6026,8 +6026,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 8892,
-    "CASE_EQUIV_2026": 6394,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2498
+    "CASE_EQUIV_2026": 6568,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2324
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6035,8 +6035,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 9253,
-    "CASE_EQUIV_2026": 7236,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2017
+    "CASE_EQUIV_2026": 7262,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1991
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6044,8 +6044,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 22828,
-    "CASE_EQUIV_2026": 18237,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4592
+    "CASE_EQUIV_2026": 18647,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4182
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6053,8 +6053,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 15244,
-    "CASE_EQUIV_2026": 11909,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -3335
+    "CASE_EQUIV_2026": 12076,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -3168
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6062,8 +6062,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 1572,
-    "CASE_EQUIV_2026": 792,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -780
+    "CASE_EQUIV_2026": 817,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -755
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6080,8 +6080,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 6017,
-    "CASE_EQUIV_2026": 3636,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2380
+    "CASE_EQUIV_2026": 3640,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2376
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -6089,8 +6089,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 2743,
-    "CASE_EQUIV_2026": 2234,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -509
+    "CASE_EQUIV_2026": 2296,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -447
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6125,8 +6125,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 416,
-    "CASE_EQUIV_2026": 406,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -10
+    "CASE_EQUIV_2026": 410,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -6
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6152,8 +6152,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 89,
-    "CASE_EQUIV_2026": 100,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 11
+    "CASE_EQUIV_2026": 103,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 14
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6206,8 +6206,8 @@
     "SUPPLIER": "Sapporo",
     "BRAND_FAMILY": "Sapporo",
     "CASE_EQUIV_2025": 190,
-    "CASE_EQUIV_2026": 122,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -68
+    "CASE_EQUIV_2026": 126,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -64
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6251,8 +6251,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 54,
-    "CASE_EQUIV_2026": 37,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -17
+    "CASE_EQUIV_2026": 44,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -10
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6269,8 +6269,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 555,
-    "CASE_EQUIV_2026": 404,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -151
+    "CASE_EQUIV_2026": 439,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -116
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6278,8 +6278,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 2868,
-    "CASE_EQUIV_2026": 2163,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -706
+    "CASE_EQUIV_2026": 2180,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -688
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6287,8 +6287,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 2870,
-    "CASE_EQUIV_2026": 2424,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -445
+    "CASE_EQUIV_2026": 2451,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -419
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6296,8 +6296,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 608,
-    "CASE_EQUIV_2026": 502,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -105
+    "CASE_EQUIV_2026": 514,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -93
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6305,8 +6305,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 1547,
-    "CASE_EQUIV_2026": 1169,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -378
+    "CASE_EQUIV_2026": 1207,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -340
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6314,8 +6314,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 501,
-    "CASE_EQUIV_2026": 574,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 73
+    "CASE_EQUIV_2026": 592,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 92
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -6350,8 +6350,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 1091,
-    "CASE_EQUIV_2026": 839,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -252
+    "CASE_EQUIV_2026": 859,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -232
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6359,8 +6359,8 @@
     "SUPPLIER": "Cape May",
     "BRAND_FAMILY": "Cape May",
     "CASE_EQUIV_2025": 971,
-    "CASE_EQUIV_2026": 769,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -201
+    "CASE_EQUIV_2026": 775,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -195
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6377,8 +6377,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "Mike's Harder",
     "CASE_EQUIV_2025": 268,
-    "CASE_EQUIV_2026": 249,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -19
+    "CASE_EQUIV_2026": 250,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -18
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6395,8 +6395,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors",
     "CASE_EQUIV_2025": 3452,
-    "CASE_EQUIV_2026": 3233,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -219
+    "CASE_EQUIV_2026": 3261,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -191
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6404,8 +6404,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Fever Tree",
     "CASE_EQUIV_2025": 241,
-    "CASE_EQUIV_2026": 334,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 93
+    "CASE_EQUIV_2026": 338,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 97
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6413,8 +6413,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Peroni",
     "CASE_EQUIV_2025": 2339,
-    "CASE_EQUIV_2026": 2095,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -244
+    "CASE_EQUIV_2026": 2102,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -237
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6422,8 +6422,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Dogfish Head Beer",
     "CASE_EQUIV_2025": 1286,
-    "CASE_EQUIV_2026": 905,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -381
+    "CASE_EQUIV_2026": 916,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -370
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6440,8 +6440,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken 0.0",
     "CASE_EQUIV_2025": 784,
-    "CASE_EQUIV_2026": 581,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -203
+    "CASE_EQUIV_2026": 584,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -200
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6458,8 +6458,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Premier",
     "CASE_EQUIV_2025": 1059,
-    "CASE_EQUIV_2026": 883,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -176
+    "CASE_EQUIV_2026": 889,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -170
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6467,8 +6467,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Chelada",
     "CASE_EQUIV_2025": 2071,
-    "CASE_EQUIV_2026": 2627,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 556
+    "CASE_EQUIV_2026": 2807,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 736
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6476,8 +6476,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Pacifico",
     "CASE_EQUIV_2025": 1367,
-    "CASE_EQUIV_2026": 1397,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 30
+    "CASE_EQUIV_2026": 1425,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 58
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6485,8 +6485,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Victoria",
     "CASE_EQUIV_2025": 891,
-    "CASE_EQUIV_2026": 641,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -250
+    "CASE_EQUIV_2026": 657,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -234
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6512,8 +6512,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Fat Tire Family",
     "CASE_EQUIV_2025": 306,
-    "CASE_EQUIV_2026": 160,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -146
+    "CASE_EQUIV_2026": 161,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -145
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6530,8 +6530,8 @@
     "SUPPLIER": "New Belgium Brewing Company",
     "BRAND_FAMILY": "Voodoo Family",
     "CASE_EQUIV_2025": 1334,
-    "CASE_EQUIV_2026": 1070,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -264
+    "CASE_EQUIV_2026": 1089,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -245
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6539,8 +6539,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Flight",
     "CASE_EQUIV_2025": 385,
-    "CASE_EQUIV_2026": 231,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -154
+    "CASE_EQUIV_2026": 233,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -152
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6548,8 +6548,8 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Light Lager",
     "CASE_EQUIV_2025": 226,
-    "CASE_EQUIV_2026": 148,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -78
+    "CASE_EQUIV_2026": 152,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -74
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6557,8 +6557,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Blue Moon",
     "CASE_EQUIV_2025": 2696,
-    "CASE_EQUIV_2026": 2048,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -648
+    "CASE_EQUIV_2026": 2057,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -639
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6566,8 +6566,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Coors Light",
     "CASE_EQUIV_2025": 18260,
-    "CASE_EQUIV_2026": 13510,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4750
+    "CASE_EQUIV_2026": 13659,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4601
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6575,8 +6575,8 @@
     "SUPPLIER": "MolsonCoors Beverage Company",
     "BRAND_FAMILY": "Lite",
     "CASE_EQUIV_2025": 15847,
-    "CASE_EQUIV_2026": 11484,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -4363
+    "CASE_EQUIV_2026": 11580,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -4267
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6584,8 +6584,8 @@
     "SUPPLIER": "Heineken USA",
     "BRAND_FAMILY": "Heineken USA",
     "CASE_EQUIV_2025": 6531,
-    "CASE_EQUIV_2026": 4576,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1955
+    "CASE_EQUIV_2026": 4588,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1943
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6593,8 +6593,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Corona Extra",
     "CASE_EQUIV_2025": 13113,
-    "CASE_EQUIV_2026": 11069,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2044
+    "CASE_EQUIV_2026": 11183,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1929
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6602,8 +6602,8 @@
     "SUPPLIER": "Constellation Brands",
     "BRAND_FAMILY": "Modelo Especial",
     "CASE_EQUIV_2025": 16214,
-    "CASE_EQUIV_2026": 13645,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2569
+    "CASE_EQUIV_2026": 13950,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2264
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6611,8 +6611,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Truly",
     "CASE_EQUIV_2025": 1171,
-    "CASE_EQUIV_2026": 565,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -606
+    "CASE_EQUIV_2026": 590,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -581
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6620,8 +6620,8 @@
     "SUPPLIER": "Boston Beer Company",
     "BRAND_FAMILY": "Twisted Tea",
     "CASE_EQUIV_2025": 2704,
-    "CASE_EQUIV_2026": 1362,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1342
+    "CASE_EQUIV_2026": 1390,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -1314
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6629,8 +6629,8 @@
     "SUPPLIER": "Mark Anthony",
     "BRAND_FAMILY": "White Claw",
     "CASE_EQUIV_2025": 8648,
-    "CASE_EQUIV_2026": 6342,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -2306
+    "CASE_EQUIV_2026": 6375,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -2273
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -6638,7 +6638,7 @@
     "SUPPLIER": "DG Yuengling Inc",
     "BRAND_FAMILY": "Yuengling Lager",
     "CASE_EQUIV_2025": 3709,
-    "CASE_EQUIV_2026": 2808,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -901
+    "CASE_EQUIV_2026": 2813,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -896
   }
 ]
