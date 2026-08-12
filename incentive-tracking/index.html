@@ -60,37 +60,50 @@
   .rep-hero h2{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;}
 
   .prog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);}
-  .prog-head{padding:20px 24px;border-bottom:1px solid var(--border);}
-  .prog-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px;}
-  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;}
-  .prog-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:40px;min-width:40px;
-    background:#fff;border-radius:9px;padding:5px 7px;flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,.35);}
+  .prog-head{padding:22px 24px;border-bottom:1px solid var(--border);}
+  .prog-name-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:27px;letter-spacing:-.01em;line-height:1.15;}
+  .prog-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:46px;min-width:46px;
+    background:#fff;border-radius:10px;padding:6px 8px;flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,.35);}
   .prog-logo-chip img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
-  .prog-tile .prog-logo-chip{height:30px;min-width:30px;border-radius:7px;padding:4px 6px;}
-  .prog-detail-hero .prog-logo-chip{height:44px;min-width:44px;border-radius:10px;padding:6px 8px;}
-  .prog-tag{font-size:11px;color:var(--text-dim);background:var(--card-alt);border:1px solid var(--border);padding:2px 9px;border-radius:20px;}
-  .prog-desc{font-size:13px;color:var(--text-dim);}
-  .prog-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:18px;}
+  .prog-tile .prog-logo-chip{height:34px;min-width:34px;border-radius:8px;padding:4px 6px;}
+  .prog-detail-hero .prog-logo-chip{height:52px;min-width:52px;border-radius:12px;padding:7px 9px;}
+  .prog-tag{font-family:'Space Grotesk',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--accent);
+    background:var(--accent-soft);border:1px solid var(--accent-deep);padding:4px 11px;border-radius:20px;}
+  .prog-pitch{font-size:16px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:6px;}
+  .prog-desc{font-size:12.5px;color:var(--text-mute);line-height:1.5;}
+  .prog-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:16px;counter-reset:component;}
 
-  .metric-row{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--card-alt);border:1px solid var(--line-soft);border-radius:10px;}
-  .metric-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
-  .metric-label{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;}
-  .metric-reward{font-size:11.5px;color:var(--amber);}
-  .metric-val{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-align:right;}
-  .metric-sub{font-size:11.5px;color:var(--text-dim);}
-  .obj-bar-track{width:100%;height:7px;background:var(--input-bg);border-radius:4px;overflow:hidden;margin-top:2px;}
-  .obj-bar-fill{height:100%;border-radius:4px;background:var(--good);}
+  .metric-row{position:relative;display:flex;flex-direction:column;gap:9px;padding:16px 16px 16px 46px;
+    background:var(--card-alt);border:1px solid var(--line-soft);border-radius:12px;counter-increment:component;}
+  .metric-row::before{content:counter(component);position:absolute;left:14px;top:16px;
+    width:22px;height:22px;border-radius:50%;background:var(--input-bg);border:1px solid var(--border);
+    color:var(--text-dim);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11.5px;
+    display:flex;align-items:center;justify-content:center;}
+  .metric-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+  .metric-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15.5px;line-height:1.3;}
+  .metric-reward{display:inline-block;font-size:11.5px;font-weight:600;color:var(--amber);
+    background:var(--amber-soft);border-radius:6px;padding:2px 7px;margin-top:4px;}
+  .metric-val{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;text-align:right;white-space:nowrap;}
+  .metric-sub{font-size:12px;color:var(--text-dim);line-height:1.5;}
+  .obj-bar-track{width:100%;height:10px;background:var(--input-bg);border-radius:6px;overflow:hidden;margin-top:2px;
+    border:1px solid var(--line-soft);}
+  .obj-bar-fill{height:100%;border-radius:6px;background:var(--good);transition:width .2s ease;}
   .obj-bar-fill.over{background:var(--amber);}
-  .flag-hit{color:var(--good);font-weight:600;}
-  .flag-miss{color:var(--text-dim);}
+  .flag-hit,.flag-miss{display:inline-flex;align-items:center;gap:5px;font-weight:700;font-size:12px;
+    padding:3px 10px 3px 8px;border-radius:20px;}
+  .flag-hit{color:var(--good);background:var(--good-soft);}
+  .flag-hit::before{content:"✓";font-size:11px;}
+  .flag-miss{color:var(--text-dim);background:var(--input-bg);border:1px solid var(--line-soft);}
+  .flag-miss::before{content:"○";font-size:10px;}
 
-  .track-section-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;
-    text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;}
-  .track-section-label.track-pkg{background:var(--accent-soft);color:var(--accent);border-left:3px solid var(--accent);}
-  .track-section-label.track-keg{background:var(--amber-soft);color:var(--amber);border-left:3px solid var(--amber);}
-  .sub-brand-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;
-    text-transform:uppercase;letter-spacing:.04em;padding:8px 12px;border-radius:8px;
-    background:var(--card-alt);color:var(--text-dim);border-left:3px solid var(--border);}
+  .track-section-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.04em;padding:10px 14px;border-radius:9px;}
+  .track-section-label.track-pkg{background:var(--accent-soft);color:var(--accent);border-left:4px solid var(--accent);}
+  .track-section-label.track-keg{background:var(--amber-soft);color:var(--amber);border-left:4px solid var(--amber);}
+  .sub-brand-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.04em;padding:10px 14px;border-radius:9px;
+    background:var(--card-alt);color:var(--text-dim);border-left:4px solid var(--border);}
 
   .territory-block{background:var(--card-alt);border:1px solid var(--border);border-left:3px solid var(--text-dim);
     border-radius:10px;padding:16px 18px;}
@@ -143,24 +156,26 @@
   .empty-state{color:var(--text-dim);font-size:14px;padding:30px 10px;text-align:center;}
 
   .tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;align-items:stretch;}
-  .prog-tile .prog-head{padding:18px 20px 14px;}
+  .prog-tile .prog-head{padding:20px 20px 14px;}
   .prog-tile .prog-body{padding:12px 20px 18px;gap:6px;}
-  .prog-tile .prog-name{font-size:19px;}
+  .prog-tile .prog-name{font-size:21px;}
+  .prog-tile .prog-pitch{font-size:14.5px;}
   .prog-tile-link{display:flex;flex-direction:column;width:100%;text-align:left;font:inherit;color:inherit;
     padding:0;margin:0;cursor:pointer;appearance:none;-webkit-appearance:none;
     transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;}
   .prog-tile-link:hover{border-color:var(--accent);transform:translateY(-3px);background:var(--card-alt);
     box-shadow:0 2px 6px rgba(0,0,0,.4),0 22px 50px rgba(0,0,0,.5);}
   .prog-tile-link:active{transform:translateY(-1px);}
-  .prog-tile-link .prog-desc{margin-top:4px;}
+  .prog-tile-link .prog-desc{margin-top:6px;}
   .prog-tile-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;
     margin-top:auto;padding-top:10px;border-top:1px solid var(--line-soft);}
   .tile-cta-text{font-size:12px;color:var(--text-dim);}
   .tile-cta-text b{color:var(--text);}
   .tile-chev{color:var(--accent);font-size:20px;font-weight:700;flex-shrink:0;}
 
-  .prog-detail-hero{padding:2px 2px 4px;}
-  .prog-name-lg{font-size:24px;}
+  .prog-detail-hero{padding:4px 2px 6px;}
+  .prog-name-lg{font-size:30px;}
+  .prog-detail-hero .prog-pitch{font-size:17px;}
 
   .pill-nav-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
   .pill-nav{display:flex;flex-wrap:wrap;gap:7px;}
@@ -184,9 +199,14 @@
     .sub{font-size:13.5px;}
     .repchip{padding:9px 14px;font-size:13px;min-height:38px;display:inline-flex;align-items:center;}
     .prog-head{padding:16px 16px;}
-    .prog-name{font-size:19px;}
-    .prog-tile .prog-name{font-size:16.5px;}
+    .prog-name{font-size:21px;}
+    .prog-name-lg{font-size:24px;}
+    .prog-pitch{font-size:14.5px;}
+    .prog-tile .prog-name{font-size:17.5px;}
     .prog-body{padding:16px 12px 18px;}
+    .metric-row{padding:14px 14px 14px 42px;}
+    .metric-row::before{left:12px;top:14px;}
+    .metric-val{font-size:19px;}
     table{font-size:12.5px;}
     th, td{padding:8px 8px;}
   }
@@ -16661,62 +16681,77 @@ const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt"},{pct:0.50,label:'Lytty C
 
 const PROGRAM_LIST = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
+   pitch:`Get paid every time a new store starts carrying 1911 Cider — plus a bigger bonus once a bar's kegs cross 2 barrels.`,
    desc:`Two separate tracks, packages never count toward the keg goal: $10 per new off-premise package placement · $100 per new draft (keg/bbl) placement once that account buys 2 barrels total · top 3 reps (distribution + volume) win a trip to the 1911 Cidery`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
+   pitch:`Get paid every time a new store starts carrying Woodchuck — plus a case bonus once you land 3 placements.`,
    desc:`Same structure as 1911, just a 3-barrel goal instead of 2: $10 per new off-premise package placement (unconditional) · $100 per new draft (keg/bbl) placement once that account buys 3 barrels total (unconditional) · $1 per case sold once a rep reaches 3 new package placements`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
+   pitch:`Get paid for new Tona placements and every case you sell — once you cross 20 cases of 24oz cans.`,
    desc:`$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything`,
    getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
    metric:d=>d.caseVolume24oz, metricLabel:'24oz cases', fmt:v=>v.toFixed(0)},
   {key:'path_to_victory', group:'new', title:'The Path to Victory', shortTitle:'Path to Victory', tag:'August',
+   pitch:`Track your accounts buying Victory Monkey Family 6pk and 19.2oz cans this month.`,
    desc:`Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.`,
    getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
    metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
   {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'August',
+   pitch:`Sell more Sam Adams than last August and your commission doubles — plus cash for extra Octoberfest cases.`,
    desc:`Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
+   pitch:`Get paid for every new Angry Orchard or Dogfish Head tap and can placement — earn points toward a cidery trip.`,
    desc:`Draft (Angry Orchard / Dogfish Head): $100 new POD, $50 rebuy · Package: $10 per new single-serve placement · trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['boston_beer']||{}).byRep?.[rep],
    metric:d=>d.points, metricLabel:'trip bonus points', fmt:v=>v.toFixed(0)},
   {key:'new_belgium', group:'new', title:'New Belgium Draft (Summer Draft Focus)', shortTitle:'New Belgium Draft', tag:'August',
+   pitch:`Get paid for every new keg placement of Juicy Haze, Two Hearted, Voodoo Ranger, or Fat Tire.`,
    desc:`Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger & Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May–Aug), featured tier only. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium']||{}).byRep?.[rep],
    metric:d=>d.featuredNewCount+d.featuredRebuyCount, metricLabel:'featured PODs', fmt:v=>v.toFixed(0)},
   {key:'lytt', group:'new', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
+   pitch:`The more of your off-premise accounts that carry Lytt, the higher your per-case rate — three tiers to climb.`,
    desc:`Account penetration tiers: 25% "Gettin' Lytt" = $0.50/case, 50% "Lytty City" = $1.00/case, 75% "Lytt-Faced" = $2.00/case, rate locks in through Dec 31 once hit. Highest penetration after Aug 1 wins 2 tickets to a Giants or Jets game. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
    metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
   {key:'fall_seasonal', group:'new', title:'Fall Seasonal Fast Start', shortTitle:'Fall Seasonal', tag:'August',
+   pitch:`Get paid per case on every Fall Seasonal beer you sell — pumpkin, Oktoberfest, and more.`,
    desc:`$0.50 per case-equivalent on all qualifying packages · $5.00 per sixtel · $10.00 per half-keg. Two separate SKU tiers per the deck: "Package Only" and "Draft & Package" (tracked independently, not combined).`,
    getRep:rep=>{ const po=(PROGRAM_DATA['fall_seasonal']||{}).package_only?.byRep?.[rep]; const pd=(PROGRAM_DATA['fall_seasonal']||{}).packages_and_draft?.byRep?.[rep]; return (po||pd) ? {po,pd} : null; },
    metric:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), metricLabel:'package CE', fmt:v=>v.toFixed(1)},
   {key:'sun_cruiser', group:'ongoing', title:'Sun Cruiser Volume', shortTitle:'Sun Cruiser', tag:'May–Aug',
+   pitch:`Sell more Sun Cruiser than you did last year and get paid on every extra case.`,
    desc:`Earn payout for cases sold over last year's May–Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve). Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep],
    metric:d=>d.rate1CaseGrowth+d.rate3CaseGrowth, metricLabel:'case growth', fmt:v=>v.toFixed(0)},
   {key:'yave', group:'ongoing', title:'Yave Tequila Launch', shortTitle:'Yave', tag:'Jul–Aug',
+   pitch:`Get paid for every new bar or store that starts carrying Yave Tequila.`,
    desc:`On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25. Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50, 5 PODs = $125. No base period in this file, so accounts shown reflect qualifying activity this period, not confirmed new placements.`,
    getRep:rep=>(PROGRAM_DATA['yave']||{}).byRep?.[rep],
    metric:d=>d.onPremAccountCount+d.offPremAccountCount, metricLabel:'qualifying accounts', fmt:v=>v.toFixed(0)},
   {key:'mollys', group:'ongoing', title:"Molly's 1.75L", shortTitle:"Molly's", tag:'Jul–Aug',
+   pitch:`Get paid for every new Molly's 1.75L placement, plus cash on every rebuy case.`,
    desc:`90-day-unsold qualifier · $50 per new POD · $10 per case on rebuys during the period.`,
    getRep:rep=>(PROGRAM_DATA['mollys']||{}).byRep?.[rep],
    metric:d=>d.newPodCount+d.rebuyCount, metricLabel:'PODs + rebuys', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_summer_sequel', group:'ongoing', title:'Garage Beer Summer Sequel', shortTitle:'GB Summer Sequel', tag:'Jun–Aug',
+   pitch:`Beat your own personal Garage Beer volume goal and your per-case rate climbs through 3 tiers.`,
    desc:`Volume push, individual per-rep goals: Tiered = $1.00/CE over 2025, Bonus = $1.50/CE, Super Bonus = $2.00/CE. Draft bonus and iSellBeer feature aren't tracked here — no account-level data in this file.`,
    getRep:rep=>{ const d=(PROGRAM_DATA['garage_beer_summer_sequel']||{}).byRep?.[rep]; return (d && d.tieredGoal!=null) ? d : null; },
    metric:d=>d.caseEquiv, metricLabel:'CE', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_president', group:'ongoing', title:"Garage Beer President's Incentive", shortTitle:"GB President's", tag:'Jun–Sep',
+   pitch:`Once the whole company crosses 9,305 cases of Garage Beer, you get paid on every case you grew over last year.`,
    desc:`$1.00 per CE over last year, once the company sells 9,305 CEs of Garage Beer for the period.`,
    getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
    metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'new_belgium_distribution', group:'ongoing', title:'New Belgium Distribution — Push Volume', shortTitle:'NB Distribution', tag:'Jul–Aug',
+   pitch:`Track how much Bell's, Kirin, and Voodoo Family volume you're pushing this August.`,
    desc:`Push Volume phase only (Achieve and Retain aren't tracked here yet). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window. Core Market brand (Bergen/Passaic/Passaic-FF/Sussex/Morris 1/Morris 3 only) — not applicable to reps with no accounts in that territory.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
@@ -16750,6 +16785,11 @@ let activeProgram = null;
 let uid = 0;
 
 function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function progPitch(key){
+  const entry = PROGRAM_LIST.find(e=>e.key===key);
+  return (entry && entry.pitch) ? `<div class="prog-pitch">${esc(entry.pitch)}</div>` : '';
+}
 
 function detailBlock(items, cols, emptyMsg, label){
   if(!items || !items.length) return `<div class="no-lines">${emptyMsg}</div>`;
@@ -16798,6 +16838,7 @@ function territoryBlockedCard(logoKey, title, tag, brandLabel){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo(logoKey)}<span class="prog-name">${esc(title)}</span><span class="prog-tag">${esc(tag)}</span></div>
+      ${progPitch(logoKey)}
     </div>
     <div class="prog-body">
       <div class="territory-block">
@@ -16824,6 +16865,7 @@ function card1911(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('1911')}<span class="prog-name">Beak &amp; Skiff 1911 Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      ${progPitch('1911')}
       <div class="prog-desc">Two completely separate tracks: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 2 barrels total. Package activity never counts toward the barrel goal. Top 3 reps (distribution + volume) win a trip to the 1911 Cidery.</div>
     </div>
     <div class="prog-body">
@@ -16850,6 +16892,7 @@ function cardWoodchuck(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('woodchuck')}<span class="prog-name">Woodchuck Cider Rewards</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      ${progPitch('woodchuck')}
       <div class="prog-desc">Same structure as 1911, just a 3-barrel (not 2-barrel) goal: $10 for each new off-premise package placement, and $100 for a new draft (keg/bbl) placement once that specific account buys 3 barrels total — both paid unconditionally, package activity never counts toward the barrel goal. Separately, once a rep reaches 3 new package placements, the $1-per-case payout (all cases sold this period) switches on.</div>
     </div>
     <div class="prog-body">
@@ -16874,6 +16917,7 @@ function cardTona(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('tona')}<span class="prog-name">Tona Distribution &amp; Volume</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      ${progPitch('tona')}
       <div class="prog-desc">$10 per new off-premise placement of Tona 24oz cans · $1/case of 24oz cans, $0.50/case of other Tona · none of this pays out until 20 cases of 24oz cans are sold — that 20-case minimum gates the whole program, not just the case-volume payout.</div>
     </div>
     <div class="prog-body">
@@ -16891,6 +16935,7 @@ function cardPathToVictory(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('path_to_victory')}<span class="prog-name">The Path to Victory</span><span class="prog-tag">August</span></div>
+      ${progPitch('path_to_victory')}
       <div class="prog-desc">Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.</div>
     </div>
     <div class="prog-body">
@@ -16909,6 +16954,7 @@ function cardSamAdams(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('sam_adams')}<span class="prog-name">Sam Adams Octoberfest Fast Start</span><span class="prog-tag">August</span></div>
+      ${progPitch('sam_adams')}
       <div class="prog-desc">Double commission on all Sam Adams if positive vs. last August · $1 per case on Octoberfest growth over last August. Comparing month-to-date this year against last year's full month — expect this-year totals to trail until later in August.</div>
     </div>
     <div class="prog-body">
@@ -16925,6 +16971,7 @@ function cardBostonBeer(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('boston_beer')}<span class="prog-name">Boston Beer August Draft Blitz</span><span class="prog-tag">August</span></div>
+      ${progPitch('boston_beer')}
       <div class="prog-desc">Draft (kegs only — Angry Orchard 15.5 / Dogfish Head 15.5): $100 new POD, $50 rebuy · Package (single-serve cans only — Angry Orchard 19.2oz, Dogfish 60/90 Minute IPA, Grateful Dead 19.2oz): $10 per new placement. Draft and package are tracked completely separately — package placements never count as draft. Trip bonus scored by points (draft = 2pts, package = 1pt). No company-wide leaderboard — the "one on-premise, one off-premise" split isn't computable from this data.</div>
     </div>
     <div class="prog-body">
@@ -16955,6 +17002,7 @@ function cardNewBelgium(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('new_belgium')}<span class="prog-name">New Belgium Draft (Summer Draft Focus)</span><span class="prog-tag">August</span></div>
+      ${progPitch('new_belgium')}
       <div class="prog-desc">Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 new 1/6-1/4bbl POD ($25 rebuy) · Voodoo Ranger &amp; Fat Tire: $25/keg · house goal 70 PODs by Aug 31 (period May&ndash;Aug), featured tier only.</div>
     </div>
     <div class="prog-body">
@@ -16981,6 +17029,7 @@ function cardLytt(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('lytt')}<span class="prog-name">Lytt Launch</span><span class="prog-tag">Aug&ndash;Sept</span></div>
+      ${progPitch('lytt')}
       <div class="prog-desc">Account penetration tiers: 25% "Gettin' Lytt" = $0.50/case, 50% "Lytty City" = $1.00/case, 75% "Lytt-Faced" = $2.00/case, rate locks in through Dec 31 once hit. Highest penetration after Aug 1 wins 2 tickets to a Giants or Jets game. Eligible-account universe = this rep's Core Off-Premise book.</div>
     </div>
     <div class="prog-body">
@@ -17000,6 +17049,7 @@ function cardFallSeasonal(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('fall_seasonal')}<span class="prog-name">Fall Seasonal Fast Start</span><span class="prog-tag">August</span></div>
+      ${progPitch('fall_seasonal')}
       <div class="prog-desc">$0.50 per case-equivalent on all qualifying packages · $5.00 per sixtel · $10.00 per half-keg. Two separate SKU tiers per the deck: "Package Only" and "Draft &amp; Package" (tracked independently, not combined).</div>
     </div>
     <div class="prog-body">
@@ -17023,6 +17073,7 @@ function cardSunCruiser(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('sun_cruiser')}<span class="prog-name">Sun Cruiser Volume</span><span class="prog-tag">May&ndash;Aug</span></div>
+      ${progPitch('sun_cruiser')}
       <div class="prog-desc">Earn payout for cases sold over last year's May&ndash;Aug volume, once this year's total exceeds last year's. $1/case (12pk/8pk/18pk, 24pk) · $3/case (4pk, 19.2oz/24oz single-serve).</div>
     </div>
     <div class="prog-body">
@@ -17043,6 +17094,7 @@ function cardYave(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('yave')}<span class="prog-name">Yave Tequila Launch</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      ${progPitch('yave')}
       <div class="prog-desc">On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25, cocktail feature/permanent and rebuys tracked separately via iSellBeer. Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50, 5 PODs = $125. This file has no base period, so new-vs-rebuy can't be split — accounts below show qualifying activity this period, not confirmed new placements.</div>
     </div>
     <div class="prog-body">
@@ -17061,6 +17113,7 @@ function cardMollys(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('mollys')}<span class="prog-name">Molly's 1.75L</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      ${progPitch('mollys')}
       <div class="prog-desc">90-day-unsold qualifier · $50 per new POD · $10 per case on rebuys during the period.</div>
     </div>
     <div class="prog-body">
@@ -17080,6 +17133,7 @@ function cardGarageBeerSummerSequel(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('garage_beer_summer_sequel')}<span class="prog-name">Garage Beer Summer Sequel</span><span class="prog-tag">Jun&ndash;Aug</span></div>
+      ${progPitch('garage_beer_summer_sequel')}
       <div class="prog-desc">Volume push, individual per-rep goals: Tiered = $1.00/CE over 2025, Bonus = $1.50/CE, Super Bonus = $2.00/CE. Draft bonus ($50 new/$100 rebuy after 3 kegs) and the $5 iSellBeer feature aren't tracked here — no account-level data in this file.</div>
     </div>
     <div class="prog-body">
@@ -17097,6 +17151,7 @@ function cardGarageBeerPresident(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('garage_beer_president')}<span class="prog-name">Garage Beer President's Incentive</span><span class="prog-tag">Jun&ndash;Sep</span></div>
+      ${progPitch('garage_beer_president')}
       <div class="prog-desc">$1.00 per CE over last year, once the company sells 9,305 CEs of Garage Beer for the period.</div>
     </div>
     <div class="prog-body">
@@ -17119,6 +17174,7 @@ function cardNewBelgiumDistribution(rep){
   return `<div class="prog-card">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo('new_belgium_distribution')}<span class="prog-name">New Belgium Distribution &mdash; Push Volume</span><span class="prog-tag">Jul&ndash;Aug</span></div>
+      ${progPitch('new_belgium_distribution')}
       <div class="prog-desc">Push Volume phase only (Achieve and Retain phases aren't tracked here yet — pending brand-specific goal numbers). Tracks Case Equivalents sold across the core brand families (Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, Voodoo Family) during the August push window. This file has no year-ago data, so the May&ndash;Jul monthly average is shown only as a reference rate, not a growth target.</div>
     </div>
     <div class="prog-body">
@@ -17183,6 +17239,7 @@ function renderProgramTile(entry){
   return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      ${progPitch(entry.key)}
       <div class="prog-desc">${entry.desc}</div>
     </div>
     <div class="prog-body prog-tile-cta">
@@ -17244,6 +17301,7 @@ function renderProgramDetail(key){
     <button class="backbtn" id="backbtn">&lsaquo; All programs</button>
     <div class="prog-detail-hero">
       <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name prog-name-lg">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
+      ${progPitch(entry.key)}
       <div class="prog-desc">${entry.desc}</div>
     </div>
     <div class="prog-card">
