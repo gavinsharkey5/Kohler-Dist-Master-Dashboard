@@ -214,6 +214,22 @@ future export's Import Template formula catches up to this ruling, the
 override becomes a no-op automatically; only revisit it if a future export
 disagrees with this policy for these suppliers.
 
+Corrected Distributor fill-down gap (found 2026-08-12, still present as of
+the second 8.12.26 export): the newest ~116 rows in the Import Template
+never got the Corrected Distributor (column Y) formula dragged down to
+cover them -- the cells are blank, not miscalculated. generate.py's
+fill_corrected() replicates the exact formula those blank cells would
+contain -- trusts Expected Distributor (column W) when it's a real US/THEM
+verdict, else falls back to the Import Template's own pre-audit Distributor
+column (same fallback the formula itself uses) -- same rule as
+../tap-survey-tracking/generate.py. This is arithmetic, not a judgment
+call: every input it reads is already present and calculated in the source
+file. Shifted the core-market split again, from 50.1%/47.7% to 51.6%/48.4%.
+Once a future export actually fills column Y down, this is a no-op. The
+underlying spreadsheet gap should still get fixed at the source -- see the
+fix steps given to the user 2026-08-12 (fill Y5001:Y5116 down from Y5000's
+formula, or the equivalent range in a future export).
+
 Distribution-area data-quality fix (per Kohler, 2026-07-30): three area
 labels in the source export aren't real distribution areas, corrected here
 rather than left as-is or silently dropped:

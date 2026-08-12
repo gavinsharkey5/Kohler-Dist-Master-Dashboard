@@ -67,6 +67,26 @@ def resolve_status(raw_status, corrected, supplier):
         return raw_status
     return corrected
 
+
+# Fill-down gap (found 2026-08-12, still present in the 8.12.26 exports):
+# Import Template's Corrected Distributor (col Y) formula was never dragged
+# down to cover the newest ~116 rows, so those cells are blank in the source
+# file -- not miscalculated, just never written. Rather than wait on another
+# export, replicate the exact same formula those cells would contain,
+# ourselves, from columns that ARE already filled in every row:
+#   =IF($B="","",IF(OR(Expected Distributor="US",Expected Distributor="THEM"),Expected Distributor,Distributor))
+# i.e. trust Expected Distributor when it's a real US/THEM verdict, else fall
+# back to the Import Template's own (pre-audit) Distributor column -- same
+# fallback the formula itself uses for "Unable to Determine"/"No Territory
+# Data" rows. Only kicks in when Corrected Distributor is genuinely blank;
+# once a real export fills column Y down, this is a no-op.
+def fill_corrected(corrected, expected, tmpl_distributor):
+    if corrected in ('US', 'THEM'):
+        return corrected
+    if expected in ('US', 'THEM'):
+        return expected
+    return tmpl_distributor or 'UNVERIFIED'
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX_PATH = os.path.join(HERE, 'iSellBeer_TAPS_US_THEM_Mediator.xlsx')
 HTML = os.path.join(HERE, 'index.html')
@@ -276,7 +296,7 @@ def build_segment_resolver(wb):
 # ---------- load ----------
 wb = load_workbook(XLSX_PATH, data_only=True)
 raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS, with_photo_link=True)
-tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Audit Result', 'Canonical Brand Family'])
+tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Expected Distributor', 'Audit Result', 'Canonical Brand Family'])
 resolve_segment, segment_stats = build_segment_resolver(wb)
 
 records = []
@@ -290,8 +310,10 @@ for n, raw in raw_by_num.items():
         # as a blank-named rep card with nothing real in it.
         continue
     visited = parse_datetime(raw['Date/Time'])
-    corrected = (t['Corrected Distributor'] or '').strip().upper() or 'UNVERIFIED'
     raw_status = (t['Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    corrected_cell = (t['Corrected Distributor'] or '').strip().upper()
+    expected_cell = (t['Expected Distributor'] or '').strip().upper()
+    corrected = fill_corrected(corrected_cell, expected_cell, raw_status)
     # Sheet9's own Distributor (not Import Template's copy of it) is where the
     # manual "Unverified Brands" green-highlight corrections actually live.
     sheet_status = (raw['Distributor'] or '').strip().upper() or 'UNVERIFIED'

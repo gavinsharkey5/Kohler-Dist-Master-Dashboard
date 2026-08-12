@@ -66,6 +66,26 @@ def resolve_status(raw_status, corrected, supplier):
         return raw_status
     return corrected
 
+
+# Fill-down gap (found 2026-08-12, still present in the 8.12.26 exports):
+# Import Template's Corrected Distributor (col Y) formula was never dragged
+# down to cover the newest ~116 rows, so those cells are blank in the source
+# file -- not miscalculated, just never written. Rather than wait on another
+# export, replicate the exact same formula those cells would contain,
+# ourselves, from columns that ARE already filled in every row: trust
+# Expected Distributor when it's a real US/THEM verdict, else fall back to
+# the Import Template's own (pre-audit) Distributor column -- same fallback
+# the formula itself uses for "Unable to Determine"/"No Territory Data"
+# rows. Same rule as ../tap-survey-tracking/generate.py. Only kicks in when
+# Corrected Distributor is genuinely blank; once a real export fills column
+# Y down, this is a no-op.
+def fill_corrected(corrected, expected, tmpl_distributor):
+    if corrected in ('US', 'THEM'):
+        return corrected
+    if expected in ('US', 'THEM'):
+        return expected
+    return tmpl_distributor or 'UNVERIFIED'
+
 HERE = Path(__file__).parent
 XLSX_PATH = HERE / "iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx"
 UNITS_CSV = HERE / "encompass_units_sold.csv"
@@ -120,7 +140,7 @@ def pct(part, whole):
 # ---------- load tap survey ----------
 wb = load_workbook(XLSX_PATH, data_only=True)
 raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS)
-tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor'])
+tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Expected Distributor'])
 
 records = []
 for n, raw in raw_by_num.items():
@@ -130,7 +150,10 @@ for n, raw in raw_by_num.items():
     area = raw['Distribution Area'].strip().upper()
     if area == 'PASSAIC-FF':
         area = 'PASSAIC'
-    corrected = (t['Corrected Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    tmpl_distributor = (t['Distributor'] or '').strip().upper() or 'UNVERIFIED'
+    corrected_cell = (t['Corrected Distributor'] or '').strip().upper()
+    expected_cell = (t['Expected Distributor'] or '').strip().upper()
+    corrected = fill_corrected(corrected_cell, expected_cell, tmpl_distributor)
     # Sheet9's own Distributor (not Import Template's copy of it) is where the
     # manual "Unverified Brands" green-highlight corrections actually live.
     sheet_status = (raw['Distributor'] or '').strip().upper() or 'UNVERIFIED'

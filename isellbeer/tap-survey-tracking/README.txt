@@ -150,6 +150,25 @@ Notes:
     this ruling, the override becomes a no-op automatically (raw and
     corrected will already agree); it only needs to be revisited if a
     future export disagrees with this policy for these suppliers.
+  - Corrected Distributor fill-down gap (found 2026-08-12, still present as
+    of the second 8.12.26 export): the newest ~116 rows in the Import
+    Template never got the Corrected Distributor (column Y) formula dragged
+    down to cover them -- the cells are blank, not miscalculated. Concentrated
+    in Robin Feldman (55 rows), Allison Scott (37), Chris Payton (14), and
+    Brian Sengebush (10), which is why those reps' accounts showed as
+    "Unverified" on the dashboard. generate.py's fill_corrected() replicates
+    the exact formula those blank cells would contain -- trusts Expected
+    Distributor (column W) when it's a real US/THEM verdict, else falls back
+    to the Import Template's own pre-audit Distributor column (same fallback
+    the formula itself uses) -- so no dashboard row goes Unverified just
+    because a formula wasn't copied down. This is arithmetic, not a judgment
+    call: every input it reads is already present and calculated in the
+    source file. Once a future export actually fills column Y down, this is
+    a no-op (Corrected Distributor is trusted as-is whenever it's non-blank).
+    The underlying spreadsheet gap should still get fixed at the source for
+    the workbook's own health -- see the fix steps given to the user
+    2026-08-12 (fill Y5001:Y5116 down from Y5000's formula, or the
+    equivalent range in a future export).
   - District Manager is a clean 1-to-1 mapping onto Route / Sales Rep (each
     rep reports to exactly one DM) as of this build's source file --
     generate.py doesn't enforce that, so if a future export ever gives one
