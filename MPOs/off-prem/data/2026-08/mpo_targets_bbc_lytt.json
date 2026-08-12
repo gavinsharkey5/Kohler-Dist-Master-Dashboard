@@ -25,12 +25,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 3001,
-    "CUSTOMER_NAME": "Best Cellars (Wanaque)",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 4002,
     "CUSTOMER_NAME": "Bloomingdale Discount Liq",
     "AREA": "Passaic"
@@ -187,12 +181,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 23006,
-    "CUSTOMER_NAME": "46 Discount Liquor Store",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 78003,
     "CUSTOMER_NAME": "Ani Service Station Inc",
     "AREA": "Bergen"
@@ -244,18 +232,6 @@
     "CUSTOMER_NUM": 25034,
     "CUSTOMER_NAME": "Figlar's (P)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38007,
-    "CUSTOMER_NAME": "Garden Liquors (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79002,
-    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -595,12 +571,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44002,
-    "CUSTOMER_NAME": "Wine And Food Mart (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 54007,
     "CUSTOMER_NAME": "Wine Ventures",
     "AREA": "Bergen"
@@ -645,12 +615,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52040,
     "CUSTOMER_NAME": "Burgundy Convenience Store",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40022,
-    "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen"
   },
   {
@@ -766,12 +730,6 @@
     "CUSTOMER_NUM": 58004,
     "CUSTOMER_NAME": "Wine And Liq Depot(A)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 39012,
-    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Default",
@@ -955,12 +913,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21026,
-    "CUSTOMER_NAME": "C Town Supermarket(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21006,
     "CUSTOMER_NAME": "Camilo Liquors(A)",
     "AREA": "Passaic"
@@ -993,12 +945,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 27012,
     "CUSTOMER_NAME": "ESTEVEZ LIQUORS LLC",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20056,
-    "CUSTOMER_NAME": "East Side Bar Liquors",
     "AREA": "Passaic"
   },
   {
@@ -1216,12 +1162,6 @@
     "CUSTOMER_NUM": 231315,
     "CUSTOMER_NAME": "Woody's Liq Shop (A)",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24014,
-    "CUSTOMER_NAME": "Bottleneck Liquors",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1477,6 +1417,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190302,
+    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
+    "AREA": "Morris 1"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190901,
     "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
     "AREA": "Morris 1"
@@ -1699,12 +1645,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36016,
-    "CUSTOMER_NAME": "King Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42002,
     "CUSTOMER_NAME": "L. F. Wine Country (P)",
     "AREA": "Bergen"
@@ -1767,12 +1707,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37029,
     "CUSTOMER_NAME": "River Drive Bar (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37044,
-    "CUSTOMER_NAME": "Riverview Liquors & Bar",
     "AREA": "Bergen"
   },
   {

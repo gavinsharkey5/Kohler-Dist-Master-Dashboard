@@ -9739,15 +9739,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44002,
-    "CUSTOMER_NAME": "Wine And Food Mart (Z)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 54007,
     "CUSTOMER_NAME": "Wine Ventures",
     "AREA": "Bergen",
@@ -22764,15 +22755,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 22032,
     "CUSTOMER_NAME": "Economy Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "121",
-    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 21048,
-    "CUSTOMER_NAME": "Ferraro's Liquor",
     "AREA": "Passaic",
     "PRODUCT_NUM": "121",
     "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
@@ -37903,15 +37885,6 @@
     "CUSTOMER_NUM": 27016,
     "CUSTOMER_NAME": "Marina's Wine & Spirits",
     "AREA": "Passaic",
-    "PRODUCT_NUM": "118",
-    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28007,
-    "CUSTOMER_NAME": "Metro Liquors (North Arlington)",
-    "AREA": "Bergen",
     "PRODUCT_NUM": "118",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
     "BRAND_FAMILY": "Coors"

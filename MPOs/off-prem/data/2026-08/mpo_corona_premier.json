@@ -220,6 +220,16 @@
     "CASES": -1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 25047,
+    "CUSTOMER_NAME": "Parker Liquors (Z)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -297,7 +307,7 @@
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 5.0
+    "CASES": 13.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
