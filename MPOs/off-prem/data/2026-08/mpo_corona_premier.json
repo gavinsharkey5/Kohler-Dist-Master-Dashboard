@@ -1,5 +1,15 @@
 [
   {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 23006,
+    "CUSTOMER_NAME": "46 Discount Liquor Store",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -78,6 +88,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 6.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 88004,
+    "CUSTOMER_NAME": "Discount Liq (P)_2",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 4.0
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -217,7 +237,7 @@
     "CUSTOMER_NAME": "Palisades Wine And Liquor",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": -1.0
+    "CASES": 0.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -260,6 +280,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 73008,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -268,6 +298,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 5.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -307,7 +347,7 @@
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 13.0
+    "CASES": 17.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",

@@ -7642,15 +7642,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47009,
-    "CUSTOMER_NAME": "Iga Supermarkets (A)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 78013,
     "CUSTOMER_NAME": "J R W & Liq (A)",
     "AREA": "Bergen",
@@ -9739,6 +9730,15 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44002,
+    "CUSTOMER_NAME": "Wine And Food Mart (Z)",
+    "AREA": "Bergen",
+    "PRODUCT_NUM": "123",
+    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 54007,
     "CUSTOMER_NAME": "Wine Ventures",
     "AREA": "Bergen",
@@ -19587,15 +19587,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7142",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 51018,
-    "CUSTOMER_NAME": "Teaneck Discount Liquor",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7142",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
@@ -22132,15 +22123,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Yaremy Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "119",
-    "PRODUCT_NAME": "Coors Banquet 1/18/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20041,
     "CUSTOMER_NAME": "Yaremy Liquors",
     "AREA": "Passaic",
@@ -22411,15 +22393,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Yaremy Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "111",
-    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20041,
     "CUSTOMER_NAME": "Yaremy Liquors",
     "AREA": "Passaic",
@@ -22494,15 +22467,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 22032,
     "CUSTOMER_NAME": "Economy Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "120",
-    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 15013,
-    "CUSTOMER_NAME": "El Oasis",
     "AREA": "Passaic",
     "PRODUCT_NUM": "120",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
@@ -22665,15 +22629,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20037,
     "CUSTOMER_NAME": "The Point Liquor & Bar",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "120",
-    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Yaremy Liquors",
     "AREA": "Passaic",
     "PRODUCT_NUM": "120",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
@@ -24780,15 +24735,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21045,
     "CUSTOMER_NAME": "Dorta Liquor (A)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7142",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22032,
-    "CUSTOMER_NAME": "Economy Liquors",
     "AREA": "Passaic",
     "PRODUCT_NUM": "7142",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
@@ -26947,26 +26893,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 25047,
-    "CUSTOMER_NAME": "Parker Liquors (Z)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "124",
-    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 15031,
     "CUSTOMER_NAME": "Pete's Family Liqs",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "124",
-    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27002,
-    "CUSTOMER_NAME": "President Liqrs (A)",
     "AREA": "Passaic",
     "PRODUCT_NUM": "124",
     "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
@@ -27687,15 +27615,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21023,
     "CUSTOMER_NAME": "Luna Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "120",
-    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21021,
-    "CUSTOMER_NAME": "Park Avenue Liquors",
     "AREA": "Passaic",
     "PRODUCT_NUM": "120",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
@@ -42442,15 +42361,6 @@
     "PRODUCT_NUM": "7140",
     "PRODUCT_NAME": "Peroni Keg 15.5 Gal Keg",
     "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
-    "AREA": "Morris 1",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -48574,15 +48484,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77001,
-    "CUSTOMER_NAME": "Food Mart Liquor",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37002,
     "CUSTOMER_NAME": "Garfield Bar & Liq (P)",
     "AREA": "Bergen",
@@ -49845,15 +49746,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36016,
     "CUSTOMER_NAME": "King Liquors",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7144",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 42002,
-    "CUSTOMER_NAME": "L. F. Wine Country (P)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7144",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
@@ -63021,15 +62913,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 38018,
     "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 47004,
-    "CUSTOMER_NAME": "Wides Deli & Liquor",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
@@ -66214,15 +66097,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 70001,
     "CUSTOMER_NAME": "Montvale Wine/Liq & Beer",
     "AREA": "Bergen",
@@ -66693,15 +66567,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 74007,
     "CUSTOMER_NAME": "Djm Liq Inc. (P)(Andrew)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7148",
-    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7148",
     "PRODUCT_NAME": "Peroni 6/4/16 oz Can",

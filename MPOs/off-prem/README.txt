@@ -120,29 +120,35 @@ Objective types (index.html):
 
 "90-Day Non-Buy" new-placement classification (Molson Coors Peroni/
 Banquet and Wine & Spirits Le Grand Noir/Leyenda 1925/Bardstown Green
-River, all independently per PRODUCT -- Molson Coors fixed to
-product-level 2026-08-05, Wine & Spirits fixed to match 2026-08-12
-after the user caught the same bug there, see below): a customer's row
-on a given date is a NEW placement only if they have NO purchase of
-that exact product before NEW_BUYER_WINDOW_START (i.e. in the prior
-~3 months) AND DO have a purchase of it in the current month. A
-customer who bought before the window and buys again in it is a
-regular repeat placement and does NOT count. Same date-based,
-per-transaction-row approach as on-prem's August classification (see
-on-prem/generate_2026-08.py) -- every transaction row is kept in the
-output, NEW_PLACEMENT is set to 1 on exactly the customer's first
-qualifying row and 0 on every other row for that customer+product, so
-a repeat purchase never double-counts. See generate_2026-08.py's
-classify_dual_period() -- it's scoped by the `brand_key` argument,
-which is Product Num for both Molson Coors and Wine & Spirits (NOT
-Brand Family -- classifying by brand family originally hid genuine
-new-SKU placements at accounts that already carried a different SKU
-of the same family, e.g. a customer getting Leyenda 1925 Reposado for
-the first time while already carrying Leyenda 1925 Blanco). Wine &
-Spirits still keeps its own Brand Family CSV column for splitting the
-three sub-targets (Le Grand Noir/Leyenda 1925/Green River) apart in
-the UI -- that column just no longer drives the new-vs-existing
-classification itself.
+River): a customer's row on a given date is a NEW placement only if
+they have NO purchase of that brand/product before
+NEW_BUYER_WINDOW_START (i.e. in the prior ~3 months) AND DO have a
+purchase of it in the current month. A customer who bought before the
+window and buys again in it is a regular repeat placement and does NOT
+count. Same date-based, per-transaction-row approach as on-prem's
+August classification (see on-prem/generate_2026-08.py) -- every
+transaction row is kept in the output, NEW_PLACEMENT is set to 1 on
+exactly the customer's first qualifying row and 0 on every other row
+for that customer+key, so a repeat purchase never double-counts.
+
+See generate_2026-08.py's classify_dual_period() -- it's scoped by the
+`brand_key` argument, and the two objectives INTENTIONALLY use
+different granularity:
+  Molson Coors    Product Num (fixed to product-level 2026-08-05 per
+                  Kohler's manager) -- a second, different Peroni SKU at
+                  an account already carrying one Peroni SKU counts as a
+                  new placement.
+  Wine & Spirits  Brand Family -- an account that already carried, say,
+                  Leyenda 1925 Blanco before the window does NOT generate
+                  a second new placement by adding Leyenda 1925 Reposado
+                  in August. This was briefly switched to Product Num on
+                  2026-08-12 to match Molson Coors, then REVERTED at the
+                  user's request on 2026-08-17: Wine & Spirits is meant
+                  to track at the brand-family level. Don't "fix" it to
+                  Product Num again by analogy with Molson Coors.
+Wine & Spirits' Brand Family column therefore does double duty: it
+drives the new-vs-existing classification AND splits the three
+sub-targets (Le Grand Noir/Leyenda 1925/Green River) apart in the UI.
 
 Files:
   July 2026:

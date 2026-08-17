@@ -211,12 +211,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 23006,
-    "CUSTOMER_NAME": "46 Discount Liquor Store",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 78003,
     "CUSTOMER_NAME": "Ani Service Station Inc",
     "AREA": "Bergen"
@@ -1059,12 +1053,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20037,
     "CUSTOMER_NAME": "The Point Liquor & Bar",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Yaremy Liquors",
     "AREA": "Passaic"
   },
   {
@@ -2143,12 +2131,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 88004,
-    "CUSTOMER_NAME": "Discount Liq (P)_2",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 81006,
     "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "AREA": "Bergen"
@@ -2757,12 +2739,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 75002,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Emerson",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 73008,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
     "AREA": "Bergen"
   },
   {

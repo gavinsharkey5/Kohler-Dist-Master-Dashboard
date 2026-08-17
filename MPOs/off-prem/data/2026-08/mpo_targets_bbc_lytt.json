@@ -235,6 +235,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "CUSTOMER_NUM": 38007,
+    "CUSTOMER_NAME": "Garden Liquors (P)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 47009,
     "CUSTOMER_NAME": "Iga Supermarkets (A)",
     "AREA": "Bergen"
@@ -339,18 +345,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 50016,
     "CUSTOMER_NAME": "Teaneck Quickshop(P)Conv",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 34009,
-    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 50007,
-    "CUSTOMER_NAME": "Welsh Farms",
     "AREA": "Bergen"
   },
   {
@@ -609,12 +603,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40001,
     "CUSTOMER_NAME": "Bottle & Cork",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52040,
-    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen"
   },
   {
@@ -1177,12 +1165,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24012,
-    "CUSTOMER_NAME": "Dante's Liquor & Wine",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 23007,
     "CUSTOMER_NAME": "Field Liquors (A)",
     "AREA": "Passaic"
@@ -1251,12 +1233,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 23003,
     "CUSTOMER_NAME": "Pete's Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24009,
-    "CUSTOMER_NAME": "Quik Stop Conv(Z)",
     "AREA": "Passaic"
   },
   {
@@ -1414,12 +1390,6 @@
     "CUSTOMER_NUM": 191518,
     "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1591,12 +1561,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 31033,
-    "CUSTOMER_NAME": "Capri Deli&Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 32016,
     "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen"
@@ -1611,12 +1575,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77001,
     "CUSTOMER_NAME": "Food Mart Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37002,
-    "CUSTOMER_NAME": "Garfield Bar & Liq (P)",
     "AREA": "Bergen"
   },
   {
@@ -2289,12 +2247,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 74007,
     "CUSTOMER_NAME": "Djm Liq Inc. (P)(Andrew)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)",
     "AREA": "Bergen"
   },
   {
