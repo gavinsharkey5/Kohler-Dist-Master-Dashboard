@@ -82,23 +82,6 @@ def read_rows(filename):
         return list(csv.DictReader(f))
 
 
-def new_rows_dual(rows, base_col, current_col, key_fields):
-    """Group rows by key_fields; return set of keys that are 'new' this
-    period (populated in current_col, never populated in base_col) and a
-    dict of key -> list of matching rows (for date/detail lookups)."""
-    by_key = {}
-    for row in rows:
-        key = tuple(row[k] for k in key_fields)
-        by_key.setdefault(key, []).append(row)
-    new_keys = set()
-    for key, krows in by_key.items():
-        has_current = any(to_num(r[current_col]) > 0 or r[current_col].strip() not in ("", None) for r in krows)
-        has_base = any(r[base_col].strip() not in ("", None) for r in krows)
-        if has_current and not has_base:
-            new_keys.add(key)
-    return new_keys, by_key
-
-
 def classify_dual(rows, base_col, current_col, key_fields):
     """Group rows by key_fields; classify each key as 'new' (populated in
     current_col only), 'rebuy' (populated in both), 'base_only', or
@@ -161,6 +144,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
 
     by_rep = {rep: {
         "offPremNew": [], "offPremNewCount": 0,
+        "offPremLapsed": [], "offPremLapsedCount": 0,
         "draftNew": [], "draftNewCount": 0,
         "draftAccounts": [], "draftAccountsQualified": 0,
         "caseVolume": 0.0,
@@ -168,7 +152,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     } for rep in ROSTER}
 
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
-    new_keys, by_key = new_rows_dual(rows, place_base_col, place_current_col, key_fields)
+    classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
 
     # Barrel threshold is PER ACCOUNT (per Gavin, 2026-08-05): sum each
     # account's current-period keg volume across all its draft SKUs,
@@ -189,28 +173,46 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             account_name.setdefault(cust, row["Customer Name"])
             account_rep.setdefault(cust, rep)
 
-    for key, krows in by_key.items():
+    # "Lapsed" off-premise accounts (bought in the base period, nothing
+    # this period) are a real, honest stand-in for prospecting data --
+    # the RDE export only contains accounts with SOME purchase history
+    # (verified empirically: zero rows have both period columns blank),
+    # so a true "never carried this" whitespace list isn't derivable
+    # from this file. Draft has no equivalent win-back concept (the
+    # reward is a one-time new-placement bonus, not an ongoing rebuy).
+    for key, status in classified.items():
         rep, cust_num, prod_num = key
         if rep not in by_rep:
             continue
+        krows = by_key[key]
         sample = krows[0]
         is_off_prem = sample["Premise"] == "Off Premise"
         is_draft = sample["Premise"] == "On Premise" and is_keg_package(sample["Package"])
-        if key not in new_keys or not (is_off_prem or is_draft):
+        if not (is_off_prem or is_draft):
             continue
-        entry = {
-            "customer": sample["Customer Name"],
-            "product": sample["Product Name"],
-            "date": latest_date(krows, place_current_col),
-        }
-        if is_off_prem:
-            by_rep[rep]["offPremNew"].append(entry)
+        if is_off_prem and status == "new":
+            by_rep[rep]["offPremNew"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "date": latest_date(krows, place_current_col),
+            })
             by_rep[rep]["offPremNewCount"] += 1
-        elif is_draft:
+        elif is_off_prem and status == "base_only":
+            by_rep[rep]["offPremLapsed"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "lastDate": latest_date(krows, place_base_col),
+            })
+            by_rep[rep]["offPremLapsedCount"] += 1
+        elif is_draft and status == "new":
             acct_bbl = account_bbl.get(cust_num, 0.0)
-            entry["accountCumulativeBbl"] = round(acct_bbl, 2)
-            entry["accountQualifies"] = acct_bbl >= bbl_threshold
-            by_rep[rep]["draftNew"].append(entry)
+            by_rep[rep]["draftNew"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "date": latest_date(krows, place_current_col),
+                "accountCumulativeBbl": round(acct_bbl, 2),
+                "accountQualifies": acct_bbl >= bbl_threshold,
+            })
             by_rep[rep]["draftNewCount"] += 1
 
     for cust, bbl in account_bbl.items():
@@ -228,6 +230,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["offPremLapsed"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
         d["draftNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["draftAccounts"].sort(key=lambda a: -a["cumulativeBbl"])
         d["draftAccountsQualified"] = sum(1 for a in d["draftAccounts"] if a["qualifies"])
@@ -248,12 +251,13 @@ def build_tona():
 
     by_rep = {rep: {
         "new24ozNew": [], "new24ozCount": 0,
+        "lapsed24oz": [], "lapsed24ozCount": 0,
         "caseVolume24oz": 0.0, "caseVolumeOther": 0.0,
         "qualifies": False,
     } for rep in ROSTER}
 
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
-    new_keys, by_key = new_rows_dual(rows, place_base_col, place_current_col, key_fields)
+    classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
 
     for row in rows:
         rep = row["Sales Rep Assigned"]
@@ -265,26 +269,35 @@ def build_tona():
         else:
             by_rep[rep]["caseVolumeOther"] += to_num(row[case_current_col])
 
-    for key, krows in by_key.items():
+    for key, status in classified.items():
         rep, cust_num, prod_num = key
         if rep not in by_rep:
             continue
+        krows = by_key[key]
         sample = krows[0]
         if sample["Package"] != "1/12/24oz Can":
             continue
-        entry = {
-            "customer": sample["Customer Name"],
-            "product": sample["Product Name"],
-            "date": latest_date(krows, place_current_col),
-        }
-        by_rep[rep]["new24ozNew"].append(entry)
-        by_rep[rep]["new24ozCount"] += 1
+        if status == "new":
+            by_rep[rep]["new24ozNew"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "date": latest_date(krows, place_current_col),
+            })
+            by_rep[rep]["new24ozCount"] += 1
+        elif status == "base_only":
+            by_rep[rep]["lapsed24oz"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "lastDate": latest_date(krows, place_base_col),
+            })
+            by_rep[rep]["lapsed24ozCount"] += 1
 
     for rep, d in by_rep.items():
         d["qualifies"] = d["caseVolume24oz"] >= 20
         d["caseVolume24oz"] = round(d["caseVolume24oz"], 2)
         d["caseVolumeOther"] = round(d["caseVolumeOther"], 2)
         d["new24ozNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["lapsed24oz"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
 
     return {"byRep": by_rep, "qualifierGoal": 20}
 
@@ -392,7 +405,9 @@ def build_boston_beer():
     by_rep = {rep: {
         "draftNew": [], "draftNewCount": 0,
         "draftRebuy": [], "draftRebuyCount": 0,
+        "draftLapsed": [], "draftLapsedCount": 0,
         "packageNew": [], "packageNewCount": 0,
+        "packageLapsed": [], "packageLapsedCount": 0,
         "points": 0,
     } for rep in ROSTER}
 
@@ -401,12 +416,25 @@ def build_boston_beer():
 
     for key, status in classified.items():
         rep, cust_num, prod_num = key
-        if rep not in by_rep or status == "base_only":
+        if rep not in by_rep:
             continue
         krows = by_key[key]
         sample = krows[0]
         is_draft = sample["Product Type"].startswith("Keg")
         is_package = sample["Product Type"].startswith("Case")
+        if status == "base_only":
+            lapsed_entry = {
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "lastDate": latest_date(krows, base_col),
+            }
+            if is_draft:
+                by_rep[rep]["draftLapsed"].append(lapsed_entry)
+                by_rep[rep]["draftLapsedCount"] += 1
+            elif is_package:
+                by_rep[rep]["packageLapsed"].append(lapsed_entry)
+                by_rep[rep]["packageLapsedCount"] += 1
+            continue
         entry = {
             "customer": sample["Customer Name"],
             "product": sample["Product Name"],
@@ -428,6 +456,8 @@ def build_boston_beer():
         d["points"] = (d["draftNewCount"] + d["draftRebuyCount"]) * 2 + d["packageNewCount"] * 1
         for k in ("draftNew", "draftRebuy", "packageNew"):
             d[k].sort(key=lambda e: e["date"] or "", reverse=True)
+        for k in ("draftLapsed", "packageLapsed"):
+            d[k].sort(key=lambda e: e["lastDate"] or "", reverse=True)
 
     return {"byRep": by_rep}
 
@@ -462,6 +492,7 @@ def build_new_belgium():
     by_rep = {rep: {
         "featuredNew": [], "featuredNewCount": 0,
         "featuredRebuy": [], "featuredRebuyCount": 0,
+        "featuredLapsed": [], "featuredLapsedCount": 0,
         "otherNamedKegCount": 0, "otherNamedKegVolumeBbl": 0.0,
         "housePods": 0,
     } for rep in ROSTER}
@@ -483,10 +514,19 @@ def build_new_belgium():
                 by_rep[rep]["housePods"] += 1
         if rep not in by_rep:
             continue
+        if tier == "featured" and status == "base_only":
+            by_rep[rep]["featuredLapsed"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "lastDate": latest_date(krows, base_col),
+                "isHalfBbl": (keg_bbl(sample["Package"]) or 0.0) >= 0.5,
+            })
+            by_rep[rep]["featuredLapsedCount"] += 1
+            continue
         entry = {
             "customer": sample["Customer Name"],
             "product": sample["Product Name"],
-            "date": latest_date(krows, current_col if status != "base_only" else base_col),
+            "date": latest_date(krows, current_col),
             "isHalfBbl": (keg_bbl(sample["Package"]) or 0.0) >= 0.5,
         }
         if tier == "featured":
@@ -506,6 +546,7 @@ def build_new_belgium():
     for rep, d in by_rep.items():
         d["featuredNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["featuredRebuy"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["featuredLapsed"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
         d["otherNamedKegVolumeBbl"] = round(d["otherNamedKegVolumeBbl"], 2)
 
     return {"byRep": by_rep, "housePodsTotal": house_pods_total, "houseGoal": 70}
@@ -528,27 +569,49 @@ def build_lytt_launch():
     base_rows = read_rows("customer_base_off_prem.csv")
     eligible_by_rep = {}
     for row in base_rows:
-        eligible_by_rep.setdefault(row["Sales Rep Assigned"], set()).add(row["Customer Num"])
+        eligible_by_rep.setdefault(row["Sales Rep Assigned"], {})[row["Customer Num"]] = {
+            "customer": row["Customer Name"],
+            "cases2026": to_num(row.get("Cases   2026", "")),
+        }
 
     by_rep = {rep: {
         "buyingAccounts": [], "buyingAccountCount": 0,
-        "eligibleAccountCount": len(eligible_by_rep.get(rep, set())),
+        "eligibleAccountCount": len(eligible_by_rep.get(rep, {})),
         "caseVolume": 0.0,
         "penetrationPct": 0.0, "tier": None, "rate": 0.0,
+        "whitespaceAccounts": [],
     } for rep in ROSTER}
 
     seen = {}
+    buying_cust_nums = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
         by_rep[rep]["caseVolume"] += to_num(row[cases_col])
         cust_key = (rep, row["Customer Num"])
+        buying_cust_nums.setdefault(rep, set()).add(row["Customer Num"])
         if cust_key not in seen:
             seen[cust_key] = True
             by_rep[rep]["buyingAccounts"].append({
                 "customer": row["Customer Name"], "date": row["Date"],
             })
+
+    # Whitespace: eligible off-prem accounts (the Core Off-Prem customer
+    # base -- Lytt is Core Market so this file IS the rep's real eligible
+    # universe, unlike All-Counties brands) that have never bought Lytt.
+    # Prioritized by each account's own 2026 case volume of OTHER
+    # products, as a proxy for "this account moves volume, worth a pitch."
+    for rep, eligible in eligible_by_rep.items():
+        if rep not in by_rep:
+            continue
+        bought = buying_cust_nums.get(rep, set())
+        whitespace = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in eligible.items() if cust_num not in bought
+        ]
+        whitespace.sort(key=lambda a: -a["cases2026"])
+        by_rep[rep]["whitespaceAccounts"] = whitespace[:15]
 
     leaderboard = []
     for rep, d in by_rep.items():
@@ -830,6 +893,7 @@ def build_mollys():
     by_rep = {rep: {
         "newPod": [], "newPodCount": 0,
         "rebuy": [], "rebuyCount": 0, "rebuyCaseVolume": 0.0,
+        "lapsed": [], "lapsedCount": 0,
     } for rep in ROSTER}
 
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
@@ -837,10 +901,17 @@ def build_mollys():
 
     for key, status in classified.items():
         rep = key[0]
-        if rep not in by_rep or status == "base_only":
+        if rep not in by_rep:
             continue
         krows = by_key[key]
         sample = krows[0]
+        if status == "base_only":
+            by_rep[rep]["lapsed"].append({
+                "customer": sample["Customer Name"],
+                "lastDate": latest_date(krows, place_base_col),
+            })
+            by_rep[rep]["lapsedCount"] += 1
+            continue
         entry = {
             "customer": sample["Customer Name"],
             "date": latest_date(krows, place_current_col),
@@ -860,6 +931,7 @@ def build_mollys():
         d["rebuyCaseVolume"] = round(d["rebuyCaseVolume"], 2)
         d["newPod"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["rebuy"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["lapsed"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
 
     return {"byRep": by_rep}
 

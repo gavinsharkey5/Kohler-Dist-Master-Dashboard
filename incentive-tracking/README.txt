@@ -544,3 +544,89 @@ latter's growth metric went negative (confirmed live: Sam Adams'
 leader was Alex Rodriguez at a hollow "0 case growth" before this
 fix, ahead of every real rep who was mid-negative -- since-fixed to
 John O'Donoghue).
+
+"Scoreboard" redesign (2026-08-17, per Gavin: reps found the layout
+text-heavy and had to read multiple sections to find what they needed
+to do): every program card was rebuilt around a shared set of
+components in index.html -- earnBlock() (one card per distinct way a
+program pays out: big "EARN $X" rate badge, big current-progress
+numbers, a big green "Total Earned" $ figure computed from the real
+rate x real count, optional numbered "What You Need To Do" steps for
+gated programs, and an optional "Where To Win Next" opportunity list),
+rankHero() (a trophy banner showing "You're #N of M reps" + top-X%
+percentile, computed live via the existing rankProgram() so no
+program-specific leaderboard field is needed), and qualifierBanner()
+(a locked/unlocked gate banner for programs where one qualifier
+switches on every payout at once, e.g. Tona's 20-case minimum). The
+old metricRow()/detailBlock()/draftAccountsBlock()/pkgKegSectionLabels()/
+nbRateCol() helpers and their CSS are gone -- fully replaced, not
+running in parallel. "Reps tracked" was dropped from the overview
+tiles' leader line per Gavin's request the same day.
+
+Opportunity-section honesty note: reps asked for "accounts that don't
+carry this yet" prospecting lists on every program. That's NOT
+reliably derivable -- every product RDE file only contains rows for
+accounts with SOME purchase history (verified empirically: zero rows
+have both period columns blank), so an account that never bought a
+product simply never appears in that file. The only full-account-book
+files (customer_base_off_prem.csv / customer_base_on_prem.csv) are
+themselves pre-filtered to the six-county Core Market set (see the
+territory-blackout note above), so they're only a valid "eligible
+universe" for Core-Market-restricted brands, not All-Counties ones --
+using them for 1911/Woodchuck/Tona/Molly's/Garage Beer whitespace
+would have silently mispresented a rep's real off-Core-Market book.
+Rather than fabricate account names, each program's opportunity
+section uses whichever real signal actually fits its data:
+  - Dual-period programs (1911, Woodchuck, Tona, Boston Beer, New
+    Belgium, Molly's) show "lapsed" accounts -- bought in the base
+    period, nothing this period -- as a real win-back list
+    (offPremLapsed/lapsed24oz/draftLapsed/packageLapsed/
+    featuredLapsed/lapsed in generate.py's byRep output). 1911 and
+    Woodchuck's off-premise side switched from the old new_rows_dual()
+    helper (which only ever returned the "new" set) to classify_dual()
+    so the base_only accounts are available too; Tona did the same.
+    new_rows_dual() itself was deleted as dead code once nothing
+    called it.
+  - 1911/Woodchuck draft still uses draftAccounts' real per-account bbl
+    progress for a "Closest To $100/$X00" list -- no data change
+    needed there, just re-sorted/re-labeled client-side.
+  - Lytt Launch is the one program where true whitespace IS honest,
+    because it's Core Market and its eligible-account file (Core
+    Off-Prem customer base) really is the correct universe: build_lytt_
+    launch() in generate.py now also captures the eligible accounts'
+    Customer Name and "Cases   2026" volume (not just Customer Num for
+    counting), computes eligible-minus-buying per rep, and exposes it
+    as whitespaceAccounts (top 15, sorted by that account's 2026 case
+    volume on OTHER products, as a proxy for "worth a pitch").
+  - Programs with no account-level data at all (Sam Adams, Garage Beer
+    x2, Sun Cruiser aggregated file, New Belgium Distribution) show
+    tier/rank-gap framing or (New Belgium Distribution) which of the 5
+    core brand families have zero volume this push -- both real,
+    neither fabricated.
+  - Path to Victory and Yave show their real active/qualifying
+    accounts framed as achievements ("Your Active Accounts", "Your
+    Qualifying Accounts"), not prospecting, since neither program's
+    file has a base period to compute lapsed/win-back from.
+
+Real bug fix found during the rebuild: Tona's original new-placement
+count silently ignored its own new_keys filter -- the loop iterated
+`by_key.items()` (every 24oz-can account: new, rebuy, AND lapsed)
+instead of only the new-classified keys, so every rep's "new 24oz
+placements" count (and the $10/placement figure derived from it) was
+overstated by counting rebuy and lapsed accounts as new. Company-wide
+total on the 2026-08-17 data dropped from 14 to the correct 2 once
+fixed via classify_dual(). Nothing else about the qualifier gate,
+case-volume rates, or other programs' math changed.
+
+Dollar-earned honesty note: "Total Earned" is only shown where the
+deck states an unambiguous rate AND generate.py has the count to
+multiply it by. It's deliberately NOT shown for: Path to Victory (no
+new-vs-current split possible, and the $ is paid via iSellBeer, not
+this tracker), the Sam Adams "double commission" piece (no per-case
+commission rate exists to calculate from -- tracked as a locked/
+unlocked status only), New Belgium Distribution Push Volume (the deck
+excerpt has no stated $ rate for this phase, CE only), and Garage Beer
+Summer Sequel (the $1.00/$1.50/$2.00 rate is "per CE over 2025" but
+the file's caseEquiv field was never confirmed to BE that growth
+figure vs. raw CE -- kept as progress-toward-goal only, same
+conservative call the pre-redesign card already made).
