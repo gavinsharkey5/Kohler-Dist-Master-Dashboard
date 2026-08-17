@@ -154,21 +154,71 @@
 
   .no-lines{color:var(--text-dim);font-size:14.5px;}
 
-  .leader-row{display:flex;justify-content:space-between;align-items:center;padding:10px;font-size:15px;
-    width:100%;background:none;border:none;font:inherit;cursor:pointer;border-radius:8px;}
-  .leader-row:hover{background:var(--card-alt);}
-  .leader-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-dim);width:24px;text-align:left;}
-  .leader-rank.top3{color:var(--amber);}
-  .leader-name{flex:1;padding:0 8px;font-weight:600;color:var(--text);text-align:left;}
-  .leader-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:14px;}
-  .leader-list{padding:4px 6px 8px;}
-  .leader-item{border-bottom:1px solid var(--line-soft);}
-  .leader-item:last-child{border-bottom:none;}
-  .leader-chev{color:var(--accent);font-size:11.5px;margin-left:10px;transition:transform .15s;display:inline-block;}
-  .leader-toggle.open .leader-chev{transform:rotate(90deg);}
-  .leader-detail{display:none;padding:2px 4px 18px;}
-  .leader-detail.open{display:block;}
-  .leader-detail .prog-card{box-shadow:none;}
+  /* ---- interactive ranking / leaderboard ---- */
+  .rank-focus-hero{background:linear-gradient(135deg,var(--amber-soft),transparent);
+    border:1px solid var(--amber);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;}
+  .rank-focus-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .rank-focus-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:44px;line-height:1;color:var(--amber);flex-shrink:0;}
+  .rank-focus-main{flex:1;min-width:180px;}
+  .rank-focus-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:var(--text);line-height:1.3;}
+  .rank-focus-rep{font-size:13.5px;color:var(--text-dim);margin-top:2px;}
+  .rank-focus-val{text-align:right;flex-shrink:0;}
+  .rank-focus-val-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:var(--text);}
+  .rank-focus-val-label{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;}
+  .rank-gap-row{display:flex;flex-direction:column;gap:8px;}
+  .rank-gap-chip{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;
+    font-size:13.5px;color:var(--text);line-height:1.4;}
+  .rank-gap-chip b{color:var(--amber);}
+  .rank-gap-chip.good{border-color:var(--good);background:var(--good-soft);}
+  .rank-gap-chip.good b{color:var(--good);}
+
+  .best-opp-panel{background:var(--card-alt);border:1px solid var(--line-soft);border-radius:10px;padding:12px 14px;}
+  .best-opp-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .best-opp-items{display:flex;flex-direction:column;gap:6px;}
+  .best-opp-item{font-size:13.5px;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .best-opp-item::before{content:"→";color:var(--accent);font-weight:700;flex-shrink:0;}
+
+  .metric-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+  .metric-tab{background:var(--card-alt);border:1px solid var(--border);color:var(--text-dim);
+    padding:7px 14px;border-radius:20px;font-size:12.5px;font-weight:700;cursor:pointer;
+    font-family:'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.03em;}
+  .metric-tab:hover{border-color:var(--accent);color:var(--text);}
+  .metric-tab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+
+  .nearby-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--text-dim);
+    text-transform:uppercase;letter-spacing:.05em;margin:4px 2px 0;}
+  .leader-chip-above{display:flex;align-items:center;gap:8px;padding:9px 12px;margin-bottom:6px;
+    background:var(--card-alt);border:1px solid var(--line-soft);border-radius:9px;font-size:13px;color:var(--text-dim);}
+  .leader-chip-above b{color:var(--text);}
+  .nearby-row{display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;
+    background:none;border:1px solid transparent;width:100%;font:inherit;cursor:pointer;text-align:left;}
+  .nearby-row:hover{background:var(--card-alt);}
+  .nearby-row.focus{background:var(--accent-soft);border-color:var(--accent);}
+  .nearby-rank{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text-dim);width:34px;flex-shrink:0;}
+  .nearby-rank.top3{color:var(--amber);font-size:24px;}
+  .nearby-row.focus .nearby-rank{color:var(--accent);}
+  .nearby-name{flex:1;min-width:0;}
+  .nearby-name-text{font-weight:700;font-size:15px;color:var(--text);}
+  .nearby-you-tag{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;
+    color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;
+    padding:1px 7px;margin-left:8px;letter-spacing:.04em;vertical-align:middle;}
+  .nearby-val{font-variant-numeric:tabular-nums;color:var(--text-dim);font-size:13.5px;flex-shrink:0;text-align:right;}
+  .nearby-row.focus .nearby-val{color:var(--text);font-weight:700;}
+  .nearby-chev{color:var(--accent);font-size:11px;flex-shrink:0;transition:transform .15s;}
+  .nearby-chev.open{transform:rotate(90deg);}
+  .nearby-detail{display:none;padding:2px 4px 16px;}
+  .nearby-detail.open{display:block;}
+  .nearby-detail .prog-card{box-shadow:none;}
+
+  .view-full-toggle{display:block;width:100%;margin-top:10px;background:var(--card-alt);border:1px solid var(--border);
+    color:var(--text-dim);font:inherit;font-weight:700;font-size:12.5px;padding:10px;border-radius:10px;cursor:pointer;
+    text-transform:uppercase;letter-spacing:.04em;}
+  .view-full-toggle:hover{color:var(--text);border-color:var(--accent);}
+  .full-board-wrap{display:none;margin-top:10px;}
+  .full-board-wrap.open{display:block;}
+
+  .rank-hint{font-size:13px;color:var(--text-dim);padding:2px 2px 4px;}
   .gotorep-btn{display:block;margin:14px 0 2px;background:var(--accent-soft);border:1px solid var(--accent);
     color:var(--accent);font:inherit;font-weight:700;font-size:14.5px;padding:9px 15px;border-radius:10px;cursor:pointer;}
   .gotorep-btn:hover{background:var(--accent);color:var(--canvas);}
@@ -240,6 +290,13 @@
     .rank-hero-main{font-size:16.5px;}
     .rank-hero-pct-num{font-size:19px;}
     .opp-name{white-space:normal;}
+    .rank-focus-num{font-size:36px;}
+    .rank-focus-label{font-size:16.5px;}
+    .rank-focus-val-num{font-size:22px;}
+    .nearby-rank{font-size:17px;width:28px;}
+    .nearby-rank.top3{font-size:21px;}
+    .nearby-name-text{font-size:14px;}
+    .nearby-you-tag{margin-left:0;display:block;width:fit-content;margin-top:2px;}
   }
 </style>
 </head>
@@ -24931,7 +24988,7 @@ function renderRep(){
 function renderProgramTile(entry){
   const rows = rankProgram(entry);
   const cta = rows.length
-    ? `Leader: <b>${esc(rows[0].rep)}</b> (${entry.fmt(rows[0].val)} ${esc(entry.metricLabel)})`
+    ? `See the full leaderboard`
     : 'No activity yet';
   return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
@@ -24970,30 +25027,297 @@ function renderOverview(){
   }));
 }
 
+// Per-program ranking config: optional alternate metric tabs (beyond the
+// default "Overall" one, which always uses the program's own PROGRAM_LIST
+// entry.metric/fmt/metricLabel) and a real opportunity extractor. Every
+// item here reuses fields already computed in generate.py -- nothing
+// fabricated. Programs with no genuinely actionable next-step data (single-
+// period files with no lapsed/whitespace signal) simply return null.
+function opp1911Package(d, threshold){
+  const lapsed = dedupeByCustomer(d.offPremLapsed||[]);
+  return lapsed.length ? {label:'Win back these accounts', items:lapsed.slice(0,3).map(a=>a.customer)} : null;
+}
+function opp1911Draft(d, threshold){
+  const building = (d.draftAccounts||[]).filter(a=>!a.qualifies).sort((a,b)=>b.cumulativeBbl-a.cumulativeBbl);
+  return building.length ? {label:`Closest to the ${threshold}-bbl goal`, items:building.slice(0,3).map(a=>a.customer)} : null;
+}
+
+const PROGRAM_RANKING_CONFIG = {
+  '1911': {
+    metrics:[
+      {key:'package', label:'Package', fn:d=>d.offPremNewCount, unit:'placements', opportunity:d=>opp1911Package(d)},
+      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,2)},
+    ],
+    opportunity:d=>opp1911Package(d) || opp1911Draft(d,2),
+  },
+  'woodchuck': {
+    metrics:[
+      {key:'package', label:'Package', fn:d=>d.offPremNewCount, unit:'placements', opportunity:d=>opp1911Package(d)},
+      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,3)},
+    ],
+    opportunity:d=>opp1911Package(d) || opp1911Draft(d,3),
+  },
+  'tona': {
+    opportunity:d=>{
+      const lapsed = dedupeByCustomer(d.lapsed24oz||[]);
+      if(lapsed.length) return {label:'Win back these accounts', items:lapsed.slice(0,3).map(a=>a.customer)};
+      return null;
+    },
+  },
+  'path_to_victory': {
+    metrics:[
+      {key:'sixpack', label:'6pk Cans', fn:d=>d.sixPackAccountCount, unit:'accounts'},
+      {key:'nineteen', label:'19.2oz', fn:d=>d.nineteenTwoAccountCount, unit:'accounts'},
+    ],
+  },
+  'sam_adams': {},
+  'boston_beer': {
+    metrics:[
+      {key:'draft', label:'Draft', fn:d=>d.draftNewCount+d.draftRebuyCount, unit:'actions',
+        opportunity:d=>{ const l=dedupeByCustomer(d.draftLapsed||[]); return l.length?{label:'Win back these draft accounts', items:l.slice(0,3).map(a=>a.customer)}:null; }},
+      {key:'package', label:'Package', fn:d=>d.packageNewCount, unit:'placements',
+        opportunity:d=>{ const l=dedupeByCustomer(d.packageLapsed||[]); return l.length?{label:'Win back these package accounts', items:l.slice(0,3).map(a=>a.customer)}:null; }},
+    ],
+    opportunity:d=>{
+      const draftLapsed = dedupeByCustomer(d.draftLapsed||[]);
+      if(draftLapsed.length) return {label:'Win back these draft accounts', items:draftLapsed.slice(0,3).map(a=>a.customer)};
+      const pkgLapsed = dedupeByCustomer(d.packageLapsed||[]);
+      if(pkgLapsed.length) return {label:'Win back these package accounts', items:pkgLapsed.slice(0,3).map(a=>a.customer)};
+      return null;
+    },
+  },
+  'new_belgium': {
+    metrics:[
+      {key:'featured', label:'Featured', fn:d=>d.featuredNewCount+d.featuredRebuyCount, unit:'PODs'},
+      {key:'other', label:'Other Named', fn:d=>d.otherNamedKegCount, unit:'kegs'},
+    ],
+    opportunity:d=>{
+      const lapsed = dedupeByCustomer(d.featuredLapsed||[]);
+      if(lapsed.length) return {label:'Win back these accounts', items:lapsed.slice(0,3).map(a=>a.customer)};
+      return null;
+    },
+  },
+  'lytt': {
+    opportunity:d=>{
+      const ws = d.whitespaceAccounts||[];
+      if(ws.length) return {label:"Accounts that don't carry Lytt yet", items:ws.slice(0,3).map(a=>a.customer)};
+      return null;
+    },
+  },
+  'fall_seasonal': {
+    metrics:[
+      {key:'package', label:'Package CE', fn:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), unit:'CE', decimals:1,
+        opportunity:d=>{
+          const placements = [...(d.po?.packagePlacements||[]),...(d.pd?.packagePlacements||[])].sort((a,b)=>b.caseEquivalents-a.caseEquivalents);
+          return placements.length ? {label:'Keep building on these placements', items:placements.slice(0,3).map(p=>p.customer+' — '+p.product)} : null;
+        }},
+      {key:'keg', label:'Kegs', fn:d=>(d.pd?.sixtelCount||0)+(d.pd?.halfKegCount||0), unit:'kegs'},
+    ],
+    opportunity:d=>{
+      const placements = [...(d.po?.packagePlacements||[]),...(d.pd?.packagePlacements||[])].sort((a,b)=>b.caseEquivalents-a.caseEquivalents);
+      if(placements.length) return {label:'Keep building on these placements', items:placements.slice(0,3).map(p=>p.customer+' — '+p.product)};
+      return null;
+    },
+  },
+  'sun_cruiser': {
+    metrics:[
+      {key:'rate1', label:'$1 Tier', fn:d=>d.rate1CaseGrowth, unit:'cases',
+        opportunity:d=>{ const l=(d.rate1Lines||[]); return l.length?{label:'Your $1-tier growth drivers', items:l.slice(0,3).map(x=>x.product)}:null; }},
+      {key:'rate3', label:'$3 Tier', fn:d=>d.rate3CaseGrowth, unit:'cases',
+        opportunity:d=>{ const l=(d.rate3Lines||[]); return l.length?{label:'Your $3-tier growth drivers', items:l.slice(0,3).map(x=>x.product)}:null; }},
+    ],
+    opportunity:d=>{
+      const lines = [...(d.rate1Lines||[]),...(d.rate3Lines||[])].sort((a,b)=>b.caseGrowth-a.caseGrowth);
+      if(lines.length) return {label:'Your growth drivers', items:lines.slice(0,3).map(l=>l.product)};
+      return null;
+    },
+  },
+  'yave': {
+    metrics:[
+      {key:'onprem', label:'On-Premise', fn:d=>d.onPremAccountCount, unit:'accounts'},
+      {key:'offprem', label:'Off-Premise', fn:d=>d.offPremAccountCount, unit:'accounts'},
+    ],
+  },
+  'mollys': {
+    metrics:[
+      {key:'new', label:'New PODs', fn:d=>d.newPodCount, unit:'PODs',
+        opportunity:d=>{ const l=dedupeByCustomer(d.lapsed||[]); return l.length?{label:'Win back these accounts', items:l.slice(0,3).map(a=>a.customer)}:null; }},
+      {key:'rebuy', label:'Rebuys', fn:d=>d.rebuyCount, unit:'rebuys'},
+    ],
+    opportunity:d=>{
+      const lapsed = dedupeByCustomer(d.lapsed||[]);
+      if(lapsed.length) return {label:'Win back these accounts', items:lapsed.slice(0,3).map(a=>a.customer)};
+      return null;
+    },
+  },
+  'garage_beer_summer_sequel': {},
+  'garage_beer_president': {},
+  'new_belgium_distribution': {
+    opportunity:d=>{
+      const missing = (d.brands||[]).filter(b=>b.pushVolumeCE===0).map(b=>b.label);
+      if(missing.length) return {label:'Brands with zero volume this push', items:missing.slice(0,3)};
+      return null;
+    },
+  },
+};
+
+function rankByConfig(entry, metricFn){
+  const rows = ROSTER.map(rep=>{
+    const d = entry.getRep(rep);
+    if(!d) return null;
+    if(d.territoryEligible===false) return null;
+    const val = metricFn(d);
+    if(val==null || Number.isNaN(val)) return null;
+    return {rep, val};
+  }).filter(Boolean);
+  rows.sort((a,b)=>b.val-a.val);
+  rows.forEach((r,i)=>{ r.rank = i+1; });
+  return rows;
+}
+
+function medal(rank){
+  if(rank===1) return '🥇';
+  if(rank===2) return '🥈';
+  if(rank===3) return '🥉';
+  return '#'+rank;
+}
+
+// Module-level ranking-page state: which rep is "focused" (highlighted as
+// "YOU"), which metric tab is active, whether the full list is expanded.
+// Reset whenever a different program is opened; preserved across re-renders
+// triggered by tapping a rep or switching tabs within the same program.
+let rankingState = {key:null, focusRep:null, metric:'overall', fullOpen:false};
+
+function rankingHero(rows, focusRep, fmt, metricLabel, opportunity){
+  const row = rows.find(r=>r.rep===focusRep);
+  if(!row){
+    const leader = rows[0];
+    return leader ? `<div class="rank-hint">🏆 Leading: <b>${esc(leader.rep)}</b> — ${esc(fmt(leader.val))} ${esc(metricLabel)}. Tap a rep below to see exactly where they stand.</div>`
+      : '';
+  }
+  const total = rows.length;
+  const gaps = [];
+  if(row.rank===1){
+    const second = rows[1];
+    if(second){
+      const gap = row.val - second.val;
+      gaps.push(gap>0
+        ? `<div class="rank-gap-chip good">🏆 <b>${esc(fmt(gap))}</b> ${esc(metricLabel)} ahead of #2 (${esc(second.rep)}).</div>`
+        : `<div class="rank-gap-chip good">🏆 Tied at the top with #2 (${esc(second.rep)}) — one more ${esc(metricLabel)} puts you clear.</div>`);
+    } else {
+      gaps.push(`<div class="rank-gap-chip good">🏆 The only rep with activity on this program right now.</div>`);
+    }
+  } else {
+    const above = rows[row.rank-2];
+    const gap = above.val - row.val;
+    gaps.push(gap>0
+      ? `<div class="rank-gap-chip"><b>${esc(fmt(gap))}</b> more ${esc(metricLabel)} to pass #${above.rank} (${esc(above.rep)}).</div>`
+      : `<div class="rank-gap-chip">Tied with #${above.rank} (${esc(above.rep)}) — one more ${esc(metricLabel)} moves you ahead.</div>`);
+    if(row.rank>5){
+      const fifth = rows[4];
+      const gapTop5 = fifth.val - row.val;
+      if(gapTop5>0) gaps.push(`<div class="rank-gap-chip"><b>${esc(fmt(gapTop5))}</b> more ${esc(metricLabel)} to break into the top 5.</div>`);
+    }
+    if(row.rank>1 && rows[0].rep!==above.rep){
+      const leader = rows[0];
+      gaps.push(`<div class="rank-gap-chip">🏆 Leader: <b>${esc(leader.rep)}</b> — ${esc(fmt(leader.val))} ${esc(metricLabel)}.</div>`);
+    }
+  }
+  const oppHtml = opportunity ? `<div class="best-opp-panel">
+      <div class="best-opp-title">Best Opportunities — ${esc(opportunity.label)}</div>
+      <div class="best-opp-items">${opportunity.items.map(name=>`<div class="best-opp-item">${esc(name)}</div>`).join('')}</div>
+    </div>` : '';
+  return `<div class="rank-focus-hero">
+    <div class="rank-focus-top">
+      <div class="rank-focus-num">${medal(row.rank)}</div>
+      <div class="rank-focus-main">
+        <div class="rank-focus-label">YOU'RE #${row.rank} OF ${total}</div>
+        <div class="rank-focus-rep">${esc(focusRep)}</div>
+      </div>
+      <div class="rank-focus-val"><div class="rank-focus-val-num">${esc(fmt(row.val))}</div><div class="rank-focus-val-label">${esc(metricLabel)}</div></div>
+    </div>
+    <div class="rank-gap-row">${gaps.join('')}</div>
+    ${oppHtml}
+  </div>`;
+}
+
+function nearbyBoard(rows, focusRep, fmt, cardFn){
+  const total = rows.length;
+  const focusIdx = rows.findIndex(r=>r.rep===focusRep);
+  let windowRows = rows;
+  let leaderChip = '';
+  if(focusIdx>=0){
+    let start = focusIdx-2, end = focusIdx+3;
+    if(start<0){ end = Math.min(total, end-start); start = 0; }
+    if(end>total){ start = Math.max(0, start-(end-total)); end = total; }
+    windowRows = rows.slice(start, end);
+    if(start>0){
+      const leader = rows[0];
+      leaderChip = `<div class="leader-chip-above">🏆 <b>${esc(leader.rep)}</b> — ${esc(fmt(leader.val))} · #1 of ${total}</div>`;
+    }
+  }
+  const rowHtml = r => {
+    const did = 'nb'+(uid++);
+    const isFocus = r.rep===focusRep;
+    const cardHtml = cardFn ? cardFn(r.rep) : '<div class="no-lines">No detail available for this program.</div>';
+    return `<div>
+      <button class="nearby-row${isFocus?' focus':''}" data-rep="${esc(r.rep)}" data-target="${did}">
+        <span class="nearby-rank${r.rank<=3?' top3':''}">${medal(r.rank)}</span>
+        <span class="nearby-name"><span class="nearby-name-text">${esc(r.rep)}</span>${isFocus?'<span class="nearby-you-tag">YOU</span>':''}</span>
+        <span class="nearby-val">${esc(fmt(r.val))}</span>
+        <span class="nearby-chev" data-expand="${did}">▶</span>
+      </button>
+      <div class="nearby-detail" id="${did}">
+        ${cardHtml}
+        <button class="gotorep-btn" data-rep="${esc(r.rep)}">Full Rep Detailed View &rsaquo;</button>
+      </div>
+    </div>`;
+  };
+  const windowLabel = focusIdx>=0 ? '<div class="nearby-label">Your Position</div>' : `<div class="nearby-label">Top ${Math.min(windowRows.length,5)}</div>`;
+  const shown = focusIdx>=0 ? windowRows : rows.slice(0,5);
+  const remaining = rows.filter(r=>!shown.includes(r));
+  return `
+    ${windowLabel}
+    ${leaderChip}
+    <div class="nearby-list">${shown.map(rowHtml).join('')}</div>
+    ${remaining.length ? `<button class="view-full-toggle" id="viewFullBtn">View Full Leaderboard (${total} reps)</button>
+    <div class="full-board-wrap" id="fullBoardWrap"><div class="nearby-list">${remaining.map(rowHtml).join('')}</div></div>` : ''}
+  `;
+}
+
 function renderProgramDetail(key){
   const entry = PROGRAM_LIST.find(e=>e.key===key);
   const main = document.getElementById('main');
   if(!entry){ activeProgram=null; renderOverview(); return; }
-  const rows = rankProgram(entry);
+
+  if(rankingState.key !== key){
+    rankingState = {key, focusRep:null, metric:'overall', fullOpen:false};
+  }
+
+  const config = PROGRAM_RANKING_CONFIG[key] || {};
+  const altMetrics = config.metrics || [];
+  const activeMetricDef = rankingState.metric==='overall' ? null : altMetrics.find(m=>m.key===rankingState.metric);
+  const metricFn = activeMetricDef ? activeMetricDef.fn : entry.metric;
+  const fmt = activeMetricDef ? (v=>v.toFixed(activeMetricDef.decimals||0)) : entry.fmt;
+  const metricLabel = activeMetricDef ? activeMetricDef.unit : entry.metricLabel;
+  const rows = rankByConfig(entry, metricFn);
   const cardFn = PROGRAM_CARD_FN[key];
-  const listHtml = rows.length
-    ? rows.map(r=>{
-        const did = 'progrep'+(uid++);
-        const cardHtml = cardFn ? cardFn(r.rep) : '<div class="no-lines">No detail available for this program.</div>';
-        return `<div class="leader-item">
-          <button class="leader-row leader-toggle" data-target="${did}">
-            <span class="leader-rank${r.rank<=3?' top3':''}">#${r.rank}</span>
-            <span class="leader-name">${esc(r.rep)}</span>
-            <span class="leader-val">${entry.fmt(r.val)} ${esc(entry.metricLabel)}</span>
-            <span class="leader-chev">▶</span>
-          </button>
-          <div class="leader-detail" id="${did}">
-            ${cardHtml}
-            <button class="gotorep-btn" data-rep="${esc(r.rep)}">Full Rep Detailed View &rsaquo;</button>
-          </div>
-        </div>`;
-      }).join('')
-    : '<div class="empty-state">No activity yet for this program.</div>';
+
+  const tabsHtml = altMetrics.length ? `<div class="metric-tabs">
+      <button class="metric-tab${rankingState.metric==='overall'?' active':''}" data-metric="overall">Overall</button>
+      ${altMetrics.map(m=>`<button class="metric-tab${rankingState.metric===m.key?' active':''}" data-metric="${esc(m.key)}">${esc(m.label)}</button>`).join('')}
+    </div>` : '';
+
+  let opportunity = null;
+  const opportunityFn = (activeMetricDef && activeMetricDef.opportunity) || config.opportunity;
+  if(rankingState.focusRep && opportunityFn){
+    const d = entry.getRep(rankingState.focusRep);
+    if(d) opportunity = opportunityFn(d);
+  }
+
+  const heroHtml = rows.length ? rankingHero(rows, rankingState.focusRep, fmt, metricLabel, opportunity) : '';
+  const boardHtml = rows.length ? nearbyBoard(rows, rankingState.focusRep, fmt, cardFn) : '<div class="empty-state">No activity yet for this program.</div>';
+
   main.innerHTML = `
     <button class="backbtn" id="backbtn">&lsaquo; All programs</button>
     <div class="prog-detail-hero">
@@ -25003,22 +25327,50 @@ function renderProgramDetail(key){
     </div>
     <div class="prog-card">
       <div class="prog-head">
-        <div class="prog-name-row"><span class="prog-name">Rep Rankings</span></div>
-        <div class="prog-desc">${rows.length} rep${rows.length===1?'':'s'} with activity, ranked by ${esc(entry.metricLabel)} · tap a rep to see their detail for this program</div>
+        <div class="prog-name-row"><span class="prog-name">Rankings</span></div>
+        <div class="prog-desc">${rows.length} rep${rows.length===1?'':'s'} with activity, ranked by ${esc(metricLabel)} · tap a rep to see where they stand</div>
+        ${tabsHtml}
       </div>
-      <div class="prog-body leader-list">${listHtml}</div>
+      <div class="prog-body">
+        ${heroHtml}
+        ${boardHtml}
+      </div>
     </div>
   `;
+
+  if(rankingState.fullOpen){
+    document.getElementById('fullBoardWrap')?.classList.add('open');
+    const vfb = document.getElementById('viewFullBtn');
+    if(vfb) vfb.textContent = 'Hide Full Leaderboard ('+rows.length+' reps)';
+  }
+
   document.getElementById('backbtn').addEventListener('click', ()=>{
     activeProgram = null;
     renderMain();
     window.scrollTo({top:0,behavior:'smooth'});
   });
-  main.querySelectorAll('.leader-toggle').forEach(b=>b.addEventListener('click', ()=>{
-    const panel = document.getElementById(b.dataset.target);
-    b.classList.toggle('open');
+  main.querySelectorAll('.metric-tab').forEach(b=>b.addEventListener('click', ()=>{
+    rankingState.metric = b.dataset.metric;
+    renderProgramDetail(key);
+  }));
+  main.querySelectorAll('.nearby-row').forEach(b=>b.addEventListener('click', (e)=>{
+    if(e.target.closest('.nearby-chev')) return;
+    rankingState.focusRep = b.dataset.rep;
+    renderProgramDetail(key);
+    document.querySelector('.rank-focus-hero, .rank-hint')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }));
+  main.querySelectorAll('.nearby-chev').forEach(c=>c.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const panel = document.getElementById(c.dataset.expand);
+    c.classList.toggle('open');
     if(panel) panel.classList.toggle('open');
   }));
+  const viewFullBtn = document.getElementById('viewFullBtn');
+  if(viewFullBtn) viewFullBtn.addEventListener('click', ()=>{
+    rankingState.fullOpen = !rankingState.fullOpen;
+    document.getElementById('fullBoardWrap')?.classList.toggle('open', rankingState.fullOpen);
+    viewFullBtn.textContent = (rankingState.fullOpen?'Hide':'View')+' Full Leaderboard ('+rows.length+' reps)';
+  });
   main.querySelectorAll('.gotorep-btn').forEach(b=>b.addEventListener('click', (e)=>{
     e.stopPropagation();
     const rep = b.dataset.rep;
