@@ -373,6 +373,43 @@ for n, raw in raw_by_num.items():
         'photo': raw['photo'],
     })
 
+# ---------- brand-rights matrix (added 2026-08-17, per Gavin: the
+# opportunity engine must never suggest a brand a rep can't sell in that
+# account's county). "Master - US vs THEM" is the audit engine's own final
+# per-(Brand Family x County) ruling -- US means Kohler has the rights
+# there, so it doubles as the sellable-brand catalog. Names are matched
+# uppercase; "Brand Crosswalk" maps the survey's report-side family names
+# onto the catalog's canonical names where they differ. ----------
+rights = {}          # FAMILY_UPPER -> [counties where CAN SELL]
+catalog_titles = {}  # FAMILY_UPPER -> display name
+mws = wb['Master - US vs THEM']
+for row in mws.iter_rows(min_row=2, values_only=True):
+    fam, county, det = row[0], row[1], row[5]
+    if not fam or not county:
+        continue
+    key = str(fam).strip().upper()
+    catalog_titles.setdefault(key, str(fam).strip())
+    if str(det).strip().upper() == 'US':
+        rights.setdefault(key, []).append(str(county).strip().upper())
+
+report_to_catalog = {}
+cw = wb['Brand Crosswalk']
+cw_idx = {c.value: i for i, c in enumerate(cw[1])}
+for row in cw.iter_rows(min_row=2, values_only=True):
+    rb = row[cw_idx['Report Brand Family']]
+    mapped = row[cw_idx['Mapped Encompass Brand Family']]
+    if rb and mapped and str(mapped).strip().upper() in catalog_titles:
+        report_to_catalog[str(rb).strip().upper()] = str(mapped).strip().upper()
+
+brand_rights = {
+    # every catalog family, its display name, and where it can sell --
+    # families with no US county at all are still listed (empty array) so
+    # the frontend can distinguish "blocked everywhere" from "not ours".
+    'catalog': [{'key': k, 'name': catalog_titles[k], 'counties': sorted(rights.get(k, []))}
+                for k in sorted(catalog_titles, key=lambda k: catalog_titles[k].upper())],
+    'reportToCatalog': report_to_catalog,
+}
+
 counties = sorted(set(r['county'] for r in records))
 reps = sorted(set(r['rep'] for r in records))
 district_managers = sorted(set(r['districtManager'] for r in records if r['districtManager']))
@@ -402,6 +439,7 @@ payload = {
         'flipped': total_flipped,
     },
     'records': records,
+    'brandRights': brand_rights,
 }
 
 data_json = json.dumps(payload, separators=(',', ':'))

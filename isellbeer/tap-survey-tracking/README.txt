@@ -18,9 +18,46 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
+MY TAP BUSINESS -- rep mode (added 2026-08-17, per Gavin: "the rep should
+be the center of the experience," opportunities "must respect what that
+rep can actually sell"). Selecting a name in the Rep filter transforms
+the whole top section into that rep's tap business:
+  - Hero share bar (Kohler % vs competitor %) with county chips built
+    from the rep's own route; tapping a chip scopes the ENTIRE rep
+    dashboard to that county (tiles included -- rep mode deliberately
+    differs from company mode here). "SALES" placeholder rows count in
+    totals but never appear as a chip or win best/worst area.
+  - Your Tap Fast Facts: plain-English, repeat-aloud bullets (share, #1
+    Kohler brand, largest named competitor + account count, best/worst
+    county, zero-Kohler account count, and the rep's biggest
+    distribution gap among their own top sellers -- computed
+    rights-aware, see below).
+  - Stat row: taps/accounts, Kohler handles, zero-Kohler accounts
+    (drill), missing photos (drill), needs-resurvey (drill).
+  - Your Top Brands on Tap / What You're Competing Against: ranked,
+    clickable -- clicking a brand drills to the accounts carrying it
+    (with that brand's handle count per account).
+  - Find My Opportunities: the account generator. Competitor-on-tap
+    (datalist of the rep's actual competitor families), Kohler
+    brand-to-place (datalist limited to brands sellable in the rep's
+    counties), min competitor handles. Place-brand results EXCLUDE
+    accounts that already carry the brand and accounts in counties
+    where the brand is blocked -- the rights source is generate.py's
+    brandRights payload, read from the workbook's "Master - US vs THEM"
+    sheet (Brand Family x County Final Determination; US = can sell),
+    with "Brand Crosswalk" reconciling survey-vs-Encompass brand names.
+    A note under the results states the brand's allowed counties.
+  Every account list row click drops that account into the search box
+  and scrolls to the By Rep view below, so the flow is
+  stats -> opportunity -> account -> taps + photo. There is no
+  "since your last survey" change view: the export carries exactly one
+  visit date per account (single snapshot), so a reliable comparison
+  isn't possible until refreshes start archiving prior snapshots.
+
 Command-center tiles (redesigned 2026-08-17, per Gavin: "a sales command
 center, not just a collection of KPI cards" -- rep-focused, actionable,
-interactive). The old static tile row (Taps Surveyed / Ours / Competitor /
+interactive; superseded at the REP level by MY TAP BUSINESS above the
+same day -- the tiles below now describe the no-rep/company view). The old static tile row (Taps Surveyed / Ours / Competitor /
 Reps / Photos / Corrected / Resurvey) is now two bands:
   "Company-Wide Opportunity" / "<Rep> — Your Route"
     The actionable band. Scoped LIVE by the Rep + District Manager filters
