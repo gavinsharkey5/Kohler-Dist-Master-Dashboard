@@ -9,6 +9,7 @@ import csv
 import datetime
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -104,6 +105,27 @@ def classify_dual(rows, base_col, current_col, key_fields):
     return classified, by_key
 
 
+def classify_by_customer(krows_by_cust, base_col, current_col):
+    """Classify each (rep, customer) group as 'new' / 'reorder' / 'lapsed' by
+    whether ANY row for that customer (across all its qualifying products) has
+    base/current period activity. This is the account-level definition most
+    placement incentives actually use -- an account that already carries one
+    SKU and adds a second SKU is not a new ACCOUNT placement, so classification
+    must happen at the customer grain, not per (customer, product) row. Per
+    Gavin, 2026-08-17 (correcting the original per-product assumption)."""
+    classified = {}
+    for key, krows in krows_by_cust.items():
+        has_current = any(r[current_col].strip() != "" for r in krows)
+        has_base = any(r[base_col].strip() != "" for r in krows)
+        if has_current and has_base:
+            classified[key] = "reorder"
+        elif has_current:
+            classified[key] = "new"
+        elif has_base:
+            classified[key] = "lapsed"
+    return classified
+
+
 def latest_date(krows, col):
     dates = []
     for r in krows:
@@ -136,24 +158,31 @@ def period_dates(krows, col):
 
 
 def build_1911_or_woodchuck(filename, bbl_threshold):
+    """Per Gavin, 2026-08-17: 'new placement' means the ACCOUNT had zero
+    qualifying purchases of ANY product in that channel (off-prem package,
+    or draft) during the base period, and buys at least one qualifying
+    product in that channel during the current period -- account-level, not
+    per-SKU. An account that already carried one 1911 SKU and adds a second
+    one this period is a reorder/existing-buyer event, not a new placement,
+    even though that second SKU itself is new to the account. Classification
+    is therefore done per (rep, customer) within each channel, not per (rep,
+    customer, product) as originally built."""
     rows = read_rows(filename)
     fieldnames = rows[0].keys() if rows else []
-    base_col, current_col = find_period_cols(fieldnames, "Cases")
-    _, place_current_col = find_period_cols(fieldnames, "Placement Count")
-    place_base_col, _ = find_period_cols(fieldnames, "Placement Count")
+    case_base_col, case_current_col = find_period_cols(fieldnames, "Cases")
+    place_base_col, place_current_col = find_period_cols(fieldnames, "Placement Count")
 
     by_rep = {rep: {
         "offPremNew": [], "offPremNewCount": 0,
+        "offPremReorderCount": 0,
         "offPremLapsed": [], "offPremLapsedCount": 0,
         "draftNew": [], "draftNewCount": 0,
+        "draftReorderCount": 0,
         "draftAccounts": [], "draftAccountsQualified": 0,
         "caseVolume": 0.0,
         "caseVolumeByAccount": [],
         "totalNewPlacements": 0,
     } for rep in ROSTER}
-
-    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
-    classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
 
     # Barrel threshold is PER ACCOUNT (per Gavin, 2026-08-05): sum each
     # account's current-period keg volume across all its draft SKUs,
@@ -163,20 +192,26 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     account_name = {}
     account_rep = {}
     case_by_account = {}  # (rep, cust_num) -> {"customer":..., "cases": float}
+    off_by_cust = defaultdict(list)    # (rep, cust_num) -> off-premise rows
+    draft_by_cust = defaultdict(list)  # (rep, cust_num) -> draft rows
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
-        cases = to_num(row[current_col])
+        cases = to_num(row[case_current_col])
         by_rep[rep]["caseVolume"] += cases
         if cases > 0:
             acct_key = (rep, row["Customer Num"])
             entry = case_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "cases": 0.0})
             entry["cases"] += cases
-        if row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
+        cust_key = (rep, row["Customer Num"])
+        if row["Premise"] == "Off Premise":
+            off_by_cust[cust_key].append(row)
+        elif row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
+            draft_by_cust[cust_key].append(row)
             cust = row["Customer Num"]
             bbl_each = keg_bbl(row["Package"]) or 0.0
-            account_bbl[cust] = account_bbl.get(cust, 0.0) + bbl_each * to_num(row[current_col])
+            account_bbl[cust] = account_bbl.get(cust, 0.0) + bbl_each * cases
             account_name.setdefault(cust, row["Customer Name"])
             account_rep.setdefault(cust, rep)
 
@@ -185,47 +220,52 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             continue
         by_rep[rep]["caseVolumeByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
 
-    # "Lapsed" off-premise accounts (bought in the base period, nothing
-    # this period) are a real, honest stand-in for prospecting data --
-    # the RDE export only contains accounts with SOME purchase history
-    # (verified empirically: zero rows have both period columns blank),
-    # so a true "never carried this" whitespace list isn't derivable
-    # from this file. Draft has no equivalent win-back concept (the
-    # reward is a one-time new-placement bonus, not an ongoing rebuy).
-    for key, status in classified.items():
-        rep, cust_num, prod_num = key
-        if rep not in by_rep:
-            continue
-        krows = by_key[key]
+    def current_products(krows):
+        out = [{"product": r["Product Name"], "date": r["Date"]} for r in krows if r[place_current_col].strip() != ""]
+        out.sort(key=lambda e: e["date"] or "", reverse=True)
+        return out
+
+    off_classified = classify_by_customer(off_by_cust, place_base_col, place_current_col)
+    for cust_key, status in off_classified.items():
+        rep, cust_num = cust_key
+        krows = off_by_cust[cust_key]
         sample = krows[0]
-        is_off_prem = sample["Premise"] == "Off Premise"
-        is_draft = sample["Premise"] == "On Premise" and is_keg_package(sample["Package"])
-        if not (is_off_prem or is_draft):
-            continue
-        if is_off_prem and status == "new":
+        if status == "new":
+            products = current_products(krows)
             by_rep[rep]["offPremNew"].append({
                 "customer": sample["Customer Name"],
-                "product": sample["Product Name"],
-                "date": latest_date(krows, place_current_col),
+                "products": products,
+                "date": products[0]["date"] if products else None,
             })
             by_rep[rep]["offPremNewCount"] += 1
-        elif is_off_prem and status == "base_only":
+        elif status == "reorder":
+            by_rep[rep]["offPremReorderCount"] += 1
+        elif status == "lapsed":
             by_rep[rep]["offPremLapsed"].append({
                 "customer": sample["Customer Name"],
                 "product": sample["Product Name"],
                 "lastDate": latest_date(krows, place_base_col),
             })
             by_rep[rep]["offPremLapsedCount"] += 1
-        elif is_draft and status == "new":
+
+    draft_classified = classify_by_customer(draft_by_cust, place_base_col, place_current_col)
+    for cust_key, status in draft_classified.items():
+        rep, cust_num = cust_key
+        krows = draft_by_cust[cust_key]
+        sample = krows[0]
+        if status == "new":
+            products = current_products(krows)
             acct_bbl = account_bbl.get(cust_num, 0.0)
             by_rep[rep]["draftNew"].append({
                 "customer": sample["Customer Name"],
-                "product": sample["Product Name"],
-                "date": latest_date(krows, place_current_col),
+                "products": products,
+                "date": products[0]["date"] if products else None,
                 "accountCumulativeBbl": round(acct_bbl, 2),
                 "accountQualifies": acct_bbl >= bbl_threshold,
             })
             by_rep[rep]["draftNewCount"] += 1
+        elif status == "reorder":
+            by_rep[rep]["draftReorderCount"] += 1
 
     for cust, bbl in account_bbl.items():
         rep = account_rep[cust]
@@ -264,14 +304,24 @@ def build_tona():
 
     by_rep = {rep: {
         "new24ozNew": [], "new24ozCount": 0,
+        "new24ozReorderCount": 0,
         "lapsed24oz": [], "lapsed24ozCount": 0,
         "caseVolume24oz": 0.0, "caseVolumeOther": 0.0,
         "caseVolume24ozByAccount": [], "caseVolumeOtherByAccount": [],
         "qualifies": False,
     } for rep in ROSTER}
 
-    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
-    classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
+    # "New placement" is account-level within the 24oz-can product (per
+    # Gavin, 2026-08-17): zero 24oz placement activity in the base period,
+    # then activity in the current period, for that customer.
+    can24_by_cust = defaultdict(list)
+    for row in rows:
+        if row["Package"] != "1/12/24oz Can":
+            continue
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        can24_by_cust[(rep, row["Customer Num"])].append(row)
 
     case24_by_account = {}
     caseOther_by_account = {}
@@ -298,14 +348,11 @@ def build_tona():
         if rep in by_rep:
             by_rep[rep]["caseVolumeOtherByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
 
-    for key, status in classified.items():
-        rep, cust_num, prod_num = key
-        if rep not in by_rep:
-            continue
-        krows = by_key[key]
+    can24_classified = classify_by_customer(can24_by_cust, place_base_col, place_current_col)
+    for cust_key, status in can24_classified.items():
+        rep, cust_num = cust_key
+        krows = can24_by_cust[cust_key]
         sample = krows[0]
-        if sample["Package"] != "1/12/24oz Can":
-            continue
         if status == "new":
             by_rep[rep]["new24ozNew"].append({
                 "customer": sample["Customer Name"],
@@ -313,7 +360,9 @@ def build_tona():
                 "date": latest_date(krows, place_current_col),
             })
             by_rep[rep]["new24ozCount"] += 1
-        elif status == "base_only":
+        elif status == "reorder":
+            by_rep[rep]["new24ozReorderCount"] += 1
+        elif status == "lapsed":
             by_rep[rep]["lapsed24oz"].append({
                 "customer": sample["Customer Name"],
                 "product": sample["Product Name"],
@@ -455,51 +504,112 @@ def build_boston_beer():
         "draftNew": [], "draftNewCount": 0,
         "draftRebuy": [], "draftRebuyCount": 0,
         "draftLapsed": [], "draftLapsedCount": 0,
+        "draftWhitespace": [],
         "packageNew": [], "packageNewCount": 0,
+        "packageRebuyCount": 0,
         "packageLapsed": [], "packageLapsedCount": 0,
+        "packageWhitespace": [],
         "points": 0,
     } for rep in ROSTER}
 
-    key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
-    classified, by_key = classify_dual(rows, base_col, current_col, key_fields)
-
-    for key, status in classified.items():
-        rep, cust_num, prod_num = key
+    # Account-level classification per channel (per Gavin, 2026-08-17): an
+    # account already carrying one draft/package SKU that adds a second SKU
+    # this period is a rebuy event for that channel, not a new placement --
+    # 25/106 draft accounts and 127/195 package accounts in this file carry
+    # more than one product, so grouping by (customer, product) as originally
+    # built substantially overcounted "new" placements.
+    draft_by_cust = defaultdict(list)
+    package_by_cust = defaultdict(list)
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
-        krows = by_key[key]
+        key = (rep, row["Customer Num"])
+        if row["Product Type"].startswith("Keg"):
+            draft_by_cust[key].append(row)
+        elif row["Product Type"].startswith("Case"):
+            package_by_cust[key].append(row)
+
+    def current_products(krows):
+        out = [{"product": r["Product Name"], "date": r["Date"]} for r in krows if r[current_col].strip() != ""]
+        out.sort(key=lambda e: e["date"] or "", reverse=True)
+        return out
+
+    draft_classified = classify_by_customer(draft_by_cust, base_col, current_col)
+    for cust_key, status in draft_classified.items():
+        rep, cust_num = cust_key
+        krows = draft_by_cust[cust_key]
         sample = krows[0]
-        is_draft = sample["Product Type"].startswith("Keg")
-        is_package = sample["Product Type"].startswith("Case")
-        if status == "base_only":
-            lapsed_entry = {
+        if status == "lapsed":
+            by_rep[rep]["draftLapsed"].append({
                 "customer": sample["Customer Name"],
                 "product": sample["Product Name"],
                 "lastDate": latest_date(krows, base_col),
-            }
-            if is_draft:
-                by_rep[rep]["draftLapsed"].append(lapsed_entry)
-                by_rep[rep]["draftLapsedCount"] += 1
-            elif is_package:
-                by_rep[rep]["packageLapsed"].append(lapsed_entry)
-                by_rep[rep]["packageLapsedCount"] += 1
-            continue
-        entry = {
-            "customer": sample["Customer Name"],
-            "product": sample["Product Name"],
-            "date": latest_date(krows, current_col),
-        }
-        if is_draft:
-            if status == "new":
-                by_rep[rep]["draftNew"].append(entry)
-                by_rep[rep]["draftNewCount"] += 1
-            elif status == "rebuy":
-                entry["baseDate"] = period_dates(krows, base_col)
-                by_rep[rep]["draftRebuy"].append(entry)
-                by_rep[rep]["draftRebuyCount"] += 1
-        elif is_package and status == "new":
-            by_rep[rep]["packageNew"].append(entry)
+            })
+            by_rep[rep]["draftLapsedCount"] += 1
+        elif status == "new":
+            products = current_products(krows)
+            by_rep[rep]["draftNew"].append({
+                "customer": sample["Customer Name"],
+                "products": products,
+                "date": products[0]["date"] if products else None,
+            })
+            by_rep[rep]["draftNewCount"] += 1
+        elif status == "reorder":
+            products = current_products(krows)
+            by_rep[rep]["draftRebuy"].append({
+                "customer": sample["Customer Name"],
+                "products": products,
+                "date": products[0]["date"] if products else None,
+                "baseDate": period_dates(krows, base_col),
+            })
+            by_rep[rep]["draftRebuyCount"] += 1
+
+    package_classified = classify_by_customer(package_by_cust, base_col, current_col)
+    for cust_key, status in package_classified.items():
+        rep, cust_num = cust_key
+        krows = package_by_cust[cust_key]
+        sample = krows[0]
+        if status == "lapsed":
+            by_rep[rep]["packageLapsed"].append({
+                "customer": sample["Customer Name"],
+                "product": sample["Product Name"],
+                "lastDate": latest_date(krows, base_col),
+            })
+            by_rep[rep]["packageLapsedCount"] += 1
+        elif status == "new":
+            products = current_products(krows)
+            by_rep[rep]["packageNew"].append({
+                "customer": sample["Customer Name"],
+                "products": products,
+                "date": products[0]["date"] if products else None,
+            })
             by_rep[rep]["packageNewCount"] += 1
+        elif status == "reorder":
+            by_rep[rep]["packageRebuyCount"] += 1
+
+    # True non-buyer whitespace: Boston Beer's brands are Core-Market-
+    # restricted, and the two Sales Reps' Customer Base files are verified
+    # complete for those six counties (see load_customer_base_by_rep), so
+    # "eligible account with zero purchase history in either period" is a
+    # real, defensible list here -- unlike the All-Counties programs.
+    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
+    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
+    for rep, d in by_rep.items():
+        draft_seen = {c for (r, c) in draft_by_cust if r == rep}
+        package_seen = {c for (r, c) in package_by_cust if r == rep}
+        draft_ws = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in draft_seen
+        ]
+        draft_ws.sort(key=lambda a: -a["cases2026"])
+        d["draftWhitespace"] = draft_ws[:15]
+        package_ws = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in package_seen
+        ]
+        package_ws.sort(key=lambda a: -a["cases2026"])
+        d["packageWhitespace"] = package_ws[:15]
 
     for rep, d in by_rep.items():
         d["points"] = (d["draftNewCount"] + d["draftRebuyCount"]) * 2 + d["packageNewCount"] * 1
@@ -542,6 +652,7 @@ def build_new_belgium():
         "featuredNew": [], "featuredNewCount": 0,
         "featuredRebuy": [], "featuredRebuyCount": 0,
         "featuredLapsed": [], "featuredLapsedCount": 0,
+        "featuredWhitespace": [],
         "otherNamedKegCount": 0, "otherNamedKegVolumeBbl": 0.0,
         "housePods": 0,
     } for rep in ROSTER}
@@ -549,6 +660,13 @@ def build_new_belgium():
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
     classified, by_key = classify_dual(rows, base_col, current_col, key_fields)
 
+    # Per Gavin, 2026-08-05 (see build_new_belgium_distribution docstring for
+    # the same wording): "POD" here is tracked per (customer, product) --
+    # explicitly confirmed by the house-goal description ("company-wide count
+    # of distinct featured-tier (customer, product) combos"), unlike 1911/
+    # Woodchuck/Boston Beer package where "$X per new placement" is a flat,
+    # account-level bonus. Do NOT collapse this to customer-level.
+    featured_seen_by_rep = defaultdict(set)
     house_pods_total = 0
     for key, status in classified.items():
         rep, cust_num, prod_num = key
@@ -557,6 +675,8 @@ def build_new_belgium():
         tier = new_belgium_tier(sample["Product Name"])
         if tier is None:
             continue
+        if tier == "featured" and rep in by_rep:
+            featured_seen_by_rep[rep].add(cust_num)
         if tier == "featured":
             house_pods_total += 1
             if rep in by_rep:
@@ -591,6 +711,19 @@ def build_new_belgium():
             bbl_each = keg_bbl(sample["Package"]) or 0.0
             current_units = sum(to_num(r[current_col]) for r in krows)
             by_rep[rep]["otherNamedKegVolumeBbl"] += bbl_each * current_units
+
+    # True non-buyer whitespace within the featured tier: New Belgium is
+    # Core-Market-restricted and draft-only, so customer_base_on_prem.csv is
+    # a legitimate complete eligible universe (see load_customer_base_by_rep).
+    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
+    for rep, d in by_rep.items():
+        seen = featured_seen_by_rep.get(rep, set())
+        ws = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in seen
+        ]
+        ws.sort(key=lambda a: -a["cases2026"])
+        d["featuredWhitespace"] = ws[:15]
 
     for rep, d in by_rep.items():
         d["featuredNew"].sort(key=lambda e: e["date"] or "", reverse=True)
@@ -827,6 +960,27 @@ def load_premise_map():
         for row in read_rows(filename):
             premise[row["Customer Num"]] = premise_label
     return premise
+
+
+def load_customer_base_by_rep(filename):
+    """{rep: {cust_num: {"customer":..., "cases2026": float}}} from one of
+    the Sales Reps' Customer Base files. NOTE: both customer base files are
+    pre-filtered to the six Core Market counties only (Bergen, Passaic,
+    Passaic-FF, Sussex, Morris 1, Morris 3) -- verified 2026-08-10, neither
+    file contains a single non-Core-Market county. That makes this a
+    legitimate complete eligible-account universe for Core-Market-restricted
+    brands (Boston Beer, New Belgium, Sam Adams, Sun Cruiser, Lytt), but it
+    is NOT a complete route universe for All-Counties brands (1911,
+    Woodchuck, Tona, Molly's, Yave) -- those reps have real accounts outside
+    these four counties that simply aren't in this file, so it cannot be
+    used to build a "true non-buyer" whitespace list for those programs."""
+    by_rep = {}
+    for row in read_rows(filename):
+        by_rep.setdefault(row["Sales Rep Assigned"], {})[row["Customer Num"]] = {
+            "customer": row["Customer Name"],
+            "cases2026": to_num(row.get("Cases   2026", "")),
+        }
+    return by_rep
 
 
 # Per kohler_brands_whitelist_blacklist.xlsx ("Blackout Brand Fam Areas
