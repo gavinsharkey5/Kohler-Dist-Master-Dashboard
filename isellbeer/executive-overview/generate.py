@@ -137,6 +137,138 @@ def pct(part, whole):
     return round(part / whole * 100, 1) if whole else 0.0
 
 
+# ---------- segment resolution (copied from ../tap-survey-tracking/generate.py,
+# build_segment_resolver & helpers -- keep the two in sync if the workbook's
+# segment sheets change shape). Two sources, per Kohler 2026-08-07: Encompass's
+# "Product Segments (Enc)" Sub-Segment is the stated source of truth when
+# resolvable, else iSell's "Brand Segments (iSell)" Segment, else None --
+# never a guess. ----------
+ACRONYMS = {'Ipa': 'IPA', 'Pos': 'POS', 'Fmb': 'FMB', 'Fab': 'FAB'}
+
+
+def titleize(s):
+    if not s:
+        return s
+    t = s.title()
+    for wrong, right in ACRONYMS.items():
+        t = re.sub(r'\b' + wrong + r'\b', right, t)
+    return t
+
+
+_KEG_SIZE_PATTERNS = [
+    r'\s*\(\s*\d+(\.\d+)?\s*gal(lon)?\s*(keg)?\s*\)\s*$',
+    r'\s+\d+(\.\d+)?\s*(l|liter|litre)s?\s*keg\s*$',
+    r'\s+\d+/\d+\s*(bbl|barrel|keg)\s*$',
+    r'\s*keg\s*\d+(\.\d+)?\s*(gal(lon)?\s*keg)?\s*$',
+    r'\s+\d+(\.\d+)?\s*(gal(lon)?\s*keg|gal(lon)?|bbl|barrel)\s*$',
+    r'\s+keg\s*$',
+    r'\s+\d+(\.\d+)?\s*$',
+]
+
+
+def strip_keg_size(name):
+    n = name
+    changed = True
+    while changed:
+        changed = False
+        for pattern in _KEG_SIZE_PATTERNS:
+            n2 = re.sub(pattern, '', n, flags=re.I).strip()
+            if n2 != n:
+                n, changed = n2, True
+    return n
+
+
+def build_segment_resolver(wb):
+    seg_by_brand, seg_by_bf = {}, {}
+    isell = wb['Brand Segments (iSell)']
+    isell_idx = {c.value: i for i, c in enumerate(isell[1])}
+    for r in isell.iter_rows(min_row=2, values_only=True):
+        seg = r[isell_idx['Segment']]
+        if not seg:
+            continue
+        b = r[isell_idx['Brand']]
+        bf = r[isell_idx['Brand Family']]
+        if b:
+            seg_by_brand.setdefault(b.strip().upper(), {}).setdefault(seg, 0)
+            seg_by_brand[b.strip().upper()][seg] += 1
+        if bf:
+            seg_by_bf.setdefault(bf.strip().upper(), {}).setdefault(seg, 0)
+            seg_by_bf[bf.strip().upper()][seg] += 1
+    seg_by_brand = {k: max(v, key=v.get) for k, v in seg_by_brand.items()}
+    seg_by_bf = {k: max(v, key=v.get) for k, v in seg_by_bf.items()}
+
+    enc_sub_by_base = {}
+    enc = wb['Product Segments (Enc)']
+    enc_idx = {c.value: i for i, c in enumerate(enc[1])}
+    for r in enc.iter_rows(min_row=2, values_only=True):
+        name = r[enc_idx['Product Name']]
+        sub = r[enc_idx['Sub-Segments']]
+        if not name or not sub:
+            continue
+        base = strip_keg_size(name).strip().upper()
+        enc_sub_by_base.setdefault(base, {}).setdefault(sub, 0)
+        enc_sub_by_base[base][sub] += 1
+    enc_sub_by_base = {k: max(v, key=v.get) for k, v in enc_sub_by_base.items()}
+    enc_base_keys = list(enc_sub_by_base.keys())
+
+    seg_crosswalk = {}
+    cw = wb['Brand Crosswalk']
+    cw_idx = {c.value: i for i, c in enumerate(cw[1])}
+    for r in cw.iter_rows(min_row=2, values_only=True):
+        rb = r[cw_idx['Report Brand Family']]
+        mapped = r[cw_idx['Mapped Encompass Brand Family']]
+        if rb:
+            seg_crosswalk[rb.strip().upper()] = mapped.strip().upper() if mapped else None
+
+    def enc_lookup(key):
+        if key in enc_sub_by_base:
+            return enc_sub_by_base[key]
+        hits = {k for k in enc_base_keys if k.startswith(key + ' ') or key.startswith(k + ' ')}
+        if len(hits) == 1:
+            return enc_sub_by_base[hits.pop()]
+        return None
+
+    def resolve_segment(brand, brand_family):
+        key_b = (brand or '').strip().upper()
+        key_bf = (brand_family or '').strip().upper()
+        enc_val = enc_lookup(key_b) if key_b else None
+        if enc_val is None and key_bf:
+            enc_val = enc_lookup(key_bf)
+        if enc_val is None and key_bf in seg_crosswalk and seg_crosswalk[key_bf]:
+            enc_val = enc_lookup(seg_crosswalk[key_bf])
+        if enc_val is not None:
+            return enc_val
+        isell_val = seg_by_brand.get(key_b) or seg_by_bf.get(key_bf)
+        if isell_val is not None:
+            return titleize(isell_val)
+        return None
+
+    return resolve_segment
+
+
+# The workbook's segment values mix price tiers ("Craft", "Beer - Import")
+# with beer styles ("Wheat Beer", "Pilsner And Pale Lager") row to row --
+# that's genuinely what's in the source, not a bug. Only the tier-shaped
+# values map cleanly onto this page's executive buckets; style-shaped values
+# are deliberately NOT mapped (a style says nothing reliable about tier --
+# "Pilsner And Pale Lager" covers both Stella Artois and Bud Light), so
+# brands whose rows only ever carry style labels keep using index.html's
+# existing brand-name heuristic instead (classifySegment() falls back
+# whenever no `segment` field was emitted for a brand).
+SEGMENT_NORMALIZE = {
+    'Beer - Craft': 'craft', 'Craft': 'craft', 'Craft - Seasonal': 'craft',
+    'Beer - Import': 'import', 'Import': 'import', 'Imports': 'import',
+    'Beer - Premium': 'domestic', 'Beer - Economy': 'domestic', 'Domestic': 'domestic',
+    'Above Premium': 'domestic',
+    'Cider': 'cider', 'Hard Cider': 'cider', 'FAB': 'cider', 'FMB': 'cider',
+    'Seltzer': 'cider', 'Hard Iced Tea': 'cider', 'Vodka': 'cider',
+}
+
+# Catch-all/generic brand labels -- never attributed a segment, never listed
+# as a "dual-sourced brand" (same spirit as index.html's FACT_EXCLUDE_NAMES:
+# a generic bucket isn't a brand).
+GENERIC_BRAND_NAMES = {'OTHER SUPPLIER', 'OTHER BRAND FAMILY', 'OTHER', 'OTHER SUPPLIER (IN-HOUSE)', ''}
+
 # ---------- load tap survey ----------
 wb = load_workbook(XLSX_PATH, data_only=True)
 raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS)
@@ -422,6 +554,15 @@ for brand_family in candidate_us_brands:
         'matchedTaps': matched_taps,
         'unitsSold': round(matched_units, 1),
         'unitsPerTap': round(matched_units / matched_taps, 2) if matched_taps else None,
+        # Which Encompass pool the units came from. Several tap-survey brand
+        # families can resolve to the SAME pool ("Yuengling" and "Yuengling
+        # Brewery" both -> bf:YUENGLING), in which case each alias is
+        # credited the full pool's units against only its own taps -- the
+        # small alias then shows an absurd units-per-handle. Consumers that
+        # rank or compare velocity (the Full Detail quadrant cards) keep
+        # only the most-surveyed alias per key; the raw table keeps every
+        # row since the note already flags figures as directional.
+        'encKey': f'{kind}:{name}',
     })
 velocity_brands.sort(key=lambda b: -(b['unitsPerTap'] or 0))
 
@@ -436,6 +577,124 @@ velocity = {
     'unmatchedBrands': velocity_unmatched,
 }
 
+# ---------- per-brand segment attachment (Full Detail "Segment Battleground",
+# and the Snapshot segment donut picks these up automatically -- index.html's
+# classifySegment() was built to prefer a real `segment` field over its own
+# heuristic from day one) ----------
+resolve_segment = build_segment_resolver(wb)
+bf_seg_votes = defaultdict(Counter)
+for r in records:
+    bucket = SEGMENT_NORMALIZE.get(resolve_segment(r['brand'], r['brandFamily']))
+    if bucket:
+        bf_seg_votes[r['brandFamily']][bucket] += r['taps']
+
+brand_family_segment = {}
+for bf, votes in bf_seg_votes.items():
+    if bf in GENERIC_BRAND_NAMES:
+        continue
+    bucket, top_taps = votes.most_common(1)[0]
+    # Require a clear tap-weighted majority before attributing a whole brand
+    # family to one bucket; a family whose rows genuinely split stays with
+    # the client-side heuristic rather than getting a coin-flip label.
+    if top_taps / sum(votes.values()) >= 0.6:
+        brand_family_segment[bf] = bucket
+
+for lst in (brands_us['top'], brands_them['top'], all_brands_us, all_brands_them):
+    for e in lst:
+        seg = brand_family_segment.get(e['brand'].upper())
+        if seg:
+            e['segment'] = seg
+
+# ---------- account-level control analysis (core market only) ----------
+acct_map = {}
+for r in core_records:
+    a = acct_map.setdefault(r['account'], {
+        'dba': r['dba'], 'area': r['area'].title(), 'city': r['city'].title(),
+        'us': 0, 'them': 0, 'usBrands': Counter(), 'themBrands': Counter(),
+    })
+    if r['status'] == 'US':
+        a['us'] += r['taps']
+        a['usBrands'][r['brandFamily'].title()] += r['taps']
+    elif r['status'] == 'THEM':
+        a['them'] += r['taps']
+        a['themBrands'][r['brandFamily'].title()] += r['taps']
+
+accounts_list = [a for a in acct_map.values() if a['us'] + a['them'] > 0]
+
+CONTROL_BANDS = [
+    ('all_us', 'Fully ours (100%)', lambda p: p >= 100),
+    ('lead', 'We lead (60–99%)', lambda p: 60 <= p < 100),
+    ('contested', 'Contested (40–59%)', lambda p: 40 <= p < 60),
+    ('trail', 'They lead (1–39%)', lambda p: 0 < p < 40),
+    ('all_them', 'Fully theirs (0%)', lambda p: p <= 0),
+]
+bands_out = []
+for key, label, test in CONTROL_BANDS:
+    hit = [a for a in accounts_list if test(a['us'] / (a['us'] + a['them']) * 100)]
+    bands_out.append({'key': key, 'label': label, 'accounts': len(hit),
+                      'taps': sum(x['us'] + x['them'] for x in hit)})
+
+sorted_by_taps = sorted(accounts_list, key=lambda a: -(a['us'] + a['them']))
+core_total_taps = sum(a['us'] + a['them'] for a in accounts_list)
+concentration = {
+    'accounts': len(accounts_list),
+    'top10': pct(sum(a['us'] + a['them'] for a in sorted_by_taps[:10]), core_total_taps),
+    'top25': pct(sum(a['us'] + a['them'] for a in sorted_by_taps[:25]), core_total_taps),
+    'top50': pct(sum(a['us'] + a['them'] for a in sorted_by_taps[:50]), core_total_taps),
+}
+
+
+def acct_row(a):
+    total = a['us'] + a['them']
+    return {
+        'dba': a['dba'], 'area': a['area'], 'city': a['city'],
+        'taps': total, 'usTaps': a['us'], 'themTaps': a['them'], 'usPct': pct(a['us'], total),
+        # topThem deliberately KEEPS generic labels ("Other Supplier" = real
+        # unidentified competitor handles, useful signal at a flip target);
+        # topUs drops them -- "our biggest brands there" citing "Other Brand
+        # Family" tells the reader nothing.
+        'topThem': [{'brand': b, 'taps': t} for b, t in a['themBrands'].most_common(3)],
+        'topUs': [{'brand': b, 'taps': t} for b, t in a['usBrands'].most_common(6)
+                  if b.upper() not in GENERIC_BRAND_NAMES][:2],
+    }
+
+
+flip_targets = [acct_row(a) for a in sorted(accounts_list, key=lambda a: (-a['them'], -(a['us'] + a['them'])))[:20]]
+# Anchors are accounts we CONTROL (>=60% ours), ranked by how many of our
+# handles are at stake there -- not just our biggest raw presence, which
+# would re-surface the same giant contested accounts as the flip-target
+# list and blur the two ideas together.
+anchors = [acct_row(a) for a in sorted(
+    (a for a in accounts_list if a['us'] / (a['us'] + a['them']) >= 0.6),
+    key=lambda a: (-a['us'], -(a['us'] + a['them'])))[:10]]
+
+account_analysis = {'bands': bands_out, 'concentration': concentration,
+                    'flipTargets': flip_targets, 'anchors': anchors}
+
+# ---------- dual-sourced brands: brand families pouring on BOTH sides in the
+# core market (e.g. Blue Moon at one account through us, at another through a
+# competing distributor) -- the THEM handles here are volume of brands we
+# demonstrably carry, going through someone else ----------
+shared_stats = defaultdict(lambda: {'us': 0, 'them': 0, 'usA': set(), 'themA': set(), 'themAreas': Counter()})
+for r in core_records:
+    if r['brandFamily'] in GENERIC_BRAND_NAMES:
+        continue
+    s = shared_stats[r['brandFamily']]
+    if r['status'] == 'US':
+        s['us'] += r['taps']
+        s['usA'].add(r['account'])
+    elif r['status'] == 'THEM':
+        s['them'] += r['taps']
+        s['themA'].add(r['account'])
+        s['themAreas'][r['area'].title()] += r['taps']
+
+shared_brands = sorted(
+    ({'brand': bf.title(), 'usTaps': s['us'], 'themTaps': s['them'],
+      'usAccounts': len(s['usA']), 'themAccounts': len(s['themA']),
+      'topThemAreas': [a for a, _ in s['themAreas'].most_common(2)]}
+     for bf, s in shared_stats.items() if s['us'] >= 2 and s['them'] >= 2),
+    key=lambda x: -x['themTaps'])[:15]
+
 payload = {
     'generatedAt': datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
     'summary': summary,
@@ -447,6 +706,8 @@ payload = {
     'brandLookup': brand_lookup,
     'areas': {'core': core_areas_out, 'nonFocus': non_focus_areas_out, 'other': other_areas_out},
     'velocity': velocity,
+    'accountAnalysis': account_analysis,
+    'sharedBrands': shared_brands,
 }
 
 data_json = json.dumps(payload, separators=(',', ':'))
@@ -469,3 +730,9 @@ print(f"Velocity: {len(velocity_brands)} US brand(s) matched to Encompass out of
       f"{len(matched_accounts)}/{len(tap_accounts)} accounts have a units-sold record")
 if velocity_unmatched:
     print(f"  No Encompass mapping found for: {velocity_unmatched}")
+seg_covered = sum(e['taps'] for e in all_brands_us + all_brands_them if e.get('segment'))
+seg_total = sum(e['taps'] for e in all_brands_us + all_brands_them)
+print(f"Deep dive: workbook segments attached to {len(brand_family_segment)} brand families "
+      f"({pct(seg_covered, seg_total)}% of core handles; the rest use index.html's heuristic); "
+      f"{len(shared_brands)} dual-sourced brands; "
+      f"top flip target: {flip_targets[0]['dba']} ({flip_targets[0]['themTaps']} competitor handles)")

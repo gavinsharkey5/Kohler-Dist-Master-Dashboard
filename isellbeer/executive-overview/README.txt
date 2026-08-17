@@ -59,16 +59,17 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
                  Segment breakdown ("Core Market by Segment", per Kohler,
                  2026-08-07): one donut, Craft / Domestic / Import / Cider &
                  Other / Unclassified, summed across allBrandsUs +
-                 allBrandsThem. THIS IS A PLACEHOLDER -- Kohler has not yet
-                 supplied an authoritative brand-to-segment mapping; see
-                 BRAND_SEGMENTS / classifySegment() in index.html for the
-                 interim heuristic (an exact-match table for this core
-                 market's higher-volume brands, then a keyword fallback,
-                 then a genuine "Unclassified" bucket rather than a guess).
-                 classifySegment() checks `b.segment` first, so a future
-                 generate.py that emits a real per-brand segment field
-                 (once Kohler provides the mapping) overrides this map
-                 automatically -- no index.html change needed at that point.
+                 allBrandsThem. As of 2026-08-17 this is majority REAL
+                 data: generate.py emits a per-brand `segment` field
+                 resolved from the workbook's own segment sheets (see the
+                 Full Detail tab's Segment Battleground entry above for the
+                 mechanics), and classifySegment() prefers that field --
+                 exactly the forward-compatible hook this section was built
+                 with. Brands with no emitted segment (style-only workbook
+                 labels, or no segment row at all) still fall back to
+                 BRAND_SEGMENTS / classifySegment()'s heuristic in
+                 index.html, so keep those maps -- they still cover just
+                 under half the handles.
                  A "What's in each bucket?" toggle under the chart explains
                  each segment in plain language.
                  Interactivity: every donut on this page (top-level and
@@ -80,9 +81,65 @@ Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
                  hover/click handlers, so the tap target is comfortably
                  larger than the visible ring (true even on the small
                  22px-wide county mini-pies).
-  Full Detail  The original page described below, unchanged -- every
-               section, the brand customizers, the area customizer, the
-               brand-by-area lookup, and the velocity table.
+  Full Detail  The in-depth analysis tab (reworked 2026-08-17, per Gavin:
+               "I want the full detail tab to do more in depth analysis" --
+               Snapshot stays the glance-and-go scope view, Full Detail is
+               where the analysis lives). Keeps every original section (the
+               brand customizers, the area customizer, the brand-by-area
+               lookup, the velocity table) and adds four analysis sections:
+                 Segment Battleground   Us-vs-them split bars per segment
+                   (Craft/Domestic/Import/Cider & Other/Unclassified) with
+                   each side's #1 brand in that segment. Segments are REAL
+                   workbook data now where cleanly mappable: generate.py
+                   ports ../tap-survey-tracking/'s build_segment_resolver()
+                   (Encompass Sub-Segment first, then iSell's survey tag)
+                   and emits a per-brand `segment` field whenever a brand
+                   family's tap-weighted majority segment maps onto a tier
+                   bucket (SEGMENT_NORMALIZE in generate.py) with a >=60%
+                   majority -- ~54% of core handles in the 8.17 build.
+                   Style-shaped workbook values ("Wheat Beer", "Pilsner And
+                   Pale Lager") are deliberately NOT mapped (a style says
+                   nothing reliable about tier), so those brands keep using
+                   index.html's brand-name heuristic, which classifySegment()
+                   was already built to fall back to. This also silently
+                   upgraded the Snapshot tab's segment donut -- its note text
+                   was updated accordingly, nothing else on Snapshot changed.
+                   The Unclassified row shows the split but no #1 brands
+                   (it's almost entirely "Other Supplier" rows).
+                 Account Control   Every core-market account with recorded
+                   handles, banded by our share of its tap wall (Fully ours /
+                   We lead / Contested 40-59% / They lead / Fully theirs) as
+                   a diverging stacked bar (band palette validated with the
+                   dataviz skill's validator -- CVD, normal-vision, and
+                   contrast checks pass; the categorical lightness/chroma
+                   checks don't apply to a diverging ramp), plus a
+                   concentration line (top-10/25/50 accounts' share of
+                   handles). Then two tables from generate.py's
+                   accountAnalysis: Biggest Flip Targets (top 20 accounts by
+                   competitor handles, with what they pour there -- "Other
+                   Supplier" deliberately kept, it's real unidentified
+                   competitor handles) and Our Anchor Accounts (accounts we
+                   control at 60%+, ranked by our handles at stake; generic
+                   labels dropped from its brand list since "our biggest
+                   brands" citing "Other Brand Family" says nothing).
+                 Brands Pouring on Both Sides   sharedBrands in the
+                   generated data: brand families with >=2 handles through
+                   us AND >=2 through a competing distributor in the core
+                   market (e.g. Dos Equis, Lagunitas), with account counts
+                   and where the competitor's handles pour. Framed as share
+                   that needs no new-brand authorization to win back.
+                 Velocity quadrants   Three cards above the velocity table
+                   (Hidden Gems / Workhorses / Watch List), splitting brands
+                   with 5+ matched handles at the median handle count and
+                   median units-per-handle. Computed client-side from the
+                   existing velocity data, with one generate.py addition:
+                   each velocity brand now carries its resolved Encompass
+                   pool as `encKey`, and the quadrants keep only the most-
+                   surveyed alias per pool -- without that, a split alias
+                   ("Yuengling Brewery", 9 taps) inherits the whole pool's
+                   units against its own few taps and tops every ranking
+                   with a fake ~290 units/handle. The raw velocity table
+                   still shows every alias row, unchanged.
 Switching tabs is pure client-side show/hide (renderSnapshot() +
 CUSTOMIZERS wiring in index.html); refreshing data (see "To refresh with new
 exports" below) updates both tabs at once.
