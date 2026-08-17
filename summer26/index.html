@@ -62,7 +62,9 @@
   .trend.down{color:#E5604D} .trend.down::before{content:"\25BC"}
   .bchip{font-size:12.5px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
   .bchip.muted{opacity:.45}
-  .pgrow .pglabel{display:flex;align-items:center;gap:0;margin-bottom:0}
+  /* gap here is what separates the "x / y CE" total from a trailing
+     Achieved! pill -- it used to be 0, which left the two touching. */
+  .pgrow .pglabel{display:flex;align-items:center;gap:10px;margin-bottom:0}
   .lockmini{display:inline-flex;align-items:center;color:var(--lock);margin-left:7px}
   .lockmini svg{width:11px;height:11px}
   .repx{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 11px;overflow:hidden;box-shadow:var(--shadow)}
