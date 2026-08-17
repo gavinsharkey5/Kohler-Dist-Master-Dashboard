@@ -46,6 +46,7 @@ is just that snapshot's values.
 
 Run: python3 generate.py
 """
+import csv
 import json, re, os, datetime
 from collections import defaultdict
 from openpyxl import load_workbook
@@ -89,7 +90,31 @@ def fill_corrected(corrected, expected, tmpl_distributor):
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX_PATH = os.path.join(HERE, 'iSellBeer_TAPS_US_THEM_Mediator.xlsx')
+DRAFT_PACKAGE_CSV = os.path.join(HERE, 'on_premise_draft_package.csv')
 HTML = os.path.join(HERE, 'index.html')
+
+
+def load_package_only_ids():
+    """Accounts RDE classifies "3) Package Only" -- per Gavin, 2026-08-17:
+    only accounts classified 1) or 2) (i.e. with draft) belong on this
+    dashboard; package-only accounts can't take a keg (same ruling as the
+    on-prem MPO tracker's Angry Orchard Target Accounts, Kohler
+    2026-08-11). on_premise_draft_package.csv is the account-level RDE
+    "On Premise Draft Package" export (Customer Num, Draft Package, ...).
+    Only an EXPLICIT "3)" classification excludes an account: a surveyed
+    account absent from this export entirely stays on the dashboard (the
+    8.17 export is missing ~45 surveyed accounts, including one with 24
+    live handles -- clearly draft, just not in the export), so absence is
+    treated as unknown, not as package-only. generate.py prints how many
+    surveyed accounts fell in each bucket so a refresh's coverage is
+    visible."""
+    ids = set()
+    with open(DRAFT_PACKAGE_CSV, newline='', encoding='utf-8-sig') as f:
+        for r in csv.DictReader(f):
+            num = (r.get('Customer Num') or '').strip()
+            if num and (r.get('Draft Package') or '').strip().startswith('3)'):
+                ids.add(num)
+    return ids
 
 RAW_COLUMNS = ['#', 'Account #', 'DBA', 'Distribution Area', 'Address', 'City', 'Date/Time', 'Photos',
                'Route / Sales Rep', 'District Manager', 'Brand', 'Brand Family', 'Supplier', '# of Taps', 'Distributor']
@@ -299,10 +324,18 @@ raw_by_num = sheet_rows(find_raw_sheet(wb), RAW_COLUMNS, with_photo_link=True)
 tmpl_by_num = sheet_rows(wb['iSellBeer Import Template'], RAW_COLUMNS + ['Corrected Distributor', 'Expected Distributor', 'Audit Result', 'Canonical Brand Family'])
 resolve_segment, segment_stats = build_segment_resolver(wb)
 
+package_only_ids = load_package_only_ids()
+package_only_dropped = set()
+
 records = []
 for n, raw in raw_by_num.items():
     t = tmpl_by_num.get(n)
     if t is None:
+        continue
+    if raw['Account #'].strip() in package_only_ids:
+        # "3) Package Only" account -- excluded entirely, see
+        # load_package_only_ids().
+        package_only_dropped.add(raw['Account #'].strip())
         continue
     if not raw['Route / Sales Rep'].strip():
         # No rep to attribute this row to (seen once so far: a stray 0-tap
@@ -382,6 +415,11 @@ new_html, n = re.subn(
 assert n == 1, 'tap-data script tag not found in index.html'
 open(HTML, 'w', encoding='utf-8').write(new_html)
 
+surveyed_not_in_export = {r['account'] for r in records} - {
+    (row.get('Customer Num') or '').strip()
+    for row in csv.DictReader(open(DRAFT_PACKAGE_CSV, newline='', encoding='utf-8-sig'))}
+print(f"Draft/Package filter: {len(package_only_dropped)} surveyed accounts dropped as \"3) Package Only\"; "
+      f"{len(surveyed_not_in_export)} kept accounts not in the export at all (treated as unknown, kept)")
 print(f"{len(reps)} reps, {len(accounts)} accounts, {total_taps} taps "
       f"({total_us} ours / {total_them} competitor / {total_unv} unverified)")
 print(f"Corrected vs. iSellBeer's own raw flag: {total_flipped} of {len(records)} rows")

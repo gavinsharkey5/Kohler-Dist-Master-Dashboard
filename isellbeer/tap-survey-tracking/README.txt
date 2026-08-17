@@ -104,6 +104,25 @@ Files:
                  (so a bare raw survey export could be self-audited every
                  month without the manual Excel process) is a natural next
                  step if useful -- ask for it.
+  on_premise_draft_package.csv
+                 Account-level RDE "On Premise Draft Package" export
+                 (Customer Num, Customer Name, Draft Package, address
+                 fields, Buyer Count, Units). Drives the draft-only
+                 account filter (added 2026-08-17, per Gavin: "only the
+                 accounts ... are the ones that have a 2 or a 1 ...
+                 exclude accounts that have 3 and are package only"):
+                 generate.py drops every surveyed account whose Draft
+                 Package classification is "3) Package Only" -- they
+                 can't take a keg, same ruling as the on-prem MPO
+                 tracker's Angry Orchard Target Accounts (Kohler,
+                 2026-08-11). Only an explicit "3)" excludes: a surveyed
+                 account missing from this export entirely is kept
+                 (absence is unknown, not package-only -- the 8.17
+                 export was missing ~45 surveyed accounts including a
+                 24-handle draft account). The 8.17 filter dropped 29
+                 accounts / 54 taps. generate.py prints both counts on
+                 every refresh; overwrite this CSV alongside the
+                 mediator workbook when refreshing.
   generate.py    Rebuilds the embedded data in index.html from the
                  workbook above. Requires openpyxl (pip install openpyxl).
   index.html     The dashboard itself (data is embedded in the
@@ -113,7 +132,8 @@ To refresh with a new export:
   1. Re-run the tap-audit process on the new raw survey export (see the
      tap-audit skill) to produce an updated mediator workbook.
   2. Save it over iSellBeer_TAPS_US_THEM_Mediator.xlsx in this folder,
-     same filename.
+     same filename. If a new "On Premise Draft Package" export came too,
+     save it over on_premise_draft_package.csv (same columns).
   3. Run: python3 generate.py
   4. Commit and push.
 
