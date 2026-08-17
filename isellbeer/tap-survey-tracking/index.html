@@ -472,8 +472,8 @@ footer p{margin:0 0 8px}
 
   function computeCC(scope){
     var accounts = {}, order = [];
-    var us=0, them=0, unv=0, flippedRows=0;
-    var themBrandTotals = {}, usBrandTotals = {}, areas = {}, repSet = {};
+    var us=0, them=0, unv=0, flippedRows=0, flippedToUs=0, flippedToThem=0;
+    var themBrandTotals = {}, usBrandTotals = {}, areas = {}, repSet = {}, segTotals = {};
     scope.forEach(function(r){
       var key = r.account+'|'+r.dba;
       if(!accounts[key]){
@@ -508,8 +508,31 @@ footer p{margin:0 0 8px}
         them+=r.taps; a.them+=r.taps; area.them+=r.taps; ft.them+=r.taps;
         a.themBrands[bf] = (a.themBrands[bf]||0) + r.taps;
         themBrandTotals[bf] = (themBrandTotals[bf]||0) + r.taps;
+        // competitor handles pouring a brand family Kohler is AUTHORIZED
+        // to sell in this account's county (rights matrix) -- volume that
+        // needs no new authorization to win, only the buyer moved
+        var rk = R2C[bfu] || bfu;
+        if(RIGHTS[rk] && RIGHTS[rk][r.county]){
+          a.rightsThem = (a.rightsThem||0) + r.taps;
+          a.rightsBrands = a.rightsBrands || {};
+          a.rightsBrands[bf] = (a.rightsBrands[bf]||0) + r.taps;
+        }
+        if(r.segment && r.segment!=='Unclassified'){
+          a.segThem = a.segThem || {};
+          a.segThem[r.segment] = (a.segThem[r.segment]||0) + r.taps;
+          var sg = segTotals[r.segment] || (segTotals[r.segment]={us:0,them:0});
+          sg.them += r.taps;
+        }
       }
       else { unv+=r.taps; a.unv+=r.taps; }
+      if(r.status==='US' && r.segment && r.segment!=='Unclassified'){
+        var sg2 = segTotals[r.segment] || (segTotals[r.segment]={us:0,them:0});
+        sg2.us += r.taps;
+      }
+      if(r.flipped){
+        a.flippedTaps = (a.flippedTaps||0) + r.taps;
+        if(r.status==='US') flippedToUs += r.taps; else if(r.status==='THEM') flippedToThem += r.taps;
+      }
     });
     var list = order.map(function(k){
       var a = accounts[k];
@@ -538,6 +561,36 @@ footer p{margin:0 0 8px}
       usBrandTotals:usBrandTotals, usRanked:usRanked,
       zeroUs: list.filter(function(a){ return a.us===0 && a.them>0; }).sort(function(x,y){ return y.them-x.them; }),
       noPhoto: list.filter(function(a){ return !a.photo; }).sort(function(x,y){ return y.taps-x.taps; }),
+      flippedToUs: flippedToUs, flippedToThem: flippedToThem,
+      rightsThem: list.filter(function(a){ return a.rightsThem>0; }).sort(function(x,y){ return y.rightsThem-x.rightsThem; }),
+      rightsThemTaps: list.reduce(function(s,a){ return s+(a.rightsThem||0); },0),
+      appWrong: list.filter(function(a){ return a.flippedTaps>0; }).sort(function(x,y){ return y.flippedTaps-x.flippedTaps; }),
+      segTotals: segTotals,
+      segEdge: (function(){
+        var best=null;
+        Object.keys(segTotals).forEach(function(s){
+          var d = segTotals[s].them - segTotals[s].us;
+          if(!best || d > best.diff) best = {seg:s, diff:d, us:segTotals[s].us, them:segTotals[s].them};
+        });
+        return best && best.diff>0 ? best : null;
+      })(),
+      // Kohler families whose entire surveyed presence hangs on 1-2
+      // accounts -- lose the account, lose the brand's whole tap presence.
+      fragile: (function(){
+        var famAcct = {};
+        list.forEach(function(a){ Object.keys(a.usBrands||{}).forEach(function(f){ (famAcct[f]=famAcct[f]||[]).push(a.dba); }); });
+        return Object.keys(usBrandTotals).filter(function(f){
+          return !GENERIC_BRANDS[f.toUpperCase()] && usBrandTotals[f]>=4 && famAcct[f].length<=2;
+        }).map(function(f){ return {name:f, taps:usBrandTotals[f], accts:famAcct[f]}; })
+          .sort(function(x,y){ return y.taps-x.taps; });
+      })(),
+      untapped: (function(){
+        var present = {}, ctys = {};
+        list.forEach(function(a){ ctys[a.county]=1; Object.keys(a.famKeys).forEach(function(k){ present[k]=1; }); });
+        return BR.catalog.filter(function(c){
+          return !present[c.key] && c.counties.some(function(cty){ return ctys[cty]; });
+        });
+      })(),
       areaList:areaList, themAreaTop:themAreaTop,
       opp: list.filter(function(a){ return a.them>0; }).sort(function(x,y){ return y.them-x.them; }),
       warm: list.filter(function(a){ return a.us>=1 && a.them>=1; }).sort(function(x,y){ return y.them-x.them; }),
@@ -621,10 +674,62 @@ footer p{margin:0 0 8px}
       return { title:'Where '+fam+' is pouring against you', sub:'Every account in scope with it on the competitor side.',
         rows:rows2, opts:{ brandCol:{label:esc(fam)+' handles', fn:function(a){ return ce0(a.famTaps[fam].them); }} } };
     }
+    if(k==='rightsThem'){
+      return { title:'Winnable on rights', sub:'Competitor handles pouring brand families Kohler is authorized to sell in that account’s county — no new authorization needed, just the buyer moved.',
+        rows:cc.rightsThem, opts:{ brandCol:{label:'Rights-backed', fn:function(a){ return ce0(a.rightsThem); }},
+        contextLabel:'Which authorized brands they pour', contextFn:function(a){
+          var b=a.rightsBrands||{}; return esc(Object.keys(b).sort(function(x,y){return b[y]-b[x];}).slice(0,2).map(function(f){return f+' ('+b[f]+')';}).join(', ')); } } };
+    }
+    if(k==='appWrong'){
+      return { title:'Taps the iSellBeer app has on the wrong side', sub:'The audit corrected these against the product catalog and territory rules — what the app shows at these accounts isn’t the real score.',
+        rows:cc.appWrong, opts:{ brandCol:{label:'Corrected taps', fn:function(a){ return ce0(a.flippedTaps); }} } };
+    }
+    if(k==='segEdge' && cc.segEdge){
+      var seg = cc.segEdge.seg;
+      var rows3 = cc.accounts.filter(function(a){ return a.segThem && a.segThem[seg]>0; })
+        .sort(function(x,y){ return y.segThem[seg]-x.segThem[seg]; });
+      return { title:'Where they out-pour us in '+seg, sub:'Their biggest category edge — accounts sorted by competitor '+seg+' handles.',
+        rows:rows3, opts:{ brandCol:{label:esc(seg)+' (theirs)', fn:function(a){ return ce0(a.segThem[seg]); }} } };
+    }
     return null;
   }
 
+  function brandListDrill(el, title, sub, rows, cols){
+    el.innerHTML = '<div class="drill"><div class="drill-head"><span class="t">'+title+' ('+ce0(rows.length)+')</span>'+
+      '<span class="s">'+sub+'</span><button class="drill-close" type="button">✕ Close</button></div>'+
+      '<div class="drill-body"><table><thead><tr>'+cols.map(function(c){return '<th'+(c.num?' class="num-cell"':'')+'>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>'+
+      rows.map(function(r){ return '<tr>'+cols.map(function(c){ return '<td'+(c.num?' class="num-cell"':'')+'>'+c.fn(r)+'</td>'; }).join('')+'</tr>'; }).join('')+
+      '</tbody></table></div></div>';
+    el.querySelector('.drill-close').addEventListener('click', function(){ state.drill=null; render(); });
+  }
+
   function renderDrill(cc){
+    if(state.drill==='fragile'){
+      brandListDrill(document.getElementById('drill'), 'Fragile brands', 'Kohler brands whose entire surveyed tap presence sits at 1–2 accounts — worth defending before it disappears.', cc.fragile, [
+        {label:'Brand', fn:function(r){ return '<b>'+esc(r.name)+'</b>'; }},
+        {label:'Handles', num:true, fn:function(r){ return ce0(r.taps); }},
+        {label:'The account(s) holding it', fn:function(r){ return '<span style="color:var(--ink-soft)">'+esc(r.accts.join(', '))+'</span>'; }},
+      ]);
+      return;
+    }
+    if(state.drill==='peergap' && cc.peerGap){
+      brandListDrill(document.getElementById('drill'), 'The peer playbook', 'Kohler brands with 10+ handles on other routes, zero on yours, sellable in your counties — proof of concept already exists, just not on your route. Feed one into Find My Opportunities below to get the account list.', cc.peerGap, [
+        {label:'Brand', fn:function(r){ return '<b>'+esc(r.name)+'</b>'; }},
+        {label:'Peers’ handles', num:true, fn:function(r){ return ce0(r.taps); }},
+      ]);
+      return;
+    }
+    if(state.drill==='untapped'){
+      var el0 = document.getElementById('drill');
+      el0.innerHTML = '<div class="drill"><div class="drill-head"><span class="t">Authorized but not pouring ('+ce0(cc.untapped.length)+')</span>'+
+        '<span class="s">Kohler brand families with sell rights in a county in scope, and zero surveyed handles anywhere in scope — distribution white space the survey proves.</span>'+
+        '<button class="drill-close" type="button">✕ Close</button></div>'+
+        '<div class="drill-body"><table><thead><tr><th>Brand</th><th class="hide-sm">Can sell in</th></tr></thead><tbody>'+
+        cc.untapped.map(function(c){ return '<tr><td class="d-acct"><b>'+esc(c.name)+'</b></td><td class="hide-sm" style="color:var(--ink-soft)">'+esc(c.counties.join(', '))+'</td></tr>'; }).join('')+
+        '</tbody></table></div></div>';
+      el0.querySelector('.drill-close').addEventListener('click', function(){ state.drill=null; render(); });
+      return;
+    }
     var el = document.getElementById('drill');
     var d = drillConfig(cc);
     if(!d){ el.innerHTML=''; return; }
@@ -658,6 +763,22 @@ footer p{margin:0 0 8px}
     var cc = computeCC(tileScopeRecords());        // rep (+dm +county)
     var route = computeCC(routeScopeRecords());    // rep (+dm), county-agnostic
     window.__cc = cc;
+
+    // Peer Playbook: Kohler families with real presence on OTHER routes
+    // (10+ handles) that this rep pours zero of -- and that the rights
+    // matrix says they could place in at least one of their counties.
+    // The relationship side a rep can't see: what's working elsewhere.
+    var company = computeCC(RECORDS);
+    var repCtys = {};
+    route.accounts.forEach(function(a){ repCtys[a.county]=1; });
+    cc.peerGap = company.usRanked.filter(function(f){
+      if(GENERIC_BRANDS[f.toUpperCase()]) return false;
+      if(route.usBrandTotals[f]) return false;
+      var peers = company.usBrandTotals[f] - (route.usBrandTotals[f]||0);
+      if(peers < 10) return false;
+      var ent = catalogEntryByName(f);
+      return ent && ent.counties.some(function(cty){ return repCtys[cty]; });
+    }).map(function(f){ return {name:f, taps:company.usBrandTotals[f]}; });
 
     document.getElementById('ccTitle').textContent = state.rep+' — My Tap Business';
     var routeCounties = route.areaList.map(function(a){ return a.name; });
@@ -733,6 +854,7 @@ footer p{margin:0 0 8px}
     document.getElementById('summary').innerHTML =
       '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(cc.taps)+'</div><div class="sub">'+ce0(cc.accounts.length)+' accounts</div></div>'+
       '<div class="scard us"><div class="lbl">Kohler Handles</div><div class="big num">'+ce0(cc.us)+'</div><div class="sub">'+sharePct.toFixed(1)+'% share</div></div>'+
+      '<div class="scard us click'+(state.drill==='peergap'?' active':'')+'" data-drill="peergap"><div class="lbl">🤝 Peer Playbook</div><div class="big num">'+ce0(cc.peerGap.length)+'</div><div class="sub">Kohler brands other reps pour that you don’t (and could)</div></div>'+
       '<div class="scard them click'+(state.drill==='zeroUs'?' active':'')+'" data-drill="zeroUs"><div class="lbl">Zero-Kohler Accounts</div><div class="big num">'+ce0(cc.zeroUs.length)+'</div><div class="sub">every handle is theirs</div></div>'+
       '<div class="scard click'+(state.drill==='noPhoto'?' active':'')+'" data-drill="noPhoto"><div class="lbl">Missing Photos</div><div class="big num">'+ce0(cc.noPhoto.length)+'</div><div class="sub">of '+ce0(cc.accounts.length)+' accounts</div></div>'+
       '<div class="scard click'+(rsOver?' unv':'')+(state.drill==='resurvey'?' active':'')+'" data-drill="resurvey"><div class="lbl">Needs Resurvey</div><div class="big num">'+ce0(cc.resurvey.length)+'</div><div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue':'all current')+'</div></div>';
@@ -886,45 +1008,28 @@ footer p{margin:0 0 8px}
       '<div class="bar"><i class="b-us" style="width:'+sharePct+'%"></i><i class="b-them" style="width:'+(100-sharePct)+'%"></i></div>'+
       '<div class="sub">'+shareLine+'</div></div>';
 
-    // competitor opportunity tile
-    var topBrandBits = [];
-    if(cc.themRanked[0]) topBrandBits.push('Biggest: <b>'+esc(cc.themRanked[0])+'</b> ('+ce0(cc.themBrandTotals[cc.themRanked[0]])+')');
-    if(cc.topNamedThem && cc.topNamedThem!==cc.themRanked[0]) topBrandBits.push('Top named: <b>'+esc(cc.topNamedThem)+'</b> ('+ce0(cc.themBrandTotals[cc.topNamedThem])+')');
-    if(cc.themAreaTop && cc.themAreaTop.them>0) topBrandBits.push('Attack: <b>'+esc(cc.themAreaTop.name)+'</b> ('+ce0(cc.themAreaTop.them)+')');
-    var oppTile = '<div class="scard them click'+(state.drill==='opp'?' active':'')+'" data-drill="opp"><div class="lbl">🎯 Competitor Opportunity</div>'+
-      '<div class="big num">'+ce0(cc.them)+'<small> handles</small></div>'+
-      '<div class="sub">'+(topBrandBits.join('<br>')||'no competitor handles in scope')+'</div></div>';
+    // The four data-knows-what-you-don't tiles (swapped in 2026-08-17, per
+    // Gavin: reps already know competitor activity / warm accounts /
+    // targets from the relationship side -- surface what only the data
+    // can see: the rights matrix, the audit corrections, the segment
+    // ledger, and authorized-but-absent brands).
+    var rightsTile = '<div class="scard click'+(state.drill==='fragile'?' active':'')+'" data-drill="fragile"><div class="lbl">🧵 Fragile Brands</div>'+
+      '<div class="big num">'+ce0(cc.fragile.length)+'<small> brands</small></div>'+
+      '<div class="sub">their entire tap presence hangs on <b>1–2 accounts</b> — lose the account, lose the brand</div></div>';
 
-    // warm tile
-    var warmTaps = cc.warm.reduce(function(s,a){ return s+a.them; },0);
-    var warmTile = '<div class="scard click'+(state.drill==='warm'?' active':'')+'" data-drill="warm"><div class="lbl">🔥 Warm-Account Handles</div>'+
-      '<div class="big num them-ink" style="color:var(--them)">'+ce0(warmTaps)+'</div>'+
-      '<div class="sub">competitor handles at <b>'+ce0(cc.warm.length)+' accounts</b> where Kohler already pours</div></div>';
+    var wrongTile = '<div class="scard click'+(state.drill==='appWrong'?' active':'')+'" data-drill="appWrong"><div class="lbl">🧠 The App Has It Wrong</div>'+
+      '<div class="big num">'+ce0(cc.flippedToUs+cc.flippedToThem)+'<small> taps</small></div>'+
+      '<div class="sub"><b>'+ce0(cc.flippedToUs)+'</b> look competitor in iSellBeer but are ours; <b>'+ce0(cc.flippedToThem)+'</b> the reverse</div></div>';
 
-    // targets tile
-    var targetsTile = '<div class="scard click'+(state.drill==='targets'?' active':'')+'" data-drill="targets"><div class="lbl">⚔️ Accounts to Target</div>'+
-      '<div class="big num">'+ce0(cc.targets.length)+'</div>'+
-      '<div class="sub">3+ competitor handles, at most 1 of ours</div></div>';
+    var segTile = cc.segEdge
+      ? '<div class="scard click'+(state.drill==='segEdge'?' active':'')+'" data-drill="segEdge"><div class="lbl">🍺 Their Segment Edge</div>'+
+        '<div class="big num">'+esc(cc.segEdge.seg)+'</div>'+
+        '<div class="sub">they pour <b style="color:var(--them)">'+ce0(cc.segEdge.them)+'</b> vs our <b style="color:var(--us)">'+ce0(cc.segEdge.us)+'</b> — their biggest category advantage</div></div>'
+      : '';
 
-    // flips tile
-    var flipsTile = '<div class="scard click'+(state.drill==='flips'?' active':'')+'" data-drill="flips"><div class="lbl">📈 One Handle From Majority</div>'+
-      '<div class="big num">'+ce0(cc.flips.length)+'</div>'+
-      '<div class="sub">accounts where converting 1 competitor handle flips to Kohler-majority</div></div>';
-
-    // area tiles (click = set county filter)
-    var areaTiles = '';
-    if(cc.areaList.length >= 2){
-      var best = cc.areaList[0], worst = cc.areaList[cc.areaList.length-1];
-      areaTiles =
-        '<div class="scard click" data-county="'+esc(best.name)+'" title="Filter the page to '+esc(best.name)+'"><div class="lbl">🏆 Strongest Area</div>'+
-        '<div class="big num">'+esc(best.name)+'</div>'+
-        '<div class="bar"><i class="b-us" style="width:'+best.usPct+'%"></i><i class="b-them" style="width:'+(100-best.usPct)+'%"></i></div>'+
-        '<div class="sub"><b>'+best.usPct.toFixed(1)+'% Kohler</b> of '+ce0(best.us+best.them)+' handles</div></div>'+
-        '<div class="scard click" data-county="'+esc(worst.name)+'" title="Filter the page to '+esc(worst.name)+'"><div class="lbl">⚠️ Biggest Gap</div>'+
-        '<div class="big num">'+esc(worst.name)+'</div>'+
-        '<div class="bar"><i class="b-us" style="width:'+worst.usPct+'%"></i><i class="b-them" style="width:'+(100-worst.usPct)+'%"></i></div>'+
-        '<div class="sub"><b>'+worst.usPct.toFixed(1)+'% Kohler</b> vs '+(100-worst.usPct).toFixed(1)+'% competitor</div></div>';
-    }
+    var untappedTile = '<div class="scard click'+(state.drill==='untapped'?' active':'')+'" data-drill="untapped"><div class="lbl">🧭 Authorized, Not Pouring</div>'+
+      '<div class="big num">'+ce0(cc.untapped.length)+'<small> brands</small></div>'+
+      '<div class="sub">Kohler brands with sell rights in scope and <b>zero surveyed handles</b> anywhere</div></div>';
 
     // resurvey tile
     var rsOver = cc.resurvey.filter(function(a){ return a.refresh.level==='overdue'; }).length;
@@ -934,7 +1039,7 @@ footer p{margin:0 0 8px}
       '<div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue, '+ce0(rsSoon)+' due soon' : 'all accounts current')+'</div></div>';
 
     document.getElementById('summary').innerHTML =
-      shareTile + oppTile + warmTile + targetsTile + flipsTile + areaTiles + resurveyTile;
+      shareTile + rightsTile + wrongTile + segTile + untappedTile + resurveyTile;
 
     // survey health (small, admin-facing)
     var healthTiles =
