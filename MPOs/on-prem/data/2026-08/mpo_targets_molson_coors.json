@@ -1877,13 +1877,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "Jefferson House (A)",
-    "AREA": "Morris 1",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231718,
     "CUSTOMER_NAME": "Jumboland Diner",
     "AREA": "Sussex",
@@ -1921,13 +1914,6 @@
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231710,
     "CUSTOMER_NAME": "Lakeside Pub (P)",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 231719,
-    "CUSTOMER_NAME": "Layton Tavern",
     "AREA": "Sussex",
     "BRAND_FAMILY": "Coors"
   },
@@ -6329,13 +6315,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 88006,
-    "CUSTOMER_NAME": "Andrea's Restaurant",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 41033,
     "CUSTOMER_NAME": "Applebee's (A) Hackensack",
     "AREA": "Bergen",
@@ -8965,13 +8944,6 @@
     "CUSTOMER_NAME": "Zina's Steakhouse & Grill",
     "AREA": "Bergen",
     "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 50008,
-    "CUSTOMER_NAME": "101 Pub (A)",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Peroni"
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
