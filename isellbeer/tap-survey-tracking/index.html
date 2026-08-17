@@ -34,14 +34,61 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .updated{color:var(--ink-soft);font-size:11.5px;margin:10px 0 0}
 .updated .warn{color:var(--unv)}
 
-.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:20px 0}
-@media (max-width:640px){.summary{grid-template-columns:repeat(2,1fr)}}
+/* ---- command center tiles ---- */
+.cc-h{display:flex;align-items:baseline;gap:10px;margin:22px 0 10px;flex-wrap:wrap}
+.cc-h .t{font-family:"Space Grotesk";font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.cc-h .s{font-size:11.5px;color:var(--ink-soft)}
+.cc-h.health .t{color:var(--ink-soft)}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:0 0 6px}
+@media (max-width:640px){.summary{grid-template-columns:1fr 1fr}}
 .scard{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
-  padding:14px 16px;box-shadow:var(--shadow)}
-.scard .lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+  padding:13px 15px;box-shadow:var(--shadow);position:relative}
+.scard .lbl{font-family:"Space Grotesk";font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;
+  display:flex;align-items:center;gap:6px}
 .scard .big{font-family:"Space Grotesk";font-weight:700;font-size:25px;line-height:1}
+.scard .big small{font-size:14px;font-weight:600;color:var(--ink-soft)}
 .scard .sub{font-size:11px;color:var(--ink-soft);margin-top:5px}
-.scard.us .big{color:var(--us)} .scard.them .big{color:var(--them)}
+.scard .sub b{color:var(--ink);font-weight:600}
+.scard.us .big{color:var(--us)} .scard.them .big{color:var(--them)} .scard.unv .big{color:var(--unv)}
+.scard .bar{display:flex;height:7px;border-radius:4px;overflow:hidden;background:var(--line-soft);margin-top:8px;gap:1px}
+.scard .bar i{display:block;height:100%}
+.scard .bar .b-us{background:var(--us)} .scard .bar .b-them{background:var(--them)}
+.scard.click{cursor:pointer;transition:border-color .12s, transform .12s}
+.scard.click:hover{border-color:var(--accent);transform:translateY(-1px)}
+.scard.click::after{content:"▾ tap to drill in";position:absolute;right:12px;top:12px;font-size:9px;color:var(--ink-soft);
+  font-family:"Space Grotesk";letter-spacing:.05em;text-transform:uppercase;opacity:0;transition:opacity .12s}
+.scard.click:hover::after{opacity:.9}
+.scard.click.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent), var(--shadow)}
+.scard.click.active::after{content:"▴ close";opacity:.9}
+.summary.mini{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:0}
+.summary.mini .scard{padding:10px 13px;border-radius:12px}
+.summary.mini .scard .big{font-size:18px}
+.summary.mini .scard .lbl{margin-bottom:4px}
+.summary.mini .scard .sub{margin-top:3px;font-size:10.5px}
+
+/* ---- tile drill-down panel ---- */
+.drill{background:var(--card);border:1px solid var(--accent);border-radius:14px;margin:12px 0 6px;box-shadow:var(--shadow);overflow:hidden}
+.drill-head{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.drill-head .t{font-family:"Space Grotesk";font-weight:700;font-size:14px}
+.drill-head .s{font-size:11.5px;color:var(--ink-soft);flex:1}
+.drill-close{background:none;border:1px solid var(--line);color:var(--ink-soft);border-radius:8px;padding:4px 10px;
+  font-family:"Space Grotesk";font-size:11px;font-weight:600;cursor:pointer}
+.drill-close:hover{color:var(--ink);border-color:var(--accent)}
+.drill-body{max-height:420px;overflow-y:auto}
+.drill table{width:100%;border-collapse:collapse;font-size:12.5px}
+.drill th{text-align:left;font-family:"Space Grotesk";font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--ink-soft);padding:8px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card2);z-index:1}
+.drill th.num-cell{text-align:right}
+.drill td{padding:8px 10px;border-bottom:1px solid var(--line-soft)}
+.drill td.num-cell{text-align:right;font-family:"Space Grotesk";font-weight:600;white-space:nowrap}
+.drill td.us-cell{color:var(--us)} .drill td.them-cell{color:var(--them)}
+.drill tr.d-row{cursor:pointer}
+.drill tr.d-row:hover td{background:var(--card3)}
+.drill .d-acct b{font-family:"Space Grotesk";font-size:13px}
+.drill .d-acct .sub{display:block;font-size:10.5px;color:var(--ink-soft);margin-top:1px}
+.drill .d-mix{width:76px}
+.drill .muted-note{padding:18px;text-align:center;color:var(--ink-soft);font-size:12.5px}
+@media (max-width:760px){.drill .hide-sm{display:none}}
 
 .tabs{display:flex;gap:8px;margin:0 0 14px}
 .tabbtn{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;padding:9px 16px;border-radius:10px;cursor:pointer;
@@ -175,7 +222,11 @@ footer p{margin:0 0 8px}
 
 <div class="wrap" style="padding-top:20px">
 
+  <div class="cc-h"><span class="t" id="ccTitle">Company-Wide Opportunity</span><span class="s" id="ccHint"></span></div>
   <div class="summary" id="summary"></div>
+  <div id="drill"></div>
+  <div class="cc-h health"><span class="t">Survey Health</span><span class="s" id="ccHealthHint"></span></div>
+  <div class="summary mini" id="summaryHealth"></div>
 
   <div class="tabs">
     <button class="tabbtn" id="tabRep" type="button" aria-pressed="true">By Rep</button>
@@ -245,7 +296,7 @@ footer p{margin:0 0 8px}
   var DATA = JSON.parse(document.getElementById('tap-data').textContent);
   var RECORDS = DATA.records || [];
 
-  var state = { search:'', rep:'', county:'', status:'', dm:'', segment:'', tab:'rep' };
+  var state = { search:'', rep:'', county:'', status:'', dm:'', segment:'', tab:'rep', drill:null };
   var openReps = {};
   var openAccounts = {};
   var openBrands = {};
@@ -297,19 +348,245 @@ footer p{margin:0 0 8px}
     return { overdue:overdue, soon:soon, total:Object.keys(latest).length };
   }
 
+  // ---- command center: rep-focused, actionable tiles (redesigned
+  // 2026-08-17 per Gavin: "a sales command center, not just a collection
+  // of KPI cards"). Tiles are scoped by the Rep + District Manager filters
+  // (NOT search/county/status/segment, so the tiles keep a stable meaning
+  // while those narrow the lists below), and the opportunity tiles drill
+  // into a clickable account table. This export is one snapshot in time,
+  // so there is deliberately no "vs. last survey" trend anywhere -- the
+  // goal-distance framings ("N conversions to majority") are what the
+  // data can honestly support.
+  var GENERIC_BRANDS = {'OTHER SUPPLIER':1,'OTHER BRAND FAMILY':1,'OTHER':1,'OTHER SUPPLIER (IN-HOUSE)':1,'':1};
+
+  function tileScopeRecords(){
+    return RECORDS.filter(function(r){
+      if(state.dm && r.districtManager!==state.dm) return false;
+      if(state.rep && r.rep!==state.rep) return false;
+      return true;
+    });
+  }
+
+  function computeCC(scope){
+    var accounts = {}, order = [];
+    var us=0, them=0, unv=0, flippedRows=0;
+    var themBrandTotals = {}, areas = {}, repSet = {};
+    scope.forEach(function(r){
+      var key = r.account+'|'+r.dba;
+      if(!accounts[key]){
+        accounts[key] = { key:key, dba:r.dba, account:r.account, county:r.county, city:r.city, rep:r.rep,
+          us:0, them:0, unv:0, themBrands:{}, photo:'', visited:r.visited, visitedDisplay:r.visitedDisplay };
+        order.push(key);
+      }
+      var a = accounts[key];
+      if(r.visited > a.visited){ a.visited=r.visited; a.visitedDisplay=r.visitedDisplay; }
+      if(r.photo) a.photo = r.photo;
+      if(r.flipped) flippedRows++;
+      repSet[r.rep] = 1;
+      var area = areas[r.county] || (areas[r.county] = {name:r.county, us:0, them:0, taps:0});
+      area.taps += r.taps;
+      if(r.status==='US'){ us+=r.taps; a.us+=r.taps; area.us+=r.taps; }
+      else if(r.status==='THEM'){
+        them+=r.taps; a.them+=r.taps; area.them+=r.taps;
+        var bf = (r.brandFamily && r.brandFamily.trim()) || (r.brand && r.brand.trim()) || '(Unspecified)';
+        a.themBrands[bf] = (a.themBrands[bf]||0) + r.taps;
+        themBrandTotals[bf] = (themBrandTotals[bf]||0) + r.taps;
+      }
+      else { unv+=r.taps; a.unv+=r.taps; }
+    });
+    var list = order.map(function(k){
+      var a = accounts[k];
+      a.taps = a.us + a.them + a.unv;
+      a.refresh = refreshStatus(a.visited);
+      a.topThem = Object.keys(a.themBrands).sort(function(x,y){ return a.themBrands[y]-a.themBrands[x]; })
+        .slice(0,2).map(function(b){ return b+' ('+a.themBrands[b]+')'; }).join(', ');
+      return a;
+    });
+    var themRanked = Object.keys(themBrandTotals).sort(function(x,y){ return themBrandTotals[y]-themBrandTotals[x]; });
+    var topNamedThem = themRanked.filter(function(b){ return !GENERIC_BRANDS[b.toUpperCase()]; })[0] || null;
+    var areaList = Object.values(areas).filter(function(a){ return (a.us+a.them) >= (state.rep ? 10 : 25); });
+    areaList.forEach(function(a){ a.usPct = (a.us+a.them) ? a.us/(a.us+a.them)*100 : 0; });
+    areaList.sort(function(x,y){ return y.usPct-x.usPct; });
+    var themAreaTop = Object.values(areas).slice().sort(function(x,y){ return y.them-x.them; })[0] || null;
+    return {
+      us:us, them:them, unv:unv, taps:us+them+unv, flippedRows:flippedRows,
+      repCount:Object.keys(repSet).length,
+      accounts:list,
+      photosAvailable:list.filter(function(a){ return a.photo; }).length,
+      themBrandTotals:themBrandTotals, themRanked:themRanked, topNamedThem:topNamedThem,
+      areaList:areaList, themAreaTop:themAreaTop,
+      opp: list.filter(function(a){ return a.them>0; }).sort(function(x,y){ return y.them-x.them; }),
+      warm: list.filter(function(a){ return a.us>=1 && a.them>=1; }).sort(function(x,y){ return y.them-x.them; }),
+      targets: list.filter(function(a){ return a.them>=3 && a.us<=1; }).sort(function(x,y){ return y.them-x.them; }),
+      flips: list.filter(function(a){ return (a.us+a.them)>0 && a.us<=a.them && (a.them-a.us)<=1; })
+        .sort(function(x,y){ return (y.us+y.them)-(x.us+x.them); }),
+      resurvey: list.filter(function(a){ return a.refresh; })
+        .sort(function(x,y){
+          var xo = x.refresh.level==='overdue'?x.refresh.days:-x.refresh.days;
+          var yo = y.refresh.level==='overdue'?y.refresh.days:-y.refresh.days;
+          return yo-xo;
+        }),
+    };
+  }
+
+  var DRILLS = {
+    opp:      { title:'Every account with competitor handles', sub:'Sorted by competitor handles — the full opportunity list.' },
+    targets:  { title:'Accounts to target', sub:'3+ competitor handles and no more than 1 of ours — the biggest walls to go take.' },
+    flips:    { title:'One handle from majority', sub:'Converting a single competitor handle makes these accounts majority-Kohler.' },
+    warm:     { title:'Warm accounts — we already pour here', sub:'Competitor handles at accounts where Kohler already has at least one line. The door is open.' },
+    resurvey: { title:'Accounts needing a resurvey', sub:'Past (or within 7 days of) the 60-day resurvey window, most overdue first.' },
+  };
+
+  function drillRowsHtml(cc, kind){
+    var rows = cc[kind] || [];
+    if(!rows.length) return '<div class="muted-note">Nothing here right now — no accounts match.</div>';
+    var showRep = !state.rep;
+    return '<table><thead><tr>'+
+      '<th>Account</th><th class="hide-sm">Mix</th><th class="num-cell">Ours</th><th class="num-cell">Theirs</th>'+
+      '<th class="hide-sm">Top competitor brands (handles)</th><th>Visited</th>'+
+      '</tr></thead><tbody>'+
+      rows.map(function(a){
+        var mix = '<div class="mix-bar">'+
+          (a.us? '<i class="m-us" style="width:'+(a.us/a.taps*100)+'%"></i>':'')+
+          (a.them? '<i class="m-them" style="width:'+(a.them/a.taps*100)+'%"></i>':'')+
+          (a.unv? '<i class="m-unv" style="width:'+(a.unv/a.taps*100)+'%"></i>':'')+'</div>';
+        return '<tr class="d-row" data-goto="'+esc(a.dba)+'" title="Show this account in the list below">'+
+          '<td class="d-acct"><b>'+esc(a.dba)+'</b><span class="sub">'+esc(a.county)+(a.city?' · '+esc(a.city):'')+(showRep?' · '+esc(a.rep):'')+'</span></td>'+
+          '<td class="d-mix hide-sm">'+mix+'</td>'+
+          '<td class="num-cell us-cell">'+ce0(a.us)+'</td>'+
+          '<td class="num-cell them-cell">'+ce0(a.them)+'</td>'+
+          '<td class="hide-sm">'+esc(a.topThem||'—')+'</td>'+
+          '<td style="white-space:nowrap">'+esc(a.visitedDisplay)+(a.refresh?'<br>'+refreshBadge(a.refresh):'')+'</td>'+
+        '</tr>';
+      }).join('')+'</tbody></table>';
+  }
+
+  function renderDrill(cc){
+    var el = document.getElementById('drill');
+    if(!state.drill || !DRILLS[state.drill]){ el.innerHTML=''; return; }
+    var d = DRILLS[state.drill];
+    var n = (cc[state.drill]||[]).length;
+    el.innerHTML = '<div class="drill">'+
+      '<div class="drill-head"><span class="t">'+d.title+' ('+ce0(n)+')</span><span class="s">'+d.sub+' Click a row to jump to that account.</span>'+
+      '<button class="drill-close" type="button">✕ Close</button></div>'+
+      '<div class="drill-body">'+drillRowsHtml(cc, state.drill)+'</div></div>';
+    el.querySelector('.drill-close').addEventListener('click', function(){ state.drill=null; render(); });
+    el.querySelectorAll('.d-row').forEach(function(row){
+      row.addEventListener('click', function(){
+        state.search = row.dataset.goto;
+        document.getElementById('search').value = state.search;
+        render();
+        var reps = document.getElementById(state.tab==='brand'?'brands':'reps');
+        if(reps) reps.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  }
+
   function renderSummary(){
-    var s = DATA.summary || {};
-    var photoNote = s.photosAvailable ? (ce0(s.photosAvailable)+' of '+ce0(s.accountCount)+' accounts have a photo') : 'no photo links in this export';
-    var rs = computeRefreshSummary();
-    var refreshSub = rs.overdue||rs.soon ? (ce0(rs.overdue)+' overdue, '+ce0(rs.soon)+' due soon') : 'all accounts current';
+    var scope = tileScopeRecords();
+    var cc = computeCC(scope);
+    window.__cc = cc;
+
+    // header
+    document.getElementById('ccTitle').textContent = state.rep ? (state.rep+' — Your Route') : 'Company-Wide Opportunity';
+    document.getElementById('ccHint').textContent = state.rep
+      ? 'Everything below is scoped to your accounts.'
+      : 'Pick your name in the Rep filter to turn these tiles into your route.';
+
+    // tap share tile
+    var counted = cc.us + cc.them;
+    var sharePct = counted ? (cc.us/counted*100) : 0;
+    var shareLine;
+    if(!counted) shareLine = 'no classified taps in scope';
+    else if(cc.us > cc.them) shareLine = '<b>Majority held</b> — up '+ce0(cc.us-cc.them)+' handles';
+    else {
+      var conv = Math.floor((cc.them-cc.us)/2)+1;
+      shareLine = '<b>'+ce0(conv)+' handle conversion'+(conv===1?'':'s')+'</b> to majority';
+    }
+    var shareTile = '<div class="scard us"><div class="lbl">'+(state.rep?'Your Tap Share':'Kohler Tap Share')+'</div>'+
+      '<div class="big num">'+sharePct.toFixed(1)+'%<small> · '+ce0(cc.us)+' of '+ce0(counted)+'</small></div>'+
+      '<div class="bar"><i class="b-us" style="width:'+sharePct+'%"></i><i class="b-them" style="width:'+(100-sharePct)+'%"></i></div>'+
+      '<div class="sub">'+shareLine+'</div></div>';
+
+    // competitor opportunity tile
+    var topBrandBits = [];
+    if(cc.themRanked[0]) topBrandBits.push('Biggest: <b>'+esc(cc.themRanked[0])+'</b> ('+ce0(cc.themBrandTotals[cc.themRanked[0]])+')');
+    if(cc.topNamedThem && cc.topNamedThem!==cc.themRanked[0]) topBrandBits.push('Top named: <b>'+esc(cc.topNamedThem)+'</b> ('+ce0(cc.themBrandTotals[cc.topNamedThem])+')');
+    if(cc.themAreaTop && cc.themAreaTop.them>0) topBrandBits.push('Attack: <b>'+esc(cc.themAreaTop.name)+'</b> ('+ce0(cc.themAreaTop.them)+')');
+    var oppTile = '<div class="scard them click'+(state.drill==='opp'?' active':'')+'" data-drill="opp"><div class="lbl">🎯 Competitor Opportunity</div>'+
+      '<div class="big num">'+ce0(cc.them)+'<small> handles</small></div>'+
+      '<div class="sub">'+(topBrandBits.join('<br>')||'no competitor handles in scope')+'</div></div>';
+
+    // warm tile
+    var warmTaps = cc.warm.reduce(function(s,a){ return s+a.them; },0);
+    var warmTile = '<div class="scard click'+(state.drill==='warm'?' active':'')+'" data-drill="warm"><div class="lbl">🔥 Warm-Account Handles</div>'+
+      '<div class="big num them-ink" style="color:var(--them)">'+ce0(warmTaps)+'</div>'+
+      '<div class="sub">competitor handles at <b>'+ce0(cc.warm.length)+' accounts</b> where Kohler already pours</div></div>';
+
+    // targets tile
+    var targetsTile = '<div class="scard click'+(state.drill==='targets'?' active':'')+'" data-drill="targets"><div class="lbl">⚔️ Accounts to Target</div>'+
+      '<div class="big num">'+ce0(cc.targets.length)+'</div>'+
+      '<div class="sub">3+ competitor handles, at most 1 of ours</div></div>';
+
+    // flips tile
+    var flipsTile = '<div class="scard click'+(state.drill==='flips'?' active':'')+'" data-drill="flips"><div class="lbl">📈 One Handle From Majority</div>'+
+      '<div class="big num">'+ce0(cc.flips.length)+'</div>'+
+      '<div class="sub">accounts where converting 1 competitor handle flips to Kohler-majority</div></div>';
+
+    // area tiles (click = set county filter)
+    var areaTiles = '';
+    if(cc.areaList.length >= 2){
+      var best = cc.areaList[0], worst = cc.areaList[cc.areaList.length-1];
+      areaTiles =
+        '<div class="scard click" data-county="'+esc(best.name)+'" title="Filter the page to '+esc(best.name)+'"><div class="lbl">🏆 Strongest Area</div>'+
+        '<div class="big num">'+esc(best.name)+'</div>'+
+        '<div class="bar"><i class="b-us" style="width:'+best.usPct+'%"></i><i class="b-them" style="width:'+(100-best.usPct)+'%"></i></div>'+
+        '<div class="sub"><b>'+best.usPct.toFixed(1)+'% Kohler</b> of '+ce0(best.us+best.them)+' handles</div></div>'+
+        '<div class="scard click" data-county="'+esc(worst.name)+'" title="Filter the page to '+esc(worst.name)+'"><div class="lbl">⚠️ Biggest Gap</div>'+
+        '<div class="big num">'+esc(worst.name)+'</div>'+
+        '<div class="bar"><i class="b-us" style="width:'+worst.usPct+'%"></i><i class="b-them" style="width:'+(100-worst.usPct)+'%"></i></div>'+
+        '<div class="sub"><b>'+worst.usPct.toFixed(1)+'% Kohler</b> vs '+(100-worst.usPct).toFixed(1)+'% competitor</div></div>';
+    }
+
+    // resurvey tile
+    var rsOver = cc.resurvey.filter(function(a){ return a.refresh.level==='overdue'; }).length;
+    var rsSoon = cc.resurvey.length - rsOver;
+    var resurveyTile = '<div class="scard click'+(rsOver?' unv':'')+(state.drill==='resurvey'?' active':'')+'" data-drill="resurvey"><div class="lbl">🔁 Needs Resurvey</div>'+
+      '<div class="big num">'+ce0(cc.resurvey.length)+'</div>'+
+      '<div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue, '+ce0(rsSoon)+' due soon' : 'all accounts current')+'</div></div>';
+
     document.getElementById('summary').innerHTML =
-      '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(s.taps)+'</div><div class="sub">across '+ce0(s.accountCount)+' accounts</div></div>'+
-      '<div class="scard us"><div class="lbl">Ours</div><div class="big num">'+ce0(s.us)+'</div><div class="sub">'+(s.usPct||0)+'% of surveyed taps</div></div>'+
-      '<div class="scard them"><div class="lbl">Competitor</div><div class="big num">'+ce0(s.them)+'</div><div class="sub">'+(s.themPct||0)+'% of surveyed taps</div></div>'+
-      '<div class="scard"><div class="lbl">Reps</div><div class="big num">'+ce0(s.repCount)+'</div><div class="sub">tap surveys on file</div></div>'+
-      '<div class="scard"><div class="lbl">Photos</div><div class="big num">'+ce0(s.photosAvailable)+'</div><div class="sub">'+photoNote+'</div></div>'+
-      '<div class="scard"><div class="lbl">Corrected</div><div class="big num">'+ce0(s.flipped||0)+'</div><div class="sub">rows where iSellBeer’s own flag was wrong</div></div>'+
-      '<div class="scard'+(rs.overdue?' them':'')+'"><div class="lbl">60-Day Resurvey</div><div class="big num">'+ce0(rs.overdue+rs.soon)+'</div><div class="sub">'+refreshSub+'</div></div>';
+      shareTile + oppTile + warmTile + targetsTile + flipsTile + areaTiles + resurveyTile;
+
+    // survey health (small, admin-facing)
+    var healthTiles =
+      '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(cc.taps)+'</div><div class="sub">across '+ce0(cc.accounts.length)+' accounts</div></div>'+
+      (state.rep ? '' : '<div class="scard"><div class="lbl">Reps</div><div class="big num">'+ce0(cc.repCount)+'</div><div class="sub">tap surveys on file</div></div>')+
+      '<div class="scard"><div class="lbl">Photos</div><div class="big num">'+ce0(cc.photosAvailable)+'</div><div class="sub">of '+ce0(cc.accounts.length)+' accounts</div></div>'+
+      '<div class="scard"><div class="lbl">Corrected</div><div class="big num">'+ce0(cc.flippedRows)+'</div><div class="sub">rows where iSellBeer’s own flag was wrong</div></div>'+
+      (cc.unv ? '<div class="scard unv"><div class="lbl">Unverified</div><div class="big num">'+ce0(cc.unv)+'</div><div class="sub">taps with no US/THEM ruling</div></div>' : '');
+    document.getElementById('summaryHealth').innerHTML = healthTiles;
+    document.getElementById('ccHealthHint').textContent = state.rep ? 'Scoped to '+state.rep+'.' : '';
+
+    // tile interactions
+    document.querySelectorAll('#summary .scard[data-drill]').forEach(function(el){
+      el.addEventListener('click', function(){
+        state.drill = (state.drill===el.dataset.drill) ? null : el.dataset.drill;
+        render();
+      });
+    });
+    document.querySelectorAll('#summary .scard[data-county]').forEach(function(el){
+      el.addEventListener('click', function(){
+        state.county = (state.county===el.dataset.county) ? '' : el.dataset.county;
+        document.getElementById('countyFilter').value = state.county;
+        render();
+      });
+    });
+
+    renderDrill(cc);
+
+    // footer / updated line (unchanged behavior, now scoped-aware where cheap)
+    var s = DATA.summary || {};
     var updated = 'Data as of '+DATA.generatedAt;
     if(!s.photosAvailable){ updated += ' &middot; <span class="warn">no photo links available &mdash; rebuild from an .xlsx export to show photos</span>'; }
     document.getElementById('updated').innerHTML = updated;
@@ -577,6 +854,8 @@ footer p{margin:0 0 8px}
       innerScrolls[el.dataset.repScroll] = el.scrollTop;
     });
 
+    renderSummary();
+
     var records = filteredRecords();
     var repsEl = document.getElementById('reps'), brandsEl = document.getElementById('brands');
     if(state.tab === 'brand'){
@@ -621,7 +900,6 @@ footer p{margin:0 0 8px}
   });
 
   populateSelects();
-  renderSummary();
   render();
 })();
 </script>

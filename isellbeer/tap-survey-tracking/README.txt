@@ -18,6 +18,49 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
+Command-center tiles (redesigned 2026-08-17, per Gavin: "a sales command
+center, not just a collection of KPI cards" -- rep-focused, actionable,
+interactive). The old static tile row (Taps Surveyed / Ours / Competitor /
+Reps / Photos / Corrected / Resurvey) is now two bands:
+  "Company-Wide Opportunity" / "<Rep> — Your Route"
+    The actionable band. Scoped LIVE by the Rep + District Manager filters
+    (deliberately NOT by search/county/status/segment, so tile meaning
+    stays stable while those narrow the lists below); picking a rep
+    retitles the band to that rep's route and recomputes every tile from
+    just their accounts. Tiles:
+      - Tap Share: %, us-of-counted, progress bar, and a goal-distance
+        line ("N handle conversions to majority" / "Majority held — up N").
+        A conversion = flipping one competitor handle to ours, which
+        swings the gap by 2.
+      - Competitor Opportunity (drill): total competitor handles, biggest
+        competitor brand, top NAMED brand when the biggest is a generic
+        label like Other Supplier, and the area with the most competitor
+        handles.
+      - Warm-Account Handles (drill): competitor handles at accounts where
+        Kohler already pours at least one line.
+      - Accounts to Target (drill): 3+ competitor handles and at most 1 of
+        ours.
+      - One Handle From Majority (drill): accounts where converting a
+        single competitor handle makes the account majority-Kohler
+        (them - us <= 1 while not already leading).
+      - Strongest Area / Biggest Gap: best and worst Kohler-share areas
+        (min 25 handles company-wide / 10 when rep-scoped, so a 3-tap
+        area can't win either title); CLICKING one sets the County filter.
+      - Needs Resurvey (drill): the same live 60-day computation as
+        before, now scoped and drillable.
+    Tiles marked (drill) toggle an account table under the tile row
+    (account, mix, ours/theirs, top competitor brands, visit date +
+    resurvey badge); clicking a row drops that account's name into the
+    search box and scrolls to it, so the drill list works as a
+    build-my-day worklist. There is deliberately NO "vs. last survey"
+    trend anywhere -- the export is one snapshot in time, so trends would
+    be fabricated; goal-distance framings are what the data supports.
+  "Survey Health"
+    The admin metrics, kept but demoted to a compact second band: taps
+    surveyed, reps (hidden when a rep is selected), photos, corrected
+    rows, plus an Unverified tile that only appears when unverified taps
+    exist. All scoped along with the band above.
+
 Segment column + filter (added 2026-08-07, per Kohler): every brand row in
 an expanded account's table now shows a "Segment" next to Supplier, plus a
 Segment dropdown in the toolbar (applies across both tabs, same as the
