@@ -148,6 +148,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
         "draftNew": [], "draftNewCount": 0,
         "draftAccounts": [], "draftAccountsQualified": 0,
         "caseVolume": 0.0,
+        "caseVolumeByAccount": [],
         "totalNewPlacements": 0,
     } for rep in ROSTER}
 
@@ -161,17 +162,28 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     account_bbl = {}
     account_name = {}
     account_rep = {}
+    case_by_account = {}  # (rep, cust_num) -> {"customer":..., "cases": float}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
-        by_rep[rep]["caseVolume"] += to_num(row[current_col])
+        cases = to_num(row[current_col])
+        by_rep[rep]["caseVolume"] += cases
+        if cases > 0:
+            acct_key = (rep, row["Customer Num"])
+            entry = case_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "cases": 0.0})
+            entry["cases"] += cases
         if row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
             cust = row["Customer Num"]
             bbl_each = keg_bbl(row["Package"]) or 0.0
             account_bbl[cust] = account_bbl.get(cust, 0.0) + bbl_each * to_num(row[current_col])
             account_name.setdefault(cust, row["Customer Name"])
             account_rep.setdefault(cust, rep)
+
+    for (rep, _cust), info in case_by_account.items():
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["caseVolumeByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
 
     # "Lapsed" off-premise accounts (bought in the base period, nothing
     # this period) are a real, honest stand-in for prospecting data --
@@ -229,6 +241,7 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     for rep, d in by_rep.items():
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
         d["caseVolume"] = round(d["caseVolume"], 2)
+        d["caseVolumeByAccount"].sort(key=lambda a: -a["cases"])
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["offPremLapsed"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
         d["draftNew"].sort(key=lambda e: e["date"] or "", reverse=True)
@@ -253,21 +266,37 @@ def build_tona():
         "new24ozNew": [], "new24ozCount": 0,
         "lapsed24oz": [], "lapsed24ozCount": 0,
         "caseVolume24oz": 0.0, "caseVolumeOther": 0.0,
+        "caseVolume24ozByAccount": [], "caseVolumeOtherByAccount": [],
         "qualifies": False,
     } for rep in ROSTER}
 
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
     classified, by_key = classify_dual(rows, place_base_col, place_current_col, key_fields)
 
+    case24_by_account = {}
+    caseOther_by_account = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
+        cases = to_num(row[case_current_col])
         is_24oz = row["Package"] == "1/12/24oz Can"
+        bucket = case24_by_account if is_24oz else caseOther_by_account
         if is_24oz:
-            by_rep[rep]["caseVolume24oz"] += to_num(row[case_current_col])
+            by_rep[rep]["caseVolume24oz"] += cases
         else:
-            by_rep[rep]["caseVolumeOther"] += to_num(row[case_current_col])
+            by_rep[rep]["caseVolumeOther"] += cases
+        if cases > 0:
+            acct_key = (rep, row["Customer Num"])
+            entry = bucket.setdefault(acct_key, {"customer": row["Customer Name"], "cases": 0.0})
+            entry["cases"] += cases
+
+    for (rep, _cust), info in case24_by_account.items():
+        if rep in by_rep:
+            by_rep[rep]["caseVolume24ozByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
+    for (rep, _cust), info in caseOther_by_account.items():
+        if rep in by_rep:
+            by_rep[rep]["caseVolumeOtherByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
 
     for key, status in classified.items():
         rep, cust_num, prod_num = key
@@ -296,6 +325,8 @@ def build_tona():
         d["qualifies"] = d["caseVolume24oz"] >= 20
         d["caseVolume24oz"] = round(d["caseVolume24oz"], 2)
         d["caseVolumeOther"] = round(d["caseVolumeOther"], 2)
+        d["caseVolume24ozByAccount"].sort(key=lambda a: -a["cases"])
+        d["caseVolumeOtherByAccount"].sort(key=lambda a: -a["cases"])
         d["new24ozNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["lapsed24oz"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
 
@@ -368,8 +399,10 @@ def build_sam_adams():
     by_rep = {rep: {
         "allSkuUnitsLastYear": 0.0, "allSkuUnitsThisYear": 0.0, "isPositive": False,
         "octoberfestUnitsLastYear": 0.0, "octoberfestUnitsThisYear": 0.0, "octoberfestGrowth": 0.0,
+        "octoberfestByAccount": [],
     } for rep in ROSTER}
 
+    octoberfest_by_account = {}  # (rep, cust_num) -> {"customer":..., "thisYear":0, "lastYear":0}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
@@ -381,12 +414,28 @@ def build_sam_adams():
         if "Octoberfest" in row["Product Name"]:
             by_rep[rep]["octoberfestUnitsLastYear"] += last
             by_rep[rep]["octoberfestUnitsThisYear"] += cur
+            if cur > 0 or last > 0:
+                acct_key = (rep, row["Customer Num"])
+                entry = octoberfest_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "thisYear": 0.0, "lastYear": 0.0})
+                entry["thisYear"] += cur
+                entry["lastYear"] += last
+
+    for (rep, _cust), info in octoberfest_by_account.items():
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["octoberfestByAccount"].append({
+            "customer": info["customer"],
+            "unitsThisYear": round(info["thisYear"], 2),
+            "unitsLastYear": round(info["lastYear"], 2),
+            "growth": round(info["thisYear"] - info["lastYear"], 2),
+        })
 
     for rep, d in by_rep.items():
         d["isPositive"] = d["allSkuUnitsThisYear"] > d["allSkuUnitsLastYear"]
         d["octoberfestGrowth"] = round(d["octoberfestUnitsThisYear"] - d["octoberfestUnitsLastYear"], 2)
         for k in ("allSkuUnitsLastYear", "allSkuUnitsThisYear", "octoberfestUnitsLastYear", "octoberfestUnitsThisYear"):
             d[k] = round(d[k], 2)
+        d["octoberfestByAccount"].sort(key=lambda a: -a["unitsThisYear"])
 
     return {"byRep": by_rep}
 
@@ -651,9 +700,9 @@ def build_fall_seasonal_bucket(filename, has_units):
 
     by_rep = {rep: {
         "packagePlacements": [], "packagePlacementCount": 0, "packageCaseEquivalents": 0.0,
-        "sixtelCount": 0, "sixtelVolumeBbl": 0.0,
-        "halfKegCount": 0, "halfKegVolumeBbl": 0.0,
-        "otherKegCount": 0, "otherKegVolumeBbl": 0.0,
+        "sixtelCount": 0, "sixtelVolumeBbl": 0.0, "sixtelKegs": [],
+        "halfKegCount": 0, "halfKegVolumeBbl": 0.0, "halfKegKegs": [],
+        "otherKegCount": 0, "otherKegVolumeBbl": 0.0, "otherKegs": [],
     } for rep in ROSTER}
 
     key_fields = ["Sales Rep Assigned", "Customer Num", "Product Num"]
@@ -671,16 +720,21 @@ def build_fall_seasonal_bucket(filename, has_units):
         if is_keg:
             bbl_each = keg_bbl(sample["Package"]) or 0.0
             unit_count = sum(to_num(r[units_col]) for r in krows)
+            keg_volume = round(bbl_each * unit_count, 2)
+            keg_entry = {"customer": sample["Customer Name"], "product": sample["Product Name"], "volumeBbl": keg_volume}
             bucket = FALL_KEG_TIERS.get(round(bbl_each, 4))
             if bucket and bucket[0] == "sixtel":
                 by_rep[rep]["sixtelCount"] += 1
                 by_rep[rep]["sixtelVolumeBbl"] += bbl_each * unit_count
+                by_rep[rep]["sixtelKegs"].append(keg_entry)
             elif bucket and bucket[0] == "half-keg":
                 by_rep[rep]["halfKegCount"] += 1
                 by_rep[rep]["halfKegVolumeBbl"] += bbl_each * unit_count
+                by_rep[rep]["halfKegKegs"].append(keg_entry)
             else:
                 by_rep[rep]["otherKegCount"] += 1
                 by_rep[rep]["otherKegVolumeBbl"] += bbl_each * unit_count
+                by_rep[rep]["otherKegs"].append(keg_entry)
         else:
             ce_total = sum(to_num(r[ce_col]) for r in krows)
             by_rep[rep]["packageCaseEquivalents"] += ce_total
