@@ -63,6 +63,14 @@ PRIORITY_BRANDS = {
     # (despite being a craft brewery like several All Other entries below --
     # explicitly asked, don't re-derive from the craft-brewery pattern).
     'CERVEZA VICTORIA', 'MONTAUK BREWING COMPANY',
+    # Confirmed with the user 2026-08-17 (Report_39): ANGRY ORCHARD joins its
+    # Boston Beer portfolio-mates (SAMUEL ADAMS/TRULY/TWISTED TEA/SUN CRUISER/
+    # DOGFISH HEAD/SINLESS/LYTT), all already Priority. KEYSTONE BEER was
+    # explicitly asked rather than inferred from its supplier -- Molson Coors
+    # covers both Priority brands (COORS/MILLER LITE/BLUE MOON) and an All
+    # Other one (REDD'S), so supplier alone doesn't settle a Molson Coors
+    # brand's tier.
+    'ANGRY ORCHARD', 'KEYSTONE BEER',
 }
 ALLOTHER_BRANDS = {
     'ATHLETIC BREWING COMPANY', 'CARIB BREWERY', 'DELTA THC SELTZER', 'FAMOSA', 'KIRIN',
@@ -79,6 +87,9 @@ ALLOTHER_BRANDS = {
     'HACKER-PSCHORR', 'HOFBRAU', 'PAULANER',
     # Confirmed with the user 2026-08-11.
     'SOUTHERN TIER BREWING COMPANY',
+    # Confirmed with the user 2026-08-17 (Report_39). First brand from supplier
+    # VIVA BEVERAGES, so there was no portfolio precedent either way.
+    'VIVA TEQUILA SELTZER',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
