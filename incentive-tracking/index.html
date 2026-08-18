@@ -247,6 +247,10 @@
   .rules-list{display:flex;flex-direction:column;gap:11px;}
   .rule-item{display:flex;gap:13px;font-size:18px;font-weight:500;color:var(--text);line-height:1.45;}
   .rule-item::before{content:"•";color:var(--amber);font-weight:700;flex-shrink:0;font-size:19px;line-height:1.35;}
+  .rule-hl{color:var(--amber);font-weight:700;}
+  .tile-rules{display:flex;flex-direction:column;gap:7px;margin-top:8px;}
+  .rule-item.tile-rule{font-size:15.5px;gap:10px;color:var(--text-dim);}
+  .rule-item.tile-rule::before{font-size:16px;}
 
   .board{display:flex;flex-direction:column;gap:10px;}
   .board-row{width:100%;display:flex;flex-direction:column;gap:9px;cursor:pointer;text-align:left;
@@ -40451,77 +40455,62 @@ const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt",rate:0.50},{pct:0.50,labe
 const PROGRAM_LIST = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
    pitch:`Get 1911 into accounts that didn't buy it during May–July.`,
-   desc:`$10 per new off-premise placement · $100 per new draft placement once that account hits 2 barrels · top 3 reps win a trip to the 1911 Cidery. "New" = no 1911 purchases May–July.`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'woodchuck', group:'new', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
    pitch:`Get Woodchuck into accounts that didn't buy it during May–July.`,
-   desc:`$10 per new off-premise placement · $100 per new draft placement once that account hits 3 barrels · $1 per case sold. Qualifier: 3 new placements minimum for any payout. "New" = no Woodchuck purchases May–July.`,
    getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
    metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
   {key:'tona', group:'new', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
    pitch:`Get Tona 24oz cans into new accounts and sell 20 cases to unlock every payout.`,
-   desc:`$10 per new 24oz-can placement · $1/case of 24oz cans, $0.50/case of other Tona · 20-case minimum of 24oz cans to earn anything. "New" = no 24oz cans purchased May–July.`,
    getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
    metric:d=>d.caseVolume24oz, metricLabel:'24oz cases', fmt:v=>v.toFixed(0)},
   {key:'path_to_victory', group:'new', title:'The Path to Victory', shortTitle:'Path to Victory', tag:'August',
    pitch:`Track your accounts buying Victory Monkey Family 6pk and 19.2oz cans this month.`,
-   desc:`Victory Monkey Family 6pk cans and 19.2oz cans — account activity this period. New-vs-current POD dollar amounts are tracked separately via iSellBeer.`,
    getRep:rep=>(PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep],
    metric:d=>d.sixPackAccountCount+d.nineteenTwoAccountCount, metricLabel:'accounts active', fmt:v=>v.toFixed(0)},
   {key:'sam_adams', group:'new', title:'Sam Adams Octoberfest Fast Start', shortTitle:'Sam Adams', tag:'August',
    pitch:`Beat your own Sam Adams numbers from last August.`,
-   desc:`Double commission on all Sam Adams if positive vs. last August · $1 per case of Octoberfest over last August. Month-to-date vs. last year's full month, so totals usually trail until late in the month. Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['sam_adams']||{}).byRep?.[rep],
    metric:d=>d.octoberfestGrowth, metricLabel:'case growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'boston_beer', group:'new', title:'Boston Beer August Draft Blitz', shortTitle:'Boston Beer', tag:'August',
    pitch:`New Angry Orchard / Dogfish Head taps pay $100 — and rebuys on existing taps pay $50.`,
-   desc:`Draft: $100 per new POD, $50 per rebuy · Package: $10 per new single-serve placement · trip bonus by points (draft = 2, package = 1). Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['boston_beer']||{}).byRep?.[rep],
    metric:d=>d.points, metricLabel:'trip bonus points', fmt:v=>v.toFixed(0)},
   {key:'new_belgium', group:'new', title:'New Belgium Draft (Summer Draft Focus)', shortTitle:'New Belgium Draft', tag:'August',
    pitch:`New Juicy Haze / Two Hearted taps pay up to $100 — rebuys pay too.`,
-   desc:`Juicy Haze / Two Hearted: $100 new 1/2bbl POD ($50 rebuy), $50 smaller keg ($25 rebuy) · Voodoo Ranger & Fat Tire: $25/keg · house goal 70 PODs by Aug 31. Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium']||{}).byRep?.[rep],
    metric:d=>d.featuredNewCount+d.featuredRebuyCount, metricLabel:'featured PODs', fmt:v=>v.toFixed(0)},
   {key:'lytt', group:'new', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
    pitch:`The more of your accounts that carry Lytt, the higher your per-case rate.`,
-   desc:`25% penetration = $0.50/case · 50% = $1.00/case · 75% = $2.00/case, locked through Dec 31 once hit. Highest penetration wins 2 Giants or Jets tickets. Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
    metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
   {key:'fall_seasonal', group:'new', title:'Fall Seasonal Fast Start', shortTitle:'Fall Seasonal', tag:'August',
    pitch:`Be first to market with the Fall Seasonals — every case and keg pays.`,
-   desc:`$0.50 per case-equivalent on qualifying packages · $5.00 per sixtel · $10.00 per half-keg · organized by product so you can see which accounts are buying each one.`,
    getRep:rep=>{ const po=(PROGRAM_DATA['fall_seasonal']||{}).package_only?.byRep?.[rep]; const pd=(PROGRAM_DATA['fall_seasonal']||{}).packages_and_draft?.byRep?.[rep]; return (po||pd) ? {po,pd} : null; },
    metric:d=>(d.po?.packageCaseEquivalents||0)+(d.pd?.packageCaseEquivalents||0), metricLabel:'package CE', fmt:v=>v.toFixed(1)},
   {key:'sun_cruiser', group:'ongoing', title:'Sun Cruiser Volume', shortTitle:'Sun Cruiser', tag:'May–Aug',
    pitch:`Sell more Sun Cruiser than you did last year and get paid on every extra case.`,
-   desc:`$1 per case over last year (12pk/8pk/18pk, 24pk) · $3 per case over last year (4pk, 19.2oz/24oz). Pays once this year's May–Aug total beats last year's. Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep],
    metric:d=>d.rate1CaseGrowth+d.rate3CaseGrowth, metricLabel:'case growth', fmt:v=>v.toFixed(0)},
   {key:'yave', group:'ongoing', title:'Yave Tequila Launch', shortTitle:'Yave', tag:'Jul–Aug',
    pitch:`Get paid for every new bar or store that starts carrying Yave Tequila.`,
-   desc:`On-Premise (1 POD = 2 bottles): 1 POD = $10, 2 PODs = $25. Off-Premise (1 POD = 1 case/6pk): 1 POD = $15, 3 PODs = $50, 5 PODs = $125. No base period in this file, so accounts shown reflect qualifying activity this period, not confirmed new placements.`,
    getRep:rep=>(PROGRAM_DATA['yave']||{}).byRep?.[rep],
    metric:d=>d.onPremAccountCount+d.offPremAccountCount, metricLabel:'qualifying accounts', fmt:v=>v.toFixed(0)},
   {key:'mollys', group:'ongoing', title:"Molly's 1.75L", shortTitle:"Molly's", tag:'Jul–Aug',
    pitch:`New Molly's placements pay $50 — and every rebuy case pays $10.`,
-   desc:`$50 per new POD (account must be 90 days unsold) · retention bonus: $10 per case on rebuys during the period.`,
    getRep:rep=>(PROGRAM_DATA['mollys']||{}).byRep?.[rep],
    metric:d=>d.newPodCount+d.rebuyCount, metricLabel:'PODs + rebuys', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_summer_sequel', group:'ongoing', title:'Garage Beer Summer Sequel', shortTitle:'GB Summer Sequel', tag:'Jun–Aug',
    pitch:`Beat your own personal Garage Beer volume goal and your per-case rate climbs through 3 tiers.`,
-   desc:`Volume push, individual per-rep goals: Tiered = $1.00/CE over 2025, Bonus = $1.50/CE, Super Bonus = $2.00/CE. Draft bonus and iSellBeer feature aren't tracked here — no account-level data in this file.`,
    getRep:rep=>{ const d=(PROGRAM_DATA['garage_beer_summer_sequel']||{}).byRep?.[rep]; return (d && d.tieredGoal!=null) ? d : null; },
    metric:d=>d.caseEquiv, metricLabel:'CE', fmt:v=>v.toFixed(0)},
   {key:'garage_beer_president', group:'ongoing', title:"Garage Beer President's Incentive", shortTitle:"GB President's", tag:'Jun–Sep',
    pitch:`Once the whole company crosses 9,305 cases of Garage Beer, you get paid on every case you grew over last year.`,
-   desc:`$1.00 per CE over last year, once the company sells 9,305 CEs of Garage Beer for the period.`,
    getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
    metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
   {key:'new_belgium_distribution', group:'ongoing', title:'New Belgium Distribution — Push Volume', shortTitle:'NB Distribution', tag:'Jul–Aug',
    pitch:`Track how much Bell's, Kirin, and Voodoo Family volume you're pushing this August.`,
-   desc:`Push Volume phase: Case Equivalents across Bell's, Bell's Hearted Family, Kirin Ichiban, Kirin Light, and Voodoo Family during August. Core Market brand — Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
 ];
@@ -40745,6 +40734,15 @@ function signedFmt(v, decimals){
   return v>0 ? '+'+n : n;
 }
 function deltaCls(v){ return v>0 ? 'pos' : (v<0 ? 'neg' : ''); }
+
+// Escape a rule string, then bold-highlight the numbers that matter most
+// ($ amounts, percentages, and N+ minimums) so they pop without reading.
+function ruleHl(text){
+  return esc(text)
+    .replace(/\$\d[\d,]*(?:\.\d+)?(?:\/(?:case|CE|keg))?/g, m=>`<b class="rule-hl">${m}</b>`)
+    .replace(/\d+(?:\.\d+)?%/g, m=>`<b class="rule-hl">${m}</b>`)
+    .replace(/\b(\d[\d,]*)\+/g, (m,n)=>`<b class="rule-hl">${n}+</b>`);
+}
 
 // Compact volume stat for target/whitespace lists: the account's 2026
 // all-product case volume, formatted with thousands separators.
@@ -41842,7 +41840,7 @@ function renderProgramTile(entry){
     <div class="prog-head">
       <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
       ${progPitch(entry.key)}
-      <div class="prog-desc">${entry.desc}</div>
+      <div class="tile-rules">${(PROGRAM_RULES[entry.key]||[]).map(r=>`<div class="rule-item tile-rule"><span>${ruleHl(r)}</span></div>`).join('')}</div>
     </div>
     <div class="prog-body prog-tile-cta">
       <span class="tile-cta-text">${cta}</span>
@@ -42161,7 +42159,7 @@ function renderProgramDetail(key){
   const rules = PROGRAM_RULES[key]||[];
   const rulesHtml = rules.length ? `<div class="rules-block">
       <div class="rules-title">What You Need To Do</div>
-      <div class="rules-list">${rules.map(r=>`<div class="rule-item"><span>${esc(r)}</span></div>`).join('')}</div>
+      <div class="rules-list">${rules.map(r=>`<div class="rule-item"><span>${ruleHl(r)}</span></div>`).join('')}</div>
     </div>` : '';
 
   const rowHtml = r => {
