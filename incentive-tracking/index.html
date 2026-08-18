@@ -53,12 +53,16 @@
     .hero-logo-badge{height:38px;top:10px;left:12px}
   }
 
-  .mission-wrap{max-width:1200px;margin:36px auto 0;padding:0 32px;}
-  .mission-card{border-top:1px solid var(--border);padding-top:28px;}
-  .mission-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;line-height:1.2;}
+  .header-grid{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;}
+  .header-main{flex:1 1 320px;min-width:280px;}
+  .header-mission{flex:1 1 340px;min-width:260px;max-width:560px;
+    border-left:3px solid var(--amber);padding-left:22px;}
+  .mission-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;line-height:1.25;}
   .mission-title span{color:var(--amber);}
-  .mission-text{margin-top:12px;color:var(--text-dim);font-size:16.5px;line-height:1.65;max-width:780px;}
+  .mission-text{margin-top:9px;color:var(--text-dim);font-size:15px;line-height:1.6;}
   .mission-text b{color:var(--text);font-weight:700;}
+  .start-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px;}
+  .start-head .start-here{margin-bottom:0;}
 
   header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
@@ -423,7 +427,6 @@
 <div class="topbar">
   <div class="topbar-row">
     <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; Incentive Tracker</div>
-    <button class="reset-home-btn" id="resetHomeBtn" title="Clear rep, program, and any expanded detail — back to the start">🏠 Reset / Home</button>
   </div>
   <div class="hero-banner nj-hero">
     <img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
@@ -435,15 +438,26 @@
 </div>
 
 <header>
-  <div class="eyebrow">Incentive Tracking · August 2026</div>
-  <h1>Incentive Tracker</h1>
-  <p class="sub">All of your August incentives in one place.</p>
-  <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
+  <div class="header-grid">
+    <div class="header-main">
+      <div class="eyebrow">Incentive Tracking · August 2026</div>
+      <h1>Incentive Tracker</h1>
+      <p class="sub">All of your August incentives in one place.</p>
+      <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
+    </div>
+    <div class="header-mission">
+      <div class="mission-title">Our <span>Mission</span> Statement</div>
+      <p class="mission-text">Kohler is committed to the growth of all brands through the continued development of our <b>PEOPLE</b>. We are focused on the <b>EXECUTION</b> of industry-leading standards while maintaining the highest level of <b>CUSTOMER SATISFACTION</b>, <b>SUPPLIER PARTNERSHIP</b>, and <b>INTEGRITY</b>.</p>
+    </div>
+  </div>
 </header>
 
 <div class="repbar-wrap">
   <div class="start-panel">
-    <div class="start-here">Start Here — Select Your Name</div>
+    <div class="start-head">
+      <div class="start-here">Start Here — Select Your Name</div>
+      <button class="reset-home-btn" id="resetHomeBtn" title="Clear rep, program, and any expanded detail — back to the start">🏠 Reset / Home</button>
+    </div>
     <p class="start-sub">Select your name to see your progress across every incentive.</p>
     <p class="start-sub dim">Track what you've completed, what's left, and where to focus next.</p>
     <div class="repbar" id="repbar"></div>
@@ -452,12 +466,6 @@
 
 <main id="main"></main>
 
-<footer class="mission-wrap">
-  <div class="mission-card">
-    <div class="mission-title">Our <span>Mission</span> Statement</div>
-    <p class="mission-text">Kohler is committed to the growth of all brands through the continued development of our <b>PEOPLE</b>. We are focused on the <b>EXECUTION</b> of industry-leading standards while maintaining the highest level of <b>CUSTOMER SATISFACTION</b>, <b>SUPPLIER PARTNERSHIP</b>, and <b>INTEGRITY</b>.</p>
-  </div>
-</footer>
 
 <script>
 /* PROGRAM_DATA_START */
