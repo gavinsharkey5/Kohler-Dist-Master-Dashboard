@@ -137,6 +137,47 @@ Reps / Photos / Corrected / Resurvey) is now two bands:
     rows, plus an Unverified tile that only appears when unverified taps
     exist. All scoped along with the band above.
 
+Mobile field-use pass + 🎯 Build a Target List (2026-08-18, per Gavin:
+"preserve what works, make it mobile-friendly, add simple powerful
+targeting" -- explicitly NOT a redesign; same information, structure,
+and renderers throughout):
+  - Mobile (<=760px) optimizations, CSS-only except where noted: 16px+
+    inputs (kills iOS zoom-on-focus), 44px+ tap targets everywhere,
+    DM/rep pill rows become one horizontally-scrollable line with the
+    label on its own line (markup: pills now sit in a .rp-scroll div
+    inside each pill row -- desktop layout unchanged), tab buttons
+    stretch full-width, toolbar filters stack two-up, account rows wrap
+    to two lines so the mix bar / tap count / visit date + resurvey
+    badge stay VISIBLE on phones (previously .acct-visited was simply
+    display:none under 640px), account detail loses its 60px desktop
+    indent, and a fixed 🏠 Reset floating button (bottom-right, mobile
+    only) mirrors the header Reset since that scrolls away. Expanded
+    accounts now also show a tappable photo preview (.acct-photo-lg,
+    lazy-loaded, all screen sizes) instead of only a text link.
+  - 🎯 Build a Target List (renderTargetTool, all levels -- company/DM/
+    rep, scoped like the KPI tiles by DM+rep+area): chip-based, per
+    Gavin's Targeting Reports concept but rebuilt mobile-first (no
+    side-by-side scrolling lists). "Has on tap" offers every surveyed
+    brand family in scope (searchable, ranked by taps); "But missing"
+    offers ONLY Kohler catalog brands with sell rights somewhere in
+    scope, and matches additionally exclude accounts whose county the
+    brand is blocked in (same brandRights payload as Find My
+    Opportunities). Quick conditions: min competitor handles,
+    zero-Kohler only, needs resurvey. "Find targets" does NOT render
+    its own results table -- it applies an account-level filter
+    (state.acctFilter) to the EXISTING By Rep / By Brand lists, per
+    Gavin ("use the existing account view").
+  - Account-filter banner: whenever a target list or KPI drill filters
+    the account list, a sticky "📋 Showing N accounts · <criteria> ·
+    ✕ Clear" banner renders above the tabs so the rep always knows what
+    they're looking at. state.acctFilter also counts as an active
+    filter, so matched reps/accounts auto-expand like a search does.
+  - "Tap an insight -> see the accounts": every account-based KPI drill
+    panel now has a "📋 Show in list" button that hands its rows to the
+    same account-filter mechanism (the drill tables themselves are
+    unchanged). Find My Opportunities, the tiles, and both tabs
+    otherwise behave exactly as before.
+
 Theme (2026-08-18, per Gavin: match the other dashboards): restyled from
 the original neutral dark-blue/magenta palette to the same warm
 barrel-wood + amber-beer + Kohler-blue theme as the MPO trackers and the
