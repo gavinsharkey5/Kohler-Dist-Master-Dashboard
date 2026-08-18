@@ -1786,13 +1786,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191007,
-    "CUSTOMER_NAME": "Charley's Tavern",
-    "AREA": "Morris 1",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191004,
     "CUSTOMER_NAME": "Club 15(P)",
     "AREA": "Morris 1",
@@ -2412,13 +2405,6 @@
     "CUSTOMER_NUM": 191305,
     "CUSTOMER_NAME": "Chapala Mexican Grill 4",
     "AREA": "Sussex",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191007,
-    "CUSTOMER_NAME": "Charley's Tavern",
-    "AREA": "Morris 1",
     "BRAND_FAMILY": "Peroni"
   },
   {
