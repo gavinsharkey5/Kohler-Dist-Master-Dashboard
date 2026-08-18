@@ -563,8 +563,72 @@ nbRateCol() helpers and their CSS are gone -- fully replaced, not
 running in parallel. "Reps tracked" was dropped from the overview
 tiles' leader line per Gavin's request the same day.
 
-Opportunity-section honesty note: reps asked for "accounts that don't
-carry this yet" prospecting lists on every program. That's NOT
+Program-specific redesign (2026-08-18, per Gavin, from his full review
+of the live dashboard against the deck): the dashboard no longer forces
+one generic layout onto every incentive -- each card is shaped by that
+program's actual mechanic, around four fixed questions in order: WHAT
+YOU NEED TO DO / YOUR PROGRESS / YOUR ACTIVITY / WHERE TO WIN NEXT.
+The specific rules he set:
+
+  1. Standard definition of "new" (base period 5/1-7/31/2026,
+     distribution period Aug 2026, unless a program's own rules say
+     otherwise -- Molly's 90-day window and Sam Adams' YoY compare are
+     the two exceptions): an account is a new buyer/placement/POD only
+     if it had ZERO qualifying purchases during May-July. This was
+     already how classify_by_customer/classify_dual computed "new";
+     the card copy now states it consistently.
+
+  2. NO win-back sections on new-placement-only programs (1911,
+     Woodchuck, Tona): prior buyers can never re-qualify as "new", so
+     the old lapsed/"Win Back" lists were dropped from generate.py
+     output entirely. Their opportunity sections are now offPremTargets/
+     draftTargets/targets24oz -- customer-base accounts with zero
+     qualifying activity in EITHER period (true still-live new-placement
+     candidates), capped at 20, ranked by the account's own 2026
+     all-product case volume. CAVEAT (supersedes the "honesty note"
+     below, per Gavin's explicit ask for "eligible non-buyer" lists on
+     these programs): the customer-base files only cover the six Core
+     Market counties, so for All-Counties brands these target lists
+     cover the rep's Core Market accounts only, not their whole route.
+     A full-route account export would make them complete.
+
+  3. Win Back / Rebuy sections ONLY where the program actually pays for
+     rebuys or retention -- and there they're reframed as money on the
+     table, not "win back": Boston Beer draft ("Accounts To Rebuy --
+     $50 Each", from draftLapsed), New Belgium featured draft ("Kegs To
+     Rebuy -- $50/$25"), Molly's ("Accounts To Rebuy -- $10/Case").
+     Boston Beer package (no rebuy $ in the deck) lost its win-back
+     list and keeps only the whitespace target list.
+
+  4. Product-organized cards (requests 7-8): Sam Adams Octoberfest now
+     renders per-product expandable rows (2025 vs 2026 vs difference,
+     expanding to the accounts driving each product -- new
+     octoberfestByProduct field in generate.py) plus a "Where You Can
+     Close The Gap" list (accounts behind last-August pace). Fall
+     Seasonal groups its placements by product client-side, one
+     expandable row per product/keg SKU.
+
+  5. Lytt got the "YOU ARE HERE" treatment (request 9): big penetration
+     %, x-of-y accounts, three tier chips (reached/next/locked), a NEXT
+     GOAL box computing how many more accounts are needed, and
+     collapsible Accounts Buying / Accounts Still Available lists
+     (whitespaceAccounts is now the FULL list, not top-15).
+
+  6. Woodchuck's 3-placement minimum is now a program-wide qualifier
+     banner gating all payouts (deck: "3 placements minimum for any
+     payout"), counting package + draft new placements combined --
+     replacing the old case-bonus-only gate on package placements.
+
+  7. Mobile-first pass: fonts inside cards bumped throughout (detail
+     rows 16.5px, notes/labels 14-15px, stat numbers 42px), 44px+ tap
+     targets, activity/opportunity lists collapsed by default behind
+     one big count-labeled button ("Your New Accounts [6]"), and the
+     earn-head stacks vertically under 820px so rate notes never clip.
+
+Opportunity-section honesty note (PARTIALLY SUPERSEDED 2026-08-18 --
+see item 2 above for the current rule on 1911/Woodchuck/Tona): reps
+asked for "accounts that don't carry this yet" prospecting lists on
+every program. That's NOT
 reliably derivable -- every product RDE file only contains rows for
 accounts with SOME purchase history (verified empirically: zero rows
 have both period columns blank), so an account that never bought a

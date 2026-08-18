@@ -166,7 +166,18 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     one this period is a reorder/existing-buyer event, not a new placement,
     even though that second SKU itself is new to the account. Classification
     is therefore done per (rep, customer) within each channel, not per (rep,
-    customer, product) as originally built."""
+    customer, product) as originally built.
+
+    Per Gavin, 2026-08-18: these are NEW-PLACEMENT programs, so no win-back
+    / lapsed list is shown -- prior buyers can never re-qualify as "new"
+    within the period, so surfacing them as opportunities was misleading.
+    Instead the opportunity list is offPremTargets / draftTargets: accounts
+    from the rep's customer-base file with ZERO qualifying purchases in
+    either period (never bought May-July, hasn't bought yet in the current
+    period) -- i.e. still-live new-placement candidates. Caveat (documented
+    in README): the customer-base files only cover the six Core Market
+    counties, so for an All-Counties brand like 1911/Woodchuck this target
+    list covers the rep's Core Market accounts only, not their whole route."""
     rows = read_rows(filename)
     fieldnames = rows[0].keys() if rows else []
     case_base_col, case_current_col = find_period_cols(fieldnames, "Cases")
@@ -175,9 +186,10 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     by_rep = {rep: {
         "offPremNew": [], "offPremNewCount": 0,
         "offPremReorderCount": 0,
-        "offPremLapsed": [], "offPremLapsedCount": 0,
+        "offPremTargets": [], "offPremTargetCount": 0,
         "draftNew": [], "draftNewCount": 0,
         "draftReorderCount": 0,
+        "draftTargets": [], "draftTargetCount": 0,
         "draftAccounts": [], "draftAccountsQualified": 0,
         "caseVolume": 0.0,
         "caseVolumeByAccount": [],
@@ -240,13 +252,6 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             by_rep[rep]["offPremNewCount"] += 1
         elif status == "reorder":
             by_rep[rep]["offPremReorderCount"] += 1
-        elif status == "lapsed":
-            by_rep[rep]["offPremLapsed"].append({
-                "customer": sample["Customer Name"],
-                "product": sample["Product Name"],
-                "lastDate": latest_date(krows, place_base_col),
-            })
-            by_rep[rep]["offPremLapsedCount"] += 1
 
     draft_classified = classify_by_customer(draft_by_cust, place_base_col, place_current_col)
     for cust_key, status in draft_classified.items():
@@ -277,13 +282,36 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             "qualifies": bbl >= bbl_threshold,
         })
 
+    # New-placement targets: customer-base accounts with zero qualifying
+    # activity in EITHER period (never bought the base period, hasn't
+    # bought yet this period). Sorted by that account's own 2026 all-
+    # product case volume as a "worth a pitch" proxy, capped at 20.
+    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
+    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
+    for rep, d in by_rep.items():
+        off_seen = {c for (r, c) in off_by_cust if r == rep}
+        targets = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in off_seen
+        ]
+        targets.sort(key=lambda a: -a["cases2026"])
+        d["offPremTargets"] = targets[:20]
+        d["offPremTargetCount"] = len(targets)
+        draft_seen = {c for (r, c) in draft_by_cust if r == rep}
+        dtargets = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in draft_seen
+        ]
+        dtargets.sort(key=lambda a: -a["cases2026"])
+        d["draftTargets"] = dtargets[:20]
+        d["draftTargetCount"] = len(dtargets)
+
     leaderboard = []
     for rep, d in by_rep.items():
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["caseVolumeByAccount"].sort(key=lambda a: -a["cases"])
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
-        d["offPremLapsed"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
         d["draftNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["draftAccounts"].sort(key=lambda a: -a["cumulativeBbl"])
         d["draftAccountsQualified"] = sum(1 for a in d["draftAccounts"] if a["qualifies"])
@@ -305,7 +333,7 @@ def build_tona():
     by_rep = {rep: {
         "new24ozNew": [], "new24ozCount": 0,
         "new24ozReorderCount": 0,
-        "lapsed24oz": [], "lapsed24ozCount": 0,
+        "targets24oz": [], "targets24ozCount": 0,
         "caseVolume24oz": 0.0, "caseVolumeOther": 0.0,
         "caseVolume24ozByAccount": [], "caseVolumeOtherByAccount": [],
         "qualifies": False,
@@ -362,13 +390,21 @@ def build_tona():
             by_rep[rep]["new24ozCount"] += 1
         elif status == "reorder":
             by_rep[rep]["new24ozReorderCount"] += 1
-        elif status == "lapsed":
-            by_rep[rep]["lapsed24oz"].append({
-                "customer": sample["Customer Name"],
-                "product": sample["Product Name"],
-                "lastDate": latest_date(krows, place_base_col),
-            })
-            by_rep[rep]["lapsed24ozCount"] += 1
+
+    # New-placement targets (same rules as 1911/Woodchuck -- see that
+    # docstring): off-prem customer-base accounts with zero 24oz-can
+    # activity in either period. Tona is All-Counties, so this covers
+    # the rep's Core Market accounts only.
+    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
+    for rep, d in by_rep.items():
+        seen = {c for (r, c) in can24_by_cust if r == rep}
+        targets = [
+            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in seen
+        ]
+        targets.sort(key=lambda a: -a["cases2026"])
+        d["targets24oz"] = targets[:20]
+        d["targets24ozCount"] = len(targets)
 
     for rep, d in by_rep.items():
         d["qualifies"] = d["caseVolume24oz"] >= 20
@@ -377,7 +413,6 @@ def build_tona():
         d["caseVolume24ozByAccount"].sort(key=lambda a: -a["cases"])
         d["caseVolumeOtherByAccount"].sort(key=lambda a: -a["cases"])
         d["new24ozNew"].sort(key=lambda e: e["date"] or "", reverse=True)
-        d["lapsed24oz"].sort(key=lambda e: e["lastDate"] or "", reverse=True)
 
     return {"byRep": by_rep, "qualifierGoal": 20}
 
@@ -449,9 +484,14 @@ def build_sam_adams():
         "allSkuUnitsLastYear": 0.0, "allSkuUnitsThisYear": 0.0, "isPositive": False,
         "octoberfestUnitsLastYear": 0.0, "octoberfestUnitsThisYear": 0.0, "octoberfestGrowth": 0.0,
         "octoberfestByAccount": [],
+        "octoberfestByProduct": [],
     } for rep in ROSTER}
 
     octoberfest_by_account = {}  # (rep, cust_num) -> {"customer":..., "thisYear":0, "lastYear":0}
+    # (rep, product name) -> {"thisYear","lastYear","accounts":{cust_num:{...}}} --
+    # per Gavin, 2026-08-18 (request 7): the card is organized by product,
+    # each product expandable to the accounts driving its YoY number.
+    octoberfest_by_product = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
@@ -468,6 +508,13 @@ def build_sam_adams():
                 entry = octoberfest_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "thisYear": 0.0, "lastYear": 0.0})
                 entry["thisYear"] += cur
                 entry["lastYear"] += last
+                pkey = (rep, row["Product Name"])
+                pentry = octoberfest_by_product.setdefault(pkey, {"thisYear": 0.0, "lastYear": 0.0, "accounts": {}})
+                pentry["thisYear"] += cur
+                pentry["lastYear"] += last
+                pacct = pentry["accounts"].setdefault(row["Customer Num"], {"customer": row["Customer Name"], "thisYear": 0.0, "lastYear": 0.0})
+                pacct["thisYear"] += cur
+                pacct["lastYear"] += last
 
     for (rep, _cust), info in octoberfest_by_account.items():
         if rep not in by_rep:
@@ -479,12 +526,31 @@ def build_sam_adams():
             "growth": round(info["thisYear"] - info["lastYear"], 2),
         })
 
+    for (rep, product), info in octoberfest_by_product.items():
+        if rep not in by_rep:
+            continue
+        accounts = [{
+            "customer": a["customer"],
+            "unitsThisYear": round(a["thisYear"], 2),
+            "unitsLastYear": round(a["lastYear"], 2),
+            "growth": round(a["thisYear"] - a["lastYear"], 2),
+        } for a in info["accounts"].values()]
+        accounts.sort(key=lambda a: -a["unitsThisYear"])
+        by_rep[rep]["octoberfestByProduct"].append({
+            "product": product,
+            "unitsThisYear": round(info["thisYear"], 2),
+            "unitsLastYear": round(info["lastYear"], 2),
+            "growth": round(info["thisYear"] - info["lastYear"], 2),
+            "accounts": accounts,
+        })
+
     for rep, d in by_rep.items():
         d["isPositive"] = d["allSkuUnitsThisYear"] > d["allSkuUnitsLastYear"]
         d["octoberfestGrowth"] = round(d["octoberfestUnitsThisYear"] - d["octoberfestUnitsLastYear"], 2)
         for k in ("allSkuUnitsLastYear", "allSkuUnitsThisYear", "octoberfestUnitsLastYear", "octoberfestUnitsThisYear"):
             d[k] = round(d[k], 2)
         d["octoberfestByAccount"].sort(key=lambda a: -a["unitsThisYear"])
+        d["octoberfestByProduct"].sort(key=lambda p: -p["unitsThisYear"])
 
     return {"byRep": by_rep}
 
@@ -793,7 +859,10 @@ def build_lytt_launch():
             for cust_num, info in eligible.items() if cust_num not in bought
         ]
         whitespace.sort(key=lambda a: -a["cases2026"])
-        by_rep[rep]["whitespaceAccounts"] = whitespace[:15]
+        # Full list, not top-15: per Gavin, 2026-08-18 (request 9), the rep
+        # should be able to open ALL of their remaining eligible accounts
+        # ("View 22 remaining accounts") since penetration is the whole game.
+        by_rep[rep]["whitespaceAccounts"] = whitespace
 
     leaderboard = []
     for rep, d in by_rep.items():
