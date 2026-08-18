@@ -211,12 +211,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79004,
-    "CUSTOMER_NAME": "Coronet Variety",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 76015,
     "CUSTOMER_NAME": "Discount Liq & Bar",
     "AREA": "Bergen"
@@ -1795,12 +1789,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 19008,
-    "CUSTOMER_NAME": "Hawthorne Liq (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 11003,
     "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
     "AREA": "Morris 3"
@@ -2049,12 +2037,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20029,
     "CUSTOMER_NAME": "Star Liquor Store",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27066,
-    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
     "AREA": "Passaic"
   },
   {
