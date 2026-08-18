@@ -284,31 +284,26 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
 
     # New-placement targets: customer-base accounts with zero qualifying
     # activity in EITHER period (never bought the base period, hasn't
-    # bought yet this period). Sorted by that account's own 2026 all-
-    # product case volume as a "worth a pitch" proxy, capped at 20.
-    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
-    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
+    # bought yet this period). Since 2026-08-18 these come from the FULL
+    # route universe (customer_base_full.csv, all counties -- 1911 and
+    # Woodchuck are All-Counties brands), and draft targets only include
+    # accounts whose Draft Package flag says they can actually buy kegs.
     for rep, d in by_rep.items():
         off_seen = {c for (r, c) in off_by_cust if r == rep}
-        targets = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in off_seen
-        ]
-        targets.sort(key=lambda a: -a["cases2026"])
-        d["offPremTargets"] = targets[:20]
-        d["offPremTargetCount"] = len(targets)
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(
+            base_accounts(rep, premise="Off Premise"), off_seen)
         draft_seen = {c for (r, c) in draft_by_cust if r == rep}
-        dtargets = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in draft_seen
-        ]
-        dtargets.sort(key=lambda a: -a["cases2026"])
-        d["draftTargets"] = dtargets[:20]
-        d["draftTargetCount"] = len(dtargets)
+        d["draftTargets"], d["draftTargetCount"] = targets_from(
+            base_accounts(rep, premise="On Premise", draft=True), draft_seen)
 
     leaderboard = []
     for rep, d in by_rep.items():
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftNewCount"]
+        # Draft channel applicability: a rep with no keg-capable on-premise
+        # accounts anywhere on their route (and no draft activity in the
+        # data) can't work the draft side of this program at all.
+        d["draftChannelOk"] = (d["draftTargetCount"] > 0 or len(d["draftAccounts"]) > 0
+                               or d["draftNewCount"] > 0 or d["draftReorderCount"] > 0)
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["caseVolumeByAccount"].sort(key=lambda a: -a["cases"])
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
@@ -392,19 +387,12 @@ def build_tona():
             by_rep[rep]["new24ozReorderCount"] += 1
 
     # New-placement targets (same rules as 1911/Woodchuck -- see that
-    # docstring): off-prem customer-base accounts with zero 24oz-can
-    # activity in either period. Tona is All-Counties, so this covers
-    # the rep's Core Market accounts only.
-    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
+    # docstring): off-prem accounts with zero 24oz-can activity in either
+    # period, from the FULL route universe (Tona is All-Counties).
     for rep, d in by_rep.items():
         seen = {c for (r, c) in can24_by_cust if r == rep}
-        targets = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in seen
-        ]
-        targets.sort(key=lambda a: -a["cases2026"])
-        d["targets24oz"] = targets[:20]
-        d["targets24ozCount"] = len(targets)
+        d["targets24oz"], d["targets24ozCount"] = targets_from(
+            base_accounts(rep, premise="Off Premise"), seen)
 
     for rep, d in by_rep.items():
         d["qualifies"] = d["caseVolume24oz"] >= 20
@@ -654,28 +642,24 @@ def build_boston_beer():
         elif status == "reorder":
             by_rep[rep]["packageRebuyCount"] += 1
 
-    # True non-buyer whitespace: Boston Beer's brands are Core-Market-
-    # restricted, and the two Sales Reps' Customer Base files are verified
-    # complete for those six counties (see load_customer_base_by_rep), so
-    # "eligible account with zero purchase history in either period" is a
-    # real, defensible list here -- unlike the All-Counties programs.
-    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
-    off_prem_base = load_customer_base_by_rep("customer_base_off_prem.csv")
+    # True non-buyer whitespace, from the full customer base filtered to
+    # Core Market (Boston Beer is Core-Market-restricted): draft targets
+    # additionally require the account's Draft Package flag to allow kegs
+    # -- no point sending a rep to pitch a $100 POD at a package-only bar.
+    # The channel flags grey out a whole section for reps whose route
+    # structurally can't work it (e.g. no keg-capable Core Market
+    # on-premise accounts).
     for rep, d in by_rep.items():
         draft_seen = {c for (r, c) in draft_by_cust if r == rep}
         package_seen = {c for (r, c) in package_by_cust if r == rep}
-        draft_ws = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in draft_seen
-        ]
-        draft_ws.sort(key=lambda a: -a["cases2026"])
-        d["draftWhitespace"] = draft_ws[:15]
-        package_ws = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in off_prem_base.get(rep, {}).items() if cust_num not in package_seen
-        ]
-        package_ws.sort(key=lambda a: -a["cases2026"])
-        d["packageWhitespace"] = package_ws[:15]
+        draft_capable = base_accounts(rep, premise="On Premise", core=True, draft=True)
+        d["draftWhitespace"], _ = targets_from(draft_capable, draft_seen, cap=15)
+        core_off = base_accounts(rep, premise="Off Premise", core=True)
+        d["packageWhitespace"], _ = targets_from(core_off, package_seen, cap=15)
+        d["draftChannelOk"] = (len(draft_capable) > 0 or d["draftNewCount"] > 0
+                               or d["draftRebuyCount"] > 0 or d["draftLapsedCount"] > 0)
+        d["packageChannelOk"] = (len(core_off) > 0 or d["packageNewCount"] > 0
+                                 or d["packageRebuyCount"] > 0 or d["packageLapsedCount"] > 0)
 
     for rep, d in by_rep.items():
         d["points"] = (d["draftNewCount"] + d["draftRebuyCount"]) * 2 + d["packageNewCount"] * 1
@@ -778,18 +762,20 @@ def build_new_belgium():
             current_units = sum(to_num(r[current_col]) for r in krows)
             by_rep[rep]["otherNamedKegVolumeBbl"] += bbl_each * current_units
 
-    # True non-buyer whitespace within the featured tier: New Belgium is
-    # Core-Market-restricted and draft-only, so customer_base_on_prem.csv is
-    # a legitimate complete eligible universe (see load_customer_base_by_rep).
-    on_prem_base = load_customer_base_by_rep("customer_base_on_prem.csv")
+    # True non-buyer whitespace within the featured tier: Core Market
+    # on-premise accounts whose Draft Package flag allows kegs. The same
+    # set drives draftEligible -- this program is 100% kegs, so a rep with
+    # zero keg-capable Core Market on-premise accounts (and no draft
+    # activity in the data) can't participate at all and gets a greyed
+    # card, same treatment as the territory blackout (per Gavin,
+    # 2026-08-18, the "Dave Ehlers" class of case).
     for rep, d in by_rep.items():
         seen = featured_seen_by_rep.get(rep, set())
-        ws = [
-            {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
-            for cust_num, info in on_prem_base.get(rep, {}).items() if cust_num not in seen
-        ]
-        ws.sort(key=lambda a: -a["cases2026"])
-        d["featuredWhitespace"] = ws[:15]
+        draft_capable = base_accounts(rep, premise="On Premise", core=True, draft=True)
+        d["featuredWhitespace"], _ = targets_from(draft_capable, seen, cap=15)
+        d["draftCapableCount"] = len(draft_capable)
+        d["draftEligible"] = (len(draft_capable) > 0 or d["featuredNewCount"] > 0
+                              or d["featuredRebuyCount"] > 0 or d["otherNamedKegCount"] > 0)
 
     for rep, d in by_rep.items():
         d["featuredNew"].sort(key=lambda e: e["date"] or "", reverse=True)
@@ -814,13 +800,18 @@ def build_lytt_launch():
     fieldnames = rows[0].keys() if rows else []
     cases_col = find_single_col(fieldnames, "Cases")
 
-    base_rows = read_rows("customer_base_off_prem.csv")
+    # Eligible universe (penetration denominator): Core Market off-premise
+    # accounts, from the full customer base (switched from the legacy
+    # customer_base_off_prem.csv on 2026-08-18 -- same six-county universe,
+    # fresher pull, one consistent source).
     eligible_by_rep = {}
-    for row in base_rows:
-        eligible_by_rep.setdefault(row["Sales Rep Assigned"], {})[row["Customer Num"]] = {
-            "customer": row["Customer Name"],
-            "cases2026": to_num(row.get("Cases   2026", "")),
-        }
+    for rep, accounts in load_customer_base_full().items():
+        for cust_num, info in accounts.items():
+            if info["premise"] == "Off Premise" and info["core"]:
+                eligible_by_rep.setdefault(rep, {})[cust_num] = {
+                    "customer": info["customer"],
+                    "cases2026": info["cases2026"],
+                }
 
     by_rep = {rep: {
         "buyingAccounts": [], "buyingAccountCount": 0,
@@ -1021,14 +1012,101 @@ def build_sun_cruiser():
 
 
 def load_premise_map():
-    """Customer Num -> 'On Premise'/'Off Premise', from the two Sales
-    Reps' Customer Base files (used wherever a program's own RDE export
-    has no Premise column of its own, e.g. Yave)."""
+    """Customer Num -> 'On Premise'/'Off Premise' (used wherever a
+    program's own RDE export has no Premise column, e.g. Yave). Legacy
+    Core-Market files first, then the full customer base overlays them --
+    the full file wins and also covers non-Core-Market accounts."""
     premise = {}
     for filename, premise_label in [("customer_base_off_prem.csv", "Off Premise"), ("customer_base_on_prem.csv", "On Premise")]:
         for row in read_rows(filename):
             premise[row["Customer Num"]] = premise_label
+    for accounts in load_customer_base_full().values():
+        for cust_num, info in accounts.items():
+            premise[cust_num] = info["premise"]
     return premise
+
+
+# --- Full-route customer base (customer_base_full.csv, added 2026-08-18) ---
+# "Sales Reps' Customer Base 4" from Gavin: the COMPLETE account book for
+# every rep -- all counties (including the blackout ones), both premises --
+# unlike the two legacy customer_base_{off,on}_prem.csv files, which are
+# pre-filtered to the six Core Market counties. This file supersedes them
+# as the eligibility/target universe. Two columns drive everything:
+#   Area ("Bergen", "Morris 1", "Morris 2", ...) -- disambiguates Morris
+#     1/3 (Core Market) from Morris 2 (blackout), which the County column
+#     alone cannot. A handful of rows carry Area "Sales" (an internal
+#     grouping, not a distribution area); those fall back to County, where
+#     Bergen/Passaic/Sussex are unambiguously Core Market.
+#   Draft Package -- per Gavin, 2026-08-18: values starting "1)" or "2)"
+#     mean the account CAN purchase kegs/draft; "3) Package Only" means it
+#     cannot. This is the signal for greying out draft incentives for reps
+#     whose routes have no keg-capable accounts (e.g. Jayson Romine and
+#     Shane Barreca have zero on-premise accounts at all).
+CORE_MARKET_AREAS = {"Bergen", "Passaic", "Passaic-FF", "Sussex", "Morris 1", "Morris 3"}
+BLACKOUT_AREAS = {"Essex", "Hudson", "Union", "Morris 2", "Middlesex County", "Middlesex not in use", "Rockland"}
+CORE_FALLBACK_COUNTIES = {"Bergen", "Passaic", "Sussex"}
+
+
+def is_draft_capable(value):
+    return (value or "").strip()[:1] in ("1", "2")
+
+
+def _row_is_core_market(row):
+    area = row["Area"].strip()
+    if area in CORE_MARKET_AREAS:
+        return True
+    if area in BLACKOUT_AREAS:
+        return False
+    # Non-distribution-area values ("Sales"): fall back to the county.
+    # Morris county is left non-core here since it can't be split 1/2/3
+    # without an Area value (no such rows exist in the current file).
+    return row["County"].strip() in CORE_FALLBACK_COUNTIES
+
+
+_FULL_BASE_CACHE = None
+
+
+def load_customer_base_full():
+    """{rep: {cust_num: {"customer","premise","core","draft","cases2026"}}}
+    from customer_base_full.csv (cached -- several builders share it)."""
+    global _FULL_BASE_CACHE
+    if _FULL_BASE_CACHE is None:
+        by_rep = {}
+        for row in read_rows("customer_base_full.csv"):
+            by_rep.setdefault(row["Sales Rep Assigned"], {})[row["Customer Num"]] = {
+                "customer": row["Customer Name"],
+                "premise": row["Premise"],
+                "core": _row_is_core_market(row),
+                "draft": is_draft_capable(row["Draft Package"]),
+                "cases2026": to_num(row.get("Cases   2026", "")),
+            }
+        _FULL_BASE_CACHE = by_rep
+    return _FULL_BASE_CACHE
+
+
+def base_accounts(rep, premise=None, core=None, draft=None):
+    """Filtered view of one rep's full-base accounts."""
+    out = {}
+    for cust_num, info in load_customer_base_full().get(rep, {}).items():
+        if premise is not None and info["premise"] != premise:
+            continue
+        if core is not None and info["core"] != core:
+            continue
+        if draft is not None and info["draft"] != draft:
+            continue
+        out[cust_num] = info
+    return out
+
+
+def targets_from(accounts, seen, cap=20):
+    """(top-N target list, full count) of accounts with no program activity,
+    sorted by the account's own 2026 all-product case volume."""
+    targets = [
+        {"customer": info["customer"], "cases2026": round(info["cases2026"], 1)}
+        for cust_num, info in accounts.items() if cust_num not in seen
+    ]
+    targets.sort(key=lambda a: -a["cases2026"])
+    return targets[:cap], len(targets)
 
 
 def load_customer_base_by_rep(filename):
@@ -1082,13 +1160,16 @@ CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_
 
 
 def load_core_market_reps():
-    """Reps with at least one account in a Core Market county -- see
-    CORE_MARKET_PROGRAMS docstring above for why simple presence in
-    either customer-base file is sufficient."""
+    """Reps with at least one account in a Core Market distribution area.
+    Since 2026-08-18 this is computed from customer_base_full.csv's Area
+    column (the old presence-in-prefiltered-file shortcut no longer works
+    now that the full file contains every rep's blackout-county accounts
+    too). Same rule as before: ANY Core Market account makes the rep
+    eligible (per Gavin, 2026-08-10)."""
     reps = set()
-    for filename in ("customer_base_off_prem.csv", "customer_base_on_prem.csv"):
-        for row in read_rows(filename):
-            reps.add(row["Sales Rep Assigned"])
+    for rep, accounts in load_customer_base_full().items():
+        if any(info["core"] for info in accounts.values()):
+            reps.add(rep)
     return reps
 
 
@@ -1153,6 +1234,11 @@ def build_yave():
         d["offPremCases"] = round(d["offPremCases"], 2)
         d["onPremAccounts"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["offPremAccounts"].sort(key=lambda e: e["date"] or "", reverse=True)
+        # Channel applicability from the full customer base: a rep with no
+        # on-premise (or off-premise) accounts at all gets that side of the
+        # card greyed instead of a hollow zero (per Gavin, 2026-08-18).
+        d["hasOnPremAccounts"] = len(base_accounts(rep, premise="On Premise")) > 0 or d["onPremAccountCount"] > 0
+        d["hasOffPremAccounts"] = len(base_accounts(rep, premise="Off Premise")) > 0 or d["offPremAccountCount"] > 0
 
     return {"byRep": by_rep}
 
@@ -1381,6 +1467,18 @@ def main():
             d["territoryEligible"] = rep in core_market_reps
     ineligible_counts = {key: sum(1 for d in data[key]["byRep"].values() if not d["territoryEligible"]) for key in CORE_MARKET_PROGRAMS}
     print(f"territory blackout: {ineligible_counts} reps marked ineligible (no Core Market account) per Core-Market-restricted program")
+    blocked = sorted(rep for rep, d in data["boston_beer"]["byRep"].items() if not d["territoryEligible"])
+    print(f"territory-blocked reps: {blocked}")
+    nb_na = sorted(rep for rep, d in data["new_belgium"]["byRep"].items() if d["territoryEligible"] and not d["draftEligible"])
+    print(f"new_belgium draft-not-applicable (no keg-capable Core Market on-prem accounts): {nb_na}")
+    d1911 = sorted(rep for rep, d in data["1911"]["byRep"].items() if not d["draftChannelOk"])
+    print(f"1911/woodchuck draft section n/a (no keg-capable on-prem accounts anywhere): {d1911}")
+    bb_draft_na = sorted(rep for rep, d in data["boston_beer"]["byRep"].items() if d["territoryEligible"] and not d["draftChannelOk"])
+    bb_pkg_na = sorted(rep for rep, d in data["boston_beer"]["byRep"].items() if d["territoryEligible"] and not d["packageChannelOk"])
+    print(f"boston_beer draft section n/a: {bb_draft_na} | package section n/a: {bb_pkg_na}")
+    yave_on_na = sorted(rep for rep, d in data["yave"]["byRep"].items() if not d["hasOnPremAccounts"])
+    yave_off_na = sorted(rep for rep, d in data["yave"]["byRep"].items() if not d["hasOffPremAccounts"])
+    print(f"yave on-prem section n/a: {yave_on_na} | off-prem section n/a: {yave_off_na}")
 
     for key in ("1911", "woodchuck"):
         total_new = sum(d["totalNewPlacements"] for d in data[key]["byRep"].values())

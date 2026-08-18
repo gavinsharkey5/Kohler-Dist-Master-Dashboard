@@ -644,8 +644,56 @@ The specific rules he set:
      one big count-labeled button ("Your New Accounts [6]"), and the
      earn-head stacks vertically under 820px so rate notes never clip.
 
+Full customer base + route-based eligibility (2026-08-18, later the
+same day): Gavin sent "Sales Reps' Customer Base 4" (saved as
+data/customer_base_full.csv) -- the COMPLETE account book for every
+rep, all counties including the blackout ones, both premises, with two
+new columns:
+  - Area ("Bergen", "Morris 1", "Morris 2", "Sales", ...): finally
+    disambiguates Morris 1/3 (Core Market) from Morris 2 (blackout).
+    Rows with Area "Sales" (an internal grouping) fall back to County
+    (Bergen/Passaic/Sussex = core).
+  - Draft Package: per Gavin -- values starting "1)" or "2)" mean the
+    account CAN buy kegs/draft; "3) Package Only" means it cannot.
+This file supersedes the two legacy Core-Market-only customer_base_
+{off,on}_prem.csv files as the eligibility/target/premise universe
+(the legacy files are kept only as a premise-map fallback for account
+numbers that have left the current base). Consequences:
+  - The item-2 caveat below is RESOLVED: 1911/Woodchuck/Tona target
+    lists now cover the rep's whole route, not just Core Market.
+  - Draft target lists (1911/Woodchuck draft, Boston Beer draft, New
+    Belgium featured) only include keg-CAPABLE accounts -- no more
+    telling a rep to pitch a $100 POD at a package-only store.
+  - load_core_market_reps() now tests Area membership instead of mere
+    file presence (the old shortcut broke once the full file contained
+    everyone). Same 3 reps blocked as before: Alex Rodriguez, Andrew
+    Lundy, Hakan Sadik.
+  - Lytt's penetration denominator moved to the full file filtered to
+    core off-premise (same universe, fresher pull -- some penetration
+    %s shifted slightly, 5 reps in a tier became 3 on 8/18 data).
+  - NEW route-based greying (the "Dave Ehlers" ask -- programs a rep
+    structurally can't work look greyed like Alex Rodriguez's):
+      WHOLE CARD: New Belgium Draft is 100% kegs, so a Core-Market-
+        eligible rep with zero keg-capable core on-prem accounts AND
+        no draft activity in the data gets a "Not Applicable -- No
+        Draft Accounts On Your Route" card and is excluded from that
+        program's rankings (Dylan Rubino, Jayson Romine on 8/18 data).
+      SECTION ONLY: 1911/Woodchuck draft blocks (Jayson Romine, Shane
+        Barreca), Boston Beer draft (Dylan Rubino) / package (Allison
+        Scott -- no off-prem accounts), Yave on-prem (Jayson Romine,
+        Shane Barreca) / off-prem (Allison Scott) -- the other side of
+        each card stays fully live, and the scoreboard shows a neutral
+        "N/A" tile with the reason.
+      An activity override applies everywhere: if the RDE data shows
+        the rep actually selling in a channel, the channel stays live
+        regardless of the base flags (e.g. Dave Ehlers keeps New
+        Belgium Draft: his one on-prem account, Lulu Lounge, is
+        draft-capable per the flag AND he sold a Voodoo keg -- data
+        wins over assumptions).
+
 Opportunity-section honesty note (PARTIALLY SUPERSEDED 2026-08-18 --
-see item 2 above for the current rule on 1911/Woodchuck/Tona): reps
+the full-file note above resolves the Core-Market-only caveat; see
+item 2 for the no-win-back rule on 1911/Woodchuck/Tona): reps
 asked for "accounts that don't carry this yet" prospecting lists on
 every program. That's NOT
 reliably derivable -- every product RDE file only contains rows for
