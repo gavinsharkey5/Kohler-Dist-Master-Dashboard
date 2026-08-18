@@ -644,6 +644,28 @@ The specific rules he set:
      one big count-labeled button ("Your New Accounts [6]"), and the
      earn-head stacks vertically under 820px so rate notes never clip.
 
+Program-page scoreboard redesign (2026-08-18, evening, per Gavin: the
+leaderboard felt like a dense data table): each program's detail page
+is now (1) the hero pitch, (2) a big bulleted "WHAT YOU NEED TO DO"
+rules block (PROGRAM_RULES in index.html -- short bullets adapted per
+incentive from the deck, 18px, no paragraphs), and (3) a scoreboard-
+style leaderboard: one row per eligible rep showing rank medal, name,
+a color status badge (green = qualified/earning, amber = close with a
+literal "N to go" -- "2 placements to go", "1 account to 25%", "6
+cases to positive" -- gray = no activity yet), and the 2-3 metrics
+that actually explain rank on THAT program (PROGRAM_BOARD in
+index.html -- e.g. Woodchuck shows "1 / 3 placements · 20 cases",
+Lytt shows "33.3% penetration · 11 / 33 accounts · 66 cases").
+Metrics/qualifier fractions are color-coded by the same green/amber/
+gray logic. Top 5 shown, rest behind "Show All N Reps". Tapping a row
+expands that rep's full program card inline (same cards as the rep
+view); "Full Rep Detailed View" still jumps to their rep page. The
+old ranking UI -- metric tabs, rank-focus hero with gap chips,
+best-opportunity panel, PROGRAM_RANKING_CONFIG/rankByConfig/
+rankingHero/nearbyBoard -- was removed outright, not left in
+parallel. rankProgram() (with its territory/programEligible
+exclusions) still provides the ordering.
+
 Full customer base + route-based eligibility (2026-08-18, later the
 same day): Gavin sent "Sales Reps' Customer Base 4" (saved as
 data/customer_base_full.csv) -- the COMPLETE account book for every
