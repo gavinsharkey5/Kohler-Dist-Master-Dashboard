@@ -29,7 +29,14 @@ one unified renderer in index.html's renderSummary()):
   - The hero (big share bar + area chips) renders at EVERY level, scoped
     to it; tapping an area chip filters the whole page (tiles, facts,
     drills, account lists) at every level now, company included. Chips
-    only show areas relevant to the scope.
+    only show areas relevant to the scope, and are grouped per
+    Kohler's market structure (per Gavin, 2026-08-18): CORE MARKET
+    (Bergen, Passaic, Passaic-FF, Sussex, Morris 1, Morris 3) and
+    SOUTHERN DISTRICT (Morris 2, Essex, Hudson, Union), each group
+    header showing that group's own aggregate share and handle count
+    (aggregated over ALL the group's areas, including any too small to
+    earn a chip). A group with no areas in scope doesn't render at all,
+    so a Core-Market-only rep never sees an empty Southern District box.
   - Fast facts render at every level with level-appropriate wording;
     company/DM add a top-rep-by-share fact (min 100 handles), and the DM
     level adds a coaching-gap fact (lowest-share rep vs highest).

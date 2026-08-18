@@ -92,6 +92,14 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .rep-hero .rh-legend{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-soft)}
 .rep-hero .rh-legend b{font-family:"Space Grotesk"}
 .rep-hero .rh-legend .u{color:var(--us)} .rep-hero .rh-legend .t{color:var(--them)}
+.cgroups{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:stretch}
+.cgroup{border:1px solid var(--line-soft);border-radius:12px;padding:9px 11px 11px;background:color-mix(in srgb,var(--canvas) 45%,transparent)}
+.cgroup.allg{border-style:dashed;display:flex;flex-direction:column;justify-content:flex-start}
+.cgroup-h{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:8px}
+.cgroup-h .gl{font-family:"Space Grotesk";font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.cgroup-h .gs{font-size:10.5px;color:var(--ink-soft)}
+.cgroup-h .gs b{color:var(--us)}
+.cgroup .county-chips{margin-top:0}
 .county-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .cchip{background:var(--card3);border:1px solid var(--line);border-radius:10px;padding:7px 11px;cursor:pointer;min-width:96px}
 .cchip:hover{border-color:var(--accent)}
@@ -604,7 +612,7 @@ footer p{margin:0 0 8px}
           return !present[c.key] && c.counties.some(function(cty){ return ctys[cty]; });
         });
       })(),
-      areaList:areaList, themAreaTop:themAreaTop,
+      areaList:areaList, themAreaTop:themAreaTop, areasAll:Object.values(areas),
       opp: list.filter(function(a){ return a.them>0; }).sort(function(x,y){ return y.them-x.them; }),
       warm: list.filter(function(a){ return a.us>=1 && a.them>=1; }).sort(function(x,y){ return y.them-x.them; }),
       targets: list.filter(function(a){ return a.them>=3 && a.us<=1; }).sort(function(x,y){ return y.them-x.them; }),
@@ -882,17 +890,39 @@ footer p{margin:0 0 8px}
     var heroLbl = { company:'KOHLER', dm:'TEAM', rep:'YOURS' }[level];
     var allChipLbl = { company:'All areas', dm:'Team areas', rep:'Total route' }[level];
     var rTot = route.us + route.them;
-    var chips = '<div class="county-chips">'+
-      '<div class="cchip'+(!state.county?' active':'')+'" data-cty=""><div class="cn">'+allChipLbl+'</div>'+
+    // Areas grouped per Kohler's own market structure (per Gavin,
+    // 2026-08-18): Core Market vs Southern District, each header showing
+    // that group's aggregate share (computed over ALL the group's areas,
+    // including any too small to earn a chip).
+    var CORE_MARKET = {'BERGEN':1,'PASSAIC':1,'PASSAIC-FF':1,'SUSSEX':1,'MORRIS 1':1,'MORRIS 3':1};
+    var SOUTHERN = {'MORRIS 2':1,'ESSEX':1,'HUDSON':1,'UNION':1};
+    function chipHtml(a){
+      return '<div class="cchip'+(state.county===a.name?' active':'')+'" data-cty="'+esc(a.name)+'">'+
+        '<div class="cn">'+esc(a.name)+'</div>'+
+        '<div class="cp"><b>'+a.usPct.toFixed(0)+'% us</b> · '+(100-a.usPct).toFixed(0)+'% them</div>'+
+        '<div class="cb"><i class="b-us" style="width:'+a.usPct+'%"></i><i class="b-them" style="width:'+(100-a.usPct)+'%"></i></div>'+
+        '<div class="ct">'+ce0(a.us+a.them)+' handles</div></div>';
+    }
+    function groupHtml(label, memberOf){
+      var chipsIn = route.areaList.filter(function(a){ return memberOf[a.name]; });
+      if(!chipsIn.length) return '';
+      var gUs=0, gThem=0;
+      route.areasAll.forEach(function(a){ if(memberOf[a.name]){ gUs+=a.us; gThem+=a.them; } });
+      var gTot = gUs+gThem;
+      return '<div class="cgroup"><div class="cgroup-h"><span class="gl">'+label+'</span>'+
+        '<span class="gs"><b>'+(gTot? (gUs/gTot*100).toFixed(0):0)+'% us</b> · '+ce0(gTot)+' handles</span></div>'+
+        '<div class="county-chips">'+chipsIn.map(chipHtml).join('')+'</div></div>';
+    }
+    var otherAreas = route.areaList.filter(function(a){ return !CORE_MARKET[a.name] && !SOUTHERN[a.name]; });
+    var chips = '<div class="cgroups">'+
+      '<div class="cgroup allg"><div class="cgroup-h"><span class="gl">&nbsp;</span></div><div class="county-chips">'+
+        '<div class="cchip'+(!state.county?' active':'')+'" data-cty=""><div class="cn">'+allChipLbl+'</div>'+
         '<div class="cp"><b>'+(rTot? (route.us/rTot*100).toFixed(0):0)+'% us</b></div>'+
-        '<div class="ct">'+ce0(rTot)+' handles</div></div>'+
-      route.areaList.map(function(a){
-        return '<div class="cchip'+(state.county===a.name?' active':'')+'" data-cty="'+esc(a.name)+'">'+
-          '<div class="cn">'+esc(a.name)+'</div>'+
-          '<div class="cp"><b>'+a.usPct.toFixed(0)+'% us</b> · '+(100-a.usPct).toFixed(0)+'% them</div>'+
-          '<div class="cb"><i class="b-us" style="width:'+a.usPct+'%"></i><i class="b-them" style="width:'+(100-a.usPct)+'%"></i></div>'+
-          '<div class="ct">'+ce0(a.us+a.them)+' handles</div></div>';
-      }).join('')+'</div>';
+        '<div class="ct">'+ce0(rTot)+' handles</div></div></div></div>'+
+      groupHtml('CORE MARKET', CORE_MARKET)+
+      groupHtml('SOUTHERN DISTRICT', SOUTHERN)+
+      (otherAreas.length? '<div class="cgroup"><div class="cgroup-h"><span class="gl">OTHER</span></div><div class="county-chips">'+otherAreas.map(chipHtml).join('')+'</div></div>':'')+
+      '</div>';
     document.getElementById('repHero').innerHTML = '<div class="rep-hero">'+
       '<div class="rh-nums"><span class="rh-us num">'+sharePct.toFixed(1)+'% <small style="font-size:15px">'+heroLbl+'</small></span>'+
       '<span class="rh-them num">'+(100-sharePct).toFixed(1)+'% <small style="font-size:12px">COMPETITOR</small></span>'+
