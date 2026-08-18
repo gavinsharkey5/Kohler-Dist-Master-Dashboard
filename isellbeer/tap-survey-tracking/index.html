@@ -66,6 +66,16 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .summary.mini .scard .lbl{margin-bottom:4px}
 .summary.mini .scard .sub{margin-top:3px;font-size:10.5px}
 
+/* ---- rep pills: the front door into MY TAP BUSINESS ---- */
+.rep-pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center}
+.rep-pills .rp-lbl{font-size:11.5px;color:var(--ink-soft);font-weight:600;margin-right:2px}
+.rpill{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:7px 14px;
+  font-family:"Space Grotesk";font-weight:600;font-size:12.5px;cursor:pointer;transition:.12s;white-space:nowrap}
+.rpill:hover{border-color:var(--accent);color:var(--accent)}
+.rpill.active{background:var(--accent);border-color:var(--accent);color:#06131c;font-weight:700}
+.rpill.all{color:var(--ink-soft);border-style:dashed}
+.rpill.all:hover{color:var(--accent)}
+
 /* ---- rep mode: MY TAP BUSINESS ---- */
 .rep-hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
   padding:16px 18px;box-shadow:var(--shadow);margin:0 0 12px}
@@ -287,6 +297,7 @@ footer p{margin:0 0 8px}
 <div class="wrap" style="padding-top:20px">
 
   <div class="cc-h"><span class="t" id="ccTitle">Company-Wide Opportunity</span><span class="s" id="ccHint"></span></div>
+  <div class="rep-pills" id="repPills"></div>
   <div id="repHero"></div>
   <div id="fastFacts"></div>
   <div class="summary" id="summary"></div>
@@ -753,7 +764,31 @@ footer p{margin:0 0 8px}
     }
   }
 
+  // Rep pills -- the visible front door into the MY TAP BUSINESS view
+  // (added 2026-08-18, per Gavin: reps didn't know the detailed view
+  // existed behind the Rep dropdown). One pill per rep; clicking it is
+  // exactly the same as picking the name in the Rep filter, and the two
+  // stay in sync. "Everyone" exits back to the company view.
+  function renderRepPills(){
+    var el = document.getElementById('repPills');
+    el.innerHTML = '<span class="rp-lbl">' + (state.rep ? 'Viewing route:' : '👤 See YOUR route — tap your name:') + '</span>' +
+      '<button class="rpill all'+(!state.rep?' active':'')+'" data-rep="" type="button">Everyone</button>' +
+      (DATA.reps||[]).map(function(r){
+        return '<button class="rpill'+(state.rep===r?' active':'')+'" data-rep="'+esc(r)+'" type="button">'+esc(r)+'</button>';
+      }).join('');
+    el.querySelectorAll('.rpill').forEach(function(b){
+      b.addEventListener('click', function(){
+        state.rep = b.dataset.rep;
+        document.getElementById('repFilter').value = state.rep;
+        state.drill = null; state.drillParam = null;
+        render();
+        window.scrollTo(0, 0);
+      });
+    });
+  }
+
   function renderSummary(){
+    renderRepPills();
     if(state.rep) renderRepMode(); else renderCompanyMode();
     renderFooterBits();
   }
@@ -991,7 +1026,7 @@ footer p{margin:0 0 8px}
     document.getElementById('summaryHealth').style.display = '';
 
     document.getElementById('ccTitle').textContent = 'Company-Wide Opportunity';
-    document.getElementById('ccHint').textContent = 'Step 1: pick your name in the Rep filter — this whole section becomes “My Tap Business,” scoped to your route.';
+    document.getElementById('ccHint').textContent = 'Tap your name below — this whole section becomes “My Tap Business,” scoped to your route.';
 
     // tap share tile
     var counted = cc.us + cc.them;
@@ -1021,15 +1056,9 @@ footer p{margin:0 0 8px}
       '<div class="big num">'+ce0(cc.flippedToUs+cc.flippedToThem)+'<small> taps</small></div>'+
       '<div class="sub"><b>'+ce0(cc.flippedToUs)+'</b> look competitor in iSellBeer but are ours; <b>'+ce0(cc.flippedToThem)+'</b> the reverse</div></div>';
 
-    var segTile = cc.segEdge
-      ? '<div class="scard click'+(state.drill==='segEdge'?' active':'')+'" data-drill="segEdge"><div class="lbl">🍺 Their Segment Edge</div>'+
-        '<div class="big num">'+esc(cc.segEdge.seg)+'</div>'+
-        '<div class="sub">they pour <b style="color:var(--them)">'+ce0(cc.segEdge.them)+'</b> vs our <b style="color:var(--us)">'+ce0(cc.segEdge.us)+'</b> — their biggest category advantage</div></div>'
-      : '';
-
-    var untappedTile = '<div class="scard click'+(state.drill==='untapped'?' active':'')+'" data-drill="untapped"><div class="lbl">🧭 Authorized, Not Pouring</div>'+
-      '<div class="big num">'+ce0(cc.untapped.length)+'<small> brands</small></div>'+
-      '<div class="sub">Kohler brands with sell rights in scope and <b>zero surveyed handles</b> anywhere</div></div>';
+    // "Their Segment Edge" and "Authorized, Not Pouring" tiles removed
+    // 2026-08-18 per Gavin -- their drill code paths remain (segEdge /
+    // untapped) in case either comes back, they're just not rendered.
 
     // resurvey tile
     var rsOver = cc.resurvey.filter(function(a){ return a.refresh.level==='overdue'; }).length;
@@ -1039,7 +1068,7 @@ footer p{margin:0 0 8px}
       '<div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue, '+ce0(rsSoon)+' due soon' : 'all accounts current')+'</div></div>';
 
     document.getElementById('summary').innerHTML =
-      shareTile + rightsTile + wrongTile + segTile + untappedTile + resurveyTile;
+      shareTile + rightsTile + wrongTile + resurveyTile;
 
     // survey health (small, admin-facing)
     var healthTiles =

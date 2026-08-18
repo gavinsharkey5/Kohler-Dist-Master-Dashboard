@@ -18,7 +18,14 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
-MY TAP BUSINESS -- rep mode (added 2026-08-17, per Gavin: "the rep should
+MY TAP BUSINESS -- rep mode (added 2026-08-17; 2026-08-18: a rep-name
+pill row now sits at the top of the command center in BOTH modes as the
+visible front door -- reps didn't know the view existed behind the Rep
+dropdown. Clicking a pill selects that rep (kept in sync with the Rep
+filter both directions); "Everyone" exits to the company view. Same
+day, per Gavin: the "Their Segment Edge" and "Authorized, Not Pouring"
+company tiles were removed -- their drill code paths remain unrendered
+in index.html if either is wanted back. Originally added 2026-08-17, per Gavin: "the rep should
 be the center of the experience," opportunities "must respect what that
 rep can actually sell"). Selecting a name in the Rep filter transforms
 the whole top section into that rep's tap business:
