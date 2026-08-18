@@ -51,13 +51,20 @@
   @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
 
   .repbar-wrap{max-width:1200px;margin:24px auto 0;padding:0 32px;}
-  .repbar-label{font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
-  .repbar{display:flex;flex-wrap:wrap;gap:8px;}
-  .repchip{background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:10px 16px;min-height:44px;
-    border-radius:22px;font-size:15.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
-    display:inline-flex;align-items:center;}
-  .repchip:hover{border-color:var(--accent);color:var(--text);}
-  .repchip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+  .start-panel{background:var(--card);border:1px solid var(--accent-deep);border-radius:16px;
+    padding:20px 20px 18px;box-shadow:var(--shadow);}
+  .start-here{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;line-height:1.3;}
+  .start-sub{font-size:16.5px;color:var(--text);line-height:1.45;margin-bottom:3px;}
+  .start-sub.dim{color:var(--text-dim);font-size:15px;margin-bottom:14px;}
+  .repbar{display:flex;flex-wrap:wrap;gap:9px;}
+  .repchip{background:var(--card-alt);border:1px solid var(--border);color:var(--text);padding:12px 18px;min-height:48px;
+    border-radius:24px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
+    display:inline-flex;align-items:center;transition:transform .1s ease,background .15s,border-color .15s;}
+  .repchip:hover{border-color:var(--accent);}
+  .repchip:active{transform:scale(.96);}
+  .repchip.active{background:var(--accent);border-color:var(--accent);color:#fff;
+    box-shadow:0 0 0 3px var(--accent-soft);}
 
   main{max-width:1200px;margin:28px auto;padding:0 32px;display:flex;flex-direction:column;gap:20px;}
 
@@ -312,13 +319,13 @@
     transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;}
   .prog-tile-link:hover{border-color:var(--accent);transform:translateY(-3px);background:var(--card-alt);
     box-shadow:0 2px 6px rgba(0,0,0,.4),0 22px 50px rgba(0,0,0,.5);}
-  .prog-tile-link:active{transform:translateY(-1px);}
+  .prog-tile-link:active{transform:scale(.985);}
   .prog-tile-link .prog-desc{margin-top:6px;}
-  .prog-tile-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;
-    margin-top:auto;padding-top:10px;border-top:1px solid var(--line-soft);}
-  .tile-cta-text{font-size:14.5px;color:var(--text-dim);}
-  .tile-cta-text b{color:var(--text);}
-  .tile-chev{color:var(--accent);font-size:23px;font-weight:700;flex-shrink:0;}
+  .prog-tile-cta{display:flex;margin-top:auto;padding-top:14px;}
+  .view-program-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    min-height:48px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:11px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--accent);}
+  .prog-tile-link:hover .view-program-btn{background:var(--accent);color:#fff;}
 
   .prog-detail-hero{padding:4px 2px 6px;}
   .prog-name-lg{font-size:34.5px;}
@@ -409,13 +416,17 @@
 <header>
   <div class="eyebrow">Incentive Tracking · August 2026</div>
   <h1>Incentive Tracker</h1>
-  <p class="sub">Every August 2026 supplier incentive program in one place, so you can see where you stand and where to focus. Progress shown against each program's tiers and qualifiers.</p>
+  <p class="sub">All of your August incentives in one place.</p>
   <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
 <div class="repbar-wrap">
-  <div class="repbar-label">Jump to a rep</div>
-  <div class="repbar" id="repbar"></div>
+  <div class="start-panel">
+    <div class="start-here">Start Here — Select Your Name</div>
+    <p class="start-sub">Select your name to see your progress across every incentive.</p>
+    <p class="start-sub dim">Track what you've completed, what's left, and where to focus next.</p>
+    <div class="repbar" id="repbar"></div>
+  </div>
 </div>
 
 <main id="main"></main>
@@ -41832,10 +41843,6 @@ function renderRep(){
 }
 
 function renderProgramTile(entry){
-  const rows = rankProgram(entry);
-  const cta = rows.length
-    ? `See the full leaderboard`
-    : 'No activity yet';
   return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
       <div class="prog-name-row">${progLogo(entry.key)}<span class="prog-name">${esc(entry.title)}</span><span class="prog-tag">${esc(entry.tag)}</span></div>
@@ -41843,8 +41850,7 @@ function renderProgramTile(entry){
       <div class="tile-rules">${(PROGRAM_RULES[entry.key]||[]).map(r=>`<div class="rule-item tile-rule"><span>${ruleHl(r)}</span></div>`).join('')}</div>
     </div>
     <div class="prog-body prog-tile-cta">
-      <span class="tile-cta-text">${cta}</span>
-      <span class="tile-chev">&rsaquo;</span>
+      <span class="view-program-btn">View Program &rsaquo;</span>
     </div>
   </button>`;
 }
@@ -41854,7 +41860,6 @@ function renderOverview(){
   const newTiles = PROGRAM_LIST.filter(e=>e.group==='new').map(renderProgramTile).join('');
   const ongoingTiles = PROGRAM_LIST.filter(e=>e.group==='ongoing').map(renderProgramTile).join('');
   main.innerHTML = `
-    <div class="empty-state" style="text-align:left;padding:0 0 4px;">Pick a rep above for their full breakdown — or tap a program below to see where everyone stands.</div>
     <div class="prog-grid">
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
