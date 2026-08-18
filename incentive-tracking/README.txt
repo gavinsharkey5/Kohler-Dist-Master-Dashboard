@@ -644,6 +644,20 @@ The specific rules he set:
      one big count-labeled button ("Your New Accounts [6]"), and the
      earn-head stacks vertically under 820px so rate notes never clip.
 
+DM grouping + territory pills (2026-08-18, late, per Gavin): the rep
+pills in the START HERE panel are grouped under each District Manager's
+name (label only, not clickable) so reps find themselves faster.
+Mapping source: mid-year-review/district_manager_trend.csv (District
+Manager + Sales Rep Assigned), cross-checked against the tap-survey and
+display-photo exports -- all 27 roster reps land in 5 DM groups (Chris
+McCrohan, Denise Montes, Mike Engel, Mike Kennedy, Paul Deady); a
+defensive "Other" group catches any future roster rep missing from
+DM_GROUPS in index.html. Every program name row (tiles, program pages,
+rep cards, blocked cards) also carries a territory pill next to the
+date tag: amber "Core Market" (tooltip lists the six areas) for the
+Core-Market-restricted programs, green "All Counties" for the rest --
+driven by the same CORE_MARKET_PROGRAM_KEYS set used for eligibility.
+
 Program-page scoreboard redesign (2026-08-18, evening, per Gavin: the
 leaderboard felt like a dense data table): each program's detail page
 is now (1) the hero pitch, (2) a big bulleted "WHAT YOU NEED TO DO"
