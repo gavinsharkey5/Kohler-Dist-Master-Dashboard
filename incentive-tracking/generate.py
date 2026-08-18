@@ -776,6 +776,9 @@ def build_new_belgium():
         d["draftCapableCount"] = len(draft_capable)
         d["draftEligible"] = (len(draft_capable) > 0 or d["featuredNewCount"] > 0
                               or d["featuredRebuyCount"] > 0 or d["otherNamedKegCount"] > 0)
+        # Generic whole-program flag the leaderboards key off (same idea as
+        # territoryEligible): false = this rep can't participate at all.
+        d["programEligible"] = d["draftEligible"]
 
     for rep, d in by_rep.items():
         d["featuredNew"].sort(key=lambda e: e["date"] or "", reverse=True)
@@ -858,6 +861,12 @@ def build_lytt_launch():
     leaderboard = []
     for rep, d in by_rep.items():
         d["buyingAccountCount"] = len(d["buyingAccounts"])
+        # Lytt is an off-premise penetration program: a rep with zero
+        # eligible off-premise accounts (and no Lytt buyers) has no
+        # denominator and structurally can't participate -- greyed card,
+        # excluded from the leaderboard (per Gavin, 2026-08-18, same
+        # route-based treatment as the draft programs).
+        d["programEligible"] = len(eligible_by_rep.get(rep, {})) > 0 or d["buyingAccountCount"] > 0
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["penetrationPct"] = round(100.0 * d["buyingAccountCount"] / d["eligibleAccountCount"], 1) if d["eligibleAccountCount"] else 0.0
         for threshold, rate, label in LYTT_TIERS:
@@ -1479,6 +1488,8 @@ def main():
     yave_on_na = sorted(rep for rep, d in data["yave"]["byRep"].items() if not d["hasOnPremAccounts"])
     yave_off_na = sorted(rep for rep, d in data["yave"]["byRep"].items() if not d["hasOffPremAccounts"])
     print(f"yave on-prem section n/a: {yave_on_na} | off-prem section n/a: {yave_off_na}")
+    lytt_na = sorted(rep for rep, d in data["lytt"]["byRep"].items() if d["territoryEligible"] and not d["programEligible"])
+    print(f"lytt not-applicable (no eligible off-prem accounts): {lytt_na}")
 
     for key in ("1911", "woodchuck"):
         total_new = sum(d["totalNewPlacements"] for d in data[key]["byRep"].values())

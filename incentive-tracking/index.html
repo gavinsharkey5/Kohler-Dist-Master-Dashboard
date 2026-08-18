@@ -339,6 +339,18 @@
   .prog-name-lg{font-size:34.5px;}
   .prog-detail-hero .prog-pitch{font-size:19.5px;}
 
+  /* ---- frozen rep header: name + jump-to pills stay pinned while scrolling ---- */
+  .sticky-nav{position:sticky;top:0;z-index:60;background:var(--canvas);
+    padding:10px 0 10px;border-bottom:1px solid var(--border);
+    box-shadow:0 10px 24px -18px rgba(0,0,0,.9);}
+  .sticky-nav .rep-hero{margin-bottom:8px;}
+  .sticky-nav .rep-hero h2{font-size:23px;}
+  .sticky-nav .pill-nav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  .sticky-nav .pill{flex-shrink:0;}
+  .sticky-nav .pill-nav-label{font-size:11.5px;}
+  [id^="card-"]{scroll-margin-top:178px;}
+
   .pill-nav-wrap{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
   .pill-nav{display:flex;flex-wrap:wrap;gap:7px;}
   .pill-nav-label{font-size:13.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;}
@@ -351,7 +363,7 @@
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
 
-  html, body{overflow-x:hidden;}
+  html, body{overflow-x:clip;}
   * { -webkit-tap-highlight-color: transparent; }
 
   @media (max-width: 820px){
@@ -23944,6 +23956,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 0,
         "draftEligible": false,
+        "programEligible": false,
         "territoryEligible": false
       },
       "Alisa Acciardi": {
@@ -23964,6 +23977,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Allison Scott": {
@@ -24150,6 +24164,7 @@ const PROGRAM_DATA = {
         "housePods": 16,
         "draftCapableCount": 100,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Andrew Lundy": {
@@ -24165,6 +24180,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 0,
         "draftEligible": false,
+        "programEligible": false,
         "territoryEligible": false
       },
       "Anthony Palmisano": {
@@ -24241,6 +24257,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 45,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Brian Sengebush": {
@@ -24400,6 +24417,7 @@ const PROGRAM_DATA = {
         "housePods": 12,
         "draftCapableCount": 104,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Chris Payton": {
@@ -24476,6 +24494,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 15,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -24574,6 +24593,7 @@ const PROGRAM_DATA = {
         "housePods": 3,
         "draftCapableCount": 31,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -24601,6 +24621,7 @@ const PROGRAM_DATA = {
         "housePods": 1,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Derrick Laws": {
@@ -24633,6 +24654,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 4,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dylan Rubino": {
@@ -24648,6 +24670,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 0,
         "draftEligible": false,
+        "programEligible": false,
         "territoryEligible": true
       },
       "Hakan Sadik": {
@@ -24663,6 +24686,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 0,
         "draftEligible": false,
+        "programEligible": false,
         "territoryEligible": false
       },
       "Jaime Colonna": {
@@ -24683,6 +24707,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Javier Melo": {
@@ -24739,6 +24764,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 10,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Jayson Romine": {
@@ -24761,6 +24787,7 @@ const PROGRAM_DATA = {
         "housePods": 1,
         "draftCapableCount": 0,
         "draftEligible": false,
+        "programEligible": false,
         "territoryEligible": true
       },
       "Jim Heaney": {
@@ -24789,6 +24816,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 3,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "John O'Donoghue": {
@@ -24809,6 +24837,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Klejdi Lamo": {
@@ -24842,6 +24871,7 @@ const PROGRAM_DATA = {
         "housePods": 2,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Matt Powierski": {
@@ -24902,6 +24932,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 11,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Michael Harboy": {
@@ -24922,6 +24953,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Mike Ast": {
@@ -25001,6 +25033,7 @@ const PROGRAM_DATA = {
         "housePods": 2,
         "draftCapableCount": 12,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Nick Melissari": {
@@ -25191,6 +25224,7 @@ const PROGRAM_DATA = {
         "housePods": 17,
         "draftCapableCount": 151,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Pablo Lopez": {
@@ -25263,6 +25297,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 14,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
@@ -25374,6 +25409,7 @@ const PROGRAM_DATA = {
         "housePods": 5,
         "draftCapableCount": 102,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Phil Ernst": {
@@ -25401,6 +25437,7 @@ const PROGRAM_DATA = {
         "housePods": 1,
         "draftCapableCount": 1,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -25477,6 +25514,7 @@ const PROGRAM_DATA = {
         "housePods": 0,
         "draftCapableCount": 103,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       },
       "Shane Barreca": {
@@ -25507,6 +25545,7 @@ const PROGRAM_DATA = {
         "housePods": 2,
         "draftCapableCount": 0,
         "draftEligible": true,
+        "programEligible": true,
         "territoryEligible": true
       }
     },
@@ -25524,6 +25563,7 @@ const PROGRAM_DATA = {
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [],
+        "programEligible": false,
         "territoryEligible": false
       },
       "Alisa Acciardi": {
@@ -25544,6 +25584,7 @@ const PROGRAM_DATA = {
             "cases2026": 1403.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Allison Scott": {
@@ -25555,6 +25596,7 @@ const PROGRAM_DATA = {
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [],
+        "programEligible": false,
         "territoryEligible": true
       },
       "Andrew Lundy": {
@@ -25566,6 +25608,7 @@ const PROGRAM_DATA = {
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [],
+        "programEligible": false,
         "territoryEligible": false
       },
       "Anthony Palmisano": {
@@ -25687,6 +25730,7 @@ const PROGRAM_DATA = {
             "cases2026": 1390.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Brian Sengebush": {
@@ -25723,6 +25767,7 @@ const PROGRAM_DATA = {
             "cases2026": 20.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Chris Payton": {
@@ -25896,6 +25941,7 @@ const PROGRAM_DATA = {
             "cases2026": 17.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -26093,6 +26139,7 @@ const PROGRAM_DATA = {
             "cases2026": 171.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -26246,6 +26293,7 @@ const PROGRAM_DATA = {
             "cases2026": 17.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Derrick Laws": {
@@ -26391,6 +26439,7 @@ const PROGRAM_DATA = {
             "cases2026": 235.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Dylan Rubino": {
@@ -26407,6 +26456,7 @@ const PROGRAM_DATA = {
             "cases2026": 1418.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Hakan Sadik": {
@@ -26418,6 +26468,7 @@ const PROGRAM_DATA = {
         "tier": null,
         "rate": 0.0,
         "whitespaceAccounts": [],
+        "programEligible": false,
         "territoryEligible": false
       },
       "Jaime Colonna": {
@@ -26434,6 +26485,7 @@ const PROGRAM_DATA = {
             "cases2026": 1393.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Javier Melo": {
@@ -26567,6 +26619,7 @@ const PROGRAM_DATA = {
             "cases2026": 2511.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Jayson Romine": {
@@ -26720,6 +26773,7 @@ const PROGRAM_DATA = {
             "cases2026": 11.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Jim Heaney": {
@@ -26905,6 +26959,7 @@ const PROGRAM_DATA = {
             "cases2026": 770.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "John O'Donoghue": {
@@ -26929,6 +26984,7 @@ const PROGRAM_DATA = {
             "cases2026": 206.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Klejdi Lamo": {
@@ -27053,6 +27109,7 @@ const PROGRAM_DATA = {
             "cases2026": 700.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Matt Powierski": {
@@ -27226,6 +27283,7 @@ const PROGRAM_DATA = {
             "cases2026": 36.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Michael Harboy": {
@@ -27263,6 +27321,7 @@ const PROGRAM_DATA = {
             "cases2026": 4368.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Mike Ast": {
@@ -27400,6 +27459,7 @@ const PROGRAM_DATA = {
             "cases2026": 291.3
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Nick Melissari": {
@@ -27420,6 +27480,7 @@ const PROGRAM_DATA = {
             "cases2026": 842.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Pablo Lopez": {
@@ -27545,6 +27606,7 @@ const PROGRAM_DATA = {
             "cases2026": 47.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
@@ -27565,6 +27627,7 @@ const PROGRAM_DATA = {
             "cases2026": 66.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Phil Ernst": {
@@ -27694,6 +27757,7 @@ const PROGRAM_DATA = {
             "cases2026": 85.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -27714,6 +27778,7 @@ const PROGRAM_DATA = {
             "cases2026": 79.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       },
       "Shane Barreca": {
@@ -27851,6 +27916,7 @@ const PROGRAM_DATA = {
             "cases2026": 130.0
           }
         ],
+        "programEligible": true,
         "territoryEligible": true
       }
     },
@@ -40494,7 +40560,7 @@ function rankProgram(entry){
     const d = entry.getRep(rep);
     if(!d) return null;
     if(d.territoryEligible===false) return null;
-    if(d.draftEligible===false) return null;
+    if(d.programEligible===false) return null;
     const val = entry.metric(d);
     if(val==null || Number.isNaN(val)) return null;
     return {rep, val};
@@ -41281,6 +41347,9 @@ function cardLytt(rep){
   const d = (PROGRAM_DATA['lytt']||{}).byRep?.[rep];
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('lytt','Lytt Launch','Aug–Sept','Lytt');
+  if(d.programEligible===false) return notApplicableCard('lytt','Lytt Launch','Aug–Sept',
+    'Not Applicable — No Off-Premise Accounts On Your Route',
+    'Lytt penetration is measured across your off-premise account book, and you have no eligible off-premise accounts on your route, so this program isn\'t applicable to you.');
 
   const nextTier = LYTT_TIER_DEFS.find(t=>d.penetrationPct < t.pct*100);
   const tierChips = LYTT_TIER_DEFS.map(t=>{
@@ -41753,8 +41822,10 @@ function renderRep(){
   const main = document.getElementById('main');
   main.innerHTML = `
     <button class="backbtn" id="backbtn">&lsaquo; All reps</button>
-    <div class="rep-hero"><h2>${esc(activeRep)}</h2></div>
-    ${renderPillNav(activeRep)}
+    <div class="sticky-nav">
+      <div class="rep-hero"><h2>${esc(activeRep)}</h2></div>
+      ${renderPillNav(activeRep)}
+    </div>
     <div class="prog-grid">
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
@@ -41845,14 +41916,16 @@ const PROGRAM_RANKING_CONFIG = {
   '1911': {
     metrics:[
       {key:'package', label:'Package', fn:d=>d.offPremNewCount, unit:'placements', opportunity:d=>opp1911Package(d)},
-      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,2)},
+      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,2),
+        eligible:d=>d.draftChannelOk!==false},
     ],
     opportunity:d=>opp1911Package(d) || opp1911Draft(d,2),
   },
   'woodchuck': {
     metrics:[
       {key:'package', label:'Package', fn:d=>d.offPremNewCount, unit:'placements', opportunity:d=>opp1911Package(d)},
-      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,3)},
+      {key:'draft', label:'Draft', fn:d=>d.draftNewCount, unit:'placements', opportunity:d=>opp1911Draft(d,3),
+        eligible:d=>d.draftChannelOk!==false},
     ],
     opportunity:d=>opp1911Package(d) || opp1911Draft(d,3),
   },
@@ -41873,8 +41946,10 @@ const PROGRAM_RANKING_CONFIG = {
   'boston_beer': {
     metrics:[
       {key:'draft', label:'Draft', fn:d=>d.draftNewCount+d.draftRebuyCount, unit:'actions',
+        eligible:d=>d.draftChannelOk!==false,
         opportunity:d=>{ const l=dedupeByCustomer(d.draftLapsed||[]); return l.length?{label:'Draft accounts to rebuy ($50 each)', items:l.slice(0,3).map(a=>a.customer)}:null; }},
       {key:'package', label:'Package', fn:d=>d.packageNewCount, unit:'placements',
+        eligible:d=>d.packageChannelOk!==false,
         opportunity:d=>{ const l=d.packageWhitespace||[]; return l.length?{label:'New package accounts to target', items:l.slice(0,3).map(a=>a.customer)}:null; }},
     ],
     opportunity:d=>{
@@ -41935,8 +42010,8 @@ const PROGRAM_RANKING_CONFIG = {
   },
   'yave': {
     metrics:[
-      {key:'onprem', label:'On-Premise', fn:d=>d.onPremAccountCount, unit:'accounts'},
-      {key:'offprem', label:'Off-Premise', fn:d=>d.offPremAccountCount, unit:'accounts'},
+      {key:'onprem', label:'On-Premise', fn:d=>d.onPremAccountCount, unit:'accounts', eligible:d=>d.hasOnPremAccounts!==false},
+      {key:'offprem', label:'Off-Premise', fn:d=>d.offPremAccountCount, unit:'accounts', eligible:d=>d.hasOffPremAccounts!==false},
     ],
   },
   'mollys': {
@@ -41962,12 +42037,13 @@ const PROGRAM_RANKING_CONFIG = {
   },
 };
 
-function rankByConfig(entry, metricFn){
+function rankByConfig(entry, metricFn, eligibleFn){
   const rows = ROSTER.map(rep=>{
     const d = entry.getRep(rep);
     if(!d) return null;
     if(d.territoryEligible===false) return null;
-    if(d.draftEligible===false) return null;
+    if(d.programEligible===false) return null;
+    if(eligibleFn && eligibleFn(d)===false) return null;
     const val = metricFn(d);
     if(val==null || Number.isNaN(val)) return null;
     return {rep, val};
@@ -42102,7 +42178,7 @@ function renderProgramDetail(key){
   const metricFn = activeMetricDef ? activeMetricDef.fn : entry.metric;
   const fmt = activeMetricDef ? (v=>v.toFixed(activeMetricDef.decimals||0)) : entry.fmt;
   const metricLabel = activeMetricDef ? activeMetricDef.unit : entry.metricLabel;
-  const rows = rankByConfig(entry, metricFn);
+  const rows = rankByConfig(entry, metricFn, activeMetricDef && activeMetricDef.eligible);
   const cardFn = PROGRAM_CARD_FN[key];
 
   const tabsHtml = altMetrics.length ? `<div class="metric-tabs">
