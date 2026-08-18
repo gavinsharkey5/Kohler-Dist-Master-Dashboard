@@ -90,6 +90,11 @@ ALLOTHER_BRANDS = {
     # Confirmed with the user 2026-08-17 (Report_39). First brand from supplier
     # VIVA BEVERAGES, so there was no portfolio precedent either way.
     'VIVA TEQUILA SELTZER',
+    # Confirmed with the user 2026-08-18 (Report_3 export). Oktoberfest/fall
+    # seasonals from one Bottle King Wayne submission; CAPE MAY appears under
+    # two Brand Family values ("CAPE MAY" and "CAPE MAY SEASONALS").
+    'CAPE MAY', 'CAPE MAY SEASONALS', 'SHINER', 'STEVENS POINT BREWERY',
+    'WEIHENSTEPHANER',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
