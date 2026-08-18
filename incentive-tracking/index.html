@@ -134,6 +134,26 @@
 
   .empty-note{color:var(--text-dim);font-size:15px;line-height:1.5;}
 
+  /* ---- "Where You Stand" scoreboard tiles (top of every card) ---- */
+  .stat-board-wrap{display:flex;flex-direction:column;}
+  .stat-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;}
+  .stat-tile{background:var(--card-alt);border:1px solid var(--line-soft);border-left:4px solid var(--border);
+    border-radius:12px;padding:14px 15px;}
+  .stat-tile-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px;line-height:1.05;color:var(--text);
+    font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+  .stat-tile-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--text-dim);
+    margin-top:7px;text-transform:uppercase;letter-spacing:.04em;line-height:1.35;}
+  .stat-tile-sub{font-size:13.5px;margin-top:5px;color:var(--text-dim);line-height:1.35;}
+  .stat-tile.good{border-left-color:var(--good);background:linear-gradient(135deg,var(--good-soft),var(--card-alt) 70%);}
+  .stat-tile.good .stat-tile-num{color:var(--good);}
+  .stat-tile.good .stat-tile-sub{color:var(--good);font-weight:600;}
+  .stat-tile.warn{border-left-color:var(--amber);background:linear-gradient(135deg,var(--amber-soft),var(--card-alt) 70%);}
+  .stat-tile.warn .stat-tile-num{color:var(--amber);}
+  .stat-tile.warn .stat-tile-sub{color:var(--amber);font-weight:600;}
+  .stat-tile.bad{border-left-color:var(--red);background:linear-gradient(135deg,var(--red-soft),var(--card-alt) 70%);}
+  .stat-tile.bad .stat-tile-num{color:var(--red);}
+  .stat-tile.bad .stat-tile-sub{color:var(--red);font-weight:600;}
+
   /* ---- big collapsible toggles (activity / opportunity lists) ---- */
   .big-toggle{display:flex;align-items:center;gap:11px;width:100%;min-height:52px;cursor:pointer;text-align:left;
     background:var(--card);border:1px solid var(--border);border-radius:11px;padding:13px 15px;
@@ -371,6 +391,9 @@
     .earn-rate{text-align:left;}
     .earn-rate-note{max-width:none;}
     .opp-stat{white-space:normal;max-width:45%;}
+    .stat-board{grid-template-columns:repeat(2,1fr);}
+    .stat-tile{padding:12px 13px;}
+    .stat-tile-num{font-size:29px;}
   }
 </style>
 </head>
@@ -38010,6 +38033,29 @@ function deltaCls(v){ return v>0 ? 'pos' : (v<0 ? 'neg' : ''); }
 // all-product case volume, formatted with thousands separators.
 function casesStat(v){ return v>0 ? Math.round(v).toLocaleString('en-US')+' cases' : 'low volume on file'; }
 
+// "Where You Stand" scoreboard: the rep's key numbers for one program,
+// rendered as large color-coded tiles at the very top of the card so
+// status registers in a glance before any account-level detail
+// (per Gavin, 2026-08-18). Status: 'good' = achieved/qualified (green),
+// 'warn' = in progress / short of a goal (amber), 'bad' = behind (red),
+// omitted = neutral count with no goal attached (deliberately NOT red
+// at zero, so a quiet program doesn't read as an alarm wall).
+// tiles: [{num, label, sub, status}]
+function statBoard(tiles){
+  tiles = (tiles||[]).filter(Boolean);
+  if(!tiles.length) return '';
+  return `<div class="stat-board-wrap">
+    <div class="earn-section-label">Where You Stand</div>
+    <div class="stat-board">${tiles.map(t=>`<div class="stat-tile${t.status?' '+t.status:''}">
+      <div class="stat-tile-num">${esc(t.num)}</div>
+      <div class="stat-tile-label">${esc(t.label)}</div>
+      ${t.sub?`<div class="stat-tile-sub">${esc(t.sub)}</div>`:''}
+    </div>`).join('')}</div>
+  </div>`;
+}
+// Green when the count is on the board, neutral at zero.
+function cntStatus(n){ return n>0 ? 'good' : null; }
+
 function territoryBlockedCard(logoKey, title, tag, brandLabel){
   return `<div class="prog-card">
     <div class="prog-head">
@@ -38028,6 +38074,13 @@ function territoryBlockedCard(logoKey, title, tag, brandLabel){
 function card1911(rep){
   const d = (PROGRAM_DATA['1911']||{}).byRep?.[rep];
   if(!d) return '';
+
+  const board = statBoard([
+    {num:d.totalNewPlacements, label:'New Placements', status:cntStatus(d.totalNewPlacements), sub:'$10 pkg · $100 draft'},
+    {num:d.caseVolume.toFixed(0), label:'Cases Sold'},
+    {num:d.draftAccountsQualified, label:'Draft At 2-BBL Goal', status:cntStatus(d.draftAccountsQualified),
+     sub:d.draftNew.length>d.draftAccountsQualified?`${d.draftNew.length-d.draftAccountsQualified} still building`:null},
+  ]);
 
   const pkgBlock = earnBlock({
     icon:'📦', title:'New Package Placements',
@@ -38081,6 +38134,7 @@ function card1911(rep){
       ${progPitch('1911')}
     </div>
     <div class="prog-body">
+      ${board}
       ${pkgBlock}
       ${draftBlock}
     </div>
@@ -38091,10 +38145,13 @@ function cardWoodchuck(rep){
   const d = (PROGRAM_DATA['woodchuck']||{}).byRep?.[rep];
   if(!d) return '';
 
-  const gate = qualifierBanner({
-    label:'Land 3 new placements (package + draft combined) to unlock every payout in this program',
-    current:d.totalNewPlacements, goal:3, unit:'new placements', met:d.totalNewPlacements>=3,
-  });
+  const qualMet = d.totalNewPlacements>=3;
+  const board = statBoard([
+    {num:`${d.totalNewPlacements} / 3`, label:'New Placements — Qualifier', status:qualMet?'good':'warn',
+     sub:qualMet?'Payouts unlocked':`${3-d.totalNewPlacements} more to unlock every payout`},
+    {num:d.caseVolume.toFixed(0), label:'Cases Sold', sub:'$1 each once unlocked'},
+    {num:d.draftAccountsQualified, label:'Draft At 3-BBL Goal', status:cntStatus(d.draftAccountsQualified)},
+  ]);
 
   const pkgBlock = earnBlock({
     icon:'📦', title:'New Package Placements',
@@ -38159,7 +38216,7 @@ function cardWoodchuck(rep){
       ${progPitch('woodchuck')}
     </div>
     <div class="prog-body">
-      ${gate}
+      ${board}
       ${pkgBlock}
       ${draftBlock}
       ${caseBlock}
@@ -38171,10 +38228,12 @@ function cardTona(rep){
   const d = (PROGRAM_DATA['tona']||{}).byRep?.[rep];
   if(!d) return '';
 
-  const gate = qualifierBanner({
-    label:'Sell 20 cases of Tona 24oz cans to unlock every payout in this program',
-    current:d.caseVolume24oz, goal:20, unit:'cases', met:d.qualifies,
-  });
+  const board = statBoard([
+    {num:`${d.caseVolume24oz.toFixed(0)} / 20`, label:'24oz Cases — Qualifier', status:d.qualifies?'good':'warn',
+     sub:d.qualifies?'Payouts unlocked':`${Math.ceil(20-d.caseVolume24oz)} more to unlock every payout`},
+    {num:d.new24ozCount, label:'New 24oz Placements', status:cntStatus(d.new24ozCount), sub:'$10 each'},
+    {num:d.caseVolumeOther.toFixed(0), label:'Other Tona Cases', sub:'$0.50 each once unlocked'},
+  ]);
   const gateDetail = detailList({
     label:'Where Your 24oz Cases Came From',
     items:d.caseVolume24ozByAccount.map(a=>({name:a.customer, stat:a.cases.toFixed(0)+' cases'})),
@@ -38218,7 +38277,7 @@ function cardTona(rep){
       ${progPitch('tona')}
     </div>
     <div class="prog-body">
-      ${gate}
+      ${board}
       ${gateDetail}
       ${canBlock}
       ${otherBlock}
@@ -38229,6 +38288,13 @@ function cardTona(rep){
 function cardPathToVictory(rep){
   const d = (PROGRAM_DATA['path_to_victory']||{}).byRep?.[rep];
   if(!d) return '';
+
+  const board = statBoard([
+    {num:d.sixPackAccountCount, label:'6pk Accounts', status:cntStatus(d.sixPackAccountCount)},
+    {num:d.sixPackUnits.toFixed(0), label:'6pk Units'},
+    {num:d.nineteenTwoAccountCount, label:'19.2oz Accounts', status:cntStatus(d.nineteenTwoAccountCount)},
+    {num:d.nineteenTwoUnits.toFixed(0), label:'19.2oz Units'},
+  ]);
 
   const sixBlock = earnBlock({
     icon:'🥫', title:'Five For Fighting 6pk Cans',
@@ -38266,6 +38332,7 @@ function cardPathToVictory(rep){
       ${progPitch('path_to_victory')}
     </div>
     <div class="prog-body">
+      ${board}
       ${sixBlock}
       ${nineteenBlock}
     </div>
@@ -38277,11 +38344,13 @@ function cardSamAdams(rep){
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('sam_adams','Sam Adams Octoberfest Fast Start','August','Samuel Adams');
 
-  const commissionGate = qualifierBanner({
-    label:'Sell more Sam Adams (all SKUs) than last August and your commission doubles on every case',
-    current:d.allSkuUnitsThisYear, goal:d.allSkuUnitsLastYear||1, unit:'cases vs last Aug', met:d.isPositive,
-    metTitle:'Commission Doubled', lockedTitle:'Commission Not Doubled Yet',
-  });
+  const allDiff = d.allSkuUnitsThisYear - d.allSkuUnitsLastYear;
+  const board = statBoard([
+    {num:signedFmt(allDiff), label:'All Sam Adams vs Last Aug', status:d.isPositive?'good':'bad',
+     sub:d.isPositive?'Commission doubled':'Go positive to double commission'},
+    {num:signedFmt(d.octoberfestGrowth), label:'Octoberfest vs Last Aug', status:d.octoberfestGrowth>0?'good':(d.octoberfestGrowth<0?'bad':null),
+     sub:'$1 per case over last Aug'},
+  ]);
 
   const products = productAccordion({
     label:'Products — Tap To See Accounts',
@@ -38327,7 +38396,8 @@ function cardSamAdams(rep){
       ${progPitch('sam_adams')}
     </div>
     <div class="prog-body">
-      ${commissionGate}
+      ${board}
+      <div class="empty-note">Early-month note: this compares month-to-date against ALL of last August, so red here usually flips late in the month.</div>
       ${octoberfestBlock}
     </div>
   </div>`;
@@ -38337,6 +38407,13 @@ function cardBostonBeer(rep){
   const d = (PROGRAM_DATA['boston_beer']||{}).byRep?.[rep];
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('boston_beer','Boston Beer August Draft Blitz','August','Angry Orchard / Dogfish Head');
+
+  const board = statBoard([
+    {num:d.draftNewCount, label:'New Draft PODs', status:cntStatus(d.draftNewCount), sub:'$100 each'},
+    {num:d.draftRebuyCount, label:'Draft Rebuys', status:cntStatus(d.draftRebuyCount), sub:'$50 each'},
+    {num:d.packageNewCount, label:'New Pkg Placements', status:cntStatus(d.packageNewCount), sub:'$10 each'},
+    {num:d.points, label:'Trip Points', status:cntStatus(d.points)},
+  ]);
 
   const draftLapsed = dedupeByCustomer(d.draftLapsed);
   const draftItems = [
@@ -38407,6 +38484,7 @@ function cardBostonBeer(rep){
       ${progPitch('boston_beer')}
     </div>
     <div class="prog-body">
+      ${board}
       ${draftBlock}
       ${packageBlock}
       ${tripBlock}
@@ -38419,6 +38497,12 @@ function cardNewBelgium(rep){
   const prog = PROGRAM_DATA['new_belgium']||{};
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('new_belgium','New Belgium Draft (Summer Draft Focus)','August',"Bell's / Voodoo Ranger / Fat Tire");
+
+  const board = statBoard([
+    {num:d.featuredNewCount, label:'New Featured PODs', status:cntStatus(d.featuredNewCount), sub:'up to $100 each'},
+    {num:d.featuredRebuyCount, label:'Featured Rebuys', status:cntStatus(d.featuredRebuyCount), sub:'up to $50 each'},
+    {num:d.otherNamedKegCount, label:'Voodoo / Fat Tire Kegs', status:cntStatus(d.otherNamedKegCount), sub:'$25 each'},
+  ]);
 
   const houseBanner = qualifierBanner({
     label:'Company-wide goal, informational only — your own $ payouts below aren\'t gated by this',
@@ -38476,6 +38560,7 @@ function cardNewBelgium(rep){
       ${progPitch('new_belgium')}
     </div>
     <div class="prog-body">
+      ${board}
       ${houseBanner}
       ${featuredBlock}
       ${otherBlock}
@@ -38536,8 +38621,8 @@ function cardLytt(rep){
     <div class="prog-body">
       <div class="tier-hero">
         <div class="tier-hero-label">You Are Here</div>
-        <div class="tier-hero-pct">${d.penetrationPct.toFixed(1)}%</div>
-        <div class="tier-hero-sub">${d.buyingAccountCount} of ${d.eligibleAccountCount} accounts buying</div>
+        <div class="tier-hero-pct" style="color:${d.tier?'var(--good)':(d.penetrationPct>0?'var(--amber)':'var(--text)')}">${d.penetrationPct.toFixed(1)}%</div>
+        <div class="tier-hero-sub">${d.buyingAccountCount} of ${d.eligibleAccountCount} accounts buying${d.tier?` · ✅ ${esc(d.tier)}`:''}</div>
       </div>
       <div class="tier-list">${tierChips}</div>
       ${nextGoalHtml}
@@ -38573,6 +38658,11 @@ function cardFallSeasonal(rep){
     .sort((a,b)=>parseFloat(b.stat)-parseFloat(a.stat));
 
   const totalCE = (po?po.packageCaseEquivalents:0) + (pd?pd.packageCaseEquivalents:0);
+  const board = statBoard([
+    {num:totalCE.toFixed(1), label:'Package CE', status:cntStatus(totalCE), sub:'$0.50 each'},
+    {num:pd?pd.sixtelCount:0, label:'Sixtels', status:cntStatus(pd?pd.sixtelCount:0), sub:'$5 each'},
+    {num:pd?pd.halfKegCount:0, label:'Half-Kegs', status:cntStatus(pd?pd.halfKegCount:0), sub:'$10 each'},
+  ]);
   const ceBlock = earnBlock({
     icon:'🎃', title:'Package',
     rate:'EARN $0.50', rateNote:'per case-equivalent on every qualifying Fall Seasonal package — pumpkin, Oktoberfest, and more',
@@ -38626,6 +38716,7 @@ function cardFallSeasonal(rep){
       ${progPitch('fall_seasonal')}
     </div>
     <div class="prog-body">
+      ${board}
       ${ceBlock}
       ${kegBlock}
     </div>
@@ -38636,6 +38727,14 @@ function cardSunCruiser(rep){
   const d = (PROGRAM_DATA['sun_cruiser']||{}).byRep?.[rep];
   if(!d) return '';
   if(d.territoryEligible===false) return territoryBlockedCard('sun_cruiser','Sun Cruiser Volume','May–Aug','Sun Cruiser');
+
+  const totalDiff = d.totalCasesThisYear - d.totalCasesLastYear;
+  const board = statBoard([
+    {num:signedFmt(totalDiff), label:'Total vs Last Year', status:totalDiff>0?'good':(totalDiff<0?'bad':null),
+     sub:totalDiff>0?'Payout unlocked':'Payout starts once you beat last year'},
+    {num:'+'+d.rate1CaseGrowth.toFixed(0), label:'$1-Tier Case Growth', status:cntStatus(d.rate1CaseGrowth)},
+    {num:'+'+d.rate3CaseGrowth.toFixed(0), label:'$3-Tier Case Growth', status:cntStatus(d.rate3CaseGrowth)},
+  ]);
 
   const rate1Block = earnBlock({
     icon:'🥤', title:'$1/Case Packages',
@@ -38670,6 +38769,7 @@ function cardSunCruiser(rep){
       ${progPitch('sun_cruiser')}
     </div>
     <div class="prog-body">
+      ${board}
       ${rate1Block}
       ${rate3Block}
     </div>
@@ -38679,6 +38779,15 @@ function cardSunCruiser(rep){
 function cardYave(rep){
   const d = (PROGRAM_DATA['yave']||{}).byRep?.[rep];
   if(!d) return '';
+
+  const onStatus = d.onPremAccountCount>=2 ? 'good' : (d.onPremAccountCount>=1 ? 'warn' : null);
+  const offStatus = d.offPremAccountCount>=5 ? 'good' : (d.offPremAccountCount>=1 ? 'warn' : null);
+  const board = statBoard([
+    {num:`${d.onPremAccountCount} / 2`, label:'On-Prem Accounts', status:onStatus,
+     sub:d.onPremAccountCount>=2?'$25 milestone hit':(d.onPremAccountCount>=1?'1 more for $25':'First account pays $10')},
+    {num:`${d.offPremAccountCount} / 5`, label:'Off-Prem Accounts', status:offStatus,
+     sub:d.offPremAccountCount>=5?'$125 milestone hit':(d.offPremAccountCount>=3?`${5-d.offPremAccountCount} more for $125`:(d.offPremAccountCount>=1?`${3-d.offPremAccountCount} more for $50`:'First account pays $15'))},
+  ]);
 
   const onMilestone = d.onPremAccountCount>=2 ? 25 : (d.onPremAccountCount>=1 ? 10 : 0);
   const onNextGoal = d.onPremAccountCount<1 ? 1 : 2;
@@ -38716,6 +38825,7 @@ function cardYave(rep){
       ${progPitch('yave')}
     </div>
     <div class="prog-body">
+      ${board}
       ${onBlock}
       ${offBlock}
     </div>
@@ -38725,6 +38835,12 @@ function cardYave(rep){
 function cardMollys(rep){
   const d = (PROGRAM_DATA['mollys']||{}).byRep?.[rep];
   if(!d) return '';
+
+  const board = statBoard([
+    {num:d.newPodCount, label:'New PODs', status:cntStatus(d.newPodCount), sub:'$50 each'},
+    {num:d.rebuyCount, label:'Accounts Rebuying', status:cntStatus(d.rebuyCount)},
+    {num:d.rebuyCaseVolume.toFixed(0), label:'Rebuy Cases', sub:'$10 each'},
+  ]);
 
   const podBlock = earnBlock({
     icon:'🍾', title:'New Placements',
@@ -38766,6 +38882,7 @@ function cardMollys(rep){
       ${progPitch('mollys')}
     </div>
     <div class="prog-body">
+      ${board}
       ${podBlock}
       ${rebuyBlock}
     </div>
@@ -38781,6 +38898,16 @@ function cardGarageBeerSummerSequel(rep){
   else if(d.caseEquiv >= d.bonusGoal) nextGoalNote = `${(d.superBonusGoal-d.caseEquiv).toFixed(0)} more CE to Super Bonus ($2.00/CE).`;
   else if(d.caseEquiv >= d.tieredGoal) nextGoalNote = `${(d.bonusGoal-d.caseEquiv).toFixed(0)} more CE to Bonus ($1.50/CE).`;
   else nextGoalNote = `${(d.tieredGoal-d.caseEquiv).toFixed(0)} more CE to Tiered ($1.00/CE).`;
+
+  const atTop = d.caseEquiv >= d.superBonusGoal;
+  const board = statBoard([
+    {num:d.caseEquiv.toFixed(0), label:'Your CE', status:d.tier?'good':'warn',
+     sub:d.tier?`${d.tier} tier active`:`${(d.tieredGoal-d.caseEquiv).toFixed(0)} CE to first tier`},
+    atTop
+      ? {num:'✓', label:'Super Bonus', status:'good', sub:'$2.00/CE — top tier reached'}
+      : {num:(d.caseEquiv >= d.bonusGoal ? (d.superBonusGoal-d.caseEquiv) : (d.caseEquiv >= d.tieredGoal ? (d.bonusGoal-d.caseEquiv) : (d.tieredGoal-d.caseEquiv))).toFixed(0),
+         label:'CE To Next Tier', status:'warn'},
+  ]);
 
   const block = earnBlock({
     icon:'📊', title:'Volume Push Tiers',
@@ -38800,6 +38927,7 @@ function cardGarageBeerSummerSequel(rep){
       ${progPitch('garage_beer_summer_sequel')}
     </div>
     <div class="prog-body">
+      ${board}
       ${block}
       <div class="empty-note">Draft bonus ($50 new / $100 rebuy after 3 kegs) and the $5 iSellBeer feature bonus aren't tracked here — no account-level data in this file.</div>
     </div>
@@ -38817,6 +38945,12 @@ function cardGarageBeerPresident(rep){
     current:prog.companyTotalThisYear||0, goal:prog.houseGoal||9305, unit:'house CE', met:houseMet,
   });
 
+  const board = statBoard([
+    {num:signedFmt(d.caseGrowthOverLastYear), label:'Your CE vs Last Year',
+     status:d.caseGrowthOverLastYear>0?'good':(d.caseGrowthOverLastYear<0?'bad':null),
+     sub:'$1 each once the company goal is hit'},
+  ]);
+
   const block = earnBlock({
     icon:'📈', title:'Your CE Growth',
     rate:'EARN $1', rateNote:'per case-equivalent over last year, once the company goal above is hit',
@@ -38830,6 +38964,7 @@ function cardGarageBeerPresident(rep){
       ${progPitch('garage_beer_president')}
     </div>
     <div class="prog-body">
+      ${board}
       ${houseBanner}
       ${block}
     </div>
@@ -38842,6 +38977,13 @@ function cardNewBelgiumDistribution(rep){
   if(d.territoryEligible===false) return territoryBlockedCard('new_belgium_distribution','New Belgium Distribution — Push Volume','Jul–Aug',"Bell's / Kirin / Voodoo Family");
 
   const missingBrands = (d.brands||[]).filter(b=>b.pushVolumeCE===0);
+  const activeBrands = (d.brands||[]).length - missingBrands.length;
+  const board = statBoard([
+    {num:d.pushVolumeCE.toFixed(0), label:'August Push CE', status:cntStatus(d.pushVolumeCE)},
+    {num:`${activeBrands} / ${(d.brands||[]).length}`, label:'Brands Active',
+     status:activeBrands===(d.brands||[]).length?'good':(activeBrands>0?'warn':null),
+     sub:missingBrands.length?`${missingBrands.length} brand${missingBrands.length===1?'':'s'} with no volume yet`:'Every core brand selling'},
+  ]);
   const block = earnBlock({
     icon:'🌊', title:'Push Volume — Case Equivalents',
     rate:'CE TRACKED', rateNote:'No $ rate stated for this phase — volume tracked across Bell\'s, Bell\'s Hearted Family, Kirin Ichiban, Kirin Light, and Voodoo Family',
@@ -38869,6 +39011,7 @@ function cardNewBelgiumDistribution(rep){
       ${progPitch('new_belgium_distribution')}
     </div>
     <div class="prog-body">
+      ${board}
       ${block}
     </div>
   </div>`;
