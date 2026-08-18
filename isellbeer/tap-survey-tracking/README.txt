@@ -18,6 +18,31 @@ computed client-side from the same RECORDS array as the rep tab (see
 groupByBrand() in the inline script) -- no new data or generate.py changes
 needed for this view.
 
+Three-level command center (redesigned 2026-08-18, per Gavin: "peel
+back layers of your own business" -- Company -> District Manager -> Rep,
+one unified renderer in index.html's renderSummary()):
+  - Two pill rows: District Manager pills above Rep pills (rep row
+    filters to the selected DM's team; rep->DM mapping derived from the
+    survey records). Both stay in sync with the DM/Rep filter dropdowns.
+    A "Reset" button in the header clears every filter, drill, and
+    expanded card back to the company default.
+  - The hero (big share bar + area chips) renders at EVERY level, scoped
+    to it; tapping an area chip filters the whole page (tiles, facts,
+    drills, account lists) at every level now, company included. Chips
+    only show areas relevant to the scope.
+  - Fast facts render at every level with level-appropriate wording;
+    company/DM add a top-rep-by-share fact (min 100 handles), and the DM
+    level adds a coaching-gap fact (lowest-share rep vs highest).
+  - Story tiles, ordered what-drives-it -> what-fights-it -> where-to-
+    grow -> worst-spots -> data-trust -> housekeeping: #1 Kohler Brand
+    (drill), #1 Competitor (drill), Biggest Brand Gap (rights-aware,
+    drill lists eligible missing accounts), Zero-Kohler Accounts
+    (drill), The App Has It Wrong (drill), Needs Resurvey (drill), plus
+    the rep-only Peer Playbook tile. Survey Health (Taps/Reps/Photos/
+    Corrected) and Fragile Brands were REMOVED the same day per Gavin --
+    fragile's drill code path remains unrendered.
+  - Brand columns and Find My Opportunities remain rep-only.
+
 MY TAP BUSINESS -- rep mode (added 2026-08-17; 2026-08-18: a rep-name
 pill row now sits at the top of the command center in BOTH modes as the
 visible front door -- reps didn't know the view existed behind the Rep

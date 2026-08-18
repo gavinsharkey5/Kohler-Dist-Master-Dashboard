@@ -75,6 +75,9 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .rpill.active{background:var(--accent);border-color:var(--accent);color:#06131c;font-weight:700}
 .rpill.all{color:var(--ink-soft);border-style:dashed}
 .rpill.all:hover{color:var(--accent)}
+.rpill.reset{margin-left:auto;border-color:var(--line);color:var(--ink-soft);font-size:11.5px;padding:6px 12px}
+.rpill.reset:hover{border-color:var(--unv);color:var(--unv)}
+.cc-h{display:flex}
 
 /* ---- rep mode: MY TAP BUSINESS ---- */
 .rep-hero{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;
@@ -296,7 +299,9 @@ footer p{margin:0 0 8px}
 
 <div class="wrap" style="padding-top:20px">
 
-  <div class="cc-h"><span class="t" id="ccTitle">Company-Wide Opportunity</span><span class="s" id="ccHint"></span></div>
+  <div class="cc-h"><span class="t" id="ccTitle">Kohler Tap Business</span><span class="s" id="ccHint"></span>
+    <button class="rpill reset" id="ccReset" type="button" title="Clear every filter and return to the company view">🏠 Reset</button></div>
+  <div class="rep-pills" id="dmPills"></div>
   <div class="rep-pills" id="repPills"></div>
   <div id="repHero"></div>
   <div id="fastFacts"></div>
@@ -304,8 +309,6 @@ footer p{margin:0 0 8px}
   <div id="brandCols"></div>
   <div id="oppFinder"></div>
   <div id="drill"></div>
-  <div class="cc-h health" id="healthHead"><span class="t">Survey Health</span><span class="s" id="ccHealthHint"></span></div>
-  <div class="summary mini" id="summaryHealth"></div>
 
   <div class="tabs">
     <button class="tabbtn" id="tabRep" type="button" aria-pressed="true">By Rep</button>
@@ -439,20 +442,19 @@ footer p{margin:0 0 8px}
   // data can honestly support.
   var GENERIC_BRANDS = {'OTHER SUPPLIER':1,'OTHER BRAND FAMILY':1,'OTHER':1,'OTHER SUPPLIER (IN-HOUSE)':1,'':1};
 
-  // Rep mode ("MY TAP BUSINESS") also scopes by the County filter, per
-  // Gavin 2026-08-17: "when they select a county, the entire dashboard
-  // should update." Company mode keeps the county out of the tiles so
-  // the company band's meaning stays stable while county narrows the
-  // lists below.
+  // The command center scopes by DM + rep + area at EVERY level (per
+  // Gavin 2026-08-18: tapping an area chip filters the whole KPI section
+  // and account data, company view included). routeScopeRecords is the
+  // same minus the area, for the area chips / fast facts themselves.
   function tileScopeRecords(){
     return RECORDS.filter(function(r){
       if(state.dm && r.districtManager!==state.dm) return false;
       if(state.rep && r.rep!==state.rep) return false;
-      if(state.rep && state.county && r.county!==state.county) return false;
+      if(state.county && r.county!==state.county) return false;
       return true;
     });
   }
-  function routeScopeRecords(){ // rep+dm only -- the rep's whole route, county-agnostic
+  function routeScopeRecords(){ // dm+rep only -- area-agnostic
     return RECORDS.filter(function(r){
       if(state.dm && r.districtManager!==state.dm) return false;
       if(state.rep && r.rep!==state.rep) return false;
@@ -685,6 +687,16 @@ footer p{margin:0 0 8px}
       return { title:'Where '+fam+' is pouring against you', sub:'Every account in scope with it on the competitor side.',
         rows:rows2, opts:{ brandCol:{label:esc(fam)+' handles', fn:function(a){ return ce0(a.famTaps[fam].them); }} } };
     }
+    if(k==='gap' && fam){
+      var gent = catalogEntryByName(fam);
+      if(gent){
+        var growRows = cc.accounts.filter(function(a){
+          return !a.famKeys[gent.key] && RIGHTS[gent.key] && RIGHTS[gent.key][a.county];
+        }).sort(function(x,y){ return y.them-x.them; });
+        return { title:'Where '+esc(fam)+' could go', sub:'Accounts not carrying it, in counties where Kohler holds the rights — sorted by competitor handles at stake.',
+          rows:growRows, opts:{} };
+      }
+    }
     if(k==='rightsThem'){
       return { title:'Winnable on rights', sub:'Competitor handles pouring brand families Kohler is authorized to sell in that account’s county — no new authorization needed, just the buyer moved.',
         rows:cc.rightsThem, opts:{ brandCol:{label:'Rights-backed', fn:function(a){ return ce0(a.rightsThem); }},
@@ -764,72 +776,117 @@ footer p{margin:0 0 8px}
     }
   }
 
-  // Rep pills -- the visible front door into the MY TAP BUSINESS view
-  // (added 2026-08-18, per Gavin: reps didn't know the detailed view
-  // existed behind the Rep dropdown). One pill per rep; clicking it is
-  // exactly the same as picking the name in the Rep filter, and the two
-  // stay in sync. "Everyone" exits back to the company view.
-  function renderRepPills(){
-    var el = document.getElementById('repPills');
-    el.innerHTML = '<span class="rp-lbl">' + (state.rep ? 'Viewing route:' : '👤 See YOUR route — tap your name:') + '</span>' +
-      '<button class="rpill all'+(!state.rep?' active':'')+'" data-rep="" type="button">Everyone</button>' +
-      (DATA.reps||[]).map(function(r){
+  // ================= three-level command center =================
+  // Company -> District Manager -> Rep (redesigned 2026-08-18, per
+  // Gavin: one seamless flow of "peel back the layers of your own
+  // business"). One unified renderer; the level only changes the
+  // wording, the pill rows, and which extras render (brand columns +
+  // opportunity finder are rep-only). Survey Health and Fragile Brands
+  // removed the same day.
+  var REP_DM = {};
+  RECORDS.forEach(function(r){ if(r.districtManager && !REP_DM[r.rep]) REP_DM[r.rep]=r.districtManager; });
+  function levelOf(){ return state.rep ? 'rep' : (state.dm ? 'dm' : 'company'); }
+
+  function resetAll(){
+    state.search=''; state.rep=''; state.county=''; state.status=''; state.dm=''; state.segment='';
+    state.drill=null; state.drillParam=null; state.fComp=''; state.fPlace=''; state.fMin=0; state.fRun=false;
+    openReps={}; openAccounts={}; openBrands={};
+    document.getElementById('search').value='';
+    ['dmFilter','repFilter','countyFilter','statusFilter','segmentFilter'].forEach(function(id){ document.getElementById(id).value=''; });
+    render();
+    window.scrollTo(0,0);
+  }
+
+  function renderLevelPills(){
+    var dmEl = document.getElementById('dmPills');
+    dmEl.innerHTML = '<span class="rp-lbl">🏢 District manager:</span>' +
+      '<button class="rpill all'+(!state.dm?' active':'')+'" data-dm="" type="button">Everyone</button>' +
+      (DATA.districtManagers||[]).map(function(d){
+        return '<button class="rpill'+(state.dm===d?' active':'')+'" data-dm="'+esc(d)+'" type="button">'+esc(d)+'</button>';
+      }).join('');
+    dmEl.querySelectorAll('.rpill').forEach(function(b){
+      b.addEventListener('click', function(){
+        state.dm = b.dataset.dm;
+        document.getElementById('dmFilter').value = state.dm;
+        if(state.rep && state.dm && REP_DM[state.rep]!==state.dm){ state.rep=''; document.getElementById('repFilter').value=''; }
+        state.drill=null; state.drillParam=null;
+        render(); window.scrollTo(0,0);
+      });
+    });
+    var reps = (DATA.reps||[]).filter(function(r){ return !state.dm || REP_DM[r]===state.dm; });
+    var repEl = document.getElementById('repPills');
+    repEl.innerHTML = '<span class="rp-lbl">' + (state.rep ? 'Viewing route:' : '👤 See YOUR route — tap your name:') + '</span>' +
+      '<button class="rpill all'+(!state.rep?' active':'')+'" data-rep="" type="button">'+(state.dm?'Whole team':'Everyone')+'</button>' +
+      reps.map(function(r){
         return '<button class="rpill'+(state.rep===r?' active':'')+'" data-rep="'+esc(r)+'" type="button">'+esc(r)+'</button>';
       }).join('');
-    el.querySelectorAll('.rpill').forEach(function(b){
+    repEl.querySelectorAll('.rpill').forEach(function(b){
       b.addEventListener('click', function(){
         state.rep = b.dataset.rep;
         document.getElementById('repFilter').value = state.rep;
-        state.drill = null; state.drillParam = null;
-        render();
-        window.scrollTo(0, 0);
+        state.drill=null; state.drillParam=null;
+        render(); window.scrollTo(0,0);
       });
     });
   }
 
   function renderSummary(){
-    renderRepPills();
-    if(state.rep) renderRepMode(); else renderCompanyMode();
-    renderFooterBits();
-  }
-
-  // ================= MY TAP BUSINESS (rep selected) =================
-  function renderRepMode(){
-    var cc = computeCC(tileScopeRecords());        // rep (+dm +county)
-    var route = computeCC(routeScopeRecords());    // rep (+dm), county-agnostic
+    renderLevelPills();
+    document.getElementById('ccReset').onclick = resetAll;
+    var level = levelOf();
+    var cc = computeCC(tileScopeRecords());       // dm + rep + area
+    var route = computeCC(routeScopeRecords());   // dm + rep, area-agnostic
     window.__cc = cc;
 
-    // Peer Playbook: Kohler families with real presence on OTHER routes
-    // (10+ handles) that this rep pours zero of -- and that the rights
-    // matrix says they could place in at least one of their counties.
-    // The relationship side a rep can't see: what's working elsewhere.
-    var company = computeCC(RECORDS);
-    var repCtys = {};
-    route.accounts.forEach(function(a){ repCtys[a.county]=1; });
-    cc.peerGap = company.usRanked.filter(function(f){
-      if(GENERIC_BRANDS[f.toUpperCase()]) return false;
-      if(route.usBrandTotals[f]) return false;
-      var peers = company.usBrandTotals[f] - (route.usBrandTotals[f]||0);
-      if(peers < 10) return false;
-      var ent = catalogEntryByName(f);
-      return ent && ent.counties.some(function(cty){ return repCtys[cty]; });
-    }).map(function(f){ return {name:f, taps:company.usBrandTotals[f]}; });
+    // rep-only: Peer Playbook (brands with 10+ handles on other routes,
+    // zero on this rep's, sellable in their counties)
+    cc.peerGap = [];
+    if(level==='rep'){
+      var company = computeCC(RECORDS);
+      var repCtys = {};
+      route.accounts.forEach(function(a){ repCtys[a.county]=1; });
+      cc.peerGap = company.usRanked.filter(function(f){
+        if(GENERIC_BRANDS[f.toUpperCase()]) return false;
+        if(route.usBrandTotals[f]) return false;
+        if((company.usBrandTotals[f]||0) < 10) return false;
+        var ent = catalogEntryByName(f);
+        return ent && ent.counties.some(function(cty){ return repCtys[cty]; });
+      }).map(function(f){ return {name:f, taps:company.usBrandTotals[f]}; });
+    }
 
-    document.getElementById('ccTitle').textContent = state.rep+' — My Tap Business';
-    var routeCounties = route.areaList.map(function(a){ return a.name; });
-    document.getElementById('ccHint').textContent = state.county
-      ? ('Scoped to '+state.county+' — tap “Total route” to widen back out.')
-      : ('Your route: '+(routeCounties.join(' · ')||'—'));
+    // biggest rights-aware brand gap among the scope's own top sellers
+    var bestGap = null;
+    route.usRanked.slice(0,10).forEach(function(fam){
+      var ent = catalogEntryByName(fam);
+      if(!ent) return;
+      var missing = route.accounts.filter(function(a){
+        return !a.famKeys[ent.key] && RIGHTS[ent.key] && RIGHTS[ent.key][a.county];
+      }).length;
+      if(missing && (!bestGap || missing > bestGap.missing)) bestGap = {fam:fam, missing:missing};
+    });
+    cc.bestGap = bestGap;
 
-    // --- hero: share + county chips ---
+    // --- header ---
+    var TITLES = { company:'Kohler Tap Business', dm:state.dm+' — My Team’s Tap Business', rep:state.rep+' — My Tap Business' };
+    document.getElementById('ccTitle').textContent = TITLES[level];
+    var areas = route.areaList.map(function(a){ return a.name; });
+    document.getElementById('ccHint').textContent =
+      state.county ? ('Scoped to '+state.county+' — tap “All areas” to widen back out.')
+      : level==='company' ? 'Tap a district manager or your name below — the whole page becomes yours.'
+      : level==='dm' ? ('Your team: '+ce0((DATA.reps||[]).filter(function(r){ return REP_DM[r]===state.dm; }).length)+' reps · '+(areas.join(' · ')||'—'))
+      : ('Your route: '+(areas.join(' · ')||'—'));
+
+    // --- hero: the one KPI that matters, share by area underneath ---
     var counted = cc.us + cc.them;
     var sharePct = counted ? cc.us/counted*100 : 0;
-    var allAreas = route.areaList; // >=10-handle floor applied in computeCC
+    var heroLbl = { company:'KOHLER', dm:'TEAM', rep:'YOURS' }[level];
+    var allChipLbl = { company:'All areas', dm:'Team areas', rep:'Total route' }[level];
+    var rTot = route.us + route.them;
     var chips = '<div class="county-chips">'+
-      '<div class="cchip'+(!state.county?' active':'')+'" data-cty=""><div class="cn">Total route</div>'+
-        '<div class="cp"><b>'+(route.us+route.them? (route.us/(route.us+route.them)*100).toFixed(0):0)+'% us</b></div>'+
-        '<div class="ct">'+ce0(route.us+route.them)+' handles</div></div>'+
-      allAreas.map(function(a){
+      '<div class="cchip'+(!state.county?' active':'')+'" data-cty=""><div class="cn">'+allChipLbl+'</div>'+
+        '<div class="cp"><b>'+(rTot? (route.us/rTot*100).toFixed(0):0)+'% us</b></div>'+
+        '<div class="ct">'+ce0(rTot)+' handles</div></div>'+
+      route.areaList.map(function(a){
         return '<div class="cchip'+(state.county===a.name?' active':'')+'" data-cty="'+esc(a.name)+'">'+
           '<div class="cn">'+esc(a.name)+'</div>'+
           '<div class="cp"><b>'+a.usPct.toFixed(0)+'% us</b> · '+(100-a.usPct).toFixed(0)+'% them</div>'+
@@ -837,7 +894,7 @@ footer p{margin:0 0 8px}
           '<div class="ct">'+ce0(a.us+a.them)+' handles</div></div>';
       }).join('')+'</div>';
     document.getElementById('repHero').innerHTML = '<div class="rep-hero">'+
-      '<div class="rh-nums"><span class="rh-us num">'+sharePct.toFixed(1)+'% <small style="font-size:15px">KOHLER</small></span>'+
+      '<div class="rh-nums"><span class="rh-us num">'+sharePct.toFixed(1)+'% <small style="font-size:15px">'+heroLbl+'</small></span>'+
       '<span class="rh-them num">'+(100-sharePct).toFixed(1)+'% <small style="font-size:12px">COMPETITOR</small></span>'+
       '<span class="rh-sub">'+ce0(cc.us)+' Kohler · '+ce0(cc.them)+' competitor · '+ce0(counted)+' surveyed handles at '+ce0(cc.accounts.length)+' accounts</span></div>'+
       '<div class="rh-bar"><i class="b-us" style="width:'+sharePct+'%"></i><i class="b-them" style="width:'+(100-sharePct)+'%"></i></div>'+
@@ -851,50 +908,103 @@ footer p{margin:0 0 8px}
       });
     });
 
-    // --- fast facts (route-wide, county-agnostic, so they read as "your
-    // business" even while a county chip narrows the sections below) ---
+    // --- fast facts (area-agnostic so they describe the whole scope) ---
+    var subj = { company:'Kohler controls', dm:'Your team controls', rep:'You control' }[level];
+    var poss = { company:'Kohler’s', dm:'your team’s', rep:'your' }[level];
     var facts = [];
-    var rCounted = route.us + route.them;
-    if(rCounted) facts.push('You control <b>'+(route.us/rCounted*100).toFixed(0)+'%</b> of the '+ce0(rCounted)+' surveyed tap handles on your route.');
-    if(route.usRanked[0]) facts.push('<b>'+esc(route.usRanked[0])+'</b> is your #1 Kohler brand — '+ce0(route.usBrandTotals[route.usRanked[0]])+' handles.');
+    if(rTot) facts.push(subj+' <b>'+(route.us/rTot*100).toFixed(0)+'%</b> of the '+ce0(rTot)+' surveyed tap handles across '+ce0(route.accounts.length)+' accounts.');
+    if(route.usRanked[0]) facts.push('<b>'+esc(route.usRanked[0])+'</b> is '+poss+' #1 Kohler brand — '+ce0(route.usBrandTotals[route.usRanked[0]])+' handles.');
     var topComp = route.themRanked.filter(function(b){ return !GENERIC_BRANDS[b.toUpperCase()]; })[0];
     if(topComp){
       var compAccts = route.accounts.filter(function(a){ return a.famTaps[topComp] && a.famTaps[topComp].them>0; }).length;
-      facts.push('<b>'+esc(topComp)+'</b> is your largest named competitor — '+ce0(route.themBrandTotals[topComp])+' handles across '+ce0(compAccts)+' accounts.');
+      facts.push('<b>'+esc(topComp)+'</b> is '+poss+' largest named competitor — '+ce0(route.themBrandTotals[topComp])+' handles across '+ce0(compAccts)+' accounts.');
     }
-    if(allAreas.length>=2){
-      facts.push('Your share is highest in <b>'+esc(allAreas[0].name)+'</b> ('+allAreas[0].usPct.toFixed(0)+'%) and lowest in <b>'+esc(allAreas[allAreas.length-1].name)+'</b> ('+allAreas[allAreas.length-1].usPct.toFixed(0)+'%).');
+    if(route.areaList.length>=2){
+      var aBest = route.areaList[0], aWorst = route.areaList[route.areaList.length-1];
+      facts.push('Share is highest in <b>'+esc(aBest.name)+'</b> ('+aBest.usPct.toFixed(0)+'%) and lowest in <b>'+esc(aWorst.name)+'</b> ('+aWorst.usPct.toFixed(0)+'%).');
     }
-    if(route.zeroUs.length) facts.push('<b>'+ce0(route.zeroUs.length)+' accounts</b> on your route have zero Kohler handles.');
-    // biggest distribution gap among the rep's own proven sellers: for each
-    // of their top US families, how many route accounts are missing it AND
-    // have the rights to take it (per the workbook's Master US-vs-THEM
-    // matrix for that account's county)
-    var bestGap = null;
-    route.usRanked.slice(0,10).forEach(function(fam){
-      var ent = catalogEntryByName(fam);
-      if(!ent) return;
-      var missing = route.accounts.filter(function(a){
-        return !a.famKeys[ent.key] && RIGHTS[ent.key] && RIGHTS[ent.key][a.county];
-      }).length;
-      if(missing && (!bestGap || missing > bestGap.missing)) bestGap = {fam:fam, missing:missing};
-    });
-    if(bestGap) facts.push('<b>'+esc(bestGap.fam)+'</b> is your biggest gap among your own sellers — missing from <b>'+ce0(bestGap.missing)+' accounts</b> where you have the rights to place it.');
-    document.getElementById('fastFacts').innerHTML = '<div class="facts-card"><div class="f-lbl">Your Tap Fast Facts</div><ul>'+
+    if(level!=='rep'){
+      var per = {};
+      routeScopeRecords().forEach(function(r){
+        var pR = per[r.rep] || (per[r.rep]={us:0,them:0});
+        if(r.status==='US') pR.us+=r.taps; else if(r.status==='THEM') pR.them+=r.taps;
+      });
+      var bestRep=null, worstRep=null;
+      Object.keys(per).forEach(function(rep){
+        var pR=per[rep], t=pR.us+pR.them;
+        if(t<100) return; // tiny books can't win or lose the title
+        var sh=pR.us/t*100;
+        if(!bestRep||sh>bestRep.sh) bestRep={rep:rep,sh:sh,t:t};
+        if(!worstRep||sh<worstRep.sh) worstRep={rep:rep,sh:sh,t:t};
+      });
+      if(bestRep) facts.push('Top rep by share: <b>'+esc(bestRep.rep)+'</b> — '+bestRep.sh.toFixed(0)+'% of '+ce0(bestRep.t)+' handles.');
+      if(level==='dm' && worstRep && bestRep && worstRep.rep!==bestRep.rep)
+        facts.push('Coaching gap: <b>'+esc(worstRep.rep)+'</b> is at '+worstRep.sh.toFixed(0)+'% — '+ (bestRep.sh-worstRep.sh).toFixed(0)+' points behind '+esc(bestRep.rep)+'.');
+    }
+    if(route.zeroUs.length) facts.push('<b>'+ce0(route.zeroUs.length)+' accounts</b> in scope have zero Kohler handles.');
+    if(bestGap) facts.push('<b>'+esc(bestGap.fam)+'</b> is the biggest gap among '+poss+' own sellers — missing from <b>'+ce0(bestGap.missing)+' accounts</b> with the rights to take it.');
+    var factLbl = { company:'Kohler Tap Fast Facts', dm:'Your Team’s Fast Facts', rep:'Your Tap Fast Facts' }[level];
+    document.getElementById('fastFacts').innerHTML = '<div class="facts-card"><div class="f-lbl">'+factLbl+'</div><ul>'+
       facts.map(function(f){ return '<li>'+f+'</li>'; }).join('')+'</ul></div>';
 
-    // --- MY TAP BUSINESS stat row (clickable where useful) ---
+    // --- story tiles: what drives it -> what fights it -> where to grow
+    // -> worst spots -> data trust -> housekeeping ---
+    var your = { company:'Kohler’s', dm:'Team', rep:'Your' }[level];
+    var tiles = '';
+    var topUs = cc.usRanked.filter(function(b){ return !GENERIC_BRANDS[b.toUpperCase()]; })[0];
+    if(topUs) tiles += '<div class="scard us click'+(state.drill==='mybrand'&&state.drillParam===topUs?' active':'')+'" data-drill="mybrand" data-param="'+esc(topUs)+'"><div class="lbl">🍺 '+your+' #1 Brand</div>'+
+      '<div class="big num">'+esc(topUs)+'</div>'+
+      '<div class="sub"><b>'+ce0(cc.usBrandTotals[topUs])+'</b> handles · '+(cc.us? (cc.usBrandTotals[topUs]/cc.us*100).toFixed(0):0)+'% of Kohler taps</div></div>';
+    var topTh = cc.themRanked.filter(function(b){ return !GENERIC_BRANDS[b.toUpperCase()]; })[0];
+    if(topTh){
+      var thAccts = cc.accounts.filter(function(a){ return a.famTaps[topTh] && a.famTaps[topTh].them>0; }).length;
+      tiles += '<div class="scard them click'+(state.drill==='compbrand'&&state.drillParam===topTh?' active':'')+'" data-drill="compbrand" data-param="'+esc(topTh)+'"><div class="lbl">⚔️ #1 Competitor</div>'+
+        '<div class="big num">'+esc(topTh)+'</div>'+
+        '<div class="sub"><b>'+ce0(cc.themBrandTotals[topTh])+'</b> handles across '+ce0(thAccts)+' accounts</div></div>';
+    }
+    if(bestGap) tiles += '<div class="scard click'+(state.drill==='gap'?' active':'')+'" data-drill="gap" data-param="'+esc(bestGap.fam)+'"><div class="lbl">🧭 Biggest Brand Gap</div>'+
+      '<div class="big num">'+esc(bestGap.fam)+'</div>'+
+      '<div class="sub">missing from <b>'+ce0(bestGap.missing)+' eligible accounts</b></div></div>';
+    tiles += '<div class="scard them click'+(state.drill==='zeroUs'?' active':'')+'" data-drill="zeroUs"><div class="lbl">🚫 Zero-Kohler Accounts</div>'+
+      '<div class="big num">'+ce0(cc.zeroUs.length)+'</div>'+
+      '<div class="sub">surveyed accounts where every handle is a competitor’s</div></div>';
+    if(level==='rep') tiles += '<div class="scard us click'+(state.drill==='peergap'?' active':'')+'" data-drill="peergap"><div class="lbl">🤝 Peer Playbook</div>'+
+      '<div class="big num">'+ce0(cc.peerGap.length)+'</div>'+
+      '<div class="sub">Kohler brands other reps pour that you don’t (and could)</div></div>';
+    tiles += '<div class="scard click'+(state.drill==='appWrong'?' active':'')+'" data-drill="appWrong"><div class="lbl">🧠 The App Has It Wrong</div>'+
+      '<div class="big num">'+ce0(cc.flippedToUs+cc.flippedToThem)+'<small> taps</small></div>'+
+      '<div class="sub"><b>'+ce0(cc.flippedToUs)+'</b> look competitor in iSellBeer but are ours; <b>'+ce0(cc.flippedToThem)+'</b> the reverse</div></div>';
     var rsOver = cc.resurvey.filter(function(a){ return a.refresh.level==='overdue'; }).length;
-    document.getElementById('summary').className = 'summary mini';
-    document.getElementById('summary').innerHTML =
-      '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(cc.taps)+'</div><div class="sub">'+ce0(cc.accounts.length)+' accounts</div></div>'+
-      '<div class="scard us"><div class="lbl">Kohler Handles</div><div class="big num">'+ce0(cc.us)+'</div><div class="sub">'+sharePct.toFixed(1)+'% share</div></div>'+
-      '<div class="scard us click'+(state.drill==='peergap'?' active':'')+'" data-drill="peergap"><div class="lbl">🤝 Peer Playbook</div><div class="big num">'+ce0(cc.peerGap.length)+'</div><div class="sub">Kohler brands other reps pour that you don’t (and could)</div></div>'+
-      '<div class="scard them click'+(state.drill==='zeroUs'?' active':'')+'" data-drill="zeroUs"><div class="lbl">Zero-Kohler Accounts</div><div class="big num">'+ce0(cc.zeroUs.length)+'</div><div class="sub">every handle is theirs</div></div>'+
-      '<div class="scard click'+(state.drill==='noPhoto'?' active':'')+'" data-drill="noPhoto"><div class="lbl">Missing Photos</div><div class="big num">'+ce0(cc.noPhoto.length)+'</div><div class="sub">of '+ce0(cc.accounts.length)+' accounts</div></div>'+
-      '<div class="scard click'+(rsOver?' unv':'')+(state.drill==='resurvey'?' active':'')+'" data-drill="resurvey"><div class="lbl">Needs Resurvey</div><div class="big num">'+ce0(cc.resurvey.length)+'</div><div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue':'all current')+'</div></div>';
+    tiles += '<div class="scard click'+(rsOver?' unv':'')+(state.drill==='resurvey'?' active':'')+'" data-drill="resurvey"><div class="lbl">🔁 Needs Resurvey</div>'+
+      '<div class="big num">'+ce0(cc.resurvey.length)+'</div>'+
+      '<div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue, '+ce0(cc.resurvey.length-rsOver)+' due soon':'all accounts current')+'</div></div>';
+    var summaryEl = document.getElementById('summary');
+    summaryEl.className = 'summary';
+    summaryEl.innerHTML = tiles;
+    summaryEl.querySelectorAll('.scard[data-drill]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var k = el.dataset.drill, pm = el.dataset.param || null;
+        if(state.drill===k && state.drillParam===pm){ state.drill=null; state.drillParam=null; }
+        else { state.drill=k; state.drillParam=pm; }
+        render();
+        document.getElementById('drill').scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+    });
 
-    // --- MY BRANDS / MY COMPETITION ---
+    // --- rep-only extras: brand columns + opportunity finder ---
+    if(level==='rep'){
+      renderBrandCols(cc);
+      renderFinder(cc, route);
+    } else {
+      document.getElementById('brandCols').innerHTML = '';
+      document.getElementById('oppFinder').innerHTML = '';
+    }
+
+    renderDrill(cc);
+    renderFooterBits();
+  }
+
+  function renderBrandCols(cc){
     function brandRowsHtml(ranked, totals, side, sideTotal){
       if(!ranked.length) return '<div class="bp-empty">No handles in scope.</div>';
       var max = totals[ranked[0]];
@@ -918,22 +1028,9 @@ footer p{margin:0 0 8px}
         document.getElementById('drill').scrollIntoView({behavior:'smooth', block:'nearest'});
       });
     });
-
-    renderFinder(cc, route);
-
-    // hide the company health band; the stat row above covers it in rep mode
-    document.getElementById('healthHead').style.display = 'none';
-    document.getElementById('summaryHealth').style.display = 'none';
-
-    document.querySelectorAll('#summary .scard[data-drill]').forEach(function(el){
-      el.addEventListener('click', function(){
-        state.drill = (state.drill===el.dataset.drill) ? null : el.dataset.drill;
-        state.drillParam = null;
-        render();
-      });
-    });
-    renderDrill(cc);
   }
+
+
 
   // --- FIND MY OPPORTUNITIES: brand-specific, rights-aware ---
   function renderFinder(cc, route){
@@ -1010,93 +1107,7 @@ footer p{margin:0 0 8px}
     wireAcctRows(el);
   }
 
-  // ================= company mode (no rep selected) =================
-  function renderCompanyMode(){
-    var scope = tileScopeRecords();
-    var cc = computeCC(scope);
-    window.__cc = cc;
 
-    // rep-mode containers off
-    document.getElementById('repHero').innerHTML = '';
-    document.getElementById('fastFacts').innerHTML = '';
-    document.getElementById('brandCols').innerHTML = '';
-    document.getElementById('oppFinder').innerHTML = '';
-    document.getElementById('summary').className = 'summary';
-    document.getElementById('healthHead').style.display = '';
-    document.getElementById('summaryHealth').style.display = '';
-
-    document.getElementById('ccTitle').textContent = 'Company-Wide Opportunity';
-    document.getElementById('ccHint').textContent = 'Tap your name below — this whole section becomes “My Tap Business,” scoped to your route.';
-
-    // tap share tile
-    var counted = cc.us + cc.them;
-    var sharePct = counted ? (cc.us/counted*100) : 0;
-    var shareLine;
-    if(!counted) shareLine = 'no classified taps in scope';
-    else if(cc.us > cc.them) shareLine = '<b>Majority held</b> — up '+ce0(cc.us-cc.them)+' handles';
-    else {
-      var conv = Math.floor((cc.them-cc.us)/2)+1;
-      shareLine = '<b>'+ce0(conv)+' handle conversion'+(conv===1?'':'s')+'</b> to majority';
-    }
-    var shareTile = '<div class="scard us"><div class="lbl">'+(state.rep?'Your Tap Share':'Kohler Tap Share')+'</div>'+
-      '<div class="big num">'+sharePct.toFixed(1)+'%<small> · '+ce0(cc.us)+' of '+ce0(counted)+'</small></div>'+
-      '<div class="bar"><i class="b-us" style="width:'+sharePct+'%"></i><i class="b-them" style="width:'+(100-sharePct)+'%"></i></div>'+
-      '<div class="sub">'+shareLine+'</div></div>';
-
-    // The four data-knows-what-you-don't tiles (swapped in 2026-08-17, per
-    // Gavin: reps already know competitor activity / warm accounts /
-    // targets from the relationship side -- surface what only the data
-    // can see: the rights matrix, the audit corrections, the segment
-    // ledger, and authorized-but-absent brands).
-    var rightsTile = '<div class="scard click'+(state.drill==='fragile'?' active':'')+'" data-drill="fragile"><div class="lbl">🧵 Fragile Brands</div>'+
-      '<div class="big num">'+ce0(cc.fragile.length)+'<small> brands</small></div>'+
-      '<div class="sub">their entire tap presence hangs on <b>1–2 accounts</b> — lose the account, lose the brand</div></div>';
-
-    var wrongTile = '<div class="scard click'+(state.drill==='appWrong'?' active':'')+'" data-drill="appWrong"><div class="lbl">🧠 The App Has It Wrong</div>'+
-      '<div class="big num">'+ce0(cc.flippedToUs+cc.flippedToThem)+'<small> taps</small></div>'+
-      '<div class="sub"><b>'+ce0(cc.flippedToUs)+'</b> look competitor in iSellBeer but are ours; <b>'+ce0(cc.flippedToThem)+'</b> the reverse</div></div>';
-
-    // "Their Segment Edge" and "Authorized, Not Pouring" tiles removed
-    // 2026-08-18 per Gavin -- their drill code paths remain (segEdge /
-    // untapped) in case either comes back, they're just not rendered.
-
-    // resurvey tile
-    var rsOver = cc.resurvey.filter(function(a){ return a.refresh.level==='overdue'; }).length;
-    var rsSoon = cc.resurvey.length - rsOver;
-    var resurveyTile = '<div class="scard click'+(rsOver?' unv':'')+(state.drill==='resurvey'?' active':'')+'" data-drill="resurvey"><div class="lbl">🔁 Needs Resurvey</div>'+
-      '<div class="big num">'+ce0(cc.resurvey.length)+'</div>'+
-      '<div class="sub">'+(cc.resurvey.length? ce0(rsOver)+' overdue, '+ce0(rsSoon)+' due soon' : 'all accounts current')+'</div></div>';
-
-    document.getElementById('summary').innerHTML =
-      shareTile + rightsTile + wrongTile + resurveyTile;
-
-    // survey health (small, admin-facing)
-    var healthTiles =
-      '<div class="scard"><div class="lbl">Taps Surveyed</div><div class="big num">'+ce0(cc.taps)+'</div><div class="sub">across '+ce0(cc.accounts.length)+' accounts</div></div>'+
-      (state.rep ? '' : '<div class="scard"><div class="lbl">Reps</div><div class="big num">'+ce0(cc.repCount)+'</div><div class="sub">tap surveys on file</div></div>')+
-      '<div class="scard"><div class="lbl">Photos</div><div class="big num">'+ce0(cc.photosAvailable)+'</div><div class="sub">of '+ce0(cc.accounts.length)+' accounts</div></div>'+
-      '<div class="scard"><div class="lbl">Corrected</div><div class="big num">'+ce0(cc.flippedRows)+'</div><div class="sub">rows where iSellBeer’s own flag was wrong</div></div>'+
-      (cc.unv ? '<div class="scard unv"><div class="lbl">Unverified</div><div class="big num">'+ce0(cc.unv)+'</div><div class="sub">taps with no US/THEM ruling</div></div>' : '');
-    document.getElementById('summaryHealth').innerHTML = healthTiles;
-    document.getElementById('ccHealthHint').textContent = state.rep ? 'Scoped to '+state.rep+'.' : '';
-
-    // tile interactions
-    document.querySelectorAll('#summary .scard[data-drill]').forEach(function(el){
-      el.addEventListener('click', function(){
-        state.drill = (state.drill===el.dataset.drill) ? null : el.dataset.drill;
-        render();
-      });
-    });
-    document.querySelectorAll('#summary .scard[data-county]').forEach(function(el){
-      el.addEventListener('click', function(){
-        state.county = (state.county===el.dataset.county) ? '' : el.dataset.county;
-        document.getElementById('countyFilter').value = state.county;
-        render();
-      });
-    });
-
-    renderDrill(cc);
-  }
 
   function filteredRecords(){
     return RECORDS.filter(function(r){
