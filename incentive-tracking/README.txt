@@ -619,6 +619,25 @@ The specific rules he set:
      payout"), counting package + draft new placements combined --
      replacing the old case-bonus-only gate on package placements.
 
+  8. "Where You Stand" scoreboard (added later on 2026-08-18, per
+     Gavin's follow-up review): every card now opens with a statBoard()
+     of large color-coded stat tiles -- the rep's key numbers for THAT
+     program (placements, cases/CE, buyers, kegs, qualifier progress,
+     YoY difference), chosen per incentive. Status colors: green =
+     achieved/qualified/unlocked, amber = in progress or short of a
+     goal (with a "N more to X" sub-line), red = behind (negative YoY
+     only). Neutral (no color) = a zero count with no goal attached,
+     deliberately, so a quiet program doesn't read as an alarm wall.
+     Card flow is now: pitch (what to do) -> scoreboard (where you
+     stand) -> earn blocks (details). The per-rep qualifier BANNERS
+     (Woodchuck 3-placement, Tona 20-case, Sam Adams commission flag)
+     were folded into their scoreboard tile to avoid double-rendering
+     the same fact; company-wide gates (New Belgium 70-POD house goal,
+     Garage Beer President's 9,305 CE house goal) stay as banners since
+     they aren't the rep's own number. Lytt's tier hero IS its
+     scoreboard (the big % is now tinted green once a tier is reached,
+     amber while short of the first tier).
+
   7. Mobile-first pass: fonts inside cards bumped throughout (detail
      rows 16.5px, notes/labels 14-15px, stat numbers 42px), 44px+ tap
      targets, activity/opportunity lists collapsed by default behind
