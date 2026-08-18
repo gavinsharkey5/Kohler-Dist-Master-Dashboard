@@ -691,12 +691,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40022,
-    "CUSTOMER_NAME": "Buy Rite Of Hackensack",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 41012,
     "CUSTOMER_NAME": "Deli Mart (A)",
     "AREA": "Bergen"
@@ -757,12 +751,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40010,
-    "CUSTOMER_NAME": "Hackensack Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
     "AREA": "Bergen"
@@ -783,12 +771,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56007,
     "CUSTOMER_NAME": "Portland Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 58002,
-    "CUSTOMER_NAME": "River Edge Wine & Liquor",
     "AREA": "Bergen"
   },
   {
@@ -819,12 +801,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51012,
     "CUSTOMER_NAME": "Teaneck Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56013,
-    "CUSTOMER_NAME": "Time Lounge And Liq (A)",
     "AREA": "Bergen"
   },
   {
@@ -2137,12 +2113,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17010,
-    "CUSTOMER_NAME": "Frank's Fine Wine & Foods",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 95004,
     "CUSTOMER_NAME": "Franklin Lake Liq",
     "AREA": "Bergen"
@@ -2161,12 +2131,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 19027,
-    "CUSTOMER_NAME": "Goffle Road Wine and More",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 18001,
     "CUSTOMER_NAME": "Grand Opening Liq (A)_2",
     "AREA": "Passaic"
@@ -2176,12 +2140,6 @@
     "CUSTOMER_NUM": 19008,
     "CUSTOMER_NAME": "Hawthorne Liq (A)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 11003,
-    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
-    "AREA": "Morris 3"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
