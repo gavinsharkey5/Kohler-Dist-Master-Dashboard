@@ -137,6 +137,14 @@ Reps / Photos / Corrected / Resurvey) is now two bands:
     rows, plus an Unverified tile that only appears when unverified taps
     exist. All scoped along with the band above.
 
+Theme (2026-08-18, per Gavin: match the other dashboards): restyled from
+the original neutral dark-blue/magenta palette to the same warm
+barrel-wood + amber-beer + Kohler-blue theme as the MPO trackers and the
+Incentive Tracker, including their topbar breadcrumb and hero banner
+(../../assets/hero-banner.jpg + kohler-logo-badge.png). Only the :root
+variable VALUES changed (names kept), plus Ours=green / Competitor=red /
+Unverified=amber now match those dashboards' good/red/amber colors.
+
 Segment column + filter (added 2026-08-07, per Kohler): every brand row in
 an expanded account's table now shows a "Segment" next to Supplier, plus a
 Segment dropdown in the toolbar (applies across both tabs, same as the
