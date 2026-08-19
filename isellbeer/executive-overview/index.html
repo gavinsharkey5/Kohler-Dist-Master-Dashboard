@@ -368,14 +368,7 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
   </div>
 </div>
 
-<div class="tabbar">
-  <div class="wrap">
-    <div class="tabbar-inner">
-      <button class="tab-btn active" type="button" data-tab="snapshot">Snapshot</button>
-      <button class="tab-btn" type="button" data-tab="detailed">Full Detail</button>
-    </div>
-  </div>
-</div>
+
 
 <div class="wrap tabpanel" id="snapshotTab">
   <p class="ig-updated" id="igUpdated"></p>
@@ -441,162 +434,7 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
 
   <div class="ig-fact" id="igFact"></div>
 
-  <a href="#" class="ig-footer-link" id="igSwitchLink">See the full breakdown, brands &amp; areas &rarr;</a>
-</div>
-
-<div class="wrap tabpanel" id="detailedTab" hidden>
-
-  <section id="hero">
-    <div class="core-badge">CORE MARKET &mdash; Bergen, Sussex, Passaic, Morris 1 &amp; Morris 3</div>
-    <div class="hero-total">
-      <div class="lbl">Tap Handles Surveyed</div>
-      <div class="big num" id="heroTotal">&mdash;</div>
-      <div class="sub" id="heroSub"></div>
-    </div>
-    <div class="split-row">
-      <div class="split-card us">
-        <div class="lbl">Our Share</div>
-        <div class="pctnum num" id="usPct">&mdash;</div>
-        <div class="cnt num" id="usCnt"></div>
-      </div>
-      <div class="split-card them">
-        <div class="lbl">Competitor Share</div>
-        <div class="pctnum num" id="themPct">&mdash;</div>
-        <div class="cnt num" id="themCnt"></div>
-      </div>
-    </div>
-    <div class="stackbar" id="heroBar"></div>
-    <div class="stackbar-labels"><span>0%</span><span>100%</span></div>
-  </section>
-
-  <section id="overall-pie">
-    <h2 class="sec-title">Core Market: Us vs. Them</h2>
-    <p class="sec-sub">Every tap handle surveyed in our core market, split by who's pouring it.</p>
-    <div class="donut-wrap" id="usThemDonut"></div>
-  </section>
-
-  <section id="seg-battle">
-    <h2 class="sec-title">Segment Battleground</h2>
-    <p class="sec-sub">Who's winning each slice of the core market &mdash; craft, domestic, import, and cider &amp; other &mdash; and the biggest brand on each side of the fight.</p>
-    <div id="segBattleRows"></div>
-  </section>
-
-  <section id="account-control">
-    <h2 class="sec-title">Account Control</h2>
-    <p class="sec-sub">Every core-market account with recorded handles, banded by how much of its tap wall is ours. The middle of this bar is where share shifts hands.</p>
-    <div class="band-bar" id="bandBar"></div>
-    <div class="band-legend" id="bandLegend"></div>
-    <p class="conc-line" id="concLine"></p>
-
-    <h3 class="acct-sub them">Biggest Flip Targets</h3>
-    <p class="acct-sub-note">The 20 accounts pouring the most competitor handles &mdash; the largest single pools of share available to win.</p>
-    <table class="acct-table">
-      <thead><tr><th>Account</th><th class="num">Ours</th><th class="num">Theirs</th><th>What they pour there</th></tr></thead>
-      <tbody id="flipRows"></tbody>
-    </table>
-
-    <h3 class="acct-sub us">Our Anchor Accounts</h3>
-    <p class="acct-sub-note">Accounts we control (60%+ ours) with the most of our handles at stake &mdash; the accounts most worth defending.</p>
-    <table class="acct-table">
-      <thead><tr><th>Account</th><th class="num">Ours</th><th class="num">Theirs</th><th>Our biggest brands there</th></tr></thead>
-      <tbody id="anchorRows"></tbody>
-    </table>
-  </section>
-
-  <section id="brands">
-    <h2 class="sec-title">Brand Breakdown</h2>
-    <p class="sec-sub">Core market only. Top 8 brand families on each side by handle count; everything smaller is grouped into "All Other" so the list stays readable.</p>
-    <div class="brand-cols">
-      <div class="brand-panel us">
-        <h3>OUR BRANDS</h3>
-        <div class="donut-wrap" id="usBrandDonut"></div>
-        <table class="brand-list" id="usBrandList"></table>
-        <button class="customize-btn" data-side="us" type="button">Customize brands shown <span class="arrow">&#9662;</span></button>
-        <div class="customize-panel" id="usCustomize" hidden>
-          <input type="search" class="customize-search" data-side="us" placeholder="Search our brands&hellip;">
-          <div class="customize-list" id="usCustomizeList"></div>
-          <div class="customize-actions">
-            <span class="customize-count" id="usCustomizeCount"></span>
-            <button class="reset-btn" data-side="us" type="button">Reset to Top 8</button>
-          </div>
-        </div>
-      </div>
-      <div class="brand-panel them">
-        <h3>COMPETITOR BRANDS</h3>
-        <div class="donut-wrap" id="themBrandDonut"></div>
-        <table class="brand-list" id="themBrandList"></table>
-        <button class="customize-btn" data-side="them" type="button">Customize brands shown <span class="arrow">&#9662;</span></button>
-        <div class="customize-panel" id="themCustomize" hidden>
-          <input type="search" class="customize-search" data-side="them" placeholder="Search competitor brands&hellip;">
-          <div class="customize-list" id="themCustomizeList"></div>
-          <div class="customize-actions">
-            <span class="customize-count" id="themCustomizeCount"></span>
-            <button class="reset-btn" data-side="them" type="button">Reset to Top 8</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="shared-brands">
-    <h2 class="sec-title">Brands Pouring on Both Sides</h2>
-    <p class="sec-sub">Brand families with handles through us at some accounts and through a competing distributor at others.</p>
-    <div class="shared-note" id="sharedNote"></div>
-    <table class="acct-table">
-      <thead><tr><th>Brand</th><th class="num">Ours</th><th class="num">Theirs</th><th>Where theirs pour</th></tr></thead>
-      <tbody id="sharedRows"></tbody>
-    </table>
-  </section>
-
-  <section id="core-areas">
-    <h2 class="sec-title">Core Market, by Area</h2>
-    <p class="sec-sub">Bergen, Sussex, Passaic, Morris 1 &amp; Morris 3 &mdash; where we focus. Each area's top brands on our side and theirs.</p>
-    <button class="customize-btn" data-side="areaUs" data-pair="areaThem" type="button">Customize brands shown in every area <span class="arrow">&#9662;</span></button>
-    <div class="customize-panel area-customize" id="areaUsCustomize" hidden>
-      <div class="area-customize-cols">
-        <div>
-          <h4 class="us">Our Brands</h4>
-          <input type="search" class="customize-search" data-side="areaUs" placeholder="Search our brands&hellip;">
-          <div class="customize-list" id="areaUsCustomizeList"></div>
-          <div class="customize-actions">
-            <span class="customize-count" id="areaUsCustomizeCount"></span>
-            <button class="reset-btn" data-side="areaUs" type="button">Reset to Top 5</button>
-          </div>
-        </div>
-        <div>
-          <h4 class="them">Competitor Brands</h4>
-          <input type="search" class="customize-search" data-side="areaThem" placeholder="Search competitor brands&hellip;">
-          <div class="customize-list" id="areaThemCustomizeList"></div>
-          <div class="customize-actions">
-            <span class="customize-count" id="areaThemCustomizeCount"></span>
-            <button class="reset-btn" data-side="areaThem" type="button">Reset to Top 5</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="coreAreaCards"></div>
-  </section>
-
-  <section id="brand-lookup">
-    <h2 class="sec-title">Look Up a Brand's Share by Area</h2>
-    <p class="sec-sub">Pick any brand family, ours or a competitor's, to see its handle count and share in every distribution area.</p>
-    <select id="lookupSelect">
-      <option value="">Select a brand&hellip;</option>
-    </select>
-    <div id="lookupResult"></div>
-  </section>
-
-  <section id="other-areas">
-    <h2 class="sec-title">Other Areas</h2>
-    <p class="sec-sub">Essex, Hudson, Union, and Morris 2 &mdash; not a primary focus, shown here for completeness only.</p>
-    <table class="other-table">
-      <thead><tr><th>Area</th><th class="num">Handles</th><th class="num">Us</th><th class="num">Them</th></tr></thead>
-      <tbody id="otherAreaRows"></tbody>
-    </table>
-    <p class="company-ref" id="companyWideRef"></p>
-  </section>
-
-  <section id="velocity">
+  <section id="velocity" style="max-width:900px;margin-left:auto;margin-right:auto">
     <h2 class="sec-title">Velocity: Units Sold Per Tap Handle</h2>
     <p class="sec-sub">For our own brands only &mdash; Encompass only records our sales, so this can't be computed for competitor brands. Ranked fastest-pouring first.</p>
     <div class="vel-note" id="velNote"></div>
@@ -618,7 +456,7 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
     </table>
   </section>
 
-  <details class="notes">
+  <details class="notes" style="max-width:900px;margin-left:auto;margin-right:auto">
     <summary>Data &amp; methodology notes</summary>
     <ul>
       <li>"Handles" = the "# of Taps" field summed across every surveyed row, not row count &mdash; an account with 3 handles of one brand counts as 3, not 1.</li>
@@ -632,8 +470,9 @@ footer{color:var(--ink-mute);font-size:14px;text-align:center;padding:30px 0 10p
       <li>Velocity quadrants split brands (5+ matched handles) at the median handle count and median units-per-handle &mdash; "median" meaning half the brands sit above and half below, so the quadrant labels are relative to our own portfolio, not an absolute standard.</li>
     </ul>
   </details>
-
 </div>
+
+
 
 <footer>Kohler Distributing &middot; Tap Share Executive Overview. See generate.py for methodology.</footer>
 
@@ -1083,98 +922,6 @@ function renderSnapshot(){
     factEl.remove();
   }
 
-  document.getElementById('igSwitchLink').addEventListener('click', e=>{ e.preventDefault(); setTab('detailed'); });
-}
-
-// ---- Full Detail deep-dive sections (accountAnalysis / sharedBrands from
-// generate.py, plus client-side segment + velocity analysis) ----
-const detailBrandLabel = name => (name && name.trim()) ? name : '(Brand Not Specified)';
-
-function renderSegBattle(){
-  const el = document.getElementById('segBattleRows');
-  const buckets = {};
-  const addSide = (list, side) => list.forEach(b => {
-    const seg = b.segment || classifySegment(b.brand); // real workbook segment first, heuristic fallback
-    const k = buckets[seg] || (buckets[seg] = {us:0, them:0, topUs:null, topThem:null});
-    k[side] += b.taps;
-    const isGeneric = FACT_EXCLUDE_NAMES.has((b.brand || '').trim());
-    if (!isGeneric && side==='us' && (!k.topUs || b.taps > k.topUs.taps)) k.topUs = b;
-    if (!isGeneric && side==='them' && (!k.topThem || b.taps > k.topThem.taps)) k.topThem = b;
-  });
-  addSide(DATA.allBrandsUs, 'us');
-  addSide(DATA.allBrandsThem, 'them');
-  el.innerHTML = SEGMENT_ORDER.map(seg => {
-    const k = buckets[seg];
-    if (!k || (k.us + k.them) === 0) return '';
-    const total = k.us + k.them;
-    const usPct = k.us/total*100, themPct = k.them/total*100;
-    const verdict = usPct >= 55 ? ['us','We lead'] : themPct >= 55 ? ['them','They lead'] : ['even','Contested'];
-    return `<div class="segbat-row">
-      <div class="segbat-head"><h3>${SEGMENT_LABELS[seg]}</h3>
-        <span class="verdict ${verdict[0]}">${verdict[1]} &middot; ${fmtInt(total)} handles</span></div>
-      <div class="segbat-bar"><i class="us" style="width:${usPct}%"></i><i class="them" style="width:${themPct}%"></i></div>
-      <div class="segbat-pcts"><span class="us">Us ${fmtPct(usPct)} (${fmtInt(k.us)})</span><span class="them">Them ${fmtPct(themPct)} (${fmtInt(k.them)})</span></div>
-      ${seg === 'unclassified'
-        ? `<div class="segbat-leaders"><span>Mostly taps logged only as "Other Supplier" &mdash; competitor handles with no brand recorded, so there's no meaningful #1 to name here.</span></div>`
-        : `<div class="segbat-leaders">
-        <span>Our #1: <strong>${k.topUs ? detailBrandLabel(k.topUs.brand)+' ('+fmtInt(k.topUs.taps)+')' : '&mdash;'}</strong></span>
-        <span>Their #1: <strong>${k.topThem ? detailBrandLabel(k.topThem.brand)+' ('+fmtInt(k.topThem.taps)+')' : '&mdash;'}</strong></span>
-      </div>`}
-    </div>`;
-  }).join('');
-}
-
-// Diverging band palette (us pole -> neutral contested -> them pole),
-// validated with the dataviz skill's validate_palette.js against this
-// canvas: adjacent-pair CVD 14.0, normal-vision 17.8, contrast 3:1+ all
-// pass (the categorical lightness/chroma checks don't apply to a
-// diverging ramp; the counted legend below carries identity regardless).
-const BAND_COLORS = {all_us:'#4CC97A', lead:'#BCE9CD', contested:'#8C7A5E', trail:'#F7C9BC', all_them:'#EB6A50'};
-
-function renderAccountControl(){
-  const aa = DATA.accountAnalysis;
-  if (!aa) return;
-  const totalAccts = aa.bands.reduce((a,b)=>a+b.accounts,0);
-  const bar = document.getElementById('bandBar');
-  bar.innerHTML = aa.bands.map(b =>
-    `<i class="donut-slice" style="width:${totalAccts?b.accounts/totalAccts*100:0}%;background:${BAND_COLORS[b.key]}"></i>`).join('');
-  // same shared tooltip as the donuts, so touch works here too
-  Array.from(bar.children).forEach((seg, i) => {
-    const b = aa.bands[i];
-    const tip = () => `<strong>${b.label}</strong><br>${fmtInt(b.accounts)} accounts &middot; ${fmtInt(b.taps)} handles`;
-    seg.addEventListener('mouseenter', e => showTooltip(e.clientX, e.clientY, tip()));
-    seg.addEventListener('mousemove', e => positionTooltip(e.clientX, e.clientY));
-    seg.addEventListener('mouseleave', hideTooltip);
-    seg.addEventListener('click', e => { e.stopPropagation(); showTooltip(e.clientX, e.clientY, tip()); });
-  });
-  document.getElementById('bandLegend').innerHTML = aa.bands.map(b =>
-    `<span class="item"><span class="sw" style="background:${BAND_COLORS[b.key]}"></span>${b.label}
-     <span class="cnt">${fmtInt(b.accounts)}</span></span>`).join('');
-  const c = aa.concentration;
-  document.getElementById('concLine').innerHTML =
-    `Handles are spread wide: the 10 biggest accounts hold just ${fmtPct(c.top10)} of core-market handles, the top 25 hold ${fmtPct(c.top25)}, and the top 50 hold ${fmtPct(c.top50)} &mdash; across ${fmtInt(c.accounts)} accounts with recorded handles. Share here moves account by account, not through a handful of big wins.`;
-
-  const acctCell = f => `<td><span class="dba">${f.dba}</span><span class="sub">${f.area} &middot; ${f.city}</span>
-    <div class="minibar"><i class="us" style="width:${f.usPct}%"></i><i class="them" style="width:${100-f.usPct}%"></i></div></td>`;
-  const brandsCell = list => `<td class="acct-brands">${list.map(b=>`${detailBrandLabel(b.brand)} (${fmtInt(b.taps)})`).join(', ') || '&mdash;'}</td>`;
-  document.getElementById('flipRows').innerHTML = aa.flipTargets.map(f =>
-    `<tr>${acctCell(f)}<td class="num us">${fmtInt(f.usTaps)}</td><td class="num them">${fmtInt(f.themTaps)}</td>${brandsCell(f.topThem)}</tr>`).join('');
-  document.getElementById('anchorRows').innerHTML = aa.anchors.map(f =>
-    `<tr>${acctCell(f)}<td class="num us">${fmtInt(f.usTaps)}</td><td class="num them">${fmtInt(f.themTaps)}</td>${brandsCell(f.topUs)}</tr>`).join('');
-}
-
-function renderSharedBrands(){
-  const list = DATA.sharedBrands;
-  const sec = document.getElementById('shared-brands');
-  if (!list || !list.length){ sec.hidden = true; return; }
-  const themTotal = list.reduce((a,b)=>a+b.themTaps,0);
-  document.getElementById('sharedNote').innerHTML =
-    `<strong>${fmtInt(themTotal)} handles</strong> of brands we demonstrably carry are pouring through a competing distributor in the core market &mdash; share that doesn't need a new brand authorized to win back, just the account moved.`;
-  document.getElementById('sharedRows').innerHTML = list.map(b =>
-    `<tr><td><span class="dba">${b.brand}</span></td>
-     <td class="num us">${fmtInt(b.usTaps)}<span class="sub">${fmtInt(b.usAccounts)} accts</span></td>
-     <td class="num them">${fmtInt(b.themTaps)}<span class="sub">${fmtInt(b.themAccounts)} accts</span></td>
-     <td class="acct-brands">${b.topThemAreas.join(', ') || '&mdash;'}</td></tr>`).join('');
 }
 
 function renderVelQuadrants(){
@@ -1206,210 +953,12 @@ function renderVelQuadrants(){
       <div class="why">Wide placement, below-median pour rate</div><ul>${watch.map(item).join('')}</ul></div>`;
 }
 
-function setTab(tab){
-  document.getElementById('snapshotTab').hidden = tab !== 'snapshot';
-  document.getElementById('detailedTab').hidden = tab !== 'detailed';
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-  window.scrollTo(0, 0);
-}
-document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
 
+// The velocity ("volume") section is all that remains of the old Full
+// Detail tab (deleted 2026-08-19, per Gavin: "bring in the volume portion
+// to the snapshot ... then delete the tab") -- init() now only wires it.
 function init(){
-  const s = DATA.summary;
   document.getElementById('updated').textContent = `Data refreshed ${DATA.generatedAt}`;
-  document.getElementById('heroTotal').textContent = fmtInt(s.totalTaps);
-  document.getElementById('heroSub').textContent = `across ${fmtInt(s.accountsSurveyed)} surveyed accounts`;
-  document.getElementById('usPct').textContent = fmtPct(s.usPct);
-  document.getElementById('usCnt').textContent = `${fmtInt(s.usTaps)} handles`;
-  document.getElementById('themPct').textContent = fmtPct(s.themPct);
-  document.getElementById('themCnt').textContent = `${fmtInt(s.themTaps)} handles`;
-
-  const bar = document.getElementById('heroBar');
-  bar.innerHTML = `<div class="us" style="width:${s.usPct}%"></div><div class="them" style="width:${s.themPct}%"></div>`;
-
-  renderDonut(document.getElementById('usThemDonut'),
-    [{label:'Us', value:s.usTaps, color:'var(--us)'}, {label:'Them', value:s.themTaps, color:'var(--them)'}],
-    200, 34, fmtPct(s.usPct), 'ours');
-
-  // ---- brand pie customizer: pick which brands get their own slice ----
-  const MAX_CUSTOM_BRANDS = 8;
-  const SELECTED = {us:null, them:null};
-  const sideKey = side => side==='us' ? 'Us' : 'Them';
-  const allBrandsOf = side => DATA['allBrands'+sideKey(side)];
-
-  function initSelected(side){
-    SELECTED[side] = new Set(DATA['brands'+sideKey(side)].top.map(t=>t.brand));
-  }
-
-  function renderBrandPanel(side){
-    const all = allBrandsOf(side);
-    const selected = SELECTED[side];
-    const chosen = all.filter(b=>selected.has(b.brand));
-    const rest = all.filter(b=>!selected.has(b.brand));
-    const restTotal = rest.reduce((a,b)=>a+b.taps,0);
-    const grandTotal = chosen.reduce((a,b)=>a+b.taps,0) + restTotal;
-    const segs = chosen.map((b,i)=>({label:b.brand, value:b.taps, color:BRAND_COLORS[i%BRAND_COLORS.length]}));
-    if (restTotal > 0) segs.push({label:'All Other', value:restTotal, color:'var(--other-gray)'});
-    renderDonut(document.getElementById(side==='us'?'usBrandDonut':'themBrandDonut'), segs, 180, 30, fmtInt(grandTotal), 'handles');
-    const tbl = document.getElementById(side==='us'?'usBrandList':'themBrandList');
-    tbl.innerHTML = '';
-    chosen.forEach((b,i)=>{
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td class="bname"><span class="sw" style="background:${BRAND_COLORS[i%BRAND_COLORS.length]}"></span>${b.brand}</td>` +
-        `<td class="bnum">${fmtInt(b.taps)}</td><td class="bpct">${fmtPct(grandTotal?b.taps/grandTotal*100:0)}</td>`;
-      tbl.appendChild(tr);
-    });
-    if (restTotal > 0){
-      const tr = document.createElement('tr'); tr.className = 'other';
-      tr.innerHTML = `<td class="bname"><span class="sw" style="background:var(--other-gray)"></span>All Other (${rest.length} brands)</td>` +
-        `<td class="bnum">${fmtInt(restTotal)}</td><td class="bpct">${fmtPct(grandTotal?restTotal/grandTotal*100:0)}</td>`;
-      tbl.appendChild(tr);
-    }
-    renderCustomizeList(side);
-  }
-
-  function renderCustomizeList(side){
-    const all = allBrandsOf(side);
-    const selected = SELECTED[side];
-    const listEl = document.getElementById(side+'CustomizeList');
-    const searchInp = document.querySelector(`.customize-search[data-side="${side}"]`);
-    const q = (searchInp.value || '').toLowerCase();
-    const atMax = selected.size >= MAX_CUSTOM_BRANDS;
-    listEl.innerHTML = '';
-    all.filter(b=>b.brand.toLowerCase().includes(q)).forEach(b=>{
-      const checked = selected.has(b.brand);
-      const row = document.createElement('div');
-      row.className = 'customize-row' + (atMax && !checked ? ' maxed' : '');
-      const id = 'chk-'+side+'-'+b.brand.replace(/[^a-z0-9]+/gi,'_');
-      row.innerHTML = `<input type="checkbox" id="${id}" ${checked?'checked':''} ${atMax && !checked ? 'disabled':''}>` +
-        `<label for="${id}"><span>${b.brand}</span><span class="ctaps">${fmtInt(b.taps)}</span></label>`;
-      row.querySelector('input').addEventListener('change', e=>{
-        if (e.target.checked) selected.add(b.brand); else selected.delete(b.brand);
-        renderBrandPanel(side);
-      });
-      listEl.appendChild(row);
-    });
-    document.getElementById(side+'CustomizeCount').textContent = `${selected.size} / ${MAX_CUSTOM_BRANDS} selected`;
-  }
-
-  initSelected('us'); initSelected('them');
-  renderBrandPanel('us'); renderBrandPanel('them');
-
-  // ---- brand lookup by area ----
-  const lookupSelect = document.getElementById('lookupSelect');
-  const usOpts = DATA.brandLookup.filter(b=>b.side==='US');
-  const themOpts = DATA.brandLookup.filter(b=>b.side==='THEM');
-  function buildOptgroup(label, items){
-    const og = document.createElement('optgroup'); og.label = label;
-    items.forEach(b=>{
-      const opt = document.createElement('option');
-      opt.value = b.brand; opt.textContent = `${b.brand} (${fmtInt(b.totalTaps)})`;
-      og.appendChild(opt);
-    });
-    return og;
-  }
-  lookupSelect.appendChild(buildOptgroup('Our Brands', usOpts));
-  lookupSelect.appendChild(buildOptgroup('Competitor Brands', themOpts));
-
-  function renderLookup(brandName){
-    const result = document.getElementById('lookupResult');
-    if (!brandName){ result.innerHTML = ''; return; }
-    const b = DATA.brandLookup.find(x=>x.brand === brandName);
-    if (!b){ result.innerHTML = '<div class="lookup-empty">No data for that brand.</div>'; return; }
-    const color = b.side === 'US' ? 'var(--us)' : 'var(--them)';
-    const sideLabel = b.side === 'US' ? 'Ours' : 'Competitor';
-    let html = `<div class="lookup-card"><div class="lookup-head"><h3 class="${b.side==='US'?'us':'them'}">${b.brand}</h3>` +
-      `<span class="lookup-total">${sideLabel}</span></div>` +
-      `<p class="lookup-total">${fmtInt(b.totalTaps)} handles total, across ${b.byArea.length} area${b.byArea.length===1?'':'s'}</p>`;
-    const core = b.byArea.filter(a=>a.group==='core');
-    const rest = b.byArea.filter(a=>a.group!=='core');
-    const rowHtml = a => `<div class="lookup-area-row">
-        <div class="lhead"><span class="aname">${a.area}</span><span class="anum">${fmtInt(a.taps)} of ${fmtInt(a.areaTotal)} handles &middot; ${fmtPct(a.pct)}</span></div>
-        <div class="lookup-bar"><i style="width:${a.pct}%;background:${color}"></i></div>
-      </div>`;
-    if (core.length){
-      html += '<div class="lookup-divider">Core Market</div>' + core.map(rowHtml).join('');
-    }
-    if (rest.length){
-      html += '<div class="lookup-divider">Other Areas</div>' + rest.map(rowHtml).join('');
-    }
-    html += '</div>';
-    result.innerHTML = html;
-  }
-  lookupSelect.addEventListener('change', e => renderLookup(e.target.value));
-
-  // ---- Core Market by Area: shared brand picker across all 5 area cards ----
-  const AREA_MAX = 5;
-  SELECTED.areaUs = new Set(DATA.brandsUs.top.slice(0, AREA_MAX).map(b=>b.brand));
-  SELECTED.areaThem = new Set(DATA.brandsThem.top.slice(0, AREA_MAX).map(b=>b.brand));
-
-  function areaBrandSourceList(side){ // side: 'areaUs' | 'areaThem' -- overall core-market ranking, for a stable cross-card order
-    return side === 'areaUs' ? DATA.allBrandsUs : DATA.allBrandsThem;
-  }
-
-  function tapsForBrandInArea(area, brand, side){
-    const list = side === 'areaUs' ? area.allUs : area.allThem;
-    const hit = list.find(b=>b.brand === brand);
-    return hit ? hit.taps : 0;
-  }
-
-  function renderAreaCards(){
-    const coreWrap = document.getElementById('coreAreaCards');
-    coreWrap.innerHTML = '';
-    const usBrands = areaBrandSourceList('areaUs').filter(b=>SELECTED.areaUs.has(b.brand)).map(b=>b.brand);
-    const themBrands = areaBrandSourceList('areaThem').filter(b=>SELECTED.areaThem.has(b.brand)).map(b=>b.brand);
-    DATA.areas.core.forEach(a=>{
-      const card = document.createElement('div'); card.className = 'area-card';
-      const usList = usBrands.map(name=>`<li><span>${name}</span><span class="n">${fmtInt(tapsForBrandInArea(a, name, 'areaUs'))}</span></li>`).join('') || '<li><span>&mdash;</span></li>';
-      const themList = themBrands.map(name=>`<li><span>${name}</span><span class="n">${fmtInt(tapsForBrandInArea(a, name, 'areaThem'))}</span></li>`).join('') || '<li><span>&mdash;</span></li>';
-      card.innerHTML = `
-        <div class="ahead"><h3>${a.area}</h3><span class="atotal">${fmtInt(a.totalTaps)} handles</span></div>
-        <div class="area-bar"><div class="us" style="width:${a.usPct}%"></div><div class="them" style="width:${a.themPct}%"></div></div>
-        <div class="area-pcts"><span class="us">Us ${fmtPct(a.usPct)}</span><span class="them">Them ${fmtPct(a.themPct)}</span></div>
-        <div class="area-brands">
-          <div><h4>Our Brands</h4><ul>${usList}</ul></div>
-          <div><h4>Competitor Brands</h4><ul>${themList}</ul></div>
-        </div>`;
-      coreWrap.appendChild(card);
-    });
-  }
-
-  function renderAreaCustomizeList(side){
-    const all = areaBrandSourceList(side);
-    const selected = SELECTED[side];
-    const listEl = document.getElementById(side+'CustomizeList');
-    const searchInp = document.querySelector(`.customize-search[data-side="${side}"]`);
-    const q = (searchInp.value || '').toLowerCase();
-    const atMax = selected.size >= AREA_MAX;
-    listEl.innerHTML = '';
-    all.filter(b=>b.brand.toLowerCase().includes(q)).forEach(b=>{
-      const checked = selected.has(b.brand);
-      const row = document.createElement('div');
-      row.className = 'customize-row' + (atMax && !checked ? ' maxed' : '');
-      const id = 'chk-'+side+'-'+b.brand.replace(/[^a-z0-9]+/gi,'_');
-      row.innerHTML = `<input type="checkbox" id="${id}" ${checked?'checked':''} ${atMax && !checked ? 'disabled':''}>` +
-        `<label for="${id}"><span>${b.brand}</span><span class="ctaps">${fmtInt(b.taps)}</span></label>`;
-      row.querySelector('input').addEventListener('change', e=>{
-        if (e.target.checked) selected.add(b.brand); else selected.delete(b.brand);
-        renderAreaCards(); renderAreaCustomizeList(side);
-      });
-      listEl.appendChild(row);
-    });
-    document.getElementById(side+'CustomizeCount').textContent = `${selected.size} / ${AREA_MAX} selected`;
-  }
-
-  renderAreaCards();
-
-  const otherRows = document.getElementById('otherAreaRows');
-  DATA.areas.nonFocus.concat(DATA.areas.other).forEach(a=>{
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${a.area}</td><td class="num">${fmtInt(a.totalTaps)}</td>` +
-      `<td class="num us">${fmtPct(a.usPct)}</td><td class="num them">${fmtPct(a.themPct)}</td>`;
-    otherRows.appendChild(tr);
-  });
-  const cw = DATA.companyWide;
-  document.getElementById('companyWideRef').textContent =
-    `Company-wide, including these areas: ${fmtInt(cw.totalTaps)} handles, ${fmtPct(cw.usPct)} ours / ${fmtPct(cw.themPct)} competitor.`;
 
   const v = DATA.velocity;
   document.getElementById('velNote').textContent =
@@ -1419,7 +968,7 @@ function init(){
 
   // ---- Velocity table: pick which resolvable brands to show ----
   const VEL_MAX = 15;
-  SELECTED.vel = new Set(v.defaultBrands);
+  const SELECTED = {vel: new Set(v.defaultBrands)};
 
   function renderVelocityTable(){
     const velRows = document.getElementById('velRows');
@@ -1461,17 +1010,9 @@ function init(){
 
   renderVelocityTable();
 
-  // ---- shared toggle/search/reset wiring for every "Customize brands
-  // shown" control on the page (brand-panel pies, area cards, velocity) ----
   const CUSTOMIZERS = {
-    us:       {list: renderCustomizeList, main: renderBrandPanel, reset: initSelected},
-    them:     {list: renderCustomizeList, main: renderBrandPanel, reset: initSelected},
-    areaUs:   {list: renderAreaCustomizeList, main: renderAreaCards,
-               reset: side=>{ SELECTED[side] = new Set(DATA.brandsUs.top.slice(0, AREA_MAX).map(b=>b.brand)); }},
-    areaThem: {list: renderAreaCustomizeList, main: renderAreaCards,
-               reset: side=>{ SELECTED[side] = new Set(DATA.brandsThem.top.slice(0, AREA_MAX).map(b=>b.brand)); }},
-    vel:      {list: renderVelocityCustomizeList, main: renderVelocityTable,
-               reset: ()=>{ SELECTED.vel = new Set(v.defaultBrands); }},
+    vel: {list: renderVelocityCustomizeList, main: renderVelocityTable,
+          reset: ()=>{ SELECTED.vel = new Set(v.defaultBrands); }},
   };
 
   document.querySelectorAll('.customize-btn').forEach(btn=>{
@@ -1482,7 +1023,6 @@ function init(){
       if (panel.hasAttribute('hidden')){
         panel.removeAttribute('hidden');
         CUSTOMIZERS[side].list(side);
-        if (btn.dataset.pair) CUSTOMIZERS[btn.dataset.pair].list(btn.dataset.pair);
         arrow.innerHTML = '&#9652;';
       } else {
         panel.setAttribute('hidden','');
@@ -1504,9 +1044,6 @@ function init(){
 }
 renderSnapshot();
 init();
-renderSegBattle();
-renderAccountControl();
-renderSharedBrands();
 renderVelQuadrants();
 </script>
 </body></html>

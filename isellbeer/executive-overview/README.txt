@@ -1,7 +1,22 @@
 Tap Share — Executive Overview
 
-Two tabs, same underlying data (see exec-data below) -- "Snapshot" and
-"Full Detail":
+ONE page now (2026-08-19, per Gavin: "Delete full detail tab. Bring in
+the volume portion to the snapshot"): the Full Detail tab is DELETED --
+its markup, its tab bar, and its JS (segment battleground, account
+control, shared brands, brand/area customizers, brand lookup, other
+areas) are all removed from index.html, not hidden. The one piece that
+survived is the VOLUME section -- "Velocity: Units Sold Per Tap Handle"
+(velocity note + Hidden Gems/Workhorses/Watch List quadrant cards +
+customizable table), moved to the bottom of the Snapshot page (capped at
+900px wide inside Snapshot's 1400px wrap so the table stays readable),
+along with the Data & methodology notes block. generate.py still emits
+the full DATA blob unchanged -- the removed sections' data
+(accountAnalysis, sharedBrands, etc.) is simply unused now, so
+resurrecting any of them later is a render-code job, not a data job.
+The section descriptions below are kept for that history.
+
+The page previously had two tabs, same underlying data (see exec-data
+below) -- "Snapshot" and "Full Detail":
   Snapshot     Default tab. Built for a non-technical, glance-and-go reader
                (per Kohler, 2026-08-07: the VP of Sales, who doesn't want to
                click around) -- one scroll, big KPI numbers, donut charts, a
