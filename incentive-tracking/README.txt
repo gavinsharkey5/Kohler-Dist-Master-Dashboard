@@ -653,7 +653,8 @@ math.
    semantics. The deck pays per LINE ("$100 for Targeted Draft Line"),
    so both numbers are carried and labelled separately on the card.
 
-   Built (deck slide 20): new-line counts ($100 targeted / $50 other),
+   Built (deck slide 20), activity only -- no goals or house gates on
+   this side per Gavin: new-line counts ($100 targeted / $50 other),
    each new line's barrels (Current Units x keg size via the existing
    keg_bbl(); the file has 15.5 Gal and 1/4 BBL kegs), the 4+/8+ barrel
    bonus tier each line has reached ($200/$400 targeted, $150/$250
@@ -661,27 +662,29 @@ math.
    Closest To A Barrel Bonus" list. 26 leaf rows carry NEGATIVE units
    (returns/credits) and are passed through as-is rather than clamped.
 
-   THREE INFERENCES ON THE DRAFT SIDE, all flagged to Gavin 2026-08-19:
-     1. TARGETED BRAND = Modelo Especial only. Slide 20 says "MODELO
-        TARGETED NEW LINE REWARDS"; slide 18 lists "Modelo Draft" and
-        "Negra Draft" as separate goals, so Negra is read as non-target.
-        Change CONSTELLATION_TARGETED_DRAFT_BRAND if Gavin says all
-        Modelo brands are targeted.
-     2. BARREL BONUS IS PER LINE, not per account -- the deck's "1/4 &
-        1/6 half payout" attaches the bonus to a keg size, which is a
-        property of a line. (1911/Woodchuck's barrel thresholds are per
-        ACCOUNT per Gavin, so this is genuinely a different mechanic and
-        worth confirming.) No $ total is summed either way.
-     3. HOUSE DRAFT GOALS: the draft file has no goals column, so the
-        five numbers come off slide 18 (Modelo 240, Corona Lt 50,
-        Pacifico 57, Negra 15, Premier 5) and are matched against
-        DISTINCT ACCOUNTS buying that brand on draft -- the reading the
-        data supports (Modelo 238 vs 240, Negra 19 vs 15, Premier 15 vs
-        5 on the 2026-08-19 pull; new lines or barrels fit far worse).
-        The card labels these as deck numbers, not report numbers.
-   Also note the draft file has NO date columns at all -- the window is
-   assumed to match the other summer files (Jun-Aug), though slide 20's
-   own draft window reads March-May. Confirm on the next pull.
+   ALL FOUR DRAFT-SIDE QUESTIONS RESOLVED BY GAVIN, 2026-08-19 (asked
+   the same day they were built):
+     1. TARGETED BRAND = Modelo Especial only ("keep as is"). Slide 20's
+        "MODELO TARGETED NEW LINE REWARDS" plus slide 18 listing "Modelo
+        Draft" and "Negra Draft" separately -- so Negra pays the $50
+        non-target rate. CONSTELLATION_TARGETED_DRAFT_BRAND holds this.
+     2. BARREL BONUS IS PER LINE, not per account ("per line") -- so it
+        differs from 1911/Woodchuck, whose barrel thresholds are per
+        ACCOUNT. Each new line's own barrels drive its 4+/8+ tier, and
+        the deck's "1/4 & 1/6 half payout" halves it on small kegs.
+        No $ total is summed.
+     3. NO GOALS ON THE DRAFT SIDE ("dont include any goals"). An
+        earlier build showed a house-goal block using slide 18's draft
+        numbers (Modelo 240, Corona Lt 50, Pacifico 57, Negra 15,
+        Premier 5) matched to distinct draft accounts; Gavin said not to
+        carry goals here at all, so that block and
+        CONSTELLATION_DRAFT_GOALS were removed outright. The draft
+        section now tracks activity only -- new lines, barrels, bonus
+        tiers. Do NOT reintroduce deck numbers as stand-in goals.
+     4. WINDOW IS JUNE-AUGUST, same as the package file -- Gavin: "draft
+        has date range as package i just didnt show it in report". The
+        file genuinely has no date columns; slide 20's March-May text
+        refers to the earlier phase, not this pull.
 
    The rep scoreboard spans both channels (off-prem goals retained,
    off-prem % of goal, on-prem package buyers, new draft lines) because

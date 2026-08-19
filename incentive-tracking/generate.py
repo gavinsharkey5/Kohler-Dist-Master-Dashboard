@@ -1723,15 +1723,10 @@ CONSTELLATION_ON_PKG_PREFIXES = [
     "Pacifico", "Corona NA", "Sunbrew", "Modelo Oro",
 ]
 
-# Deck slide 18 on-premise draft distribution goals. The draft report has
-# no goals column, so these come from the deck and are matched against
-# distinct accounts buying that brand on draft -- the reading the data
-# supports (Modelo 238 vs goal 240, Negra 19 vs 15 on the 2026-08-19
-# pull). Flagged to Gavin as an inference, not a stated mapping.
-CONSTELLATION_DRAFT_GOALS = [
-    ("Modelo Especial", 240), ("Corona Light", 50), ("Pacifico", 57),
-    ("Modelo Negra", 15), ("Corona Premier", 5),
-]
+# Per Gavin, 2026-08-19: do NOT show goals on the draft side. The draft
+# report carries no goals column, and the slide-18 draft numbers are not
+# to be used as stand-ins -- so this program tracks draft activity
+# (new lines, barrels, bonus tiers) with no goal or house gate attached.
 # Deck slide 20: "MODELO TARGETED NEW LINE REWARDS" pays $100 a line and
 # "ALL OTHER LINE REWARDS" $50. Slide 18 lists "Modelo Draft" separately
 # from "Negra Draft", so the targeted line is read as Modelo Especial
@@ -1780,7 +1775,6 @@ def _constellation_draft_on():
 
     roster = set(ROSTER)
     by_rep = {}
-    house_accounts = defaultdict(set)
     for r in leaf:
         rep = r["Sales Rep Name"]
         if rep not in roster:
@@ -1812,16 +1806,10 @@ def _constellation_draft_on():
         })
         if units > 0:
             d["accounts"].add(customer)
-            house_accounts[brand].add(customer)
         if is_new:
             d["newAccounts"].add(customer)
 
-    house = []
-    for brand, goal in CONSTELLATION_DRAFT_GOALS:
-        n = len(house_accounts.get(brand, ()))
-        house.append({"label": brand + " Draft", "total": n, "goal": goal,
-                      "met": n >= goal, "short": max(0, goal - n)})
-    return by_rep, house
+    return by_rep
 
 
 def build_constellation_retention():
@@ -1891,7 +1879,7 @@ def build_constellation_retention():
                       "short": max(0, cat["houseGoal"] - round(house_total))})
 
     pkg_by_rep, pkg_house = _constellation_packages_on()
-    draft_by_rep, draft_house = _constellation_draft_on()
+    draft_by_rep = _constellation_draft_on()
 
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]
@@ -1922,7 +1910,7 @@ def build_constellation_retention():
     return {"byRep": by_rep, "houseOff": house,
             "houseOffMet": sum(1 for h in house if h["met"]),
             "houseOffTotal": len(house),
-            "housePkgOn": pkg_house, "houseDraftOn": draft_house,
+            "housePkgOn": pkg_house,
             "targetedDraftBrand": CONSTELLATION_TARGETED_DRAFT_BRAND,
             "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
 
@@ -2030,9 +2018,7 @@ def main():
           f"{sum(1 for d in con['byRep'].values() if d['onPkgTotal'])} reps | draft "
           f"{sum(d['draftNewLineCount'] for d in con['byRep'].values())} new lines "
           f"({sum(d['draftNewTargetedCount'] for d in con['byRep'].values())} targeted Modelo), "
-          f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl, "
-          f"house draft {sum(1 for h in con['houseDraftOn'] if h['met'])}/{len(con['houseDraftOn'])} met "
-          f"({', '.join(h['label']+' '+str(h['total'])+'/'+str(h['goal']) for h in con['houseDraftOn'])})")
+          f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl (no goals tracked on draft, per Gavin)")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

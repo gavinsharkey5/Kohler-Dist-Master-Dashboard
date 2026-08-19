@@ -60735,43 +60735,6 @@ const PROGRAM_DATA = {
         "buyers": 3
       }
     ],
-    "houseDraftOn": [
-      {
-        "label": "Modelo Especial Draft",
-        "total": 238,
-        "goal": 240,
-        "met": false,
-        "short": 2
-      },
-      {
-        "label": "Corona Light Draft",
-        "total": 31,
-        "goal": 50,
-        "met": false,
-        "short": 19
-      },
-      {
-        "label": "Pacifico Draft",
-        "total": 43,
-        "goal": 57,
-        "met": false,
-        "short": 14
-      },
-      {
-        "label": "Modelo Negra Draft",
-        "total": 19,
-        "goal": 15,
-        "met": true,
-        "short": 0
-      },
-      {
-        "label": "Corona Premier Draft",
-        "total": 15,
-        "goal": 5,
-        "met": true,
-        "short": 0
-      }
-    ],
     "targetedDraftBrand": "Modelo Especial",
     "retainThresholdPct": 90
   }
@@ -62439,9 +62402,6 @@ function cardConstellationRetention(rep){
   const house = houseGoalBlock(P.houseOff||[], {
     note:'Company-wide off-premise placements. The house must clear all four for full payouts (50% if missed).',
   });
-  const houseDraft = houseGoalBlock(P.houseDraftOn||[], {
-    note:'Company-wide on-premise draft accounts vs the deck\u2019s distribution goals. These goal numbers come from the deck — the draft report itself carries no goals column.',
-  });
   const on = constellationOnPremBlocks(d, P);
 
   // Spans both channels: a rep may work only one side (Allison Scott is
@@ -62526,7 +62486,6 @@ function cardConstellationRetention(rep){
       ${board}
       ${offBlock}
       ${on.pkgBlock}
-      ${houseDraft}
       ${on.draftBlock}
     </div>
   </div>`;
