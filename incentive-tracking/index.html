@@ -59,7 +59,11 @@
   .start-head .start-here{margin-bottom:0;}
 
   header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
-  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+  .month-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px;}
+  .month-tab{display:inline-flex;align-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:15.5px;padding:9px 19px;min-height:42px;border-radius:22px;
+    border:1px solid var(--border);background:var(--card);color:var(--text-dim);}
+  .month-tab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
   h1{font-family:'Bungee','Space Grotesk',sans-serif;font-weight:400;letter-spacing:.015em;
     font-size:clamp(28px,4vw,44px);line-height:1.15;margin-bottom:10px;color:var(--amber);}
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
@@ -445,9 +449,11 @@
 </div>
 
 <header>
-  <div class="eyebrow">Incentive Tracking · August 2026</div>
   <h1>Incentive Tracker</h1>
-  <p class="sub">All of your August incentives in one place.</p>
+  <div class="month-tabs">
+    <span class="month-tab active">August 2026</span>
+  </div>
+  <p class="sub">All of your incentives in one place.</p>
   <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
