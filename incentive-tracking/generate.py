@@ -1166,7 +1166,7 @@ def load_customer_base_by_rep(filename):
 # Gavin, 2026-08-10 (i.e. no blackout) -- also not in this set, and no
 # longer an open question.
 CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt",
-                        "mc_retention"}
+                        "mc_retention", "mabi_retention"}
 
 
 def load_core_market_reps():
@@ -1462,21 +1462,8 @@ def build_new_belgium_distribution():
 # export shape changed -- it's summed with a warning rather than dropped.
 
 def _strip_report_subtotals(rows, rep_col, dm_col=None):
-    if dm_col:
-        kept, prev_dm = [], object()
-        for r in rows:
-            if r[dm_col] != prev_dm:
-                prev_dm = r[dm_col]
-                continue
-            kept.append(r)
-        rows = kept
-    kept, prev_rep = [], object()
-    for r in rows:
-        if r[rep_col] != prev_rep:
-            prev_rep = r[rep_col]
-            continue
-        kept.append(r)
-    return kept
+    """Drop both subtotal layers, keeping only real data rows."""
+    return _split_report_subtotals(rows, rep_col, dm_col=dm_col)[1]
 
 
 def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None):
@@ -1565,6 +1552,125 @@ def build_mc_retention():
     return {"byRep": by_rep}
 
 
+def _split_report_subtotals(rows, rep_col, dm_col=None):
+    """Same flattened-subtotal layout as _strip_report_subtotals, but keeps
+    the per-rep total rows instead of discarding them -- used by reports
+    (e.g. MABI) where the GOAL lives on the rep-total row and the rows
+    beneath it are that rep's per-product breakdown. Returns
+    ({rep: total_row}, [detail rows])."""
+    if dm_col:
+        kept, prev_dm = [], object()
+        for r in rows:
+            if r[dm_col] != prev_dm:
+                prev_dm = r[dm_col]
+                continue
+            kept.append(r)
+        rows = kept
+    totals, detail, prev_rep = {}, [], object()
+    for r in rows:
+        rep = r[rep_col]
+        if rep != prev_rep:
+            prev_rep = rep
+            if rep in totals:
+                print(f"WARNING: rep {rep!r} appears in two separate blocks -- "
+                      f"export shape may have changed; keeping the first total row.")
+            else:
+                totals[rep] = r
+            continue
+        detail.append(r)
+    return totals, detail
+
+
+MABI_MADE_HOUSE_GOAL = 8440      # deck slide 22/23: "House Goal=MADE 8,440 PODs"
+MABI_RETAIN_THRESHOLD = 0.90     # deck slide 22: "Retain 90% Distribution Goals"
+
+
+def build_mabi_retention():
+    """Mark Anthony (MABI) MADE Distro Rewards -- retention phase (April
+    deck slides 22-23). Retain window 6/1-8/31/2026 (base 2/1-5/31), the
+    deck's "RETAIN GOALS June-Aug" period.
+
+    Report shape differs from MolsonCoors: the GOAL is a single overall
+    MADE placement goal per rep, carried on that rep's flattened total
+    row, and the rows beneath it are the per-SKU breakdown (verified: every
+    rep's product rows sum exactly to their total row). So this uses
+    _split_report_subtotals() to keep the totals rather than drop them.
+
+    Qualifying bar is 90% of goal, not 100% -- MABI's own retention rule.
+    House gate: 8,440 MADE PODs company-wide (50% payouts if missed).
+    Payout is "up to $500 max" for the MADE/INNOV goal, which isn't a
+    per-placement rate, so no $ total is computed.
+
+    NOT built (no data): the INNOVATION goal (2,310 PODs -- separate
+    product list/report not yet provided) and the deck's on-premise piece
+    ($25 per new Black Cherry non-buy, $10 per new White Claw flavor,
+    on-prem goal 410) -- this report is MADE off-premise placements only."""
+    products = {}
+    for row in read_rows("mabi_made_product_list.csv"):
+        pid = (row["Product ID"] or "").strip()
+        if pid:
+            products[pid] = {"name": row["Product Name"].strip(),
+                             "cases2026": to_num(row["Case Equiv   2026"])}
+
+    rows = read_rows("mabi_retention_made.csv")
+    fieldnames = list(rows[0].keys()) if rows else []
+    plc_col = next(f for f in fieldnames if f.startswith("Placements Made"))
+    goal_col = next(f for f in fieldnames if f.rstrip().endswith(") Goals"))
+    rebuy_col = next(f for f in fieldnames if f.startswith("Re-Buys"))
+    totals, detail = _split_report_subtotals(rows, "Sales Rep Name",
+                                             dm_col="District Manager")
+
+    by_prod = defaultdict(list)
+    for r in detail:
+        by_prod[r["Sales Rep Name"]].append(r)
+
+    by_rep = {}
+    for rep in ROSTER:
+        trow = totals.get(rep)
+        placements = to_num(trow[plc_col]) if trow else 0.0
+        rebuys = to_num(trow[rebuy_col]) if trow else 0.0
+        goal_s = (trow[goal_col].strip() if trow else "")
+        goal = to_num(goal_s) if goal_s else None
+        pct = round(placements / goal * 100, 1) if goal else None
+
+        prod_rows, seen_ids = [], set()
+        for r in by_prod.get(rep, []):
+            label = r["Product Num Name"].strip()
+            pid, _, name = label.partition(" ")
+            seen_ids.add(pid)
+            n = to_num(r[plc_col])
+            if n > 0:
+                prod_rows.append({"product": (name or label).strip(), "productId": pid,
+                                  "placements": round(n), "rebuys": round(to_num(r[rebuy_col]))})
+        prod_rows.sort(key=lambda p: (-p["placements"], p["product"]))
+        placed_ids = {p["productId"] for p in prod_rows}
+
+        # Honest opportunity list: qualifying MADE SKUs this rep has zero
+        # placements on (either a 0 row in the report or no row at all),
+        # ranked by that SKU's company-wide 2026 volume as a "worth a pitch"
+        # proxy -- same approach as Lytt's whitespace list.
+        gaps = [{"product": p["name"], "cases2026": round(p["cases2026"], 1)}
+                for pid, p in products.items() if pid not in placed_ids]
+        gaps.sort(key=lambda g: -g["cases2026"])
+
+        by_rep[rep] = {
+            "placements": round(placements), "goal": round(goal) if goal else None,
+            "pct": pct, "rebuys": round(rebuys),
+            "retained": bool(goal and placements >= MABI_RETAIN_THRESHOLD * goal),
+            "hitFullGoal": bool(goal and placements >= goal),
+            "products": prod_rows, "skusWithPlacements": len(prod_rows),
+            "totalSkus": len(products),
+            "gapSkus": gaps[:20], "gapSkuCount": len(gaps),
+            "inReport": trow is not None,
+        }
+
+    house_total = sum(d["placements"] for d in by_rep.values())
+    return {"byRep": by_rep, "houseTotal": house_total,
+            "houseGoal": MABI_MADE_HOUSE_GOAL,
+            "houseMet": house_total >= MABI_MADE_HOUSE_GOAL,
+            "retainThresholdPct": int(MABI_RETAIN_THRESHOLD * 100)}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -1583,6 +1689,7 @@ def main():
         "garage_beer_president": build_garage_beer_president(),
         "new_belgium_distribution": build_new_belgium_distribution(),
         "mc_retention": build_mc_retention(),
+        "mabi_retention": build_mabi_retention(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -1647,6 +1754,14 @@ def main():
           f"{sum(d['goalsRetained'] for d in mc.values())} / {sum(d['goalsTotal'] for d in mc.values())} brand goals retained, "
           f"off {sum(d['offActual'] for d in mc.values())} / {sum(d['offGoal'] for d in mc.values())} placements, "
           f"on {sum(d['onActual'] for d in mc.values())} / {sum(d['onGoal'] for d in mc.values())} buyers")
+
+    mabi = data["mabi_retention"]["byRep"]
+    mabi_goaled = [d for d in mabi.values() if d["goal"]]
+    print(f"mabi_retention: house {data['mabi_retention']['houseTotal']} / {data['mabi_retention']['houseGoal']} MADE PODs "
+          f"({'MET' if data['mabi_retention']['houseMet'] else 'not met'}), "
+          f"{sum(1 for d in mabi_goaled if d['retained'])} / {len(mabi_goaled)} reps at 90%+ of goal, "
+          f"{sum(1 for d in mabi_goaled if d['hitFullGoal'])} at 100%+, "
+          f"{sum(1 for d in mabi.values() if d['inReport'] and not d['goal'])} reps with activity but no goal")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

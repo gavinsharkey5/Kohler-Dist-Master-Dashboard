@@ -524,7 +524,59 @@ math.
    blocked fetching one) -- add assets/logos/molson_coors.png and a
    PROGRAM_LOGOS entry if Gavin supplies one.
 
-2-5. PERONI & BANQUET DRAFT / CONSTELLATION / MABI / YUENGLING
+2. MARK ANTHONY (MABI) MADE DISTRO REWARDS -- RETENTION
+   (slides 22-23) [BUILT, MADE off-premise only]
+   - Retain window 6/1-8/31/2026 (base period 2/1-5/31), the deck's
+     "REWARDS RETAIN GOALS June-Aug" period.
+   - Deck rule: RETAIN 90% of distribution goals (not 100% -- this is
+     MABI-specific and differs from MolsonCoors), up to $500 max payout
+     for the MADE/INNOV goal. House goal 8,440 MADE PODs must be
+     achieved for full payout + bonus, 50% for qualifying reps if
+     missed. Bonus: reps achieving all 3 periods earn an extra $500
+     (not tracked -- needs the earlier periods' results).
+   Files: mabi_retention_made.csv (the report) and
+   mabi_made_product_list.csv (the 69-SKU qualifying MADE product list
+   with each SKU's company-wide Case Equiv 2026).
+
+   DIFFERENT REPORT SHAPE from MolsonCoors -- read this before
+   refreshing: the goal is ONE overall MADE placement goal per rep, and
+   it sits on that rep's flattened TOTAL row; the rows beneath it are
+   that rep's per-SKU breakdown (which carry no goals at all). So this
+   file needs the totals KEPT, not stripped. _split_report_subtotals()
+   in generate.py does that (returns {rep: total_row}, [detail rows]);
+   _strip_report_subtotals() -- used by MolsonCoors, where goals sit on
+   the real brand rows -- is now a thin wrapper around it. Verified on
+   the 2026-08-19 pull: all 27 rep-total rows equal the exact sum of
+   their own product rows, and no rep appears in two separate blocks
+   (a warning prints if either assumption breaks).
+   Both subtotal layers borrow a label from their biggest child (the
+   Paul Deady DM total row is labeled "Shane Barreca", rep totals are
+   labeled with the rep's top SKU), same artifact as the MC files.
+
+   Built: house-goal banner (company-wide placements vs 8,440 --
+   ACHIEVED at 8,603 on the 2026-08-19 data), Where You Stand tiles
+   (placements vs goal, % of goal with the 90% line called out, re-buys,
+   SKUs placed of 69), a progress bar stating what 90% of THEIR goal is
+   in placements, a collapsible per-SKU list (placements + re-buys), and
+   an opportunity list of qualifying MADE SKUs the rep has ZERO
+   placements on -- ranked by that SKU's company-wide 2026 case volume,
+   the same "worth a pitch" proxy Lytt's whitespace list uses. This list
+   is honest because the product list IS the qualifying universe:
+   verified every SKU appearing in the report is on the product list
+   (2 list SKUs -- 8431, 8504 -- appear for nobody).
+   Leaderboard ranks by % of MADE goal; the 4 reps with activity but no
+   goal (Robin Feldman, Allison Scott, Nick Melissari, Paul Mclaughlin
+   on this pull) show a neutral "No goal set" card and are excluded from
+   ranking, same treatment as MC's goalless brand rows. The 3
+   territory-blocked reps aren't in the file at all, which independently
+   corroborates the Core Market restriction.
+   No $ total computed: "up to $500 max payout" isn't a per-placement
+   rate. NOT built (no data): the INNOVATION goal (2,310 PODs -- its own
+   product list/report hasn't been sent) and the deck's on-premise piece
+   ($25 per new Black Cherry non-buy, $10 per new White Claw flavor,
+   on-prem goal 410) -- this report is MADE off-premise placements only.
+
+3-5. PERONI & BANQUET DRAFT / CONSTELLATION / YUENGLING
    [PENDING -- files not yet dropped; same build approach]
 
 NOT part of this dashboard:
