@@ -234,7 +234,12 @@ constants (REFRESH_DAYS, REFRESH_WARN_LEAD) near the top of the inline
 script if Kohler's cadence ever changes.
 
 Michelob Bounty Program tab (added 2026-08-19, per Gavin's manager):
-third top-level tab next to By Rep / By Brand. Hit lists of accounts
+its front door is a big amber banner-pill at the very top of the page
+(above the command center -- per Gavin, same day: "move the michelob
+bounty up... make the pill bigger and easy to find"; it briefly lived
+as a small third tab next to By Rep / By Brand, now removed). Clicking
+the banner opens the bounty view and scrolls to it; clicking again (or
+By Rep / By Brand) returns to the survey. Hit lists of accounts
 pouring Michelob Ultra on draft that are missing Coors Light, Miller
 Lite, or both (Aug-Oct program; sell CL/ML in and hold it to collect).
 Source is michelob_bounty_targets.xlsx (the "2026 Fall CL & Lite Draft
