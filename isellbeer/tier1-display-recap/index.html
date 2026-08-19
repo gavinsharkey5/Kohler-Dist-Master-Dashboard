@@ -1,0 +1,4495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tier 1 Display Recap | Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Bungee&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
+    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
+    --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--canvas);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding-bottom:80px;}
+  a{color:var(--accent);}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+  .topbar{padding:22px 0 0;}
+  .crumb{font-size:15px;color:var(--text-dim);}
+  .crumb a{color:var(--text-dim);text-decoration:none;}
+  .crumb a:hover{color:var(--accent);}
+
+  header{padding:22px 0 18px;border-bottom:1px solid var(--border);}
+  h1{font-family:'Bungee','Space Grotesk',sans-serif;font-weight:400;letter-spacing:.015em;
+    font-size:clamp(25px,3.6vw,40px);line-height:1.18;color:var(--amber);}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    h1{background:linear-gradient(115deg,var(--amber) 20%,#FCE3A1 50%,var(--amber) 80%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  }
+  .sub{color:var(--text-dim);font-size:16.5px;line-height:1.5;margin-top:8px;max-width:760px;}
+  .updated{margin:10px 0 0;font-size:14.5px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;gap:7px}
+  .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);}
+
+  .stat-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:20px 0 0;}
+  .stat-tile{background:var(--card);border:1px solid var(--line-soft);border-left:4px solid var(--amber);
+    border-radius:12px;padding:14px 15px;}
+  .stat-tile-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;line-height:1.05;color:var(--amber);}
+  .stat-tile-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--text-dim);
+    margin-top:7px;text-transform:uppercase;letter-spacing:.04em;}
+
+  .jump{margin:22px 0 4px;}
+  .jump-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--text-dim);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+  .jump-pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .jpill{background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 15px;min-height:44px;
+    border-radius:22px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
+    display:inline-flex;align-items:center;gap:8px;}
+  .jpill:hover{border-color:var(--accent);}
+  .jpill .cnt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--accent);
+    background:var(--accent-soft);border-radius:12px;padding:2px 9px;}
+
+  main{display:flex;flex-direction:column;gap:18px;margin-top:20px;}
+  .acct-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow);scroll-margin-top:16px;}
+  .acct-head{padding:18px 20px 16px;border-bottom:1px solid var(--border);}
+  .acct-name-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .acct-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;line-height:1.2;}
+  .acct-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--accent);
+    background:var(--accent-soft);border:1px solid var(--accent-deep);border-radius:14px;padding:3px 11px;}
+  .acct-sub{font-size:15px;color:var(--text-dim);margin-top:5px;line-height:1.45;}
+  .acct-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+  .astat{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--amber);
+    background:var(--amber-soft);border:1px solid var(--amber);border-radius:18px;padding:5px 13px;}
+  .astat.dim{color:var(--text-dim);background:var(--card-alt);border-color:var(--border);font-weight:600;}
+  .acct-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px;}
+
+  .month-toggle{display:flex;align-items:center;gap:11px;width:100%;min-height:52px;cursor:pointer;text-align:left;
+    background:var(--card-alt);border:1px solid var(--border);border-radius:11px;padding:13px 15px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;color:var(--text);}
+  .month-toggle:hover{border-color:var(--accent);}
+  .month-toggle .chev{font-size:11px;color:var(--text-dim);transition:transform .15s;}
+  .month-toggle.open .chev{transform:rotate(90deg);}
+  .month-toggle .mcount{margin-left:auto;font-size:14px;color:var(--accent);background:var(--accent-soft);
+    border:1px solid var(--accent-deep);border-radius:16px;padding:3px 12px;}
+  .month-body{display:none;}
+  .month-body.open{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;}
+
+  .photo-tile{background:var(--card-alt);border:1px solid var(--line-soft);border-radius:11px;padding:13px 14px;
+    display:flex;flex-direction:column;gap:8px;}
+  .photo-dt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--text);}
+  .photo-taker{font-size:13.5px;color:var(--text-dim);}
+  .photo-brands{font-size:13.5px;color:var(--text-dim);line-height:1.45;}
+  .photo-brands b{color:var(--text);font-weight:600;}
+  .photo-cases{font-size:13px;color:var(--amber);font-weight:600;}
+  .photo-link{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;margin-top:auto;
+    background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;text-decoration:none;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--accent);}
+  .photo-link:hover{background:var(--accent);color:#fff;}
+  .no-photos{color:var(--text-dim);font-size:15px;padding:4px 2px;}
+
+  ::-webkit-scrollbar{height:8px;width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+  html, body{overflow-x:clip;}
+  * { -webkit-tap-highlight-color: transparent; }
+
+  @media (max-width:640px){
+    .wrap{padding:0 14px;}
+    .stat-tile-num{font-size:28px;}
+    .acct-name{font-size:21px;}
+    .month-body.open{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="crumb"><a href="../../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; <a href="../index.html">iSellBeer</a> &nbsp;/&nbsp; Tier 1 Display Recap</div>
+  </div>
+
+  <header>
+    <h1>Tier 1 Display Program</h1>
+    <p class="sub">Kohler Tier 1 Summer Display Accounts &middot; May &ndash; September 2026. Every display photo entered in iSellBeer for the 20 program accounts, in one place &mdash; tap a month inside an account to see its photos.</p>
+    <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 19, 2026<!-- DATA_REFRESHED_END --></p>
+    <div class="stat-board" id="statBoard"></div>
+  </header>
+
+  <div class="jump">
+    <div class="jump-label">Jump to an account</div>
+    <div class="jump-pills" id="jumpPills"></div>
+  </div>
+
+  <main id="main"></main>
+</div>
+
+<script>
+/* PHOTO_DATA_START */
+const DATA = {
+ "accounts": [
+  {
+   "acct": "58001",
+   "name": "Total Wine River Edge",
+   "contact": "Mike",
+   "dba": "TOTAL WINE & MORE (RIVER EDGE)",
+   "address": "1001 MAIN ST",
+   "city": "River Edge",
+   "photoCount": 91,
+   "brandFamilyCount": 27,
+   "lastDate": "08/18/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/31ae2fc2-7515-401e-8400-6d122a1ac63d/",
+       "dt": "05/04/2026 03:41 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c498b59f-4b0a-4ffb-8aa8-a10256675097/",
+       "dt": "05/12/2026 03:20 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 32
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0b90ff18-c530-4e30-97a2-3dade9c5742b/",
+       "dt": "05/13/2026 12:30 PM",
+       "taker": "Nicholas Micco",
+       "brands": [],
+       "cases": 36
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/40f6d8e0-d7c8-4eec-ae33-5e0725212580/",
+       "dt": "05/13/2026 12:46 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0f99a0fe-c4b7-4ba3-bd2f-48279b05c3af/",
+       "dt": "05/13/2026 12:47 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING",
+        "GARAGE BEER"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ac909106-0554-40f4-8c46-a3cfa593f4e7/",
+       "dt": "05/18/2026 12:18 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "DELTA BEER LAB"
+       ],
+       "cases": 36
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/332bb26d-fc9a-4d88-aa7f-498481f33c05/",
+       "dt": "05/18/2026 12:18 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "DELTA BEER LAB"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e7c24a2f-0375-475d-ba31-01dbb2635f6d/",
+       "dt": "05/18/2026 03:06 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3cdad2ad-8fbd-439c-8323-50bb813c4ecf/",
+       "dt": "05/19/2026 10:43 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e93d2cf3-13cf-4af6-9172-d2c97557759f/",
+       "dt": "05/19/2026 02:56 PM",
+       "taker": "Michael Engel",
+       "brands": [
+        "SAMUEL ADAMS"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d60cf779-d434-4f0e-ad1e-d93084c260ca/",
+       "dt": "05/19/2026 02:58 PM",
+       "taker": "Michael Engel",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e653be7a-b905-4630-aca2-a9c75292ca50/",
+       "dt": "05/19/2026 05:29 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/01158bbb-264f-4dd4-b80c-7fb38f750afa/",
+       "dt": "05/19/2026 05:30 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f375f18e-9966-4809-b6e1-1c8fe408722b/",
+       "dt": "05/19/2026 05:32 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6a044381-51b9-44a9-bae8-eb5e6a685ea8/",
+       "dt": "05/22/2026 11:37 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e7140523-ccdd-4ffc-ab89-8d95f9ab52da/",
+       "dt": "05/22/2026 11:39 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0e83aa60-54c3-4ec3-bf2e-f641b5767172/",
+       "dt": "05/22/2026 11:41 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/16cf6ba7-89aa-4f0c-9c96-0caa514bc268/",
+       "dt": "05/22/2026 11:43 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/811d8244-2fff-41ca-a9fc-43d0591de8e1/",
+       "dt": "05/22/2026 11:48 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a91519da-2d5e-4aa3-a291-f9d19b0cfeed/",
+       "dt": "05/26/2026 03:26 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/67d3ec09-71ae-49b5-bdad-756f47d257c4/",
+       "dt": "05/28/2026 04:13 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/99d8dd51-6285-4682-8af6-f3406c3bf179/",
+       "dt": "05/29/2026 12:11 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "DOS EQUIS"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/779ec9cc-b5cb-40ef-b2a6-896b9ee41e16/",
+       "dt": "05/29/2026 12:12 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 120
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7ec7e374-c2ab-46f0-9478-a81277c14cfd/",
+       "dt": "05/29/2026 12:13 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5b17ce31-6b6a-45a9-a829-87793ddb917a/",
+       "dt": "05/29/2026 12:35 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "DOS EQUIS"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/821ad8c4-15a4-4e3a-8b0b-d137c3349db4/",
+       "dt": "05/29/2026 12:44 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ea8190c5-4e54-4f08-8285-8eb287b689bc/",
+       "dt": "05/29/2026 12:50 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/655f4fa7-f5be-4b1a-96ad-49238c4c653d/",
+       "dt": "05/29/2026 01:02 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 80
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6da6b73a-1d5f-428e-9f5f-3cf9ced74e7b/",
+       "dt": "06/01/2026 10:39 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 150
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/04032c45-d50b-4c1c-aa02-19d9a0207923/",
+       "dt": "06/01/2026 10:39 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/582b23b8-5a70-438e-b8c6-87efd0911f7a/",
+       "dt": "06/01/2026 10:43 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4aac58da-1200-4107-add8-c56771c4850c/",
+       "dt": "06/03/2026 10:46 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e5d55507-c427-4ac1-99b4-eeec2ed3d43d/",
+       "dt": "06/03/2026 11:26 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0aede119-7f4a-4cc1-b0e2-dd6f8d9bd7eb/",
+       "dt": "06/03/2026 04:02 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA BREWING COMPANY"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/787d1d8c-792c-486f-b288-a7f095e85f01/",
+       "dt": "06/09/2026 10:37 AM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 120
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/131536de-9ec4-4517-8c3e-fe2ae6e04c40/",
+       "dt": "06/09/2026 10:39 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5ab6d9c2-fe59-470d-b575-68284d3ea4c1/",
+       "dt": "06/24/2026 04:12 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MODELO ORO"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/765d2c60-e313-48f7-9aab-c779318b5909/",
+       "dt": "06/24/2026 04:13 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MODELO ORO"
+       ],
+       "cases": 110
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4d2ef13f-de3d-4003-a692-a5cf53241245/",
+       "dt": "06/26/2026 02:19 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "POPSICLE FMB"
+       ],
+       "cases": 7
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a4bd3872-4800-4af4-938e-6553b60bc2dd/",
+       "dt": "06/26/2026 02:31 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c344740d-81b3-4cae-843f-9f0ef349c4d3/",
+       "dt": "06/26/2026 02:37 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 200
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9dd84013-626c-40a7-a792-7b3b3d6efa40/",
+       "dt": "06/26/2026 02:38 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 200
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f33541b8-f69a-4560-82d2-01b81d381622/",
+       "dt": "06/26/2026 02:39 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW SURGE HARD SELTZER",
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 250
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/cead3b3f-9075-4888-a5c8-88449a519ecf/",
+       "dt": "06/29/2026 10:35 AM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 200
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ba807c51-9cc5-45fc-adfd-2b9fc56091c8/",
+       "dt": "07/01/2026 04:24 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/71b23e90-d285-4945-ae08-d5857b531d3f/",
+       "dt": "07/02/2026 09:30 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1914bb32-8551-4fcd-87bb-dcc4bea1a115/",
+       "dt": "07/02/2026 09:32 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 200
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9efb9fa8-724d-4bb4-baa2-27eed1a32467/",
+       "dt": "07/06/2026 03:38 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 111
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1ce4ed75-3ce6-4f96-9e84-3e14e454f35c/",
+       "dt": "07/08/2026 02:17 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b7cf30d7-7f76-41f0-b095-95c134c18ee3/",
+       "dt": "07/08/2026 02:18 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/22a2e0ae-1909-4d2c-8131-6f8b72430cba/",
+       "dt": "07/08/2026 02:23 PM",
+       "taker": "Dave Ehlers",
+       "brands": [],
+       "cases": 160
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c3c23c8e-ed55-4c79-b916-916cdd8f601a/",
+       "dt": "07/08/2026 02:23 PM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 160
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b852fd6e-dd92-4bd7-b667-33eda393e6ff/",
+       "dt": "07/08/2026 02:26 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/91eadee4-9d10-46cd-8881-7273edc8b61b/",
+       "dt": "07/08/2026 02:30 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 140
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/da586193-41b8-4ad1-9d14-0d8bc52220a4/",
+       "dt": "07/08/2026 02:47 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "SINLESS SPIRITS"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bc8fe8ab-442b-4a91-bdf3-e66c4245d561/",
+       "dt": "07/08/2026 02:48 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/af53c005-549e-46c1-888b-e203769b0ebe/",
+       "dt": "07/08/2026 02:48 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e3d1f1cb-d714-46d3-8917-80752e4862c7/",
+       "dt": "07/08/2026 02:51 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 140
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dc910fde-eb99-461b-99e1-434e38810d2c/",
+       "dt": "07/10/2026 11:44 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "SIERRA NEVADA BREWING COMPANY"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2abca0d7-a81b-43fa-acb6-3da65ab2b59f/",
+       "dt": "07/10/2026 11:47 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/72e0829d-10c3-49b7-b543-378a6b8286a5/",
+       "dt": "07/10/2026 11:59 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "DOS EQUIS"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/65ffa31c-b8f3-49fa-8ce9-13d57218cec8/",
+       "dt": "07/14/2026 11:23 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 59
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6e5b1f46-0416-426a-9608-d3d26c68890d/",
+       "dt": "07/14/2026 11:23 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW SURGE HARD SELTZER"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/280f8b4d-768a-49ec-b57c-8abf270453a0/",
+       "dt": "07/14/2026 02:38 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 110
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d2c37903-6b67-4c98-ba2a-3b2807230ae6/",
+       "dt": "07/14/2026 02:47 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1d77c4b1-47e2-4e07-868d-33e2b856f7d4/",
+       "dt": "07/21/2026 02:46 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3e311783-9536-4d17-98d4-2df8da38fbd9/",
+       "dt": "07/21/2026 03:07 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 150
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c9c9f36a-ed3d-466a-88c8-dc9a3a9aa585/",
+       "dt": "07/27/2026 01:28 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4c804f04-9daa-4368-99aa-c80271549288/",
+       "dt": "07/27/2026 01:28 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0e4a6b16-2751-46e8-bdc6-49a52e3ce110/",
+       "dt": "07/28/2026 02:59 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "COORS"
+       ],
+       "cases": 6
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4db1809f-583f-47d6-88d6-223fe8936646/",
+       "dt": "07/29/2026 03:47 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 200
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/48c5e8d6-4324-452e-bdbd-67e80ebb2a42/",
+       "dt": "07/29/2026 03:51 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 160
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b5a86596-5109-4734-935a-8128148507f3/",
+       "dt": "07/29/2026 03:55 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b98db4bd-2c08-4051-94e2-a8980b4d5425/",
+       "dt": "07/29/2026 03:56 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/95dec845-0e51-4820-b50e-7e42ed30e8b8/",
+       "dt": "07/29/2026 03:56 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f71f27af-e7eb-42b9-a000-fa6ae2bf40dc/",
+       "dt": "07/30/2026 01:32 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 10
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6f37e3d2-6770-4346-bed0-5ae11e1ec3d6/",
+       "dt": "08/03/2026 03:39 PM",
+       "taker": "Nicholas Micco",
+       "brands": [],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7bbc3d7d-a039-46fd-8be6-c9fbd0e96b04/",
+       "dt": "08/03/2026 03:40 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "NOCA BEVERAGES"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/41847146-4236-426b-8339-5c89bae05b9c/",
+       "dt": "08/07/2026 11:47 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c1801269-e3bf-4473-a2ee-ad711a80451b/",
+       "dt": "08/10/2026 12:54 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/634e4b77-b061-4c8e-87e1-2e597d8ae926/",
+       "dt": "08/11/2026 02:08 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b6c8adc9-4884-48b5-bc79-82d03c7a08c0/",
+       "dt": "08/14/2026 11:38 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 2
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/38556a8f-0506-4f4b-9dd2-86dfba7febd8/",
+       "dt": "08/14/2026 11:39 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 1
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ad9f9cca-88ed-4a26-80f9-6e49d3ba29e5/",
+       "dt": "08/14/2026 11:41 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 3
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/691f5b8b-96ab-43c1-9a36-509661f857c3/",
+       "dt": "08/14/2026 11:52 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "ANGRY ORCHARD"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8fdbbbe1-56e2-42b7-a4ba-eebad23bdcca/",
+       "dt": "08/14/2026 12:06 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 2
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f0a3cf49-d394-41d1-86fc-f149bd1a8b1c/",
+       "dt": "08/17/2026 01:26 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 43
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f37e6faa-0c1c-441e-a68b-a1bf75a8eec3/",
+       "dt": "08/18/2026 10:39 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "ANGRY ORCHARD"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8346d385-21cb-41b3-88e0-56eae3251497/",
+       "dt": "08/18/2026 10:40 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/31f6e05b-1e9f-4b46-a916-35e910f58c08/",
+       "dt": "08/18/2026 01:38 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "ANGRY ORCHARD"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/141337b2-3c2f-4750-80f3-d7a06c7fb49a/",
+       "dt": "08/18/2026 02:06 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 218
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "20106",
+   "name": "Super Wine",
+   "contact": "Adjim",
+   "dba": "SUPER WINE WAREHSE(P)PATE",
+   "address": "42 E 30TH ST",
+   "city": "Paterson",
+   "photoCount": 51,
+   "brandFamilyCount": 23,
+   "lastDate": "07/30/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5df60540-886c-4cf1-a3bf-073ab7260828/",
+       "dt": "05/04/2026 01:05 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "DOS EQUIS"
+       ],
+       "cases": 22
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/061f7307-30a5-4583-9edf-7711e4aa8680/",
+       "dt": "05/04/2026 01:08 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 71
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ebb3302e-6c84-434d-86cf-4fc682b81535/",
+       "dt": "05/04/2026 01:11 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 39
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a605d01c-d458-4f31-830d-bb1474bdd51d/",
+       "dt": "05/04/2026 01:13 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CRESCENT"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d61fef24-5239-446c-b6d6-9a0ae3861f1b/",
+       "dt": "05/04/2026 01:14 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "DELTA THC SELTZER"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2ce321a2-551a-44f4-b31b-075353eafaa6/",
+       "dt": "05/18/2026 10:18 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/56199231-f494-4b33-be90-1f2262f53ea9/",
+       "dt": "06/02/2026 11:04 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2137d014-3e6e-40ca-89a6-41f240f358bc/",
+       "dt": "06/02/2026 11:04 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d0dbd947-a76d-43c7-92b8-06da47ebb387/",
+       "dt": "06/02/2026 11:07 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1d39abc1-8147-4834-a7f2-ddb7574d4527/",
+       "dt": "06/02/2026 11:08 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 64
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/91de8cbb-f336-4148-8afc-45ab9053a1fc/",
+       "dt": "06/02/2026 11:09 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1418c9e5-ebc4-4fcf-8874-ab0ed4b6f095/",
+       "dt": "06/02/2026 11:10 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fd75c710-b7f6-47b0-8d5b-7b9aaea64d45/",
+       "dt": "06/04/2026 10:26 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "COORS LIGHT",
+        "MODELO CERVEZA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/032b2725-a087-443c-a7be-1cd817b1ccef/",
+       "dt": "06/08/2026 12:40 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/41fa4ec6-5cac-4f2e-9153-6267ba8bf066/",
+       "dt": "06/11/2026 12:17 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bb931a43-226b-4927-b357-abd27835a2ad/",
+       "dt": "06/11/2026 12:21 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a98ef9bb-932d-43a3-843c-6ea4407a3d87/",
+       "dt": "06/11/2026 12:21 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9c721037-c815-4f4f-9bf5-a094f5cdcc24/",
+       "dt": "06/11/2026 12:22 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c75aa70c-9363-4ad6-866a-485ba0843e73/",
+       "dt": "06/19/2026 10:18 AM",
+       "taker": "Nicholas Micco",
+       "brands": [],
+       "cases": 50
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/62fdd3b1-29e7-475c-b8c6-c9bdeccd5cb8/",
+       "dt": "07/02/2026 09:09 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/45bb1e45-90a8-4a4e-9d81-f220311765de/",
+       "dt": "07/02/2026 09:09 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/72e9a264-3b47-49a6-a446-89add122e4b2/",
+       "dt": "07/02/2026 09:10 AM",
+       "taker": "Phil Ernst",
+       "brands": [],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/94a053ac-49e1-4fbf-ba98-23f6e945b4be/",
+       "dt": "07/02/2026 11:59 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dc0e2fba-9e11-4a3a-b49b-13e6bec716df/",
+       "dt": "07/02/2026 12:00 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW CLAWTAILS"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/40c0f11c-c55e-4e43-acf1-d278139fd7ac/",
+       "dt": "07/02/2026 12:01 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0a0a0eeb-9f7f-4f14-9203-0aac8e5fdd77/",
+       "dt": "07/02/2026 12:02 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 42
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/97818d84-e2ff-46ad-b70d-62952a0fbce3/",
+       "dt": "07/02/2026 12:02 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8e46d568-25be-4c21-88cc-a31aafd53b66/",
+       "dt": "07/02/2026 12:03 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0582d47c-79d9-44cf-88b0-be9b7a3345ac/",
+       "dt": "07/02/2026 12:03 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c96c66a4-1d83-4496-a85a-ede4626cc190/",
+       "dt": "07/02/2026 12:04 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TRULY SEASONAL HARD SELTZER"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bb1a6c11-d0da-481e-81a5-c2c4d0603c70/",
+       "dt": "07/02/2026 02:25 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/65f09e36-bc50-4a9f-a710-6bddf0f89f0a/",
+       "dt": "07/02/2026 02:27 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 38
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8f428868-46be-424a-887a-f6d66fcf1337/",
+       "dt": "07/02/2026 02:29 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e3d014c0-d75d-495e-94b7-e3235eac733a/",
+       "dt": "07/20/2026 09:49 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 36
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c6e32440-beee-4694-b68c-d4a63c8beb21/",
+       "dt": "07/20/2026 09:50 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 55
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f5368d06-5ec9-4835-9097-7e4d14c5be16/",
+       "dt": "07/27/2026 11:17 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dcb82f14-eed0-4869-95ba-d52afb2f40ce/",
+       "dt": "07/27/2026 11:17 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/57959a7e-7cc7-47a8-8fdd-80b46cc890ab/",
+       "dt": "07/27/2026 11:18 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/aa6f4dc7-3120-44ad-881c-428d51cd0c52/",
+       "dt": "07/27/2026 11:18 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/72a1e55b-5a51-4d2c-be2c-66104ba58bfe/",
+       "dt": "07/30/2026 09:11 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b7f20952-b5ec-4360-b13a-b58f1639bb21/",
+       "dt": "07/30/2026 09:13 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 44
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d84278a9-fdfc-404e-83ee-b7f077bee712/",
+       "dt": "07/30/2026 09:14 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8a93ff17-3a65-4437-a903-71a7969d46b2/",
+       "dt": "07/30/2026 09:16 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "COORS"
+       ],
+       "cases": 7
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0b707179-960c-4854-b7fb-dd439f7b3654/",
+       "dt": "07/30/2026 09:17 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b98ed3b9-3275-4d7c-9eb9-2aa4e11ad6c5/",
+       "dt": "07/30/2026 09:20 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 53
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/314c2a4a-f438-4547-be42-4324047cb793/",
+       "dt": "07/30/2026 09:26 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/cec5704a-ca49-4de7-bac0-c54fa41a43d2/",
+       "dt": "07/30/2026 09:29 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 32
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6a358bbe-868c-40eb-ae68-841869181ed1/",
+       "dt": "07/30/2026 09:30 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8a3751f0-7994-4627-9c49-8b3e0c8d5f47/",
+       "dt": "07/30/2026 09:33 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 14
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8a5b09d1-666d-4520-9603-0bfd6a1a6b3e/",
+       "dt": "07/30/2026 09:34 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CARBLISS COCKTAILS"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c7f3ad1e-bb77-448a-b969-c98b41877a89/",
+       "dt": "07/30/2026 09:36 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 49
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "11003",
+   "name": "Lincoln Park Fine Wines",
+   "contact": "Mitch",
+   "dba": "LINCOLN PARK FINE WINES & SPIRITS",
+   "address": "60 BEAVERBROOK ROAD",
+   "city": "Lincoln Park",
+   "photoCount": 41,
+   "brandFamilyCount": 14,
+   "lastDate": "08/03/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7bfe1be5-49ab-401d-be14-4bac23e360c9/",
+       "dt": "05/28/2026 12:13 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8611a642-bf49-4adb-ade1-17bf0816ed3b/",
+       "dt": "05/28/2026 12:13 PM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/484c6181-9cfa-418a-8ba4-605a01c36a96/",
+       "dt": "05/28/2026 12:14 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f1e4f43b-7b20-4eeb-8265-1c0bde8ca9ec/",
+       "dt": "05/28/2026 12:15 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/359dc82c-bbfa-45ae-8ece-342544b11c95/",
+       "dt": "05/28/2026 12:15 PM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5270902e-c551-446c-82eb-cf443baae549/",
+       "dt": "05/28/2026 12:16 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/027b5d41-5bcf-469f-a00d-aa08247dc305/",
+       "dt": "05/29/2026 11:37 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4d8b3e6a-45a3-4e9a-bbc7-86e391dc9c2e/",
+       "dt": "05/29/2026 11:37 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/de79e986-31d0-4a24-96f2-98d6aaefd1a2/",
+       "dt": "05/29/2026 11:38 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9bdccd20-e14e-478e-a2f6-2b9c25589dd6/",
+       "dt": "05/29/2026 11:42 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "FEVER-TREE"
+       ],
+       "cases": 6
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dee8a53b-df63-417e-8ec0-16358b559fae/",
+       "dt": "06/15/2026 10:37 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 185
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/68650136-22f0-4bd0-baa8-f11b3a00447e/",
+       "dt": "06/16/2026 10:42 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 22
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6b5b82f7-3436-45ac-ac52-643b934eabbf/",
+       "dt": "06/16/2026 10:47 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/02c8b691-d88f-4a1f-9bb7-243ab8c2e312/",
+       "dt": "06/16/2026 10:48 AM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/09b11c73-a465-4990-a25a-ae40ea11395f/",
+       "dt": "06/25/2026 10:38 AM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/17d52fc8-63a8-4168-a741-763ba84e11a1/",
+       "dt": "06/25/2026 10:53 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b8c8fde7-46aa-4b2f-b44f-cdfe8ab2571d/",
+       "dt": "06/25/2026 10:53 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1541835f-1837-434d-b649-25eb883656a7/",
+       "dt": "06/25/2026 10:55 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dbf360e1-51dc-4e8b-b1ea-bde7633cbda8/",
+       "dt": "06/25/2026 10:56 AM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 8
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b83d530c-c9d6-40b8-9675-5598689e887e/",
+       "dt": "07/01/2026 02:26 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a11d67d5-37a0-416d-903d-270c425edcf1/",
+       "dt": "07/01/2026 02:27 PM",
+       "taker": "Mike Ast",
+       "brands": [],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/60633483-5cb7-4ec9-b919-8fe4c8d71214/",
+       "dt": "07/01/2026 02:29 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 115
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4dc85cae-94ea-4d34-a2ae-8fc11df391a8/",
+       "dt": "07/01/2026 02:49 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 105
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1556b5d4-5759-4a81-a23c-eadb79758862/",
+       "dt": "07/06/2026 09:49 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/19b42409-716a-4519-8079-a5c003f0a1cb/",
+       "dt": "07/06/2026 09:52 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "SAMUEL ADAMS",
+        "SAM ADAMS SEASONAL"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ec91daf8-0111-4f7e-a44f-11614941499d/",
+       "dt": "07/06/2026 09:53 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/33dc3ddd-175a-4711-994a-46efeb0b2909/",
+       "dt": "07/20/2026 09:58 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "DELTA THC SELTZER"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/32c59ac5-4c69-45f4-8f1e-6fed4def20cf/",
+       "dt": "07/20/2026 10:00 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "YUENGLING BREWERY"
+       ],
+       "cases": 12
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/15431b57-f821-4dff-9e0d-d073332c2949/",
+       "dt": "07/21/2026 02:16 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/14ecf521-cfa5-430b-9fbb-6aa29a031916/",
+       "dt": "07/21/2026 02:21 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 22
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/34bec13f-fcc4-44aa-a464-76a929c31e4f/",
+       "dt": "07/21/2026 02:23 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/65b16755-bbb0-49a6-a8e7-123034598d12/",
+       "dt": "07/21/2026 02:25 PM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8e536ee5-c942-49b0-a51f-ae43fd18f75a/",
+       "dt": "07/21/2026 04:16 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 130
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a7497154-e1aa-4487-99cd-f5fbc9918886/",
+       "dt": "07/21/2026 04:18 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "PERONI NASTRO AZZURRO"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dce24735-a76d-403b-994b-7ce34d53ae3f/",
+       "dt": "07/21/2026 04:19 PM",
+       "taker": "Mike Ast",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/16a141f1-df35-49d1-ae48-044719402abd/",
+       "dt": "07/29/2026 10:43 AM",
+       "taker": "Todd Ewell",
+       "brands": [],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/16333300-2e78-4801-b4b8-d87912872f94/",
+       "dt": "07/29/2026 10:43 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 110
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/cf57b827-c52e-467b-a5f1-1bcb181ba0a2/",
+       "dt": "07/29/2026 10:49 AM",
+       "taker": "Todd Ewell",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8988483e-fbd1-4903-acb9-3d60fdc56d43/",
+       "dt": "07/29/2026 10:50 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/aa56d0eb-80bb-4f06-bb54-3796f2d3030e/",
+       "dt": "07/29/2026 01:03 PM",
+       "taker": "Mike Ast",
+       "brands": [],
+       "cases": 173
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2773913d-d244-404b-be6e-ffe7ff13b6dc/",
+       "dt": "08/03/2026 09:42 AM",
+       "taker": "Mike Ast",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 200
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "76010",
+   "name": "USA Wine Saddle Brook",
+   "contact": "Vshal / Tom",
+   "dba": "USA WINE TRADERS CLUB (SADDLE BROOK)",
+   "address": "66 MARKET ST",
+   "city": "Saddle Brook",
+   "photoCount": 31,
+   "brandFamilyCount": 17,
+   "lastDate": "08/13/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/176a1b17-3177-42b2-be6f-7bae2b6403c4/",
+       "dt": "05/20/2026 02:22 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 160
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/db99e8f8-2b40-4e2b-97bb-74970687fe1d/",
+       "dt": "05/26/2026 01:44 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 125
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/37fcf356-1f40-439d-8206-2cb574f57897/",
+       "dt": "05/26/2026 02:30 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 55
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a0c42a5c-2ebc-495f-baf3-02b79053944b/",
+       "dt": "05/26/2026 02:31 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3b390f39-5bfc-4286-b565-4081911d963a/",
+       "dt": "05/26/2026 02:31 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e9f2e82e-d5d2-446b-a8de-4b67a0b3fba0/",
+       "dt": "05/26/2026 02:33 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 28
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dd170e32-f2a7-41cb-aaf1-0f0b2376b859/",
+       "dt": "05/26/2026 02:39 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4288c758-2652-43a2-9c87-5ea469a406ab/",
+       "dt": "05/27/2026 02:56 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8cf2dbe3-f912-477f-b284-3ed808779e6b/",
+       "dt": "05/27/2026 02:56 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f499887d-7dd1-4d20-93e2-2ba6bad0963a/",
+       "dt": "05/27/2026 02:56 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 50
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/92a17fb4-34f9-46ba-a549-d5f7825297be/",
+       "dt": "06/08/2026 01:39 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b96b1ad3-8130-40a8-9397-d502902e03f0/",
+       "dt": "06/12/2026 02:29 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0a049eca-aa81-4a3d-a0dc-0adec0faab43/",
+       "dt": "06/25/2026 11:01 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW CLAWTAILS"
+       ],
+       "cases": 130
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e590a111-2233-4381-9039-60ae30b5ee45/",
+       "dt": "06/26/2026 11:26 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 15
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0eddac16-f103-4943-89dc-8fc5bb89adf4/",
+       "dt": "07/02/2026 10:42 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f538c8e4-5b2d-48e4-9ded-adab05b92205/",
+       "dt": "07/02/2026 10:42 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "SUN CRUISER LEMONADE"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/75b606c9-6dd6-49a5-b460-44fbf8135be6/",
+       "dt": "07/02/2026 10:43 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/94d9f81d-df1e-4b07-bdb6-e63911ea7f31/",
+       "dt": "07/02/2026 10:43 AM",
+       "taker": "David Fletcher",
+       "brands": [],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ff55a805-1eff-4d1e-ac84-014e9a4f99f7/",
+       "dt": "07/02/2026 10:44 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TRULY SEASONAL HARD SELTZER"
+       ],
+       "cases": 6
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d5fac915-cb73-4412-8e81-9333dde07b7d/",
+       "dt": "07/02/2026 10:45 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/eb9208d4-205a-4be6-929a-ddcf8746515f/",
+       "dt": "07/02/2026 10:47 AM",
+       "taker": "David Fletcher",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bddbb5b8-c836-4364-93ad-70220b0a732b/",
+       "dt": "07/02/2026 10:48 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/944dd8c1-f951-48b1-99a7-067e422472fe/",
+       "dt": "07/14/2026 11:08 AM",
+       "taker": "Chris Payton",
+       "brands": [],
+       "cases": 87
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a49d73df-a784-4455-a1a7-c6316965d44a/",
+       "dt": "07/15/2026 11:16 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 26
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/dc21211f-e376-44c0-95e7-d0ad8d3b3660/",
+       "dt": "07/15/2026 11:17 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1a46b357-2f6b-4f44-85b4-8687910656b0/",
+       "dt": "07/15/2026 11:18 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 124
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e57dd0d6-a32e-43b6-b05a-a00d292f24ea/",
+       "dt": "07/15/2026 11:18 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/55472750-790c-4be1-bb6f-9aecc6a6ff7f/",
+       "dt": "07/15/2026 11:19 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e9842057-9f07-45ae-a4db-878d43819e0d/",
+       "dt": "07/15/2026 11:19 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/54aeccee-2078-438a-88b0-de6a62436ba6/",
+       "dt": "07/15/2026 11:21 AM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 101
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/295e5189-1119-41ab-8554-5c2b3ef60190/",
+       "dt": "08/13/2026 01:02 PM",
+       "taker": "Chris Payton",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "31060",
+   "name": "Bottle Republic",
+   "contact": "Drew / Kayton",
+   "dba": "BOTTLE REPUBLIC (RUTHERFORD)",
+   "address": "10 NJ-17",
+   "city": "Rutherford",
+   "photoCount": 28,
+   "brandFamilyCount": 11,
+   "lastDate": "08/07/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a2af4c6d-10aa-434c-94b5-b5891a85f319/",
+       "dt": "05/29/2026 01:54 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0ebae9b6-5edf-4600-9193-c567bee47a6f/",
+       "dt": "05/29/2026 01:55 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 27
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/042fa5dd-bff8-40b1-8fdc-8e0d3dd1461a/",
+       "dt": "07/09/2026 11:40 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5571a64c-3fad-46de-8b44-0d55d1a4bcb0/",
+       "dt": "07/24/2026 03:12 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT",
+        "COORS"
+       ],
+       "cases": 142
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1d2dcc76-da0c-407b-b44b-625357104c34/",
+       "dt": "07/27/2026 11:27 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT",
+        "COORS"
+       ],
+       "cases": 140
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c4fba183-8bb1-4e2a-9e24-81babd2f5087/",
+       "dt": "07/27/2026 12:27 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT",
+        "CORONA EXTRA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2e1dac35-978c-47a1-a44a-77982fb2e172/",
+       "dt": "07/27/2026 12:27 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9bdc7e8b-f7b6-4217-ba94-2dea6039752d/",
+       "dt": "07/27/2026 12:28 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA",
+        "CORONA EXTRA",
+        "COORS LIGHT"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a4b5e77e-130b-4152-9b29-e1c7fdcc4672/",
+       "dt": "07/27/2026 12:36 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT",
+        "CORONA EXTRA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bac75ddc-c3da-4c71-87c5-ac506b31881c/",
+       "dt": "07/27/2026 12:37 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2d6dfa07-2465-4f0d-808b-198ce25faba7/",
+       "dt": "07/29/2026 11:46 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "SUN CRUISER LEMONADE"
+       ],
+       "cases": 28
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/23cf2295-6a7d-4eb4-9e62-b9506cf59834/",
+       "dt": "07/29/2026 11:46 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 28
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7e77b89b-c284-4be4-88b1-14e263b83648/",
+       "dt": "07/29/2026 12:11 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/67ec119c-eebc-46a1-8105-8900742d5bf9/",
+       "dt": "07/29/2026 12:11 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5c757a5b-b73f-464f-b749-ab1d799d863e/",
+       "dt": "07/29/2026 01:39 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "LEINENKUGEL'S"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f5ede873-1fdc-43a5-ab43-b4375f56aab0/",
+       "dt": "07/29/2026 01:49 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4009d360-e246-4568-b4fa-a778abbae066/",
+       "dt": "07/29/2026 01:50 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fb3c58ed-a78d-4c66-9285-b33cdc2392d9/",
+       "dt": "07/29/2026 01:51 PM",
+       "taker": "Matthew Powierski",
+       "brands": [],
+       "cases": 26
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8951d79d-830e-456c-9447-9da9e969c8e7/",
+       "dt": "07/29/2026 01:54 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/175e851a-aa1f-4465-9259-5409d855847e/",
+       "dt": "07/29/2026 01:56 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3437b09a-583b-4964-af5b-4fc6a74bf148/",
+       "dt": "07/30/2026 10:09 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 110
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a7fe63d8-58d9-4a71-808e-4e0e6054651d/",
+       "dt": "07/30/2026 10:31 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "LEINENKUGEL'S"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7f861311-ba7d-4f21-9d9c-cc4dc9a7c548/",
+       "dt": "07/30/2026 10:31 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "LEINENKUGEL'S"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c7baf805-8bae-4a8e-b64c-e1abb06aabf4/",
+       "dt": "07/30/2026 10:36 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "LEINENKUGEL'S"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ae9b2bf4-c92d-4453-ad29-e0a22e6110c4/",
+       "dt": "07/30/2026 10:40 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e00276a9-771f-44df-b1bb-c085354bbcef/",
+       "dt": "07/30/2026 10:41 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/eaa2391f-e0a6-42db-8db6-11c420b84f42/",
+       "dt": "07/30/2026 10:51 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 40
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6138ebbd-7540-43f6-ae8e-15dae4e5d0d1/",
+       "dt": "08/07/2026 12:13 PM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 54
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "23004",
+   "name": "Shop Rite Clifton",
+   "contact": "Gurerimo",
+   "dba": "SHOP RITE WINES/SPIRITS",
+   "address": "895 PAULISON AVE",
+   "city": "Clifton",
+   "photoCount": 27,
+   "brandFamilyCount": 11,
+   "lastDate": "07/30/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5345c8ca-9a84-4f6f-84b3-7b818c7e0821/",
+       "dt": "05/21/2026 04:17 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bf76e9de-24eb-492e-841f-07cc8f9a4691/",
+       "dt": "05/21/2026 04:17 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 200
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fd3a2c4b-4cda-4932-bad7-b6190787baf0/",
+       "dt": "05/21/2026 04:18 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e2c184ce-13f3-4930-ba0b-9c708cc4a38f/",
+       "dt": "05/21/2026 04:19 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1c596624-c4bd-4e86-9785-3a7c20495551/",
+       "dt": "05/21/2026 04:19 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/25e41cb8-d777-4a61-9daf-b7a56b2a435d/",
+       "dt": "05/21/2026 04:19 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 100
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/707c81cb-ba19-4772-9c5b-daee7287f95d/",
+       "dt": "07/10/2026 03:11 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fd5cebca-490f-4608-bd8e-5c9f02de42d9/",
+       "dt": "07/24/2026 05:22 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 95
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5015910b-b22b-4f68-8102-4f24c2e4528d/",
+       "dt": "07/24/2026 05:28 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 56
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/86046e1b-06ce-47c4-92aa-5164fa3bd871/",
+       "dt": "07/24/2026 05:35 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 56
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/92a6c7a7-4d51-4393-8e2b-6bb8f3d23857/",
+       "dt": "07/24/2026 05:44 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 55
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1b38f899-9ba7-4a30-8059-a075fb9ff794/",
+       "dt": "07/24/2026 05:49 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 105
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ffea6505-ddf4-4921-8d6e-7c492510380b/",
+       "dt": "07/24/2026 05:50 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 12
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/83a50574-778e-4676-91cb-d8df566e4e08/",
+       "dt": "07/27/2026 03:41 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c2e4deb5-2a87-4229-bb34-0269cdb7f610/",
+       "dt": "07/28/2026 12:53 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "DOGFISH HEAD BREWERY"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6800922b-6fc9-4e86-927f-bf12c03b9e22/",
+       "dt": "07/28/2026 12:54 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/17193e8f-5b2d-4eb8-8c48-19bf1619d9d8/",
+       "dt": "07/28/2026 12:56 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "FAMOSA"
+       ],
+       "cases": 22
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2a5c07cf-f25f-4668-89b1-b6ffde8f6eca/",
+       "dt": "07/28/2026 01:01 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "MODELO CHELADA"
+       ],
+       "cases": 11
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/84835b2e-69c6-4821-9800-275aa7c5448f/",
+       "dt": "07/28/2026 01:02 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 6
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c3287e1c-ac5c-47b9-ab37-40268147e2ae/",
+       "dt": "07/28/2026 01:04 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f560bf67-39eb-4964-9198-c915f61b55a7/",
+       "dt": "07/28/2026 01:06 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 33
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2101fb1f-3325-455d-a7f1-151025d99bc8/",
+       "dt": "07/28/2026 01:26 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f064786a-3d37-47ca-b84c-8e660337cebf/",
+       "dt": "07/30/2026 01:02 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8a95897a-4a15-4012-ba29-3d55660e87be/",
+       "dt": "07/30/2026 01:08 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9743f310-5a26-40d8-895c-b20ae6ef6a7c/",
+       "dt": "07/30/2026 01:10 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "MODELO ORO"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/8f17e831-02c2-4724-b867-cfecf2390026/",
+       "dt": "07/30/2026 01:27 PM",
+       "taker": "Derrick Laws",
+       "brands": [
+        "WHITE CLAW ORIGINAL HARD SELTZER",
+        "WHITE CLAW ZERO",
+        "WHITE CLAW SURF HARD SELTZER"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a776c5aa-9e7d-437b-bee4-7e85ddf1e4b8/",
+       "dt": "07/30/2026 05:26 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 140
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "40022",
+   "name": "Buy Rite Hackensack",
+   "contact": "Veral",
+   "dba": "BUY RITE OF HACKENSACK",
+   "address": "410 RIVER ST",
+   "city": "Hackensack",
+   "photoCount": 19,
+   "brandFamilyCount": 9,
+   "lastDate": "08/07/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/374ec7f8-cc9b-4301-b886-424a19325901/",
+       "dt": "05/05/2026 10:20 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0f709f56-0db1-4182-82f0-3a33ebc9f453/",
+       "dt": "05/05/2026 10:20 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b46d7918-3068-4313-b170-09a81380c411/",
+       "dt": "05/05/2026 10:21 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1b75521d-0c8f-45f5-a145-2834825308cd/",
+       "dt": "05/13/2026 02:38 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "FEVER-TREE TONIC WATERS"
+       ],
+       "cases": 20
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5bc6bea0-a33e-42a3-908e-ef77f25d6207/",
+       "dt": "06/03/2026 12:14 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f19bb972-8651-4cb0-a0d6-3fed4eaa14ca/",
+       "dt": "06/03/2026 12:14 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/32eea218-8ea5-4870-bfc1-06e36f7ec267/",
+       "dt": "06/08/2026 02:56 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2ac22993-38a2-433d-87e4-43b54e6ba8bf/",
+       "dt": "06/15/2026 01:54 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 25
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6da2259a-f1b1-488e-bded-e29466ef02ef/",
+       "dt": "06/15/2026 01:54 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/085039e5-09d3-4d4c-96ec-54fce259cf37/",
+       "dt": "06/25/2026 12:00 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TRULY HARD SELTZER"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/62710c56-5b96-4899-bdc1-887e90d8b226/",
+       "dt": "06/25/2026 12:01 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 10
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/231b999c-65d1-4fb0-8a92-d8471e05e414/",
+       "dt": "07/14/2026 03:31 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0d82e4ef-0f28-4412-ad6b-566bb7406ae9/",
+       "dt": "07/15/2026 01:37 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 82
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4d1d0510-b79b-4d53-ba01-792e7e79a4b4/",
+       "dt": "07/15/2026 01:38 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 77
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7d82ea59-efd6-4f2c-8380-4966feff119e/",
+       "dt": "07/15/2026 01:42 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 32
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/242c7c80-c6d8-4b57-849e-7e3a28bbab9f/",
+       "dt": "07/15/2026 01:42 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 33
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/74225d53-b393-4125-bde3-345c2e5cf6fa/",
+       "dt": "07/15/2026 01:46 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c6406309-ef86-41df-a1ad-125dcf663e8b/",
+       "dt": "07/15/2026 01:46 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "BLUE MOON"
+       ],
+       "cases": 15
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f084d124-74f2-4a69-9abf-8c585f69c9cb/",
+       "dt": "08/07/2026 03:32 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 18
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "14007",
+   "name": "Total Wine Totowa",
+   "contact": "Ashley",
+   "dba": "TOTAL WINE & MORE (TOTOWA)",
+   "address": "465 US HIGHWAY 46",
+   "city": "Totowa",
+   "photoCount": 18,
+   "brandFamilyCount": 10,
+   "lastDate": "08/14/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c4587bae-ccb4-469b-a68e-1cd4dc7cf058/",
+       "dt": "05/13/2026 12:39 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5b7ca801-c4d5-4b6c-aee0-6d3049364b50/",
+       "dt": "05/13/2026 12:42 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7b267107-f431-4b91-81cb-c264f3b92df8/",
+       "dt": "05/14/2026 05:35 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SIERRA NEVADA"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/45386c8d-28fb-42b4-af11-174bb5a8a119/",
+       "dt": "05/14/2026 05:36 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4cb164bf-ae21-40f9-a791-8e12ec80452e/",
+       "dt": "05/19/2026 02:50 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 4
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0d4f3922-925d-45fd-a666-6e4e384b0b45/",
+       "dt": "06/10/2026 11:30 AM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 125
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/566992b1-21f1-46a5-9313-9e93d0fa5a3a/",
+       "dt": "06/11/2026 04:38 PM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/833fc62e-5893-4e6d-9caa-8021d6b1fbc3/",
+       "dt": "06/29/2026 04:48 PM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 160
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7414125c-7e94-47d3-a63a-6f6bfc62b916/",
+       "dt": "07/08/2026 01:30 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "WHITE CLAW VODKA + SODA"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c7877ad6-c441-4607-9a63-9eb8bced855e/",
+       "dt": "07/10/2026 01:45 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "WHITE CLAW SURF HARD SELTZER",
+        "WHITE CLAW SURGE HARD SELTZER",
+        "WHITE CLAW ORIGINAL HARD SELTZER"
+       ],
+       "cases": 127
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/eba4808c-d70a-407a-9371-6c160881c207/",
+       "dt": "07/10/2026 01:48 PM",
+       "taker": "Dave Ehlers",
+       "brands": [],
+       "cases": 112
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2195a71c-7fc0-4f25-a2f9-96033fcbc684/",
+       "dt": "07/15/2026 03:03 PM",
+       "taker": "Mickey Obrien",
+       "brands": [],
+       "cases": 141
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1e7a8b31-68c3-403a-b48b-93c957eeeb34/",
+       "dt": "07/23/2026 12:12 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 150
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b6b6582f-bf07-4063-986d-2144510f41b1/",
+       "dt": "07/28/2026 10:42 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 100
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/67c9c1d4-1bad-45bb-92f3-4ac01a5fa23b/",
+       "dt": "08/05/2026 02:35 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/54015704-7798-447c-90d9-f4c16273c3f6/",
+       "dt": "08/06/2026 11:12 AM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2999f63a-8ff1-4323-b1e5-7b15544bf810/",
+       "dt": "08/11/2026 01:04 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5b8d049c-e076-4a9d-8c05-b8b54d53bb48/",
+       "dt": "08/14/2026 02:32 PM",
+       "taker": "Dave Ehlers",
+       "brands": [
+        "ANGRY ORCHARD"
+       ],
+       "cases": 70
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "24011",
+   "name": "Shopper Vineyard Clifton",
+   "contact": "Ed",
+   "dba": "SHOPPERS VINEYARD (A)",
+   "address": "875 BLOOMFIELD AVE",
+   "city": "Clifton",
+   "photoCount": 16,
+   "brandFamilyCount": 8,
+   "lastDate": "08/14/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fc3a999d-08f0-4877-ba44-ebbe3c0cf387/",
+       "dt": "05/07/2026 12:15 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 150
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/380664f6-6f7a-42c6-a3a9-f1bb1c75291d/",
+       "dt": "05/14/2026 02:39 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 98
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0d71abe6-ba7b-4886-9b9c-071424ceaede/",
+       "dt": "05/14/2026 02:40 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fe6b8b5f-e92f-4b8d-9b6d-8d88309e6725/",
+       "dt": "06/04/2026 10:23 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5a54eef1-b66c-42fc-8b70-7c3b046fd32c/",
+       "dt": "06/04/2026 10:24 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3d1c52d1-7099-45fc-aec9-03d646f32d56/",
+       "dt": "06/04/2026 10:26 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA EXTRA",
+        "CORONA"
+       ],
+       "cases": 69
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/63f82dee-96cb-4682-ae9a-7500fc571305/",
+       "dt": "06/04/2026 10:28 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA",
+        "MODELO ORO"
+       ],
+       "cases": 85
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/18713eb2-86cf-44d1-85fa-e39cf9d7a4c6/",
+       "dt": "07/20/2026 02:36 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 80
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/791dee37-5448-4805-a41e-8c0f5f0165f4/",
+       "dt": "07/20/2026 02:46 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3f9a53b1-de1b-4292-8164-51067c4aa277/",
+       "dt": "07/20/2026 02:48 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "SUN CRUISER LEMONADE"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/54f10e38-fcce-459a-acee-535e21695a5b/",
+       "dt": "07/20/2026 03:29 PM",
+       "taker": "James Heaney",
+       "brands": [],
+       "cases": 34
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c33cb999-3663-4dbd-8dd3-f140d4e85890/",
+       "dt": "07/20/2026 03:30 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0ebc5189-b193-48d1-8e51-b7dcdf556c1d/",
+       "dt": "07/20/2026 03:33 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 72
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2a6834a0-5b00-42ce-9034-f3343ee4a151/",
+       "dt": "08/03/2026 11:33 AM",
+       "taker": "James Heaney",
+       "brands": [],
+       "cases": 57
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b486667c-d843-41ff-9a3b-3a2e0b90c9fe/",
+       "dt": "08/06/2026 10:46 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA",
+        "MODELO ORO",
+        "MODELO CHELADA"
+       ],
+       "cases": 90
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1fe112d2-af52-4e64-a8b6-45b5beb63190/",
+       "dt": "08/14/2026 02:01 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "ANGRY ORCHARD"
+       ],
+       "cases": 20
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "77009",
+   "name": "M & M Liquor Elmwood Park",
+   "contact": "SK",
+   "dba": "M & M WINE & SPIRITS",
+   "address": "429 MARKET ST",
+   "city": "Elmwood Park",
+   "photoCount": 14,
+   "brandFamilyCount": 12,
+   "lastDate": "07/21/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/70df3f03-209d-4b23-b4c4-12511bd37b9a/",
+       "dt": "05/05/2026 11:13 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 14
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b5aa28f0-fa67-4550-96a7-fd6c040d5373/",
+       "dt": "05/29/2026 12:05 PM",
+       "taker": "Patrick Ryan",
+       "brands": [
+        "FEVER-TREE",
+        "FEVER-TREE GINGERS",
+        "FEVER-TREE TONIC WATERS",
+        "FEVER-TREE SPARKLINGS"
+       ],
+       "cases": 8
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/29cbd130-5374-41d7-9b0c-3b6bf71049d8/",
+       "dt": "06/02/2026 11:48 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MILLER LITE"
+       ],
+       "cases": 21
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7e498ecb-8f81-4f28-a925-90d75b8796e3/",
+       "dt": "06/02/2026 11:50 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 51
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4abe7cbe-5151-49c8-80d0-cb87d27d062d/",
+       "dt": "06/02/2026 11:51 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/75462102-48a2-4dea-94d2-db28b1324cae/",
+       "dt": "06/02/2026 11:53 AM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fb3b82b3-ee16-445a-9cab-5e5a790f4756/",
+       "dt": "06/09/2026 11:03 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a48b6386-f86c-46e9-a3bf-1989ed86998d/",
+       "dt": "06/09/2026 11:10 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 400
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2d9fae81-ee51-4666-b884-83aeacf5461f/",
+       "dt": "06/09/2026 11:11 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA"
+       ],
+       "cases": 350
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3cd95c6d-3af8-45e6-ad56-af815f25efed/",
+       "dt": "06/09/2026 11:14 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/98e3b1ff-ff66-4c85-8c19-5bc965abdbf5/",
+       "dt": "06/23/2026 11:05 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c324c68d-c35f-4adb-abea-150038916a2f/",
+       "dt": "06/23/2026 11:06 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 8
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b24ff8b9-f221-46e8-82d9-b37250d38c79/",
+       "dt": "07/07/2026 11:02 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 8
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5b29c082-88c6-44f6-967a-b9896668107a/",
+       "dt": "07/21/2026 11:24 AM",
+       "taker": "Matthew Powierski",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 40
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "80005",
+   "name": "Shop Rite Paramus",
+   "contact": "",
+   "dba": "SHOP RITE LIQ (PARAMUS)",
+   "address": "224 RT 4 E",
+   "city": "Paramus",
+   "photoCount": 14,
+   "brandFamilyCount": 9,
+   "lastDate": "08/18/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/532ec78e-c8a1-4f8f-869c-2f51ddd26532/",
+       "dt": "05/20/2026 04:54 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/74d91256-8ee1-44f6-9879-e338bcc6cfda/",
+       "dt": "05/26/2026 03:20 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bdbb96e1-dcaa-4cff-a15c-bb8b58e023f5/",
+       "dt": "05/26/2026 03:24 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9ea2a48f-aa1c-4415-ba71-7f3aa8242776/",
+       "dt": "05/26/2026 03:25 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/cfdd1f2b-6c9b-4f09-b32e-a35cc2021e32/",
+       "dt": "05/26/2026 03:25 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d58a16f1-eda0-42fb-81b3-2f1de4d830ea/",
+       "dt": "05/26/2026 03:27 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a8af7c2c-abcf-4e95-9f31-ee5a4f0f54d5/",
+       "dt": "05/29/2026 01:36 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 50
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/db8d6724-fe68-4740-bff5-f88c9f00dc6e/",
+       "dt": "07/02/2026 08:33 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "SAM ADAMS SEASONAL"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/86c61f9a-7dd6-43a4-b789-2fa0fd774dbb/",
+       "dt": "07/02/2026 08:39 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "TWISTED TEA"
+       ],
+       "cases": 45
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9335bc03-02ab-4a7b-a96f-4e73778615de/",
+       "dt": "07/02/2026 08:47 AM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "TRULY"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7b3214ff-1de2-4d20-9dee-1b69ed749c73/",
+       "dt": "07/02/2026 08:48 AM",
+       "taker": "Phil Ernst",
+       "brands": [],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/eb0cad89-dfa3-439d-ab68-1fcd4a0729d3/",
+       "dt": "07/10/2026 12:04 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 3
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/19eac08b-1e3c-4d54-8241-8bbd28ca022c/",
+       "dt": "08/11/2026 03:37 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 5
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/79f05fa6-7f11-4001-9230-30422b741ca1/",
+       "dt": "08/18/2026 03:19 PM",
+       "taker": "Phil Ernst",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "21044",
+   "name": "Farmboy",
+   "contact": "Rubin / Peter",
+   "dba": "FARM BOY",
+   "address": "465 GETTY AVE",
+   "city": "Paterson",
+   "photoCount": 13,
+   "brandFamilyCount": 5,
+   "lastDate": "08/06/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b1558fee-08f8-4b40-b699-e3c2b97d7037/",
+       "dt": "05/22/2026 12:54 PM",
+       "taker": "Patrick Ryan",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 133
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/90e8e547-77df-411e-a00e-94256fc3ed05/",
+       "dt": "05/22/2026 02:10 PM",
+       "taker": "Patrick Ryan",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 110
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5dc52336-b65b-437d-8fc5-2b408895c27a/",
+       "dt": "05/22/2026 02:14 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 100
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0e3aabe6-f230-4d83-aab3-434989d4cccc/",
+       "dt": "05/22/2026 02:19 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 133
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/18192488-3e1f-4f7a-b10d-1830fa3999c3/",
+       "dt": "07/08/2026 01:39 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "FAMOSA"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/bb4504c6-40c4-4816-96b8-b61479c1e79e/",
+       "dt": "07/23/2026 01:41 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 105
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/27b97c82-d324-4221-bc91-a349977bdf01/",
+       "dt": "07/23/2026 01:49 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 120
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/0e6f679a-e05c-470c-81f3-e55efe3ca928/",
+       "dt": "08/06/2026 01:34 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5943343d-74ac-49e1-9fee-02d578aa09f0/",
+       "dt": "08/06/2026 01:38 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 30
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5be552d9-ee66-4dd0-85a6-fa7a39850e80/",
+       "dt": "08/06/2026 02:22 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f545a18e-0164-487b-9bc2-62ef92aedb5a/",
+       "dt": "08/06/2026 02:34 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/d2963d20-2730-42b5-a00d-b49cc87377c3/",
+       "dt": "08/06/2026 02:35 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 50
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6e193ea3-f8a0-46f4-a9c8-3b8b0c374b47/",
+       "dt": "08/06/2026 02:38 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 30
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "29011",
+   "name": "World of Wine",
+   "contact": "Harsh",
+   "dba": "WORLD OF WINE & LIQUOR",
+   "address": "419 VALLEY BROOK AVE.",
+   "city": "Lyndhurst",
+   "photoCount": 10,
+   "brandFamilyCount": 5,
+   "lastDate": "08/18/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3458e46c-3225-4fed-9668-4cfad88058ad/",
+       "dt": "05/14/2026 03:52 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 21
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/743171fe-cb1d-471e-9028-3f0ba0c539a9/",
+       "dt": "06/03/2026 03:01 PM",
+       "taker": "James Heaney",
+       "brands": [],
+       "cases": 10
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6aa304f1-a8ed-44ed-a469-f54f1f83c3e5/",
+       "dt": "06/03/2026 03:37 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fac89da8-6291-47c5-b0c0-5db838ec8893/",
+       "dt": "06/09/2026 09:47 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA",
+        "CORONA EXTRA"
+       ],
+       "cases": 57
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9a09c105-6832-4100-8f6c-9788860148b3/",
+       "dt": "06/09/2026 09:48 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 1
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c09d37e8-307b-45a6-90bf-ff9e9adbf9ea/",
+       "dt": "06/09/2026 09:49 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7647c637-186b-461a-9aec-3616b08a7805/",
+       "dt": "06/09/2026 09:50 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 1
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/3e408704-e0ed-4472-9f65-2b1ce3a00868/",
+       "dt": "08/03/2026 12:52 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9bc29371-621d-4427-84aa-ecaab92330ec/",
+       "dt": "08/04/2026 10:26 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 15
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e146f3d6-04d2-4d48-a17f-4b29e424ba3d/",
+       "dt": "08/18/2026 11:04 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "43013",
+   "name": "Buy Rite Fairview",
+   "contact": "Harold",
+   "dba": "BUY RITE OF FAIRVIEW",
+   "address": "201 BROAD AVE",
+   "city": "Fairview",
+   "photoCount": 9,
+   "brandFamilyCount": 5,
+   "lastDate": "07/08/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/35032eb7-4e75-4d6c-b499-cda3a4b7a3a4/",
+       "dt": "05/07/2026 01:41 PM",
+       "taker": "Daniel La Gala",
+       "brands": [
+        "FEVER TREE"
+       ],
+       "cases": 5
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1a3fd6ae-5a79-4c6a-b251-4ebe0868ba2b/",
+       "dt": "06/08/2026 02:17 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/f14ed380-1bb3-49df-bc0f-69e0c41c7faa/",
+       "dt": "06/12/2026 05:38 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/db5c4f31-9257-4eb1-971b-3389a46924b2/",
+       "dt": "06/17/2026 01:25 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "HEINEKEN"
+       ],
+       "cases": 60
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5b817237-460e-431c-b3af-a4b5cc2039da/",
+       "dt": "06/18/2026 12:27 PM",
+       "taker": "David Fletcher",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 75
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7d4c46b5-70f0-4b25-9427-0e6f4a04ae0a/",
+       "dt": "06/18/2026 12:27 PM",
+       "taker": "Nicholas Micco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4b4a35f7-4759-4559-98b0-7dd6819f82ac/",
+       "dt": "06/29/2026 02:49 PM",
+       "taker": "Daniel La Gala",
+       "brands": [],
+       "cases": 5
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/60bb32e1-9d65-4994-a2ca-7a8959b77181/",
+       "dt": "07/08/2026 12:19 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 65
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/441823df-9eda-42ef-aca9-4e662a8d0250/",
+       "dt": "07/08/2026 12:26 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 65
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "12005",
+   "name": "Shays Hamburgh Tpk",
+   "contact": "Darsh",
+   "dba": "SHAY'S LIQUORS",
+   "address": "1166 HAMBURG TNPK",
+   "city": "Wayne",
+   "photoCount": 8,
+   "brandFamilyCount": 9,
+   "lastDate": "07/17/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/cc1fa35d-234d-420e-9d55-a9fdad04c877/",
+       "dt": "05/04/2026 11:08 AM",
+       "taker": "Michael Harboy",
+       "brands": [
+        "GARAGE BEER"
+       ],
+       "cases": 4
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ed49528d-811e-4e70-bf9b-e68d5773ab5e/",
+       "dt": "07/02/2026 09:29 AM",
+       "taker": "Michael Harboy",
+       "brands": [],
+       "cases": 77
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ff6f0f9b-ba9c-4974-9347-337d8506c7a2/",
+       "dt": "07/02/2026 09:31 AM",
+       "taker": "Michael Harboy",
+       "brands": [],
+       "cases": 12
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2035667a-57bc-4ea8-b647-8ddd8b8a66c9/",
+       "dt": "07/02/2026 09:35 AM",
+       "taker": "Michael Harboy",
+       "brands": [
+        "MODELO ORO",
+        "MODELO CERVEZA",
+        "PACIFICO",
+        "CERVEZA VICTORIA"
+       ],
+       "cases": 52
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c0367820-9dae-44ae-80cc-6f13b22e3a87/",
+       "dt": "07/02/2026 09:37 AM",
+       "taker": "Michael Harboy",
+       "brands": [
+        "GARAGE BEER - CONTRACT BREWING"
+       ],
+       "cases": 14
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6f49e073-c664-479e-bc54-8ac5609261f1/",
+       "dt": "07/02/2026 09:51 AM",
+       "taker": "Michael Harboy",
+       "brands": [
+        "SAMUEL ADAMS",
+        "SAM ADAMS SEASONAL"
+       ],
+       "cases": 47
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/742ae7f4-a773-4800-8740-8c1c8eca2b11/",
+       "dt": "07/17/2026 12:20 PM",
+       "taker": "Alex Rodriguez",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 20
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/7a5a7eb0-6d57-46ff-860c-437ec3caab7a/",
+       "dt": "07/17/2026 12:22 PM",
+       "taker": "Alex Rodriguez",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 200
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "28012",
+   "name": "Lucky 7",
+   "contact": "Bobby",
+   "dba": "LUCKY 7 (A)",
+   "address": "77 RIVER RD",
+   "city": "North Arlington",
+   "photoCount": 7,
+   "brandFamilyCount": 6,
+   "lastDate": "08/19/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2e8ed0b2-0f5c-4551-afbc-68f2841d0f11/",
+       "dt": "05/05/2026 02:25 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "CORONA"
+       ],
+       "cases": 4
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/1e0a4cca-eb84-4c0a-b460-b992df9cac38/",
+       "dt": "05/05/2026 02:25 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "PACIFICO"
+       ],
+       "cases": 4
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/99619744-f432-42e9-8f0a-10c98b9386e9/",
+       "dt": "08/11/2026 01:00 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 6
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/aa85ed49-074c-4d9e-9206-00ff847415dc/",
+       "dt": "08/19/2026 09:34 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e1c3470d-c0e5-4583-b197-f365c0abd339/",
+       "dt": "08/19/2026 09:34 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/a84a32ec-b25e-4c9e-9300-c39fe5b8a932/",
+       "dt": "08/19/2026 09:35 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/21bc1f12-3af8-4647-9b9f-ae414afa457f/",
+       "dt": "08/19/2026 09:35 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "SUN CRUISER ICED TEA VODKA"
+       ],
+       "cases": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "21033",
+   "name": "The Liquor Shop",
+   "contact": "Danny",
+   "dba": "THE LIQUOR SHOP",
+   "address": "498 E 30TH STREET",
+   "city": "Paterson",
+   "photoCount": 6,
+   "brandFamilyCount": 4,
+   "lastDate": "07/02/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/162fa08f-ca2c-40c5-b6e4-93f630c60a57/",
+       "dt": "05/20/2026 12:52 PM",
+       "taker": "Ashley Furman",
+       "brands": [
+        "MODELO CERVEZA",
+        "MODELO CHELADA"
+       ],
+       "cases": 41
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ef166d3c-c102-4531-9851-805216e82d09/",
+       "dt": "07/01/2026 01:14 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA",
+        "MODELO CHELADA"
+       ],
+       "cases": 81
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/b114f1f2-87d8-41a7-895c-8e2d85c1efa3/",
+       "dt": "07/01/2026 01:17 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 25
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/6754ab05-34bc-45a3-a0a9-dd24bbd0fc8a/",
+       "dt": "07/01/2026 01:23 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 32
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/e330db8d-e19d-4e2a-b770-ec4ac883a370/",
+       "dt": "07/01/2026 01:23 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "MODELO ORO"
+       ],
+       "cases": 32
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c664da7c-9bbc-4fcc-8478-a72fd7b777d3/",
+       "dt": "07/02/2026 11:29 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 24
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "25008",
+   "name": "Clifton Commons",
+   "contact": "Al",
+   "dba": "CLIFTON COMMONS S & W",
+   "address": "132 KINGSLAND RD SUITE 4",
+   "city": "Clifton",
+   "photoCount": 5,
+   "brandFamilyCount": 2,
+   "lastDate": "07/29/2026",
+   "byMonth": [
+    {
+     "month": "May 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/96f825f6-571e-4c76-ad07-9c35c02d0a24/",
+       "dt": "05/04/2026 01:19 PM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 10
+      }
+     ]
+    },
+    {
+     "month": "June 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/9b953e67-1d0c-428b-ba89-cc7f729b6500/",
+       "dt": "06/11/2026 10:44 AM",
+       "taker": "Jay Tabasco",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 70
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/37611d0c-fa13-4bd3-a013-95e1a5a825bc/",
+       "dt": "06/11/2026 10:44 AM",
+       "taker": "James Heaney",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 75
+      }
+     ]
+    },
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/ce6a1533-b329-4c31-9605-5aebf2800076/",
+       "dt": "07/29/2026 03:07 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 35
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/4fa64595-1b6c-4bc8-bf3e-4be5a5de12ea/",
+       "dt": "07/29/2026 03:08 PM",
+       "taker": "Mickey Obrien",
+       "brands": [
+        "COORS LIGHT"
+       ],
+       "cases": 35
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "21026",
+   "name": "C Town Supermarket",
+   "contact": "Henry",
+   "dba": "C TOWN SUPERMARKET(P)",
+   "address": "444 20TH AVENUE",
+   "city": "Paterson",
+   "photoCount": 4,
+   "brandFamilyCount": 3,
+   "lastDate": "08/18/2026",
+   "byMonth": [
+    {
+     "month": "July 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/2245b391-639f-42d0-83ee-434de54042b8/",
+       "dt": "07/03/2026 01:11 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/c95aa28b-dd27-465e-83b4-4f322a2456a6/",
+       "dt": "07/03/2026 01:13 PM",
+       "taker": "Javier Melo",
+       "brands": [
+        "MODELO CERVEZA"
+       ],
+       "cases": 40
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/fce8c1fc-3120-4a32-a960-a43be3c7d7c2/",
+       "dt": "07/24/2026 11:58 AM",
+       "taker": "Javier Melo",
+       "brands": [
+        "FAMOSA"
+       ],
+       "cases": 5
+      }
+     ]
+    },
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/52b276ff-28b5-43d4-a47a-0262e31af190/",
+       "dt": "08/18/2026 11:24 AM",
+       "taker": "Javier Melo",
+       "brands": [
+        "LYTT"
+       ],
+       "cases": 24
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "acct": "27031",
+   "name": "Home Liquors Passaic",
+   "contact": "Gee",
+   "dba": "HOME WINE LIQUOR (PASSAIC)",
+   "address": "593 MAIN AVE",
+   "city": "Passaic",
+   "photoCount": 2,
+   "brandFamilyCount": 2,
+   "lastDate": "08/14/2026",
+   "byMonth": [
+    {
+     "month": "August 2026",
+     "photos": [
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/950a6e56-6c0f-4169-a54a-fb555b24a5d7/",
+       "dt": "08/10/2026 10:30 AM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CAYMAN JACK"
+       ],
+       "cases": 0
+      },
+      {
+       "url": "https://ep.cpgdata.com/external-api/view-photo/displays/5649e1dd-3483-4fea-84e2-fd7197cacd12/",
+       "dt": "08/14/2026 02:04 PM",
+       "taker": "Patrick Infante",
+       "brands": [
+        "CORONA EXTRA"
+       ],
+       "cases": 120
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "totalPhotos": 414,
+ "accountCount": 20,
+ "firstDate": "May 4, 2026",
+ "lastDate": "Aug 19, 2026"
+};
+/* PHOTO_DATA_END */
+
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+let uid = 0;
+
+function brandLine(brands){
+  if(!brands || !brands.length) return '';
+  const shown = brands.slice(0,3).map(b=>esc(titleCase(b)));
+  const more = brands.length>3 ? ` +${brands.length-3} more` : '';
+  return `<div class="photo-brands"><b>${shown.join('</b> · <b>')}</b>${more}</div>`;
+}
+function titleCase(s){ return s.toLowerCase().replace(/(^|[\s/&(-])[a-z]/g, m=>m.toUpperCase()); }
+
+function photoTile(p){
+  return `<div class="photo-tile">
+    <div class="photo-dt">${esc(p.dt)}</div>
+    <div class="photo-taker">by ${esc(p.taker)}</div>
+    ${brandLine(p.brands)}
+    ${p.cases>0?`<div class="photo-cases">${p.cases} cases on display</div>`:''}
+    <a class="photo-link" href="${esc(p.url)}" target="_blank" rel="noopener">View Photo &rsaquo;</a>
+  </div>`;
+}
+
+function acctCard(a){
+  const months = (a.byMonth||[]).map(m=>{
+    const did = 'm'+(uid++);
+    return `<button class="month-toggle" data-target="${did}"><span class="chev">▶</span>${esc(m.month)}<span class="mcount">${m.photos.length} photo${m.photos.length===1?'':'s'}</span></button>
+      <div class="month-body" id="${did}">${m.photos.map(photoTile).join('')}</div>`;
+  }).join('');
+  return `<div class="acct-card" id="acct-${esc(a.acct)}">
+    <div class="acct-head">
+      <div class="acct-name-row"><span class="acct-name">${esc(a.name)}</span><span class="acct-num">#${esc(a.acct)}</span></div>
+      <div class="acct-sub">${esc(a.dba)}${a.address?` · ${esc(titleCase(a.address))}, ${esc(a.city)}`:''}${a.contact?` · Contact: ${esc(a.contact)}`:''}</div>
+      <div class="acct-stats">
+        <span class="astat">${a.photoCount} Display Photo${a.photoCount===1?'':'s'}</span>
+        <span class="astat dim">${a.brandFamilyCount} Brand Famil${a.brandFamilyCount===1?'y':'ies'}</span>
+        ${a.lastDate?`<span class="astat dim">Latest: ${esc(a.lastDate)}</span>`:''}
+      </div>
+    </div>
+    <div class="acct-body">${months || '<div class="no-photos">No display photos entered in iSellBeer for this account yet.</div>'}</div>
+  </div>`;
+}
+
+function boot(){
+  document.getElementById('statBoard').innerHTML = `
+    <div class="stat-tile"><div class="stat-tile-num">${DATA.accountCount}</div><div class="stat-tile-label">Tier 1 Accounts</div></div>
+    <div class="stat-tile"><div class="stat-tile-num">${DATA.totalPhotos}</div><div class="stat-tile-label">Display Photos</div></div>
+    <div class="stat-tile"><div class="stat-tile-num" style="font-size:22px;line-height:1.3">${esc(DATA.firstDate)} –<br>${esc(DATA.lastDate)}</div><div class="stat-tile-label">Photo Date Range</div></div>`;
+  document.getElementById('jumpPills').innerHTML = (DATA.accounts||[]).map(a=>
+    `<button class="jpill" data-acct="${esc(a.acct)}">${esc(a.name)}<span class="cnt">${a.photoCount}</span></button>`).join('');
+  document.getElementById('main').innerHTML = (DATA.accounts||[]).map(acctCard).join('');
+
+  document.querySelectorAll('.jpill').forEach(b=>b.addEventListener('click', ()=>{
+    document.getElementById('acct-'+b.dataset.acct)?.scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+  document.addEventListener('click', (e)=>{
+    const t = e.target.closest('.month-toggle');
+    if(!t) return;
+    const body = document.getElementById(t.dataset.target);
+    t.classList.toggle('open');
+    if(body) body.classList.toggle('open');
+  });
+}
+boot();
+</script>
+
+</body>
+</html>
