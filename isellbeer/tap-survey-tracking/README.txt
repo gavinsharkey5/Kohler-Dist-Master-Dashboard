@@ -233,6 +233,38 @@ The 7-day lead time and 60-day window are both edit-in-one-place
 constants (REFRESH_DAYS, REFRESH_WARN_LEAD) near the top of the inline
 script if Kohler's cadence ever changes.
 
+Michelob Bounty Program tab (added 2026-08-19, per Gavin's manager):
+third top-level tab next to By Rep / By Brand. Hit lists of accounts
+pouring Michelob Ultra on draft that are missing Coors Light, Miller
+Lite, or both (Aug-Oct program; sell CL/ML in and hold it to collect).
+Source is michelob_bounty_targets.xlsx (the "2026 Fall CL & Lite Draft
+Targets" workbook -- three sheets: No CL or Lite / No CL / No Lite;
+yellow DBA highlight = TOP TARGET, the only per-account tier marker).
+generate_michelob.py merges the three sheets ONE ENTRY PER ACCOUNT
+(confirmed with Gavin 2026-08-19: combined status chip, not the source
+file's duplicated lists) and embeds the JSON in index.html's own
+<script id="michelob-data"> block -- a separate pipeline from
+generate.py, each script only rewrites its own tag, so the two refreshes
+can run in either order. Payouts (from the workbook legends): $200/2mo +
+$300/3mo for every target; top targets $400/$600 (missing both) or
+$300/$500 (missing one); minimums 4 halves/8 quarters (2mo), 6 halves/
+10 quarters (3mo). The tab respects the Rep/DM pills+filters and search
+(county/status/segment don't apply to it); each account expands to its
+in-house vs competitive draft lineup and a jump link into the By Rep
+survey view. Bounty-file rep spellings are canonicalized to the survey's
+(case-insensitive; unknown reps -- e.g. Vaughn Gallagher, who has no
+surveyed taps -- keep the file's spelling and still render).
+PURCHASE TRACKING IS NOT WIRED YET (chosen explicitly 2026-08-19): the
+bounty pays on months of CL/ML PURCHASES, which no current data source
+carries. Gavin will send a monthly RDE purchase export (CL/ML draft
+purchases by account, Aug-Oct); when it lands, extend
+generate_michelob.py to attach each account's {"purchases": {"months":
+[...]}} and the renderer already shows it. Until then the tab banner
+says purchase tracking hasn't started.
+To refresh the hit lists: save the new workbook over
+michelob_bounty_targets.xlsx, run python3 generate_michelob.py, commit
+and push.
+
 Files:
   iSellBeer_TAPS_US_THEM_Mediator.xlsx
                  The tap-audit engine's own working file (see the tap-audit
