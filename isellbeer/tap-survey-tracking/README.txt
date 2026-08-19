@@ -40,14 +40,16 @@ one unified renderer in index.html's renderSummary()):
   - Fast facts render at every level with level-appropriate wording;
     company/DM add a top-rep-by-share fact (min 100 handles), and the DM
     level adds a coaching-gap fact (lowest-share rep vs highest).
-  - Story tiles, ordered what-drives-it -> what-fights-it -> where-to-
-    grow -> worst-spots -> data-trust -> housekeeping: #1 Kohler Brand
-    (drill), #1 Competitor (drill), Biggest Brand Gap (rights-aware,
-    drill lists eligible missing accounts), Zero-Kohler Accounts
-    (drill), The App Has It Wrong (drill), Needs Resurvey (drill), plus
-    the rep-only Peer Playbook tile. Survey Health (Taps/Reps/Photos/
-    Corrected) and Fragile Brands were REMOVED the same day per Gavin --
-    fragile's drill code path remains unrendered.
+  - Story tiles, ordered what-drives-it -> what-fights-it -> worst-
+    spots -> data-trust -> housekeeping: #1 Kohler Brand (drill), #1
+    Competitor (drill), Zero-Kohler Accounts (drill), The App Has It
+    Wrong (drill), Needs Resurvey (drill), plus the rep-only Peer
+    Playbook tile. Survey Health (Taps/Reps/Photos/Corrected) and
+    Fragile Brands were REMOVED 2026-08-18 per Gavin, and Biggest Brand
+    Gap plus the "Top rep by share" fast fact were REMOVED 2026-08-19
+    per Gavin -- the fragile and gap drill code paths remain unrendered
+    (bestGap still feeds the biggest-gap fast fact, and bestRep still
+    feeds the DM coaching-gap fact).
   - Brand columns and Find My Opportunities remain rep-only.
 
 MY TAP BUSINESS -- rep mode (added 2026-08-17; 2026-08-18: a rep-name
@@ -155,7 +157,10 @@ and renderers throughout):
     accounts now also show a tappable photo preview (.acct-photo-lg,
     lazy-loaded, all screen sizes) instead of only a text link.
   - 🎯 Build a Target List (renderTargetTool, all levels -- company/DM/
-    rep, scoped like the KPI tiles by DM+rep+area): chip-based, per
+    rep, scoped like the KPI tiles by DM+rep+area; COLLAPSED by default
+    since 2026-08-19 per Gavin -- a one-line header toggles it open, with
+    a "filters set" hint when conditions are active but the tool is
+    closed): chip-based, per
     Gavin's Targeting Reports concept but rebuilt mobile-first (no
     side-by-side scrolling lists). "Has on tap" offers every surveyed
     brand family in scope (searchable, ranked by taps); "But missing"

@@ -362,7 +362,14 @@ footer p{margin:0 0 8px}
 .mb-jump{color:var(--accent);font-weight:600;font-size:11.5px;cursor:pointer;text-decoration:none}
 .mb-jump:hover{text-decoration:underline}
 
-/* ---- 🎯 Build a Target List (added 2026-08-18) ---- */
+/* ---- 🎯 Build a Target List (added 2026-08-18; collapsible 2026-08-19) ---- */
+.tt-toggle{cursor:pointer;display:flex;align-items:center;gap:8px;min-height:32px;user-select:none}
+.tt-toggle:hover{color:color-mix(in srgb,var(--accent) 80%,var(--ink))}
+.tt-chev{font-size:12px;color:var(--ink-soft)}
+.tt-hint{color:var(--ink-soft);font-weight:400;text-transform:none;letter-spacing:0;font-size:12.5px}
+.tt-hint b{color:var(--unv)}
+.finder.tt-closed{padding:12px 16px}
+.finder.tt-closed .f-lbl{margin-bottom:0}
 .tt-block{margin:12px 0 0}
 .tt-cap{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
 .tt-cap.on{color:var(--us)} .tt-cap.miss{color:var(--them)}
@@ -655,7 +662,7 @@ footer{font-size:13px}
                 drill:null, drillParam:null, fComp:'', fPlace:'', fMin:0, fRun:false,
                 // 🎯 target-list builder + the account-level filter it (and the
                 // KPI drills) can apply to the main By Rep / By Brand lists
-                tOn:[], tMiss:[], tMin:0, tZero:false, tRes:false, tPick:null,
+                tOn:[], tMiss:[], tMin:0, tZero:false, tRes:false, tPick:null, ttOpen:false,
                 acctFilter:null };
   var openReps = {};
   var openAccounts = {};
@@ -1098,7 +1105,7 @@ footer{font-size:13px}
     state.search=''; state.rep=''; state.county=''; state.status=''; state.dm=''; state.segment='';
     state.drill=null; state.drillParam=null; state.fComp=''; state.fPlace=''; state.fMin=0; state.fRun=false;
     state.tOn=[]; state.tMiss=[]; state.tMin=0; state.tZero=false; state.tRes=false; state.tPick=null;
-    state.acctFilter=null;
+    state.ttOpen=false; state.acctFilter=null;
     openReps={}; openAccounts={}; openBrands={}; openMich={}; openMichAccts={};
     document.getElementById('search').value='';
     ['dmFilter','repFilter','countyFilter','statusFilter','segmentFilter'].forEach(function(id){ document.getElementById(id).value=''; });
@@ -1268,7 +1275,8 @@ footer{font-size:13px}
         if(!bestRep||sh>bestRep.sh) bestRep={rep:rep,sh:sh,t:t};
         if(!worstRep||sh<worstRep.sh) worstRep={rep:rep,sh:sh,t:t};
       });
-      if(bestRep) facts.push('Top rep by share: <b>'+esc(bestRep.rep)+'</b> — '+bestRep.sh.toFixed(0)+'% of '+ce0(bestRep.t)+' handles.');
+      // "Top rep by share" fact removed 2026-08-19 per Gavin; bestRep still
+      // feeds the DM-level coaching-gap fact below.
       if(level==='dm' && worstRep && bestRep && worstRep.rep!==bestRep.rep)
         facts.push('Coaching gap: <b>'+esc(worstRep.rep)+'</b> is at '+worstRep.sh.toFixed(0)+'% — '+ (bestRep.sh-worstRep.sh).toFixed(0)+' points behind '+esc(bestRep.rep)+'.');
     }
@@ -1293,9 +1301,9 @@ footer{font-size:13px}
         '<div class="big num">'+esc(topTh)+'</div>'+
         '<div class="sub"><b>'+ce0(cc.themBrandTotals[topTh])+'</b> handles across '+ce0(thAccts)+' accounts</div></div>';
     }
-    if(bestGap) tiles += '<div class="scard click'+(state.drill==='gap'?' active':'')+'" data-drill="gap" data-param="'+esc(bestGap.fam)+'"><div class="lbl">🧭 Biggest Brand Gap</div>'+
-      '<div class="big num">'+esc(bestGap.fam)+'</div>'+
-      '<div class="sub">missing from <b>'+ce0(bestGap.missing)+' eligible accounts</b></div></div>';
+    // Biggest Brand Gap tile removed 2026-08-19 per Gavin -- bestGap still
+    // feeds the fast fact above, and its 'gap' drill code path remains
+    // unrendered (same treatment as other retired tiles).
     tiles += '<div class="scard them click'+(state.drill==='zeroUs'?' active':'')+'" data-drill="zeroUs"><div class="lbl">🚫 Zero-Kohler Accounts</div>'+
       '<div class="big num">'+ce0(cc.zeroUs.length)+'</div>'+
       '<div class="sub">surveyed accounts where every handle is a competitor’s</div></div>';
@@ -1408,7 +1416,16 @@ footer{font-size:13px}
       (state.tPick==='on' ? 'Search any surveyed brand…' : 'Search Kohler brands you can place…')+'">'+
       '<div class="tt-list" id="ttPickList"></div></div>';
     var anySet = state.tOn.length || state.tMiss.length || state.tMin || state.tZero || state.tRes || state.acctFilter;
-    el.innerHTML = '<div class="finder"><div class="f-lbl">🎯 Build a Target List</div>'+
+    // Collapsed by default (2026-08-19, per Gavin) -- the header stays as a
+    // one-line entry point; everything else only renders when opened.
+    var headerHtml = '<div class="f-lbl tt-toggle" id="ttToggle"><span class="tt-chev">'+(state.ttOpen?'▾':'▸')+'</span> 🎯 Build a Target List'+
+      (state.ttOpen ? '' : ' <span class="tt-hint">— tap to find accounts by what’s on tap'+(anySet?' · <b>filters set</b>':'')+'</span>')+'</div>';
+    if(!state.ttOpen){
+      el.innerHTML = '<div class="finder tt-closed">'+headerHtml+'</div>';
+      document.getElementById('ttToggle').addEventListener('click', function(){ state.ttOpen=true; render(); });
+      return;
+    }
+    el.innerHTML = '<div class="finder">'+headerHtml+
       '<div class="f-sub">Pick what an account must have on tap and what it must be missing, add quick conditions, then filter the account list below to just those targets. Missing-brand picks are limited to brands Kohler can actually sell in each account’s county.</div>'+
       '<div class="tt-block"><div class="tt-cap on">Has on tap</div><div class="tt-chips">'+chipRow(state.tOn,'on')+
         '<button class="tt-add" data-pick="on" type="button">'+(state.tPick==='on'?'✕ Cancel':'+ Add brand')+'</button></div>'+(state.tPick==='on'?pickerHtml:'')+'</div>'+
@@ -1429,6 +1446,7 @@ footer{font-size:13px}
     }).filter(Boolean);
     document.getElementById('ttNote').innerHTML = noteBits.length? 'Rights check: '+noteBits.join(' · ')+'. Accounts outside those counties are excluded automatically.' : '';
 
+    document.getElementById('ttToggle').addEventListener('click', function(){ state.ttOpen=false; render(); });
     el.querySelectorAll('.tt-add').forEach(function(b){
       b.addEventListener('click', function(){
         state.tPick = (state.tPick===b.dataset.pick ? null : b.dataset.pick);
