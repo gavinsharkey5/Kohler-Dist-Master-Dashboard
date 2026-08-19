@@ -644,6 +644,17 @@ The specific rules he set:
      one big count-labeled button ("Your New Accounts [6]"), and the
      earn-head stacks vertically under 820px so rate notes never clip.
 
+Month tabs (2026-08-18, per Gavin): the header's redundant eyebrow
+line was removed and replaced by a month tab under the "Incentive
+Tracker" title -- currently a single active "August 2026" tab. Gavin
+plans to keep this page running month over month (September incentives
+next), so when a new month's programs arrive, the expected shape is:
+add the new month's data files + builders, keep each month's
+PROGRAM_DATA separable, and turn the tab row into a real switcher
+(the CSS -- .month-tabs/.month-tab(.active) -- is already built for
+multiple tabs). Ask Gavin whether August should stay browsable or be
+archived when September ships.
+
 DM grouping + territory pills (2026-08-18, late, per Gavin): the rep
 pills in the START HERE panel are grouped under each District Manager's
 name (label only, not clickable) so reps find themselves faster.
