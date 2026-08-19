@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Incentive Tracker | August 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&family=Bungee&display=swap" rel="stylesheet">
 <style>
   :root{
     --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
@@ -46,27 +46,26 @@
     text-shadow:0 2px 10px rgba(0,0,0,.3);}
   .nj-hero-script{font-family:'Pacifico',cursive;color:#152a63;font-size:clamp(36px,6vw,60px);
     line-height:1.35;text-shadow:0 1px 0 rgba(255,255,255,.18);}
-  .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
-    filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
+  .nj-hero-row{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:6px;flex-wrap:wrap;}
+  .hero-logo-badge{height:58px;width:auto;flex-shrink:0;
+    filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
   @media (max-width:640px){
-    .nj-hero{padding:26px 14px 22px;}
-    .hero-logo-badge{height:38px;top:10px;left:12px}
+    .nj-hero{padding:22px 14px 20px;}
+    .nj-hero-row{gap:12px;}
+    .hero-logo-badge{height:42px;}
   }
 
-  .header-grid{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;}
-  .header-main{flex:1 1 320px;min-width:280px;}
-  .header-mission{flex:1 1 340px;min-width:260px;max-width:560px;
-    border-left:3px solid var(--amber);padding-left:22px;}
-  .mission-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;line-height:1.25;}
-  .mission-title span{color:var(--amber);}
-  .mission-text{margin-top:9px;color:var(--text-dim);font-size:15px;line-height:1.6;}
-  .mission-text b{color:var(--text);font-weight:700;}
   .start-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px;}
   .start-head .start-here{margin-bottom:0;}
 
   header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:14.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
-  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,4vw,43.5px);margin-bottom:8px;}
+  h1{font-family:'Bungee','Space Grotesk',sans-serif;font-weight:400;letter-spacing:.015em;
+    font-size:clamp(28px,4vw,44px);line-height:1.15;margin-bottom:10px;color:var(--amber);}
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    h1{background:linear-gradient(115deg,var(--amber) 20%,#FCE3A1 50%,var(--amber) 80%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  }
   .sub{color:var(--text-dim);font-size:17px;}
   .updated{margin:10px 0 0;font-size:14.5px;color:var(--text-dim);font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;display:flex;align-items:center;gap:7px}
   .livedot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 70%,transparent);animation:lp 2s infinite}
@@ -80,9 +79,9 @@
   .start-sub{font-size:16.5px;color:var(--text);line-height:1.45;margin-bottom:3px;}
   .start-sub.dim{color:var(--text-dim);font-size:15px;margin-bottom:14px;}
   .repbar{display:flex;flex-direction:column;gap:17px;}
-  .dm-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:var(--text-dim);
-    text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px;display:flex;align-items:center;gap:10px;}
-  .dm-label::after{content:"";flex:1;height:1px;background:var(--line-soft);}
+  .dm-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+  .dm-label::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--amber-soft),transparent);border-radius:2px;}
   .dm-pills{display:flex;flex-wrap:wrap;gap:9px;}
   .repchip{background:var(--card-alt);border:1px solid var(--border);color:var(--text);padding:12px 18px;min-height:48px;
     border-radius:24px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
@@ -435,27 +434,21 @@
     <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; Incentive Tracker</div>
   </div>
   <div class="hero-banner nj-hero">
-    <img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
     <div class="nj-hero-inner">
       <div class="nj-hero-kicker">Distributing the Best Beverages to</div>
-      <div class="nj-hero-script">Northern NJ</div>
+      <div class="nj-hero-row">
+        <img class="hero-logo-badge" src="../assets/kohler-logo-badge.png" alt="Kohler Distributing Company">
+        <span class="nj-hero-script">Northern NJ</span>
+      </div>
     </div>
   </div>
 </div>
 
 <header>
-  <div class="header-grid">
-    <div class="header-main">
-      <div class="eyebrow">Incentive Tracking · August 2026</div>
-      <h1>Incentive Tracker</h1>
-      <p class="sub">All of your August incentives in one place.</p>
-      <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
-    </div>
-    <div class="header-mission">
-      <div class="mission-title">Our <span>Mission</span> Statement</div>
-      <p class="mission-text">Kohler is committed to the growth of all brands through the continued development of our <b>PEOPLE</b>. We are focused on the <b>EXECUTION</b> of industry-leading standards while maintaining the highest level of <b>CUSTOMER SATISFACTION</b>, <b>SUPPLIER PARTNERSHIP</b>, and <b>INTEGRITY</b>.</p>
-    </div>
-  </div>
+  <div class="eyebrow">Incentive Tracking · August 2026</div>
+  <h1>Incentive Tracker</h1>
+  <p class="sub">All of your August incentives in one place.</p>
+  <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 18, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
 <div class="repbar-wrap">
