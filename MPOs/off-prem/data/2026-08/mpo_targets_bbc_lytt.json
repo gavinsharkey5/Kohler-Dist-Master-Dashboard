@@ -211,12 +211,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 76015,
-    "CUSTOMER_NAME": "Discount Liq & Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 46033,
     "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
     "AREA": "Bergen"
@@ -249,12 +243,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38001,
     "CUSTOMER_NAME": "JR Sports Bar & Liquors(Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 76018,
-    "CUSTOMER_NAME": "Krauszer Liquor",
     "AREA": "Bergen"
   },
   {
@@ -315,12 +303,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 34004,
     "CUSTOMER_NAME": "Princess Liquor's(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 38017,
-    "CUSTOMER_NAME": "Quick Stop Food & Liq",
     "AREA": "Bergen"
   },
   {
@@ -691,12 +673,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 14007,
-    "CUSTOMER_NAME": "Total Wine & More (Totowa)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 56015,
     "CUSTOMER_NAME": "VINEYARD",
     "AREA": "Bergen"
@@ -921,12 +897,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20021,
     "CUSTOMER_NAME": "Diamond Liquors (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 27012,
-    "CUSTOMER_NAME": "ESTEVEZ LIQUORS LLC",
     "AREA": "Passaic"
   },
   {
@@ -1381,12 +1351,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191518,
-    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190901,
     "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
     "AREA": "Morris 1"
@@ -1443,12 +1407,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191210,
     "CUSTOMER_NAME": "Milton Inn",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190101,
-    "CUSTOMER_NAME": "Montville Wine & Spirits",
     "AREA": "Morris 1"
   },
   {

@@ -7543,15 +7543,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 81001,
-    "CUSTOMER_NAME": "B & B Liquors (Fair Lawn)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38040,
     "CUSTOMER_NAME": "Buy Rite Discount Liquor",
     "AREA": "Bergen",
@@ -19468,15 +19459,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 51004,
-    "CUSTOMER_NAME": "Fill Er Up Kosher Wine(P)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7142",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51013,
     "CUSTOMER_NAME": "G & G Liquors",
     "AREA": "Bergen",
@@ -37542,15 +37524,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24002,
     "CUSTOMER_NAME": "Swizzle Stick Liq (A)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "113",
-    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 25042,
-    "CUSTOMER_NAME": "Town Liquors",
     "AREA": "Passaic",
     "PRODUCT_NUM": "113",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",

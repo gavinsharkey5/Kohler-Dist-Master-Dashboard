@@ -50,11 +50,11 @@
     "CASES": 84.0
   },
   {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
-    "CUSTOMER_NUM": 40022,
-    "CUSTOMER_NAME": "Buy Rite Of Hackensack",
+    "CUSTOMER_NUM": 40019,
+    "CUSTOMER_NAME": "Budy's Wine & Liq (A)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -170,26 +170,6 @@
     "CASES": 1.0
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NUM": "2449",
-    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
-    "CUSTOMER_NUM": 19027,
-    "CUSTOMER_NAME": "Goffle Road Wine and More",
-    "DATE": "2026-08-01",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NUM": "2449",
-    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
-    "CUSTOMER_NUM": 40010,
-    "CUSTOMER_NAME": "Hackensack Liquors",
-    "DATE": "2026-08-01",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 1.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -215,16 +195,6 @@
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
     "CUSTOMER_NUM": 20031,
     "CUSTOMER_NAME": "La Joya Liquors",
-    "DATE": "2026-08-01",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 1.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NUM": "2449",
-    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
-    "CUSTOMER_NUM": 11003,
-    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -278,6 +248,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 10.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 17011,
+    "CUSTOMER_NAME": "Nico's Wine & Spirits",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -417,7 +397,7 @@
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 17.0
+    "CASES": 19.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -447,6 +427,6 @@
     "CUSTOMER_NAME": "World of Wine & Liquor",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 3.0
+    "CASES": 4.0
   }
 ]
