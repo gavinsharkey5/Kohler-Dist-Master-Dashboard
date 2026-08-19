@@ -694,7 +694,60 @@ math.
    four off-premise files noted above. Each tile states why it is N/A
    instead of showing a hollow zero.
 
-4-5. PERONI & BANQUET DRAFT / YUENGLING
+4. YUENGLING ON & OFF PREMISE DISTRO REWARDS -- RETENTION
+   (slides 28-29) [BUILT -- off-prem, on-prem packages, on-prem draft]
+   - Retain window 6/1-8/31/2026 (the draft file's load-sheet dates run
+     6/1-8/20, which is what pins the window). 90% retention threshold
+     per slide 28's Jun-Aug column. Up to $500 per brand goal retained;
+     reps achieving all 3 periods earn an additional payout (not
+     tracked -- needs the earlier periods).
+   Five files:
+     yuengling_retention_off.csv            3 brand goals off-premise
+     yuengling_retention_customers_off.csv  off-prem retention list
+     yuengling_retention_packages_on.csv    2 brand goals on-premise
+     yuengling_retention_customers_on.csv   on-prem retention list
+     yuengling_retention_draft_on.csv       load-sheet draft units
+   Off-prem brands: Lager 16oz 12pk Can / Flight Packages / Light Lager
+   Packages. On-prem package brands: Lager Package / Flight Packages.
+   Both placement files use the familiar flattened shape (rep-total row
+   carries that rep's goals, account rows beneath); verified 2026-08-19
+   that every rep total equals the sum of its own account rows in both.
+   The two customer-list files carry the same first-row artifact (it
+   duplicates an entry from the alphabetical list below it), stripped
+   the same way.
+
+   FIRST SUPPLIER-PROVIDED TARGET LIST IN THE DASHBOARD: the customer
+   lists are literally "Retention Account List", so a listed account
+   with zero placements is a real at-risk account, not an inference --
+   no fabrication caveat needed, unlike the customer-base-derived target
+   lists used elsewhere. Each channel's card shows "Retention Accounts
+   With Nothing Yet" from exactly that. On the 2026-08-19 pull: 196 of
+   250 listed accounts held, 54 at risk (Robin Feldman alone has 14 of
+   56 with nothing).
+   On-premise, every account with placements is on the list. OFF-premise
+   they diverge slightly -- 9 reps have accounts with real placements
+   that are NOT on their retention list (e.g. Jayson Romine's Market
+   Place Liquor). Those are surfaced in a note under the brand goals
+   rather than silently dropped; worth asking Gavin whether the off-prem
+   list needs a refresh.
+
+   NO HOUSE GOALS SHOWN. Slide 28's numbers (off: Lager 48, Flight 100,
+   Lt. Lager 35; on: Lager Draft 12, Flight Draft 10, Lager Package 40,
+   Flight Package 20) do NOT reconcile with these files -- summing every
+   rep's own goal gives 44 / 101 / 67 off-premise and 102 / 29 on-prem.
+   Per Gavin's standing instruction from the Constellation draft ("dont
+   include any goals"), deck numbers are not used as stand-ins.
+   The DRAFT file likewise has no goals column, so that side tracks
+   activity only: Lager/Flight units by account, load-sheet counts and
+   last-load date, plus a "Draft Accounts With No Units This Window"
+   list. Same treatment Gavin set for Constellation draft.
+
+   Status on the 2026-08-19 pull: 27 of 49 brand goals at 90%+ across
+   17 reps -- the first retention program where reps are materially
+   behind (MolsonCoors aside), so the cards lead with what each brand
+   still needs.
+
+5. PERONI & BANQUET DRAFT
    [PENDING -- files not yet dropped; same build approach]
 
 NOT part of this dashboard:
@@ -740,11 +793,13 @@ were never in scope for this; Tona and YaVe Tequila were confirmed
 in scope either.
 
 Retention programs (added 2026-08-19) are all Core Market per Gavin, so
-mc_retention / mabi_retention / constellation_retention appear in BOTH
-CORE_MARKET_PROGRAMS (generate.py, drives eligibility) and
-CORE_MARKET_PROGRAM_KEYS (index.html, drives the amber "Core Market"
-pill). Both lists must be updated when a program is added -- the
-eligibility blocking and the pill are driven by separate sets.
+every one of them goes in CORE_MARKET_PROGRAMS in generate.py. That is
+now the ONLY place to add a program: generate.py emits
+CORE_MARKET_PROGRAM_KEYS (which drives the amber "Core Market" pill)
+into the PROGRAM_DATA block from the same set that drives eligibility.
+Hand-maintaining the JS copy silently mislabelled the Mark Anthony and
+Constellation pills as "All Counties" while their eligibility blocking
+was correct, so the two were single-sourced on 2026-08-19.
 
 Rather than parsing the workbook, generate.py's load_core_market_reps()
 (see CORE_MARKET_PROGRAMS docstring in generate.py for the full

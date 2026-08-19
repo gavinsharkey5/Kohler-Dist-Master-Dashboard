@@ -1166,7 +1166,8 @@ def load_customer_base_by_rep(filename):
 # Gavin, 2026-08-10 (i.e. no blackout) -- also not in this set, and no
 # longer an open question.
 CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt",
-                        "mc_retention", "mabi_retention", "constellation_retention"}
+                        "mc_retention", "mabi_retention", "constellation_retention",
+                        "yuengling_retention"}
 
 
 def load_core_market_reps():
@@ -1915,6 +1916,189 @@ def build_constellation_retention():
             "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
 
 
+# --- YUENGLING ON & OFF PREMISE DISTRO REWARDS -- RETENTION -------------
+# (April deck slides 28-29.) Five files, and the first supplier in this
+# dashboard to hand over an explicit RETENTION ACCOUNT LIST per rep --
+# so "listed account with zero placements" is a real, supplier-defined
+# at-risk list rather than anything inferred.
+#
+# The two placement files (off, on-packages) use the familiar flattened
+# shape: first row of each rep run is the rep total carrying that rep's
+# goals, rows beneath are per-account. Verified 2026-08-19: every rep
+# total equals the sum of its own account rows in both files.
+# The two customer-list files repeat the same artifact -- the first row
+# of each rep run duplicates an entry that also appears in the real
+# alphabetical list below it -- so the same positional strip applies.
+#
+# NO HOUSE GOALS ARE SHOWN. Slide 28's numbers (off: Lager 48, Flight
+# 100, Lt. Lager 35; on: Lager Draft 12, Flight Draft 10, Lager Package
+# 40, Flight Package 20) do NOT reconcile with these files -- summing
+# every rep's own goal gives 44 / 101 / 67 off-premise and 102 / 29
+# on-premise. Per Gavin's standing instruction on the Constellation
+# draft ("dont include any goals"), deck numbers are not used as
+# stand-ins; only goals carried by the files themselves are shown.
+
+YUENGLING_RETAIN_THRESHOLD = 0.90    # deck slide 28: "Retain 90% Distribution Goals" (Jun-Aug)
+
+YUENGLING_OFF_BRANDS = [
+    ("Lager 16oz 12pk Can", "Lager 16oz 12pk Can Retention Placements"),
+    ("Flight Packages", "Flight Packages Retention Placements"),
+    ("Light Lager Packages", "Light Lager Packages Retention Placements"),
+]
+YUENGLING_ON_BRANDS = [
+    ("Lager Package", "Lager Package Retention Placements"),
+    ("Flight Packages", "Flight Packages Retention Placements"),
+]
+
+
+def _yuengling_customer_list(filename):
+    """Retention account list per rep. The first row of each rep run is
+    the same header artifact seen in the placement files (it duplicates
+    an entry from the alphabetical list below it), so it is stripped
+    positionally rather than by value."""
+    _, detail = _split_report_subtotals(read_rows(filename), "Sales Rep Name")
+    out = defaultdict(list)
+    for r in detail:
+        name = (r["Retention Customers"] or "").strip()
+        if name and name not in out[r["Sales Rep Name"]]:
+            out[r["Sales Rep Name"]].append(name)
+    return out
+
+
+def _yuengling_side(placement_file, customer_file, brands):
+    rows = read_rows(placement_file)
+    totals, detail = _split_report_subtotals(rows, "Sales Rep Name")
+    lists = _yuengling_customer_list(customer_file)
+
+    per_account = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    for r in detail:
+        rep = r["Sales Rep Name"]
+        cust = (r["Retention Customers"] or "").strip()
+        for label, col in brands:
+            per_account[rep][cust][label] += to_num(r[col])
+
+    out = {}
+    for rep in ROSTER:
+        trow = totals.get(rep)
+        listed = lists.get(rep, [])
+        accounts = []
+        for cust, vals in per_account.get(rep, {}).items():
+            total = sum(vals.values())
+            accounts.append({"customer": cust, "total": round(total),
+                             "brands": [{"label": lb, "placements": round(vals[lb])}
+                                        for lb, _ in brands if vals[lb]]})
+        accounts.sort(key=lambda a: (-a["total"], a["customer"]))
+        held = {a["customer"] for a in accounts if a["total"] > 0}
+        # Supplier-defined at-risk list: on the retention list, nothing on it yet.
+        at_risk = [c for c in listed if c not in held]
+        # A few off-premise accounts appear in the placement file but not on
+        # the list (9 reps on the 2026-08-19 pull) -- kept visible rather
+        # than silently dropped, since they are real placements.
+        off_list = [a["customer"] for a in accounts if a["customer"] not in listed]
+
+        brand_rows = []
+        for label, col in brands:
+            placements = to_num(trow[col]) if trow else 0.0
+            goal_s = (trow[f"( {col} ) Goals"].strip() if trow else "")
+            goal = to_num(goal_s) if goal_s else None
+            brand_rows.append({
+                "label": label, "placements": round(placements),
+                "goal": round(goal) if goal else None,
+                "pct": round(placements / goal * 100, 1) if goal else None,
+                "retained": bool(goal and placements >= YUENGLING_RETAIN_THRESHOLD * goal),
+                "hitFullGoal": bool(goal and placements >= goal),
+            })
+        goaled = [b for b in brand_rows if b["goal"]]
+        goal_sum = sum(b["goal"] for b in goaled)
+        out[rep] = {
+            "inReport": trow is not None,
+            "brands": brand_rows,
+            "goalsTotal": len(goaled),
+            "goalsRetained": sum(1 for b in goaled if b["retained"]),
+            "placements": sum(b["placements"] for b in brand_rows),
+            "goal": goal_sum,
+            "pct": round(sum(b["placements"] for b in goaled) / goal_sum * 100, 1) if goal_sum else None,
+            "accounts": accounts,
+            "listedCount": len(listed),
+            "heldCount": len([c for c in listed if c in held]),
+            "atRisk": at_risk,
+            "notOnList": off_list,
+        }
+    return out
+
+
+def _yuengling_draft():
+    """Load-sheet-level draft rows (6/1-8/20/2026 on this pull, which is
+    what pins the Jun-Aug window). No goals column, so this side tracks
+    activity only -- units and accounts, no goal or house gate, per
+    Gavin's standing instruction."""
+    rows = read_rows("yuengling_retention_draft_on.csv")
+    by_rep = {}
+    for r in rows:
+        rep = r["Sales Rep Name"]
+        if rep not in set(ROSTER):
+            continue
+        cust = (r["Retention Customers"] or "").strip()
+        lager = to_num(r["Lager Draft Retention Units Sold"])
+        flight = to_num(r["Flight Draft Retention Units Sold"])
+        d = by_rep.setdefault(rep, {"accounts": {}, "lagerUnits": 0.0, "flightUnits": 0.0})
+        d["lagerUnits"] += lager
+        d["flightUnits"] += flight
+        a = d["accounts"].setdefault(cust, {"customer": cust, "lager": 0.0, "flight": 0.0,
+                                            "loads": 0, "lastDate": None})
+        a["lager"] += lager
+        a["flight"] += flight
+        a["loads"] += 1
+        m = DATE_RE.search(r["Load Sheet Date"] or "")
+        if m:
+            key = (int(m.group(3)), int(m.group(1)), int(m.group(2)))
+            if a["lastDate"] is None or key > a["lastDate"][0]:
+                a["lastDate"] = (key, r["Load Sheet Date"])
+    out = {}
+    for rep, d in by_rep.items():
+        accounts = []
+        for a in d["accounts"].values():
+            accounts.append({"customer": a["customer"], "lager": round(a["lager"]),
+                             "flight": round(a["flight"]), "loads": a["loads"],
+                             "lastDate": a["lastDate"][1] if a["lastDate"] else None,
+                             "units": round(a["lager"] + a["flight"])})
+        accounts.sort(key=lambda a: (-a["units"], a["customer"]))
+        out[rep] = {"lagerUnits": round(d["lagerUnits"]), "flightUnits": round(d["flightUnits"]),
+                    "units": round(d["lagerUnits"] + d["flightUnits"]),
+                    "accountCount": len(accounts), "accounts": accounts}
+    return out
+
+
+def build_yuengling_retention():
+    off = _yuengling_side("yuengling_retention_off.csv",
+                          "yuengling_retention_customers_off.csv", YUENGLING_OFF_BRANDS)
+    on = _yuengling_side("yuengling_retention_packages_on.csv",
+                         "yuengling_retention_customers_on.csv", YUENGLING_ON_BRANDS)
+    draft = _yuengling_draft()
+
+    by_rep = {}
+    for rep in ROSTER:
+        o, p = off[rep], on[rep]
+        dr = draft.get(rep)
+        by_rep[rep] = {
+            "off": o, "onPkg": p,
+            "draft": dr or {"lagerUnits": 0, "flightUnits": 0, "units": 0,
+                            "accountCount": 0, "accounts": []},
+            "draftInReport": dr is not None,
+            "goalsTotal": o["goalsTotal"] + p["goalsTotal"],
+            "goalsRetained": o["goalsRetained"] + p["goalsRetained"],
+            "listedCount": o["listedCount"] + p["listedCount"],
+            "heldCount": o["heldCount"] + p["heldCount"],
+        }
+        goal_sum = o["goal"] + p["goal"]
+        placed = sum(b["placements"] for b in o["brands"] if b["goal"]) + \
+                 sum(b["placements"] for b in p["brands"] if b["goal"])
+        by_rep[rep]["overallPct"] = round(placed / goal_sum * 100, 1) if goal_sum else None
+
+    return {"byRep": by_rep,
+            "retainThresholdPct": int(YUENGLING_RETAIN_THRESHOLD * 100)}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -1935,6 +2119,7 @@ def main():
         "mc_retention": build_mc_retention(),
         "mabi_retention": build_mabi_retention(),
         "constellation_retention": build_constellation_retention(),
+        "yuengling_retention": build_yuengling_retention(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -2020,13 +2205,26 @@ def main():
           f"({sum(d['draftNewTargetedCount'] for d in con['byRep'].values())} targeted Modelo), "
           f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl (no goals tracked on draft, per Gavin)")
 
+    yu = data["yuengling_retention"]["byRep"]
+    yu_goaled = [d for d in yu.values() if d["goalsTotal"]]
+    print(f"yuengling_retention: {sum(d['goalsRetained'] for d in yu_goaled)} / {sum(d['goalsTotal'] for d in yu_goaled)} brand goals at 90%+ "
+          f"across {len(yu_goaled)} reps | retention accounts held {sum(d['heldCount'] for d in yu.values())} / {sum(d['listedCount'] for d in yu.values())} "
+          f"({sum(len(d['off']['atRisk']) + len(d['onPkg']['atRisk']) for d in yu.values())} at risk) | draft "
+          f"{sum(d['draft']['units'] for d in yu.values())} units across {sum(1 for d in yu.values() if d['draftInReport'])} reps (no goals tracked)")
+
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
     start_marker = "/* PROGRAM_DATA_START */"
     end_marker = "/* PROGRAM_DATA_END */"
     start = html.index(start_marker) + len(start_marker)
     end = html.index(end_marker)
-    html = html[:start] + f"\nconst PROGRAM_DATA = {payload};\n" + html[end:]
+    # CORE_MARKET_PROGRAM_KEYS is emitted from CORE_MARKET_PROGRAMS rather
+    # than hand-maintained in index.html: the Python set drives eligibility
+    # and the JS set drives the "Core Market" pill, and keeping them in sync
+    # by hand silently mislabelled two programs' pills (2026-08-19).
+    core_keys = json.dumps(sorted(CORE_MARKET_PROGRAMS))
+    html = html[:start] + (f"\nconst PROGRAM_DATA = {payload};\n"
+                           f"const CORE_MARKET_PROGRAM_KEYS = new Set({core_keys});\n") + html[end:]
 
     today = datetime.date.today().strftime("%b %-d, %Y")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
