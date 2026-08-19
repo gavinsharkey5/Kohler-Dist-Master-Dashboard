@@ -468,6 +468,18 @@ logo files. Mark Anthony's came as white type on a black marketing
 banner with brand badges alongside, so it was cropped to the wordmark
 and INVERTED to dark type, which is what makes it sit on the white
 .prog-logo-chip like the rest.
+Sizing (2026-08-19, per Gavin -- Mark Anthony and Yuengling read too
+small at first): the logo chip is no longer a fixed height. It is
+height:auto with the size limits on the IMG instead (max 196x58 in a rep
+card, 150x42 on an overview tile, 230x68 on a program page), so a TALL
+lockup grows the chip and stays legible while a WIDE wordmark is capped
+by max-width and cannot run away with the header. Two source images were
+also reflowed to suit that chip: Mark Anthony arrived as three stacked
+lines and is recomposed as "MARK ANTHONY" over "BREWING" (5.2:1 instead
+of 1.9:1), and Yuengling lost only its tiny "AMERICA'S OLDEST BREWERY"
+tagline, which was illegible at chip size. Yuengling's eagle and script
+are NOT separable -- the script's Y-swash rises into the eagle's rows,
+so any rectangular split clips one of them; the lockup is kept whole.
 (Interim SVG wordmarks drawn on the same day were replaced by these and
 deleted. Worth knowing for next time: this environment cannot download
 logos -- the agent proxy answers 403 to CONNECT for general web hosts,

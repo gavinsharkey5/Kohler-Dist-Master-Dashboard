@@ -106,11 +106,18 @@
   .prog-head{padding:22px 24px;border-bottom:1px solid var(--border);}
   .prog-name-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
   .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:31px;letter-spacing:-.01em;line-height:1.15;}
-  .prog-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:46px;min-width:46px;
+  /* The chip hugs its logo instead of forcing every mark into one fixed
+     height: tall lockups (Yuengling's eagle-over-script, Molly's, New
+     Belgium) get the extra height they need to stay legible, while wide
+     wordmarks are capped by max-width so they can't run away with the
+     header. Sizes are on the IMG; the chip is height:auto around it. */
+  .prog-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:auto;min-height:46px;min-width:46px;
     background:#fff;border-radius:10px;padding:6px 8px;flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,.35);}
-  .prog-logo-chip img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
-  .prog-tile .prog-logo-chip{height:34px;min-width:34px;border-radius:8px;padding:4px 6px;}
-  .prog-detail-hero .prog-logo-chip{height:52px;min-width:52px;border-radius:12px;padding:7px 9px;}
+  .prog-logo-chip img{max-width:196px;max-height:58px;width:auto;height:auto;object-fit:contain;display:block;}
+  .prog-tile .prog-logo-chip{min-height:34px;min-width:34px;border-radius:8px;padding:4px 6px;}
+  .prog-tile .prog-logo-chip img{max-width:150px;max-height:42px;}
+  .prog-detail-hero .prog-logo-chip{min-height:52px;min-width:52px;border-radius:12px;padding:7px 9px;}
+  .prog-detail-hero .prog-logo-chip img{max-width:230px;max-height:68px;}
   .prog-tag{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;letter-spacing:.03em;color:var(--accent);
     background:var(--accent-soft);border:1px solid var(--accent-deep);padding:5px 12px;border-radius:20px;}
   .prog-tag.terr-core{color:var(--amber);background:var(--amber-soft);border-color:var(--amber);}
