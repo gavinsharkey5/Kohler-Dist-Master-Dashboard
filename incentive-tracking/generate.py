@@ -1693,6 +1693,137 @@ CONSTELLATION_OFF_CATEGORIES = [
 CONSTELLATION_RETAIN_THRESHOLD = 0.90   # deck slide 18: "Retain 90% Distribution Goals"
 
 
+# --- Constellation ON-PREMISE ------------------------------------------
+# Two more files, each a different shape again (2026-08-19):
+#
+# constellation_packages_on.csv: one row per rep, one COLUMN per brand,
+# values are buyer counts for June-August 2026. No goals column at all,
+# and no subtotal rows -- the simplest file in the whole dashboard.
+#
+# constellation_draft_on.csv: account-level draft rows grouped
+# rep -> (brand, package) -> customer. TWO subtotal layers: the first row
+# of each rep run is the rep total, and the first row of each
+# (rep, brand, package) run is that block's subtotal; both borrow their
+# top customer's name. Verified on the 2026-08-19 pull: all 119 block
+# subtotals equal their leaf sums exactly, and every rep's Current Units
+# total equals its leaf sum.
+#
+# CRITICAL: "New Buyers" is a DISTINCT-ACCOUNT count at each grouping
+# level, NOT a summable measure -- summing it across blocks double-counts
+# an account that went new on more than one brand or keg size (Shane
+# Barreca: 7 new accounts but 12 new lines). Leaf rows are always 0 or 1,
+# so new LINES = leaf rows with New Buyers = 1, while new ACCOUNTS =
+# distinct customers among them. The report's own rep-total row equals
+# the distinct-account count for all 21 reps, which is what confirms the
+# semantics. The deck pays per LINE ("$100 for Targeted Draft Line"), so
+# both numbers are carried and labelled distinctly on the card.
+
+CONSTELLATION_ON_PKG_PREFIXES = [
+    "Corona Extra", "Modelo Especial", "Corona Light", "Corona Premier",
+    "Pacifico", "Corona NA", "Sunbrew", "Modelo Oro",
+]
+
+# Deck slide 18 on-premise draft distribution goals. The draft report has
+# no goals column, so these come from the deck and are matched against
+# distinct accounts buying that brand on draft -- the reading the data
+# supports (Modelo 238 vs goal 240, Negra 19 vs 15 on the 2026-08-19
+# pull). Flagged to Gavin as an inference, not a stated mapping.
+CONSTELLATION_DRAFT_GOALS = [
+    ("Modelo Especial", 240), ("Corona Light", 50), ("Pacifico", 57),
+    ("Modelo Negra", 15), ("Corona Premier", 5),
+]
+# Deck slide 20: "MODELO TARGETED NEW LINE REWARDS" pays $100 a line and
+# "ALL OTHER LINE REWARDS" $50. Slide 18 lists "Modelo Draft" separately
+# from "Negra Draft", so the targeted line is read as Modelo Especial
+# only -- confirm with Gavin.
+CONSTELLATION_TARGETED_DRAFT_BRAND = "Modelo Especial"
+
+
+def _constellation_packages_on():
+    rows = read_rows("constellation_packages_on.csv")
+    if not rows:
+        return {}, []
+    fieldnames = list(rows[0].keys())
+    cols = []
+    for label in CONSTELLATION_ON_PKG_PREFIXES:
+        match = next((f for f in fieldnames if f.startswith(label + " Buyers")), None)
+        if match:
+            cols.append((label, match))
+    by_rep, house = {}, {label: 0 for label, _ in cols}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in set(ROSTER):
+            continue
+        brands = [{"label": label, "buyers": round(to_num(row[col]))} for label, col in cols]
+        by_rep[rep] = brands
+        for b in brands:
+            house[b["label"]] += b["buyers"]
+    return by_rep, [{"label": label, "buyers": house[label]} for label, _ in cols]
+
+
+def _constellation_draft_on():
+    rows = read_rows("constellation_draft_on.csv")
+    # strip the rep-total layer, then the (brand, package) block layer
+    prev, body = object(), []
+    for r in rows:
+        if r["Sales Rep Name"] != prev:
+            prev = r["Sales Rep Name"]
+            continue
+        body.append(r)
+    prev, leaf = object(), []
+    for r in body:
+        key = (r["Sales Rep Name"], r["Brand Family"], r["Package"])
+        if key != prev:
+            prev = key
+            continue
+        leaf.append(r)
+
+    roster = set(ROSTER)
+    by_rep = {}
+    house_accounts = defaultdict(set)
+    for r in leaf:
+        rep = r["Sales Rep Name"]
+        if rep not in roster:
+            continue
+        units = to_num(r["Current Units"])
+        is_new = to_num(r["New Buyers"]) > 0
+        if units == 0 and not is_new:
+            continue
+        bbl = keg_bbl(r["Package"])
+        barrels = units * bbl if bbl else 0.0
+        brand = r["Brand Family"]
+        customer = r["Customer Num Company"].strip()
+        targeted = brand == CONSTELLATION_TARGETED_DRAFT_BRAND
+        # Deck slide 20 retention bonus, halved on 1/4 and 1/6 kegs.
+        half = bbl is not None and bbl < 0.5
+        if barrels >= 8:
+            tier, amt = 8, (400 if targeted else 250)
+        elif barrels >= 4:
+            tier, amt = 4, (200 if targeted else 150)
+        else:
+            tier, amt = 0, 0
+        d = by_rep.setdefault(rep, {"lines": [], "accounts": set(), "newAccounts": set()})
+        d["lines"].append({
+            "customer": customer, "brand": brand, "package": r["Package"],
+            "units": round(units), "barrels": round(barrels, 2),
+            "isNew": is_new, "targeted": targeted, "tier": tier,
+            "bonus": round(amt * 0.5) if (amt and half) else amt,
+            "halfKeg": half,
+        })
+        if units > 0:
+            d["accounts"].add(customer)
+            house_accounts[brand].add(customer)
+        if is_new:
+            d["newAccounts"].add(customer)
+
+    house = []
+    for brand, goal in CONSTELLATION_DRAFT_GOALS:
+        n = len(house_accounts.get(brand, ()))
+        house.append({"label": brand + " Draft", "total": n, "goal": goal,
+                      "met": n >= goal, "short": max(0, goal - n)})
+    return by_rep, house
+
+
 def build_constellation_retention():
     """Constellation "Fast Start" Distro Rewards -- retention phase, OFF
     PREMISE (April deck slides 18-19). Retain window 6/1-8/31/2026, the
@@ -1759,6 +1890,9 @@ def build_constellation_retention():
                       "met": house_total >= cat["houseGoal"],
                       "short": max(0, cat["houseGoal"] - round(house_total))})
 
+    pkg_by_rep, pkg_house = _constellation_packages_on()
+    draft_by_rep, draft_house = _constellation_draft_on()
+
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]
         d["offGoalsTotal"] = len(goaled)
@@ -1767,9 +1901,29 @@ def build_constellation_retention():
         d["offGoal"] = sum(c["goal"] for c in goaled)
         d["offPct"] = round(sum(c["placements"] for c in goaled) / d["offGoal"] * 100, 1) if d["offGoal"] else None
 
+        brands = pkg_by_rep.get(rep)
+        d["onPkgInReport"] = brands is not None
+        d["onPkgBrands"] = [b for b in (brands or []) if b["buyers"] > 0]
+        d["onPkgTotal"] = sum(b["buyers"] for b in (brands or []))
+
+        dr = draft_by_rep.get(rep)
+        d["draftInReport"] = dr is not None
+        lines = sorted((dr or {}).get("lines", []),
+                       key=lambda l: (-l["barrels"], l["customer"]))
+        d["draftLines"] = lines
+        d["draftNewLines"] = [l for l in lines if l["isNew"]]
+        d["draftNewLineCount"] = len(d["draftNewLines"])
+        d["draftNewTargetedCount"] = sum(1 for l in d["draftNewLines"] if l["targeted"])
+        d["draftNewAccountCount"] = len((dr or {}).get("newAccounts", ()))
+        d["draftAccountCount"] = len((dr or {}).get("accounts", ()))
+        d["draftBarrels"] = round(sum(l["barrels"] for l in lines), 1)
+        d["draftLinesAtBonus"] = sum(1 for l in d["draftNewLines"] if l["tier"])
+
     return {"byRep": by_rep, "houseOff": house,
             "houseOffMet": sum(1 for h in house if h["met"]),
             "houseOffTotal": len(house),
+            "housePkgOn": pkg_house, "houseDraftOn": draft_house,
+            "targetedDraftBrand": CONSTELLATION_TARGETED_DRAFT_BRAND,
             "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
 
 
@@ -1872,6 +2026,13 @@ def main():
           f"({', '.join(h['label']+' '+str(h['total'])+'/'+str(h['goal'])+('' if h['met'] else ' SHORT '+str(h['short'])) for h in con['houseOff'])}), "
           f"{sum(d['offGoalsRetained'] for d in con_goaled)} / {sum(d['offGoalsTotal'] for d in con_goaled)} rep category goals at 90%+, "
           f"{len(con_goaled)} reps with goals")
+    print(f"constellation on-prem: packages {sum(d['onPkgTotal'] for d in con['byRep'].values())} buyers across "
+          f"{sum(1 for d in con['byRep'].values() if d['onPkgTotal'])} reps | draft "
+          f"{sum(d['draftNewLineCount'] for d in con['byRep'].values())} new lines "
+          f"({sum(d['draftNewTargetedCount'] for d in con['byRep'].values())} targeted Modelo), "
+          f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl, "
+          f"house draft {sum(1 for h in con['houseDraftOn'] if h['met'])}/{len(con['houseDraftOn'])} met "
+          f"({', '.join(h['label']+' '+str(h['total'])+'/'+str(h['goal']) for h in con['houseDraftOn'])})")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()

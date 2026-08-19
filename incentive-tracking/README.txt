@@ -621,6 +621,76 @@ math.
    worth re-checking once the on-premise files land.
    No $ total computed ("up to $500 max" is not a per-placement rate).
 
+   ON-PREMISE (added 2026-08-19, two more files, two more shapes):
+
+   constellation_packages_on.csv -- the simplest file in the dashboard:
+   one row per rep, one COLUMN per brand (Corona Extra, Modelo Especial,
+   Corona Light, Corona Premier, Pacifico, Corona NA, Sunbrew, Modelo
+   Oro), values are June-August buyer counts. No subtotal rows and NO
+   GOALS COLUMN. So the card shows buyer counts per brand and says so
+   plainly ("this report carries no per-rep goals"). OPEN WITH GAVIN:
+   (a) are per-rep on-premise package goals coming, and (b) how do these
+   8 brand columns map to the deck's on-prem package goals (GAINTAIN pkg
+   1,340 / IMPACT pkg 600 / INNOVATION 165)? A mapping was deliberately
+   NOT guessed -- Pacifico in particular is ambiguous (off-prem
+   Innovation only includes the 7oz Pacifico).
+
+   constellation_draft_on.csv -- account-level draft rows grouped
+   rep -> (brand, package) -> customer, with TWO subtotal layers: first
+   row of each rep run = rep total, first row of each (rep, brand,
+   package) run = block subtotal, both borrowing their top customer's
+   name. Verified 2026-08-19: all 119 block subtotals equal their leaf
+   sums, and every rep's Current Units total equals its leaf sum.
+
+   CRITICAL SEMANTIC (cost an hour to spot -- do not lose it): "New
+   Buyers" is a DISTINCT-ACCOUNT count at every grouping level, NOT a
+   summable measure. Summing it across blocks double-counts an account
+   that went new on more than one brand or keg size -- Shane Barreca is
+   7 new ACCOUNTS but 12 new LINES. Leaf rows are only ever 0 or 1, so
+   new lines = leaf rows with New Buyers = 1 and new accounts = distinct
+   customers among them; the report's own rep-total row equals the
+   distinct-account count for all 21 reps, which is what proves the
+   semantics. The deck pays per LINE ("$100 for Targeted Draft Line"),
+   so both numbers are carried and labelled separately on the card.
+
+   Built (deck slide 20): new-line counts ($100 targeted / $50 other),
+   each new line's barrels (Current Units x keg size via the existing
+   keg_bbl(); the file has 15.5 Gal and 1/4 BBL kegs), the 4+/8+ barrel
+   bonus tier each line has reached ($200/$400 targeted, $150/$250
+   other, halved on 1/4 and 1/6 kegs per the deck), and a "New Lines
+   Closest To A Barrel Bonus" list. 26 leaf rows carry NEGATIVE units
+   (returns/credits) and are passed through as-is rather than clamped.
+
+   THREE INFERENCES ON THE DRAFT SIDE, all flagged to Gavin 2026-08-19:
+     1. TARGETED BRAND = Modelo Especial only. Slide 20 says "MODELO
+        TARGETED NEW LINE REWARDS"; slide 18 lists "Modelo Draft" and
+        "Negra Draft" as separate goals, so Negra is read as non-target.
+        Change CONSTELLATION_TARGETED_DRAFT_BRAND if Gavin says all
+        Modelo brands are targeted.
+     2. BARREL BONUS IS PER LINE, not per account -- the deck's "1/4 &
+        1/6 half payout" attaches the bonus to a keg size, which is a
+        property of a line. (1911/Woodchuck's barrel thresholds are per
+        ACCOUNT per Gavin, so this is genuinely a different mechanic and
+        worth confirming.) No $ total is summed either way.
+     3. HOUSE DRAFT GOALS: the draft file has no goals column, so the
+        five numbers come off slide 18 (Modelo 240, Corona Lt 50,
+        Pacifico 57, Negra 15, Premier 5) and are matched against
+        DISTINCT ACCOUNTS buying that brand on draft -- the reading the
+        data supports (Modelo 238 vs 240, Negra 19 vs 15, Premier 15 vs
+        5 on the 2026-08-19 pull; new lines or barrels fit far worse).
+        The card labels these as deck numbers, not report numbers.
+   Also note the draft file has NO date columns at all -- the window is
+   assumed to match the other summer files (Jun-Aug), though slide 20's
+   own draft window reads March-May. Confirm on the next pull.
+
+   The rep scoreboard spans both channels (off-prem goals retained,
+   off-prem % of goal, on-prem package buyers, new draft lines) because
+   several reps work only one side -- Allison Scott has no off-premise
+   rows at all and Nick Melissari / Robin Feldman / Paul Mclaughlin are
+   likewise on-premise-heavy, which also explains their absence from the
+   four off-premise files noted above. Each tile states why it is N/A
+   instead of showing a hollow zero.
+
 4-5. PERONI & BANQUET DRAFT / YUENGLING
    [PENDING -- files not yet dropped; same build approach]
 
