@@ -458,6 +458,75 @@ logic, flag anything that contradicts the deck.
    goal" sounds like a separate, possibly per-rep number. Ask when the
    file arrives if it isn't self-evident from the data.
 
+RETENTION PROGRAMS (April deck, retention phase -- added 2026-08-19)
+====================================================================
+Per Gavin, 2026-08-19: a third section, "Retention Programs", below
+Ongoing Incentives -- rep cards, overview tiles, and a third "Jump to"
+pill group. These track the RETENTION phase of the supplier
+"Achieve and Retain" distro programs from the 2026 April Rewards Deck
+(slides 14-16, 18, 20, 22-23, 28-29): MolsonCoors, Peroni/Banquet
+draft, Constellation (package + draft), MABI, Yuengling. Ground rules
+per Gavin, 2026-08-19:
+  1. The report files carry each rep's individual goal numbers -- no
+     goal numbers needed from the slides.
+  2. Track ONLY the current retention window (each file's own date
+     range) -- no achieve-phase history.
+  3. ALL of these suppliers are Core Market -- every retention program
+     goes in CORE_MARKET_PROGRAMS / CORE_MARKET_PROGRAM_KEYS (same
+     3 reps blocked: Alex Rodriguez, Andrew Lundy, Hakan Sadik).
+No $ totals are computed: the deck's "$500 max payout for every brand
+goal retained" wording doesn't give a clean per-goal rate to multiply
+(and the house-goal-missed rule halves payouts anyway) -- cards show
+"Up to $500 per brand goal retained" and track goal progress only.
+
+Report-export gotcha (applies to every file from this BI tool's
+grouped "Saved Reports" view, watch for it on refreshes): the CSV
+flattens the on-screen subtotal rows into ordinary data rows -- the
+first row of each District Manager block is the DM total, and the
+first row of each rep's contiguous run is that rep's total, both
+carrying a borrowed brand label and an empty Goals cell. Verified
+against Gavin's screenshot of the off-prem MC report (e.g. "Chris
+McCrohan,Robin Feldman,Peroni,123" is the McCrohan DM TOTAL, not a
+Robin Feldman row; Michael Harboy's run starts with TWO subtotal rows
+-- DM 33 then rep 27 -- before his real brand rows).
+_strip_report_subtotals() in generate.py removes both layers
+positionally; any (rep, brand) duplicate surviving the strip prints a
+WARNING (export shape changed) and is summed rather than dropped.
+Goalless rows that are NOT subtotals (a real brand row with no goal
+assigned, e.g. Robin Feldman's on-prem Coors Light, 13 buyers) are
+kept and shown as "No goal set for this brand", excluded from the %
+math.
+
+1. MOLSONCOORS DISTRO REWARDS -- RETENTION (slides 14-15) [BUILT]
+   - Retain window 7/27-10/31/2026 (base period 5/1-7/26 off /
+     5/1-7/31 on, per the files' own column headers); the deck's
+     "Retain Goals July 27 - Oct 25" period.
+   - Up to $500 per brand goal retained; house goals must be achieved
+     for full payout, 50% for qualifying reps if missed.
+   Files: mc_retention_off_prem.csv (Placements by DM/rep/brand,
+   brands Coors / Peroni / Fever Tree) and mc_retention_on_prem.csv
+   (draft Buyers by rep/brand, all Keg Beer rows; brands Blue Moon /
+   Coors / Coors Light / Lite / Peroni). On-prem "Coors" is displayed
+   as "Coors Banquet" and "Lite" as "Miller Lite" -- the deck's draft
+   brand list (Coors Lt, Banquet, Miller Lite, Blue Moon, Peroni)
+   pins the mapping; off-prem "Coors" is left as-is. NOTE/open
+   question for Gavin: the deck's OFF-prem brand list is Coors Lt,
+   Miller Lite, Blue Moon, Peroni, Fever Tree, but the off-prem file
+   only carries Coors / Peroni / Fever Tree -- built from the file as
+   source of truth.
+   Built: per-rep brand-goal rows (current vs goal, % bar, Retained
+   badge), Where You Stand tiles (goals retained x/y, off-prem % of
+   goal, on-prem draft % of goal), leaderboard ranked by overall % of
+   goal (sum of actuals / sum of goals across both channels, goaled
+   rows only; reps with no goals excluded). A channel with no rows for
+   a rep renders a "No Goals On File" n/a block (e.g. Allison Scott
+   off-prem, Dave Ehlers on-prem). No logo asset yet (network policy
+   blocked fetching one) -- add assets/logos/molson_coors.png and a
+   PROGRAM_LOGOS entry if Gavin supplies one.
+
+2-5. PERONI & BANQUET DRAFT / CONSTELLATION / MABI / YUENGLING
+   [PENDING -- files not yet dropped; same build approach]
+
 NOT part of this dashboard:
   - iSellBeer Summer Display Auction (slides 14-15, Sales Rep + Sales
     Associate versions) -- already covered by the separate

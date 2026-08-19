@@ -1165,7 +1165,8 @@ def load_customer_base_by_rep(filename):
 # set. Tona and YaVe Tequila were also confirmed "All 7 counties" by
 # Gavin, 2026-08-10 (i.e. no blackout) -- also not in this set, and no
 # longer an open question.
-CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt"}
+CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt",
+                        "mc_retention"}
 
 
 def load_core_market_reps():
@@ -1447,6 +1448,123 @@ def build_new_belgium_distribution():
     return {"byRep": by_rep}
 
 
+# RETENTION PROGRAMS (April deck slides 13+, retention phase) ---------------
+#
+# These reports come from the BI tool's grouped "Saved Reports" view, so the
+# CSV export flattens the on-screen subtotal rows into ordinary data rows:
+# the first row of each District Manager block is the DM total (carrying an
+# arbitrary rep/brand label and no goal), and the first row of each rep's
+# contiguous run is that rep's total (again with a borrowed brand label and
+# no goal). Verified against Gavin's screenshot of the off-prem MC report:
+# e.g. "Chris McCrohan,Robin Feldman,Peroni,123" is the McCrohan DM total,
+# not a Robin Feldman row. _strip_report_subtotals() removes both layers
+# positionally; a duplicate (rep, brand) surviving the strip means the
+# export shape changed -- it's summed with a warning rather than dropped.
+
+def _strip_report_subtotals(rows, rep_col, dm_col=None):
+    if dm_col:
+        kept, prev_dm = [], object()
+        for r in rows:
+            if r[dm_col] != prev_dm:
+                prev_dm = r[dm_col]
+                continue
+            kept.append(r)
+        rows = kept
+    kept, prev_rep = [], object()
+    for r in rows:
+        if r[rep_col] != prev_rep:
+            prev_rep = r[rep_col]
+            continue
+        kept.append(r)
+    return kept
+
+
+def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None):
+    """One brand-goal report -> {rep: [{label, actual, goal, pct}]}.
+    value_prefix finds the metric column (its full header embeds the
+    distribution/base period dates); the goals column ends ') Goals'.
+    The report's own '% of Goals' column is ignored and recomputed."""
+    rows = read_rows(filename)
+    if not rows:
+        return {}
+    fieldnames = list(rows[0].keys())
+    val_col = next(f for f in fieldnames if f.startswith(value_prefix))
+    goal_col = next(f for f in fieldnames if f.rstrip().endswith(") Goals"))
+    rows = _strip_report_subtotals(rows, "Sales Rep Name", dm_col=dm_col)
+    roster = set(ROSTER)
+    by_rep = {}
+    for r in rows:
+        rep = r["Sales Rep Name"]
+        if rep not in roster:
+            continue
+        raw_label = r["Brand Family"]
+        label = (label_map or {}).get(raw_label, raw_label)
+        goal_s = (r.get(goal_col) or "").strip()
+        goal = to_num(goal_s) if goal_s else None
+        actual = to_num(r.get(val_col))
+        brands = by_rep.setdefault(rep, {})
+        if label in brands:
+            print(f"WARNING: {filename}: duplicate brand row for ({rep}, {label}) "
+                  f"survived subtotal strip -- export shape may have changed; summing.")
+            brands[label]["actual"] += actual
+            if goal is not None:
+                brands[label]["goal"] = goal
+        else:
+            brands[label] = {"label": label, "actual": actual, "goal": goal}
+    out = {}
+    for rep, brands in by_rep.items():
+        lst = sorted(brands.values(), key=lambda b: b["label"])
+        for b in lst:
+            b["actual"] = round(b["actual"])
+            if b["goal"] is not None:
+                b["goal"] = round(b["goal"])
+            b["pct"] = round(b["actual"] / b["goal"] * 100, 1) if b["goal"] else None
+        out[rep] = lst
+    return out
+
+
+def build_mc_retention():
+    """MolsonCoors Distro Rewards -- retention phase (April deck slides
+    14-15). Retain window 7/27-10/31/2026: hold each brand's distribution
+    at/above the rep's own goal from the report. Off-prem metric is
+    Placements, on-prem is draft Buyers (all Keg Beer rows). Up to $500
+    per brand goal retained per the deck; house-goal-missed = 50% payout.
+    No $ totals computed -- the deck's "$500 max payout" wording doesn't
+    give a clean per-goal rate to multiply.
+
+    Brand labels: the on-prem file's "Coors" is Coors Banquet and "Lite"
+    is Miller Lite (the deck's draft brand list -- Coors Lt, Banquet,
+    Miller Lite, Blue Moon, Peroni -- pins the mapping); relabeled for
+    display. Off-prem "Coors" is left as-is (the deck's off-prem list
+    doesn't disambiguate it)."""
+    off = _parse_retention_goals("mc_retention_off_prem.csv", "Placements",
+                                 dm_col="District Manager Name")
+    on = _parse_retention_goals("mc_retention_on_prem.csv", "Buyers",
+                                label_map={"Coors": "Coors Banquet", "Lite": "Miller Lite"})
+
+    by_rep = {}
+    for rep in ROSTER:
+        d = {}
+        goaled_all = []
+        for side, src in (("off", off), ("on", on)):
+            brands = src.get(rep, [])
+            goaled = [b for b in brands if b["goal"]]
+            actual = sum(b["actual"] for b in goaled)
+            goal = sum(b["goal"] for b in goaled)
+            d[side + "Brands"] = brands
+            d[side + "Actual"] = actual
+            d[side + "Goal"] = goal
+            d[side + "Pct"] = round(actual / goal * 100, 1) if goal else None
+            goaled_all += goaled
+        d["goalsTotal"] = len(goaled_all)
+        d["goalsRetained"] = sum(1 for b in goaled_all if b["pct"] >= 100)
+        total_goal = sum(b["goal"] for b in goaled_all)
+        d["overallPct"] = round(sum(b["actual"] for b in goaled_all) / total_goal * 100, 1) if total_goal else None
+        by_rep[rep] = d
+
+    return {"byRep": by_rep}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -1464,6 +1582,7 @@ def main():
         "garage_beer_summer_sequel": build_garage_beer_summer_sequel(),
         "garage_beer_president": build_garage_beer_president(),
         "new_belgium_distribution": build_new_belgium_distribution(),
+        "mc_retention": build_mc_retention(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -1522,6 +1641,12 @@ def main():
     print(f"garage_beer_summer_sequel: {sum(1 for d in data['garage_beer_summer_sequel']['byRep'].values() if d['tier'])} reps in a tier")
     print(f"garage_beer_president: {data['garage_beer_president']['companyTotalThisYear']} / {data['garage_beer_president']['houseGoal']} house CE")
     print(f"new_belgium_distribution: {sum(d['pushVolumeCE'] for d in data['new_belgium_distribution']['byRep'].values()):.0f} total Aug push-volume CE")
+    mc = data["mc_retention"]["byRep"]
+    mc_with_goals = sum(1 for d in mc.values() if d["goalsTotal"] > 0)
+    print(f"mc_retention: {mc_with_goals} reps with goals, "
+          f"{sum(d['goalsRetained'] for d in mc.values())} / {sum(d['goalsTotal'] for d in mc.values())} brand goals retained, "
+          f"off {sum(d['offActual'] for d in mc.values())} / {sum(d['offGoal'] for d in mc.values())} placements, "
+          f"on {sum(d['onActual'] for d in mc.values())} / {sum(d['onGoal'] for d in mc.values())} buyers")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
