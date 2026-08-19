@@ -576,7 +576,52 @@ math.
    ($25 per new Black Cherry non-buy, $10 per new White Claw flavor,
    on-prem goal 410) -- this report is MADE off-premise placements only.
 
-3-5. PERONI & BANQUET DRAFT / CONSTELLATION / YUENGLING
+3. CONSTELLATION "FAST START" DISTRO REWARDS -- RETENTION
+   (slides 18-19) [BUILT, OFF-PREMISE only -- on-prem files coming]
+   - Retain window 6/1-8/31/2026, the deck's "REWARDS RETAIN GOALS
+     June-Aug" period. Qualifying bar is 90% of goal (same as MABI).
+   - Up to $500 for the period; reps who achieve all 3 periods earn an
+     additional $500 (not tracked -- needs the earlier periods).
+     Achieving Spring goals also enters the MLB All-Star trip raffle.
+   - House goals must be achieved for full payout, 50% if missed.
+   Four files, one per off-premise goal category, with the deck's own
+   slide-18 house goals baked into generate.py's
+   CONSTELLATION_OFF_CATEGORIES:
+     constellation_corona_gaintain_off.csv   house goal 1,575
+     constellation_modelo_gaintain_off.csv   house goal 2,400
+     constellation_impact_off.csv            house goal 3,220
+     constellation_innovation_off.csv        house goal 1,200
+   Same report shape as MABI (rep-total row carries the goal, per-SKU
+   rows beneath) but with NO District Manager column -- so
+   _split_report_subtotals() is called without dm_col. Verified on the
+   2026-08-19 pull: in all four files every rep total equals the exact
+   sum of its own product rows and no rep appears in two blocks.
+
+   Built: a multi-goal house block (houseGoalBlock() in index.html --
+   one compact row per category with its own bar, rather than four
+   full-width banners), Where You Stand tiles (category goals retained,
+   overall % of goal, total placements), a Your Category Goals list
+   (placements vs goal, bar, Retained badge, "N more to reach 90%"),
+   and a per-category SKU accordion. Leaderboard ranks by overall % of
+   goal = placements in GOALED categories / sum of those goals (a
+   category with no goal is excluded from the % on both sides, so the
+   figure compares like with like; its placements still show in the
+   total-placements tile and the accordion).
+   HOUSE STATUS on the 2026-08-19 data: Impact (3,449/3,220) and
+   Innovation (1,252/1,200) are MET; Corona Gaintain (1,534/1,575) is
+   41 short and Modelo Gaintain (2,350/2,400) is 50 short -- the card
+   states the exact shortfall so reps can see what the house still
+   needs. House totals are roster-only (non-reps excluded as always;
+   John Neukum's rows are the only such rows in these files).
+   Per-rep: 65 of 69 category goals are at 90%+; the four below are
+   Dylan Rubino + Jaime Colonna (Impact) and Mike Ast + Michael Harboy
+   (Innovation). 18 reps have goals; Allison Scott and Paul Mclaughlin
+   have no rows in these off-premise files at all (Allison Scott has no
+   off-premise accounts, which matches her Boston Beer package n/a) --
+   worth re-checking once the on-premise files land.
+   No $ total computed ("up to $500 max" is not a per-placement rate).
+
+4-5. PERONI & BANQUET DRAFT / YUENGLING
    [PENDING -- files not yet dropped; same build approach]
 
 NOT part of this dashboard:
@@ -620,6 +665,13 @@ Molly's, and both Garage Beer programs are "All Counties" brands and
 were never in scope for this; Tona and YaVe Tequila were confirmed
 "All 7 counties" by Gavin the same day, so they're deliberately not
 in scope either.
+
+Retention programs (added 2026-08-19) are all Core Market per Gavin, so
+mc_retention / mabi_retention / constellation_retention appear in BOTH
+CORE_MARKET_PROGRAMS (generate.py, drives eligibility) and
+CORE_MARKET_PROGRAM_KEYS (index.html, drives the amber "Core Market"
+pill). Both lists must be updated when a program is added -- the
+eligibility blocking and the pill are driven by separate sets.
 
 Rather than parsing the workbook, generate.py's load_core_market_reps()
 (see CORE_MARKET_PROGRAMS docstring in generate.py for the full

@@ -1166,7 +1166,7 @@ def load_customer_base_by_rep(filename):
 # Gavin, 2026-08-10 (i.e. no blackout) -- also not in this set, and no
 # longer an open question.
 CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_distribution", "sun_cruiser", "lytt",
-                        "mc_retention", "mabi_retention"}
+                        "mc_retention", "mabi_retention", "constellation_retention"}
 
 
 def load_core_market_reps():
@@ -1671,6 +1671,108 @@ def build_mabi_retention():
             "retainThresholdPct": int(MABI_RETAIN_THRESHOLD * 100)}
 
 
+# Constellation off-premise retention: one file per goal category, each
+# with the deck's own off-prem house goal (slide 18). Same report shape as
+# MABI -- the rep-total row carries the goal, the rows beneath it are that
+# rep's per-SKU breakdown -- but with no District Manager column.
+CONSTELLATION_OFF_CATEGORIES = [
+    {"key": "corona_gaintain", "label": "Corona Gaintain",
+     "file": "constellation_corona_gaintain_off.csv",
+     "prefix": "Corona Gaintain SKUs Placements", "houseGoal": 1575},
+    {"key": "modelo_gaintain", "label": "Modelo Gaintain",
+     "file": "constellation_modelo_gaintain_off.csv",
+     "prefix": "Modelo Gaintain SKUs Placements", "houseGoal": 2400},
+    {"key": "impact", "label": "Impact",
+     "file": "constellation_impact_off.csv",
+     "prefix": "Impact SKUs Placements", "houseGoal": 3220},
+    {"key": "innovation", "label": "Innovation",
+     "file": "constellation_innovation_off.csv",
+     "prefix": "Innovation SKUs Placements", "houseGoal": 1200},
+]
+
+CONSTELLATION_RETAIN_THRESHOLD = 0.90   # deck slide 18: "Retain 90% Distribution Goals"
+
+
+def build_constellation_retention():
+    """Constellation "Fast Start" Distro Rewards -- retention phase, OFF
+    PREMISE (April deck slides 18-19). Retain window 6/1-8/31/2026, the
+    deck's "REWARDS RETAIN GOALS June-Aug" period; qualifying bar is 90%
+    of goal (same as MABI, unlike MolsonCoors' straight retention).
+
+    Four separate files, one per off-premise goal category, whose house
+    goals come straight off slide 18: Corona Gaintain 1,575 / Modelo
+    Gaintain 2,400 / Impact 3,220 / Innovation 1,200. Each file has the
+    MABI shape (rep-total row carries the goal, per-SKU rows beneath;
+    verified every rep total equals the sum of its own product rows) but
+    no District Manager column.
+
+    Payout is "up to $500 max" per period, so no $ total is computed.
+    NOT built yet: the ON-PREMISE side (package + draft goals on slide
+    18) -- those files are coming separately. The all-3-periods $500
+    bonus and the MLB All-Star raffle aren't tracked (they depend on the
+    earlier Achieve period's results, which aren't in these files)."""
+    by_rep = {rep: {"offCategories": [], "inReport": False} for rep in ROSTER}
+    house = []
+
+    for cat in CONSTELLATION_OFF_CATEGORIES:
+        rows = read_rows(cat["file"])
+        fieldnames = list(rows[0].keys()) if rows else []
+        val_col = next(f for f in fieldnames
+                       if f.startswith(cat["prefix"]) and not f.startswith("("))
+        goal_col = next(f for f in fieldnames if f.rstrip().endswith(") Goals"))
+        totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+
+        prods = defaultdict(list)
+        for r in detail:
+            n = to_num(r[val_col])
+            if n > 0:
+                prods[r["Sales Rep Assigned"]].append(
+                    {"product": r["Product Name"].strip(), "placements": round(n)})
+
+        house_total = 0
+        for rep in ROSTER:
+            trow = totals.get(rep)
+            if trow is None:
+                by_rep[rep]["offCategories"].append({
+                    "key": cat["key"], "label": cat["label"], "placements": 0,
+                    "goal": None, "pct": None, "retained": False,
+                    "hitFullGoal": False, "inReport": False, "products": [],
+                })
+                continue
+            by_rep[rep]["inReport"] = True
+            placements = to_num(trow[val_col])
+            house_total += placements
+            goal_s = trow[goal_col].strip()
+            goal = to_num(goal_s) if goal_s else None
+            plist = sorted(prods.get(rep, []), key=lambda p: (-p["placements"], p["product"]))
+            by_rep[rep]["offCategories"].append({
+                "key": cat["key"], "label": cat["label"], "placements": round(placements),
+                "goal": round(goal) if goal else None,
+                "pct": round(placements / goal * 100, 1) if goal else None,
+                "retained": bool(goal and placements >= CONSTELLATION_RETAIN_THRESHOLD * goal),
+                "hitFullGoal": bool(goal and placements >= goal),
+                "inReport": True, "products": plist,
+            })
+
+        house.append({"key": cat["key"], "label": cat["label"],
+                      "total": round(house_total), "goal": cat["houseGoal"],
+                      "met": house_total >= cat["houseGoal"],
+                      "short": max(0, cat["houseGoal"] - round(house_total))})
+
+    for rep, d in by_rep.items():
+        goaled = [c for c in d["offCategories"] if c["goal"]]
+        d["offGoalsTotal"] = len(goaled)
+        d["offGoalsRetained"] = sum(1 for c in goaled if c["retained"])
+        d["offPlacements"] = sum(c["placements"] for c in d["offCategories"])
+        d["offGoal"] = sum(c["goal"] for c in goaled)
+        d["offPct"] = round(sum(c["placements"] for c in goaled) / d["offGoal"] * 100, 1) if d["offGoal"] else None
+
+    return {"byRep": by_rep, "houseOff": house,
+            "houseOffMet": sum(1 for h in house if h["met"]),
+            "houseOffTotal": len(house),
+            "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -1690,6 +1792,7 @@ def main():
         "new_belgium_distribution": build_new_belgium_distribution(),
         "mc_retention": build_mc_retention(),
         "mabi_retention": build_mabi_retention(),
+        "constellation_retention": build_constellation_retention(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -1762,6 +1865,13 @@ def main():
           f"{sum(1 for d in mabi_goaled if d['retained'])} / {len(mabi_goaled)} reps at 90%+ of goal, "
           f"{sum(1 for d in mabi_goaled if d['hitFullGoal'])} at 100%+, "
           f"{sum(1 for d in mabi.values() if d['inReport'] and not d['goal'])} reps with activity but no goal")
+
+    con = data["constellation_retention"]
+    con_goaled = [d for d in con["byRep"].values() if d["offGoalsTotal"]]
+    print(f"constellation_retention: house off-prem {con['houseOffMet']} / {con['houseOffTotal']} goals met "
+          f"({', '.join(h['label']+' '+str(h['total'])+'/'+str(h['goal'])+('' if h['met'] else ' SHORT '+str(h['short'])) for h in con['houseOff'])}), "
+          f"{sum(d['offGoalsRetained'] for d in con_goaled)} / {sum(d['offGoalsTotal'] for d in con_goaled)} rep category goals at 90%+, "
+          f"{len(con_goaled)} reps with goals")
 
     payload = json.dumps(data, indent=2)
     html = INDEX_HTML.read_text()
