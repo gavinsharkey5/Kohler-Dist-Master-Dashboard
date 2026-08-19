@@ -747,8 +747,24 @@ math.
    behind (MolsonCoors aside), so the cards lead with what each brand
    still needs.
 
-5. PERONI & BANQUET DRAFT
-   [PENDING -- files not yet dropped; same build approach]
+5. PERONI & BANQUET ON-PREMISE TARGET DRAFT REWARDS (slide 16)
+   [NO SEPARATE FILE -- already covered by the MolsonCoors ON file]
+   Per Gavin, 2026-08-19: "the peroni and banquet draft is in the
+   'Molson Coors ON Retention Rewards w/ Goals (August-October 2026)'
+   under the reps live 'Peroni' and 'Coors'. coors = coors banquet."
+   So slide 16's two brands are the Peroni and Coors rows of
+   mc_retention_on_prem.csv, which the MolsonCoors card already tracks
+   as draft buyer goals (and which already relabel "Coors" to "Coors
+   Banquet" -- a mapping inferred from the deck on 2026-08-19 and now
+   confirmed by Gavin directly). No separate program was built: a second
+   card over the same two brands would double-count them.
+   What is NOT tracked from slide 16, because the MC ON file has no
+   account/line/keg detail -- only buyer counts vs goals: the $100
+   targeted / $50 non-target NEW LINE rewards and the barrels-sold
+   retention bonus (4+ bbl $200/$150, 8+ bbl $400/$250, half on 1/4 &
+   1/6). Those would need an account-level draft export like
+   Constellation's (constellation_draft_on.csv) -- ask Gavin if he wants
+   that piece tracked.
 
 NOT part of this dashboard:
   - iSellBeer Summer Display Auction (slides 14-15, Sales Rep + Sales
