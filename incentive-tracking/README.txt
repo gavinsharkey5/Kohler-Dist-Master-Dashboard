@@ -460,6 +460,16 @@ logic, flag anything that contradicts the deck.
 
 RETENTION PROGRAMS (April deck, retention phase -- added 2026-08-19)
 ====================================================================
+Logos (2026-08-19): the four retention marks in assets/logos/ --
+molson_coors.svg, mark_anthony.svg, constellation.svg, yuengling.svg --
+are locally drawn SVG WORDMARKS in each supplier's colors, NOT the
+official brand artwork. This environment's network policy blocks
+fetching real logo files (the agent proxy answers 403 to CONNECT for
+general web hosts), so they were drawn rather than downloaded. They are
+single-line by design: an earlier two-line version with a "BRANDS" /
+"EST. 1829" sub-line was illegible at the 34px overview-tile chip size.
+To swap in real artwork, drop a PNG in assets/logos/ and repoint that
+program's PROGRAM_LOGOS entry in index.html -- nothing else changes.
 Per Gavin, 2026-08-19: a third section, "Retention Programs", below
 Ongoing Incentives -- rep cards, overview tiles, and a third "Jump to"
 pill group. These track the RETENTION phase of the supplier
