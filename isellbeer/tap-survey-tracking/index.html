@@ -407,6 +407,75 @@ footer p{margin:0 0 8px}
 /* floating Reset/Home for phones (the header Reset scrolls away) */
 .fab-reset{display:none}
 
+/* ---- readability pass (2026-08-19, per Gavin: "make the font bigger
+   and easier to read") -- one notch up on nearly every text size, with
+   the mobile block below pushing further on phones. ---- */
+body{font-size:16px}
+.lede{font-size:14.5px}
+.updated{font-size:12.5px}
+.cc-h .s{font-size:12.5px}
+.rep-pills .rp-lbl{font-size:12.5px}
+.rpill{font-size:13.5px}
+.scard .lbl{font-size:11px}
+.scard .sub{font-size:12.5px}
+.scard .big{font-size:27px}
+.facts-card ul{font-size:14.5px}
+.rep-hero .rh-sub{font-size:13px}
+.rep-hero .rh-legend{font-size:12.5px}
+.cchip .cn{font-size:12.5px}
+.cchip .cp{font-size:11.5px}
+.cchip .ct{font-size:10.5px}
+.cgroup-h .gl{font-size:11px}
+.cgroup-h .gs{font-size:11.5px}
+.finder .f-sub{font-size:12.5px}
+.finder .rights-note{font-size:11.5px}
+.tt-cap{font-size:11.5px}
+.tchip{font-size:14px}
+.tt-add{font-size:14px}
+.qchip{font-size:13.5px}
+.tt-opt{font-size:15px}
+.tgroup label{font-size:11.5px}
+.tgroup input, .tgroup select{font-size:14px}
+.tbtn{font-size:13.5px}
+.result-count{font-size:13px}
+.tabbtn{font-size:14.5px}
+.rep-name{font-size:17px}
+.rep-meta{font-size:13px}
+.rep-stats .n{font-size:16px}
+.rep-stats .l{font-size:10.5px}
+.acct-name{font-size:15px}
+.acct-sub{font-size:12.5px}
+.acct-taps{font-size:15px}
+.acct-visited{font-size:12px}
+.acct-visited .l{font-size:10px}
+.acct-brands table{font-size:13.5px}
+.acct-brands th{font-size:10.5px}
+.acct-address{font-size:12.5px}
+.status-badge{font-size:11px}
+.refresh-badge{font-size:10px}
+.brow{font-size:14px}
+.bd-row{font-size:13.5px}
+.bd-title{font-size:11.5px}
+.drill table{font-size:13.5px}
+.drill th{font-size:10.5px}
+.drill-head .s{font-size:12.5px}
+.drill .d-acct .sub{font-size:11.5px}
+.tbanner .tb-l{font-size:13.5px}
+.mb-chip{font-size:10.5px}
+.mb-payline{font-size:12.5px}
+.mb-head .mb-sub{font-size:13.5px}
+.mb-tier ul{font-size:13.5px}
+.mb-note{font-size:12.5px}
+.legend{font-size:12.5px}
+footer{font-size:13px}
+.empty-note{font-size:14px}
+/* Reset moved into the filter toolbar (per Gavin's circled spot) and
+   made big + amber so it's unmissable next to the dropdowns. */
+.reset-big{background:color-mix(in srgb,var(--unv) 18%,var(--card3));border:1px solid var(--unv);color:var(--unv);
+  border-radius:10px;padding:11px 20px;font-family:"Space Grotesk";font-weight:700;font-size:14.5px;cursor:pointer;
+  min-height:44px;white-space:nowrap;transition:.12s;align-self:flex-end}
+.reset-big:hover{background:color-mix(in srgb,var(--unv) 30%,var(--card3));transform:translateY(-1px)}
+
 /* ---- mobile: field-use optimizations (iPhone/iPad), 2026-08-18 ----
    Same information and structure, bigger type and tap targets. */
 @media (max-width:760px){
@@ -418,11 +487,15 @@ footer p{margin:0 0 8px}
   /* pill rows: label on its own line, pills scroll sideways in one
      thumb-height line instead of a tall wall */
   .rep-pills{flex-direction:column;align-items:stretch;gap:6px;margin:0 0 10px}
-  .rp-scroll{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  /* explicit width clamp: as a stretched column-flex item the scroller
+     otherwise grows to its pills' full min-content width and drags the
+     whole page into horizontal scroll (found 2026-08-19) */
+  .rp-scroll{flex:none;width:100%;max-width:100%;min-width:0;
+    flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .rp-scroll::-webkit-scrollbar{display:none}
-  .rpill{padding:10px 16px;font-size:14px;min-height:44px;flex:none}
+  .rpill{padding:10px 16px;font-size:15px;min-height:44px;flex:none}
   .tabs{gap:10px}
-  .tabbtn{flex:1;padding:12px 10px;font-size:15px;min-height:48px}
+  .tabbtn{flex:1;padding:12px 10px;font-size:16px;min-height:48px}
   .toolbar{padding:12px;gap:10px}
   .tgroup{flex:1 1 45%}
   .tgroup:first-child{flex:1 1 100%}
@@ -434,28 +507,31 @@ footer p{margin:0 0 8px}
   .finder .tgroup{flex:1 1 100%}
   .finder .tgroup input{min-width:0;width:100%}
   .finder .go,.finder .clr{min-height:44px}
-  .scard .big{font-size:21px}
-  .scard .lbl{font-size:10.5px}
-  .scard .sub{font-size:11.5px}
+  .scard .big{font-size:22px}
+  .scard .lbl{font-size:11px}
+  .scard .sub{font-size:12.5px}
   /* no hover on touch: always show the tap-to-drill affordance */
   .scard.click::after{content:"▾";opacity:.7}
   .scard.click.active::after{content:"▴";opacity:.9}
-  .facts-card ul{font-size:14px}
+  .facts-card ul{font-size:15px}
   .rep-head{padding:14px 12px;gap:12px}
-  .rep-name{font-size:17px}
-  .rep-meta{font-size:12.5px}
+  .rep-name{font-size:18px}
+  .rep-meta{font-size:13.5px}
   /* account rows wrap to two lines so nothing is cut off or hidden */
   .acct-head{flex-wrap:wrap;row-gap:8px;padding:11px 10px}
   .acct-photo,.acct-photo-ph{width:52px;height:52px}
   .acct-info{flex:1 1 calc(100% - 110px);min-width:0}
-  .acct-name{font-size:15px;white-space:normal}
-  .acct-sub{font-size:12px;white-space:normal}
+  .acct-name{font-size:16px;white-space:normal}
+  .acct-sub{font-size:13px;white-space:normal}
   .acct-mix{order:5;flex:1 1 40%;width:auto}
-  .acct-taps{order:6;width:auto;text-align:left;font-size:15px}
-  .acct-visited{order:7;display:block;width:auto;flex:1;text-align:right;font-size:11.5px}
+  .acct-taps{order:6;width:auto;text-align:left;font-size:16px}
+  .acct-visited{order:7;display:block;width:auto;flex:1;text-align:right;font-size:12.5px}
   .acct-brands{padding:8px 10px 12px}
-  .drill table{font-size:13px}
+  .acct-brands table{font-size:14px}
+  .drill table{font-size:14px}
   .drill td{padding:10px 8px}
+  .rep-stats{display:flex;gap:12px}
+  .reset-big{flex:1 1 100%;font-size:16px;padding:13px 20px}
   .fab-reset{display:flex;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;
     background:var(--card3);color:var(--ink);border:1px solid var(--accent);border-radius:999px;padding:13px 18px;
     font-family:"Space Grotesk";font-weight:700;font-size:14px;box-shadow:var(--shadow);cursor:pointer;
@@ -490,8 +566,7 @@ footer p{margin:0 0 8px}
     <span class="mb-banner-cta" id="michBannerCta">View my targets →</span>
   </button>
 
-  <div class="cc-h"><span class="t" id="ccTitle">Kohler Tap Business</span><span class="s" id="ccHint"></span>
-    <button class="rpill reset" id="ccReset" type="button" title="Clear every filter and return to the company view">🏠 Reset</button></div>
+  <div class="cc-h"><span class="t" id="ccTitle">Kohler Tap Business</span><span class="s" id="ccHint"></span></div>
   <div class="rep-pills" id="dmPills"></div>
   <div class="rep-pills" id="repPills"></div>
   <div id="repHero"></div>
@@ -534,6 +609,7 @@ footer p{margin:0 0 8px}
         <option value="UNVERIFIED">Unverified only</option>
       </select>
     </div>
+    <button class="reset-big" id="ccReset" type="button" title="Clear every filter and return to the company view">🏠 Reset All</button>
     <div class="tgroup">
       <label>Segment</label>
       <select id="segmentFilter"><option value="">All segments</option></select>
