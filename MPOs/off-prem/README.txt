@@ -275,6 +275,34 @@ Files:
 
   index.html   The page itself (shared by every month).
 
+Disruptors – (8) Lytt POS Items Pics (went live 2026-08-19, per Gavin):
+the August photos objective, fed by three iSellBeer photo exports saved
+under stable names in this folder (they are .xlsx because only the
+workbook carries the clickable photo hyperlinks -- a CSV export loses
+them, same reason as the display-auction tracker):
+  lytt_pos_displays.xlsx   iSellBeer Report_NN.xlsx (Lytt-filtered)
+  lytt_pos_promos.xlsx     iSellBeer Promos_Report_N.xlsx
+  lytt_pos_pods.xlsx       iSellBeer PODS_Report_N.xlsx (only its few
+                           photo-bearing rows are used; the rest of the
+                           PODS export is a distro list with no photos)
+  generate_lytt_pos.py     Rebuilds data/2026-08/mpo_lytt_photos.json
+                           from the three files above. Separate from
+                           generate_2026-08.py (different source system,
+                           different cadence); does not touch
+                           sync_meta.json.
+Rules (all confirmed with Gavin 2026-08-19): SALES REPS ONLY (associates
+are filtered out by the exports' Role column; iSellBeer name spellings
+are canonicalized to the RDE roster names -- James Heaney->Jim Heaney,
+Matthew Powierski->Matt Powierski, Daniel La Gala->Dan Lagala, etc.);
+every line must carry a clickable photo link; and the 8-pic target
+counts DISTINCT PHOTOS, not rows -- one photo showing five Lytt items is
+ONE pic ("each distinct photo", chosen over row-counting). index.html's
+buildPhotosDataset()/lineTablePhotos() render it like the display
+auction tracker: rep -> one row per photo with a View Photo link and
+every Lytt item pictured in it.
+To refresh: save the new exports over the three stable filenames, run
+python3 generate_lytt_pos.py, commit and push.
+
 Normally each month's data is refreshed automatically by
 .github/workflows/snowflake-sync.yml running sync_snowflake_data.py --
 that workflow's schedule is currently paused (see the workflow file),

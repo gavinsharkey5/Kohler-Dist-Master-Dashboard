@@ -107,6 +107,10 @@
   tr:last-child td{border-bottom:none;}
   .num{text-align:right;font-variant-numeric:tabular-nums;}
   .flag-hit{color:var(--good);font-weight:600;}
+  /* Lytt POS photo lines (Disruptors objective) */
+  .photo-btn{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap;}
+  .photo-btn:hover{text-decoration:underline;}
+  .photo-sub{color:var(--text-dim);font-size:12px;}
   .flag-miss{color:var(--text-dim);}
   .mini-bar-track{display:inline-block;width:80px;height:6px;background:var(--input-bg);border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:8px;}
   .mini-bar-fill{height:100%;background:var(--good);}
@@ -303,7 +307,11 @@ const OBJECTIVES_2026_08 = [
     subs:[{key:'peroni', label:'Peroni', match:'peroni', target:4, flagLabel:'New Placement'}, {key:'banquet', label:'Banquet', match:'coors', target:4, flagLabel:'New Placement'}]},
   {key:'wine_spirits', name:'Wine & Spirits – (5) New Placements: (2) Le Grand Wines, (2) Leyenda, (1) Green River 50 mLs (90-Day Non-Buy)', shortName:'Wine & Spirits', weight:0.15, type:'dual', hasData:true, goalLabel:'2 Le Grand + 2 Leyenda + 1 Green River',
     subs:[{key:'le_grand', label:'Le Grand Noir', match:'grand', target:2, flagLabel:'New Placement'}, {key:'leyenda', label:'Leyenda 1925', match:'leyenda', target:2, flagLabel:'New Placement'}, {key:'green_river', label:'Green River', match:'green river', target:1, flagLabel:'New Placement'}]},
-  {key:'disruptors', name:'Disruptors – (8) Lytt POS Items Pics in iSellBeer', shortName:'Disruptors', weight:0.10, type:'photos', hasData:false},
+  // Photos objective went live 2026-08-19 (per Gavin): counted in DISTINCT
+  // photos, not photo-bearing rows -- several SKU rows sharing one photo
+  // link are ONE pic toward the 8. Sales Reps only; every line must carry
+  // a clickable photo (generate_lytt_pos.py enforces both).
+  {key:'disruptors', name:'Disruptors – (8) Lytt POS Items Pics in iSellBeer', shortName:'Disruptors', weight:0.10, type:'photos', hasData:true, goalLabel:'8 POS item pics each'},
 ];
 
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
@@ -328,6 +336,7 @@ const MONTHS = [
       targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},
     {objKey:'wine_spirits', file:'mpo_wine_spirits.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'new_accounts'},
+    {objKey:'disruptors', file:'mpo_lytt_photos.json', target:8, builder:'photos'},
   ]},
 ];
 let activeMonth = MONTHS[MONTHS.length-1].key;
@@ -478,7 +487,34 @@ function buildPctOfBaseDataset(baseRows, numRows, pct){
   return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
 }
 
-const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset};
+// Lytt POS photos (Disruptors): rows come from generate_lytt_pos.py with
+// fixed keys (REP/SOURCE/CUSTOMER_NAME/CITY/BRAND/DETAIL/QUANTITY/DATE/
+// PHOTO_URL), one row per photographed POS item, every row guaranteed to
+// carry a photo link. A rep's progress toward the 8 is DISTINCT photo
+// links (per Gavin 2026-08-19), not rows -- one photo showing five items
+// is one pic.
+function buildPhotosDataset(rows, target){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.REP||"").trim();
+    if(!rep||!r.PHOTO_URL) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({source:String(r.SOURCE||""), customer:String(r.CUSTOMER_NAME||""), city:String(r.CITY||""),
+      brand:String(r.BRAND||""), detail:String(r.DETAIL||""), qty:r.QUANTITY==null?"":String(r.QUANTITY),
+      date:String(r.DATE||""), photo:String(r.PHOTO_URL)});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    lines.sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+    const count=new Set(lines.map(l=>l.photo)).size;
+    reps.push({rep, count, lines});
+  });
+  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.count>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+}
+
+const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, photos: buildPhotosDataset};
 
 const AREA_COLS=[["area"]];
 
@@ -1027,6 +1063,26 @@ function lineTableLytt(lines){
   return `<div class="rep-sub-inner" style="padding-left:2px">${rows}</div>`;
 }
 
+// One table row per DISTINCT PHOTO (matching how the 8-pic target is
+// counted), with every Lytt item pictured in it listed on that row --
+// mirrors the display-auction tracker's photo-first, rep-grouped layout.
+function lineTablePhotos(lines){
+  if(!lines || lines.length===0) return '<div class="no-lines">No Lytt POS photos submitted yet this month.</div>';
+  const byPhoto=new Map();
+  lines.forEach(l=>{
+    if(!byPhoto.has(l.photo)) byPhoto.set(l.photo,[]);
+    byPhoto.get(l.photo).push(l);
+  });
+  const rows=[...byPhoto.values()].map(items=>{
+    const f=items[0];
+    const itemsHtml=items.map(l=>l.brand+(l.detail?` <span class="photo-sub">${l.detail}</span>`:'')+(l.qty&&l.qty!=='1'?` ×${l.qty}`:'')).join(', ');
+    return `<tr><td><a class="photo-btn" href="${f.photo}" target="_blank" rel="noopener">📷 View Photo</a></td>`+
+      `<td>${f.customer}${f.city?` <span class="photo-sub">· ${f.city}</span>`:''}</td>`+
+      `<td>${itemsHtml}</td><td>${f.source}</td><td style="white-space:nowrap">${f.date||'—'}</td></tr>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>Lytt items pictured</th><th>Source</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
 function renderRepView(){
   container.innerHTML = '';
   const backWrap = document.createElement('div');
@@ -1139,6 +1195,33 @@ function renderRepView(){
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
       inner.innerHTML = nbLineTable(r.lines);
+      body.appendChild(inner);
+      card.appendChild(body);
+      container.appendChild(card);
+      return;
+    }
+
+    if(o.type==='photos'){
+      const d = DATA[o.key];
+      const target = d.target_per_rep;
+      const r = repFind(o.key, activeRep);
+      const val = r ? r.count : 0;
+      const pct = Math.min(val/target,1)*100, hit = val>=target, over = val>target;
+      const head = document.createElement('div');
+      head.className='obj-head static';
+      head.innerHTML = `
+        <div class="obj-left">
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} pics per rep</span></div>
+          <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
+        </div>
+        <div class="obj-right"><div><div class="obj-progress-txt">${val} / ${target}${over?'<span class="over-badge">+'+(val-target)+' over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · distinct photos</div></div></div>`;
+      card.appendChild(head);
+      const body = document.createElement('div');
+      body.className='obj-body';
+      const inner = document.createElement('div');
+      inner.className='obj-body-inner';
+      inner.style.paddingTop='0';
+      inner.innerHTML = lineTablePhotos(r ? r.lines : []);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1279,6 +1362,8 @@ function renderObjectiveView(){
     let goalTag = '';
     if(o.type==='placements' || o.type==='new_accounts'){
       goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} per rep</span>`;
+    } else if(o.type==='photos'){
+      goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} pics per rep</span>`;
     } else if(o.type==='pct_of_base'){
       goalTag = `<span class="goal-tag">${o.goalLabel}</span>`;
     }
@@ -1352,6 +1437,34 @@ function renderObjectiveView(){
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${activityHtml}${targetsBlockHtml(myTargets, o.shortName||o.name)}</td></tr>`;
       });
       table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Placements</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      inner.appendChild(table);
+      table.querySelectorAll('.rep-row').forEach(row=>{
+        row.addEventListener('click',()=>{
+          document.getElementById(row.dataset.target).classList.toggle('open');
+          row.classList.toggle('expanded');
+        });
+      });
+    } else if(o.type==='photos'){
+      const d = DATA[o.key];
+      const target = d.target_per_rep;
+      const table = document.createElement('table');
+      let bodyRows = '';
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        if(!r){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No photos</span></td></tr>`;
+          return;
+        }
+        const rowId = 'row'+(uid++);
+        const rp = Math.min(r.count/target,1)*100, hit = r.count>=target, over = r.count>target;
+        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+          <td><span class="rep-chev">▶</span>${repName}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.count} / ${target}${over?'<span class="over-badge">+'+(r.count-target)+' over</span>':''}</td>
+          <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+        </tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePhotos(r.lines)}</td></tr>`;
+      });
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">POS Pics</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{
