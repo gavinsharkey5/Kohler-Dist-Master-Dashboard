@@ -95,6 +95,11 @@ ALLOTHER_BRANDS = {
     # two Brand Family values ("CAPE MAY" and "CAPE MAY SEASONALS").
     'CAPE MAY', 'CAPE MAY SEASONALS', 'SHINER', 'STEVENS POINT BREWERY',
     'WEIHENSTEPHANER',
+    # Confirmed with the user 2026-08-19 (Report_40). Fall seasonals from one
+    # John O'Donoghue submission, same pattern as the 8-18 Oktoberfest batch
+    # above (WHOLE HOG is a Stevens Point Brewery label).
+    'FLYING DOG SEASONAL RELEASE', 'LONG TRAIL BREWING CO', 'SARANAC BREWERY',
+    'WHOLE HOG',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
