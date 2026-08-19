@@ -2290,13 +2290,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 230120,
-    "CUSTOMER_NAME": "Village Saloon (P)",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 231806,
     "CUSTOMER_NAME": "Walpack Inn",
     "AREA": "Sussex",
@@ -2521,13 +2514,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191504,
-    "CUSTOMER_NAME": "Jefferson House (A)",
-    "AREA": "Morris 1",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
     "CUSTOMER_NUM": 191722,
     "CUSTOMER_NAME": "Jeffrey A Miller Catering",
     "AREA": "Sussex",
@@ -2622,13 +2608,6 @@
     "CUSTOMER_NUM": 230304,
     "CUSTOMER_NAME": "Mc Q's Pub (P)",
     "AREA": "Sussex",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Brian Sengebush",
-    "CUSTOMER_NUM": 191505,
-    "CUSTOMER_NAME": "Mckenna's Pub (P)",
-    "AREA": "Morris 1",
     "BRAND_FAMILY": "Peroni"
   },
   {
@@ -3951,13 +3930,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20125,
     "CUSTOMER_NAME": "El Escondite Bar and Restaurant",
-    "AREA": "Passaic",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20131,
-    "CUSTOMER_NAME": "El Fogon Rest",
     "AREA": "Passaic",
     "BRAND_FAMILY": "Coors"
   },
