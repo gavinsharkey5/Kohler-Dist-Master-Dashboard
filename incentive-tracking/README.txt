@@ -460,16 +460,21 @@ logic, flag anything that contradicts the deck.
 
 RETENTION PROGRAMS (April deck, retention phase -- added 2026-08-19)
 ====================================================================
-Logos (2026-08-19): the four retention marks in assets/logos/ --
-molson_coors.svg, mark_anthony.svg, constellation.svg, yuengling.svg --
-are locally drawn SVG WORDMARKS in each supplier's colors, NOT the
-official brand artwork. This environment's network policy blocks
-fetching real logo files (the agent proxy answers 403 to CONNECT for
-general web hosts), so they were drawn rather than downloaded. They are
-single-line by design: an earlier two-line version with a "BRANDS" /
-"EST. 1829" sub-line was illegible at the 34px overview-tile chip size.
-To swap in real artwork, drop a PNG in assets/logos/ and repoint that
-program's PROGRAM_LOGOS entry in index.html -- nothing else changes.
+Logos (2026-08-19): molson_coors.png, mark_anthony.png,
+constellation.png, yuengling.png are the REAL supplier artwork, sent by
+Gavin in chat and processed with Pillow -- trimmed of their background
+margins and scaled to 200px on the long edge, matching the existing
+logo files. Mark Anthony's came as white type on a black marketing
+banner with brand badges alongside, so it was cropped to the wordmark
+and INVERTED to dark type, which is what makes it sit on the white
+.prog-logo-chip like the rest.
+(Interim SVG wordmarks drawn on the same day were replaced by these and
+deleted. Worth knowing for next time: this environment cannot download
+logos -- the agent proxy answers 403 to CONNECT for general web hosts,
+including the dashboard's own github.io URL -- but images pasted into
+chat ARE recoverable: they are stored base64 in the session transcript
+at ~/.claude/projects/<project>/<session>.jsonl and can be decoded to
+disk.)
 Per Gavin, 2026-08-19: a third section, "Retention Programs", below
 Ongoing Incentives -- rep cards, overview tiles, and a third "Jump to"
 pill group. These track the RETENTION phase of the supplier
