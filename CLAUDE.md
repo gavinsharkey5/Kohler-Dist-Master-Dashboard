@@ -41,3 +41,24 @@ each dashboard's index.html) reflects whatever `main` last had
 *published*, which now depends entirely on the legacy pipeline
 actually completing -- there's no run status to confirm that from here
 anymore, only what the live site shows.
+
+## Weekly partial exports merge onto published data (2026-08-20)
+
+Gavin pulls only the CURRENT WEEK from iSellBeer for the display
+auction tracker, to keep each upload small. New data is meant to MERGE
+onto what's already published -- older weeks must stay on the board and
+never drop off.
+
+That cuts against how most `generate*.py` in this repo work: they
+rebuild their dashboard's whole dataset from whichever file(s) they're
+handed, so feeding one a partial export silently drops everything
+outside its window. Before running any generator against an export that
+covers less than the dashboard's full tracked period, check whether it
+appends or rebuilds, and compare the export's date range against what's
+already published.
+
+`isellbeer/display-auction-tracker/generate.py` has a `--merge` mode for
+exactly this and it is the DEFAULT for that dashboard -- see its
+README.txt. Don't ask Gavin to re-pull a whole period as a matter of
+course; --merge is the routine path. If another dashboard moves to
+weekly pulls, it needs the same treatment rather than a plain rerun.

@@ -28,10 +28,12 @@ to reproduce identical aggregate totals):
   - Within a person's display list: sorted by points desc, then cases desc
     (not by date — a date-sort was tried once and explicitly reverted).
 
-Run: python3 generate.py Report_NN.xlsx            (full-period export)
-     python3 generate.py Report_NN.xlsx --merge    (partial export: rebuild
-       only from the export's earliest row onward, carrying everything
-       before that over from what's already published -- see main())
+Run: python3 generate.py Report_NN.xlsx --merge    (the NORMAL case -- Gavin
+       pulls one week at a time, so rebuild only from the export's earliest
+       row onward and carry everything before that over from what's already
+       published; see main() and README.txt's STANDING WORKFLOW note)
+     python3 generate.py Report_NN.xlsx            (only for an export that
+       covers the whole tracked period, 07/01/2026 onward)
 """
 import csv
 import datetime
@@ -302,6 +304,23 @@ def main():
         print(f"Merge: export starts {cutoff:%m/%d/%Y} -- carrying over "
               f"{len(preserved_displays)} displays / {len(preserved_csv)} source rows "
               f"before it, rebuilding the {replaced} display(s) from then on.")
+        # A weekly pull only ever ADDS to the board, so a weekday with no data
+        # on either side of the cutoff means that day was never pulled by
+        # anyone -- its displays aren't on the board and won't arrive on their
+        # own. Weekend days are skipped: submissions are weekday work, so an
+        # empty Sat/Sun is normal, not a missed pull.
+        if preserved_displays:
+            last = max(parse_dt(d['dt']) for d in preserved_displays)
+            uncovered = [last.date() + datetime.timedelta(days=i)
+                         for i in range(1, (cutoff.date() - last.date()).days)]
+            missed = [d for d in uncovered if d.weekday() < 5]
+            if missed:
+                print(f"  WARNING: no data for {len(missed)} weekday(s) between the last "
+                      f"carried-over row ({last:%m/%d/%Y}) and this export's first row "
+                      f"({cutoff:%m/%d/%Y}): {', '.join(d.strftime('%m/%d') for d in missed)}. "
+                      f"Any displays submitted then are NOT on the board and won't be until "
+                      f"a pull covers those dates -- re-pull starting from "
+                      f"{missed[0]:%m/%d/%Y} if that gap wasn't just a no-submission stretch.")
 
     # write the plain CSV export (human-diffable, no hyperlinks)
     with open(OUT_CSV, "w", newline="") as f:

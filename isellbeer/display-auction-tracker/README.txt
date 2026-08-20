@@ -15,38 +15,53 @@ Files:
   index.html                The page itself.
 
 To refresh with a new report export:
-  1. Run: python3 generate.py Report_NN.xlsx
+  1. Run: python3 generate.py Report_NN.xlsx --merge
   2. If it errors on an unclassified brand, confirm with the user
      whether it's a Priority or All Other brand, then add it to
      PRIORITY_BRANDS / ALLOTHER_BRANDS at the top of generate.py.
-  3. Commit and push.
+  3. Sanity-check the printed totals -- displays and points should only
+     ever go UP week over week. If either drops, stop and ask.
+  4. Commit and push.
 
-generate.py REBUILDS THE WHOLE LEADERBOARD from the one file it's
-given -- it does not append. Hand it a partial export with no flag and
-every display outside that export's window is silently dropped, which
-is exactly what nearly happened on 2026-08-20 when the user pulled an
-August-only Report_44 (July was 79% of the points on the board).
+STANDING WORKFLOW (set by Gavin 2026-08-20): he pulls only the CURRENT
+WEEK from iSellBeer each time, so the upload stays small. So a normal
+refresh export is a PARTIAL one and --merge is the DEFAULT -- the new
+week merges onto the already-published board and older data stays put.
+Do NOT ask him to re-pull the whole period as a matter of course.
 
-  --merge  For a PARTIAL export. Everything from the export's earliest
-           row onward is rebuilt from it; everything before that is
-           carried over from what's already published -- displays (with
-           their photo links) out of index.html's embedded JSON, source
-           rows out of DisplayPhotoReport.csv. The script prints the
-           cutoff date and how much it carried over vs rebuilt.
-           First used 2026-08-20: Report_44 covered 08/03-08/20 only,
-           so July's 381 displays were carried over and August was
-           rebuilt from the export.
+This matters because generate.py REBUILDS THE WHOLE LEADERBOARD from
+the one file it's given -- it does not append. Hand it a weekly export
+with no flag and every display outside that week is silently dropped.
+That nearly happened on 2026-08-20 with an August-only Report_44, when
+July was 79% of the points on the board.
+
+  --merge  Everything from the export's earliest row onward is rebuilt
+           from it; everything before that is carried over from what's
+           already published -- displays (with their photo links) out of
+           index.html's embedded JSON, source rows out of
+           DisplayPhotoReport.csv. Prints the cutoff date and how much
+           it carried over vs rebuilt. Re-running the same export is
+           idempotent (verified 2026-08-20).
+
+           It warns if a WEEKDAY between the last carried-over row and
+           the export's first row has no data at all -- that means those
+           dates were never pulled by anyone, and their displays will
+           never reach the board until a pull covers them. Weekend days
+           are ignored (an empty Sat/Sun is normal). If that warning
+           fires, ask Gavin to re-pull starting from the date it names
+           rather than letting the gap stand.
 
            Caveat: carried-over displays keep the points they were
            BUILT with. If a brand gets reclassified (moved between
            PRIORITY_BRANDS/ALLOTHER_BRANDS), only the rebuilt window
-           reflects it -- the carried-over period keeps its old scoring
-           until someone reruns a full-period export. Prefer a
-           full-period export when one is available; --merge is for
-           when re-pulling the whole period isn't worth it.
+           reflects it. It also can't catch a retroactive edit to a row
+           BEFORE the cutoff, since it never re-reads that period. Both
+           are fixed by one full-period export run WITHOUT --merge --
+           worth offering if brands get reclassified often, but not
+           something to push for on a routine weekly refresh.
 
-           It also can't catch a retroactive edit to a row BEFORE the
-           cutoff, since it never re-reads that period.
+  no flag  Only when the export genuinely covers the whole tracked
+           period (07/01/2026 onward). Rescores everything consistently.
 
 How points are calculated (see the docstring at the top of generate.py
 for the full detail — this was reverse-engineered once from the
