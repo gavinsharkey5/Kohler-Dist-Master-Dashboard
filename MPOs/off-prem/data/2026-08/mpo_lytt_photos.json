@@ -1,5 +1,16 @@
 [
  {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "REGALADO LIQ",
+  "CITY": "PASSAIC",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 3,
+  "DATE": "08/19/2026 01:26 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/619c0ac0-0e30-4e95-b6b1-3eaf297d6a4d/"
+ },
+ {
   "REP": "Phil Ernst",
   "SOURCE": "Display",
   "CUSTOMER_NAME": "SHOP RITE LIQ (PARAMUS)",
@@ -812,6 +823,50 @@
   "QUANTITY": 30,
   "DATE": "08/06/2026 01:38 PM",
   "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5943343d-74ac-49e1-9fee-02d578aa09f0/"
+ },
+ {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Promo",
+  "CUSTOMER_NAME": "RONNY'S LIQRS (Z)",
+  "CITY": "PATERSON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "Feature Activation \u00b7 MBO \u00b7 Poster",
+  "QUANTITY": 1,
+  "DATE": "08/19/2026 04:09 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/69fac84d-929a-42ac-ab5d-20c6272275f4/"
+ },
+ {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Promo",
+  "CUSTOMER_NAME": "RONNY'S LIQRS (Z)",
+  "CITY": "PATERSON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "Feature Activation \u00b7 MBO \u00b7 POS",
+  "QUANTITY": 1,
+  "DATE": "08/19/2026 04:08 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/310f17d3-d2eb-4ef2-8f82-4b9518d931ea/"
+ },
+ {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Promo",
+  "CUSTOMER_NAME": "SUNNY'S LIQS.(P)",
+  "CITY": "PASSAIC",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "Feature Activation \u00b7 MBO \u00b7 Poster, POS",
+  "QUANTITY": 1,
+  "DATE": "08/19/2026 02:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/987324fc-0f56-48a6-b128-e2e5b06ff2d1/"
+ },
+ {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Promo",
+  "CUSTOMER_NAME": "REGALADO LIQ",
+  "CITY": "PASSAIC",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "Feature Activation \u00b7 MBO \u00b7 Signage, Window Sign",
+  "QUANTITY": 2,
+  "DATE": "08/19/2026 01:29 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/7de3d45d-9e67-42ec-bad5-5b0500f3dae3/"
  },
  {
   "REP": "Pablo Lopez",
