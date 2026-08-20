@@ -1,5 +1,5 @@
 Sales Rep Name,Brand Family,Package,Customer Num Company,New Buyers,Current Units
-Nick Melissari,Pacifico,15.5 Gal Keg,96010 Aldo's Italian Rest(Z),12,405
+Nick Melissari,Pacifico,15.5 Gal Keg,96010 Aldo's Italian Rest(Z),12,407
 Nick Melissari,Modelo Especial,15.5 Gal Keg,94012 Holiday Bowl,6,214
 Nick Melissari,Modelo Especial,15.5 Gal Keg,31056 H Mart Inc (Space A103),1,2
 Nick Melissari,Modelo Especial,15.5 Gal Keg,34002 Heights Bar (P),1,3
@@ -43,7 +43,7 @@ Nick Melissari,Modelo Especial,15.5 Gal Keg,88003 W's Village Grille,0,3
 Nick Melissari,Modelo Especial,15.5 Gal Keg,92010 Houlihan's Ramsey,0,2
 Nick Melissari,Modelo Especial,15.5 Gal Keg,93005 Mason Jar Restaurant,0,5
 Nick Melissari,Modelo Especial,15.5 Gal Keg,94012 Holiday Bowl,0,0
-Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),96010 Aldo's Italian Rest(Z),2,115
+Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),96010 Aldo's Italian Rest(Z),2,117
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),38025 Rebar (Z),1,1
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),78014 Longhorn Steak Rochele Pk,1,2
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),29036 Mr.Bruno's,0,2
@@ -56,7 +56,7 @@ Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),77003 Blue 42 Restaurant &
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),78017 El Asadero Mexican Grill (Rochelle Park),0,0
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),80040 Biagio's,0,-1
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),80042 Olive Garden Paramus,0,2
-Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),80054 Chili's Paramus,0,17
+Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),80054 Chili's Paramus,0,19
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),80057 On The Border Paramus,0,0
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),85003 Arturo's Restaurnt,0,1
 Nick Melissari,Modelo Especial,1/4 BBL Keg (7.75 Gal),89002 Allendale Bar & Grill,0,-1
@@ -114,8 +114,8 @@ Nick Melissari,Modelo Negra,1/4 BBL Keg (7.75 Gal),78017 El Asadero Mexican Gril
 Nick Melissari,Modelo Negra,1/4 BBL Keg (7.75 Gal),37034 Blackjack Mulligans(P) (Garfield),0,0
 Nick Melissari,Modelo Negra,1/4 BBL Keg (7.75 Gal),49022 El asadero Mexican Grill (Fort Lee),0,3
 Nick Melissari,Modelo Negra,1/4 BBL Keg (7.75 Gal),78017 El Asadero Mexican Grill (Rochelle Park),0,0
-Allison Scott,Pacifico,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),10,303
-Allison Scott,Modelo Especial,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),5,204
+Allison Scott,Pacifico,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),10,307
+Allison Scott,Modelo Especial,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),5,207
 Allison Scott,Modelo Especial,15.5 Gal Keg,12056 PF Changs China Bistro (Wayne),1,1
 Allison Scott,Modelo Especial,15.5 Gal Keg,13018 Chili's Little Falls,1,5
 Allison Scott,Modelo Especial,15.5 Gal Keg,17003 D'CARBON BAR AND GRILL haledon,1,1
@@ -141,7 +141,7 @@ Allison Scott,Modelo Especial,15.5 Gal Keg,13016 THE TIES,0,0
 Allison Scott,Modelo Especial,15.5 Gal Keg,14002 Applebee's (Totowa) (A),0,1
 Allison Scott,Modelo Especial,15.5 Gal Keg,14003 Murph's Bar & Liquor,0,2
 Allison Scott,Modelo Especial,15.5 Gal Keg,14004 Sushi Lounge,0,2
-Allison Scott,Modelo Especial,15.5 Gal Keg,15004 Blackjack Mulligan's Public House,0,5
+Allison Scott,Modelo Especial,15.5 Gal Keg,15004 Blackjack Mulligan's Public House,0,6
 Allison Scott,Modelo Especial,15.5 Gal Keg,15006 Great Notch Inn(Z),0,2
 Allison Scott,Modelo Especial,15.5 Gal Keg,15070 Brownstone House,0,4
 Allison Scott,Modelo Especial,15.5 Gal Keg,15074 Bask 46,0,7
@@ -150,7 +150,7 @@ Allison Scott,Modelo Especial,15.5 Gal Keg,17009 Jimmy Geez (P),0,9
 Allison Scott,Modelo Especial,15.5 Gal Keg,19004 Shortways' Barn (A),0,3
 Allison Scott,Modelo Especial,15.5 Gal Keg,19005 Celtic Corner,0,3
 Allison Scott,Modelo Especial,15.5 Gal Keg,19012 Bottagra Rest (P),0,0
-Allison Scott,Modelo Especial,15.5 Gal Keg,22016 Johnny A's (P) Hitchn Pos,0,9
+Allison Scott,Modelo Especial,15.5 Gal Keg,22016 Johnny A's (P) Hitchn Pos,0,10
 Allison Scott,Modelo Especial,15.5 Gal Keg,23013 Vfw 7165 (P),0,2
 Allison Scott,Modelo Especial,15.5 Gal Keg,24006 The Grand Saloon,0,1
 Allison Scott,Modelo Especial,15.5 Gal Keg,24022 Applebee's Clifton,0,6
@@ -159,16 +159,16 @@ Allison Scott,Modelo Especial,15.5 Gal Keg,24031 Tommy's Tavern & Tap (Clifton),
 Allison Scott,Modelo Especial,15.5 Gal Keg,24048 Dante's,0,3
 Allison Scott,Modelo Especial,15.5 Gal Keg,24061 Breaker Billiards,0,6
 Allison Scott,Modelo Especial,15.5 Gal Keg,25052 Uno Chicago Grl (A)Clifto,0,0
-Allison Scott,Modelo Especial,15.5 Gal Keg,25077 Chevy's Fresh Mex (A)Clif,0,8
+Allison Scott,Modelo Especial,15.5 Gal Keg,25077 Chevy's Fresh Mex (A)Clif,0,9
 Allison Scott,Modelo Especial,15.5 Gal Keg,5008 Celtic Crossings,0,6
 Allison Scott,Modelo Especial,15.5 Gal Keg,7003 Blu Ale House,0,5
 Allison Scott,Modelo Especial,15.5 Gal Keg,7005 Chili's (Riverdale),0,7
 Allison Scott,Modelo Especial,15.5 Gal Keg,8014 Macks American Bar/Grill,0,3
 Allison Scott,Modelo Especial,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),0,0
-Allison Scott,Corona Light,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),4,9
+Allison Scott,Corona Light,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),4,10
 Allison Scott,Corona Light,15.5 Gal Keg,11011 Sunset Pub & Grill(Z),1,1
 Allison Scott,Corona Light,15.5 Gal Keg,12036 Brokedown Palace,1,1
-Allison Scott,Corona Light,15.5 Gal Keg,25077 Chevy's Fresh Mex (A)Clif,1,4
+Allison Scott,Corona Light,15.5 Gal Keg,25077 Chevy's Fresh Mex (A)Clif,1,5
 Allison Scott,Corona Light,15.5 Gal Keg,7003 Blu Ale House,1,3
 Allison Scott,Corona Light,15.5 Gal Keg,8015 Thatcher Mc Ghees (A),0,0
 Allison Scott,Modelo Especial,1/4 BBL Keg (7.75 Gal),58005 Feathers (A),1,46
@@ -225,7 +225,7 @@ Allison Scott,Pacifico,15.5 Gal Keg,11011 Sunset Pub & Grill(Z),0,0
 Allison Scott,Pacifico,15.5 Gal Keg,12036 Brokedown Palace,0,0
 Allison Scott,Pacifico,15.5 Gal Keg,12057 YARD HOUSE 8384,0,3
 Allison Scott,Pacifico,15.5 Gal Keg,24031 Tommy's Tavern & Tap (Clifton),0,2
-Robin Feldman,Pacifico,15.5 Gal Keg,94016 Doc Watsons NJ,8,45
+Robin Feldman,Pacifico,15.5 Gal Keg,94016 Doc Watsons NJ,8,48
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),93018 Courtyard Mahwah,3,16
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),18005 Giuseppe (P) Rest.,1,1
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),38043 K Of C Lodi,1,1
@@ -241,7 +241,7 @@ Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),66001 Montammy Golf Club (P
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),67006 Northvale Diner,0,0
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),81005 The Craftsman,0,0
 Robin Feldman,Modelo Especial,1/4 BBL Keg (7.75 Gal),93018 Courtyard Mahwah,0,3
-Robin Feldman,Modelo Especial,15.5 Gal Keg,94016 Doc Watsons NJ,3,22
+Robin Feldman,Modelo Especial,15.5 Gal Keg,94016 Doc Watsons NJ,3,25
 Robin Feldman,Modelo Especial,15.5 Gal Keg,12046 Packanack Lake Comm Asso,1,3
 Robin Feldman,Modelo Especial,15.5 Gal Keg,28033 Homewood Suites By Hilton,1,2
 Robin Feldman,Modelo Especial,15.5 Gal Keg,77013 William J. Mulligan VFW Post 281,1,2
@@ -250,8 +250,8 @@ Robin Feldman,Modelo Especial,15.5 Gal Keg,15079 American Lgn Totowa,0,0
 Robin Feldman,Modelo Especial,15.5 Gal Keg,30017 Renaissance Meadowlands,0,1
 Robin Feldman,Modelo Especial,15.5 Gal Keg,34016 Vfw Hasbrouck (A),0,2
 Robin Feldman,Modelo Especial,15.5 Gal Keg,38043 K Of C Lodi,0,0
-Robin Feldman,Modelo Especial,15.5 Gal Keg,4011 Bloomingdale Fire Dept,0,2
-Robin Feldman,Modelo Especial,15.5 Gal Keg,42009 Nikki's Bar & Grill,0,1
+Robin Feldman,Modelo Especial,15.5 Gal Keg,4011 Bloomingdale Fire Dept,0,4
+Robin Feldman,Modelo Especial,15.5 Gal Keg,42009 Nikki's Bar & Grill,0,2
 Robin Feldman,Modelo Especial,15.5 Gal Keg,6003 Cypress,0,0
 Robin Feldman,Modelo Especial,15.5 Gal Keg,8013 Vfw 2906 Pompt. Lks.(Z),0,0
 Robin Feldman,Modelo Especial,15.5 Gal Keg,94016 Doc Watsons NJ,0,6
@@ -674,15 +674,15 @@ Matt Powierski,Modelo Especial,1/4 BBL Keg (7.75 Gal),36043 Sports Bar & Liquors
 Matt Powierski,Modelo Especial,1/4 BBL Keg (7.75 Gal),37007 Jay's Liquormart,0,8
 Matt Powierski,Modelo Especial,1/4 BBL Keg (7.75 Gal),37044 Riverview Liquors & Bar,0,21
 Matt Powierski,Modelo Especial,1/4 BBL Keg (7.75 Gal),77017 Hook & Reel,0,4
-Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,118
-Chris Politano,Corona Light,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,32
-Chris Politano,Corona Light,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,32
+Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,125
+Chris Politano,Corona Light,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,35
+Chris Politano,Corona Light,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,35
 Chris Politano,Modelo Especial,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,65
 Chris Politano,Modelo Especial,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,65
-Chris Politano,Modelo Negra,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,2
-Chris Politano,Modelo Negra,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,2
-Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,19
-Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,19
+Chris Politano,Modelo Negra,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,3
+Chris Politano,Modelo Negra,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,3
+Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,22
+Chris Politano,Pacifico,15.5 Gal Keg,31037 Delaware North Met Life Stadium,1,22
 Office Tell Sell,Modelo Especial,15.5 Gal Keg,22009 Paterson Fire Dept,1,6
 Office Tell Sell,Corona Light,15.5 Gal Keg,22009 Paterson Fire Dept,1,3
 Office Tell Sell,Corona Light,15.5 Gal Keg,22009 Paterson Fire Dept,1,3
