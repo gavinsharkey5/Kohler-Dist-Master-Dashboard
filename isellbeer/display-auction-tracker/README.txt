@@ -21,6 +21,33 @@ To refresh with a new report export:
      PRIORITY_BRANDS / ALLOTHER_BRANDS at the top of generate.py.
   3. Commit and push.
 
+generate.py REBUILDS THE WHOLE LEADERBOARD from the one file it's
+given -- it does not append. Hand it a partial export with no flag and
+every display outside that export's window is silently dropped, which
+is exactly what nearly happened on 2026-08-20 when the user pulled an
+August-only Report_44 (July was 79% of the points on the board).
+
+  --merge  For a PARTIAL export. Everything from the export's earliest
+           row onward is rebuilt from it; everything before that is
+           carried over from what's already published -- displays (with
+           their photo links) out of index.html's embedded JSON, source
+           rows out of DisplayPhotoReport.csv. The script prints the
+           cutoff date and how much it carried over vs rebuilt.
+           First used 2026-08-20: Report_44 covered 08/03-08/20 only,
+           so July's 381 displays were carried over and August was
+           rebuilt from the export.
+
+           Caveat: carried-over displays keep the points they were
+           BUILT with. If a brand gets reclassified (moved between
+           PRIORITY_BRANDS/ALLOTHER_BRANDS), only the rebuilt window
+           reflects it -- the carried-over period keeps its old scoring
+           until someone reruns a full-period export. Prefer a
+           full-period export when one is available; --merge is for
+           when re-pulling the whole period isn't worth it.
+
+           It also can't catch a retroactive edit to a row BEFORE the
+           cutoff, since it never re-reads that period.
+
 How points are calculated (see the docstring at the top of generate.py
 for the full detail — this was reverse-engineered once from the
 previously-committed data since it was never written down, so don't

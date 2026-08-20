@@ -28,9 +28,13 @@ to reproduce identical aggregate totals):
   - Within a person's display list: sorted by points desc, then cases desc
     (not by date — a date-sort was tried once and explicitly reverted).
 
-Run: python3 generate.py Report_NN.xlsx
+Run: python3 generate.py Report_NN.xlsx            (full-period export)
+     python3 generate.py Report_NN.xlsx --merge    (partial export: rebuild
+       only from the export's earliest row onward, carrying everything
+       before that over from what's already published -- see main())
 """
 import csv
+import datetime
 import json
 import re
 import sys
@@ -161,11 +165,12 @@ def classify(brand):
     return None
 
 
-def main():
-    if len(sys.argv) != 2:
-        raise SystemExit("Usage: python3 generate.py Report_NN.xlsx")
-    src = Path(sys.argv[1])
+def parse_dt(s):
+    """'MM/DD/YYYY HH:MM AM/PM' -- the only Date/Time format iSellBeer emits."""
+    return datetime.datetime.strptime(str(s).strip(), "%m/%d/%Y %I:%M %p")
 
+
+def read_rows(src):
     wb = openpyxl.load_workbook(src, data_only=True)
     ws = wb["Report"]
     rows = []
@@ -176,35 +181,16 @@ def main():
         photo_cell = ws.cell(row=r, column=15)
         row['photo_url'] = photo_cell.hyperlink.target if photo_cell.hyperlink else None
         rows.append(row)
+    return rows
 
-    unknown = {canonical_brand(r) for r in rows} - PRIORITY_BRANDS - ALLOTHER_BRANDS
-    if unknown:
-        raise SystemExit(
-            f"Unclassified brand(s) found — add to PRIORITY_BRANDS or ALLOTHER_BRANDS "
-            f"in this script after confirming with the user: {sorted(unknown)}"
-        )
 
-    # write the plain CSV export (human-diffable, no hyperlinks)
-    with open(OUT_CSV, "w", newline="") as f:
-        w = csv.writer(f)
-        w.writerow(['#', 'Photo Taker', "Photo Taker's Role", 'District Manager', 'Account #',
-                    'DBA', 'Address', 'City', 'Supplier', 'Brand Family', 'Brand', 'SKU',
-                    'Quantity', 'Date/Time', 'Photo'])
-        for row in rows:
-            w.writerow([row['num'], row['taker'], row['role'], row['dm'], row['acct'],
-                        row['dba'], row['address'], row['city'], row['supplier'],
-                        row['brand_family'] or '', row['brand'], row['sku'], row['qty'],
-                        row['dt'], 'Photo'])
-
+def build_displays(rows):
+    """Source rows -> one display dict per photo submission."""
     groups = defaultdict(list)
     for row in rows:
         groups[(row['taker'], row['acct'], row['dt'])].append(row)
 
-    people = defaultdict(lambda: {"displays": []})
-    dates = []
-    total_displays = 0
-    total_points = 0
-
+    displays = []
     for (taker, acct, dt), grp in groups.items():
         cases = sum(g['qty'] for g in grp)
         brands = sorted({canonical_brand(g) for g in grp})
@@ -224,48 +210,115 @@ def main():
         points = TIER_POINTS.get(classification, {}).get(t, 0) if t else 0
         photos = sorted({g['photo_url'] for g in grp if g['photo_url']})
         first = grp[0]
-        dates.append(dt.split(' ')[0])
-        total_displays += 1
-        total_points += points
-
-        p = people[taker]
-        p['role'] = first['role']
-        p['displays'].append({
+        displays.append({
             "taker": taker, "role": first['role'], "acct": acct, "dba": first['dba'],
             "city": first['city'], "dt": dt, "cases": cases, "classification": classification,
             "tier": t, "points": points, "brands": brands, "photos": photos,
         })
+    return displays
+
+
+def assemble(displays):
+    """Flat display list -> the {meta, people} payload index.html embeds."""
+    by_person = defaultdict(list)
+    for d in displays:
+        by_person[d['taker']].append(d)
 
     people_out = []
-    for name, p in people.items():
-        displays = sorted(p['displays'], key=lambda d: (-d['points'], -d['cases'], d['dt']))
-        qualifying = [d for d in displays if d['tier'] >= 1]
+    for name, ds in by_person.items():
+        # Sorted by points desc, then cases desc, then date/time -- NOT
+        # chronologically (a date-sort was tried once and explicitly reverted).
+        ds = sorted(ds, key=lambda d: (-d['points'], -d['cases'], d['dt']))
+        qualifying = [d for d in ds if d['tier'] >= 1]
         people_out.append({
             "name": name,
-            "role": p['role'],
-            "points": sum(d['points'] for d in displays),
+            # A person's role is constant in practice; take it from their most
+            # recent display so a merge can't resurrect a stale one.
+            "role": max(ds, key=lambda d: parse_dt(d['dt']))['role'],
+            "points": sum(d['points'] for d in ds),
             "qualifying": len(qualifying),
-            "total": len(displays),
+            "total": len(ds),
             "priorityQualifying": len([d for d in qualifying if d['classification'] == 'priority']),
             "otherQualifying": len([d for d in qualifying if d['classification'] == 'allother']),
-            "displays": displays,
+            "displays": ds,
         })
     people_out.sort(key=lambda p: -p['points'])
 
-    data = {
+    dates = [parse_dt(d['dt']) for d in displays]
+    return {
         "meta": {
-            "startDate": min(dates),
-            "endDate": max(dates),
-            "totalDisplays": total_displays,
-            "totalPoints": total_points,
+            "startDate": min(dates).strftime("%m/%d/%Y"),
+            "endDate": max(dates).strftime("%m/%d/%Y"),
+            "totalDisplays": len(displays),
+            "totalPoints": sum(d['points'] for d in displays),
         },
         "people": people_out,
     }
 
-    html = OUT_HTML.read_text()
-    tag_open = '<script id="da-data" type="application/json">'
-    if tag_open not in html:
+
+def embedded_data(html):
+    m = re.search(r'<script id="da-data" type="application/json">(.*?)</script>', html, re.DOTALL)
+    if not m:
         raise SystemExit("Could not find da-data script tag in index.html")
+    return json.loads(m.group(1))
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith('-')]
+    flags = [a for a in sys.argv[1:] if a.startswith('-')]
+    if len(args) != 1 or set(flags) - {'--merge'}:
+        raise SystemExit("Usage: python3 generate.py Report_NN.xlsx [--merge]")
+    src = Path(args[0])
+    merge = '--merge' in flags
+
+    rows = read_rows(src)
+    if not rows:
+        raise SystemExit(f"No data rows found in {src.name}")
+
+    unknown = {canonical_brand(r) for r in rows} - PRIORITY_BRANDS - ALLOTHER_BRANDS
+    if unknown:
+        raise SystemExit(
+            f"Unclassified brand(s) found — add to PRIORITY_BRANDS or ALLOTHER_BRANDS "
+            f"in this script after confirming with the user: {sorted(unknown)}"
+        )
+
+    # --merge (added 2026-08-20): the export covers only part of the tracked
+    # period -- everything from its EARLIEST row onward is rebuilt from it, and
+    # anything before that is carried over verbatim from what's already
+    # published (displays out of index.html's embedded JSON, which keeps their
+    # photo links; source rows out of DisplayPhotoReport.csv). Use it when the
+    # user pulls a partial export; a full-period export needs no flag.
+    # Carried-over displays keep the points they were BUILT with -- if a brand
+    # has been reclassified since, only the rebuilt window reflects that.
+    preserved_displays, preserved_csv = [], []
+    if merge:
+        cutoff = min(parse_dt(r['dt']) for r in rows).replace(hour=0, minute=0)
+        old = embedded_data(OUT_HTML.read_text())
+        old_displays = [d for p in old['people'] for d in p['displays']]
+        preserved_displays = [d for d in old_displays if parse_dt(d['dt']) < cutoff]
+        replaced = len(old_displays) - len(preserved_displays)
+        with open(OUT_CSV, newline="") as f:
+            preserved_csv = [r for r in list(csv.reader(f))[1:] if parse_dt(r[13]) < cutoff]
+        print(f"Merge: export starts {cutoff:%m/%d/%Y} -- carrying over "
+              f"{len(preserved_displays)} displays / {len(preserved_csv)} source rows "
+              f"before it, rebuilding the {replaced} display(s) from then on.")
+
+    # write the plain CSV export (human-diffable, no hyperlinks)
+    with open(OUT_CSV, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(['#', 'Photo Taker', "Photo Taker's Role", 'District Manager', 'Account #',
+                    'DBA', 'Address', 'City', 'Supplier', 'Brand Family', 'Brand', 'SKU',
+                    'Quantity', 'Date/Time', 'Photo'])
+        w.writerows(preserved_csv)
+        for row in rows:
+            w.writerow([row['num'], row['taker'], row['role'], row['dm'], row['acct'],
+                        row['dba'], row['address'], row['city'], row['supplier'],
+                        row['brand_family'] or '', row['brand'], row['sku'], row['qty'],
+                        row['dt'], 'Photo'])
+
+    data = assemble(preserved_displays + build_displays(rows))
+
+    html = OUT_HTML.read_text()
     new_html = re.sub(
         r'(<script id="da-data" type="application/json">).*?(</script>)',
         lambda m: m.group(1) + json.dumps(data) + m.group(2),
@@ -273,9 +326,10 @@ def main():
         flags=re.DOTALL,
     )
     OUT_HTML.write_text(new_html)
-    print(f"Wrote {total_displays} displays ({sum(1 for p in people_out for d in p['displays'] if d['tier']>=1)} qualifying), "
-          f"{total_points} total points across {len(people_out)} people.")
-    print(f"Date range: {min(dates)} to {max(dates)}")
+    qualifying = sum(1 for p in data['people'] for d in p['displays'] if d['tier'] >= 1)
+    print(f"Wrote {data['meta']['totalDisplays']} displays ({qualifying} qualifying), "
+          f"{data['meta']['totalPoints']} total points across {len(data['people'])} people.")
+    print(f"Date range: {data['meta']['startDate']} to {data['meta']['endDate']}")
 
 
 if __name__ == "__main__":
