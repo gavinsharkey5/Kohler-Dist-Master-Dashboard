@@ -1,5 +1,5 @@
 Sales Rep Assigned,Qualifier Brands,Supplier,Brand Family,Case Equiv   6/1/2025 - 8/31/2025,Case Equiv   6/1/2026 - 8/31/2026,Case Equiv Unit Difference
-Alex Rodriguez,Amplify: Sapporo,Sapporo,Sapporo,578,782,205
+Alex Rodriguez,Amplify: Sapporo,Sapporo,Sapporo,578,803,225
 Alisa Acciardi,Amplify: Cape May,Cape May,Cape May,8,,-8
 Alisa Acciardi,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,5,3,-2
 Alisa Acciardi,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,41,11,-31
@@ -11,7 +11,7 @@ Alisa Acciardi,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Br
 Alisa Acciardi,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,51,26,-25
 Alisa Acciardi,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,34,8,-26
 Alisa Acciardi,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,5,8,3
-Alisa Acciardi,Amplify: Sapporo,Sapporo,Sapporo,1600,1462,-137
+Alisa Acciardi,Amplify: Sapporo,Sapporo,Sapporo,1600,1482,-117
 Alisa Acciardi,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,8,,-8
 Alisa Acciardi,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,23,17,-6
 Alisa Acciardi,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,2,2,0
@@ -27,202 +27,202 @@ Alisa Acciardi,Qualifier: White Claw,Mark Anthony,White Claw,89,64,-24
 Alisa Acciardi,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,19,20,2
 Allison Scott,Amplify: Cape May,Cape May,Cape May,330,263,-67
 Allison Scott,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,,8,8
-Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,180,175,-5
-Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,14,104,90
-Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,520,695,174
-Allison Scott,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,463,379,-83
+Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,180,177,-3
+Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,14,107,93
+Allison Scott,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,520,701,181
+Allison Scott,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,463,384,-79
 Allison Scott,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,7,2,-5
-Allison Scott,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,234,234,-1
-Allison Scott,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,180,136,-44
+Allison Scott,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,234,238,4
+Allison Scott,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,180,138,-42
 Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,131,82,-49
 Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,3,7,4
-Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,124,145,21
-Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,81,42,-39
-Allison Scott,Amplify: Sapporo,Sapporo,Sapporo,169,223,55
+Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,124,146,22
+Allison Scott,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,81,43,-38
+Allison Scott,Amplify: Sapporo,Sapporo,Sapporo,169,230,62
 Allison Scott,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,1,,-1
 Allison Scott,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,85,85,0
 Allison Scott,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,15,7,-8
-Allison Scott,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,321,390,69
+Allison Scott,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,321,397,76
 Allison Scott,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,9,3,-6
-Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2750,2563,-187
-Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,4899,4240,-659
-Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,5479,4978,-501
-Allison Scott,Qualifier: Heineken USA,Heineken USA,Heineken USA,1964,1614,-350
-Allison Scott,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,4538,4113,-425
-Allison Scott,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2719,2715,-4
+Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2750,2622,-129
+Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,4899,4321,-578
+Allison Scott,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,5479,5047,-431
+Allison Scott,Qualifier: Heineken USA,Heineken USA,Heineken USA,1964,1639,-325
+Allison Scott,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,4538,4140,-398
+Allison Scott,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2719,2746,27
 Allison Scott,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,10,58,49
-Allison Scott,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,244,197,-47
-Allison Scott,Qualifier: White Claw,Mark Anthony,White Claw,1044,789,-256
-Allison Scott,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2818,2630,-188
+Allison Scott,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,244,201,-43
+Allison Scott,Qualifier: White Claw,Mark Anthony,White Claw,1044,794,-251
+Allison Scott,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2818,2646,-172
 Andrew Lundy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,45,,-45
 Andrew Lundy,Amplify: Sapporo,Sapporo,Sapporo,1730,1720,-9
-Anthony Palmisano,Amplify: Cape May,Cape May,Cape May,702,706,4
-Anthony Palmisano,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,552,513,-39
+Anthony Palmisano,Amplify: Cape May,Cape May,Cape May,702,712,10
+Anthony Palmisano,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,552,524,-28
 Anthony Palmisano,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,225,157,-68
-Anthony Palmisano,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2237,2155,-82
+Anthony Palmisano,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2237,2229,-8
 Anthony Palmisano,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,74,93,19
-Anthony Palmisano,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,577,683,105
-Anthony Palmisano,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,936,813,-124
+Anthony Palmisano,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,577,690,113
+Anthony Palmisano,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,936,858,-78
 Anthony Palmisano,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,335,198,-137
-Anthony Palmisano,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,336,325,-11
-Anthony Palmisano,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,400,288,-112
-Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,515,373,-142
-Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1056,1109,53
-Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,503,631,128
-Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1199,1086,-114
+Anthony Palmisano,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,336,329,-7
+Anthony Palmisano,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,400,300,-100
+Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,515,381,-134
+Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1056,1118,62
+Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,503,644,141
+Anthony Palmisano,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1199,1125,-75
 Anthony Palmisano,Amplify: Sapporo,Sapporo,Sapporo,106,162,56
 Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,43,8,-35
-Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,112,110,-2
+Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,112,112,0
 Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,2,8,6
-Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,887,915,28
-Anthony Palmisano,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,191,126,-64
-Anthony Palmisano,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,209,188,-21
-Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2051,1633,-418
-Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,11304,9206,-2098
-Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,16332,13427,-2904
-Anthony Palmisano,Qualifier: Heineken USA,Heineken USA,Heineken USA,2985,2209,-776
-Anthony Palmisano,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,8419,7894,-525
-Anthony Palmisano,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,9731,8881,-850
+Anthony Palmisano,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,887,940,53
+Anthony Palmisano,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,191,127,-63
+Anthony Palmisano,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,209,193,-16
+Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2051,1675,-376
+Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,11304,9400,-1904
+Anthony Palmisano,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,16332,13643,-2689
+Anthony Palmisano,Qualifier: Heineken USA,Heineken USA,Heineken USA,2985,2256,-729
+Anthony Palmisano,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,8419,7976,-443
+Anthony Palmisano,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,9731,9041,-690
 Anthony Palmisano,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,630,458,-171
-Anthony Palmisano,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,4038,2711,-1327
-Anthony Palmisano,Qualifier: White Claw,Mark Anthony,White Claw,7406,6197,-1209
-Anthony Palmisano,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4420,3793,-627
-Brian Sengebush,Amplify: Cape May,Cape May,Cape May,277,286,10
+Anthony Palmisano,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,4038,2798,-1240
+Anthony Palmisano,Qualifier: White Claw,Mark Anthony,White Claw,7406,6313,-1093
+Anthony Palmisano,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4420,3861,-559
+Brian Sengebush,Amplify: Cape May,Cape May,Cape May,277,299,22
 Brian Sengebush,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,25,19,-6
 Brian Sengebush,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,13,3,-10
-Brian Sengebush,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,416,485,69
-Brian Sengebush,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,31,47,17
+Brian Sengebush,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,416,494,78
+Brian Sengebush,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,31,51,20
 Brian Sengebush,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,72,128,56
-Brian Sengebush,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,438,319,-119
-Brian Sengebush,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,137,116,-21
+Brian Sengebush,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,438,343,-94
+Brian Sengebush,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,137,120,-17
 Brian Sengebush,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,59,50,-9
 Brian Sengebush,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,233,166,-67
 Brian Sengebush,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,24,34,10
 Brian Sengebush,Amplify: Sapporo,Sapporo,Sapporo,17,23,6
 Brian Sengebush,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,7,,-7
-Brian Sengebush,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,104,57,-47
-Brian Sengebush,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,228,230,2
+Brian Sengebush,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,104,64,-40
+Brian Sengebush,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,228,240,12
 Brian Sengebush,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,41,21,-20
 Brian Sengebush,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,60,49,-11
-Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1761,1337,-423
-Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,5116,4199,-916
-Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,9447,7380,-2067
-Brian Sengebush,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,3811,3098,-713
-Brian Sengebush,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,1643,1442,-202
+Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1761,1382,-378
+Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,5116,4278,-837
+Brian Sengebush,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,9447,7556,-1890
+Brian Sengebush,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,3811,3148,-663
+Brian Sengebush,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,1643,1475,-168
 Brian Sengebush,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,193,63,-131
-Brian Sengebush,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1383,912,-471
-Brian Sengebush,Qualifier: White Claw,Mark Anthony,White Claw,1634,1055,-579
-Brian Sengebush,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4960,3758,-1202
+Brian Sengebush,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1383,920,-463
+Brian Sengebush,Qualifier: White Claw,Mark Anthony,White Claw,1634,1071,-563
+Brian Sengebush,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4960,3912,-1048
 Chris Payton,Amplify: Cape May,Cape May,Cape May,247,213,-33
-Chris Payton,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1005,1122,117
+Chris Payton,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1005,1148,144
 Chris Payton,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,224,227,2
 Chris Payton,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,,16,16
-Chris Payton,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1308,1166,-142
+Chris Payton,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1308,1187,-121
 Chris Payton,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,94,111,17
-Chris Payton,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1033,957,-76
-Chris Payton,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,334,291,-43
+Chris Payton,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1033,968,-66
+Chris Payton,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,334,297,-37
 Chris Payton,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,40,67,27
-Chris Payton,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,560,550,-10
-Chris Payton,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,772,539,-233
+Chris Payton,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,560,553,-7
+Chris Payton,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,772,538,-234
 Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,837,637,-200
-Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1716,1836,120
-Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,824,948,124
-Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1055,910,-145
+Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1716,1892,176
+Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,824,968,144
+Chris Payton,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1055,917,-138
 Chris Payton,Amplify: Sapporo,Sapporo,Sapporo,762,846,84
 Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,4,7,3
-Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,54,33,-21
+Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,54,34,-20
 Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,10,23,13
-Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,764,804,40
+Chris Payton,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,764,840,76
 Chris Payton,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,113,62,-51
 Chris Payton,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,22,25,3
-Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1525,1247,-278
-Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12733,9499,-3234
-Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4677,4093,-584
-Chris Payton,Qualifier: Heineken USA,Heineken USA,Heineken USA,9290,8220,-1070
-Chris Payton,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,25560,21906,-3654
-Chris Payton,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,19685,17735,-1950
+Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1525,1269,-256
+Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12733,9887,-2845
+Chris Payton,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4677,4223,-455
+Chris Payton,Qualifier: Heineken USA,Heineken USA,Heineken USA,9290,8227,-1063
+Chris Payton,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,25560,22204,-3357
+Chris Payton,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,19685,17962,-1723
 Chris Payton,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,539,435,-104
-Chris Payton,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1897,1422,-474
-Chris Payton,Qualifier: White Claw,Mark Anthony,White Claw,4785,3745,-1040
-Chris Payton,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1783,1663,-121
+Chris Payton,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1897,1444,-452
+Chris Payton,Qualifier: White Claw,Mark Anthony,White Claw,4785,3817,-968
+Chris Payton,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1783,1718,-65
 Dan Lagala,Amplify: Cape May,Cape May,Cape May,147,77,-70
 Dan Lagala,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,162,169,7
 Dan Lagala,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,54,29,-24
-Dan Lagala,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,777,785,8
+Dan Lagala,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,777,807,30
 Dan Lagala,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,79,65,-15
-Dan Lagala,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,788,816,28
-Dan Lagala,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,308,249,-59
+Dan Lagala,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,788,831,43
+Dan Lagala,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,308,257,-51
 Dan Lagala,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,,16,16
-Dan Lagala,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,387,391,5
+Dan Lagala,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,387,393,7
 Dan Lagala,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,245,216,-29
-Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,313,231,-82
-Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2985,3290,305
-Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,185,309,123
-Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,229,232,3
-Dan Lagala,Amplify: Sapporo,Sapporo,Sapporo,2081,2603,522
+Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,313,232,-81
+Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2985,3343,358
+Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,185,311,125
+Dan Lagala,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,229,237,8
+Dan Lagala,Amplify: Sapporo,Sapporo,Sapporo,2081,2621,540
 Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,1,10,9
-Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,49,38,-11
-Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,1365,1277,-88
-Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,517,428,-88
+Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,49,40,-9
+Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,1365,1278,-87
+Dan Lagala,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,517,442,-75
 Dan Lagala,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,39,42,3
 Dan Lagala,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,9,12,3
-Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1598,1359,-240
-Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13085,10781,-2303
-Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2010,1915,-95
-Dan Lagala,Qualifier: Heineken USA,Heineken USA,Heineken USA,11040,8189,-2851
-Dan Lagala,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,24372,19036,-5337
-Dan Lagala,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,22417,20473,-1944
-Dan Lagala,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,261,163,-98
-Dan Lagala,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,625,397,-228
-Dan Lagala,Qualifier: White Claw,Mark Anthony,White Claw,2950,2329,-621
-Dan Lagala,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1220,964,-257
-Dave Ehlers,Amplify: Cape May,Cape May,Cape May,462,543,81
-Dave Ehlers,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1373,1543,170
-Dave Ehlers,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,373,342,-31
+Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1598,1385,-214
+Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13085,10897,-2187
+Dan Lagala,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2010,1969,-41
+Dan Lagala,Qualifier: Heineken USA,Heineken USA,Heineken USA,11040,8222,-2818
+Dan Lagala,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,24372,19276,-5096
+Dan Lagala,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,22417,20749,-1668
+Dan Lagala,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,261,166,-95
+Dan Lagala,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,625,410,-215
+Dan Lagala,Qualifier: White Claw,Mark Anthony,White Claw,2950,2356,-595
+Dan Lagala,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1220,987,-233
+Dave Ehlers,Amplify: Cape May,Cape May,Cape May,462,549,87
+Dave Ehlers,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1373,1553,181
+Dave Ehlers,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,373,344,-29
 Dave Ehlers,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,9,7,-3
-Dave Ehlers,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2121,2082,-39
+Dave Ehlers,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2121,2092,-29
 Dave Ehlers,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,33,35,2
-Dave Ehlers,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1215,1480,265
-Dave Ehlers,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,624,674,50
+Dave Ehlers,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1215,1485,269
+Dave Ehlers,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,624,676,52
 Dave Ehlers,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,161,128,-33
-Dave Ehlers,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,719,625,-94
-Dave Ehlers,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,773,656,-117
-Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1169,1261,92
-Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,3087,3333,246
-Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,1115,1309,194
-Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1714,1770,56
-Dave Ehlers,Amplify: Sapporo,Sapporo,Sapporo,1419,1593,173
+Dave Ehlers,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,719,637,-82
+Dave Ehlers,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,773,661,-112
+Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1169,1266,97
+Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,3087,3349,262
+Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,1115,1316,201
+Dave Ehlers,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1714,1785,71
+Dave Ehlers,Amplify: Sapporo,Sapporo,Sapporo,1419,1595,176
 Dave Ehlers,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,36,26,-10
 Dave Ehlers,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,167,154,-12
 Dave Ehlers,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,47,132,85
-Dave Ehlers,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1018,1083,65
+Dave Ehlers,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1018,1097,79
 Dave Ehlers,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,217,173,-44
 Dave Ehlers,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,260,296,36
-Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2531,2138,-393
-Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13586,12198,-1388
-Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,7226,6679,-547
-Dave Ehlers,Qualifier: Heineken USA,Heineken USA,Heineken USA,12384,11005,-1378
-Dave Ehlers,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,32998,30329,-2669
-Dave Ehlers,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,24789,23199,-1590
-Dave Ehlers,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,841,905,64
-Dave Ehlers,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2539,1958,-581
-Dave Ehlers,Qualifier: White Claw,Mark Anthony,White Claw,6394,6380,-15
-Dave Ehlers,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2411,2575,164
+Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2531,2145,-386
+Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13586,12296,-1290
+Dave Ehlers,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,7226,6681,-545
+Dave Ehlers,Qualifier: Heineken USA,Heineken USA,Heineken USA,12384,11164,-1220
+Dave Ehlers,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,32998,30606,-2393
+Dave Ehlers,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,24789,23440,-1349
+Dave Ehlers,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,841,909,68
+Dave Ehlers,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2539,1963,-576
+Dave Ehlers,Qualifier: White Claw,Mark Anthony,White Claw,6394,6387,-7
+Dave Ehlers,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2411,2578,167
 Derrick Laws,Amplify: Cape May,Cape May,Cape May,117,113,-4
 Derrick Laws,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,770,847,77
 Derrick Laws,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,136,97,-39
 Derrick Laws,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,268,391,123
-Derrick Laws,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1888,1681,-206
+Derrick Laws,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1888,1683,-204
 Derrick Laws,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,5,24,19
 Derrick Laws,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,464,491,27
 Derrick Laws,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,126,84,-42
 Derrick Laws,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,65,33,-32
 Derrick Laws,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,494,408,-86
-Derrick Laws,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1583,1174,-409
+Derrick Laws,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1583,1184,-399
 Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,550,552,2
-Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2407,2245,-162
-Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,543,552,9
-Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1223,1361,138
+Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2407,2238,-169
+Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,543,555,12
+Derrick Laws,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1223,1370,147
 Derrick Laws,Amplify: Sapporo,Sapporo,Sapporo,418,291,-127
 Derrick Laws,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,,1,1
 Derrick Laws,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,5,4,-1
@@ -231,11 +231,11 @@ Derrick Laws,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgi
 Derrick Laws,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,65,38,-27
 Derrick Laws,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,19,7,-12
 Derrick Laws,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,729,595,-135
-Derrick Laws,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,16713,14010,-2703
+Derrick Laws,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,16713,14011,-2702
 Derrick Laws,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,1946,1579,-367
-Derrick Laws,Qualifier: Heineken USA,Heineken USA,Heineken USA,13154,9774,-3379
+Derrick Laws,Qualifier: Heineken USA,Heineken USA,Heineken USA,13154,9865,-3289
 Derrick Laws,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,43496,36856,-6640
-Derrick Laws,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,26363,22383,-3980
+Derrick Laws,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,26363,22440,-3923
 Derrick Laws,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,209,183,-26
 Derrick Laws,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,743,567,-176
 Derrick Laws,Qualifier: White Claw,Mark Anthony,White Claw,1801,1800,-1
@@ -250,7 +250,7 @@ Dylan Rubino,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Bran
 Dylan Rubino,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,7,5,-2
 Dylan Rubino,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,,7,7
 Dylan Rubino,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,9,6,-3
-Dylan Rubino,Amplify: Sapporo,Sapporo,Sapporo,3432,3650,217
+Dylan Rubino,Amplify: Sapporo,Sapporo,Sapporo,3432,3748,315
 Dylan Rubino,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,5,11,6
 Dylan Rubino,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,3,4,1
 Dylan Rubino,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,10,7,-2
@@ -265,7 +265,7 @@ Dylan Rubino,Qualifier: White Claw,Mark Anthony,White Claw,25,20,-5
 Dylan Rubino,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,24,6,-18
 Hakan Sadik,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,11,,-11
 Hakan Sadik,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,3,,-3
-Hakan Sadik,Amplify: Sapporo,Sapporo,Sapporo,917,843,-74
+Hakan Sadik,Amplify: Sapporo,Sapporo,Sapporo,917,847,-70
 Hakan Sadik,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,2,,-2
 Hakan Sadik,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,3,,-3
 Hakan Sadik,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1,,-1
@@ -281,7 +281,7 @@ Jaime Colonna,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light
 Jaime Colonna,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,12,5,-7
 Jaime Colonna,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,12,9,-3
 Jaime Colonna,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,3,1,-2
-Jaime Colonna,Amplify: Sapporo,Sapporo,Sapporo,1580,1526,-54
+Jaime Colonna,Amplify: Sapporo,Sapporo,Sapporo,1580,1555,-25
 Jaime Colonna,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,5,8,3
 Jaime Colonna,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,1,,-1
 Jaime Colonna,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,28,16,-12
@@ -296,109 +296,109 @@ Jaime Colonna,Qualifier: White Claw,Mark Anthony,White Claw,90,63,-27
 Jaime Colonna,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,64,8,-56
 Javier Melo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,603,842,239
 Javier Melo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,43,40,-3
-Javier Melo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,143,171,28
-Javier Melo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2096,2075,-21
+Javier Melo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,143,176,34
+Javier Melo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2096,2095,-1
 Javier Melo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,,1,1
 Javier Melo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,56,76,20
 Javier Melo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,17,2,-14
 Javier Melo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,,30,30
 Javier Melo,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,469,552,83
-Javier Melo,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,739,666,-73
-Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,277,275,-2
+Javier Melo,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,739,676,-63
+Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,277,277,0
 Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,3102,3005,-97
-Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,975,1361,386
-Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,3216,3032,-184
+Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,975,1366,391
+Javier Melo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,3216,3037,-179
 Javier Melo,Amplify: Sapporo,Sapporo,Sapporo,205,237,31
 Javier Melo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,45,25,-20
 Javier Melo,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,3,,-3
-Javier Melo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,325,311,-13
-Javier Melo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,14909,12650,-2258
+Javier Melo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,325,312,-12
+Javier Melo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,14909,12819,-2090
 Javier Melo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,636,491,-144
-Javier Melo,Qualifier: Heineken USA,Heineken USA,Heineken USA,10573,9160,-1414
-Javier Melo,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,38291,35200,-3091
-Javier Melo,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,33298,30117,-3181
+Javier Melo,Qualifier: Heineken USA,Heineken USA,Heineken USA,10573,9165,-1408
+Javier Melo,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,38291,35591,-2700
+Javier Melo,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,33298,30286,-3012
 Javier Melo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,-2,,2
 Javier Melo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,429,305,-124
-Javier Melo,Qualifier: White Claw,Mark Anthony,White Claw,1116,1104,-12
+Javier Melo,Qualifier: White Claw,Mark Anthony,White Claw,1116,1111,-5
 Javier Melo,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,148,142,-6
-Jayson Romine,Amplify: Cape May,Cape May,Cape May,1211,1110,-101
-Jayson Romine,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,837,670,-167
-Jayson Romine,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,632,497,-134
+Jayson Romine,Amplify: Cape May,Cape May,Cape May,1211,1121,-89
+Jayson Romine,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,837,680,-157
+Jayson Romine,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,632,505,-126
 Jayson Romine,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,4,,-4
-Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,4024,4009,-15
-Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,147,127,-19
-Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,680,548,-132
-Jayson Romine,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1276,1026,-249
+Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,4024,4020,-4
+Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,147,130,-16
+Jayson Romine,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,680,568,-111
+Jayson Romine,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1276,1050,-225
 Jayson Romine,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,646,396,-250
-Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1112,1044,-68
-Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,873,989,116
+Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1112,1050,-62
+Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,873,992,119
 Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,290,360,70
 Jayson Romine,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,263,206,-57
-Jayson Romine,Amplify: Sapporo,Sapporo,Sapporo,182,189,8
+Jayson Romine,Amplify: Sapporo,Sapporo,Sapporo,182,194,13
 Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,36,16,-20
-Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,265,234,-30
+Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,265,235,-29
 Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,2,1,-1
-Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1306,1359,53
-Jayson Romine,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,769,630,-139
-Jayson Romine,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,710,632,-78
-Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2086,1644,-443
-Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,15712,12423,-3290
-Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,20583,17186,-3397
-Jayson Romine,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,10040,8791,-1249
-Jayson Romine,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,8734,8850,117
-Jayson Romine,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1864,1306,-558
-Jayson Romine,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,5858,4035,-1824
-Jayson Romine,Qualifier: White Claw,Mark Anthony,White Claw,11796,8890,-2905
-Jayson Romine,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,7208,5887,-1321
-Jim Heaney,Amplify: Cape May,Cape May,Cape May,417,385,-32
-Jim Heaney,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1074,1088,14
-Jim Heaney,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,130,105,-25
+Jayson Romine,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1306,1375,69
+Jayson Romine,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,769,632,-136
+Jayson Romine,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,710,643,-67
+Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2086,1700,-386
+Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,15712,12450,-3262
+Jayson Romine,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,20583,17340,-3243
+Jayson Romine,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,10040,8865,-1175
+Jayson Romine,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,8734,8906,173
+Jayson Romine,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1864,1311,-553
+Jayson Romine,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,5858,4159,-1700
+Jayson Romine,Qualifier: White Claw,Mark Anthony,White Claw,11796,9068,-2727
+Jayson Romine,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,7208,5930,-1278
+Jim Heaney,Amplify: Cape May,Cape May,Cape May,417,395,-22
+Jim Heaney,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,1074,1101,26
+Jim Heaney,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,130,106,-24
 Jim Heaney,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,5,5,0
-Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2076,1563,-512
-Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,41,45,4
-Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1038,907,-131
-Jim Heaney,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,318,290,-28
+Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2076,1597,-478
+Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,41,47,7
+Jim Heaney,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1038,931,-107
+Jim Heaney,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,318,302,-15
 Jim Heaney,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,103,77,-26
-Jim Heaney,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,454,445,-9
+Jim Heaney,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,454,452,-2
 Jim Heaney,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,750,508,-242
-Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,810,673,-137
-Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1923,2149,226
-Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,853,893,40
-Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1464,1583,119
-Jim Heaney,Amplify: Sapporo,Sapporo,Sapporo,409,470,61
+Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,810,687,-123
+Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1923,2176,253
+Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,853,900,47
+Jim Heaney,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1464,1596,132
+Jim Heaney,Amplify: Sapporo,Sapporo,Sapporo,409,474,66
 Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,22,7,-15
-Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,66,50,-16
+Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,66,51,-15
 Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,17,17,0
-Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,653,706,53
-Jim Heaney,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,58,45,-13
-Jim Heaney,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,98,62,-36
-Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1433,1171,-262
-Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13808,9804,-4004
-Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,7105,4913,-2192
-Jim Heaney,Qualifier: Heineken USA,Heineken USA,Heineken USA,8243,6258,-1985
-Jim Heaney,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,20142,16529,-3613
-Jim Heaney,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,19039,16850,-2189
-Jim Heaney,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,662,493,-170
-Jim Heaney,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2387,1654,-733
-Jim Heaney,Qualifier: White Claw,Mark Anthony,White Claw,5194,4112,-1082
-Jim Heaney,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2077,1620,-457
+Jim Heaney,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,653,719,66
+Jim Heaney,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,58,48,-10
+Jim Heaney,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,98,63,-35
+Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1433,1191,-241
+Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,13808,9895,-3913
+Jim Heaney,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,7105,4980,-2125
+Jim Heaney,Qualifier: Heineken USA,Heineken USA,Heineken USA,8243,6315,-1928
+Jim Heaney,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,20142,16920,-3222
+Jim Heaney,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,19039,17116,-1923
+Jim Heaney,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,662,495,-168
+Jim Heaney,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2387,1684,-703
+Jim Heaney,Qualifier: White Claw,Mark Anthony,White Claw,5194,4174,-1020
+Jim Heaney,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2077,1640,-437
 John Neukum,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,943,838,-105
 John Neukum,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1078,1077,-1
-John Neukum,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1604,1319,-285
+John Neukum,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1604,1386,-218
 John Neukum,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,375,135,-240
 John Neukum,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,588,672,84
 John Neukum,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,168,336,168
 John Neukum,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,987,1826,839
 John Neukum,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,567,794,227
 John Neukum,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,2261,3279,1018
-John Neukum,Amplify: Sapporo,Sapporo,Sapporo,3523,3895,372
+John Neukum,Amplify: Sapporo,Sapporo,Sapporo,3523,4095,572
 John Neukum,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,60,40,-20
 John Neukum,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2415,919,-1496
-John Neukum,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,14278,10409,-3869
-John Neukum,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4473,3955,-517
-John Neukum,Qualifier: Heineken USA,Heineken USA,Heineken USA,16065,11879,-4185
-John Neukum,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,57715,47493,-10222
-John Neukum,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,58570,50431,-8138
+John Neukum,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,14278,10521,-3757
+John Neukum,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4473,4293,-180
+John Neukum,Qualifier: Heineken USA,Heineken USA,Heineken USA,16065,12023,-4041
+John Neukum,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,57715,48503,-9212
+John Neukum,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,58570,51397,-7172
 John Neukum,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,800,481,-319
 John Neukum,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,550,300,-250
 John Neukum,Qualifier: White Claw,Mark Anthony,White Claw,5148,2769,-2379
@@ -416,7 +416,7 @@ John O'Donoghue,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation B
 John O'Donoghue,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,9,18,9
 John O'Donoghue,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,1,42,41
 John O'Donoghue,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1,23,22
-John O'Donoghue,Amplify: Sapporo,Sapporo,Sapporo,1004,796,-207
+John O'Donoghue,Amplify: Sapporo,Sapporo,Sapporo,1004,824,-180
 John O'Donoghue,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,1,1,0
 John O'Donoghue,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1,,-1
 John O'Donoghue,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1,15,14
@@ -428,312 +428,312 @@ John O'Donoghue,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,13
 John O'Donoghue,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,5,12,7
 John O'Donoghue,Qualifier: White Claw,Mark Anthony,White Claw,16,26,10
 John O'Donoghue,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,11,4,-7
-Klejdi Lamo,Amplify: Cape May,Cape May,Cape May,1198,1180,-17
+Klejdi Lamo,Amplify: Cape May,Cape May,Cape May,1198,1188,-9
 Klejdi Lamo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,617,639,22
-Klejdi Lamo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,462,372,-90
+Klejdi Lamo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,462,376,-86
 Klejdi Lamo,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,,4,4
-Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2628,2462,-166
-Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,44,77,32
-Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,697,638,-59
-Klejdi Lamo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1333,1325,-8
-Klejdi Lamo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,441,366,-75
+Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2628,2469,-159
+Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,44,80,36
+Klejdi Lamo,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,697,640,-57
+Klejdi Lamo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1333,1327,-6
+Klejdi Lamo,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,441,371,-70
 Klejdi Lamo,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,15,22,7
 Klejdi Lamo,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,15,11,-4
-Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,982,941,-41
-Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1919,1931,12
-Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,459,475,16
-Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,595,696,101
-Klejdi Lamo,Amplify: Sapporo,Sapporo,Sapporo,227,382,155
-Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,67,45,-22
+Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,982,945,-37
+Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1919,1968,49
+Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,459,487,28
+Klejdi Lamo,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,595,706,111
+Klejdi Lamo,Amplify: Sapporo,Sapporo,Sapporo,227,393,166
+Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,67,47,-20
 Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,133,119,-14
 Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,22,26,4
-Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1118,1072,-46
-Klejdi Lamo,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,489,400,-90
+Klejdi Lamo,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1118,1080,-38
+Klejdi Lamo,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,489,403,-86
 Klejdi Lamo,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,275,299,24
-Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2210,1755,-455
-Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12823,10559,-2264
-Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,15185,12448,-2737
+Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2210,1760,-449
+Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12823,10664,-2159
+Klejdi Lamo,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,15185,12562,-2623
 Klejdi Lamo,Qualifier: Heineken USA,Heineken USA,Heineken USA,202,45,-157
-Klejdi Lamo,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13842,11920,-1922
-Klejdi Lamo,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,11681,10620,-1061
-Klejdi Lamo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1598,952,-646
-Klejdi Lamo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,3583,2596,-987
-Klejdi Lamo,Qualifier: White Claw,Mark Anthony,White Claw,9390,8460,-930
-Klejdi Lamo,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4145,3569,-577
+Klejdi Lamo,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13842,12019,-1823
+Klejdi Lamo,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,11681,10864,-818
+Klejdi Lamo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1598,957,-641
+Klejdi Lamo,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,3583,2614,-969
+Klejdi Lamo,Qualifier: White Claw,Mark Anthony,White Claw,9390,8533,-856
+Klejdi Lamo,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,4145,3614,-531
 Matt Powierski,Amplify: Cape May,Cape May,Cape May,209,213,4
-Matt Powierski,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,833,940,107
-Matt Powierski,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,196,145,-50
+Matt Powierski,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,833,968,135
+Matt Powierski,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,196,151,-44
 Matt Powierski,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,23,45,23
-Matt Powierski,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1701,1617,-83
+Matt Powierski,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1701,1712,11
 Matt Powierski,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,36,37,1
-Matt Powierski,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,998,1002,4
+Matt Powierski,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,998,1007,9
 Matt Powierski,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,214,200,-13
 Matt Powierski,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,45,42,-3
-Matt Powierski,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,570,451,-119
-Matt Powierski,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,374,351,-23
+Matt Powierski,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,570,454,-116
+Matt Powierski,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,374,357,-17
 Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,619,596,-24
-Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1608,1883,275
-Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,651,769,118
-Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1035,1037,1
-Matt Powierski,Amplify: Sapporo,Sapporo,Sapporo,643,760,117
+Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1608,1896,288
+Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,651,793,142
+Matt Powierski,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,1035,1054,18
+Matt Powierski,Amplify: Sapporo,Sapporo,Sapporo,643,765,122
 Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,3,0,-3
-Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,33,27,-6
+Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,33,28,-5
 Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,47,47,0
-Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,482,531,48
+Matt Powierski,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,482,551,68
 Matt Powierski,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,134,105,-30
 Matt Powierski,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,31,37,6
-Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1326,1130,-196
-Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,11633,9328,-2305
-Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4041,3967,-74
-Matt Powierski,Qualifier: Heineken USA,Heineken USA,Heineken USA,7327,5764,-1564
-Matt Powierski,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,18754,16933,-1821
-Matt Powierski,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,14021,12817,-1204
+Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1326,1149,-178
+Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,11633,9610,-2023
+Matt Powierski,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,4041,4036,-5
+Matt Powierski,Qualifier: Heineken USA,Heineken USA,Heineken USA,7327,5807,-1520
+Matt Powierski,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,18754,17120,-1634
+Matt Powierski,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,14021,13076,-945
 Matt Powierski,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,560,354,-206
-Matt Powierski,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1827,1489,-337
-Matt Powierski,Qualifier: White Claw,Mark Anthony,White Claw,4472,3966,-506
-Matt Powierski,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1296,1288,-9
+Matt Powierski,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1827,1533,-294
+Matt Powierski,Qualifier: White Claw,Mark Anthony,White Claw,4472,4047,-425
+Matt Powierski,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1296,1299,3
 Michael Harboy,Amplify: Cape May,Cape May,Cape May,115,113,-2
 Michael Harboy,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,125,91,-34
 Michael Harboy,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,38,47,8
-Michael Harboy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,314,378,64
+Michael Harboy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,314,379,65
 Michael Harboy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,14,11,-3
-Michael Harboy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,216,232,16
+Michael Harboy,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,216,250,35
 Michael Harboy,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,99,123,24
 Michael Harboy,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,51,17,-34
 Michael Harboy,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,77,76,-1
 Michael Harboy,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,137,28,-109
 Michael Harboy,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,210,199,-11
-Michael Harboy,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,290,249,-41
+Michael Harboy,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,290,252,-38
 Michael Harboy,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,89,97,8
 Michael Harboy,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,160,124,-36
-Michael Harboy,Amplify: Sapporo,Sapporo,Sapporo,422,522,100
+Michael Harboy,Amplify: Sapporo,Sapporo,Sapporo,422,576,154
 Michael Harboy,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,-1,,1
 Michael Harboy,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,14,6,-8
 Michael Harboy,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,5,5,0
 Michael Harboy,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,216,142,-74
 Michael Harboy,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,26,32,6
 Michael Harboy,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,44,20,-24
-Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,303,237,-65
-Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,2426,1847,-580
-Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2241,1504,-737
+Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,303,239,-64
+Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,2426,1866,-561
+Michael Harboy,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2241,1512,-730
 Michael Harboy,Qualifier: Heineken USA,Heineken USA,Heineken USA,910,572,-338
-Michael Harboy,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,2212,1880,-332
-Michael Harboy,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2231,1993,-239
+Michael Harboy,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,2212,1930,-282
+Michael Harboy,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2231,1994,-238
 Michael Harboy,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,109,46,-63
 Michael Harboy,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,612,356,-256
-Michael Harboy,Qualifier: White Claw,Mark Anthony,White Claw,1505,1101,-405
-Michael Harboy,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,486,439,-47
-Mike Ast,Amplify: Cape May,Cape May,Cape May,1034,924,-109
+Michael Harboy,Qualifier: White Claw,Mark Anthony,White Claw,1505,1105,-401
+Michael Harboy,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,486,444,-42
+Mike Ast,Amplify: Cape May,Cape May,Cape May,1034,936,-98
 Mike Ast,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,567,474,-93
-Mike Ast,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,147,118,-30
+Mike Ast,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,147,124,-24
 Mike Ast,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,17,4,-13
-Mike Ast,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2060,1783,-278
+Mike Ast,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2060,1803,-258
 Mike Ast,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,129,185,57
-Mike Ast,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1309,1342,33
-Mike Ast,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,848,868,20
-Mike Ast,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,257,171,-86
-Mike Ast,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,662,557,-106
-Mike Ast,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,850,487,-363
-Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,832,721,-111
-Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,783,1092,309
-Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,590,723,133
-Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,292,272,-20
-Mike Ast,Amplify: Sapporo,Sapporo,Sapporo,454,419,-34
+Mike Ast,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1309,1380,71
+Mike Ast,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,848,909,61
+Mike Ast,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,257,181,-76
+Mike Ast,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,662,572,-91
+Mike Ast,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,850,494,-356
+Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,832,724,-108
+Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,783,1101,318
+Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,590,742,152
+Mike Ast,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,292,274,-18
+Mike Ast,Amplify: Sapporo,Sapporo,Sapporo,454,422,-32
 Mike Ast,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,34,27,-7
 Mike Ast,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,136,94,-42
 Mike Ast,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,2,16,14
-Mike Ast,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,669,654,-15
+Mike Ast,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,669,662,-7
 Mike Ast,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,160,103,-57
 Mike Ast,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,143,114,-29
 Mike Ast,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1937,1654,-283
-Mike Ast,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12575,10097,-2478
-Mike Ast,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,10816,9104,-1711
-Mike Ast,Qualifier: Heineken USA,Heineken USA,Heineken USA,4994,4034,-960
-Mike Ast,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13633,11711,-1922
-Mike Ast,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,10957,10215,-742
+Mike Ast,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12575,10155,-2420
+Mike Ast,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,10816,9189,-1627
+Mike Ast,Qualifier: Heineken USA,Heineken USA,Heineken USA,4994,4123,-871
+Mike Ast,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13633,11756,-1877
+Mike Ast,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,10957,10345,-612
 Mike Ast,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,667,335,-332
-Mike Ast,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2088,1238,-850
-Mike Ast,Qualifier: White Claw,Mark Anthony,White Claw,6286,5576,-710
-Mike Ast,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,3177,2730,-447
+Mike Ast,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2088,1293,-795
+Mike Ast,Qualifier: White Claw,Mark Anthony,White Claw,6286,5647,-639
+Mike Ast,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,3177,2747,-430
 Nick Melissari,Amplify: Cape May,Cape May,Cape May,244,287,43
 Nick Melissari,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,3,4,1
 Nick Melissari,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,7,,-7
 Nick Melissari,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,4,3,-1
 Nick Melissari,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,157,134,-23
-Nick Melissari,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,112,141,29
-Nick Melissari,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,769,1100,331
-Nick Melissari,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,640,547,-93
+Nick Melissari,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,112,151,38
+Nick Melissari,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,769,1131,362
+Nick Melissari,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,640,550,-91
 Nick Melissari,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,40,131,91
-Nick Melissari,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,293,302,8
-Nick Melissari,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,103,112,9
+Nick Melissari,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,293,304,10
+Nick Melissari,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,103,113,10
 Nick Melissari,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,209,195,-14
-Nick Melissari,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,24,18,-6
+Nick Melissari,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,24,19,-5
 Nick Melissari,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,218,386,167
 Nick Melissari,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,56,72,16
-Nick Melissari,Amplify: Sapporo,Sapporo,Sapporo,142,232,90
+Nick Melissari,Amplify: Sapporo,Sapporo,Sapporo,142,244,103
 Nick Melissari,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,160,128,-32
 Nick Melissari,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,54,35,-19
 Nick Melissari,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,316,480,165
 Nick Melissari,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,18,10,-8
 Nick Melissari,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,1,2,1
-Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,3378,2980,-397
-Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,4829,3965,-864
-Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,5922,5288,-634
-Nick Melissari,Qualifier: Heineken USA,Heineken USA,Heineken USA,2493,2446,-48
-Nick Melissari,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,4916,5462,545
-Nick Melissari,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2825,3513,688
+Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,3378,3028,-350
+Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,4829,3994,-835
+Nick Melissari,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,5922,5365,-557
+Nick Melissari,Qualifier: Heineken USA,Heineken USA,Heineken USA,2493,2473,-21
+Nick Melissari,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,4916,5509,592
+Nick Melissari,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2825,3536,712
 Nick Melissari,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,45,71,27
-Nick Melissari,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,202,187,-15
-Nick Melissari,Qualifier: White Claw,Mark Anthony,White Claw,665,469,-195
-Nick Melissari,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2666,2534,-132
+Nick Melissari,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,202,202,0
+Nick Melissari,Qualifier: White Claw,Mark Anthony,White Claw,665,483,-181
+Nick Melissari,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2666,2572,-94
 Pablo Lopez,Amplify: Cape May,Cape May,Cape May,7,,-7
-Pablo Lopez,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,414,530,116
+Pablo Lopez,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,414,546,132
 Pablo Lopez,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,52,40,-12
 Pablo Lopez,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,284,337,53
-Pablo Lopez,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1139,1137,-2
+Pablo Lopez,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,1139,1154,15
 Pablo Lopez,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,1,1,0
 Pablo Lopez,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,61,57,-4
 Pablo Lopez,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,17,15,-2
-Pablo Lopez,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,385,570,185
-Pablo Lopez,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1031,755,-276
+Pablo Lopez,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,385,580,195
+Pablo Lopez,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1031,780,-251
 Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,165,119,-46
-Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2440,2413,-27
-Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,735,763,28
-Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,2491,2148,-343
-Pablo Lopez,Amplify: Sapporo,Sapporo,Sapporo,103,170,67
+Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2440,2430,-10
+Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,735,791,56
+Pablo Lopez,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,2491,2179,-312
+Pablo Lopez,Amplify: Sapporo,Sapporo,Sapporo,103,179,76
 Pablo Lopez,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,3,,-3
 Pablo Lopez,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,,4,4
 Pablo Lopez,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,54,55,1
 Pablo Lopez,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,7,14,7
-Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,306,319,13
-Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12403,9671,-2732
-Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,578,438,-140
-Pablo Lopez,Qualifier: Heineken USA,Heineken USA,Heineken USA,8733,6664,-2069
-Pablo Lopez,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,28310,26016,-2294
-Pablo Lopez,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,22393,18955,-3437
+Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,306,322,15
+Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,12403,9768,-2635
+Pablo Lopez,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,578,445,-134
+Pablo Lopez,Qualifier: Heineken USA,Heineken USA,Heineken USA,8733,6703,-2030
+Pablo Lopez,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,28310,26141,-2169
+Pablo Lopez,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,22393,19221,-3172
 Pablo Lopez,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,33,14,-19
 Pablo Lopez,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,316,224,-92
-Pablo Lopez,Qualifier: White Claw,Mark Anthony,White Claw,896,836,-60
+Pablo Lopez,Qualifier: White Claw,Mark Anthony,White Claw,896,844,-52
 Pablo Lopez,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,139,165,26
 Paul Mclaughlin,Amplify: Cape May,Cape May,Cape May,119,205,86
 Paul Mclaughlin,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,2,3,1
 Paul Mclaughlin,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,88,57,-30
 Paul Mclaughlin,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,78,80,2
-Paul Mclaughlin,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1086,982,-103
-Paul Mclaughlin,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,392,382,-10
+Paul Mclaughlin,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1086,990,-96
+Paul Mclaughlin,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,392,391,-1
 Paul Mclaughlin,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,6,18,12
-Paul Mclaughlin,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,234,191,-44
-Paul Mclaughlin,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,211,154,-57
+Paul Mclaughlin,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,234,192,-42
+Paul Mclaughlin,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,211,155,-56
 Paul Mclaughlin,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,13,18,5
 Paul Mclaughlin,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,3,4,1
 Paul Mclaughlin,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,133,177,44
 Paul Mclaughlin,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,59,71,12
 Paul Mclaughlin,Amplify: Sapporo,Sapporo,Sapporo,45,49,4
 Paul Mclaughlin,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,0,,0
-Paul Mclaughlin,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,113,102,-11
+Paul Mclaughlin,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,113,103,-10
 Paul Mclaughlin,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,26,2,-24
 Paul Mclaughlin,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,265,219,-46
 Paul Mclaughlin,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,3,0,-3
-Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1244,1035,-209
-Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,3679,2997,-682
-Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,3085,2590,-496
-Paul Mclaughlin,Qualifier: Heineken USA,Heineken USA,Heineken USA,1593,1241,-353
-Paul Mclaughlin,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,3752,3339,-413
-Paul Mclaughlin,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2225,2851,626
+Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,1244,1058,-186
+Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,3679,3027,-652
+Paul Mclaughlin,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,3085,2627,-459
+Paul Mclaughlin,Qualifier: Heineken USA,Heineken USA,Heineken USA,1593,1261,-333
+Paul Mclaughlin,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,3752,3367,-385
+Paul Mclaughlin,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,2225,2855,630
 Paul Mclaughlin,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,27,14,-13
 Paul Mclaughlin,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,109,98,-11
-Paul Mclaughlin,Qualifier: White Claw,Mark Anthony,White Claw,430,311,-119
-Paul Mclaughlin,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1616,1364,-252
-Phil Ernst,Amplify: Cape May,Cape May,Cape May,635,500,-134
-Phil Ernst,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,795,731,-63
-Phil Ernst,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,184,142,-42
+Paul Mclaughlin,Qualifier: White Claw,Mark Anthony,White Claw,430,313,-117
+Paul Mclaughlin,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1616,1381,-235
+Phil Ernst,Amplify: Cape May,Cape May,Cape May,635,519,-115
+Phil Ernst,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,795,756,-39
+Phil Ernst,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,184,143,-41
 Phil Ernst,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,16,5,-11
 Phil Ernst,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,2177,2053,-123
-Phil Ernst,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,244,295,51
-Phil Ernst,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1625,1387,-238
-Phil Ernst,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,705,610,-96
+Phil Ernst,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,244,302,59
+Phil Ernst,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,1625,1408,-217
+Phil Ernst,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,705,635,-70
 Phil Ernst,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,128,69,-59
-Phil Ernst,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,731,607,-124
-Phil Ernst,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1273,1053,-220
-Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1217,903,-314
-Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1081,1259,178
-Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,433,418,-15
-Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,539,376,-163
-Phil Ernst,Amplify: Sapporo,Sapporo,Sapporo,769,816,46
+Phil Ernst,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,731,616,-115
+Phil Ernst,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,1273,1074,-199
+Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1217,913,-304
+Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,1081,1283,202
+Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,433,431,-2
+Phil Ernst,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,539,386,-153
+Phil Ernst,Amplify: Sapporo,Sapporo,Sapporo,769,827,58
 Phil Ernst,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,38,26,-12
 Phil Ernst,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,134,94,-40
 Phil Ernst,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,21,34,13
-Phil Ernst,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,775,786,11
-Phil Ernst,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,380,202,-179
-Phil Ernst,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,212,145,-67
-Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2387,1859,-528
-Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,15426,12408,-3018
-Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,8892,6936,-1956
-Phil Ernst,Qualifier: Heineken USA,Heineken USA,Heineken USA,9253,7787,-1466
-Phil Ernst,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,22828,19991,-2837
-Phil Ernst,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,15244,13116,-2128
+Phil Ernst,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,775,806,31
+Phil Ernst,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,380,204,-177
+Phil Ernst,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,212,153,-59
+Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2387,1862,-524
+Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,15426,12415,-3011
+Phil Ernst,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,8892,6968,-1924
+Phil Ernst,Qualifier: Heineken USA,Heineken USA,Heineken USA,9253,7999,-1254
+Phil Ernst,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,22828,20025,-2804
+Phil Ernst,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,15244,13169,-2075
 Phil Ernst,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1572,909,-663
-Phil Ernst,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1987,1289,-698
-Phil Ernst,Qualifier: White Claw,Mark Anthony,White Claw,6017,4127,-1890
-Phil Ernst,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2743,2463,-280
+Phil Ernst,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,1987,1337,-651
+Phil Ernst,Qualifier: White Claw,Mark Anthony,White Claw,6017,4307,-1710
+Phil Ernst,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,2743,2473,-270
 Robin Feldman,Amplify: Cape May,Cape May,Cape May,62,92,30
 Robin Feldman,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,122,88,-34
 Robin Feldman,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,4,14,10
-Robin Feldman,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,416,433,17
-Robin Feldman,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,312,341,28
+Robin Feldman,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,416,441,25
+Robin Feldman,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,312,346,34
 Robin Feldman,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,1,,-1
-Robin Feldman,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,89,109,21
-Robin Feldman,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,60,46,-14
+Robin Feldman,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,89,112,23
+Robin Feldman,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,60,50,-10
 Robin Feldman,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,26,7,-19
 Robin Feldman,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,6,,-6
 Robin Feldman,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,4,10,6
 Robin Feldman,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,2,8,6
-Robin Feldman,Amplify: Sapporo,Sapporo,Sapporo,190,135,-55
+Robin Feldman,Amplify: Sapporo,Sapporo,Sapporo,190,144,-46
 Robin Feldman,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,1,,-1
 Robin Feldman,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,54,73,19
 Robin Feldman,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,21,199,178
 Robin Feldman,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,77,29,-48
 Robin Feldman,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,54,44,-10
 Robin Feldman,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,9,10,1
-Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,555,482,-74
-Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,2868,2365,-503
-Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2870,2677,-193
-Robin Feldman,Qualifier: Heineken USA,Heineken USA,Heineken USA,608,537,-71
-Robin Feldman,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,1547,1308,-239
-Robin Feldman,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,501,625,124
+Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,555,493,-62
+Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,2868,2380,-488
+Robin Feldman,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,2870,2706,-164
+Robin Feldman,Qualifier: Heineken USA,Heineken USA,Heineken USA,608,547,-61
+Robin Feldman,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,1547,1321,-226
+Robin Feldman,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,501,643,143
 Robin Feldman,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,32,30,-3
-Robin Feldman,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,130,125,-5
-Robin Feldman,Qualifier: White Claw,Mark Anthony,White Claw,419,426,7
-Robin Feldman,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1091,930,-161
-Shane Barreca,Amplify: Cape May,Cape May,Cape May,971,854,-117
+Robin Feldman,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,130,127,-3
+Robin Feldman,Qualifier: White Claw,Mark Anthony,White Claw,419,439,20
+Robin Feldman,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,1091,944,-147
+Shane Barreca,Amplify: Cape May,Cape May,Cape May,971,864,-107
 Shane Barreca,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Cayman Jack,487,431,-56
-Shane Barreca,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,268,265,-3
+Shane Barreca,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mike's Harder,268,276,8
 Shane Barreca,Amplify: Cayman Jack / Mike's Harder / MXD,Mark Anthony,Mxd Cocktails,,-1,-1
-Shane Barreca,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,3452,3418,-34
+Shane Barreca,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Coors,3452,3473,20
 Shane Barreca,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Fever Tree,241,344,103
-Shane Barreca,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,2339,2249,-90
-Shane Barreca,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1286,1056,-230
-Shane Barreca,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,195,177,-18
-Shane Barreca,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,784,629,-155
-Shane Barreca,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,843,667,-176
-Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1059,945,-114
-Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2071,3049,978
-Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,1367,1505,139
-Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,891,702,-189
-Shane Barreca,Amplify: Sapporo,Sapporo,Sapporo,991,940,-51
+Shane Barreca,Amplify: Coors / Peroni / Fever Tree,MolsonCoors Beverage Company,Peroni,2339,2296,-43
+Shane Barreca,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Beer,1286,1106,-180
+Shane Barreca,Amplify: Dogfish Head,Boston Beer Company,Dogfish Head Spirits,195,192,-3
+Shane Barreca,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken 0.0,784,649,-135
+Shane Barreca,Amplify: Heineken Light / Heineken 0.0,Heineken USA,Heineken Light,843,674,-169
+Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Corona Premier,1059,982,-77
+Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Modelo Chelada,2071,3071,1000
+Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Pacifico,1367,1534,167
+Shane Barreca,Amplify: Premier / Chelada / Victoria / Pacifico,Constellation Brands,Victoria,891,726,-164
+Shane Barreca,Amplify: Sapporo,Sapporo,Sapporo,991,975,-16
 Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,Bell's,Bell's,68,71,3
-Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,306,183,-123
+Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Fat Tire Family,306,187,-119
 Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Kirin Ichiban,80,99,19
-Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1334,1159,-175
-Shane Barreca,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,385,252,-133
+Shane Barreca,Amplify: Voodoo Family / Bell's / Kirin / Fat Tire Family,New Belgium Brewing Company,Voodoo Family,1334,1182,-152
+Shane Barreca,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Flight,385,264,-121
 Shane Barreca,Amplify: Yuengling Light / Yuengling Flight,DG Yuengling Inc,Yuengling Light Lager,226,164,-62
-Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2696,2201,-495
-Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,18260,14771,-3489
-Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,15847,12647,-3199
-Shane Barreca,Qualifier: Heineken USA,Heineken USA,Heineken USA,6531,4924,-1606
-Shane Barreca,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13113,11947,-1166
-Shane Barreca,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,16214,14985,-1229
+Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Blue Moon,2696,2224,-472
+Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Coors Light,18260,14977,-3283
+Shane Barreca,Qualifier: Coors Light/Miller Lite/Blue Moon,MolsonCoors Beverage Company,Lite,15847,12724,-3123
+Shane Barreca,Qualifier: Heineken USA,Heineken USA,Heineken USA,6531,5085,-1445
+Shane Barreca,Qualifier: Modelo/Corona,Constellation Brands,Corona Extra,13113,12133,-980
+Shane Barreca,Qualifier: Modelo/Corona,Constellation Brands,Modelo Especial,16214,15203,-1011
 Shane Barreca,Qualifier: Truly / Twisted Tea,Boston Beer Company,Truly,1171,692,-479
-Shane Barreca,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2704,1529,-1175
-Shane Barreca,Qualifier: White Claw,Mark Anthony,White Claw,8648,6983,-1665
-Shane Barreca,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,3709,2992,-717
+Shane Barreca,Qualifier: Truly / Twisted Tea,Boston Beer Company,Twisted Tea,2704,1546,-1158
+Shane Barreca,Qualifier: White Claw,Mark Anthony,White Claw,8648,7041,-1608
+Shane Barreca,Qualifier: Yuengling Lager,DG Yuengling Inc,Yuengling Lager,3709,3039,-670
