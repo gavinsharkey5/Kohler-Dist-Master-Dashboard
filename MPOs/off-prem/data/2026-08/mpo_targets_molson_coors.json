@@ -13339,15 +13339,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44052,
-    "CUSTOMER_NAME": "Minit Mart_2",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49066,
     "CUSTOMER_NAME": "Mitsuwa Market (A)",
     "AREA": "Bergen",
@@ -14754,15 +14745,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49056,
     "CUSTOMER_NAME": "Hmart Fresh (P)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44052,
-    "CUSTOMER_NAME": "Minit Mart_2",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
@@ -39484,15 +39466,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 25008,
-    "CUSTOMER_NAME": "Clifton Commons S & W",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7148",
-    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 25023,
     "CUSTOMER_NAME": "Clifton Wine & Liquor",
     "AREA": "Passaic",
@@ -43867,15 +43840,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190802,
-    "CUSTOMER_NAME": "Sam's Liq Wine (P)",
-    "AREA": "Morris 1",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191713,
     "CUSTOMER_NAME": "Stanhope Liquors",
     "AREA": "Sussex",
@@ -54208,15 +54172,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84002,
-    "CUSTOMER_NAME": "GREEN WAY MARKETS",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7144",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 87004,
     "CUSTOMER_NAME": "Garbo's Ital Deli&Liq(Z)",
     "AREA": "Bergen",
@@ -55666,15 +55621,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20068,
-    "CUSTOMER_NAME": "Florida Drugs (A)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 15040,
     "CUSTOMER_NAME": "Legacy Bar & Liquor",
     "AREA": "Passaic",
@@ -57516,15 +57462,6 @@
     "AREA": "Passaic",
     "PRODUCT_NUM": "118",
     "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27005,
-    "CUSTOMER_NAME": "#1 Liqrs (P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
     "BRAND_FAMILY": "Coors"
   },
   {
