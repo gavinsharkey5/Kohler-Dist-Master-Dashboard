@@ -988,6 +988,24 @@ The specific rules he set:
      one big count-labeled button ("Your New Accounts [6]"), and the
      earn-head stacks vertically under 820px so rate notes never clip.
 
+  8. Navigation scroll (2026-08-20, per Gavin -- reported from phone/
+     iPad): tapping a program tile used to run
+     window.scrollTo({top:0}), which lands ABOVE the crumb, hero
+     banner, page header, and the whole "Start Here" rep picker. On an
+     iPhone <main> starts ~1800px down the page, so a rep had to
+     scroll back down roughly two screens to reach the leaderboard
+     they'd just asked for. Program tile clicks and the "< All
+     programs" back button now call scrollToContent(), which scrolls to
+     the top of <main> instead, so the program (or the program grid on
+     the way back) starts at the top of the viewport. Verified in
+     Chromium at 390x844 and 820x1180.
+
+     Deliberately NOT changed: the Home/Reset button still goes to the
+     true document top (that's what Home means), and the rep-name chips
+     still do too -- the repbar sits directly above <main>, and nobody
+     has complained about that one. If the same annoyance comes up for
+     rep chips, point them at scrollToContent().
+
 Month tabs (2026-08-18, per Gavin): the header's redundant eyebrow
 line was removed and replaced by a month tab under the "Incentive
 Tracker" title -- currently a single active "August 2026" tab. Gavin

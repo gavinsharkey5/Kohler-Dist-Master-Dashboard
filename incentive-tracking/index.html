@@ -67860,6 +67860,20 @@ function renderRep(){
   document.getElementById('stickyHomeBtn').addEventListener('click', resetToHome);
 }
 
+// Mobile/iPad: the crumb, hero banner, page header, and "Start Here" rep
+// picker stacked above <main> are tall enough that a plain scroll-to-top
+// buries whatever the rep just tapped -- they land on the banner and have to
+// scroll back down to reach any data (reported by Gavin, 2026-08-20). Scroll
+// to the TOP OF <main> instead, so the program detail (or the program grid on
+// the way back) starts at the top of the viewport. Home/Reset deliberately
+// still goes to the true document top -- that's the point of Home.
+function scrollToContent(){
+  const main = document.getElementById('main');
+  if(!main){ window.scrollTo({top:0,behavior:'smooth'}); return; }
+  const top = main.getBoundingClientRect().top + window.pageYOffset - 8;
+  window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+}
+
 function renderProgramTile(entry){
   return `<button class="prog-card prog-tile prog-tile-link" data-program="${entry.key}">
     <div class="prog-head">
@@ -67897,7 +67911,7 @@ function renderOverview(){
   main.querySelectorAll('.prog-tile-link').forEach(b=>b.addEventListener('click', ()=>{
     activeProgram = b.dataset.program;
     renderMain();
-    window.scrollTo({top:0,behavior:'smooth'});
+    scrollToContent();
   }));
 }
 
@@ -68329,7 +68343,7 @@ function renderProgramDetail(key){
   document.getElementById('backbtn').addEventListener('click', ()=>{
     activeProgram = null;
     renderMain();
-    window.scrollTo({top:0,behavior:'smooth'});
+    scrollToContent();
   });
   main.querySelectorAll('.board-row').forEach(b=>b.addEventListener('click', ()=>{
     const panel = document.getElementById(b.dataset.target);
