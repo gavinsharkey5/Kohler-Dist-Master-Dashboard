@@ -140,6 +140,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 40017,
+    "CUSTOMER_NAME": "Essex St Liquor and Wine",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 5.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -200,6 +210,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 1021,
+    "CUSTOMER_NAME": "M & M Discount Liq",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -248,6 +268,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 10.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 44052,
+    "CUSTOMER_NAME": "Minit Mart_2",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -398,6 +428,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 19.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 88005,
+    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",

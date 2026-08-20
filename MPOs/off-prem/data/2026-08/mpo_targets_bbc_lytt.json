@@ -1189,12 +1189,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 13017,
-    "CUSTOMER_NAME": "On The Rocks",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 23003,
     "CUSTOMER_NAME": "Pete's Liquors",
     "AREA": "Passaic"
@@ -1351,6 +1345,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 191518,
+    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
+    "AREA": "Sussex"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190901,
     "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
     "AREA": "Morris 1"
@@ -1407,6 +1407,12 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191210,
     "CUSTOMER_NAME": "Milton Inn",
+    "AREA": "Morris 1"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "CUSTOMER_NUM": 190101,
+    "CUSTOMER_NAME": "Montville Wine & Spirits",
     "AREA": "Morris 1"
   },
   {

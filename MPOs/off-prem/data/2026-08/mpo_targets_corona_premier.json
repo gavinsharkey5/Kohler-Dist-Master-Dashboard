@@ -91,12 +91,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1021,
-    "CUSTOMER_NAME": "M & M Discount Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 2002,
     "CUSTOMER_NAME": "Ringwood Discount Liquors",
     "AREA": "Passaic-FF"
@@ -583,12 +577,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44052,
-    "CUSTOMER_NAME": "Minit Mart_2",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49066,
     "CUSTOMER_NAME": "Mitsuwa Market (A)",
     "AREA": "Bergen"
@@ -717,12 +705,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52025,
     "CUSTOMER_NAME": "Englewood Wine and Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40017,
-    "CUSTOMER_NAME": "Essex St Liquor and Wine",
     "AREA": "Bergen"
   },
   {
@@ -2235,12 +2217,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 87001,
     "CUSTOMER_NAME": "Uncorked Wine & Spirits (Hohokus)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 88005,
-    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "AREA": "Bergen"
   },
   {
