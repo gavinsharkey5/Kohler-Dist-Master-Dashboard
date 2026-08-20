@@ -1511,6 +1511,41 @@ def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None):
     return out
 
 
+def build_le_grand_noir():
+    """Le Grand Noir Volume Incentive (program 11 of the original deck)
+    -- went live 2026-08-20 when the first RDE file arrived (it was HELD
+    with no data since 2026-08-05). $10 per case of Le Grand Noir,
+    gated on a 70-case COMPANY-WIDE house goal (per Gavin, 2026-08-05:
+    company-wide, not per-rep). Single-period file (Cases 8/1-10/31),
+    no base period. companyCases counts EVERY row (a house gate counts
+    all sales, roster or not); byRep keeps roster reps only, with the
+    raw sale lines for the drill-down. Progress only -- whether the
+    $10/case pays retroactively or post-threshold is still an open
+    question with Gavin, and this dashboard doesn't estimate dollars
+    anyway (folder policy)."""
+    rows = read_rows("le_grand_noir.csv")
+    cases_col = "Cases   8/1/2026 - 10/31/2026"
+    by_rep = {rep: {"cases": 0.0, "lines": []} for rep in ROSTER}
+    company = 0.0
+    for row in rows:
+        cases = to_num(row[cases_col])
+        company += cases
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        d = by_rep[rep]
+        d["cases"] = round(d["cases"] + cases, 2)
+        d["lines"].append({
+            "customer": row["Customer Name"],
+            "product": row["Product Name"],
+            "date": row["Date"],
+            "cases": round(cases, 2),
+        })
+    for d in by_rep.values():
+        d["lines"].sort(key=lambda l: -l["cases"])
+    return {"byRep": by_rep, "companyCases": round(company, 2), "houseGoal": 70}
+
+
 def build_mc_retention():
     """MolsonCoors Distro Rewards -- retention phase (April deck slides
     14-15). Retain window 7/27-10/31/2026: hold each brand's distribution
@@ -2115,6 +2150,7 @@ def main():
         "mollys": build_mollys(),
         "garage_beer_summer_sequel": build_garage_beer_summer_sequel(),
         "garage_beer_president": build_garage_beer_president(),
+        "le_grand_noir": build_le_grand_noir(),
         "new_belgium_distribution": build_new_belgium_distribution(),
         "mc_retention": build_mc_retention(),
         "mabi_retention": build_mabi_retention(),
@@ -2177,6 +2213,7 @@ def main():
           f"{sum(d['rebuyCount'] for d in data['mollys']['byRep'].values())} rebuys")
     print(f"garage_beer_summer_sequel: {sum(1 for d in data['garage_beer_summer_sequel']['byRep'].values() if d['tier'])} reps in a tier")
     print(f"garage_beer_president: {data['garage_beer_president']['companyTotalThisYear']} / {data['garage_beer_president']['houseGoal']} house CE")
+    print(f"le_grand_noir: {data['le_grand_noir']['companyCases']} / {data['le_grand_noir']['houseGoal']} house cases")
     print(f"new_belgium_distribution: {sum(d['pushVolumeCE'] for d in data['new_belgium_distribution']['byRep'].values()):.0f} total Aug push-volume CE")
     mc = data["mc_retention"]["byRep"]
     mc_with_goals = sum(1 for d in mc.values() if d["goalsTotal"] > 0)

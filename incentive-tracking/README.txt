@@ -28,9 +28,15 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
-STATUS (2026-08-05): 9 of 11 original-deck programs built and live --
-everything except Le Grand Noir (program 11, no data yet -- held until
-a file exists). All three planned batches delivered.
+STATUS (2026-08-20): ALL 11 original-deck programs built and live --
+Le Grand Noir (program 11) went live 2026-08-20 when its first RDE
+file arrived (data/le_grand_noir.csv, single-period Cases 8/1-10/31;
+build_le_grand_noir() in generate.py, cardLeGrandNoir() in index.html,
+grouped under New Incentives). Tracked as a 70-case company-wide gate
+plus per-rep case counts with a sales drill; whether the $10/case pays
+retroactively or only post-threshold is STILL OPEN with Gavin -- it
+doesn't matter for progress display, only if payout estimates are ever
+added.
 
 CONTINUING PROGRAMS (slides 13-25, added 2026-08-1x): Gavin asked to
 add 8 more programs from the deck's "continuing programs" section,
@@ -289,7 +295,7 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
         IPA, Southern Tier Nitro Warlock, Southern Tier Pumqueen
         Cider, Woodchuck Spiced Apple, Whole Hog Pumpkin Ale
 
-11. LE GRAND NOIR VOLUME INCENTIVE -- Aug, Sept, Oct [HELD -- no data yet]
+11. LE GRAND NOIR VOLUME INCENTIVE -- Aug, Sept, Oct [BUILT 2026-08-20]
     - Qualifier: 70 cases House Goal
     - Payout: $10 per case of Le Grand Noir
     Per Gavin, 2026-08-05: the 70-case goal is a COMPANY-WIDE gate,
