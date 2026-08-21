@@ -7,6 +7,23 @@ their accounts sorted by tap count, expand an account to see its brands,
 county, most recent visit date, and most recent photo. A District Manager
 filter narrows the whole page to one district's reps at once.
 
+Per-rep account sort (added 2026-08-21, per Gavin: "similar to how we have
+it for display auction tracker at the rep level"): an expanded rep's own
+account list carries a small Sort toggle -- "Taps down" (the long-standing
+default, biggest book first) or "Date down" (most recent visit first) --
+with a one-line note under it saying what the current order means, the same
+control the display auction tracker puts inside an expanded person
+(DISPLAY_SORTERS there, REP_ACCT_SORTERS here). The chosen mode is held per
+rep in the `repSort` map, NOT in `state`: it's a per-card view preference,
+so two open reps can be sorted differently and it doesn't count as an
+active filter. Clicking a sort button goes through the normal render()
+path like every other toggle in this page -- render() already restores page
+scroll, each rep's own account-list scroll, and open rep/account state, so
+nothing collapses. (The auction tracker instead re-renders just that one
+person's list, because its open state lives in DOM <details> elements
+rather than in JS.) Reset clears repSort along with the open-card maps.
+Ties break to the other field, then account name, so the order is stable.
+
 A second tab, "By Brand," regroups the same tap-level records by brand
 family instead of rep: a ranked leaderboard by total taps, expand a brand
 to see its distribution by County/Area, Rep, and City (each with the same
