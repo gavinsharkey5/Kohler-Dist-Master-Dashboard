@@ -335,6 +335,12 @@ Files:
                  mediator workbook when refreshing.
   generate.py    Rebuilds the embedded data in index.html from the
                  workbook above. Requires openpyxl (pip install openpyxl).
+  build_mediator.py / audit_engine.py
+                 Repair tooling for a delivered workbook whose Import
+                 Template is short or whose "#" column has duplicates --
+                 see "Repairing a half-finished audit matrix" below. Not
+                 part of a normal refresh; only needed when the audit
+                 matrix arrives mid-process.
   index.html     The dashboard itself (data is embedded in the
                  <script id="tap-data"> tag).
 
@@ -346,6 +352,59 @@ To refresh with a new export:
      save it over on_premise_draft_package.csv (same columns).
   3. Run: python3 generate.py
   4. Commit and push.
+
+  If the delivered workbook's "iSellBeer Import Template" sheet is short
+  (fewer data rows than the raw survey sheet) or its "#" column has
+  duplicates, run build_mediator.py FIRST -- see "Repairing a
+  half-finished audit matrix" below. generate.py joins the two sheets on
+  "#" into a dict and skips raw rows with no template match, so both
+  defects lose taps SILENTLY: duplicates overwrite each other, and
+  unmatched rows just vanish. Always compare generate.py's printed tap
+  count against the previous refresh; it should only go up.
+
+Repairing a half-finished audit matrix (added 2026-08-21):
+the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
+arrived mid-process, with two defects that generate.py cannot survive:
+  - Sheet9 carried all 5,581 surveyed taps (5,342 prior rows plus 239 new
+    ones from 8/19-8/20, none removed), but its "#" column restarted at 1
+    for the appended block -- 196 duplicate join keys.
+  - "iSellBeer Import Template", the sheet holding the audit verdict, was
+    populated for only 82 of those 5,581 rows. The P:Y formulas were
+    present but their A:N inputs were never pasted in, so 5,499 taps had
+    no Corrected Distributor at all.
+Run as-is, generate.py would have published a dashboard with a handful of
+taps instead of 6,262 -- and printed no error while doing it.
+  build_mediator.py   Renumbers "#" 1..N in the sheet's delivered order and
+                      repastes every raw row into the Import Template with
+                      the audit columns re-evaluated -- i.e. the tap-audit
+                      skill's step 2, done programmatically.
+  audit_engine.py     A line-by-line Python replica of the Import
+                      Template's P:Y formulas, used by build_mediator.py.
+                      LibreOffice cannot open this workbook in this
+                      environment (it fails on the delivered file too), and
+                      openpyxl cannot hold a formula and its cached value
+                      at once, so the audit columns have to be computed
+                      rather than recalculated. It is verified against the
+                      PREVIOUS mediator, where Excel had computed those
+                      columns itself: S/T/U/V/W/X/Y match on all 5,342 rows
+                      (see its docstring for the one harmless R-column
+                      difference). Re-verify the same way after any future
+                      change to it.
+Because openpyxl drops cached values for formulas it rewrites, the two
+things generate.py reads that were formula-backed are written as VALUES in
+the committed workbook: the Import Template (A:Y) and "Master - US vs THEM"
+(A/B/F/G, which drive the brandRights payload -- verified unchanged at 297
+catalog brands / 2,258 brand-county grants). Every other sheet keeps its
+formulas and recalculates when Excel opens it. This copy is the dashboard's
+input; Kohler audits in their own workbook, so their engine is unaffected.
+The 8.21 rebuild also filled the 80 previously-blank Corrected Distributor
+cells at the source (the fill-down gap noted below), with zero verdict
+changes on any pre-existing row -- generate.py's fill_corrected() was
+already patching exactly those 80 in memory.
+One new row landed as "Review" (Danahers, Essex, George Killian's Irish
+Red -- "Unable to Determine", so it keeps iSellBeer's own THEM flag); 177
+of the 5,581 rows are Review overall, unchanged in character from prior
+refreshes.
 
 Notes:
   - "# of Taps" (not row count) is what's summed for every tally in this
