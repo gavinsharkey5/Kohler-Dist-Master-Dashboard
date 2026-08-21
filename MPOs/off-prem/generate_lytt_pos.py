@@ -34,14 +34,29 @@ Rules (confirmed with Gavin, 2026-08-19):
   - Only Lytt rows count (the exports are already Lytt-filtered at the
     source; a non-LYTT brand slipping in is warned about and dropped).
 
-Refresh: save the three new exports over the stable filenames above, run
-  python3 generate_lytt_pos.py
-then commit and push. Does NOT touch generate_2026-08.py's CSVs/outputs
-or sync_meta.json (the "Data refreshed" pill tracks the RDE sync, not
-this photo feed).
+Refresh -- the stable workbooks above are the ARCHIVE, not a scratch copy.
+Gavin pulls one week at a time (see the repo CLAUDE.md), so a fresh export
+usually covers only its own window and saving it over the stable filename
+would silently drop every earlier photo. Merge it in instead:
+
+  python3 generate_lytt_pos.py --merge-displays Report_NN.xlsx
+  python3 generate_lytt_pos.py --merge-promos Promos_Report_N.xlsx
+
+Either flag unions the incoming rows into the matching stable workbook
+(deduped, re-sorted newest-first, "#" renumbered, hyperlinks and the
+Filters tab's date span carried over) and then rebuilds the JSON as usual.
+Re-merging an export already applied is a no-op. Only save an export
+straight over a stable filename when it covers the WHOLE tracked period
+(08/01/2026 onward); PODS has no date column and is always a full snapshot,
+so it is simply overwritten. Then commit and push. Does NOT touch
+generate_2026-08.py's CSVs/outputs or sync_meta.json (the "Data refreshed"
+pill tracks the RDE sync, not this photo feed).
 """
+import copy
+import datetime
 import json
 import re
+import sys
 from pathlib import Path
 
 import openpyxl
@@ -82,6 +97,109 @@ def canon_rep(name):
     return NAME_FIXES.get(up) or ROSTER_BY_UPPER.get(up)
 
 
+def parse_dt(s):
+    return datetime.datetime.strptime(str(s).strip(), "%m/%d/%Y %I:%M %p")
+
+
+def merge_export(stable, incoming, date_col="Date/Time"):
+    """Union a PARTIAL iSellBeer photo export into its cumulative stable
+    workbook, keeping every row already published.
+
+    Gavin pulls one week at a time to keep each upload small (see the repo
+    CLAUDE.md), so an incoming export covers only its own window -- saving it
+    over the stable filename would silently drop every earlier photo. This
+    unions the two instead: the stable workbook IS the archive, so the JSON
+    stays a purely derived artifact that can always be rebuilt from it.
+
+    Rows are deduped on every field except the "#" counter (plus the photo
+    link), so re-merging an export already applied is a no-op, and an export
+    that overlaps the published window updates nothing it already has.
+    """
+    wb = openpyxl.load_workbook(stable)
+    ws = wb["Report"]
+    wb_in = openpyxl.load_workbook(incoming)
+    ws_in = wb_in["Report"]
+
+    headers = [c.value for c in ws[1]]
+    if [c.value for c in ws_in[1]] != headers:
+        raise SystemExit(f"{incoming.name} header does not match {stable.name}'s -- "
+                         f"the export format changed; reconcile by hand.")
+    idx_num = headers.index("#")
+    idx_date = headers.index(date_col)
+
+    # Style template per column, taken from the first published data row, so
+    # merged-in rows keep the export's look (notably the blue underlined
+    # Photo link cell).
+    tpl = [copy.copy(c) for c in ws[2]]
+
+    def collect(sheet):
+        out = []
+        for r in sheet.iter_rows(min_row=2):
+            if r[idx_num].value is None and r[idx_date].value is None:
+                continue
+            vals = [c.value for c in r]
+            links = {i: c.hyperlink.target for i, c in enumerate(r) if c.hyperlink}
+            out.append((vals, links))
+        return out
+
+    published = collect(ws)
+    incoming_rows = collect(ws_in)
+
+    def key(row):
+        vals, links = row
+        return tuple(v for i, v in enumerate(vals) if i != idx_num) + tuple(sorted(links.items()))
+
+    seen = {key(r) for r in published}
+    added = [r for r in incoming_rows if key(r) not in seen]
+    rows = published + added
+    rows.sort(key=lambda r: parse_dt(r[0][idx_date]), reverse=True)
+
+    print(f"Merge: {incoming.name} -> {stable.name}: {len(incoming_rows)} row(s) in, "
+          f"{len(added)} new, {len(incoming_rows)-len(added)} already published; "
+          f"{len(published)} kept -> {len(rows)} total.")
+
+    if published and added:
+        last_pub = max(parse_dt(r[0][idx_date]) for r in published).date()
+        first_new = min(parse_dt(r[0][idx_date]) for r in added).date()
+        gap = [last_pub + datetime.timedelta(days=i) for i in range(1, (first_new - last_pub).days)]
+        missed = [d for d in gap if d.weekday() < 5]
+        if missed:
+            print(f"  WARNING: no rows for {len(missed)} weekday(s) between the last published "
+                  f"row ({last_pub:%m/%d/%Y}) and this export's first new one "
+                  f"({first_new:%m/%d/%Y}): {', '.join(d.strftime('%m/%d') for d in missed)}. "
+                  f"Photos submitted then are NOT on the board and won't arrive on their own -- "
+                  f"re-pull from {missed[0]:%m/%d/%Y} if that gap wasn't just a quiet stretch.")
+
+    for i, (vals, links) in enumerate(rows, start=2):
+        for j, v in enumerate(vals):
+            c = ws.cell(row=i, column=j + 1)
+            c.value = i - 1 if j == idx_num else v
+            c._style = tpl[j]._style
+            c.hyperlink = None
+            if j in links:
+                c.hyperlink = links[j]
+    if ws.max_row > len(rows) + 1:
+        ws.delete_rows(len(rows) + 2, ws.max_row - len(rows) - 1)
+
+    # Keep the Filters tab honest: it now spans both exports' windows.
+    if "Filters" in wb.sheetnames:
+        fws = wb["Filters"]
+        spans = {}
+        for sheet in (wb["Filters"], wb_in["Filters"]) if "Filters" in wb_in.sheetnames else (wb["Filters"],):
+            for row in sheet.iter_rows(values_only=True):
+                if row and row[0] in ("Start Date", "End Date") and row[1]:
+                    spans.setdefault(row[0], []).append(
+                        datetime.datetime.strptime(str(row[1]).strip(), "%m/%d/%Y"))
+        for row in fws.iter_rows():
+            label = row[0].value
+            if label == "Start Date" and spans.get("Start Date"):
+                row[1].value = min(spans["Start Date"]).strftime("%m/%d/%Y")
+            elif label == "End Date" and spans.get("End Date"):
+                row[1].value = max(spans["End Date"]).strftime("%m/%d/%Y")
+
+    wb.save(stable)
+
+
 def header_map(ws):
     return {str(c.value).strip(): i for i, c in enumerate(ws[1]) if c.value is not None}
 
@@ -91,6 +209,16 @@ def is_lytt(brand):
 
 
 def main():
+    args = sys.argv[1:]
+    merges = {"--merge-displays": DISPLAYS_XLSX, "--merge-promos": PROMOS_XLSX}
+    while args:
+        flag = args.pop(0)
+        if flag not in merges or not args:
+            raise SystemExit("Usage: python3 generate_lytt_pos.py "
+                             "[--merge-displays Report_NN.xlsx] "
+                             "[--merge-promos Promos_Report_N.xlsx]")
+        merge_export(merges[flag], Path(args.pop(0)))
+
     rows_out = []
     skipped_names = set()
 

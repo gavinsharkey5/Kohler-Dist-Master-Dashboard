@@ -307,12 +307,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47011,
-    "CUSTOMER_NAME": "Ridgefield Deli & Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38008,
     "CUSTOMER_NAME": "Shop Rite Liq.(A)Lodi",
     "AREA": "Bergen"
@@ -2241,12 +2235,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 67005,
-    "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",
     "AREA": "Bergen"
   },
   {

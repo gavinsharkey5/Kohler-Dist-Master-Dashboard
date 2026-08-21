@@ -1,5 +1,137 @@
 [
  {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT GRAPE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KING LIQUORS",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 01:19 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT GRAPE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WHOOPEE LIQ (A)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/20/2026 12:51 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+ },
+ {
   "REP": "Pablo Lopez",
   "SOURCE": "Display",
   "CUSTOMER_NAME": "REGALADO LIQ",

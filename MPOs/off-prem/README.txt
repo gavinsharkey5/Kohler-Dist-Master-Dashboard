@@ -300,8 +300,29 @@ ONE pic ("each distinct photo", chosen over row-counting). index.html's
 buildPhotosDataset()/lineTablePhotos() render it like the display
 auction tracker: rep -> one row per photo with a View Photo link and
 every Lytt item pictured in it.
-To refresh: save the new exports over the three stable filenames, run
-python3 generate_lytt_pos.py, commit and push.
+
+To refresh (2026-08-21): those three .xlsx files are the cumulative
+ARCHIVE of this objective, not a scratch copy of the latest pull. Gavin
+pulls iSellBeer one week at a time to keep each upload small (see the repo
+CLAUDE.md), so a fresh Report_NN.xlsx normally covers only its own window
+-- Report_45.xlsx, the 2026-08-21 pull, held 12 rows dated 08/20-08/21
+against 113 already-published rows from 08/06-08/19 -- and saving it over
+lytt_pos_displays.xlsx would have silently dropped every earlier photo.
+So MERGE a partial export rather than overwriting:
+  python3 generate_lytt_pos.py --merge-displays Report_NN.xlsx
+  python3 generate_lytt_pos.py --merge-promos Promos_Report_N.xlsx
+Either flag unions the incoming rows into the matching stable workbook
+(merge_export(): deduped on every field but the "#" counter, re-sorted
+newest-first, "#" renumbered, photo hyperlinks preserved, the Filters
+tab's date span widened to cover both windows) and then rebuilds the JSON
+as usual -- so the JSON stays a purely derived artifact that can always be
+rebuilt from the workbooks. Re-merging an export already applied is a
+no-op, and it warns if a weekday falls between the last published row and
+the export's first new one, since a photo submitted in that gap is not on
+the board and won't arrive on its own. Only save an export straight over a
+stable filename when it covers the WHOLE tracked period (08/01/2026
+onward); PODS carries no date column and is always a full snapshot, so it
+is simply overwritten. Then commit and push.
 
 Normally each month's data is refreshed automatically by
 .github/workflows/snowflake-sync.yml running sync_snowflake_data.py --

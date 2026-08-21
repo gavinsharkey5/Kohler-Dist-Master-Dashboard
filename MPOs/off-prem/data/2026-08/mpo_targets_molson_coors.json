@@ -91,15 +91,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
-    "CUSTOMER_NUM": 29010,
-    "CUSTOMER_NAME": "Paradise Liquors",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "113",
-    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "CUSTOMER_NUM": 78002,
     "CUSTOMER_NAME": "Super K Food (A) Store",
     "AREA": "Bergen",
@@ -141,15 +132,6 @@
     "AREA": "Bergen",
     "PRODUCT_NUM": "127",
     "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Alisa Acciardi",
-    "CUSTOMER_NUM": 29010,
-    "CUSTOMER_NAME": "Paradise Liquors",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
     "BRAND_FAMILY": "Coors"
   },
   {
@@ -9948,15 +9930,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "124",
-    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44016,
-    "CUSTOMER_NAME": "Liquor City(A)Cliffside",
     "AREA": "Bergen",
     "PRODUCT_NUM": "124",
     "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
@@ -12972,15 +12945,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44016,
-    "CUSTOMER_NAME": "Liquor City(A)Cliffside",
     "AREA": "Bergen",
     "PRODUCT_NUM": "127",
     "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
@@ -54217,15 +54181,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17011,
-    "CUSTOMER_NAME": "Nico's Wine & Spirits",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7144",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 94008,
     "CUSTOMER_NAME": "Oakland Wine (A)",
     "AREA": "Bergen",
@@ -57621,15 +57576,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27043,
     "CUSTOMER_NAME": "Monroe Wine & Liq(P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 26014,
-    "CUSTOMER_NAME": "Regalado Liq",
     "AREA": "Passaic",
     "PRODUCT_NUM": "127",
     "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
