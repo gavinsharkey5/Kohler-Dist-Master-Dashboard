@@ -164,16 +164,16 @@
     "SUPPLIER": "Crescent Canna",
     "BRAND_FAMILY": "Crescent 9",
     "CASE_EQUIV_2025": 14,
-    "CASE_EQUIV_2026": 17,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 3
+    "CASE_EQUIV_2026": 21,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 7
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 39,
-    "CASE_EQUIV_2026": 18,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -21
+    "CASE_EQUIV_2026": 20,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -19
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -308,8 +308,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 178,
-    "CASE_EQUIV_2026": 204,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 26
+    "CASE_EQUIV_2026": 210,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 32
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
