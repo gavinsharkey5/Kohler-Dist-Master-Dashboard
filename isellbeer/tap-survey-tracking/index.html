@@ -715,7 +715,16 @@ footer{font-size:13px}
 
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function ce0(n){ return Math.round(n||0).toLocaleString(); }
-  function filtersActive(){ return !!(state.search || state.county || state.status || state.segment || state.acctFilter); }
+  // Which filters auto-expand the cards they match, as opposed to just
+  // narrowing them (was filtersActive(), narrowed 2026-08-21 per Gavin:
+  // clicking a county should leave the rep cards collapsed). A search or a
+  // target-list/KPI account filter names something specific you want to SEE --
+  // the matching brand rows, the accounts on the worklist -- so those still
+  // open every card they match. County/status/segment (and DM, which never
+  // auto-expanded) only narrow the same rep -> account -> brand tree, and
+  // blowing all of it open buried the county's own summary under hundreds of
+  // expanded accounts.
+  function autoExpands(){ return !!(state.search || state.acctFilter); }
 
   // Reps must resurvey every 60 days; flag accounts approaching or past that,
   // computed live against today's date (not baked into generate.py) so the
@@ -1726,7 +1735,7 @@ footer{font-size:13px}
   }
 
   function brandHtml(brand){
-    var isOpen = filtersActive() ? true : !!openBrands[brand.name];
+    var isOpen = autoExpands() ? true : !!openBrands[brand.name];
     var pct = function(n){ return brand.taps? Math.round(n/brand.taps*100):0; };
     var head = '<div class="rep-head" data-brand="'+esc(brand.name)+'">'+
       '<span class="rep-chev">▸</span>'+
@@ -1781,7 +1790,7 @@ footer{font-size:13px}
   }
 
   function accountHtml(rep, a){
-    var isOpen = filtersActive() ? true : !!openAccounts[a.key];
+    var isOpen = autoExpands() ? true : !!openAccounts[a.key];
     var mixHtml = '<div class="mix-bar">'+
       (a.us? '<i class="m-us" style="width:'+(a.us/a.taps*100)+'%"></i>':'')+
       (a.them? '<i class="m-them" style="width:'+(a.them/a.taps*100)+'%"></i>':'')+
@@ -1813,7 +1822,7 @@ footer{font-size:13px}
   }
 
   function repHtml(rep){
-    var isOpen = (filtersActive() || state.rep===rep.rep) ? true : !!openReps[rep.rep];
+    var isOpen = (autoExpands() || state.rep===rep.rep) ? true : !!openReps[rep.rep];
     var pct = function(n){ return rep.taps? Math.round(n/rep.taps*100):0; };
     var repRefreshBadge = rep.overdueCount ? '<span class="refresh-badge overdue" title="Accounts past their 60-day resurvey window">'+rep.overdueCount+' overdue</span>'
       : rep.soonCount ? '<span class="refresh-badge soon" title="Accounts approaching their 60-day resurvey window">'+rep.soonCount+' due soon</span>' : '';
@@ -1899,7 +1908,7 @@ footer{font-size:13px}
     var cards = order.map(function(rep){
       var list = groups[rep];
       var nTop = list.filter(function(a){ return a.top; }).length;
-      var isOpen = (filtersActive() || state.rep) ? true : !!openMich[rep];
+      var isOpen = (autoExpands() || state.rep) ? true : !!openMich[rep];
       var headHtml = '<div class="rep-head" data-mbrep="'+esc(rep)+'">'+
         '<span class="rep-chev">▸</span>'+
         '<div class="rep-info"><div class="rep-name">'+esc(rep)+'</div>'+

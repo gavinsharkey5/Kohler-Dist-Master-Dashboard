@@ -7,6 +7,21 @@ their accounts sorted by tap count, expand an account to see its brands,
 county, most recent visit date, and most recent photo. A District Manager
 filter narrows the whole page to one district's reps at once.
 
+Which filters auto-expand (narrowed 2026-08-21, per Gavin: "make the rep
+accounts collapsed when i click on the counties"): only SEARCH and the
+target-list/KPI account filter (state.acctFilter) open the cards they match
+-- autoExpands() in index.html. Both name something specific you want to
+look at (the matching brand rows inside each account; the accounts on a
+worklist), so opening them is the point. County, status, and segment -- and
+DM, which never auto-expanded -- only narrow the same rep -> account ->
+brand tree, and expanding all of it buried the county's own hero/fast-facts
+summary under hundreds of expanded account cards. They now filter the cards
+and leave them closed, so a county click reads as "here are the 6 reps and
+112 accounts in Passaic" and you open the one you want. Selecting a rep
+still force-opens that rep's card (rep mode), unchanged. This replaced the
+older filtersActive(), which lumped all five together; that function is
+gone rather than left unused, so don't reintroduce a call to it.
+
 Per-rep account sort (added 2026-08-21, per Gavin: "similar to how we have
 it for display auction tracker at the rep level"): an expanded rep's own
 account list carries a small Sort toggle -- "Taps down" (the long-standing
@@ -192,8 +207,9 @@ and renderers throughout):
   - Account-filter banner: whenever a target list or KPI drill filters
     the account list, a sticky "📋 Showing N accounts · <criteria> ·
     ✕ Clear" banner renders above the tabs so the rep always knows what
-    they're looking at. state.acctFilter also counts as an active
-    filter, so matched reps/accounts auto-expand like a search does.
+    they're looking at. state.acctFilter is one of the two filters that
+    auto-expand matched reps/accounts, alongside search -- see
+    "Which filters auto-expand" below.
   - "Tap an insight -> see the accounts": every account-based KPI drill
     panel now has a "📋 Show in list" button that hands its rows to the
     same account-filter mechanism (the drill tables themselves are
