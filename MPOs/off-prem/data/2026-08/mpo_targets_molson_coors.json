@@ -11341,15 +11341,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43013,
-    "CUSTOMER_NAME": "Buy Rite Of Fairview",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "121",
-    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44014,
     "CUSTOMER_NAME": "Campbell's Wines & Liquor",
     "AREA": "Bergen",
@@ -22710,15 +22701,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21050,
     "CUSTOMER_NAME": "Quis Queya Liquor(P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "121",
-    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20080,
-    "CUSTOMER_NAME": "Raphael & Angel Liq (A)",
     "AREA": "Passaic",
     "PRODUCT_NUM": "121",
     "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
@@ -33175,15 +33157,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230913,
-    "CUSTOMER_NAME": "Wine Grand (Franklin)",
-    "AREA": "Sussex",
-    "PRODUCT_NUM": "112",
-    "PRODUCT_NAME": "Coors Banquet 4/6/12 oz Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230440,
     "CUSTOMER_NAME": "Brix - Wine, Spirits, Beer (Fredon)",
     "AREA": "Sussex",
@@ -34077,15 +34050,6 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230438,
     "CUSTOMER_NAME": "Weiss Super Market 147 Franklin",
-    "AREA": "Sussex",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230913,
-    "CUSTOMER_NAME": "Wine Grand (Franklin)",
     "AREA": "Sussex",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
@@ -49699,15 +49663,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 42011,
-    "CUSTOMER_NAME": "Buzzzrite Liquors",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7148",
-    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)",
     "AREA": "Bergen",
@@ -52336,15 +52291,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17011,
-    "CUSTOMER_NAME": "Nico's Wine & Spirits",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "120",
-    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 94008,
     "CUSTOMER_NAME": "Oakland Wine (A)",
     "AREA": "Bergen",
@@ -54382,15 +54328,6 @@
     "CUSTOMER_NUM": 93006,
     "CUSTOMER_NAME": "Mahwah Wine & Liquor (A)",
     "AREA": "Bergen",
-    "PRODUCT_NUM": "7148",
-    "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 17011,
-    "CUSTOMER_NAME": "Nico's Wine & Spirits",
-    "AREA": "Passaic",
     "PRODUCT_NUM": "7148",
     "PRODUCT_NAME": "Peroni 6/4/16 oz Can",
     "BRAND_FAMILY": "Peroni"
@@ -57907,15 +57844,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21032,
-    "CUSTOMER_NAME": "Carisma Liq & Groc (P)",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20051,
     "CUSTOMER_NAME": "Costambar Bar & Liquor Corp.",
     "AREA": "Passaic",
@@ -58125,15 +58053,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20022,
     "CUSTOMER_NAME": "Caraballo's",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21032,
-    "CUSTOMER_NAME": "Carisma Liq & Groc (P)",
     "AREA": "Passaic",
     "PRODUCT_NUM": "7157",
     "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
@@ -58773,15 +58692,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20022,
     "CUSTOMER_NAME": "Caraballo's",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21032,
-    "CUSTOMER_NAME": "Carisma Liq & Groc (P)",
     "AREA": "Passaic",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
