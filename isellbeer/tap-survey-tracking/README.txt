@@ -395,7 +395,24 @@ To refresh with a new export:
   unmatched rows just vanish. Always compare generate.py's printed tap
   count against the previous refresh; it should only go up.
 
-Repairing a half-finished audit matrix (added 2026-08-21):
+Repairing a half-finished audit matrix -- NOT a one-off; it has now
+arrived this way twice running, so treat build_mediator.py as a normal
+step of the refresh and check for these defects EVERY time:
+  8.20.26  Sheet9 5,581 rows with 196 duplicate "#"; Import Template
+           populated for 82 of them.
+  8.21.26  ("vF1") Sheet9 5,666 rows with 196 duplicate "#" (the "#"
+           restarts at 1 for the appended block again); Import Template
+           populated for just 85 rows. Run as-is, generate.py would have
+           published 85 taps instead of 6,379 and printed no error.
+           Repaired with build_mediator.py exactly as below -- audit
+           results came out OK 5,479 / Review 177 / MISMATCH 10 -- and
+           the SAME repaired workbook was used for both dashboards
+           (saved as this folder's Mediator and as
+           ../executive-overview/iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx),
+           since the exec page joins the same two sheets on "#" and its
+           fill_corrected() only patches blank verdicts, not missing rows.
+
+Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
 arrived mid-process, with two defects that generate.py cannot survive:
   - Sheet9 carried all 5,581 surveyed taps (5,342 prior rows plus 239 new
