@@ -132,23 +132,35 @@ exactly the customer's first qualifying row and 0 on every other row
 for that customer+key, so a repeat purchase never double-counts.
 
 See generate_2026-08.py's classify_dual_period() -- it's scoped by the
-`brand_key` argument, and the two objectives INTENTIONALLY use
-different granularity:
+`brand_key` argument. As of 2026-08-24 BOTH objectives key on Product
+Num, i.e. per SKU:
   Molson Coors    Product Num (fixed to product-level 2026-08-05 per
                   Kohler's manager) -- a second, different Peroni SKU at
                   an account already carrying one Peroni SKU counts as a
                   new placement.
-  Wine & Spirits  Brand Family -- an account that already carried, say,
-                  Leyenda 1925 Blanco before the window does NOT generate
-                  a second new placement by adding Leyenda 1925 Reposado
-                  in August. This was briefly switched to Product Num on
-                  2026-08-12 to match Molson Coors, then REVERTED at the
-                  user's request on 2026-08-17: Wine & Spirits is meant
-                  to track at the brand-family level. Don't "fix" it to
-                  Product Num again by analogy with Molson Coors.
-Wine & Spirits' Brand Family column therefore does double duty: it
-drives the new-vs-existing classification AND splits the three
-sub-targets (Le Grand Noir/Leyenda 1925/Green River) apart in the UI.
+  Wine & Spirits  Product Num as of 2026-08-24, per Gavin: "if an account
+                  did not buy a product in the last 90 days from August
+                  then it counts as a new placement... we want to change
+                  this to placements." An account that already carried
+                  Leyenda 1925 Blanco DOES now generate a second new
+                  placement by adding Leyenda 1925 Reposado in August --
+                  those two count as 2, not 1.
+                  This one has flip-flopped, so check the history before
+                  touching it: Brand Family originally, Product Num on
+                  2026-08-12, back to Brand Family on 2026-08-17, and
+                  Product Num again on 2026-08-24. The last change was
+                  asked for directly and in detail (not inferred from
+                  Molson Coors), so it stands until Gavin says otherwise.
+                  Switching it moved the month from 44 to 73 new
+                  placements and took reps hitting all three sub-targets
+                  from 0 to 1.
+Wine & Spirits' Brand Family column still splits the three sub-targets
+(Le Grand Noir/Leyenda 1925/Green River) apart in the UI -- that job is
+unchanged; only the new-vs-existing classification moved to Product Num.
+The client side needed no change: buildNewAccountsDataset() already
+counts flagged ROWS (so two SKUs at one account count twice), and
+lineTableNewAccounts() already keys its drill-down on customer+product
+whenever the source carries a product column.
 
 Files:
   July 2026:

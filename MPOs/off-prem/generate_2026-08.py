@@ -167,18 +167,25 @@ The "KEY" is NOT the same granularity for both objectives:
                 any Peroni" as disqualifying, undercounting genuine new
                 SKU placements. See molson_coors_off_peroni_banquet.csv's
                 entry above and derive_brand_family().
-  Wine & Spirits  BRAND FAMILY, independently per family (Le Grand Noir,
-                Leyenda 1925, Bardstown Green River) -- confirmed with
-                Gavin (2026-08-04) that all three sub-targets are
-                required (not a combined pool of 5). This was briefly
-                switched to Product Num on 2026-08-12 to match Molson
-                Coors, then reverted at the user's request on 2026-08-17:
-                Wine & Spirits is meant to be tracked at the brand-family
-                level, so an account that already carried Leyenda 1925
-                Blanco before the window does NOT generate a second new
-                placement by adding Leyenda 1925 Reposado in August. Do
-                not "fix" this to Product Num again by analogy with
-                Molson Coors -- the two objectives intentionally differ.
+  Wine & Spirits  PRODUCT NUM as of 2026-08-24 -- both objectives now
+                classify per SKU. An account that carried Leyenda 1925
+                Blanco before the window DOES generate a second new
+                placement by adding Leyenda 1925 Reposado in August; the
+                two count as 2, not 1. Gavin's wording: "if an account
+                did not buy a product in the last 90 days from August
+                then it counts as a new placement... we want to change
+                this to placements."
+                History, so nobody flips this back on a hunch: it was
+                Brand Family originally, switched to Product Num on
+                2026-08-12, reverted to Brand Family on 2026-08-17, and
+                switched back to Product Num on 2026-08-24 -- that last
+                one asked for directly and in detail, not inferred from
+                Molson Coors, so it stands until Gavin says otherwise.
+                Brand Family still does the OTHER job here: it splits the
+                three sub-targets (Le Grand Noir / Leyenda 1925 /
+                Bardstown Green River) apart in the UI, and all three
+                sub-targets are still independently required, not a
+                combined pool of 5 (Gavin, 2026-08-04).
 
 BBC Lytt (25% of Account Base) is a per-rep VARIABLE target, not a fixed
 number: each rep's target is ceil(25% * their distinct account-base
@@ -437,8 +444,11 @@ def build_wine_spirits():
     rows = load_csv(WINE_SPIRITS_CSV)
     base_col, current_col = find_period_cols(rows[0].keys(), "Placement Count")
     cases_base_col, cases_current_col = find_period_cols(rows[0].keys(), "Cases")
+    # Keyed on Product Num, NOT Brand Family -- see the KEY note in the module
+    # docstring: each SKU an account didn't carry in the base period is its own
+    # new placement (Gavin, 2026-08-24).
     classified, new_count, total_pairs = classify_dual_period(
-        rows, brand_key=lambda r: r["Brand Family"], base_col=base_col, current_col=current_col)
+        rows, brand_key=lambda r: r["Product Num"], base_col=base_col, current_col=current_col)
     out = []
     for r, period, is_new in classified:
         if not period:
