@@ -92,6 +92,39 @@
   .photo-link:hover{background:var(--accent);color:#fff;}
   .no-photos{color:var(--text-dim);font-size:15px;padding:4px 2px;}
 
+  /* -- View mode switch: Details (original) / Photos (inline pictures) -- */
+  .mode-row{display:flex;align-items:center;gap:12px;margin:22px 0 0;flex-wrap:wrap;}
+  .mode-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--text-dim);
+    text-transform:uppercase;letter-spacing:.06em;}
+  .mode-pills{display:inline-flex;background:var(--card-alt);border:1px solid var(--border);
+    border-radius:24px;padding:4px;gap:4px;}
+  .mpill{background:transparent;border:0;color:var(--text-dim);padding:9px 20px;min-height:42px;
+    border-radius:20px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;}
+  .mpill:hover:not(.on){color:var(--text);}
+  .mpill.on{background:var(--accent);color:#fff;}
+  .mode-hint{font-size:14px;color:var(--text-mute);}
+
+  /* -- Photos mode -- */
+  .month-body.photos.open{grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:12px;}
+  .photo-card{background:var(--card-alt);border:1px solid var(--line-soft);border-radius:11px;
+    overflow:hidden;display:flex;flex-direction:column;}
+  .photo-frame{display:flex;align-items:center;justify-content:center;position:relative;
+    background:#0E0A06;aspect-ratio:3/4;overflow:hidden;text-decoration:none;}
+  .photo-frame img{width:100%;height:100%;object-fit:contain;display:block;}
+  .photo-frame .spin{position:absolute;font-size:13px;color:var(--text-mute);
+    font-family:'Space Grotesk',sans-serif;font-weight:700;}
+  .photo-card.loaded .photo-frame .spin{display:none;}
+  .photo-meta{padding:11px 13px 13px;display:flex;flex-direction:column;gap:6px;}
+  .photo-card.broken .photo-frame{aspect-ratio:auto;}
+  .photo-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    padding:18px 14px;text-align:center;font-size:14px;color:var(--text-dim);line-height:1.45;}
+  .photo-fallback .pf-open{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;
+    color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);
+    border-radius:10px;padding:10px 16px;}
+  .photo-note{background:var(--amber-soft);border:1px solid var(--amber);border-radius:11px;
+    padding:13px 15px;font-size:14.5px;color:var(--text);line-height:1.5;margin-bottom:4px;}
+  .photo-note b{color:var(--amber);}
+
   ::-webkit-scrollbar{height:8px;width:8px;}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
   html, body{overflow-x:clip;}
@@ -101,7 +134,7 @@
     .wrap{padding:0 14px;}
     .stat-tile-num{font-size:28px;}
     .acct-name{font-size:21px;}
-    .month-body.open{grid-template-columns:1fr;}
+    .month-body.open,.month-body.photos.open{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -122,6 +155,15 @@
   <div class="jump">
     <div class="jump-label">Jump to an account</div>
     <div class="jump-pills" id="jumpPills"></div>
+  </div>
+
+  <div class="mode-row">
+    <span class="mode-label">View</span>
+    <div class="mode-pills" id="modePills">
+      <button class="mpill on" data-mode="details">Details</button>
+      <button class="mpill" data-mode="photos">Photos</button>
+    </div>
+    <span class="mode-hint" id="modeHint">Month sections collapsed &middot; each photo shown as a detail tile with a link.</span>
   </div>
 
   <main id="main"></main>
@@ -4448,11 +4490,34 @@ function photoTile(p){
   </div>`;
 }
 
+/* Photos mode: the picture itself, pulled straight from the iSellBeer photo
+   URL, with the same meta underneath. If a photo can't be embedded (the
+   ep.cpgdata.com link needs an iSellBeer session, say), that tile falls back
+   to the Details-mode link rather than showing a broken image. */
+function photoCard(p){
+  return `<div class="photo-card" data-url="${esc(p.url)}">
+    <a class="photo-frame" href="${esc(p.url)}" target="_blank" rel="noopener" title="Open the full photo in iSellBeer">
+      <span class="spin">Loading…</span>
+      <img class="pimg" src="${esc(p.url)}" alt="Display photo — ${esc(p.dt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+    </a>
+    <div class="photo-meta">
+      <div class="photo-dt">${esc(p.dt)}</div>
+      <div class="photo-taker">by ${esc(p.taker)}</div>
+      ${brandLine(p.brands)}
+      ${p.cases>0?`<div class="photo-cases">${p.cases} cases on display</div>`:''}
+    </div>
+  </div>`;
+}
+
 function acctCard(a){
+  const photos = MODE === 'photos';
+  const tile = photos ? photoCard : photoTile;
+  const openCls = photos ? ' open' : '';   // Photos mode opens every month, so the
+                                           // pictures sit right under the account.
   const months = (a.byMonth||[]).map(m=>{
     const did = 'm'+(uid++);
-    return `<button class="month-toggle" data-target="${did}"><span class="chev">▶</span>${esc(m.month)}<span class="mcount">${m.photos.length} photo${m.photos.length===1?'':'s'}</span></button>
-      <div class="month-body" id="${did}">${m.photos.map(photoTile).join('')}</div>`;
+    return `<button class="month-toggle${openCls}" data-target="${did}"><span class="chev">▶</span>${esc(m.month)}<span class="mcount">${m.photos.length} photo${m.photos.length===1?'':'s'}</span></button>
+      <div class="month-body${photos?' photos':''}${openCls}" id="${did}">${m.photos.map(tile).join('')}</div>`;
   }).join('');
   return `<div class="acct-card" id="acct-${esc(a.acct)}">
     <div class="acct-head">
@@ -4468,6 +4533,71 @@ function acctCard(a){
   </div>`;
 }
 
+let MODE = 'details';
+let imgTried = 0, imgFailed = 0;
+
+const MODE_HINT = {
+  details: 'Month sections collapsed \u00b7 each photo shown as a detail tile with a link.',
+  photos:  'Every month open \u00b7 the pictures themselves, under each account. Tap one to open it full size.',
+};
+
+/* A photo that won't embed becomes a link tile, so a blocked image never
+   leaves an empty frame on the page. */
+function markBroken(img){
+  const card = img.closest('.photo-card');
+  if(!card || card.classList.contains('broken')) return;
+  card.classList.add('broken');
+  imgFailed++;
+  const frame = card.querySelector('.photo-frame');
+  if(frame){
+    frame.innerHTML = `<span class="photo-fallback">This photo can\u2019t be shown inline<span class="pf-open">Open Photo \u203a</span></span>`;
+  }
+  updateNotice();
+}
+
+function updateNotice(){
+  const el = document.getElementById('photoNotice');
+  if(!el) return;
+  if(MODE !== 'photos' || !imgFailed){ el.innerHTML = ''; return; }
+  const all = imgFailed >= imgTried;
+  el.innerHTML = `<div class="photo-note"><b>${all ? 'Photos aren\u2019t embedding.' : imgFailed + ' photo' + (imgFailed===1?'':'s') + ' couldn\u2019t be embedded.'}</b>
+    iSellBeer\u2019s photo links may require a signed-in session, so they can\u2019t always be pulled into this page.
+    ${all ? 'Every tile has' : 'Those tiles have'} fallen back to an <b>Open Photo</b> link, and Details view is unchanged.</div>`;
+}
+
+function renderMain(){
+  const main = document.getElementById('main');
+  imgTried = 0; imgFailed = 0;
+  main.innerHTML = `<div id="photoNotice"></div>` +
+    (DATA.accounts||[]).map(acctCard).join('');
+  main.querySelectorAll('img.pimg').forEach(img=>{
+    imgTried++;
+    img.addEventListener('error', ()=>markBroken(img));
+    img.addEventListener('load', ()=>{
+      // A zero-size decode means the URL answered with something that isn't an image.
+      if(!img.naturalWidth){ markBroken(img); return; }
+      img.closest('.photo-card')?.classList.add('loaded');
+    });
+    if(img.complete && !img.naturalWidth) markBroken(img);
+  });
+  updateNotice();
+}
+
+function setMode(mode){
+  if(mode === MODE) return;
+  // Keep the account the reader is looking at in view across the switch --
+  // the two modes are wildly different heights.
+  const anchor = [...document.querySelectorAll('.acct-card')]
+    .find(c => c.getBoundingClientRect().bottom > 80);
+  const anchorId = anchor ? anchor.id : null;
+  MODE = mode;
+  document.querySelectorAll('.mpill').forEach(b=>b.classList.toggle('on', b.dataset.mode===mode));
+  const hint = document.getElementById('modeHint');
+  if(hint) hint.textContent = MODE_HINT[mode];
+  renderMain();
+  if(anchorId) document.getElementById(anchorId)?.scrollIntoView({block:'start'});
+}
+
 function boot(){
   document.getElementById('statBoard').innerHTML = `
     <div class="stat-tile"><div class="stat-tile-num">${DATA.accountCount}</div><div class="stat-tile-label">Tier 1 Accounts</div></div>
@@ -4475,7 +4605,9 @@ function boot(){
     <div class="stat-tile"><div class="stat-tile-num" style="font-size:22px;line-height:1.3">${esc(DATA.firstDate)} –<br>${esc(DATA.lastDate)}</div><div class="stat-tile-label">Photo Date Range</div></div>`;
   document.getElementById('jumpPills').innerHTML = (DATA.accounts||[]).map(a=>
     `<button class="jpill" data-acct="${esc(a.acct)}">${esc(a.name)}<span class="cnt">${a.photoCount}</span></button>`).join('');
-  document.getElementById('main').innerHTML = (DATA.accounts||[]).map(acctCard).join('');
+  renderMain();
+
+  document.querySelectorAll('.mpill').forEach(b=>b.addEventListener('click', ()=>setMode(b.dataset.mode)));
 
   document.querySelectorAll('.jpill').forEach(b=>b.addEventListener('click', ()=>{
     document.getElementById('acct-'+b.dataset.acct)?.scrollIntoView({behavior:'smooth', block:'start'});
