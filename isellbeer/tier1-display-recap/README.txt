@@ -28,7 +28,11 @@ Files:
                  display when the export has quantities).
 
 View modes (added 2026-08-24 per Gavin, who wanted the actual pictures on
-the page rather than a link per photo):
+the page rather than a link per photo). PHOTOS IS THE DEFAULT on page
+load (Gavin, same day, once he confirmed the pictures embed on the live
+site) -- three places have to agree if that ever changes: the MODE global
+in index.html, which .mpill carries class "on" in the markup, and the
+#modeHint text rendered server-side.
   Details  The original view, unchanged -- months collapsed, one text
            tile per photo with a "View Photo" link.
   Photos   Same accounts and month grouping, but every month is expanded
@@ -50,7 +54,8 @@ mode degrades on its own -- an <img> that errors, or decodes to zero
 width, is swapped for an "Open Photo" link tile (markBroken()), and a
 banner at the top of the view says how many did that. If EVERY photo
 falls back on the live site, the URLs aren't publicly fetchable and the
-feature needs a different source (direct image URLs from iSellBeer, or
+feature needs a different source (and Photos should stop being the
+default) (direct image URLs from iSellBeer, or
 committing the images into the repo) -- Details mode is unaffected
 either way.
 

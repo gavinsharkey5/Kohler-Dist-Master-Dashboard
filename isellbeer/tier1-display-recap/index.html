@@ -147,7 +147,7 @@
 
   <header>
     <h1>Tier 1 Display Program</h1>
-    <p class="sub">Kohler Tier 1 Summer Display Accounts &middot; May &ndash; September 2026. Every display photo entered in iSellBeer for the 20 program accounts, in one place &mdash; tap a month inside an account to see its photos.</p>
+    <p class="sub">Kohler Tier 1 Summer Display Accounts &middot; May &ndash; September 2026. Every display photo entered in iSellBeer for the 20 program accounts, in one place &mdash; the pictures themselves under each account, or switch to Details for the photo list with links.</p>
     <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 19, 2026<!-- DATA_REFRESHED_END --></p>
     <div class="stat-board" id="statBoard"></div>
   </header>
@@ -160,10 +160,10 @@
   <div class="mode-row">
     <span class="mode-label">View</span>
     <div class="mode-pills" id="modePills">
-      <button class="mpill on" data-mode="details">Details</button>
-      <button class="mpill" data-mode="photos">Photos</button>
+      <button class="mpill" data-mode="details">Details</button>
+      <button class="mpill on" data-mode="photos">Photos</button>
     </div>
-    <span class="mode-hint" id="modeHint">Month sections collapsed &middot; each photo shown as a detail tile with a link.</span>
+    <span class="mode-hint" id="modeHint">Every month open &middot; the pictures themselves, under each account. Tap one to open it full size.</span>
   </div>
 
   <main id="main"></main>
@@ -4533,7 +4533,7 @@ function acctCard(a){
   </div>`;
 }
 
-let MODE = 'details';
+let MODE = 'photos';   // Photos is the default view (per Gavin, 2026-08-24).
 let imgTried = 0, imgFailed = 0;
 
 const MODE_HINT = {
