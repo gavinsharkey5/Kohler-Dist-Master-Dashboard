@@ -116,8 +116,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 40,
-    "CASE_EQUIV_2026": 48,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 8
+    "CASE_EQUIV_2026": 51,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 11
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -308,8 +308,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 178,
-    "CASE_EQUIV_2026": 210,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 32
+    "CASE_EQUIV_2026": 204,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 26
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
