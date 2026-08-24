@@ -41,14 +41,17 @@ would silently drop every earlier photo. Merge it in instead:
 
   python3 generate_lytt_pos.py --merge-displays Report_NN.xlsx
   python3 generate_lytt_pos.py --merge-promos Promos_Report_N.xlsx
+  python3 generate_lytt_pos.py --merge-pods PODS_Report_N.xlsx
 
 Either flag unions the incoming rows into the matching stable workbook
 (deduped, re-sorted newest-first, "#" renumbered, hyperlinks and the
 Filters tab's date span carried over) and then rebuilds the JSON as usual.
 Re-merging an export already applied is a no-op. Only save an export
 straight over a stable filename when it covers the WHOLE tracked period
-(08/01/2026 onward); PODS has no date column and is always a full snapshot,
-so it is simply overwritten. Then commit and push. Does NOT touch
+(08/01/2026 onward). PODS used to be exactly that -- an undated full snapshot
+-- but as of PODS_Report_12 (2026-08-24) it is a windowed pull like the others
+(one day, and it now carries a Date/Time column), so it merges too rather than
+being overwritten. Then commit and push. Does NOT touch
 generate_2026-08.py's CSVs/outputs or sync_meta.json (the "Data refreshed"
 pill tracks the RDE sync, not this photo feed).
 """
@@ -111,9 +114,21 @@ def merge_export(stable, incoming, date_col="Date/Time"):
     unions the two instead: the stable workbook IS the archive, so the JSON
     stays a purely derived artifact that can always be rebuilt from it.
 
-    Rows are deduped on every field except the "#" counter (plus the photo
-    link), so re-merging an export already applied is a no-op, and an export
-    that overlaps the published window updates nothing it already has.
+    Columns are matched by HEADER NAME, not position, so an export that grows
+    a column still merges: any column the incoming export has and the archive
+    doesn't is appended to the archive and left blank on rows published before
+    it existed (PODS grew a Date/Time this way on 2026-08-24). A column going
+    the other way -- present in the archive, gone from the export -- is a real
+    format regression and stops the merge instead.
+
+    Rows are deduped on the columns the archive ALREADY had (plus the photo
+    link), ignoring the "#" counter where the export has one. So re-merging an
+    export already applied is a no-op, an overlapping export updates nothing it
+    already has, and a row re-sent with a newly-added column populated matches
+    its published copy instead of landing twice.
+
+    Rows carrying a date sort newest-first; undated ones (PODS rows published
+    before it grew a Date/Time) keep their existing order at the bottom.
     """
     wb = openpyxl.load_workbook(stable)
     ws = wb["Report"]
@@ -121,46 +136,59 @@ def merge_export(stable, incoming, date_col="Date/Time"):
     ws_in = wb_in["Report"]
 
     headers = [c.value for c in ws[1]]
-    if [c.value for c in ws_in[1]] != headers:
-        raise SystemExit(f"{incoming.name} header does not match {stable.name}'s -- "
-                         f"the export format changed; reconcile by hand.")
-    idx_num = headers.index("#")
-    idx_date = headers.index(date_col)
+    headers_in = [c.value for c in ws_in[1]]
+    dropped = [h for h in headers if h not in headers_in]
+    if dropped:
+        raise SystemExit(f"{incoming.name} no longer has column(s) {dropped} that "
+                         f"{stable.name} carries -- the export format changed; "
+                         f"reconcile by hand.")
+    gained = [h for h in headers_in if h not in headers]
+    final = headers + gained
+    idx_date = final.index(date_col) if date_col in final else None
 
-    # Style template per column, taken from the first published data row, so
-    # merged-in rows keep the export's look (notably the blue underlined
-    # Photo link cell).
-    tpl = [copy.copy(c) for c in ws[2]]
-
-    def collect(sheet):
+    def collect(sheet, hdrs):
         out = []
         for r in sheet.iter_rows(min_row=2):
-            if r[idx_num].value is None and r[idx_date].value is None:
+            vals = {h: r[i].value for i, h in enumerate(hdrs) if h is not None}
+            if all(v is None for v in vals.values()):
                 continue
-            vals = [c.value for c in r]
-            links = {i: c.hyperlink.target for i, c in enumerate(r) if c.hyperlink}
+            links = {hdrs[i]: c.hyperlink.target for i, c in enumerate(r)
+                     if c.hyperlink and hdrs[i] is not None}
             out.append((vals, links))
         return out
 
-    published = collect(ws)
-    incoming_rows = collect(ws_in)
+    published = collect(ws, headers)
+    incoming_rows = collect(ws_in, headers_in)
 
     def key(row):
         vals, links = row
-        return tuple(v for i, v in enumerate(vals) if i != idx_num) + tuple(sorted(links.items()))
+        return (tuple(vals.get(h) for h in headers if h != "#")
+                + tuple(sorted(links.items())))
 
     seen = {key(r) for r in published}
     added = [r for r in incoming_rows if key(r) not in seen]
     rows = published + added
-    rows.sort(key=lambda r: parse_dt(r[0][idx_date]), reverse=True)
 
+    def when(row):
+        raw = row[0].get(date_col)
+        return parse_dt(raw) if raw else None
+
+    # Stable sort: dated rows newest-first, undated ones left in place after them.
+    rows.sort(key=lambda r: (when(r) is not None, when(r) or datetime.datetime.min),
+              reverse=True)
+
+    if gained:
+        print(f"  {incoming.name} added column(s) {gained}; widening "
+              f"{stable.name} (blank on rows published before them).")
     print(f"Merge: {incoming.name} -> {stable.name}: {len(incoming_rows)} row(s) in, "
           f"{len(added)} new, {len(incoming_rows)-len(added)} already published; "
           f"{len(published)} kept -> {len(rows)} total.")
 
-    if published and added:
-        last_pub = max(parse_dt(r[0][idx_date]) for r in published).date()
-        first_new = min(parse_dt(r[0][idx_date]) for r in added).date()
+    pub_dates = [when(r) for r in published if when(r)]
+    new_dates = [when(r) for r in added if when(r)]
+    if pub_dates and new_dates:
+        last_pub = max(pub_dates).date()
+        first_new = min(new_dates).date()
         gap = [last_pub + datetime.timedelta(days=i) for i in range(1, (first_new - last_pub).days)]
         missed = [d for d in gap if d.weekday() < 5]
         if missed:
@@ -170,14 +198,30 @@ def merge_export(stable, incoming, date_col="Date/Time"):
                   f"Photos submitted then are NOT on the board and won't arrive on their own -- "
                   f"re-pull from {missed[0]:%m/%d/%Y} if that gap wasn't just a quiet stretch.")
 
+    # Style template per column, taken from the first published data row (the
+    # incoming export's, for columns the archive is only now growing), so
+    # merged-in rows keep the export's look -- notably the blue underlined
+    # Photo link cell.
+    tpl = {h: copy.copy(c) for h, c in zip(headers, ws[2])}
+    if gained:
+        tpl_in = {h: copy.copy(c) for h, c in zip(headers_in, ws_in[2])}
+        hdr_style = copy.copy(ws.cell(row=1, column=1))
+        for j, h in enumerate(final, start=1):
+            if h in gained:
+                hc = ws.cell(row=1, column=j)
+                hc.value = h
+                hc._style = hdr_style._style
+                tpl[h] = tpl_in[h]
+
+    idx_num = final.index("#") if "#" in final else None
     for i, (vals, links) in enumerate(rows, start=2):
-        for j, v in enumerate(vals):
-            c = ws.cell(row=i, column=j + 1)
-            c.value = i - 1 if j == idx_num else v
-            c._style = tpl[j]._style
+        for j, h in enumerate(final, start=1):
+            c = ws.cell(row=i, column=j)
+            c.value = i - 1 if j - 1 == idx_num else vals.get(h)
+            c._style = tpl[h]._style
             c.hyperlink = None
-            if j in links:
-                c.hyperlink = links[j]
+            if h in links:
+                c.hyperlink = links[h]
     if ws.max_row > len(rows) + 1:
         ws.delete_rows(len(rows) + 2, ws.max_row - len(rows) - 1)
 
@@ -210,13 +254,15 @@ def is_lytt(brand):
 
 def main():
     args = sys.argv[1:]
-    merges = {"--merge-displays": DISPLAYS_XLSX, "--merge-promos": PROMOS_XLSX}
+    merges = {"--merge-displays": DISPLAYS_XLSX, "--merge-promos": PROMOS_XLSX,
+              "--merge-pods": PODS_XLSX}
     while args:
         flag = args.pop(0)
         if flag not in merges or not args:
             raise SystemExit("Usage: python3 generate_lytt_pos.py "
                              "[--merge-displays Report_NN.xlsx] "
-                             "[--merge-promos Promos_Report_N.xlsx]")
+                             "[--merge-promos Promos_Report_N.xlsx] "
+                             "[--merge-pods PODS_Report_N.xlsx]")
         merge_export(merges[flag], Path(args.pop(0)))
 
     rows_out = []
@@ -285,8 +331,11 @@ def main():
     h = header_map(ws)
     n0 = len(rows_out)
     for r in ws.iter_rows(min_row=2):
+        # PODS grew a Date/Time on 2026-08-24; rows archived before that have
+        # none, and the dashboard renders a missing date as an em dash.
+        date = r[h["Date/Time"]].value if "Date/Time" in h else ""
         add(r[h["Route / Sales Rep"]].value, "POD", r[h["DBA"]].value, r[h["City"]].value,
-            r[h["Brand"]].value, r[h["SKU"]].value, None, "", r[h["Photo"]])
+            r[h["Brand"]].value, r[h["SKU"]].value, None, date, r[h["Photo"]])
     print(f"PODS: {len(rows_out)-n0} photo rows (of {ws.max_row-1} total distro rows)")
 
     if skipped_names:

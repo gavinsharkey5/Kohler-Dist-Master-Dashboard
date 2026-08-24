@@ -284,7 +284,9 @@ them, same reason as the display-auction tracker):
   lytt_pos_promos.xlsx     iSellBeer Promos_Report_N.xlsx
   lytt_pos_pods.xlsx       iSellBeer PODS_Report_N.xlsx (only its few
                            photo-bearing rows are used; the rest of the
-                           PODS export is a distro list with no photos)
+                           PODS export is a distro list with no photos).
+                           Windowed and dated as of PODS_Report_12 -- see
+                           the refresh note below.
   generate_lytt_pos.py     Rebuilds data/2026-08/mpo_lytt_photos.json
                            from the three files above. Separate from
                            generate_2026-08.py (different source system,
@@ -311,18 +313,33 @@ lytt_pos_displays.xlsx would have silently dropped every earlier photo.
 So MERGE a partial export rather than overwriting:
   python3 generate_lytt_pos.py --merge-displays Report_NN.xlsx
   python3 generate_lytt_pos.py --merge-promos Promos_Report_N.xlsx
-Either flag unions the incoming rows into the matching stable workbook
-(merge_export(): deduped on every field but the "#" counter, re-sorted
-newest-first, "#" renumbered, photo hyperlinks preserved, the Filters
-tab's date span widened to cover both windows) and then rebuilds the JSON
+  python3 generate_lytt_pos.py --merge-pods PODS_Report_N.xlsx
+Any of these unions the incoming rows into the matching stable workbook
+(merge_export(): deduped on the columns the archive already had, ignoring
+the "#" counter where the export has one, re-sorted newest-first, "#"
+renumbered, photo hyperlinks preserved, the Filters tab's date span
+widened to cover both windows) and then rebuilds the JSON
 as usual -- so the JSON stays a purely derived artifact that can always be
 rebuilt from the workbooks. Re-merging an export already applied is a
 no-op, and it warns if a weekday falls between the last published row and
 the export's first new one, since a photo submitted in that gap is not on
 the board and won't arrive on its own. Only save an export straight over a
 stable filename when it covers the WHOLE tracked period (08/01/2026
-onward); PODS carries no date column and is always a full snapshot, so it
-is simply overwritten. Then commit and push.
+onward).
+
+PODS used to be that exception -- an undated full snapshot, safe to
+overwrite -- but PODS_Report_12 (2026-08-24) arrived as a ONE-DAY windowed
+pull carrying a new Date/Time column, and overwriting with it would have
+dropped the 7 photo rows already published from 08/01-08/19. So PODS merges
+like the other two now (--merge-pods); do not overwrite lytt_pos_pods.xlsx
+again unless a pull genuinely spans the whole month. merge_export() matches
+columns by HEADER NAME rather than position, so that added Date/Time was
+appended to the archive and left blank on the rows published before it
+existed (the dashboard renders a missing date as an em dash); rows carrying
+a date sort newest-first and the undated older ones stay put below them. A
+column DISAPPEARING from an export is still treated as a format regression
+and stops the merge rather than blanking the archive. Then commit and
+push.
 
 Normally each month's data is refreshed automatically by
 .github/workflows/snowflake-sync.yml running sync_snowflake_data.py --
