@@ -106,6 +106,12 @@ ALLOTHER_BRANDS = {
     # above (WHOLE HOG is a Stevens Point Brewery label).
     'FLYING DOG SEASONAL RELEASE', 'LONG TRAIL BREWING CO', 'SARANAC BREWERY',
     'WHOLE HOG',
+    # Confirmed with the user 2026-08-24 (Report_48). First brand from supplier
+    # 1925 SPIRITS LLC, so no portfolio precedent either way -- classed with the
+    # other tequila-based entries (VIVA TEQUILA SELTZER, TALKHOUSE ENCORE
+    # TEQUILA SODA). Its first display carried 0 cases, so it scored nothing
+    # either way; this entry is what scores future Leyenda displays.
+    'LEYENDA 1925',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
