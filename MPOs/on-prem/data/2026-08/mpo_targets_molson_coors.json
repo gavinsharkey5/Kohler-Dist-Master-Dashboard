@@ -3088,13 +3088,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 45005,
-    "CUSTOMER_NAME": "Colonial Bar",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81012,
     "CUSTOMER_NAME": "Dutch House",
     "AREA": "Bergen",
@@ -8508,13 +8501,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 62012,
     "CUSTOMER_NAME": "Landmark Closter",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 40005,
-    "CUSTOMER_NAME": "Lazy Lanigans (A)",
     "AREA": "Bergen",
     "BRAND_FAMILY": "Coors"
   },
