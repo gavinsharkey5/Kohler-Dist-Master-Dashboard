@@ -117,25 +117,72 @@ class Interner:
 
 
 # ---------------------------------------------------------------------------
-# 1. Units -> cases, straight from invoice transactions
+# 1. Units -> cases
 # ---------------------------------------------------------------------------
+# Best source is the Encompass PACKAGE MASTER (ws_packages.csv): its
+# "Wholesale Units per Case" is exactly the number this conversion needs, for
+# both kinds of pack -- 6 for a bottle-order package sold by the bottle
+# ("4) Bottle (BO)"), 1 for a package sold by the case ("3) Case (CA)").
+# Where a package isn't in that file we fall back to voting on the invoice
+# file's own Cases vs Num Units columns, which is what this script did before
+# the package master existed. Drop a fuller package export over
+# ws_packages.csv and coverage improves automatically.
+PACKAGE_CSV = os.path.join(PORTFOLIO, 'ws_packages.csv')
+PACKAGE_UNITS = {}
+if os.path.exists(PACKAGE_CSV):
+    with open(PACKAGE_CSV, newline='', encoding='utf-8-sig') as f:
+        for r in csv.DictReader(f):
+            key = (r.get('Package') or '').strip()
+            per = num(r.get('Wholesale Units per Case'))
+            if key and per > 0:
+                PACKAGE_UNITS[key] = per
+
+# Products whose package label in the reporting extracts doesn't match how the
+# item is actually invoiced. Keep this list short and cite the evidence.
+RATIO_OVERRIDES = {
+    # Striped Pig Doppio: the monthly grid still labels most rows
+    # "1/6/750 mL", but every line of the 2026-08-25 detailed invoice-trans
+    # pull carries Package ID 453 = "1/6/750 mL (BO)", 6 wholesale units per
+    # case, sold by the bottle at ~$19 (6 x $19 = the $114 case). 97 grid
+    # units / 6 = 16.2 cases, against 18.2 invoiced -- the bottle reading is
+    # the one that reconciles.
+    '200365': 6.0,
+}
+
 prod_pat = re.compile(r'^\s*(\d+)\s+(.*)$')
 ratio_votes = defaultdict(lambda: defaultdict(int))
+product_package = defaultdict(lambda: defaultdict(int))
 with open(INVOICE_CSV, newline='', encoding='utf-8-sig') as f:
     invoice_rows = list(csv.DictReader(f))
 for r in invoice_rows:
     m = prod_pat.match(r['Product'])
     if not m:
         continue
+    product_package[m.group(1)][r['Package'].strip()] += 1
     cases, units = num(r['Cases']), num(r['Num Units'])
     if cases > 0 and units > 0:
         ratio_votes[m.group(1)][round(units / cases, 4)] += 1
 
-UNITS_PER_CASE, conflicting = {}, []
+UNITS_PER_CASE, conflicting, ratio_source = {}, [], {}
+_from_package, _disagree = [], []
 for pnum, votes in ratio_votes.items():
     if len(votes) > 1:
         conflicting.append(pnum)
-    UNITS_PER_CASE[pnum] = max(votes.items(), key=lambda kv: kv[1])[0]
+    voted = max(votes.items(), key=lambda kv: kv[1])[0]
+    pkg = max(product_package[pnum].items(), key=lambda kv: kv[1])[0] if product_package[pnum] else ''
+    from_pkg = PACKAGE_UNITS.get(pkg)
+    if pnum in RATIO_OVERRIDES:
+        UNITS_PER_CASE[pnum] = RATIO_OVERRIDES[pnum]
+        ratio_source[pnum] = 'override'
+    elif from_pkg:
+        UNITS_PER_CASE[pnum] = from_pkg
+        ratio_source[pnum] = 'package master'
+        _from_package.append(pnum)
+        if abs(from_pkg - voted) > 0.001:
+            _disagree.append((pnum, pkg, from_pkg, voted))
+    else:
+        UNITS_PER_CASE[pnum] = voted
+        ratio_source[pnum] = 'invoice vote'
 
 
 def to_cases(units, pnum):
@@ -404,18 +451,28 @@ def _invoiced(pnum, drop_bulk):
 _grid_cases = defaultdict(float)
 for ii, c in zip(sales_i, sales_c):
     _grid_cases[items[ii]['p']] += c
-_flagged = []
+_flagged, _scope_notes = [], []
 for pnum, conv in _grid_cases.items():
     raw, clean = _invoiced(pnum, False), _invoiced(pnum, True)
     material = max(conv, raw, clean) >= 20      # ignore items too small to matter
     gaps = [abs(conv - v) / v for v in (raw, clean) if v > 0]
     if material and gaps and min(gaps) > 0.25:
-        _flagged.append((pnum, UNITS_PER_CASE.get(pnum, 1.0), conv, raw, clean))
+        # Where the ratio came from the package master it is authoritative, so a
+        # volume gap is a scope difference (supplier/warehouse transactions the
+        # account-level grid never sees), not a pack-size question.
+        bucket = _scope_notes if ratio_source.get(pnum) in ('package master', 'override') else _flagged
+        bucket.append((pnum, UNITS_PER_CASE.get(pnum, 1.0), conv, raw, clean))
 _flagged.sort(key=lambda x: -max(x[2], x[3]))
+_scope_notes.sort(key=lambda x: -max(x[2], x[3]))
 
 print(f'Months: {data["meta"]["months"][0]} – {data["meta"]["months"][-1]} ({len(MONTHS)} months)')
-print(f'Units->cases ratios: {len(UNITS_PER_CASE)} products '
-      f'({len(conflicting)} conflicting, {len(missing_ratio)} with no invoice history)')
+print(f'Units->cases ratios: {len(UNITS_PER_CASE)} products — '
+      f'{len(_from_package)} from the package master, {len(RATIO_OVERRIDES)} overridden, '
+      f'{len(UNITS_PER_CASE) - len(_from_package) - len(RATIO_OVERRIDES)} inferred from invoice lines '
+      f'({len(PACKAGE_UNITS)} packages in ws_packages.csv)')
+if _disagree:
+    print(f'  NOTE: package master overrode the invoice-derived ratio for {len(_disagree)} product(s): '
+          + ', '.join(f'{p} ({pkg}: {fp:g} not {v:g})' for p, pkg, fp, v in _disagree[:8]))
 if missing_ratio:
     print('  defaulted to 1 unit = 1 case: ' + ', '.join(missing_ratio))
 print(f'Accounts: {len(accounts)} on the assigned book · items: {len(items)} · '
@@ -429,13 +486,22 @@ print(f'Prior-year YTD: {py_cases:,.1f} cases, {py_buyers} buying accounts '
 print(f'Placements: {len(p_c):,} rows, anchored {P_ANCHOR}')
 print(f'Skipped zero-price invoice rows: {skipped_zero_price:,}')
 print(f'Payload: {len(blob):,} bytes embedded in index.html')
-if conflicting:
-    print(f'\nCHECK: {len(conflicting)} product(s) have more than one units-per-case ratio in the invoice '
-          f'data (majority wins): ' + ', '.join(conflicting))
+# a conflict only matters where the ratio is still being inferred from invoices
+_unresolved = [p for p in conflicting if ratio_source.get(p) == 'invoice vote']
+if _unresolved:
+    print(f'\nCHECK: {len(_unresolved)} product(s) have more than one units-per-case ratio in the invoice '
+          f'data and no package on file to settle it (majority wins for now): ' + ', '.join(_unresolved))
 if _flagged:
     print(f'\nCHECK: {len(_flagged)} product(s) whose case volume does not reconcile with the invoice file '
           f'either way. Worth confirming the pack size with Encompass:')
     print(f'  {"product":<9} {"units/case":>10} {"dashboard":>10} {"invoiced":>9} {"ex-bulk":>8}')
     for pnum, rt, conv, raw, clean in _flagged:
+        name = next((it['n'] for it in items if it['p'] == pnum), '')
+        print(f'  {pnum:<9} {rt:>10} {conv:>10,.1f} {raw:>9,.1f} {clean:>8,.1f}   {name[:40]}')
+if _scope_notes:
+    print(f'\nFYI: {len(_scope_notes)} product(s) carry more invoiced cases than the account-level grid, '
+          f'with a pack size confirmed by the package master. That gap is supplier/warehouse volume the '
+          f'grid never sees, not a conversion problem:')
+    for pnum, rt, conv, raw, clean in _scope_notes:
         name = next((it['n'] for it in items if it['p'] == pnum), '')
         print(f'  {pnum:<9} {rt:>10} {conv:>10,.1f} {raw:>9,.1f} {clean:>8,.1f}   {name[:40]}')

@@ -24,12 +24,23 @@ PRODUCT LEVEL before anything is aggregated:
 
     cases = units / unitsPerCase[product]
 
-unitsPerCase comes from ws_invoice_trans.csv, which carries both a Cases and
-a Num Units column on every invoice line. As of the 2026-08 refresh the ratio
-is perfectly consistent within each product (188 products, zero conflicts)
-and covers 100% of the products in the monthly account file. Any product with
-no invoice history falls back to 1 unit = 1 case and is printed by name at the
-end of every run — if that list is ever non-empty, check it before publishing.
+unitsPerCase comes first from the Encompass PACKAGE MASTER,
+../wine-spirits-portfolio/ws_packages.csv, whose "Wholesale Units per Case"
+column is exactly this number: 6 for a bottle-order package sold by the bottle
+("4) Bottle (BO)"), 1 for a package sold by the case ("3) Case (CA)"). Any
+package not in that file falls back to voting on ws_invoice_trans.csv, which
+carries both a Cases and a Num Units column on every invoice line. Every run
+prints where each ratio came from, names any product whose invoice lines
+disagree with no package on file to settle it, and reconciles converted case
+volume against invoiced cases — read that output before publishing a refresh.
+
+One product is overridden by hand in RATIO_OVERRIDES at the top of the build
+script: Striped Pig Doppio (200365). The monthly grid still labels most of its
+rows "1/6/750 mL", but every line of the 2026-08-25 detailed invoice-trans pull
+carries Package ID 453 = "1/6/750 mL (BO)", 6 wholesale units per case, sold by
+the bottle at ~$19 (6 x $19 = the $114 case). 97 grid units / 6 = 16.2 cases
+against 18.2 invoiced — the bottle reading is the one that reconciles. Remove
+the override once a package export covers that label.
 
 DATE RANGE — EVERYTHING FOLLOWS IT
 ---------------------------------
@@ -73,6 +84,15 @@ Files
   index.html                   The dashboard. Data lives in the embedded
                                <script id="ws-data"> tag.
   build_ws_dashboard.py        Rebuilds that JSON from every input below.
+  ../wine-spirits-portfolio/ws_packages.csv
+                               Encompass package master (Package ID, Package,
+                               Wholesale Units per Case, Selling Unit of
+                               Measure). The authoritative source for the
+                               units-to-cases conversion — drop a fuller export
+                               over it any time and coverage improves on the
+                               next build. Currently 5 packages covering 57 of
+                               188 products; the rest still infer their ratio
+                               from invoice lines.
   ws_account_roster.csv        The assigned W&S account book — customer, rep,
                                city, route, premise. This is the denominator
                                for activation / "never bought" and the source

@@ -1,0 +1,6 @@
+Package ID,Package,Fluid Ounces Per Case,Case Equiv Description,Case Weight in Lbs,Case Equiv,Wholesale Units per Case,Retail Units per Case,Consumable Units per Case,Servings per Case,Selling Unit Of Measure,Container Type,Pick Units Per Case
+462,1/6/700 mL (BO),142,Wine & Liquor,20,0.077767,6,6,6,6,4) Bottle (BO),Glass Bottle,6
+453,1/6/750 mL (BO),152.163102,Wine & Liquor,0,0.083333,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+449,1/750 ML,25.36,Beer,3,0.014676,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+427,1/750ML,152.16,Wine & Liquor,0,0.083332,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+445,2/6/750 ML,303.60,Wine & Liquor,35,0.997614,1,2,12,12,3) Case (CA),Glass Bottle,1
