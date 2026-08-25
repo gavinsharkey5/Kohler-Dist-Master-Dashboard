@@ -377,21 +377,40 @@ py_buyers = len({a for a, mm in zip(sales_a, sales_m) if mm in py_set})
 # units-per-case ratio for that product is probably wrong (a pack size that
 # changed, or an item billed by the case in one period and by the bottle in
 # another). Printed on every run so a bad ratio can't hide.
-_inv_cases = defaultdict(float)
+# The invoice file also carries bulk inbound drops (e.g. a single 105-case
+# load-sheet line) that never appear in the account-level grid, so the raw
+# totals are compared BOTH ways: as-is, and with each product's outsized lines
+# removed. A product is only flagged when neither reading reconciles.
+_inv_lines = defaultdict(list)
 for row in invoice_rows:
     if money(row['Unit Price']) == 0 and money(row['Ext Price']) == 0:
         continue
     m = prod_pat.match(row['Product'].strip())
     if m:
-        _inv_cases[m.group(1)] += num(row['Cases'])
+        c = num(row['Cases'])
+        if c > 0:
+            _inv_lines[m.group(1)].append(c)
+
+
+def _invoiced(pnum, drop_bulk):
+    ls = _inv_lines.get(pnum, [])
+    if drop_bulk and len(ls) >= 4:
+        ls = sorted(ls)
+        med = ls[len(ls) // 2]
+        ls = [c for c in ls if c <= max(med * 10, 10)]
+    return sum(ls)
+
+
 _grid_cases = defaultdict(float)
 for ii, c in zip(sales_i, sales_c):
     _grid_cases[items[ii]['p']] += c
 _flagged = []
 for pnum, conv in _grid_cases.items():
-    invc = _inv_cases.get(pnum, 0.0)
-    if invc > 0 and max(conv, invc) >= 20 and abs(conv - invc) / invc > 0.25:
-        _flagged.append((pnum, UNITS_PER_CASE.get(pnum, 1.0), conv, invc))
+    raw, clean = _invoiced(pnum, False), _invoiced(pnum, True)
+    material = max(conv, raw, clean) >= 20      # ignore items too small to matter
+    gaps = [abs(conv - v) / v for v in (raw, clean) if v > 0]
+    if material and gaps and min(gaps) > 0.25:
+        _flagged.append((pnum, UNITS_PER_CASE.get(pnum, 1.0), conv, raw, clean))
 _flagged.sort(key=lambda x: -max(x[2], x[3]))
 
 print(f'Months: {data["meta"]["months"][0]} – {data["meta"]["months"][-1]} ({len(MONTHS)} months)')
@@ -414,9 +433,9 @@ if conflicting:
     print(f'\nCHECK: {len(conflicting)} product(s) have more than one units-per-case ratio in the invoice '
           f'data (majority wins): ' + ', '.join(conflicting))
 if _flagged:
-    print(f'\nCHECK: {len(_flagged)} product(s) where converted cases and invoiced cases disagree by more '
-          f'than 25%. Confirm the pack size for these with Encompass:')
-    print(f'  {"product":<9} {"units/case":>10} {"dashboard cases":>16} {"invoiced cases":>15}')
-    for pnum, rt, conv, invc in _flagged:
+    print(f'\nCHECK: {len(_flagged)} product(s) whose case volume does not reconcile with the invoice file '
+          f'either way. Worth confirming the pack size with Encompass:')
+    print(f'  {"product":<9} {"units/case":>10} {"dashboard":>10} {"invoiced":>9} {"ex-bulk":>8}')
+    for pnum, rt, conv, raw, clean in _flagged:
         name = next((it['n'] for it in items if it['p'] == pnum), '')
-        print(f'  {pnum:<9} {rt:>10} {conv:>16,.1f} {invc:>15,.1f}   {name[:44]}')
+        print(f'  {pnum:<9} {rt:>10} {conv:>10,.1f} {raw:>9,.1f} {clean:>8,.1f}   {name[:40]}')
