@@ -718,6 +718,30 @@ math.
         has date range as package i just didnt show it in report". The
         file genuinely has no date columns; slide 20's March-May text
         refers to the earlier phase, not this pull.
+     5. NEW DRAFT BUYERS IS A SEPARATE BLOCK (2026-08-25), fed by its own
+        file, data/constellation_new_draft_buyers.csv (RDE
+        "Constellation - Draft ON Summer 2026"). Per Gavin: "I would like
+        to make a section for new constellation draft. there are no goals
+        for each rep, just tracking the new buyers of draft." It is a
+        per-rep buyer count by draft brand (Corona Light / Corona Premier /
+        Modelo Especial / Modelo Negra / Pacifico), built by
+        _constellation_new_draft_buyers() and rendered as the third
+        on-premise block plus a fifth "New Draft Buyers" stat tile.
+        Two things to keep straight about it:
+          - It is NOT the account-level draft distro file. That is
+            constellation_draft_on.csv (RDE "New Draft Distro Summer
+            2026"), which drives the new-lines/barrel-bonus block. The two
+            do not agree and are not supposed to: checked rep by rep, this
+            file's counts match neither the distro file's distinct-account
+            count nor its summed New Buyers on 46 of 60 rep/brand pairs.
+            Separate measure, separate file, separate block -- do not try
+            to reconcile or derive one from the other.
+          - The file ships Goals and % of Goals columns beside every brand
+            and EVERY Goals cell is blank. _constellation_new_draft_buyers()
+            ignores those columns outright rather than reading them as
+            zeros, which keeps it consistent with point 3 above. If Kohler
+            ever populates them, that is a decision for Gavin, not an
+            automatic wiring-up -- point 3 still stands.
 
    The rep scoreboard spans both channels (off-prem goals retained,
    off-prem % of goal, on-prem package buyers, new draft lines) because
