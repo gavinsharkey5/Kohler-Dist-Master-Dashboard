@@ -115,6 +115,25 @@ Objective types (index.html):
                   carrying the tracked brand, again deduped by distinct
                   customer number). August's BBC Lytt (25% of account
                   base) is the only user of this so far.
+                  DISPLAYED AS PENETRATION as of 2026-08-25, per Gavin
+                  ("change the lytt accounts from 14/10 to % penetration.
+                  if the rep is >= 25% they are at goal"): the headline
+                  number is qualifying/base as a percent ("35%", with the
+                  raw "14 of 40 accounts" as the subline and its own
+                  Lytt Accounts column in the objective table), and the
+                  bar/over-badge measure that percentage against the 25%
+                  goal rather than the count against ceil(). This is a
+                  DISPLAY change only -- who is at goal did not move,
+                  because for an integer count qualifying >=
+                  ceil(pct * base) is exactly qualifying/base >= pct
+                  (verified rep-by-rep against the 8/25 data, 0
+                  mismatches). r.target is still what the at-goal flag
+                  is scored on, so the flag and the percentage can never
+                  disagree; keep it that way rather than re-testing
+                  penetration >= 25 separately, which would reintroduce
+                  float-rounding edge cases at exactly 25%. Percentage
+                  GAPS render as points ("+10 pts over"), never "+10%"
+                  -- see fmtPen()/fmtPts().
   'photos'        Placeholder only (hasData:false) -- no iSellBeer
                   photo-count data source exists yet for any month.
 
