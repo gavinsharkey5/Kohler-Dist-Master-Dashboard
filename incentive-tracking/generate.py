@@ -1792,6 +1792,41 @@ def _constellation_packages_on():
     return by_rep, [{"label": label, "buyers": house[label]} for label, _ in cols]
 
 
+def _constellation_new_draft_buyers():
+    """Per-rep NEW DRAFT BUYERS by brand (constellation_new_draft_buyers.csv).
+
+    Added 2026-08-25 per Gavin: "I would like to make a section for new
+    constellation draft. there are no goals for each rep, just tracking the
+    new buyers of draft." The file ships Goals / % of Goals columns beside
+    every brand, but every Goals cell is blank and the standing instruction
+    on the Constellation draft side is no goals at all -- so those columns
+    are ignored outright rather than read and rendered as zeros.
+
+    This is NOT derivable from constellation_draft_on.csv: checked rep by
+    rep, its counts match neither that file's distinct-account count nor its
+    summed New Buyers on 46 of 60 rep/brand pairs. Separate measure, separate
+    file, separate block.
+    """
+    rows = read_rows("constellation_new_draft_buyers.csv")
+    if not rows:
+        return {}, []
+    # "Corona Light Buyers: June - August   2026" -> "Corona Light"; skip the
+    # paired "( ... ) Goals" / "% of Goals" columns the same match would catch.
+    cols = [(f.split(" Buyers:")[0], f) for f in rows[0]
+            if " Buyers:" in f and not f.startswith("(")]
+    roster = set(ROSTER)
+    by_rep, house = {}, {label: 0 for label, _ in cols}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in roster:
+            continue
+        brands = [{"label": label, "buyers": round(to_num(row[col]))} for label, col in cols]
+        by_rep[rep] = brands
+        for b in brands:
+            house[b["label"]] += b["buyers"]
+    return by_rep, [{"label": label, "buyers": house[label]} for label, _ in cols]
+
+
 def _constellation_draft_on():
     rows = read_rows("constellation_draft_on.csv")
     # strip the rep-total layer, then the (brand, package) block layer
@@ -1916,6 +1951,7 @@ def build_constellation_retention():
 
     pkg_by_rep, pkg_house = _constellation_packages_on()
     draft_by_rep = _constellation_draft_on()
+    newdraft_by_rep, newdraft_house = _constellation_new_draft_buyers()
 
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]
@@ -1943,10 +1979,16 @@ def build_constellation_retention():
         d["draftBarrels"] = round(sum(l["barrels"] for l in lines), 1)
         d["draftLinesAtBonus"] = sum(1 for l in d["draftNewLines"] if l["tier"])
 
+        nd = newdraft_by_rep.get(rep)
+        d["newDraftInReport"] = nd is not None
+        d["newDraftBrands"] = [b for b in (nd or []) if b["buyers"] > 0]
+        d["newDraftTotal"] = sum(b["buyers"] for b in (nd or []))
+
     return {"byRep": by_rep, "houseOff": house,
             "houseOffMet": sum(1 for h in house if h["met"]),
             "houseOffTotal": len(house),
             "housePkgOn": pkg_house,
+            "houseNewDraft": newdraft_house,
             "targetedDraftBrand": CONSTELLATION_TARGETED_DRAFT_BRAND,
             "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
 
@@ -2240,7 +2282,9 @@ def main():
           f"{sum(1 for d in con['byRep'].values() if d['onPkgTotal'])} reps | draft "
           f"{sum(d['draftNewLineCount'] for d in con['byRep'].values())} new lines "
           f"({sum(d['draftNewTargetedCount'] for d in con['byRep'].values())} targeted Modelo), "
-          f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl (no goals tracked on draft, per Gavin)")
+          f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl (no goals tracked on draft, per Gavin) | "
+          f"new draft buyers {sum(d['newDraftTotal'] for d in con['byRep'].values())} across "
+          f"{sum(1 for d in con['byRep'].values() if d['newDraftTotal'])} reps")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]
