@@ -1792,22 +1792,22 @@ def _constellation_packages_on():
     return by_rep, [{"label": label, "buyers": house[label]} for label, _ in cols]
 
 
-def _constellation_new_draft_buyers():
-    """Per-rep NEW DRAFT BUYERS by brand (constellation_new_draft_buyers.csv).
+def _constellation_draft_buyers():
+    """Per-rep REGULAR (total) draft buyers by brand -- RDE "Constellation:
+    Draft ON (Summer 2026)", data/constellation_draft_on_buyers.csv.
 
-    Added 2026-08-25 per Gavin: "I would like to make a section for new
-    constellation draft. there are no goals for each rep, just tracking the
-    new buyers of draft." The file ships Goals / % of Goals columns beside
-    every brand, but every Goals cell is blank and the standing instruction
-    on the Constellation draft side is no goals at all -- so those columns
-    are ignored outright rather than read and rendered as zeros.
+    These are the rep's draft buyers outright, NOT new ones. Corrected
+    2026-08-25 after this file and the New Draft Distro export were built
+    the wrong way round: per Gavin, "1st i mentioned [New Draft Distro] is
+    new and has no goals and 2nd i mentioned [Draft ON] is regular buyers.
+    no goals at rep level, just brand level for regular." New buyers come
+    from _constellation_new_draft_distro() below; this is the standing book.
 
-    This is NOT derivable from constellation_draft_on.csv: checked rep by
-    rep, its counts match neither that file's distinct-account count nor its
-    summed New Buyers on 46 of 60 rep/brand pairs. Separate measure, separate
-    file, separate block.
+    The file ships Goals / % of Goals columns beside every brand and every
+    Goals cell is blank -- consistent with "no goals at rep level", so those
+    columns are ignored outright rather than rendered as a wall of 0%.
     """
-    rows = read_rows("constellation_new_draft_buyers.csv")
+    rows = read_rows("constellation_draft_on_buyers.csv")
     if not rows:
         return {}, []
     # "Corona Light Buyers: June - August   2026" -> "Corona Light"; skip the
@@ -1827,8 +1827,24 @@ def _constellation_new_draft_buyers():
     return by_rep, [{"label": label, "buyers": house[label]} for label, _ in cols]
 
 
-def _constellation_draft_on():
-    rows = read_rows("constellation_draft_on.csv")
+def _constellation_new_draft_distro():
+    """Account-level NEW DRAFT rows -- RDE "Constellation: New Draft Distro
+    (Summer 2026)", data/constellation_new_draft_distro.csv. This is the NEW
+    side of Constellation draft (see _constellation_draft_buyers above for
+    the regular book, and the 2026-08-25 correction noted there).
+
+    A hierarchical pivot export: a rep-total row, then a (brand, package)
+    block row, then the account leaves -- both header layers are stripped
+    below so only leaves are counted.
+
+    NOTE on counting new buyers: the report's own rep-level "New Buyers"
+    figure is DISTINCT NEW ACCOUNTS, not a sum of the leaf column and not a
+    count of leaf rows. One account carrying two brands appears twice, so
+    the leaf sum (109 house-wide) and the leaf row count (109) both
+    overstate it; distinct accounts reproduces the report's 90 exactly,
+    rep for rep. draftNewAccountCount is therefore the headline number.
+    """
+    rows = read_rows("constellation_new_draft_distro.csv")
     # strip the rep-total layer, then the (brand, package) block layer
     prev, body = object(), []
     for r in rows:
@@ -1950,8 +1966,8 @@ def build_constellation_retention():
                       "short": max(0, cat["houseGoal"] - round(house_total))})
 
     pkg_by_rep, pkg_house = _constellation_packages_on()
-    draft_by_rep = _constellation_draft_on()
-    newdraft_by_rep, newdraft_house = _constellation_new_draft_buyers()
+    draft_by_rep = _constellation_new_draft_distro()
+    regbuyers_by_rep, regbuyers_house = _constellation_draft_buyers()
 
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]
@@ -1979,16 +1995,16 @@ def build_constellation_retention():
         d["draftBarrels"] = round(sum(l["barrels"] for l in lines), 1)
         d["draftLinesAtBonus"] = sum(1 for l in d["draftNewLines"] if l["tier"])
 
-        nd = newdraft_by_rep.get(rep)
-        d["newDraftInReport"] = nd is not None
-        d["newDraftBrands"] = [b for b in (nd or []) if b["buyers"] > 0]
-        d["newDraftTotal"] = sum(b["buyers"] for b in (nd or []))
+        rb = regbuyers_by_rep.get(rep)
+        d["regBuyersInReport"] = rb is not None
+        d["regBuyersBrands"] = [b for b in (rb or []) if b["buyers"] > 0]
+        d["regBuyersTotal"] = sum(b["buyers"] for b in (rb or []))
 
     return {"byRep": by_rep, "houseOff": house,
             "houseOffMet": sum(1 for h in house if h["met"]),
             "houseOffTotal": len(house),
             "housePkgOn": pkg_house,
-            "houseNewDraft": newdraft_house,
+            "houseDraftBuyers": regbuyers_house,
             "targetedDraftBrand": CONSTELLATION_TARGETED_DRAFT_BRAND,
             "retainThresholdPct": int(CONSTELLATION_RETAIN_THRESHOLD * 100)}
 
@@ -2176,6 +2192,121 @@ def build_yuengling_retention():
             "retainThresholdPct": int(YUENGLING_RETAIN_THRESHOLD * 100)}
 
 
+# --- iSELLBEER SUMMER DISPLAY AUCTION (points leaderboard) -------------
+# Wired in 2026-08-25 at Gavin's request ("is there a way you can wire the
+# isellbeer auction display program into this page? make it a tile just
+# like the other programs. put it in ongoing."). Until then the auction
+# lived only in its own dashboard, isellbeer/display-auction-tracker/, and
+# the README said outright that it was not part of this page.
+#
+# SOURCE IS THE TRACKER'S OWN PUBLISHED JSON, not its raw export. The
+# tracker embeds a fully-scored per-person block (id="da-data") in its
+# index.html, and its generate.py owns the scoring: what counts as one
+# display, the priority/all-other split, the case tiers, the points per
+# tier, and the weekly --merge that keeps older weeks on the board. All of
+# that was reverse-engineered once and its README says not to re-derive it,
+# so this reads the finished numbers instead of rescoring anything. One
+# consequence worth knowing: this page is only as current as the last
+# auction-tracker refresh -- refresh that first, then run this.
+AUCTION_INDEX = Path(__file__).resolve().parent.parent / "isellbeer" / "display-auction-tracker" / "index.html"
+AUCTION_DATA_RE = re.compile(r'<script[^>]*id="da-data"[^>]*>(.*?)</script>', re.S)
+
+# iSellBeer spells names its own way (and uses a curly apostrophe). Same
+# canonicalization job as generate_lytt_pos.py in MPOs/off-prem/.
+AUCTION_NAME_FIXES = {
+    "MATTHEW POWIERSKI": "Matt Powierski",
+    "JAMES HEANEY": "Jim Heaney",
+    "DANIEL LA GALA": "Dan Lagala",
+    "NICHOLAS MELISSARI": "Nick Melissari",
+}
+_ROSTER_BY_UPPER = {n.upper(): n for n in ROSTER}
+
+
+def _canon_auction_name(name):
+    n = re.sub(r"\s+", " ", str(name or "").replace("\u2019", "'").strip())
+    if not n:
+        return None
+    return AUCTION_NAME_FIXES.get(n.upper()) or _ROSTER_BY_UPPER.get(n.upper())
+
+
+def build_display_auction():
+    """Per-rep points, displays and photo links for the display auction.
+
+    SALES REPS ONLY. The auction is open to Sales Associates too and they
+    are a real force in it -- mickey obrien would sit 2nd overall -- but
+    this dashboard is a rep board (ROSTER drives every chip and card), so
+    associates are dropped here and stay visible on the auction tracker
+    itself, which ranks everyone. John Neukum is dropped for the usual
+    roster reason. The card says so rather than implying the rep ranking
+    is the whole auction.
+    """
+    if not AUCTION_INDEX.exists():
+        print("display_auction: SKIPPED -- no isellbeer/display-auction-tracker/index.html found")
+        return {"byRep": {}, "meta": {}, "houseRepPoints": 0, "houseRepDisplays": 0,
+                "excludedPoints": 0, "excludedNames": []}
+    m = AUCTION_DATA_RE.search(AUCTION_INDEX.read_text())
+    if not m:
+        print("display_auction: SKIPPED -- da-data block not found in the tracker's index.html")
+        return {"byRep": {}, "meta": {}, "houseRepPoints": 0, "houseRepDisplays": 0,
+                "excludedPoints": 0, "excludedNames": []}
+    src = json.loads(m.group(1))
+
+    by_rep, excluded, excluded_pts = {}, [], 0
+    for person in src.get("people", []):
+        rep = _canon_auction_name(person.get("name"))
+        if not rep:
+            excluded.append(f"{person.get('name')} ({person.get('role')})")
+            excluded_pts += person.get("points", 0) or 0
+            continue
+        displays = [{
+            "customer": d.get("dba", ""),
+            "city": d.get("city", ""),
+            "date": d.get("dt", ""),
+            "cases": d.get("cases", 0),
+            "tier": d.get("tier"),
+            "classification": d.get("classification", ""),
+            "points": d.get("points", 0),
+            "brands": d.get("brands", []),
+            # A display can carry more than one photo; the first is the link.
+            "photo": (d.get("photos") or [None])[0],
+        } for d in person.get("displays", [])]
+        by_rep[rep] = {
+            "points": person.get("points", 0),
+            "qualifying": person.get("qualifying", 0),
+            "submitted": person.get("total", 0),
+            "priorityQualifying": person.get("priorityQualifying", 0),
+            "otherQualifying": person.get("otherQualifying", 0),
+            "displays": displays,
+        }
+
+    # Every rep can enter this auction, so a rep with nothing on the board
+    # still gets a card -- a zero-state that shows how points are earned,
+    # rather than the program vanishing for exactly the people who have not
+    # started. Same reasoning as Target Accounts on the MPO trackers.
+    for rep in ROSTER:
+        by_rep.setdefault(rep, {"points": 0, "qualifying": 0, "submitted": 0,
+                                "priorityQualifying": 0, "otherQualifying": 0, "displays": []})
+
+    # Rank within the reps on this board only -- see the docstring on why
+    # that is not the same as the auction's overall standing. Reps with no
+    # points are unranked (null) rather than sharing a meaningless last
+    # place; the card shows a dash.
+    scoring = sorted((kv for kv in by_rep.items() if kv[1]["points"] > 0), key=lambda kv: -kv[1]["points"])
+    for i, (rep, _) in enumerate(scoring, start=1):
+        by_rep[rep]["rank"] = i
+    for rep, d in by_rep.items():
+        d.setdefault("rank", None)
+    return {
+        "byRep": by_rep,
+        "meta": src.get("meta", {}),
+        "repCount": len(scoring),
+        "houseRepPoints": sum(d["points"] for d in by_rep.values()),
+        "houseRepDisplays": sum(d["qualifying"] for d in by_rep.values()),
+        "excludedPoints": excluded_pts,
+        "excludedNames": sorted(excluded),
+    }
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -2198,6 +2329,7 @@ def main():
         "mabi_retention": build_mabi_retention(),
         "constellation_retention": build_constellation_retention(),
         "yuengling_retention": build_yuengling_retention(),
+        "display_auction": build_display_auction(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -2283,8 +2415,17 @@ def main():
           f"{sum(d['draftNewLineCount'] for d in con['byRep'].values())} new lines "
           f"({sum(d['draftNewTargetedCount'] for d in con['byRep'].values())} targeted Modelo), "
           f"{sum(d['draftBarrels'] for d in con['byRep'].values()):.0f} total bbl (no goals tracked on draft, per Gavin) | "
-          f"new draft buyers {sum(d['newDraftTotal'] for d in con['byRep'].values())} across "
-          f"{sum(1 for d in con['byRep'].values() if d['newDraftTotal'])} reps")
+          f"new draft buyers (distinct accounts) {sum(d['draftNewAccountCount'] for d in con['byRep'].values())} | "
+          f"regular draft buyers {sum(d['regBuyersTotal'] for d in con['byRep'].values())} across "
+          f"{sum(1 for d in con['byRep'].values() if d['regBuyersTotal'])} reps")
+
+    da = data["display_auction"]
+    if da["byRep"]:
+        top = max(da["byRep"].items(), key=lambda kv: kv[1]["points"])
+        print(f"display_auction: {da['houseRepPoints']:,} pts across {da['repCount']} reps "
+              f"({da['houseRepDisplays']} qualifying displays), top {top[0]} {top[1]['points']:,} | "
+              f"excluded {len(da['excludedNames'])} non-roster ({da['excludedPoints']:,} pts): "
+              f"{', '.join(da['excludedNames'])} | tracker window {da['meta'].get('startDate')} - {da['meta'].get('endDate')}")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]

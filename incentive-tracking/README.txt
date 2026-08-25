@@ -47,10 +47,44 @@ Volume, Yave Tequila Launch, Molly's 1.75L, Garage Beer Summer Sequel
 built (Sammy's Beach Bar Rum -- no data yet; New Belgium Distribution/
 Volume, Summer of Success THC Volume -- not yet sent, need goal-
 threshold numbers not on
-the slides). The iSellBeer Summer Display Auction (slides 14-15) is
-NOT part of this dashboard -- it's covered by the separate
-isellbeer/display-auction-tracker/, and the Chelada/Corona Premier
-Summer of Success program (slides 24-25) was not requested.
+the slides). The Chelada/Corona Premier Summer of Success program
+(slides 24-25) was not requested.
+
+iSellBeer Summer Display Auction (slides 14-15) -- ADDED 2026-08-25,
+reversing the earlier "not part of this dashboard" note. Gavin: "is
+there a way you can wire the isellbeer auction display program into
+this page? make it a tile just like the other programs. put it in
+ongoing." It is now an Ongoing tile (key 'display_auction',
+cardDisplayAuction()), and it is the ONLY program on this page whose
+data does not come from data/:
+
+  SOURCE: ../isellbeer/display-auction-tracker/index.html, the
+  <script id="da-data"> block that tracker embeds -- already fully
+  scored, per person, with photo links. build_display_auction() parses
+  that JSON and re-shapes it; it does NOT rescore anything. Deliberate:
+  the tracker's generate.py owns what counts as one display, the
+  priority/all-other split, the 10/20/40/70-case tiers, the points per
+  tier, and the weekly --merge that keeps older weeks on the board. All
+  of that was reverse-engineered once and that folder's README says not
+  to re-derive it, so duplicating it here would create two scorers that
+  could silently disagree.
+
+  CONSEQUENCE: this tile is only as fresh as the auction tracker's last
+  refresh. Refresh the tracker FIRST (python3 generate.py Report_NN.xlsx
+  --merge in that folder), then run this generate.py. Running this one
+  alone will happily rebuild the page with last week's auction numbers.
+  If the tracker file or its da-data block is missing, the builder prints
+  a SKIPPED line and returns empty rather than failing the whole build.
+
+  SALES REPS ONLY, which makes the rank on this card a REP rank, not the
+  auction's overall standing. Associates are a real force in this auction
+  -- as of 2026-08-25 they hold 5 of the top 8 spots and mickey obrien
+  would sit 2nd overall -- so the card carries a footnote saying so and
+  links to the tracker for the full board. iSellBeer name spellings are
+  canonicalized to ROSTER (AUCTION_NAME_FIXES, plus a curly-apostrophe
+  fix for John O'Donoghue); John Neukum is dropped per the standing
+  roster rule. 19 of 27 reps are scoring; the other 8 get a zero-state
+  card rather than no card, since every rep can enter.
 
 Roster note (2026-08-1x): Sun Cruiser's file surfaced 3 names with
 real sales that aren't on the roster -- Chris Politano, John Neukum,
@@ -668,7 +702,11 @@ math.
    NOT guessed -- Pacifico in particular is ambiguous (off-prem
    Innovation only includes the 7oz Pacifico).
 
-   constellation_draft_on.csv -- account-level draft rows grouped
+   constellation_new_draft_distro.csv -- RDE "Constellation: New Draft
+   Distro (Summer 2026)", the NEW side of draft. (Renamed 2026-08-25 from
+   constellation_draft_on.csv, which was a misleading name once the actual
+   "Draft ON" report arrived as a separate file -- see point 5 below.)
+   Account-level draft rows grouped
    rep -> (brand, package) -> customer, with TWO subtotal layers: first
    row of each rep run = rep total, first row of each (rep, brand,
    package) run = block subtotal, both borrowing their top customer's
@@ -718,30 +756,43 @@ math.
         has date range as package i just didnt show it in report". The
         file genuinely has no date columns; slide 20's March-May text
         refers to the earlier phase, not this pull.
-     5. NEW DRAFT BUYERS IS A SEPARATE BLOCK (2026-08-25), fed by its own
-        file, data/constellation_new_draft_buyers.csv (RDE
-        "Constellation - Draft ON Summer 2026"). Per Gavin: "I would like
-        to make a section for new constellation draft. there are no goals
-        for each rep, just tracking the new buyers of draft." It is a
-        per-rep buyer count by draft brand (Corona Light / Corona Premier /
-        Modelo Especial / Modelo Negra / Pacifico), built by
-        _constellation_new_draft_buyers() and rendered as the third
-        on-premise block plus a fifth "New Draft Buyers" stat tile.
-        Two things to keep straight about it:
-          - It is NOT the account-level draft distro file. That is
-            constellation_draft_on.csv (RDE "New Draft Distro Summer
-            2026"), which drives the new-lines/barrel-bonus block. The two
-            do not agree and are not supposed to: checked rep by rep, this
-            file's counts match neither the distro file's distinct-account
-            count nor its summed New Buyers on 46 of 60 rep/brand pairs.
-            Separate measure, separate file, separate block -- do not try
-            to reconcile or derive one from the other.
-          - The file ships Goals and % of Goals columns beside every brand
-            and EVERY Goals cell is blank. _constellation_new_draft_buyers()
-            ignores those columns outright rather than reading them as
-            zeros, which keeps it consistent with point 3 above. If Kohler
-            ever populates them, that is a decision for Gavin, not an
-            automatic wiring-up -- point 3 still stands.
+     5. TWO DRAFT FILES, AND THEY WERE BUILT BACKWARDS ONCE (corrected
+        2026-08-25). Constellation now sends two separate draft reports and
+        the names are easy to swap -- they were swapped on the first build,
+        so read this before touching either:
+          data/constellation_new_draft_distro.csv   RDE "Constellation: New
+            Draft Distro (Summer 2026)" -- the NEW buyers. Account-level,
+            drives the "New Draft Buyers & Barrel Bonus" block.
+          data/constellation_draft_on_buyers.csv    RDE "Constellation:
+            Draft ON (Summer 2026)" -- the REGULAR (total) draft book, a
+            per-rep buyer count by brand. Drives the "Draft Buyers By
+            Brand" block.
+        Gavin, 2026-08-25: "1st i mentioned [New Draft Distro] is new and
+        has no goals and 2nd i mentioned [Draft ON] is regular buyers. no
+        goals at rep level, just brand level for regular. There are no
+        goals are are just tracking new buyers of constellation draft."
+        The first build had the Draft ON file labelled as the new buyers
+        and the distro file headlined as "New Draft Lines" -- both wrong.
+        Neither file has any usable goals: Draft ON ships Goals / % of
+        Goals columns beside every brand with EVERY cell blank, and both
+        builders ignore those columns outright rather than rendering a wall
+        of 0% (consistent with point 3, which still stands).
+
+        HEADLINE NUMBER ON THE NEW SIDE IS NEW BUYERS, i.e. distinct new
+        accounts (draftNewAccountCount), NOT new lines. That is what the
+        RDE report's own rep-level "New Buyers" figure is -- verified rep
+        for rep against the report: all 18 roster reps match, house 90
+        (86 on-roster; Default 2, Chris Politano 1, Office Tell Sell 1 are
+        dropped as usual). The leaf sum and the leaf row count both come
+        to 109 and overstate it, because an account going new on two
+        brands appears twice -- see the CRITICAL SEMANTIC note above. New
+        lines are still shown, as the secondary number, because the deck
+        pays per LINE.
+
+        The two files measure different things and do not reconcile:
+        checked rep by rep, Draft ON's counts match neither the distro
+        file's distinct-account count nor its summed New Buyers on 46 of
+        60 rep/brand pairs. Do not try to derive one from the other.
 
    The rep scoreboard spans both channels (off-prem goals retained,
    off-prem % of goal, on-prem package buyers, new draft lines) because
@@ -820,7 +871,7 @@ math.
    targeted / $50 non-target NEW LINE rewards and the barrels-sold
    retention bonus (4+ bbl $200/$150, 8+ bbl $400/$250, half on 1/4 &
    1/6). Those would need an account-level draft export like
-   Constellation's (constellation_draft_on.csv) -- ask Gavin if he wants
+   Constellation's (constellation_new_draft_distro.csv) -- ask Gavin if he wants
    that piece tracked.
 
 NOT part of this dashboard:

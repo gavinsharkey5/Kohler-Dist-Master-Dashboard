@@ -177,6 +177,7 @@
   .earn-step.done .earn-step-num{background:var(--good);border-color:var(--good);color:var(--canvas);}
   .earn-step.done .earn-step-num::before{content:"✓";}
 
+  .prog-foot-note{color:var(--text-mute);font-size:13.5px;line-height:1.5;padding-top:2px;}
   .empty-note{color:var(--text-dim);font-size:15px;line-height:1.5;}
 
   /* ---- "Where You Stand" scoreboard tiles (top of every card) ---- */
@@ -222,6 +223,10 @@
   .detail-row-name{font-weight:700;font-size:16.5px;color:var(--text);line-height:1.3;}
   .detail-row-sub{font-size:14px;color:var(--text-dim);margin-top:3px;line-height:1.4;}
   .detail-row-right{flex-shrink:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+  .detail-row-link{display:inline-block;margin-top:4px;font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);text-decoration:none;
+    border-bottom:1px solid var(--accent-soft);}
+  .detail-row-link:hover{border-bottom-color:var(--accent);}
   .detail-row-stat{font-size:14.5px;color:var(--text-dim);font-variant-numeric:tabular-nums;white-space:nowrap;}
   .detail-row-stat.pos{color:var(--good);font-weight:700;}
   .detail-row-stat.neg{color:var(--red);font-weight:700;}
@@ -66808,9 +66813,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": false
       },
       "Alisa Acciardi": {
@@ -67003,9 +67008,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Allison Scott": {
@@ -68152,8 +68157,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 55,
         "draftBarrels": 142.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 5
@@ -68175,7 +68180,7 @@ const PROGRAM_DATA = {
             "buyers": 7
           }
         ],
-        "newDraftTotal": 77,
+        "regBuyersTotal": 77,
         "territoryEligible": true
       },
       "Andrew Lundy": {
@@ -68243,9 +68248,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": false
       },
       "Anthony Palmisano": {
@@ -68780,14 +68785,14 @@ const PROGRAM_DATA = {
         "draftAccountCount": 11,
         "draftBarrels": 28.2,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Modelo Especial",
             "buyers": 5
           }
         ],
-        "newDraftTotal": 5,
+        "regBuyersTotal": 5,
         "territoryEligible": true
       },
       "Brian Sengebush": {
@@ -69514,8 +69519,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 25,
         "draftBarrels": 55.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 5
@@ -69537,7 +69542,7 @@ const PROGRAM_DATA = {
             "buyers": 6
           }
         ],
-        "newDraftTotal": 42,
+        "regBuyersTotal": 42,
         "territoryEligible": true
       },
       "Chris Payton": {
@@ -70088,8 +70093,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 8,
         "draftBarrels": 16.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 2
@@ -70103,7 +70108,7 @@ const PROGRAM_DATA = {
             "buyers": 3
           }
         ],
-        "newDraftTotal": 10,
+        "regBuyersTotal": 10,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -70482,8 +70487,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 5,
         "draftBarrels": 8.8,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Modelo Especial",
             "buyers": 5
@@ -70493,7 +70498,7 @@ const PROGRAM_DATA = {
             "buyers": 1
           }
         ],
-        "newDraftTotal": 6,
+        "regBuyersTotal": 6,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -70840,9 +70845,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 3,
         "draftBarrels": 26.5,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Derrick Laws": {
@@ -71095,9 +71100,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": true,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Dylan Rubino": {
@@ -71241,9 +71246,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Hakan Sadik": {
@@ -71311,9 +71316,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": false
       },
       "Jaime Colonna": {
@@ -71438,9 +71443,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Javier Melo": {
@@ -71702,8 +71707,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": -0.5,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 1
@@ -71713,7 +71718,7 @@ const PROGRAM_DATA = {
             "buyers": 1
           }
         ],
-        "newDraftTotal": 2,
+        "regBuyersTotal": 2,
         "territoryEligible": true
       },
       "Jayson Romine": {
@@ -72075,9 +72080,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 7,
         "draftBarrels": 3.8,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Jim Heaney": {
@@ -72384,9 +72389,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 3,
         "draftBarrels": 0.8,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "John O'Donoghue": {
@@ -72539,9 +72544,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Klejdi Lamo": {
@@ -72980,9 +72985,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 6,
         "draftBarrels": 12.2,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": true,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Matt Powierski": {
@@ -73389,14 +73394,14 @@ const PROGRAM_DATA = {
         "draftAccountCount": 7,
         "draftBarrels": 16.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Modelo Especial",
             "buyers": 3
           }
         ],
-        "newDraftTotal": 3,
+        "regBuyersTotal": 3,
         "territoryEligible": true
       },
       "Michael Harboy": {
@@ -73609,9 +73614,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 0,
         "draftBarrels": 0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Mike Ast": {
@@ -74170,8 +74175,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 8,
         "draftBarrels": 15.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 1
@@ -74189,7 +74194,7 @@ const PROGRAM_DATA = {
             "buyers": 3
           }
         ],
-        "newDraftTotal": 7,
+        "regBuyersTotal": 7,
         "territoryEligible": true
       },
       "Nick Melissari": {
@@ -75395,8 +75400,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 50,
         "draftBarrels": 174.5,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 3
@@ -75418,7 +75423,7 @@ const PROGRAM_DATA = {
             "buyers": 12
           }
         ],
-        "newDraftTotal": 78,
+        "regBuyersTotal": 78,
         "territoryEligible": true
       },
       "Pablo Lopez": {
@@ -75708,8 +75713,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 3,
         "draftBarrels": 6.2,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Modelo Especial",
             "buyers": 3
@@ -75719,7 +75724,7 @@ const PROGRAM_DATA = {
             "buyers": 1
           }
         ],
-        "newDraftTotal": 4,
+        "regBuyersTotal": 4,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
@@ -76694,8 +76699,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 41,
         "draftBarrels": 102.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 5
@@ -76717,7 +76722,7 @@ const PROGRAM_DATA = {
             "buyers": 13
           }
         ],
-        "newDraftTotal": 66,
+        "regBuyersTotal": 66,
         "territoryEligible": true
       },
       "Phil Ernst": {
@@ -77100,9 +77105,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 4,
         "draftBarrels": 9.8,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": true,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -77568,8 +77573,8 @@ const PROGRAM_DATA = {
         "draftAccountCount": 19,
         "draftBarrels": 19.0,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": true,
-        "newDraftBrands": [
+        "regBuyersInReport": true,
+        "regBuyersBrands": [
           {
             "label": "Corona Light",
             "buyers": 2
@@ -77583,7 +77588,7 @@ const PROGRAM_DATA = {
             "buyers": 2
           }
         ],
-        "newDraftTotal": 22,
+        "regBuyersTotal": 22,
         "territoryEligible": true
       },
       "Shane Barreca": {
@@ -78197,9 +78202,9 @@ const PROGRAM_DATA = {
         "draftAccountCount": 8,
         "draftBarrels": 20.8,
         "draftLinesAtBonus": 0,
-        "newDraftInReport": false,
-        "newDraftBrands": [],
-        "newDraftTotal": 0,
+        "regBuyersInReport": false,
+        "regBuyersBrands": [],
+        "regBuyersTotal": 0,
         "territoryEligible": true
       }
     },
@@ -78273,7 +78278,7 @@ const PROGRAM_DATA = {
         "buyers": 3
       }
     ],
-    "houseNewDraft": [
+    "houseDraftBuyers": [
       {
         "label": "Corona Light",
         "buyers": 24
@@ -83498,6 +83503,4488 @@ const PROGRAM_DATA = {
       }
     },
     "retainThresholdPct": 90
+  },
+  "display_auction": {
+    "byRep": {
+      "Mike Ast": {
+        "points": 34200,
+        "qualifying": 51,
+        "submitted": 52,
+        "priorityQualifying": 48,
+        "otherQualifying": 3,
+        "displays": [
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:13 PM",
+            "cases": 225,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER",
+              "WHITE CLAW SURGE HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/90f3b054-6a1e-4b74-8170-08c1cdcaf9a0/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "08/03/2026 09:42 AM",
+            "cases": 200,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2773913d-d244-404b-be6e-ffe7ff13b6dc/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/29/2026 01:03 PM",
+            "cases": 173,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/aa56d0eb-80bb-4f06-bb54-3796f2d3030e/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/21/2026 04:16 PM",
+            "cases": 130,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8e536ee5-c942-49b0-a51f-ae43fd18f75a/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/01/2026 02:29 PM",
+            "cases": 115,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/60633483-5cb7-4ec9-b919-8fe4c8d71214/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/01/2026 02:49 PM",
+            "cases": 105,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4dc85cae-94ea-4d34-a2ae-8fc11df391a8/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/13/2026 02:22 PM",
+            "cases": 105,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/74ee6776-9a8e-4a95-9613-fa6e1db69ab2/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/01/2026 02:26 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b83d530c-c9d6-40b8-9675-5598689e887e/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/13/2026 02:20 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT",
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5de5655c-324a-4b1f-9e86-1af6e54d0f48/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/13/2026 02:24 PM",
+            "cases": 95,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e79f7806-5d06-4539-92c1-60b3b0671948/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:17 PM",
+            "cases": 95,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT",
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6776dd21-b0f6-4dd4-b8d8-f6800cdc19a1/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/01/2026 02:27 PM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/a11d67d5-37a0-416d-903d-270c425edcf1/"
+          },
+          {
+            "customer": "LONG HILL LIQUORS (A)",
+            "city": "OAKLAND",
+            "date": "07/21/2026 11:44 AM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS",
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/142c695d-f6a4-4606-826e-df95597c5655/"
+          },
+          {
+            "customer": "LONG HILL LIQUORS (A)",
+            "city": "OAKLAND",
+            "date": "07/21/2026 11:43 AM",
+            "cases": 82,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9582a2fe-b2a9-476f-9981-f413ac23ab49/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/06/2026 09:49 AM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/1556b5d4-5759-4a81-a23c-eadb79758862/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/07/2026 02:04 PM",
+            "cases": 77,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/bd78f1de-574a-467e-9b39-ad6e1879dcea/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/06/2026 02:52 PM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/955c2769-b7e4-48a6-865a-9a0b8dee08e4/"
+          },
+          {
+            "customer": "LONG HILL LIQUORS (A)",
+            "city": "OAKLAND",
+            "date": "07/07/2026 12:41 PM",
+            "cases": 73,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fc6632a9-a8f5-47be-a66a-5131b3f7afa6/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:15 PM",
+            "cases": 73,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "YUENGLING BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/314dcf4b-eb94-4d6c-ae33-c161cfd17412/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/06/2026 09:53 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ec91daf8-0111-4f7e-a44f-11614941499d/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/07/2026 02:06 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e34c4b47-99b1-4ee4-9ada-eb7f6ebe17aa/"
+          },
+          {
+            "customer": "LONG HILL LIQUORS (A)",
+            "city": "OAKLAND",
+            "date": "07/07/2026 12:39 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA",
+              "PACIFICO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/780ba2d3-51bc-40fc-a34e-7417efdb1eaa/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/14/2026 12:36 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA",
+              "PACIFICO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e699d5e1-7de6-4806-9b00-06c66b6ca7d2/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/21/2026 04:19 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dce24735-a76d-403b-994b-7ce34d53ae3f/"
+          },
+          {
+            "customer": "RIDGEWOOD SUPER CELLAR",
+            "city": "RIDGEWOOD",
+            "date": "07/23/2026 11:05 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/956bf456-e5a4-4ea0-af9f-2db0234add58/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "08/17/2026 02:31 PM",
+            "cases": 91,
+            "tier": 4,
+            "classification": "allother",
+            "points": 600,
+            "brands": [
+              "CAPE MAY",
+              "CAPE MAY SEASONALS",
+              "SHINER",
+              "SIERRA NEVADA BREWING COMPANY",
+              "SOUTHERN TIER BREWING COMPANY",
+              "YUENGLING BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5fbf6f3c-7ee9-4b17-8895-18948bf70dc5/"
+          },
+          {
+            "customer": "FRANK'S FINE WINE & FOODS",
+            "city": "HALEDON",
+            "date": "07/20/2026 11:03 AM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e292e1cd-18dd-4bbc-ba8c-fb182f330a5c/"
+          },
+          {
+            "customer": "GRAND OPENING LIQ (A)_2",
+            "city": "NORTH HALEDON",
+            "date": "07/14/2026 12:10 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/971e5f64-277f-4140-9f52-eb117b88fc30/"
+          },
+          {
+            "customer": "NICO'S WINE & SPIRITS",
+            "city": "HALEDON",
+            "date": "07/29/2026 12:27 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c99b265e-0b94-46d3-8260-c28cebb48830/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:04 PM",
+            "cases": 48,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/cd34a066-95b6-4543-9b78-f16bd1719338/"
+          },
+          {
+            "customer": "RIDGEWOOD SUPER CELLAR",
+            "city": "RIDGEWOOD",
+            "date": "08/18/2026 02:27 PM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/139f5712-54e1-49bd-8056-c082996db6b2/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/06/2026 02:54 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/73dc0b84-ff2a-4376-b0d7-5e2aa8cea20e/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/06/2026 09:52 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/19b42409-716a-4519-8079-a5c003f0a1cb/"
+          },
+          {
+            "customer": "LONG HILL LIQUORS (A)",
+            "city": "OAKLAND",
+            "date": "07/07/2026 12:37 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fb9bed43-95b5-4d6d-ae1d-1c004371b89d/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:08 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/639d3667-d318-48f8-b773-a3d3e14b190a/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "08/17/2026 02:27 PM",
+            "cases": 69,
+            "tier": 3,
+            "classification": "allother",
+            "points": 300,
+            "brands": [
+              "HACKER-PSCHORR",
+              "HOFBRAU",
+              "PAULANER",
+              "STEVENS POINT BREWERY",
+              "WEIHENSTEPHANER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d0319a2d-6c11-429c-9ae5-d2c37ba0f94a/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "08/17/2026 02:33 PM",
+            "cases": 37,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SAM ADAMS SEASONAL"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dc60d6db-4544-469d-b8cb-91d90da22f64/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/14/2026 12:34 PM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/bb9b325f-b278-4e1b-a846-23f6821fa530/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/21/2026 04:18 PM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/a7497154-e1aa-4487-99cd-f5fbc9918886/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/22/2026 03:02 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "LEINENKUGEL'S"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f1d4a851-f3b5-4a46-9968-7c5879fbedce/"
+          },
+          {
+            "customer": "MAHWAH LIQRS (P)",
+            "city": "MAHWAH",
+            "date": "07/22/2026 10:21 AM",
+            "cases": 25,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/cc84fc11-22f2-4dbc-ac5e-9b63a19da5ba/"
+          },
+          {
+            "customer": "BOTTLE KING (A) WAYNE",
+            "city": "WAYNE",
+            "date": "07/06/2026 02:55 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fee9cdc6-3e06-4cbc-b295-4daadbe05cac/"
+          },
+          {
+            "customer": "FRANK'S FINE WINE & FOODS",
+            "city": "HALEDON",
+            "date": "07/06/2026 11:27 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/99faa0c0-a615-465b-97b3-6f1ebe3dc5f8/"
+          },
+          {
+            "customer": "RIDGEWOOD SUPER CELLAR",
+            "city": "RIDGEWOOD",
+            "date": "07/23/2026 11:02 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0306f15b-3782-4b1f-aa7a-6ac017e783b0/"
+          },
+          {
+            "customer": "STOP & SHOP (A)RIDGEWOOD",
+            "city": "RIDGEWOOD",
+            "date": "07/29/2026 11:17 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/acd312d6-0abb-403d-95a0-e544bcba0280/"
+          },
+          {
+            "customer": "FRANK'S FINE WINE & FOODS",
+            "city": "HALEDON",
+            "date": "07/06/2026 11:25 AM",
+            "cases": 18,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "DOS EQUIS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/a49a646d-9175-4128-83c5-a6204640f933/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/14/2026 12:32 PM",
+            "cases": 15,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/20a0a171-a50b-46ee-8fa2-05e94d370efe/"
+          },
+          {
+            "customer": "WINE & SPIRIT WORLD(W)",
+            "city": "WYCKOFF",
+            "date": "07/14/2026 12:37 PM",
+            "cases": 15,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "DOS EQUIS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/946851d3-cf58-4366-a686-382b41f866d7/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/20/2026 10:00 AM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "YUENGLING BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/32c59ac5-4c69-45f4-8f1e-6fed4def20cf/"
+          },
+          {
+            "customer": "OAKLAND WINE (A)",
+            "city": "OAKLAND",
+            "date": "07/14/2026 11:29 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "CARBLISS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/10bfbac1-bd60-49c0-a9f5-057b0923f28c/"
+          },
+          {
+            "customer": "LINCOLN PARK FINE WINES & SPIRITS",
+            "city": "LINCOLN PARK",
+            "date": "07/20/2026 09:58 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "allother",
+            "points": 100,
+            "brands": [
+              "DELTA THC SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/33dc3ddd-175a-4711-994a-46efeb0b2909/"
+          },
+          {
+            "customer": "MAHWAH LIQRS (P)",
+            "city": "MAHWAH",
+            "date": "07/29/2026 09:36 AM",
+            "cases": 0,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CARBLISS",
+              "SUN CRUISER ICED TEA VODKA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c03010c5-b102-4492-870b-340ccecd129c/"
+          }
+        ],
+        "rank": 1
+      },
+      "Phil Ernst": {
+        "points": 26400,
+        "qualifying": 47,
+        "submitted": 61,
+        "priorityQualifying": 44,
+        "otherQualifying": 3,
+        "displays": [
+          {
+            "customer": "PALISADES WINE AND LIQUOR",
+            "city": "PALISADES PARK",
+            "date": "07/06/2026 02:35 PM",
+            "cases": 190,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS",
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ee0eb748-9131-4ecc-ba0f-a1d6b8e06973/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/17/2026 12:45 PM",
+            "cases": 181,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA",
+              "MODELO CERVEZA",
+              "MODELO CHELADA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e4a1df4d-f820-4caa-9727-7f0c5932bb16/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:39 AM",
+            "cases": 120,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0cd722cc-60b5-4b41-b06f-b478fbc4ebee/"
+          },
+          {
+            "customer": "CITY SUPERMARKET",
+            "city": "FAIRVIEW",
+            "date": "08/03/2026 03:42 PM",
+            "cases": 120,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b21e7877-925e-4439-b843-c029d694394b/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/02/2026 09:09 AM",
+            "cases": 115,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TRULY",
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/45bb1e45-90a8-4a4e-9d81-f220311765de/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:52 PM",
+            "cases": 110,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TRULY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e262aa83-bcb0-4ad8-a18e-3aa5950a60ee/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:48 PM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2810800c-5e5c-4937-807a-9c152f14f81e/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:34 AM",
+            "cases": 88,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TRULY",
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ac1fc0c5-e615-49f0-9d1f-3e6a8f2d14e9/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:35 AM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT",
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/76a45cb4-6963-4a49-a1c6-07bd733c7dea/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "07/02/2026 08:33 AM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SAM ADAMS SEASONAL"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/db8d6724-fe68-4740-bff5-f88c9f00dc6e/"
+          },
+          {
+            "customer": "PALISADES WINE AND LIQUOR",
+            "city": "PALISADES PARK",
+            "date": "08/03/2026 02:12 PM",
+            "cases": 73,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS",
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c53e44e8-4b09-4f96-850b-b2eea4ceaa8a/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:30 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6a358bbe-868c-40eb-ae68-841869181ed1/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "07/02/2026 10:33 AM",
+            "cases": 68,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/88dade20-5377-4dce-96af-ce996b9c8485/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:59 PM",
+            "cases": 65,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/80ca8624-1ba4-40e0-be09-c7a3ec4ceb88/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:44 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5925c350-4a6e-4515-9d07-821984198c69/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:56 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/52fa9f5c-f2a5-4c98-8d8e-9a06b6b7aa0f/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:42 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/32873a0b-b0f8-4011-9416-cacf38ccafbc/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:48 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/20ee0260-cb19-494e-b689-84d167822305/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:51 PM",
+            "cases": 54,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e7cd5713-ca38-4b43-9f88-002289421630/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:20 AM",
+            "cases": 53,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b98ed3b9-3275-4d7c-9eb9-2aa4e11ad6c5/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/02/2026 02:25 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/bb1a6c11-d0da-481e-81a5-c2c4d0603c70/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/02/2026 02:29 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TRULY HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8f428868-46be-424a-887a-f6d66fcf1337/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:26 AM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/314c2a4a-f438-4547-be42-4324047cb793/"
+          },
+          {
+            "customer": "CITY SUPERMARKET",
+            "city": "FAIRVIEW",
+            "date": "08/03/2026 03:34 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/af42b87c-2283-49ae-a486-e762a511b585/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:36 AM",
+            "cases": 49,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c7f3ad1e-bb77-448a-b969-c98b41877a89/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "07/02/2026 08:39 AM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/86c61f9a-7dd6-43a4-b789-2fa0fd774dbb/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/02/2026 09:10 AM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/72e9a264-3b47-49a6-a446-89add122e4b2/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:40 PM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f7df6d80-fb4e-45c9-bcb4-768df8367627/"
+          },
+          {
+            "customer": "CITY SUPERMARKET",
+            "city": "FAIRVIEW",
+            "date": "08/17/2026 04:35 PM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0cb42439-1d64-47fd-a538-f854014742b2/"
+          },
+          {
+            "customer": "PALISADES WINE AND LIQUOR",
+            "city": "PALISADES PARK",
+            "date": "07/06/2026 02:39 PM",
+            "cases": 44,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA",
+              "MODELO ORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/11e30b87-a655-441b-8a2a-056f1f7f19cf/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:13 AM",
+            "cases": 44,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b7f20952-b5ec-4360-b13a-b58f1639bb21/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "07/20/2026 11:48 AM",
+            "cases": 42,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TRULY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ad290e0f-39eb-48ae-b731-b243178d04bc/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:37 PM",
+            "cases": 41,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0d020ebd-fd64-43cf-a2d4-02b35433874e/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "07/02/2026 08:47 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TRULY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9335bc03-02ab-4a7b-a96f-4e73778615de/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 09:30 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/1f34c6c5-294f-47e3-8492-53b2dae87c82/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/02/2026 02:27 PM",
+            "cases": 38,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CAYMAN JACK"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/65f09e36-bc50-4a9f-a710-6bddf0f89f0a/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:17 AM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0b707179-960c-4854-b7fb-dd439f7b3654/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:29 AM",
+            "cases": 32,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/cec5704a-ca49-4de7-bac0-c54fa41a43d2/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "07/02/2026 08:48 AM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7b3214ff-1de2-4d20-9dee-1b69ed749c73/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:55 PM",
+            "cases": 26,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2154253f-011c-4ba3-a980-8f85366d069b/"
+          },
+          {
+            "customer": "ACME MARKETS (ALLENDALE)",
+            "city": "ALLENDALE",
+            "date": "08/03/2026 05:12 PM",
+            "cases": 22,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA EXTRA",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/36c9754b-425d-4da4-b704-197a0b191275/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "08/03/2026 12:51 PM",
+            "cases": 21,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "YUENGLING BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d3d951ec-2a00-402f-ad8a-23769e7e3196/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/08/2026 09:50 AM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "ATHLETIC BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/55c38c68-1a08-4ff6-b3f4-ecb2e83b8492/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:33 AM",
+            "cases": 14,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "FEVER TREE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8a3751f0-7994-4627-9c49-8b3e0c8d5f47/"
+          },
+          {
+            "customer": "ACME MARKETS (ALLENDALE)",
+            "city": "ALLENDALE",
+            "date": "08/17/2026 09:33 AM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/01f1aab7-8105-44ad-bbc0-7a6c1f2443ba/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:31 AM",
+            "cases": 18,
+            "tier": 1,
+            "classification": "allother",
+            "points": 100,
+            "brands": [
+              "ATHLETIC BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e3bb0e6e-e1c9-4e4e-bba5-bcd293793615/"
+          },
+          {
+            "customer": "CITY SUPERMARKET",
+            "city": "FAIRVIEW",
+            "date": "08/03/2026 03:41 PM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "allother",
+            "points": 100,
+            "brands": [
+              "SARATOGA WATER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/619b9223-8955-42e0-a4dc-7146d24fabae/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/02/2026 01:49 PM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "SINLESS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/418c016c-c25c-4213-94d7-06670b9077f3/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:11 AM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/72a1e55b-5a51-4d2c-be2c-66104ba58bfe/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:34 AM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CARBLISS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8a5b09d1-666d-4520-9603-0bfd6a1a6b3e/"
+          },
+          {
+            "customer": "ACME MARKETS (ALLENDALE)",
+            "city": "ALLENDALE",
+            "date": "08/17/2026 09:35 AM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e2091941-a84c-4072-b719-eb915f76a45d/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:16 AM",
+            "cases": 7,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "COORS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8a93ff17-3a65-4437-a903-71a7969d46b2/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:32 AM",
+            "cases": 7,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "SIMPLY SPIKED LEMONADE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/87051702-cd22-4f01-941d-3fdae152a3b5/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "07/30/2026 10:55 AM",
+            "cases": 7,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "SINLESS SPIRITS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ae1389a9-2049-4c22-848e-db9b1f1b4f20/"
+          },
+          {
+            "customer": "SHOP RITE LIQ(A) FAIR LWN",
+            "city": "FAIR LAWN",
+            "date": "07/30/2026 11:53 AM",
+            "cases": 7,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CARBLISS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/746e5e3f-efb3-4e85-a37d-b6015dbd7c49/"
+          },
+          {
+            "customer": "SHOP-RITE LIQ LYNDHURST",
+            "city": "LYNDHURST",
+            "date": "07/20/2026 11:44 AM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dcb27d33-c56d-46b5-a41f-6f84525b10e9/"
+          },
+          {
+            "customer": "SUPER WINE WAREHSE(P)PATE",
+            "city": "PATERSON",
+            "date": "07/30/2026 09:14 AM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d84278a9-fdfc-404e-83ee-b7f077bee712/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "07/10/2026 12:04 PM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CORONA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/eb0cad89-dfa3-439d-ab68-1fcd4a0729d3/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (PARAMUS)",
+            "city": "PARAMUS",
+            "date": "08/18/2026 03:19 PM",
+            "cases": 2,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/79f05fa6-7f11-4001-9230-30422b741ca1/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "08/04/2026 03:31 PM",
+            "cases": 1,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "REDD'S"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4d1585d0-a6c2-4555-aca7-7962a2836ef3/"
+          },
+          {
+            "customer": "BOTTLE KING (A) GLEN ROCK",
+            "city": "GLEN ROCK",
+            "date": "08/04/2026 03:34 PM",
+            "cases": 1,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "REDD'S"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d2a57a19-1ddd-4002-a86f-81b95d2a9373/"
+          }
+        ],
+        "rank": 2
+      },
+      "Dave Ehlers": {
+        "points": 22300,
+        "qualifying": 30,
+        "submitted": 37,
+        "priorityQualifying": 27,
+        "otherQualifying": 3,
+        "displays": [
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/19/2026 04:06 PM",
+            "cases": 250,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ecf6c550-aa97-46ca-9854-cecb47cf5a93/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/29/2026 03:47 PM",
+            "cases": 200,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4db1809f-583f-47d6-88d6-223fe8936646/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/08/2026 02:23 PM",
+            "cases": 160,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/22a2e0ae-1909-4d2c-8131-6f8b72430cba/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/08/2026 02:51 PM",
+            "cases": 140,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e3d1f1cb-d714-46d3-8917-80752e4862c7/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "07/10/2026 01:45 PM",
+            "cases": 127,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER",
+              "WHITE CLAW SURGE HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c7877ad6-c441-4607-9a63-9eb8bced855e/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "07/10/2026 01:48 PM",
+            "cases": 112,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/eba4808c-d70a-407a-9371-6c160881c207/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/08/2026 02:17 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/1ce4ed75-3ce6-4f96-9e84-3e14e454f35c/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/08/2026 02:48 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/bc8fe8ab-442b-4a91-bdf3-e66c4245d561/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "07/28/2026 10:42 AM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b6b6582f-bf07-4063-986d-2144510f41b1/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/27/2026 01:28 PM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4c804f04-9daa-4368-99aa-c80271549288/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/24/2026 03:07 PM",
+            "cases": 85,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d1ee2aee-c230-427c-bc6b-ae709873c69e/"
+          },
+          {
+            "customer": "BUY RITE OF HACKENSACK",
+            "city": "HACKENSACK",
+            "date": "07/14/2026 03:31 PM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/231b999c-65d1-4fb0-8a92-d8471e05e414/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/18/2026 01:38 PM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "ANGRY ORCHARD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/31f6e05b-1e9f-4b46-a916-35e910f58c08/"
+          },
+          {
+            "customer": "BUY RITE OF HACKENSACK",
+            "city": "HACKENSACK",
+            "date": "07/15/2026 01:38 PM",
+            "cases": 77,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4d1d0510-b79b-4d53-ba01-792e7e79a4b4/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/10/2026 11:47 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2abca0d7-a81b-43fa-acb6-3da65ab2b59f/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "08/06/2026 11:12 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "PACIFICO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/54015704-7798-447c-90d9-f4c16273c3f6/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/10/2026 12:54 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "PACIFICO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c1801269-e3bf-4473-a2ee-ad711a80451b/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "08/14/2026 02:32 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "ANGRY ORCHARD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5b8d049c-e076-4a9d-8c05-b8b54d53bb48/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (TOTOWA)",
+            "city": "TOTOWA",
+            "date": "08/20/2026 09:52 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "allother",
+            "points": 600,
+            "brands": [
+              "NOCA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/220012b8-d4ad-42a4-a822-9b29bfc7d484/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/29/2026 03:56 PM",
+            "cases": 65,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b98db4bd-2c08-4051-94e2-a8980b4d5425/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/14/2026 11:52 AM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "ANGRY ORCHARD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/691f5b8b-96ab-43c1-9a36-509661f857c3/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/17/2026 01:26 PM",
+            "cases": 43,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f0a3cf49-d394-41d1-86fc-f149bd1a8b1c/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/03/2026 03:40 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "allother",
+            "points": 300,
+            "brands": [
+              "NOCA BEVERAGES"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7bbc3d7d-a039-46fd-8be6-c9fbd0e96b04/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/10/2026 11:44 AM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "allother",
+            "points": 300,
+            "brands": [
+              "SIERRA NEVADA BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dc910fde-eb99-461b-99e1-434e38810d2c/"
+          },
+          {
+            "customer": "BUY RITE OF HACKENSACK",
+            "city": "HACKENSACK",
+            "date": "07/15/2026 01:42 PM",
+            "cases": 32,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7d82ea59-efd6-4f2c-8380-4966feff119e/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/08/2026 02:47 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SINLESS SPIRITS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/da586193-41b8-4ad1-9d14-0d8bc52220a4/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/10/2026 11:59 AM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "DOS EQUIS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/72e0829d-10c3-49b7-b543-378a6b8286a5/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/21/2026 01:26 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "KEYSTONE BEER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7e724e54-7104-4427-8754-203ebdddf3fe/"
+          },
+          {
+            "customer": "BUY RITE OF HACKENSACK",
+            "city": "HACKENSACK",
+            "date": "07/15/2026 01:46 PM",
+            "cases": 15,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c6406309-ef86-41df-a1ad-125dcf663e8b/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/30/2026 01:32 PM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "PERONI NASTRO AZZURRO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f71f27af-e7eb-42b9-a000-fa6ae2bf40dc/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "07/28/2026 02:59 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "COORS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0e4a6b16-2751-46e8-bdc6-49a52e3ce110/"
+          },
+          {
+            "customer": "WINE AND LIQ DEPOT(A)",
+            "city": "SOUTH HACKENSAC",
+            "date": "08/17/2026 12:11 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9bd0801e-5530-45eb-b1f5-c924e36995e2/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/14/2026 11:41 AM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ad9f9cca-88ed-4a26-80f9-6e49d3ba29e5/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/14/2026 11:38 AM",
+            "cases": 2,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b6c8adc9-4884-48b5-bc79-82d03c7a08c0/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/14/2026 12:06 PM",
+            "cases": 2,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8fdbbbe1-56e2-42b7-a4ba-eebad23bdcca/"
+          },
+          {
+            "customer": "TOTAL WINE & MORE (RIVER EDGE)",
+            "city": "RIVER EDGE",
+            "date": "08/14/2026 11:39 AM",
+            "cases": 1,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/38556a8f-0506-4f4b-9dd2-86dfba7febd8/"
+          },
+          {
+            "customer": "WINE AND LIQ DEPOT(A)",
+            "city": "SOUTH HACKENSAC",
+            "date": "08/17/2026 10:23 AM",
+            "cases": 1,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/73df4598-60ad-4e5b-9a8c-2520e73a8fc3/"
+          }
+        ],
+        "rank": 3
+      },
+      "Shane Barreca": {
+        "points": 17300,
+        "qualifying": 26,
+        "submitted": 26,
+        "priorityQualifying": 23,
+        "otherQualifying": 3,
+        "displays": [
+          {
+            "customer": "SHOPRITE LIQ (A)NORTHVLE",
+            "city": "NORTHVALE",
+            "date": "08/10/2026 08:53 AM",
+            "cases": 193,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/1723130f-ce7c-4d65-b787-13b434c606bf/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/20/2026 07:43 AM",
+            "cases": 191,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/10d6b830-f186-495d-a0ca-99761c984e4d/"
+          },
+          {
+            "customer": "BOTTLE KING (A) DUMONT",
+            "city": "DUMONT",
+            "date": "08/05/2026 08:31 AM",
+            "cases": 169,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA",
+              "CORONA NON-ALCOHOLIC",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/794ea9ff-5e25-46d9-a7b6-6911dad6d426/"
+          },
+          {
+            "customer": "SHOPRITE LIQ (A)NORTHVLE",
+            "city": "NORTHVALE",
+            "date": "08/05/2026 09:15 AM",
+            "cases": 159,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/755ab9e7-99c9-414d-902e-b8f41210fdff/"
+          },
+          {
+            "customer": "BEVERAGE BARN (A)",
+            "city": "NORTHVALE",
+            "date": "07/29/2026 09:17 AM",
+            "cases": 149,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6a9482e0-1bc3-4b66-bffa-63845839b208/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/13/2026 12:56 PM",
+            "cases": 111,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/473a00da-e9e6-419a-84d7-7dc1fa9b4ce5/"
+          },
+          {
+            "customer": "SHOPRITE LIQ (A)NORTHVLE",
+            "city": "NORTHVALE",
+            "date": "07/13/2026 08:59 AM",
+            "cases": 99,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/17d4c6ee-6d82-4465-aae9-94fe987191a5/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)HILLSDAL",
+            "city": "HILLSDALE",
+            "date": "07/15/2026 11:04 AM",
+            "cases": 85,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA",
+              "CORONA NON-ALCOHOLIC"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/24b57329-fb34-4f59-9815-45b2ccb2066c/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)HILLSDAL",
+            "city": "HILLSDALE",
+            "date": "07/15/2026 11:06 AM",
+            "cases": 79,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b6e58c2a-7889-4cac-9535-bac906089d4b/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/20/2026 07:38 AM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8335fbca-13d7-42cc-bcb7-0e7a0df79ad5/"
+          },
+          {
+            "customer": "BEVERAGE BARN (A)",
+            "city": "NORTHVALE",
+            "date": "08/12/2026 09:38 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "KEYSTONE BEER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c5736584-d936-4c10-9d81-8730e74202bd/"
+          },
+          {
+            "customer": "BOTTLE KING (A) DUMONT",
+            "city": "DUMONT",
+            "date": "08/05/2026 08:36 AM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "allother",
+            "points": 600,
+            "brands": [
+              "HACKER-PSCHORR",
+              "HOFBRAU",
+              "PAULANER",
+              "YUENGLING BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2632c0bc-9a66-4a9e-b4ca-0af0fc8596ad/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/20/2026 07:39 AM",
+            "cases": 69,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3506b72f-3b13-4c7b-b3d5-fd92eb7541e5/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)HILLSDAL",
+            "city": "HILLSDALE",
+            "date": "07/15/2026 10:58 AM",
+            "cases": 63,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/053fa7d3-21da-4055-aa1f-ae459979b2c3/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)EMERSON",
+            "city": "EMERSON",
+            "date": "07/13/2026 09:20 AM",
+            "cases": 61,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3acca41d-aba1-4c63-80d7-94bea0a45f13/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)HILLSDAL",
+            "city": "HILLSDALE",
+            "date": "07/15/2026 11:11 AM",
+            "cases": 58,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/951ea3f2-4d02-48a6-adec-05ca18e05490/"
+          },
+          {
+            "customer": "BOTTLE KING (A) RAMSEY",
+            "city": "RAMSEY",
+            "date": "07/29/2026 11:18 AM",
+            "cases": 53,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/449fc8c5-085a-45bc-9cdc-3e6c2ad6a1a2/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/13/2026 12:58 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TRULY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2899241b-60df-42d8-82b8-a24f07305373/"
+          },
+          {
+            "customer": "BOTTLE KING (A) RAMSEY",
+            "city": "RAMSEY",
+            "date": "07/29/2026 11:16 AM",
+            "cases": 42,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "LEINENKUGEL'S",
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5863f624-28e1-48c0-acfe-55fbc7bff2ab/"
+          },
+          {
+            "customer": "SHOP RITE LIQ (A)EMERSON",
+            "city": "EMERSON",
+            "date": "07/13/2026 09:21 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f89f45c6-fd8d-46cb-a4bd-7b5b9dda7038/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "08/10/2026 12:21 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "allother",
+            "points": 300,
+            "brands": [
+              "SOUTHERN TIER BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d0efdf74-3880-4711-b870-0c37135e9157/"
+          },
+          {
+            "customer": "BOTTLE KING (A) RAMSEY",
+            "city": "RAMSEY",
+            "date": "07/15/2026 12:04 PM",
+            "cases": 39,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f996b93c-12ae-416a-9c42-0b52f9498500/"
+          },
+          {
+            "customer": "BOTTLE KING (A) RAMSEY",
+            "city": "RAMSEY",
+            "date": "07/29/2026 11:21 AM",
+            "cases": 36,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MODELO CERVEZA",
+              "MODELO ORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/659beef0-7504-4bfa-b56e-b0b119d42ee7/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "07/13/2026 01:02 PM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/05f86b53-f4f7-4f9a-97ec-c44f36539d21/"
+          },
+          {
+            "customer": "CORK & KEG (A)",
+            "city": "EMERSON",
+            "date": "07/14/2026 10:30 AM",
+            "cases": 32,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CARBLISS",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5cefb206-d28f-4333-a833-4eb6d171c88d/"
+          },
+          {
+            "customer": "MONTVALE WINE/LIQ & BEER",
+            "city": "MONTVALE",
+            "date": "08/10/2026 12:24 PM",
+            "cases": 38,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "HACKER-PSCHORR",
+              "HOFBRAU",
+              "PAULANER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4e3ecf44-9864-4a20-a0c3-d372b6a3d4c4/"
+          }
+        ],
+        "rank": 4
+      },
+      "Matt Powierski": {
+        "points": 8600,
+        "qualifying": 16,
+        "submitted": 25,
+        "priorityQualifying": 16,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "SHOP RITE OF WALLINGTON",
+            "city": "WALLINGTON",
+            "date": "08/19/2026 11:13 AM",
+            "cases": 150,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fa3fdde5-cb8d-4036-9110-6cad7347336b/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/30/2026 10:09 AM",
+            "cases": 110,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3437b09a-583b-4964-af5b-4fc6a74bf148/"
+          },
+          {
+            "customer": "PAYLESS LIQUOR & DELL",
+            "city": "ELMWOOD PARK",
+            "date": "07/21/2026 10:29 AM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/43de9eb1-ab92-4c4e-b23d-008ba1abbe81/"
+          },
+          {
+            "customer": "METRO LIQUORS (EAST RUTHERFORD)",
+            "city": "EAST RUTHERFORD",
+            "date": "07/15/2026 12:33 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/90ce4f6a-3f1f-420f-8859-48ed811a6df1/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/29/2026 01:49 PM",
+            "cases": 60,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f5ede873-1fdc-43a5-ab43-b4375f56aab0/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "08/07/2026 12:13 PM",
+            "cases": 54,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6138ebbd-7540-43f6-ae8e-15dae4e5d0d1/"
+          },
+          {
+            "customer": "WHOOPEE LIQ (A)",
+            "city": "GARFIELD",
+            "date": "07/21/2026 01:54 PM",
+            "cases": 53,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/40d1c547-6d6c-4616-8253-a73ad18bfcb4/"
+          },
+          {
+            "customer": "PAYLESS LIQUOR & DELL",
+            "city": "ELMWOOD PARK",
+            "date": "07/21/2026 10:31 AM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7ec8b2e0-33c6-47e4-acee-f50306d8b249/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/30/2026 10:36 AM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "LEINENKUGEL'S"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c7baf805-8bae-4a8e-b64c-e1abb06aabf4/"
+          },
+          {
+            "customer": "SHOP RITE OF WALLINGTON",
+            "city": "WALLINGTON",
+            "date": "07/22/2026 11:53 AM",
+            "cases": 41,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3d7e3d74-918e-4d6a-8b87-87e75314ba40/"
+          },
+          {
+            "customer": "M & M WINE & SPIRITS",
+            "city": "ELMWOOD PARK",
+            "date": "07/21/2026 11:24 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5b29c082-88c6-44f6-967a-b9896668107a/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/30/2026 10:51 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/eaa2391f-e0a6-42db-8db6-11c420b84f42/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/29/2026 01:50 PM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4009d360-e246-4568-b4fa-a778abbae066/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/29/2026 01:54 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8951d79d-830e-456c-9447-9da9e969c8e7/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/29/2026 01:51 PM",
+            "cases": 26,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fb3c58ed-a78d-4c66-9285-b33cdc2392d9/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/09/2026 11:40 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "MODELO CERVEZA",
+              "MODELO ORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/042fa5dd-bff8-40b1-8fdc-8e0d3dd1461a/"
+          },
+          {
+            "customer": "M & M WINE & SPIRITS",
+            "city": "ELMWOOD PARK",
+            "date": "07/07/2026 11:02 AM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "FEVER TREE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b24ff8b9-f221-46e8-82d9-b37250d38c79/"
+          },
+          {
+            "customer": "WINE GRAND (CARLSTADT)",
+            "city": "CARLSTADT",
+            "date": "08/13/2026 10:51 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6f2e1884-56c8-4a4e-9bc7-75eadbe55e95/"
+          },
+          {
+            "customer": "KING LIQUORS",
+            "city": "WALLINGTON",
+            "date": "08/20/2026 01:19 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/db31325a-fc97-4ca3-9bb3-4bd093f17f34/"
+          },
+          {
+            "customer": "WHOOPEE LIQ (A)",
+            "city": "GARFIELD",
+            "date": "08/20/2026 12:51 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f64a12e6-8375-4daf-b06c-c4ce65851c01/"
+          },
+          {
+            "customer": "SHOP RITE OF WALLINGTON",
+            "city": "WALLINGTON",
+            "date": "08/21/2026 11:20 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fe3f8abf-3f39-4c37-9d80-b02509cf0472/"
+          },
+          {
+            "customer": "METRO LIQUORS (EAST RUTHERFORD)",
+            "city": "EAST RUTHERFORD",
+            "date": "08/21/2026 12:03 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5e4b44b1-7abb-4357-b7d6-9ff4de8185be/"
+          },
+          {
+            "customer": "CAPRI DELI&LIQ (P)",
+            "city": "EAST RUTHERFORD",
+            "date": "08/21/2026 12:25 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3d30c6fb-f0b8-4fb2-b1dd-807869abe40f/"
+          },
+          {
+            "customer": "WALLINGTON LIQUOR AND WINE",
+            "city": "WALLINGTON",
+            "date": "08/24/2026 10:11 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+          },
+          {
+            "customer": "BOTTLE REPUBLIC (RUTHERFORD)",
+            "city": "RUTHERFORD",
+            "date": "07/29/2026 01:56 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/175e851a-aa1f-4465-9259-5409d855847e/"
+          }
+        ],
+        "rank": 5
+      },
+      "Klejdi Lamo": {
+        "points": 7000,
+        "qualifying": 7,
+        "submitted": 7,
+        "priorityQualifying": 7,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:04 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/400438fd-23e7-487c-bd9b-0f549851dfd9/"
+          },
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:06 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MILLER LITE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c2c93b03-8a6a-40aa-95cf-ce15ddac8021/"
+          },
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:08 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d01bd0fd-bcff-4279-a63c-fdf284e07a27/"
+          },
+          {
+            "customer": "SANDY'S WINE & SPIRIT (P) (BUDD LAKE)",
+            "city": "BUDD LAKE",
+            "date": "08/24/2026 02:53 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fd513822-53b1-418e-9114-6775747c0c71/"
+          },
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:05 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW SURF HARD SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6acb414a-c47a-41cd-8ad0-38a040f32dfb/"
+          },
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:09 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2504bada-0227-4fd5-9ec7-52a74648752a/"
+          },
+          {
+            "customer": "SHOP RITE WINE & SPIRITS STANHOPE",
+            "city": "STANHOPE",
+            "date": "07/30/2026 12:10 PM",
+            "cases": 70,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8030f26e-fbc2-4107-94b5-729bb22eee76/"
+          }
+        ],
+        "rank": 6
+      },
+      "Derrick Laws": {
+        "points": 5000,
+        "qualifying": 10,
+        "submitted": 12,
+        "priorityQualifying": 9,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/30/2026 01:08 PM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8a95897a-4a15-4012-ba29-3d55660e87be/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/30/2026 01:02 PM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f064786a-3d37-47ca-b84c-8e660337cebf/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/30/2026 01:27 PM",
+            "cases": 80,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER",
+              "WHITE CLAW ZERO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8f17e831-02c2-4724-b867-cfecf2390026/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/30/2026 01:10 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO ORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9743f310-5a26-40d8-895c-b20ae6ef6a7c/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 01:06 PM",
+            "cases": 33,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f560bf67-39eb-4964-9198-c915f61b55a7/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 01:04 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c3287e1c-ac5c-47b9-ab37-40268147e2ae/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 12:54 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6800922b-6fc9-4e86-927f-bf12c03b9e22/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 12:56 PM",
+            "cases": 22,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/17193e8f-5b2d-4eb8-8c48-19bf1619d9d8/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 01:01 PM",
+            "cases": 11,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "MODELO CHELADA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2a5c07cf-f25f-4668-89b1-b6ffde8f6eca/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 12:53 PM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "DOGFISH HEAD BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c2e4deb5-2a87-4229-bb34-0269cdb7f610/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 01:02 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CORONA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/84835b2e-69c6-4821-9800-275aa7c5448f/"
+          },
+          {
+            "customer": "SHOP RITE WINES/SPIRITS",
+            "city": "CLIFTON",
+            "date": "07/28/2026 01:26 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2101fb1f-3325-455d-a7f1-151025d99bc8/"
+          }
+        ],
+        "rank": 7
+      },
+      "Chris Payton": {
+        "points": 4900,
+        "qualifying": 10,
+        "submitted": 12,
+        "priorityQualifying": 10,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "USA WINE TRADERS CLUB (SADDLE BROOK)",
+            "city": "SADDLE BROOK",
+            "date": "07/14/2026 11:08 AM",
+            "cases": 87,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/944dd8c1-f951-48b1-99a7-067e422472fe/"
+          },
+          {
+            "customer": "THE WINE RACK HASBROUCK HTS",
+            "city": "HASBROUCK HEIGHTS",
+            "date": "07/14/2026 12:25 PM",
+            "cases": 56,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/14da50ff-204f-49a4-9c2a-16fe6eabd3a7/"
+          },
+          {
+            "customer": "BUY RITE OF MAIN ST LODI",
+            "city": "LODI",
+            "date": "08/03/2026 11:30 AM",
+            "cases": 56,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/12604dd6-0716-4437-949d-599d41b30828/"
+          },
+          {
+            "customer": "THE WINE RACK HASBROUCK HTS",
+            "city": "HASBROUCK HEIGHTS",
+            "date": "07/14/2026 12:31 PM",
+            "cases": 47,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA",
+              "CORONA NON-ALCOHOLIC"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/85d20691-367d-44f7-aa3d-d8ad821ade28/"
+          },
+          {
+            "customer": "SHOP RITE LIQ.(A)LODI",
+            "city": "LODI",
+            "date": "07/07/2026 01:57 PM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8f3a5020-aee6-4c3e-b2dd-0c7163821a81/"
+          },
+          {
+            "customer": "SHOP RITE LIQ.(A)LODI",
+            "city": "LODI",
+            "date": "07/07/2026 01:52 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/47675a1d-77ef-4029-9752-68b1a12d6e98/"
+          },
+          {
+            "customer": "BUY RITE OF MAIN ST LODI",
+            "city": "LODI",
+            "date": "08/03/2026 11:28 AM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0c2750f5-9d07-4b21-9c3f-d24905bcca5d/"
+          },
+          {
+            "customer": "THE WINE RACK HASBROUCK HTS",
+            "city": "HASBROUCK HEIGHTS",
+            "date": "07/14/2026 12:29 PM",
+            "cases": 35,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fad80de6-bfbc-48b2-a2c0-5e8bb4d69c7e/"
+          },
+          {
+            "customer": "BUY RITE DISCOUNT LIQUOR",
+            "city": "LODI",
+            "date": "08/18/2026 02:18 PM",
+            "cases": 26,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "TRULY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/399fc3e1-e83c-4c8e-8894-83852a10313d/"
+          },
+          {
+            "customer": "THE WINE RACK HASBROUCK HTS",
+            "city": "HASBROUCK HEIGHTS",
+            "date": "07/14/2026 12:33 PM",
+            "cases": 22,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6dd6bdb7-8cfc-449d-b7b1-d223e9bf291c/"
+          },
+          {
+            "customer": "USA WINE TRADERS CLUB (SADDLE BROOK)",
+            "city": "SADDLE BROOK",
+            "date": "08/13/2026 01:02 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/295e5189-1119-41ab-8554-5c2b3ef60190/"
+          },
+          {
+            "customer": "HOLLYWD LIQ&DELI (A)",
+            "city": "MAYWOOD",
+            "date": "08/24/2026 02:10 PM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8515459e-c247-479f-bd43-51a3e35ec7de/"
+          }
+        ],
+        "rank": 8
+      },
+      "Michael Harboy": {
+        "points": 4600,
+        "qualifying": 12,
+        "submitted": 13,
+        "priorityQualifying": 11,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/02/2026 09:29 AM",
+            "cases": 77,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ed49528d-811e-4e70-bf9b-e68d5773ab5e/"
+          },
+          {
+            "customer": "WAYNE LIQUOR LOCKER",
+            "city": "WAYNE",
+            "date": "07/02/2026 12:51 PM",
+            "cases": 66,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/154bf5fc-908b-45e5-b061-45a40a0c1993/"
+          },
+          {
+            "customer": "WAYNE LIQUOR LOCKER",
+            "city": "WAYNE",
+            "date": "08/11/2026 03:54 PM",
+            "cases": 61,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "WHITE CLAW CLAWTAILS",
+              "WHITE CLAW ORIGINAL HARD SELTZER",
+              "WHITE CLAW SURF HARD SELTZER",
+              "WHITE CLAW ZERO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2060ffe6-daec-4305-8168-10cae4ec2106/"
+          },
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/02/2026 09:35 AM",
+            "cases": 52,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CERVEZA VICTORIA",
+              "MODELO CERVEZA",
+              "MODELO ORO",
+              "PACIFICO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2035667a-57bc-4ea8-b647-8ddd8b8a66c9/"
+          },
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/02/2026 09:51 AM",
+            "cases": 47,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SAM ADAMS SEASONAL",
+              "SAMUEL ADAMS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6f49e073-c664-479e-bc54-8ac5609261f1/"
+          },
+          {
+            "customer": "WOLFSON MARKET",
+            "city": "LINCOLN PARK",
+            "date": "08/03/2026 09:44 AM",
+            "cases": 25,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c66858fd-357e-4add-84f9-5958a09c7451/"
+          },
+          {
+            "customer": "CEDAR GROVE WINE CELLAR",
+            "city": "CEDAR GROVE",
+            "date": "08/04/2026 01:42 PM",
+            "cases": 23,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/af83fa97-ad68-4a2f-864c-b69b4dc9a039/"
+          },
+          {
+            "customer": "SHOPRITE WINE & SPIRITS",
+            "city": "CALDWELL",
+            "date": "07/21/2026 10:33 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3dcc2ba6-9cf7-4043-bae4-ad757dafd08c/"
+          },
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/02/2026 09:37 AM",
+            "cases": 14,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c0367820-9dae-44ae-80cc-6f13b22e3a87/"
+          },
+          {
+            "customer": "SHOPRITE OF WEST CALDWELL",
+            "city": "WEST CALDWELL",
+            "date": "08/10/2026 02:02 PM",
+            "cases": 13,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f88bc101-0028-44a5-81c5-015dacea545e/"
+          },
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/02/2026 09:31 AM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "CARBLISS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ff6f0f9b-ba9c-4974-9347-337d8506c7a2/"
+          },
+          {
+            "customer": "THE WINE RACK NORTH CALDWELL",
+            "city": "NORTH CALDWELL",
+            "date": "08/05/2026 01:32 PM",
+            "cases": 18,
+            "tier": 1,
+            "classification": "allother",
+            "points": 100,
+            "brands": [
+              "TALKHOUSE ENCORE VARIETY PACK"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/33a4f866-37ca-4485-a673-60522f0145d4/"
+          },
+          {
+            "customer": "KRAUSER'S LIQUOR LOCKER",
+            "city": "VERONA",
+            "date": "08/04/2026 12:03 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "VICTORY BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/175b1246-aa7c-4992-8606-27d236e54f67/"
+          }
+        ],
+        "rank": 9
+      },
+      "Jim Heaney": {
+        "points": 4500,
+        "qualifying": 7,
+        "submitted": 11,
+        "priorityQualifying": 7,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "SHOPPERS VINEYARD (A)",
+            "city": "CLIFTON",
+            "date": "08/06/2026 10:46 AM",
+            "cases": 90,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA",
+              "MODELO CHELADA",
+              "MODELO ORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b486667c-d843-41ff-9a3b-3a2e0b90c9fe/"
+          },
+          {
+            "customer": "SHOPPERS VINEYARD (A)",
+            "city": "CLIFTON",
+            "date": "07/20/2026 03:30 PM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c33cb999-3663-4dbd-8dd3-f140d4e85890/"
+          },
+          {
+            "customer": "SHOPPERS VINEYARD (A)",
+            "city": "CLIFTON",
+            "date": "07/20/2026 03:33 PM",
+            "cases": 72,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0ebc5189-b193-48d1-8e51-b7dcdf556c1d/"
+          },
+          {
+            "customer": "SHOPPERS VINEYARD (A)",
+            "city": "CLIFTON",
+            "date": "08/03/2026 11:33 AM",
+            "cases": 57,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2a6834a0-5b00-42ce-9034-f3343ee4a151/"
+          },
+          {
+            "customer": "WORLD OF WINE & LIQUOR",
+            "city": "LYNDHURST",
+            "date": "08/20/2026 02:13 PM",
+            "cases": 45,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6742261c-a60b-47b6-a5a4-5690469d9b10/"
+          },
+          {
+            "customer": "SHOPPERS VINEYARD (A)",
+            "city": "CLIFTON",
+            "date": "07/20/2026 03:29 PM",
+            "cases": 34,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/54f10e38-fcce-459a-acee-535e21695a5b/"
+          },
+          {
+            "customer": "WORLD OF WINE & LIQUOR",
+            "city": "LYNDHURST",
+            "date": "08/04/2026 10:26 AM",
+            "cases": 15,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9bc29371-621d-4427-84aa-ecaab92330ec/"
+          },
+          {
+            "customer": "LUCKY 7 (A)",
+            "city": "NORTH ARLINGTON",
+            "date": "08/11/2026 01:00 PM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/99619744-f432-42e9-8f0a-10c98b9386e9/"
+          },
+          {
+            "customer": "QUICK BUY",
+            "city": "LYNDHURST",
+            "date": "08/11/2026 09:08 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d5215450-3a01-49a9-8d27-ed643ea0f85c/"
+          },
+          {
+            "customer": "RAINBOW LIQUOR (P)",
+            "city": "CLIFTON",
+            "date": "08/17/2026 10:00 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/a91724c1-f67f-4a3f-a5e0-5a17ec9be2d0/"
+          },
+          {
+            "customer": "WORLD OF WINE & LIQUOR",
+            "city": "LYNDHURST",
+            "date": "08/18/2026 11:04 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e146f3d6-04d2-4d48-a17f-4b29e424ba3d/"
+          }
+        ],
+        "rank": 10
+      },
+      "Javier Melo": {
+        "points": 4300,
+        "qualifying": 13,
+        "submitted": 16,
+        "priorityQualifying": 12,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "FARM BOY",
+            "city": "PATERSON",
+            "date": "07/23/2026 01:49 PM",
+            "cases": 120,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/27b97c82-d324-4221-bc91-a349977bdf01/"
+          },
+          {
+            "customer": "FARM BOY",
+            "city": "PATERSON",
+            "date": "08/06/2026 01:34 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "CORONA",
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0e6f679a-e05c-470c-81f3-e55efe3ca928/"
+          },
+          {
+            "customer": "C TOWN SUPERMARKET(P)",
+            "city": "PATERSON",
+            "date": "07/03/2026 01:13 PM",
+            "cases": 40,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c95aa28b-dd27-465e-83b4-4f322a2456a6/"
+          },
+          {
+            "customer": "FARM BOY",
+            "city": "PATERSON",
+            "date": "08/06/2026 01:38 PM",
+            "cases": 30,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5943343d-74ac-49e1-9fee-02d578aa09f0/"
+          },
+          {
+            "customer": "C TOWN SUPERMARKET(P)",
+            "city": "PATERSON",
+            "date": "08/18/2026 11:24 AM",
+            "cases": 24,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/52b276ff-28b5-43d4-a47a-0262e31af190/"
+          },
+          {
+            "customer": "FARM BOY",
+            "city": "PATERSON",
+            "date": "08/06/2026 02:22 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "CORONA EXTRA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5be552d9-ee66-4dd0-85a6-fa7a39850e80/"
+          },
+          {
+            "customer": "FARM BOY",
+            "city": "PATERSON",
+            "date": "07/08/2026 01:39 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/18192488-3e1f-4f7a-b10d-1830fa3999c3/"
+          },
+          {
+            "customer": "BELMONT LIQRS (P)",
+            "city": "PATERSON",
+            "date": "08/06/2026 03:46 PM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/acc3b7b1-4436-4c2c-aae5-36d08a48804c/"
+          },
+          {
+            "customer": "PARKER LIQUORS (Z)",
+            "city": "CLIFTON",
+            "date": "08/06/2026 04:37 PM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4d12dbc9-6a8f-4bde-ab1a-57936e72f365/"
+          },
+          {
+            "customer": "SEGUNDO'S (P)",
+            "city": "PATERSON",
+            "date": "08/07/2026 10:29 AM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/3d4034a7-689d-49ab-9451-4843322aaceb/"
+          },
+          {
+            "customer": "PARUTA'S (A)",
+            "city": "PATERSON",
+            "date": "08/10/2026 12:52 PM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c15eae57-49f4-43b4-9aef-c6204e4ec80b/"
+          },
+          {
+            "customer": "PRESIDENT LIQRS (A)",
+            "city": "PASSAIC",
+            "date": "08/11/2026 02:54 PM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2e1d43f4-7d65-445a-9898-62a9132f9333/"
+          },
+          {
+            "customer": "EAST SIDE BAR LIQUORS",
+            "city": "PATERSON",
+            "date": "08/21/2026 11:26 AM",
+            "cases": 12,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/29b32e3c-499b-4d3b-bdf7-5c2f7dea0901/"
+          },
+          {
+            "customer": "ESTEVEZ LIQUORS LLC",
+            "city": "PASSAIC",
+            "date": "07/24/2026 02:52 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/21439737-88d0-450e-b061-8e0bbf2b9544/"
+          },
+          {
+            "customer": "ESTEVEZ LIQUORS LLC",
+            "city": "PASSAIC",
+            "date": "07/24/2026 02:53 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CORONA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/545d6f6f-a380-4f66-8d68-bc6e4960fc39/"
+          },
+          {
+            "customer": "C TOWN SUPERMARKET(P)",
+            "city": "PATERSON",
+            "date": "07/24/2026 11:58 AM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/fce8c1fc-3120-4a32-a960-a43be3c7d7c2/"
+          }
+        ],
+        "rank": 11
+      },
+      "Jayson Romine": {
+        "points": 3100,
+        "qualifying": 5,
+        "submitted": 9,
+        "priorityQualifying": 5,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "SHOPRITE WINES & SPIRITS OF FRANKLIN",
+            "city": "FRANKLIN",
+            "date": "07/14/2026 12:39 PM",
+            "cases": 76,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ef3a6e2d-de9c-4712-938e-4b315f2a1f92/"
+          },
+          {
+            "customer": "SHOPRITE WINES & SPIRITS OF SPARTA",
+            "city": "SPARTA",
+            "date": "07/15/2026 10:52 AM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA",
+              "SUN CRUISER LEMONADE"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f8bc1298-9d46-45ad-9c40-55e729e77446/"
+          },
+          {
+            "customer": "SHOPRITE WINES & SPIRITS OF SPARTA",
+            "city": "SPARTA",
+            "date": "07/15/2026 10:55 AM",
+            "cases": 64,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "TWISTED TEA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/446eaad3-61a9-4dfe-825a-23501c02a645/"
+          },
+          {
+            "customer": "MAC & LINDY'S W & S (A)",
+            "city": "VERNON",
+            "date": "07/14/2026 09:58 AM",
+            "cases": 21,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISER LEMONADE",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dd706b18-6125-4543-95d9-4e10f79da0df/"
+          },
+          {
+            "customer": "MAC & LINDY'S W & S (A)",
+            "city": "VERNON",
+            "date": "07/14/2026 09:56 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "SUN CRUISER LEMONADE",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e102301e-2fec-4f4a-a28b-7fd18e50d3fe/"
+          },
+          {
+            "customer": "USA WINE TRADERS CLUB OF NEWTON (A)",
+            "city": "NEWTON",
+            "date": "07/13/2026 01:18 PM",
+            "cases": 8,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "CARBLISS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/352272b0-d4d6-41f7-b053-f650828b45e2/"
+          },
+          {
+            "customer": "PATRICKS WINE BARN",
+            "city": "SUSSEX",
+            "date": "08/10/2026 10:50 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7049f4ed-3135-43d1-9182-a34390d9ed71/"
+          },
+          {
+            "customer": "MAC & LINDY'S W & S (A)",
+            "city": "VERNON",
+            "date": "08/11/2026 09:59 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/07d3ce2e-d648-457b-842c-c0fc4634a0e5/"
+          },
+          {
+            "customer": "PATRICKS WINE BARN",
+            "city": "SUSSEX",
+            "date": "07/13/2026 11:09 AM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "MONACO",
+              "MONACO COCKTAILS"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/244f3c78-eb0d-4c09-91a8-ed9e6d1d0465/"
+          }
+        ],
+        "rank": 12
+      },
+      "Alex Rodriguez": {
+        "points": 2900,
+        "qualifying": 8,
+        "submitted": 8,
+        "priorityQualifying": 6,
+        "otherQualifying": 2,
+        "displays": [
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/17/2026 12:22 PM",
+            "cases": 200,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "SUN CRUISER ICED TEA VODKA",
+              "SUN CRUISERS RTD"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/7a5a7eb0-6d57-46ff-860c-437ec3caab7a/"
+          },
+          {
+            "customer": "CHARLIE'S LIQUOR AND CONVENIENCE",
+            "city": "DUMONT",
+            "date": "08/13/2026 12:58 PM",
+            "cases": 50,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "COORS LIGHT",
+              "CORONA EXTRA",
+              "HEINEKEN",
+              "MILLER LITE",
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/94e5e43b-04d5-426d-a83e-1ba5e4aa89e6/"
+          },
+          {
+            "customer": "WOLFSON MARKET",
+            "city": "LINCOLN PARK",
+            "date": "07/30/2026 11:27 AM",
+            "cases": 25,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/b4394ba6-f390-4a88-a503-16e58ae70f33/"
+          },
+          {
+            "customer": "SHOPRITE WINE & SPIRITS",
+            "city": "CALDWELL",
+            "date": "07/17/2026 02:11 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/251afceb-2ae0-4a2d-bc18-bedba905c9bc/"
+          },
+          {
+            "customer": "SHAY'S LIQUORS",
+            "city": "WAYNE",
+            "date": "07/17/2026 12:20 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/742ae7f4-a773-4800-8740-8c1c8eca2b11/"
+          },
+          {
+            "customer": "THE WINE RACK NORTH CALDWELL",
+            "city": "NORTH CALDWELL",
+            "date": "07/30/2026 12:43 PM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "TALKHOUSE ENCORE TEQUILA SODA",
+              "TALKHOUSE ENCORE VARIETY PACK"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/12f8b9cf-602a-46c5-b26a-a1846ec276b1/"
+          },
+          {
+            "customer": "WINE CELLAR",
+            "city": "ELIZABETH",
+            "date": "07/20/2026 12:34 PM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/590ac015-0ce8-4698-aa1d-0f6c3b33d223/"
+          },
+          {
+            "customer": "WATCHUNG LIQUOR (P)",
+            "city": "PLAINFIELD",
+            "date": "07/27/2026 12:45 PM",
+            "cases": 19,
+            "tier": 1,
+            "classification": "allother",
+            "points": 100,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6748e2c9-f6a9-48fd-9e2c-426625f95674/"
+          }
+        ],
+        "rank": 13
+      },
+      "Dan Lagala": {
+        "points": 2600,
+        "qualifying": 3,
+        "submitted": 7,
+        "priorityQualifying": 2,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "MITSUWA MARKET (A)",
+            "city": "EDGEWATER",
+            "date": "07/07/2026 11:41 AM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/48d6c74b-4a39-4dd6-a8ec-f0c65631ad17/"
+          },
+          {
+            "customer": "MITSUWA MARKET (A)",
+            "city": "EDGEWATER",
+            "date": "07/07/2026 11:42 AM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/e302df69-ab4f-4410-813d-e99e889aa35e/"
+          },
+          {
+            "customer": "MITSUWA MARKET (A)",
+            "city": "EDGEWATER",
+            "date": "07/07/2026 11:48 AM",
+            "cases": 100,
+            "tier": 4,
+            "classification": "allother",
+            "points": 600,
+            "brands": [
+              "KIRIN ICHIBAN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/16a1779d-2135-4667-8c03-bd527b709fab/"
+          },
+          {
+            "customer": "LINWOOD WINE-LINWOOD PLAZA",
+            "city": "FORT LEE",
+            "date": "08/13/2026 11:05 AM",
+            "cases": 6,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/0bb728dd-360c-4cd7-9f85-af55fe6ccf94/"
+          },
+          {
+            "customer": "LIQUOR CITY(A)CLIFFSIDE",
+            "city": "CLIFFSIDE PARK",
+            "date": "07/31/2026 01:01 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5762f2a8-e535-4b6c-9ef7-735cfde64d7c/"
+          },
+          {
+            "customer": "LINWOOD WINE-HUDSON LIGHT",
+            "city": "FORT LEE",
+            "date": "07/31/2026 11:17 AM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/8e4e86d7-51dc-4750-a1e5-95176fe83285/"
+          },
+          {
+            "customer": "LINWOOD WINE-LINWOOD PLAZA",
+            "city": "FORT LEE",
+            "date": "07/31/2026 12:30 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "BLUE MOON"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/9cbce43a-6927-4bae-b290-baed207121b2/"
+          }
+        ],
+        "rank": 14
+      },
+      "Pablo Lopez": {
+        "points": 1700,
+        "qualifying": 3,
+        "submitted": 6,
+        "priorityQualifying": 3,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "BOMBOLON LIQUOR & GROCERY",
+            "city": "PATERSON",
+            "date": "07/28/2026 02:03 PM",
+            "cases": 75,
+            "tier": 4,
+            "classification": "priority",
+            "points": 1000,
+            "brands": [
+              "COORS LIGHT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/83bfb555-c49b-4b67-b1ca-493be8d5a56e/"
+          },
+          {
+            "customer": "BOMBOLON LIQUOR & GROCERY",
+            "city": "PATERSON",
+            "date": "07/23/2026 11:31 AM",
+            "cases": 44,
+            "tier": 3,
+            "classification": "priority",
+            "points": 500,
+            "brands": [
+              "HEINEKEN"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/2ae11299-9a53-4b97-b169-0be505678593/"
+          },
+          {
+            "customer": "ALLEN'S LIQUORS",
+            "city": "PATERSON",
+            "date": "07/22/2026 11:31 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/f3c71585-833a-4f1b-ad56-e2c456fe01a5/"
+          },
+          {
+            "customer": "BOMBOLON LIQUOR & GROCERY",
+            "city": "PATERSON",
+            "date": "07/21/2026 01:46 PM",
+            "cases": 4,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "MODELO CERVEZA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/d274dedc-5230-46a7-88dd-568510dc9197/"
+          },
+          {
+            "customer": "REGALADO LIQ",
+            "city": "PASSAIC",
+            "date": "08/19/2026 01:26 PM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/619c0ac0-0e30-4e95-b6b1-3eaf297d6a4d/"
+          },
+          {
+            "customer": "PASSAIC DISCOUNT LIQUORS",
+            "city": "PASSAIC",
+            "date": "08/24/2026 02:12 PM",
+            "cases": 3,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "LYTT"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/26b22564-17e9-4de9-afde-06a846bf8dff/"
+          }
+        ],
+        "rank": 15
+      },
+      "John O'Donoghue": {
+        "points": 600,
+        "qualifying": 3,
+        "submitted": 5,
+        "priorityQualifying": 2,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "SHOP RITE LIQUORS",
+            "city": "ROCKAWAY",
+            "date": "08/18/2026 11:35 AM",
+            "cases": 29,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "FLYING DOG SEASONAL RELEASE",
+              "HOFBRAU",
+              "LONG TRAIL BREWING CO",
+              "SARANAC BREWERY",
+              "WHOLE HOG"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4466d0f0-be01-48d2-ba8c-359010db76d4/"
+          },
+          {
+            "customer": "JOE CANAL'S DISC LIQ",
+            "city": "PARSIPPANY",
+            "date": "07/29/2026 10:47 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/4775e45f-ee6a-42ad-91a9-e3fdf6e64e47/"
+          },
+          {
+            "customer": "THE VILLAGE LIQUOR STORE_2",
+            "city": "CEDAR KNOLLS",
+            "date": "08/10/2026 09:54 AM",
+            "cases": 10,
+            "tier": 1,
+            "classification": "priority",
+            "points": 200,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/ab470d37-b7c1-429d-8758-34c32ccc0b60/"
+          },
+          {
+            "customer": "SANDY'S WINE & SPIRITS (FLANDERS)",
+            "city": "FLANDERS",
+            "date": "07/14/2026 10:57 AM",
+            "cases": 7,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "POPSICLE FMB"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/5c1610bb-3eb5-483b-b057-8a4fcc5db703/"
+          },
+          {
+            "customer": "STIRLING FINE WINES",
+            "city": "STIRLING",
+            "date": "07/27/2026 01:57 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/363953d7-73fa-40ae-af87-6909610da43a/"
+          }
+        ],
+        "rank": 16
+      },
+      "Andrew Lundy": {
+        "points": 300,
+        "qualifying": 1,
+        "submitted": 1,
+        "priorityQualifying": 1,
+        "otherQualifying": 0,
+        "displays": [
+          {
+            "customer": "BEST CELLARS (SUMMIT)",
+            "city": "SUMMIT",
+            "date": "08/10/2026 03:51 PM",
+            "cases": 25,
+            "tier": 2,
+            "classification": "priority",
+            "points": 300,
+            "brands": [
+              "MONTAUK BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/c8244346-5cdf-44f1-8d0b-4a959e49e470/"
+          }
+        ],
+        "rank": 17
+      },
+      "Dylan Rubino": {
+        "points": 200,
+        "qualifying": 1,
+        "submitted": 6,
+        "priorityQualifying": 0,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "CITY LIQUORS",
+            "city": "JERSEY CITY",
+            "date": "07/21/2026 04:58 PM",
+            "cases": 38,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "CARIB BREWERY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/78ac0eb2-cc9b-41d0-bdba-505a49e9a298/"
+          },
+          {
+            "customer": "A2Z WINE CLUB",
+            "city": "SECAUCUS",
+            "date": "08/12/2026 03:38 PM",
+            "cases": 9,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "VIVA TEQUILA SELTZER"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/46d15682-a1f0-4a74-9182-d516a23623a2/"
+          },
+          {
+            "customer": "REFINED WINE AND SPIRITS",
+            "city": "JERSEY CITY",
+            "date": "07/28/2026 01:41 PM",
+            "cases": 5,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "GARAGE BEER - CONTRACT BREWING"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/57f487cd-0bb0-48fe-b772-1547536dd707/"
+          },
+          {
+            "customer": "CITY LIQUORS",
+            "city": "JERSEY CITY",
+            "date": "07/28/2026 12:15 PM",
+            "cases": 4,
+            "tier": 0,
+            "classification": "priority",
+            "points": 0,
+            "brands": [
+              "SAPPORO"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/6854a6bb-f1bb-46ca-a81f-e0a57a4c15bc/"
+          },
+          {
+            "customer": "BUY RITE NORTH BERGEN",
+            "city": "NORTH BERGEN",
+            "date": "08/12/2026 03:04 PM",
+            "cases": 4,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/88a5e369-5828-482e-811c-667d7fe5d3b2/"
+          },
+          {
+            "customer": "BUY RITE NORTH BERGEN",
+            "city": "NORTH BERGEN",
+            "date": "07/29/2026 11:03 AM",
+            "cases": 0,
+            "tier": 0,
+            "classification": "allother",
+            "points": 0,
+            "brands": [
+              "FAMOSA"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/dd2d04b4-cbeb-4df3-b82f-2f6745053261/"
+          }
+        ],
+        "rank": 18
+      },
+      "Jaime Colonna": {
+        "points": 200,
+        "qualifying": 1,
+        "submitted": 1,
+        "priorityQualifying": 0,
+        "otherQualifying": 1,
+        "displays": [
+          {
+            "customer": "JERSEY CITY BUY RITE (A)",
+            "city": "JERSEY CITY",
+            "date": "08/11/2026 11:42 AM",
+            "cases": 20,
+            "tier": 2,
+            "classification": "allother",
+            "points": 200,
+            "brands": [
+              "SOUTHERN TIER BREWING COMPANY"
+            ],
+            "photo": "https://ep.cpgdata.com/external-api/view-photo/displays/747283f8-dd8d-4258-a636-edb0f5ac87bd/"
+          }
+        ],
+        "rank": 19
+      },
+      "Alisa Acciardi": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Allison Scott": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Anthony Palmisano": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Brian Sengebush": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Hakan Sadik": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Nick Melissari": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Paul Mclaughlin": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      },
+      "Robin Feldman": {
+        "points": 0,
+        "qualifying": 0,
+        "submitted": 0,
+        "priorityQualifying": 0,
+        "otherQualifying": 0,
+        "displays": [],
+        "rank": null
+      }
+    },
+    "meta": {
+      "startDate": "07/01/2026",
+      "endDate": "08/24/2026",
+      "totalDisplays": 588,
+      "totalPoints": 278400
+    },
+    "repCount": 19,
+    "houseRepPoints": 150700,
+    "houseRepDisplays": 254,
+    "excludedPoints": 127700,
+    "excludedNames": [
+      "David Fletcher (Sales Associate)",
+      "Jay Tabasco (Sales Associate)",
+      "John Neukum (Sales Rep)",
+      "Nicholas Micco (Sales Associate)",
+      "Todd Ewell (Sales Associate)",
+      "Vaughn Gallagher (Sales Associate)",
+      "mickey obrien (Sales Associate)",
+      "patrick infante (Sales Associate)"
+    ]
   }
 };
 const CORE_MARKET_PROGRAM_KEYS = new Set(["boston_beer", "constellation_retention", "lytt", "mabi_retention", "mc_retention", "new_belgium", "new_belgium_distribution", "sam_adams", "sun_cruiser", "yuengling_retention"]);
@@ -83624,6 +88111,10 @@ const PROGRAM_LIST = [
    pitch:`Track how much Bell's, Kirin, and Voodoo Family volume you're pushing this August.`,
    getRep:rep=>(PROGRAM_DATA['new_belgium_distribution']||{}).byRep?.[rep],
    metric:d=>d.pushVolumeCE, metricLabel:'Aug CE', fmt:v=>v.toFixed(0)},
+  {key:'display_auction', group:'ongoing', title:'iSellBeer Summer Display Auction', shortTitle:'Display Auction', tag:'Jul–Aug',
+   pitch:`Build big displays, photograph them in iSellBeer, and bank points to spend at the auction.`,
+   getRep:rep=>(PROGRAM_DATA['display_auction']||{}).byRep?.[rep],
+   metric:d=>d.points, metricLabel:'auction points', fmt:v=>v.toLocaleString('en-US')},
   {key:'mc_retention', group:'retention', title:'MolsonCoors Distro Rewards — Retention', shortTitle:'MolsonCoors', tag:'Aug–Oct',
    pitch:`Hold the MolsonCoors distribution you built — every brand goal you keep through October pays.`,
    getRep:rep=>(PROGRAM_DATA['mc_retention']||{}).byRep?.[rep],
@@ -83649,7 +88140,8 @@ const PROGRAM_CARD_FN = {
   'le_grand_noir': cardLeGrandNoir,
   'sun_cruiser': cardSunCruiser, 'yave': cardYave, 'mollys': cardMollys,
   'garage_beer_summer_sequel': cardGarageBeerSummerSequel, 'garage_beer_president': cardGarageBeerPresident,
-  'new_belgium_distribution': cardNewBelgiumDistribution, 'mc_retention': cardMcRetention,
+  'new_belgium_distribution': cardNewBelgiumDistribution, 'display_auction': cardDisplayAuction,
+  'mc_retention': cardMcRetention,
   'mabi_retention': cardMabiRetention, 'constellation_retention': cardConstellationRetention,
   'yuengling_retention': cardYuenglingRetention,
 };
@@ -83810,6 +88302,7 @@ function detailRow(it){
     <div class="detail-row-right">
       ${statusBadge}
       ${it.stat?`<div class="detail-row-stat${it.statCls?' '+it.statCls:''}">${esc(it.stat)}</div>`:''}
+      ${it.link?`<a class="detail-row-link" href="${esc(it.link.href)}" target="_blank" rel="noopener">${esc(it.link.label||'View')}</a>`:''}
     </div>
   </div>`;
 }
@@ -84728,6 +89221,76 @@ function cardYave(rep){
   </div>`;
 }
 
+// iSellBeer Summer Display Auction. Points, not dollars -- reps spend
+// them at the auction -- so the card leads with the point total and the
+// rep-board rank rather than an earn rate. Wired in 2026-08-25 at Gavin's
+// request; the numbers come straight from the auction tracker's own
+// scored data (see build_display_auction() in generate.py), so this tile
+// is only as current as that tracker's last refresh.
+function cardDisplayAuction(rep){
+  const P = PROGRAM_DATA['display_auction']||{};
+  const d = P.byRep?.[rep];
+  if(!d) return '';
+  const meta = P.meta||{};
+  const window = (meta.startDate && meta.endDate) ? `${meta.startDate} – ${meta.endDate}` : 'this period';
+  const notCounted = Math.max(0, (d.submitted||0) - (d.qualifying||0));
+
+  const onBoard = d.points > 0;
+  const board = statBoard([
+    {num:d.points.toLocaleString('en-US'), label:'Auction Points', status:onBoard?'good':null,
+     sub:onBoard?`Earned ${window}`:'Nothing on the board yet'},
+    onBoard
+      ? {num:`#${d.rank}`, label:'Rank Among Reps', sub:`of ${P.repCount} reps scoring`}
+      : {num:'—', label:'Rank Among Reps', sub:`${P.repCount} reps are on the board`},
+    {num:d.qualifying.toLocaleString('en-US'), label:'Qualifying Displays',
+     sub:notCounted?`${notCounted.toLocaleString('en-US')} submitted under 10 cases — no points`
+        :(onBoard?'Every display you submitted scored':'Submit one in iSellBeer to get started')},
+    {num:d.priorityQualifying.toLocaleString('en-US'), label:'Priority-Brand Displays',
+     sub:`${d.otherQualifying.toLocaleString('en-US')} all-other · priority pays double`},
+  ]);
+
+  // Scoring displays only -- a submission under 10 cases is on the
+  // tracker but earns nothing, and the stat tile above already counts
+  // those. Collapsed by default like every other long list on this page:
+  // a strong month here runs past 50 rows.
+  const scoring = (d.displays||[]).filter(x=>(x.points||0) > 0);
+  const items = scoring.map(x=>({
+    name:x.customer || '—',
+    sub:[x.city, x.date, (x.brands||[]).join(', ')].filter(Boolean).join(' · '),
+    stat:`${(x.points||0).toLocaleString('en-US')} pts · ${(x.cases||0).toLocaleString('en-US')} cases`,
+    statCls:'pos',
+    link:x.photo?{href:x.photo, label:'View Photo'}:null,
+  }));
+
+  const block = earnBlock({
+    icon:'📸', title:'Display Auction Points',
+    rate:'EARN POINTS', rateNote:'10+ cases to score · priority brands 200/300/500/1000 pts by size, all other brands 100/200/300/600',
+    whatToDo:'Build big displays and photograph them in iSellBeer. A display needs 10+ cases to score at all, and the point tiers jump at 20, 40 and 70 cases — so one large display is worth far more than several small ones. Priority brands pay roughly double an all-other brand at the same size.',
+    stats:[
+      {num:d.points.toLocaleString('en-US'), label:'Your Points'},
+      {num:d.qualifying.toLocaleString('en-US'), label:'Scoring Displays'},
+      {num:onBoard?`#${d.rank}`:'—', label:'Rep Rank'},
+    ],
+    detail:{
+      label:'Your Scoring Displays',
+      items,
+      emptyMsg:'No scoring displays on the board yet this period.',
+    },
+  });
+
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('display_auction')}<span class="prog-name">iSellBeer Summer Display Auction</span><span class="prog-tag">Jul&ndash;Aug</span>${terrTag('display_auction')}</div>
+      ${progPitch('display_auction')}
+    </div>
+    <div class="prog-body">
+      ${board}
+      ${block}
+      <div class="prog-foot-note">Rank is among the ${P.repCount} sales reps on this page. Sales Associates compete in the same auction on the same point scale and are not shown here &mdash; the full board, associates included, is on the <a href="../isellbeer/display-auction-tracker/index.html">Display Auction Tracker</a>.</div>
+    </div>
+  </div>`;
+}
+
 function cardMollys(rep){
   const d = (PROGRAM_DATA['mollys']||{}).byRep?.[rep];
   if(!d) return '';
@@ -85183,15 +89746,15 @@ function constellationOnPremBlocks(d, P){
 
   const nearTier = d.draftNewLines.filter(l=>!l.tier).slice().sort((a,b)=>b.barrels-a.barrels).slice(0,10);
   const draftBlock = !d.draftInReport
-    ? naBlock('On-Premise Draft — Not In This Report',
-        'You have no rows in the Constellation draft report, so the new-line and barrel-bonus pieces do not apply to you.')
+    ? naBlock('New Draft — Not In This Report',
+        'You have no rows in the Constellation new draft report, so the new-buyer and barrel-bonus pieces do not apply to you.')
     : earnBlock({
-        icon:'🍺', title:'New Draft Lines & Barrel Bonus',
+        icon:'🍺', title:'New Draft Buyers & Barrel Bonus',
         rate:'EARN $100', rateNote:`per new ${targeted} draft line · $50 per new line on every other brand · barrel bonuses on top`,
         whatToDo:`Place new draft lines — ${targeted} pays $100, every other brand $50 — then drive barrels through them: a line at 4+ barrels adds $200 (${targeted}) or $150, and 8+ barrels adds $400 or $250. Quarter and sixth barrels pay half the barrel bonus.`,
         stats:[
-          {num:d.draftNewLineCount, label:'New Lines', cls:d.draftNewLineCount>0?'good':null},
-          {num:d.draftNewAccountCount, label:'New Accounts'},
+          {num:d.draftNewAccountCount, label:'New Draft Buyers', cls:d.draftNewAccountCount>0?'good':null},
+          {num:d.draftNewLineCount, label:'New Lines'},
           {num:d.draftBarrels.toFixed(0), label:'Barrels Sold'},
         ],
         detail:{
@@ -85210,28 +89773,29 @@ function constellationOnPremBlocks(d, P){
         },
       });
 
-  // New draft buyers by brand -- its own report, its own block (added
-  // 2026-08-25 per Gavin: "there are no goals for each rep, just tracking
-  // the new buyers of draft"). Deliberately goal-free: the file carries
-  // empty Goals columns and the draft side has a standing no-goals rule,
-  // so this counts buyers and nothing else.
-  const newDraftBlock = !d.newDraftInReport
-    ? naBlock('New Draft Buyers — Not In This Report',
-        'You have no rows in the Constellation new draft buyers report, so this section does not apply to you.')
+  // Regular (total) draft buyers by brand, from the Draft ON report. NOT the
+  // new ones -- those are draftBlock above. Corrected 2026-08-25 per Gavin:
+  // "1st [New Draft Distro] is new ... 2nd [Draft ON] is regular buyers. no
+  // goals at rep level, just brand level for regular." Goal-free by design:
+  // every Goals cell in that file is blank and the draft side carries a
+  // standing no-goals rule, so this counts buyers and nothing else.
+  const regBuyersBlock = !d.regBuyersInReport
+    ? naBlock('Draft Buyers By Brand — Not In This Report',
+        'You have no rows in the Constellation Draft ON report, so this section does not apply to you.')
     : earnBlock({
-        icon:'🚰', title:'New Draft Buyers By Brand',
-        rate:'TRACKING', rateNote:'Jun – Aug · no goals on this one, buyer counts only',
-        whatToDo:'Open new draft buyers across the Constellation draft brands. This section tracks how many you have picked up on each — there is no goal to clear, the count is the score.',
-        stats:[{num:d.newDraftTotal.toLocaleString('en-US'), label:'New Draft Buyers',
-                status:cntStatus(d.newDraftTotal)}],
-        extra:d.newDraftBrands.length
-          ? `<div class="detail-list-wrap"><div class="earn-section-label">Your New Draft Buyers By Brand</div><div class="detail-list">${
-              d.newDraftBrands.map(b=>detailRow({name:b.label, stat:`${b.buyers.toLocaleString('en-US')} buyers`})).join('')
+        icon:'🚰', title:'Draft Buyers By Brand',
+        rate:'TRACKING', rateNote:'Jun – Aug · your standing draft book · no rep-level goals on this one',
+        whatToDo:'This is your total Constellation draft book by brand — everyone currently buying, not just the new ones. There is no rep-level goal against it; hold these and add to them, and the new ones show up in the section above.',
+        stats:[{num:d.regBuyersTotal.toLocaleString('en-US'), label:'Draft Buyers',
+                status:cntStatus(d.regBuyersTotal)}],
+        extra:d.regBuyersBrands.length
+          ? `<div class="detail-list-wrap"><div class="earn-section-label">Your Draft Buyers By Brand</div><div class="detail-list">${
+              d.regBuyersBrands.map(b=>detailRow({name:b.label, stat:`${b.buyers.toLocaleString('en-US')} buyers`})).join('')
             }</div></div>`
-          : '<div class="detail-list-wrap"><div class="empty-note">No new draft buyers on file for you this window.</div></div>',
+          : '<div class="detail-list-wrap"><div class="empty-note">No draft buyers on file for you this window.</div></div>',
       });
 
-  return {pkgBlock, draftBlock, newDraftBlock};
+  return {pkgBlock, draftBlock, regBuyersBlock};
 }
 
 function cardConstellationRetention(rep){
@@ -85268,15 +89832,15 @@ function cardConstellationRetention(rep){
       ? {num:d.onPkgTotal.toLocaleString('en-US'), label:'On-Prem Package Buyers', sub:'This report carries no goals'}
       : {num:'N/A', label:'On-Prem Package Buyers', sub:'Not in the package report'},
     d.draftInReport
-      ? {num:d.draftNewLineCount, label:'New Draft Lines', status:cntStatus(d.draftNewLineCount),
-         sub:`${d.draftNewAccountCount} new account${d.draftNewAccountCount===1?'':'s'} · ${d.draftBarrels.toFixed(0)} bbl sold`}
-      : {num:'N/A', label:'New Draft Lines', sub:'Not in the draft report'},
-    d.newDraftInReport
-      ? {num:d.newDraftTotal.toLocaleString('en-US'), label:'New Draft Buyers', status:cntStatus(d.newDraftTotal),
-         sub:d.newDraftBrands.length
-           ? `Across ${d.newDraftBrands.length} brand${d.newDraftBrands.length===1?'':'s'} · no goal on this one`
-           : 'No goal on this one'}
+      ? {num:d.draftNewAccountCount, label:'New Draft Buyers', status:cntStatus(d.draftNewAccountCount),
+         sub:`${d.draftNewLineCount} new line${d.draftNewLineCount===1?'':'s'} · ${d.draftBarrels.toFixed(0)} bbl sold`}
       : {num:'N/A', label:'New Draft Buyers', sub:'Not in the new draft report'},
+    d.regBuyersInReport
+      ? {num:d.regBuyersTotal.toLocaleString('en-US'), label:'Draft Buyers (All)', status:cntStatus(d.regBuyersTotal),
+         sub:d.regBuyersBrands.length
+           ? `Across ${d.regBuyersBrands.length} brand${d.regBuyersBrands.length===1?'':'s'} · no rep-level goal`
+           : 'No rep-level goal'}
+      : {num:'N/A', label:'Draft Buyers (All)', sub:'Not in the Draft ON report'},
   ]);
 
   const whatToDo = d.offGoalsTotal===0
@@ -85339,7 +89903,7 @@ function cardConstellationRetention(rep){
       ${offBlock}
       ${on.pkgBlock}
       ${on.draftBlock}
-      ${on.newDraftBlock}
+      ${on.regBuyersBlock}
     </div>
   </div>`;
 }
@@ -85533,6 +90097,7 @@ function renderRep(){
         <div id="card-garage_beer_summer_sequel">${cardGarageBeerSummerSequel(activeRep)}</div>
         <div id="card-garage_beer_president">${cardGarageBeerPresident(activeRep)}</div>
         <div id="card-new_belgium_distribution">${cardNewBelgiumDistribution(activeRep)}</div>
+        <div id="card-display_auction">${cardDisplayAuction(activeRep)}</div>
       </div>
       <div class="prog-section">
         <div class="prog-section-head"><span class="prog-section-title">Retention Programs</span><span class="prog-section-sub">Hold the distribution you built</span></div>
