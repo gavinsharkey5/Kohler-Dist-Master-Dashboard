@@ -198,6 +198,11 @@ with open(ACCOUNT_MONTH_CSV, newline='', encoding='utf-8-sig') as f:
     PY_LATEST = (LATEST[0] - 1, LATEST[1])
     PY_PRIOR_MONTH = (PRIOR_MONTH[0] - 1, PRIOR_MONTH[1])
     PRIOR_YEAR_ALL = [ym for ym in ALL_MONTHS if ym[0] == CUR_YEAR - 1]
+    # "90-day" windows: the source data is monthly, so a trailing 90 days is
+    # approximated as the last 3 calendar months, compared against the 3
+    # months before that. Same approximation the retired portfolio page used.
+    MONTHS_90D = ALL_MONTHS[-3:]
+    MONTHS_PRIOR_90D = ALL_MONTHS[-6:-3]
 
     idx = {name: header.index(name) for name in
            ['On-Off Premise', 'Supplier', 'Brand', 'Brand Family', 'Product Num',
@@ -356,8 +361,9 @@ acct_by_cust = {a['cust']: a for a in accounts}
 def buyer_rollup(key_fn, label_fields):
     """Roll lines up to some key, tracking YTD/PY-YTD buyer sets and cases."""
     acc = defaultdict(lambda: {'ytdBuyers': set(), 'pyBuyers': set(), 'lifetimeBuyers': set(),
+                               'buyers90d': set(), 'buyersPrior90d': set(),
                                'ytd': 0.0, 'pyYtd': 0.0, 'cases': 0.0, 'latest': 0.0,
-                               'priorMonth': 0.0, 'fields': None, 'items': set()})
+                               'priorMonth': 0.0, 'cases90d': 0.0, 'fields': None, 'items': set()})
     for l in lines:
         k = key_fn(l)
         d = acc[k]
@@ -377,6 +383,12 @@ def buyer_rollup(key_fn, label_fields):
             d['ytdBuyers'].add(l['cust'])
         if py > 0:
             d['pyBuyers'].add(l['cust'])
+        c90 = csum(l['months'], MONTHS_90D)
+        if c90 > 0:
+            d['buyers90d'].add(l['cust'])
+            d['cases90d'] += c90
+        if csum(l['months'], MONTHS_PRIOR_90D) > 0:
+            d['buyersPrior90d'].add(l['cust'])
     return acc
 
 
@@ -399,6 +411,10 @@ def dist_rows(acc, extra=None):
             'latestCases': round(d['latest'], 2), 'priorMonthCases': round(d['priorMonth'], 2),
             'itemCount': len(d['items']),
             'lifetimeBuyers': len(d['lifetimeBuyers']),
+            'buyers90d': len(d['buyers90d']),
+            'buyersPrior90d': len(d['buyersPrior90d']),
+            'buyers90dChange': len(d['buyers90d']) - len(d['buyersPrior90d']),
+            'cases90d': round(d['cases90d'], 2),
             'gainedAccounts': sorted(acct_by_cust[c]['name'] for c in gained)[:40],
             'lostAccounts': sorted(acct_by_cust[c]['name'] for c in lost)[:40],
         })
@@ -830,6 +846,8 @@ data = {
         'r12Labels': [label_of(ym) for ym in R12_MONTHS],
         'latestMonth': label_of(LATEST),
         'priorMonth': label_of(PRIOR_MONTH),
+        'months90d': [label_of(ym) for ym in MONTHS_90D],
+        'monthsPrior90d': [label_of(ym) for ym in MONTHS_PRIOR_90D],
         'ytdMonths': [label_of(ym) for ym in YTD_MONTHS],
         'pyYtdMonths': [label_of(ym) for ym in PY_YTD_MONTHS],
         'productsMissingCaseRatio': missing_ratio,

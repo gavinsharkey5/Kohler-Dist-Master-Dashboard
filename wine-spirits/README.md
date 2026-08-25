@@ -110,6 +110,42 @@ Caveats worth knowing
     the header), which is wider than the YTD window used everywhere else.
   * Accounts on the roster with no rep are shown as "Unassigned".
 
+Adding new data without re-pulling the whole year
+------------------------------------------------
+build_ws_dashboard.py REBUILDS the dashboard from whatever files it is handed.
+Handing it a "Jul 23 onward" slice of ws_account_level_by_month.csv would drop
+every earlier month: YTD would collapse to that slice, prior-year YTD would
+empty out, and every account would look new or lapsed. Two safe options:
+
+  1. Re-export each report for its full window and overwrite the CSV. The RDE
+     reports are date-range parameterised, so re-running Jan 2025 -> today is
+     the same effort as running a narrow slice. This is the default path.
+  2. Pull only the new dates and MERGE them into the master file first, with
+     the repo-root helper:
+
+        # the wide monthly grid -- new months become new columns, and any
+        # month present in both files is overwritten by the newer pull
+        python3 ../merge_export.py monthly \
+            ../wine-spirits-portfolio/ws_account_level_by_month.csv \
+            ~/Downloads/ws_account_level_aug.csv
+
+        # transaction/placement style files -- new rows appended, duplicates
+        # dropped, so overlapping date ranges are safe
+        python3 ../merge_export.py rows \
+            ../wine-spirits-portfolio/ws_invoice_trans.csv \
+            ~/Downloads/ws_invoices_aug.csv
+
+        python3 build_ws_dashboard.py
+
+     Each run writes a .bak copy of the master before touching it and prints
+     what it added. Keep the same report columns in the partial export.
+
+ws_l6_months.csv and ws_l90_days.csv are the exception: both are rolling
+windows by definition (last 6 complete months, last 90 days), so just
+overwrite them with fresh pulls — the builder dedupes the overlap between
+them. They only feed the Lost / At-Risk tab, which is a "what stopped in the
+last 60 days" question and does not need older history.
+
 To refresh
 ----------
   1. Re-export the RDE/Encompass reports over the CSVs above, keeping the

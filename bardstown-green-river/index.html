@@ -83,14 +83,6 @@
   .foot b{color:var(--ink-soft)}
   .tip-ic{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;
     background:var(--accent);color:#1A1200;font-size:9px;font-weight:800;cursor:help;position:relative;margin-left:5px;flex:none;vertical-align:middle}
-  .tip-ic:hover::after,th[data-tip]:hover::after{
-    content:attr(data-tip);position:absolute;z-index:200;background:#05060a;color:var(--ink);
-    font-size:11.5px;font-weight:400;text-transform:none;letter-spacing:0;line-height:1.42;
-    padding:9px 11px;border-radius:8px;width:220px;white-space:normal;box-shadow:var(--shadow);border:1px solid var(--line)}
-  .tip-ic:hover::after{left:50%;transform:translateX(-50%);top:130%}
-  th[data-tip]{position:relative;cursor:help}
-  th[data-tip]:hover::after{left:0;top:100%;margin-top:6px}
-  th[data-tip]:last-child:hover::after{left:auto;right:0}
   .glossary{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:16px 0 0;overflow:hidden}
   .glossary summary{padding:12px 15px;font-family:"Space Grotesk";font-weight:600;font-size:13px;color:var(--accent);
     cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px}
@@ -171,6 +163,60 @@
   @media(max-width:760px){
     .perfgrid{grid-template-columns:1fr}
     .tabs{position:static}
+  }
+
+  /* --- tap/click column help (works on touch, not only hover) --- */
+  .tip-ic{cursor:pointer}
+  th[data-tip]{position:relative;cursor:pointer}
+  #tip-pop{position:fixed;z-index:900;display:none;max-width:min(330px,90vw);
+    background:#05060a;border:1px solid var(--line);color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;font-size:12.5px;line-height:1.5;font-weight:400;
+    text-transform:none;letter-spacing:0;text-align:left;padding:11px 13px;border-radius:9px;
+    box-shadow:0 10px 30px rgba(0,0,0,.55)}
+  .swipe-hint{display:none;font-size:11.5px;color:var(--ink-dim);margin:0 0 8px}
+  .swipe-hint::before{content:"\2194\FE0E";margin-right:5px}
+  /* --- phones --- */
+  @media(max-width:720px){
+    .wrap{padding:0 12px}
+    .lede{font-size:14px}
+    .windows{gap:7px}
+    .winpill{padding:8px 11px;font-size:11px;flex:1 1 46%}
+    .tabs{gap:6px;padding:8px 0}
+    .tabs .tab{padding:11px 13px;font-size:12.5px}
+    .chip{padding:10px 14px;font-size:12.5px}
+    .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .kpi{padding:11px 12px}
+    .kpi .v{font-size:20px}
+    .kpi .k{font-size:9.5px}
+    .kpi .s{font-size:10.5px}
+    .sec{margin:20px 0 0}
+    .sec h2{font-size:16px}
+    .panel{padding:12px;border-radius:12px}
+    .toolbar{flex-direction:column;align-items:stretch}
+    /* 16px stops iOS zooming the page when a field is focused */
+    .toolbar input,.toolbar select{width:100%;font-size:16px;min-height:44px}
+    .toolbar .count{margin-left:0}
+    .seg{width:100%}
+    .seg button{flex:1;min-height:44px}
+    table{font-size:12px}
+    th{padding:0 8px 8px}
+    td{padding:9px 8px;white-space:nowrap}
+    table.tight td{padding:8px}
+    /* keep the row label on screen while the rest scrolls sideways */
+    thead th:first-child,tbody td:first-child{position:sticky;left:0;z-index:2;
+      background:var(--card);box-shadow:1px 0 0 var(--line);max-width:150px;white-space:normal}
+    tr.detail>td{position:static;white-space:normal}
+    tr.detail td:first-child{position:static}
+    .tblwrap{-webkit-overflow-scrolling:touch}
+    .swipe-hint{display:block}
+    .msparks{height:88px}
+    .mlabels div{font-size:8px}
+    .barrow{grid-template-columns:84px 1fr 46px;font-size:12px}
+    .glossary-grid{grid-template-columns:1fr}
+    .tip-ic{width:16px;height:16px;font-size:10.5px}
+  }
+  @media(max-width:340px){
+    .kpis{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -261,6 +307,154 @@ function premPill(p){
   const cls = p==="On Premise" ? "on" : p==="Off Premise" ? "off" : "";
   const label = p==="On Premise" ? "On-Prem" : p==="Off Premise" ? "Off-Prem" : "Unknown";
   return `<span class="prem ${cls}">${label}</span>`;
+}
+
+
+/* --------------------- column help: tap or click any "i" ---------------------
+   Tables here are rebuilt on every render, so tips are keyed by the column's
+   own header text and re-applied after each render. Any explicit data-tip in
+   the markup wins. */
+const COLUMN_TIPS = {
+  "Period":"The stretch of time this row covers.",
+  "Cases":"Case volume — the only volume measure on this page, straight off the export's Cases column (6 bottles = 1 case).",
+  "Prior-year cases":"The same measure over the matching range one year earlier.",
+  "Change":"This period's cases minus the prior-year figure.",
+  "% change":"That same change as a percentage of the prior-year figure.",
+  "Accounts":"Distinct accounts involved — for city rows, the assigned accounts on the W&S roster in that city.",
+  "Orders":"Order occasions: one line of the export is one account buying one product on one date.",
+  "New placements":"Accounts whose first ever order of this brand (inside the report window) fell in the period.",
+  "Revenue":"Dollars sold, straight from the export's Revenue column.",
+  "Measure":"What the row is counting.",
+  "% of universe":"Divided by the whole assigned Wine & Spirits account book — not just accounts that already buy these brands.",
+  "% of buyers":"Divided by the accounts that bought this brand at all in the window.",
+  "Purchase frequency":"Accounts that have placed at least this many separate orders of the brand.",
+  "Reach":"A bar showing the same % of universe, so the ladder is easy to scan.",
+  "First order size":"Whether the account's very first order was a single bottle, a partial case (2-5 bottles) or a full case (6+). The only place bottles are counted — it reports no volume.",
+  "Repeat rate":"Share of accounts that came back for a second separate order.",
+  "Avg orders/buyer":"Average number of separate order dates per buying account.",
+  "Avg cases/buyer":"Average total cases per buying account.",
+  "Account":"The account, as named in the sales system.",
+  "Brand":"Bardstown Bourbon or Green River.",
+  "City":"The account's city.",
+  "Rep":"The assigned sales rep.",
+  "Rep(s)":"The reps selling this brand in this city.",
+  "Premise":"On-premise (bar, restaurant) or off-premise (liquor store).",
+  "First purchase":"The first date this account bought — inside the report window.",
+  "Last purchase":"The most recent order date on file.",
+  "Last order":"The most recent order date for this brand at this account.",
+  "SKUs":"How many distinct SKUs of this brand the account has bought.",
+  "YTD cases":"Cases from Jan 1 through the last date in the export.",
+  "YTD YoY":"YTD cases against exactly the same date range last year.",
+  "Prior-yr YTD":"Cases over exactly the same date range one year earlier.",
+  "YTD buyers":"Distinct accounts buying this SKU year to date.",
+  "Frequency":"Average gap between order dates — how often this account re-buys.",
+  "CORE":"Whether the account carries every CORE SKU for the brand. \u22121 SKU means it is one SKU short.",
+  "CORE?":"Whether this account carries the brand's full CORE lineup.",
+  "CORE accts":"Accounts carrying the brand's full CORE lineup.",
+  "CORE rate":"CORE accounts divided by the rep's buying accounts.",
+  "Missing SKU":"The one CORE SKU this account has not bought yet — the easiest upsell.",
+  "Missing line":"The brand line this account does not carry yet.",
+  "Lines held":"How many of the four brand lines are placed — for a rep, anywhere in their book.",
+  "Buyers":"Distinct accounts that bought at least once in the window.",
+  "Buying":"Accounts in this city buying this brand.",
+  "% of city":"Buying accounts divided by the assigned accounts on the roster in that city. The roster only carries a city for accounts that have transacted, so treat it as a floor.",
+  "Orders/acct":"Orders divided by buying accounts — how often the average account in this city re-buys.",
+  "Cases/acct":"Cases divided by buying accounts — how deep the average account goes.",
+  "New YTD":"Accounts in this city whose first ever order of this brand was this year.",
+  "On-prem (accts/cases)":"On-premise buying accounts, and their cases.",
+  "Off-prem (accts/cases)":"Off-premise buying accounts, and their cases.",
+  "Area":"The distribution area / route, as assigned in the sales system.",
+  "Repeat":"Share of the area's buying accounts that ordered on 2+ separate dates.",
+  "Velocity":"Cases per buying account per month, averaged over the whole report window.",
+  "Velocity (cs/mo)":"Cases per month for this account, averaged over the whole report window — the fairest rate-of-sale measure.",
+  "Product":"The specific SKU.",
+  "SKU":"The specific product this account buys.",
+  "Sales":"Dollars sold of this SKU at this account.",
+  "Cases trend":"Cases in the last 3 months against the 3 months before that.",
+  "SKU bought since first order":"What this brand-new account has actually bought so far.",
+  "New placements YTD":"Accounts this rep opened for the brand this year — first ever order inside the window.",
+  "#  Account":"Rank by velocity, then the account."
+};
+
+function applyTips(root){
+  (root || document).querySelectorAll("thead th").forEach(th => {
+    const label = (th.textContent || "").trim();
+    const tip = th.getAttribute("data-tip") || COLUMN_TIPS[label];
+    if(!tip) return;
+    th.setAttribute("data-tip", tip);
+    if(th.querySelector(".tip-ic")) return;
+    th.innerHTML = `${esc(label)} <span class="tip-ic" role="button" tabindex="0" aria-label="What does ${esc(label)} mean?">i</span>`;
+  });
+}
+
+let tipPop, tipAnchor;
+function hideTip(){ if(tipPop) tipPop.style.display = "none"; tipAnchor = null; }
+// Focusing the "i" makes the browser scroll it into view, so a scroll fires
+// right after every tap -- reposition on scroll instead of closing.
+function repositionTip(){
+  if(!tipPop || tipPop.style.display !== "block" || !tipAnchor) return;
+  if(!tipAnchor.isConnected){ hideTip(); return; }
+  const r = tipAnchor.getBoundingClientRect();
+  if(r.bottom < 0 || r.top > window.innerHeight){ hideTip(); return; }
+  placeTip(tipAnchor);
+}
+function showTip(anchor, text){
+  if(!tipPop){ tipPop = document.createElement("div"); tipPop.id = "tip-pop"; document.body.appendChild(tipPop); }
+  tipAnchor = anchor;
+  tipPop.textContent = text;
+  tipPop.style.display = "block";
+  placeTip(anchor);
+}
+function placeTip(anchor){
+  tipPop.style.left = "0px"; tipPop.style.top = "0px";
+  const a = anchor.getBoundingClientRect(), p = tipPop.getBoundingClientRect();
+  let left = Math.min(Math.max(8, a.left + a.width/2 - p.width/2), window.innerWidth - p.width - 8);
+  let top = a.bottom + 8;
+  if(top + p.height > window.innerHeight - 8) top = a.top - p.height - 8;
+  top = Math.min(Math.max(8, top), Math.max(8, window.innerHeight - p.height - 8));
+  tipPop.style.left = left + "px";
+  tipPop.style.top = top + "px";
+}
+document.addEventListener("click", e => {
+  const badge = e.target.closest(".tip-ic");
+  if(badge){
+    e.preventDefault();
+    e.stopPropagation();            // don't sort/expand while asking what a column means
+    const host = badge.closest("[data-tip]") || badge;
+    showTip(badge, host.getAttribute("data-tip"));
+    return;
+  }
+  hideTip();
+}, true);
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape") hideTip();
+  if((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("tip-ic")){
+    e.preventDefault();
+    const host = e.target.closest("[data-tip]") || e.target;
+    showTip(e.target, host.getAttribute("data-tip"));
+  }
+});
+window.addEventListener("scroll", repositionTip, true);
+window.addEventListener("resize", repositionTip);
+if(window.matchMedia && window.matchMedia("(hover:hover)").matches){
+  document.addEventListener("mouseover", e => {
+    const badge = e.target.closest && e.target.closest(".tip-ic");
+    if(!badge) return;
+    const host = badge.closest("[data-tip]") || badge;
+    showTip(badge, host.getAttribute("data-tip"));
+  });
+  document.addEventListener("mouseout", e => { if(e.target.closest && e.target.closest(".tip-ic")) hideTip(); });
+}
+
+/* a "swipe sideways" line above every wide table, phones only */
+function addSwipeHints(){
+  document.querySelectorAll(".tblwrap").forEach(sc => {
+    if(sc.previousElementSibling && sc.previousElementSibling.classList.contains("swipe-hint")) return;
+    const hint = document.createElement("p");
+    hint.className = "swipe-hint";
+    hint.textContent = "Swipe the table sideways for the rest of the columns — tap any i for what a column means.";
+    sc.parentNode.insertBefore(hint, sc);
+  });
 }
 
 function view(){ return DATA.views[stPremise]; }
@@ -592,7 +786,7 @@ function renderGaps(){
       <div class="sub">Cells show how many of that rep's accounts carry the line (with YTD cases). Click any <b style="color:var(--bad)">MISSING</b> cell for the accounts behind the gap. This matrix spans <b>both</b> brands, so the brand chips above don't scope it &mdash; the premise chips do.</div>
       <div class="legend">${lines.map(l=>`<span><b>${esc(l.label)}</b>: ${esc(l.products.slice(0,3).join(", "))}${l.products.length>3?" +"+(l.products.length-3)+" more":""}</span>`).join("")}</div>
       <div class="panel"><div class="tblwrap"><table class="tight matrix"><thead><tr>
-        <th>Rep</th>${lines.map(l=>`<th class="num" style="text-align:center">${esc(l.label)}</th>`).join("")}
+        <th data-tip="The sales rep.">Rep</th>${lines.map(l=>`<th class="num" style="text-align:center" data-tip="${esc(l.label)}: how many of this rep's accounts carry the line, with YTD cases. MISSING means the line isn't placed anywhere in their book — tap the cell for the accounts that could carry it.">${esc(l.label)}</th>`).join("")}
         <th data-tip="How many of the four brand lines this rep has placed anywhere in their book.">Lines held</th>
         <th>Accounts</th><th>YTD cases</th></tr></thead><tbody>${rows}</tbody></table></div></div></div>
     <div class="sec"><h2>Accounts one line away</h2><div class="sub">Accounts carrying 3 of the 4 brand lines — the shortest path to a complete book.</div>
@@ -747,6 +941,8 @@ function render(){
 }
 
 function wireUp(){
+  applyTips();
+  addSwipeHints();
   document.querySelectorAll("[data-drill]").forEach(el=>{
     el.onclick = () => {
       const row = document.getElementById(el.dataset.drill);

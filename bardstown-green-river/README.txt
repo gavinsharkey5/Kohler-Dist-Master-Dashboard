@@ -120,6 +120,27 @@ Files:
                  <script id="bg-data"> tag, as three parallel views: all
                  accounts, on-premise only, off-premise only).
 
+ADDING NEW DATA WITHOUT RE-PULLING THE WHOLE YEAR
+generate.py REBUILDS everything from whatever CSV it is handed, so dropping a
+"Jul 23 onward" export over the master file would wipe out every earlier
+order: YTD would collapse to those few weeks, the retention ladder would
+reset, and every account would look like a brand-new placement. Two safe
+options:
+
+  1. Re-export the full window (Jan 1 through today) over the master file.
+     This is the simplest path and what the refresh steps below assume.
+  2. Pull only the new stretch of dates and MERGE it first:
+
+         python3 ../merge_export.py rows \
+             RDE_Bardstown_Green_River_Retention_History.csv \
+             ~/Downloads/bardstown_jul23_onward.csv
+         python3 generate.py
+
+     merge_export.py appends the new rows, drops any that are already in the
+     master (so an overlapping date range is safe), and writes a .bak copy of
+     the master before touching it. Keep the same report columns in the
+     partial export or it will refuse to merge.
+
 To refresh with a new export:
   1. Re-export "RDE Bardstown / Green River Retention History", keeping the
      same columns.
