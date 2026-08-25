@@ -2192,6 +2192,121 @@ def build_yuengling_retention():
             "retainThresholdPct": int(YUENGLING_RETAIN_THRESHOLD * 100)}
 
 
+# --- iSELLBEER SUMMER DISPLAY AUCTION (points leaderboard) -------------
+# Wired in 2026-08-25 at Gavin's request ("is there a way you can wire the
+# isellbeer auction display program into this page? make it a tile just
+# like the other programs. put it in ongoing."). Until then the auction
+# lived only in its own dashboard, isellbeer/display-auction-tracker/, and
+# the README said outright that it was not part of this page.
+#
+# SOURCE IS THE TRACKER'S OWN PUBLISHED JSON, not its raw export. The
+# tracker embeds a fully-scored per-person block (id="da-data") in its
+# index.html, and its generate.py owns the scoring: what counts as one
+# display, the priority/all-other split, the case tiers, the points per
+# tier, and the weekly --merge that keeps older weeks on the board. All of
+# that was reverse-engineered once and its README says not to re-derive it,
+# so this reads the finished numbers instead of rescoring anything. One
+# consequence worth knowing: this page is only as current as the last
+# auction-tracker refresh -- refresh that first, then run this.
+AUCTION_INDEX = Path(__file__).resolve().parent.parent / "isellbeer" / "display-auction-tracker" / "index.html"
+AUCTION_DATA_RE = re.compile(r'<script[^>]*id="da-data"[^>]*>(.*?)</script>', re.S)
+
+# iSellBeer spells names its own way (and uses a curly apostrophe). Same
+# canonicalization job as generate_lytt_pos.py in MPOs/off-prem/.
+AUCTION_NAME_FIXES = {
+    "MATTHEW POWIERSKI": "Matt Powierski",
+    "JAMES HEANEY": "Jim Heaney",
+    "DANIEL LA GALA": "Dan Lagala",
+    "NICHOLAS MELISSARI": "Nick Melissari",
+}
+_ROSTER_BY_UPPER = {n.upper(): n for n in ROSTER}
+
+
+def _canon_auction_name(name):
+    n = re.sub(r"\s+", " ", str(name or "").replace("\u2019", "'").strip())
+    if not n:
+        return None
+    return AUCTION_NAME_FIXES.get(n.upper()) or _ROSTER_BY_UPPER.get(n.upper())
+
+
+def build_display_auction():
+    """Per-rep points, displays and photo links for the display auction.
+
+    SALES REPS ONLY. The auction is open to Sales Associates too and they
+    are a real force in it -- mickey obrien would sit 2nd overall -- but
+    this dashboard is a rep board (ROSTER drives every chip and card), so
+    associates are dropped here and stay visible on the auction tracker
+    itself, which ranks everyone. John Neukum is dropped for the usual
+    roster reason. The card says so rather than implying the rep ranking
+    is the whole auction.
+    """
+    if not AUCTION_INDEX.exists():
+        print("display_auction: SKIPPED -- no isellbeer/display-auction-tracker/index.html found")
+        return {"byRep": {}, "meta": {}, "houseRepPoints": 0, "houseRepDisplays": 0,
+                "excludedPoints": 0, "excludedNames": []}
+    m = AUCTION_DATA_RE.search(AUCTION_INDEX.read_text())
+    if not m:
+        print("display_auction: SKIPPED -- da-data block not found in the tracker's index.html")
+        return {"byRep": {}, "meta": {}, "houseRepPoints": 0, "houseRepDisplays": 0,
+                "excludedPoints": 0, "excludedNames": []}
+    src = json.loads(m.group(1))
+
+    by_rep, excluded, excluded_pts = {}, [], 0
+    for person in src.get("people", []):
+        rep = _canon_auction_name(person.get("name"))
+        if not rep:
+            excluded.append(f"{person.get('name')} ({person.get('role')})")
+            excluded_pts += person.get("points", 0) or 0
+            continue
+        displays = [{
+            "customer": d.get("dba", ""),
+            "city": d.get("city", ""),
+            "date": d.get("dt", ""),
+            "cases": d.get("cases", 0),
+            "tier": d.get("tier"),
+            "classification": d.get("classification", ""),
+            "points": d.get("points", 0),
+            "brands": d.get("brands", []),
+            # A display can carry more than one photo; the first is the link.
+            "photo": (d.get("photos") or [None])[0],
+        } for d in person.get("displays", [])]
+        by_rep[rep] = {
+            "points": person.get("points", 0),
+            "qualifying": person.get("qualifying", 0),
+            "submitted": person.get("total", 0),
+            "priorityQualifying": person.get("priorityQualifying", 0),
+            "otherQualifying": person.get("otherQualifying", 0),
+            "displays": displays,
+        }
+
+    # Every rep can enter this auction, so a rep with nothing on the board
+    # still gets a card -- a zero-state that shows how points are earned,
+    # rather than the program vanishing for exactly the people who have not
+    # started. Same reasoning as Target Accounts on the MPO trackers.
+    for rep in ROSTER:
+        by_rep.setdefault(rep, {"points": 0, "qualifying": 0, "submitted": 0,
+                                "priorityQualifying": 0, "otherQualifying": 0, "displays": []})
+
+    # Rank within the reps on this board only -- see the docstring on why
+    # that is not the same as the auction's overall standing. Reps with no
+    # points are unranked (null) rather than sharing a meaningless last
+    # place; the card shows a dash.
+    scoring = sorted((kv for kv in by_rep.items() if kv[1]["points"] > 0), key=lambda kv: -kv[1]["points"])
+    for i, (rep, _) in enumerate(scoring, start=1):
+        by_rep[rep]["rank"] = i
+    for rep, d in by_rep.items():
+        d.setdefault("rank", None)
+    return {
+        "byRep": by_rep,
+        "meta": src.get("meta", {}),
+        "repCount": len(scoring),
+        "houseRepPoints": sum(d["points"] for d in by_rep.values()),
+        "houseRepDisplays": sum(d["qualifying"] for d in by_rep.values()),
+        "excludedPoints": excluded_pts,
+        "excludedNames": sorted(excluded),
+    }
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -2214,6 +2329,7 @@ def main():
         "mabi_retention": build_mabi_retention(),
         "constellation_retention": build_constellation_retention(),
         "yuengling_retention": build_yuengling_retention(),
+        "display_auction": build_display_auction(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -2302,6 +2418,14 @@ def main():
           f"new draft buyers (distinct accounts) {sum(d['draftNewAccountCount'] for d in con['byRep'].values())} | "
           f"regular draft buyers {sum(d['regBuyersTotal'] for d in con['byRep'].values())} across "
           f"{sum(1 for d in con['byRep'].values() if d['regBuyersTotal'])} reps")
+
+    da = data["display_auction"]
+    if da["byRep"]:
+        top = max(da["byRep"].items(), key=lambda kv: kv[1]["points"])
+        print(f"display_auction: {da['houseRepPoints']:,} pts across {da['repCount']} reps "
+              f"({da['houseRepDisplays']} qualifying displays), top {top[0]} {top[1]['points']:,} | "
+              f"excluded {len(da['excludedNames'])} non-roster ({da['excludedPoints']:,} pts): "
+              f"{', '.join(da['excludedNames'])} | tracker window {da['meta'].get('startDate')} - {da['meta'].get('endDate')}")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]

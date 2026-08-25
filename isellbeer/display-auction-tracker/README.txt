@@ -95,6 +95,19 @@ re-derive it from scratch again):
     chronologically. A date-sort was tried once and explicitly reverted;
     don't reintroduce it without asking.
 
+FEEDS THE INCENTIVE TRACKER TOO (since 2026-08-25): incentive-tracking/
+generate.py reads the <script id="da-data"> JSON out of the index.html
+this script writes, and renders it as the "iSellBeer Summer Display
+Auction" tile there. It consumes the scored numbers as-is and does not
+re-implement any of the scoring above. Two things follow:
+  - Refresh THIS tracker first, then run incentive-tracking/generate.py,
+    or that page will publish last week's auction numbers.
+  - The id="da-data" script tag and the per-person field names (name,
+    role, points, qualifying, total, priorityQualifying, otherQualifying,
+    displays[] with dba/city/dt/cases/classification/tier/points/brands/
+    photos) are now a contract with that page. Renaming one means
+    updating build_display_auction() there in the same commit.
+
 Note: each display's "View Photo" link comes from the hyperlink on the
 Photo column in the source .xlsx — a plain CSV can't carry that, which
 is why generate.py takes the .xlsx directly rather than a CSV export of

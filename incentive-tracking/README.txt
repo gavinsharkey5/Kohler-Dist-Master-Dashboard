@@ -47,10 +47,44 @@ Volume, Yave Tequila Launch, Molly's 1.75L, Garage Beer Summer Sequel
 built (Sammy's Beach Bar Rum -- no data yet; New Belgium Distribution/
 Volume, Summer of Success THC Volume -- not yet sent, need goal-
 threshold numbers not on
-the slides). The iSellBeer Summer Display Auction (slides 14-15) is
-NOT part of this dashboard -- it's covered by the separate
-isellbeer/display-auction-tracker/, and the Chelada/Corona Premier
-Summer of Success program (slides 24-25) was not requested.
+the slides). The Chelada/Corona Premier Summer of Success program
+(slides 24-25) was not requested.
+
+iSellBeer Summer Display Auction (slides 14-15) -- ADDED 2026-08-25,
+reversing the earlier "not part of this dashboard" note. Gavin: "is
+there a way you can wire the isellbeer auction display program into
+this page? make it a tile just like the other programs. put it in
+ongoing." It is now an Ongoing tile (key 'display_auction',
+cardDisplayAuction()), and it is the ONLY program on this page whose
+data does not come from data/:
+
+  SOURCE: ../isellbeer/display-auction-tracker/index.html, the
+  <script id="da-data"> block that tracker embeds -- already fully
+  scored, per person, with photo links. build_display_auction() parses
+  that JSON and re-shapes it; it does NOT rescore anything. Deliberate:
+  the tracker's generate.py owns what counts as one display, the
+  priority/all-other split, the 10/20/40/70-case tiers, the points per
+  tier, and the weekly --merge that keeps older weeks on the board. All
+  of that was reverse-engineered once and that folder's README says not
+  to re-derive it, so duplicating it here would create two scorers that
+  could silently disagree.
+
+  CONSEQUENCE: this tile is only as fresh as the auction tracker's last
+  refresh. Refresh the tracker FIRST (python3 generate.py Report_NN.xlsx
+  --merge in that folder), then run this generate.py. Running this one
+  alone will happily rebuild the page with last week's auction numbers.
+  If the tracker file or its da-data block is missing, the builder prints
+  a SKIPPED line and returns empty rather than failing the whole build.
+
+  SALES REPS ONLY, which makes the rank on this card a REP rank, not the
+  auction's overall standing. Associates are a real force in this auction
+  -- as of 2026-08-25 they hold 5 of the top 8 spots and mickey obrien
+  would sit 2nd overall -- so the card carries a footnote saying so and
+  links to the tracker for the full board. iSellBeer name spellings are
+  canonicalized to ROSTER (AUCTION_NAME_FIXES, plus a curly-apostrophe
+  fix for John O'Donoghue); John Neukum is dropped per the standing
+  roster rule. 19 of 27 reps are scoring; the other 8 get a zero-state
+  card rather than no card, since every rep can enter.
 
 Roster note (2026-08-1x): Sun Cruiser's file surfaced 3 names with
 real sales that aren't on the roster -- Chris Politano, John Neukum,
