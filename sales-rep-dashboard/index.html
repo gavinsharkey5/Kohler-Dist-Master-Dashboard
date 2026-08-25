@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sales Rep Cockpit — Kohler Distributing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0A0C11; --card:#13161E; --card2:#191D27; --card3:#1F2430;
+    --ink:#F7F9FC; --ink-soft:#AEB6C6; --ink-dim:#6B7488;
+    --line:#242938; --line-soft:#1C202B;
+    --money:#F2C14E; --money2:#C9962A;      /* commission = gold, the priority */
+    --sales:#5B9DF9;                        /* sales = blue, second priority */
+    --good:#3ECF7F; --good-bg:#12301F;
+    --bad:#F2685A;   --bad-bg:#331815;
+    --warn:#F2A03D;
+    --shadow:0 1px 2px rgba(0,0,0,.55),0 14px 40px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:15px;line-height:1.55;padding-bottom:60px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+  button{font:inherit;color:inherit}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:60;background:rgba(10,12,17,.93);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;gap:14px;height:58px}
+  .brandmark{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",sans-serif;
+    font-weight:700;font-size:15.5px;letter-spacing:-.01em;white-space:nowrap}
+  .brandmark i{width:9px;height:9px;border-radius:50%;background:var(--money);
+    box-shadow:0 0 12px var(--money);font-style:normal;flex:none}
+  .topbar .spacer{flex:1}
+  .pill{font-size:11.5px;font-weight:600;color:var(--ink-dim);border:1px solid var(--line);
+    border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .repsel{background:var(--card2);border:1px solid var(--line);border-radius:10px;
+    padding:7px 12px;font-size:14px;font-weight:600;max-width:220px}
+  .backbtn{background:none;border:1px solid var(--line);border-radius:10px;
+    padding:7px 13px;font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer}
+  .backbtn:hover{color:var(--ink);border-color:var(--ink-dim)}
+
+  /* ---------- headings ---------- */
+  .seclabel{font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;
+    letter-spacing:.17em;text-transform:uppercase;color:var(--ink-dim);
+    margin:38px 0 12px;display:flex;align-items:baseline;gap:12px}
+  .seclabel span.hint{letter-spacing:0;text-transform:none;font-size:12.5px;
+    font-weight:400;color:var(--ink-dim);font-family:"Inter",sans-serif}
+  h1{font-family:"Space Grotesk",sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;
+    margin:26px 0 4px}
+  .sub{color:var(--ink-soft);font-size:14.5px;margin:0 0 4px}
+
+  /* ---------- rep picker ---------- */
+  .pickgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px}
+  .ptile{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:15px 16px;cursor:pointer;text-align:left;transition:.13s;box-shadow:var(--shadow);
+    display:block;width:100%}
+  .ptile:hover{border-color:var(--money);transform:translateY(-2px)}
+  .ptile .pname{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:16.5px;
+    display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .ptile .prank{font-size:11px;font-weight:700;color:var(--ink-dim);background:var(--card3);
+    border-radius:6px;padding:2px 7px;flex:none}
+  .ptile .pcomm{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:23px;color:var(--money)}
+  .ptile .pmeta{font-size:12.5px;color:var(--ink-dim);margin-top:7px;
+    display:flex;flex-wrap:wrap;gap:5px 12px}
+  .alertdot{font-size:11px;font-weight:700;color:var(--bad);background:var(--bad-bg);
+    border-radius:6px;padding:2px 7px}
+
+  /* ---------- filter bar ---------- */
+  .filterbar{position:sticky;top:58px;z-index:50;background:rgba(10,12,17,.93);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:4px}
+  .frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .seg{display:inline-flex;background:var(--card2);border:1px solid var(--line);
+    border-radius:10px;overflow:hidden}
+  .seg button{background:none;border:0;padding:7px 14px;font-size:13px;font-weight:600;
+    color:var(--ink-dim);cursor:pointer}
+  .seg button.on{background:var(--money);color:#191308}
+  .seg button:hover:not(.on){color:var(--ink)}
+  select.f,input.f{background:var(--card2);border:1px solid var(--line);border-radius:10px;
+    padding:7px 11px;font-size:13px;color:var(--ink);max-width:210px}
+  input.f::placeholder{color:var(--ink-dim)}
+  .fclear{background:none;border:0;color:var(--ink-dim);font-size:13px;cursor:pointer;
+    text-decoration:underline;padding:7px 4px}
+  .fclear:hover{color:var(--ink)}
+  .ctx{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+  .ctxchip{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+    background:color-mix(in srgb,var(--money) 16%,transparent);color:var(--money);
+    border:1px solid color-mix(in srgb,var(--money) 35%,transparent);
+    border-radius:999px;padding:4px 6px 4px 12px}
+  .ctxchip button{background:none;border:0;color:inherit;cursor:pointer;font-size:15px;
+    line-height:1;padding:0 5px;opacity:.7}
+  .ctxchip button:hover{opacity:1}
+
+  /* ---------- KPI ---------- */
+  .kpigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:10px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px 14px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .kpi.hero{background:linear-gradient(160deg,#1E1B10,#14161E 62%);
+    border-color:color-mix(in srgb,var(--money) 32%,var(--line))}
+  .kpi .klab{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-dim);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .kpi .kval{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em;
+    line-height:1.15}
+  .kpi.hero .kval{font-size:30px;color:var(--money)}
+  .kpi .ksub{font-size:12px;color:var(--ink-dim);margin-top:5px}
+  .kpi .kunit{font-size:12.5px;color:var(--ink-dim);font-weight:500;margin-left:3px}
+
+  .d{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:12.5px;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:3px}
+  .d.up{color:var(--good)} .d.up::before{content:"\25B2";font-size:8px}
+  .d.dn{color:var(--bad)}  .d.dn::before{content:"\25BC";font-size:8px}
+  .d.fl{color:var(--ink-dim)} .d.fl::before{content:"\2013";font-size:11px}
+  .d.na{color:var(--ink-dim)}
+
+  /* ---------- generic card ---------- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:16px 17px;box-shadow:var(--shadow)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:840px){.cols2{grid-template-columns:1fr}}
+  .cardh{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;margin:0 0 3px}
+  .cardsub{font-size:12.5px;color:var(--ink-dim);margin:0 0 14px}
+
+  /* ---------- bar list ---------- */
+  .bl{display:flex;flex-direction:column;gap:9px}
+  .blrow{cursor:pointer;border-radius:8px;padding:2px 4px;margin:0 -4px;transition:.1s}
+  .blrow:hover{background:var(--card2)}
+  .bltop{display:flex;align-items:baseline;gap:9px;font-size:13.5px;margin-bottom:4px}
+  .blnm{font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .blv{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--money);flex:none}
+  .blbar{height:6px;background:var(--line-soft);border-radius:4px;overflow:hidden}
+  .blbar i{display:block;height:100%;border-radius:4px;
+    background:linear-gradient(90deg,var(--money),var(--money2))}
+  .blbar.s i{background:linear-gradient(90deg,var(--sales),#2E6BC4)}
+  .blbar.neg i{background:linear-gradient(90deg,var(--bad),#A63E33)}
+  .blmeta{font-size:11.5px;color:var(--ink-dim);margin-top:3px;display:flex;gap:9px}
+  /* ---------- opportunities ---------- */
+  .opp{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ink-dim);
+    border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+  .opp.s3{border-left-color:var(--bad)}
+  .opp.s2{border-left-color:var(--warn)}
+  .opp.s1{border-left-color:var(--good)}
+  .opph{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .opph .ot{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;flex:1;min-width:220px}
+  .otag{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    border-radius:6px;padding:3px 8px;flex:none;white-space:nowrap}
+  .otag.s3{background:var(--bad-bg);color:var(--bad)}
+  .otag.s2{background:#33260F;color:var(--warn)}
+  .otag.s1{background:var(--good-bg);color:var(--good)}
+  .oppb{font-size:14px;color:var(--ink-soft);margin:0}
+  .orows{margin:12px 0 2px;border-top:1px solid var(--line-soft)}
+  .orow{display:flex;align-items:baseline;gap:12px;padding:8px 8px;margin:0 -8px;
+    border-bottom:1px solid var(--line-soft);font-size:13.5px;border-radius:7px}
+  .orow[data-ob],.orow[data-oa]{cursor:pointer}
+  .orow[data-ob]:hover,.orow[data-oa]:hover{background:var(--card2)}
+  .orow:last-child{border-bottom:0}
+  .orow .on{flex:1;font-weight:600;min-width:0}
+  .orow .ov{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--money);
+    flex:none;white-space:nowrap}
+  .oppact{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+  .minibtn{background:var(--card3);border:1px solid var(--line);border-radius:8px;
+    padding:5px 11px;font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer}
+  .minibtn:hover{color:var(--ink);border-color:var(--money)}
+
+  /* ---------- tables ---------- */
+  .tblwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;box-shadow:var(--shadow)}
+  .tblscroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:820px}
+  th{font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-dim);text-align:right;padding:11px 12px;
+    background:var(--card2);border-bottom:1px solid var(--line);white-space:nowrap;
+    cursor:pointer;user-select:none;position:sticky;top:0}
+  th:first-child,td:first-child{text-align:left}
+  th.nos{cursor:default}
+  th:hover:not(.nos){color:var(--ink)}
+  th.sorted{color:var(--money)}
+  th.sorted::after{content:" \25BC";font-size:8px}
+  th.sorted.asc::after{content:" \25B2"}
+  td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line-soft);
+    white-space:nowrap}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--card2)}
+  tbody tr.sel{background:color-mix(in srgb,var(--money) 10%,transparent)}
+  tbody tr:last-child td{border-bottom:0}
+  .tname{font-weight:600;max-width:280px;overflow:hidden;text-overflow:ellipsis;
+    display:block;white-space:nowrap}
+  .tsub{font-size:11.5px;color:var(--ink-dim);font-weight:400}
+  .money{font-family:"Space Grotesk",sans-serif;font-weight:700;color:var(--money)}
+  .cases{font-family:"Space Grotesk",sans-serif;font-weight:600}
+  .rk{color:var(--ink-dim);font-family:"Space Grotesk",sans-serif;font-weight:600}
+  .tfoot{padding:11px 14px;font-size:12.5px;color:var(--ink-dim);background:var(--card2);
+    border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;
+    flex-wrap:wrap}
+  .stat{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    border-radius:5px;padding:2px 7px}
+  .stat.mtd{background:var(--good-bg);color:var(--good)}
+  .stat.ytd{background:#1B2436;color:#7FA6DE}
+  .stat.lapsed{background:var(--bad-bg);color:var(--bad)}
+  .stat.none{background:var(--card3);color:var(--ink-dim)}
+  .empty{padding:34px 16px;text-align:center;color:var(--ink-dim);font-size:14px}
+
+  /* ---------- drill-down drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(4,6,10,.72);z-index:80;
+    display:none;backdrop-filter:blur(3px)}
+  .scrim.open{display:block}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);z-index:90;
+    background:var(--card);border-left:1px solid var(--line);overflow-y:auto;
+    transform:translateX(100%);transition:transform .2s ease;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+  .drawer.open{transform:none}
+  .dhead{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);
+    padding:16px 20px;z-index:2}
+  .dhead .dt{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;
+    padding-right:34px}
+  .dhead .ds{font-size:12.5px;color:var(--ink-dim);margin-top:3px}
+  .dclose{position:absolute;top:14px;right:16px;background:none;border:0;font-size:24px;
+    line-height:1;color:var(--ink-dim);cursor:pointer;padding:2px 6px}
+  .dclose:hover{color:var(--ink)}
+  .dbody{padding:16px 20px 40px}
+  .dkpi{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
+  .dkpi .kpi{padding:11px 12px}
+  .dkpi .kval{font-size:20px}
+  .drow{display:flex;align-items:center;gap:10px;padding:9px 0;
+    border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .drow:last-child{border-bottom:0}
+  .drow .dn{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dnote{font-size:12.5px;color:var(--ink-dim);background:var(--card2);border-radius:9px;
+    padding:10px 12px;margin:14px 0}
+  .modelnote{font-size:12.5px;color:var(--ink-dim);border:1px dashed var(--line);
+    border-radius:11px;padding:11px 14px;margin:18px 0 0}
+  .modelnote b{color:var(--ink-soft);font-weight:600}
+  @media(max-width:640px){
+    h1{font-size:24px} .kpi .kval{font-size:20px} .kpi.hero .kval{font-size:25px}
+    .wrap{padding:0 14px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><i></i>Sales Rep Cockpit</div>
+    <button class="backbtn" id="btnBack" style="display:none">&larr; All reps</button>
+    <div class="spacer"></div>
+    <select class="repsel" id="repSel" style="display:none"></select>
+    <span class="pill" id="syncPill">&nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ rep picker ============ -->
+<section id="viewPick" class="wrap">
+  <h1>Whose book are we looking at?</h1>
+  <p class="sub" id="pickSub">&nbsp;</p>
+  <p class="seclabel">Reps <span class="hint">ranked by commission year to date</span></p>
+  <div class="pickgrid" id="pickGrid"></div>
+  <div class="modelnote" id="pickNote"></div>
+</section>
+
+<!-- ============ rep cockpit ============ -->
+<section id="viewRep" style="display:none">
+
+  <div class="filterbar">
+    <div class="wrap">
+      <div class="frow">
+        <div class="seg" id="segPeriod">
+          <button data-p="ytd" class="on">Year to date</button>
+          <button data-p="mtd">Month to date</button>
+        </div>
+        <div class="seg" id="segChan">
+          <button data-c="all" class="on">All</button>
+          <button data-c="On Premise">On-prem</button>
+          <button data-c="Off Premise">Off-prem</button>
+        </div>
+        <select class="f" id="selArea"></select>
+        <select class="f" id="selBrand"></select>
+        <input class="f" id="inpAcct" type="search" placeholder="Search accounts…" autocomplete="off">
+        <button class="fclear" id="btnReset">Reset filters</button>
+      </div>
+      <div class="ctx" id="ctxChips"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h1 id="repName">&nbsp;</h1>
+    <p class="sub" id="repSub">&nbsp;</p>
+
+    <p class="seclabel">The 30-second read <span class="hint" id="kpiHint"></span></p>
+    <div class="kpigrid" id="kpiGrid"></div>
+
+    <p class="seclabel">Opportunities &amp; attention needed
+      <span class="hint">why it matters, not just red and green</span></p>
+    <div id="oppList"></div>
+
+    <p class="seclabel">Where your commission comes from</p>
+    <div class="cols2">
+      <div class="card">
+        <p class="cardh">Top brands by commission</p>
+        <p class="cardsub" id="cbBrandSub"></p>
+        <div class="bl" id="cbBrand"></div>
+      </div>
+      <div class="card">
+        <p class="cardh">Top accounts by commission</p>
+        <p class="cardsub" id="cbAcctSub"></p>
+        <div class="bl" id="cbAcct"></div>
+      </div>
+    </div>
+
+    <div class="cols2" style="margin-top:12px">
+      <div class="card">
+        <p class="cardh">Biggest commission gains</p>
+        <p class="cardsub">Brands adding the most commission vs the same window last year.</p>
+        <div class="bl" id="cbUp"></div>
+      </div>
+      <div class="card">
+        <p class="cardh">Biggest commission losses</p>
+        <p class="cardsub">Brands giving back the most commission vs last year — the recoverable pile.</p>
+        <div class="bl" id="cbDown"></div>
+      </div>
+    </div>
+
+    <p class="seclabel">Brand performance <span class="hint">click any row to see the accounts behind it</span></p>
+    <div class="tblwrap">
+      <div class="tblscroll"><table id="tblBrand">
+        <thead><tr>
+          <th class="nos">#</th><th class="nos">Brand</th>
+          <th data-s="cur">Sales</th><th data-s="dpct">vs LY</th>
+          <th data-s="comm">Commission</th><th data-s="dcomm">Comm &plusmn;</th>
+          <th data-s="shc">% of comm</th><th data-s="shs">% of sales</th>
+          <th data-s="accts">Accts</th><th data-s="avg">Avg/acct</th>
+          <th data-s="opp">Opportunity</th>
+        </tr></thead><tbody></tbody>
+      </table></div>
+      <div class="tfoot" id="brandFoot"></div>
+    </div>
+
+    <p class="seclabel">Account performance <span class="hint" id="acctHint">click any row for the full brand breakdown</span></p>
+    <div class="tblwrap">
+      <div class="tblscroll"><table id="tblAcct">
+        <thead><tr>
+          <th class="nos">#</th><th class="nos">Account</th>
+          <th class="nos">Channel</th>
+          <th data-s="cur">Sales</th><th data-s="dpct">vs LY</th>
+          <th data-s="comm">Commission</th><th data-s="dcomm">Comm &plusmn;</th>
+          <th data-s="brands_n">Brands</th><th data-s="shc">% of comm</th>
+          <th class="nos">Last activity</th>
+        </tr></thead><tbody></tbody>
+      </table></div>
+      <div class="tfoot" id="acctFoot"></div>
+    </div>
+
+    <div class="modelnote" id="repNote"></div>
+  </div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="dhead">
+    <button class="dclose" id="dClose">&times;</button>
+    <div class="dt" id="dTitle"></div>
+    <div class="ds" id="dSub"></div>
+  </div>
+  <div class="dbody" id="dBody"></div>
+</aside>
+
+<script>
+"use strict";
+/* ------------------------------------------------------------------ state */
+var IDX = null, D = null, META = null;
+var S = { period:"ytd", chan:"all", area:"all", brand:null, q:"",
+          bsort:{k:"comm",asc:false}, asort:{k:"comm",asc:false} };
+
+/* ------------------------------------------------------------------ fmt */
+function fCases(v){ return (Math.round(v)).toLocaleString(); }
+function fMoney(v){
+  var n = Math.round(Math.abs(v)).toLocaleString();
+  return (v < 0 ? "-$" : "$") + n;
+}
+function fPct(v,d){ return v==null ? "—" : (v>=0?"+":"") + v.toFixed(d==null?0:d) + "%"; }
+/* delta chip. `flip` marks metrics where down is good (nothing here yet). */
+function dChip(v,d){
+  if(v==null) return '<span class="d na">n/a</span>';
+  var c = v >= 1.5 ? "up" : v <= -1.5 ? "dn" : "fl";
+  return '<span class="d '+c+'">'+fPct(Math.abs(v)===0?0:v,d)+'</span>';
+}
+function esc(s){
+  return String(s==null?"":s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; });
+}
+function el(id){ return document.getElementById(id); }
+
+/* ------------------------------------------------------------------ boot */
+function boot(){
+  Promise.all([
+    fetch("data/index.json").then(function(r){ return r.json(); }),
+    fetch("data/sync_meta.json").then(function(r){ return r.json(); }).catch(function(){ return null; })
+  ]).then(function(res){
+    IDX = res[0]; META = IDX.periods;
+    if(res[1] && res[1].synced_at){
+      var t = new Date(res[1].synced_at);
+      el("syncPill").textContent = "Data refreshed " +
+        t.toLocaleDateString(undefined,{month:"short",day:"numeric"}) + " " +
+        t.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
+    } else { el("syncPill").style.display = "none"; }
+    renderPicker();
+    var h = location.hash.replace(/^#/,"");
+    if(h) openRep(h);
+  }).catch(function(e){
+    el("pickGrid").innerHTML = '<div class="empty">Could not load data/index.json — '+
+      'run <code>python3 generate.py</code> first.<br>'+esc(e.message)+'</div>';
+  });
+}
+
+/* ------------------------------------------------------------------ picker */
+function renderPicker(){
+  var reps = IDX.reps;
+  var totC = reps.reduce(function(s,r){ return s + r.comm_ytd_cy; }, 0);
+  el("pickSub").textContent = reps.length + " reps · " +
+    fMoney(totC) + " modeled commission · " + META.ytd_cy;
+  el("pickGrid").innerHTML = reps.map(function(r){
+    return '<button class="ptile" data-slug="'+r.slug+'">'+
+      '<div class="pname"><span class="prank">#'+r.rank+'</span>'+esc(r.rep)+
+        (r.n_urgent ? '<span class="alertdot">'+r.n_urgent+' urgent</span>' : '')+'</div>'+
+      '<div class="pcomm">'+fMoney(r.comm_ytd_cy)+'</div>'+
+      '<div class="pmeta"><span>'+fCases(r.sales_ytd_cy)+' cs</span>'+
+        '<span>'+dChip(r.yoy)+' vs LY</span></div>'+
+      '<div class="pmeta"><span>'+r.n_accts+' accounts</span>'+
+        '<span>'+r.n_brands+' brands</span>'+
+        '<span>'+r.n_opps+' opportunities</span></div>'+
+    '</button>';
+  }).join("");
+  el("pickNote").innerHTML = modelNote();
+  Array.prototype.forEach.call(document.querySelectorAll(".ptile"), function(b){
+    b.onclick = function(){ openRep(b.dataset.slug); };
+  });
+  var sel = el("repSel");
+  sel.innerHTML = reps.slice().sort(function(a,b){
+    return a.rep.localeCompare(b.rep); }).map(function(r){
+      return '<option value="'+r.slug+'">'+esc(r.rep)+'</option>'; }).join("");
+  sel.onchange = function(){ openRep(sel.value); };
+}
+
+function modelNote(){
+  var c = IDX.commission;
+  return '<b>How commission is calculated here.</b> The two source reports carry '+
+    'Case Equivalents only — no commission and no dollar revenue — so commission on '+
+    'this page is modeled as <b>cases &times; rate</b>, currently '+
+    '<b>$'+c.default_rate.toFixed(2)+' per case</b> from <code>commission_rates.csv</code>. '+
+    'Every share, rank, ratio and year-over-year move is exact; only the dollar scale '+
+    'follows that file. Put the real comp plan into <code>commission_rates.csv</code> '+
+    '(per supplier or per brand) and re-run <code>generate.py</code> to make the '+
+    'dollar figures real too.';
+}
+
+/* ------------------------------------------------------------------ rep */
+function openRep(slug){
+  fetch("data/reps/"+slug+".json").then(function(r){
+    if(!r.ok) throw new Error("no data for "+slug);
+    return r.json();
+  }).then(function(d){
+    D = d;
+    S.chan = "all"; S.area = "all"; S.brand = null; S.q = "";
+    location.hash = slug;
+    el("viewPick").style.display = "none";
+    el("viewRep").style.display = "";
+    el("btnBack").style.display = "";
+    el("repSel").style.display = "";
+    el("repSel").value = slug;
+    el("repName").textContent = d.rep;
+    buildFilterOptions();
+    render();
+    window.scrollTo(0,0);
+  }).catch(function(e){ alert(e.message); });
+}
+
+function showPicker(){
+  D = null; location.hash = "";
+  el("viewPick").style.display = "";
+  el("viewRep").style.display = "none";
+  el("btnBack").style.display = "none";
+  el("repSel").style.display = "none";
+  window.scrollTo(0,0);
+}
+
+function buildFilterOptions(){
+  var areas = {}, i, a;
+  for(i=0;i<D.accounts.length;i++){
+    a = D.accounts[i];
+    if(a.area) areas[a.area] = (areas[a.area]||0) + 1;
+  }
+  var ak = Object.keys(areas).sort();
+  el("selArea").innerHTML = '<option value="all">All territories</option>' +
+    ak.map(function(k){ return '<option value="'+esc(k)+'">'+esc(k)+' ('+areas[k]+')</option>'; }).join("");
+  var bs = D.brands.filter(function(b){ return b.s_ytd>0 || b.s_ytd_py>0; })
+    .slice().sort(function(x,y){ return x.brand.localeCompare(y.brand); });
+  el("selBrand").innerHTML = '<option value="">All brands</option>' +
+    bs.map(function(b){ return '<option value="'+esc(b.brand)+'">'+esc(b.brand)+'</option>'; }).join("");
+  el("selArea").value = "all"; el("selBrand").value = ""; el("inpAcct").value = "";
+  Array.prototype.forEach.call(document.querySelectorAll("#segChan button"), function(b){
+    b.classList.toggle("on", b.dataset.c === "all"); });
+}
+
+/* --------------------------------------------------------------- compute
+   Everything on the page is recomputed from the account x brand rows under
+   the active filters -- nothing is scaled off an unfiltered total, so a
+   filtered view is a true view of that slice of the book.                */
+function slice(){
+  var q = S.q.trim().toLowerCase();
+  var accts = [], bmap = {};
+  for(var i=0;i<D.accounts.length;i++){
+    var a = D.accounts[i];
+    if(S.chan !== "all" && a.premise !== S.chan) continue;
+    if(S.area !== "all" && a.area !== S.area) continue;
+    if(q && a.name.toLowerCase().indexOf(q) < 0 && a.num.indexOf(q) < 0) continue;
+    var yc=0, yp=0, mc=0, mp=0, cyc=0, cyp=0, cmc=0, cmp=0, nb=0, kept=[];
+    for(var j=0;j<a.brands.length;j++){
+      var b = a.brands[j];
+      if(S.brand && b.brand !== S.brand) continue;
+      kept.push(b);
+      yc+=b.s_ytd; yp+=b.s_ytd_py; mc+=b.s_mtd; mp+=b.s_mtd_py;
+      cyc+=b.s_ytd*b.rate; cyp+=b.s_ytd_py*b.rate;
+      cmc+=b.s_mtd*b.rate; cmp+=b.s_mtd_py*b.rate;
+      if(b.s_ytd>0) nb++;
+      var e = bmap[b.brand];
+      if(!e){ e = bmap[b.brand] = { brand:b.brand, yc:0,yp:0,mc:0,mp:0,
+        cyc:0,cyp:0,cmc:0,cmp:0, accts:0, accts_py:0 }; }
+      e.yc+=b.s_ytd; e.yp+=b.s_ytd_py; e.mc+=b.s_mtd; e.mp+=b.s_mtd_py;
+      e.cyc+=b.s_ytd*b.rate; e.cyp+=b.s_ytd_py*b.rate;
+      e.cmc+=b.s_mtd*b.rate; e.cmp+=b.s_mtd_py*b.rate;
+      if(b.s_ytd>0) e.accts++;
+      if(b.s_ytd_py>0) e.accts_py++;
+    }
+    // With a brand filter on, an account that never carried that brand drops
+    // out entirely. With no brand filter, zero-volume book accounts stay --
+    // they are the dormant-account opportunity, not noise to hide.
+    if(S.brand && !kept.length) continue;
+    var status = mc>0 ? "mtd" : yc>0 ? "ytd" : yp>0 ? "lapsed" : "none";
+    accts.push({ raw:a, num:a.num, name:a.name, premise:a.premise, area:a.area,
+      city:a.city, county:a.county, addr:a.addr, draft:a.draft, on_book:a.on_book,
+      yc:yc, yp:yp, mc:mc, mp:mp, cyc:cyc, cyp:cyp, cmc:cmc, cmp:cmp,
+      nb:nb, status:status, brands:kept });
+  }
+  var brands = [];
+  for(var k in bmap){ if(Object.prototype.hasOwnProperty.call(bmap,k)) brands.push(bmap[k]); }
+
+  var T = { yc:0, yp:0, mc:0, mp:0, cyc:0, cyp:0, cmc:0, cmp:0 };
+  for(i=0;i<accts.length;i++){
+    T.yc+=accts[i].yc; T.yp+=accts[i].yp; T.mc+=accts[i].mc; T.mp+=accts[i].mp;
+    T.cyc+=accts[i].cyc; T.cyp+=accts[i].cyp; T.cmc+=accts[i].cmc; T.cmp+=accts[i].cmp;
+  }
+  var P = S.period;
+  function pk(o,which){
+    return P==="ytd"
+      ? (which==="cur"?o.yc: which==="pri"?o.yp: which==="com"?o.cyc:o.cyp)
+      : (which==="cur"?o.mc: which==="pri"?o.mp: which==="com"?o.cmc:o.cmp);
+  }
+  for(i=0;i<accts.length;i++){
+    decorate(accts[i], pk, T);
+    accts[i].brands_n = accts[i].nb;          // sortable "Brands" column
+  }
+  for(i=0;i<brands.length;i++){
+    var b = brands[i];
+    decorate(b, pk, T);
+    b.avg = b.accts ? b.cur / b.accts : 0;    // sortable "Avg/acct" column
+    var bm = D.brandmeta[b.brand] || {};
+    // "Opportunity" sorts by the size of the lever: open doors valued at this
+    // rep's own per-door average, or the commission left on the table.
+    var doors = bm.exp != null ? Math.max(bm.exp - b.accts, 0) : 0;
+    b.opp = Math.max(doors * b.avg * (bm.rate || 1), b.dcomm < 0 ? -b.dcomm : 0);
+  }
+  accts.sort(function(x,y){ return y.comm - x.comm; });
+  brands.sort(function(x,y){ return y.comm - x.comm; });
+  for(i=0;i<accts.length;i++) accts[i].rank = i+1;
+  for(i=0;i<brands.length;i++) brands[i].rank = i+1;
+  return { accts:accts, brands:brands, T:T, pk:pk };
+}
+
+function decorate(o, pk, T){
+  o.cur = pk(o,"cur"); o.pri = pk(o,"pri");
+  o.comm = pk(o,"com"); o.commp = pk(o,"comp");
+  o.d = o.cur - o.pri;
+  o.dcomm = o.comm - o.commp;
+  o.dpct = o.pri ? (o.cur - o.pri) / o.pri * 100 : null;
+  var tc = (S.period==="ytd" ? T.cyc : T.cmc);
+  var ts = (S.period==="ytd" ? T.yc : T.mc);
+  o.shc = tc ? o.comm / tc * 100 : 0;
+  o.shs = ts ? o.cur / ts * 100 : 0;
+}
+
+/* ------------------------------------------------------------------ render */
+function render(){
+  var V = slice();
+  renderCtx(V);
+  renderKPI(V);
+  renderOpps(V);
+  renderCommission(V);
+  renderBrandTable(V);
+  renderAcctTable(V);
+  el("repNote").innerHTML = modelNote();
+  var pl = S.period === "ytd" ? META.ytd_cy : META.mtd_cy;
+  var pp = S.period === "ytd" ? META.ytd_py : META.mtd_py;
+  el("repSub").innerHTML = '<b>' + (S.period==="ytd"?"Year to date":"Month to date") +
+    '</b> ' + esc(pl) + ' &nbsp;·&nbsp; compared against ' + esc(pp);
+  el("kpiHint").textContent = "cases and modeled commission, this window vs the same window last year";
+}
+
+function renderCtx(V){
+  var chips = [];
+  if(S.chan !== "all") chips.push(["chan", S.chan]);
+  if(S.area !== "all") chips.push(["area", "Territory: " + S.area]);
+  if(S.brand) chips.push(["brand", "Brand: " + S.brand]);
+  if(S.q.trim()) chips.push(["q", 'Search: "' + S.q.trim() + '"']);
+  el("ctxChips").innerHTML = chips.length
+    ? chips.map(function(c){
+        return '<span class="ctxchip">'+esc(c[1])+
+          '<button data-x="'+c[0]+'" title="Remove">&times;</button></span>'; }).join("") +
+      '<span class="ctxchip" style="background:none;border-color:var(--line);color:var(--ink-dim)">'+
+        V.accts.length+' accounts &middot; '+V.brands.length+' brands in view</span>'
+    : "";
+  Array.prototype.forEach.call(el("ctxChips").querySelectorAll("button"), function(b){
+    b.onclick = function(){
+      var x = b.dataset.x;
+      if(x==="chan"){ S.chan="all"; syncSeg("segChan","c","all"); }
+      if(x==="area"){ S.area="all"; el("selArea").value="all"; }
+      if(x==="brand"){ S.brand=null; el("selBrand").value=""; }
+      if(x==="q"){ S.q=""; el("inpAcct").value=""; }
+      render();
+    };
+  });
+}
+
+function renderKPI(V){
+  var T = V.T, P = S.period;
+  var cComm = P==="ytd"?T.cyc:T.cmc, pComm = P==="ytd"?T.cyp:T.cmp;
+  var cSale = P==="ytd"?T.yc:T.mc,  pSale = P==="ytd"?T.yp:T.mp;
+  var nB = V.brands.filter(function(b){ return b.yc>0; }).length;
+  var nA = V.accts.filter(function(a){ return a.yc>0; }).length;
+  var nBook = V.accts.filter(function(a){ return a.on_book; }).length;
+  var lapsed = V.accts.filter(function(a){ return a.status==="lapsed"; }).length;
+  // Pace is recomputed from the filtered totals -- reusing the stored
+  // book-level figure would quietly report the whole book inside a filtered
+  // view. Current month's daily rate vs the daily rate of the rest of the year.
+  var dNow = META.mtd_days ? T.mc / META.mtd_days : 0;
+  var dRest = META.prior_days ? (T.yc - T.mc) / META.prior_days : 0;
+  var pace = dRest ? (dNow / dRest - 1) * 100 : null;
+  var label = P==="ytd" ? "YTD" : "MTD";
+
+  function card(lab,val,sub,cls){
+    return '<div class="kpi '+(cls||"")+'"><div class="klab">'+lab+'</div>'+
+      '<div class="kval">'+val+'</div><div class="ksub">'+sub+'</div></div>';
+  }
+  var yoyC = pComm ? (cComm-pComm)/pComm*100 : null;
+  var yoyS = pSale ? (cSale-pSale)/pSale*100 : null;
+
+  // The two hero cards always show the SELECTED window; the pair beneath shows
+  // the other one. Rendering "Commission YTD" twice with the same number when
+  // YTD is selected would just be noise, so the pair flips with the toggle.
+  var otherC = P==="ytd" ? T.cmc : T.cyc, otherCp = P==="ytd" ? T.cmp : T.cyp;
+  var otherS = P==="ytd" ? T.mc  : T.yc,  otherSp = P==="ytd" ? T.mp  : T.yp;
+  var otherLab = P==="ytd" ? "MTD" : "YTD";
+  var otherVs  = P==="ytd" ? "vs the same days last August" : "vs the same period last year";
+  var quiet = V.accts.filter(function(a){ return a.status==="ytd"; }).length;
+
+  el("kpiGrid").innerHTML =
+    card("Commission · "+label, fMoney(cComm),
+         dChip(yoyC)+" vs "+fMoney(pComm)+" last year", "hero") +
+    card("Sales · "+label, fCases(cSale)+'<span class="kunit">cs</span>',
+         dChip(yoyS)+" vs "+fCases(pSale)+" cs last year", "hero") +
+    card("Commission "+otherLab, fMoney(otherC),
+         dChip(otherCp ? (otherC-otherCp)/otherCp*100 : null)+" "+otherVs) +
+    card("Sales "+otherLab, fCases(otherS)+'<span class="kunit">cs</span>',
+         dChip(otherSp ? (otherS-otherSp)/otherSp*100 : null)+" "+otherVs) +
+    card("vs prior year", fPct(yoyS,1),
+         (cSale-pSale>=0?"+":"")+fCases(cSale-pSale)+" cs · "+
+         (cComm-pComm>=0?"+":"")+fMoney(cComm-pComm)+" commission") +
+    card("vs prior period", fPct(pace,1),
+         "August's daily pace vs the rest of "+META.cy+
+         (dRest ? " ("+fCases(dNow)+" vs "+fCases(dRest)+" cs/day)" : "")) +
+    card("Active brands", nB, "carrying volume in "+META.cy) +
+    card("Active accounts", nA,
+         nBook ? nA+" active of "+nBook+" on your book" : "with volume in "+META.cy) +
+    card("Avg sales / account", nA?fCases(cSale/nA)+'<span class="kunit">cs</span>':"—",
+         "across accounts with volume") +
+    card("Avg comm / account", nA?fMoney(cComm/nA):"—",
+         "your per-door earning rate") +
+    card("Stopped ordering", lapsed,
+         lapsed ? "bought in "+META.py+", nothing in "+META.cy : "none — every account is live") +
+    card("Quiet this month", quiet,
+         quiet ? "ordered in "+META.cy+" but not in August" : "every active account has ordered");
+}
+
+function renderOpps(V){
+  var list = D.opps;
+  // Opportunities are computed against the rep's whole book (they need the
+  // full-year and company-wide context). Under a filter we show only the ones
+  // that touch what's on screen, and say so.
+  var filtered = false;
+  if(S.brand){
+    list = list.filter(function(o){ return o.brand === S.brand; });
+    filtered = true;
+  }
+  if(S.chan !== "all" || S.area !== "all" || S.q.trim()){
+    var live = {};
+    V.accts.forEach(function(a){ live[a.num] = 1; });
+    list = list.filter(function(o){ return !o.account || live[o.account]; });
+    filtered = true;
+  }
+  var tag = { 3:"Act now", 2:"Worth a look", 1:"Upside" };
+  var kindName = { brand_decline:"Brand decline", brand_growth:"Momentum",
+    whitespace:"Untapped", lapsed:"Stopped ordering", acct_decline:"Account slipping",
+    acct_soft_month:"Soft month", dormant_book:"Dormant book",
+    concentration:"Concentration" };
+  if(!list.length){
+    el("oppList").innerHTML = '<div class="card"><p class="cardsub" style="margin:0">'+
+      (filtered ? "No flagged opportunities inside the current filters — clear them to see the whole book."
+                : "Nothing flagged. Every brand and account is inside normal range for this book.")+
+      '</p></div>';
+    return;
+  }
+  el("oppList").innerHTML =
+    (filtered ? '<div class="dnote" style="margin-top:0">Showing the '+list.length+
+      ' opportunit'+(list.length===1?"y":"ies")+' that touch the current filters. '+
+      'They are always calculated against the full book and full year, so the numbers '+
+      'inside them are book-level, not filtered.</div>' : "") +
+    list.slice(0,14).map(function(o){
+      var acts = "";
+      if(o.brand) acts += '<button class="minibtn" data-jb="'+esc(o.brand)+'">Filter to '+esc(o.brand)+'</button>';
+      if(o.account) acts += '<button class="minibtn" data-ja="'+esc(o.account)+'">Open account</button>';
+      // Grouped cards carry their items as rows -- the reasoning is stated once
+      // and each item brings its own numbers, instead of one card per item
+      // repeating the same paragraph.
+      var rows = (o.rows || []).map(function(r){
+        var jump = r.brand ? ' data-ob="'+esc(r.brand)+'"'
+                 : r.account ? ' data-oa="'+esc(r.account)+'"' : "";
+        return '<div class="orow"'+jump+(jump?' role="button" tabindex="0"':"")+'>'+
+          '<span class="on">'+esc(r.label)+
+            '<span class="tsub"> — '+esc(r.detail)+'</span></span>'+
+          '<span class="ov">'+esc(r.value)+'</span></div>';
+      }).join("");
+      return '<div class="opp s'+o.sev+'">'+
+        '<div class="opph"><div class="ot">'+esc(o.title)+'</div>'+
+          '<span class="otag s'+o.sev+'">'+tag[o.sev]+'</span>'+
+          '<span class="otag s1" style="background:var(--card3);color:var(--ink-dim)">'+
+            (kindName[o.kind]||o.kind)+'</span></div>'+
+        '<p class="oppb">'+esc(o.body)+'</p>'+
+        (rows ? '<div class="orows">'+rows+'</div>' : "")+
+        (acts ? '<div class="oppact">'+acts+'</div>' : "")+
+      '</div>';
+    }).join("") +
+    (list.length > 14 ? '<div class="dnote">'+(list.length-14)+
+      ' more, lower down the priority list. Filter to a brand or territory to see them.</div>' : "");
+
+  Array.prototype.forEach.call(el("oppList").querySelectorAll("[data-jb]"), function(b){
+    b.onclick = function(){ S.brand = b.dataset.jb; el("selBrand").value = S.brand; render();
+      window.scrollTo({top:0,behavior:"smooth"}); };
+  });
+  Array.prototype.forEach.call(el("oppList").querySelectorAll("[data-ja]"), function(b){
+    b.onclick = function(){ openAccount(b.dataset.ja); };
+  });
+  // A row inside a grouped card drills in; the button beneath filters the page.
+  Array.prototype.forEach.call(el("oppList").querySelectorAll("[data-ob]"), function(b){
+    b.onclick = function(){ openBrand(b.dataset.ob); };
+  });
+  Array.prototype.forEach.call(el("oppList").querySelectorAll("[data-oa]"), function(b){
+    b.onclick = function(){ openAccount(b.dataset.oa); };
+  });
+}
+
+function barList(node, rows, opt){
+  var max = 0;
+  rows.forEach(function(r){ max = Math.max(max, Math.abs(r.v)); });
+  if(!rows.length){ node.innerHTML = '<div class="empty">Nothing in this view.</div>'; return; }
+  node.innerHTML = rows.map(function(r){
+    var w = max ? Math.max(Math.abs(r.v)/max*100, 1.5) : 0;
+    return '<div class="blrow" data-k="'+esc(r.key)+'" data-t="'+opt.type+'">'+
+      '<div class="bltop"><span class="blnm">'+esc(r.n)+'</span>'+
+        '<span class="blv">'+r.vl+'</span></div>'+
+      '<div class="blbar '+(opt.cls||"")+'"><i style="width:'+w.toFixed(1)+'%"></i></div>'+
+      '<div class="blmeta">'+r.meta+'</div></div>';
+  }).join("");
+  Array.prototype.forEach.call(node.querySelectorAll(".blrow"), function(b){
+    b.onclick = function(){
+      if(b.dataset.t === "brand"){ openBrand(b.dataset.k); }
+      else { openAccount(b.dataset.k); }
+    };
+  });
+}
+
+function renderCommission(V){
+  var lab = S.period === "ytd" ? "YTD" : "MTD";
+  var tc = V.T[S.period==="ytd"?"cyc":"cmc"];
+  var topB = V.brands.filter(function(b){ return b.comm>0; }).slice(0,8);
+  var topA = V.accts.filter(function(a){ return a.comm>0; }).slice(0,8);
+
+  el("cbBrandSub").innerHTML = topB.length
+    ? "Your top " + topB.length + " brands carry <b>" +
+      topB.reduce(function(s,b){ return s+b.shc; },0).toFixed(0) +
+      "%</b> of your commission " + lab + "."
+    : "&nbsp;";
+  el("cbAcctSub").innerHTML = topA.length
+    ? "Your top " + topA.length + " accounts carry <b>" +
+      topA.reduce(function(s,a){ return s+a.shc; },0).toFixed(0) +
+      "%</b> of your commission " + lab + "."
+    : "&nbsp;";
+
+  barList(el("cbBrand"), topB.map(function(b){
+    return { key:b.brand, n:b.brand, v:b.comm, vl:fMoney(b.comm), type:"brand",
+      meta:'<span>'+b.shc.toFixed(1)+'% of commission</span><span>'+
+        fCases(b.cur)+' cs</span><span>'+b.accts+' accts</span><span>'+
+        dChip(b.dpct)+' vs LY</span>' };
+  }), { type:"brand" });
+
+  barList(el("cbAcct"), topA.map(function(a){
+    return { key:a.num, n:a.name, v:a.comm, vl:fMoney(a.comm), type:"acct",
+      meta:'<span>'+a.shc.toFixed(1)+'% of commission</span><span>'+
+        fCases(a.cur)+' cs</span><span>'+a.nb+' brands</span><span>'+
+        dChip(a.dpct)+' vs LY</span>' };
+  }), { type:"acct" });
+
+  var moved = V.brands.filter(function(b){ return Math.abs(b.dcomm) >= 1; });
+  var up = moved.filter(function(b){ return b.dcomm>0; })
+    .sort(function(x,y){ return y.dcomm-x.dcomm; }).slice(0,6);
+  var dn = moved.filter(function(b){ return b.dcomm<0; })
+    .sort(function(x,y){ return x.dcomm-y.dcomm; }).slice(0,6);
+
+  barList(el("cbUp"), up.map(function(b){
+    return { key:b.brand, n:b.brand, v:b.dcomm, vl:"+"+fMoney(b.dcomm), type:"brand",
+      meta:'<span>'+dChip(b.dpct)+'</span><span>+'+fCases(b.d)+' cs</span><span>now '+
+        b.shc.toFixed(1)+'% of commission</span>' };
+  }), { type:"brand" });
+
+  barList(el("cbDown"), dn.map(function(b){
+    return { key:b.brand, n:b.brand, v:b.dcomm, vl:fMoney(b.dcomm), type:"brand",
+      meta:'<span>'+dChip(b.dpct)+'</span><span>'+fCases(b.d)+' cs</span><span>still '+
+        b.shc.toFixed(1)+'% of commission</span>' };
+  }), { type:"brand", cls:"neg" });
+}
+
+/* ------------------------------------------------------------------ tables */
+function sortRows(rows, st){
+  var k = st.k, sgn = st.asc ? 1 : -1;
+  return rows.slice().sort(function(a,b){
+    var x = a[k], y = b[k];
+    if(x == null) x = -Infinity;
+    if(y == null) y = -Infinity;
+    if(x === y) return a.rank - b.rank;
+    return x < y ? -sgn : sgn;
+  });
+}
+
+/* Opportunity column: the one line worth acting on for this brand, chosen by
+   which lever is biggest -- untapped doors, or commission left on the table. */
+function brandOpp(b){
+  var m = D.brandmeta[b.brand] || {};
+  var gapDoors = m.exp != null ? Math.round(m.exp - b.accts) : 0;
+  var lost = b.dcomm < 0 ? -b.dcomm : 0;
+  if(gapDoors >= 2 && b.cur > 0){
+    return '<span style="color:var(--good)">+' + gapDoors + ' doors</span>' +
+      '<span class="tsub"> open</span>';
+  }
+  if(lost >= 1){
+    return '<span style="color:var(--warn)">' + fMoney(lost) + '</span>' +
+      '<span class="tsub"> to recover</span>';
+  }
+  if(b.dcomm > 0) return '<span class="tsub">growing</span>';
+  return '<span class="tsub">—</span>';
+}
+
+function renderBrandTable(V){
+  var rows = sortRows(V.brands, S.bsort);
+  var tb = el("tblBrand").querySelector("tbody");
+  if(!rows.length){
+    tb.innerHTML = '<tr><td colspan="11" class="empty">No brands match these filters.</td></tr>';
+  } else {
+    tb.innerHTML = rows.map(function(b){
+      var m = D.brandmeta[b.brand] || {};
+      return '<tr data-b="'+esc(b.brand)+'"'+(S.brand===b.brand?' class="sel"':'')+'>'+
+        '<td class="rk">'+b.rank+'</td>'+
+        '<td><span class="tname">'+esc(b.brand)+'</span>'+
+          '<span class="tsub">'+esc(m.sup||"")+'</span></td>'+
+        '<td class="cases">'+fCases(b.cur)+'</td>'+
+        '<td>'+dChip(b.dpct)+'</td>'+
+        '<td class="money">'+fMoney(b.comm)+'</td>'+
+        '<td class="cases" style="color:'+(b.dcomm>=0?"var(--good)":"var(--bad)")+'">'+
+          (b.dcomm>=0?"+":"")+fMoney(b.dcomm)+'</td>'+
+        '<td class="cases">'+b.shc.toFixed(1)+'%</td>'+
+        '<td class="cases">'+b.shs.toFixed(1)+'%</td>'+
+        '<td class="cases">'+b.accts+'</td>'+
+        '<td class="cases">'+(b.accts?fCases(b.cur/b.accts):"—")+'</td>'+
+        '<td>'+brandOpp(b)+'</td>'+
+      '</tr>';
+    }).join("");
+    Array.prototype.forEach.call(tb.querySelectorAll("tr[data-b]"), function(tr){
+      tr.onclick = function(){ openBrand(tr.dataset.b); };
+    });
+  }
+  var growing = V.brands.filter(function(b){ return (b.dpct||0) > 1.5; }).length;
+  var falling = V.brands.filter(function(b){ return (b.dpct||0) < -1.5; }).length;
+  el("brandFoot").innerHTML =
+    '<span>'+V.brands.length+' brands · '+growing+' growing · '+falling+' declining</span>'+
+    '<span>Sorted by '+esc(colName(S.bsort.k))+'. Click a column to re-sort, a row to drill in.</span>';
+  markSorted("tblBrand", S.bsort);
+}
+
+function renderAcctTable(V){
+  var rows = sortRows(V.accts, S.asort);
+  var tb = el("tblAcct").querySelector("tbody");
+  var statLab = { mtd:"Ordered this month", ytd:"Quiet this month",
+                  lapsed:"No orders in "+META.cy, none:"No volume either year" };
+  if(!rows.length){
+    tb.innerHTML = '<tr><td colspan="10" class="empty">No accounts match these filters.</td></tr>';
+  } else {
+    tb.innerHTML = rows.slice(0,400).map(function(a){
+      var loc = [a.city, a.area].filter(Boolean).join(" · ");
+      return '<tr data-a="'+esc(a.num)+'">'+
+        '<td class="rk">'+a.rank+'</td>'+
+        '<td><span class="tname">'+esc(a.name)+'</span>'+
+          '<span class="tsub">#'+esc(a.num)+(loc?" · "+esc(loc):"")+'</span></td>'+
+        '<td class="tsub" style="text-align:right">'+esc(a.premise||"—")+'</td>'+
+        '<td class="cases">'+fCases(a.cur)+'</td>'+
+        '<td>'+dChip(a.dpct)+'</td>'+
+        '<td class="money">'+fMoney(a.comm)+'</td>'+
+        '<td class="cases" style="color:'+(a.dcomm>=0?"var(--good)":"var(--bad)")+'">'+
+          (a.dcomm>=0?"+":"")+fMoney(a.dcomm)+'</td>'+
+        '<td class="cases">'+a.nb+'</td>'+
+        '<td class="cases">'+a.shc.toFixed(1)+'%</td>'+
+        '<td><span class="stat '+a.status+'">'+statLab[a.status]+'</span></td>'+
+      '</tr>';
+    }).join("");
+    Array.prototype.forEach.call(tb.querySelectorAll("tr[data-a]"), function(tr){
+      tr.onclick = function(){ openAccount(tr.dataset.a); };
+    });
+  }
+  var lapsed = V.accts.filter(function(a){ return a.status==="lapsed"; }).length;
+  var quiet  = V.accts.filter(function(a){ return a.status==="ytd"; }).length;
+  el("acctFoot").innerHTML =
+    '<span>'+V.accts.length+' accounts'+(V.accts.length>400?" (showing top 400)":"")+
+      ' · '+lapsed+' with no '+META.cy+' orders · '+quiet+' quiet this month</span>'+
+    '<span>Sorted by '+esc(colName(S.asort.k))+'.</span>';
+  markSorted("tblAcct", S.asort);
+}
+
+function colName(k){
+  return { cur:"sales", dpct:"growth", comm:"commission", dcomm:"commission change",
+    shc:"% of commission", shs:"% of sales", accts:"account count", brands_n:"brand count",
+    avg:"average per account", opp:"opportunity", brands:"brand count" }[k] || k;
+}
+
+function markSorted(tid, st){
+  Array.prototype.forEach.call(el(tid).querySelectorAll("th[data-s]"), function(th){
+    th.classList.toggle("sorted", th.dataset.s === st.k);
+    th.classList.toggle("asc", th.dataset.s === st.k && st.asc);
+  });
+}
+
+/* ------------------------------------------------------------ drill-down
+   The drawer is deliberately additive: opening an account does not clear the
+   brand filter or the territory, so Rep -> Brand -> Account -> detail keeps
+   every step of context on screen behind it.                              */
+function openDrawer(title, sub, body){
+  el("dTitle").textContent = title;
+  el("dSub").innerHTML = sub;
+  el("dBody").innerHTML = body;
+  el("drawer").classList.add("open");
+  el("drawer").setAttribute("aria-hidden","false");
+  el("scrim").classList.add("open");
+  el("dBody").scrollTop = 0;
+  Array.prototype.forEach.call(el("dBody").querySelectorAll("[data-ja]"), function(b){
+    b.onclick = function(){ openAccount(b.dataset.ja); };
+  });
+  Array.prototype.forEach.call(el("dBody").querySelectorAll("[data-jb]"), function(b){
+    b.onclick = function(){ openBrand(b.dataset.jb); };
+  });
+  var f = el("dBody").querySelector("[data-filter]");
+  if(f) f.onclick = function(){
+    S.brand = f.dataset.filter; el("selBrand").value = S.brand;
+    closeDrawer(); render(); window.scrollTo({top:0,behavior:"smooth"});
+  };
+}
+function closeDrawer(){
+  el("drawer").classList.remove("open");
+  el("drawer").setAttribute("aria-hidden","true");
+  el("scrim").classList.remove("open");
+}
+
+function miniKpi(lab,val,sub){
+  return '<div class="kpi"><div class="klab">'+lab+'</div><div class="kval">'+val+
+    '</div><div class="ksub">'+sub+'</div></div>';
+}
+
+function openBrand(name){
+  var V = slice();
+  var b = null, i;
+  for(i=0;i<V.brands.length;i++) if(V.brands[i].brand === name) b = V.brands[i];
+  if(!b) return;
+  var m = D.brandmeta[name] || {};
+  // accounts carrying this brand, under the current channel/territory filters
+  var rows = [];
+  V.accts.forEach(function(a){
+    a.brands.forEach(function(x){
+      if(x.brand !== name) return;
+      var cur = S.period==="ytd"?x.s_ytd:x.s_mtd;
+      var pri = S.period==="ytd"?x.s_ytd_py:x.s_mtd_py;
+      if(!cur && !pri) return;
+      rows.push({ a:a, cur:cur, pri:pri, comm:cur*x.rate,
+        dp: pri ? (cur-pri)/pri*100 : null });
+    });
+  });
+  rows.sort(function(x,y){ return y.comm - x.comm; });
+  var gap = m.exp != null ? Math.round(m.exp - b.accts) : 0;
+
+  var body =
+    '<div class="dkpi">'+
+      miniKpi("Commission", fMoney(b.comm), dChip(b.dpct)+" vs last year") +
+      miniKpi("Sales", fCases(b.cur)+'<span class="kunit">cs</span>',
+              (b.d>=0?"+":"")+fCases(b.d)+" cs vs last year") +
+      miniKpi("% of your commission", b.shc.toFixed(1)+"%", "rank #"+b.rank+" of your brands") +
+      miniKpi("Accounts", b.accts, b.accts_py+" carried it last year") +
+    '</div>'+
+    '<div class="dnote">'+
+      (gap >= 2
+        ? '<b>Untapped:</b> weighting the company\'s on- and off-premise placement '+
+          'rates for '+esc(name)+' by your own channel mix, a book like yours would '+
+          'carry it in about '+Math.round(m.exp)+' accounts. You have '+b.accts+
+          ' — roughly <b>'+gap+' open doors</b>. A typical door of the size you call '+
+          'on buys about '+fCases(m.typ||0)+' cases of it a year, so closing the gap '+
+          'is worth around '+fMoney(gap * (m.typ||0) * (m.rate||1))+
+          ' in modeled commission. That is a ceiling, not a forecast.'
+        : '<b>Well placed:</b> '+esc(name)+' is in '+b.accts+' of your accounts, at or '+
+          'above what a book with your channel mix would normally carry. Growth here '+
+          'has to come from volume per door rather than new placements.')+
+    '</div>'+
+    '<button class="minibtn" data-filter="'+esc(name)+'">Filter the whole dashboard to '+esc(name)+'</button>'+
+    '<p class="seclabel" style="margin:20px 0 6px">Accounts buying it '+
+      (S.period==="ytd"?"this year":"this month")+'</p>'+
+    (rows.length ? rows.map(function(r){
+      return '<div class="drow"><span class="dn"><button class="minibtn" '+
+        'style="background:none;border:0;padding:0;font-weight:600;color:var(--ink)" '+
+        'data-ja="'+esc(r.a.num)+'">'+esc(r.a.name)+'</button>'+
+        '<span class="tsub"> · '+esc(r.a.premise||"—")+'</span></span>'+
+        '<span class="cases">'+fCases(r.cur)+' cs</span>'+
+        '<span class="money">'+fMoney(r.comm)+'</span>'+
+        dChip(r.dp)+'</div>';
+    }).join("") : '<div class="empty">No accounts in this view carry it.</div>');
+
+  openDrawer(name, esc(m.sup||"") + " · modeled at $" + (m.rate||1).toFixed(2) +
+    "/case · " + esc(S.period==="ytd" ? META.ytd_cy : META.mtd_cy), body);
+}
+
+function openAccount(num){
+  var V = slice(), a = null, i;
+  for(i=0;i<V.accts.length;i++) if(V.accts[i].num === num) a = V.accts[i];
+  if(!a){ // outside the current filters -- fall back to the unfiltered record
+    for(i=0;i<D.accounts.length;i++) if(D.accounts[i].num === num){
+      var raw = D.accounts[i];
+      a = { raw:raw, num:raw.num, name:raw.name, premise:raw.premise, area:raw.area,
+        city:raw.city, addr:raw.addr, draft:raw.draft, status:raw.status,
+        cur:raw.s_ytd, pri:raw.s_ytd_py, comm:raw.c_ytd, commp:raw.c_ytd_py,
+        d:raw.s_ytd-raw.s_ytd_py, dcomm:raw.c_ytd-raw.c_ytd_py,
+        dpct:raw.yoy_ytd, shc:raw.sh_comm, rank:raw.rank, nb:raw.nbrands,
+        brands:raw.brands, mc:raw.s_mtd, mp:raw.s_mtd_py, yc:raw.s_ytd, yp:raw.s_ytd_py };
+    }
+  }
+  if(!a) return;
+  var brs = a.brands.map(function(x){
+    var cur = S.period==="ytd"?x.s_ytd:x.s_mtd;
+    var pri = S.period==="ytd"?x.s_ytd_py:x.s_mtd_py;
+    return { brand:x.brand, cur:cur, pri:pri, comm:cur*x.rate,
+      dp: pri ? (cur-pri)/pri*100 : null };
+  }).filter(function(x){ return x.cur || x.pri; })
+    .sort(function(x,y){ return y.comm - x.comm; });
+
+  var statNote = {
+    mtd:"Ordered inside the current month — this account is live.",
+    ytd:"Has ordered this year but nothing yet this month. Worth checking whether "+
+        "that is normal seasonality for this door or the start of a slide.",
+    lapsed:"<b>No orders at all in "+META.cy+"</b> after buying last year. The whole "+
+        "relationship has stopped, not just one brand — this is the most expensive "+
+        "kind of decline because nothing replaces it automatically.",
+    none:"No case volume in either year. Either genuinely closed, or a door on your "+
+        "book that has never been opened."
+  }[a.status];
+
+  var body =
+    '<div class="dkpi">'+
+      miniKpi("Commission", fMoney(a.comm), dChip(a.dpct)+" vs last year") +
+      miniKpi("Sales", fCases(a.cur)+'<span class="kunit">cs</span>',
+              (a.d>=0?"+":"")+fCases(a.d)+" cs vs last year") +
+      miniKpi("% of your commission", a.shc.toFixed(1)+"%", "rank #"+a.rank+" of your accounts") +
+      miniKpi("Brands carried", a.nb, brs.length+" with history here") +
+    '</div>'+
+    '<div class="dnote">'+statNote+'</div>'+
+    '<p class="seclabel" style="margin:18px 0 6px">Brand mix '+
+      (S.period==="ytd"?"this year":"this month")+
+      ' <span class="hint">where this account\'s commission comes from</span></p>'+
+    (brs.length ? brs.map(function(r){
+      return '<div class="drow"><span class="dn"><button class="minibtn" '+
+        'style="background:none;border:0;padding:0;font-weight:600;color:var(--ink)" '+
+        'data-jb="'+esc(r.brand)+'">'+esc(r.brand)+'</button></span>'+
+        '<span class="cases">'+fCases(r.cur)+' cs</span>'+
+        '<span class="money">'+fMoney(r.comm)+'</span>'+
+        dChip(r.dp)+'</div>';
+    }).join("") : '<div class="empty">No brand history on this account.</div>');
+
+  var loc = [a.addr, a.city, a.area].filter(Boolean).join(", ");
+  openDrawer(a.name, "#"+esc(a.num)+" · "+esc(a.premise||"—")+
+    (a.draft ? " · "+esc(a.draft) : "") + (loc ? "<br>"+esc(loc) : ""), body);
+}
+
+/* ------------------------------------------------------------------ wiring */
+function syncSeg(id, attr, val){
+  Array.prototype.forEach.call(el(id).querySelectorAll("button"), function(b){
+    b.classList.toggle("on", b.dataset[attr] === val); });
+}
+
+function bindSort(tid, st){
+  Array.prototype.forEach.call(el(tid).querySelectorAll("th[data-s]"), function(th){
+    th.onclick = function(){
+      var k = th.dataset.s;
+      if(st.k === k) st.asc = !st.asc; else { st.k = k; st.asc = false; }
+      render();
+    };
+  });
+}
+
+function wire(){
+  el("btnBack").onclick = showPicker;
+  el("dClose").onclick = closeDrawer;
+  el("scrim").onclick = closeDrawer;
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeDrawer();
+  });
+  Array.prototype.forEach.call(el("segPeriod").querySelectorAll("button"), function(b){
+    b.onclick = function(){ S.period = b.dataset.p; syncSeg("segPeriod","p",S.period); render(); };
+  });
+  Array.prototype.forEach.call(el("segChan").querySelectorAll("button"), function(b){
+    b.onclick = function(){ S.chan = b.dataset.c; syncSeg("segChan","c",S.chan); render(); };
+  });
+  el("selArea").onchange = function(){ S.area = this.value; render(); };
+  el("selBrand").onchange = function(){ S.brand = this.value || null; render(); };
+  var t = null;
+  el("inpAcct").oninput = function(){
+    var v = this.value;
+    clearTimeout(t);
+    t = setTimeout(function(){ S.q = v; render(); }, 180);
+  };
+  el("btnReset").onclick = function(){
+    S.chan = "all"; S.area = "all"; S.brand = null; S.q = "";
+    syncSeg("segChan","c","all");
+    el("selArea").value = "all"; el("selBrand").value = ""; el("inpAcct").value = "";
+    render();
+  };
+  bindSort("tblBrand", S.bsort);
+  bindSort("tblAcct", S.asort);
+  window.addEventListener("hashchange", function(){
+    var h = location.hash.replace(/^#/,"");
+    if(!h) showPicker();
+    else if(!D || D.slug !== h) openRep(h);
+  });
+}
+
+wire();
+boot();
+</script>
+</body>
+</html>

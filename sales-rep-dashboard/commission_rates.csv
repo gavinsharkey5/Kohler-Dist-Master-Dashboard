@@ -1,0 +1,145 @@
+# Commission rate table -- EDIT THIS FILE to match Kohler's real rep comp plan.
+#
+# Neither of the two YTD exports carries commission or dollar revenue: they
+# report Case Equivalents only. So commission on this dashboard is MODELED as
+#     commission = case equivalents x rate_per_case
+# using the rates below. Until the real plan is entered here, every commission
+# figure is a proportional stand-in -- the rankings, shares, concentration and
+# YoY moves are all exactly right, only the dollar scale is a placeholder.
+#
+# scope   = DEFAULT | SUPPLIER | BRAND
+# key     = blank for DEFAULT; the exact "Supplier" or "Brand Family" string otherwise
+# Most specific match wins: BRAND overrides SUPPLIER overrides DEFAULT.
+scope,key,rate_per_case
+DEFAULT,,1.00
+SUPPLIER,"Constellation Brands",1.00
+SUPPLIER,"MolsonCoors Beverage Company",1.00
+SUPPLIER,"Heineken USA",1.00
+SUPPLIER,"Boston Beer Company",1.00
+SUPPLIER,"Mark Anthony",1.00
+SUPPLIER,"Pabst Brewing Company",1.00
+SUPPLIER,"DG Yuengling Inc",1.00
+SUPPLIER,"Sapporo",1.00
+SUPPLIER,"New Belgium Brewing Company",1.00
+SUPPLIER,"Sierra Nevada Brewing Company",1.00
+SUPPLIER,"Radeberger USA",1.00
+SUPPLIER,"Total Beverage Solutions",1.00
+SUPPLIER,"Cape May",1.00
+SUPPLIER,"Montauk Brewing Co",1.00
+SUPPLIER,"Famosa",1.00
+SUPPLIER,"FX Matt",1.00
+SUPPLIER,"Athletic Brewing Company",1.00
+SUPPLIER,"Garage Beer",1.00
+SUPPLIER,"Lagunitas Brewing Co",1.00
+SUPPLIER,"Victory Brewing Company",1.00
+SUPPLIER,"Sixpoint Brewing",1.00
+SUPPLIER,"Phusion Projects",1.00
+SUPPLIER,"US Beverage",1.00
+SUPPLIER,"Stone Brewing",1.00
+SUPPLIER,"FIFCO",1.00
+SUPPLIER,"Paulaner",1.00
+SUPPLIER,"Hofbrauhaus USA",1.00
+SUPPLIER,"Warwick Valley",1.00
+SUPPLIER,"Narragansett",1.00
+SUPPLIER,"Saratoga",1.00
+SUPPLIER,"Pride & Clarke",1.00
+SUPPLIER,"Beak & Skiff",1.00
+SUPPLIER,"Artisanal Imports",1.00
+SUPPLIER,"Food & Bev Enterprise LLC",1.00
+SUPPLIER,"Red Bull",1.00
+SUPPLIER,"Bell's",1.00
+SUPPLIER,"Vinaio Imports LTD",1.00
+SUPPLIER,"Delta Beverage LLC",1.00
+SUPPLIER,"SN Food & Beverage LLC",1.00
+SUPPLIER,"Southern Tier Brewing Company",1.00
+SUPPLIER,"Global Beer",1.00
+SUPPLIER,"Evil Genius",1.00
+SUPPLIER,"Noca Beverages",1.00
+SUPPLIER,"Travelers Club",1.00
+SUPPLIER,"BJ'S Private Label Brew",1.00
+SUPPLIER,"Great Lakes",1.00
+SUPPLIER,"Harpoon Brewery",1.00
+SUPPLIER,"Vermont Hard Cider",1.00
+SUPPLIER,"Flying Fish",1.00
+SUPPLIER,"Prestige",1.00
+SUPPLIER,"Pampa Beverages",1.00
+SUPPLIER,"Viva Beverages Inc",1.00
+SUPPLIER,"Source Brewing",1.00
+SUPPLIER,"Gambrinus Imports",1.00
+SUPPLIER,"Point Brewing",1.00
+SUPPLIER,"Cavalier Ventures, LLC",1.00
+SUPPLIER,"Talkhouse Encore",1.00
+SUPPLIER,"Caravella Inc",1.00
+SUPPLIER,"Modern Infusions",1.00
+SUPPLIER,"Global Village Imp.",1.00
+SUPPLIER,"Forged Irish Stout",1.00
+SUPPLIER,"Newburgh Brewing",1.00
+SUPPLIER,"Bardstown Bourbon Co",1.00
+SUPPLIER,"Crescent Canna",1.00
+SUPPLIER,"Hornell Brewing Company",1.00
+SUPPLIER,"Barn Brew Co",1.00
+SUPPLIER,"Southern Tier Distilling Company",1.00
+SUPPLIER,"SAZERAC INC",1.00
+SUPPLIER,"Tilray Alternative Beverage",1.00
+SUPPLIER,"Emergent Beverage Partners",1.00
+SUPPLIER,"Ithaca",1.00
+SUPPLIER,"HOP WTR",1.00
+SUPPLIER,"Molly's",1.00
+SUPPLIER,"Unibroue",1.00
+SUPPLIER,"Bold Rock Hard Cider",1.00
+SUPPLIER,"Passion Tree Co",1.00
+SUPPLIER,"Bella Ray Beverage",1.00
+SUPPLIER,"Park Street Imports",1.00
+SUPPLIER,"Lodo Brands",1.00
+SUPPLIER,"Alte Beverage",1.00
+SUPPLIER,"Dreamz Invenstments LLC",1.00
+SUPPLIER,"Chateau Diana Winery",1.00
+SUPPLIER,"Ever Grand Group LLC",1.00
+SUPPLIER,"OVO Vodka LLC",1.00
+SUPPLIER,"Efes",1.00
+SUPPLIER,"Prestige Beverage Group",1.00
+SUPPLIER,"Pio Imports",1.00
+SUPPLIER,"Licores Artesanales",1.00
+SUPPLIER,"Savorian INC",1.00
+SUPPLIER,"Surface Brands",1.00
+SUPPLIER,"Dad Grass",1.00
+SUPPLIER,"Oceano",1.00
+SUPPLIER,"1925 Spirits LLC",1.00
+SUPPLIER,"Lo Secco LLC",1.00
+SUPPLIER,"Little Water Distillery",1.00
+SUPPLIER,"Local Choice Inc",1.00
+SUPPLIER,"Riviera Imports",1.00
+SUPPLIER,"Crook & Marker",1.00
+SUPPLIER,"Citizen Cider",1.00
+SUPPLIER,"Cruz Beverage",1.00
+SUPPLIER,"Primos Imports LLC",1.00
+SUPPLIER,"Jerzey Jungle LLC",1.00
+SUPPLIER,"Brewt's LLC",1.00
+SUPPLIER,"American Fruits",1.00
+SUPPLIER,"Cricket Hill",1.00
+SUPPLIER,"Power Distribution LLC",1.00
+SUPPLIER,"Paradisse Spirits LLC",1.00
+SUPPLIER,"SPYRT Worldwide",1.00
+SUPPLIER,"Buzbee's Beverages USA LLC",1.00
+SUPPLIER,"Blaze Life LLC",1.00
+SUPPLIER,"Eleven20",1.00
+SUPPLIER,"XYZ Beverage",1.00
+SUPPLIER,"Gigli",1.00
+SUPPLIER,"Defiant Brewing Co.",1.00
+SUPPLIER,"Cerveceria La Tropical",1.00
+SUPPLIER,"Radix Labs",1.00
+SUPPLIER,"Jersey Girl",1.00
+SUPPLIER,"GUSH INC",1.00
+SUPPLIER,"Berczy LLC",1.00
+SUPPLIER,"2 Towns Ciderhouse",1.00
+SUPPLIER,"Island Brands USA",1.00
+SUPPLIER,"Waterloo Gin",1.00
+SUPPLIER,"Kimo Spirits",1.00
+SUPPLIER,"Trinity Flavors",1.00
+SUPPLIER,"The Old G LLC",1.00
+SUPPLIER,"Misc",1.00
+SUPPLIER,"Florida Caribbean Distillers LLC",1.00
+SUPPLIER,"Hygrade Beverage",1.00
+SUPPLIER,"Duclaw Brewing",1.00
+SUPPLIER,"River Horse Brewing Co",1.00
+SUPPLIER,"Alias Brew Works",1.00
