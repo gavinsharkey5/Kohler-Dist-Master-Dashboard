@@ -235,12 +235,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 78013,
-    "CUSTOMER_NAME": "J R W & Liq (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38001,
     "CUSTOMER_NAME": "JR Sports Bar & Liquors(Z)",
     "AREA": "Bergen"
@@ -1111,12 +1105,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24016,
-    "CUSTOMER_NAME": "Broad Liquors (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 25023,
     "CUSTOMER_NAME": "Clifton Wine & Liquor",
     "AREA": "Passaic"
@@ -1471,12 +1459,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191814,
-    "CUSTOMER_NAME": "Wharton Liquor Store",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190907,
     "CUSTOMER_NAME": "Wharton Liquor Store",
     "AREA": "Morris 1"
@@ -1779,12 +1761,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 84001,
     "CUSTOMER_NAME": "Public Ridgewood",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84004,
-    "CUSTOMER_NAME": "Quick Stop Liquor & Wine",
     "AREA": "Bergen"
   },
   {

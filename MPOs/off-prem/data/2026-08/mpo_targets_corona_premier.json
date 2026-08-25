@@ -877,12 +877,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22022,
-    "CUSTOMER_NAME": "C Town (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21045,
     "CUSTOMER_NAME": "Dorta Liquor (A)",
     "AREA": "Passaic"
@@ -1213,12 +1207,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230920,
-    "CUSTOMER_NAME": "Hamburg Liquor",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 231501,
     "CUSTOMER_NAME": "Highland General Store",
     "AREA": "Sussex"
@@ -1281,12 +1269,6 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230431,
     "CUSTOMER_NAME": "Seplow's Liquors",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230427,
-    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "AREA": "Sussex"
   },
   {
@@ -1359,12 +1341,6 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230121,
     "CUSTOMER_NAME": "White Deer Inn",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230441,
-    "CUSTOMER_NAME": "Wine Country Newton",
     "AREA": "Sussex"
   },
   {
@@ -1693,18 +1669,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190901,
-    "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190208,
     "CUSTOMER_NAME": "Boonton Liquor Locker",
     "AREA": "Morris 1"
@@ -1809,12 +1773,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191608,
     "CUSTOMER_NAME": "Shop-Rite(A) Netcong",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190304,
-    "CUSTOMER_NAME": "Shoppers Disc Liquor",
     "AREA": "Morris 1"
   },
   {
@@ -2095,12 +2053,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 19009,
-    "CUSTOMER_NAME": "Diamond Liquor",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 81006,
     "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "AREA": "Bergen"
@@ -2353,12 +2305,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15040,
-    "CUSTOMER_NAME": "Legacy Bar & Liquor",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20124,
     "CUSTOMER_NAME": "Lena y Carbon Broaster",
     "AREA": "Passaic"
@@ -2445,12 +2391,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 83010,
     "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
     "AREA": "Bergen"
   },
   {
