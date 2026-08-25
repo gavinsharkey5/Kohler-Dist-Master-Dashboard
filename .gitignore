@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# merge_export.py / update_data.py safety copies — local only
+*.csv.bak

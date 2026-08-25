@@ -31,10 +31,15 @@ product level, before anything is aggregated or emitted -- so nothing
 downstream can report units.
     cases = units / unitsPerCase[product]
 `unitsPerCase` is derived per product from ws_invoice_trans.csv, which carries
-BOTH a Cases and a Num Units column on every invoice line: the ratio is exact
-and, as of the 2026-08 refresh, perfectly consistent within each product and
-covers 100% of the products in the monthly account file. Products with no
-invoice history fall back to 1 unit = 1 case and are named in the run output.
+BOTH a Cases and a Num Units column on every invoice line. Where a product's
+lines disagree (an item billed by the case in one period and by the bottle in
+another), the majority ratio wins and the product is named in the run output.
+Products with no invoice history fall back to 1 unit = 1 case, also named.
+
+Every run also reconciles the converted case volume against the invoiced case
+count per product and prints any product where the two disagree by more than
+25%. That is the check that catches a wrong pack size -- read it before
+publishing a refresh.
 
 Inputs (keep these filenames when re-exporting):
     ../wine-spirits-portfolio/ws_account_level_by_month.csv   monthly volume grid
@@ -366,6 +371,29 @@ py_cases = sum(c for c, mm in zip(sales_c, sales_m) if mm in py_set)
 ytd_buyers = len({a for a, mm in zip(sales_a, sales_m) if mm in ytd_set})
 py_buyers = len({a for a, mm in zip(sales_a, sales_m) if mm in py_set})
 
+# --- QA: does the units->cases conversion reconcile with invoiced cases? -----
+# The monthly grid reports units, the invoice file reports real cases. If a
+# product's converted cases and its invoiced cases diverge sharply, the
+# units-per-case ratio for that product is probably wrong (a pack size that
+# changed, or an item billed by the case in one period and by the bottle in
+# another). Printed on every run so a bad ratio can't hide.
+_inv_cases = defaultdict(float)
+for row in invoice_rows:
+    if money(row['Unit Price']) == 0 and money(row['Ext Price']) == 0:
+        continue
+    m = prod_pat.match(row['Product'].strip())
+    if m:
+        _inv_cases[m.group(1)] += num(row['Cases'])
+_grid_cases = defaultdict(float)
+for ii, c in zip(sales_i, sales_c):
+    _grid_cases[items[ii]['p']] += c
+_flagged = []
+for pnum, conv in _grid_cases.items():
+    invc = _inv_cases.get(pnum, 0.0)
+    if invc > 0 and max(conv, invc) >= 20 and abs(conv - invc) / invc > 0.25:
+        _flagged.append((pnum, UNITS_PER_CASE.get(pnum, 1.0), conv, invc))
+_flagged.sort(key=lambda x: -max(x[2], x[3]))
+
 print(f'Months: {data["meta"]["months"][0]} – {data["meta"]["months"][-1]} ({len(MONTHS)} months)')
 print(f'Units->cases ratios: {len(UNITS_PER_CASE)} products '
       f'({len(conflicting)} conflicting, {len(missing_ratio)} with no invoice history)')
@@ -382,3 +410,13 @@ print(f'Prior-year YTD: {py_cases:,.1f} cases, {py_buyers} buying accounts '
 print(f'Placements: {len(p_c):,} rows, anchored {P_ANCHOR}')
 print(f'Skipped zero-price invoice rows: {skipped_zero_price:,}')
 print(f'Payload: {len(blob):,} bytes embedded in index.html')
+if conflicting:
+    print(f'\nCHECK: {len(conflicting)} product(s) have more than one units-per-case ratio in the invoice '
+          f'data (majority wins): ' + ', '.join(conflicting))
+if _flagged:
+    print(f'\nCHECK: {len(_flagged)} product(s) where converted cases and invoiced cases disagree by more '
+          f'than 25%. Confirm the pack size for these with Encompass:')
+    print(f'  {"product":<9} {"units/case":>10} {"dashboard cases":>16} {"invoiced cases":>15}')
+    for pnum, rt, conv, invc in _flagged:
+        name = next((it['n'] for it in items if it['p'] == pnum), '')
+        print(f'  {pnum:<9} {rt:>10} {conv:>16,.1f} {invc:>15,.1f}   {name[:44]}')
