@@ -1,5 +1,115 @@
 [
  {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "PASSAIC DISCOUNT LIQUORS",
+  "CITY": "PASSAIC",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 3,
+  "DATE": "08/24/2026 02:12 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/26b22564-17e9-4de9-afde-06a846bf8dff/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "HOLLYWD LIQ&DELI (A)",
+  "CITY": "MAYWOOD",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 02:10 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/8515459e-c247-479f-bd43-51a3e35ec7de/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "HOLLYWD LIQ&DELI (A)",
+  "CITY": "MAYWOOD",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 02:10 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/8515459e-c247-479f-bd43-51a3e35ec7de/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "HOLLYWD LIQ&DELI (A)",
+  "CITY": "MAYWOOD",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 02:10 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/8515459e-c247-479f-bd43-51a3e35ec7de/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT GRAPE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WALLINGTON LIQUOR AND WINE",
+  "CITY": "WALLINGTON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 10:11 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/b4253e58-4727-4f80-9b6e-8e36c17815a0/"
+ },
+ {
   "REP": "Matt Powierski",
   "SOURCE": "Display",
   "CUSTOMER_NAME": "CAPRI DELI&LIQ (P)",
@@ -1168,6 +1278,17 @@
  {
   "REP": "Pablo Lopez",
   "SOURCE": "Promo",
+  "CUSTOMER_NAME": "PASSAIC DISCOUNT LIQUORS",
+  "CITY": "PASSAIC",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "Feature Activation \u00b7 MBO \u00b7 POS",
+  "QUANTITY": 1,
+  "DATE": "08/24/2026 02:09 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e8b1c1c5-2f11-46e7-ac5b-5cd00ccc3018/"
+ },
+ {
+  "REP": "Pablo Lopez",
+  "SOURCE": "Promo",
   "CUSTOMER_NAME": "RONNY'S LIQRS (Z)",
   "CITY": "PATERSON",
   "BRAND": "LYTT PEACH MANGO",
@@ -1219,6 +1340,39 @@
   "QUANTITY": 1,
   "DATE": "08/13/2026 01:22 PM",
   "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/afdcaaf4-688d-4e84-a8b0-1b55d59d50f0/"
+ },
+ {
+  "REP": "Phil Ernst",
+  "SOURCE": "POD",
+  "CUSTOMER_NAME": "PALISADES WINE AND LIQUOR",
+  "CITY": "PALISADES PARK",
+  "BRAND": "LYTT AGENT ORANGE",
+  "DETAIL": "",
+  "QUANTITY": "",
+  "DATE": "08/24/2026 07:28 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/p.ernst@kohlerdist.com/0b55dc21-6c44-47d4-adb9-671c1f54596e.jpg"
+ },
+ {
+  "REP": "Javier Melo",
+  "SOURCE": "POD",
+  "CUSTOMER_NAME": "EAST SIDE BAR LIQUORS",
+  "CITY": "PATERSON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PACK 6.8OZ BOTTLES",
+  "QUANTITY": "",
+  "DATE": "08/24/2026 06:39 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/j.melo@kohlerdist.com/ddb254ae-57af-4b44-9225-616362488d98.jpg"
+ },
+ {
+  "REP": "Shane Barreca",
+  "SOURCE": "POD",
+  "CUSTOMER_NAME": "SHOPRITE LIQ (A)NORTHVLE",
+  "CITY": "NORTHVALE",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "",
+  "QUANTITY": "",
+  "DATE": "08/24/2026 12:21 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/360df212-38ea-4c08-b916-49da3c7786b8.jpg"
  },
  {
   "REP": "Shane Barreca",
