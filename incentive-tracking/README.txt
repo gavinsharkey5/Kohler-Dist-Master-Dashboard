@@ -718,6 +718,25 @@ math.
         has date range as package i just didnt show it in report". The
         file genuinely has no date columns; slide 20's March-May text
         refers to the earlier phase, not this pull.
+     5. RECEIVED BUT NOT BUILT (2026-08-25): the refresh batch included a
+        third file, "Constellation - Draft ON Summer 2026", saved as
+        data/constellation_draft_on_buyers_UNUSED.csv. It is NOT the
+        account-level draft distro file (that is "New Draft Distro
+        Summer 2026" -> constellation_draft_on.csv, same 6 columns as
+        always) -- it is a per-rep buyer count by draft brand (Corona
+        Light / Corona Premier / Modelo Especial / Modelo Negra /
+        Pacifico) with Goals and % of Goals columns. Nothing reads it,
+        for two reasons: EVERY Goals cell in it is blank (so all the
+        percentages read 0% and there is nothing to score against), and
+        point 3 above is a standing instruction not to put goals on the
+        draft side at all. Its buyer counts are also NOT a rollup of the
+        distro file -- checked rep-by-rep, they match neither the
+        distinct-account count nor the summed New Buyers on 46 of 60
+        rep/brand pairs -- so it cannot be derived from what is already
+        built, and is a genuinely separate measure. Left in data/ for
+        traceability, pending Gavin saying what it is for. If it is
+        meant to become a card, it needs populated goals and an explicit
+        reversal of point 3.
 
    The rep scoreboard spans both channels (off-prem goals retained,
    off-prem % of goal, on-prem package buyers, new draft lines) because
