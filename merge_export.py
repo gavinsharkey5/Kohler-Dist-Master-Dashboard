@@ -14,8 +14,16 @@ Two shapes of export, two modes:
 
   rows     One row per transaction/placement (Bardstown retention history,
            invoice transactions, the L6-month and L90-day placement files).
-           New rows are appended; rows identical to ones already in the master
-           are dropped, so overlapping date ranges are safe.
+           The master and the new pull are compared as MULTISETS: if the new
+           export holds more copies of a row than the master does, only the
+           extra copies are appended. That makes an overlapping date range
+           safe without deleting legitimate duplicate rows -- the invoice
+           export has no customer column, so two customers buying the same
+           item at the same price on the same day really do produce identical
+           lines (about 7,000 of them in the current file).
+           Column headers may carry the report's own date range (e.g.
+           "Cases   1/1/2025 - 12/31/2026"); that stamp is ignored when
+           matching columns, and a different column order is tolerated.
 
              python3 merge_export.py rows \\
                  bardstown-green-river/RDE_Bardstown_Green_River_Retention_History.csv \\
@@ -43,8 +51,20 @@ import os
 import re
 import shutil
 import sys
+from collections import defaultdict
 
 MONTH_COL = re.compile(r'^(Buyer Count|Units)\s+(\d{4})/(\d{1,2})$')
+# RDE stamps the report's own date range into some column names, e.g.
+# "Cases   1/1/2025 - 12/31/2026" or "Placement Count   2026". A partial pull
+# therefore arrives with different header TEXT for the same column, so headers
+# are compared on the part before that stamp.
+HEADER_STAMP = re.compile(r'\s{2,}(\d{1,2}/\d{1,2}/\d{2,4}\s*-\s*\d{1,2}/\d{1,2}/\d{2,4}|\d{4})\s*$')
+
+
+def norm_header(h):
+    if MONTH_COL.match(h.strip()):      # month columns keep their year/month
+        return h.strip()
+    return HEADER_STAMP.sub('', h.strip())
 
 
 def add_cells(old_val, new_val, kind):
@@ -104,30 +124,45 @@ def write_csv(path, header, rows):
 # ---------------------------------------------------------------- rows mode --
 def merge_rows(master_path, new_paths):
     header, rows = read_csv(master_path)
-    seen = {tuple(r) for r in rows}
+    norm = [norm_header(h) for h in header]
+    # Counts, not a set: some of these exports legitimately contain identical
+    # rows (the invoice file has no customer column, so two customers buying
+    # the same item at the same price on the same day produce identical
+    # lines). Deduping by identity would silently delete real sales, so the
+    # master and the new pull are compared as multisets: if the new export has
+    # more copies of a row than the master, only the extras are appended.
+    have = defaultdict(int)
+    for r in rows:
+        have[tuple(r)] += 1
     added = skipped = 0
     for p in new_paths:
         nheader, nrows = read_csv(p)
-        if nheader != header:
-            only_master = [c for c in header if c not in nheader]
-            only_new = [c for c in nheader if c not in header]
+        nnorm = [norm_header(h) for h in nheader]
+        if sorted(nnorm) != sorted(norm):
+            only_master = [c for c in norm if c not in nnorm]
+            only_new = [c for c in nnorm if c not in norm]
             die(f'{p} has different columns than {master_path}.\n'
                 f'  missing from the new export: {only_master or "none"}\n'
                 f'  extra in the new export:     {only_new or "none"}\n'
                 '  Re-export with the same report layout and try again.')
+        # tolerate a different column ORDER, and different date stamps in the
+        # header text -- the master's own header is kept
+        order = [nnorm.index(c) for c in norm]
+        incoming = defaultdict(int)
         for r in nrows:
             if not any(v.strip() for v in r):
                 continue
-            key = tuple(r)
-            if key in seen:
-                skipped += 1
-                continue
-            seen.add(key)
-            rows.append(r)
-            added += 1
+            incoming[tuple(r[i] for i in order)] += 1
+        for key, count in incoming.items():
+            extra = count - have.get(key, 0)
+            skipped += min(count, have.get(key, 0))
+            for _ in range(max(0, extra)):
+                rows.append(list(key))
+                have[key] += 1
+                added += 1
     bak = backup(master_path)
     write_csv(master_path, header, rows)
-    print(f'rows mode: {added} new rows added, {skipped} duplicate rows skipped')
+    print(f'rows mode: {added} new rows added, {skipped} rows already in the master')
     print(f'{master_path} now has {len(rows)} rows (backup at {bak})')
     return rows, header
 
@@ -155,8 +190,8 @@ def merge_monthly(master_path, new_path, overlap=None):
             'export use "rows" mode instead.')
 
     meta_cols = [h for h in header if not MONTH_COL.match(h.strip())]
-    n_meta = [h for h in nheader if not MONTH_COL.match(h.strip())]
-    missing = [c for c in meta_cols if c not in n_meta]
+    n_meta = [norm_header(h) for h in nheader if not MONTH_COL.match(h.strip())]
+    missing = [c for c in meta_cols if norm_header(c) not in n_meta]
     if missing:
         die(f'{new_path} is missing these identifying columns: {missing}')
     for key in ('On-Off Premise', 'Product Num', 'Customer ID'):
