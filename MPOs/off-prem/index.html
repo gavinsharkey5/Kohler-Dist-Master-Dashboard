@@ -487,6 +487,22 @@ function buildPctOfBaseDataset(baseRows, numRows, pct){
   return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
 }
 
+// A pct_of_base rep's headline number is PENETRATION -- what share of their
+// own account base carries the brand -- not a raw count against a derived
+// target (changed 2026-08-25 per Gavin: "change the lytt accounts from 14/10
+// to % penetration"). At-goal is unchanged by this: target is
+// ceil(pct * base), and for an integer count qualifying >= ceil(pct * base)
+// is exactly qualifying/base >= pct, so the same reps qualify as before --
+// only the way it reads changed. r.target is still what the bar and the
+// at-goal flag are scored on, so the two can never disagree.
+function penetration(r){ return r.base ? (r.qualifying/r.base)*100 : 0; }
+// Whole numbers stay whole (25%, not 25.0%); anything else gets one decimal.
+function fmtPen(p){ return fmtPts(p)+'%'; }
+// The gap between two percentages is percentage POINTS, not percent -- the
+// over-badge says "+10 pts over", never "+10% over", which would read as a
+// relative 10% and overstate it.
+function fmtPts(p){ return Math.round(p*10)%10===0 ? p.toFixed(0) : p.toFixed(1); }
+
 // Lytt POS photos (Disruptors): rows come from generate_lytt_pos.py with
 // fixed keys (REP/SOURCE/CUSTOMER_NAME/CITY/BRAND/DETAIL/QUANTITY/DATE/
 // PHOTO_URL), one row per photographed POS item, every row guaranteed to
@@ -1151,14 +1167,15 @@ function renderRepView(){
         container.appendChild(card);
         return;
       }
-      const pct = Math.min(r.qualifying/r.target,1)*100;
-      const hit = r.qualifying>=r.target, over = r.qualifying>r.target;
+      const pen = penetration(r), goalPen = d.pct*100;
+      const pct = Math.min(pen/goalPen,1)*100;
+      const hit = r.qualifying>=r.target, over = pen>goalPen;
       head.innerHTML = `
         <div class="obj-left">
           <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${o.goalLabel}</span></div>
           <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
         </div>
-        <div class="obj-right"><div><div class="obj-progress-txt">${r.qualifying} / ${r.target}${over?'<span class="over-badge">+'+(r.qualifying-r.target)+' over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · base ${r.base}</div></div></div>`;
+        <div class="obj-right"><div><div class="obj-progress-txt">${fmtPen(pen)}${over?'<span class="over-badge">+'+fmtPts(pen-goalPen)+' pts over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.qualifying} of ${r.base} accounts</div></div></div>`;
       card.appendChild(head);
       const body = document.createElement('div');
       body.className='obj-body';
@@ -1479,23 +1496,25 @@ function renderObjectiveView(){
       ROSTER.forEach(repName=>{
         const r = d.reps.find(x=>x.rep===repName);
         if(!r){
-          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
           return;
         }
         const rowId = 'row'+(uid++);
-        const rp = Math.min(r.qualifying/r.target,1)*100;
+        const pen = penetration(r), goalPen = d.pct*100;
+        const rp = Math.min(pen/goalPen,1)*100;
         const hit = r.qualifying>=r.target;
-        const over = r.qualifying>r.target;
+        const over = pen>goalPen;
         bodyRows += `<tr class="rep-row" data-target="${rowId}">
           <td><span class="rep-chev">▶</span>${r.rep}</td>
           <td class="num">${r.base}</td>
-          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.qualifying} / ${r.target}${over?'<span class="over-badge">+'+(r.qualifying-r.target)+' over</span>':''}</td>
+          <td class="num">${r.qualifying}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${fmtPen(pen)}${over?'<span class="over-badge">+'+fmtPts(pen-goalPen)+' pts over</span>':''}</td>
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
         const tgtHtml = targetsBlockHtml((d.targetsByRep||{})[repName], o.shortName||o.name);
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="4">${lineTableLytt(r.lines)}${tgtHtml}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines)}${tgtHtml}</td></tr>`;
       });
-      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th class="num">Penetration</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{
