@@ -31,18 +31,42 @@ and covers 100% of the products in the monthly account file. Any product with
 no invoice history falls back to 1 unit = 1 case and is printed by name at the
 end of every run — if that list is ever non-empty, check it before publishing.
 
-PERIODS — NO PARTIAL-VS-FULL COMPARISONS
-----------------------------------------
-    YTD             Jan 1 of the latest year in the data through the latest
-                    complete month in the data.
-    Prior-Year YTD  Exactly the same months one year earlier.
-    Latest month / Prior month, each compared with the same month last year.
+DATE RANGE — EVERYTHING FOLLOWS IT
+---------------------------------
+The page has a global date-range selector. Pick any range of months, or a
+preset (latest month, previous month, QTD, YTD, last 3 / last 12 months,
+previous year, all data), and every tab recalculates for it: cases, buying
+accounts, activation, new/lapsed/never-bought status, distribution, brand and
+rep performance, city velocity, placement gaps, par level, margins, lost
+placements and at-risk accounts.
 
-This is the main behavioural change from the old dashboards: the retired
-Portfolio page compared full-calendar-2025 buyer counts against partial-2026
-YTD (from ws_brand_by_item.csv), and the retired tracker did the same with
-$Vol. Both comparisons are gone; matched YTD buyer counts and cases are
-computed from the monthly account file instead.
+The source account file is MONTHLY, so ranges snap to whole months. (The
+Bardstown dashboard, whose export is transaction-level, does true day-level
+ranges.)
+
+Alongside it is a comparison period, chosen in "Compare with":
+    Last year          the same months one year earlier (default)
+    Previous period    the equally long block of months immediately before
+    No comparison      hides the comparison columns
+Every KPI and most tables then show current, comparison, absolute change and
+% change — always equal-length windows, never a partial period against a full
+one. Two more global filters sit next to it: Rep and Premise, so a rep can
+scope the whole dashboard to their own book in one move.
+
+Because of that, build_ws_dashboard.py no longer pre-aggregates the
+dashboard. It emits lookup tables plus three columnar blocks — sales cells
+(account × item × month, in cases), invoice cells (item × month: cases,
+revenue, cost, discount) and placement rows — and index.html aggregates
+whatever range is selected. The payload dropped from ~3.2 MB to ~660 KB while
+answering far more questions.
+
+Account status is relative to the selected range:
+    Active        bought inside the range and also before it
+    New           first ever purchase falls inside the range
+    Lapsed        bought before the range, nothing inside it
+    Never Bought  no purchase on file at all
+A range starting at the very beginning of the data makes every buyer look
+"new"; the page says so under the range line when that happens.
 
 Files
 -----
@@ -112,6 +136,22 @@ Caveats worth knowing
 
 Adding new data without re-pulling the whole year
 ------------------------------------------------
+THE SHORT VERSION — one command from the repo root:
+
+    python3 update_data.py ~/Downloads/whatever_you_just_pulled.csv
+    python3 update_data.py ~/Downloads            # or a whole folder of CSVs
+
+It reads each file's column headers, works out which master it belongs to,
+merges it in (keeping every earlier date), and re-runs the dashboards that
+changed. Overlapping dates are safe for the transaction-style exports: a row
+already in the master is skipped rather than duplicated. The monthly grid is
+the one that needs a decision — if your pull covers a month the master already
+holds, add --overlap add (a top-up of days the master doesn't have yet),
+--overlap replace (a full re-pull of those months) or --overlap keep. Every
+master is backed up to <name>.csv.bak first.
+
+The rest of this section is the manual equivalent, using merge_export.py
+directly.
 build_ws_dashboard.py REBUILDS the dashboard from whatever files it is handed.
 Handing it a "Jul 23 onward" slice of ws_account_level_by_month.csv would drop
 every earlier month: YTD would collapse to that slice, prior-year YTD would

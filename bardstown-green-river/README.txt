@@ -36,20 +36,36 @@ sales-execution dashboard. Tabs, in order:
 
 CASES ARE THE ONLY VOLUME MEASURE (changed 2026-08-25)
 The export carries a real "Cases" column (1 bottle = .17 cases, i.e. 6
-bottles to a case) and that column is now the single source of volume for
-every KPI, chart, table, tooltip and drilldown. The old dashboard reported
-the export's "Units" column (bottles) for volume and velocity; nothing
-user-facing reports units any more. The one place bottle counts survive is
-the bottle-vs-case first-order-size segmentation, which is by definition a
+bottles to a case) and that column is the single source of volume for every
+KPI, chart, table, tooltip and drilldown. The only place bottle counts survive
+is the bottle-vs-case first-order-size segmentation, which is by definition a
 question about the size of an order -- it reports no volume of its own.
 
-PERIODS
-  MTD             The current, still-partial month in the export, compared
-                  ONLY against the same calendar days a year earlier.
-  Prior month     The last complete month, against the same month last year.
-  YTD             Jan 1 through the last date in the export.
-  Prior-Year YTD  Exactly the same date range one year earlier.
-  Trend columns   Trailing 3 months vs the 3 months before that.
+DATE RANGE (added 2026-08-25)
+The page has a global date-range selector. Pick any start/end date, or a
+preset (MTD, previous month, QTD, YTD, last 90 days, previous year, all data),
+and EVERY tab recalculates for it: cases, orders, accounts, revenue, new
+placements, retention ladder, account and SKU detail, brand-line gaps, city
+velocity and CORE.
+
+Alongside it is a comparison period, chosen in "Compare with":
+  Last year         the same dates one calendar year earlier (default)
+  Previous period   the equally long stretch immediately before the range
+  No comparison     hides the comparison columns
+Every KPI and most tables then show current, comparison, absolute change and
+% change. Comparisons are always equal-length windows -- a partial month is
+never compared against a full one.
+
+Because of that, generate.py no longer pre-aggregates anything. It emits the
+lookup tables plus one compact columnar block of the order lines themselves
+(account index, product index, day offset, cases, revenue, gross profit) and
+index.html does the aggregation in the browser. The payload dropped from
+~2.2 MB to ~150 KB in the process.
+
+Note on "new placements": first-purchase history only reaches back to the
+start of the export, so an account that first bought before then never counts
+as new -- and a range that starts at the very beginning of the data makes
+every buyer look new. The page says so under the range line when that happens.
 
 ACCOUNT UNIVERSE
 "% of universe" in the Retention tab uses the assigned Wine & Spirits account
@@ -116,11 +132,21 @@ Files:
                  month.csv (premise join) and ../wine-spirits/ws_account_
                  roster.csv (account universe, premise fallback, city counts)
                  — keep both reasonably current.
-  index.html     The dashboard itself (data is embedded in the
-                 <script id="bg-data"> tag, as three parallel views: all
-                 accounts, on-premise only, off-premise only).
+  index.html     The dashboard itself. The data lives in the embedded
+                 <script id="bg-data"> tag as lookup tables plus one columnar
+                 block of the order lines; the page aggregates whatever date
+                 range, brand and premise are selected.
 
 ADDING NEW DATA WITHOUT RE-PULLING THE WHOLE YEAR
+THE SHORT VERSION -- one command from the repo root:
+
+    python3 update_data.py ~/Downloads/bardstown_jul24_onward.csv
+
+It works out which master the file belongs to from its column headers, merges
+it in (keeping every earlier order), drops any row already in the master so an
+overlapping date range is safe, backs the master up to .bak, and re-runs this
+dashboard's generator. The rest of this section is the manual equivalent.
+
 generate.py REBUILDS everything from whatever CSV it is handed, so dropping a
 "Jul 23 onward" export over the master file would wipe out every earlier
 order: YTD would collapse to those few weeks, the retention ladder would

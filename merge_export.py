@@ -47,6 +47,32 @@ import sys
 MONTH_COL = re.compile(r'^(Buyer Count|Units)\s+(\d{4})/(\d{1,2})$')
 
 
+def add_cells(old_val, new_val, kind):
+    """Top-up arithmetic for an overlapping month. Units add; a Buyer Count is a
+    distinct-account count for the month, so the larger of the two is the safest
+    read (adding would double-count an account that bought in both slices)."""
+    a, b = _f(old_val), _f(new_val)
+    if a == 0 and old_val.strip() == '':
+        return new_val
+    if kind == 'Buyer Count':
+        return _fmt_num(max(a, b))
+    return _fmt_num(a + b)
+
+
+def _f(v):
+    v = (v or '').strip().replace(',', '')
+    if not v:
+        return 0.0
+    try:
+        return float(v)
+    except ValueError:
+        return 0.0
+
+
+def _fmt_num(v):
+    return f'{v:.2f}' if v % 1 else f'{v:.2f}'
+
+
 def die(msg):
     print('ERROR: ' + msg, file=sys.stderr)
     sys.exit(1)
@@ -117,7 +143,7 @@ def month_pairs(header):
     return out
 
 
-def merge_monthly(master_path, new_path):
+def merge_monthly(master_path, new_path, overlap=None):
     header, rows = read_csv(master_path)
     nheader, nrows = read_csv(new_path)
 
@@ -161,6 +187,22 @@ def merge_monthly(master_path, new_path):
         merged[k] = cells
         order.append(k)
 
+    # A month present in BOTH files is ambiguous: a full re-pull of that month
+    # should replace what's there, but a partial top-up (say Jul 24-31 when the
+    # master already holds Jul 1-23) must be added to it or the earlier days
+    # vanish. There is nothing in the file that says which it is, so ask.
+    overlapping_pre = sorted(set(n_months) & set(m_months))
+    if overlapping_pre and overlap not in ('replace', 'add', 'keep'):
+        die('the new export overlaps months already in the master: '
+            + ', '.join(f'{y}/{m}' for (y, m) in overlapping_pre) + '\n'
+            '  Say what should happen to those months:\n'
+            '    --overlap add      the new pull is a TOP-UP of days not yet in the master\n'
+            '                       (e.g. master has Jul 1-23, new pull is Jul 24-31)\n'
+            '    --overlap replace  the new pull covers those whole months and should\n'
+            '                       overwrite them\n'
+            '    --overlap keep     ignore the overlapping months, take only the new ones\n'
+            '  Months only in the new export are always added, whichever you pick.')
+
     updated = added = 0
     for r in nrows:
         if not any(v.strip() for v in r):
@@ -174,10 +216,16 @@ def merge_monthly(master_path, new_path):
             merged[k] = cells
             order.append(k)
             added += 1
-        # the fresher pull wins for any month it covers
         for ym, kinds in n_months.items():
+            is_overlap = ym in m_months
+            if is_overlap and overlap == 'keep':
+                continue
             for kind, i in kinds.items():
-                cells[(kind, ym)] = r[i]
+                if is_overlap and overlap == 'add':
+                    # top-up: add the new days onto whatever the month already held
+                    cells[(kind, ym)] = add_cells(cells.get((kind, ym), ''), r[i], kind)
+                else:
+                    cells[(kind, ym)] = r[i]
 
     out_rows = []
     for k in order:
@@ -189,27 +237,38 @@ def merge_monthly(master_path, new_path):
         out_rows.append(row)
 
     new_months = sorted(set(n_months) - set(m_months))
-    overlap = sorted(set(n_months) & set(m_months))
+    overlapping = sorted(set(n_months) & set(m_months))
     bak = backup(master_path)
     write_csv(master_path, out_header, out_rows)
     fmt = lambda ms: ', '.join(f'{y}/{m}' for (y, m) in ms) or 'none'
+    action = {'add': 'topped up with the new days',
+              'replace': 'overwritten by the newer pull',
+              'keep': 'left untouched'}.get(overlap, 'n/a')
     print(f'monthly mode: {added} new rows added, {updated} existing rows refreshed')
     print(f'  months added:     {fmt(new_months)}')
-    print(f'  months overwritten with the newer pull: {fmt(overlap)}')
+    print(f'  months already present ({action}): {fmt(overlapping)}')
     print(f'{master_path} now covers {fmt(all_months)} ({len(out_rows)} rows, backup at {bak})')
 
 
 def main():
-    if len(sys.argv) < 4 or sys.argv[1] not in ('rows', 'monthly'):
+    argv = sys.argv[1:]
+    overlap = None
+    if '--overlap' in argv:
+        i = argv.index('--overlap')
+        if i + 1 >= len(argv):
+            die('--overlap needs a value: add, replace or keep')
+        overlap = argv[i + 1]
+        del argv[i:i + 2]
+    if len(argv) < 3 or argv[0] not in ('rows', 'monthly'):
         print(__doc__)
-        sys.exit(1 if len(sys.argv) > 1 else 0)
-    mode, master, new = sys.argv[1], sys.argv[2], sys.argv[3:]
+        sys.exit(1 if argv else 0)
+    mode, master, new = argv[0], argv[1], argv[2:]
     if mode == 'rows':
         merge_rows(master, new)
     else:
         if len(new) != 1:
             die('monthly mode takes exactly one new export')
-        merge_monthly(master, new[0])
+        merge_monthly(master, new[0], overlap)
     print('\nNow re-run that dashboard\'s generator and check its output before committing.')
 
 
