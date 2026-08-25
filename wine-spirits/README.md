@@ -88,11 +88,16 @@ Files
                                Encompass package master (Package ID, Package,
                                Wholesale Units per Case, Selling Unit of
                                Measure). The authoritative source for the
-                               units-to-cases conversion — drop a fuller export
-                               over it any time and coverage improves on the
-                               next build. Currently 5 packages covering 57 of
-                               188 products; the rest still infer their ratio
-                               from invoice lines.
+                               units-to-cases conversion. The full export
+                               (2026-08-25) holds 457 packages and covers every
+                               product in the data: 187 of 188 ratios come
+                               straight from it, one is overridden by hand (see
+                               below), none are inferred. Where both sources
+                               existed they agreed on every product, so
+                               installing it changed no numbers. Re-export it
+                               whenever new packages appear — anything missing
+                               falls back to inference and is named in the run
+                               output.
   ws_account_roster.csv        The assigned W&S account book — customer, rep,
                                city, route, premise. This is the denominator
                                for activation / "never bought" and the source

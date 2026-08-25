@@ -1,6 +1,458 @@
 Package ID,Package,Fluid Ounces Per Case,Case Equiv Description,Case Weight in Lbs,Case Equiv,Wholesale Units per Case,Retail Units per Case,Consumable Units per Case,Servings per Case,Selling Unit Of Measure,Container Type,Pick Units Per Case
+166,0/0/0.00 oz,0,Beer,20.50,0,1,1,1,1,3) Case (CA),Aluminum Can,1
+167,0/0/0.02 oz,0.20,Beer,20.50,0.000694,1,1,12,1,3) Case (CA),Aluminum Can,1
+168,0/0/1.00 oz,1,Beer,20.50,0.003472,1,1,1,1,3) Case (CA),Aluminum Can,1
+169,0/0/10.00 oz,240,Beer,25,0.833333,1,1,24,1,3) Case (CA),Aluminum Can,1
+170,0/0/10.08 oz,242,Beer,27,0.840278,1,1,24,1,3) Case (CA),Aluminum Can,1
+171,0/0/10.14 oz,243.30,Beer,27,0.844792,1,1,24,1,3) Case (CA),Aluminum Can,1
+172,0/0/10.67 oz,288,Beer,27,1,1,1,27,1,3) Case (CA),Aluminum Can,1
+173,0/0/1011.00 oz,1011,Beer,27,3.510417,1,1,1,1,3) Case (CA),Aluminum Can,1
+174,0/0/1014.00 oz,1014,Beer,27,3.520833,1,1,1,1,3) Case (CA),Aluminum Can,1
+175,0/0/11.00 oz,264,Beer,15,0.916667,1,1,24,1,3) Case (CA),Aluminum Can,1
+176,0/0/11.17 oz,268,Beer,15,0.930556,1,1,24,1,3) Case (CA),Aluminum Can,1
+177,0/0/11.20 oz,268.80,Beer,15,0.933333,1,1,24,1,3) Case (CA),Aluminum Can,1
+178,0/0/11.21 oz,269,Beer,15,0.934028,1,1,24,1,3) Case (CA),Aluminum Can,1
+179,0/0/11.50 oz,276,Beer,25,0.958333,1,1,24,1,3) Case (CA),Aluminum Can,1
+180,0/0/11.58 oz,278,Beer,20,0.965278,1,1,24,1,3) Case (CA),Aluminum Can,1
+181,0/0/1152.00 oz,1152,Beer,20,4,1,1,1,1,3) Case (CA),Aluminum Can,1
+182,0/0/12.00 oz,288,Beer,20,1,1,1,24,1,3) Case (CA),Aluminum Can,1
+183,0/0/12.03 oz,288.80,Beer,20,1.002778,1,1,24,1,3) Case (CA),Aluminum Can,1
+184,0/0/12.67 oz,152,Beer,20,0.527778,1,1,12,1,3) Case (CA),Aluminum Can,1
+185,0/0/12.71 oz,305,Beer,20.50,1.059028,1,1,24,1,3) Case (CA),Aluminum Can,1
+186,0/0/128.00 oz,768,Beer,30,2.666667,1,1,6,1,3) Case (CA),Aluminum Can,1
+187,0/0/13.00 oz,312,Beer,30,1.083333,1,1,24,1,3) Case (CA),Aluminum Can,1
+188,0/0/13.58 oz,326,Beer,30,1.131944,1,1,24,1,3) Case (CA),Aluminum Can,1
+189,0/0/13.71 oz,288,Beer,30,1,1,1,21,1,3) Case (CA),Aluminum Can,1
+190,0/0/1382.00 oz,1382,Beer,30,4.798611,1,1,1,1,3) Case (CA),Aluminum Can,1
+191,0/0/14.00 oz,336,Beer,30,1.166667,1,1,24,1,3) Case (CA),Aluminum Can,1
+192,0/0/14.08 oz,338,Beer,30,1.173611,1,1,24,1,3) Case (CA),Aluminum Can,1
+193,0/0/14.90 oz,298,Beer,30,1.034722,1,1,20,1,3) Case (CA),Aluminum Can,1
+194,0/0/14.92 oz,358,Beer,20,1.243056,1,1,24,1,3) Case (CA),Aluminum Can,1
+195,0/0/144.00 oz,288,Beer,20,1,1,1,2,1,3) Case (CA),Aluminum Can,1
+196,0/0/15.00 oz,360,Beer,25,1.25,1,1,24,1,3) Case (CA),Aluminum Can,1
+197,0/0/15.20 oz,304,Beer,25,1.055556,1,1,20,1,3) Case (CA),Aluminum Can,1
+198,0/0/15.21 oz,365,Beer,25,1.267361,1,1,24,1,3) Case (CA),Aluminum Can,1
+199,0/0/15.42 oz,370,Beer,21,1.284722,1,1,24,1,3) Case (CA),Aluminum Can,1
+200,0/0/16.00 oz,384,Beer,21,1.333333,1,1,24,1,3) Case (CA),Aluminum Can,1
+201,0/0/16.40 oz,328,Beer,21,1.138889,1,1,20,1,3) Case (CA),Aluminum Can,1
+202,0/0/16.88 oz,405,Beer,25,1.406250,1,1,24,1,3) Case (CA),Aluminum Can,1
+203,0/0/16.89 oz,304,Beer,21,1.055556,1,1,18,1,3) Case (CA),Aluminum Can,1
+204,0/0/16.90 oz,338,Beer,21,1.173611,1,1,20,1,3) Case (CA),Aluminum Can,1
+205,0/0/16.91 oz,592,Beer,21,2.055556,1,1,35,1,3) Case (CA),Aluminum Can,1
+2,0/0/16.92 oz,406,Beer,88,1.409722,1,1,24,1,3) Case (CA),Aluminum Can,1
+206,0/0/16.93 oz,254,Beer,25,0.881944,1,1,15,1,3) Case (CA),Aluminum Can,1
+207,0/0/1690.00 oz,1690,Beer,25,5.868056,1,1,1,1,3) Case (CA),Aluminum Can,1
+208,0/0/17.60 oz,264,Beer,21,0.916667,1,1,15,1,3) Case (CA),Aluminum Can,1
+209,0/0/17.79 oz,338,Beer,25,1.173611,1,1,19,1,3) Case (CA),Aluminum Can,1
+210,0/0/170.00 oz,340,Beer,25,1.180556,1,1,2,1,3) Case (CA),Aluminum Can,1
+211,0/0/18.58 oz,223,Beer,25,0.774306,1,1,12,1,3) Case (CA),Aluminum Can,1
+212,0/0/19.17 oz,230,Beer,25,0.798611,1,1,12,1,3) Case (CA),Aluminum Can,1
+213,0/0/19.20 oz,288,Beer,25,1,1,1,15,1,3) Case (CA),Aluminum Can,1
+214,0/0/19.45 oz,389,Beer,25,1.350694,1,1,20,1,3) Case (CA),Aluminum Can,1
+215,0/0/192.00 oz,192,Beer,25,0.666667,1,1,1,1,3) Case (CA),Aluminum Can,1
+216,0/0/1984.00 oz,1984,Beer,25,6.888889,1,1,1,1,3) Case (CA),Aluminum Can,1
+217,0/0/2.08 oz,25,Beer,9.30,0.086806,1,1,12,1,3) Case (CA),Aluminum Can,1
+218,0/0/20.25 oz,405,Beer,25,1.406250,1,1,20,1,3) Case (CA),Aluminum Can,1
+219,0/0/20.33 oz,244,Beer,25,0.847222,1,1,12,1,3) Case (CA),Aluminum Can,1
+220,0/0/204.00 oz,204,Beer,21,0.708333,1,1,1,1,3) Case (CA),Aluminum Can,1
+221,0/0/21.25 oz,255,Beer,21,0.885417,1,1,12,1,3) Case (CA),Aluminum Can,1
+222,0/0/21.33 oz,384,Beer,21,1.333333,1,1,18,1,3) Case (CA),Aluminum Can,1
+223,0/0/21.67 oz,260,Beer,21,0.902778,1,1,12,1,3) Case (CA),Aluminum Can,1
+224,0/0/22.00 oz,264,Beer,21,0.916667,1,1,12,1,3) Case (CA),Aluminum Can,1
+225,0/0/23.08 oz,277,Beer,21,0.961806,1,1,12,1,3) Case (CA),Aluminum Can,1
+226,0/0/23.50 oz,282,Beer,21,0.979167,1,1,12,1,3) Case (CA),Aluminum Can,1
+227,0/0/23.71 oz,569,Beer,21,1.975694,1,1,24,1,3) Case (CA),Aluminum Can,1
+228,0/0/24.00 oz,288,Beer,21,1,1,1,12,1,3) Case (CA),Aluminum Can,1
+229,0/0/24.07 oz,288.80,Beer,25,1.002778,1,1,12,1,3) Case (CA),Aluminum Can,1
+230,0/0/25.00 oz,25,Beer,20.50,0.086806,1,1,1,1,3) Case (CA),Aluminum Can,1
+231,0/0/25.33 oz,152,Beer,20.50,0.527778,1,1,6,1,3) Case (CA),Aluminum Can,1
+232,0/0/25.40 oz,304.80,Beer,20.50,1.058333,1,1,12,1,3) Case (CA),Aluminum Can,1
+233,0/0/25.42 oz,305,Beer,25,1.059028,1,1,12,1,3) Case (CA),Aluminum Can,1
+234,0/0/25.75 oz,309,Beer,25,1.072917,1,1,12,1,3) Case (CA),Aluminum Can,1
+235,0/0/25.92 oz,311,Beer,20.50,1.079861,1,1,12,1,3) Case (CA),Aluminum Can,1
+236,0/0/264.00 oz,264,Beer,25,0.916667,1,1,1,1,3) Case (CA),Aluminum Can,1
+237,0/0/27.50 oz,330,Beer,25,1.145833,1,1,12,1,3) Case (CA),Aluminum Can,1
+238,0/0/288.00 oz,288,Beer,25,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+239,0/0/29.80 oz,298,Beer,20.50,1.034722,1,1,10,1,3) Case (CA),Aluminum Can,1
+240,0/0/30.00 oz,180,Beer,25,0.6250,1,1,6,1,3) Case (CA),Aluminum Can,1
+241,0/0/305.00 oz,305,Beer,27,1.059028,1,1,1,1,3) Case (CA),Aluminum Can,1
+242,0/0/32.00 oz,384,Beer,25,1.333333,1,1,12,1,3) Case (CA),Aluminum Can,1
+243,0/0/33.78 oz,608,Beer,25,2.111111,1,1,18,1,3) Case (CA),Aluminum Can,1
+244,0/0/33.80 oz,169,Beer,20.50,0.586806,1,1,5,1,3) Case (CA),Aluminum Can,1
+245,0/0/33.83 oz,203,Beer,20.50,0.704861,1,1,6,1,3) Case (CA),Aluminum Can,1
+246,0/0/336.00 oz,336,Beer,25,1.166667,1,1,1,1,3) Case (CA),Aluminum Can,1
+247,0/0/384.00 oz,384,Beer,20.50,1.333333,1,1,1,1,3) Case (CA),Aluminum Can,1
+248,0/0/4.21 oz,101,Beer,25,0.350694,1,1,24,1,3) Case (CA),Aluminum Can,1
+249,0/0/40.00 oz,480,Beer,25,1.666667,1,1,12,1,3) Case (CA),Aluminum Can,1
+250,0/0/40.53 oz,608,Beer,25,2.111111,1,1,15,1,3) Case (CA),Aluminum Can,1
+251,0/0/41.50 oz,166,Beer,25,0.576389,1,1,4,1,3) Case (CA),Aluminum Can,1
+252,0/0/42.00 oz,504,Beer,25,1.75,1,1,12,1,3) Case (CA),Aluminum Can,1
+253,0/0/5.08 oz,122,Beer,20.50,0.423611,1,1,24,1,3) Case (CA),Aluminum Can,1
+254,0/0/50.67 oz,304,Beer,25,1.055556,1,1,6,1,3) Case (CA),Aluminum Can,1
+255,0/0/50.83 oz,305,Beer,20.50,1.059028,1,1,6,1,3) Case (CA),Aluminum Can,1
+256,0/0/59.17 oz,355,Beer,25,1.232639,1,1,6,1,3) Case (CA),Aluminum Can,1
+257,0/0/640.00 oz,640,Beer,25,2.222222,1,1,1,1,3) Case (CA),Aluminum Can,1
+258,0/0/660.00 oz,660,Beer,25,2.291667,1,1,1,1,3) Case (CA),Aluminum Can,1
+259,0/0/666.00 oz,666,Beer,25,2.3125,1,1,1,1,3) Case (CA),Aluminum Can,1
+260,0/0/676.00 oz,676,Beer,20.50,2.347222,1,1,1,1,3) Case (CA),Aluminum Can,1
+261,0/0/68.42 oz,821,Beer,20.50,2.850694,1,1,12,1,3) Case (CA),Aluminum Can,1
+262,0/0/7.00 oz,168,Beer,20.50,0.583333,1,1,24,1,3) Case (CA),Aluminum Can,1
+263,0/0/8.00 oz,192,Beer,20.50,0.666667,1,1,24,1,3) Case (CA),Aluminum Can,1
+264,0/0/8.42 oz,202,Beer,20.50,0.701389,1,1,24,1,3) Case (CA),Aluminum Can,1
+265,0/0/8.50 oz,204,Beer,20.50,0.708333,1,1,24,1,3) Case (CA),Aluminum Can,1
+266,0/0/84.50 oz,338,Beer,30,1.173611,1,1,4,1,3) Case (CA),Aluminum Can,1
+267,0/0/846.00 oz,846,Beer,30,2.9375,1,1,1,1,3) Case (CA),Aluminum Can,1
+268,0/0/85.00 oz,340,Beer,30,1.180556,1,1,4,1,3) Case (CA),Aluminum Can,1
+269,0/0/9.21 oz,221,Beer,30,0.767361,1,1,24,1,3) Case (CA),Aluminum Can,1
+270,0/0/9.58 oz,230,Beer,30,0.798611,1,1,24,1,3) Case (CA),Aluminum Can,1
+271,0/0/992.00 oz,992,Beer,30,3.444444,1,1,1,1,3) Case (CA),Aluminum Can,1
+149,1 LTR,405.60,Wine & Liquor,25,1.332780,1,12,12,1,3) Case (CA),Aluminum Can,1
+150,1.5L,304.20,Beer,25,1.056250,1,1,6,1,3) Case (CA),Aluminum Can,1
+151,1.75L,354.60,Wine & Liquor,25,1.165197,1,6,6,1,3) Case (CA),Aluminum Can,1
+152,1.7OZ,68,Beer,21,0.236111,1,40,40,1,3) Case (CA),Aluminum Can,1
+3,1/0/0.00 oz,0,Beer,60,0,1,1,1,1,3) Case (CA),Aluminum Can,1
+4,1/1/0.00 oz,0,Beer,40,0,1,1,1,1,3) Case (CA),Aluminum Can,1
+5,1/1/1.00 oz,1,Beer,160,0.003472,1,1,1,1,3) Case (CA),Aluminum Can,1
+7,1/1/1014.00 oz,1014,Beer,161,3.520833,1,1,1,1,3) Case (CA),Aluminum Can,1
+8,1/1/1152.00 oz,1152,Beer,30,4,1,1,1,1,3) Case (CA),Aluminum Can,1
+9,1/1/1382.00 oz,1382,Beer,30,4.798611,1,1,1,1,3) Case (CA),Aluminum Can,1
+11,1/1/170.00 oz,170,Beer,30,0.590278,1,1,1,1,3) Case (CA),Aluminum Can,1
+12,1/1/192.00 oz,192,Beer,160,0.666667,1,1,1,1,3) Case (CA),Aluminum Can,1
+14,1/1/204.00 oz,204,Beer,30,0.708333,1,1,1,1,3) Case (CA),Aluminum Can,1
+15,1/1/25.00 oz,25,Beer,165,0.086806,1,1,1,1,3) Case (CA),Aluminum Can,1
+16,1/1/264.00 oz,264,Beer,20.50,0.916667,1,1,1,1,3) Case (CA),Aluminum Can,1
+17,1/1/288.00 oz,288,Beer,20.50,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+18,1/1/305.00 oz,305,Beer,20.50,1.059028,1,1,1,1,3) Case (CA),Aluminum Can,1
+19,1/1/336.00 oz,336,Beer,20.50,1.166667,1,1,1,1,3) Case (CA),Aluminum Can,1
+20,1/1/384.00 oz,384,Beer,20.50,1.333333,1,1,1,1,3) Case (CA),Aluminum Can,1
+25,1/1/846.00 oz,846,Beer,20,2.9375,1,1,1,1,3) Case (CA),Aluminum Can,1
+450,1/10/16.9oz Can,169,Beer,12.28,0.586806,1,1,10,10,3) Case (CA),Aluminum Can,1
+27,1/10/29.80 oz,298,Beer,30,1.034722,1,1,10,1,3) Case (CA),Aluminum Can,1
+464,1/10/50 ML (Sleeve),152.40,Wine & Liquor,19.20,0.083463,6,60,60,60,4) Bottle (BO),PET Bottle,1
+28,1/12/0.02 oz,0.20,Beer,161,0.000694,1,1,12,1,3) Case (CA),Aluminum Can,1
+412,1/12/1 LTR,288,Wine & Liquor,0,0.946353,1,1,1,1,3) Case (CA),Aluminum Can,1
+463,1/12/1 LTR (BO),288,Wine & Liquor,0,0.078863,12,12,12,12,4) Bottle (BO),Glass Bottle,12
+29,1/12/10.00 oz,120,Beer,30,0.416667,1,1,12,1,3) Case (CA),Aluminum Can,1
+30,1/12/12.00 oz,144,Beer,30,0.50,1,1,12,1,3) Case (CA),Aluminum Can,1
+31,1/12/12.67 oz,152,Beer,60,0.527778,1,1,12,1,3) Case (CA),Aluminum Can,1
+414,1/12/12oz Can,288,Wine & Liquor,0,0.946353,1,1,1,1,3) Case (CA),Aluminum Can,1
+32,1/12/16.00 oz,192,Beer,54,0.666667,1,1,12,1,3) Case (CA),Aluminum Can,1
+33,1/12/16.92 oz,203,Beer,50,0.704861,1,1,12,1,3) Case (CA),Aluminum Can,1
+34,1/12/18.58 oz,223,Beer,161,0.774306,1,1,12,1,3) Case (CA),Aluminum Can,1
+35,1/12/19.17 oz,230,Beer,45,0.798611,1,1,12,1,3) Case (CA),Aluminum Can,1
+36,1/12/19.2 oz Can,230.40,Beer,25,0.80,1,1,12,1,3) Case (CA),Aluminum Can,1
+425,1/12/19.2oz,230.40,Beer,24,0.80,1,1,12,1,3) Case (CA),Aluminum Can,1
+37,1/12/2.08 oz,25,Beer,40,0.086806,1,1,12,1,3) Case (CA),Aluminum Can,1
+38,1/12/20.33 oz,244,Beer,88,0.847222,1,1,12,1,3) Case (CA),Aluminum Can,1
+39,1/12/21.25 oz,255,Beer,0,0.885417,1,1,12,1,3) Case (CA),Aluminum Can,1
+40,1/12/21.67 oz,260,Beer,55,0.902778,1,1,12,1,3) Case (CA),Aluminum Can,1
+41,1/12/22.00 oz,264,Beer,56,0.916667,1,1,12,1,3) Case (CA),Aluminum Can,1
+42,1/12/23.08 oz,277,Beer,41,0.961806,1,1,12,1,3) Case (CA),Aluminum Can,1
+43,1/12/23.50 oz,282,Beer,60,0.979167,1,1,12,1,3) Case (CA),Aluminum Can,1
+44,1/12/24.00 oz,288,Beer,88,1,1,1,12,1,3) Case (CA),Aluminum Can,1
+45,1/12/24.07 oz,288.80,Beer,30,1.002778,1,1,12,1,3) Case (CA),Aluminum Can,1
+285,1/12/24oz Can,288,Beer,88,1,1,12,12,24,3) Case (CA),Aluminum Can,1
+46,1/12/25.40 oz,304.80,Beer,80,1.058333,1,1,12,1,3) Case (CA),Aluminum Can,1
+47,1/12/25.42 oz,305,Beer,30,1.059028,1,1,12,1,3) Case (CA),Aluminum Can,1
+48,1/12/25.75 oz,309,Beer,40,1.072917,1,1,12,1,3) Case (CA),Aluminum Can,1
+49,1/12/25.92 oz,311,Beer,12,1.079861,1,1,12,1,3) Case (CA),Aluminum Can,1
+50,1/12/27.50 oz,330,Beer,25,1.145833,1,1,12,1,3) Case (CA),Aluminum Can,1
+51,1/12/32.00 oz,384,Beer,20,1.333333,1,1,12,1,3) Case (CA),Aluminum Can,1
+52,1/12/33.83 oz,406,Beer,25,1.409722,1,1,12,1,3) Case (CA),Aluminum Can,1
+457,1/12/375ml Btl,152.16,Wine & Liquor,17,0.499990,1,12,12,12,3) Case (CA),Glass Bottle,1
+53,1/12/40.00 oz,480,Beer,25,1.666667,1,1,12,1,3) Case (CA),Aluminum Can,1
+54,1/12/42.00 oz,504,Beer,25,1.75,1,1,12,1,3) Case (CA),Aluminum Can,1
+55,1/12/68.42 oz,821,Beer,25,2.850694,1,1,12,1,3) Case (CA),Aluminum Can,1
+454,1/12/750 mL (BO),304.326203,Wine & Liquor,0,0.083333,12,12,12,12,4) Bottle (BO),Glass Bottle,1
+298,1/12/750ml Btl,304.326203,Beer,41,1.056688,1,12,12,23,3) Case (CA),Glass Bottle,1
+56,1/15/12.00 oz,180,Beer,30,0.6250,1,1,15,15,3) Case (CA),Aluminum Can,1
+57,1/15/16.00 oz,240,Beer,27,0.833333,1,1,15,1,3) Case (CA),Aluminum Can,1
+58,1/15/16.93 oz,254,Beer,25,0.881944,1,1,15,1,3) Case (CA),Aluminum Can,1
+59,1/15/17.60 oz,264,Beer,20,0.916667,1,1,15,1,3) Case (CA),Aluminum Can,1
+444,1/15/19.2 oz,253.50,Beer,18.50,0.880208,1,1,15,15,3) Case (CA),PET Bottle,1
+60,1/15/19.20 oz,288,Beer,20,1,1,1,15,15,3) Case (CA),Aluminum Can,1
+303,1/15/19.2oz Can,288,Beer,20,1,1,15,15,24,3) Case (CA),Aluminum Can,1
+61,1/15/22.00 oz,330,Beer,21,1.145833,1,1,15,1,3) Case (CA),Aluminum Can,1
+62,1/15/24.00 oz,360,Beer,21,1.25,1,1,15,1,3) Case (CA),Aluminum Can,1
+63,1/15/40.53 oz,608,Beer,21,2.111111,1,1,15,1,3) Case (CA),Aluminum Can,1
+64,1/16/12.00 oz,192,Beer,21,0.666667,1,1,16,1,3) Case (CA),Aluminum Can,1
+65,1/16/16.88 oz,270,Beer,25,0.9375,1,1,16,1,3) Case (CA),Aluminum Can,1
+66,1/18/12.00 oz,216,Beer,26,0.75,1,1,18,1,3) Case (CA),Aluminum Can,1
+67,1/18/16.00 oz,288,Beer,21,1,1,1,18,1,3) Case (CA),Aluminum Can,1
+68,1/18/16.89 oz,304,Beer,21,1.055556,1,1,18,1,3) Case (CA),Aluminum Can,1
+69,1/18/21.33 oz,384,Beer,25,1.333333,1,1,18,1,3) Case (CA),Aluminum Can,1
+70,1/18/33.78 oz,608,Beer,20.50,2.111111,1,1,18,1,3) Case (CA),Aluminum Can,1
+71,1/19/17.79 oz,338,Beer,21,1.173611,1,1,19,1,3) Case (CA),Aluminum Can,1
+436,1/1LTR,33.81,Wine & Liquor,47.40,0.009258,12,12,12,12,3) Case (CA),Glass Bottle,1
+72,1/2/144.00 oz,288,Beer,20.50,1,1,1,2,1,3) Case (CA),Aluminum Can,1
+73,1/2/170.00 oz,340,Beer,20.50,1.180556,1,1,2,1,3) Case (CA),Aluminum Can,1
+74,1/20/11.20 oz,224,Beer,20.50,0.777778,1,1,20,1,3) Case (CA),Aluminum Can,1
+75,1/20/12.00 oz,240,Beer,25,0.833333,1,1,20,1,3) Case (CA),Aluminum Can,1
+76,1/20/14.90 oz,298,Beer,25,1.034722,1,1,20,1,3) Case (CA),Aluminum Can,1
+77,1/20/15.20 oz,304,Beer,25,1.055556,1,1,20,1,3) Case (CA),Aluminum Can,1
+78,1/20/16.40 oz,328,Beer,25,1.138889,1,1,20,1,3) Case (CA),Aluminum Can,1
+79,1/20/16.90 oz,338,Beer,26,1.173611,1,1,20,1,3) Case (CA),Aluminum Can,1
+80,1/20/19.45 oz,389,Beer,16,1.350694,1,1,20,1,3) Case (CA),Aluminum Can,1
+81,1/20/20.25 oz,405,Beer,21,1.406250,1,1,20,1,3) Case (CA),Aluminum Can,1
+82,1/21/13.71 oz,288,Beer,21,1,1,1,21,1,3) Case (CA),Aluminum Can,1
+83,1/24/0.00 oz,0,Beer,20,0,1,1,24,1,3) Case (CA),Aluminum Can,1
+84,1/24/10.00 oz,240,Beer,20,0.833333,1,1,24,1,3) Case (CA),Aluminum Can,1
+85,1/24/10.08 oz,242,Beer,25,0.840278,1,1,24,1,3) Case (CA),Aluminum Can,1
+86,1/24/10.14 oz,243.30,Beer,27,0.844792,1,1,24,1,3) Case (CA),Aluminum Can,1
+87,1/24/11.00 oz,264,Beer,27,0.916667,1,1,24,1,3) Case (CA),Aluminum Can,1
+417,1/24/11.15oz,267.60,Beer,0,0.929167,1,1,24,1,3) Case (CA),Glass Bottle,1
+88,1/24/11.17 oz,268,Beer,15,0.930556,1,1,24,1,3) Case (CA),Aluminum Can,1
+461,1/24/11.2 oz,268.80,Beer,20.89,0.933333,1,1,24,24,3) Case (CA),Aluminum Can,1
+89,1/24/11.20 oz,268.80,Beer,25,0.933333,1,1,24,1,3) Case (CA),Aluminum Can,1
+90,1/24/11.21 oz,269,Beer,39.25,0.934028,1,1,24,1,3) Case (CA),Aluminum Can,1
+91,1/24/11.50 oz,276,Beer,21,0.958333,1,1,24,1,3) Case (CA),Aluminum Can,1
+92,1/24/11.58 oz,278,Beer,25,0.965278,1,1,24,1,3) Case (CA),Aluminum Can,1
+93,1/24/12.00 oz,288,Beer,20,1,1,1,24,1,3) Case (CA),Aluminum Can,1
+94,1/24/12.03 oz,288.80,Beer,25,1.002778,1,1,24,1,3) Case (CA),Aluminum Can,1
+95,1/24/12.71 oz,305,Beer,27,1.059028,1,1,24,1,3) Case (CA),Aluminum Can,1
+330,1/24/12oz Can,288,Beer,25,1,1,1,24,24,3) Case (CA),Aluminum Can,1
+96,1/24/13.00 oz,312,Beer,25,1.083333,1,1,24,1,3) Case (CA),Aluminum Can,1
+97,1/24/13.58 oz,326,Beer,25,1.131944,1,1,24,1,3) Case (CA),Aluminum Can,1
+98,1/24/14.00 oz,336,Beer,20.50,1.166667,1,1,24,1,3) Case (CA),Aluminum Can,1
+99,1/24/14.08 oz,338,Beer,25,1.173611,1,1,24,1,3) Case (CA),Aluminum Can,1
+100,1/24/14.92 oz,358,Beer,47.25,1.243056,1,1,24,1,3) Case (CA),Aluminum Can,1
+101,1/24/15.00 oz,360,Beer,47.25,1.25,1,1,24,1,3) Case (CA),Aluminum Can,1
+102,1/24/15.21 oz,365,Beer,47.25,1.267361,1,1,24,1,3) Case (CA),Aluminum Can,1
+103,1/24/15.42 oz,370,Beer,47.25,1.284722,1,1,24,1,3) Case (CA),Aluminum Can,1
+104,1/24/16.00 oz,384,Beer,26,1.333333,1,1,24,1,3) Case (CA),Aluminum Can,1
+105,1/24/16.88 oz,405,Beer,26,1.406250,1,1,24,1,3) Case (CA),Aluminum Can,1
+106,1/24/16.92 oz,406,Beer,10,1.409722,1,1,24,1,3) Case (CA),Aluminum Can,1
+107,1/24/19.17 oz,460,Beer,15,1.597222,1,1,24,1,3) Case (CA),Aluminum Can,1
+422,1/24/200 ML,162.30,Beer,18,0.563542,1,24,24,24,3) Case (CA),Glass Bottle,1
+108,1/24/23.71 oz,569,Beer,13,1.975694,1,1,24,1,3) Case (CA),Aluminum Can,1
+109,1/24/24.00 oz,576,Beer,25,2,1,1,24,1,3) Case (CA),Aluminum Can,1
+110,1/24/4.21 oz,101,Beer,15,0.350694,1,1,24,1,3) Case (CA),Aluminum Can,1
+111,1/24/5.08 oz,122,Beer,12,0.423611,1,1,24,1,3) Case (CA),Aluminum Can,1
+465,1/24/6.8oz BTL,163.20,Beer,10.83,0.566667,1,24,24,24,3) Case (CA),PET Bottle,1
+112,1/24/7.00 oz,168,Beer,12,0.583333,1,1,24,1,3) Case (CA),Aluminum Can,1
+443,1/24/7.5oz,180,Beer,13.40,0.6250,1,1,24,24,3) Case (CA),Aluminum Can,1
+113,1/24/8.00 oz,192,Beer,12,0.666667,1,1,24,1,3) Case (CA),Aluminum Can,1
+114,1/24/8.42 oz,202,Beer,20,0.701389,1,1,24,1,3) Case (CA),Aluminum Can,1
+115,1/24/8.50 oz,204,Beer,27,0.708333,1,1,24,1,3) Case (CA),Aluminum Can,1
+116,1/24/9.21 oz,221,Beer,20,0.767361,1,1,24,1,3) Case (CA),Aluminum Can,1
+117,1/24/9.58 oz,230,Beer,30,0.798611,1,1,24,1,3) Case (CA),Aluminum Can,1
+118,1/27/10.67 oz,288,Beer,30,1,1,1,27,1,3) Case (CA),Aluminum Can,1
+119,1/28/12.00 oz,336,Beer,26,1.166667,1,1,28,1,3) Case (CA),Aluminum Can,1
+455,1/3/750 mL (BO),71.0810,Wine & Liquor,25,0.077856,3,3,3,3,4) Bottle (BO),Glass Bottle,1
+120,1/30/12.00 oz,360,Beer,25,1.25,1,1,30,1,3) Case (CA),Aluminum Can,1
+121,1/35/16.91 oz,592,Beer,30,2.055556,1,1,35,1,3) Case (CA),Aluminum Can,1
+122,1/36/12.00 oz,432,Beer,25,1.50,1,1,36,1,3) Case (CA),Aluminum Can,1
+418,1/36/5.91oz,212.76,Beer,0,0.738750,1,1,36,1,3) Case (CA),Glass Bottle,1
+123,1/36/8.50 oz,306,Beer,35.25,1.0625,1,1,36,1,3) Case (CA),Aluminum Can,1
+26,1/4 BBL Keg (7.75 Gal),992,Beer,30,3.444444,1,1,1,82,5) Keg (KE),Keg,1
+124,1/4/41.50 oz,166,Beer,27,0.576389,1,1,4,1,3) Case (CA),Aluminum Can,1
+125,1/4/84.50 oz,338,Beer,21,1.173611,1,1,4,1,3) Case (CA),Aluminum Can,1
+126,1/4/85.00 oz,340,Beer,21,1.180556,1,1,4,1,3) Case (CA),Aluminum Can,1
+127,1/40/16.90 oz,676,Beer,21,2.347222,1,1,40,1,3) Case (CA),Aluminum Can,1
+128,1/48/12.00 oz,576,Beer,25,2,1,1,48,1,3) Case (CA),Aluminum Can,1
+421,1/48/4.01oz,192.48,Beer,17.75,0.668333,1,1,48,48,3) Case (CA),Pouch,1
+129,1/5/33.80 oz,169,Beer,25,0.586806,1,1,5,1,3) Case (CA),Aluminum Can,1
+23,1/6 BBL Keg (5.2 Gal),666,Beer,30,2.3125,1,1,1,55,5) Keg (KE),Keg,1
+459,1/6/1.5 L Btl,304.32,Wine & Liquor,40,0.999980,1,6,6,6,3) Case (CA),Glass Bottle,1
+130,1/6/128.00 oz,768,Beer,25,2.666667,1,1,6,1,3) Case (CA),Aluminum Can,1
+131,1/6/25.33 oz,152,Beer,25,0.527778,1,1,6,1,3) Case (CA),Aluminum Can,1
+132,1/6/30.00 oz,180,Beer,25,0.6250,1,1,6,1,3) Case (CA),Aluminum Can,1
+133,1/6/33.83 oz,203,Beer,25,0.704861,1,1,6,1,3) Case (CA),Aluminum Can,1
+134,1/6/50.67 oz,304,Beer,25,1.055556,1,1,6,1,3) Case (CA),Aluminum Can,1
+135,1/6/50.83 oz,305,Beer,27,1.059028,1,1,6,1,3) Case (CA),Aluminum Can,1
+136,1/6/59.17 oz,355,Beer,27,1.232639,1,1,6,1,3) Case (CA),Aluminum Can,1
 462,1/6/700 mL (BO),142,Wine & Liquor,20,0.077767,6,6,6,6,4) Bottle (BO),Glass Bottle,6
+456,1/6/700ml Btl,142,Wine & Liquor,20,0.466605,1,6,6,6,3) Case (CA),Glass Bottle,6
+447,1/6/750 mL,152.1630,Beer,24,0.528344,1,6,6,6,4) Bottle (BO),Glass Bottle,6
 453,1/6/750 mL (BO),152.163102,Wine & Liquor,0,0.083333,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+424,1/6/946 ML,192,Beer,24,0.666667,1,6,6,1,3) Case (CA),Glass Bottle,1
+400,1/72/100ml,244.80,Beer,25,0.85,1,6,72,72,3) Case (CA),Pouch,1
 449,1/750 ML,25.36,Beer,3,0.014676,6,6,6,6,4) Bottle (BO),Glass Bottle,1
 427,1/750ML,152.16,Wine & Liquor,0,0.083332,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+137,1/8/16.00 oz,128,Beer,27,0.444444,1,1,8,1,3) Case (CA),Aluminum Can,1
+411,1/9/16.9oz Can,288,Beer,0,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+393,10 Liter Box,288,Beer,0,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+274,12/1 Liter Btl,405.768271,Wine & Liquor,25,1.333333,1,12,12,33,3) Case (CA),Glass Bottle,1
+275,12/1.5 Liter Btl,608.652406,Wine & Liquor,25,2,1,12,12,68,3) Case (CA),Glass Bottle,1
+138,12/1/28.00 oz,336,Beer,27,1.166667,1,12,12,1,3) Case (CA),Aluminum Can,1
+139,12/1/33.83 oz,406,Beer,27,1.409722,1,12,12,1,3) Case (CA),Aluminum Can,1
+140,12/1/50.67 oz,608,Beer,30,2.111111,1,12,12,1,3) Case (CA),Aluminum Can,1
+276,12/12oz NR,203,Beer,50,0.704861,1,12,12,16,3) Case (CA),Glass Bottle,1
+277,12/16.9oz NR,384,Beer,26,1.333333,1,12,12,32,3) Case (CA),Glass Bottle,1
+278,12/16oz Can,192,Beer,54,0.666667,1,12,12,16,3) Case (CA),Aluminum Can,1
+279,12/16oz NR,192,Beer,54,0.666667,1,12,12,16,3) Case (CA),Glass Bottle,1
+280,12/19.2oz Can,230.40,Beer,25,0.80,1,12,12,19,3) Case (CA),Aluminum Can,1
+311,12/2/11.2oz NR,269,Beer,39.25,0.934028,1,12,24,22,3) Case (CA),Glass Bottle,1
+281,12/20.3oz NR,244,Beer,88,0.847222,1,12,12,20,3) Case (CA),Glass Bottle,1
+282,12/22oz Can,264,Beer,56,0.916667,1,12,12,22,3) Case (CA),Aluminum Can,1
+283,12/22oz NR,264,Beer,56,0.916667,1,12,12,22,3) Case (CA),Glass Bottle,1
+284,12/23.5oz Can,282,Beer,60,0.979167,1,12,12,23,3) Case (CA),Aluminum Can,1
+286,12/24oz NR,288,Beer,88,1,1,12,12,24,3) Case (CA),Glass Bottle,1
+287,12/25.4oz Can,305,Beer,30,1.059028,1,12,12,25,3) Case (CA),Aluminum Can,1
+288,12/25.4oz NR,305,Beer,30,1.059028,1,12,12,25,3) Case (CA),Glass Bottle,1
+289,12/28oz Btl,336,Beer,27,1.166667,1,12,12,28,3) Case (CA),Glass Bottle,1
+290,12/32oz Can,384,Beer,20,1.333333,1,12,12,32,3) Case (CA),Aluminum Can,1
+291,12/32oz NR,384,Beer,20,1.333333,1,12,12,32,3) Case (CA),Glass Bottle,1
+292,12/33.8oz NR,406,Beer,25,1.409722,1,12,12,33,3) Case (CA),Aluminum Can,1
+293,12/375ml Btl,152.163102,Wine & Liquor,27,0.50,1,1,12,12,3) Case (CA),Glass Bottle,1
+294,12/40oz NR,480,Beer,25,1.666667,1,12,12,40,3) Case (CA),Glass Bottle,1
+295,12/42oz NR,504,Beer,25,1.75,1,12,12,42,3) Case (CA),Glass Bottle,1
+296,12/50.67oz Btl,608,Beer,30,2.111111,1,12,12,50,3) Case (CA),Glass Bottle,1
+297,12/660ml NR,267.807059,Beer,41,0.929886,1,12,12,23,3) Case (CA),Glass Bottle,1
+299,120/50ml Btl,202.884135,Wine & Liquor,25,0.666667,1,120,120,16,3) Case (CA),Glass Bottle,1
+153,12OZ,288,Beer,20.50,1,1,24,24,1,3) Case (CA),Aluminum Can,1
+13,15.5 Gal Keg,1984,Beer,170,6.888889,1,1,1,165,5) Keg (KE),Keg,1
+300,15/1 Liter Btl,507.210338,Beer,20.50,1.761147,1,15,15,50,3) Case (CA),Glass Bottle,1
+301,15/12oz Can,180,Beer,30,0.6250,1,1,15,15,3) Case (CA),Aluminum Can,1
+302,15/16oz Btl,240,Beer,27,0.833333,1,15,15,20,3) Case (CA),Glass Bottle,1
+304,15/22oz NR,264,Beer,20,0.916667,1,15,15,22,3) Case (CA),Glass Bottle,1
+305,15/24oz Can,360,Beer,21,1.25,1,15,15,30,3) Case (CA),Aluminum Can,1
+428,15/25oz Can,375,Beer,0,1.302083,1,15,15,15,3) Case (CA),Aluminum Can,1
+154,16OZ,16,Beer,25,0.055556,1,1,1,1,3) Case (CA),Aluminum Can,1
+306,18/12oz Can,216,Beer,26,0.75,1,1,18,18,3) Case (CA),Aluminum Can,1
+307,18/12oz NR,216,Beer,26,0.75,1,1,18,18,3) Case (CA),Glass Bottle,1
+308,18/16oz Btl,288,Beer,21,1,1,1,18,24,3) Case (CA),Glass Bottle,1
+309,18/16oz Can,288,Beer,21,1,1,1,18,24,3) Case (CA),Aluminum Can,1
+310,18/16oz NR,288,Beer,21,1,1,1,18,24,3) Case (CA),Glass Bottle,1
+155,187ML,151,Beer,25,0.524306,1,24,24,1,3) Case (CA),Aluminum Can,1
+407,2/12/10oz NR,288,Beer,0,1,1,2,24,24,3) Case (CA),Aluminum Can,1
+312,2/12/11.2oz Can,269,Beer,39.25,0.934028,1,2,24,22,3) Case (CA),Aluminum Can,1
+313,2/12/11.2oz NR,269,Beer,39.25,0.934028,1,2,24,22,3) Case (CA),Glass Bottle,1
+314,2/12/11.5oz Can,269,Beer,39.25,0.934028,1,2,24,22,3) Case (CA),Aluminum Can,1
+410,2/12/11.5oz NR,276,Beer,0,0.958333,1,2,24,22,3) Case (CA),Glass Bottle,1
+394,2/12/12.7oz Can,288,Beer,0,0.50,2,1,1,1,3) Case (CA),Aluminum Can,1
+315,2/12/12oz Can,288,Beer,30,1,1,2,24,24,3) Case (CA),Aluminum Can,1
+316,2/12/12oz NR,288,Beer,30,1,1,2,24,24,3) Case (CA),Glass Bottle,1
+317,2/12/16oz Can,384,Beer,26,1.333333,1,2,24,32,3) Case (CA),Aluminum Can,1
+452,2/12/7.5oz Can,180,Beer,12.80,0.6250,1,2,24,24,3) Case (CA),Aluminum Can,1
+446,2/12/7oz BTL,168,Beer,21.63,0.583333,1,2,24,24,3) Case (CA),Glass Bottle,1
+318,2/12/8.5oz Can,204,Beer,27,0.708333,1,2,24,24,3) Case (CA),Aluminum Can,1
+319,2/12/8oz Can,192,Beer,12,0.666667,1,2,24,16,3) Case (CA),Aluminum Can,1
+320,2/15/12oz Can,360,Beer,25,1.25,1,2,30,30,3) Case (CA),Aluminum Can,1
+466,2/16/8.4 oz Can,268.80,Beer,19.30,0.933333,1,2,32,32,3) Case (CA),Aluminum Can,1
+321,2/5 Liter Keg,340,Beer,20.50,1.180556,1,2,2,28,5) Keg (KE),Keg,1
 445,2/6/750 ML,303.60,Wine & Liquor,35,0.997614,1,2,12,12,3) Case (CA),Glass Bottle,1
+24,20 L Keg,676,Beer,20,2.347222,1,1,1,55.80,5) Keg (KE),Keg,1
+322,20 Liter Keg (5.28 Gal),676,Beer,20,2.347222,1,1,1,56,5) Keg (KE),Keg,1
+141,20/1/16.90 oz,338,Beer,30,1.173611,1,20,20,1,3) Case (CA),Aluminum Can,1
+323,20/16.9oz NR,338,Beer,26,1.173611,1,20,20,28,3) Case (CA),Glass Bottle,1
+324,20/360ml NR,240,Beer,25,0.833333,1,20,20,20,3) Case (CA),Glass Bottle,1
+157,200ML,162.30,Wine & Liquor,20.50,0.533309,1,24,24,1,3) Case (CA),Aluminum Can,1
+142,24/1/10.00 oz,240,Beer,16,0.833333,1,24,24,1,3) Case (CA),Aluminum Can,1
+143,24/1/12.00 oz,288,Beer,20.50,1,1,24,24,1,3) Case (CA),Aluminum Can,1
+144,24/1/16.00 oz,384,Beer,30,1.333333,1,24,24,1,3) Case (CA),Aluminum Can,1
+145,24/1/16.92 oz,406,Beer,30,1.409722,1,24,24,1,3) Case (CA),Aluminum Can,1
+146,24/1/20.00 oz,480,Beer,30,1.666667,1,24,24,1,3) Case (CA),Aluminum Can,1
+147,24/1/8.00 oz,192,Beer,30,0.666667,1,24,24,1,3) Case (CA),Aluminum Can,1
+325,24/10.1oz NR,242,Beer,25,0.840278,1,1,24,20,3) Case (CA),Glass Bottle,1
+326,24/11.2oz Can,269,Beer,39.25,0.934028,1,1,24,22,3) Case (CA),Aluminum Can,1
+327,24/11.2oz NR,269,Beer,39.25,0.934028,1,1,24,22,3) Case (CA),Glass Bottle,1
+328,24/12.7oz NR,305,Beer,27,1.059028,1,1,24,25,3) Case (CA),Glass Bottle,1
+337,24/12OZ,288,Beer,26,1,1,1,24,32,3) Case (CA),Aluminum Can,1
+329,24/12oz Btl,288,Beer,20.50,1,1,1,24,24,3) Case (CA),Glass Bottle,1
+331,24/12oz NR,288,Beer,25,1,1,1,24,24,3) Case (CA),Glass Bottle,1
+332,24/13.6oz Can,326,Beer,25,1.131944,1,1,24,27,3) Case (CA),Aluminum Can,1
+333,24/14.9oz Can,358,Beer,47.25,1.243056,1,1,24,29,3) Case (CA),Aluminum Can,1
+334,24/16.9oz Can,406,Beer,10,1.409722,1,1,24,33,3) Case (CA),Aluminum Can,1
+335,24/16.9oz NR,384,Beer,26,1.333333,1,1,24,32,3) Case (CA),Glass Bottle,1
+336,24/16oz Btl,384,Beer,26,1.333333,1,1,24,32,3) Case (CA),Glass Bottle,1
+397,24/16OZ can,288,Beer,0,1,1,24,1,1,3) Case (CA),Aluminum Can,1
+338,24/19.2oz NR,460,Beer,15,1.597222,1,1,24,38,3) Case (CA),Glass Bottle,1
+339,24/23oz Btl,569,Beer,13,1.975694,1,1,24,47,3) Case (CA),Glass Bottle,1
+340,24/375ml Btl,304.326203,Wine & Liquor,27,1,1,24,24,24,3) Case (CA),Glass Bottle,1
+341,24/7oz NR,168,Beer,12,0.583333,1,1,24,14,3) Case (CA),Glass Bottle,1
+342,24/8.4oz Can,202,Beer,20,0.701389,1,1,24,16,3) Case (CA),Aluminum Can,1
+343,24/9.6oz Can,230,Beer,30,0.798611,1,1,24,19,3) Case (CA),Aluminum Can,1
+344,28/12oz NR,336,Beer,26,1.166667,1,1,28,28,3) Case (CA),Aluminum Can,1
+158,2OZ,48,Beer,20.50,0.166667,1,24,24,1,3) Case (CA),Aluminum Can,1
+413,3/750ML,288,Wine & Liquor,0,0.315451,3,3,3,3,3) Case (CA),Aluminum Can,1
+416,3/750ML Btl,76.081551,Wine & Liquor,0,0.25,1,1,3,6,3) Case (CA),Glass Bottle,1
+401,3/8/11.2oz Can,269,Beer,0,0.934028,1,1,1,1,3) Case (CA),Aluminum Can,1
+345,3/8/11.5oz Can,276,Beer,21,0.958333,1,3,24,23,3) Case (CA),Aluminum Can,1
+346,3/8/12oz Can,288,Beer,25,1,1,3,24,24,3) Case (CA),Aluminum Can,1
+439,3/8/150ML,121.68,Beer,9.70,0.4225,1,3,24,24,3) Case (CA),Aluminum Can,1
+390,3/8/16oz Can,384,Beer,26,1.333333,1,3,24,24,3) Case (CA),Aluminum Can,1
+433,3/8/7.5oz Can,180,Beer,13.40,0.6250,1,3,24,24,3) Case (CA),Aluminum Can,1
+451,3/8/8.4oz Can,201.60,Beer,13.60,0.70,1,3,24,24,3) Case (CA),Aluminum Can,1
+6,30 L (7.9 Gal) Keg,1011,Beer,161,3.510417,1,1,1,84.25,5) Keg (KE),Keg,1
+347,30/12oz Can,360,Beer,25,1.25,1,1,30,30,3) Case (CA),Aluminum Can,1
+348,30L BBL Keg (7.9 Gal),1011,Beer,161,3.510417,1,1,1,84,5) Keg (KE),Keg,1
+349,35/16.9oz Btl,592,Beer,30,2.055556,1,1,35,49,3) Case (CA),Glass Bottle,1
+350,36/12oz Can,432,Beer,25,1.50,1,1,36,36,3) Case (CA),Aluminum Can,1
+351,36/8.5oz Can,306,Beer,35.25,1.0625,1,1,36,25,3) Case (CA),Aluminum Can,1
+159,375ML,304.30,Wine & Liquor,27,0.999914,1,24,24,1,3) Case (CA),Aluminum Can,1
+160,3L,417,Beer,25,1.447917,1,4,4,1,3) Case (CA),Aluminum Can,1
+395,4/ Liter Btl,288,Wine & Liquor,0,0.236588,4,1,1,1,3) Case (CA),Aluminum Can,1
+273,4/10 Liter Box,338,Beer,21,1.173611,1,4,1,28,3) Case (CA),Bag-in-box,1
+405,4/3 Liter Box,404,1.4,0,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+396,4/3 Liter Btl,288,Wine & Liquor,0,0.946353,1,4,1,1,3) Case (CA),Aluminum Can,1
+352,4/4/500ml Can,270,Beer,25,0.9375,1,4,16,22,3) Case (CA),Aluminum Can,1
+353,4/5 Liter Box,166,Beer,27,0.576389,1,4,4,13,3) Case (CA),Bag-in-box,1
+354,4/5/16.9oz NR,338,Beer,26,1.173611,1,4,20,28,3) Case (CA),Glass Bottle,1
+355,4/6/10.14oz NR,243.30,Beer,27,0.844792,1,4,24,20,3) Case (CA),Glass Bottle,1
+402,4/6/10oz NR,240,Beer,0,0.833333,1,4,24,24,3) Case (CA),Aluminum Can,1
+434,4/6/11.15oz,267.60,Beer,25,0.929167,1,4,24,24,3) Case (CA),Glass Bottle,1
+356,4/6/11.2oz Can,269,Beer,39.25,0.934028,1,4,24,22,3) Case (CA),Aluminum Can,1
+357,4/6/11.2oz NR,269,Beer,39.25,0.934028,1,4,24,22,3) Case (CA),Glass Bottle,1
+409,4/6/11.5oz NR,276,Beer,0,0.958333,1,4,24,24,3) Case (CA),Aluminum Can,1
+437,4/6/12.7oz NR,304.80,Beer,32.30,1.058333,1,4,24,24,3) Case (CA),Glass Bottle,1
+358,4/6/12oz Can,288,Beer,25,1,1,4,24,24,3) Case (CA),Aluminum Can,1
+359,4/6/12oz NR,288,Beer,25,1,1,4,24,24,3) Case (CA),Glass Bottle,1
+360,4/6/16.9oz Can,406,Beer,10,1.409722,1,4,24,33,3) Case (CA),Aluminum Can,1
+361,4/6/16oz Btl,384,Beer,26,1.333333,1,4,24,32,3) Case (CA),Glass Bottle,1
+362,4/6/16oz Can,384,Beer,26,1.333333,1,4,24,32,3) Case (CA),Aluminum Can,1
+441,4/6/2.5oz,60,THC Shot,22.50,0.6250,1,4,24,1,3) Case (CA),PET Bottle,1
+363,4/6/7oz NR,168,Beer,12,0.583333,1,4,24,14,3) Case (CA),Glass Bottle,1
+420,4/6/8.4oz,201,Beer,18.50,0.697917,1,4,24,24,3) Case (CA),Glass Bottle,1
+404,4/6/8oz Can,288,Beer,0,1,1,4,24,24,3) Case (CA),Aluminum Can,1
+406,4/6/9.6oz Can,288,Beer,0,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+364,4/6/9.6oz NR,230,Beer,30,0.798611,1,4,24,19,3) Case (CA),Glass Bottle,1
+365,40/16.9oz Btl,676,Beer,21,2.347222,1,40,40,56,3) Case (CA),Glass Bottle,1
+366,48/200ml Btl,324.614617,Wine & Liquor,20.50,1.066667,1,48,48,13,3) Case (CA),Glass Bottle,1
+440,48/60 ML,96,THC Shot,8,1,1,48,48,48,3) Case (CA),PET Can,1
+21,5 Gal Keg,640,Beer,25,2.222222,1,1,1,53,5) Keg (KE),Keg,1
+403,5.0 Gal Keg,640,Beer,25,2.222222,1,1,1,53,5) Keg (KE),Aluminum Can,1
+22,5.2 Gal Keg,660,Beer,27,2.291667,1,1,1,55,5) Keg (KE),Keg,1
+367,5/1 Liter Can,169.070113,Beer,25,0.587049,1,5,5,14,3) Case (CA),Aluminum Can,1
+10,50 Liter Keg (13.2 Gal),1690.701128,Beer,161,5.870490,1,1,1,140,5) Keg (KE),Keg,1
+161,50ML,202,Wine & Liquor,25,0.663761,1,120,120,1,3) Case (CA),Aluminum Can,1
+368,6/1 Gallon Btl,768,Beer,25,2.666667,1,6,6,64,3) Case (CA),Glass Bottle,1
+369,6/1 Liter Btl,202.884135,Beer,25,0.704459,1,6,6,16,3) Case (CA),Glass Bottle,1
+370,6/1.5 Liter Btl,304.326203,Beer,25,1.056688,1,6,6,25,3) Case (CA),Glass Bottle,1
+371,6/1.75 Liter Btl,355.047237,Wine & Liquor,25,1.166667,1,6,6,29,3) Case (CA),Glass Bottle,1
+398,6/12/100ml,244.80,Wine & Liquor,0,0.134067,6,1,1,1,3) Case (CA),Glass Bottle,1
+372,6/25.4oz NR,152,Beer,25,0.527778,1,6,6,12,3) Case (CA),Aluminum Can,1
+373,6/3 Liter Btl,608.652406,Beer,25,2.113376,1,6,4,34,3) Case (CA),Glass Bottle,1
+458,6/4/100ml Can,81.15,Wine & Liquor,7,0.266655,1,6,24,24,3) Case (CA),Aluminum Can,1
+374,6/4/11.2oz Can,269,Beer,39.25,0.934028,1,6,24,22,3) Case (CA),Aluminum Can,1
+375,6/4/11.2oz NR,269,Beer,39.25,0.934028,1,6,24,22,3) Case (CA),Glass Bottle,1
+376,6/4/11.5oz Can,276,Beer,21,0.958333,1,6,24,23,3) Case (CA),Aluminum Can,1
+419,6/4/12.7oz NR,304.80,Beer,32.30,1.058333,1,6,24,24,3) Case (CA),Glass Bottle,1
+377,6/4/12oz Can,288,Beer,25,1,1,6,24,24,3) Case (CA),Aluminum Can,1
+378,6/4/12oz NR,288,Beer,25,1,1,6,24,24,3) Case (CA),Glass Bottle,1
+391,6/4/13.6oz Can,326,Beer,0,1.131944,1,1,1,1,3) Case (CA),Aluminum Can,1
+460,6/4/13.7oz,328.80,Beer,26.40,1.141667,1,6,24,24,3) Case (CA),Aluminum Can,1
+379,6/4/14.9oz Can,358,Beer,47.25,1.243056,1,6,24,29,3) Case (CA),Aluminum Can,1
+380,6/4/15.2oz NR,365,Beer,47.25,1.267361,1,6,24,30,3) Case (CA),Glass Bottle,1
+426,6/4/16.9oz,405.60,Beer,29.60,1.408333,1,6,24,24,3) Case (CA),PET Bottle,1
+381,6/4/16.9oz Can,406,Beer,10,1.409722,1,6,24,33,3) Case (CA),Aluminum Can,1
+382,6/4/16oz Can,384,Beer,26,1.333333,1,6,24,32,3) Case (CA),Aluminum Can,1
+423,6/4/200 ML,163.20,Beer,18,0.566667,1,6,24,1,3) Case (CA),Glass Bottle,1
+442,6/4/7.5 oz,180,Beer,10,0.6250,1,6,24,24,3) Case (CA),Aluminum Can,1
+392,6/4/8.4oz Can,201,Wine & Liquor,0,0.660476,1,1,1,1,3) Case (CA),Aluminum Can,1
+408,6/4/8oz Can,288,Beer,0,1,1,1,1,1,3) Case (CA),Aluminum Can,1
+388,6/4/9.6oz Can,230,Beer,30,0.798611,1,1,24,19,3) Case (CA),Aluminum Can,1
+383,6/50.7oz NR,304,Beer,25,1.055556,1,6,6,25,3) Case (CA),Glass Bottle,1
+435,6/6/5.91oz,212.76,Beer,25,0.738750,1,6,36,36,3) Case (CA),Glass Bottle,1
+432,6/750 ml,152.163102,Wine & Liquor,25,0.083333,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+384,6/750ml Btl,152.163102,Wine & Liquor,25,0.50,1,6,6,12,4) Bottle (BO),Glass Bottle,1
+385,60/50ml Btl,101.442068,Wine & Liquor,25,0.333333,1,120,120,16,3) Case (CA),Aluminum Can,1
+162,6OZ,144,Beer,25,0.50,1,24,24,1,3) Case (CA),Aluminum Can,1
+163,750ML,152.40,Wine & Liquor,20.50,0.500778,1,12,12,1,3) Case (CA),Aluminum Can,1
+448,750ml btl,152.1630,Wine & Liquor,24,0.083333,6,6,6,6,4) Bottle (BO),Glass Bottle,1
+148,8/1/67.63 oz,541,Beer,25,1.878472,1,8,8,1,3) Case (CA),Aluminum Can,1
+438,8/500ML,135.20,Beer,15.54,0.469444,1,8,8,8,3) Case (CA),Glass Bottle,1
+386,Corny Keg (5 Gal Keg),640,Beer,25,2.222222,1,1,1,53,5) Keg (KE),Keg,1
+164,Default,303.60,Beer,20.50,1.054167,1,12,12,1,3) Case (CA),Aluminum Can,1
+387,Empties,0,Beer,20.50,0,1,1,1,1,3) Case (CA),Aluminum Can,1
+1,Misc,0,Beer,160,0,1,1,1,1,3) Case (CA),Aluminum Can,1

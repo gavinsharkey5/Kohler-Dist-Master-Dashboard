@@ -21,6 +21,7 @@ What it recognises, by the export's own column headers:
     WS invoice transactions                    -> appended, duplicates dropped
     WS L6-month / L90-day placements           -> appended, duplicates dropped
     Assigned account roster                    -> updated per customer
+    Encompass package master                   -> replaced in full (a snapshot)
 
 Overlapping dates are safe for every row-style export: a row already in the
 master is skipped rather than duplicated, so it does not matter if your pull
@@ -71,6 +72,9 @@ TARGETS = [
     ('Assigned account roster',
      {'Customer Num', 'Sales Rep Assigned', 'Route', 'On-Off Premise'},
      os.path.join(WS, 'ws_account_roster.csv'), 'roster', 'both'),
+    ('Package master',
+     {'Package ID', 'Package', 'Wholesale Units per Case', 'Selling Unit Of Measure'},
+     os.path.join(PORTFOLIO, 'ws_packages.csv'), 'replace', 'ws'),
 ]
 
 GENERATORS = {
@@ -171,6 +175,14 @@ def main():
             merge_export.merge_rows(master, [path])
         elif mode == 'monthly':
             merge_export.merge_monthly(master, path, overlap)
+        elif mode == 'replace':
+            # a snapshot table, not a log -- the newest export simply wins
+            import shutil
+            if os.path.exists(master):
+                merge_export.backup(master)
+            shutil.copyfile(path, master)
+            hdr, rows_ = merge_export.read_csv(master)
+            print(f'replaced in full: {len(rows_)} rows')
         else:
             merge_roster(master, path)
         if feeds == 'both':
