@@ -1,0 +1,2352 @@
+Customer Num,Customer Name,Sales Rep Assigned,City,Route,On-Off Premise
+260006,Ali's Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250156,Alman Liquors,Alex Rodriguez,Roselle,Elizabeth Fri,Off Premise
+260005,Bay City Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250193,Bella Wine and Spirits,Alex Rodriguez,Unknown,Unknown,Off Premise
+250141,Ben Franklin Liquor,Alex Rodriguez,Plainfield,Elizabeth Wed,Off Premise
+250132,Butlers Liquor Store,Alex Rodriguez,Unknown,Unknown,Off Premise
+250152,C & B Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250315,Cantinho Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+260002,Colonial Liquor Store,Alex Rodriguez,Unknown,Unknown,On Premise
+250056,Continental Wine/Liq,Alex Rodriguez,Elizabeth,Elizabeth Fri,Off Premise
+250080,Crown Liquors,Alex Rodriguez,Roselle,Elizabeth Fri,Off Premise
+260004,Drinks 2 Go Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250137,Elmora Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250190,Frenchys Bar & Grill,Alex Rodriguez,Unknown,Unknown,On Premise
+250186,Gail's Wine And Spirits,Alex Rodriguez,Elizabeth,Newark Wed,Off Premise
+250135,Garcias Liquor Depot,Alex Rodriguez,Elizabeth,10050 Fri,Off Premise
+253002,Golden Anchor Bar,Alex Rodriguez,Unknown,Unknown,On Premise
+150609,Home Liquors(465 Newark),Alex Rodriguez,Newark,Newark Fri,Off Premise
+250300,Jackson Liquors,Alex Rodriguez,Elizabeth,10068 Tue,Off Premise
+250068,Jakob Liquors,Alex Rodriguez,Elizabeth,10053 Wed,Off Premise
+150012,Kings Super Markets,Alex Rodriguez,Unknown,Unknown,Off Premise
+150155,L Town Liquors,Alex Rodriguez,Livingston,10078 Wed,Off Premise
+253000,Leland Liquor & Deli,Alex Rodriguez,Plainfield,10059 Thu,Off Premise
+250053,Liquor Basics,Alex Rodriguez,Unknown,Unknown,Off Premise
+250128,Liquor Depot,Alex Rodriguez,Elizabeth,Elizabeth Fri,Off Premise
+250131,Liquor Gallery (Elizabeth),Alex Rodriguez,Elizabeth,Elizabeth Thu,Off Premise
+250054,Marte Liq Warehouse,Alex Rodriguez,Elizabeth,Elizabeth Fri,Off Premise
+250049,New Seaport Liquors,Alex Rodriguez,Elizabeth,Elizabeth Wed,Off Premise
+250302,New Silver Key Liquor 4,Alex Rodriguez,Elizabeth,Elizabeth Thu,Off Premise
+250043,Nugents Tavern (P),Alex Rodriguez,Unknown,Unknown,On Premise
+250303,Olga's Place,Alex Rodriguez,Unknown,Unknown,On Premise
+150641,Otg Management Ewr,Alex Rodriguez,Unknown,Unknown,On Premise
+260008,Outerbridge Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+260007,Path Discount Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250151,Paul & Joe Deli And Liq,Alex Rodriguez,Unknown,Unknown,Off Premise
+250059,Payless Liquor,Alex Rodriguez,Elizabeth,Elizabeth Wed,Off Premise
+250070,Pereira's Liquor,Alex Rodriguez,Elizabeth,Elizabeth Thu,Off Premise
+250072,Picacho Liquors,Alex Rodriguez,Elizabeth,Elizabeth Wed,Off Premise
+250082,Pickwick Liquor Shop,Alex Rodriguez,Plainfield,Elizabeth Thu,Off Premise
+250316,Rancho Mateo Asadero Colombian,Alex Rodriguez,Unknown,Unknown,On Premise
+250310,Rancho Mateo Colombian Steakhouse,Alex Rodriguez,Elizabeth,Hot shot #15,On Premise
+250020,Rick's Wines & Liquors,Alex Rodriguez,Plainfield,10054 Thu,Off Premise
+250191,Roselle Park Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250147,Rye House Spirits,Alex Rodriguez,Plainfield,10084 Thu,Off Premise
+250093,San Homa Liquors,Alex Rodriguez,Plainfield,Elizabeth Thu,Off Premise
+250188,Second Street Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250157,Skylark Discount Liquors,Alex Rodriguez,Roselle,Elizabeth Wed,Off Premise
+250149,South Ave Liquors,Alex Rodriguez,Unknown,Unknown,Off Premise
+250140,Station Liquors,Alex Rodriguez,Plainfield,10051 Wed,Off Premise
+250308,Super Discount Liquors,Alex Rodriguez,Elizabeth,10050 Tue,Off Premise
+250129,Super Value Liquors,Alex Rodriguez,Elizabeth,Elizabeth Thu,Off Premise
+250153,T & J Liquor,Alex Rodriguez,Unknown,Unknown,Off Premise
+253003,Tequila Club,Alex Rodriguez,Plainfield,Elizabeth Thu,On Premise
+250197,Tiki Mojito,Alex Rodriguez,Unknown,Unknown,On Premise
+260003,US1 Discount Liquor,Alex Rodriguez,Unknown,Unknown,Off Premise
+250187,Urena Liquors,Alex Rodriguez,Elizabeth,Elizabeth Fri,Off Premise
+250305,Valenca Rest & Liquor,Alex Rodriguez,Unknown,Unknown,Off Premise
+250036,Watchung Liquor (P),Alex Rodriguez,Plainfield,10052 Mon,Off Premise
+250130,Westminster Liquors,Alex Rodriguez,Elizabeth,10073 Wed,Off Premise
+250047,Wine Cellar,Alex Rodriguez,Elizabeth,Elizabeth Thu,Off Premise
+150153,Wine Depot Of Livingston,Alex Rodriguez,Livingston,Caldwell Fri,Off Premise
+150118,Wine Legend,Alex Rodriguez,Unknown,Unknown,Off Premise
+150171,21 Plaza Wine & Liquor,Alisa Acciardi,Newark,Newark Tue,Off Premise
+170058,Alex Liquors & Deli,Alisa Acciardi,Unknown,Unknown,Off Premise
+150244,Bacchanal Junction,Alisa Acciardi,Unknown,Unknown,On Premise
+170053,Bbb Liquors(Costco),Alisa Acciardi,Bayonne,10057 Wed,Off Premise
+150060,Belleville Liquors,Alisa Acciardi,Belleville,Montclair Thu,Off Premise
+150146,Bello's,Alisa Acciardi,Newark,Newark Thu,On Premise
+150080,Berkeley Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+171303,Best Buy Wine & Liquor,Alisa Acciardi,Kearny,10079 Thu,Off Premise
+150052,Bottle King Glen Ridge,Alisa Acciardi,Unknown,Unknown,Off Premise
+171001,Bridgeview Liquors,Alisa Acciardi,Bayonne,Jersey City Wed,Off Premise
+150023,Brookdale W & S (A),Alisa Acciardi,Bloomfield,Montclair Tue,Off Premise
+170239,Brothers Supermarket,Alisa Acciardi,Unknown,Unknown,Off Premise
+150187,Burke's Tavern,Alisa Acciardi,Unknown,Unknown,On Premise
+170205,Buy-Rite Liquors,Alisa Acciardi,Kearny,Kearny Wed,Off Premise
+150128,C & I Liquors(Superfresh),Alisa Acciardi,Unknown,Unknown,Off Premise
+150229,City Discount Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+170123,City Line Liquors (P),Alisa Acciardi,Bayonne,10062 Mon,Off Premise
+150086,Cordes Wine & Liquor,Alisa Acciardi,Bloomfield,Newark Tue,Off Premise
+152039,Cottage Liquors,Alisa Acciardi,Newark,Newark Tue,Off Premise
+150123,Cowans Public,Alisa Acciardi,Unknown,Unknown,On Premise
+150033,Discount Liquors Bloomfield,Alisa Acciardi,Bloomfield,Montclair Fri,Off Premise
+171004,Donegal Saloon,Alisa Acciardi,Unknown,Unknown,On Premise
+174151,Eddy's Bar & Liquor,Alisa Acciardi,Bayonne,Jersey City Fri,On Premise
+170210,Eddy's Wine & Liq,Alisa Acciardi,Bayonne,Secaucus Tue,Off Premise
+150026,FERRY WINE & LIQUOR STOP,Alisa Acciardi,Unknown,Unknown,Off Premise
+171333,Family Convenience & Liq_2,Alisa Acciardi,Kearny,Kearny Tue,Off Premise
+150050,Fitzgerald 1928,Alisa Acciardi,Unknown,Unknown,On Premise
+150142,Fornos Of Spain (A),Alisa Acciardi,Unknown,Unknown,On Premise
+150020,Gallaghers Wine & Cheese,Alisa Acciardi,Bloomfield,10073 Tue,Off Premise
+170056,Golden Beer & Liquor,Alisa Acciardi,Harrison,Kearny Tue,Off Premise
+150252,Guys & Dolls Billiards & Sports Bar,Alisa Acciardi,Unknown,Unknown,On Premise
+170038,Harrison Discount Liq(P),Alisa Acciardi,Harrison,10063 Tue,Off Premise
+121004,Harry's Wine Cellar,Alisa Acciardi,Bayonne,10053 Thu,Off Premise
+150037,Heller & Heller Liquors (Nutley),Alisa Acciardi,Nutley,Montclair Thu,Off Premise
+170243,Hendrick's Corner,Alisa Acciardi,Unknown,Unknown,On Premise
+170101,High Spirits Of Bayonne,Alisa Acciardi,Bayonne,Jersey City Wed,Off Premise
+150144,Home Liquors(480 Newark) (P),Alisa Acciardi,Unknown,Unknown,Off Premise
+171308,Hook And Reel,Alisa Acciardi,Kearny,10080 Thu,On Premise
+150106,Iron Bound Wines & Spirit,Alisa Acciardi,Unknown,Unknown,Off Premise
+171341,Irv's Wines & Liquors(P),Alisa Acciardi,Bayonne,Jersey City Fri,Off Premise
+170108,J & V Liquors,Alisa Acciardi,Bayonne,10050 Fri,Off Premise
+150611,Jim Dandy's,Alisa Acciardi,Unknown,Unknown,On Premise
+171319,John's Liq & Deli,Alisa Acciardi,Unknown,Unknown,Off Premise
+170229,Joia Restaurant,Alisa Acciardi,Unknown,Unknown,On Premise
+171309,KPot Korean BBQ & Hot Pot,Alisa Acciardi,Unknown,Unknown,On Premise
+171318,Kearny Plaza Discount Liq,Alisa Acciardi,Kearny,Kearny Wed,Off Premise
+171328,Kearny Wine & Liquor,Alisa Acciardi,Unknown,Unknown,Off Premise
+171360,Keeper's,Alisa Acciardi,Unknown,Unknown,On Premise
+150109,Kelly's Liquors,Alisa Acciardi,Belleville,Newark Fri,Off Premise
+150152,Krauszer Food & Liquor,Alisa Acciardi,Bloomfield,10064 Mon,Off Premise
+150131,Lbv Cellars,Alisa Acciardi,Newark,10067 Tue,Off Premise
+150400,Liquor City,Alisa Acciardi,Unknown,Unknown,Off Premise
+170004,Liquor Warehouse,Alisa Acciardi,Unknown,Unknown,Off Premise
+171305,Liquoram Of Kearny,Alisa Acciardi,Unknown,Unknown,Off Premise
+150098,Lisbon Wines & Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+170206,Lito's Liquor (P),Alisa Acciardi,Unknown,Unknown,Off Premise
+150176,Lou's Corner,Alisa Acciardi,Unknown,Unknown,Off Premise
+171404,Massarelli's Liquors,Alisa Acciardi,Bayonne,Jersey City Wed,Off Premise
+150015,Michael Roscommon Hs(A),Alisa Acciardi,Unknown,Unknown,On Premise
+170140,Midland Dairy (A),Alisa Acciardi,Kearny,Kearny Wed,Off Premise
+24057,Mighty Quinns Bbq,Alisa Acciardi,Unknown,Unknown,On Premise
+171306,Mira Sol,Alisa Acciardi,Unknown,Unknown,Off Premise
+150139,Mompou Restaurant,Alisa Acciardi,Unknown,Unknown,On Premise
+152026,Mulberry Liquors,Alisa Acciardi,Newark,Newark Tue,Off Premise
+171331,New Bergen Liquors (P),Alisa Acciardi,Kearny,Kearny Thu,Off Premise
+150016,Nutley Wine Shop,Alisa Acciardi,Nutley,10058 Thu,Off Premise
+170061,O'Donnell's (P),Alisa Acciardi,Unknown,Unknown,On Premise
+174153,OTS BY LLC (Aqua),Alisa Acciardi,Unknown,Unknown,On Premise
+150073,Oasis Liquor & Deli,Alisa Acciardi,Newark,Newark Wed,Off Premise
+150300,Obals Inn,Alisa Acciardi,Unknown,Unknown,On Premise
+150090,Olshins Pharmacy,Alisa Acciardi,Unknown,Unknown,Off Premise
+173900,Otaiko Hibachi & Sushi,Alisa Acciardi,Unknown,Unknown,On Premise
+29010,Paradise Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+150038,Pioneer Wine's & Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+150157,Plaza Wine & Liquor,Alisa Acciardi,Bloomfield,Montclair Tue,Off Premise
+150175,Primavera Liquor,Alisa Acciardi,Unknown,Unknown,Off Premise
+171332,Seabra Liquor,Alisa Acciardi,Kearny,10080 Thu,Off Premise
+150130,Seabra Liquors,Alisa Acciardi,Newark,10055 Thu,Off Premise
+171312,Shop Rite Wine & Spirits Kearny,Alisa Acciardi,Kearny,10080 Wed,Off Premise
+171403,ShopRite Wines & Spirits of Bayonne,Alisa Acciardi,Bayonne,Jersey City Thu,Off Premise
+174001,Shorty's,Alisa Acciardi,Unknown,Unknown,On Premise
+150305,Six Points Pub,Alisa Acciardi,Unknown,Unknown,On Premise
+171002,Spirits Of Kearny,Alisa Acciardi,Unknown,Unknown,Off Premise
+171411,Stanley's Liq Store (P),Alisa Acciardi,Unknown,Unknown,Off Premise
+170035,Steves Liquors (P),Alisa Acciardi,Unknown,Unknown,Off Premise
+171304,Sun Liquors & Grocery,Alisa Acciardi,Unknown,Unknown,Off Premise
+78002,Super K Food (A) Store,Alisa Acciardi,Unknown,Unknown,Off Premise
+250171,Tankys Bar & Grill,Alisa Acciardi,Unknown,Unknown,On Premise
+170117,Thai O'brien (P),Alisa Acciardi,Unknown,Unknown,On Premise
+150302,The Blue Steel Pizza Co.,Alisa Acciardi,Unknown,Unknown,On Premise
+152037,The Deep Inn,Alisa Acciardi,Unknown,Unknown,On Premise
+170240,The Greenroom,Alisa Acciardi,Unknown,Unknown,On Premise
+150085,The Oakley Kitchen,Alisa Acciardi,Unknown,Unknown,On Premise
+150112,The Old Canal Inn,Alisa Acciardi,Unknown,Unknown,On Premise
+171410,Times Square Liq,Alisa Acciardi,Unknown,Unknown,Off Premise
+152040,Top Shelf Wine & Liquor,Alisa Acciardi,Unknown,Unknown,Off Premise
+150199,Town Pub Of Bloomfeild,Alisa Acciardi,Unknown,Unknown,On Premise
+171352,Urban Tandoor,Alisa Acciardi,Unknown,Unknown,On Premise
+150129,White Oaks Liquors,Alisa Acciardi,Unknown,Unknown,Off Premise
+171016,Wine Warehouse (P) (Bayonne),Alisa Acciardi,Bayonne,Jersey City Fri,Off Premise
+5002,100 Proof Bar & Bites,Allison Scott,Unknown,Unknown,On Premise
+14006,46 Lounge (P),Allison Scott,Unknown,Unknown,On Premise
+13013,Amer Lgn L Falls (Z),Allison Scott,Unknown,Unknown,On Premise
+12048,Anthonys CF Pizza (Wayne),Allison Scott,Unknown,Unknown,On Premise
+5003,Applebee's (A)Butler,Allison Scott,Unknown,Unknown,On Premise
+14002,Applebee's (Totowa) (A),Allison Scott,Unknown,Unknown,On Premise
+24022,Applebee's Clifton,Allison Scott,Unknown,Unknown,On Premise
+12049,Aramark Educational Services@WPU,Allison Scott,Unknown,Unknown,On Premise
+10007,Bardis (P),Allison Scott,Pequannock,Wayne Wed,On Premise
+15074,Bask 46,Allison Scott,Woodland Park,Totowa Wed,On Premise
+15004,Blackjack Mulligan's Public House,Allison Scott,Woodland Park,Totowa Thu,On Premise
+7003,Blu Ale House,Allison Scott,Riverdale,10055 Tue,On Premise
+23001,Bogey's Sport Bar,Allison Scott,Unknown,Unknown,On Premise
+19012,Bottagra Rest (P),Allison Scott,Hawthorne,Ramsey Wed,On Premise
+24061,Breaker Billiards,Allison Scott,Unknown,Unknown,On Premise
+12036,Brokedown Palace,Allison Scott,Unknown,Unknown,On Premise
+15070,Brownstone House,Allison Scott,Unknown,Unknown,On Premise
+12065,"Buffalo Wild Wings - Wayne, NJ",Allison Scott,Unknown,Unknown,On Premise
+12032,Casa Don Manuel,Allison Scott,Unknown,Unknown,On Premise
+19005,Celtic Corner,Allison Scott,Unknown,Unknown,On Premise
+5008,Celtic Crossings,Allison Scott,Unknown,Unknown,On Premise
+12041,Cheesecake Fact (A)Wayne,Allison Scott,Unknown,Unknown,On Premise
+25077,Chevy's Fresh Mex (A)Clif,Allison Scott,Unknown,Unknown,On Premise
+7005,Chili's (Riverdale),Allison Scott,Unknown,Unknown,On Premise
+13018,Chili's Little Falls,Allison Scott,Unknown,Unknown,On Premise
+24060,Clifton Billiards (Z),Allison Scott,Unknown,Unknown,On Premise
+23020,Clifton City Tavern(P),Allison Scott,Unknown,Unknown,On Premise
+25082,Crab Island Cajun Seafood & Bar,Allison Scott,Unknown,Unknown,On Premise
+17003,D'CARBON BAR AND GRILL haledon,Allison Scott,Unknown,Unknown,On Premise
+19028,D'Carbon Restaurant Hawthorne,Allison Scott,Unknown,Unknown,On Premise
+15048,D'carbon Restaurant,Allison Scott,Unknown,Unknown,On Premise
+24048,Dante's,Allison Scott,Clifton,Clifton 2 Fri,On Premise
+12034,"Dave & Buster's Nj, Inc",Allison Scott,Unknown,Unknown,On Premise
+25036,Dingbatz (P),Allison Scott,Unknown,Unknown,On Premise
+24029,Dingo's Den (P),Allison Scott,Clifton,10061 Wed,On Premise
+12031,Double Ai Asian Bistro,Allison Scott,Unknown,Unknown,On Premise
+21043,Duffy's Tavern (Z),Allison Scott,Unknown,Unknown,On Premise
+25056,Emerald Corner (Z),Allison Scott,Unknown,Unknown,On Premise
+58005,Feathers (A),Allison Scott,Unknown,Unknown,On Premise
+12010,Fogo de Chao (Wayne),Allison Scott,Unknown,Unknown,On Premise
+1005,Grasshopper Irish Pub (A),Allison Scott,Unknown,Unknown,On Premise
+12022,Grasshopper Too (A),Allison Scott,Wayne,Oakland Fri,On Premise
+15006,Great Notch Inn(Z),Allison Scott,Little Falls,Totowa Thu,On Premise
+12064,In The Drink@Passaic Gc,Allison Scott,Unknown,Unknown,On Premise
+12015,Izumi Hibachi Steak House,Allison Scott,Unknown,Unknown,On Premise
+24038,J. Alexander's Restaurant,Allison Scott,Clifton,Clifton 2 Thu,On Premise
+14016,JINYA Ramen Bar,Allison Scott,Unknown,Unknown,On Premise
+24056,Jaime's (A),Allison Scott,Clifton,10055 Tue,On Premise
+12013,Jalapenos Mexican Grill,Allison Scott,Unknown,Unknown,On Premise
+19016,Jiggle's,Allison Scott,Unknown,Unknown,On Premise
+17009,Jimmy Geez (P),Allison Scott,Haledon,Paterson 2 Wed,On Premise
+22016,Johnny A's (P) Hitchn Pos,Allison Scott,Unknown,Unknown,On Premise
+12018,KRIOS Prime,Allison Scott,Unknown,Unknown,On Premise
+25011,Kashan Indian Kitchen & Ber,Allison Scott,Unknown,Unknown,On Premise
+3007,Kitchen & Beer Bar,Allison Scott,Unknown,Unknown,On Premise
+12020,Lakeside drive tavern,Allison Scott,Unknown,Unknown,On Premise
+19011,Las Maravillas Restaurant,Allison Scott,Unknown,Unknown,On Premise
+8014,Macks American Bar/Grill,Allison Scott,Unknown,Unknown,On Premise
+13003,Maggie's Town Tav.(P),Allison Scott,Unknown,Unknown,On Premise
+12037,Maggies Town Tavern Ii,Allison Scott,Unknown,Unknown,On Premise
+24027,Mario's Rest,Allison Scott,Unknown,Unknown,On Premise
+25004,Matthews Italian Rest,Allison Scott,Unknown,Unknown,On Premise
+11007,Meadows Golf Club(P),Allison Scott,Unknown,Unknown,On Premise
+14003,Murph's Bar & Liquor,Allison Scott,Totowa,Totowa Wed,On Premise
+12040,NYX,Allison Scott,Unknown,Unknown,On Premise
+15067,Naxos Estiatorio,Allison Scott,Unknown,Unknown,On Premise
+22004,Neighbors,Allison Scott,Unknown,Unknown,On Premise
+12008,North Jersey C C,Allison Scott,Wayne,Oakland Wed,On Premise
+12014,Olive Garden (A) Wayne,Allison Scott,Unknown,Unknown,On Premise
+5004,Outback,Allison Scott,Unknown,Unknown,On Premise
+12043,Outback Stkhse(P)Wayne,Allison Scott,Unknown,Unknown,On Premise
+12056,PF Changs China Bistro (Wayne),Allison Scott,Unknown,Unknown,On Premise
+12051,Packanack Golf (P),Allison Scott,Unknown,Unknown,On Premise
+27035,Platinum Dollz,Allison Scott,Unknown,Unknown,On Premise
+12035,Preakness Hills (A) cc,Allison Scott,Unknown,Unknown,On Premise
+19002,Puzo's Pizza,Allison Scott,Hawthorne,Rochelle Park Thu,On Premise
+12061,Raeya's,Allison Scott,Unknown,Unknown,On Premise
+13015,Rare The Steakhouse (Z),Allison Scott,Unknown,Unknown,On Premise
+12054,Red Lobster 225 Wayne,Allison Scott,Unknown,Unknown,On Premise
+24045,Red Robin Gourmet Burger (Clifton),Allison Scott,Unknown,Unknown,On Premise
+15036,River Terrace Inn(P),Allison Scott,Unknown,Unknown,On Premise
+20010,Riverside Grill(D'carbon),Allison Scott,Unknown,Unknown,On Premise
+24026,Rock Bar,Allison Scott,Unknown,Unknown,On Premise
+25083,Rutt's Hut (A),Allison Scott,Clifton,10077 Wed,On Premise
+13005,Sear,Allison Scott,Unknown,Unknown,On Premise
+24019,Sharky's Wings(P),Allison Scott,Clifton,10051 Tue,On Premise
+19004,Shortways' Barn (A),Allison Scott,Hawthorne,Ridgewood Fri,On Premise
+25027,Sportzone B&G (P),Allison Scott,Unknown,Unknown,On Premise
+25009,Spuntino Wine Bar/Italian,Allison Scott,Unknown,Unknown,On Premise
+11011,Sunset Pub & Grill(Z),Allison Scott,Unknown,Unknown,On Premise
+10010,Sunset Valley G C (A),Allison Scott,Unknown,Unknown,On Premise
+14004,Sushi Lounge,Allison Scott,Unknown,Unknown,On Premise
+12001,T Bowl Tavern (Z),Allison Scott,Unknown,Unknown,On Premise
+13016,THE TIES,Allison Scott,Unknown,Unknown,On Premise
+9002,Tavern 5_2,Allison Scott,Unknown,Unknown,On Premise
+8015,Thatcher Mc Ghees (A),Allison Scott,Pompton Lakes,Wanaque Thu,On Premise
+14008,The Barnyard and Carriage House,Allison Scott,Unknown,Unknown,On Premise
+3002,The Celtic Knot,Allison Scott,Unknown,Unknown,On Premise
+14017,The Chariot,Allison Scott,Unknown,Unknown,On Premise
+24025,The Clif (P),Allison Scott,Unknown,Unknown,On Premise
+19021,The Front Porch (Z),Allison Scott,Unknown,Unknown,On Premise
+14005,The Grand,Allison Scott,Unknown,Unknown,On Premise
+24006,The Grand Saloon,Allison Scott,Unknown,Unknown,On Premise
+9005,The Legacy Castle,Allison Scott,Unknown,Unknown,On Premise
+13002,The Little Falls Tavern,Allison Scott,Unknown,Unknown,On Premise
+25078,The Shannon Rose (A),Allison Scott,Unknown,Unknown,On Premise
+8004,The Side Door (P),Allison Scott,Unknown,Unknown,On Premise
+17006,The Yard,Allison Scott,Unknown,Unknown,On Premise
+24031,Tommy's Tavern & Tap (Clifton),Allison Scott,Unknown,Unknown,On Premise
+12038,Tommy's Tavern + Tap (Wayne),Allison Scott,Unknown,Unknown,On Premise
+14010,Uncorked (P),Allison Scott,Totowa,Totowa Wed,On Premise
+17001,Underdog Lounge(P),Allison Scott,Unknown,Unknown,On Premise
+25052,Uno Chicago Grl (A)Clifto,Allison Scott,Unknown,Unknown,On Premise
+24054,Upper Montclair Cc (A),Allison Scott,Clifton,Clifton 2 Fri,On Premise
+24039,Veterans Post (9),Allison Scott,Unknown,Unknown,On Premise
+23013,Vfw 7165 (P),Allison Scott,Unknown,Unknown,On Premise
+12026,WAYNE ALE HOUSE & PIZZA,Allison Scott,Wayne,Wayne Wed,On Premise
+12057,YARD HOUSE 8384,Allison Scott,Unknown,Unknown,On Premise
+25049,Yesterdays (P),Allison Scott,Unknown,Unknown,On Premise
+10001,cherry's,Allison Scott,Unknown,Unknown,On Premise
+8006,pompton crafthouse,Allison Scott,Pompton Lakes,Wanaque Thu,On Premise
+250172,387 Oyster House & Bar,Andrew Lundy,Unknown,Unknown,On Premise
+250062,Aarti's World Disc Liq,Andrew Lundy,Unknown,Unknown,Off Premise
+250025,Abigails Cafe (Z),Andrew Lundy,Unknown,Unknown,On Premise
+250064,America Liquors,Andrew Lundy,Elizabeth,10061 Tue,Off Premise
+250121,Baltusrol Golf Club,Andrew Lundy,Unknown,Unknown,On Premise
+250133,Bayway World Of Liquor,Andrew Lundy,Unknown,Unknown,Off Premise
+250028,Beechwood Wine & Liq,Andrew Lundy,Unknown,Unknown,Off Premise
+250037,Beno's Liq (A),Andrew Lundy,Unknown,Unknown,Off Premise
+250024,Best Cellars (Summit),Andrew Lundy,Summit,Caldwell Thu,Off Premise
+250445,Blue Sunday Bar & Grill,Andrew Lundy,Unknown,Unknown,On Premise
+250023,Bottle King Springfield,Andrew Lundy,Unknown,Unknown,Off Premise
+250003,Breen's Wines & Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250015,Butcher Block,Andrew Lundy,Unknown,Unknown,Off Premise
+250016,Buy Rite Liq (A),Andrew Lundy,Unknown,Unknown,Off Premise
+250443,Buyrite Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250075,Cap N Cork Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250183,Chestnut St Spirits LLC,Andrew Lundy,Roselle Park,10056 Thu,Off Premise
+250170,D&R Liquor,Andrew Lundy,Hillside,10087 Thu,Off Premise
+250094,Darby Road,Andrew Lundy,Unknown,Unknown,On Premise
+250091,Denny's Liquors,Andrew Lundy,Elizabeth,10050 Tue,Off Premise
+250013,Deutscher Club Of Clark,Andrew Lundy,Unknown,Unknown,On Premise
+250006,Dittrick's W&L (A),Andrew Lundy,Unknown,Unknown,Off Premise
+254003,Drinq Linq The Liquor Store,Andrew Lundy,Cranford,10059 Wed,Off Premise
+250168,Echo Lake Country Club,Andrew Lundy,Unknown,Unknown,On Premise
+250112,Ever Blue Liquors,Andrew Lundy,Linden,Elizabeth Thu,Off Premise
+250040,Fanwood Liquors(A),Andrew Lundy,Unknown,Unknown,Off Premise
+250066,Fenrose Wine & Liq,Andrew Lundy,Plainfield,10080 Thu,Off Premise
+250115,Food Express,Andrew Lundy,Unknown,Unknown,Off Premise
+250164,Fujiyama Mama Restaurant MG,Andrew Lundy,Unknown,Unknown,On Premise
+250221,Garwood Restaurant,Andrew Lundy,Unknown,Unknown,On Premise
+250102,Hillside Liquors,Andrew Lundy,Hillside,Elizabeth Fri,Off Premise
+250038,Home Wine & Liquors (1850 Union),Andrew Lundy,Unknown,Unknown,Off Premise
+251008,Home Wines & Liquors (2401 Union),Andrew Lundy,Unknown,Unknown,Off Premise
+251005,Home Wines & Liquors (360 Union),Andrew Lundy,Unknown,Unknown,Off Premise
+250087,House of Wine & Liquor Westfield,Andrew Lundy,Westfield,10055 Thu,Off Premise
+250143,Jersey Fine Wines,Andrew Lundy,Unknown,Unknown,Off Premise
+251006,Kpot Korean BBQ,Andrew Lundy,Unknown,Unknown,On Premise
+250060,La Bamba,Andrew Lundy,Elizabeth,Elizabeth Fri,Off Premise
+250086,Linden Discount Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250077,Linwood Inn Tap House,Andrew Lundy,Unknown,Unknown,On Premise
+250110,Liquor City @ Sams Club,Andrew Lundy,Linden,Elizabeth Tue,Off Premise
+250442,Liquor Rangers,Andrew Lundy,Unknown,Unknown,Off Premise
+250101,Luis Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250136,M & M Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250801,Main Street Spirits,Andrew Lundy,Unknown,Unknown,Off Premise
+250069,Mega Liquors,Andrew Lundy,Elizabeth,10083 Wed,Off Premise
+250440,Metro Liquor (Linden),Andrew Lundy,Unknown,Unknown,Off Premise
+150249,Millburn Standard,Andrew Lundy,Unknown,Unknown,On Premise
+250078,Milton Liquors,Andrew Lundy,Springfield,Newark Fri,Off Premise
+250116,Office Beer Bar&Grill(A),Andrew Lundy,Unknown,Unknown,On Premise
+250048,Park Beverage,Andrew Lundy,Unknown,Unknown,Off Premise
+250084,Parkway Liquors(P),Andrew Lundy,Unknown,Unknown,Off Premise
+251004,Payless Liquor_2,Andrew Lundy,Unknown,Unknown,Off Premise
+250012,Peterson's Wine Unltd,Andrew Lundy,Unknown,Unknown,Off Premise
+250042,Pied Piper Liquor,Andrew Lundy,Unknown,Unknown,Off Premise
+250119,Pointe Grande Liquor,Andrew Lundy,Elizabeth,10073 Wed,Off Premise
+250046,Pregame Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250142,Queen City Liquors,Andrew Lundy,Plainfield,Elizabeth Fri,Off Premise
+250057,Rahway Discount Liquors (A),Andrew Lundy,Unknown,Unknown,Off Premise
+250097,Riverside Inn,Andrew Lundy,Unknown,Unknown,On Premise
+250032,Rotondo's Liquor,Andrew Lundy,Unknown,Unknown,Off Premise
+250011,Shop Rite of Westfield,Andrew Lundy,Westfield,Elizabeth Fri,Off Premise
+250134,Shoppers Paradise Liq,Andrew Lundy,Elizabeth,10076 Tue,Off Premise
+250441,Southwood Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+250033,The Station Bar & Grill,Andrew Lundy,Unknown,Unknown,On Premise
+250169,The Westfield Liquor Loft,Andrew Lundy,Unknown,Unknown,Off Premise
+150133,The Wine Rack Millburn,Andrew Lundy,Unknown,Unknown,Off Premise
+250161,The Wine Rack Summit,Andrew Lundy,Unknown,Unknown,Off Premise
+250071,Total Wine & More (Union),Andrew Lundy,Union,Elizabeth Fri,Off Premise
+250163,Trader Joes Westfield,Andrew Lundy,Unknown,Unknown,Off Premise
+251010,Triangle Liquors,Andrew Lundy,Unknown,Unknown,Off Premise
+120079,U S 1 Buy Rite (A),Andrew Lundy,Unknown,Unknown,Off Premise
+250138,Wine Anthology,Andrew Lundy,Unknown,Unknown,Off Premise
+250027,Wine Anthology (A),Andrew Lundy,Unknown,Unknown,Off Premise
+250005,Wine List Of Summit,Andrew Lundy,Unknown,Unknown,Off Premise
+250035,Wine Zone (P),Andrew Lundy,Unknown,Unknown,Off Premise
+250803,Witty's Fine Wine & Spirt,Andrew Lundy,Unknown,Unknown,Off Premise
+250100,World Famous Waiting Room,Andrew Lundy,Unknown,Unknown,On Premise
+230921,ACQUAVIVA RESTAURANT,Anthony Palmisano,Unknown,Unknown,On Premise
+230929,Airport Pub & Pkg,Anthony Palmisano,Unknown,Unknown,On Premise
+8009,Appio's Liquors,Anthony Palmisano,Pompton Lakes,10059 Fri,Off Premise
+231001,Atlantic Man Rodozio Stk,Anthony Palmisano,Unknown,Unknown,On Premise
+9003,B & B Wine&Liq,Anthony Palmisano,Unknown,Unknown,Off Premise
+230906,BBQ Chicken Franklin,Anthony Palmisano,Unknown,Unknown,On Premise
+231210,Bally Owen Golf Club,Anthony Palmisano,Hamburg,*Office,On Premise
+3001,Best Cellars (Wanaque),Anthony Palmisano,Wanaque,10076 Thu,Off Premise
+190902,Betsy Ross Diner,Anthony Palmisano,Unknown,Unknown,On Premise
+230903,Black Bear Golf(A),Anthony Palmisano,Franklin,Montague Wed,On Premise
+4002,Bloomingdale Discount Liq,Anthony Palmisano,Unknown,Unknown,Off Premise
+230930,Brick & Brew,Anthony Palmisano,Franklin,Montague Thu,On Premise
+10003,Buy Rite W &L Pompton(P),Anthony Palmisano,Pompton Plains,Wayne Tue,Off Premise
+6001,Cafe' Chameleon,Anthony Palmisano,Unknown,Unknown,On Premise
+1014,Chido Mexican Kitchen,Anthony Palmisano,Unknown,Unknown,On Premise
+4003,Cinco De Mayo (Z),Anthony Palmisano,Unknown,Unknown,On Premise
+8002,Country Convenience Store,Anthony Palmisano,Pompton Lakes,Wanaque Wed,Off Premise
+1002,Country Cottage Rest (P),Anthony Palmisano,Unknown,Unknown,On Premise
+230909,Coyote Cocina Mexicana,Anthony Palmisano,Unknown,Unknown,On Premise
+230915,Crystal Sprs/Wild Turkey,Anthony Palmisano,Hamburg,Montague Tue,On Premise
+1033,D'Boathaus Restaurant,Anthony Palmisano,Unknown,Unknown,On Premise
+191207,Daily Planet (A),Anthony Palmisano,Oak Ridge,10051 Fri,On Premise
+230917,Doc's Place (P),Anthony Palmisano,Unknown,Unknown,On Premise
+231305,Early American Tavern,Anthony Palmisano,Unknown,Unknown,On Premise
+8005,Empire Wine & Liquor,Anthony Palmisano,Pompton Lakes,Wanaque Mon,Off Premise
+3011,Flip's Bar (P),Anthony Palmisano,Wanaque,10058 Thu,On Premise
+8010,George's Market (A),Anthony Palmisano,Unknown,Unknown,Off Premise
+231207,Great Gorge Golf (A) Club,Anthony Palmisano,Unknown,Unknown,On Premise
+1015,Greenwood Lake Disc.(P),Anthony Palmisano,Unknown,Unknown,Off Premise
+231803,High Point Gc/Rest (P),Anthony Palmisano,Unknown,Unknown,On Premise
+1031,Highland Wine&Liquor Inc,Anthony Palmisano,Hewitt,West Milford Fri,Off Premise
+7001,Home Wine and Liquors,Anthony Palmisano,Riverdale,10053 Tue,Off Premise
+1009,Hootch Hut (P),Anthony Palmisano,West Milford,West Milford Thu,Off Premise
+3014,Il Palazzo (Z),Anthony Palmisano,Unknown,Unknown,On Premise
+231311,Indian Spice Route 23,Anthony Palmisano,Unknown,Unknown,On Premise
+230907,Irish Cottage Inn,Anthony Palmisano,Unknown,Unknown,On Premise
+1028,J & S Roadhouse,Anthony Palmisano,Unknown,Unknown,On Premise
+1010,Jimmy Geez(North)Bar/Gril,Anthony Palmisano,Unknown,Unknown,On Premise
+4007,Karls Stumble Inn,Anthony Palmisano,Unknown,Unknown,On Premise
+8007,Krauszer's Liquor Wine and Spirits,Anthony Palmisano,Unknown,Unknown,Off Premise
+1021,M & M Discount Liq,Anthony Palmisano,West Milford,West Milford Wed,Off Premise
+231805,Meloi Liquors,Anthony Palmisano,Montague,Montague Thu,Off Premise
+231209,Mt Creek Hex Lg(North) A,Anthony Palmisano,Unknown,Unknown,On Premise
+231214,Mt Creek Kink (So)A,Anthony Palmisano,Unknown,Unknown,On Premise
+1035,Old School Pub P),Anthony Palmisano,Unknown,Unknown,On Premise
+2002,Ringwood Discount Liquors,Anthony Palmisano,Ringwood,Wanaque Wed,Off Premise
+2003,Ringwood W&L,Anthony Palmisano,Ringwood,Wanaque Thu,Off Premise
+5001,River Place Food Store,Anthony Palmisano,Butler,Wanaque Fri,Off Premise
+6002,Roserne Liquors North,Anthony Palmisano,Kinnelon,Riverdale Tue,Off Premise
+5006,Roserne Pkg Store South,Anthony Palmisano,Butler,Wanaque Thu,Off Premise
+2004,Sam's Bar and Grill,Anthony Palmisano,Unknown,Unknown,On Premise
+8008,Shoppers Disc(A)Pompton,Anthony Palmisano,Pompton Lakes,Wanaque Tue,Off Premise
+231307,Skylands Wine& Beer Garden,Anthony Palmisano,Unknown,Unknown,On Premise
+230119,Smokey's Brick Oven Tav.,Anthony Palmisano,Unknown,Unknown,On Premise
+230925,Springs Bistro Biosphere,Anthony Palmisano,Unknown,Unknown,On Premise
+231002,Stew N Dolly's Place,Anthony Palmisano,Unknown,Unknown,On Premise
+191208,The Grill Room,Anthony Palmisano,Unknown,Unknown,On Premise
+231213,The Kites (P),Anthony Palmisano,Vernon,Montague Wed,On Premise
+231304,The Lamp Post Inn,Anthony Palmisano,Unknown,Unknown,On Premise
+1023,The New Jessies Kettle(P),Anthony Palmisano,Hewitt,West Milford Wed,On Premise
+4004,The River Of Beer,Anthony Palmisano,Bloomingdale,Riverdale Thu,On Premise
+231309,The Stuffed Olive_2,Anthony Palmisano,Unknown,Unknown,On Premise
+231303,The Sussex Saloon,Anthony Palmisano,Unknown,Unknown,On Premise
+1004,The Vreeland Store,Anthony Palmisano,Unknown,Unknown,On Premise
+231302,Thirsty Farmer,Anthony Palmisano,Sussex,Montague Wed,On Premise
+231211,Tony's Pizza (P),Anthony Palmisano,Unknown,Unknown,On Premise
+4005,Turnpike Discount Liquors,Anthony Palmisano,Unknown,Unknown,Off Premise
+1012,Uncorked Wines & Spirits (West Milford),Anthony Palmisano,West Milford,West Milford Thu,Off Premise
+3005,Usa Wine Traders (Wanaque),Anthony Palmisano,Wanaque,Oakland Wed,Off Premise
+4009,Usa Wine Traders Club (Bloomingdale),Anthony Palmisano,Bloomingdale,10054 Tue,Off Premise
+191209,Valley Tavern,Anthony Palmisano,Unknown,Unknown,On Premise
+1029,Vault Liquors,Anthony Palmisano,Unknown,Unknown,Off Premise
+231206,Vfw 8441 Vernon,Anthony Palmisano,Unknown,Unknown,On Premise
+1214,Whiskey Wolf Tavern (P),Anthony Palmisano,Unknown,Unknown,On Premise
+191103,Whistle Stop (P),Anthony Palmisano,Newfoundland,West Milford Thu,On Premise
+3006,Wine 2 Spirits (P),Anthony Palmisano,Wanaque,Wanaque Wed,Off Premise
+230306,AG Pizza & Restaurant - Newton,Brian Sengebush,Unknown,Unknown,On Premise
+231703,AG Pizza and Restaurant (Branchville),Brian Sengebush,Unknown,Unknown,On Premise
+190709,Adams (P),Brian Sengebush,Rockaway,Rockaway Thu,On Premise
+191502,Alice's (Z),Brian Sengebush,Unknown,Unknown,On Premise
+191719,American Lgn Stanhope,Brian Sengebush,Unknown,Unknown,On Premise
+230430,Applebee's Grill(A)Newton,Brian Sengebush,Unknown,Unknown,On Premise
+230406,Bearbrook Valley,Brian Sengebush,Unknown,Unknown,On Premise
+191718,Bell's Mansion,Brian Sengebush,Unknown,Unknown,On Premise
+230402,Bella Italio Rest.(P),Brian Sengebush,Unknown,Unknown,On Premise
+190104,Black Rabbit Saloon LLC,Brian Sengebush,Montville,10055 Thu,On Premise
+230422,Boomer Bar (P) & Grill,Brian Sengebush,Unknown,Unknown,On Premise
+190203,Boonton Lanes,Brian Sengebush,Unknown,Unknown,On Premise
+1024,Buffalo Wild Wings (Rockaway),Brian Sengebush,Unknown,Unknown,On Premise
+230411,Cesco's Pizza (P),Brian Sengebush,Unknown,Unknown,On Premise
+191003,Chabons Ii Liq/Bar (A),Brian Sengebush,Unknown,Unknown,Off Premise
+191104,Chapala Grill - Lake Hopatcong,Brian Sengebush,Unknown,Unknown,On Premise
+191305,Chapala Mexican Grill 4,Brian Sengebush,Unknown,Unknown,On Premise
+191007,Charley's Tavern,Brian Sengebush,Lake Hopatcong,Mt Arlington Mon,On Premise
+191004,Club 15(P),Brian Sengebush,Unknown,Unknown,On Premise
+190914,Colossal Restaurant,Brian Sengebush,Unknown,Unknown,On Premise
+190219,Columbia Inn,Brian Sengebush,Montville,Parsippany Fri,On Premise
+231717,Culver Liquor and Bar,Brian Sengebush,Unknown,Unknown,Off Premise
+191802,E & D Liquors (P),Brian Sengebush,Unknown,Unknown,On Premise
+191508,Elks Post 782 (Z),Brian Sengebush,Unknown,Unknown,On Premise
+231601,Farmstead Golf (P),Brian Sengebush,Unknown,Unknown,On Premise
+231713,Flatbrook Tap House (P),Brian Sengebush,Unknown,Unknown,On Premise
+230407,Fountain House (Z),Brian Sengebush,Unknown,Unknown,On Premise
+191706,Freddy's Lake House Bar And Grill,Brian Sengebush,Unknown,Unknown,On Premise
+191006,Gatwyns II (P),Brian Sengebush,Unknown,Unknown,On Premise
+190803,Germania Park,Brian Sengebush,Unknown,Unknown,On Premise
+231715,Gyp's Tavern,Brian Sengebush,Sandyston,10050 Wed,On Premise
+190108,Harrigan's Rest. (P),Brian Sengebush,Montville,Parsippany Thu,On Premise
+191818,Holiday Inn,Brian Sengebush,Unknown,Unknown,On Premise
+230702,Hyde-Away Rest & Tap Room,Brian Sengebush,Unknown,Unknown,On Premise
+230113,Industry,Brian Sengebush,Unknown,Unknown,On Premise
+231607,JJ's Bar and Package Goods LLC,Brian Sengebush,Unknown,Unknown,On Premise
+191008,Jefferson Diner & Tav(P),Brian Sengebush,Unknown,Unknown,On Premise
+191504,Jefferson House (A),Brian Sengebush,Unknown,Unknown,On Premise
+191722,Jeffrey A Miller Catering,Brian Sengebush,Unknown,Unknown,On Premise
+190214,Johnnie's Tavern,Brian Sengebush,Boonton,10054 Tue,On Premise
+231718,Jumboland Diner,Brian Sengebush,Unknown,Unknown,On Premise
+190923,Knotty Pine Pub (P),Brian Sengebush,Wharton,Wharton Thu,On Premise
+230122,Krogh's Restaurant & Brew Pub,Brian Sengebush,Sparta,Mt Arlington Fri,On Premise
+191808,La Mezcalita,Brian Sengebush,Unknown,Unknown,On Premise
+191500,Lake Hopatcong Cruises,Brian Sengebush,Unknown,Unknown,On Premise
+230116,Lake Mohawk Country Club,Brian Sengebush,Unknown,Unknown,On Premise
+190102,Lake Valhalla Club (P),Brian Sengebush,Unknown,Unknown,On Premise
+231710,Lakeside Pub (P),Brian Sengebush,Unknown,Unknown,On Premise
+231719,Layton Tavern,Brian Sengebush,Unknown,Unknown,On Premise
+190306,Lena y Carbon VII Parsippany,Brian Sengebush,Unknown,Unknown,On Premise
+191510,Lola's Restaurant,Brian Sengebush,Unknown,Unknown,On Premise
+190918,Luna Restaurant & Bar,Brian Sengebush,Unknown,Unknown,On Premise
+191009,Mason Street Grille,Brian Sengebush,Lake Hopatcong,10051 Thu,On Premise
+230304,Mc Q's Pub (P),Brian Sengebush,Unknown,Unknown,On Premise
+191505,Mckenna's Pub (P),Brian Sengebush,Lake Hopatcong,Mt Arlington Thu,On Premise
+190706,Mill Lane Tavern,Brian Sengebush,Unknown,Unknown,On Premise
+1017,Millers Ale House Rockawa,Brian Sengebush,Unknown,Unknown,On Premise
+230104,Mohawk House (P),Brian Sengebush,Unknown,Unknown,On Premise
+230424,Moose Lodge 432,Brian Sengebush,Unknown,Unknown,On Premise
+231714,Mountain House Tav & Gril,Brian Sengebush,Unknown,Unknown,On Premise
+190723,Muldoon's Steak & Pub,Brian Sengebush,Unknown,Unknown,On Premise
+190910,NORTE 175,Brian Sengebush,Unknown,Unknown,On Premise
+230307,Newton Country Club,Brian Sengebush,Unknown,Unknown,On Premise
+190217,Nostrana Ristorante,Brian Sengebush,Unknown,Unknown,On Premise
+230428,O'reilly Pub (P),Brian Sengebush,Newton,Branchville Fri,On Premise
+190925,Olive Garden Rockaway,Brian Sengebush,Unknown,Unknown,On Premise
+190206,Ombra,Brian Sengebush,Boonton,Rockaway Thu,On Premise
+190724,PF Changs,Brian Sengebush,Unknown,Unknown,On Premise
+191405,Pat's Bar (P),Brian Sengebush,Unknown,Unknown,On Premise
+191521,Patricks Pub (P),Brian Sengebush,Unknown,Unknown,On Premise
+191805,Pavilion Lounge(Z),Brian Sengebush,Unknown,Unknown,On Premise
+190606,Peace Pipe Cc (P),Brian Sengebush,Unknown,Unknown,On Premise
+190813,Picatinney Golf(NAFIB4-22-A-0036),Brian Sengebush,Unknown,Unknown,On Premise
+190809,Picatinny Main Exch,Brian Sengebush,Unknown,Unknown,Off Premise
+231609,Point 5 Lafayette,Brian Sengebush,Unknown,Unknown,Off Premise
+191618,Polo's Bar And Grill,Brian Sengebush,Unknown,Unknown,On Premise
+191407,Pub 199,Brian Sengebush,Mt Arlington,Mt Arlington Wed,On Premise
+190106,Rails Steakhouse (A),Brian Sengebush,Unknown,Unknown,On Premise
+190220,Reservoir Tavern(A),Brian Sengebush,Boonton,Parsippany Fri,On Premise
+231711,Riviera Maya,Brian Sengebush,Unknown,Unknown,On Premise
+230111,Rock Island Lake Club,Brian Sengebush,Unknown,Unknown,On Premise
+190905,Rockaway River Barn,Brian Sengebush,Unknown,Unknown,On Premise
+191609,Ron's Landmark,Brian Sengebush,Unknown,Unknown,On Premise
+191523,Rustic Texmex & Sports Bar,Brian Sengebush,Unknown,Unknown,On Premise
+191603,Sabor Latino,Brian Sengebush,Unknown,Unknown,On Premise
+190815,Sam Adam's Pub (NAFIB4-22-A-0036),Brian Sengebush,Unknown,Unknown,On Premise
+191715,Shakey Jake's (P),Brian Sengebush,Unknown,Unknown,On Premise
+190205,Sharky's West (P),Brian Sengebush,Unknown,Unknown,On Premise
+230405,Sheridan Lodge (P),Brian Sengebush,Unknown,Unknown,On Premise
+230312,Skyland Baseball,Brian Sengebush,Unknown,Unknown,On Premise
+230109,Skyview Golf Course (A),Brian Sengebush,Unknown,Unknown,On Premise
+230123,Sparta Lanes (Pino),Brian Sengebush,Unknown,Unknown,On Premise
+230103,St.Moritz Grill & Bar,Brian Sengebush,Sparta,Mt Arlington Tue,On Premise
+191601,Stoll Street Tavern,Brian Sengebush,Unknown,Unknown,On Premise
+191001,Stone Water,Brian Sengebush,Unknown,Unknown,On Premise
+191704,Stonewood Tavern,Brian Sengebush,Unknown,Unknown,On Premise
+230313,Swartswood,Brian Sengebush,Unknown,Unknown,Off Premise
+190903,Taphouse 15,Brian Sengebush,Unknown,Unknown,On Premise
+190704,Tavern On The Rocks,Brian Sengebush,Unknown,Unknown,On Premise
+190601,Thatcher Mcghee's (A),Brian Sengebush,Unknown,Unknown,On Premise
+191509,The Beacon,Brian Sengebush,Hopatcong,10053 Tue,On Premise
+1022,The Cheesecake Factory,Brian Sengebush,Unknown,Unknown,On Premise
+190807,The Club (NAFIB4-22-A-0036),Brian Sengebush,Unknown,Unknown,On Premise
+190707,The Exchange,Brian Sengebush,Unknown,Unknown,On Premise
+230401,The Greek's,Brian Sengebush,Newton,10051 Wed,Off Premise
+190312,The Knoll Country Club & Catering,Brian Sengebush,Unknown,Unknown,On Premise
+231606,The Lafayette House,Brian Sengebush,Unknown,Unknown,On Premise
+230426,The Newton Theatre,Brian Sengebush,Unknown,Unknown,On Premise
+190615,The Second Half On Main,Brian Sengebush,Unknown,Unknown,On Premise
+230421,The Sizzle BBQ Argentinian Steak House,Brian Sengebush,Unknown,Unknown,On Premise
+190503,The Station,Brian Sengebush,Mountain Lakes,Parsippany Wed,On Premise
+191507,The Windlass Rest (A),Brian Sengebush,Unknown,Unknown,On Premise
+230101,"Tomahawk Lake,Inc",Brian Sengebush,Unknown,Unknown,On Premise
+191816,Vasa Park,Brian Sengebush,Unknown,Unknown,On Premise
+230432,Vfw 5360 Newton(P),Brian Sengebush,Unknown,Unknown,On Premise
+230120,Village Saloon (P),Brian Sengebush,Unknown,Unknown,On Premise
+231806,Walpack Inn,Brian Sengebush,Unknown,Unknown,On Premise
+190921,White Owl Tavern,Brian Sengebush,Unknown,Unknown,On Premise
+23006,46 Discount Liquor Store,Chris Payton,Clifton,10064 Mon,Off Premise
+78003,Ani Service Station Inc,Chris Payton,Unknown,Unknown,Off Premise
+80035,Arcola Country C.,Chris Payton,Paramus,10058 Fri,On Premise
+81001,B & B Liquors (Fair Lawn),Chris Payton,Unknown,Unknown,Off Premise
+81018,B R C Catering (P),Chris Payton,Unknown,Unknown,On Premise
+38040,Buy Rite Discount Liquor,Chris Payton,Lodi,10053 Tue,Off Premise
+38021,Buy Rite Of Main St Lodi,Chris Payton,Lodi,Saddle Brook Tue,Off Premise
+38019,Circle Liquors,Chris Payton,Lodi,10052 Wed,Off Premise
+25045,Clifton Disc Liq (A),Chris Payton,Clifton,Clifton 1 Tue,Off Premise
+38028,Colombia Bakery Factory & Restaurant,Chris Payton,Unknown,Unknown,On Premise
+45005,Colonial Bar,Chris Payton,Unknown,Unknown,On Premise
+79004,Coronet Variety,Chris Payton,Maywood,Hackensack Thu,Off Premise
+76015,Discount Liq & Bar,Chris Payton,Saddle Brook,Saddle Brook Fri,Off Premise
+46033,Discount Lqr(A) Outlet,Chris Payton,Unknown,Unknown,Off Premise
+81012,Dutch House,Chris Payton,Fair Lawn,Rochelle Park Wed,On Premise
+80028,El Cid,Chris Payton,Unknown,Unknown,On Premise
+76012,Excelsior (Z),Chris Payton,Unknown,Unknown,On Premise
+47005,Exquisite W & L (A),Chris Payton,Ridgefield Park,Teaneck Thu,Off Premise
+35009,Fiesta (A),Chris Payton,Unknown,Unknown,On Premise
+25034,Figlar's (P),Chris Payton,Unknown,Unknown,Off Premise
+38007,Garden Liquors (P),Chris Payton,Lodi,Lodi Mon,Off Premise
+76001,Golden Pub (P),Chris Payton,Unknown,Unknown,On Premise
+47019,Hilton Garden Inn Ridgefield Park,Chris Payton,Unknown,Unknown,On Premise
+79002,Hollywd Liq&Deli (A),Chris Payton,Maywood,10056 Wed,Off Premise
+47009,Iga Supermarkets (A),Chris Payton,Unknown,Unknown,Off Premise
+78013,J R W & Liq (A),Chris Payton,Rochelle Park,Ridgewood Fri,Off Premise
+81017,JJ's Pub,Chris Payton,Unknown,Unknown,On Premise
+38001,JR Sports Bar & Liquors(Z),Chris Payton,Unknown,Unknown,Off Premise
+76018,Krauszer Liquor,Chris Payton,Unknown,Unknown,Off Premise
+38034,La Nota Restaurant Bar,Chris Payton,Unknown,Unknown,On Premise
+34007,Liquor Masters (P),Chris Payton,Hasbrouck Heights,South Hackensac Tue,Off Premise
+38016,Lodi Liquor Store(P),Chris Payton,Lodi,10066 Tue,Off Premise
+79007,Maywood Market(A),Chris Payton,Unknown,Unknown,Off Premise
+79005,Maywood Wine&Liq (A),Chris Payton,Unknown,Unknown,Off Premise
+34001,Meadowland Wine & Liquor,Chris Payton,Woodridge,South Hackensac Fri,Off Premise
+47003,Mk Valencia Rest & Lg(P),Chris Payton,Unknown,Unknown,On Premise
+81010,Morlot W & L (A),Chris Payton,Fair Lawn,Hawthorne Wed,Off Premise
+78011,Nanni's (A),Chris Payton,Unknown,Unknown,On Premise
+80053,Paramus Courtyard,Chris Payton,Unknown,Unknown,On Premise
+80025,Paramus Food Center,Chris Payton,Unknown,Unknown,Off Premise
+39003,Pompei's Little Market,Chris Payton,Unknown,Unknown,Off Premise
+34004,Princess Liquor's(P),Chris Payton,Unknown,Unknown,Off Premise
+76014,Que Pasta (A),Chris Payton,Unknown,Unknown,On Premise
+38017,Quick Stop Food & Liq,Chris Payton,Lodi,Saddle Brook Thu,Off Premise
+81011,Radburn Liquors (A,Chris Payton,Unknown,Unknown,Off Premise
+81031,Rail Yard Tavern (P),Chris Payton,Unknown,Unknown,On Premise
+80023,Red Lobster Paramus,Chris Payton,Unknown,Unknown,On Premise
+47011,Ridgefield Deli & Liq,Chris Payton,Ridgefield Park,Teaneck Thu,Off Premise
+80027,Ridgewood Country Club,Chris Payton,Paramus,Rochelle Park Tue,On Premise
+80029,Seoul Galbi,Chris Payton,Unknown,Unknown,On Premise
+38008,Shop Rite Liq.(A)Lodi,Chris Payton,Lodi,Saddle Brook Wed,Off Premise
+80010,Suburban Diner,Chris Payton,Unknown,Unknown,On Premise
+50016,Teaneck Quickshop(P)Conv,Chris Payton,Teaneck,Teaneck Fri,Off Premise
+34009,The Wine Rack Hasbrouck Hts,Chris Payton,Hasbrouck Heights,Hot Shot #10,Off Premise
+76010,Usa Wine Traders Club (Saddle Brook),Chris Payton,Saddle Brook,Saddle Brook Mon,Off Premise
+50007,Welsh Farms,Chris Payton,Unknown,Unknown,Off Premise
+35001,Westmont Liquors 64,Chris Payton,Unknown,Unknown,Off Premise
+47017,Westside Village (A),Chris Payton,Unknown,Unknown,On Premise
+50020,Wineland,Chris Payton,Teaneck,Teaneck Mon,Off Premise
+35002,Woodridge Wines & Liq(A),Chris Payton,Woodridge,10063 Wed,Off Premise
+34003,Yoshi Liq/Wine (P),Chris Payton,Unknown,Unknown,Off Premise
+31037,Delaware North Met Life Stadium,Chris Politano,Unknown,Unknown,On Premise
+44027,354 Steakhouse (A),Dan Lagala,Unknown,Unknown,On Premise
+49012,365 BBQ,Dan Lagala,Unknown,Unknown,On Premise
+44028,512 Bar,Dan Lagala,Unknown,Unknown,On Premise
+44012,690 Park,Dan Lagala,Unknown,Unknown,On Premise
+43007,American Classic Liq,Dan Lagala,Fairview,Fort Lee Fri,Off Premise
+48006,Andres Wine & Spirits,Dan Lagala,Unknown,Unknown,Off Premise
+46024,Anthony's Pharmacy,Dan Lagala,Unknown,Unknown,Off Premise
+49050,Bada Story (Z),Dan Lagala,Unknown,Unknown,On Premise
+46009,Banner Delicatessen,Dan Lagala,Unknown,Unknown,Off Premise
+49033,Banner Liquor Iii,Dan Lagala,Unknown,Unknown,Off Premise
+46008,Bella Wine & Liquor,Dan Lagala,Palisades Park,10091 Thu,Off Premise
+46002,Best Choice Liqrs (P),Dan Lagala,Unknown,Unknown,Off Premise
+46013,Boulevard Food Store,Dan Lagala,Unknown,Unknown,Off Premise
+43004,Boulevard Liq.(Fairview),Dan Lagala,Fairview,10067 Thu,Off Premise
+49019,Bp Gas Station,Dan Lagala,Fort Lee,10056 Thu,Off Premise
+44033,Brass Rail Pub_2,Dan Lagala,Unknown,Unknown,On Premise
+44001,Brazeiro Churrascaria,Dan Lagala,Unknown,Unknown,On Premise
+53001,Brownstone Pancake Factor,Dan Lagala,Unknown,Unknown,On Premise
+43013,Buy Rite Of Fairview,Dan Lagala,Fairview,Edgewater Mon,Off Premise
+43022,C & C Bar Factory,Dan Lagala,Unknown,Unknown,On Premise
+44014,Campbell's Wines & Liquor,Dan Lagala,Cliffside Park,Edgewater Thu,Off Premise
+43019,Cast Iron Pot (A),Dan Lagala,Unknown,Unknown,On Premise
+43002,Checo Supermarket,Dan Lagala,Unknown,Unknown,Off Premise
+49071,Chillers Grill (A),Dan Lagala,Unknown,Unknown,On Premise
+53005,Cliffs Steakhouse(A),Dan Lagala,Unknown,Unknown,On Premise
+44048,Clubhouse Cafe (P),Dan Lagala,Unknown,Unknown,On Premise
+49083,Courtyard By Marriott Edgewater,Dan Lagala,Unknown,Unknown,On Premise
+49074,Dong Bang Grill,Dan Lagala,Unknown,Unknown,On Premise
+49061,Double Tree Hotel Ft Lee,Dan Lagala,Unknown,Unknown,On Premise
+45018,Duri Pocha,Dan Lagala,Unknown,Unknown,On Premise
+49055,Edgewater Liquor (A),Dan Lagala,Edgewater,10085 Wed,Off Premise
+43032,El Caporal Mexican Food,Dan Lagala,Unknown,Unknown,On Premise
+43029,El Tio Taco Ii,Dan Lagala,Unknown,Unknown,On Premise
+46030,Elks Post 2475 (Z),Dan Lagala,Unknown,Unknown,On Premise
+43006,Fairview Liq & Groc.(A),Dan Lagala,Fairview,10050 Wed,Off Premise
+49032,Fairway Mkt & Gift(A),Dan Lagala,Unknown,Unknown,Off Premise
+44017,Frankie's Gastro,Dan Lagala,Unknown,Unknown,On Premise
+44008,GOGIYA,Dan Lagala,Unknown,Unknown,On Premise
+49057,Gammeeok,Dan Lagala,Unknown,Unknown,On Premise
+44006,Garden St. Wine & Liquor,Dan Lagala,Unknown,Unknown,Off Premise
+44010,Garden State Food&Liq (P),Dan Lagala,Cliffside Park,10058 Fri,Off Premise
+53007,Giovanni's Bicycle Club,Dan Lagala,Unknown,Unknown,On Premise
+46027,Grand Wine Bar/Karaoke(Z),Dan Lagala,Unknown,Unknown,On Premise
+49035,Gulf Express Fort Lee,Dan Lagala,Unknown,Unknown,Off Premise
+46011,Han Mi Supermkt (A),Dan Lagala,Unknown,Unknown,Off Premise
+46029,Hanam Daeji,Dan Lagala,Unknown,Unknown,On Premise
+49065,Haven Rest/Bar (A),Dan Lagala,Edgewater,Edgewater Thu,On Premise
+49056,Hmart Fresh (P),Dan Lagala,Unknown,Unknown,Off Premise
+49090,Homewood Suites Edgewater,Dan Lagala,Unknown,Unknown,On Premise
+49034,In Napoli (A),Dan Lagala,Unknown,Unknown,On Premise
+49016,Ipic Theaters,Dan Lagala,Unknown,Unknown,On Premise
+45002,JC&D Best Wine & Liquor,Dan Lagala,Unknown,Unknown,Off Premise
+49072,JJ Dak,Dan Lagala,Unknown,Unknown,On Premise
+46012,Jay Cee (P) Deli & Liq.,Dan Lagala,Palisades Park,10058 Tue,Off Premise
+49018,Jumong Restaurant,Dan Lagala,Unknown,Unknown,On Premise
+49036,Junction Liquors,Dan Lagala,Unknown,Unknown,Off Premise
+46031,Kang Ho Dong,Dan Lagala,Unknown,Unknown,On Premise
+43015,Kikos Liquors Ii,Dan Lagala,Fairview,Edgewater Tue,Off Premise
+43031,La Fortuna (P),Dan Lagala,Unknown,Unknown,On Premise
+53004,Lefkes Restaurant,Dan Lagala,Unknown,Unknown,On Premise
+48005,Leonia Wine & Spirits,Dan Lagala,Unknown,Unknown,Off Premise
+49044,Linwood Wine-Hudson Light,Dan Lagala,Fort Lee,*Office,Off Premise
+49027,Linwood Wine-Linwood Plaza,Dan Lagala,Fort Lee,Fort Lee Tue,Off Premise
+44016,Liquor City(A)Cliffside,Dan Lagala,Cliffside Park,Edgewater Fri,Off Premise
+49045,Liquor World,Dan Lagala,Fort Lee,Fort Lee Tue,Off Premise
+48002,Manor Wine & Liquor,Dan Lagala,Leonia,10078 Wed,Off Premise
+46017,Mariachi (Roku) (Z),Dan Lagala,Unknown,Unknown,On Premise
+44009,Metro Liquor (Cliffside Park),Dan Lagala,Cliffside Park,Edgewater Wed,Off Premise
+44052,Minit Mart_2,Dan Lagala,Cliffside Park,Edgewater Fri,Off Premise
+49066,Mitsuwa Market (A),Dan Lagala,Unknown,Unknown,Off Premise
+53002,Mr Bbq,Dan Lagala,Unknown,Unknown,On Premise
+46015,Mukeunji (Z),Dan Lagala,Unknown,Unknown,Off Premise
+44043,Mythos Greek Taverna,Dan Lagala,Unknown,Unknown,On Premise
+44035,O'Malleys Pub LLC DBA Blackbird Pub,Dan Lagala,Unknown,Unknown,On Premise
+49029,Obaltan,Dan Lagala,Unknown,Unknown,On Premise
+46003,Palisades Park Liq(P),Dan Lagala,Unknown,Unknown,Off Premise
+44038,Palisadium Club,Dan Lagala,Unknown,Unknown,On Premise
+49069,Pho 32,Dan Lagala,Unknown,Unknown,On Premise
+49076,Raku Izakaya (Z),Dan Lagala,Unknown,Unknown,On Premise
+45004,Ridgefield Liq (Z),Dan Lagala,Ridgefield,Palisades Park Wed,Off Premise
+49048,River Palm (A),Dan Lagala,Unknown,Unknown,On Premise
+46006,Rock 21,Dan Lagala,Unknown,Unknown,On Premise
+44049,Rome Liquor (Cliffside Park),Dan Lagala,Cliffside Park,10051 Wed,Off Premise
+43005,Rome Liquors (Fairview),Dan Lagala,Fairview,Edgewater Fri,Off Premise
+44025,Rudys (A),Dan Lagala,Unknown,Unknown,On Premise
+44047,Sedona Tap House,Dan Lagala,Unknown,Unknown,On Premise
+46010,So Noon Nan Jib,Dan Lagala,Unknown,Unknown,On Premise
+49053,Soho (Z),Dan Lagala,Unknown,Unknown,On Premise
+44044,Sonsonate Rest(P),Dan Lagala,Unknown,Unknown,On Premise
+46014,Soosang Hand Pocha,Dan Lagala,Unknown,Unknown,On Premise
+44040,Stop N Go Conven. (P),Dan Lagala,Cliffside Park,Edgewater Thu,Off Premise
+54006,Tenafly Fine Wine & Spirits,Dan Lagala,Tenafly,Norwood Wed,Off Premise
+46020,Third Floor Cafe,Dan Lagala,Unknown,Unknown,On Premise
+45015,Tivoli Restaurant,Dan Lagala,Unknown,Unknown,On Premise
+49031,Top Shelf Liquors,Dan Lagala,Unknown,Unknown,Off Premise
+49024,Ventana's Restaurant,Dan Lagala,Unknown,Unknown,On Premise
+44039,Villa Amalfi,Dan Lagala,Unknown,Unknown,On Premise
+44031,Viva La Margarita Cliffside Park,Dan Lagala,Unknown,Unknown,On Premise
+49041,WOOGA,Dan Lagala,Unknown,Unknown,On Premise
+201096,Whole Foods #10102 (Edgewater),Dan Lagala,Unknown,Unknown,Off Premise
+44002,Wine And Food Mart (Z),Dan Lagala,Unknown,Unknown,Off Premise
+54007,Wine Ventures,Dan Lagala,Tenafly,Norwood Tue,Off Premise
+44005,Winston Wine & Liq,Dan Lagala,Unknown,Unknown,Off Premise
+41015,99 Ranch Market,Dave Ehlers,Unknown,Unknown,Off Premise
+57001,Barrel & Brew Bar & Liq,Dave Ehlers,New Milford,Woodcliff Lake Wed,Off Premise
+56008,Bergenfield Liq & Fw,Dave Ehlers,Bergenfield,Englewood Cliff Fri,Off Premise
+40001,Bottle & Cork,Dave Ehlers,Hackensack,South Hackensac Fri,Off Premise
+52040,Burgundy Convenience Store,Dave Ehlers,Unknown,Unknown,Off Premise
+40022,Buy Rite Of Hackensack,Dave Ehlers,Hackensack,Saddle Brook Thu,Off Premise
+58004,Country Wine & Liquors,Dave Ehlers,Unknown,Unknown,Off Premise
+41012,Deli Mart (A),Dave Ehlers,Hackensack,10062 Tue,Off Premise
+52008,Englewood Liq (A),Dave Ehlers,Unknown,Unknown,Off Premise
+52011,Englewood Wine (A),Dave Ehlers,Englewood,Englewood Cliff Thu,Off Premise
+52025,Englewood Wine and Spirits,Dave Ehlers,Unknown,Unknown,Off Premise
+40017,Essex St Liquor and Wine,Dave Ehlers,Hackensack,Hackensack Wed,Off Premise
+51004,Fill Er Up Kosher Wine(P),Dave Ehlers,Teaneck,Teaneck Tue,Off Premise
+51013,G & G Liquors,Dave Ehlers,Unknown,Unknown,Off Premise
+41005,George's Liq,Dave Ehlers,Hackensack,10068 Thu,Off Premise
+52004,Grand Liquor & Delicatesen,Dave Ehlers,Unknown,Unknown,Off Premise
+51008,H & R Disc. Liq (P),Dave Ehlers,Teaneck,Teaneck Thu,Off Premise
+40010,Hackensack Liquors,Dave Ehlers,Hackensack,10080 Tue,Off Premise
+57003,Joes Beer Wine & Spirits,Dave Ehlers,New Milford,Woodcliff Lake Thu,Off Premise
+52013,Lulu Lounge,Dave Ehlers,Unknown,Unknown,On Premise
+57006,New Milford Liquors,Dave Ehlers,New Milford,Woodcliff Lake Thu,Off Premise
+40037,Parisi Deli,Dave Ehlers,Hackensack,10056 Wed,Off Premise
+56007,Portland Wine & Liquor,Dave Ehlers,Unknown,Unknown,Off Premise
+58002,River Edge Wine & Liquor,Dave Ehlers,Unknown,Unknown,Off Premise
+52029,Santa Barbara,Dave Ehlers,Unknown,Unknown,Off Premise
+52015,Shop Rite Liq (A)Englewd,Dave Ehlers,Englewood,Teaneck Fri,Off Premise
+40004,Simple Simon's (Z),Dave Ehlers,Hackensack,Lodi Fri,Off Premise
+51018,Teaneck Discount Liquor,Dave Ehlers,Teaneck,10074 Wed,Off Premise
+56013,Time Lounge And Liq (A),Dave Ehlers,Bergenfield,10075 Tue,Off Premise
+58001,Total Wine & More (River Edge),Dave Ehlers,River Edge,Box Met Life Tue,Off Premise
+14007,Total Wine & More (Totowa),Dave Ehlers,Totowa,Box Glen Rock Fri,Off Premise
+56015,VINEYARD,Dave Ehlers,Bergenfield,Englewood Cliff Thu,Off Premise
+52019,W E Beverage (A),Dave Ehlers,Unknown,Unknown,Off Premise
+50013,Wine & More (P),Dave Ehlers,Unknown,Unknown,Off Premise
+39012,Wine And Liq Depot(A),Dave Ehlers,South Hackensac,South Hackensac Wed,Off Premise
+12089,FRANKFORD FD / NJ STATE FAIR,Default,Unknown,Unknown,Off Premise
+120002,PICNIC,Default,Unknown,Unknown,Off Premise
+1001,Watershed Pub & Deli (P),Default,Unknown,Unknown,Off Premise
+20030,10th Ave Liq & Food (P),Derrick Laws,Paterson,Paterson 4 Fri,Off Premise
+20027,230 Liq & Groc.(A),Derrick Laws,Paterson,10089 Wed,Off Premise
+15020,Angel's Wine & Liquors,Derrick Laws,Paterson,10051 Fri,Off Premise
+22006,Ant's Bar & Liquors,Derrick Laws,Paterson,Paterson 4 Thu,Off Premise
+21031,Broadway Liq (A),Derrick Laws,Paterson,10062 Wed,Off Premise
+20127,Brothers A&C Pizza (P),Derrick Laws,Unknown,Unknown,On Premise
+22022,C Town (A),Derrick Laws,Unknown,Unknown,Off Premise
+20089,Carlitto's Bar(P),Derrick Laws,Unknown,Unknown,On Premise
+21045,Dorta Liquor (A),Derrick Laws,Paterson,10061 Thu,Off Premise
+20048,Downtown Cafe (P),Derrick Laws,Unknown,Unknown,On Premise
+22032,Economy Liquors,Derrick Laws,Paterson,Paterson 4 Mon,Off Premise
+20125,El Escondite Bar and Restaurant,Derrick Laws,Unknown,Unknown,On Premise
+20131,El Fogon Rest,Derrick Laws,Paterson,Paterson 1 Thu,On Premise
+15013,El Oasis,Derrick Laws,Paterson,10064 Mon,Off Premise
+21012,Elks Ldge 333 (Z) Pater.,Derrick Laws,Paterson,Hot Shot #9,On Premise
+21048,Ferraro's Liquor,Derrick Laws,Paterson,Paterson 4 Wed,Off Premise
+22067,Gonzalez Liq & Bar(A),Derrick Laws,Paterson,10055 Fri,Off Premise
+20075,Griselda Rest.(A),Derrick Laws,Unknown,Unknown,On Premise
+20040,Hiciano Liquor Store,Derrick Laws,Paterson,Paterson 2 Wed,Off Premise
+17002,Hillcrest Liqrs (A),Derrick Laws,Paterson,10050 Wed,Off Premise
+20028,Integrity Masonic,Derrick Laws,Unknown,Unknown,On Premise
+20066,J & B Bar & Liq (Z),Derrick Laws,Paterson,Paterson 2 Tue,Off Premise
+20058,Krystal Bar(P) & Liqs.,Derrick Laws,Paterson,Paterson 3 Fri,On Premise
+20005,La Sorpresa Liq (P),Derrick Laws,Paterson,Hot Shot #9,Off Premise
+20079,Limestone Liquors (A),Derrick Laws,Paterson,100115 Tue,Off Premise
+15037,Liquor Gallery (Paterson),Derrick Laws,Paterson,10064 Tue,Off Premise
+21035,M & R Disc (A) Liqs.,Derrick Laws,Paterson,10068 Tue,Off Premise
+20129,Main Discount (P) Liqs.,Derrick Laws,Paterson,Paterson 3 Wed,Off Premise
+20025,Mercer Bar & Liquors,Derrick Laws,Paterson,10096 Thu,Off Premise
+15069,Mexico Bar & Grill,Derrick Laws,Unknown,Unknown,On Premise
+20076,Moca Liquors Ii,Derrick Laws,Unknown,Unknown,Off Premise
+20060,Moya E.Bar&Liq.(Z),Derrick Laws,Unknown,Unknown,Off Premise
+15012,Pal's Liquor,Derrick Laws,Paterson,Paterson 1 Fri,Off Premise
+20038,Patsy's (A) Tavern,Derrick Laws,Unknown,Unknown,On Premise
+21050,Quis Queya Liquor(P),Derrick Laws,Paterson,Paterson 4 Tue,Off Premise
+20080,Raphael & Angel Liq (A),Derrick Laws,Paterson,100115 Wed,Off Premise
+22053,Rincon Centroamericano,Derrick Laws,Unknown,Unknown,On Premise
+21001,Rocky's Liquor Store,Derrick Laws,Paterson,Paterson 2 Thu,Off Premise
+15023,Santana's Sport(P)Bella,Derrick Laws,Paterson,Paterson 3 Mon,Off Premise
+20126,Scheps Discount Bar/Liq,Derrick Laws,Unknown,Unknown,Off Premise
+27027,Shamrock B&G (P),Derrick Laws,Unknown,Unknown,On Premise
+13001,Shop Rite Liq (A)Littlefl,Derrick Laws,Little Falls,Totowa Wed,Off Premise
+23004,Shop Rite Wines/Spirits,Derrick Laws,Clifton,Box Clifton Wed,Off Premise
+21033,The Liquor Shop,Derrick Laws,Paterson,Box NB Liquors Thu,Off Premise
+20037,The Point Liquor & Bar,Derrick Laws,Paterson,10052 Mon,Off Premise
+15008,Westmount Country Club,Derrick Laws,Unknown,Unknown,On Premise
+20041,Yaremy Liquors,Derrick Laws,Paterson,10062 Fri,Off Premise
+170187,325 Bergen Liquor,Dylan Rubino,Jersey City,10077 Fri,Off Premise
+170081,A & S Liquors,Dylan Rubino,Jersey City,10063 Fri,Off Premise
+170186,A&A Liquor (P),Dylan Rubino,Jersey City,10053 Fri,Off Premise
+170909,A2Z Wine Club,Dylan Rubino,Secaucus,Secaucus Thu,Off Premise
+170230,Aivan Liq (P),Dylan Rubino,Jersey City,Jersey City Mon,Off Premise
+170250,American Liquor,Dylan Rubino,Unknown,Unknown,Off Premise
+170263,Aramark at Liberty Science Center,Dylan Rubino,Unknown,Unknown,On Premise
+178104,Asian Grill & Sushi,Dylan Rubino,Unknown,Unknown,On Premise
+170252,Baldwin W & L,Dylan Rubino,Jersey City,Jersey City Tue,Off Premise
+172050,Bar Sagua,Dylan Rubino,Unknown,Unknown,On Premise
+170277,Bareburger (Jersey City),Dylan Rubino,Unknown,Unknown,On Premise
+170261,Bela Wine & Spirits_2,Dylan Rubino,Unknown,Unknown,Off Premise
+170190,Belmont Wine & Liquors,Dylan Rubino,Jersey City,Jersey City Tue,Off Premise
+170208,Benny's Liq & Deli,Dylan Rubino,Guttenberg,Jersey City Fri,Off Premise
+171327,Bergenline Liquor (Z),Dylan Rubino,Unknown,Unknown,Off Premise
+178005,Best Liquors & Deli,Dylan Rubino,Unknown,Unknown,Off Premise
+178014,Best Liquors (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170041,Binny's Liquors (306 Jersey City),Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170182,Binnys Liquors (1062 Jersey City),Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170262,Blarney Pub,Dylan Rubino,Unknown,Unknown,Off Premise
+170069,Blvd Liquors (P),Dylan Rubino,Jersey City,10086 Wed,Off Premise
+170224,Bond Drugs,Dylan Rubino,Jersey City,Secaucus Wed,Off Premise
+170086,Bottles Jersey City,Dylan Rubino,Jersey City,10050 Tue,Off Premise
+170063,Boulevard Mart & Liq (A),Dylan Rubino,Jersey City,Secaucus Thu,Off Premise
+178002,Boulevard W & L (P),Dylan Rubino,Unknown,Unknown,Off Premise
+178100,Broadway Wine & Liquor,Dylan Rubino,Unknown,Unknown,Off Premise
+170310,Buy & Savings Ii (P),Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170169,Buy Rite North Bergen,Dylan Rubino,North Bergen,10063 Thu,Off Premise
+170163,Buy Rite Union City,Dylan Rubino,Union City,10053 Tue,Off Premise
+170107,Central Wine And Liquors,Dylan Rubino,Union City,10052 Fri,Off Premise
+170914,Chili's Secaucus,Dylan Rubino,Unknown,Unknown,On Premise
+170031,City Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170099,Columbia Park Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170043,Communipaw Liqs (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170151,Cool Vines,Dylan Rubino,Jersey City,10051 Tue,Off Premise
+170023,Corks & Bottles (P),Dylan Rubino,Guttenberg,10077 Thu,Off Premise
+173073,Corkscrew Bar,Dylan Rubino,Unknown,Unknown,On Premise
+170049,Cosmo Liquors & Grocery,Dylan Rubino,Jersey City,10059 Thu,Off Premise
+170916,Courtyard Secaucus Meadowlands,Dylan Rubino,Unknown,Unknown,On Premise
+172048,Cragie On Park,Dylan Rubino,Unknown,Unknown,Off Premise
+170047,Crescent Wines & Liq (P),Dylan Rubino,Jersey City,Jersey City Wed,Off Premise
+171346,Crown Liquor,Dylan Rubino,Union City,Secaucus Mon,Off Premise
+170293,Dagda,Dylan Rubino,Unknown,Unknown,On Premise
+170097,Discount Liquor,Dylan Rubino,Jersey City,10052 Thu,Off Premise
+170027,Discount Liquors West New York,Dylan Rubino,Unknown,Unknown,Off Premise
+170168,Discount Wine & Spirits,Dylan Rubino,Unknown,Unknown,Off Premise
+170157,Dorrian's Restaurant,Dylan Rubino,Unknown,Unknown,On Premise
+170039,Downtown Liquor,Dylan Rubino,Unknown,Unknown,Off Premise
+179013,Dublin Yard,Dylan Rubino,Unknown,Unknown,On Premise
+170222,E & E Wine & Liq (P),Dylan Rubino,Jersey City,10050 Mon,Off Premise
+170299,E-Z Market & Liq (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170212,Empire Liq (P),Dylan Rubino,West New York,Secaucus Thu,Off Premise
+17027,FOOD BAZAAR,Dylan Rubino,Unknown,Unknown,Off Premise
+171320,Figi Wine & Liq (P),Dylan Rubino,Union City,10062 Tue,Off Premise
+178021,Five Corner Liquor Store,Dylan Rubino,Unknown,Unknown,Off Premise
+170233,Five Star Liquors,Dylan Rubino,Jersey City,Jersey City Tue,Off Premise
+171353,Fork Hill Kitchen,Dylan Rubino,Union City,Secaucus Wed,On Premise
+170127,Fragoso Liquors,Dylan Rubino,Union City,Secaucus Wed,Off Premise
+170430,Franklin Social Club,Dylan Rubino,Jersey City,10068 Wed,On Premise
+171347,Fuerte Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170033,Fulton Liquors (P),Dylan Rubino,Jersey City,Jersey City Fri,Off Premise
+170202,Golden Liquors (P),Dylan Rubino,North Bergen,Jersey City Mon,Off Premise
+170267,Grace O'malleys,Dylan Rubino,Jersey City,Jersey City Thu,On Premise
+170192,Greene Hook Resturant,Dylan Rubino,Unknown,Unknown,On Premise
+170199,H & H Discount Liq (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170218,HD Liquors,Dylan Rubino,Guttenberg,Secaucus Tue,Off Premise
+178009,Heaven Liquors,Dylan Rubino,Weehawken,Secaucus Thu,Off Premise
+170103,Heaven's Liquor & Deli,Dylan Rubino,Jersey City,10057 Wed,Off Premise
+170198,Heights Liquors,Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170029,Hollywood Liqs (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170160,Home Wines & Liquors (North Bergen),Dylan Rubino,Unknown,Unknown,Off Premise
+178013,Hudson Blue,Dylan Rubino,Unknown,Unknown,On Premise
+170119,Hudson Wine & Liq (P),Dylan Rubino,West New York,10079 Wed,Off Premise
+170144,Hudson Wine Co (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170291,IKOS Greek Mediterranean,Dylan Rubino,Jersey City,Jersey City Fri,On Premise
+170030,International Liqs (P),Dylan Rubino,Union City,Secaucus Wed,Off Premise
+171337,J & L Liquors (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170312,J B Liquors,Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+28006,J B Liquors_2,Dylan Rubino,Unknown,Unknown,Off Premise
+170080,J&R Liquors & Deli,Dylan Rubino,Jersey City,Jersey City Wed,Off Premise
+170146,Jenny's Liq,Dylan Rubino,Unknown,Unknown,Off Premise
+170072,Jersey Farm & Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170001,Jersey Wine & Spirits,Dylan Rubino,Unknown,Unknown,Off Premise
+170084,K O P Liquors (P),Dylan Rubino,Jersey City,Jersey City Fri,Off Premise
+171321,Kikos Liquor (P),Dylan Rubino,Union City,Secaucus Fri,Off Premise
+170073,Kings Liquor,Dylan Rubino,Jersey City,10062 Mon,Off Premise
+170109,Kraemer's Liquor Store (P),Dylan Rubino,Unknown,Unknown,Off Premise
+179014,Krauszers (Secaucus),Dylan Rubino,Unknown,Unknown,Off Premise
+170102,L&T Liquors,Dylan Rubino,Jersey City,10066 Fri,Off Premise
+170082,Larry's Liquors,Dylan Rubino,Jersey City,10051 Tue,Off Premise
+171335,Latino's Liquor (P),Dylan Rubino,West New York,10075 Wed,Off Premise
+170121,Lee's Liquor & Grocery Store,Dylan Rubino,Unknown,Unknown,Off Premise
+171412,Left Bank Burger Bar (A),Dylan Rubino,Unknown,Unknown,On Premise
+173062,Liberty Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+171402,Liberty Wine (P) & Deli,Dylan Rubino,Unknown,Unknown,Off Premise
+170138,Light Horse Tavern (A),Dylan Rubino,Unknown,Unknown,On Premise
+170122,Liquor Boss,Dylan Rubino,Jersey City,10055 Thu,Off Premise
+170087,Liquor Mart (Jersey City),Dylan Rubino,Jersey City,Jersey City Mon,Off Premise
+170113,Lira Ii Liquor,Dylan Rubino,Unknown,Unknown,On Premise
+171348,Los Laureles Liq (Z),Dylan Rubino,Unknown,Unknown,Off Premise
+170040,Los Padrinos,Dylan Rubino,West New York,10077 Thu,Off Premise
+170276,Mamak House,Dylan Rubino,Unknown,Unknown,On Premise
+170024,Manhatten Liquors,Dylan Rubino,Jersey City,10057 Wed,Off Premise
+170188,Market Liquors,Dylan Rubino,Jersey City,10054 Thu,Off Premise
+170105,Mars Deli & Liquor,Dylan Rubino,Jersey City,10052 Mon,Off Premise
+170193,Mcginley Square Pub,Dylan Rubino,Unknown,Unknown,On Premise
+170083,Metro Liquor (69 Jersey City),Dylan Rubino,Jersey City,Jersey City Wed,Off Premise
+170034,Metro Liquors (1212 Jersey City),Dylan Rubino,Jersey City,10050 Fri,Off Premise
+170183,Mlk Liquor (455 Jersey City),Dylan Rubino,Jersey City,Jersey City Mon,Off Premise
+170077,Moon Liquors (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170075,New Junction Liquors,Dylan Rubino,Jersey City,Jersey City Tue,Off Premise
+170089,New Orient Liquor,Dylan Rubino,Jersey City,10068 Tue,Off Premise
+170057,New Town Liquors (P),Dylan Rubino,Jersey City,Jersey City Fri,Off Premise
+171400,Newport Spirits (P),Dylan Rubino,Unknown,Unknown,Off Premise
+178015,Noble Discount Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170189,Ocean One Stop Liquor,Dylan Rubino,Jersey City,Jersey City Wed,Off Premise
+171340,PF Changs China Bistro (West NY),Dylan Rubino,Unknown,Unknown,On Premise
+170094,Palace Drugs (P),Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170046,Palisade Wine & Liquor,Dylan Rubino,Unknown,Unknown,Off Premise
+178003,Park Ave Wine & Liq Gros.,Dylan Rubino,Weehawken,10056 Wed,Off Premise
+170254,Park Tavern,Dylan Rubino,Unknown,Unknown,On Premise
+170185,Pastore's Wine & Liquor,Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170106,Paulino Liquors,Dylan Rubino,Jersey City,10050 Fri,Off Premise
+170211,Pavan Liquors (P),Dylan Rubino,West New York,10072 Thu,Off Premise
+171349,Payano Liquors,Dylan Rubino,Union City,10062 Fri,Off Premise
+170251,Peckmans Pharmacy,Dylan Rubino,Jersey City,10050 Fri,Off Premise
+170195,Pena Liquor (P),Dylan Rubino,Unknown,Unknown,Off Premise
+173077,Podewitz Liquor & Deli,Dylan Rubino,Unknown,Unknown,Off Premise
+170181,Power Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+170367,Punjab Meet House,Dylan Rubino,Unknown,Unknown,On Premise
+178018,Rancho Mateo,Dylan Rubino,Unknown,Unknown,On Premise
+170364,Red Feast W & L (A),Dylan Rubino,Jersey City,Jersey City Fri,Off Premise
+170091,Refined Wine and Spirits,Dylan Rubino,Unknown,Unknown,Off Premise
+170917,Regal Secaucus ShowPlace14,Dylan Rubino,Unknown,Unknown,Off Premise
+170178,Reuben Liq (Uc) (P),Dylan Rubino,Unknown,Unknown,Off Premise
+173033,Royal Liquors & Deli,Dylan Rubino,Jersey City,10055 Tue,Off Premise
+178020,STOP & GO LIQUORS,Dylan Rubino,North Bergen,10053 Fri,Off Premise
+178101,Sals Deli,Dylan Rubino,North Bergen,Secaucus Wed,Off Premise
+170266,San Patricios Jersey City,Dylan Rubino,Jersey City,Hot Shot #8,On Premise
+170079,Sigmond Liquors (A),Dylan Rubino,Jersey City,10050 Wed,Off Premise
+170088,Sip Discount Liq (A),Dylan Rubino,Jersey City,Jersey City Thu,Off Premise
+170062,Sparrow Hill Market &Liq (Jersey City),Dylan Rubino,Unknown,Unknown,Off Premise
+179018,Te-Amo,Dylan Rubino,Unknown,Unknown,On Premise
+170314,The Brightside Tavern,Dylan Rubino,Unknown,Unknown,On Premise
+170915,The Franklin Bar & Restaurant,Dylan Rubino,Secaucus,Secaucus Tue,On Premise
+174102,The Galaxy Drug Store,Dylan Rubino,Guttenberg,10065 Mon,Off Premise
+178001,Tonnelle Wine & Liq,Dylan Rubino,Unknown,Unknown,Off Premise
+170203,Town Beverage,Dylan Rubino,North Bergen,Secaucus Thu,Off Premise
+171322,Twin City Liquors,Dylan Rubino,Union City,Secaucus Thu,Off Premise
+170015,Twin City Liquors (A),Dylan Rubino,Unknown,Unknown,Off Premise
+170096,Union City Liquors,Dylan Rubino,Union City,10061 Tue,Off Premise
+171323,Union Liquors,Dylan Rubino,Union City,10052 Fri,Off Premise
+170013,Universal Liquors (A),Dylan Rubino,Union City,Secaucus Fri,Off Premise
+172051,WNY Liquors,Dylan Rubino,West New York,Secaucus Thu,Off Premise
+171405,Waterfront Wine & Liq(P),Dylan Rubino,Unknown,Unknown,Off Premise
+170074,Webster Liquors,Dylan Rubino,Unknown,Unknown,Off Premise
+178010,Weehawken Deli & Liquor,Dylan Rubino,Unknown,Unknown,Off Premise
+170071,West Side Liquors,Dylan Rubino,Jersey City,Jersey City Fri,Off Premise
+170286,West Side Liquors (358 Jersey City),Dylan Rubino,Jersey City,10063 Fri,Off Premise
+170092,Willies Liq (P),Dylan Rubino,Unknown,Unknown,Off Premise
+170012,Wine Outlet,Dylan Rubino,Unknown,Unknown,Off Premise
+178000,Wine Spot,Dylan Rubino,North Bergen,10050 Fri,Off Premise
+170191,Wine Warehouse (P) (Union City),Dylan Rubino,Union City,Secaucus Tue,Off Premise
+170400,Yugs Liquors,Dylan Rubino,Jersey City,10053 Mon,Off Premise
+172049,Z & M Liquors,Dylan Rubino,Jersey City,10061 Tue,Off Premise
+152015,954 Liquors,Hakan Sadik,Newark,10050 Wed,Off Premise
+150669,A-1 Payless Liquors,Hakan Sadik,Irvington,10054 Thu,Off Premise
+150671,Al - Liquors,Hakan Sadik,Irvington,Newark Thu,Off Premise
+150612,All Brothers Ii (Irvington),Hakan Sadik,Irvington,10051 Tue,Off Premise
+152007,All Brothers Liquors #3 (Newark),Hakan Sadik,Newark,Newark Fri,Off Premise
+150125,American Whiskey Newark,Hakan Sadik,Unknown,Unknown,On Premise
+150607,Angel Liquors,Hakan Sadik,Newark,10055 Wed,Off Premise
+152030,Austin Liquor,Hakan Sadik,Newark,10053 Tue,Off Premise
+152032,Avenue Liquors,Hakan Sadik,Newark,10068 Tue,Off Premise
+150639,Azcona Liquors,Hakan Sadik,Newark,Newark Fri,Off Premise
+150134,Bell Liquor,Hakan Sadik,Unknown,Unknown,Off Premise
+150645,Best Brother Liquor,Hakan Sadik,Newark,10050 Wed,Off Premise
+150164,Best Quality Liquor,Hakan Sadik,Unknown,Unknown,Off Premise
+150173,Bloomfield Buyrite,Hakan Sadik,Bloomfield,Montclair Thu,Off Premise
+150132,Boot Leggers W/L,Hakan Sadik,East Orange,Montclair Tue,Off Premise
+150055,Bottle King Livingston,Hakan Sadik,Unknown,Unknown,Off Premise
+150216,Brandy's Lounge & Liquor,Hakan Sadik,Orange,Caldwell Wed,Off Premise
+150648,Brick City Liquors,Hakan Sadik,Newark,10054 Tue,Off Premise
+150186,Buy And Savings Liquor,Hakan Sadik,Newark,Newark Fri,Off Premise
+150089,Buy Rite Wine & Liquor,Hakan Sadik,South Orange,10067 Tue,Off Premise
+152013,C & D Liquors,Hakan Sadik,Newark,10050 Wed,Off Premise
+150215,Castaway Restaurant,Hakan Sadik,Orange,Caldwell Tue,On Premise
+150668,Chancellor Irvington,Hakan Sadik,Irvington,Newark Thu,Off Premise
+152008,Chancellor Newark,Hakan Sadik,Newark,Newark Thu,Off Premise
+152035,City Line Super Liquor,Hakan Sadik,Newark,10091 Fri,Off Premise
+150163,Colony Liquors,Hakan Sadik,Orange,Caldwell Wed,Off Premise
+150402,Coolvines Newark,Hakan Sadik,Unknown,Unknown,Off Premise
+152048,D & S Liquors,Hakan Sadik,Unknown,Unknown,Off Premise
+150136,Double Dee Liquors,Hakan Sadik,Orange,Caldwell Tue,Off Premise
+150224,East Orange Liquor,Hakan Sadik,East Orange,10050 Fri,Off Premise
+152031,Edwin Liquors,Hakan Sadik,Unknown,Unknown,Off Premise
+150170,Express Liquors,Hakan Sadik,Newark,Newark Fri,Off Premise
+150113,Express Two Liquors,Hakan Sadik,Orange,Caldwell Fri,Off Premise
+150602,Extra Wine & Liquor,Hakan Sadik,Newark,Newark Tue,Off Premise
+152009,Family Liquors,Hakan Sadik,Newark,Newark Fri,Off Premise
+150640,Firehouse Liquors,Hakan Sadik,Newark,10079 Thu,Off Premise
+150644,Fox's Liquor,Hakan Sadik,Newark,10080 Fri,Off Premise
+150217,Galaxy Liquor,Hakan Sadik,Orange,Caldwell Mon,Off Premise
+150009,Gaslight Brewery & Rest.,Hakan Sadik,Unknown,Unknown,On Premise
+150188,Gigantes Liquor,Hakan Sadik,Unknown,Unknown,Off Premise
+152014,Haber Liquors,Hakan Sadik,Newark,10061 Tue,Off Premise
+150211,Harmony Bar & Liquors,Hakan Sadik,Orange,10081 Thu,Off Premise
+152003,Hawthorne Quality Liquors,Hakan Sadik,Newark,Newark Thu,Off Premise
+150061,Heller & Heller (East Orange),Hakan Sadik,East Orange,Caldwell Thu,Off Premise
+150615,Home Liquors(1277 Irvington),Hakan Sadik,Irvington,10050 Wed,Off Premise
+150135,Home Liquors(520 East Orange),Hakan Sadik,East Orange,10063 Tue,Off Premise
+150618,Home Liquors(641 Newark),Hakan Sadik,Newark,Newark Wed,Off Premise
+150183,Home Liquors(773 Newark),Hakan Sadik,Newark,10064 Tue,Off Premise
+150647,Home Town Clinton,Hakan Sadik,Newark,Newark Thu,Off Premise
+152002,Home Wine & Liquor (224 Newark),Hakan Sadik,Newark,Newark Wed,Off Premise
+150191,Home Wines & Liquors (927 Newark),Hakan Sadik,Newark,10050 Wed,Off Premise
+150212,Home Wines & Liquors (Orange),Hakan Sadik,Orange,Caldwell Mon,Off Premise
+150149,Homer Liquors,Hakan Sadik,Newark,Newark Fri,Off Premise
+150614,International Liquor,Hakan Sadik,Irvington,10084 Wed,Off Premise
+150617,Irvington 876,Hakan Sadik,Irvington,Newark Tue,Off Premise
+150147,Irvington Liquors,Hakan Sadik,Irvington,Newark Fri,Off Premise
+150156,Ivy Plaza Liquors,Hakan Sadik,Newark,Newark Thu,Off Premise
+150616,JRC Liquor,Hakan Sadik,Irvington,10050 Wed,Off Premise
+150667,Jason Liquors,Hakan Sadik,Irvington,10050 Tue,Off Premise
+150654,Joe Canals,Hakan Sadik,Unknown,Unknown,Off Premise
+150221,Jonathan's Liquor Store,Hakan Sadik,East Orange,10052 Tue,Off Premise
+152018,Kimka Liquors,Hakan Sadik,Newark,Newark Thu,Off Premise
+150230,King's W & L,Hakan Sadik,East Orange,Caldwell Wed,Off Premise
+150011,Kingdom Liquors (A),Hakan Sadik,Unknown,Unknown,Off Premise
+150673,Krauszer's Food & Wines,Hakan Sadik,Irvington,10059 Tue,Off Premise
+170070,Levy @ Sports Illustrated Stadium,Hakan Sadik,Unknown,Unknown,On Premise
+150245,Levy @ The Prudential Center,Hakan Sadik,Unknown,Unknown,On Premise
+150182,Liquor Cave,Hakan Sadik,Unknown,Unknown,Off Premise
+150166,Liquor Zone,Hakan Sadik,Newark,10068 Tue,Off Premise
+150082,Liquorland (South Orange),Hakan Sadik,South Orange,10063 Mon,Off Premise
+150655,Lufthansa Business Lounge,Hakan Sadik,Unknown,Unknown,On Premise
+150218,Lyons Discount,Hakan Sadik,Irvington,10084 Wed,Off Premise
+150054,Mad For Chicken Newark,Hakan Sadik,Unknown,Unknown,On Premise
+150665,Madison Liquor Superette,Hakan Sadik,Irvington,10091 Fri,Off Premise
+152001,Manny's Liquors,Hakan Sadik,Newark,10053 Tue,Off Premise
+150172,Maple Check,Hakan Sadik,Unknown,Unknown,Off Premise
+150151,Maple Liquors,Hakan Sadik,East Orange,Montclair Tue,Off Premise
+150620,Maplewood Wine & Liquor,Hakan Sadik,Unknown,Unknown,Off Premise
+150165,Marriott @Newark Liberty,Hakan Sadik,Unknown,Unknown,On Premise
+150637,Mayfair Wine & Liquors,Hakan Sadik,Newark,10051 Wed,Off Premise
+150024,Mcgovern's Tavern(A),Hakan Sadik,Newark,Newark Tue,On Premise
+150672,Muellers Star Liquors,Hakan Sadik,Irvington,10082 Wed,Off Premise
+150223,New Gold Rose Liquors,Hakan Sadik,East Orange,10052 Tue,Off Premise
+150066,New Home Liquor,Hakan Sadik,Newark,10050 Fri,Off Premise
+150220,New JD Liquors,Hakan Sadik,East Orange,10059 Tue,Off Premise
+152025,New Owl Liquors,Hakan Sadik,Newark,10059 Thu,Off Premise
+152019,New Silver Key Iii,Hakan Sadik,Newark,Newark Tue,Off Premise
+150638,New Silver Key Liq Ii,Hakan Sadik,Newark,Newark Thu,Off Premise
+150064,New Silver Key Liquor,Hakan Sadik,Newark,10052 Tue,Off Premise
+150184,Newark Discount Wine and Spirits,Hakan Sadik,Newark,10055 Thu,Off Premise
+152038,Norfolk Liquors,Hakan Sadik,Newark,Newark Thu,Off Premise
+152012,Oasis Liquors & Bar,Hakan Sadik,Newark,Newark Thu,Off Premise
+150225,Park Ave Wine & Liquors,Hakan Sadik,East Orange,Caldwell Fri,Off Premise
+152017,Pennsylvania Liquors,Hakan Sadik,Newark,10059 Thu,Off Premise
+150096,Prudential Center,Hakan Sadik,Unknown,Unknown,On Premise
+150626,Pub At Njit,Hakan Sadik,Unknown,Unknown,On Premise
+150169,Pueblo Liquor,Hakan Sadik,Newark,10079 Thu,Off Premise
+150603,Quality Liquors,Hakan Sadik,Newark,10055 Tue,Off Premise
+152005,Quality Liquors #2,Hakan Sadik,Newark,10064 Wed,Off Premise
+152034,Qxt's Nightclub,Hakan Sadik,Unknown,Unknown,On Premise
+150068,Rajashree Wine & Liq,Hakan Sadik,Irvington,10084 Wed,Off Premise
+150649,Ralph Liquors,Hakan Sadik,Newark,Newark Fri,Off Premise
+150076,Rapp Beer & Soda (A),Hakan Sadik,Unknown,Unknown,Off Premise
+150185,Redds Biergarten,Hakan Sadik,Unknown,Unknown,On Premise
+152027,Roseville Liquors & Wines,Hakan Sadik,Unknown,Unknown,Off Premise
+152011,Royal Liquor Ii,Hakan Sadik,Newark,Newark Fri,Off Premise
+150604,Royal Liquors,Hakan Sadik,Newark,10053 Tue,Off Premise
+152000,Royal Liquors 3,Hakan Sadik,Newark,Newark Fri,Off Premise
+152010,Royal Wine Iv,Hakan Sadik,Newark,10065 Wed,Off Premise
+150210,Scotland Arms Liquors,Hakan Sadik,Orange,10078 Thu,Off Premise
+150092,Shillelagh Club,Hakan Sadik,Unknown,Unknown,On Premise
+150226,Silver Wine & Liquor,Hakan Sadik,East Orange,Caldwell Thu,Off Premise
+150606,Skyline Liquors,Hakan Sadik,Newark,10050 Wed,Off Premise
+152006,Skyline Liquors #2,Hakan Sadik,Newark,Newark Wed,Off Premise
+152029,Skyline Liquors Iii,Hakan Sadik,Newark,10062 Thu,Off Premise
+150044,South Orange Fine Wine & Spirits,Hakan Sadik,Unknown,Unknown,Off Premise
+150148,St.James Gate Public House,Hakan Sadik,Unknown,Unknown,On Premise
+150067,T&T Liquors (A),Hakan Sadik,Newark,Newark Fri,Off Premise
+150214,Three Corners Liquor/Bar,Hakan Sadik,Orange,Caldwell Fri,Off Premise
+150154,Toast Of The Town,Hakan Sadik,Orange,10072 Fri,Off Premise
+150646,Tonys Liquors #2,Hakan Sadik,Newark,10061 Fri,Off Premise
+150222,Tremont Liquors,Hakan Sadik,East Orange,Caldwell Fri,Off Premise
+150062,United Liquor,Hakan Sadik,Newark,10084 Wed,Off Premise
+150065,Vailsburg Wine/Liq (A),Hakan Sadik,Newark,10052 Tue,Off Premise
+150063,Victory Wine & Liquor,Hakan Sadik,East Orange,Caldwell Tue,Off Premise
+150231,Village Hall,Hakan Sadik,Unknown,Unknown,On Premise
+150623,Village Wine Shop,Hakan Sadik,Unknown,Unknown,Off Premise
+150145,Wine 2 Spirits,Hakan Sadik,Newark,10061 Fri,Off Premise
+150624,Wine Barrel (P),Hakan Sadik,Maplewood,Montclair Thu,Off Premise
+150633,Wine Warehouse (Newark),Hakan Sadik,Unknown,Unknown,Off Premise
+173054,10th & Willow Bar & Grill,Jaime Colonna,Unknown,Unknown,On Premise
+173060,8th Street Tavern,Jaime Colonna,Unknown,Unknown,On Premise
+170332,Abbey's Pub,Jaime Colonna,Unknown,Unknown,On Premise
+170050,Acme Markets (Hoboken),Jaime Colonna,Hoboken,Secaucus Thu,Off Premise
+170002,Alvins W&L (P),Jaime Colonna,Unknown,Unknown,Off Premise
+170241,American Legion Hoboken Post107,Jaime Colonna,Unknown,Unknown,On Premise
+170129,Ani Ramen House,Jaime Colonna,Unknown,Unknown,On Premise
+171118,Antique Bar And Bakery,Jaime Colonna,Unknown,Unknown,On Premise
+170313,Astor Bar & Grill,Jaime Colonna,Unknown,Unknown,On Premise
+170007,Augie's Wine & Liq (P),Jaime Colonna,Hoboken,10076 Thu,Off Premise
+170166,BRICK LANE CURRY HOUSE,Jaime Colonna,Unknown,Unknown,On Premise
+170155,Bangalore Kitchen,Jaime Colonna,Unknown,Unknown,On Premise
+170090,Bauers Wine & Liquor,Jaime Colonna,Jersey City,Jersey City Thu,Off Premise
+173041,Blue Ribbon Wine/Liq/Groc,Jaime Colonna,Hoboken,Secaucus Fri,Off Premise
+170264,Boots and Bones,Jaime Colonna,Jersey City,Jersey City Thu,On Premise
+170275,Buddy's,Jaime Colonna,Unknown,Unknown,On Premise
+170288,Canopy Jersey City,Jaime Colonna,Jersey City,10077 Fri,On Premise
+170126,Carpe Diem,Jaime Colonna,Unknown,Unknown,On Premise
+170068,Central Ave Liquors,Jaime Colonna,Jersey City,10068 Wed,Off Premise
+173078,Cheese+Wine,Jaime Colonna,Unknown,Unknown,On Premise
+170156,City Bistro (A),Jaime Colonna,Unknown,Unknown,On Premise
+170248,Coolvines Powerhouse,Jaime Colonna,Jersey City,Jersey City Tue,Off Premise
+170132,Cork City Pub,Jaime Colonna,Hoboken,10052 Thu,On Premise
+170036,Cork Wines & Spirits (Harrison),Jaime Colonna,Unknown,Unknown,Off Premise
+170045,Cork Wines & Spirits (Hoboken),Jaime Colonna,Unknown,Unknown,Off Premise
+173069,Curry On,Jaime Colonna,Unknown,Unknown,On Premise
+172015,Daniels Wine And Liq,Jaime Colonna,Unknown,Unknown,Off Premise
+170128,Dear Maud,Jaime Colonna,Hoboken,Secaucus Mon,On Premise
+171117,Delite Market,Jaime Colonna,Hoboken,Secaucus Wed,Off Premise
+49001,Don Coqui,Jaime Colonna,Unknown,Unknown,On Premise
+173042,EMPYREAN INDIAN KITCHEN,Jaime Colonna,Unknown,Unknown,On Premise
+178107,Empyrean Bistro & Bar,Jaime Colonna,Unknown,Unknown,On Premise
+173053,Finnegans,Jaime Colonna,Unknown,Unknown,On Premise
+173056,Garden Wine & Liq (P),Jaime Colonna,Unknown,Unknown,Off Premise
+170137,Giannone Wine & Liq(#2),Jaime Colonna,Hoboken,Secaucus Thu,Off Premise
+171014,Giannone Wines & Liq.(P),Jaime Colonna,West New York,10065 Thu,Off Premise
+170076,Grand View Wine & Liquor,Jaime Colonna,Unknown,Unknown,Off Premise
+170170,Grand Vin,Jaime Colonna,Unknown,Unknown,On Premise
+171413,Green Rock Tap & Grill,Jaime Colonna,Unknown,Unknown,On Premise
+170294,Halifax Restaurant,Jaime Colonna,Hoboken,Secaucus Fri,On Premise
+170020,Hoboken Beer & Soda,Jaime Colonna,Unknown,Unknown,Off Premise
+171013,Hoboken Liquor & Grocery,Jaime Colonna,Unknown,Unknown,Off Premise
+173055,Hoboken Vine (A),Jaime Colonna,Hoboken,Secaucus Wed,Off Premise
+170065,Hudson & Co. Bar & Grill,Jaime Colonna,Unknown,Unknown,On Premise
+173037,Hudson Golf,Jaime Colonna,Unknown,Unknown,On Premise
+170221,Hudson Hall(A),Jaime Colonna,Unknown,Unknown,On Premise
+170125,Hudson Vine (A),Jaime Colonna,Jersey City,Secaucus Wed,Off Premise
+170278,Hyatt House Jersey City,Jaime Colonna,Jersey City,10051 Thu,On Premise
+170231,Hyatt Regency,Jaime Colonna,Unknown,Unknown,On Premise
+170021,Jersey City Buy Rite (A),Jaime Colonna,Jersey City,Box Fairview Tue,Off Premise
+172016,Karma Kafe,Jaime Colonna,Unknown,Unknown,On Premise
+170177,LegendsFC,Jaime Colonna,Unknown,Unknown,On Premise
+170255,Liquor House,Jaime Colonna,Jersey City,Jersey City Fri,Off Premise
+170235,Lucky 7 Tavern,Jaime Colonna,Unknown,Unknown,On Premise
+170118,Madison Bar & Grill,Jaime Colonna,Unknown,Unknown,On Premise
+170265,Metropolis,Jaime Colonna,Hoboken,10076 Thu,Off Premise
+170153,Molos Rest,Jaime Colonna,Weehawken,10084 Wed,On Premise
+170059,Mulligan's (P),Jaime Colonna,Hoboken,*Office,On Premise
+170042,O'nieal's (A),Jaime Colonna,Hoboken,Secaucus Wed,On Premise
+170223,Ohara's Downtown,Jaime Colonna,Unknown,Unknown,On Premise
+28001,One Stop Wine (A) & Liq,Jaime Colonna,Unknown,Unknown,Off Premise
+173058,Ottomanelli's Liquor Store,Jaime Colonna,Hoboken,Secaucus Wed,Off Premise
+170469,Pier 13,Jaime Colonna,Unknown,Unknown,On Premise
+170204,Pint (Z),Jaime Colonna,Unknown,Unknown,On Premise
+179012,Plank Road Inn (A),Jaime Colonna,Secaucus,Hot Shot #1,On Premise
+173072,Rasoi Restaurant,Jaime Colonna,Unknown,Unknown,On Premise
+170300,Ray's Liquors,Jaime Colonna,Jersey City,Secaucus Fri,Off Premise
+170104,Saku (P),Jaime Colonna,Unknown,Unknown,On Premise
+170260,Schmitty's,Jaime Colonna,Hoboken,*Office,On Premise
+171012,Shepherd/Knucklehead Hobo,Jaime Colonna,Unknown,Unknown,On Premise
+170179,Shop Rite/Metro Plaza,Jaime Colonna,Jersey City,Jersey City Mon,Off Premise
+170018,ShopRite Wines & Spirits of Hoboken,Jaime Colonna,Hoboken,10059 Wed,Off Premise
+173079,Snack Bar,Jaime Colonna,Unknown,Unknown,On Premise
+170167,South House,Jaime Colonna,Jersey City,Hot Shot #13,On Premise
+173031,Sparrow's Wine & Liq(P) (1224 Hoboken),Jaime Colonna,Hoboken,Secaucus Wed,Off Premise
+173032,Sparrows Wine & Liq (P) (126 Hoboken),Jaime Colonna,Hoboken,10085 Wed,Off Premise
+170220,Sprove Marketplace,Jaime Colonna,Unknown,Unknown,Off Premise
+170280,Stingray Lounge,Jaime Colonna,Hoboken,10064 Thu,On Premise
+170158,Sunset wine & spirits,Jaime Colonna,Unknown,Unknown,Off Premise
+170141,Surf City,Jaime Colonna,Unknown,Unknown,On Premise
+170236,Taphaus,Jaime Colonna,Unknown,Unknown,On Premise
+170032,Texas-Arizona (A),Jaime Colonna,Unknown,Unknown,On Premise
+170133,The Ainsworth,Jaime Colonna,Unknown,Unknown,On Premise
+170268,The Ashford/Six 26,Jaime Colonna,Unknown,Unknown,On Premise
+173039,The Brass Rail Restaurant,Jaime Colonna,Hoboken,10053 Thu,On Premise
+170025,The Corner Pho,Jaime Colonna,Unknown,Unknown,On Premise
+170468,The Ferryman On 1st,Jaime Colonna,Unknown,Unknown,On Premise
+178011,The Highwood,Jaime Colonna,Unknown,Unknown,On Premise
+170282,The Hoboken Biergarten,Jaime Colonna,Hoboken,Secaucus Thu,On Premise
+173068,The Hutten Tavern,Jaime Colonna,Unknown,Unknown,On Premise
+173043,The Shannon,Jaime Colonna,Unknown,Unknown,On Premise
+173059,The Stewed Cow,Jaime Colonna,Unknown,Unknown,On Premise
+173064,The Thirsty Quaker (P),Jaime Colonna,Unknown,Unknown,Off Premise
+171015,Uncorked Wines & Spirits - Hoboken NJ,Jaime Colonna,Unknown,Unknown,Off Premise
+170471,Union Hall,Jaime Colonna,Unknown,Unknown,On Premise
+171018,Urban Coal House,Jaime Colonna,Unknown,Unknown,On Premise
+170429,Village W & L (P),Jaime Colonna,Jersey City,10068 Tue,Off Premise
+170258,Village Wine & Liquors Ii,Jaime Colonna,Jersey City,10050 Mon,Off Premise
+170249,White Eagle Hall,Jaime Colonna,Unknown,Unknown,On Premise
+170147,White Star Bar,Jaime Colonna,Unknown,Unknown,On Premise
+170154,White Star Harbor Bar(P),Jaime Colonna,Unknown,Unknown,On Premise
+170463,Willie Mcbride's Pub/Rest,Jaime Colonna,Unknown,Unknown,On Premise
+170037,Willow Grocery Liq.,Jaime Colonna,Unknown,Unknown,Off Premise
+17029,Wine Dad's - Summit Ave Jersey City,Jaime Colonna,Unknown,Unknown,Off Premise
+17026,Wine Dad's Jersey City,Jaime Colonna,Unknown,Unknown,Off Premise
+171119,Wine Dads Hoboken,Jaime Colonna,Hoboken,Secaucus Wed,Off Premise
+170008,Zeppelin Hall (Z),Jaime Colonna,Unknown,Unknown,On Premise
+24018,Agave Cantina Mexicana,Javier Melo,Unknown,Unknown,On Premise
+36026,Agave Cocina Mexicana,Javier Melo,Unknown,Unknown,On Premise
+15059,Belmont Liqrs (P),Javier Melo,Paterson,10074 Thu,Off Premise
+27008,Bermuda Liquors (P),Javier Melo,Passaic,Passaic Fri,Off Premise
+25012,Bottle Liquor (P),Javier Melo,Clifton,Clifton 1 Tue,Off Premise
+21054,C & S Lucky Liquors (P),Javier Melo,Paterson,10055 Tue,Off Premise
+21055,C & S Lucky Liquors II,Javier Melo,Paterson,Paterson 1 Fri,Off Premise
+21026,C Town Supermarket(P),Javier Melo,Paterson,Paterson 3 Wed,Off Premise
+21006,Camilo Liquors(A),Javier Melo,Unknown,Unknown,Off Premise
+27018,Cantina Bar,Javier Melo,Unknown,Unknown,On Premise
+27085,Cazadores Bar (Z) LLC,Javier Melo,Unknown,Unknown,On Premise
+27044,Clary's Restaurant & Bar,Javier Melo,Unknown,Unknown,On Premise
+27095,Club Sq (A),Javier Melo,Unknown,Unknown,On Premise
+27059,D'bar Liquors (P),Javier Melo,Unknown,Unknown,Off Premise
+27040,Danny's Liquor,Javier Melo,Passaic,10072 Tue,Off Premise
+27111,Davids' Place (P),Javier Melo,Unknown,Unknown,On Premise
+15014,Deli Parchardo Liquors,Javier Melo,Paterson,Paterson 1 Thu,Off Premise
+20021,Diamond Liquors (P),Javier Melo,Unknown,Unknown,Off Premise
+27055,Don Lalo Restaurant,Javier Melo,Unknown,Unknown,On Premise
+27012,ESTEVEZ LIQUORS LLC,Javier Melo,Passaic,10050 Thu,Off Premise
+20056,East Side Bar Liquors,Javier Melo,Paterson,10080 Wed,Off Premise
+22024,Edwards (P) Wine & Liq,Javier Melo,Paterson,Paterson 4 Fri,Off Premise
+26020,El Alamo Bar,Javier Melo,Unknown,Unknown,On Premise
+27094,El Anochecer,Javier Melo,Unknown,Unknown,On Premise
+27076,El Asadero Mexican Grill (Passaic),Javier Melo,Unknown,Unknown,On Premise
+20117,El Cantaro Liquors,Javier Melo,Paterson,Paterson 1 Fri,Off Premise
+27119,El Chever (P),Javier Melo,Unknown,Unknown,On Premise
+27051,Factory 220,Javier Melo,Unknown,Unknown,On Premise
+21044,Farm Boy,Javier Melo,Paterson,Box Clifton Thu,Off Premise
+27001,Fiesta Night Club(P),Javier Melo,Passaic,Passaic Thu,On Premise
+27146,Foxes Place,Javier Melo,Unknown,Unknown,On Premise
+27102,Fragancia Sports Bar,Javier Melo,Unknown,Unknown,On Premise
+24051,La Bonita,Javier Melo,Clifton,Clifton 1 Fri,On Premise
+26003,La Casona Cafe Restaurant Bar,Javier Melo,Unknown,Unknown,On Premise
+32011,La Fortaleza (Carlstadt),Javier Melo,Carlstadt,10073 Thu,On Premise
+24034,La Fortaleza (Clifton),Javier Melo,Unknown,Unknown,On Premise
+37066,La Fortaleza (Garfield),Javier Melo,Unknown,Unknown,On Premise
+38046,La Fortaleza (Lodi),Javier Melo,Lodi,Lodi Fri,On Premise
+27144,La Fortaleza (Passaic),Javier Melo,Unknown,Unknown,On Premise
+21005,La Fuente Bar (A),Javier Melo,Unknown,Unknown,On Premise
+20031,La Joya Liquors,Javier Melo,Paterson,10050 Fri,Off Premise
+27106,La Posada,Javier Melo,Unknown,Unknown,On Premise
+27009,La Rancherita,Javier Melo,Unknown,Unknown,On Premise
+25053,Lamayoria Bar Restaurant,Javier Melo,Clifton,Clifton 2 Wed,On Premise
+27034,Liquor Stop (Passaic),Javier Melo,Passaic,10055 Mon,Off Premise
+27108,Los Arcos (P) Rest.,Javier Melo,Unknown,Unknown,On Premise
+21023,Luna Liquors,Javier Melo,Paterson,Totowa Fri,Off Premise
+24042,Made in Miami Bar Bistro,Javier Melo,Unknown,Unknown,On Premise
+22065,Mambo Lounge (P),Javier Melo,Paterson,100115 Tue,On Premise
+27071,Mariana's Liquors,Javier Melo,Passaic,Passaic Wed,Off Premise
+27077,Mojito Bar,Javier Melo,Unknown,Unknown,On Premise
+21028,Mr Liquors & Groc.,Javier Melo,Paterson,10055 Tue,Off Premise
+27046,New Eagle Liquors,Javier Melo,Passaic,10091 Wed,Off Premise
+21021,Park Avenue Liquors,Javier Melo,Paterson,100102 Thu,Off Premise
+25047,Parker Liquors (Z),Javier Melo,Clifton,10053 Mon,Off Premise
+20055,Paruta's (A),Javier Melo,Paterson,10073 Tue,On Premise
+24003,Paulison Liquors (P),Javier Melo,Clifton,Clifton 2 Thu,Off Premise
+15031,Pete's Family Liqs,Javier Melo,Paterson,Totowa Thu,Off Premise
+27002,President Liqrs (A),Javier Melo,Passaic,10055 Thu,Off Premise
+15085,Reign,Javier Melo,Unknown,Unknown,On Premise
+20104,Roses Bar & Liquors,Javier Melo,Paterson,Paterson 2 Tue,On Premise
+27053,Rumba Bar,Javier Melo,Unknown,Unknown,On Premise
+20061,Seguidilla 56 Lounge & Liquors,Javier Melo,Paterson,Paterson 2 Thu,On Premise
+20069,Segundo's (P),Javier Melo,Paterson,10061 Thu,Off Premise
+27037,Shanik Liqs.(P),Javier Melo,Passaic,10078 Tue,Off Premise
+20110,The Cathedral Restaurant,Javier Melo,Paterson,Paterson 3 Fri,On Premise
+27039,Venus Bar & Restaurant,Javier Melo,Unknown,Unknown,On Premise
+37065,Voraz Fuision,Javier Melo,Garfield,Lodi Mon,On Premise
+230440,"Brix - Wine, Spirits, Beer (Fredon)",Jayson Romine,Unknown,Unknown,Off Premise
+230106,Burkes,Jayson Romine,Sparta,Mt Arlington Thu,Off Premise
+230902,Buy Rite Liquors Franklin,Jayson Romine,Franklin,Montague Thu,Off Premise
+408,Fredon Liquor (Fredon Deli),Jayson Romine,Unknown,Unknown,Off Premise
+231701,George's Wine & Spirits,Jayson Romine,Branchville,10050 Tue,Off Premise
+230920,Hamburg Liquor,Jayson Romine,Hamburg,10053 Wed,Off Premise
+231501,Highland General Store,Jayson Romine,Highland Lakes,Montague Wed,Off Premise
+231707,Kent's Liquors,Jayson Romine,Unknown,Unknown,Off Premise
+231502,Lake Wanda Store,Jayson Romine,Unknown,Unknown,Off Premise
+191302,Liquor Factory I Landing,Jayson Romine,Unknown,Unknown,Off Premise
+191010,Liquor Factory II Jefferson,Jayson Romine,Lake Hopatcong,Mt Arlington Mon,Off Premise
+230114,Liquor Factory III Sparta,Jayson Romine,Sparta,10052 Mon,Off Premise
+191526,Liquor Factory IV Hopatcong,Jayson Romine,Hopatcong,10050 Mon,Off Premise
+230314,Liquor Factory V Andover,Jayson Romine,Newton,Branchville Mon,Off Premise
+191702,Liquor Factory VI Byram,Jayson Romine,Byram,Rockaway Mon,Off Premise
+231215,Mac & Lindy's W & S (A),Jayson Romine,Vernon,Box Newton Wed,Off Premise
+230918,Market Place Liquor,Jayson Romine,Unknown,Unknown,Off Premise
+231316,Patricks Wine Barn,Jayson Romine,Sussex,10057 Wed,Off Premise
+230431,Seplow's Liquors,Jayson Romine,Unknown,Unknown,Off Premise
+230427,ShopRite Wine & Spirits of Newton#830,Jayson Romine,Newton,Hot Shot #2,Off Premise
+230905,ShopRite Wines & Spirits of Franklin,Jayson Romine,Franklin,Box Newton Thu,Off Premise
+230105,ShopRite Wines & Spirits of Sparta,Jayson Romine,Sparta,Box Newton Thu,Off Premise
+230420,Spring Street Liquors,Jayson Romine,Unknown,Unknown,Off Premise
+191408,Super Saver Liq,Jayson Romine,Mt Arlington,10050 Thu,Off Premise
+230924,Sussex Co.Discount Liq(P),Jayson Romine,Franklin,10052 Wed,Off Premise
+231203,The George Inn,Jayson Romine,Vernon,Parsippany Wed,Off Premise
+230911,The Right Bottle,Jayson Romine,Franklin,Montague Wed,Off Premise
+230412,USA Wine Traders Club Of Newton (A),Jayson Romine,Newton,Hot Shot #1,Off Premise
+231308,Wantage Plaza Liq Outlet,Jayson Romine,Wantage,Montague Tue,Off Premise
+230437,Weis Supermarkets 143 Newton,Jayson Romine,Unknown,Unknown,Off Premise
+230438,Weiss Super Market 147 Franklin,Jayson Romine,Unknown,Unknown,Off Premise
+230121,White Deer Inn,Jayson Romine,Sparta,Branchville Wed,Off Premise
+230441,Wine Country Newton,Jayson Romine,Newton,Branchville Tue,Off Premise
+230913,Wine Grand (Franklin),Jayson Romine,Franklin,Montague Wed,Off Premise
+231315,Woody's Liq Shop (A),Jayson Romine,Wantage,Montague Wed,Off Premise
+24015,Allwood Liquor Store,Jim Heaney,Clifton,10053 Fri,Off Premise
+24014,Bottleneck Liquors,Jim Heaney,Clifton,Clifton 2 Wed,Off Premise
+24016,Broad Liquors (A),Jim Heaney,Clifton,10052 Tue,Off Premise
+25008,Clifton Commons S & W,Jim Heaney,Clifton,Hot Shot #14,Off Premise
+25023,Clifton Wine & Liquor,Jim Heaney,Clifton,10052 Fri,Off Premise
+24012,Dante's Liquor & Wine,Jim Heaney,Clifton,Clifton 2 Fri,Off Premise
+23007,Field Liquors (A),Jim Heaney,Clifton,10056 Tue,Off Premise
+30006,Forest Dairy (A),Jim Heaney,Unknown,Unknown,Off Premise
+24005,Henry's Liquors,Jim Heaney,Clifton,Clifton 2 Mon,Off Premise
+30010,Krauser Food & Liq(A),Jim Heaney,Unknown,Unknown,Off Premise
+29008,Krauszers Food,Jim Heaney,Lyndhurst,10079 Thu,Off Premise
+25031,Lexington Liquors (Z),Jim Heaney,Clifton,10059 Mon,Off Premise
+28011,Liquor Mart (North Arlington),Jim Heaney,North Arlington,10070 Fri,Off Premise
+25032,Liquor Mart 46,Jim Heaney,Unknown,Unknown,Off Premise
+29003,Liquor Shed,Jim Heaney,Lyndhurst,Kearny Wed,Off Premise
+24021,Liquor Stop (P) (Clifton),Jim Heaney,Unknown,Unknown,Off Premise
+13008,Little Falls Liq(P),Jim Heaney,Little Falls,Totowa Wed,Off Premise
+28012,Lucky 7 (A),Jim Heaney,North Arlington,Kearny Wed,Off Premise
+29013,Lyndhurst Liquors (P),Jim Heaney,Lyndhurst,10065 Wed,Off Premise
+27016,Marina's Wine & Spirits,Jim Heaney,Passaic,Passaic Fri,Off Premise
+30003,Mason's Cellar (A),Jim Heaney,Unknown,Unknown,Off Premise
+29017,Meadow Fine Liquors,Jim Heaney,Unknown,Unknown,Off Premise
+28007,Metro Liquors (North Arlington),Jim Heaney,North Arlington,Lyndhurst Fri,Off Premise
+13017,On The Rocks,Jim Heaney,Little Falls,Totowa Thu,Off Premise
+23003,Pete's Liquors,Jim Heaney,Unknown,Unknown,Off Premise
+29009,Quick Buy,Jim Heaney,Unknown,Unknown,Off Premise
+24009,Quik Stop Conv(Z),Jim Heaney,Clifton,100112 Tue,Off Premise
+24017,Rainbow Liquor (P),Jim Heaney,Clifton,10063 Wed,Off Premise
+24001,Richfield Liquors,Jim Heaney,Clifton,Clifton 2 Mon,Off Premise
+29012,Riverside Liquors,Jim Heaney,Lyndhurst,Kearny Wed,Off Premise
+30005,Rutherford Wine (A),Jim Heaney,Rutherford,Lyndhurst Wed,Off Premise
+25017,Savers Club Liquor Locker,Jim Heaney,Unknown,Unknown,Off Premise
+28004,Schuyler Food,Jim Heaney,Unknown,Unknown,Off Premise
+24011,Shoppers Vineyard (A),Jim Heaney,Clifton,10058 Tue,Off Premise
+30030,Sonoma Bistro,Jim Heaney,Unknown,Unknown,On Premise
+24002,Swizzle Stick Liq (A),Jim Heaney,Unknown,Unknown,Off Premise
+26013,Tiny Tijuana,Jim Heaney,Unknown,Unknown,On Premise
+25042,Town Liquors,Jim Heaney,Clifton,100100 Tue,Off Premise
+24020,US#1 Wine & Liquor,Jim Heaney,Clifton,10097 Tue,Off Premise
+23002,Valley Liquors (A),Jim Heaney,Clifton,10070 Tue,Off Premise
+24037,Vasel's (A),Jim Heaney,Clifton,Clifton 2 Thu,Off Premise
+30007,Village Wine (P),Jim Heaney,Unknown,Unknown,Off Premise
+30004,West End Wine & Liq,Jim Heaney,Rutherford,Lyndhurst Mon,Off Premise
+14001,Wine & Bev. Depot (A),Jim Heaney,Totowa,10071 Wed,Off Premise
+29011,World of Wine & Liquor,Jim Heaney,Lyndhurst,East Rutherford Fri,Off Premise
+31019,Bj's Warehouse E Rutherfo,John Neukum,Unknown,Unknown,Off Premise
+39019,Costco 1214 Teterboro (NA),John Neukum,Unknown,Unknown,Off Premise
+24059,Costco 306 Clifton (NA),John Neukum,Unknown,Unknown,Off Premise
+190931,Costco 315 Wharton (NA),John Neukum,Unknown,Unknown,Off Premise
+180020,Costco Of Edison,John Neukum,Unknown,Unknown,Off Premise
+12060,Costco Whlse V#32366-Wayn,John Neukum,Unknown,Unknown,Off Premise
+39016,NB Liquors,John Neukum,Teterboro,Hot Shot #1,Off Premise
+201026,Sam's Club (Secaucus),John Neukum,Unknown,Unknown,Off Premise
+24010,Western Bev 21088 Clift,John Neukum,Clifton,Box Clifton Wed,Off Premise
+190016,12 Islands Greek Taverna,John O'Donoghue,Stirling,*Price Correction,On Premise
+190004,54 Main Cafe,John O'Donoghue,Unknown,Unknown,On Premise
+150228,Antik Greek Kitchens,John O'Donoghue,Fairfield,Totowa Wed,On Premise
+190080,Archer Hotel-Florham Pk.,John O'Donoghue,Unknown,Unknown,On Premise
+250900,Arirang Hibachi Steakhous,John O'Donoghue,Unknown,Unknown,On Premise
+192008,At The Hop,John O'Donoghue,Unknown,Unknown,On Premise
+192009,Bar Cilento,John O'Donoghue,Unknown,Unknown,On Premise
+190797,Basket Of Cheer (Dover),John O'Donoghue,Unknown,Unknown,Off Premise
+192160,Bernays Appgar Post 342 American Legion,John O'Donoghue,Unknown,Unknown,On Premise
+191827,Best Cellars(Ledgewood),John O'Donoghue,Unknown,Unknown,Off Premise
+190018,Big Ed's (Circle Bowl),John O'Donoghue,Unknown,Unknown,On Premise
+190651,Bottle King (A) Ledgewood,John O'Donoghue,Unknown,Unknown,Off Premise
+191826,Bottle King (Z) Chatham,John O'Donoghue,Unknown,Unknown,Off Premise
+190111,Bottle King Morris Plains,John O'Donoghue,Unknown,Unknown,Off Premise
+190022,Bottle Republic (Randolph),John O'Donoghue,Unknown,Unknown,Off Premise
+190015,Buyrite Of Chatham,John O'Donoghue,Unknown,Unknown,Off Premise
+190326,Cambridge Wines (191 Morristown),John O'Donoghue,Unknown,Unknown,Off Premise
+60003,Charlie's Liquor and Convenience,John O'Donoghue,Unknown,Unknown,Off Premise
+250901,Chrones Tavern,John O'Donoghue,Unknown,Unknown,On Premise
+191848,Columbus Club of Morristown NJ,John O'Donoghue,Unknown,Unknown,On Premise
+190313,Convenience Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+190798,Dover Liquors,John O'Donoghue,Dover,Parsippany Mon,Off Premise
+190042,Dublin Pub (A),John O'Donoghue,Unknown,Unknown,On Premise
+190504,El Dorado Wine House,John O'Donoghue,Unknown,Unknown,Off Premise
+150031,Fairfield Wine Cellar,John O'Donoghue,Unknown,Unknown,Off Premise
+190030,Florham Park Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+190040,Four Seasons Wine & Liq,John O'Donoghue,Unknown,Unknown,Off Premise
+190001,Gary's Wine & Marketplace (Madison),John O'Donoghue,Unknown,Unknown,Off Premise
+190300,Gillette Liquor,John O'Donoghue,Gillette,10056 Wed,Off Premise
+191824,Grasshopper Off The Green,John O'Donoghue,Unknown,Unknown,On Premise
+190222,Green Hill Liquors (A),John O'Donoghue,Unknown,Unknown,Off Premise
+61001,Haworth Fine Wine/Spirits,John O'Donoghue,Unknown,Unknown,Off Premise
+190070,Hickory Wine Cellar,John O'Donoghue,Chatham,10050 Thu,Off Premise
+190112,Hoovers Tavern,John O'Donoghue,Unknown,Unknown,On Premise
+190012,Joe Canal's Disc Liq,John O'Donoghue,Unknown,Unknown,Off Premise
+190024,Jt Mcq's Sports Bar (P),John O'Donoghue,Unknown,Unknown,On Premise
+190656,"Kenvil Liquor,Wine & Food",John O'Donoghue,Unknown,Unknown,Off Premise
+190509,Krauszers (Long Valley),John O'Donoghue,Unknown,Unknown,Off Premise
+190929,L & L Package Store,John O'Donoghue,Unknown,Unknown,Off Premise
+190072,Laundromat,John O'Donoghue,Unknown,Unknown,On Premise
+192081,Madison Wine Cellar,John O'Donoghue,Unknown,Unknown,Off Premise
+190006,Main St Wines & Liq,John O'Donoghue,Madison,Denville Fri,Off Premise
+192141,Margarita's Bar & Grill,John O'Donoghue,Dover,Rockaway Fri,On Premise
+190228,Midtown Wine Merchant(A),John O'Donoghue,Unknown,Unknown,Off Premise
+190323,Morris Wine & Liquor,John O'Donoghue,Unknown,Unknown,Off Premise
+250313,Noches de Columbia (Randolph),John O'Donoghue,Unknown,Unknown,On Premise
+190505,Old Mill Tavern,John O'Donoghue,Unknown,Unknown,On Premise
+190512,Omg Burger & Brew,John O'Donoghue,Unknown,Unknown,On Premise
+192161,Pancho Villa Rodeo,John O'Donoghue,Unknown,Unknown,On Premise
+150250,Par 440 Restaurant,John O'Donoghue,Unknown,Unknown,On Premise
+190330,Parkside Tavern,John O'Donoghue,Unknown,Unknown,On Premise
+190616,Partners Discount Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+190324,Powder Mill Plaza Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+150099,Prime 94 Steakhouse & Grill,John O'Donoghue,Unknown,Unknown,On Premise
+32033,Pulse Gentleman's Club,John O'Donoghue,Unknown,Unknown,On Premise
+190021,Randolph Diner,John O'Donoghue,Unknown,Unknown,On Premise
+192073,Randolph Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+190513,Redwoods Bar & Grill,John O'Donoghue,Unknown,Unknown,On Premise
+190035,Revolution Bar,John O'Donoghue,Unknown,Unknown,On Premise
+190055,Ridgedale Wine & Liq,John O'Donoghue,East Hanover,Parsippany Tue,Off Premise
+190068,River Grille,John O'Donoghue,Unknown,Unknown,On Premise
+190005,Rose City Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+192157,Rosie''''s Trattoria,John O'Donoghue,Unknown,Unknown,On Premise
+190431,SOCIAL HUB BY DHABA,John O'Donoghue,Unknown,Unknown,On Premise
+190655,Sandy's Wine & Spirits (Flanders),John O'Donoghue,Flanders,Rockaway Fri,Off Premise
+190657,Shay's Liquors_2,John O'Donoghue,Unknown,Unknown,Off Premise
+190429,Sheraton Parsippany Hotel,John O'Donoghue,Unknown,Unknown,On Premise
+190309,Shop Rite Liq Parsippany,John O'Donoghue,Unknown,Unknown,Off Premise
+190711,Shop Rite Liquors,John O'Donoghue,Rockaway,Rockaway Wed,Off Premise
+190652,Shop Rite W & S Chester,John O'Donoghue,Unknown,Unknown,Off Premise
+190650,Shop Rite Wines & Spirits of Roxbury#832,John O'Donoghue,Succasunna,Box Booton Tue,Off Premise
+150104,Sidelines Bar And Grill,John O'Donoghue,Unknown,Unknown,On Premise
+190618,Sogo,John O'Donoghue,Unknown,Unknown,On Premise
+190224,Stirling Fine Wines,John O'Donoghue,Unknown,Unknown,Off Premise
+190230,Stirling Hotel,John O'Donoghue,Unknown,Unknown,On Premise
+190351,Super Saver Disc. Liq,John O'Donoghue,Unknown,Unknown,Off Premise
+192052,Swim And Sports Club,John O'Donoghue,Unknown,Unknown,On Premise
+190045,Tavern Off The Green,John O'Donoghue,Unknown,Unknown,On Premise
+190796,The Office Bar/Los Arrieros,John O'Donoghue,Unknown,Unknown,On Premise
+190032,The Thirsty Turtle (Florham Park),John O'Donoghue,Unknown,Unknown,On Premise
+191835,The Village Liquor Store_2,John O'Donoghue,Unknown,Unknown,Off Premise
+190060,The Wine Cellar,John O'Donoghue,Unknown,Unknown,Off Premise
+190003,Thomas Liq,John O'Donoghue,Unknown,Unknown,Off Premise
+190328,Tiff's Grill & Ale House,John O'Donoghue,Unknown,Unknown,On Premise
+192147,Valley Rest & Pub,John O'Donoghue,Unknown,Unknown,On Premise
+191838,Village Wine & Liquors,John O'Donoghue,Unknown,Unknown,Off Premise
+250044,Vine Republic (Berkeley Height),John O'Donoghue,Unknown,Unknown,Off Premise
+250001,Vine Republik (Mountainside),John O'Donoghue,Unknown,Unknown,Off Premise
+190299,Vintage Tavern,John O'Donoghue,Unknown,Unknown,On Premise
+190027,Wegmans,John O'Donoghue,Parsippany,Box Booton Tue,Off Premise
+192158,Weis Market,John O'Donoghue,Unknown,Unknown,Off Premise
+190017,Wine & Whiskey Country Morris Plains,John O'Donoghue,Unknown,Unknown,Off Premise
+190107,Wine & Whiskey Country Pine Brook,John O'Donoghue,Unknown,Unknown,Off Premise
+190500,Wine & Whisky Country,John O'Donoghue,Unknown,Unknown,Off Premise
+190036,Wine Cellar Of Morristown,John O'Donoghue,Unknown,Unknown,Off Premise
+190670,Wine World (A),John O'Donoghue,Long Hill Twp,Elizabeth Thu,Off Premise
+63001,X Plor Wine,John O'Donoghue,Unknown,Unknown,Off Premise
+1003,23 liquor & Tobacco,Klejdi Lamo,Unknown,Unknown,Off Premise
+191518,3 IN 1 LIQUORS INC,Klejdi Lamo,Hopatcong,Branchville Fri,Off Premise
+190302,Basket Of Cheer Ii (Lake Hiawatha),Klejdi Lamo,Lake Hiawatha,Parsippany Tue,Off Premise
+190901,Berkshire(P) Bot. Shop,Klejdi Lamo,Unknown,Unknown,Off Premise
+190208,Boonton Liquor Locker,Klejdi Lamo,Boonton,Parsippany Fri,Off Premise
+190603,Denville W & L,Klejdi Lamo,Unknown,Unknown,Off Premise
+190216,House of Wine & Liquor,Klejdi Lamo,Boonton,Hot Shot #25,Off Premise
+190501,House of Wine & Liquor Mountain Lakes,Klejdi Lamo,Mountain Lakes,Parsippany Fri,Off Premise
+191213,Island Of Spirits (P),Klejdi Lamo,Unknown,Unknown,Off Premise
+191803,Kingston Liquors,Klejdi Lamo,Hackettstown,Mt Arlington Fri,Off Premise
+190207,Liquor Outlet,Klejdi Lamo,Boonton,Box Booton Wed,Off Premise
+190913,Main Street Liquor,Klejdi Lamo,Wharton,Wharton Thu,Off Premise
+190804,Midtown Liq,Klejdi Lamo,Rockaway,Wharton Mon,Off Premise
+191210,Milton Inn,Klejdi Lamo,Oak Ridge,10052 Tue,Off Premise
+190101,Montville Wine & Spirits,Klejdi Lamo,Montville,Denville Wed,Off Premise
+191511,Nova Liquors,Klejdi Lamo,Unknown,Unknown,Off Premise
+191812,Patel Liqr & Gro(P),Klejdi Lamo,Budd Lake,Wharton Tue,Off Premise
+191606,Quick Check Liquor (A),Klejdi Lamo,Netcong,Rockaway Wed,Off Premise
+190705,Rockaway W/L,Klejdi Lamo,Rockaway,Rockaway Thu,Off Premise
+190802,Sam's Liq Wine (P),Klejdi Lamo,Unknown,Unknown,Off Premise
+191814,Sandy's Wine & Spirit (P) (Budd Lake),Klejdi Lamo,Budd Lake,Wharton Thu,Off Premise
+190917,Shop Rite Liq (A)Wharton,Klejdi Lamo,Wharton,Wharton Fri,Off Premise
+191710,Shop Rite Wine & Spirits Stanhope,Klejdi Lamo,Stanhope,Box Newton Wed,Off Premise
+191608,Shop-Rite(A) Netcong,Klejdi Lamo,Netcong,Wharton Wed,Off Premise
+190304,Shoppers Disc Liquor,Klejdi Lamo,Lake Hiawatha,Parsippany Tue,Off Premise
+190702,Smith's Tavern,Klejdi Lamo,Unknown,Unknown,On Premise
+191713,Stanhope Liquors,Klejdi Lamo,Stanhope,Wharton Tue,Off Premise
+191604,The Village Place,Klejdi Lamo,Netcong,Wharton Fri,Off Premise
+190907,Wharton Liquor Store,Klejdi Lamo,Unknown,Unknown,Off Premise
+37025,All Nations Liq,Matt Powierski,Unknown,Unknown,Off Premise
+77022,All Star Wine & Liquor,Matt Powierski,Elmwood Park,Saddle Brook Fri,Off Premise
+32009,American Lgn (P) (Carlstadt),Matt Powierski,Unknown,Unknown,On Premise
+27063,Archies (P),Matt Powierski,Passaic,10056 Tue,Off Premise
+77011,Asu Mare Peru Restobar,Matt Powierski,Elmwood Park,Saddle Brook Wed,On Premise
+36031,Ayla Restaurant & Bar,Matt Powierski,Unknown,Unknown,On Premise
+33006,Bazzarellis (Z),Matt Powierski,Unknown,Unknown,On Premise
+77002,Birchwood Liq & Deli (Z),Matt Powierski,Elmwood Park,Saddle Brook Fri,Off Premise
+77014,Blvd Bar & Grill (Z),Matt Powierski,Unknown,Unknown,On Premise
+31060,Bottle Republic (Rutherford),Matt Powierski,Rutherford,Box Fairview Tue,Off Premise
+42011,Buzzzrite Liquors,Matt Powierski,Little Ferry,10079 Tue,Off Premise
+31033,Capri Deli&Liq (P),Matt Powierski,Unknown,Unknown,Off Premise
+42017,Cast Iron Pot Signature,Matt Powierski,Unknown,Unknown,On Premise
+32016,Cobblestone Hill Deli,Matt Powierski,Carlstadt,East Rutherford Tue,Off Premise
+27032,Cork and Barrel,Matt Powierski,Passaic,Passaic Thu,Off Premise
+37075,Deja Vu (Z),Matt Powierski,Unknown,Unknown,On Premise
+37047,Dp's Pub & Seafood Grill,Matt Powierski,Unknown,Unknown,On Premise
+77001,Food Mart Liquor,Matt Powierski,Unknown,Unknown,Off Premise
+37002,Garfield Bar & Liq (P),Matt Powierski,Unknown,Unknown,Off Premise
+37006,Garfield Discount Liquors,Matt Powierski,Unknown,Unknown,Off Premise
+37001,Good Fella's (Z) Rest.,Matt Powierski,Garfield,Lodi Wed,On Premise
+33004,Gray Cliff (A),Matt Powierski,Unknown,Unknown,On Premise
+27031,Home Wine Liquor (Passaic),Matt Powierski,Passaic,10054 Tue,Off Premise
+77017,Hook & Reel,Matt Powierski,Unknown,Unknown,On Premise
+37007,Jay's Liquormart,Matt Powierski,Unknown,Unknown,Off Premise
+37013,Joe's Liquors,Matt Powierski,Unknown,Unknown,Off Premise
+36025,Karol's Pub (A),Matt Powierski,Unknown,Unknown,On Premise
+36016,King Liquors,Matt Powierski,Wallington,Saddle Brook Tue,Off Premise
+42002,L. F. Wine Country (P),Matt Powierski,Unknown,Unknown,Off Premise
+77004,Lidl Elmwood Park,Matt Powierski,Unknown,Unknown,Off Premise
+42010,Little Ferry Wines/Liquor,Matt Powierski,Unknown,Unknown,Off Premise
+26001,Luigi's Liquor (A),Matt Powierski,Passaic,10058 Mon,Off Premise
+77009,M & M Wine & Spirits,Matt Powierski,Elmwood Park,10067 Tue,Off Premise
+77016,Metro Liquor (Elmwood Park),Matt Powierski,Unknown,Unknown,Off Premise
+31004,Metro Liquors (East Rutherford),Matt Powierski,East Rutherford,South Hackensac Thu,Off Premise
+31008,Metro Wine And Liq(A),Matt Powierski,East Rutherford,10054 Wed,Off Premise
+37026,"Michele (Z) Rest,",Matt Powierski,Unknown,Unknown,On Premise
+33002,Moonachie Liquors,Matt Powierski,Unknown,Unknown,Off Premise
+77012,Payless Liquor & Dell,Matt Powierski,Elmwood Park,Saddle Brook Wed,Off Premise
+37060,Pazza Luna (P),Matt Powierski,Unknown,Unknown,On Premise
+37027,Piast Meats & Prov.,Matt Powierski,Unknown,Unknown,Off Premise
+37029,River Drive Bar (P),Matt Powierski,Unknown,Unknown,Off Premise
+37044,Riverview Liquors & Bar,Matt Powierski,Unknown,Unknown,Off Premise
+37050,Royal Manor,Matt Powierski,Unknown,Unknown,On Premise
+33003,Segovia,Matt Powierski,Unknown,Unknown,On Premise
+42014,Segovia Steak House(A),Matt Powierski,Unknown,Unknown,On Premise
+36007,Shop Rite Of Wallington,Matt Powierski,Wallington,Lodi Fri,Off Premise
+36043,Sports Bar & Liquors,Matt Powierski,Unknown,Unknown,On Premise
+36038,Tatra Haus Restaurant,Matt Powierski,Unknown,Unknown,Off Premise
+37040,The Venetian,Matt Powierski,Unknown,Unknown,On Premise
+36008,Vicki's Bar & Liquors,Matt Powierski,Unknown,Unknown,Off Premise
+42012,Vinny's Disc Liq (P),Matt Powierski,Unknown,Unknown,Off Premise
+36006,Wallington Liquor and Wine,Matt Powierski,Wallington,10051 Tue,Off Premise
+37068,Whoopee Liq (A),Matt Powierski,Garfield,Lodi Wed,Off Premise
+42004,Wine And People,Matt Powierski,Little Ferry,Hot Shot #1,Off Premise
+32017,Wine Grand (Carlstadt),Matt Powierski,Carlstadt,Box Fairview Thu,Off Premise
+77007,Wine Land,Matt Powierski,Unknown,Unknown,Off Premise
+32014,Wine Liquor Shop,Matt Powierski,Carlstadt,East Rutherford Thu,Off Premise
+37038,Wisla Center (Z),Matt Powierski,Unknown,Unknown,On Premise
+37023,Worldwide Liquors (A),Matt Powierski,Unknown,Unknown,Off Premise
+150235,460 BISTRO,Michael Harboy,Unknown,Unknown,On Premise
+150041,A&M Liquor,Michael Harboy,Unknown,Unknown,Off Premise
+150100,Angelbeck's,Michael Harboy,Unknown,Unknown,Off Premise
+150232,Avenue Bistro,Michael Harboy,Unknown,Unknown,On Premise
+150203,B & B Liquors (West Orange),Michael Harboy,Unknown,Unknown,Off Premise
+150202,Brinks Wine & Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150108,Caggiano Liquors,Michael Harboy,Montclair,Montclair Wed,Off Premise
+150018,Cedar Grove Liq (P),Michael Harboy,Unknown,Unknown,Off Premise
+150048,Cedar Grove Wine Cellar,Michael Harboy,Cedar Grove,Hot Shot #23,Off Premise
+150271,Cedar Hill Golf/Cc,Michael Harboy,Unknown,Unknown,Off Premise
+150010,Cloverleaf Tavern,Michael Harboy,Unknown,Unknown,On Premise
+150195,DOUGH,Michael Harboy,Unknown,Unknown,On Premise
+150137,Danahers,Michael Harboy,Unknown,Unknown,On Premise
+150205,Dillon's,Michael Harboy,Unknown,Unknown,On Premise
+150628,Don's Wine & Liq(P),Michael Harboy,Unknown,Unknown,Off Premise
+151022,Egan & Sons,Michael Harboy,Unknown,Unknown,On Premise
+150161,Essex County Cc (A),Michael Harboy,Unknown,Unknown,On Premise
+150058,Fairchilds Market Place,Michael Harboy,Unknown,Unknown,Off Premise
+151028,Faubourg Montclair,Michael Harboy,Unknown,Unknown,On Premise
+150196,Franklin Steakhouse Tvrn,Michael Harboy,Unknown,Unknown,On Premise
+150499,Garden State Tavern,Michael Harboy,Unknown,Unknown,On Premise
+150260,Glen Ridge Country Club,Michael Harboy,Unknown,Unknown,On Premise
+150619,Grasshopper Cedar Grove,Michael Harboy,Unknown,Unknown,On Premise
+151023,Grove Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+151027,Halcyon Seafood Brasserie,Michael Harboy,Unknown,Unknown,On Premise
+150103,Jacks Supermarket,Michael Harboy,Unknown,Unknown,Off Premise
+150124,Just Jakes,Michael Harboy,Unknown,Unknown,On Premise
+6004,Kinnelon Country Wine & Liquor,Michael Harboy,Kinnelon,Riverdale Thu,Off Premise
+150040,Krauser's Liquor Locker,Michael Harboy,Unknown,Unknown,Off Premise
+150162,Krauszer's Food & Liq,Michael Harboy,West Orange,Caldwell Fri,Off Premise
+11001,Lincoln Center Liq,Michael Harboy,Lincoln Park,Denville Fri,Off Premise
+150081,Lucky 7 Wine & Liq (A),Michael Harboy,Unknown,Unknown,Off Premise
+150004,Merit (P),Michael Harboy,Montclair,10059 Thu,Off Premise
+150110,Mountain Ridge Cc,Michael Harboy,Unknown,Unknown,On Premise
+150501,Nikko Hibachi Steakhouse,Michael Harboy,Unknown,Unknown,On Premise
+150101,Party Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150053,Pilgrim Liquor,Michael Harboy,Unknown,Unknown,Off Premise
+150084,Pineapple Express Barbecue,Michael Harboy,Unknown,Unknown,On Premise
+151020,Porta,Michael Harboy,Unknown,Unknown,On Premise
+150190,Quick Stop Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150450,Ringside Pub,Michael Harboy,Unknown,Unknown,On Premise
+150036,Romany Liquor Shop (A),Michael Harboy,Montclair,10058 Thu,Off Premise
+12005,Shay's Liquors,Michael Harboy,Wayne,Oakland Tue,Off Premise
+12017,Shays Liquors,Michael Harboy,Wayne,Wayne Tue,Off Premise
+201048,ShopRite of West Caldwell,Michael Harboy,West Caldwell,Caldwell Wed,Off Premise
+150002,Shoprite Wine & Spirits,Michael Harboy,Caldwell,10050 Fri,Off Premise
+150192,South End Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150042,St Cloud Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150005,The Bottle Stop (Caldwell),Michael Harboy,Caldwell,Montclair Thu,Off Premise
+151024,The Wellmont Theater,Michael Harboy,Unknown,Unknown,On Premise
+150248,The Wine Rack North Caldwell,Michael Harboy,Unknown,Unknown,Off Premise
+150078,Tory Corner Liquors (P),Michael Harboy,West Orange,10065 Tue,Off Premise
+150008,Total Wine & More (West Orange),Michael Harboy,West Orange,Montclair Thu,Off Premise
+150021,Town House Liq (A)& Wine,Michael Harboy,Montclair,10066 Tue,Off Premise
+150126,Valley Liquors,Michael Harboy,Unknown,Unknown,Off Premise
+150049,Verona Inn(Z),Michael Harboy,Unknown,Unknown,On Premise
+150001,Verona Wine Cellar,Michael Harboy,Verona,Caldwell Thu,Off Premise
+11014,Wayne Liquor Locker,Michael Harboy,Wayne,Wayne Wed,Off Premise
+12003,Whole Foods Market (Wayne),Michael Harboy,Unknown,Unknown,On Premise
+150451,Wine Village,Michael Harboy,Unknown,Unknown,Off Premise
+11005,Wolfson Market,Michael Harboy,Unknown,Unknown,Off Premise
+89005,Allendale Wine Shoppe,Mike Ast,Allendale,Ramsey Wed,Off Premise
+84012,Bareburger (Ridgewood),Mike Ast,Unknown,Unknown,On Premise
+83003,Beekman's Wines and Liquors,Mike Ast,Unknown,Unknown,Off Premise
+12011,Bottle King (A) Wayne,Mike Ast,Wayne,Hot Shot #2,Off Premise
+18002,Cinco De Mayo,Mike Ast,Unknown,Unknown,On Premise
+19009,Diamond Liquor,Mike Ast,Hawthorne,10063 Wed,Off Premise
+88004,Discount Liq (P)_2,Mike Ast,Waldwick,10050 Thu,Off Premise
+81006,Fair Lawn Wine & Spirits,Mike Ast,Fair Lawn,Rochelle Park Thu,Off Premise
+17010,Frank's Fine Wine & Foods,Mike Ast,Haledon,10076 Tue,Off Premise
+95004,Franklin Lake Liq,Mike Ast,Unknown,Unknown,Off Premise
+84002,GREEN WAY MARKETS,Mike Ast,Ridgewood,Ramsey Fri,Off Premise
+87004,Garbo's Ital Deli&Liq(Z),Mike Ast,Unknown,Unknown,Off Premise
+83008,Glen Rock Ac Clb(P),Mike Ast,Unknown,Unknown,On Premise
+83005,Glen Rock Inn,Mike Ast,Glen Rock,Ramsey Tue,On Premise
+19027,Goffle Road Wine and More,Mike Ast,Hawthorne,10062 Tue,Off Premise
+18001,Grand Opening Liq (A)_2,Mike Ast,North Haledon,Rochelle Park Thu,Off Premise
+19008,Hawthorne Liq (A),Mike Ast,Hawthorne,Rochelle Park Fri,Off Premise
+87006,Hohokus Inn & Tavern,Mike Ast,Unknown,Unknown,On Premise
+83009,Jalapeno Mex. Grille(A),Mike Ast,Unknown,Unknown,On Premise
+17013,Joe's pub,Mike Ast,Unknown,Unknown,On Premise
+11003,Lincoln Park Fine Wines & Spirits,Mike Ast,Lincoln Park,Box Booton Tue,Off Premise
+94001,Long Hill Liquors (A),Mike Ast,Oakland,Oakland Mon,Off Premise
+84009,Mac Murphy,Mike Ast,Unknown,Unknown,On Premise
+93003,Mahwah Liqrs (P),Mike Ast,Mahwah,Ridgewood Tue,Off Premise
+93006,Mahwah Wine & Liquor (A),Mike Ast,Unknown,Unknown,Off Premise
+17011,Nico's Wine & Spirits,Mike Ast,Haledon,10052 Wed,Off Premise
+94008,Oakland Wine (A),Mike Ast,Oakland,Oakland Fri,Off Premise
+84022,Park West Tavern,Mike Ast,Ridgewood,10056 Wed,On Premise
+95001,Pazza,Mike Ast,Unknown,Unknown,On Premise
+84001,Public Ridgewood,Mike Ast,Unknown,Unknown,Off Premise
+84004,Quick Stop Liquor & Wine,Mike Ast,Ridgewood,*Office,Off Premise
+84010,Ridgewood Super Cellar,Mike Ast,Ridgewood,10061 Wed,Off Premise
+84006,Roots Ridgewood (A),Mike Ast,Unknown,Unknown,On Premise
+93009,Scherer & Company,Mike Ast,Mahwah,Ridgewood Fri,Off Premise
+17012,Speedy Mart (P),Mike Ast,Haledon,10078 Wed,Off Premise
+84007,Steel Wheel Tavern,Mike Ast,Unknown,Unknown,On Premise
+83011,Stone & Rail,Mike Ast,Glen Rock,10054 Wed,On Premise
+84003,Stop & Shop (A)Ridgewood,Mike Ast,Unknown,Unknown,Off Premise
+84011,The Madison Rose,Mike Ast,Unknown,Unknown,On Premise
+84015,The Office 2131 Ridgewood,Mike Ast,Unknown,Unknown,On Premise
+84008,The Wine Seller,Mike Ast,Ridgewood,Ridgewood Wed,Off Premise
+87001,Uncorked Wine & Spirits (Hohokus),Mike Ast,Hohokus,Ridgewood Tue,Off Premise
+88005,Waldwick Wine/Spirits,Mike Ast,Waldwick,Ramsey Thu,Off Premise
+201099,Whole Foods #10106 (Ridgewood),Mike Ast,Unknown,Unknown,Off Premise
+96002,Wine & Spirit World(W),Mike Ast,Wyckoff,Ridgewood Mon,Off Premise
+87002,Wine & Spirits World (Hohokus),Mike Ast,Unknown,Unknown,Off Premise
+28009,1 Republik,Nick Melissari,Unknown,Unknown,On Premise
+31030,Al-Di-La' (P),Nick Melissari,East Rutherford,East Rutherford Fri,On Premise
+96010,Aldo's Italian Rest(Z),Nick Melissari,Unknown,Unknown,On Premise
+89002,Allendale Bar & Grill,Nick Melissari,Unknown,Unknown,On Premise
+41026,Amc- Shops @ Riverside P,Nick Melissari,Unknown,Unknown,On Premise
+88008,American Lgn (P) (Waldwick),Nick Melissari,Unknown,Unknown,On Premise
+88006,Andrea's Restaurant,Nick Melissari,Unknown,Unknown,On Premise
+29028,Angelo's Restaurant,Nick Melissari,Unknown,Unknown,On Premise
+31029,Annabella's House Of Mozz,Nick Melissari,Unknown,Unknown,On Premise
+92002,Anthony's CF Pizza (A) (Ramsey),Nick Melissari,Unknown,Unknown,On Premise
+41033,Applebee's (A) Hackensack,Nick Melissari,Unknown,Unknown,On Premise
+31023,Applebee's Garfield (A),Nick Melissari,Unknown,Unknown,On Premise
+80024,Applebee's Paramus,Nick Melissari,Unknown,Unknown,On Premise
+31059,Apres Cafe,Nick Melissari,East Rutherford,East Rutherford Wed,On Premise
+31051,Around The Clock Diner,Nick Melissari,Unknown,Unknown,On Premise
+85003,Arturo's Restaurnt,Nick Melissari,Unknown,Unknown,On Premise
+37019,BJ Polonia,Nick Melissari,Unknown,Unknown,On Premise
+29014,Bar 503,Nick Melissari,Unknown,Unknown,On Premise
+92003,Bar Boutique,Nick Melissari,Unknown,Unknown,On Premise
+49064,Bareburger (Edgewater),Nick Melissari,Unknown,Unknown,On Premise
+80040,Biagio's,Nick Melissari,Paramus,Hot Shot #14,On Premise
+32005,Biggies (A),Nick Melissari,Unknown,Unknown,On Premise
+39017,Bj's Rest & Brewhouse(A),Nick Melissari,Teterboro,10055 Thu,On Premise
+19006,Blackjack Mulligans (Hawthorne),Nick Melissari,Hawthorne,Hawthorne Fri,On Premise
+37034,Blackjack Mulligans(P) (Garfield),Nick Melissari,Garfield,Lodi Fri,On Premise
+31011,Blarney Station,Nick Melissari,Unknown,Unknown,On Premise
+77003,Blue 42 Restaurant & Bar,Nick Melissari,Elmwood Park,10089 Fri,On Premise
+96006,Blue Moon Mexican Cafe,Nick Melissari,Unknown,Unknown,On Premise
+80013,Bonefish Grill (A) (Paramus),Nick Melissari,Unknown,Unknown,On Premise
+92007,Brady's At(A)The Station,Nick Melissari,Unknown,Unknown,On Premise
+28021,Brazilian Spices Steakhouse & Pizza,Nick Melissari,North Arlington,10071 Thu,On Premise
+92004,Brothers Smokehouse,Nick Melissari,Unknown,Unknown,On Premise
+31054,Burger Shack,Nick Melissari,Unknown,Unknown,On Premise
+80012,California Pizza Paramus,Nick Melissari,Unknown,Unknown,On Premise
+45007,Cantina 46,Nick Melissari,Unknown,Unknown,On Premise
+40015,Capon's Chophouse,Nick Melissari,Unknown,Unknown,On Premise
+80011,Casa De Montecristo,Nick Melissari,Paramus,Rochelle Park Wed,On Premise
+31024,Castle Billiards (Z),Nick Melissari,Unknown,Unknown,On Premise
+94005,Cenzino's (P),Nick Melissari,Oakland,Wayne Thu,On Premise
+37022,Ceviche Peruvian Cuisine,Nick Melissari,Unknown,Unknown,On Premise
+88007,Charlie's Place,Nick Melissari,Unknown,Unknown,On Premise
+37005,Charlies Tav(Z),Nick Melissari,Unknown,Unknown,On Premise
+41016,Cheesecake Fact (A)Hacken,Nick Melissari,Unknown,Unknown,On Premise
+35005,Chile,Nick Melissari,Unknown,Unknown,On Premise
+31020,Chili's B & G E Rutherfor,Nick Melissari,Unknown,Unknown,On Premise
+80054,Chili's Paramus,Nick Melissari,Unknown,Unknown,On Premise
+92006,Chili's Ramsey (A),Nick Melissari,Unknown,Unknown,On Premise
+29030,City Lounge (P),Nick Melissari,Unknown,Unknown,On Premise
+32015,Cjd 2l Corp(Sofive),Nick Melissari,Unknown,Unknown,On Premise
+49063,Cove by Blu,Nick Melissari,Unknown,Unknown,On Premise
+49013,Cuba 57,Nick Melissari,Unknown,Unknown,On Premise
+49043,De Novo European Pub,Nick Melissari,Edgewater,Fort Lee Wed,On Premise
+49004,Dino's Bar & Grill,Nick Melissari,Unknown,Unknown,On Premise
+93014,Double Tree By Hilton,Nick Melissari,Unknown,Unknown,On Premise
+31058,Dream 360,Nick Melissari,Unknown,Unknown,On Premise
+31045,Dream Bar,Nick Melissari,Unknown,Unknown,On Premise
+80063,Eddie V's,Nick Melissari,Unknown,Unknown,On Premise
+78017,El Asadero Mexican Grill (Rochelle Park),Nick Melissari,Unknown,Unknown,On Premise
+49022,El asadero Mexican Grill (Fort Lee),Nick Melissari,Unknown,Unknown,On Premise
+31013,Elia Restaurant,Nick Melissari,Unknown,Unknown,On Premise
+30012,Elks Post 547 (A),Nick Melissari,Unknown,Unknown,On Premise
+31036,Eros Cafe,Nick Melissari,East Rutherford,East Rutherford Fri,On Premise
+80008,Fogo de Chao (Paramus),Nick Melissari,Unknown,Unknown,On Premise
+49060,Franco's Metro Rest (P),Nick Melissari,Unknown,Unknown,On Premise
+32026,Gianna's (Z),Nick Melissari,Unknown,Unknown,On Premise
+80031,Grand Lux Cafe (A),Nick Melissari,Unknown,Unknown,On Premise
+31046,H Mart Inc (Space A101-A),Nick Melissari,Unknown,Unknown,Off Premise
+31056,H Mart Inc (Space A103),Nick Melissari,East Rutherford,Lyndhurst Tue,On Premise
+80062,Hampton Inn Paramus,Nick Melissari,Unknown,Unknown,On Premise
+94004,Hansil's Bar (P),Nick Melissari,Unknown,Unknown,On Premise
+94006,Harvest and Ale,Nick Melissari,Unknown,Unknown,On Premise
+49040,Healing Karaoke,Nick Melissari,Unknown,Unknown,On Premise
+34002,Heights Bar (P),Nick Melissari,Unknown,Unknown,On Premise
+38039,Hilltop Tav.(Z),Nick Melissari,Unknown,Unknown,On Premise
+49054,Hiram's,Nick Melissari,Unknown,Unknown,On Premise
+94012,Holiday Bowl,Nick Melissari,Unknown,Unknown,On Premise
+92010,Houlihan's Ramsey,Nick Melissari,Unknown,Unknown,On Premise
+80009,Houlihans (Para)(A),Nick Melissari,Unknown,Unknown,On Premise
+31043,House of Que (East Rutherford),Nick Melissari,East Rutherford,East Rutherford Wed,On Premise
+41031,Houstons (A)Hackensack,Nick Melissari,Unknown,Unknown,On Premise
+49021,Hyatt Place Fort Lee,Nick Melissari,Unknown,Unknown,On Premise
+28016,Inka Flames,Nick Melissari,Unknown,Unknown,On Premise
+40030,JINYA Ramen Bar (Hackensack),Nick Melissari,Unknown,Unknown,On Premise
+31047,Jarana,Nick Melissari,Unknown,Unknown,On Premise
+37063,Jojo's Bar & Grill,Nick Melissari,Unknown,Unknown,On Premise
+92005,Kinchley's,Nick Melissari,Unknown,Unknown,On Premise
+34017,Ktb Coffee Shop,Nick Melissari,Unknown,Unknown,On Premise
+28003,Ktb Coffee Shop & Lounge,Nick Melissari,Unknown,Unknown,On Premise
+46007,Kumade,Nick Melissari,Unknown,Unknown,On Premise
+49047,LaNoma Italian Steakhouse,Nick Melissari,Unknown,Unknown,On Premise
+46028,Legends (P),Nick Melissari,Unknown,Unknown,On Premise
+31053,Little Sheep Restaurant/Bar,Nick Melissari,Unknown,Unknown,On Premise
+38020,Lodi Lanes (A),Nick Melissari,Lodi,Lodi Thu,On Premise
+78014,Longhorn Steak Rochele Pk,Nick Melissari,Unknown,Unknown,On Premise
+37045,Los Cantaritos Cantina,Nick Melissari,Unknown,Unknown,On Premise
+40024,Maggiano's Little(A)Italy,Nick Melissari,Unknown,Unknown,On Premise
+93004,Mahwah B & G (A),Nick Melissari,Unknown,Unknown,On Premise
+31049,Marcus Live Bar & Grille,Nick Melissari,Unknown,Unknown,On Premise
+29035,Marty Gra's (A),Nick Melissari,Unknown,Unknown,On Premise
+93005,Mason Jar Restaurant,Nick Melissari,Unknown,Unknown,On Premise
+29019,Mickey's Bar & Grill (Z),Nick Melissari,Unknown,Unknown,On Premise
+80018,Millers Paramus Ale House,Nick Melissari,Unknown,Unknown,On Premise
+41025,Morton's The Stkhse Hacke,Nick Melissari,Unknown,Unknown,On Premise
+31052,Mozzarella Bar,Nick Melissari,Unknown,Unknown,On Premise
+29036,Mr.Bruno's,Nick Melissari,Unknown,Unknown,On Premise
+28024,N Arlington Bowl O Drome,Nick Melissari,Unknown,Unknown,On Premise
+30029,Native Union Club,Nick Melissari,Unknown,Unknown,On Premise
+88002,Nellie's Place (P),Nick Melissari,Waldwick,10058 Wed,On Premise
+31027,New Park Tav (A),Nick Melissari,Unknown,Unknown,On Premise
+31007,Nizi Japanese,Nick Melissari,Unknown,Unknown,On Premise
+93008,Nonna's Pizza,Nick Melissari,Unknown,Unknown,On Premise
+80015,Nordstrom Garden Court,Nick Melissari,Unknown,Unknown,On Premise
+94009,Oakland Diner,Nick Melissari,Unknown,Unknown,On Premise
+80042,Olive Garden Paramus,Nick Melissari,Unknown,Unknown,On Premise
+80057,On The Border Paramus,Nick Melissari,Unknown,Unknown,On Premise
+49059,Outback Steakhouse(Z)Edg,Nick Melissari,Unknown,Unknown,On Premise
+78016,Outback Stk Hse Roch Pk,Nick Melissari,Unknown,Unknown,On Premise
+49015,PYEONGANDONG,Nick Melissari,Unknown,Unknown,On Premise
+30031,Paisano's,Nick Melissari,Unknown,Unknown,On Premise
+30032,Panebianco Cucina Italiana,Nick Melissari,Unknown,Unknown,On Premise
+77031,Parkway Lanes,Nick Melissari,Unknown,Unknown,On Premise
+40025,Pf Changs China Bis(A) (Hackensack),Nick Melissari,Unknown,Unknown,On Premise
+120147,Port Imperial HOQ LLC,Nick Melissari,Unknown,Unknown,Off Premise
+94010,Portobello Banquets,Nick Melissari,Unknown,Unknown,On Premise
+94013,Portobello Feasts,Nick Melissari,Unknown,Unknown,On Premise
+92014,Ramsey Country Clb,Nick Melissari,Unknown,Unknown,On Premise
+38025,Rebar (Z),Nick Melissari,Unknown,Unknown,On Premise
+32023,Redd's Rest (Z),Nick Melissari,Unknown,Unknown,On Premise
+31042,Residence Inn East Rutherford,Nick Melissari,Unknown,Unknown,On Premise
+31026,Rockafella's,Nick Melissari,Unknown,Unknown,On Premise
+28027,Roma Rest. (P),Nick Melissari,Unknown,Unknown,On Premise
+41017,Rosa Mexicano (A),Nick Melissari,Unknown,Unknown,On Premise
+93002,Roxanne's A),Nick Melissari,Unknown,Unknown,On Premise
+93007,Rp Prime Restaurant,Nick Melissari,Unknown,Unknown,On Premise
+79010,Ruth's Chris Steakhouse (Maywood),Nick Melissari,Unknown,Unknown,On Premise
+38002,Satin Dolls (A),Nick Melissari,Lodi,Lodi Tue,On Premise
+89001,Savini Rest (A),Nick Melissari,Unknown,Unknown,On Premise
+80017,Season's 52,Nick Melissari,Unknown,Unknown,On Premise
+32010,Segovia Meson,Nick Melissari,Unknown,Unknown,On Premise
+94003,Segovia Tavern,Nick Melissari,Oakland,Wayne Wed,On Premise
+28031,Shawn's Crazy Saloon,Nick Melissari,Unknown,Unknown,On Premise
+30026,Simulcast,Nick Melissari,Unknown,Unknown,On Premise
+31048,Song'E Napule,Nick Melissari,Unknown,Unknown,On Premise
+37012,Sportsmens (P) Tavern,Nick Melissari,Unknown,Unknown,On Premise
+32008,Steve's Bar & Grill (A),Nick Melissari,Unknown,Unknown,On Premise
+41009,TRUE FOOD,Nick Melissari,Unknown,Unknown,On Premise
+28008,Tavern On Ridge,Nick Melissari,Unknown,Unknown,On Premise
+28020,Tejo Bar & Rest,Nick Melissari,Unknown,Unknown,On Premise
+29045,Teros Snack Bar,Nick Melissari,Unknown,Unknown,On Premise
+39018,Texas Roadhouse,Nick Melissari,Unknown,Unknown,On Premise
+96005,The Brick House (P),Nick Melissari,Unknown,Unknown,On Premise
+80003,The Capital Grille (A),Nick Melissari,Unknown,Unknown,On Premise
+35006,The Concourse #728,Nick Melissari,Unknown,Unknown,On Premise
+37011,The Firehouse,Nick Melissari,Unknown,Unknown,On Premise
+31055,The Game Room,Nick Melissari,Unknown,Unknown,On Premise
+80061,The Green Lounge,Nick Melissari,Unknown,Unknown,On Premise
+37070,The Hive Bar & Bistro,Nick Melissari,Unknown,Unknown,On Premise
+32012,The Local Pub,Nick Melissari,Unknown,Unknown,On Premise
+49049,The Metropolitan Lounge,Nick Melissari,Unknown,Unknown,On Premise
+80007,The Orange Lantern,Nick Melissari,Paramus,Rochelle Park Tue,On Premise
+96007,The Original Barn,Nick Melissari,Unknown,Unknown,On Premise
+31006,The Roosevelt,Nick Melissari,Unknown,Unknown,On Premise
+92012,The Shannon Rose/Ramsey,Nick Melissari,Unknown,Unknown,On Premise
+31028,The Union Bar & Provisions,Nick Melissari,Unknown,Unknown,On Premise
+49085,Tommy's Tavern + Tap (Edgewater),Nick Melissari,Unknown,Unknown,On Premise
+37004,Tres Agaves,Nick Melissari,Unknown,Unknown,On Premise
+94002,Trovato's Due (Z),Nick Melissari,Unknown,Unknown,On Premise
+28019,Turf and Barrel,Nick Melissari,Unknown,Unknown,On Premise
+45020,Tutto A Modo Mio,Nick Melissari,Unknown,Unknown,On Premise
+29021,Uncle Vinnys Bar & Grill,Nick Melissari,Unknown,Unknown,On Premise
+92013,Varka,Nick Melissari,Ramsey,Ramsey Thu,On Premise
+79001,Victor's Maywood Inn,Nick Melissari,Maywood,Lodi Mon,On Premise
+31017,Victory Sports Bar,Nick Melissari,Unknown,Unknown,On Premise
+41013,Viva Margarita Hackensack,Nick Melissari,Unknown,Unknown,On Premise
+36014,Viva Margarita Wallington,Nick Melissari,Unknown,Unknown,On Premise
+88003,W's Village Grille,Nick Melissari,Waldwick,Ramsey Tue,On Premise
+42003,Whiskey Roads,Nick Melissari,Little Ferry,East Rutherford Thu,On Premise
+78007,Woodstone Pizza B & G,Nick Melissari,Rochelle Park,Hot Shot #2,On Premise
+96001,Wyckoff Tavern Kitchen and Bar,Nick Melissari,Unknown,Unknown,On Premise
+31039,Yard House 8390,Nick Melissari,Unknown,Unknown,On Premise
+15054,Blue Palace (A),Office Tell Sell,Unknown,Unknown,On Premise
+53006,Cafe Italiano (Z),Office Tell Sell,Unknown,Unknown,On Premise
+78018,Columbian Club (Z),Office Tell Sell,Unknown,Unknown,On Premise
+15002,Cost Plus,Office Tell Sell,Unknown,Unknown,Off Premise
+42005,Empire Club (P),Office Tell Sell,Unknown,Unknown,On Premise
+31032,Fiesta Hut (Z),Office Tell Sell,Unknown,Unknown,On Premise
+49042,Fire Company 3 Ft Lee,Office Tell Sell,Unknown,Unknown,On Premise
+49025,Flemings Stkhse (P),Office Tell Sell,Edgewater,Hot Shot #8,On Premise
+49009,Ft Lee Athletic Club,Office Tell Sell,Unknown,Unknown,On Premise
+49006,Ga Yeon Restaurant,Office Tell Sell,Unknown,Unknown,On Premise
+49051,Gopchang Story,Office Tell Sell,Unknown,Unknown,On Premise
+52038,Grissini's Restaurant,Office Tell Sell,Unknown,Unknown,On Premise
+36035,Hillside (A) S A C,Office Tell Sell,Unknown,Unknown,On Premise
+230110,Homestead Rest,Office Tell Sell,Unknown,Unknown,On Premise
+33009,In Thyme,Office Tell Sell,Unknown,Unknown,On Premise
+4008,Lina's Ristorante,Office Tell Sell,Unknown,Unknown,On Premise
+47007,Luigi's Rest (P),Office Tell Sell,Unknown,Unknown,On Premise
+76007,Matsuya,Office Tell Sell,Unknown,Unknown,On Premise
+20103,Moonlight (P) Lounge,Office Tell Sell,Unknown,Unknown,On Premise
+42016,Palermo Cafe (A),Office Tell Sell,Unknown,Unknown,On Premise
+22009,Paterson Fire Dept,Office Tell Sell,Unknown,Unknown,On Premise
+43014,Patsy's Bistro,Office Tell Sell,Unknown,Unknown,On Premise
+21020,Rincon Criollo Restaurant,Office Tell Sell,Unknown,Unknown,On Premise
+49003,Roberto's Restaurant (P),Office Tell Sell,Unknown,Unknown,On Premise
+44032,Rustica Bar & Restaurant,Office Tell Sell,Unknown,Unknown,On Premise
+76008,Saddle Brook (A) Diner,Office Tell Sell,Unknown,Unknown,On Premise
+77038,Taverna Mykonos,Office Tell Sell,Unknown,Unknown,On Premise
+38035,The Elan (P),Office Tell Sell,Unknown,Unknown,On Premise
+15053,Wrights Tavern(Z),Office Tell Sell,Unknown,Unknown,On Premise
+27005,#1 Liqrs (P),Pablo Lopez,Passaic,Passaic Fri,Off Premise
+20130,412 Lounge & Latin Bar,Pablo Lopez,Paterson,10076 Tue,On Premise
+20108,5th Avenue (P) Tavern,Pablo Lopez,Unknown,Unknown,On Premise
+15034,Allen's Liquors,Pablo Lopez,Paterson,10075 Tue,Off Premise
+21024,Altiero Liquors,Pablo Lopez,Paterson,10058 Mon,Off Premise
+27118,Arepa Express,Pablo Lopez,Unknown,Unknown,On Premise
+25073,Aruba Lounge (P),Pablo Lopez,Clifton,Clifton 1 Fri,On Premise
+15045,Bacchus Sport Bar & Grill,Pablo Lopez,Paterson,Paterson 1 Fri,On Premise
+20004,Bocaditos Bistro,Pablo Lopez,Unknown,Unknown,On Premise
+20014,Bombolon Liquor & Grocery,Pablo Lopez,Paterson,10077 Mon,Off Premise
+21030,Bonfire Mofongo House (P),Pablo Lopez,Unknown,Unknown,On Premise
+15061,Boulevard Wine & Spirits,Pablo Lopez,Paterson,10058 Thu,Off Premise
+27069,Broadway W&L,Pablo Lopez,Passaic,10067 Tue,Off Premise
+27100,Buenaaazo,Pablo Lopez,Unknown,Unknown,On Premise
+20022,Caraballo's,Pablo Lopez,Paterson,10064 Thu,Off Premise
+21032,Carisma Liq & Groc (P),Pablo Lopez,Paterson,10084 Wed,Off Premise
+20046,Circle Cafe (A),Pablo Lopez,Unknown,Unknown,On Premise
+52037,Colombia Kaliente,Pablo Lopez,Unknown,Unknown,On Premise
+25086,Con Sabor A Peru (A),Pablo Lopez,Unknown,Unknown,On Premise
+21022,Costa Marina Lounge(A),Pablo Lopez,Unknown,Unknown,On Premise
+20051,Costambar Bar & Liquor Corp.,Pablo Lopez,Paterson,Paterson 1 Thu,Off Premise
+20090,D'classico (P),Pablo Lopez,Paterson,10051 Fri,On Premise
+15018,Diana's Bar (Z),Pablo Lopez,Unknown,Unknown,On Premise
+27015,Dona Maria Rest,Pablo Lopez,Passaic,10087 Thu,On Premise
+22025,Dulce Patria,Pablo Lopez,Unknown,Unknown,On Premise
+15030,EL BOHEMIO 2 LIQUOR STORE & BAR,Pablo Lopez,Unknown,Unknown,Off Premise
+24032,El Dorado Rest (Z),Pablo Lopez,Unknown,Unknown,On Premise
+24030,El Mexicano Rest (P),Pablo Lopez,Unknown,Unknown,On Premise
+25041,Family Association,Pablo Lopez,Unknown,Unknown,On Premise
+20068,Florida Drugs (A),Pablo Lopez,Paterson,Paterson 1 Fri,Off Premise
+15047,Freddie's Corner,Pablo Lopez,West Paterson,Totowa Mon,Off Premise
+21038,Freddie's Dugout,Pablo Lopez,Paterson,10051 Wed,On Premise
+27093,Galleria,Pablo Lopez,Unknown,Unknown,On Premise
+15016,Gene's Liquor,Pablo Lopez,Paterson,Hot Shot #11,Off Premise
+27050,Grand Rodeo Night Club(Z),Pablo Lopez,Unknown,Unknown,On Premise
+20081,Hacienda (P),Pablo Lopez,Unknown,Unknown,On Premise
+22013,Hi-Beams (P),Pablo Lopez,Unknown,Unknown,On Premise
+24049,Hornitos Bakery,Pablo Lopez,Unknown,Unknown,On Premise
+20062,Intensity Lounge/Angie's Liquors,Pablo Lopez,Paterson,10051 Fri,Off Premise
+25071,Jaimito's Crtside(Z),Pablo Lopez,Unknown,Unknown,On Premise
+25046,Jay Aldo's (Z) Bar & Pizz,Pablo Lopez,Unknown,Unknown,On Premise
+20070,Joe's Liquor (A),Pablo Lopez,Paterson,10050 Wed,Off Premise
+27021,Johnny's Liqs (P),Pablo Lopez,Passaic,Passaic Thu,Off Premise
+27145,LOTUS,Pablo Lopez,Unknown,Unknown,On Premise
+20102,La Fiesta,Pablo Lopez,Unknown,Unknown,On Premise
+33005,La Havana 59,Pablo Lopez,Moonachie,South Hackensac Thu,On Premise
+15040,Legacy Bar & Liquor,Pablo Lopez,Woodland Park,Totowa Tue,Off Premise
+22001,Lena Y Carbon Restaurant,Pablo Lopez,Unknown,Unknown,On Premise
+20124,Lena y Carbon Broaster,Pablo Lopez,Unknown,Unknown,Off Premise
+27142,Lena y Carbon Restaurant & Bar (Passaic),Pablo Lopez,Unknown,Unknown,On Premise
+25015,Limonta Liqs (A),Pablo Lopez,Clifton,Clifton 1 Thu,Off Premise
+22044,Los Cristales (Z),Pablo Lopez,Unknown,Unknown,On Premise
+27099,Mama Sushi Rest & Lounge,Pablo Lopez,Unknown,Unknown,On Premise
+21042,Marcet Cafe,Pablo Lopez,Unknown,Unknown,On Premise
+20042,Midtown Liquors,Pablo Lopez,Paterson,Paterson 2 Thu,Off Premise
+27043,Monroe Wine & Liq(P),Pablo Lopez,Passaic,10068 Wed,Off Premise
+24063,Noches De Colombia (Clifton),Pablo Lopez,Clifton,Clifton 1 Tue,On Premise
+41008,Noches De Colombia (Hackensack),Pablo Lopez,Hackensack,Hot Shot #3,On Premise
+27073,Noches De Colombia (Passaic),Pablo Lopez,Unknown,Unknown,On Premise
+22019,Noches De Colombia (Paterson),Pablo Lopez,Unknown,Unknown,On Premise
+39004,Noches De Colombia (S. Hackensack)),Pablo Lopez,South Hackensac,South Hackensac Tue,On Premise
+52005,Noches De Colombia(Englewood)),Pablo Lopez,Unknown,Unknown,On Premise
+25040,Palenque Bar & Grill(A),Pablo Lopez,Unknown,Unknown,On Premise
+27072,Passaic Discount Liquors,Pablo Lopez,Passaic,Passaic Wed,Off Premise
+25051,Portuguese Tavern Steak House,Pablo Lopez,Clifton,Clifton 1 Wed,On Premise
+15062,Ragtime Gentlemen's Club,Pablo Lopez,Unknown,Unknown,On Premise
+21014,Ranchito Mi Peru,Pablo Lopez,Unknown,Unknown,On Premise
+26014,Regalado Liq,Pablo Lopez,Passaic,10062 Thu,Off Premise
+20032,Riverside Liquors (Paterson),Pablo Lopez,Paterson,Paterson 2 Fri,Off Premise
+15046,Romo Restaurant,Pablo Lopez,Unknown,Unknown,On Premise
+20114,Ronny's Liqrs (Z),Pablo Lopez,Paterson,10075 Thu,Off Premise
+22031,Roxxie's (P),Pablo Lopez,Unknown,Unknown,On Premise
+25087,Sarina Bar,Pablo Lopez,Unknown,Unknown,On Premise
+27070,Saritas Mexican Rest(A),Pablo Lopez,Unknown,Unknown,On Premise
+21034,Schulman's (P) Deli,Pablo Lopez,Paterson,Paterson 4 Wed,Off Premise
+20100,Serie 92 Bar & Liquor,Pablo Lopez,Unknown,Unknown,On Premise
+20029,Star Liquor Store,Pablo Lopez,Paterson,10058 Fri,Off Premise
+27066,Sunny's Liqs.(P),Pablo Lopez,Passaic,10078 Mon,Off Premise
+22021,Super Korona (Z) Bar,Pablo Lopez,Unknown,Unknown,On Premise
+22036,Tease (P),Pablo Lopez,Unknown,Unknown,On Premise
+27067,Ukranian (Z) Center,Pablo Lopez,Passaic,Passaic Thu,On Premise
+50008,101 Pub (A),Paul Mclaughlin,Bogota,Teaneck Thu,On Premise
+71007,103 Prime Time,Paul Mclaughlin,Unknown,Unknown,On Premise
+69012,449 Prime @ Edgewood Country Club,Paul Mclaughlin,Rivervale,Norwood Wed,On Premise
+65007,86 and Vine,Paul Mclaughlin,Norwood,Hot Shot #12,On Premise
+63002,Alpine C.C. (Z),Paul Mclaughlin,Demarest,Norwood Mon,On Premise
+61004,Andiamo,Paul Mclaughlin,Haworth,Norwood Mon,On Premise
+50001,Andy's Corner (Z),Paul Mclaughlin,Bogota,Palisades Park Wed,On Premise
+81024,Anthony's Coal Fired Pizza (Fair Lawn),Paul Mclaughlin,Unknown,Unknown,On Premise
+52018,Aumm Aumm @The Brownstone,Paul Mclaughlin,Unknown,Unknown,On Premise
+68003,Aurora Restaurant,Paul Mclaughlin,Old Tappan,Norwood Mon,On Premise
+54012,Axia Taverna,Paul Mclaughlin,Tenafly,Norwood Wed,On Premise
+86007,Bacari,Paul Mclaughlin,Washington Twsp,Woodcliff Lake Fri,On Premise
+52043,Balthazar Bakery (A),Paul Mclaughlin,Unknown,Unknown,Off Premise
+74021,Bar Mutz,Paul Mclaughlin,Unknown,Unknown,On Premise
+62008,Bareburger (Closter),Paul Mclaughlin,Unknown,Unknown,On Premise
+72002,Bareburger (Woodcliff Lake),Paul Mclaughlin,Unknown,Unknown,On Premise
+52046,Bergen Performing Arts,Paul Mclaughlin,Unknown,Unknown,On Premise
+67010,Biddy O'malleys Pub (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+50004,Bistro Taino,Paul Mclaughlin,Unknown,Unknown,On Premise
+52033,Blue Akai,Paul Mclaughlin,Unknown,Unknown,On Premise
+39008,Blush Gentleman's Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+40021,Bowler City Bowling,Paul Mclaughlin,Unknown,Unknown,On Premise
+67002,Brady's Fox Hunt Inn,Paul Mclaughlin,Unknown,Unknown,On Premise
+40026,Brooklyn's (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+52009,CAJUN SEAFOOD AND BAR,Paul Mclaughlin,Unknown,Unknown,On Premise
+52012,CZEN Restaurant,Paul Mclaughlin,Unknown,Unknown,On Premise
+52003,Cassies (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+57011,Casual Habana Cafe (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+41001,Casual Habana Cafe(Hack),Paul Mclaughlin,Unknown,Unknown,On Premise
+56016,Chapala Grill - Bergenfield,Paul Mclaughlin,Unknown,Unknown,On Premise
+39007,Club Flamingo (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+41022,Coach House Diner/Rest(Z),Paul Mclaughlin,Unknown,Unknown,On Premise
+81029,Cosmo Club (Z),Paul Mclaughlin,Fair Lawn,Rochelle Park Thu,On Premise
+50006,Cozy Tavern (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+55005,Cresskill Tavern,Paul Mclaughlin,Unknown,Unknown,On Premise
+41027,Cubby's (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+70004,Davey's Locker (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+50018,Debonair Music Hall,Paul Mclaughlin,Unknown,Unknown,On Premise
+65005,Dimora Ristorante (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+86002,Doghouse Saloon (Z),Paul Mclaughlin,Washington Twsp,Woodcliff Lake Tue,On Premise
+69003,Edgewood Country Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+52014,El Tango,Paul Mclaughlin,Unknown,Unknown,On Premise
+85001,Eleven Central,Paul Mclaughlin,Midland Park,Ramsey Wed,On Premise
+75001,Emerson Hotel,Paul Mclaughlin,Emerson,Woodcliff Lake Fri,On Premise
+52026,Englewood Field Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+81015,Fair Lawn Athletic Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+81003,Fair Lawn Lanes (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+39006,Fat Bastard & Sons,Paul Mclaughlin,Unknown,Unknown,On Premise
+70012,Fire & Oak (A),Paul Mclaughlin,Montvale,Hot Shot #10,On Premise
+70013,Flemings Prime Steakhouse and Wine Bar,Paul Mclaughlin,Montvale,Woodcliff Lake Thu,On Premise
+69007,Florentine Garden,Paul Mclaughlin,Unknown,Unknown,On Premise
+40038,Forte Ristorante,Paul Mclaughlin,Hackensack,Saddle Brook Thu,On Premise
+71004,Four Leaves,Paul Mclaughlin,Park Ridge,Hot Shot #1,On Premise
+65006,Gerry's Place,Paul Mclaughlin,Unknown,Unknown,On Premise
+60012,Grant Street Cafe (A),Paul Mclaughlin,Dumont,Norwood Fri,On Premise
+69011,Green Point Restaurant,Paul Mclaughlin,Unknown,Unknown,On Premise
+59005,Hackensack Golf (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+61002,Haworth Golf Club(A),Paul Mclaughlin,Unknown,Unknown,On Premise
+70008,Hearth & Tap Co.,Paul Mclaughlin,Montvale,Woodcliff Lake Fri,On Premise
+56011,International Bar/Rest,Paul Mclaughlin,Bergenfield,Englewood Cliff Fri,On Premise
+74012,Iron Horse,Paul Mclaughlin,Unknown,Unknown,On Premise
+56004,Jack E Pooh's,Paul Mclaughlin,Bergenfield,Englewood Cliff Thu,On Premise
+81023,K Of C W Bergen,Paul Mclaughlin,Unknown,Unknown,On Premise
+54011,Knickerbocker Golf (P),Paul Mclaughlin,Tenafly,Norwood Thu,On Premise
+62010,LUCIOS,Paul Mclaughlin,Unknown,Unknown,On Premise
+60004,La Taberna Steak House,Paul Mclaughlin,Unknown,Unknown,On Premise
+50029,La Tequilera Restaurant,Paul Mclaughlin,Unknown,Unknown,On Premise
+62012,Landmark Closter,Paul Mclaughlin,Unknown,Unknown,On Premise
+40005,Lazy Lanigans (A),Paul Mclaughlin,Hackensack,Hackensack Wed,On Premise
+41010,Lenoras Bar (P),Paul Mclaughlin,Hackensack,Hackensack Wed,On Premise
+69005,Let's Meat Steakhouse,Paul Mclaughlin,Unknown,Unknown,On Premise
+41020,Lidos Restaurant (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+74001,Lolitas Mexican Cantina,Paul Mclaughlin,Unknown,Unknown,On Premise
+73001,Lou's,Paul Mclaughlin,Hillsdale,Woodcliff Lake Tue,On Premise
+56006,Lula's Latin Cuisine,Paul Mclaughlin,Unknown,Unknown,On Premise
+51014,Marriott (A) Teaneck,Paul Mclaughlin,Unknown,Unknown,On Premise
+71011,Marriott (P) Park Ridge,Paul Mclaughlin,Park Ridge,Woodcliff Lake Wed,On Premise
+29051,Medieval Times,Paul Mclaughlin,Unknown,Unknown,On Premise
+41002,Mi Tierrita (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+76005,Midland Brewhouse (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+70005,Montvale Bowl (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+67011,Mykos,Paul Mclaughlin,Unknown,Unknown,Off Premise
+57012,N Milford Ath Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+57007,New Bridge Inn(A),Paul Mclaughlin,New Milford,Woodcliff Lake Fri,On Premise
+50035,Nobo,Paul Mclaughlin,Unknown,Unknown,On Premise
+59001,ORA,Paul Mclaughlin,Oradell,Woodcliff Lake Wed,On Premise
+81019,Oceanos Osyter Bar Grill,Paul Mclaughlin,Unknown,Unknown,On Premise
+67001,Olar Noso,Paul Mclaughlin,Unknown,Unknown,On Premise
+68011,Old Tappan Golf Course,Paul Mclaughlin,Unknown,Unknown,On Premise
+68006,Old Tappan Manor (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+74010,Osteria Crescendo,Paul Mclaughlin,Unknown,Unknown,On Premise
+74004,P J Finnegan's,Paul Mclaughlin,Unknown,Unknown,On Premise
+50015,PUB 178,Paul Mclaughlin,Teaneck,Englewood Cliff Wed,On Premise
+57009,Pancho Burrito's (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+71005,Park Steakhouse,Paul Mclaughlin,Park Ridge,Woodcliff Lake Fri,On Premise
+71001,Peppercorn's,Paul Mclaughlin,Park Ridge,Woodcliff Lake Wed,On Premise
+39010,Players Club (Z),Paul Mclaughlin,South Hackensac,Englewood Cliff Tue,On Premise
+60014,Pop(xo) Taco,Paul Mclaughlin,Unknown,Unknown,On Premise
+60002,QB's Bar and Grill,Paul Mclaughlin,Dumont,Englewood Cliff Thu,On Premise
+81027,RP Prime Steakhouse,Paul Mclaughlin,Unknown,Unknown,On Premise
+57004,River & Henley,Paul Mclaughlin,Unknown,Unknown,On Premise
+69009,Rivervale Country Club,Paul Mclaughlin,Rivervale,Norwood Fri,On Premise
+41029,Riviera Lounge (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+62002,Rudy's Pizzeria (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+55009,Samdan Mediterranean Restaurant And Bar,Paul Mclaughlin,Unknown,Unknown,On Premise
+62011,Sear House (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+86006,Seasons Catering (A),Paul Mclaughlin,Unknown,Unknown,On Premise
+81002,Shoti Bread House,Paul Mclaughlin,Unknown,Unknown,On Premise
+40032,Side Bar,Paul Mclaughlin,Unknown,Unknown,On Premise
+52049,Sini Bistro,Paul Mclaughlin,Unknown,Unknown,On Premise
+52030,Sofia,Paul Mclaughlin,Englewood,Englewood Cliff Fri,On Premise
+62003,Stern And Bow,Paul Mclaughlin,Closter,Norwood Fri,On Premise
+81004,Stosh's Craft Bar (Z),Paul Mclaughlin,Fair Lawn,Rochelle Park Wed,On Premise
+41006,Straphanger Saloon (A),Paul Mclaughlin,Hackensack,Hackensack Fri,On Premise
+40008,Tavern 61 (Z),Paul Mclaughlin,Hackensack,Englewood Cliff Tue,On Premise
+54001,Tenafly Pizza (Z),Paul Mclaughlin,Unknown,Unknown,On Premise
+54005,The 130 Club,Paul Mclaughlin,Unknown,Unknown,On Premise
+73002,The Cornerstone (P),Paul Mclaughlin,Hillsdale,Woodcliff Lake Thu,On Premise
+62007,The Hill,Paul Mclaughlin,Unknown,Unknown,On Premise
+59006,The Oak House,Paul Mclaughlin,Unknown,Unknown,On Premise
+76009,The Plank Pizza And Bar,Paul Mclaughlin,Unknown,Unknown,On Premise
+67014,The Rockleigh C C (P),Paul Mclaughlin,Unknown,Unknown,On Premise
+41023,The Whiskey Priest (Hackensack),Paul Mclaughlin,Unknown,Unknown,On Premise
+150014,Tierney's Tavern(A),Paul Mclaughlin,Montclair,10058 Wed,On Premise
+56009,Tommy Fox's Pub Hse(P),Paul Mclaughlin,Bergenfield,Englewood Cliff Thu,On Premise
+56001,Tony's Italian Cuisine,Paul Mclaughlin,Unknown,Unknown,On Premise
+65003,Verana,Paul Mclaughlin,Unknown,Unknown,On Premise
+52036,Vida Garden,Paul Mclaughlin,Unknown,Unknown,On Premise
+36015,Wallington Lane (Bowlero),Paul Mclaughlin,Unknown,Unknown,On Premise
+61003,White Beeches Golf Club,Paul Mclaughlin,Haworth,Norwood Tue,On Premise
+51005,Zina's Steakhouse & Grill,Paul Mclaughlin,Unknown,Unknown,On Premise
+89007,Acme Markets (Allendale),Phil Ernst,Unknown,Unknown,Off Premise
+49039,Acme Markets (Fort Lee),Phil Ernst,Unknown,Unknown,Off Premise
+85002,Acme Markets (Midland Park),Phil Ernst,Unknown,Unknown,Off Premise
+50003,"Agave Liquor, Wine & Spirits",Phil Ernst,Unknown,Unknown,Off Premise
+49082,Beverage Depot,Phil Ernst,Unknown,Unknown,Off Premise
+83010,Bottle King (A) Glen Rock,Phil Ernst,Glen Rock,Ridgewood Wed,Off Premise
+40019,Budy's Wine & Liq (A),Phil Ernst,Unknown,Unknown,Off Premise
+43001,City Supermarket,Phil Ernst,Fairview,Box NB Liquors Wed,Off Premise
+83001,Food Universe Marketplace,Phil Ernst,Glen Rock,Box Met Life Mon,Off Premise
+12007,Gary's Wine & Marketplace (Wayne),Phil Ernst,Wayne,Hot Shot #17,Off Premise
+39001,Home Wines & Liq 75 (A) (South Hackensack),Phil Ernst,South Hackensac,South Hackensac Mon,Off Premise
+50002,Lushka Liquors,Phil Ernst,Bogota,Teaneck Fri,Off Premise
+50005,Megha Liquor & Groc. (P),Phil Ernst,Bogota,Englewood Cliff Thu,Off Premise
+80041,PRIME WINE CELLAR Liquor & Beer,Phil Ernst,Paramus,Rochelle Park Thu,Off Premise
+46019,Palisades Wine And Liquor,Phil Ernst,Palisades Park,Palisades Park Wed,Off Premise
+50009,Riverview Liq (P),Phil Ernst,Bogota,10058 Thu,Off Premise
+76021,Saddle Brook Liquor & Bar,Phil Ernst,Unknown,Unknown,On Premise
+80005,Shop Rite Liq (Paramus),Phil Ernst,Paramus,Hot Shot #14,Off Premise
+81014,Shop Rite Liq(A) Fair Lwn,Phil Ernst,Fair Lawn,Box Emerson Thu,Off Premise
+78008,Shop Rite Liq(A) Roch Pk,Phil Ernst,Rochelle Park,Hawthorne Mon,Off Premise
+29004,Shop-Rite Liq Lyndhurst,Phil Ernst,Lyndhurst,East Rutherford Tue,Off Premise
+25010,Stew Leonard's Wines & Spirits of Clifton,Phil Ernst,Clifton,Clifton 2 Thu,Off Premise
+25075,Stew Leonard's Wines & Spirits of Clifton (NA),Phil Ernst,Unknown,Unknown,Off Premise
+208026,Stew Leonard's(A) Paramu (NA),Phil Ernst,Unknown,Unknown,Off Premise
+80026,Stew Leonard's(A) Paramus Wine,Phil Ernst,Paramus,Box Emerson Thu,Off Premise
+20106,Super Wine Warehse(P)Pate,Phil Ernst,Paterson,Box NB Liquors Fri,Off Premise
+38018,THE BOTTLE SHOP,Phil Ernst,Lodi,Lodi Tue,Off Premise
+80002,Whole Foods Market (Paramus),Phil Ernst,Unknown,Unknown,Off Premise
+47004,Wides Deli & Liquor,Phil Ernst,Ridgefield Park,Teaneck Thu,Off Premise
+76006,Wine Country Of Saddle Brook (A),Phil Ernst,Unknown,Unknown,Off Premise
+190908,4 Seasons Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+37055,82 OAK BAR & BISTRO,Robin Feldman,Unknown,Unknown,On Premise
+50028,Amarone (P),Robin Feldman,Unknown,Unknown,On Premise
+42015,Amer Lgn (Z) Little Ferry,Robin Feldman,Unknown,Unknown,On Premise
+190919,Amer Lgn Of Wharton 91,Robin Feldman,Wharton,Wharton Fri,On Premise
+1026,American Legion Post 289 (A) West Milford,Robin Feldman,Unknown,Unknown,On Premise
+11012,American Lg 279 Lincoln Park,Robin Feldman,Unknown,Unknown,On Premise
+230404,American Lgn #86 Newton,Robin Feldman,Unknown,Unknown,On Premise
+55008,American Lgn (Z) (Cresskill),Robin Feldman,Unknown,Unknown,On Premise
+79009,American Lgn (Z) (Maywood),Robin Feldman,Unknown,Unknown,On Premise
+76022,American Lgn (Z) (Saddle Brook),Robin Feldman,Unknown,Unknown,On Premise
+74014,American Lgn (Z) (Westwood),Robin Feldman,Unknown,Unknown,On Premise
+13007,American Lgn 108 (Z) Little Falls,Robin Feldman,Unknown,Unknown,On Premise
+30002,American Lgn 109 (P) Rutherford,Robin Feldman,Unknown,Unknown,On Premise
+12047,American Lgn 174 Wayne,Robin Feldman,Wayne,Wayne Tue,On Premise
+231306,American Lgn 213 Sussex,Robin Feldman,Unknown,Unknown,On Premise
+52027,American Lgn 58 (A) Englewood,Robin Feldman,Unknown,Unknown,On Premise
+231708,American Lgn Branchville,Robin Feldman,Unknown,Unknown,On Premise
+77034,American Lgn Elmwood Park,Robin Feldman,Unknown,Unknown,On Premise
+43033,American Lgn Fairview (A),Robin Feldman,Unknown,Unknown,On Premise
+230910,American Lgn Franklin,Robin Feldman,Unknown,Unknown,On Premise
+190301,American Lgn Lake Hiawath,Robin Feldman,Unknown,Unknown,On Premise
+29044,American Lgn Lyndhurst #139,Robin Feldman,Lyndhurst,Lyndhurst Fri,On Premise
+67009,American Lgn Northvale,Robin Feldman,Unknown,Unknown,On Premise
+65008,American Lgn Norwood,Robin Feldman,Unknown,Unknown,On Premise
+191203,American Lgn Oak Ridge Post 423,Robin Feldman,Unknown,Unknown,On Premise
+71009,American Lgn Park Ridge,Robin Feldman,Unknown,Unknown,On Premise
+10002,American Lgn Pequannock 450,Robin Feldman,Unknown,Unknown,On Premise
+9007,American Lgn Pompton Plains,Robin Feldman,Unknown,Unknown,On Premise
+78010,American Lgn Rochelle Pk,Robin Feldman,Rochelle Park,10055 Wed,On Premise
+190708,American Lgn Rockaway,Robin Feldman,Unknown,Unknown,On Premise
+51011,American Lgn Teaneck (Z),Robin Feldman,Teaneck,10072 Thu,On Premise
+15079,American Lgn Totowa,Robin Feldman,Totowa,Totowa Tue,On Premise
+11004,Arca,Robin Feldman,Unknown,Unknown,On Premise
+28025,Arlington Diner (A),Robin Feldman,Unknown,Unknown,On Premise
+2005,Arta Trattoria (P),Robin Feldman,Ringwood,Wanaque Fri,On Premise
+41011,Bangkok Garden(P) Thai,Robin Feldman,Unknown,Unknown,On Premise
+191206,Bella Vista,Robin Feldman,Unknown,Unknown,On Premise
+73007,Bensi (P),Robin Feldman,Unknown,Unknown,On Premise
+34006,Bensi (P) (Shoprite Plza),Robin Feldman,Unknown,Unknown,On Premise
+191219,Berkshire Valley Gc,Robin Feldman,Unknown,Unknown,On Premise
+4011,Bloomingdale Fire Dept,Robin Feldman,Bloomingdale,Wanaque Tue,On Premise
+190202,Boonton Elks,Robin Feldman,Unknown,Unknown,On Premise
+5012,Butler Fire Department(P),Robin Feldman,Unknown,Unknown,On Premise
+31022,Candlewick,Robin Feldman,Unknown,Unknown,On Premise
+231802,Candy's Pizza,Robin Feldman,Unknown,Unknown,On Premise
+230305,Casa Bellisma (A),Robin Feldman,Unknown,Unknown,On Premise
+191202,Casa Bianca (P),Robin Feldman,Unknown,Unknown,On Premise
+9009,Cedar Crest Village(607),Robin Feldman,Unknown,Unknown,On Premise
+190608,Cedar Lake Club,Robin Feldman,Unknown,Unknown,On Premise
+40035,Chit Chat Diner,Robin Feldman,Unknown,Unknown,On Premise
+230429,Chun Bo (P) Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+40027,Cigarro Bar and Lounge,Robin Feldman,Unknown,Unknown,On Premise
+12012,Cosmopolitan,Robin Feldman,Unknown,Unknown,On Premise
+93018,Courtyard Mahwah,Robin Feldman,Unknown,Unknown,On Premise
+191406,Courtyard Marriott Mt Arl,Robin Feldman,Mt Arlington,Mt Arlington Thu,On Premise
+29033,Courtyard Marriott(A),Robin Feldman,Unknown,Unknown,On Premise
+12068,Courtyard by Marriott Wayne Fairfield,Robin Feldman,Unknown,Unknown,On Premise
+230303,Crossed Keys Inn,Robin Feldman,Unknown,Unknown,On Premise
+6003,Cypress,Robin Feldman,Unknown,Unknown,On Premise
+191403,Davy's Dogs,Robin Feldman,Unknown,Unknown,On Premise
+23015,Disabled Amvets (P),Robin Feldman,Unknown,Unknown,On Premise
+94016,Doc Watsons NJ,Robin Feldman,Unknown,Unknown,On Premise
+15077,E & V (A) Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+191815,Eastern Asian Bistro/Bar,Robin Feldman,Unknown,Unknown,On Premise
+231314,Elks Lodge 2288,Robin Feldman,Sussex,Denville Tue,On Premise
+62015,Elks Lodge 2304(Z),Robin Feldman,Unknown,Unknown,On Premise
+8016,Elks Pompton Lakes,Robin Feldman,Unknown,Unknown,On Premise
+29047,Elks Post (P),Robin Feldman,Unknown,Unknown,On Premise
+24036,Elks Post (Z) #1569,Robin Feldman,Unknown,Unknown,On Premise
+60016,Elks Post (Z) Dumont,Robin Feldman,Unknown,Unknown,On Premise
+56022,Elks Post 1477,Robin Feldman,Unknown,Unknown,On Premise
+47006,Elks Post 1506,Robin Feldman,Unknown,Unknown,On Premise
+40007,Elks Post 153 (Z),Robin Feldman,Unknown,Unknown,On Premise
+74002,Elks Post 1562,Robin Feldman,Unknown,Unknown,On Premise
+93013,Elks Post 1941 (Z),Robin Feldman,Unknown,Unknown,On Premise
+28026,Elks Post 1992 (Z),Robin Feldman,Unknown,Unknown,On Premise
+80033,Elks Post 2001 Paramus,Robin Feldman,Unknown,Unknown,On Premise
+14013,Elks Post 2111 (A),Robin Feldman,Unknown,Unknown,On Premise
+94011,Elks Post 2167,Robin Feldman,Unknown,Unknown,On Premise
+71010,Elks Post 2234,Robin Feldman,Unknown,Unknown,On Premise
+1030,Elks Post 2236 (P),Robin Feldman,West Milford,West Milford Thu,On Premise
+54014,Elks Post 2271 (Z),Robin Feldman,Unknown,Unknown,On Premise
+57015,Elks Post 2290 (Z),Robin Feldman,Unknown,Unknown,On Premise
+230115,Elks Post 2356,Robin Feldman,Unknown,Unknown,On Premise
+77033,Elmwood Pk-Pater Elks #60,Robin Feldman,Unknown,Unknown,On Premise
+15081,Evolution Restaurant & Bar,Robin Feldman,Woodland Park,Totowa Thu,On Premise
+12042,Exotic Indian Cuisine,Robin Feldman,Unknown,Unknown,On Premise
+15049,Francesco's In The Park,Robin Feldman,Unknown,Unknown,On Premise
+2009,Frungillo Caterers,Robin Feldman,Unknown,Unknown,On Premise
+230124,Fu's Chinese (P) Rest.,Robin Feldman,Unknown,Unknown,On Premise
+191524,GRIFFIN & HOWE,Robin Feldman,Unknown,Unknown,On Premise
+42001,Garden Shabu,Robin Feldman,Unknown,Unknown,On Premise
+191527,Garden State Yacht Club,Robin Feldman,Unknown,Unknown,On Premise
+18005,Giuseppe (P) Rest.,Robin Feldman,Unknown,Unknown,On Premise
+190714,Green Pond Yacht Club (Z),Robin Feldman,Unknown,Unknown,On Premise
+17015,Haledon Fire Dept(A),Robin Feldman,Unknown,Unknown,On Premise
+230417,Hampton (P) Diner,Robin Feldman,Unknown,Unknown,On Premise
+50038,Hampton Inn & Suites,Robin Feldman,Unknown,Unknown,On Premise
+192156,Hapgoods Restaurant,Robin Feldman,Mountain Lakes,10053 Thu,On Premise
+34014,Hasbrouck Heights Elks,Robin Feldman,Unknown,Unknown,On Premise
+190710,Hilton Garden Inn Rockaway,Robin Feldman,Unknown,Unknown,On Premise
+12067,Hilton Garden Inn wayne,Robin Feldman,Wayne,Oakland Wed,On Premise
+34018,Hilton Hasbrk Hts #50591,Robin Feldman,Unknown,Unknown,On Premise
+34000,Holiday Inn (Hasbrook Height),Robin Feldman,Unknown,Unknown,On Premise
+34019,Home2 Suites by Hilton,Robin Feldman,Unknown,Unknown,On Premise
+28033,Homewood Suites By Hilton,Robin Feldman,Unknown,Unknown,On Premise
+230126,Hudson Farm Club,Robin Feldman,Unknown,Unknown,On Premise
+190605,Hunan Taste (Z),Robin Feldman,Unknown,Unknown,On Premise
+81032,Hyatt Place Fair Lawn (A),Robin Feldman,Unknown,Unknown,On Premise
+52032,Ideal Lodge 470 (P),Robin Feldman,Unknown,Unknown,On Premise
+32020,Il Villaggio Rest,Robin Feldman,Carlstadt,East Rutherford Tue,On Premise
+12019,In The Crease (P),Robin Feldman,Unknown,Unknown,On Premise
+95002,Indian Trail Club,Robin Feldman,Unknown,Unknown,On Premise
+52023,Jerry's Outlet,Robin Feldman,Unknown,Unknown,Off Premise
+86005,K Of C (Z) Washing. Twsp,Robin Feldman,Washington Twsp,Woodcliff Lake Wed,On Premise
+47014,K Of C 2229 (Z),Robin Feldman,Ridgefield Park,Teaneck Wed,On Premise
+60017,K Of C Dumont,Robin Feldman,Unknown,Unknown,On Premise
+38043,K Of C Lodi,Robin Feldman,Unknown,Unknown,On Premise
+79011,K Of C Maywood,Robin Feldman,Unknown,Unknown,On Premise
+28015,K Of C N Arlington (Z),Robin Feldman,Unknown,Unknown,On Premise
+5009,K Of C Pequannock Valley,Robin Feldman,Butler,Riverdale Thu,On Premise
+92016,K Of C Ramsey,Robin Feldman,Unknown,Unknown,On Premise
+58008,K Of C River Edge,Robin Feldman,Unknown,Unknown,On Premise
+51015,K Of C Teaneck,Robin Feldman,Unknown,Unknown,On Premise
+74019,K Of C Westwood,Robin Feldman,Unknown,Unknown,On Premise
+66002,Kiku (Z) Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+80019,Kiku Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+17019,La Neves (P),Robin Feldman,Unknown,Unknown,On Premise
+191301,Lake Hopatcong Yacht Club,Robin Feldman,Mt Arlington,Hot Shot #8,On Premise
+230118,Lake Mohawk (P) Golf Club,Robin Feldman,Unknown,Unknown,On Premise
+190716,Lake Telemark Country Clu,Robin Feldman,Unknown,Unknown,On Premise
+28017,Lassoni Ristorante(P),Robin Feldman,Unknown,Unknown,On Premise
+29039,Lee's Hawaiian (P),Robin Feldman,Unknown,Unknown,On Premise
+41034,Lodi Moose Lodge 1971,Robin Feldman,Unknown,Unknown,On Premise
+190717,Luzzi's (Z),Robin Feldman,Unknown,Unknown,On Premise
+19014,Macaluso's (P),Robin Feldman,Unknown,Unknown,On Premise
+190718,Marcella Community Club,Robin Feldman,Unknown,Unknown,On Premise
+76004,Marriot Hotel(A)Saddle Bk,Robin Feldman,Unknown,Unknown,On Premise
+29041,Masonic (A) Club,Robin Feldman,Unknown,Unknown,On Premise
+190210,Matta Donna (Z),Robin Feldman,Unknown,Unknown,On Premise
+88009,Matthew Colonial Rest(A),Robin Feldman,Unknown,Unknown,On Premise
+66001,Montammy Golf Club (P),Robin Feldman,Unknown,Unknown,On Premise
+70009,Montvale Fire Company,Robin Feldman,Unknown,Unknown,On Premise
+23012,Moose Lodge (Z),Robin Feldman,Clifton,Clifton 1 Tue,On Premise
+50036,Moose Lodge 961 (Z),Robin Feldman,Teaneck,Englewood Cliff Thu,On Premise
+42009,Nikki's Bar & Grill,Robin Feldman,Little Ferry,East Rutherford Fri,On Premise
+230807,North Shore House,Robin Feldman,Unknown,Unknown,On Premise
+67006,Northvale Diner,Robin Feldman,Unknown,Unknown,On Premise
+12006,Novelli (P),Robin Feldman,Wayne,Wayne Fri,On Premise
+231005,Ogdensburg Fire Dept,Robin Feldman,Unknown,Unknown,On Premise
+25043,Ooka Sushi Hibachi,Robin Feldman,Unknown,Unknown,On Premise
+73004,Osso Buco,Robin Feldman,Unknown,Unknown,On Premise
+12046,Packanack Lake Comm Asso,Robin Feldman,Unknown,Unknown,On Premise
+18008,Papa Joe's (Z),Robin Feldman,Unknown,Unknown,On Premise
+71015,Park Ridge Vol Fire Dept,Robin Feldman,Unknown,Unknown,On Premise
+12024,Park Wayne Diner,Robin Feldman,Unknown,Unknown,On Premise
+13014,Park West Diner,Robin Feldman,Unknown,Unknown,On Premise
+230302,Perona Farms,Robin Feldman,Unknown,Unknown,On Premise
+29018,Pietro's Trattoria,Robin Feldman,Unknown,Unknown,On Premise
+77008,Pizza Town USA,Robin Feldman,Unknown,Unknown,Off Premise
+29052,Polish American Club,Robin Feldman,Unknown,Unknown,On Premise
+9001,Pompton Queen (P),Robin Feldman,Pompton Plains,10052 Wed,On Premise
+1032,Prime 374 - Seafood & Steak,Robin Feldman,Unknown,Unknown,On Premise
+30017,Renaissance Meadowlands,Robin Feldman,Unknown,Unknown,On Premise
+12066,Residence Inn,Robin Feldman,Unknown,Unknown,On Premise
+58003,River Edge Diner & Rest.,Robin Feldman,Unknown,Unknown,On Premise
+19025,Riverside Veteran,Robin Feldman,Unknown,Unknown,On Premise
+190613,Rock Ridge Community,Robin Feldman,Unknown,Unknown,On Premise
+190607,Rockaway River Cc(P),Robin Feldman,Unknown,Unknown,On Premise
+39015,Rudy's Inflight Caterers,Robin Feldman,Unknown,Unknown,On Premise
+43035,S & A Society (Z),Robin Feldman,Fairview,Edgewater Mon,On Premise
+29054,San Carlo Restaurant,Robin Feldman,Unknown,Unknown,On Premise
+93016,Sangria Taps/Rest(Z),Robin Feldman,Unknown,Unknown,On Premise
+191306,Shore Hills Country Club,Robin Feldman,Landing,Mt Arlington Wed,On Premise
+2010,Skyline Lakes Prop Owners,Robin Feldman,Ringwood,10057 Thu,On Premise
+6005,Smoke Rise Club (P),Robin Feldman,Unknown,Unknown,On Premise
+12058,Sports Friends Soccer (A),Robin Feldman,Unknown,Unknown,On Premise
+32031,Spring Hill Suites Carlstadt,Robin Feldman,Unknown,Unknown,On Premise
+40040,St Paul Lodge#7,Robin Feldman,Unknown,Unknown,On Premise
+93001,Stateline Diner (P),Robin Feldman,Unknown,Unknown,On Premise
+230433,Stillwater Area Vol Fire,Robin Feldman,Unknown,Unknown,On Premise
+52017,Tapas De Espana (P),Robin Feldman,Unknown,Unknown,On Premise
+49067,Taverna Veranda,Robin Feldman,Unknown,Unknown,On Premise
+46022,Te Min Quan (P) Rest.,Robin Feldman,Unknown,Unknown,On Premise
+54017,Tenafly Classic Diner,Robin Feldman,Unknown,Unknown,On Premise
+81005,The Craftsman,Robin Feldman,Fair Lawn,Rochelle Park Fri,On Premise
+34008,The Ivy Inn,Robin Feldman,Unknown,Unknown,On Premise
+18007,The Tides,Robin Feldman,Unknown,Unknown,On Premise
+12023,The Village Inn,Robin Feldman,Wayne,Hot Shot #4,On Premise
+25018,Tick-Tock Diner (A),Robin Feldman,Unknown,Unknown,On Premise
+3012,Tree Tavern (A),Robin Feldman,Unknown,Unknown,On Premise
+84021,Upper Ridgewood Tennis(A),Robin Feldman,Unknown,Unknown,On Premise
+24043,Valley Regency (A),Robin Feldman,Unknown,Unknown,On Premise
+31009,Vesta Wood Fired Pizza,Robin Feldman,Unknown,Unknown,On Premise
+17017,Veterans Club (Z),Robin Feldman,Unknown,Unknown,On Premise
+8013,Vfw 2906 Pompt. Lks.(Z),Robin Feldman,Unknown,Unknown,On Premise
+57013,Vfw 4290 New Milford(P),Robin Feldman,Unknown,Unknown,On Premise
+50032,Vfw 5561 Bogota,Robin Feldman,Unknown,Unknown,On Premise
+56018,Vfw 6467 (Z),Robin Feldman,Unknown,Unknown,On Premise
+230108,Vfw 7248 Sparta,Robin Feldman,Unknown,Unknown,On Premise
+42007,Vfw 809 (P),Robin Feldman,Little Ferry,East Rutherford Fri,On Premise
+5016,Vfw Butler,Robin Feldman,Unknown,Unknown,On Premise
+34016,Vfw Hasbrouck (A),Robin Feldman,Hasbrouck Heights,South Hackensac Fri,On Premise
+29055,Vfw Lyndhurst (P),Robin Feldman,Unknown,Unknown,On Premise
+76013,Vfw Of Saddlebrook,Robin Feldman,Unknown,Unknown,On Premise
+37010,Vfw Outwater (Z) Lane,Robin Feldman,Garfield,Lodi Wed,On Premise
+12025,Vila Verde (P) Rest.,Robin Feldman,Unknown,Unknown,On Premise
+85005,Vol Fire Co Midland Pk.,Robin Feldman,Unknown,Unknown,On Premise
+230934,Wallkill Golf Club,Robin Feldman,Unknown,Unknown,On Premise
+190712,White Meadow Lake Cc,Robin Feldman,Unknown,Unknown,On Premise
+77013,William J. Mulligan VFW Post 281,Robin Feldman,Unknown,Unknown,On Premise
+67004,Beverage Barn (A),Shane Barreca,Northvale,Hot Shot #9,Off Premise
+60001,Bottle King (A) Dumont,Shane Barreca,Dumont,Englewood Cliff Mon,Off Premise
+73003,Bottle King (A) Hillsdale,Shane Barreca,Hillsdale,Woodcliff Lake Fri,Off Premise
+92011,Bottle King (A) Ramsey,Shane Barreca,Ramsey,Ramsey Thu,Off Premise
+71003,Brand Bar & Bev (A),Shane Barreca,Park Ridge,Woodcliff Lake Mon,Off Premise
+72001,Cambridge Wines (Woodcliff Lake),Shane Barreca,Woodcliff Lake,Box Emerson Thu,Off Premise
+55001,Coasters Liquors,Shane Barreca,Cresskill,Norwood Thu,Off Premise
+75004,Cork & Keg (A),Shane Barreca,Emerson,10041 Mon,Off Premise
+60010,D & L Dumont Liquors,Shane Barreca,Unknown,Unknown,Off Premise
+74007,Djm Liq Inc. (P)(Andrew),Shane Barreca,Unknown,Unknown,Off Premise
+62001,Garden State Deli (A),Shane Barreca,Closter,10074 Mon,Off Premise
+62009,Gary's Wine & Marketplace (Closter),Shane Barreca,Closter,10066 Thu,Off Premise
+70003,Montvale Wine & Spirits,Shane Barreca,Montvale,Woodcliff Lake Thu,Off Premise
+70001,Montvale Wine/Liq & Beer,Shane Barreca,Montvale,10041 Tue,Off Premise
+62006,Murphy's Fine Wines & Liquors (UNI 4H Inc.),Shane Barreca,Unknown,Unknown,Off Premise
+59003,Oradell Mini Mart(P),Shane Barreca,Unknown,Unknown,Off Premise
+92008,Ramsey Wine & Liquor,Shane Barreca,Ramsey,Ramsey Tue,Off Premise
+71006,Ridgemont Liquors (A),Shane Barreca,Park Ridge,Woodcliff Lake Thu,Off Premise
+59004,Royal Wine & Spirits II,Shane Barreca,Oradell,Woodcliff Lake Wed,Off Premise
+75002,Shop Rite Liq (A)Emerson,Shane Barreca,Emerson,Woodcliff Lake Tue,Off Premise
+73008,Shop Rite Liq (A)Hillsdal,Shane Barreca,Hillsdale,10057 Fri,Off Premise
+67005,Shoprite Liq (A)Northvle,Shane Barreca,Northvale,Norwood Mon,Off Premise
+64002,The Store,Shane Barreca,Harrington Park,Norwood Wed,Off Premise
+86003,Township Liq (P),Shane Barreca,Washington Twsp,10079 Tue,Off Premise
+74009,Westwood Wine and Liquors,Shane Barreca,Westwood,10057 Wed,Off Premise
+201097,Whole Foods #10381 (Closter),Shane Barreca,Unknown,Unknown,Off Premise
+201098,Whole Foods #8407 (Woodcliff Lake),Shane Barreca,Unknown,Unknown,Off Premise
+65001,Wine & Whiskey (A),Shane Barreca,Unknown,Unknown,Off Premise
+68002,Wine And Beverage Spirits,Shane Barreca,Old Tappan,Norwood Thu,Off Premise
+74005,Winemart Discount,Shane Barreca,Westwood,Box Emerson Tue,Off Premise
+67008,Woori Mart,Shane Barreca,Unknown,Unknown,Off Premise
