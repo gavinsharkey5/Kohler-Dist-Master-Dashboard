@@ -100,24 +100,24 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 17,
-    "CASE_EQUIV_2026": 39,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 22
+    "CASE_EQUIV_2026": 40,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 23
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "SUPPLIER": "Crescent Canna",
     "BRAND_FAMILY": "Crescent 9",
     "CASE_EQUIV_2025": 20,
-    "CASE_EQUIV_2026": 29,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 9
+    "CASE_EQUIV_2026": 31,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 11
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 40,
-    "CASE_EQUIV_2026": 51,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 11
+    "CASE_EQUIV_2026": 55,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 15
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -212,16 +212,16 @@
     "SUPPLIER": "Crescent Canna",
     "BRAND_FAMILY": "Crescent 9",
     "CASE_EQUIV_2025": 3,
-    "CASE_EQUIV_2026": 6,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 3
+    "CASE_EQUIV_2026": 10,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 7
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 74,
-    "CASE_EQUIV_2026": 6,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -68
+    "CASE_EQUIV_2026": 9,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -65
   },
   {
     "SALES_REP_ASSIGNED": "John Neukum",
@@ -300,8 +300,8 @@
     "SUPPLIER": "Crescent Canna",
     "BRAND_FAMILY": "Crescent 9",
     "CASE_EQUIV_2025": 7,
-    "CASE_EQUIV_2026": 6,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -1
+    "CASE_EQUIV_2026": 11,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 4
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
