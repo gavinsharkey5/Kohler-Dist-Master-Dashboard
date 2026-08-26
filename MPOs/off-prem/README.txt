@@ -372,6 +372,22 @@ column DISAPPEARING from an export is still treated as a format regression
 and stops the merge rather than blanking the archive. Then commit and
 push.
 
+That whole-month exception did come up: PODS_Report_14 (2026-08-26)
+spanned 08/01-08/26 with a date on every row, carried all 10 already-
+published POD photos plus 3 new ones, and was saved straight over
+lytt_pos_pods.xlsx rather than merged. Overwriting was the RIGHT call
+there and merging would have been the wrong one -- merge_export() dedupes
+on the columns the archive already had, Date/Time included, so the 7 POD
+photos published while the export had no Date/Time (blank in the archive,
+dated in the new pull) would not have matched their own published copies
+and would have landed a second time. Overwriting instead backfilled their
+real dates (08/11-08/18, previously em dashes on the board). Two non-LYTT
+rows (Victory Brewing, from an unfiltered earlier pull) dropped out of the
+archive with it -- no loss, generate_lytt_pos.py already refused to write
+them to the JSON. So: check an incoming PODS pull's Filters tab span
+before choosing; whole month with dates throughout -> overwrite, anything
+narrower -> --merge-pods.
+
 Normally each month's data is refreshed automatically by
 .github/workflows/snowflake-sync.yml running sync_snowflake_data.py --
 that workflow's schedule is currently paused (see the workflow file),

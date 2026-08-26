@@ -1,5 +1,258 @@
 [
  {
+  "REP": "Phil Ernst",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "FOOD UNIVERSE MARKETPLACE",
+  "CITY": "GLEN ROCK",
+  "BRAND": "LYTT AGENT ORANGE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 2,
+  "DATE": "08/25/2026 04:33 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/070b7b8f-031d-44a8-b2eb-4e97d6b5adef/"
+ },
+ {
+  "REP": "Phil Ernst",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "FOOD UNIVERSE MARKETPLACE",
+  "CITY": "GLEN ROCK",
+  "BRAND": "LYTT AGENT ORANGE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 2,
+  "DATE": "08/25/2026 04:20 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/d4acaff2-4435-4b6a-9f88-a19168db94c1/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT GRAPE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Jayson Romine",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "LIQUOR FACTORY II JEFFERSON",
+  "CITY": "LAKE HOPATCONG",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 04:11 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/16765779-b5cf-4cd9-adbc-0a7afb284665/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "QUICK STOP FOOD & LIQ",
+  "CITY": "LODI",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 01:04 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5253bd9d-265e-4515-8abf-b4cdadeee37b/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "QUICK STOP FOOD & LIQ",
+  "CITY": "LODI",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 01:04 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5253bd9d-265e-4515-8abf-b4cdadeee37b/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "QUICK STOP FOOD & LIQ",
+  "CITY": "LODI",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 01:04 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5253bd9d-265e-4515-8abf-b4cdadeee37b/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KRAUSZER LIQUOR",
+  "CITY": "SADDLE BROOK",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 12:48 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/ab3dcc41-cb55-42dc-8d46-0e71ba4be837/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KRAUSZER LIQUOR",
+  "CITY": "SADDLE BROOK",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 12:48 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/ab3dcc41-cb55-42dc-8d46-0e71ba4be837/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "KRAUSZER LIQUOR",
+  "CITY": "SADDLE BROOK",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 12:48 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/ab3dcc41-cb55-42dc-8d46-0e71ba4be837/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",
+  "CITY": "WOODRIDGE",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 11:50 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/275a74d2-c724-4b09-90d8-15992fd4ff5e/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",
+  "CITY": "WOODRIDGE",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 11:50 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/275a74d2-c724-4b09-90d8-15992fd4ff5e/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WOODRIDGE WINES & LIQ(A)",
+  "CITY": "WOODRIDGE",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 11:50 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/275a74d2-c724-4b09-90d8-15992fd4ff5e/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT GRAPE",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT LONG ISLAND ICED TEA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
+  "REP": "Dan Lagala",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "WINE AND FOOD MART (Z)",
+  "CITY": "CLIFFSIDE PARK",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/25/2026 10:13 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/9c7c8af1-5104-4090-94a7-8de668923992/"
+ },
+ {
   "REP": "Pablo Lopez",
   "SOURCE": "Display",
   "CUSTOMER_NAME": "PASSAIC DISCOUNT LIQUORS",
@@ -1344,6 +1597,39 @@
  {
   "REP": "Phil Ernst",
   "SOURCE": "POD",
+  "CUSTOMER_NAME": "SHOP RITE LIQ (PARAMUS)",
+  "CITY": "PARAMUS",
+  "BRAND": "LYTT AGENT ORANGE",
+  "DETAIL": "",
+  "QUANTITY": "",
+  "DATE": "08/25/2026 06:58 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/p.ernst@kohlerdist.com/309cadda-f838-46ad-bbff-e6cc394be142.jpg"
+ },
+ {
+  "REP": "Phil Ernst",
+  "SOURCE": "POD",
+  "CUSTOMER_NAME": "THE BOTTLE SHOP",
+  "CITY": "LODI",
+  "BRAND": "LYTT AGENT ORANGE",
+  "DETAIL": "",
+  "QUANTITY": "",
+  "DATE": "08/25/2026 05:57 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/p.ernst@kohlerdist.com/d52f4439-c2d1-497a-8b6f-b5c834de15c7.jpg"
+ },
+ {
+  "REP": "Matt Powierski",
+  "SOURCE": "POD",
+  "CUSTOMER_NAME": "GARFIELD BAR & LIQ (P)",
+  "CITY": "GARFIELD",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PACK 6.8OZ BOTTLES",
+  "QUANTITY": "",
+  "DATE": "08/25/2026 04:53 PM",
+  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/m.powierski@kohlerdist.com/5927245d-b953-46a9-b8d0-1ad78149d009.jpg"
+ },
+ {
+  "REP": "Phil Ernst",
+  "SOURCE": "POD",
   "CUSTOMER_NAME": "PALISADES WINE AND LIQUOR",
   "CITY": "PALISADES PARK",
   "BRAND": "LYTT AGENT ORANGE",
@@ -1375,17 +1661,6 @@
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/360df212-38ea-4c08-b916-49da3c7786b8.jpg"
  },
  {
-  "REP": "Shane Barreca",
-  "SOURCE": "POD",
-  "CUSTOMER_NAME": "SHOPRITE LIQ (A)NORTHVLE",
-  "CITY": "NORTHVALE",
-  "BRAND": "LYTT BLUE RASPBERRY",
-  "DETAIL": "",
-  "QUANTITY": "",
-  "DATE": "08/24/2026 12:21 PM",
-  "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/360df212-38ea-4c08-b916-49da3c7786b8.jpg"
- },
- {
   "REP": "Mike Ast",
   "SOURCE": "POD",
   "CUSTOMER_NAME": "NICO'S WINE & SPIRITS",
@@ -1393,7 +1668,7 @@
   "BRAND": "LYTT TROPICAL PUNCH",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/18/2026 08:18 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/m.ast@kohlerdist.com/5ff5ce80-e087-4451-b4f9-b3c0591fea6e.jpg"
  },
  {
@@ -1404,7 +1679,7 @@
   "BRAND": "LYTT TROPICAL PUNCH",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/18/2026 03:49 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/m.powierski@kohlerdist.com/7f08747f-b199-4f54-afd3-c1996549ba4c.jpg"
  },
  {
@@ -1415,7 +1690,7 @@
   "BRAND": "LYTT LONG ISLAND ICED TEA",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/18/2026 03:15 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/da668298-01c2-4d90-a56b-2dc1eb1f2858.jpg"
  },
  {
@@ -1426,7 +1701,7 @@
   "BRAND": "LYTT GRAPE",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/18/2026 02:48 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/1b62fc6c-4686-4395-b2d9-e2aec40f393f.jpg"
  },
  {
@@ -1437,7 +1712,7 @@
   "BRAND": "LYTT PEACH MANGO",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/18/2026 02:44 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/ca69cf93-a90e-417c-8f7c-67d423c49614.jpg"
  },
  {
@@ -1448,7 +1723,7 @@
   "BRAND": "LYTT GRAPE",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/17/2026 02:14 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/fc88a921-7638-4689-a1f6-9ffd44091530.jpg"
  },
  {
@@ -1459,7 +1734,7 @@
   "BRAND": "LYTT TROPICAL PUNCH",
   "DETAIL": "24 PACK 6.8OZ BOTTLES",
   "QUANTITY": "",
-  "DATE": "",
+  "DATE": "08/11/2026 02:06 PM",
   "PHOTO_URL": "https://s3.amazonaws.com/cpgcamera_prod/pods/reports/kohlerdist.com/s.barreca@kohlerdist.com/1df6f2e0-e804-4deb-bc3b-0ad1513a338f.jpg"
  }
 ]
