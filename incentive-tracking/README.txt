@@ -207,6 +207,36 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    -account list, case volume, and a penetration leaderboard for the
    tickets bonus.
 
+   3+ SKU RULE (2026-08-26, per Gavin -- applied to the off-prem MPO
+   tracker's Lytt objective the same day, then here on his follow-up
+   "apply that same methodology to the lytt incentive"): an account
+   only counts toward penetration once it carries LYTT_MIN_SKUS = 3
+   DISTINCT Lytt products. Distinct Product Num, not rows -- the same
+   SKU reordered three times is one SKU. On the 8/26 data this dropped
+   11 of the 131 carrying accounts and took reps in a tier from 9 to 7:
+   Shane Barreca 25.8% -> 22.6% and Javier Melo 31.0% -> 20.7% both
+   fell out of "Gettin' Lytt" and off the $0.50/case rate.
+   Accounts carrying Lytt but under the bar are NOT dropped and are NOT
+   whitespace either (whitespace is accounts that never bought), so
+   without somewhere to live they'd vanish from the card entirely --
+   they go in partialAccounts and render as their own "Carrying Lytt --
+   Not Counting Yet" section with what each still needs. They are the
+   cheapest accounts on a rep's list to convert. programEligible counts
+   them too, so a rep holding only 1-2 SKU accounts still gets the
+   program card rather than the "Not Applicable" one.
+   NOTE this rule does NOT touch caseVolume: the payout is still
+   rate x every case sold, including cases from accounts under 3 SKUs.
+   Only the penetration % (and therefore which rate applies) is gated.
+   If Kohler means the rate to apply only to counting accounts' cases,
+   that's a separate change -- ask before assuming it.
+   The same rule and threshold live in MPOs/off-prem/index.html's
+   buildPctOfBaseDataset (minSkus:3). The two pages still report
+   DIFFERENT penetration numbers for the same rep because their
+   denominators differ (this program's eligible universe is Core
+   off-premise accounts from customer_base_full; the MPO page uses
+   sales_reps_customer_base_core.csv) -- that predates this change and
+   is expected, so don't "fix" one to match the other.
+
    Note: the on-prem/off-prem customer base files this program's
    penetration math depends on live in incentive-tracking/data/ as
    customer_base_off_prem.csv / customer_base_on_prem.csv -- re-pull

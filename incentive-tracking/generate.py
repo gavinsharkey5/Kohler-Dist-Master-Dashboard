@@ -790,6 +790,12 @@ def build_new_belgium():
 
 
 LYTT_TIERS = [(0.75, 2.00, "Lytt-Faced"), (0.50, 1.00, "Lytty City"), (0.25, 0.50, "Gettin' Lytt")]
+# An account only counts toward penetration once it carries this many DISTINCT
+# Lytt products (per Gavin, 2026-08-26 -- the same rule applied to the off-prem
+# MPO tracker's "Achieve Distro Lytt 25% of Account Base" the same day, applied
+# here on his follow-up "apply that same methodology to the lytt incentive").
+# Distinct Product Num, not rows: the same SKU reordered three times is one SKU.
+LYTT_MIN_SKUS = 3
 
 
 def build_lytt_launch():
@@ -821,10 +827,13 @@ def build_lytt_launch():
         "eligibleAccountCount": len(eligible_by_rep.get(rep, {})),
         "caseVolume": 0.0,
         "penetrationPct": 0.0, "tier": None, "rate": 0.0,
-        "whitespaceAccounts": [],
+        "whitespaceAccounts": [], "partialAccounts": [], "minSkus": LYTT_MIN_SKUS,
     } for rep in ROSTER}
 
-    seen = {}
+    # An account's SKU count decides whether it counts at all (LYTT_MIN_SKUS),
+    # so gather the accounts first and only split them into counting vs short
+    # once every row has been read.
+    acct_rows = {}
     buying_cust_nums = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
@@ -833,11 +842,28 @@ def build_lytt_launch():
         by_rep[rep]["caseVolume"] += to_num(row[cases_col])
         cust_key = (rep, row["Customer Num"])
         buying_cust_nums.setdefault(rep, set()).add(row["Customer Num"])
-        if cust_key not in seen:
-            seen[cust_key] = True
-            by_rep[rep]["buyingAccounts"].append({
-                "customer": row["Customer Name"], "date": row["Date"],
-            })
+        acct = acct_rows.get(cust_key)
+        if acct is None:
+            acct = acct_rows[cust_key] = {
+                "customer": row["Customer Name"], "date": row["Date"], "skus": set(),
+            }
+        acct["skus"].add(row["Product Num"])
+
+    # Accounts carrying Lytt but under the SKU bar don't count toward
+    # penetration, and they are NOT whitespace either (whitespace is accounts
+    # that never bought). They'd vanish from the card entirely if they weren't
+    # tracked separately -- and they are the cheapest accounts a rep can
+    # convert, needing one or two more SKUs rather than a cold sell.
+    for (rep, _cust), acct in acct_rows.items():
+        skus = len(acct["skus"])
+        entry = {"customer": acct["customer"], "date": acct["date"], "skus": skus}
+        if skus >= LYTT_MIN_SKUS:
+            by_rep[rep]["buyingAccounts"].append(entry)
+        else:
+            entry["need"] = LYTT_MIN_SKUS - skus
+            by_rep[rep]["partialAccounts"].append(entry)
+    for d in by_rep.values():
+        d["partialAccounts"].sort(key=lambda a: (-a["skus"], a["customer"]))
 
     # Whitespace: eligible off-prem accounts (the Core Off-Prem customer
     # base -- Lytt is Core Market so this file IS the rep's real eligible
@@ -866,7 +892,13 @@ def build_lytt_launch():
         # denominator and structurally can't participate -- greyed card,
         # excluded from the leaderboard (per Gavin, 2026-08-18, same
         # route-based treatment as the draft programs).
-        d["programEligible"] = len(eligible_by_rep.get(rep, {})) > 0 or d["buyingAccountCount"] > 0
+        # Carrying ANY Lytt keeps a rep in the program, even if none of those
+        # accounts clears LYTT_MIN_SKUS yet -- buyingAccountCount alone would
+        # flip a rep with only 1-2 SKU accounts to the "Not Applicable" card
+        # and hide the very list telling them what to do about it.
+        d["programEligible"] = (len(eligible_by_rep.get(rep, {})) > 0
+                                or d["buyingAccountCount"] > 0
+                                or len(d["partialAccounts"]) > 0)
         d["caseVolume"] = round(d["caseVolume"], 2)
         d["penetrationPct"] = round(100.0 * d["buyingAccountCount"] / d["eligibleAccountCount"], 1) if d["eligibleAccountCount"] else 0.0
         for threshold, rate, label in LYTT_TIERS:
