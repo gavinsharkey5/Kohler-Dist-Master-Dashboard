@@ -112,6 +112,12 @@ ALLOTHER_BRANDS = {
     # TEQUILA SODA). Its first display carried 0 cases, so it scored nothing
     # either way; this entry is what scores future Leyenda displays.
     'LEYENDA 1925',
+    # Confirmed with the user 2026-08-26 (Report_52). A Pumpkinhead Ale fall
+    # seasonal, same pattern as the Oktoberfest/fall batches above, though it is
+    # the first brand from supplier TOTAL BEVERAGE SOLUTION so there was no
+    # portfolio precedent -- explicitly asked, not inferred from the craft
+    # brewery pattern (see MONTAUK BREWING COMPANY, Priority).
+    'SHIPYARD BREWING COMPANY',
 }
 # Brand Family aliases -- iSellBeer sometimes tags the same product with an
 # inconsistent Brand Family value (e.g. the contract brewer's name instead of
@@ -127,6 +133,11 @@ ALLOTHER_BRANDS = {
 # COMPANY" and "CARBLISS" respectively.
 # Confirmed with the user 2026-08-11: "HACKER-PSCHORR BREWERY" is the same
 # longer-label pattern for "HACKER-PSCHORR" (already All Other).
+# Confirmed with the user 2026-08-26 (Report_52): "LEINENKUGELS BREWING" is the
+# same longer-label pattern for "LEINENKUGEL'S" (already Priority, 13 rows on
+# the board under that spelling, same Molson Coors supplier). Aliased rather
+# than listed separately in PRIORITY_BRANDS so both spellings collapse to one
+# brand name on the board, the way HACKER-PSCHORR does.
 BRAND_FAMILY_ALIASES = {
     'BRAXTON': 'GARAGE BEER - CONTRACT BREWING',
     'GARAGE BEER': 'GARAGE BEER - CONTRACT BREWING',
@@ -135,6 +146,7 @@ BRAND_FAMILY_ALIASES = {
     'ATHLETIC BREWING CO': 'ATHLETIC BREWING COMPANY',
     'CARBLISS COCKTAILS': 'CARBLISS',
     'HACKER-PSCHORR BREWERY': 'HACKER-PSCHORR',
+    'LEINENKUGELS BREWING': "LEINENKUGEL'S",
 }
 TIER_POINTS = {
     'priority': {1: 200, 2: 300, 3: 500, 4: 1000},
