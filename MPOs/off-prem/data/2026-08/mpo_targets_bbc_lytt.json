@@ -1225,12 +1225,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 23002,
-    "CUSTOMER_NAME": "Valley Liquors (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24037,
     "CUSTOMER_NAME": "Vasel's (A)",
     "AREA": "Passaic"
@@ -1324,12 +1318,6 @@
     "CUSTOMER_NUM": 1003,
     "CUSTOMER_NAME": "23 liquor & Tobacco",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191518,
-    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
-    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1432,12 +1420,6 @@
     "CUSTOMER_NUM": 190917,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
     "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191710,
-    "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
-    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -1681,20 +1663,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 12011,
-    "CUSTOMER_NAME": "Bottle King (A) Wayne",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 88004,
     "CUSTOMER_NAME": "Discount Liq (P)_2",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 81006,
-    "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "AREA": "Bergen"
   },
   {
@@ -1765,12 +1735,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 84010,
-    "CUSTOMER_NAME": "Ridgewood Super Cellar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 93009,
     "CUSTOMER_NAME": "Scherer & Company",
     "AREA": "Bergen"
@@ -1797,12 +1761,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 87001,
     "CUSTOMER_NAME": "Uncorked Wine & Spirits (Hohokus)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 88005,
-    "CUSTOMER_NAME": "Waldwick Wine/Spirits",
     "AREA": "Bergen"
   },
   {
@@ -2125,12 +2083,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 60001,
-    "CUSTOMER_NAME": "Bottle King (A) Dumont",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 73003,
     "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
     "AREA": "Bergen"
@@ -2185,12 +2137,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 92008,
-    "CUSTOMER_NAME": "Ramsey Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 71006,
     "CUSTOMER_NAME": "Ridgemont Liquors (A)",
     "AREA": "Bergen"
@@ -2235,12 +2181,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 68002,
     "CUSTOMER_NAME": "Wine And Beverage Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 92011,
-    "CUSTOMER_NAME": "Woori Mart",
     "AREA": "Bergen"
   },
   {

@@ -310,6 +310,26 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 27016,
+    "CUSTOMER_NAME": "Marina's Wine & Spirits",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 230918,
+    "CUSTOMER_NAME": "Market Place Liquor",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 2.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -350,6 +370,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 190101,
+    "CUSTOMER_NAME": "Montville Wine & Spirits",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -380,6 +410,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 27072,
+    "CUSTOMER_NAME": "Passaic Discount Liquors",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -395,6 +435,16 @@
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
     "CUSTOMER_NUM": 27002,
     "CUSTOMER_NAME": "President Liqrs (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -527,7 +577,7 @@
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 19.0
+    "CASES": 26.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -538,6 +588,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 37068,
+    "CUSTOMER_NAME": "Whoopee Liq (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 3.0
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",

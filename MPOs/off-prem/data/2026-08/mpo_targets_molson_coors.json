@@ -7156,15 +7156,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 34009,
-    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "127",
-    "PRODUCT_NAME": "Coors Banquet 2/9/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
     "AREA": "Bergen",
@@ -16552,15 +16543,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 39012,
-    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "124",
-    "PRODUCT_NAME": "Coors Banquet 1/15/16 oz Aluminum Btl",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 41015,
     "CUSTOMER_NAME": "99 Ranch Market",
     "AREA": "Bergen",
@@ -19063,15 +19045,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40001,
-    "CUSTOMER_NAME": "Bottle & Cork",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52040,
     "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen",
@@ -19479,15 +19452,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 41015,
     "CUSTOMER_NAME": "99 Ranch Market",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7147",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 57001,
-    "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7147",
     "PRODUCT_NAME": "Peroni 2/12/11.2 oz Can",
@@ -38353,15 +38317,6 @@
     "CUSTOMER_NUM": 25032,
     "CUSTOMER_NAME": "Liquor Mart 46",
     "AREA": "Passaic",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 29003,
-    "CUSTOMER_NAME": "Liquor Shed",
-    "AREA": "Bergen",
     "PRODUCT_NUM": "7157",
     "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
     "BRAND_FAMILY": "Peroni"
@@ -45300,15 +45255,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37029,
     "CUSTOMER_NAME": "River Drive Bar (P)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37044,
-    "CUSTOMER_NAME": "Riverview Liquors & Bar",
     "AREA": "Bergen",
     "PRODUCT_NUM": "123",
     "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
@@ -52132,6 +52078,15 @@
     "CUSTOMER_NUM": 19008,
     "CUSTOMER_NAME": "Hawthorne Liq (A)",
     "AREA": "Passaic",
+    "PRODUCT_NUM": "120",
+    "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
+    "BRAND_FAMILY": "Coors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "CUSTOMER_NUM": 11003,
+    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
+    "AREA": "Morris 3",
     "PRODUCT_NUM": "120",
     "PRODUCT_NAME": "Coors Banquet 1/24/12 oz Loose Can",
     "BRAND_FAMILY": "Coors"
