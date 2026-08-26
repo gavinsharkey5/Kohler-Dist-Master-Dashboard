@@ -134,6 +134,27 @@ Objective types (index.html):
                   float-rounding edge cases at exactly 25%. Percentage
                   GAPS render as points ("+10 pts over"), never "+10%"
                   -- see fmtPen()/fmtPts().
+                  MINIMUM SKUs as of 2026-08-26, per Gavin ("only count
+                  the account if they have AT LEAST 3 Lytt skus. anything
+                  under this does not qualify"): an account in the
+                  numerator only counts toward penetration once it
+                  carries minSkus DISTINCT products -- set per table in
+                  MONTHS (BBC Lytt: minSkus:3), omit it and any carrying
+                  account counts, as before. Distinct PRODUCTS, not rows:
+                  the same SKU on three lines is one SKU. This dropped 12
+                  of the 136 carrying accounts on the 8/26 data and took
+                  reps at goal from 11 to 9 (Mike Ast 29.0% -> 16.1% and
+                  Javier Melo 27.6% -> 17.2% fell below 25%).
+                  Under-threshold accounts are deliberately NOT filtered
+                  out of the numerator JSON or the drill-down -- an
+                  account already carrying 2 SKUs is the cheapest one a
+                  rep can convert, so lineTableLytt() lists them under
+                  their own "N accounts carrying Lytt but under 3 SKUs"
+                  heading with how many more each needs. They just don't
+                  count. Note this leaves them out of Target Accounts too
+                  (already_carrying() still treats any Lytt row as
+                  carrying), which is why that drill-down section matters
+                  -- it is the only place a 1-2 SKU account appears.
   'photos'        Placeholder only (hasData:false) -- no iSellBeer
                   photo-count data source exists yet for any month.
 

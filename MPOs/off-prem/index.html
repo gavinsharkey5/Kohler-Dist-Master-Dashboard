@@ -144,6 +144,9 @@
   .tgt-county-count{color:var(--text-mute);font-weight:500;}
   .tgt-county-chev{font-size:8px;transition:transform .15s;display:inline-block;}
   .tgt-county-toggle.open .tgt-county-chev{transform:rotate(90deg);}
+  .lytt-short{color:var(--amber);font-size:11px;font-weight:600;}
+  .lytt-short-head{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;color:var(--text-mute);
+    text-transform:uppercase;letter-spacing:.04em;padding:12px 2px 2px;border-top:1px solid var(--line-soft);margin-top:8px;}
   .tgt-county-table{display:none;}
   .tgt-county-table.open{display:block;}
 
@@ -302,7 +305,7 @@ const OBJECTIVES_2026_07 = [
 // number), computed client-side from the Sales Reps' Customer Base export.
 const OBJECTIVES_2026_08 = [
   {key:'corona_premier', name:'Constellation – (5) Corona Premier Suitcase Placements', shortName:'Corona Premier', weight:0.30, type:'placements', hasData:true, goalLabel:'5 placements each'},
-  {key:'bbc_lytt', name:'BBC – Achieve Distro Lytt 25% of Account Base', shortName:'BBC Lytt', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'25% of account base'},
+  {key:'bbc_lytt', name:'BBC – Achieve Distro Lytt 25% of Account Base', shortName:'BBC Lytt', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'25% of account base (3+ SKUs each)'},
   {key:'molson_coors', name:'Molson Coors – (4) New Peroni Placements, (4) New Banquet Placements (90-Day Non-Buy)', shortName:'Molson Coors', weight:0.15, type:'dual', hasData:true, goalLabel:'4 Peroni + 4 Banquet each',
     subs:[{key:'peroni', label:'Peroni', match:'peroni', target:4, flagLabel:'New Placement'}, {key:'banquet', label:'Banquet', match:'coors', target:4, flagLabel:'New Placement'}]},
   {key:'wine_spirits', name:'Wine & Spirits – (5) New Placements: (2) Le Grand Wines, (2) Leyenda, (1) Green River 50 mLs (90-Day Non-Buy)', shortName:'Wine & Spirits', weight:0.15, type:'dual', hasData:true, goalLabel:'2 Le Grand + 2 Leyenda + 1 Green River',
@@ -330,7 +333,7 @@ const MONTHS = [
     {objKey:'corona_premier', file:'mpo_corona_premier.json', target:5, builder:'placements',
       targetsFile:'mpo_targets_corona_premier.json'},
     {objKey:'bbc_lytt', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_bbc_lytt_numerator.json', pct:0.25,
-      targetsFile:'mpo_targets_bbc_lytt.json'},
+      minSkus:3, targetsFile:'mpo_targets_bbc_lytt.json'},
     {objKey:'molson_coors', file:'mpo_molson_coors.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='molson_coors').subs, builder:'new_accounts',
       targetsFile:'mpo_targets_molson_coors.json', targetsBrandField:'BRAND_FAMILY'},
@@ -451,7 +454,15 @@ function buildNewAccountsDataset(rows, target){
 // customer number); numRows is the numerator source (one row per rep/
 // account/product carrying the tracked brand). A rep with no base-file
 // rows is skipped entirely (rather than assumed to have a target of 0).
-function buildPctOfBaseDataset(baseRows, numRows, pct){
+// minSkus (added 2026-08-26, per Gavin: "only count the account if they have
+// AT LEAST 3 Lytt skus. anything under this does not qualify"): an account in
+// the numerator only counts toward penetration once it carries that many
+// DISTINCT products. Accounts below the bar stay in `lines` -- they are the
+// closest thing a rep has to a sure win, needing one or two more SKUs rather
+// than a cold sell -- and lineTableLytt() shows them with what they still
+// need. They are simply not in `qualifying`/`accounts`. Omit minSkus and the
+// objective counts any carrying account, as before.
+function buildPctOfBaseDataset(baseRows, numRows, pct, minSkus){
   if(!Array.isArray(baseRows)||!baseRows.length) return null;
   const bRepCol=findCol(baseRows[0],REP_COLS), bNumCol=findCol(baseRows[0],CUSTOMER_NUM_COLS);
   if(!bRepCol||!bNumCol) return null;
@@ -480,8 +491,16 @@ function buildPctOfBaseDataset(baseRows, numRows, pct){
     const base=accountSet.size;
     const target=Math.max(1,Math.ceil(base*pct));
     const lines=numByRep.get(rep)||[];
-    const qualifyingSet=new Set(lines.map(l=>l.customer_num));
-    reps.push({rep, base, target, qualifying:qualifyingSet.size, accounts:[...qualifyingSet], lines});
+    const skusByAccount=new Map();
+    lines.forEach(l=>{
+      if(!skusByAccount.has(l.customer_num)) skusByAccount.set(l.customer_num,new Set());
+      skusByAccount.get(l.customer_num).add(l.product);
+    });
+    const min=minSkus||1;
+    const qualifyingSet=new Set([...skusByAccount.entries()]
+      .filter(([,skus])=>skus.size>=min).map(([num])=>num));
+    reps.push({rep, base, target, qualifying:qualifyingSet.size, accounts:[...qualifyingSet],
+               lines, minSkus:min});
   });
   const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=r.target:false;}).length;
   return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
@@ -782,7 +801,7 @@ async function loadMonth(monthKey){
       if(t.special==='pct_of_base'){
         const [baseRows, numRows] = await Promise.all([loadJSON(t.baseFile), loadJSON(t.numFile)]);
         if(baseRows){
-          const built=buildPctOfBaseDataset(baseRows, numRows||[], t.pct);
+          const built=buildPctOfBaseDataset(baseRows, numRows||[], t.pct, t.minSkus);
           if(built){
             DATA[t.objKey]=built;
             if(t.targetsFile){
@@ -1060,23 +1079,40 @@ function existingAccountsBlockHtml(existing, hasProduct){
 // -- a rep can carry Lytt in several flavors at the same account, which
 // made the old flat table run long and repeat the customer name on every
 // row. Clicking a customer reveals just their products.
-function lineTableLytt(lines){
+// Counts DISTINCT products per account, since that is what the minSkus bar is
+// scored on -- an account with the same SKU on three lines carries one SKU.
+// Accounts short of the bar are listed under their own heading with how many
+// more SKUs they need: they don't count yet, but they're the cheapest accounts
+// on a rep's list to convert, so burying them would waste the change.
+function lineTableLytt(lines, minSkus){
   if(!lines || lines.length===0) return '<div class="no-lines">No Lytt-carrying accounts recorded this month.</div>';
+  const min = minSkus||1;
   const byCustomer = new Map();
   lines.forEach(l=>{
-    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, []);
-    byCustomer.get(l.customer).push(l.product);
+    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, new Set());
+    byCustomer.get(l.customer).add(l.product);
   });
-  const customers = [...byCustomer.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
-  const rows = customers.map(([customer, products])=>{
+  const customers = [...byCustomer.entries()]
+    .map(([customer, skus])=>[customer, [...skus]])
+    .sort((a,b)=>a[0].localeCompare(b[0]));
+  const block = ([customer, products], short)=>{
     const gid = 'tgtc'+(uid++);
     const prodRows = products.slice().sort().map(p=>`<tr><td>${p}</td></tr>`).join('');
+    const need = min - products.length;
+    const tag = short ? `<span class="lytt-short">${need} more SKU${need===1?'':'s'} to qualify</span>` : '';
     return `<div class="tgt-county">
-      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}<span class="tgt-county-count">${products.length}</span></div>
+      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}${tag}<span class="tgt-county-count">${products.length}</span></div>
       <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th></tr></thead><tbody>${prodRows}</tbody></table></div></div>
     </div>`;
-  }).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px">${rows}</div>`;
+  };
+  const qualifying = customers.filter(([,p])=>p.length>=min);
+  const short = customers.filter(([,p])=>p.length<min);
+  let html = qualifying.map(c=>block(c,false)).join('');
+  if(short.length){
+    html += `<div class="lytt-short-head">${short.length} account${short.length===1?'':'s'} carrying Lytt but under ${min} SKUs — not counted yet</div>`
+          + short.map(c=>block(c,true)).join('');
+  }
+  return `<div class="rep-sub-inner" style="padding-left:2px">${html}</div>`;
 }
 
 // One table row per DISTINCT PHOTO (matching how the 8-pic target is
@@ -1182,7 +1218,7 @@ function renderRepView(){
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = lineTableLytt(r.lines) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
+      inner.innerHTML = lineTableLytt(r.lines, r.minSkus) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1512,7 +1548,7 @@ function renderObjectiveView(){
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
         const tgtHtml = targetsBlockHtml((d.targetsByRep||{})[repName], o.shortName||o.name);
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines)}${tgtHtml}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines, r.minSkus)}${tgtHtml}</td></tr>`;
       });
       table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th class="num">Penetration</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
