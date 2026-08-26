@@ -511,12 +511,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231210,
-    "CUSTOMER_NAME": "Bally Owen Golf Club",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 190902,
     "CUSTOMER_NAME": "Betsy Ross Diner",
     "AREA": "Morris 1"
@@ -525,12 +519,6 @@
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 230903,
     "CUSTOMER_NAME": "Black Bear Golf(A)",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230930,
-    "CUSTOMER_NAME": "Brick & Brew",
     "AREA": "Sussex"
   },
   {
@@ -2499,12 +2487,6 @@
     "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 32012,
     "CUSTOMER_NAME": "The Local Pub",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 80007,
-    "CUSTOMER_NAME": "The Orange Lantern",
     "AREA": "Bergen"
   },
   {

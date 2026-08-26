@@ -1261,13 +1261,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231210,
-    "CUSTOMER_NAME": "Bally Owen Golf Club",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 190902,
     "CUSTOMER_NAME": "Betsy Ross Diner",
     "AREA": "Morris 1",
@@ -1317,13 +1310,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231803,
-    "CUSTOMER_NAME": "High Point Gc/Rest (P)",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 3014,
     "CUSTOMER_NAME": "Il Palazzo (Z)",
     "AREA": "Passaic-FF",
@@ -1361,13 +1347,6 @@
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 231307,
     "CUSTOMER_NAME": "Skylands Wine& Beer Garden",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230925,
-    "CUSTOMER_NAME": "Springs Bistro Biosphere",
     "AREA": "Sussex",
     "BRAND_FAMILY": "Coors"
   },
@@ -1412,20 +1391,6 @@
     "CUSTOMER_NAME": "The Vreeland Store",
     "AREA": "Passaic-FF",
     "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 231211,
-    "CUSTOMER_NAME": "Tony's Pizza (P)",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 230929,
-    "CUSTOMER_NAME": "Airport Pub & Pkg",
-    "AREA": "Sussex",
-    "BRAND_FAMILY": "Peroni"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
