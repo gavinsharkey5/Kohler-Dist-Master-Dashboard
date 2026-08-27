@@ -33,13 +33,27 @@ vals = openpyxl.load_workbook(SRC, data_only=True)      # cached values
 wb = openpyxl.load_workbook(DST, data_only=False)       # structure/formulas
 refs = engine.build(vals)
 
-raw = wb["Sheet9"]
+def find_raw_sheet(book):
+    """Same header-shape lookup generate.py uses: the raw survey sheet's tab
+    name keeps changing as Kohler edits the workbook (Sheet6, then Sheet9, then
+    "ISB_Raw_Data" in the 8.27.26 delivery), so never hardcode it here either."""
+    for name in book.sheetnames:
+        header = [c.value for c in book[name][1]]
+        if ('Account #' in header and 'Route / Sales Rep' in header
+                and 'Photos' in header and 'Corrected Distributor' not in header):
+            return book[name]
+    raise SystemExit("Could not find the raw tap-survey sheet (expected 'Account #', "
+                     "'Route / Sales Rep' and 'Photos' columns, but no 'Corrected Distributor')")
+
+
+raw = find_raw_sheet(wb)
+print(f"raw survey sheet: {raw.title!r}")
 rows = [[c.value for c in r] for r in raw.iter_rows(min_row=2)]
 rows = [r for r in rows if any(v is not None for v in r)]
 for i, r in enumerate(rows, start=1):
     raw.cell(row=i + 1, column=1).value = i
     r[0] = i
-print(f"Sheet9: {len(rows)} rows, '#' renumbered 1..{len(rows)}")
+print(f"{raw.title}: {len(rows)} rows, '#' renumbered 1..{len(rows)}")
 
 tmpl = wb["iSellBeer Import Template"]
 audit_stats = {}

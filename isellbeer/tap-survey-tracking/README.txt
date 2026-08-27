@@ -411,6 +411,23 @@ step of the refresh and check for these defects EVERY time:
            ../executive-overview/iSellBeer_TAPS_US_THEM_Audit_Matrix.xlsx),
            since the exec page joins the same two sheets on "#" and its
            fill_corrected() only patches blank verdicts, not missing rows.
+  8.27.26  ("vF1") Worst delivery yet, and the raw sheet got RENAMED:
+           "ISB_Raw_Data" this time (was Sheet9, was Sheet6 before that),
+           5,905 rows with 239 duplicate "#" -- and the Import Template
+           populated for just 239 of them, i.e. only the newly appended
+           block. Run as-is, generate.py would have published 239 taps
+           instead of 6,621, silently, since a raw row with no template
+           match is simply skipped. Repaired with build_mediator.py as
+           usual: OK 5,707 / Review 188 / MISMATCH 10, the same character
+           as 8.21's 5,479/177/10 over more rows. Same repaired workbook
+           used for both dashboards, as on 8.21.
+           The rename broke build_mediator.py, which still said
+           wb["Sheet9"] even though generate.py had found the sheet by
+           header shape since 8.20 -- fixed 8.27 by giving build_mediator
+           its own copy of that same find_raw_sheet() lookup (the two
+           scripts are standalone: generate.py has no __main__ guard, so
+           importing it would run the whole build). If the tab is renamed
+           again, neither script cares now.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
