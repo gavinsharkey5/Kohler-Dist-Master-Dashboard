@@ -953,13 +953,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 15006,
-    "CUSTOMER_NAME": "Great Notch Inn(Z)",
-    "AREA": "Passaic",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 12015,
     "CUSTOMER_NAME": "Izumi Hibachi Steak House",
     "AREA": "Passaic",
@@ -11029,13 +11022,6 @@
     "CUSTOMER_NUM": 191815,
     "CUSTOMER_NAME": "Eastern Asian Bistro/Bar",
     "AREA": "Morris 1",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 231314,
-    "CUSTOMER_NAME": "Elks Lodge 2288",
-    "AREA": "Sussex",
     "BRAND_FAMILY": "Peroni"
   },
   {
