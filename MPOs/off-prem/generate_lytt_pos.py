@@ -104,7 +104,7 @@ def parse_dt(s):
     return datetime.datetime.strptime(str(s).strip(), "%m/%d/%Y %I:%M %p")
 
 
-def merge_export(stable, incoming, date_col="Date/Time"):
+def merge_export(stable, incoming, date_col="Date/Time", volatile_cols=()):
     """Union a PARTIAL iSellBeer photo export into its cumulative stable
     workbook, keeping every row already published.
 
@@ -122,10 +122,19 @@ def merge_export(stable, incoming, date_col="Date/Time"):
     format regression and stops the merge instead.
 
     Rows are deduped on the columns the archive ALREADY had (plus the photo
-    link), ignoring the "#" counter where the export has one. So re-merging an
-    export already applied is a no-op, an overlapping export updates nothing it
-    already has, and a row re-sent with a newly-added column populated matches
-    its published copy instead of landing twice.
+    link), ignoring the "#" counter where the export has one, plus any
+    volatile_cols the caller names. So re-merging an export already applied is a
+    no-op, an overlapping export updates nothing it already has, and a row
+    re-sent with a newly-added column populated matches its published copy
+    instead of landing twice.
+
+    volatile_cols exists for PODS' "POD #", found 2026-08-27: it is a sequence
+    number scoped to the export's own window, not a property of the row, so the
+    SAME purchase came back as 6.1 in one pull and 28.1 in the next and every
+    overlapping row read as new (PODS_Report_15 reported 45 of 45 rows new and
+    re-added 3 already-published photos). Same reason "#" is ignored; the
+    archive keeps whichever value it already had, and nothing downstream reads
+    either column.
 
     Rows carrying a date sort newest-first; undated ones (PODS rows published
     before it grew a Date/Time) keep their existing order at the bottom.
@@ -160,9 +169,11 @@ def merge_export(stable, incoming, date_col="Date/Time"):
     published = collect(ws, headers)
     incoming_rows = collect(ws_in, headers_in)
 
+    ignored = {"#", *volatile_cols}
+
     def key(row):
         vals, links = row
-        return (tuple(vals.get(h) for h in headers if h != "#")
+        return (tuple(vals.get(h) for h in headers if h not in ignored)
                 + tuple(sorted(links.items())))
 
     seen = {key(r) for r in published}
@@ -263,7 +274,9 @@ def main():
                              "[--merge-displays Report_NN.xlsx] "
                              "[--merge-promos Promos_Report_N.xlsx] "
                              "[--merge-pods PODS_Report_N.xlsx]")
-        merge_export(merges[flag], Path(args.pop(0)))
+        # PODS' "POD #" renumbers per export window -- see merge_export().
+        volatile = ("POD #",) if flag == "--merge-pods" else ()
+        merge_export(merges[flag], Path(args.pop(0)), volatile_cols=volatile)
 
     rows_out = []
     skipped_names = set()

@@ -1,5 +1,38 @@
 [
  {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+  "CITY": "RIDGEFIELD PARK",
+  "BRAND": "LYTT BLUE RASPBERRY",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/26/2026 02:39 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5c6bcc40-8189-427e-aab1-78910f62fd44/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+  "CITY": "RIDGEFIELD PARK",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/26/2026 02:39 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5c6bcc40-8189-427e-aab1-78910f62fd44/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "EXQUISITE W & L (A)",
+  "CITY": "RIDGEFIELD PARK",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/26/2026 02:39 PM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/5c6bcc40-8189-427e-aab1-78910f62fd44/"
+ },
+ {
   "REP": "Phil Ernst",
   "SOURCE": "Display",
   "CUSTOMER_NAME": "FOOD UNIVERSE MARKETPLACE",

@@ -409,6 +409,23 @@ them to the JSON. So: check an incoming PODS pull's Filters tab span
 before choosing; whole month with dates throughout -> overwrite, anything
 narrower -> --merge-pods.
 
+PODS' "POD #" column is VOLATILE and is excluded from the merge dedupe key
+(found 2026-08-27, PODS_Report_15). It is a sequence number scoped to the
+export's own window, not a property of the row: the same Matt Powierski
+purchase at Garfield Bar & Liq is "6.1" in a pull starting 08/01 and "28.1"
+in one starting 08/25. Because the key was built from every archive column,
+that one difference made EVERY overlapping row read as new -- the first run
+of PODS_Report_15 reported 45 of 45 rows new and re-added 3 already-published
+photos as duplicates. merge_export() now takes volatile_cols and main()
+passes ("POD #",) for --merge-pods, the same way "#" has always been ignored;
+nothing downstream reads either column, and the archive keeps whichever value
+it already had. With that fix PODS_Report_15 merges as 22 new / 23 already
+published, and re-merging PODS_Report_14 over it is a clean 586/586 no-op.
+The displays and promos exports have no such column, so they are unaffected.
+Watch for this shape generally: any per-export counter in a future export
+needs the same treatment, and the symptom is a merge reporting suspiciously
+close to 100% of an OVERLAPPING export's rows as new.
+
 Normally each month's data is refreshed automatically by
 .github/workflows/snowflake-sync.yml running sync_snowflake_data.py --
 that workflow's schedule is currently paused (see the workflow file),
