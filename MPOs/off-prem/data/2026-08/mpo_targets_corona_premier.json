@@ -1513,12 +1513,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 25017,
-    "CUSTOMER_NAME": "Savers Club Liquor Locker",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 28004,
     "CUSTOMER_NAME": "Schuyler Food",
     "AREA": "Bergen"
@@ -1527,12 +1521,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24011,
     "CUSTOMER_NAME": "Shoppers Vineyard (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24002,
-    "CUSTOMER_NAME": "Swizzle Stick Liq (A)",
     "AREA": "Passaic"
   },
   {
@@ -2481,12 +2469,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 77008,
     "CUSTOMER_NAME": "Pizza Town USA",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 60001,
-    "CUSTOMER_NAME": "Bottle King (A) Dumont",
     "AREA": "Bergen"
   },
   {

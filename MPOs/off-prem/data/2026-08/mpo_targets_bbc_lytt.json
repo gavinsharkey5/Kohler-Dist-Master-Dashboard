@@ -337,12 +337,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43007,
-    "CUSTOMER_NAME": "American Classic Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48006,
     "CUSTOMER_NAME": "Andres Wine & Spirits",
     "AREA": "Bergen"
@@ -795,12 +789,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21001,
     "CUSTOMER_NAME": "Rocky's Liquor Store",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 13001,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Littlefl",
     "AREA": "Passaic"
   },
   {
@@ -1363,12 +1351,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190913,
-    "CUSTOMER_NAME": "Main Street Liquor",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190804,
     "CUSTOMER_NAME": "Midtown Liq",
     "AREA": "Morris 1"
@@ -1437,12 +1419,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191604,
     "CUSTOMER_NAME": "The Village Place",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190907,
-    "CUSTOMER_NAME": "Wharton Liquor Store",
     "AREA": "Morris 1"
   },
   {

@@ -36586,15 +36586,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 23003,
-    "CUSTOMER_NAME": "Pete's Liquors",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "121",
-    "PRODUCT_NAME": "Coors Banquet 1/30/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 29009,
     "CUSTOMER_NAME": "Quick Buy",
     "AREA": "Bergen",
@@ -38136,15 +38127,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 28007,
     "CUSTOMER_NAME": "Metro Liquors (North Arlington)",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 29009,
-    "CUSTOMER_NAME": "Quick Buy",
     "AREA": "Bergen",
     "PRODUCT_NUM": "9018",
     "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
@@ -49126,15 +49108,6 @@
     "CUSTOMER_NUM": 32016,
     "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 27032,
-    "CUSTOMER_NAME": "Cork and Barrel",
-    "AREA": "Passaic",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
     "BRAND_FAMILY": "Peroni"
