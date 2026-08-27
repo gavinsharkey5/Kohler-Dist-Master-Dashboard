@@ -28,8 +28,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 32,
-    "CASE_EQUIV_2026": 83,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 51
+    "CASE_EQUIV_2026": 108,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 76
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -68,8 +68,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 122,
-    "CASE_EQUIV_2026": 83,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -39
+    "CASE_EQUIV_2026": 86,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -36
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -84,8 +84,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 58,
-    "CASE_EQUIV_2026": 26,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -32
+    "CASE_EQUIV_2026": 27,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -31
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -116,8 +116,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 40,
-    "CASE_EQUIV_2026": 55,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 15
+    "CASE_EQUIV_2026": 56,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 16
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -204,8 +204,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 251,
-    "CASE_EQUIV_2026": 100,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -151
+    "CASE_EQUIV_2026": 101,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -150
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -292,8 +292,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 143,
-    "CASE_EQUIV_2026": 79,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -64
+    "CASE_EQUIV_2026": 83,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -60
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -356,8 +356,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 16,
-    "CASE_EQUIV_2026": 64,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 48
+    "CASE_EQUIV_2026": 67,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 51
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
