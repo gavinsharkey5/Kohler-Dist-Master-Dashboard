@@ -1,0 +1,428 @@
+<title>Kohler Sales Pulse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+  :root {
+    --paper:      #ffffff;
+    --surface:    #f0f3f8;
+    --ink:        #12151b;
+    --ink-soft:   #4a5361;
+    --rule:       #c9d2e0;
+    --rule-hard:  #12151b;
+    --kohler:     #14468c;
+    --amber:      #9c5804;
+    --amber-line: #c9821f;
+    --amber-wash: #fbf1de;
+    --win:        #0f6b44;
+    --wine:       #7a2244;
+    --neutral:    #5b6573;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #11141a;
+      --surface:    #1a1f28;
+      --ink:        #e9edf3;
+      --ink-soft:   #a5aebd;
+      --rule:       #2f3743;
+      --rule-hard:  #5b6573;
+      --kohler:     #8ab0ea;
+      --amber:      #e6a94b;
+      --amber-line: #8a6524;
+      --amber-wash: #241d12;
+      --win:        #52c08d;
+      --wine:       #d68aa8;
+      --neutral:    #8b95a5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #11141a;
+    --surface:    #1a1f28;
+    --ink:        #e9edf3;
+    --ink-soft:   #a5aebd;
+    --rule:       #2f3743;
+    --rule-hard:  #5b6573;
+    --kohler:     #8ab0ea;
+    --amber:      #e6a94b;
+    --amber-line: #8a6524;
+    --amber-wash: #241d12;
+    --win:        #52c08d;
+    --wine:       #d68aa8;
+    --neutral:    #8b95a5;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    margin: 0;
+    padding: 1.4rem 1.1rem 3.5rem;
+  }
+
+  .sheet { max-width: 40rem; margin: 0 auto; }
+
+  h1, h2, .headline, .item .t { text-wrap: balance; }
+
+  /* ---- view switcher ---- */
+  .bar {
+    max-width: 40rem;
+    margin: 0 auto 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .bar button {
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .bar button:hover { border-color: var(--rule-hard); color: var(--ink); }
+  .bar button:focus-visible { outline: 2px solid var(--kohler); outline-offset: 2px; }
+  .bar button[aria-pressed="true"] {
+    background: var(--rule-hard);
+    border-color: var(--rule-hard);
+    color: var(--paper);
+  }
+  .bar .copybtn { margin-left: auto; border-color: var(--kohler); color: var(--kohler); }
+  .bar .copybtn:hover { background: var(--kohler); color: var(--paper); }
+  .bar .said { font-size: 0.8rem; color: var(--win); font-family: "IBM Plex Sans", Arial, sans-serif; letter-spacing: 0; text-transform: none; }
+
+  .hint {
+    max-width: 40rem;
+    margin: 0 auto 1.4rem;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--rule);
+    padding: 0.2rem 0 0.2rem 0.7rem;
+  }
+
+  [hidden] { display: none !important; }
+
+  /* ---- report view ---- */
+  .eyebrow {
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.45rem;
+  }
+  h1 {
+    font-family: "Bricolage Grotesque", "IBM Plex Sans", Arial, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 4px solid var(--rule-hard);
+    line-height: 1.1;
+  }
+  .headline {
+    font-family: "Bricolage Grotesque", "IBM Plex Sans", Arial, sans-serif;
+    font-size: 2.05rem;
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+  }
+  .headline em { font-style: normal; color: var(--amber); }
+  .topline { font-size: 1.05rem; color: var(--ink-soft); margin: 0 0 1.5rem; }
+
+  table.stats {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 2rem;
+    border-top: 2px solid var(--rule-hard);
+    border-bottom: 2px solid var(--rule-hard);
+  }
+  table.stats td {
+    width: 25%;
+    vertical-align: top;
+    padding: 0.7rem 0.55rem 0.75rem 0;
+    border-right: 1px solid var(--rule);
+  }
+  table.stats td:last-child { border-right: 0; padding-right: 0; }
+  .num {
+    font-family: "Bricolage Grotesque", "IBM Plex Sans", Arial, sans-serif;
+    font-size: 1.5rem; font-weight: 800; line-height: 1;
+    letter-spacing: -0.01em; font-variant-numeric: tabular-nums;
+    margin: 0 0 0.25rem;
+  }
+  .num.mark { color: var(--amber); }
+  .lab {
+    font-family: "IBM Plex Mono", "Courier New", monospace;
+    font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--ink-soft); line-height: 1.3; margin: 0;
+  }
+
+  .section { margin: 0 0 2.1rem; }
+  .section h2 {
+    font-family: "Bricolage Grotesque", "IBM Plex Sans", Arial, sans-serif;
+    font-size: 1.02rem; font-weight: 800; letter-spacing: 0.06em;
+    text-transform: uppercase; margin: 0 0 0.15rem; padding: 0 0 0.4rem;
+    border-bottom: 3px solid var(--band, var(--rule-hard)); line-height: 1.2;
+  }
+  .section.win     { --band: var(--win); }
+  .section.draft   { --band: var(--kohler); }
+  .section.wineset { --band: var(--wine); }
+  .section.opp     { --band: var(--amber-line); }
+  .section.watch   { --band: var(--neutral); }
+  .section.focus   { --band: var(--rule-hard); }
+
+  .item { margin: 0; padding: 0.9rem 0 0.15rem; border-bottom: 1px solid var(--rule); }
+  .item:last-of-type { border-bottom: 0; }
+  .item .t { display: block; font-weight: 700; font-size: 1.05rem; line-height: 1.34; margin: 0 0 0.22rem; }
+  .item .s { display: block; color: var(--ink-soft); font-size: 0.97rem; line-height: 1.5; margin: 0 0 0.7rem; }
+  .focus .item .t { color: var(--kohler); }
+  .wineset .item .t { color: var(--wine); }
+  .draft .item .t { color: var(--kohler); }
+
+  .callout {
+    background: var(--amber-wash); border-left: 4px solid var(--amber-line);
+    padding: 0.75rem 0.9rem 0.8rem; margin: 1rem 0 0;
+    font-size: 0.98rem; line-height: 1.47;
+  }
+  .callout b { color: var(--ink); }
+
+  footer {
+    margin: 2.4rem 0 0; padding: 0.9rem 0 0;
+    border-top: 4px solid var(--rule-hard);
+    font-size: 0.82rem; line-height: 1.5; color: var(--ink-soft);
+  }
+  footer p { margin: 0 0 0.4rem; }
+  footer b { color: var(--ink); }
+
+  @media (max-width: 32rem) {
+    body { font-size: 16px; }
+    .headline { font-size: 1.7rem; }
+    table.stats td { width: 50%; }
+    table.stats tr:first-child td { border-bottom: 1px solid var(--rule); }
+    .num { font-size: 1.35rem; }
+  }
+
+  @media print {
+    .bar, .hint { display: none !important; }
+    #email { display: none !important; }
+    #report { display: block !important; }
+    body { font-size: 9.4pt; line-height: 1.4; padding: 0; }
+    .sheet { max-width: none; }
+    .eyebrow { font-size: 7pt; margin-bottom: 0.25rem; }
+    h1 { font-size: 12pt; margin-bottom: 0.55rem; padding-bottom: 0.35rem; }
+    .headline { font-size: 17pt; margin-bottom: 0.4rem; }
+    .topline { font-size: 9.8pt; margin-bottom: 0.8rem; }
+    table.stats { margin-bottom: 0.85rem; }
+    table.stats td { padding: 0.45rem 0.5rem 0.5rem 0; }
+    .num { font-size: 13pt; }
+    .lab { font-size: 6pt; }
+    .section { margin-bottom: 0.85rem; }
+    .section h2 { font-size: 10pt; padding-bottom: 0.28rem; }
+    .item { break-inside: avoid; padding-top: 0.4rem; }
+    .item .t { font-size: 9.7pt; margin-bottom: 0.12rem; }
+    .item .s { font-size: 8.9pt; margin-bottom: 0.32rem; }
+    .callout { font-size: 9pt; margin-top: 0.55rem; padding: 0.5rem 0.7rem; }
+    footer { break-inside: avoid; margin-top: 0.9rem; padding-top: 0.6rem; font-size: 7.2pt; }
+  }
+</style>
+
+<div class="bar">
+  <button type="button" id="btnReport" aria-pressed="true">Report view</button>
+  <button type="button" id="btnEmail" aria-pressed="false">Email view</button>
+  <button type="button" class="copybtn" id="btnCopy">Copy for email</button>
+  <span class="said" id="said" role="status" aria-live="polite"></span>
+</div>
+
+<p class="hint" id="hint">The <b>report view</b> is the full read. Switch to <b>email view</b> and hit <b>Copy for email</b> &mdash; that copies the briefing already formatted, so it keeps its spacing and headings when you paste it into Outlook.</p>
+
+<!-- ============================= REPORT VIEW ============================= -->
+<div id="report">
+<div class="sheet">
+
+  <p class="eyebrow">Thursday, August 27, 2026 &nbsp;·&nbsp; Four selling days left in August</p>
+  <h1>Kohler Sales Pulse</h1>
+
+  <p class="headline">Off-premise is closing August with momentum. <em>We pour just over half of Core Market draft.</em></p>
+
+  <p class="topline">Kohler holds 51% of surveyed Core Market tap handles across 624 accounts. Blue Moon and Yuengling carry the most lines, Miller Lite gets the most out of each one, and a handful of small import and craft brands are turning faster per handle than anything else we pour. Draft volume overall is off about three percent on the year &mdash; our share of the handles is steady, but the mix moving through them is changing.</p>
+
+  <table class="stats">
+    <tr>
+      <td><p class="num mark">4</p><p class="lab">Selling days left</p></td>
+      <td><p class="num">51%</p><p class="lab">Core Market tap share</p></td>
+      <td><p class="num">624</p><p class="lab">Core accounts surveyed</p></td>
+      <td><p class="num">28,882</p><p class="lab">Cases on display since Jul 1</p></td>
+    </tr>
+  </table>
+
+  <div class="section draft">
+    <h2>🍺 Draft Pulse</h2>
+    <p class="item"><span class="t">We hold just over half of Core Market draft.</span>
+    <span class="s">51% of the 5,255 handles surveyed across 624 core accounts are ours. Passaic and Morris 3 run strongest at better than 56%, while Morris 1 sits closer to 39%. No single competitor comes near us &mdash; Stella Artois and Guinness are the largest outside brands at roughly 5% of core handles each.</span></p>
+    <p class="item"><span class="t">Blue Moon and Yuengling own the most handles. Miller Lite gets the most out of each one.</span>
+    <span class="s">Blue Moon and Yuengling each carry roughly 300 core lines, but Miller Lite moves noticeably more beer per handle than any of our other large-footprint brands. Our biggest tap brand is not our most productive one.</span></p>
+    <p class="item"><span class="t">A few small brands are turning faster than anything else we pour.</span>
+    <span class="s">Hofbrau, Weihenstephan and Garage Beer sit on single-digit handle counts yet out-turn our major brands per line &mdash; and all three are growing on keg volume this year.</span></p>
+    <p class="item"><span class="t">Our share of the handles is steady; the mix pouring through them is not.</span>
+    <span class="s">Draft volume is off about 3% on the year. Peroni is up nearly 20%, Cape May a third, and Garage Beer has more than tripled, while Coors Light, Sam Adams and Pabst are all giving back kegs.</span></p>
+  </div>
+
+  <div class="section win">
+    <h2>🟢 Winning</h2>
+    <p class="item"><span class="t">Off-premise MPOs are closing in on the finish line.</span>
+    <span class="s">Powierski, Melo, Barreca, Payton, Ehlers and Lagala are all near completion on the August card, with Corona Premier already behind most of that group.</span></p>
+    <p class="item"><span class="t">Our strongest display conversion is coming from the smaller books.</span>
+    <span class="s">Phil Ernst and Mike Ast are averaging better than a display per off-premise account across their entire base &mdash; the best rate in the company.</span></p>
+    <p class="item"><span class="t">The growth brands are carrying real momentum into the fall.</span>
+    <span class="s">Sun Cruiser, Garage Beer, Pacifico, Modelo Chelada and Sapporo are all up double digits or better on the year.</span></p>
+  </div>
+
+  <div class="section wineset">
+    <h2>🍷 Wine &amp; Spirits</h2>
+    <p class="item"><span class="t">The quickest volume available is in distribution we have already won.</span>
+    <span class="s">A sizeable group of accounts that previously carried Wine &amp; Spirits products have not reordered in the last sixty days. Because the placement is already established, reactivating those accounts may be a faster path to cases than starting from zero.</span></p>
+    <p class="item"><span class="t">We are adding new buyers, but losing them faster.</span>
+    <span class="s">Roughly two accounts have gone quiet this year for every new buyer we have brought in. The portfolio is finding new homes &mdash; holding onto them is where the direction is being decided.</span></p>
+    <p class="item"><span class="t">The Southern District is converting its available opportunity well.</span>
+    <span class="s">Measured against the accounts and brands those reps can actually sell, Southern is activating a stronger share of its book than Core Market is. Their small-format accounts appear to suit this portfolio.</span></p>
+  </div>
+
+  <div class="section opp">
+    <h2>🟡 Open Opportunities</h2>
+    <p class="item"><span class="t">Roughly one in five core accounts we survey carries no Kohler handle at all.</span>
+    <span class="s">139 of the 624 accounts we walked pour none of our draft. Some will be contract houses, but that is a long list in rooms we already call on.</span></p>
+    <p class="item"><span class="t">Corona Premier has shown the placement is there &mdash; and there is still room to expand it.</span>
+    <span class="s">Several reps have already completed the objective. Additional target accounts remain available across the market, making this one of the cleaner places to add distribution before the month closes.</span></p>
+    <p class="item"><span class="t">Angry Orchard has the lines but not the pull.</span>
+    <span class="s">It carries a respectable handle count for a cider, yet turns below our portfolio average per line, and a large share of its target list is still open.</span></p>
+  </div>
+
+  <div class="section watch">
+    <h2>👀 Watching</h2>
+    <p class="item"><span class="t">Molson Coors performance needs to be viewed alongside inventory availability.</span>
+    <span class="s">Recent out-of-stocks and backorders have affected several of the same items tied to current programs. Before drawing conclusions about the field, it is worth understanding what was actually available to sell.</span></p>
+    <p class="item"><span class="t">Southern District tap data is still developing.</span>
+    <span class="s">The survey base there is much smaller than Core Market&rsquo;s and weighted toward the largest craft rooms, so the current share numbers should be read as directional.</span></p>
+    <p class="item"><span class="t">The display pace has eased after a strong July finish.</span>
+    <span class="s">August is running below the late-July pace, but the display competition is still close enough that the final selling days could change the standings.</span></p>
+  </div>
+
+  <div class="section focus">
+    <h2>🎯 Where to Lean In</h2>
+    <p class="item"><span class="t">The fast-turning small brands may deserve more handles.</span>
+    <span class="s">Hofbrau, Weihenstephan and Garage Beer are out-turning our major brands on a handful of lines apiece.</span></p>
+    <p class="item"><span class="t">Corona Premier still has accessible placements available.</span>
+    <span class="s">The reps who finished the program have already shown the objective is achievable.</span></p>
+    <p class="item"><span class="t">Wine &amp; Spirits reorders may be the quickest incremental volume we have.</span>
+    <span class="s">Previously won placements let us generate cases without starting from zero.</span></p>
+    <p class="callout"><b>The line for the sales meeting:</b> we hold half the draft handles in our core market and the shelf side is finishing the month well &mdash; the open business is in what pours through the lines we already own, and in Wine &amp; Spirits accounts that already know the product.</p>
+  </div>
+
+  <footer>
+    <p><b>Where the numbers come from.</b> Tap share and handle counts from the Tap Survey Tracker (Aug 21); units per handle from the Exec Overview&rsquo;s Encompass join, which covers about four of every five surveyed accounts and is directional rather than exact. Draft volume trends are keg case-equivalents, Jan&ndash;Jul, year over year. MPOs and display auction through Aug 24 · supplier incentives Aug 20 · Wine &amp; Spirits reorder window anchored Jul 27 · inventory availability from the Jul 9 pull.</p>
+    <p>Performance is measured against each rep&rsquo;s own account base, target list and portfolio access rather than raw totals.</p>
+  </footer>
+
+</div>
+</div>
+
+<!-- ============================= EMAIL VIEW ==============================
+     Every style below is inline, and the layout is a fixed-width table.
+     That is deliberate: Outlook pastes through Word's HTML importer, which
+     discards <style> blocks, collapses <p> margins and ignores max-width.
+     Tables with padded cells are the one thing it reliably keeps.        -->
+<div id="email" hidden>
+<div id="emailblock">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="620" style="width:620px;border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
+  <tr><td style="padding:0 0 4px 0;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:bold;color:#111111;line-height:30px;">Kohler Sales Pulse</td></tr>
+  <tr><td style="padding:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#555555;line-height:20px;">Thursday, August 27 &nbsp;|&nbsp; Four selling days left in August</td></tr>
+  <tr><td style="padding:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:26px;color:#111111;">We hold just over half the tap handles in our core market, and the off-premise team is finishing August in good shape. Draft volume is down slightly for the year, and the brands that are growing are not the ones we have the most handles on.</td></tr>
+
+  <tr><td style="padding:24px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;color:#14468c;">DRAFT &mdash; CORE MARKET</td></tr>
+  <tr><td style="padding:0 0 14px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="2" bgcolor="#14468c" style="height:2px;line-height:2px;font-size:2px;background-color:#14468c;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>We own 51% of the tap handles we have surveyed</b> &mdash; 5,255 handles across 624 accounts. No competitor is close. Stella and Guinness are next at about 5% each.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Blue Moon and Yuengling have the most handles. Miller Lite sells the most beer per handle.</b> Our biggest tap brand is not our most productive one.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Hofbrau, Weihenstephan and Garage Beer turn faster than our big brands</b> on only a handful of handles each &mdash; and all three are growing.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Draft is down about 3% on the year.</b> Peroni is up 19% and Cape May 34%. Coors Light, Sam Adams and Pabst are down.</td></tr>
+
+  <tr><td style="padding:14px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;color:#0f6b44;">WHAT&rsquo;S WORKING</td></tr>
+  <tr><td style="padding:0 0 14px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="2" bgcolor="#0f6b44" style="height:2px;line-height:2px;font-size:2px;background-color:#0f6b44;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Off-premise August objectives are nearly finished.</b> Powierski, Melo, Barreca, Payton, Ehlers and Lagala are all close.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Phil Ernst and Mike Ast are averaging more than one display per account</b> &mdash; the best rate in the company.</td></tr>
+
+  <tr><td style="padding:14px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;color:#7a2244;">WINE &amp; SPIRITS</td></tr>
+  <tr><td style="padding:0 0 14px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="2" bgcolor="#7a2244" style="height:2px;line-height:2px;font-size:2px;background-color:#7a2244;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Several hundred accounts that carried our products have not reordered in 60 days.</b> That is the fastest volume available to us &mdash; the distribution is already won.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Two accounts have gone quiet for every new one we opened this year.</b> Worth understanding why.</td></tr>
+
+  <tr><td style="padding:14px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;color:#5b6573;">WORTH WATCHING</td></tr>
+  <tr><td style="padding:0 0 14px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="2" bgcolor="#5b6573" style="height:2px;line-height:2px;font-size:2px;background-color:#5b6573;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Molson softness lines up with out-of-stocks</b> on the same items our programs are scored on.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Southern District tap numbers are still early.</b> We have surveyed only a small share of those accounts, so read them as directional.</td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Displays have slowed since July,</b> and the auction is still a coin flip with four days left.</td></tr>
+
+  <tr><td style="padding:14px 0 6px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;color:#111111;">WHERE TO PUSH THIS WEEK</td></tr>
+  <tr><td style="padding:0 0 14px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="2" bgcolor="#111111" style="height:2px;line-height:2px;font-size:2px;background-color:#111111;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>More handles for the small brands that are turning fastest.</b></td></tr>
+  <tr><td style="padding:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Corona Premier.</b> Several reps have already finished it and target accounts are still open.</td></tr>
+  <tr><td style="padding:0 0 18px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#111111;"><b>Wine &amp; Spirits reorders.</b> Cases without having to win new distribution.</td></tr>
+
+  <tr><td style="padding:0 0 6px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;border-collapse:collapse;"><tr><td height="1" bgcolor="#cccccc" style="height:1px;line-height:1px;font-size:1px;background-color:#cccccc;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="padding:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#555555;">Tap survey through Aug 21 &middot; displays and August objectives through Aug 24 &middot; draft volume trend Jan&ndash;Jul vs. last year &middot; Wine &amp; Spirits reorders through Jul 27. Detail for any of this is in the dashboards.</td></tr>
+</table>
+</div>
+</div>
+
+<script>
+  var report = document.getElementById('report');
+  var email  = document.getElementById('email');
+  var bR = document.getElementById('btnReport');
+  var bE = document.getElementById('btnEmail');
+  var bC = document.getElementById('btnCopy');
+  var said = document.getElementById('said');
+
+  function show(which) {
+    var isEmail = which === 'email';
+    email.hidden = !isEmail;
+    report.hidden = isEmail;
+    bE.setAttribute('aria-pressed', String(isEmail));
+    bR.setAttribute('aria-pressed', String(!isEmail));
+    said.textContent = '';
+  }
+  bR.addEventListener('click', function () { show('report'); });
+  bE.addEventListener('click', function () { show('email'); });
+
+  bC.addEventListener('click', function () {
+    // Copying needs the block on screen, so switch to it first.
+    show('email');
+    var block = document.getElementById('emailblock');
+    var ok = false;
+    try {
+      var sel = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(block);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ok = document.execCommand('copy');
+      sel.removeAllRanges();
+    } catch (e) { ok = false; }
+    said.textContent = ok
+      ? 'Copied — paste into your email.'
+      : 'Select the briefing below, then Ctrl+C.';
+  });
+</script>
