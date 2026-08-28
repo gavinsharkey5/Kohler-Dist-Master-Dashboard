@@ -7417,15 +7417,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 34001,
-    "CUSTOMER_NAME": "Meadowland Wine & Liquor",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "9018",
-    "PRODUCT_NAME": "Peroni 0.0 NA 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81010,
     "CUSTOMER_NAME": "Morlot W & L (A)",
     "AREA": "Bergen",
@@ -24607,15 +24598,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20076,
-    "CUSTOMER_NAME": "Moca Liquors Ii",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7142",
-    "PRODUCT_NAME": "Peroni 2/12/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20060,
     "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
     "AREA": "Passaic",
@@ -25041,15 +25023,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20129,
     "CUSTOMER_NAME": "Main Discount (P) Liqs.",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7143",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20076,
-    "CUSTOMER_NAME": "Moca Liquors Ii",
     "AREA": "Passaic",
     "PRODUCT_NUM": "7143",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Btl",
@@ -45163,15 +45136,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37025,
-    "CUSTOMER_NAME": "All Nations Liq",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 32016,
     "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen",
@@ -57846,15 +57810,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 15030,
     "CUSTOMER_NAME": "EL BOHEMIO 2 LIQUOR STORE & BAR",
-    "AREA": "Passaic",
-    "PRODUCT_NUM": "7157",
-    "PRODUCT_NAME": "Peroni 1/12/24 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20068,
-    "CUSTOMER_NAME": "Florida Drugs (A)",
     "AREA": "Passaic",
     "PRODUCT_NUM": "7157",
     "PRODUCT_NAME": "Peroni 1/12/24 oz Can",

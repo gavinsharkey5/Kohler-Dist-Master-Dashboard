@@ -967,12 +967,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20060,
-    "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 15012,
     "CUSTOMER_NAME": "Pal's Liquor",
     "AREA": "Passaic"
@@ -997,20 +991,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 15023,
-    "CUSTOMER_NAME": "Santana's Sport(P)Bella",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 13001,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Littlefl",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 21033,
-    "CUSTOMER_NAME": "The Liquor Shop",
     "AREA": "Passaic"
   },
   {
@@ -1705,12 +1687,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191606,
-    "CUSTOMER_NAME": "Quick Check Liquor (A)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190705,
     "CUSTOMER_NAME": "Rockaway W/L",
     "AREA": "Morris 1"
@@ -1744,12 +1720,6 @@
     "CUSTOMER_NUM": 191713,
     "CUSTOMER_NAME": "Stanhope Liquors",
     "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191604,
-    "CUSTOMER_NAME": "The Village Place",
-    "AREA": "Morris 1"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -2235,12 +2205,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 15047,
     "CUSTOMER_NAME": "Freddie's Corner",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15016,
-    "CUSTOMER_NAME": "Gene's Liquor",
     "AREA": "Passaic"
   },
   {

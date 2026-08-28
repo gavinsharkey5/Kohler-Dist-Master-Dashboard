@@ -240,6 +240,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 15016,
+    "CUSTOMER_NAME": "Gene's Liquor",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -390,6 +400,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 20060,
+    "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -450,6 +470,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 191606,
+    "CUSTOMER_NAME": "Quick Check Liquor (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -475,6 +505,16 @@
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
     "CUSTOMER_NUM": 58002,
     "CUSTOMER_NAME": "River Edge Wine & Liquor",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 15023,
+    "CUSTOMER_NAME": "Santana's Sport(P)Bella",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 1.0
@@ -580,6 +620,26 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 21033,
+    "CUSTOMER_NAME": "The Liquor Shop",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 191604,
+    "CUSTOMER_NAME": "The Village Place",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -597,7 +657,7 @@
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 19.0
+    "CASES": 29.0
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
