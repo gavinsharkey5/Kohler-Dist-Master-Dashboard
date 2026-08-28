@@ -7,12 +7,20 @@ The question it is built to answer is not "what do we have" but "where do we
 have a problem or an opportunity that needs action" -- hence the What Needs
 Attention list sitting directly under the KPI row, above every chart.
 
-NOT the same thing as ../inventory/ -- that folder is the rep-facing SKU
-tracker (Current Stock / Trends & Forecast / Watch List), built 2026-08-18 off
-InventoryStatus + InventoryProjections + WatchList_P90_OOS. This one is the
-management overview and uses a different source set (it shares only
-InventoryStatus). Both were left in place; if they should be merged into one
-page, that is a decision to make, not something to assume.
+THE EXECUTIVE HALF OF A DELIBERATE SPLIT (2026-08-28, per Gavin):
+  ../inventory/       Rep view -- "what can I sell?" Available, days of cover,
+                      what just landed, what is on the way. No money at all.
+  this folder         Executive view -- "what inventory risk are we carrying?"
+                      Value, cost, write-off exposure, expiry, aging, excess.
+Both read the SAME five exports out of ../inventory-data/, so a refresh is one
+set of pulls and two generator runs. The rep view reads three of the five; the
+two it skips (purchase_transactions, inventory_at_risk) are exactly the
+financial ones. That is the whole reason the split is worth having: a rep never
+downloads the 17,000-row purchase file to find out whether they can sell a case.
+
+The earlier three-tab rep page that lived in ../inventory/ (Current Stock /
+Trends & Forecast / Watch List, built 2026-08-18 on its own copies of the
+exports) is gone, replaced by that rep view.
 
 Files:
   inventory_status.csv    Encompass "Inventory Status" export -- the current

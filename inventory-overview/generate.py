@@ -75,11 +75,14 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STATUS_CSV = os.path.join(HERE, 'inventory_status.csv')
-RECEIVED_CSV = os.path.join(HERE, 'inventory_received.csv')
-AT_RISK_CSV = os.path.join(HERE, 'inventory_at_risk.csv')
-PROJECTIONS_CSV = os.path.join(HERE, 'inventory_projections.csv')
-PURCHASES_CSV = os.path.join(HERE, 'purchase_transactions.csv')
+# One folder of source exports, shared with ../inventory/ (the rep view), so the
+# same export is never pulled twice. See ../inventory-data/README.txt.
+DATA = os.path.join(HERE, os.pardir, 'inventory-data')
+STATUS_CSV = os.path.join(DATA, 'inventory_status.csv')
+RECEIVED_CSV = os.path.join(DATA, 'inventory_received.csv')
+AT_RISK_CSV = os.path.join(DATA, 'inventory_at_risk.csv')
+PROJECTIONS_CSV = os.path.join(DATA, 'inventory_projections.csv')
+PURCHASES_CSV = os.path.join(DATA, 'purchase_transactions.csv')
 HTML = os.path.join(HERE, 'index.html')
 
 # Columns that are all-zero in every export seen so far (the warehouse doesn't
