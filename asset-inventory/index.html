@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asset Inventory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --card3:#20242F;
+    --ink:#F8F9FB; --ink-soft:#BAC0CE; --ink-dim:#7C8496;
+    --line:#262A35; --line-soft:#1F222B;
+    --accent:#3FC8D4; --accent2:#2A94B8;
+    --good:#37C46B; --warn:#F4B83E; --bad:#E5604D;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.45);
+    --r:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:16px;line-height:1.6;padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+  .num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;letter-spacing:-.01em;margin:0}
+  a{color:var(--accent)}
+
+  /* ---------- header ---------- */
+  .head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .head::before{content:"";position:absolute;inset:-40% -10% auto;height:260px;
+    background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);
+    pointer-events:none}
+  .head .wrap{position:relative;padding:32px 18px 26px}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.2em;text-transform:uppercase;font-size:11px;
+    font-weight:600;color:var(--accent);margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}
+               70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+  h1{font-weight:700;font-size:clamp(30px,7vw,44px);line-height:1}
+  .lede{margin:13px 0 0;max-width:66ch;color:var(--ink-soft);font-size:16px}
+  .lede b{color:var(--ink);font-weight:600}
+  .freshline{display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:7px 14px;
+    background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;
+    font-family:"Space Grotesk";font-size:12.5px;color:var(--ink-soft)}
+  .livedot{width:8px;height:8px;border-radius:50%;background:var(--good);animation:lp 2s infinite}
+  @keyframes lp{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 60%,transparent)}
+                70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+  /* ---------- section shell ---------- */
+  section{margin:34px 0 0}
+  .sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 4px}
+  .sechead h2{font-size:13px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+  .sechead .cnt{font-family:"Space Grotesk";font-size:12px;color:var(--ink-dim);letter-spacing:.04em}
+  .secsub{margin:0 0 15px;color:var(--ink-dim);font-size:13.5px;max-width:70ch}
+
+  /* ---------- KPI tiles ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.75}
+  .kpi .k{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600;margin:0 0 7px}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:32px;line-height:1;
+    font-variant-numeric:tabular-nums;color:var(--ink)}
+  .kpi .s{margin:7px 0 0;font-size:12.5px;color:var(--ink-soft);line-height:1.4}
+
+  /* ---------- profile strip ---------- */
+  .strip{margin:12px 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:14px 16px;display:flex;flex-wrap:wrap;gap:9px 26px;align-items:center;box-shadow:var(--shadow)}
+  .strip .pi{display:flex;align-items:baseline;gap:8px;font-size:13.5px}
+  .strip .pi b{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600}
+  .strip .pi span{color:var(--ink);font-weight:600}
+  .strip .pi em{font-style:normal;color:var(--ink-dim);font-size:12.5px}
+
+  /* ---------- bar lists ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:16px 16px 14px;box-shadow:var(--shadow)}
+  .panel h3{font-size:14.5px;font-weight:700;margin:0 0 3px}
+  .panel .ph{margin:0 0 13px;font-size:12.5px;color:var(--ink-dim)}
+  .bl{display:flex;flex-direction:column;gap:2px}
+  .bar{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;
+    background:none;border:0;color:inherit;font:inherit;text-align:left;width:100%;
+    padding:7px 8px;border-radius:9px;cursor:pointer;transition:background .12s}
+  .bar:hover{background:var(--card2)}
+  .bar.on{background:color-mix(in srgb,var(--accent) 14%,var(--card2));
+    box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 40%,transparent)}
+  .bar .lb{font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.3}
+  .bar.on .lb{color:var(--accent)}
+  .bar .vv{font-family:"Space Grotesk";font-weight:700;font-size:13.5px;
+    font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+  .bar .vv i{font-style:normal;font-weight:500;font-size:11.5px;color:var(--ink-dim);margin-left:6px}
+  .bar .tr{grid-column:1/-1;height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+  .bar .tr i{display:block;height:100%;border-radius:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .morebtn{margin:9px 0 0;background:none;border:1px solid var(--line);color:var(--ink-soft);
+    font:inherit;font-weight:600;font-size:12.5px;padding:7px 13px;border-radius:9px;cursor:pointer;width:100%}
+  .morebtn:hover{color:var(--ink);border-color:var(--ink-dim)}
+
+  /* ---------- explorer ---------- */
+  .toolbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--canvas) 92%,transparent);
+    backdrop-filter:blur(10px);padding:12px 0 10px;margin:0 0 12px;border-bottom:1px solid var(--line-soft)}
+  .searchrow{display:flex;gap:10px;flex-wrap:wrap}
+  .sbox{flex:1 1 240px;position:relative;min-width:0}
+  .sbox input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:11px;
+    color:var(--ink);font:inherit;font-size:15px;padding:11px 38px 11px 38px;outline:none}
+  .sbox input:focus{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+  .sbox input::placeholder{color:var(--ink-dim)}
+  .sbox .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--ink-dim);
+    font-size:15px;pointer-events:none}
+  .sbox .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;
+    color:var(--ink-dim);font-size:19px;cursor:pointer;padding:2px 7px;line-height:1;border-radius:6px}
+  .sbox .clr:hover{color:var(--ink)}
+  select{background:var(--card);border:1px solid var(--line);border-radius:11px;color:var(--ink);
+    font:inherit;font-size:14px;padding:11px 12px;outline:none;cursor:pointer}
+  select:focus{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0;align-items:center}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--accent) 16%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent) 42%,transparent);color:var(--accent);
+    font-family:"Space Grotesk";font-weight:600;font-size:12.5px;padding:5px 6px 5px 11px;border-radius:999px}
+  .chip b{font-weight:600;opacity:.7;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .chip button{background:none;border:0;color:inherit;cursor:pointer;font-size:16px;line-height:1;
+    padding:0 4px;border-radius:50%;opacity:.75}
+  .chip button:hover{opacity:1}
+  .clrall{background:none;border:0;color:var(--ink-dim);font:inherit;font-size:12.5px;
+    text-decoration:underline;cursor:pointer;padding:4px 2px}
+  .clrall:hover{color:var(--ink)}
+  .rescount{font-family:"Space Grotesk";font-size:12.5px;color:var(--ink-dim);letter-spacing:.03em;
+    margin-left:auto;white-space:nowrap}
+
+  /* ---------- item table ---------- */
+  .tbl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    overflow:hidden;box-shadow:var(--shadow)}
+  .thead{display:grid;grid-template-columns:1fr 150px 130px 84px 34px;gap:12px;padding:11px 15px;
+    background:var(--card2);border-bottom:1px solid var(--line);
+    font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600}
+  .thead .r{text-align:right}
+  .irow{border-bottom:1px solid var(--line-soft)}
+  .irow:last-child{border-bottom:0}
+  .isum{display:grid;grid-template-columns:1fr 150px 130px 84px 34px;gap:12px;padding:12px 15px;
+    align-items:center;cursor:pointer;background:none;border:0;width:100%;text-align:left;
+    color:inherit;font:inherit;transition:background .12s}
+  .isum:hover{background:var(--card2)}
+  .isum .nm{font-weight:500;font-size:14.5px;line-height:1.35;color:var(--ink);min-width:0;
+    overflow-wrap:anywhere}
+  .isum .nm mark{background:color-mix(in srgb,var(--accent) 30%,transparent);color:var(--ink);
+    border-radius:3px;padding:0 1px}
+  .isum .nm .vr{display:block;font-size:11.5px;color:var(--ink-dim);margin-top:2px}
+  .isum .cell{font-size:13px;color:var(--ink-soft);min-width:0;overflow-wrap:anywhere}
+  .isum .u{font-family:"Space Grotesk";font-weight:700;font-size:16px;text-align:right;
+    font-variant-numeric:tabular-nums;color:var(--ink)}
+  .isum .cv{text-align:center;color:var(--ink-dim);font-size:19px;line-height:1;
+    transition:transform .15s;font-weight:700}
+  .irow.open .cv{transform:rotate(90deg);color:var(--accent)}
+  .irow.open .isum{background:var(--card2)}
+  .idet{padding:0 15px 16px;background:var(--card2);border-top:1px solid var(--line-soft)}
+  .dmeta{display:flex;flex-wrap:wrap;gap:8px 22px;padding:13px 0 12px;font-size:13px}
+  .dmeta div{display:flex;gap:8px;align-items:baseline}
+  .dmeta b{font-family:"Space Grotesk";font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600}
+  .dmeta span{color:var(--ink);font-weight:500}
+  .idlab{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600;margin:0 0 8px}
+  .ids{display:flex;flex-wrap:wrap;gap:5px;max-height:190px;overflow-y:auto;padding:1px}
+  .ids code{font-family:"Space Grotesk";font-size:12px;font-variant-numeric:tabular-nums;
+    background:var(--card3);border:1px solid var(--line);border-radius:7px;padding:3px 9px;
+    color:var(--ink-soft)}
+  .ids code.exc{border-color:color-mix(in srgb,var(--warn) 55%,transparent);color:var(--warn)}
+  .showmore{display:block;width:100%;background:var(--card2);border:0;border-top:1px solid var(--line);
+    color:var(--ink-soft);font-family:"Space Grotesk";font-weight:600;font-size:13px;
+    letter-spacing:.04em;padding:14px;cursor:pointer;transition:.12s}
+  .showmore:hover{background:var(--card3);color:var(--ink)}
+  .empty{padding:44px 20px;text-align:center;color:var(--ink-dim);font-size:14.5px}
+  .empty b{display:block;color:var(--ink-soft);font-family:"Space Grotesk";font-size:16px;margin-bottom:5px}
+
+  /* ---------- notes ---------- */
+  .notes{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:16px;box-shadow:var(--shadow)}
+  .notes h3{font-size:14.5px;margin:0 0 10px}
+  .nl{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+  .nl li{display:flex;gap:11px;font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+  .nl .dot{flex:none;width:7px;height:7px;border-radius:50%;margin-top:8px;background:var(--ink-dim)}
+  .nl .dot.w{background:var(--warn)} .nl .dot.g{background:var(--good)}
+  .nl b{color:var(--ink);font-weight:600}
+  .nl code{font-family:"Space Grotesk";font-size:12.5px;background:var(--card3);
+    border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--ink-soft)}
+  .exctbl{margin:11px 0 0;display:flex;flex-direction:column;gap:6px}
+  .excrow{display:grid;grid-template-columns:64px 1fr auto;gap:11px;align-items:center;
+    background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px}
+  .excrow code{font-family:"Space Grotesk";font-size:12px;color:var(--warn);font-variant-numeric:tabular-nums}
+  .excrow .en{color:var(--ink-soft);overflow-wrap:anywhere}
+  .excrow .eb{font-family:"Space Grotesk";font-size:11.5px;color:var(--ink-dim);white-space:nowrap}
+  footer{margin:36px 0 0;padding:18px 0 0;border-top:1px solid var(--line);
+    color:var(--ink-dim);font-size:12.5px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .cols{grid-template-columns:1fr}
+    .thead,.isum{grid-template-columns:1fr 110px 62px 30px}
+    .thead .h-size,.isum .c-size{display:none}
+  }
+  @media (max-width:560px){
+    body{font-size:15px}
+    .thead,.isum{grid-template-columns:1fr 62px 30px;gap:9px}
+    .thead .h-brand,.isum .c-brand{display:none}
+    .kpi .v{font-size:27px}
+    .strip{gap:8px 18px}
+  }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="wrap">
+    <p class="eyebrow"><span class="pulse"></span> Kohler Distributing &middot; Warehouse</p>
+    <h1>Asset Inventory</h1>
+    <p class="lede">Every point-of-sale asset on the books &mdash; glassware, signage, coolers, umbrellas
+      and dealer loaders &mdash; grouped by <b>what it is</b>, <b>whose brand it carries</b>, and
+      <b>how many you actually have</b>.</p>
+    <div class="freshline"><span class="livedot"></span><span id="fresh">Data refreshed &mdash;</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ 1. SUMMARY ============ -->
+  <section id="summary">
+    <div class="sechead"><h2>At a glance</h2></div>
+    <p class="secsub">Each row in the export is one physical unit. Units that share a name are
+      rolled up into a single item so you can see depth per product, not just a long list.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="strip" id="strip"></div>
+  </section>
+
+  <!-- ============ 2. BREAKDOWN ============ -->
+  <section id="breakdown">
+    <div class="sechead"><h2>Breakdown</h2><span class="cnt">click any bar to filter</span></div>
+    <p class="secsub">Where the inventory actually sits. Selecting a bar filters the asset list below.</p>
+    <div class="cols">
+      <div class="panel">
+        <h3>By asset type</h3>
+        <p class="ph">What kind of thing it is</p>
+        <div class="bl" id="catbars"></div>
+      </div>
+      <div class="panel">
+        <h3>By brand</h3>
+        <p class="ph">Whose branding the asset carries</p>
+        <div class="bl" id="brandbars"></div>
+        <button class="morebtn" id="brandmore" type="button"></button>
+      </div>
+    </div>
+    <div class="cols" style="margin-top:14px">
+      <div class="panel">
+        <h3>Drinkware sizes</h3>
+        <p class="ph">Pulled from the asset name &mdash; glassware and cups only</p>
+        <div class="bl" id="sizebars"></div>
+      </div>
+      <div class="panel">
+        <h3>Name tags</h3>
+        <p class="ph" id="codeph">Bracketed codes found at the start of some asset names</p>
+        <div class="bl" id="codebars"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. EXPLORER ============ -->
+  <section id="explorer">
+    <div class="sechead"><h2>Asset list</h2><span class="cnt">search, filter, expand for asset IDs</span></div>
+    <div class="toolbar">
+      <div class="searchrow">
+        <div class="sbox">
+          <span class="ic">&#9906;</span>
+          <input id="q" type="search" autocomplete="off" spellcheck="false"
+                 placeholder="Search assets, brands or an asset ID&hellip;" aria-label="Search assets">
+          <button class="clr" id="qclr" type="button" hidden aria-label="Clear search">&times;</button>
+        </div>
+        <select id="sort" aria-label="Sort assets">
+          <option value="units">Most units</option>
+          <option value="unitsAsc">Fewest units</option>
+          <option value="name">Name A&ndash;Z</option>
+          <option value="brand">Brand A&ndash;Z</option>
+          <option value="cat">Type A&ndash;Z</option>
+        </select>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="tbl">
+      <div class="thead">
+        <div>Asset</div>
+        <div class="h-brand">Brand</div>
+        <div class="h-size">Type / Size</div>
+        <div class="r">Units</div>
+        <div></div>
+      </div>
+      <div id="rows"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. DATA NOTES ============ -->
+  <section id="notes">
+    <div class="sechead"><h2>About this data</h2></div>
+    <p class="secsub">What the export does and doesn't tell us &mdash; worth knowing before
+      leaning on any number above.</p>
+    <div class="notes">
+      <h3>Read before you rely on it</h3>
+      <ul class="nl" id="notelist"></ul>
+      <div id="excwrap"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="footmeta"></span>
+  </footer>
+</main>
+
+<script id="asset-data" type="application/json">{"meta":{"synced_at":"2026-08-28T13:11:38+00:00","source_file":"Assets.csv","row_count":2524},"totals":{"units":2524,"items":239,"brands":77,"categories":15,"cost":0.0,"value":0.0,"codes":12,"explicitCat":1381},"profile":{"status":["Good"],"location":["Hawthorne"],"mainBin":"6461","binCounts":[{"label":"6461","units":2519},{"label":"(blank)","units":3},{"label":"25","units":2}],"emptyColumns":["Purchase","Asset Num","Serial Num","Placed in Service Date","Customer","Time Confirmed","Purchased Date","Sold Date","Asset Owner"],"constantColumns":[{"name":"Status","value":"Good"},{"name":"Location","value":"Hawthorne"},{"name":"Cost","value":"$0.00"},{"name":"Remaining Value","value":"$0.00"}],"sourceColumns":["Asset ID","Purchase","Asset Type","Asset Description","Asset Num","Serial Num","Status","Location","Bin","Cost","Remaining Value","Placed in Service Date","Customer","Time Confirmed","Purchased Date","Sold Date","Asset Owner"]},"byCat":[{"label":"Glassware","units":1198,"items":64},{"label":"LED Signs","units":229,"items":45},{"label":"Outdoor & Recreation","units":220,"items":20},{"label":"Plastic Cups","units":198,"items":11},{"label":"Furniture","units":125,"items":18},{"label":"Patio Umbrellas","units":120,"items":13},{"label":"Racks & Displays","units":105,"items":15},{"label":"Signage & Menu Boards","units":77,"items":8},{"label":"Coolers & Drinkware","units":75,"items":14},{"label":"Dealer Loaders","units":68,"items":10},{"label":"A-Frames","units":55,"items":12},{"label":"Clocks","units":40,"items":2},{"label":"Miscellaneous","units":8,"items":3},{"label":"Mirrors & Wall Decor","units":3,"items":3},{"label":"Neon Signs","units":3,"items":1}],"byBrand":[{"label":"Coors Light","units":212,"items":13},{"label":"Modelo","units":183,"items":12},{"label":"Miller Lite","units":165,"items":7},{"label":"Hofbrau","units":162,"items":7},{"label":"Corona","units":123,"items":17},{"label":"Montauk","units":108,"items":5},{"label":"Yuengling","units":106,"items":11},{"label":"Pacifico","units":94,"items":11},{"label":"Victory","units":89,"items":4},{"label":"Forged Irish Stout","units":81,"items":4},{"label":"Sam Adams","units":72,"items":4},{"label":"Garage Beer","units":69,"items":5},{"label":"SunCruiser","units":61,"items":5},{"label":"Sapporo","units":59,"items":2},{"label":"Corona Premier","units":53,"items":3},{"label":"Twisted Tea","units":52,"items":7},{"label":"Carbliss","units":48,"items":7},{"label":"Fever Tree","units":42,"items":6},{"label":"Heineken","units":42,"items":4},{"label":"Angry Orchard","units":41,"items":4},{"label":"Unassigned","units":39,"items":2},{"label":"Truly","units":34,"items":6},{"label":"Pabst","units":32,"items":3},{"label":"DAB","units":31,"items":1},{"label":"Peroni","units":30,"items":1},{"label":"Corona Light","units":28,"items":2},{"label":"Lagunitas","units":27,"items":3},{"label":"Paulaner","units":23,"items":4},{"label":"Modelo Chelada","units":22,"items":2},{"label":"Victoria","units":20,"items":1},{"label":"Dos Equis","units":19,"items":3},{"label":"Red Bull","units":18,"items":4},{"label":"Stone","units":18,"items":1},{"label":"Weihenstephan","units":17,"items":1},{"label":"Flying Fish","units":16,"items":3},{"label":"Cape May","units":16,"items":5},{"label":"Sullivans","units":16,"items":1},{"label":"Radeberger","units":16,"items":1},{"label":"Estrella","units":14,"items":2},{"label":"Newburgh","units":14,"items":1},{"label":"White Claw","units":13,"items":5},{"label":"Magners","units":13,"items":2},{"label":"Corona NA","units":12,"items":2},{"label":"Sixpoint","units":12,"items":2},{"label":"Shiner","units":12,"items":2},{"label":"Blue Moon","units":11,"items":2},{"label":"OVO","units":11,"items":2},{"label":"Tsingtao","units":10,"items":1},{"label":"Southern Tier","units":8,"items":2},{"label":"Evil Genius","units":8,"items":1},{"label":"1911","units":7,"items":2},{"label":"Great Lakes","units":7,"items":2},{"label":"Schofferhofer","units":7,"items":1},{"label":"Athletic Brewing","units":6,"items":1},{"label":"Mike's","units":6,"items":1},{"label":"Miller","units":6,"items":1},{"label":"Hacker-Pschorr","units":6,"items":1},{"label":"Famosa","units":6,"items":1},{"label":"PopSicle","units":5,"items":1},{"label":"Moosehead","units":5,"items":1},{"label":"Right Coast","units":5,"items":1},{"label":"Stiegl","units":4,"items":2},{"label":"Sinless","units":3,"items":1},{"label":"Dogfish Head","units":3,"items":2},{"label":"New Belgium","units":3,"items":1},{"label":"Jack Daniel's","units":3,"items":1},{"label":"Hamms","units":3,"items":1},{"label":"Mackeson","units":3,"items":1},{"label":"Sierra Nevada","units":2,"items":1},{"label":"Delta THC","units":2,"items":1},{"label":"Mamita","units":2,"items":1},{"label":"Bell's","units":2,"items":2},{"label":"Crescent 9","units":1,"items":1},{"label":"Leinenkugel","units":1,"items":1},{"label":"Clausthaler","units":1,"items":1},{"label":"Vizzy","units":1,"items":1},{"label":"Newcastle","units":1,"items":1},{"label":"Amstel","units":1,"items":1}],"bySize":[{"label":"16 oz","units":857},{"label":"0.5 L","units":81},{"label":"1 L","units":62},{"label":"0.4 L","units":61},{"label":"20 oz","units":59},{"label":"13 oz","units":39},{"label":"22 oz","units":39},{"label":"21 oz","units":16}],"byCode":[{"label":"TG","units":236},{"label":"CP","units":147},{"label":"SH","units":137},{"label":"CM","units":127},{"label":"DD","units":91},{"label":"SD","units":77},{"label":"ME","units":29},{"label":"PC","units":27},{"label":"FP","units":24},{"label":"DM","units":12},{"label":"AF","units":3},{"label":"PD","units":2}],"items":[{"key":"coors light 16oz cups","name":"Coors Light 16oz Cups","variants":[],"cat":"Plastic Cups","brand":"Coors Light","size":"16 oz","codes":["CM"],"units":68,"ids":["16839","16840","16841","16842","16843","16844","16845","16846","17017","17018","17019","17020","17021","17022","17023","17024","17025","17026","17027","17028","17029","17030","17031","17032","17033","17034","17035","17036","17037","17038","17039","17040","17041","17042","17043","17044","17045","17046","17047","17048","17049","17050","17051","17052","17053","17054","17055","17056","17057","17058","17059","17060","17061","17062","17063","17064","17065","17066","17067","17068","17069","17070","17071","17072","17073","17074","17075","17076"]},{"key":"hofbrau mug 0.5 liter","name":"Hofbrau Mug 0.5 Liter","variants":[],"cat":"Glassware","brand":"Hofbrau","size":"0.5 L","codes":["TG"],"units":64,"ids":["15829","15830","15831","15832","15833","15834","15835","15836","15837","15838","15839","15840","15841","15842","15843","15844","15845","15846","15847","15848","15849","15850","15851","15852","15853","15854","15855","15856","15857","15858","15859","15860","15861","15862","15863","15864","15865","15866","15867","15868","15869","15870","15871","15872","15873","15874","15875","15876","15877","18042","18043","18044","18045","18046","18047","18048","18049","18050","18051","18052","18053","18054","18055","18056"]},{"key":"modelo 16oz shaker","name":"Modelo 16oz Shaker","variants":[],"cat":"Glassware","brand":"Modelo","size":"16 oz","codes":[],"units":64,"ids":["12552","12553","12554","12555","12556","12557","12558","12559","12560","12561","12562","12563","12564","12565","12566","12567","12568","12569","12570","12571","12572","12573","12574","12575","12576","12577","12578","12579","12580","12581","12582","12583","12584","12585","17947","17948","17949","17950","17951","17952","17953","17954","17955","17956","17957","17958","17959","17960","17961","17962","17963","17964","17965","17966","17967","17968","17969","17970","17971","17972","17973","17974","17975","17976"]},{"key":"miller lite 16oz shaker","name":"Miller Lite 16oz shaker","variants":[],"cat":"Glassware","brand":"Miller Lite","size":"16 oz","codes":[],"units":58,"ids":["13024","13025","13026","13027","13028","13029","13030","13031","16897","16898","16899","16900","16901","16902","16903","16904","16905","16906","16907","16908","16909","16910","16911","16912","16913","16914","16915","16916","16917","16918","16919","16920","16921","16922","16923","16924","16925","16926","16927","16928","16929","16930","16931","16932","16933","16934","16935","16936","16937","16938","16939","16940","16941","16942","16943","16944","16945","16946"]},{"key":"hofbrau mug 1 liter","name":"Hofbrau Mug 1 Liter","variants":[],"cat":"Glassware","brand":"Hofbrau","size":"1 L","codes":["TG"],"units":56,"ids":["11873","11874","11875","11876","11877","11878","15878","15879","15880","15881","15882","15883","15884","15885","15886","15887","15888","15889","15890","15891","15892","15893","15894","15895","15896","15897","15898","15899","15900","15901","15902","15903","15904","15905","15906","15907","15908","15909","15910","15911","15912","15913","15914","15915","15916","15917","15918","15919","15920","15921","15922","15923","15924","15925","15926","15927"]},{"key":"sapporo 16oz shaker glass","name":"Sapporo 16oz shaker glass","variants":[],"cat":"Glassware","brand":"Sapporo","size":"16 oz","codes":[],"units":54,"ids":["10979","10980","10981","10982","10983","10984","10985","10986","10987","10988","10989","10990","10991","10992","11156","11157","11158","11159","11160","11161","11162","11163","11164","11165","11166","11167","11168","11169","11170","11171","11172","11173","11174","11175","11176","11177","11178","11179","11180","11181","11182","11183","11184","11185","11186","11187","11188","11189","11190","11191","11192","11193","11194","11195"]},{"key":"miller lite 16oz plastic cups","name":"Miller Lite 16oz Plastic cups","variants":[],"cat":"Plastic Cups","brand":"Miller Lite","size":"16 oz","codes":["CM"],"units":51,"ids":["16966","16967","16968","16969","16970","16971","16972","16973","16974","16975","16976","16977","16978","16979","16980","16981","16982","16983","16984","16985","16986","16987","16988","16989","16990","16991","16992","16993","16994","16995","16996","16997","16998","16999","17000","17001","17002","17003","17004","17005","17006","17007","17008","17009","17010","17011","17012","17013","17014","17015","17016"]},{"key":"forged irish stout 20oz glassware","name":"Forged Irish Stout 20oz Glassware","variants":[],"cat":"Glassware","brand":"Forged Irish Stout","size":"20 oz","codes":[],"units":47,"ids":["11712","11713","11714","11715","11716","12654","12655","12656","12657","12658","1890","1891","1892","1893","1894","1895","1896","1897","1898","1899","1900","1901","1902","1903","1904","1905","1906","1907","1908","1909","1910","1911","1912","1913","1914","1915","1916","1917","1918","1919","1920","1921","1922","1923","1924","1925","1926"]},{"key":"corona premier golf bag","name":"Corona Premier Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Corona Premier","size":null,"codes":["SH","FP","ME","CM","DM"],"units":44,"ids":["15145","15146","15147","15148","15149","15150","15151","15153","15154","15155","15156","15157","15158","15159","15160","15161","15173","15174","15175","15176","15178","15179","15180","15181","15182","15183","15184","15185","15186","15196","15197","15198","15199","15200","15201","15202","15203","15204","15205","15206","15207","15208","15209","15210"]},{"key":"victory 16oz shaker","name":"Victory 16oz shaker","variants":[],"cat":"Glassware","brand":"Victory","size":"16 oz","codes":[],"units":42,"ids":["14675","14676","14677","14678","14679","14680","14681","14682","14683","14684","14685","14686","14687","14688","14689","14690","14691","14692","14693","14694","14695","14696","14697","14698","14699","14700","14701","14702","14703","14704","4258","4259","4260","4261","4262","4263","4264","4265","4266","4267","4268","4269"]},{"key":"coors light 16oz shaker","name":"Coors Light 16oz Shaker","variants":[],"cat":"Glassware","brand":"Coors Light","size":"16 oz","codes":[],"units":40,"ids":["17736","17737","17738","17739","17740","17741","17742","17743","17744","17745","17746","17747","17748","17749","17750","17751","17752","17753","17754","17755","17756","17757","17758","17759","17760","17761","17762","17763","17764","17765","17766","17767","17768","17769","17770","17771","17772","17773","17774","17775"]},{"key":"montauk 16oz shaker","name":"Montauk 16oz Shaker","variants":[],"cat":"Glassware","brand":"Montauk","size":"16 oz","codes":[],"units":40,"ids":["12298","12299","12300","12301","12302","12303","12304","12305","12306","12307","12308","12309","12310","12311","12312","12313","12314","12315","12316","12317","12318","12319","12320","12321","12322","12323","12324","12325","12326","12327","12328","12329","12478","12479","12480","12481","12482","12483","12484","12485"]},{"key":"pacifico 16oz shaker","name":"Pacifico 16oz Shaker","variants":[],"cat":"Glassware","brand":"Pacifico","size":"16 oz","codes":[],"units":40,"ids":["11586","11587","11588","11589","11590","11591","11592","12586","12587","12588","17977","17978","17979","17980","17981","17982","17983","17984","17985","17986","17987","17988","17989","17990","17991","17992","17993","17994","17995","17996","17997","17998","17999","18000","18001","18002","18003","18004","18005","18006"]},{"key":"victory golden monkey 13oz glass","name":"Victory Golden Monkey 13oz glass","variants":[],"cat":"Glassware","brand":"Victory","size":"13 oz","codes":[],"units":39,"ids":["14706","14707","14708","14709","14710","14711","14712","14713","14714","14715","14716","14717","14718","14719","14720","14721","14722","14723","14724","14725","14726","14727","14728","14729","14730","14731","14732","14733","14734","14735","14736","14737","14738","14739","14740","14741","14742","14743","14744"]},{"key":"yuengling 16oz shaker","name":"Yuengling 16oz Shaker","variants":[],"cat":"Glassware","brand":"Yuengling","size":"16 oz","codes":[],"units":38,"ids":["16251","16252","16253","16254","16255","16256","16257","16258","16259","16260","16261","16262","16263","16264","16265","16266","16267","16268","16269","16270","16271","16272","16273","16274","16275","16276","16277","16278","16279","16280","16281","16282","16283","16284","16285","16286","16287","16288"]},{"key":"montauk patio umbrella","name":"Montauk Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Montauk","size":null,"codes":[],"units":36,"ids":["14879","14880","14881","14882","14883","14884","14885","14886","14887","14888","14889","17143","17144","17145","17146","17147","17148","17149","17150","17151","17152","17153","17154","17155","17156","17157","17158","17159","17160","17161","17162","17163","17164","17165","17166","17167"]},{"key":"sam summer 16oz shaker","name":"Sam Summer 16oz shaker","variants":[],"cat":"Glassware","brand":"Sam Adams","size":"16 oz","codes":[],"units":34,"ids":["13148","13149","13150","13151","13152","13153","13154","13155","13156","13157","13158","13159","13160","13161","13162","13163","13164","13165","13166","13167","13168","13169","13170","13171","13172","13173","13174","13175","13176","13177","13178","13179","13180","13181"]},{"key":"32oz glide racks","name":"32oz Glide Racks","variants":[],"cat":"Racks & Displays","brand":"Unassigned","size":"32 oz","codes":[],"units":31,"ids":["13975","13976","13977","13978","13979","13980","13981","13982","13983","13984","13985","13986","13987","13988","13989","13990","13991","13992","13993","13994","13995","13996","13997","13998","13999","14000","14001","14002","14003","14004","14005"]},{"key":"dab 0.4l mug","name":"Dab 0.4L Mug","variants":[],"cat":"Glassware","brand":"DAB","size":"0.4 L","codes":["TG"],"units":31,"ids":["3238","3239","3240","3241","3242","3243","3244","3245","3246","3247","3248","3249","3250","3251","3252","3253","3254","3255","3256","3257","3258","3259","3260","3261","3262","3263","3264","3265","3266","3267","3268"]},{"key":"peroni 0.4l glass","name":"Peroni 0.4L Glass","variants":[],"cat":"Glassware","brand":"Peroni","size":"0.4 L","codes":[],"units":30,"ids":["5570","5571","5572","5573","5574","5575","5576","5577","5578","5579","5580","5581","5582","5583","5584","5585","5586","5587","5588","5589","5590","5591","5592","5593","5594","5595","5596","5597","5598","5599"]},{"key":"miller lite golf bag","name":"Miller Lite Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Miller Lite","size":null,"codes":["ME","FP","DM","DD","PD","CM"],"units":26,"ids":["15081","15083","15084","15085","15086","15087","15088","15089","15090","15091","15101","15102","15103","15104","15105","15106","15111","15112","15113","15114","15115","15116","15123","15124","15125","15126"]},{"key":"coors light patio umbrella","name":"Coors Light Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Coors Light","size":null,"codes":[],"units":25,"ids":["17810","17811","17812","17813","17814","17815","17816","17817","17818","17819","17820","17821","17822","17823","17824","17825","17826","17827","17828","17829","17830","17831","17832","17833","17834"]},{"key":"forged irish stout 16oz glassware","name":"Forged Irish Stout 16oz Glassware","variants":[],"cat":"Glassware","brand":"Forged Irish Stout","size":"16 oz","codes":[],"units":25,"ids":["12647","12648","12649","12650","12651","12652","12653","1873","1874","1875","1876","1877","1878","1879","1880","1881","3727","3728","3729","3730","3731","3732","3733","3734","3735"]},{"key":"twisted tea mason jar","name":"Twisted Tea Mason Jar","variants":[],"cat":"Glassware","brand":"Twisted Tea","size":null,"codes":[],"units":25,"ids":["922","923","924","925","926","927","928","929","930","931","932","933","934","935","936","937","938","939","940","941","942","943","944","945","946"]},{"key":"corona flex bottle led","name":"Corona Flex Bottle LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":24,"ids":["16320","16321","16322","16323","16324","16325","16326","16327","16328","16329","16330","16331","16332","16333","16334","16335","16336","16337","16338","16339","16340","16341","16342","16343"]},{"key":"modelo giants tailgate chair","name":"Modelo Giants Tailgate Chair","variants":[],"cat":"Furniture","brand":"Modelo","size":null,"codes":["SH"],"units":24,"ids":["18058","18059","18060","18061","18062","18063","18064","18065","18066","18067","18068","18069","18070","18071","18072","18073","18074","18075","18076","18077","18078","18079","18080","18081"]},{"key":"suncruiser golf bag","name":"SunCruiser Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"SunCruiser","size":null,"codes":["CP"],"units":24,"ids":["13369","13370","13371","13372","13373","13374","13375","13376","13377","13378","13379","13380","13381","13382","13383","13384","13385","13386","13387","13388","13389","13390","13391","13392"]},{"key":"coors light tailgate chair","name":"Coors Light Tailgate Chair","variants":[],"cat":"Furniture","brand":"Coors Light","size":null,"codes":["DD"],"units":23,"ids":["18083","18084","18085","18086","18087","18088","18089","18090","18091","18092","18093","18094","18095","18096","18097","18098","18099","18100","18101","18102","18103","18104","18105"]},{"key":"hofbrau 0.5 pilsner glass","name":"Hofbrau 0.5 Pilsner Glass","variants":[],"cat":"Glassware","brand":"Hofbrau","size":null,"codes":["TG"],"units":23,"ids":["11730","11731","11732","11733","11734","11735","11736","11737","11738","11739","3511","3512","3513","3514","3515","3516","3517","3518","3519","3520","3521","3522","3523"]},{"key":"sam adams 22oz perfect pint","name":"Sam Adams 22oz Perfect Pint","variants":[],"cat":"Glassware","brand":"Sam Adams","size":"22 oz","codes":[],"units":23,"ids":["12032","12033","12034","12035","12036","12037","12038","12039","12040","12041","12042","12043","12044","12045","12046","12047","12048","12049","12050","12051","12052","12053","12054"]},{"key":"coors light golf bag","name":"Coors Light Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Coors Light","size":null,"codes":["ME","FP","DD","DM","PD"],"units":22,"ids":["14990","14991","14992","14993","14994","14995","14996","14997","15007","15010","15011","15012","15016","15017","15018","15019","15020","15021","15022","15035","15036","15037"]},{"key":"corona light 16oz shaker","name":"Corona Light 16oz Shaker","variants":[],"cat":"Glassware","brand":"Corona Light","size":"16 oz","codes":[],"units":22,"ids":["11989","11990","11991","11992","11993","11994","11995","11996","11997","11998","11999","12000","12001","12002","12003","12004","12005","12006","12007","12008","12009","12010"]},{"key":"modelo 16oz plastic cups","name":"Modelo 16oz plastic cups","variants":[],"cat":"Plastic Cups","brand":"Modelo","size":"16 oz","codes":["SH"],"units":22,"ids":["16149","16150","16579","16580","16581","16582","16583","16584","16585","16586","16587","16588","16589","16590","16591","16592","16593","16594","16595","16596","16597","16598"]},{"key":"garage beer 16oz plastic cups","name":"Garage Beer 16oz Plastic Cups","variants":[],"cat":"Plastic Cups","brand":"Garage Beer","size":"16 oz","codes":["SD"],"units":20,"ids":["17864","17865","17866","17867","17868","17869","17870","17871","17872","17873","17874","17875","17876","17877","17878","17879","17880","17881","17882","17883"]},{"key":"lagunitas mason jar","name":"Lagunitas Mason Jar","variants":[],"cat":"Glassware","brand":"Lagunitas","size":null,"codes":[],"units":20,"ids":["11278","11279","11280","11281","11282","11283","11284","11285","11286","11287","11288","11289","11290","11291","11292","11293","11294","11295","11296","11297"]},{"key":"modelo chelada clock","name":"Modelo Chelada Clock","variants":[],"cat":"Clocks","brand":"Modelo Chelada","size":null,"codes":[],"units":20,"ids":["17401","17402","17403","17404","17405","17406","17407","17408","17409","17410","17411","17412","17413","17414","17415","17416","17417","17418","17419","17420"]},{"key":"pabst 20z glass","name":"Pabst 20z Glass","variants":[],"cat":"Glassware","brand":"Pabst","size":null,"codes":["TG"],"units":20,"ids":["2184","2185","2186","2187","2188","2189","2190","2191","2192","2193","2194","2195","2196","2197","2198","2199","2200","2201","2202","2203"]},{"key":"victoria clock","name":"Victoria Clock","variants":[],"cat":"Clocks","brand":"Victoria","size":null,"codes":[],"units":20,"ids":["17421","17422","17423","17424","17425","17426","17427","17428","17429","17430","17431","17432","17433","17434","17435","17436","17437","17438","17439","17440"]},{"key":"angry orchard pints","name":"Angry Orchard Pints","variants":[],"cat":"Glassware","brand":"Angry Orchard","size":null,"codes":[],"units":19,"ids":["12212","12213","12214","12215","12216","12217","12218","12219","12220","12221","12222","12223","12224","12225","12226","12227","12228","12229","12230"]},{"key":"miller lite jets backpackb cooler","name":"Miller lite Jets Backpackb Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Miller Lite","size":null,"codes":["DD"],"units":19,"ids":["17905","17906","17907","17908","17909","17910","17911","17912","17913","17914","17915","17916","17917","17918","17919","17920","17921","17922","17923"]},{"key":"corona metal cooler","name":"Corona Metal Cooler","variants":[],"cat":"Dealer Loaders","brand":"Corona","size":null,"codes":[],"units":18,"ids":["18163","18164","18165","18166","18167","18168","18169","18170","18171","18172","18173","18174","18175","18176","18177","18178","18179","18180"]},{"key":"pacifico yappy hour 16oz shaker","name":"Pacifico Yappy Hour 16oz shaker","variants":[],"cat":"Glassware","brand":"Pacifico","size":"16 oz","codes":[],"units":18,"ids":["18009","18010","18011","18012","18013","18014","18015","18016","18017","18018","18019","18020","18021","18022","18023","18024","18025","18026"]},{"key":"stone 16oz shaker","name":"Stone 16oz Shaker","variants":[],"cat":"Glassware","brand":"Stone","size":"16 oz","codes":[],"units":18,"ids":["10736","10737","10738","10739","10740","10741","10742","12636","12637","12638","12639","12640","12641","12642","12643","12644","12645","12646"]},{"key":"weihenstephan 0.5 liter mug","name":"Weihenstephan 0.5 Liter Mug","variants":[],"cat":"Glassware","brand":"Weihenstephan","size":"0.5 L","codes":[],"units":17,"ids":["16051","16052","16053","16054","16055","16056","16057","16058","16059","16060","16061","16062","16063","16064","16065","16066","16067"]},{"key":"coors light 22oz shaker","name":"Coors Light 22oz shaker","variants":[],"cat":"Glassware","brand":"Coors Light","size":"22 oz","codes":[],"units":16,"ids":["12878","12879","12880","12881","13182","13183","13184","13185","13186","13187","13188","13189","13190","13191","13192","13193"]},{"key":"dos equis picture frame most interesting man","name":"Dos Equis Picture Frame Most Interesting Man","variants":[],"cat":"Signage & Menu Boards","brand":"Dos Equis","size":null,"codes":[],"units":16,"ids":["14514","14515","14516","14517","14518","14519","14520","14521","14522","14523","14524","14525","14526","14527","14528","14529"]},{"key":"modelo mini chalkboard","name":"Modelo Mini Chalkboard","variants":[],"cat":"Signage & Menu Boards","brand":"Modelo","size":null,"codes":[],"units":16,"ids":["7650","7651","7652","7653","7654","7655","7656","7657","7658","7659","7660","7661","7662","7663","7664","7665"]},{"key":"radeberger 21oz mug","name":"Radeberger 21oz Mug","variants":[],"cat":"Glassware","brand":"Radeberger","size":"21 oz","codes":[],"units":16,"ids":["10707","10708","10709","10710","10711","10712","10713","10714","10715","10716","10717","10718","10719","10720","10721","10722"]},{"key":"sullivans 16oz glass","name":"Sullivans 16oz glass","variants":[],"cat":"Glassware","brand":"Sullivans","size":"16 oz","codes":[],"units":16,"ids":["12735","12736","12737","12738","12739","12740","12741","12742","12743","12744","12745","12746","12747","807","808","809"]},{"key":"garage beer football rubber mat 3x5","name":"Garage Beer Football Rubber mat 3x5","variants":[],"cat":"Outdoor & Recreation","brand":"Garage Beer","size":null,"codes":["SD"],"units":15,"ids":["18131","18132","18133","18134","18135","18136","18137","18138","18139","18140","18141","18142","18143","18144","18145"]},{"key":"montauk 16oz plastic cups","name":"Montauk 16oz plastic cups","variants":[],"cat":"Plastic Cups","brand":"Montauk","size":"16 oz","codes":[],"units":15,"ids":["16375","16376","16377","16378","16379","16380","16381","16382","16383","16384","16385","16386","16387","16388","16389"]},{"key":"garage beer 16oz shaker","name":"Garage Beer 16oz Shaker","variants":[],"cat":"Glassware","brand":"Garage Beer","size":"16 oz","codes":[],"units":14,"ids":["16233","16234","16235","16236","16237","16238","16239","16240","16241","16242","16243","16244","16245","16246"]},{"key":"modelo gold cooler","name":"Modelo Gold Cooler","variants":[],"cat":"Dealer Loaders","brand":"Modelo","size":null,"codes":["SH"],"units":14,"ids":["18148","18149","18150","18151","18152","18153","18154","18155","18156","18157","18158","18159","18160","18161"]},{"key":"newburgh 16oz shaker","name":"NewBurgh 16oz shaker","variants":[],"cat":"Glassware","brand":"Newburgh","size":"16 oz","codes":[],"units":14,"ids":["1477","1478","1480","1481","1482","1483","1484","1485","1486","1487","1488","1489","1490","1491"]},{"key":"paulaner .5 pilsner glass","name":"Paulaner .5 Pilsner glass","variants":[],"cat":"Glassware","brand":"Paulaner","size":null,"codes":[],"units":14,"ids":["12168","12169","12170","12171","13914","13915","13916","13917","13918","13919","13920","13921","13922","13923"]},{"key":"truly usa patio umbrella","name":"Truly USA Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Truly","size":null,"codes":["CP"],"units":14,"ids":["16117","16118","16119","16120","16121","16122","16123","16124","16125","16126","16127","16128","16129","16130"]},{"key":"carbliss pineapple can led","name":"Carbliss Pineapple can LED","variants":[],"cat":"LED Signs","brand":"Carbliss","size":null,"codes":[],"units":13,"ids":["16754","16755","16756","16757","16758","16759","16760","16761","16762","16763","16764","16765","16766"]},{"key":"garag beer devils 16oz shaker","name":"Garag Beer Devils 16oz Shaker","variants":[],"cat":"Glassware","brand":"Garage Beer","size":"16 oz","codes":[],"units":13,"ids":["13805","13806","13807","13808","13809","13810","13811","13812","13813","13814","13815","13816","13817"]},{"key":"heineken keg rack","name":"Heineken Keg Rack","variants":[],"cat":"Racks & Displays","brand":"Heineken","size":null,"codes":[],"units":13,"ids":["3458","3459","3460","3461","3462","3463","3464","3465","3466","3467","3468","3469","3470"]},{"key":"heineken stancion","name":"Heineken Stancion","variants":[],"cat":"Signage & Menu Boards","brand":"Heineken","size":null,"codes":[],"units":13,"ids":["3476","3477","3478","3479","3480","3481","3482","3483","3484","3485","3486","3487","3488"]},{"key":"yuengling flight 16oz shaker","name":"Yuengling Flight 16oz Shaker","variants":[],"cat":"Glassware","brand":"Yuengling","size":"16 oz","codes":[],"units":13,"ids":["8737","8738","8739","8740","8741","8742","8743","8744","8745","8746","8747","8748","8749"]},{"key":"carbliss black raz can led","name":"Carbliss Black Raz Can LED","variants":[],"cat":"LED Signs","brand":"Carbliss","size":null,"codes":[],"units":12,"ids":["16740","16741","16742","16743","16744","16745","16746","16747","16748","16749","16750","16751"]},{"key":"fever tree aframe","name":"Fever Tree AFrame","variants":[],"cat":"A-Frames","brand":"Fever Tree","size":null,"codes":["DD"],"units":12,"ids":["17280","17281","17282","17283","17284","17285","17286","17287","17288","17289","17290","17291"]},{"key":"modelo football recliner chair","name":"Modelo Football Recliner Chair","variants":[],"cat":"Furniture","brand":"Modelo","size":null,"codes":["SH"],"units":12,"ids":["18181","18182","18183","18184","18185","18186","18187","18188","18189","18190","18191","18192"]},{"key":"suncruiser nautical ring","name":"Suncruiser Nautical Ring","variants":[],"cat":"Outdoor & Recreation","brand":"SunCruiser","size":null,"codes":["CP"],"units":12,"ids":["15725","15726","15727","15728","15729","15730","15731","15732","15733","15734","15735","15736"]},{"key":"suncruiser paddleboard","name":"Suncruiser PaddleBoard","variants":[],"cat":"Outdoor & Recreation","brand":"SunCruiser","size":null,"codes":["CP"],"units":12,"ids":["17258","17259","17260","17261","17783","17784","17785","17786","17787","17788","17789","17790"]},{"key":"fever tree led","name":"Fever Tree LED","variants":[],"cat":"LED Signs","brand":"Fever Tree","size":null,"codes":["DD"],"units":11,"ids":["17269","17270","17271","17272","17273","17274","17275","17276","17277","17278","17279"]},{"key":"heinken mets 6pack rack","name":"Heinken Mets 6pack Rack","variants":[],"cat":"Racks & Displays","brand":"Heineken","size":null,"codes":[],"units":11,"ids":["15696","15697","15698","15699","15700","15701","15702","15703","15704","15705","15706"]},{"key":"sixpoint 16oz shaker","name":"SixPoint 16oz shaker","variants":[],"cat":"Glassware","brand":"Sixpoint","size":"16 oz","codes":[],"units":11,"ids":["4161","4162","4163","4164","4165","4166","4167","4168","4169","4170","4171"]},{"key":"suncruiser beach wagon","name":"Suncruiser Beach Wagon","variants":[],"cat":"Outdoor & Recreation","brand":"SunCruiser","size":null,"codes":["CP"],"units":11,"ids":["15757","15758","15759","15760","15761","15762","15763","15764","15765","15766","15767"]},{"key":"yuengling flight golf umbrella","name":"Yuengling Flight Golf Umbrella","variants":[],"cat":"Dealer Loaders","brand":"Yuengling","size":null,"codes":["PC"],"units":11,"ids":["13959","13960","13961","13962","13963","13964","13965","13966","13967","13968","13969"]},{"key":"angry orchard scream 16oz shaker","name":"Angry Orchard Scream 16oz shaker","variants":[],"cat":"Glassware","brand":"Angry Orchard","size":"16 oz","codes":["CP"],"units":10,"ids":["18032","18033","18034","18035","18036","18037","18038","18039","18040","18041"]},{"key":"corona na value led","name":"Corona NA Value LED","variants":[],"cat":"LED Signs","brand":"Corona NA","size":null,"codes":[],"units":10,"ids":["15423","15424","15425","15426","15427","15428","15429","15430","15431","15432"]},{"key":"corona pub table","name":"Corona Pub Table","variants":[],"cat":"Furniture","brand":"Corona","size":null,"codes":["SH"],"units":10,"ids":["17681","17682","17683","17684","17685","17686","17687","17688","17689","17690"]},{"key":"hofbrau 16oz soccer shaker","name":"HofBrau 16oz Soccer Shaker","variants":[],"cat":"Glassware","brand":"Hofbrau","size":"16 oz","codes":["TG"],"units":10,"ids":["16202","16203","16204","16205","16206","16207","16208","16209","16210","16211"]},{"key":"magners 20oz glass","name":"Magners 20oz glass","variants":[],"cat":"Glassware","brand":"Magners","size":"20 oz","codes":[],"units":10,"ids":["12619","12620","12621","12622","12623","875","876","877","878","879"]},{"key":"montauk folding lawn chair","name":"Montauk Folding Lawn Chair","variants":[],"cat":"Furniture","brand":"Montauk","size":null,"codes":["SD"],"units":10,"ids":["17894","17895","17896","17897","17898","17899","17900","17901","17902","17903"]},{"key":"shiner 16oz shaker","name":"Shiner 16oz shaker","variants":[],"cat":"Glassware","brand":"Shiner","size":"16 oz","codes":[],"units":10,"ids":["4124","4125","4126","4127","4128","4129","4130","4131","4132","812"]},{"key":"truly soccer plinko game","name":"Truly Soccer Plinko Game","variants":[],"cat":"Outdoor & Recreation","brand":"Truly","size":null,"codes":[],"units":10,"ids":["17085","17086","17087","17088","17089","17090","17091","17092","17093","17094"]},{"key":"tsingtao glasses","name":"Tsingtao Glasses","variants":[],"cat":"Glassware","brand":"Tsingtao","size":null,"codes":[],"units":10,"ids":["4229","4230","4231","4232","4233","4234","4235","4236","4237","4238"]},{"key":"carbliss 3 can led","name":"Carbliss 3 Can LED","variants":[],"cat":"LED Signs","brand":"Carbliss","size":null,"codes":["CP"],"units":9,"ids":["17129","17130","17131","17132","17133","17134","17135","17136","17137"]},{"key":"corona la playa awaits menu board","name":"Corona La Playa Awaits Menu Board","variants":[],"cat":"Signage & Menu Boards","brand":"Corona","size":null,"codes":[],"units":9,"ids":["10343","10344","10345","10346","10347","10348","10349","10350","10351"]},{"key":"corona sunbrew value led","name":"Corona Sunbrew Value LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":9,"ids":["16366","16367","16368","16369","16370","16371","16372","16373","16374"]},{"key":"fever tree mule mug 10 per case","name":"Fever Tree Mule Mug 10 per case","variants":[],"cat":"Glassware","brand":"Fever Tree","size":null,"codes":[],"units":9,"ids":["14939","14940","14941","14942","14943","14944","14945","14946","14947"]},{"key":"miller lite america 250 grizzly cooler","name":"Miller Lite America 250 Grizzly cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Miller Lite","size":null,"codes":[],"units":9,"ids":["17387","17388","17389","17390","17391","17392","17393","17394","17395"]},{"key":"modelo draft led","name":"Modelo Draft LED","variants":[],"cat":"LED Signs","brand":"Modelo","size":null,"codes":[],"units":9,"ids":["15394","15395","15396","15397","15398","15399","15400","15401","15402"]},{"key":"ovo pint glass","name":"Ovo Pint Glass","variants":[],"cat":"Glassware","brand":"OVO","size":null,"codes":[],"units":9,"ids":["1494","1495","1496","1497","1498","1499","1500","1501","1502"]},{"key":"yuengling flight lake led","name":"Yuengling Flight Lake LED","variants":[],"cat":"LED Signs","brand":"Yuengling","size":null,"codes":[],"units":9,"ids":["15999","16000","16001","16002","16003","16004","16005","16006","16007"]},{"key":"24 oz glide racks","name":"24 oz Glide racks","variants":[],"cat":"Racks & Displays","brand":"Unassigned","size":"24 oz","codes":[],"units":8,"ids":["14034","14035","14036","14037","14038","14039","14040","14041"]},{"key":"angry orchard aframe","name":"Angry Orchard AFrame","variants":[],"cat":"A-Frames","brand":"Angry Orchard","size":null,"codes":[],"units":8,"ids":["12400","12401","12402","12403","12404","12405","12406","12407"]},{"key":"carbliss patio umbrella","name":"Carbliss Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Carbliss","size":null,"codes":["CP"],"units":8,"ids":["17603","17604","17605","17606","17607","17608","17609","17610"]},{"key":"corona marquee led","name":"Corona Marquee LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":8,"ids":["16698","16699","16700","16701","16702","16703","16704","16705"]},{"key":"corona value led","name":"Corona Value LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":8,"ids":["16417","16418","16419","16420","16421","16422","16423","16424"]},{"key":"estrella glasses","name":"Estrella Glasses","variants":[],"cat":"Glassware","brand":"Estrella","size":null,"codes":[],"units":8,"ids":["3378","3379","3380","3381","3382","3383","3384","3385"]},{"key":"evil genius 16oz shaker","name":"Evil Genius 16oz shaker","variants":[],"cat":"Glassware","brand":"Evil Genius","size":"16 oz","codes":[],"units":8,"ids":["7936","7937","7938","7939","7940","7941","7942","7943"]},{"key":"flying fish 30th anniv. 16oz shaker","name":"Flying Fish 30th Anniv. 16oz Shaker","variants":[],"cat":"Glassware","brand":"Flying Fish","size":"16 oz","codes":["SD"],"units":8,"ids":["15985","15986","15987","15988","15989","15990","15991","15992"]},{"key":"forged golf umbrella","name":"Forged Golf Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Forged Irish Stout","size":null,"codes":["CP"],"units":8,"ids":["11443","11444","11445","11446","11447","11448","11449","11450"]},{"key":"modelo giants cornhole","name":"Modelo Giants Cornhole","variants":[],"cat":"Furniture","brand":"Modelo","size":null,"codes":["SH"],"units":8,"ids":["17939","17940","17941","17942","17943","17944","17945","17946"]},{"key":"pacifico a-frame","name":"Pacifico A-Frame","variants":[],"cat":"A-Frames","brand":"Pacifico","size":null,"codes":[],"units":8,"ids":["4985","4986","4987","4988","4989","4990","4991","4992"]},{"key":"pbr jason 16oz shaker","name":"PBR Jason 16oz shaker","variants":[],"cat":"Glassware","brand":"Pabst","size":"16 oz","codes":["TG"],"units":8,"ids":["17441","17442","17443","17444","17445","17446","17447","17448"]},{"key":"sam adams perm sticker","name":"Sam Adams Perm Sticker","variants":[],"cat":"Signage & Menu Boards","brand":"Sam Adams","size":null,"codes":[],"units":8,"ids":["14503","14504","4084","4085","4086","4087","4088","4089"]},{"key":"twisted tea tailgate chair","name":"Twisted Tea Tailgate Chair","variants":[],"cat":"Furniture","brand":"Twisted Tea","size":null,"codes":["CP"],"units":8,"ids":["17453","17454","17455","17456","17457","17458","17459","17460"]},{"key":"yeungling flight golf bag","name":"Yeungling Flight Golf Bag","variants":[],"cat":"Dealer Loaders","brand":"Yuengling","size":null,"codes":["PC"],"units":8,"ids":["12782","12783","12784","12785","12786","12787","12788","12789"]},{"key":"yuengling lager glass led","name":"Yuengling Lager Glass LED","variants":[],"cat":"Glassware","brand":"Yuengling","size":null,"codes":[],"units":8,"ids":["17512","17513","17514","17515","17516","17517","17518","17519"]},{"key":"blue moon patio umbrella","name":"Blue Moon Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Blue Moon","size":null,"codes":[],"units":7,"ids":["17649","17650","17651","17652","17653","17654","17655"]},{"key":"corona 16oz plastic cups","name":"Corona 16oz Plastic cups","variants":[],"cat":"Plastic Cups","brand":"Corona","size":"16 oz","codes":["SH"],"units":7,"ids":["16890","16891","16892","16893","16894","16895","16896"]},{"key":"corona premier value led","name":"Corona Premier Value LED","variants":[],"cat":"LED Signs","brand":"Corona Premier","size":null,"codes":[],"units":7,"ids":["15436","15437","15438","15439","15440","15441","15442"]},{"key":"garage beer eagle led","name":"Garage Beer Eagle LED","variants":[],"cat":"LED Signs","brand":"Garage Beer","size":null,"codes":["SD"],"units":7,"ids":["16220","16221","16222","16223","16224","16225","16226"]},{"key":"montauk led","name":"Montauk LED","variants":[],"cat":"LED Signs","brand":"Montauk","size":null,"codes":[],"units":7,"ids":["12714","12715","12716","12717","12718","12719","12720"]},{"key":"paulaner .5 glass","name":"Paulaner .5 Glass","variants":[],"cat":"Glassware","brand":"Paulaner","size":null,"codes":[],"units":7,"ids":["12155","12156","12157","12158","12159","12160","12161"]},{"key":"sam adams 3 foot stein","name":"Sam Adams 3 Foot Stein","variants":[],"cat":"Dealer Loaders","brand":"Sam Adams","size":null,"codes":[],"units":7,"ids":["18106","18107","18108","18109","18110","18111","18112"]},{"key":"schoff patio umbrella","name":"Schoff Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Schofferhofer","size":null,"codes":[],"units":7,"ids":["1303","1304","1305","1306","1307","1308","1309"]},{"key":"athletic igloo cooler","name":"Athletic igloo cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Athletic Brewing","size":null,"codes":["DD"],"units":6,"ids":["12260","16882","16883","16884","16885","16886"]},{"key":"cape may backpack cooler","name":"Cape May Backpack Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Cape May","size":null,"codes":["SD"],"units":6,"ids":["15681","15682","15683","15684","15685","15686"]},{"key":"cape may bogg bag","name":"Cape May Bogg Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Cape May","size":null,"codes":["SD"],"units":6,"ids":["15672","15673","15674","15675","15676","15677"]},{"key":"corona large tire bike","name":"Corona Large Tire Bike","variants":[],"cat":"Outdoor & Recreation","brand":"Corona","size":null,"codes":["SH"],"units":6,"ids":["17888","17889","17890","17891","17892","17893"]},{"key":"corona light on draft led","name":"Corona Light On Draft LED","variants":[],"cat":"LED Signs","brand":"Corona Light","size":null,"codes":[],"units":6,"ids":["13934","13935","13936","13937","13938","13939"]},{"key":"estrella a-frame","name":"Estrella A-Frame","variants":[],"cat":"A-Frames","brand":"Estrella","size":null,"codes":[],"units":6,"ids":["2003","2004","2005","2006","2007","2008"]},{"key":"famosa rack","name":"Famosa Rack","variants":[],"cat":"Racks & Displays","brand":"Famosa","size":null,"codes":["TG"],"units":6,"ids":["3386","3387","3388","3389","3390","3391"]},{"key":"fever tree metal rack","name":"Fever Tree Metal Rack","variants":[],"cat":"Racks & Displays","brand":"Fever Tree","size":null,"codes":[],"units":6,"ids":["17858","17859","17860","17861","17862","17863"]},{"key":"flying dog 16oz shaker glass","name":"Flying Dog 16oz Shaker glass","variants":[],"cat":"Glassware","brand":"Flying Fish","size":"16 oz","codes":[],"units":6,"ids":["11707","11708","4737","4738","4739","4740"]},{"key":"hacker pschorr 1l mugs","name":"Hacker Pschorr 1L mugs","variants":[],"cat":"Glassware","brand":"Hacker-Pschorr","size":"1 L","codes":[],"units":6,"ids":["3426","3427","3428","3429","3430","3431"]},{"key":"hofbrau 16oz plastic cups","name":"Hofbrau 16oz plastic cups","variants":[],"cat":"Plastic Cups","brand":"Hofbrau","size":"16 oz","codes":[],"units":6,"ids":["14854","14855","14856","14857","14858","14859"]},{"key":"mikes harder led","name":"Mikes Harder LED","variants":[],"cat":"LED Signs","brand":"Mike's","size":null,"codes":[],"units":6,"ids":["14810","14811","14812","14813","14814","14815"]},{"key":"miller high life 16oz shaker","name":"Miller High Life 16oz Shaker","variants":[],"cat":"Glassware","brand":"Miller","size":"16 oz","codes":[],"units":6,"ids":["11741","11742","11743","11744","11745","11746"]},{"key":"modelo menu board","name":"Modelo Menu Board","variants":[],"cat":"Signage & Menu Boards","brand":"Modelo","size":null,"codes":[],"units":6,"ids":["6962","6963","6964","6965","6966","6967"]},{"key":"pacifico value led","name":"Pacifico Value LED","variants":[],"cat":"LED Signs","brand":"Pacifico","size":null,"codes":[],"units":6,"ids":["16722","16723","16724","16725","16726","16727"]},{"key":"pacifico yappy hour bobbehead","name":"Pacifico Yappy Hour Bobbehead","variants":[],"cat":"Miscellaneous","brand":"Pacifico","size":null,"codes":["SH"],"units":6,"ids":["16714","16715","16716","16717","18146","18147"]},{"key":"red bull small cooler","name":"Red Bull Small Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Red Bull","size":null,"codes":[],"units":6,"ids":["18118","18119","18120","18121","18122","18123"]},{"key":"southern tier wire rack","name":"Southern Tier Wire Rack","variants":[],"cat":"Racks & Displays","brand":"Southern Tier","size":null,"codes":[],"units":6,"ids":["563","564","565","566","567","568"]},{"key":"1911 rack","name":"1911 rack","variants":[],"cat":"Racks & Displays","brand":"1911","size":null,"codes":[],"units":5,"ids":["14485","14486","14487","14488","14489"]},{"key":"coors light electric beach wagon","name":"Coors Light Electric Beach Wagon","variants":[],"cat":"Outdoor & Recreation","brand":"Coors Light","size":null,"codes":["DD"],"units":5,"ids":["17548","17549","17550","17551","17552"]},{"key":"coors light inflatable floating ring","name":"Coors Light Inflatable Floating Ring","variants":[],"cat":"Furniture","brand":"Coors Light","size":null,"codes":["DD"],"units":5,"ids":["16360","16361","16362","16363","16364"]},{"key":"corona familiar value led","name":"Corona Familiar Value LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":5,"ids":["12845","12846","12847","12848","12849"]},{"key":"great lakes 16oz shaker","name":"Great Lakes 16oz shaker","variants":[],"cat":"Glassware","brand":"Great Lakes","size":"16 oz","codes":["TG"],"units":5,"ids":["1401","1402","1403","1404","1405"]},{"key":"heineken aframe","name":"Heineken AFrame","variants":[],"cat":"A-Frames","brand":"Heineken","size":null,"codes":[],"units":5,"ids":["11499","11500","11501","11502","11503"]},{"key":"lagunitas mason jar led","name":"Lagunitas Mason Jar LED","variants":[],"cat":"Glassware","brand":"Lagunitas","size":null,"codes":[],"units":5,"ids":["11548","11549","11550","12723","12724"]},{"key":"modelo aguas frescas led","name":"Modelo Aguas Frescas LED","variants":[],"cat":"LED Signs","brand":"Modelo","size":null,"codes":[],"units":5,"ids":["11402","11403","11404","11405","11406"]},{"key":"moosehead led","name":"Moosehead LED","variants":[],"cat":"LED Signs","brand":"Moosehead","size":null,"codes":[],"units":5,"ids":["17077","17078","17079","17080","17081"]},{"key":"popsicle sling chair","name":"PopSicle Sling Chair","variants":[],"cat":"Furniture","brand":"PopSicle","size":null,"codes":["SD"],"units":5,"ids":["17691","17692","17693","17694","17695"]},{"key":"red bull baby fridge","name":"Red Bull Baby Fridge","variants":[],"cat":"Dealer Loaders","brand":"Red Bull","size":null,"codes":[],"units":5,"ids":["18113","18114","18115","18116","18117"]},{"key":"red bull shelf cooler","name":"Red Bull shelf Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Red Bull","size":null,"codes":[],"units":5,"ids":["18124","18125","18126","18127","18128"]},{"key":"right coast italian ice wire rack","name":"Right Coast Italian Ice Wire Rack","variants":[],"cat":"Racks & Displays","brand":"Right Coast","size":null,"codes":["TG"],"units":5,"ids":["9352","9353","9354","9355","9356"]},{"key":"sapporo round led","name":"Sapporo Round LED","variants":[],"cat":"LED Signs","brand":"Sapporo","size":null,"codes":[],"units":5,"ids":["17352","17353","17354","17355","17356"]},{"key":"twisted tea backpack cooler","name":"Twisted Tea BackPack Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Twisted Tea","size":null,"codes":["CP"],"units":5,"ids":["17461","17462","17463","17464","17465"]},{"key":"twisted tea water jug","name":"Twisted Tea Water Jug","variants":[],"cat":"Outdoor & Recreation","brand":"Twisted Tea","size":null,"codes":["CP"],"units":5,"ids":["17466","17467","17468","17469","17470"]},{"key":"victory patio umbrella","name":"Victory Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Victory","size":null,"codes":[],"units":5,"ids":["4280","4281","4282","4283","4284"]},{"key":"white claw illum menu board","name":"White Claw Illum Menu Board","variants":[],"cat":"Signage & Menu Boards","brand":"White Claw","size":null,"codes":[],"units":5,"ids":["7849","7850","7851","7852","7853"]},{"key":"yuengling flight beach chair","name":"Yuengling Flight Beach Chair","variants":[],"cat":"Furniture","brand":"Yuengling","size":null,"codes":["PC"],"units":5,"ids":["16354","16355","16356","16357","16358"]},{"key":"yuengling flight kanga cooler","name":"Yuengling Flight Kanga Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Yuengling","size":null,"codes":[],"units":5,"ids":["17247","17248","17249","17250","17251"]},{"key":"yuengling flight led","name":"Yuengling Flight LED","variants":[],"cat":"LED Signs","brand":"Yuengling","size":null,"codes":[],"units":5,"ids":["16692","16693","16694","16695","16696"]},{"key":"angry orchard rack","name":"Angry Orchard Rack","variants":[],"cat":"Racks & Displays","brand":"Angry Orchard","size":null,"codes":[],"units":4,"ids":["14499","14500","14501","14502"]},{"key":"blue moon golf bag","name":"Blue Moon Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Blue Moon","size":null,"codes":["FP","ME"],"units":4,"ids":["15047","15048","15055","15056"]},{"key":"corona mini chalkboard","name":"Corona Mini Chalkboard","variants":[],"cat":"Signage & Menu Boards","brand":"Corona","size":null,"codes":[],"units":4,"ids":["14457","14458","14459","14460"]},{"key":"corona sunbrew patio umbrella","name":"Corona Sunbrew Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Corona","size":null,"codes":[],"units":4,"ids":["17852","17853","17854","17855"]},{"key":"pabst 16oz shaker","name":"Pabst 16oz shaker","variants":[],"cat":"Glassware","brand":"Pabst","size":"16 oz","codes":[],"units":4,"ids":["11754","11755","11756","11757"]},{"key":"pacifico adventure awaits led","name":"Pacifico Adventure Awaits LED","variants":[],"cat":"LED Signs","brand":"Pacifico","size":null,"codes":[],"units":4,"ids":["14912","14913","14914","14915"]},{"key":"pacifico inflatable surfboard","name":"Pacifico Inflatable Surfboard","variants":[],"cat":"Furniture","brand":"Pacifico","size":null,"codes":[],"units":4,"ids":["17697","17698","17699","17700"]},{"key":"pacifico surfboard","name":"Pacifico SurfBoard","variants":[],"cat":"Outdoor & Recreation","brand":"Pacifico","size":null,"codes":["SH"],"units":4,"ids":["14048","14049","14050","14051"]},{"key":"twisted tea tailgate firepit","name":"Twisted Tea Tailgate Firepit","variants":[],"cat":"Outdoor & Recreation","brand":"Twisted Tea","size":null,"codes":["CP"],"units":4,"ids":["17477","17478","17479","17480"]},{"key":"twisted tea tailgateb speaker","name":"Twisted Tea Tailgateb Speaker","variants":[],"cat":"Outdoor & Recreation","brand":"Twisted Tea","size":null,"codes":["CP"],"units":4,"ids":["17472","17473","17474","17475"]},{"key":"white claw a-frame chalk board","name":"White Claw A-Frame Chalk Board","variants":[],"cat":"A-Frames","brand":"White Claw","size":null,"codes":[],"units":4,"ids":["8660","8661","8662","8663"]},{"key":"carbliss cooler backpack","name":"Carbliss Cooler Backpack","variants":[],"cat":"Coolers & Drinkware","brand":"Carbliss","size":null,"codes":["CP"],"units":3,"ids":["17398","17399","17400"]},{"key":"coors light ego battery blower/trimmer combo","name":"Coors Light EGO Battery Blower/trimmer Combo","variants":[],"cat":"Outdoor & Recreation","brand":"Coors Light","size":null,"codes":[],"units":3,"ids":["17568","17569","17570"]},{"key":"corona jets cornhole","name":"Corona Jets Cornhole","variants":[],"cat":"Furniture","brand":"Corona","size":null,"codes":["SH"],"units":3,"ids":["17932","17933","17934"]},{"key":"corona sunbrew led","name":"Corona SunBrew LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":3,"ids":["16070","16071","16072"]},{"key":"fever tree patio umbrella","name":"Fever Tree Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Fever Tree","size":null,"codes":["DD"],"units":3,"ids":["14903","14904","14905"]},{"key":"hamms led","name":"Hamms LED","variants":[],"cat":"LED Signs","brand":"Hamms","size":null,"codes":[],"units":3,"ids":["3432","3433","3434"]},{"key":"jack daniels rack","name":"Jack Daniels Rack","variants":[],"cat":"Racks & Displays","brand":"Jack Daniel's","size":null,"codes":[],"units":3,"ids":["3736","3737","3738"]},{"key":"mackeson neon","name":"Mackeson Neon","variants":[],"cat":"Neon Signs","brand":"Mackeson","size":null,"codes":["AF"],"units":3,"ids":["1029","1030","1031"]},{"key":"magners 16oz glass","name":"Magners 16oz Glass","variants":[],"cat":"Glassware","brand":"Magners","size":"16 oz","codes":[],"units":3,"ids":["3768","3769","3770"]},{"key":"new belgium 16oz plastic cup","name":"New Belgium 16oz Plastic Cup","variants":[],"cat":"Plastic Cups","brand":"New Belgium","size":"16 oz","codes":[],"units":3,"ids":["3864","3865","3866"]},{"key":"sinless aframe","name":"Sinless AFrame","variants":[],"cat":"A-Frames","brand":"Sinless","size":null,"codes":[],"units":3,"ids":["14494","14495","14496"]},{"key":"stiegl aframe","name":"Stiegl Aframe","variants":[],"cat":"A-Frames","brand":"Stiegl","size":null,"codes":[],"units":3,"ids":["11504","11505","11506"]},{"key":"truly usa cooler w/ stand","name":"Truly Usa Cooler W/ Stand","variants":[],"cat":"Coolers & Drinkware","brand":"Truly","size":null,"codes":["CP"],"units":3,"ids":["16183","16184","16185"]},{"key":"truly world cup cooler","name":"Truly World Cup Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Truly","size":null,"codes":["CP"],"units":3,"ids":["15232","15233","15234"]},{"key":"victory 16oz plastic cups","name":"Victory 16oz Plastic Cups","variants":[],"cat":"Plastic Cups","brand":"Victory","size":"16 oz","codes":[],"units":3,"ids":["11577","11578","11579"]},{"key":"yuengling football backlit poster led","name":"Yuengling Football Backlit Poster LED","variants":[],"cat":"LED Signs","brand":"Yuengling","size":null,"codes":["PC"],"units":3,"ids":["9455","9456","9457"]},{"key":"1911 led","name":"1911 LED","variants":[],"cat":"LED Signs","brand":"1911","size":null,"codes":[],"units":2,"ids":["2893","2894"]},{"key":"cape may 16oz shaker","name":"Cape May 16oz Shaker","variants":[],"cat":"Glassware","brand":"Cape May","size":"16 oz","codes":[],"units":2,"ids":["13896","13897"]},{"key":"carbliss led","name":"Carbliss LED","variants":[],"cat":"LED Signs","brand":"Carbliss","size":null,"codes":[],"units":2,"ids":["16735","16736"]},{"key":"coors light lake inflate","name":"Coors Light Lake Inflate","variants":[],"cat":"Dealer Loaders","brand":"Coors Light","size":null,"codes":[],"units":2,"ids":["4927","4928"]},{"key":"corona golf bag","name":"Corona Golf Bag","variants":[],"cat":"Outdoor & Recreation","brand":"Corona","size":null,"codes":["SH"],"units":2,"ids":["17800","17801"]},{"key":"corona na sunburst led","name":"Corona NA Sunburst LED","variants":[],"cat":"LED Signs","brand":"Corona NA","size":null,"codes":["SH"],"units":2,"ids":["12725","12726"]},{"key":"corona premier 16oz shaker","name":"Corona Premier 16oz Shaker","variants":[],"cat":"Glassware","brand":"Corona Premier","size":"16 oz","codes":[],"units":2,"ids":["10950","10951"]},{"key":"corona sunset dominator","name":"Corona sunset Dominator","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":2,"ids":["15297","15298"]},{"key":"delta thc rolling cooler","name":"Delta THC Rolling Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Delta THC","size":null,"codes":[],"units":2,"ids":["16959","16960"]},{"key":"dogfish rtd rack","name":"Dogfish RTD Rack","variants":[],"cat":"Racks & Displays","brand":"Dogfish Head","size":null,"codes":[],"units":2,"ids":["3313","822"]},{"key":"dos equis a-frame","name":"Dos Equis A-Frame","variants":[],"cat":"A-Frames","brand":"Dos Equis","size":null,"codes":[],"units":2,"ids":["8639","8640"]},{"key":"flying fish led","name":"Flying Fish LED","variants":[],"cat":"LED Signs","brand":"Flying Fish","size":null,"codes":[],"units":2,"ids":["11509","627"]},{"key":"great lakes rack","name":"Great Lakes Rack","variants":[],"cat":"Racks & Displays","brand":"Great Lakes","size":null,"codes":["TG"],"units":2,"ids":["3420","3421"]},{"key":"hofbrau 20oz plastic cups","name":"Hofbrau 20oz Plastic Cups","variants":[],"cat":"Plastic Cups","brand":"Hofbrau","size":"20 oz","codes":["TG"],"units":2,"ids":["3524","3525"]},{"key":"lagunitas a-frame","name":"Lagunitas A-Frame","variants":[],"cat":"A-Frames","brand":"Lagunitas","size":null,"codes":[],"units":2,"ids":["11493","11494"]},{"key":"mamita led","name":"Mamita LED","variants":[],"cat":"LED Signs","brand":"Mamita","size":null,"codes":[],"units":2,"ids":["11507","11508"]},{"key":"modelo chelada led","name":"Modelo Chelada LED","variants":[],"cat":"LED Signs","brand":"Modelo Chelada","size":null,"codes":[],"units":2,"ids":["12801","12802"]},{"key":"modelo oro can led","name":"Modelo Oro can LED","variants":[],"cat":"LED Signs","brand":"Modelo","size":null,"codes":[],"units":2,"ids":["4996","4997"]},{"key":"ovo shot glass","name":"Ovo Shot Glass","variants":[],"cat":"Glassware","brand":"OVO","size":null,"codes":[],"units":2,"ids":["1503","1504"]},{"key":"pacifico surf led","name":"Pacifico Surf LED","variants":[],"cat":"LED Signs","brand":"Pacifico","size":null,"codes":[],"units":2,"ids":["16522","16523"]},{"key":"red bull medium cooler","name":"Red Bull Medium Cooler","variants":[],"cat":"Coolers & Drinkware","brand":"Red Bull","size":null,"codes":[],"units":2,"ids":["18129","18130"]},{"key":"shiner tex hex 16oz shaker","name":"Shiner Tex Hex 16oz shaker","variants":[],"cat":"Glassware","brand":"Shiner","size":"16 oz","codes":[],"units":2,"ids":["4135","4136"]},{"key":"sierra nevada parkit voyager chair","name":"Sierra Nevada Parkit Voyager Chair","variants":[],"cat":"Furniture","brand":"Sierra Nevada","size":null,"codes":["TG"],"units":2,"ids":["17856","17857"]},{"key":"southern tier led","name":"Southern Tier LED","variants":[],"cat":"LED Signs","brand":"Southern Tier","size":null,"codes":[],"units":2,"ids":["11511","661"]},{"key":"suncruiser beach chair","name":"Suncruiser Beach Chair","variants":[],"cat":"Furniture","brand":"SunCruiser","size":null,"codes":["CP"],"units":2,"ids":["15786","15787"]},{"key":"truly glasses","name":"Truly Glasses","variants":[],"cat":"Glassware","brand":"Truly","size":null,"codes":[],"units":2,"ids":["4224","798"]},{"key":"truly rack","name":"Truly Rack","variants":[],"cat":"Racks & Displays","brand":"Truly","size":null,"codes":[],"units":2,"ids":["4227","4228"]},{"key":"white claw small led","name":"White Claw Small LED","variants":[],"cat":"LED Signs","brand":"White Claw","size":null,"codes":[],"units":2,"ids":["17503","17504"]},{"key":"amstel light patio umbrella","name":"Amstel Light patio umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Amstel","size":null,"codes":[],"units":1,"ids":["21"]},{"key":"bells light hearted led","name":"Bells Light Hearted Led","variants":[],"cat":"LED Signs","brand":"Bell's","size":null,"codes":[],"units":1,"ids":["4981"]},{"key":"bells oberon 16oz shaker","name":"Bells Oberon 16oz shaker","variants":[],"cat":"Glassware","brand":"Bell's","size":"16 oz","codes":[],"units":1,"ids":["3029"]},{"key":"cape may beach chair","name":"Cape May Beach Chair","variants":[],"cat":"Furniture","brand":"Cape May","size":null,"codes":[],"units":1,"ids":["15691"]},{"key":"cape may patio umbrella","name":"Cape May Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Cape May","size":null,"codes":[],"units":1,"ids":["7968"]},{"key":"carbliss cornhole","name":"Carbliss Cornhole","variants":[],"cat":"Furniture","brand":"Carbliss","size":null,"codes":["CP"],"units":1,"ids":["17660"]},{"key":"clausthauler bike","name":"Clausthauler Bike","variants":[],"cat":"Outdoor & Recreation","brand":"Clausthaler","size":null,"codes":["TG"],"units":1,"ids":["12055"]},{"key":"coors light 16oz signature shaker","name":"Coors Light 16oz Signature Shaker","variants":[],"cat":"Glassware","brand":"Coors Light","size":"16 oz","codes":[],"units":1,"ids":["12931"]},{"key":"coors light 54qt cooler","name":"Coors Light 54Qt cooler","variants":[],"cat":"Dealer Loaders","brand":"Coors Light","size":"54 qt","codes":[],"units":1,"ids":["2547"]},{"key":"coors light aframe","name":"Coors Light AFrame","variants":[],"cat":"A-Frames","brand":"Coors Light","size":null,"codes":[],"units":1,"ids":["13220"]},{"key":"corona familiar led","name":"Corona Familiar LED","variants":[],"cat":"LED Signs","brand":"Corona","size":null,"codes":[],"units":1,"ids":["11492"]},{"key":"crescent 9 led","name":"Crescent 9 LED","variants":[],"cat":"LED Signs","brand":"Crescent 9","size":null,"codes":[],"units":1,"ids":["16187"]},{"key":"dogfish head canned cocktail led","name":"Dogfish Head Canned Cocktail LED","variants":[],"cat":"LED Signs","brand":"Dogfish Head","size":null,"codes":[],"units":1,"ids":["8296"]},{"key":"dos equis 3.5ft bobblehed","name":"Dos Equis 3.5ft Bobblehed","variants":[],"cat":"Miscellaneous","brand":"Dos Equis","size":null,"codes":["ME"],"units":1,"ids":["15624"]},{"key":"fever tree cooler cart","name":"Fever Tree Cooler Cart","variants":[],"cat":"Coolers & Drinkware","brand":"Fever Tree","size":null,"codes":[],"units":1,"ids":["12019"]},{"key":"hofbrau led","name":"Hofbrau LED","variants":[],"cat":"LED Signs","brand":"Hofbrau","size":null,"codes":["TG"],"units":1,"ids":["3530"]},{"key":"irish forged stout led","name":"Irish Forged Stout LED","variants":[],"cat":"LED Signs","brand":"Forged Irish Stout","size":null,"codes":[],"units":1,"ids":["11545"]},{"key":"leinenkugel lake led","name":"Leinenkugel Lake LED","variants":[],"cat":"LED Signs","brand":"Leinenkugel","size":null,"codes":[],"units":1,"ids":["12859"]},{"key":"miller lite mirror","name":"Miller Lite Mirror","variants":[],"cat":"Mirrors & Wall Decor","brand":"Miller Lite","size":null,"codes":[],"units":1,"ids":["13205"]},{"key":"miller lite tailgate grill","name":"Miller Lite Tailgate Grill","variants":[],"cat":"Dealer Loaders","brand":"Miller Lite","size":null,"codes":[],"units":1,"ids":["2700"]},{"key":"modelo fooseball table","name":"Modelo Fooseball Table","variants":[],"cat":"Furniture","brand":"Modelo","size":null,"codes":["SH"],"units":1,"ids":["17807"]},{"key":"newcastle mirror","name":"Newcastle Mirror","variants":[],"cat":"Mirrors & Wall Decor","brand":"Newcastle","size":null,"codes":[],"units":1,"ids":["3874"]},{"key":"pacifico rack","name":"Pacifico Rack","variants":[],"cat":"Racks & Displays","brand":"Pacifico","size":null,"codes":[],"units":1,"ids":["3911"]},{"key":"pacifico surf 16oz shaker","name":"Pacifico Surf 16oz Shaker","variants":[],"cat":"Glassware","brand":"Pacifico","size":"16 oz","codes":[],"units":1,"ids":["7208"]},{"key":"paulaner 0.5 octoberfest mugs","name":"Paulaner 0.5 Octoberfest Mugs","variants":[],"cat":"Glassware","brand":"Paulaner","size":null,"codes":[],"units":1,"ids":["4411"]},{"key":"paulaner 16oz plastic cups","name":"Paulaner 16oz Plastic Cups","variants":[],"cat":"Plastic Cups","brand":"Paulaner","size":"16 oz","codes":[],"units":1,"ids":["574"]},{"key":"sixpoint a-frame","name":"Sixpoint A-Frame","variants":[],"cat":"A-Frames","brand":"Sixpoint","size":null,"codes":[],"units":1,"ids":["4175"]},{"key":"stiegl led","name":"Stiegl LED","variants":[],"cat":"LED Signs","brand":"Stiegl","size":null,"codes":[],"units":1,"ids":["2252"]},{"key":"twisted tea inflatable chair","name":"Twisted Tea Inflatable Chair","variants":[],"cat":"Furniture","brand":"Twisted Tea","size":null,"codes":["CP"],"units":1,"ids":["15534"]},{"key":"vizzy patio umbrella","name":"Vizzy Patio Umbrella","variants":[],"cat":"Patio Umbrellas","brand":"Vizzy","size":null,"codes":[],"units":1,"ids":["4306"]},{"key":"white claw 50in tv","name":"White Claw 50in TV","variants":[],"cat":"Miscellaneous","brand":"White Claw","size":null,"codes":["SH"],"units":1,"ids":["16957"]},{"key":"white claw beach wagon","name":"White Claw Beach Wagon","variants":[],"cat":"Dealer Loaders","brand":"White Claw","size":null,"codes":[],"units":1,"ids":["17493"]},{"key":"yuengling flight large mirror","name":"Yuengling Flight Large Mirror","variants":[],"cat":"Mirrors & Wall Decor","brand":"Yuengling","size":null,"codes":[],"units":1,"ids":["4388"]}],"exceptions":{"bins":[{"id":"21","name":"Amstel Light patio umbrella","bin":"(blank)","cat":"Patio Umbrellas"},{"id":"2547","name":"Coors Light 54Qt cooler","bin":"(blank)","cat":"Dealer Loaders"},{"id":"2700","name":"Miller Lite Tailgate Grill","bin":"(blank)","cat":"Dealer Loaders"},{"id":"16736","name":"Carbliss LED","bin":"25","cat":"LED Signs"},{"id":"16735","name":"Carbliss LED","bin":"25","cat":"LED Signs"}],"spelling":[],"unbranded":2,"unbrandedUnits":39}}</script>
+<script>
+(function(){
+  "use strict";
+  var D = JSON.parse(document.getElementById('asset-data').textContent);
+  var $  = function(s){ return document.querySelector(s); };
+  var nf = function(n){ return n.toLocaleString('en-US'); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  /* ---------------- state ---------------- */
+  var state = { q:'', cat:null, brand:null, size:null, code:null, sort:'units' };
+  var brandsExpanded = false;
+  var open = {};
+  var PAGE = 50;          // rows rendered at a time -- keeps the page short
+  var shown = PAGE;
+
+  /* ---------------- freshness ---------------- */
+  (function(){
+    var t = D.meta && D.meta.synced_at ? new Date(D.meta.synced_at) : null;
+    var s = t && !isNaN(t) ? t.toLocaleDateString('en-US',
+      {month:'short', day:'numeric', year:'numeric'}) : '—';
+    $('#fresh').textContent = 'Data refreshed ' + s;
+    $('#footmeta').innerHTML = 'Source: <code style="font-family:Space Grotesk">' +
+      esc(D.meta.source_file) + '</code> · ' + nf(D.meta.row_count) +
+      ' rows · generated ' + s + '. Rebuild with <code style="font-family:Space Grotesk">python3 generate.py</code>.';
+  })();
+
+  /* ---------------- KPIs ---------------- */
+  (function(){
+    var T = D.totals, topCat = D.byCat[0], topBrand = D.byBrand.filter(function(b){
+      return b.label !== 'Unassigned'; })[0];
+    var tiles = [
+      { k:'Total units', v:nf(T.units),
+        s:'individual assets on the books' },
+      { k:'Distinct items', v:nf(T.items),
+        s:'unique products · ' + (T.units/T.items).toFixed(1) + ' units each on average' },
+      { k:'Asset types', v:nf(T.categories),
+        s:'largest is ' + topCat.label + ' (' + Math.round(100*topCat.units/T.units) + '% of units)' },
+      { k:'Brands', v:nf(T.brands),
+        s:'most stocked is ' + topBrand.label + ' (' + nf(topBrand.units) + ' units)' }
+    ];
+    $('#kpis').innerHTML = tiles.map(function(t){
+      return '<div class="kpi"><p class="k">' + t.k + '</p><div class="v num">' + t.v +
+             '</div><p class="s">' + esc(t.s) + '</p></div>'; }).join('');
+  })();
+
+  /* ---------------- uniform-profile strip ---------------- */
+  (function(){
+    var P = D.profile, bits = [];
+    if (P.location.length === 1)
+      bits.push({ b:'Location', v:P.location[0], e:'all units' });
+    if (P.status.length === 1)
+      bits.push({ b:'Condition', v:P.status[0], e:'all units' });
+    var mb = P.binCounts[0];
+    bits.push({ b:'Main bin', v:P.mainBin,
+      e:nf(mb.units) + ' of ' + nf(D.totals.units) + ' units' });
+    bits.push({ b:'Booked value', v:'$0.00',
+      e:'cost & remaining value are $0 on every row' });
+    $('#strip').innerHTML = bits.map(function(x){
+      return '<div class="pi"><b>' + x.b + '</b><span>' + esc(x.v) + '</span><em>' +
+             esc(x.e) + '</em></div>'; }).join('');
+  })();
+
+  /* ---------------- bar lists ---------------- */
+  function drawBars(el, data, key, opts){
+    opts = opts || {};
+    var max = data.length ? Math.max.apply(null, data.map(function(d){ return d.units; })) : 1;
+    var list = opts.limit ? data.slice(0, opts.limit) : data;
+    el.innerHTML = list.map(function(d){
+      var on = state[key] === d.label;
+      var sub = d.items != null ? '<i>' + d.items + ' item' + (d.items===1?'':'s') + '</i>' : '';
+      return '<button class="bar' + (on ? ' on' : '') + '" type="button" data-k="' + key +
+             '" data-v="' + esc(d.label) + '" aria-pressed="' + on + '">' +
+             '<span class="lb">' + esc(d.label) + '</span>' +
+             '<span class="vv">' + nf(d.units) + sub + '</span>' +
+             '<span class="tr"><i style="width:' + (100*d.units/max).toFixed(1) + '%"></i></span>' +
+             '</button>'; }).join('');
+  }
+
+  function renderBars(){
+    drawBars($('#catbars'), D.byCat, 'cat');
+    var bl = D.byBrand;
+    drawBars($('#brandbars'), bl, 'brand', { limit: brandsExpanded ? bl.length : 10 });
+    var mb = $('#brandmore');
+    if (bl.length <= 10) { mb.hidden = true; }
+    else { mb.hidden = false;
+      mb.textContent = brandsExpanded ? 'Show top 10' : 'Show all ' + bl.length + ' brands'; }
+    drawBars($('#sizebars'), D.bySize, 'size');
+    drawBars($('#codebars'), D.byCode, 'code');
+  }
+
+  $('#brandmore').addEventListener('click', function(){
+    brandsExpanded = !brandsExpanded; renderBars(); });
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.bar'); if (!b) return;
+    var k = b.dataset.k, v = b.dataset.v;
+    state[k] = (state[k] === v) ? null : v;
+    shown = PAGE;
+    renderBars(); renderChips(); renderRows();
+    if (state[k]) $('#explorer').scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  /* ---------------- filter chips ---------------- */
+  var CHIP_LABEL = { cat:'Type', brand:'Brand', size:'Size', code:'Tag' };
+  function renderChips(){
+    var out = [], keys = ['cat','brand','size','code'];
+    keys.forEach(function(k){
+      if (!state[k]) return;
+      out.push('<span class="chip"><b>' + CHIP_LABEL[k] + '</b>' + esc(state[k]) +
+               '<button type="button" data-clr="' + k + '" aria-label="Remove filter">&times;</button></span>');
+    });
+    if (state.q)
+      out.push('<span class="chip"><b>Search</b>' + esc(state.q) +
+               '<button type="button" data-clr="q" aria-label="Clear search">&times;</button></span>');
+    if (out.length > 1) out.push('<button class="clrall" type="button" data-clr="all">Clear all</button>');
+    out.push('<span class="rescount" id="rescount"></span>');
+    $('#chips').innerHTML = out.join('');
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-clr]'); if (!t) return;
+    var k = t.dataset.clr;
+    if (k === 'all') { state.cat = state.brand = state.size = state.code = null; state.q = ''; $('#q').value = ''; }
+    else if (k === 'q') { state.q = ''; $('#q').value = ''; }
+    else state[k] = null;
+    $('#qclr').hidden = !state.q;
+    shown = PAGE;
+    renderBars(); renderChips(); renderRows();
+  });
+
+  /* ---------------- search ---------------- */
+  var tmr;
+  $('#q').addEventListener('input', function(e){
+    var v = e.target.value;
+    $('#qclr').hidden = !v;
+    clearTimeout(tmr);
+    tmr = setTimeout(function(){ state.q = v.trim(); shown = PAGE; renderChips(); renderRows(); }, 120);
+  });
+  $('#sort').addEventListener('change', function(e){
+    state.sort = e.target.value; shown = PAGE; renderRows(); });
+
+  /* ---------------- item rows ---------------- */
+  // Asset IDs that sit outside the main bin -- highlighted in the drill-down.
+  var EXC = {};
+  D.exceptions.bins.forEach(function(x){ EXC[x.id] = x.bin; });
+
+  function matches(it){
+    if (state.cat   && it.cat   !== state.cat)   return false;
+    if (state.brand && it.brand !== state.brand) return false;
+    if (state.size  && it.size  !== state.size)  return false;
+    if (state.code  && it.codes.indexOf(state.code) === -1) return false;
+    if (state.q){
+      var q = state.q.toLowerCase();
+      var hay = (it.name + ' ' + it.brand + ' ' + it.cat + ' ' +
+                 (it.size||'') + ' ' + it.codes.join(' ') + ' ' +
+                 it.variants.join(' ')).toLowerCase();
+      if (hay.indexOf(q) === -1){
+        // fall back to an asset-ID lookup so pasting an ID finds its item
+        if (!/^\d+$/.test(q) || it.ids.indexOf(q) === -1) return false;
+      }
+    }
+    return true;
+  }
+
+  function sortItems(list){
+    var s = state.sort, c = list.slice();
+    var byName = function(a,b){ return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1; };
+    if (s === 'units')    c.sort(function(a,b){ return b.units - a.units || byName(a,b); });
+    if (s === 'unitsAsc') c.sort(function(a,b){ return a.units - b.units || byName(a,b); });
+    if (s === 'name')     c.sort(byName);
+    if (s === 'brand')    c.sort(function(a,b){
+      return a.brand === b.brand ? b.units - a.units : (a.brand < b.brand ? -1 : 1); });
+    if (s === 'cat')      c.sort(function(a,b){
+      return a.cat === b.cat ? b.units - a.units : (a.cat < b.cat ? -1 : 1); });
+    return c;
+  }
+
+  function hl(text){
+    if (!state.q) return esc(text);
+    var i = text.toLowerCase().indexOf(state.q.toLowerCase());
+    if (i === -1) return esc(text);
+    return esc(text.slice(0,i)) + '<mark>' + esc(text.slice(i, i+state.q.length)) +
+           '</mark>' + esc(text.slice(i+state.q.length));
+  }
+
+  function renderRows(){
+    var list = sortItems(D.items.filter(matches));
+    var units = list.reduce(function(a,b){ return a + b.units; }, 0);
+    var rc = $('#rescount');
+    if (rc) rc.textContent = nf(list.length) + ' of ' + nf(D.items.length) +
+      ' items · ' + nf(units) + ' units';
+
+    if (!list.length){
+      $('#rows').innerHTML = '<div class="empty"><b>No assets match</b>' +
+        'Try clearing a filter or searching a different term.</div>';
+      return;
+    }
+    var page = list.slice(0, shown);
+    $('#rows').innerHTML = page.map(function(it){
+      var isOpen = !!open[it.key];
+      var typeSize = esc(it.cat) + (it.size ? ' · ' + esc(it.size) : '');
+      var vr = it.variants.length
+        ? '<span class="vr">also listed as ' + esc(it.variants.join(', ')) + '</span>' : '';
+      var h = '<div class="irow' + (isOpen ? ' open' : '') + '" data-key="' + esc(it.key) + '">' +
+        '<button class="isum" type="button" aria-expanded="' + isOpen + '">' +
+          '<span class="nm">' + hl(it.name) + vr + '</span>' +
+          '<span class="cell c-brand">' + esc(it.brand) + '</span>' +
+          '<span class="cell c-size">' + typeSize + '</span>' +
+          '<span class="u num">' + nf(it.units) + '</span>' +
+          '<span class="cv">›</span>' +
+        '</button>';
+      if (isOpen){
+        var meta = [['Type', it.cat], ['Brand', it.brand]];
+        if (it.size) meta.push(['Size', it.size]);
+        if (it.codes.length) meta.push(['Name tag', it.codes.join(', ')]);
+        meta.push(['Units', nf(it.units)]);
+        h += '<div class="idet">' +
+          '<div class="dmeta">' + meta.map(function(m){
+            return '<div><b>' + m[0] + '</b><span>' + esc(m[1]) + '</span></div>'; }).join('') +
+          '</div>' +
+          '<p class="idlab">Asset IDs (' + nf(it.ids.length) + ')</p>' +
+          '<div class="ids">' + it.ids.map(function(id){
+            return '<code' + (EXC[id] ? ' class="exc" title="Bin ' + esc(EXC[id]) + '"' : '') +
+                   '>' + esc(id) + '</code>'; }).join('') + '</div></div>';
+      }
+      return h + '</div>';
+    }).join('') + (list.length > shown
+      ? '<button class="showmore" id="showmore" type="button">Show ' +
+        nf(Math.min(PAGE, list.length - shown)) + ' more · ' +
+        nf(list.length - shown) + ' remaining</button>'
+      : '');
+  }
+
+  $('#rows').addEventListener('click', function(e){
+    if (e.target.closest('#showmore')){ shown += PAGE; renderRows(); return; }
+    var s = e.target.closest('.isum'); if (!s) return;
+    var k = s.parentNode.dataset.key;
+    open[k] = !open[k];
+    renderRows();
+  });
+
+  /* ---------------- data notes ---------------- */
+  (function(){
+    var P = D.profile, T = D.totals, E = D.exceptions, li = [];
+
+    li.push(['g', '<b>' + nf(T.units) + ' units across ' + nf(T.items) +
+      ' distinct items.</b> Every Asset ID in the file is unique, so unit counts are exact.']);
+
+    li.push(['w', '<b>' + P.emptyColumns.length + ' of ' + P.sourceColumns.length +
+      ' columns in the export are completely empty</b> — ' +
+      P.emptyColumns.map(function(c){ return '<code>' + esc(c) + '</code>'; }).join(' ') +
+      '. That rules out any view of who has an asset, when it was placed, or how old it is.']);
+
+    li.push(['w', '<b>Cost and remaining value are $0.00 on every row,</b> so there is no ' +
+      'dollar figure to report on this inventory — only counts.']);
+
+    li.push([null, '<b>Type, brand and size are derived from the asset name,</b> not from ' +
+      'their own columns. Roughly ' + Math.round(100*T.explicitCat/T.units) +
+      '% of units carry an explicit type on the end of the name (e.g. ' +
+      '<code>&hellip; - GLASSES</code>); the rest are classified by keyword.']);
+
+    li.push([null, '<b>' + T.codes + ' bracketed name tags</b> (<code>(TG)</code>, <code>*SH*</code>, ' +
+      '<code>(CM)</code>&hellip;) appear on ' +
+      nf(D.byCode.reduce(function(a,b){ return a+b.units; },0)) + ' units. The export doesn’t ' +
+      'define them; they track closely with brand families, so they’re shown as-is rather ' +
+      'than relabelled as a rep or supplier.']);
+
+    if (E.unbranded)
+      li.push([null, '<b>' + E.unbranded + ' items (' + nf(E.unbrandedUnits) +
+        ' units) carry no brand in their name</b> — generic fixtures like glide racks. ' +
+        'They show as <em>Unassigned</em>.']);
+
+    $('#notelist').innerHTML = li.map(function(x){
+      return '<li><span class="dot' + (x[0] ? ' ' + x[0] : '') + '"></span><span>' +
+             x[1] + '</span></li>'; }).join('');
+
+    if (E.bins.length){
+      $('#excwrap').innerHTML =
+        '<p class="idlab" style="margin:16px 0 0">Bin exceptions — ' + E.bins.length +
+        ' units outside bin ' + esc(P.mainBin) + '</p>' +
+        '<div class="exctbl">' + E.bins.map(function(x){
+          return '<div class="excrow"><code>' + esc(x.id) + '</code>' +
+                 '<span class="en">' + esc(x.name) + '</span>' +
+                 '<span class="eb">bin ' + esc(x.bin) + '</span></div>'; }).join('') + '</div>';
+    }
+  })();
+
+  /* ---------------- go ---------------- */
+  renderBars(); renderChips(); renderRows();
+})();
+</script>
+</body>
+</html>
