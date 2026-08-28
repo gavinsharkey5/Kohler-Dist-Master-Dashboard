@@ -421,12 +421,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
-    "CUSTOMER_NUM": 25078,
-    "CUSTOMER_NAME": "The Shannon Rose (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
     "CUSTOMER_NUM": 17006,
     "CUSTOMER_NAME": "The Yard",
     "AREA": "Passaic"
@@ -514,6 +508,12 @@
     "CUSTOMER_NUM": 190902,
     "CUSTOMER_NAME": "Betsy Ross Diner",
     "AREA": "Morris 1"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 230903,
+    "CUSTOMER_NAME": "Black Bear Golf(A)",
+    "AREA": "Sussex"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
@@ -2233,12 +2233,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 31049,
-    "CUSTOMER_NAME": "Marcus Live Bar & Grille",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 29035,
     "CUSTOMER_NAME": "Marty Gra's (A)",
     "AREA": "Bergen"
@@ -2917,12 +2911,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 85001,
-    "CUSTOMER_NAME": "Eleven Central",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 75001,
     "CUSTOMER_NAME": "Emerson Hotel",
     "AREA": "Bergen"
@@ -2943,12 +2931,6 @@
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 81003,
     "CUSTOMER_NAME": "Fair Lawn Lanes (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 39006,
-    "CUSTOMER_NAME": "Fat Bastard & Sons",
     "AREA": "Bergen"
   },
   {

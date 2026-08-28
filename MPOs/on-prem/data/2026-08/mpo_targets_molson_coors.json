@@ -1352,13 +1352,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1007,
-    "CUSTOMER_NAME": "The Greenwood Tavern",
-    "AREA": "Passaic-FF",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 191208,
     "CUSTOMER_NAME": "The Grill Room",
     "AREA": "Morris 1",
@@ -1432,13 +1425,6 @@
     "CUSTOMER_NUM": 4003,
     "CUSTOMER_NAME": "Cinco De Mayo (Z)",
     "AREA": "Passaic",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 1002,
-    "CUSTOMER_NAME": "Country Cottage Rest (P)",
-    "AREA": "Passaic-FF",
     "BRAND_FAMILY": "Peroni"
   },
   {
@@ -6273,13 +6259,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
-    "CUSTOMER_NUM": 49064,
-    "CUSTOMER_NAME": "Bareburger (Edgewater)",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Nick Melissari",
     "CUSTOMER_NUM": 39017,
     "CUSTOMER_NAME": "Bj's Rest & Brewhouse(A)",
     "AREA": "Bergen",
@@ -8625,13 +8604,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "CUSTOMER_NUM": 71005,
-    "CUSTOMER_NAME": "Park Steakhouse",
-    "AREA": "Bergen",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "CUSTOMER_NUM": 71001,
     "CUSTOMER_NAME": "Peppercorn's",
     "AREA": "Bergen",
@@ -9951,13 +9923,6 @@
     "CUSTOMER_NUM": 34014,
     "CUSTOMER_NAME": "Hasbrouck Heights Elks",
     "AREA": "Bergen",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 190710,
-    "CUSTOMER_NAME": "Hilton Garden Inn Rockaway",
-    "AREA": "Morris 1",
     "BRAND_FAMILY": "Coors"
   },
   {
