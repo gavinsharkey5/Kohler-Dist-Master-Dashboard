@@ -64,6 +64,8 @@
     font-size:15.5px;padding:9px 19px;min-height:42px;border-radius:22px;
     border:1px solid var(--border);background:var(--card);color:var(--text-dim);}
   .month-tab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+  .month-tab{cursor:pointer;}
+  .month-tab:not(.active):hover{border-color:var(--accent);color:var(--text);}
   h1{font-family:'Bungee','Space Grotesk',sans-serif;font-weight:400;letter-spacing:.015em;
     font-size:clamp(28px,4vw,44px);line-height:1.15;margin-bottom:10px;color:var(--amber);}
   @supports ((-webkit-background-clip:text) or (background-clip:text)){
@@ -463,9 +465,7 @@
 
 <header>
   <h1>Incentive Tracker</h1>
-  <div class="month-tabs">
-    <span class="month-tab active">August 2026</span>
-  </div>
+  <div class="month-tabs" id="monthTabs"></div>
   <p class="sub">All of your incentives in one place.</p>
   <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Aug 31, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
@@ -99449,7 +99449,7 @@ const PROGRAM_DATA = {
     ]
   }
 };
-const CORE_MARKET_PROGRAM_KEYS = new Set(["boston_beer", "constellation_retention", "lytt", "mabi_retention", "mc_retention", "new_belgium", "new_belgium_distribution", "sam_adams", "sun_cruiser", "yuengling_retention"]);
+const CORE_MARKET_PROGRAM_KEYS = new Set(["boston_beer", "constellation_fall", "constellation_retention", "lytt", "mabi_retention", "mabi_retention_fall", "mc_retention", "new_belgium", "new_belgium_distribution", "new_belgium_distribution_retain", "sam_adams", "sun_cruiser", "yuengling_retention", "yuengling_retention_fall"]);
 /* PROGRAM_DATA_END */
 
 const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
@@ -99475,7 +99475,18 @@ const DM_GROUPS = [
 // from generate.py's CORE_MARKET_PROGRAMS -- the same set that drives
 // eligibility -- so the pill and the blocking can never drift apart.
 // Add a program there, not here.
+// Programs whose territory scope has never been confirmed with Kohler -- the
+// eight brand-new September programs plus Heineken, which has never been on
+// this dashboard at all. "All Counties" is a real claim a rep will act on, so
+// these show NO territory pill rather than a guess. Delete a key from here the
+// moment its scope is confirmed: if it's Core Market it belongs in
+// generate.py's CORE_MARKET_PROGRAMS (or _PENDING), and if it's genuinely all
+// counties, removing it here is all that's needed.
+const TERRITORY_UNCONFIRMED = new Set(['keystone_ice','touchdowns_tea','evil_genius','other_half',
+  'montauk','printed_menu','bardstown_display','two_xo','heineken_husa']);
+
 function terrTag(key){
+  if(TERRITORY_UNCONFIRMED.has(key)) return '';
   return CORE_MARKET_PROGRAM_KEYS.has(key)
     ? '<span class="prog-tag terr-core" title="Bergen, Passaic, Passaic-FF, Sussex, Morris 1 & 3 only">Core Market</span>'
     : '<span class="prog-tag terr-all">All Counties</span>';
@@ -99508,7 +99519,7 @@ function progLogo(key){
 }
 const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt",rate:0.50},{pct:0.50,label:'Lytty City',rate:1.00},{pct:0.75,label:'Lytt-Faced',rate:2.00}];
 
-const PROGRAM_LIST = [
+const PROGRAM_LIST_2026_08 = [
   {key:'1911', group:'new', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
    pitch:`Get 1911 into accounts that didn't buy it during May–July.`,
    getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
@@ -99595,6 +99606,146 @@ const PROGRAM_LIST = [
    metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
 ];
 
+// ---------------------------------------------------------------------------
+// SEPTEMBER 2026 (structure only, added 2026-08-31 from the September Rewards
+// Deck). No September RDE export exists yet, so every program that is new to
+// September reads from PROGRAM_DATA_2026_09 -- deliberately an empty object
+// until a September generator fills it. getRep therefore returns undefined,
+// rankProgram yields no rows, and each program renders its rules + goals with
+// an "awaiting data" card. That is the intended zero state, not a bug.
+//
+// The SIX programs that span August AND September (1911, Woodchuck, Tona,
+// Lytt, Le Grand Noir, Garage Beer President's) are the exception: their RDE
+// windows already cover September, so they point at the SAME PROGRAM_DATA and
+// the SAME card functions August uses, and show live numbers on both tabs.
+// Per Gavin, 2026-08-31: "If they appear in August AND September, these can be
+// the Ongoing portion of the incentives for September."
+// ---------------------------------------------------------------------------
+const PROGRAM_DATA_2026_09 = {};
+const sept = key => rep => (PROGRAM_DATA_2026_09[key]||{}).byRep?.[rep];
+
+const PROGRAM_LIST_2026_09 = [
+  // --- New September programs -------------------------------------------
+  {key:'keystone_ice', group:'new', title:'Keystone Ice 24oz Cans Are Back', shortTitle:'Keystone Ice', tag:'September',
+   pitch:`Get Keystone Ice 24oz cans on the shelf next to Busch and Bud Ice.`,
+   getRep:sept('keystone_ice'),
+   metric:d=>d.placements, metricLabel:'off-premise placements', fmt:v=>v.toFixed(0)},
+  {key:'touchdowns_tea', group:'new', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'September',
+   pitch:`Own football season for Sun Cruiser and Twisted Tea — floor displays and bucket features both pay.`,
+   getRep:sept('touchdowns_tea'),
+   metric:d=>d.cases, metricLabel:'cases', fmt:v=>v.toFixed(0)},
+  {key:'evil_genius', group:'new', title:'Evil Genius Core Growth', shortTitle:'Evil Genius', tag:'September',
+   pitch:`Three placements unlocks the program — then every new Evil Genius placement pays.`,
+   getRep:sept('evil_genius'),
+   metric:d=>d.newPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+  {key:'other_half', group:'new', title:'Other Half Target Account Launch', shortTitle:'Other Half', tag:'Sept–Dec',
+   pitch:`Open a non-buy target account on Other Half core draft and keep it buying — the back half pays more than the front.`,
+   getRep:sept('other_half'),
+   metric:d=>d.accountsOpened, metricLabel:'accounts opened', fmt:v=>v.toFixed(0)},
+  {key:'montauk', group:'new', title:'Montauk Wave Chaser New Placements', shortTitle:'Montauk', tag:'September',
+   pitch:`Every new Wave Chaser package placement pays, and a new draught line pays $100.`,
+   getRep:sept('montauk'),
+   metric:d=>d.newPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+  {key:'printed_menu', group:'new', title:'Bardstown / Green River Printed Menu Program', shortTitle:'Printed Menu', tag:'Sept–Dec',
+   pitch:`Get Bardstown or Green River onto a new printed menu — every mention pays $50.`,
+   getRep:sept('printed_menu'),
+   metric:d=>d.mentions, metricLabel:'menu mentions', fmt:v=>v.toFixed(0),
+   manual:true, awaitingNote:`Photo-verified program — menu mentions are submitted and verified manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+  {key:'bardstown_display', group:'new', title:'Bardstown / Green River Display & Activation', shortTitle:'Bardstown Display', tag:'Sept–Oct',
+   pitch:`Build a 3-case stack off-premise or a branded activation on-premise — both pay per account.`,
+   getRep:sept('bardstown_display'),
+   metric:d=>d.displays, metricLabel:'displays / activations', fmt:v=>v.toFixed(0),
+   manual:true, awaitingNote:`Photo- and documentation-verified program — displays and activations are submitted manually, so there is no RDE feed behind this card. The rules above are the whole program.`},
+  {key:'two_xo', group:'new', title:'2XO Bourbon', shortTitle:'2XO Bourbon', tag:'Sept–Oct (retro Aug)',
+   pitch:`60-day non-buy accounts: pair American Oak with French Oak off-premise, or land a 2-bottle POD on-premise.`,
+   getRep:sept('two_xo'),
+   metric:d=>d.pods, metricLabel:'PODs / case pairs', fmt:v=>v.toFixed(0)},
+
+  // --- Ongoing: live on both tabs, same data as August ------------------
+  {key:'1911', group:'ongoing', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',
+   pitch:`Get 1911 into accounts that didn't buy it during May–July.`,
+   getRep:rep=>(PROGRAM_DATA['1911']||{}).byRep?.[rep],
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
+  {key:'woodchuck', group:'ongoing', title:'Woodchuck Cider Rewards', shortTitle:'Woodchuck', tag:'Aug–Sept',
+   pitch:`Get Woodchuck into accounts that didn't buy it during May–July.`,
+   getRep:rep=>(PROGRAM_DATA['woodchuck']||{}).byRep?.[rep],
+   metric:d=>d.totalNewPlacements, metricLabel:'new placements (packages + draft)', fmt:v=>v.toFixed(0)},
+  {key:'tona', group:'ongoing', title:'Tona Distribution & Volume', shortTitle:'Tona', tag:'Aug–Sept',
+   pitch:`Get Tona 24oz cans into new accounts and sell 20 cases to unlock every payout.`,
+   getRep:rep=>(PROGRAM_DATA['tona']||{}).byRep?.[rep],
+   metric:d=>d.caseVolume24oz, metricLabel:'24oz cases', fmt:v=>v.toFixed(0)},
+  {key:'lytt', group:'ongoing', title:'Lytt Launch', shortTitle:'Lytt', tag:'Aug–Sept',
+   pitch:`The more of your accounts that carry Lytt, the higher your per-case rate.`,
+   getRep:rep=>(PROGRAM_DATA['lytt']||{}).byRep?.[rep],
+   metric:d=>d.penetrationPct, metricLabel:'penetration', fmt:v=>v.toFixed(1)+'%'},
+  {key:'le_grand_noir', group:'ongoing', title:'Le Grand Noir Volume Incentive', shortTitle:'Le Grand Noir', tag:'Aug–Oct',
+   pitch:`Sell Le Grand Noir — once the house hits 70 cases, every case pays $10.`,
+   getRep:rep=>(PROGRAM_DATA['le_grand_noir']||{}).byRep?.[rep],
+   metric:d=>d.cases, metricLabel:'cases (Aug–Oct)', fmt:v=>v.toFixed(0)},
+  {key:'garage_beer_president', group:'ongoing', title:"Garage Beer President's Incentive", shortTitle:"GB President's", tag:'Jun–Sep',
+   pitch:`Once the house sells 9,305 CE, every case you grew over last year pays $1.`,
+   getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
+   metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth over LY', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
+
+  // --- Retention: the new Sept–Nov period, new goals --------------------
+  {key:'constellation_fall', group:'retention', title:'Constellation Fall Distribution Rewards', shortTitle:'Constellation', tag:'Sept–Nov',
+   pitch:`A fresh set of Corona, Modelo, Impact and Innovation goals for the fall period.`,
+   getRep:sept('constellation_fall'),
+   metric:d=>d.offPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'mabi_retention_fall', group:'retention', title:'Mark Anthony MADE Distro Rewards — Retention', shortTitle:'Mark Anthony', tag:'Sept–Nov',
+   pitch:`Hold your MADE placements at 90% of goal through November.`,
+   getRep:sept('mabi_retention_fall'),
+   metric:d=>d.pct, metricLabel:'% of MADE goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'yuengling_retention_fall', group:'retention', title:'Yuengling Distro Rewards — Retention', shortTitle:'Yuengling', tag:'Sept–Nov',
+   pitch:`Hold every Yuengling brand goal through November — each one retained pays.`,
+   getRep:sept('yuengling_retention_fall'),
+   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'heineken_husa', group:'retention', title:'HUSA SDD On & Off Premise Distro Rewards', shortTitle:'Heineken', tag:'Sept–Nov',
+   pitch:`Hold your Heineken, 0.0 and Dos Equis distribution goals through November.`,
+   getRep:sept('heineken_husa'),
+   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
+  {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'NB Distribution', tag:'Oct–Nov',
+   pitch:`Hold the New Belgium distribution you built, then grow it through October for the core bonus.`,
+   getRep:sept('new_belgium_distribution_retain'),
+   metric:d=>d.pct, metricLabel:'% of goal retained', fmt:v=>v.toFixed(0)+'%',
+   awaitingNote:`The New Belgium retain phase does not start until October — the deck runs Achieve (May–Jun), Push Volume (Jul–Aug), then Retain (Oct–Nov). This card is here so the program stays visible through September; numbers begin when the retain period opens.`},
+];
+
+// Month tabs. August stays the landing page (per Gavin, 2026-08-31: "keep
+// august 2026 the landing page for now"), so DEFAULT_MONTH_KEY is explicit
+// rather than positional -- unlike MPOs/on-prem/index.html, which defaults to
+// the LAST entry in its MONTHS array. Appending a month here therefore does
+// NOT change what loads first; change DEFAULT_MONTH_KEY when you want it to.
+//
+// repCards is the per-group card order for the rep view. August's order is
+// preserved exactly as it was hardcoded before month tabs existed (note it
+// differs slightly from PROGRAM_LIST order: lytt and fall_seasonal come before
+// new_belgium), so switching to a data-driven renderRep changed no pixels on
+// the August tab.
+const MONTHS = [
+  {key:'2026-08', label:'August 2026', newLabel:'August 2026 programs',
+   programs:PROGRAM_LIST_2026_08,
+   repCards:{
+     new:['1911','woodchuck','tona','path_to_victory','sam_adams','boston_beer','lytt','fall_seasonal','new_belgium','le_grand_noir'],
+     ongoing:['sun_cruiser','yave','mollys','garage_beer_summer_sequel','garage_beer_president','new_belgium_distribution','display_auction'],
+     retention:['mc_retention','mabi_retention','constellation_retention','yuengling_retention'],
+   }},
+  {key:'2026-09', label:'September 2026', newLabel:'September 2026 programs',
+   programs:PROGRAM_LIST_2026_09,
+   repCards:{
+     new:['keystone_ice','touchdowns_tea','evil_genius','other_half','montauk','printed_menu','bardstown_display','two_xo'],
+     ongoing:['1911','woodchuck','tona','lytt','le_grand_noir','garage_beer_president'],
+     retention:['constellation_fall','mabi_retention_fall','yuengling_retention_fall','heineken_husa','new_belgium_distribution_retain'],
+   }},
+];
+const DEFAULT_MONTH_KEY = '2026-08';
+
+let activeMonth = MONTHS.find(m=>m.key===DEFAULT_MONTH_KEY) || MONTHS[0];
+// Every renderer reads PROGRAM_LIST; reassigning it on a tab switch is what
+// makes the whole page month-aware without threading a month argument through
+// renderOverview / renderRep / renderProgramDetail / renderPillNav.
+let PROGRAM_LIST = activeMonth.programs;
+
 const PROGRAM_CARD_FN = {
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
@@ -99607,6 +99758,34 @@ const PROGRAM_CARD_FN = {
   'mabi_retention': cardMabiRetention, 'constellation_retention': cardConstellationRetention,
   'yuengling_retention': cardYuenglingRetention,
 };
+
+// Zero-state card for a program whose rules and goals are known but whose data
+// source hasn't arrived yet (every September program except the six ongoing
+// ones). Deliberately renders the SAME head as a real card -- logo, title,
+// tag, pitch, rules -- so a rep opening the September tab gets the whole
+// program, just without their own numbers. Programs flagged manual:true say so
+// outright rather than implying numbers are coming.
+function cardAwaitingData(key){
+  const entry = (PROGRAM_LIST||[]).find(e=>e.key===key) || {};
+  const rules = PROGRAM_RULES[key]||[];
+  const note = entry.awaitingNote
+    || `Awaiting the first September export — the rules and goals above are live, and your numbers will fill in here once the data lands.`;
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo(key)}<span class="prog-name">${esc(entry.title||key)}</span><span class="prog-tag">${esc(entry.tag||'')}</span>${entry.manual?'<span class="prog-tag">Manually verified</span>':''}</div>
+      ${progPitch(key)}
+      <div class="tile-rules">${rules.map(r=>`<div class="rule-item tile-rule"><span>${ruleHl(r)}</span></div>`).join('')}</div>
+    </div>
+    <div class="prog-body"><div class="empty-state">${esc(note)}</div></div>
+  </div>`;
+}
+
+// A program renders with its real card when one exists, otherwise the
+// zero-state card above.
+function cardFor(key, rep){
+  const fn = PROGRAM_CARD_FN[key];
+  return fn ? fn(rep) : cardAwaitingData(key);
+}
 
 function rankProgram(entry){
   const rows = ROSTER.map(rep=>{
@@ -101540,6 +101719,17 @@ function renderPillNav(rep){
   </div>`;
 }
 
+// One group of cards in the rep view. Keys come from the active month's
+// repCards config so the order is explicit per month; the card-<key> wrapper
+// ids are what the leaderboard's "Full Rep Detailed View" button scrolls to.
+function repSection(title, sub, keys){
+  if(!keys || !keys.length) return '';
+  return `<div class="prog-section">
+        <div class="prog-section-head"><span class="prog-section-title">${esc(title)}</span><span class="prog-section-sub">${esc(sub)}</span></div>
+        ${keys.map(k=>`<div id="card-${k}">${cardFor(k, activeRep)}</div>`).join('')}
+      </div>`;
+}
+
 function renderRep(){
   const main = document.getElementById('main');
   main.innerHTML = `
@@ -101549,36 +101739,9 @@ function renderRep(){
       ${renderPillNav(activeRep)}
     </div>
     <div class="prog-grid">
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
-        <div id="card-1911">${card1911(activeRep)}</div>
-        <div id="card-woodchuck">${cardWoodchuck(activeRep)}</div>
-        <div id="card-tona">${cardTona(activeRep)}</div>
-        <div id="card-path_to_victory">${cardPathToVictory(activeRep)}</div>
-        <div id="card-sam_adams">${cardSamAdams(activeRep)}</div>
-        <div id="card-boston_beer">${cardBostonBeer(activeRep)}</div>
-        <div id="card-lytt">${cardLytt(activeRep)}</div>
-        <div id="card-fall_seasonal">${cardFallSeasonal(activeRep)}</div>
-        <div id="card-new_belgium">${cardNewBelgium(activeRep)}</div>
-        <div id="card-le_grand_noir">${cardLeGrandNoir(activeRep)}</div>
-      </div>
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">Ongoing Incentives</span><span class="prog-section-sub">Continuing programs</span></div>
-        <div id="card-sun_cruiser">${cardSunCruiser(activeRep)}</div>
-        <div id="card-yave">${cardYave(activeRep)}</div>
-        <div id="card-mollys">${cardMollys(activeRep)}</div>
-        <div id="card-garage_beer_summer_sequel">${cardGarageBeerSummerSequel(activeRep)}</div>
-        <div id="card-garage_beer_president">${cardGarageBeerPresident(activeRep)}</div>
-        <div id="card-new_belgium_distribution">${cardNewBelgiumDistribution(activeRep)}</div>
-        <div id="card-display_auction">${cardDisplayAuction(activeRep)}</div>
-      </div>
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">Retention Programs</span><span class="prog-section-sub">Hold the distribution you built</span></div>
-        <div id="card-mc_retention">${cardMcRetention(activeRep)}</div>
-        <div id="card-mabi_retention">${cardMabiRetention(activeRep)}</div>
-        <div id="card-constellation_retention">${cardConstellationRetention(activeRep)}</div>
-        <div id="card-yuengling_retention">${cardYuenglingRetention(activeRep)}</div>
-      </div>
+      ${repSection('New Incentives', activeMonth.newLabel, activeMonth.repCards.new)}
+      ${repSection('Ongoing Incentives', 'Continuing programs', activeMonth.repCards.ongoing)}
+      ${repSection('Retention Programs', 'Hold the distribution you built', activeMonth.repCards.retention)}
     </div>
   `;
   document.getElementById('backbtn').addEventListener('click', ()=>{ activeRep=null; renderMain(); });
@@ -101620,7 +101783,7 @@ function renderOverview(){
   main.innerHTML = `
     <div class="prog-grid">
       <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">August 2026 programs</span></div>
+        <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">${esc(activeMonth.newLabel)}</span></div>
         <div class="tile-grid">${newTiles}</div>
       </div>
       <div class="prog-section">
@@ -101760,6 +101923,110 @@ const PROGRAM_RULES = {
     'On-premise: Lager and Flight packages, plus Lager and Flight draft',
     'Work your retention account list — a listed account with nothing on it is a goal slipping away',
     'Core Market counties only',
+  ],
+
+  // --- September 2026, from the September Rewards Deck -------------------
+  'keystone_ice': [
+    'Qualifier: hit your off-premise distribution goal — placements made in August count toward it',
+    '$5 for every Keystone Ice 24oz can off-premise placement',
+    'Hit the bonus goal and every placement pays $10 instead',
+    '$5 per cooler door photo submitted in iSellBeer',
+    'Photo must show the cans next to Busch or Bud Ice, priced at or below them, with the cooler door sticker',
+    'Top performer by off-premise distribution % earns $300 — second place earns $150',
+  ],
+  'touchdowns_tea': [
+    'Off-premise: $15 for every new placement of Sun Cruiser or Twisted Tea 12pks',
+    'Off-premise: $1 per case on the floor with football POS — 25 case minimum, cannot be co-branded',
+    'Floor display needs an iSellBeer picture',
+    'On-premise: $1 per case sold — the goal is Sun Cruiser as the lead football hard tea',
+    'On-premise: $25 for any account running a football feature',
+    'Feature needs an iSellBeer menu or bucket picture, and the bucket special must be under $35 for 5 cans',
+  ],
+  'evil_genius': [
+    'Qualifier: 3 placements minimum before anything pays',
+    "$10 for every new off-premise placement of Stacy's Mom, Adulting, or 867-5309",
+    "$100 for every new placement of Stacy's Mom draft — 1 ½ bbl or 2 1/6 bbl minimum",
+    'Bonus: $1 for every CE sold over your 2025 sales',
+  ],
+  'other_half': [
+    'On-premise 1st half (Sept–Oct): a non-buy target account that buys OH core draft in BOTH months pays $150',
+    'On-premise 2nd half (Nov–Dec): the same account buying both months again pays $250',
+    'The account must purchase 1 ½ bbl or 2 1/6 bbl each month',
+    'Off-premise: $40 per non-buy account opened buying a minimum of 3 core SKUs',
+    'Off-premise: $10 for every SKU sold beyond the first 3',
+    'Southern District: $50 per account opened with Other Half',
+  ],
+  'montauk': [
+    'Runs Sept 1–30',
+    '$10 for a new placement of Wave Chaser 6pk cans',
+    '$15 for a new placement of Wave Chaser 12pk cans or 19.2oz cans',
+    '$100 per new draught line — Wave Chaser only, 1 ½ bbl or 2 1/6 bbl minimum',
+  ],
+  'printed_menu': [
+    '$50 for every printed menu mention',
+    'Multiple mentions on one menu means multiple payouts',
+    'Must be a new 2026 menu, printed after 9/1',
+    'A SKU added to an existing menu counts as a payout',
+    'Adding Fever Tree to a Bardstown or Green River cocktail menu earns an extra $25',
+    'Photo verified — quick menu transitions considered case by case',
+  ],
+  'bardstown_display': [
+    'Off-premise: $30 per account for a minimum 3-case stack display',
+    'Display must meet merchandising standards — high visibility (wing, end cap, by the register) with case card pricing',
+    'On-premise after 9/1: $50 for 3 bottles ordered for a branded activation or feature drink',
+    'Activation needs documentation — posters, table tents, dated drink specials',
+  ],
+  'two_xo': [
+    'Targets 60-day non-buy accounts — August activity counts retroactively',
+    'Off-premise: 1 case American Oak + 1 case French Oak pays $40',
+    'Off-premise: add 1 case White Oak Rye for another $35',
+    'On-premise: a 2-bottle POD qualifier pays $25, and every 2-bottle POD pays out',
+    'On-premise: $15 for every POD cocktail menu placement — photo verified',
+  ],
+  'constellation_fall': [
+    'Retain 90% of your fall distribution goals from September through November',
+    'Up to $500 for hitting all distribution goals',
+    'Reps who achieve all three periods (Spring, Summer, Fall) earn an additional $500',
+    'Off-premise house goals: Corona Gaintain 1,610 · Modelo Gaintain 2,418 · Impact 3,433 · Innovation 1,336 (8,797 total)',
+    'On-premise package goals: Gaintain 1,339 · Impact 631 · Innovation 149 (2,119 total)',
+    'Draft goals (3-month, Sept–Nov): Modelo Especial 238 · Pacifico 57 · Corona Light 47 · Negra 19 · Premier 13 (374 total)',
+    'House goals must be achieved for full payout — if the house goal is missed, qualifying reps are paid 50%',
+  ],
+  'mabi_retention_fall': [
+    'Retain 90% of your MADE distribution goals from September through November',
+    'Up to $500 for the MADE / Innovation goal retained',
+    'House goal: 8,440 MADE PODs · on-premise goal 410',
+    '$25 for every new Black Cherry on-premise non-buy',
+    '$10 for every new additional White Claw flavor',
+    'Reps who achieve all three periods earn an additional $500',
+    'House goals must be achieved for full payout and bonus — otherwise qualifying reps are paid 50%',
+  ],
+  'yuengling_retention_fall': [
+    'Retain your Yuengling distribution goals from September through November',
+    'Up to $500 for every brand goal retained',
+    'Off-premise brands: Lager · Flight · Light Lager',
+    'On-premise: Lager and Flight packages, plus Lager and Flight draft',
+    'Reps who achieve all three periods earn an additional payout',
+    'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
+  ],
+  'heineken_husa': [
+    'Retain your Heineken distribution goals from September through November',
+    'Up to $500 for hitting all distribution goals',
+    'Off-premise National goal 840 — Heineken Original, Heineken 0.0, Dos Equis Lager',
+    'Off-premise Local goal 455 — Heineken loose bottle, 24oz, 16oz 4pk can, 7oz loose, suitcase can',
+    'Off-premise Innovation: Ultimate 6pk bottle & 12pk cans 75 · Heineken 0.0 12pk bottle 25',
+    'On-premise National goal 1,035 — Heineken Original, Heineken 0.0, Dos Equis Lager draft',
+    'On-premise Local goal 55 — Heineken draft, Dos Equis Lager package',
+    '90-day non-buy bonus: off-premise 1–5 case buy or new account plus rebuy pays $15',
+    '90-day non-buy bonus: on-premise package 1 case pays $15, draft 1 barrel pays $100',
+    'Reps who achieve all three periods earn an additional $500',
+    'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
+  ],
+  'new_belgium_distribution_retain': [
+    'Retain your New Belgium core brand distribution goals through October–November',
+    'Earn a tiered payout for every brand goal retained',
+    'Core brands: Voodoo 12pk · Voodoo 19.2oz · Hearted Family · Kirin',
+    'Core bonus: retain both periods AND post positive New Belgium growth May–October for an additional tiered bonus',
   ],
 };
 
@@ -102112,7 +102379,32 @@ function resetToHome(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+// Switching months keeps the selected rep (a rep wants their own September
+// card next, not the program grid) but drops any open program detail, since
+// program keys differ between months.
+function setMonth(key){
+  const m = MONTHS.find(x=>x.key===key);
+  if(!m || m===activeMonth) return;
+  activeMonth = m;
+  PROGRAM_LIST = m.programs;
+  activeProgram = null;
+  renderMonthTabs();
+  renderMain();
+  scrollToContent();
+}
+
+function renderMonthTabs(){
+  const el = document.getElementById('monthTabs');
+  if(!el) return;
+  el.innerHTML = MONTHS.map(m=>
+    `<button class="month-tab${m===activeMonth?' active':''}" data-month="${esc(m.key)}">${esc(m.label)}</button>`
+  ).join('');
+  el.querySelectorAll('.month-tab').forEach(b=>
+    b.addEventListener('click', ()=>setMonth(b.dataset.month)));
+}
+
 function boot(){
+  renderMonthTabs();
   const bar = document.getElementById('repbar');
   const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
   const leftovers = ROSTER.filter(r=>!grouped.has(r));

@@ -1201,6 +1201,22 @@ CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_
                         "mc_retention", "mabi_retention", "constellation_retention",
                         "yuengling_retention"}
 
+# Core-Market-restricted programs that have NO data yet, so they can't be run
+# through the territoryEligible loop below (data[key] would KeyError) but must
+# still show the "Core Market" pill on the September tab. These are the direct
+# September continuations of programs already in CORE_MARKET_PROGRAMS above --
+# same supplier, same restriction -- so the scope carries over rather than
+# being newly assumed. Move a key up into CORE_MARKET_PROGRAMS the moment its
+# September builder exists, so the pill and the blocking re-couple.
+#
+# NOT listed here: heineken_husa and the eight brand-new September programs.
+# Their territory scope has never been confirmed, and neither set is emitted,
+# so terrTag() shows no territory pill at all for them rather than asserting
+# "All Counties" (see TERRITORY_UNCONFIRMED in index.html).
+CORE_MARKET_PROGRAMS_PENDING = {"constellation_fall", "mabi_retention_fall",
+                                "yuengling_retention_fall",
+                                "new_belgium_distribution_retain"}
+
 
 def load_core_market_reps():
     """Reps with at least one account in a Core Market distribution area.
@@ -2476,7 +2492,7 @@ def main():
     # than hand-maintained in index.html: the Python set drives eligibility
     # and the JS set drives the "Core Market" pill, and keeping them in sync
     # by hand silently mislabelled two programs' pills (2026-08-19).
-    core_keys = json.dumps(sorted(CORE_MARKET_PROGRAMS))
+    core_keys = json.dumps(sorted(CORE_MARKET_PROGRAMS | CORE_MARKET_PROGRAMS_PENDING))
     html = html[:start] + (f"\nconst PROGRAM_DATA = {payload};\n"
                            f"const CORE_MARKET_PROGRAM_KEYS = new Set({core_keys});\n") + html[end:]
 

@@ -28,6 +28,114 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
+MONTH TABS (added 2026-08-31)
+=============================
+This page used to be August-only. It now carries a month tab bar in the
+header, driven by the MONTHS array in index.html. Each entry is
+{key, label, newLabel, programs, repCards}:
+
+  programs   the month's PROGRAM_LIST_<key> array (tiles, pill nav,
+             leaderboards, ranking)
+  repCards   {new, ongoing, retention} -- the ORDER cards appear in on
+             the rep view, per group. August's arrays reproduce exactly
+             the order that used to be hardcoded in renderRep(), which
+             is why switching renderRep to be data-driven changed no
+             rendered output on the August tab (verified by rendering
+             both versions headless and diffing the .prog-grid markup:
+             identical once inter-tag whitespace is normalized).
+
+IMPORTANT -- this differs from MPOs/on-prem/index.html on purpose.
+That dashboard defaults to the LAST entry in its MONTHS array, so
+appending a month silently changes the landing tab. Here the default is
+the explicit DEFAULT_MONTH_KEY constant, currently '2026-08', per
+Gavin, 2026-08-31: "keep august 2026 the landing page for now."
+Appending a month does NOT change what loads first -- change
+DEFAULT_MONTH_KEY when you want September (or October) to be the
+landing tab.
+
+Switching tabs keeps the selected rep (a rep wants their own next
+month's card, not the program grid) and clears any open program detail,
+since program keys differ between months.
+
+SEPTEMBER 2026 (structure only, from the September Rewards Deck)
+================================================================
+Built 2026-08-31 as STRUCTURE ONLY -- no September RDE export existed
+yet. Every September-only program reads from PROGRAM_DATA_2026_09, an
+empty object at the top of the September registry. getRep therefore
+returns undefined, rankProgram yields no rows, and each program renders
+its rules with a "Awaiting the first September export" card
+(cardAwaitingData). That zero state is intended, not a bug.
+
+WHEN SEPTEMBER DATA ARRIVES: build the September datasets into
+PROGRAM_DATA_2026_09 (a generate_2026-09.py, or extra builders in
+generate.py that emit a second JSON blob), then add real card functions
+to PROGRAM_CARD_FN and board specs to PROGRAM_BOARD keyed by the
+September program keys. cardFor() already falls back to the zero-state
+card for any key without a real card fn, so programs can be switched on
+one at a time without touching the renderers.
+
+Three groups, per Gavin, 2026-08-31:
+  new         The 8 brand-new September programs: keystone_ice,
+              touchdowns_tea, evil_genius, other_half, montauk,
+              printed_menu, bardstown_display, two_xo.
+  ongoing     The 6 programs that run across BOTH months: 1911,
+              woodchuck, tona, lytt, le_grand_noir,
+              garage_beer_president. Gavin: "If they appear in August
+              AND September, these can be the Ongoing portion of the
+              incentives for September." These are the ONE exception to
+              the zero state -- their RDE windows already cover
+              September, so they point at the SAME PROGRAM_DATA and the
+              SAME card functions August uses and show live numbers on
+              both tabs. Nothing is duplicated; both tabs read one
+              source.
+  retention   The new Sept-Nov period with NEW goals:
+              constellation_fall, mabi_retention_fall,
+              yuengling_retention_fall, heineken_husa,
+              new_belgium_distribution_retain. August keeps showing the
+              Jun-Aug period it already tracks -- the two tabs track
+              different periods of the same programs, deliberately.
+
+heineken_husa (HUSA SDD) has never been on this dashboard before and is
+new in every sense -- no data, no prior period, no card function.
+
+new_belgium_distribution_retain carries a note explaining that its
+retain phase does not start until October (the deck runs Achieve
+May-Jun, Push Volume Jul-Aug, Retain Oct-Nov), so September is a gap
+month for it. It is on the tab because the cover checklist lists NBB
+Distro; it will simply have nothing to show until October.
+
+TERRITORY PILLS ON SEPTEMBER PROGRAMS
+The "Core Market" / "All Counties" pill is a real claim a rep acts on,
+so it is never guessed. generate.py now has CORE_MARKET_PROGRAMS_PENDING
+alongside CORE_MARKET_PROGRAMS: pending holds Core-Market keys that have
+NO data yet (the four September continuations of programs already known
+to be Core Market), because the territoryEligible loop indexes
+data[key] and would KeyError on a program with no dataset. Both sets are
+unioned into the emitted CORE_MARKET_PROGRAM_KEYS. Move a key from
+pending up into CORE_MARKET_PROGRAMS the moment its September builder
+exists, so the pill and the eligibility blocking re-couple.
+The eight new September programs plus heineken_husa have never had their
+territory scope confirmed, so they are in neither set AND are listed in
+index.html's TERRITORY_UNCONFIRMED -- terrTag() renders NO pill for
+them rather than defaulting to "All Counties", which would be an
+unverified claim. Delete a key from TERRITORY_UNCONFIRMED once its scope
+is confirmed.
+
+OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
+  1. Constellation on-premise Impact goal: the "Fast Start" summary
+     block says IMPACT pkg = 649, but the Fall Distribution slide's own
+     per-brand numbers sum to 631 (Corona Light 288 + Corona Premier 90
+     + Pacifico 123 + Corona NA 130). 631 is what reconciles with that
+     slide's stated on-premise package total of 2119 (Gaintain 1339 +
+     Impact 631 + Innovation 149), so the card currently uses 631 and
+     649 looks like the typo. Worth confirming before payouts.
+  2. Territory scope for the 8 new September programs and Heineken (see
+     TERRITORY_UNCONFIRMED above).
+  3. Which September programs get an RDE export at all -- printed_menu
+     and bardstown_display are photo/documentation verified and may
+     never have one, in which case their cards stay descriptive
+     permanently (they are flagged manual:true and say so on the card).
+
 STATUS (2026-08-20): ALL 11 original-deck programs built and live --
 Le Grand Noir (program 11) went live 2026-08-20 when its first RDE
 file arrived (data/le_grand_noir.csv, single-period Cases 8/1-10/31;
