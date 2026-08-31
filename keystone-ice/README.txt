@@ -88,6 +88,31 @@ TWO THINGS ABOUT THE ACTUALS EXPORT:
    2026-08-31, had neither column -- only Product/Brand/Date/Buyer
    Count/Cases -- which is why that fallback path exists at all.)
 
+TOP PERFORMER RACE PANEL -- OFF, BUT KEPT (2026-08-31)
+The page used to open with two cards, $300 and $150, naming whoever
+currently sat #1 and #2 on percentage of their own base. Gavin: "take
+out the top 2 performing reps for now as well... keep this saved because
+we will probably add it back", clarified as "the card for it at the
+beginning ($300 and $150)".
+
+It is hidden by a single flag, not deleted: SHOW_TOP_PERFORMER_RACE at
+the top of index.html's <script>. Everything that builds the panel --
+the heading, the .race markup, the CSS, the render code -- is still
+there. Flip the flag to true and it all comes back; no other edit is
+needed. Do NOT "clean up" the dead code, it is deliberately parked.
+
+What stays visible either way: the $300 / $150 rule on the rules card
+(so a rep knows the award exists), and the #N rank pill on each rep
+card. Only the by-name callout of the current top two is off -- the
+race is a month from being decided and the panel read like it had
+already been called.
+
+Also unaffected: the same program's card on the incentive tracker, whose
+"Rank Among Reps" tile still carries a "top two earn $300 / $150"
+subline. That is a per-rep rank, not a leaderboard callout, so it was
+left alone -- but if the intent is that nobody sees the race framed at
+all, that subline is the other place to change.
+
 Reward structure (from Kohler's September 2026 one-pager, no data
 source -- edit REWARDS at the top of generate.py if it changes):
   Qualifier   rep must hit their own off-premise distribution goal;

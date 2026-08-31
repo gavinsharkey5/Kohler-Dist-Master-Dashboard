@@ -153,7 +153,7 @@ footer b{color:var(--ink)}
   <div id="notice"></div>
   <div class="stats" id="stats"></div>
 
-  <h2 class="sec">Top performer race</h2>
+  <h2 class="sec" id="raceHead">Top performer race</h2>
   <div class="race" id="race"></div>
 
   <h2 class="sec">Where every rep stands</h2>
@@ -187,6 +187,18 @@ const $ = s => document.querySelector(s);
 const money = n => "$" + Math.round(n).toLocaleString();
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const plural = (n, w) => n + " " + w + (n === 1 ? "" : "s");
+
+// Turned off 2026-08-31 at Gavin's request ("take out the top 2 performing reps
+// for now as well... we will probably add it back" -- meaning the two $300 /
+// $150 cards at the top of the page, not the rule itself). The panel names
+// whoever currently sits #1 and #2 on percentage of their own base and puts the
+// prize money against them by name, which calls the race with a month still to
+// run. Everything that builds it is intact below: flip this to true and the
+// heading, the panel and both cards come straight back, no other edit needed.
+// The $300 / $150 rule still shows on the rules card lower down, so a rep can
+// see the award exists without anyone being named the winner.
+const SHOW_TOP_PERFORMER_RACE = false;
+
 let DATA = null;
 
 async function boot(){
@@ -229,8 +241,11 @@ function render(){
       '<div class="stat-sub">' + s + '</div></div>').join("");
 
   // Top-performer race: highest and second-highest percentage of own base.
+  // Hidden unless SHOW_TOP_PERFORMER_RACE -- see the flag's note above.
   const ranked = DATA.reps.filter(r => r.pct != null);
-  $("#race").innerHTML = R.topPerformer.map((prize, i) => {
+  $("#raceHead").hidden = !SHOW_TOP_PERFORMER_RACE;
+  $("#race").hidden = !SHOW_TOP_PERFORMER_RACE;
+  $("#race").innerHTML = !SHOW_TOP_PERFORMER_RACE ? "" : R.topPerformer.map((prize, i) => {
     const r = ranked[i];
     return '<div class="race-card' + (i ? " second" : "") + '">' +
       '<div class="race-prize">' + money(prize) + '</div><div>' +
