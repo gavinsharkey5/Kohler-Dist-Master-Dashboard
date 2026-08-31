@@ -1429,6 +1429,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 1002,
+    "CUSTOMER_NAME": "Country Cottage Rest (P)",
+    "AREA": "Passaic-FF",
+    "BRAND_FAMILY": "Peroni"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 230909,
     "CUSTOMER_NAME": "Coyote Cocina Mexicana",
     "AREA": "Sussex",
