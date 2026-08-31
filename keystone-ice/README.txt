@@ -14,6 +14,32 @@ here: Qualifier is 40% of a rep's 2026 off-premise buyer base and Bonus
 Goal is 50%. If Kohler reissues the goals with different percentages,
 the new file carries the new numbers and no code changes.
 
+WHOLE NUMBERS EVERYWHERE (per Gavin, 2026-08-31: "make the rep goals and
+all other decimals whole numbers... easier on the eyes for a rep on
+their iPad"). Kohler's goals arrive fractional -- 40% of a 43-account
+base is 17.2 -- so both thresholds are rounded UP with ceil, and the
+ceiling is what the page BOTH DISPLAYS AND SCORES AGAINST. That is not
+a display convenience: for a whole number of accounts, buyers >= 17.2
+and buyers >= 18 are the same test, so the number a rep reads is
+exactly the number they must hit. Rounding down or to nearest would
+break it -- a rep on 17 would read "17 of 17" and still not be
+qualified. The raw fractional values stay in the JSON as qualifierRaw /
+bonusRaw so provenance is never lost. Keep it this way; don't "fix" the
+rounding to nearest.
+
+Note a side effect on the smallest books: a 4-account base gives
+qualifier 1.6 and bonus 2.0, both of which ceil to 2, so those reps hit
+both tiers at once. That is what the math says and it is rendered
+honestly (the card shows "qualify 2 / bonus 2").
+
+NO HOUSE GOAL. This program has no house-level target -- it is scored
+per rep, and the top-performer award is a race between reps, not a
+total to reach (confirmed with Gavin 2026-08-31). An earlier version of
+this page summed every rep's goal into a "house qualifier" bar; that
+number was invented here, meant nothing to anyone, and has been
+removed. The house figures that remain (accounts sold, reps qualified,
+projected payout) are plain counts of what happened, not targets.
+
 Files:
   goals.csv    Extracted from Kohler's "2026 Key Ice Goals" workbook
                (goals.xlsx, kept alongside as the original): Sales Rep
@@ -23,8 +49,11 @@ Files:
                NOT read it -- it reads goals.csv -- but it is the
                provenance for those numbers, so keep them in step if
                the goals are reissued.
-  actuals.csv  RDE "Comparison" export of Keystone Ice 24 oz
-               off-premise buyers, windowed 8/1/2026 - 9/30/2026.
+  actuals.csv  RDE "KEYSTONE ICE 24 OZ CANS ARE BACK SEPT 2026"
+               export: Sales Rep Name, Product, Brand, Customer Num
+               Name, Date, Buyer Count and Cases, windowed
+               8/1/2026 - 9/30/2026. Keep the rep AND customer columns
+               on every re-pull -- see below for why.
   generate.py  Rebuilds data/keystone_ice.json + data/sync_meta.json.
   index.html   The page itself.
 
@@ -35,37 +64,29 @@ To refresh:
      says whether the export carried a rep column.
   3. Commit and push.
 
-TWO THINGS ABOUT THE COMPARISON EXPORT (both found 2026-08-31):
+TWO THINGS ABOUT THE ACTUALS EXPORT:
 
 1. Buyer counts are DISTINCT ACCOUNTS and do NOT add up across rows.
-   The 8/31 pull listed 62 buyer-count units across its 20 daily rows
-   but carried a "Total" row of 54. 54 is the real distinct-buyer
-   figure; 62 is the same accounts counted on more than one day.
-   read_actuals() takes the Total row as the house number and treats
-   the daily rows as activity only. Never sum the daily rows, and
-   don't render a cumulative line off them -- the page's daily bar
-   chart says so in its own subtitle for exactly this reason.
+   The export carries one row per rep/account/date, so an account
+   buying on two days appears twice -- the 8/31 pull holds 62 rows but
+   only 54 distinct accounts. Every buyer figure on the page is a count
+   of DISTINCT customers, never a sum of the Buyer Count column, which
+   would overstate any rep whose account reordered. The same applies to
+   the daily chart: each day counts the distinct accounts active that
+   day, and the days deliberately do not add up to 54. The chart's own
+   caption says so, because someone will try to add them.
 
-2. The 8/31 pull has NO rep column, so per-rep progress cannot be
-   computed from it -- every rep renders "awaiting data" and the page
-   carries a banner saying why. This is the one thing blocking the
-   dashboard from being complete.
+2. ALWAYS re-pull with BOTH "Sales Rep Name" AND a customer column.
+   generate.py needs both and refuses to guess: with a rep column but
+   no customer column it cannot dedupe an account that bought twice, so
+   it deliberately leaves per-rep empty and the page renders "awaiting
+   data" rather than publishing an inflated number. find_col() matches
+   on substrings, so the exact header text can shift between exports
+   without breaking anything.
 
-   THE FIX: re-pull the same Comparison report with "Sales Rep
-   Assigned" AND a "Customer" column added as dimensions. generate.py
-   already looks for both (find_col matches on substrings, so the exact
-   header text can shift) and switches itself on: with a rep column and
-   a customer column it counts each rep's DISTINCT customers, sets
-   meta.repLevel true, and index.html fills in the Buyers / % of Base /
-   Status / Projected $ columns with no code change.
-
-   The customer column matters as much as the rep one. Buyer count is
-   distinct accounts, so per-rep totals have to be deduped on customer
-   -- summing a rep's daily buyer-count rows would overstate any rep
-   whose account bought on more than one day, exactly the 62-vs-54 trap
-   above. If a re-pull arrives with a rep column but no customer
-   column, generate.py deliberately leaves by_rep empty and the page
-   stays in "awaiting data" rather than publishing an inflated number.
+   (The first pull for this dashboard, an RDE "Comparison" export on
+   2026-08-31, had neither column -- only Product/Brand/Date/Buyer
+   Count/Cases -- which is why that fallback path exists at all.)
 
 Reward structure (from Kohler's September 2026 one-pager, no data
 source -- edit REWARDS at the top of generate.py if it changes):
