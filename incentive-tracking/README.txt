@@ -74,6 +74,43 @@ September program keys. cardFor() already falls back to the zero-state
 card for any key without a real card fn, so programs can be switched on
 one at a time without touching the renderers.
 
+keystone_ice was the FIRST to switch on (2026-08-31) and is the worked
+example for the rest. What it took, end to end:
+  generate.py   build_keystone_ice() reads the Keystone dashboard's own
+                published JSON (keystone-ice/data/keystone_ice.json),
+                exactly the arrangement build_display_auction() uses --
+                that dashboard owns the scoring and this reads finished
+                numbers. main() assembles a SECOND dict, data_09, and
+                writes it into its own marker pair.
+  index.html    /* PROGRAM_DATA_09_START */ ... _END markers around the
+                PROGRAM_DATA_2026_09 declaration (it used to be a bare
+                `= {}`), a cardKeystoneIce() reading PROGRAM_DATA_2026_09
+                rather than PROGRAM_DATA, an entry in PROGRAM_CARD_FN,
+                and a board spec in PROGRAM_BOARD.
+  registry      its metric changed from the placeholder d.placements to
+                d.pct, so the leaderboard ranks on percentage of each
+                rep's OWN account base. That is the measure the $300/$150
+                top-performer award is decided on, and it keeps a
+                6-account book competing with a 43-account one. Check the
+                placeholder metric against the real payout rule when
+                switching on any other September program -- the
+                structure-only metrics were guesses.
+
+Because build_keystone_ice() reads a sibling dashboard's output, THIS
+PAGE IS ONLY AS CURRENT AS THAT DASHBOARD. Refresh keystone-ice first
+(save the new RDE export over its actuals.csv, run its generate.py),
+then run this one -- same ordering rule the display auction already has.
+If the Keystone JSON is missing, or is present but has no rep-level data
+yet, the builder prints SKIPPED and returns an empty byRep, which puts
+the program back on the zero-state card rather than breaking the tab.
+
+John Neukum is in Kohler's Keystone goals workbook but not in ROSTER, so
+he is dropped here (the usual roster reason) and meta.offRoster names him
+in the build output. Reps WITH a goal but no accounts yet are kept at
+zero on purpose: "you have sold none of your 12" is exactly what a rep on
+a distribution program needs to see, and dropping them would quietly
+shorten the leaderboard.
+
 Three groups, per Gavin, 2026-08-31:
   new         The 8 brand-new September programs: keystone_ice,
               touchdowns_tea, evil_genius, other_half, montauk,
