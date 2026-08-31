@@ -121,6 +121,39 @@ them rather than defaulting to "All Counties", which would be an
 unverified claim. Delete a key from TERRITORY_UNCONFIRMED once its scope
 is confirmed.
 
+SEPTEMBER LOGOS (assets/logos/, added 2026-08-31)
+Pulled straight out of the September deck with poppler's pdfimages
+(`pdfimages -png -f <page> -l <page> deck.pdf out`), then trimmed to
+content and scaled to the chip's 196x58 display cap. New files:
+keystone_ice.png, evil_genius.png, other_half.png, montauk.png,
+bardstown.png, two_xo.png.
+
+Two needed more than a straight extract:
+  keystone_ice  the deck only has a vertical can shot, so the extracted
+                image (RGB + its separate soft mask, recombined for
+                transparency) is rotated 90 degrees -- otherwise the
+                wordmark is ~24px wide in the chip and unreadable.
+  two_xo        cropped to the wordmark band; the full slide art is a
+                wide gradient that loses the "2XO" entirely at chip size.
+
+Reused rather than re-extracted:
+  touchdowns_tea            -> sun_cruiser.png. The deck's only art for
+                               this program is a football promo banner,
+                               not a logo.
+  printed_menu,             -> bardstown.png for both. Each program is
+  bardstown_display            "Bardstown/Green River" and a chip holds
+                               one mark, so both use the lead name (same
+                               pattern as August's two Garage Beer
+                               programs sharing one logo).
+  constellation_fall, mabi_retention_fall, yuengling_retention_fall,
+  new_belgium_distribution_retain -> their August counterparts' marks.
+
+NO LOGO, deliberately: heineken_husa (the deck's HUSA slide is a goals
+table, and there is no Heineken artwork anywhere in the file) and
+le_grand_noir (also unmapped in August). progLogo() renders no chip for
+an unmapped key, so both are fine as-is -- drop a file in and add the
+mapping if art ever arrives.
+
 OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
   1. Constellation on-premise Impact goal: the "Fast Start" summary
      block says IMPACT pkg = 649, but the Fall Distribution slide's own

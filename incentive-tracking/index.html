@@ -99512,6 +99512,37 @@ const PROGRAM_LOGOS = {
   'mabi_retention': 'assets/logos/mark_anthony.png',
   'constellation_retention': 'assets/logos/constellation.png',
   'yuengling_retention': 'assets/logos/yuengling.png',
+
+  // September 2026. Pulled out of the September Rewards Deck with pdfimages
+  // (2026-08-31), trimmed to content and sized to the chip's 196x58 cap.
+  // Two needed more than a straight extract: Keystone Ice only appears as a
+  // vertical can shot, so it's rotated 90deg for the wordmark to read at chip
+  // size, and 2XO is cropped to its wordmark because the full slide art loses
+  // it entirely when scaled down.
+  'keystone_ice': 'assets/logos/keystone_ice.png',
+  'evil_genius': 'assets/logos/evil_genius.png',
+  'other_half': 'assets/logos/other_half.png',
+  'montauk': 'assets/logos/montauk.png',
+  'two_xo': 'assets/logos/two_xo.png',
+  // Both Bardstown programs are "Bardstown/Green River" -- one chip can only
+  // carry one mark, so both use Bardstown, the lead name in each title (the
+  // same way August points two Garage Beer programs at one logo).
+  'printed_menu': 'assets/logos/bardstown.png',
+  'bardstown_display': 'assets/logos/bardstown.png',
+  // Touchdowns & Tea is a Sun Cruiser / Twisted Tea program. The deck's only
+  // art for it is a football promo banner, not a logo, so this reuses the Sun
+  // Cruiser mark already in the repo rather than shrinking a busy banner.
+  'touchdowns_tea': 'assets/logos/sun_cruiser.png',
+  // September retention programs are the same suppliers as their August
+  // counterparts, so they reuse those marks.
+  'constellation_fall': 'assets/logos/constellation.png',
+  'mabi_retention_fall': 'assets/logos/mark_anthony.png',
+  'yuengling_retention_fall': 'assets/logos/yuengling.png',
+  'new_belgium_distribution_retain': 'assets/logos/new_belgium.png',
+  // heineken_husa has NO logo on purpose: the September deck's HUSA slide is a
+  // goals table with no Heineken artwork anywhere in the file, and progLogo()
+  // renders no chip for an unmapped key. Drop a Heineken mark in here if one
+  // ever arrives; nothing else needs changing.
 };
 function progLogo(key){
   const src = PROGRAM_LOGOS[key];
