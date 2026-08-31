@@ -1,6 +1,22 @@
 [
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 3001,
+    "CUSTOMER_NAME": "Best Cellars (Wanaque)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 3001,
+    "CUSTOMER_NAME": "Best Cellars (Wanaque)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -33,32 +49,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 3001,
-    "CUSTOMER_NAME": "Best Cellars (Wanaque)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 3001,
-    "CUSTOMER_NAME": "Best Cellars (Wanaque)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L"
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L"
@@ -73,8 +73,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L"
@@ -97,38 +97,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 6002,
-    "CUSTOMER_NAME": "Roserne Liquors North"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 6002,
-    "CUSTOMER_NAME": "Roserne Liquors North"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 6002,
-    "CUSTOMER_NAME": "Roserne Liquors North"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 6002,
-    "CUSTOMER_NAME": "Roserne Liquors North"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -137,6 +105,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 6002,
+    "CUSTOMER_NAME": "Roserne Liquors North"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -145,8 +121,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 6002,
+    "CUSTOMER_NAME": "Roserne Liquors North"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 6002,
+    "CUSTOMER_NAME": "Roserne Liquors North"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 6002,
+    "CUSTOMER_NAME": "Roserne Liquors North"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 8008,
     "CUSTOMER_NAME": "Shoppers Disc(A)Pompton"
@@ -161,14 +161,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 8008,
-    "CUSTOMER_NAME": "Shoppers Disc(A)Pompton"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -177,8 +169,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 8008,
+    "CUSTOMER_NAME": "Shoppers Disc(A)Pompton"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 8008,
     "CUSTOMER_NAME": "Shoppers Disc(A)Pompton"
@@ -201,6 +201,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 3005,
+    "CUSTOMER_NAME": "Usa Wine Traders (Wanaque)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -208,12 +216,12 @@
     "CUSTOMER_NAME": "Usa Wine Traders (Wanaque)"
   },
   {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 3005,
-    "CUSTOMER_NAME": "Usa Wine Traders (Wanaque)"
+    "CUSTOMER_NUM": 23006,
+    "CUSTOMER_NAME": "46 Discount Liquor Store"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -227,14 +235,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23006,
-    "CUSTOMER_NAME": "46 Discount Liquor Store"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 23006,
     "CUSTOMER_NAME": "46 Discount Liquor Store"
@@ -265,22 +265,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 79004,
-    "CUSTOMER_NAME": "Coronet Variety"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 79004,
-    "CUSTOMER_NAME": "Coronet Variety"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -289,6 +273,38 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 79004,
+    "CUSTOMER_NAME": "Coronet Variety"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 79004,
+    "CUSTOMER_NAME": "Coronet Variety"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 76015,
+    "CUSTOMER_NAME": "Discount Liq & Bar"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 76015,
+    "CUSTOMER_NAME": "Discount Liq & Bar"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -297,32 +313,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 76015,
-    "CUSTOMER_NAME": "Discount Liq & Bar"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 76015,
-    "CUSTOMER_NAME": "Discount Liq & Bar"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 76015,
-    "CUSTOMER_NAME": "Discount Liq & Bar"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 76015,
+    "CUSTOMER_NAME": "Discount Liq & Bar"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76015,
     "CUSTOMER_NAME": "Discount Liq & Bar"
@@ -337,35 +337,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 47005,
     "CUSTOMER_NAME": "Exquisite W & L (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 47005,
-    "CUSTOMER_NAME": "Exquisite W & L (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 79002,
-    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 79002,
-    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -377,8 +361,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 79002,
+    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 79002,
+    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 78013,
     "CUSTOMER_NAME": "J R W & Liq (A)"
@@ -393,6 +393,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 78013,
+    "CUSTOMER_NAME": "J R W & Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 78013,
+    "CUSTOMER_NAME": "J R W & Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -401,35 +417,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 78013,
     "CUSTOMER_NAME": "J R W & Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 78013,
-    "CUSTOMER_NAME": "J R W & Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 78013,
-    "CUSTOMER_NAME": "J R W & Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 76018,
-    "CUSTOMER_NAME": "Krauszer Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -443,6 +435,14 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 76018,
+    "CUSTOMER_NAME": "Krauszer Liquor"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76018,
     "CUSTOMER_NAME": "Krauszer Liquor"
@@ -473,6 +473,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 47011,
+    "CUSTOMER_NAME": "Ridgefield Deli & Liq"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 47011,
+    "CUSTOMER_NAME": "Ridgefield Deli & Liq"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -489,24 +505,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 47011,
-    "CUSTOMER_NAME": "Ridgefield Deli & Liq"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 47011,
-    "CUSTOMER_NAME": "Ridgefield Deli & Liq"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 47011,
     "CUSTOMER_NAME": "Ridgefield Deli & Liq"
@@ -529,6 +529,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 34009,
+    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -540,21 +548,13 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 34009,
-    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
@@ -569,16 +569,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 76010,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
@@ -588,8 +596,8 @@
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 76010,
-    "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)"
+    "CUSTOMER_NUM": 50007,
+    "CUSTOMER_NAME": "Welsh Farms"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -609,16 +617,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 50007,
-    "CUSTOMER_NAME": "Welsh Farms"
+    "CUSTOMER_NUM": 35002,
+    "CUSTOMER_NAME": "Woodridge Wines & Liq(A)"
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 35002,
     "CUSTOMER_NAME": "Woodridge Wines & Liq(A)"
@@ -632,12 +640,12 @@
     "CUSTOMER_NAME": "Woodridge Wines & Liq(A)"
   },
   {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 35002,
-    "CUSTOMER_NAME": "Woodridge Wines & Liq(A)"
+    "CUSTOMER_NUM": 43007,
+    "CUSTOMER_NAME": "American Classic Liq"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -649,35 +657,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43007,
-    "CUSTOMER_NAME": "American Classic Liq"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 43007,
     "CUSTOMER_NAME": "American Classic Liq"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43004,
-    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43004,
-    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -689,14 +673,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43004,
-    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -705,8 +681,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 43004,
+    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 43004,
     "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
@@ -715,6 +699,46 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 43004,
+    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 43004,
+    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44010,
+    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44010,
+    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44010,
+    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 44010,
     "CUSTOMER_NAME": "Garden State Food&Liq (P)"
@@ -737,40 +761,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44010,
-    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44010,
-    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44010,
-    "CUSTOMER_NAME": "Garden State Food&Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 49035,
-    "CUSTOMER_NAME": "Gulf Express Fort Lee"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 49035,
     "CUSTOMER_NAME": "Gulf Express Fort Lee"
@@ -788,24 +780,8 @@
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 49027,
-    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 49027,
-    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 49027,
-    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
+    "CUSTOMER_NUM": 49035,
+    "CUSTOMER_NAME": "Gulf Express Fort Lee"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -817,8 +793,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
@@ -833,11 +809,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 49027,
+    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44016,
-    "CUSTOMER_NAME": "Liquor City(A)Cliffside"
+    "CUSTOMER_NUM": 49027,
+    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 49027,
+    "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -857,6 +849,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44016,
+    "CUSTOMER_NAME": "Liquor City(A)Cliffside"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44009,
+    "CUSTOMER_NAME": "Metro Liquor (Cliffside Park)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -873,11 +881,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44009,
-    "CUSTOMER_NAME": "Metro Liquor (Cliffside Park)"
+    "CUSTOMER_NUM": 45004,
+    "CUSTOMER_NAME": "Ridgefield Liq (Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 45004,
+    "CUSTOMER_NAME": "Ridgefield Liq (Z)"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -897,14 +913,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 45004,
-    "CUSTOMER_NAME": "Ridgefield Liq (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -921,16 +929,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 45004,
-    "CUSTOMER_NAME": "Ridgefield Liq (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)"
@@ -939,14 +939,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43005,
-    "CUSTOMER_NAME": "Rome Liquors (Fairview)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)"
@@ -963,6 +955,14 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 43005,
+    "CUSTOMER_NAME": "Rome Liquors (Fairview)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 43005,
     "CUSTOMER_NAME": "Rome Liquors (Fairview)"
@@ -985,6 +985,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 44040,
+    "CUSTOMER_NAME": "Stop N Go Conven. (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -993,11 +1001,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44040,
-    "CUSTOMER_NAME": "Stop N Go Conven. (P)"
+    "CUSTOMER_NUM": 44002,
+    "CUSTOMER_NAME": "Wine And Food Mart (Z)"
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1009,24 +1017,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44002,
-    "CUSTOMER_NAME": "Wine And Food Mart (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 44002,
-    "CUSTOMER_NAME": "Wine And Food Mart (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 44002,
     "CUSTOMER_NAME": "Wine And Food Mart (Z)"
@@ -1048,12 +1040,12 @@
     "CUSTOMER_NAME": "Wine And Food Mart (Z)"
   },
   {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 52040,
-    "CUSTOMER_NAME": "Burgundy Convenience Store"
+    "CUSTOMER_NUM": 44002,
+    "CUSTOMER_NAME": "Wine And Food Mart (Z)"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1065,6 +1057,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 52040,
+    "CUSTOMER_NAME": "Burgundy Convenience Store"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40022,
+    "CUSTOMER_NAME": "Buy Rite Of Hackensack"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -1073,16 +1081,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack"
@@ -1105,24 +1113,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40022,
-    "CUSTOMER_NAME": "Buy Rite Of Hackensack"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 41005,
     "CUSTOMER_NAME": "George's Liq"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 41005,
     "CUSTOMER_NAME": "George's Liq"
@@ -1145,19 +1145,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 41005,
     "CUSTOMER_NAME": "George's Liq"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 41005,
     "CUSTOMER_NAME": "George's Liq"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40010,
+    "CUSTOMER_NAME": "Hackensack Liquors"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1169,14 +1177,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40010,
-    "CUSTOMER_NAME": "Hackensack Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -1185,16 +1185,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits"
@@ -1217,24 +1217,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 57006,
+    "CUSTOMER_NAME": "New Milford Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57006,
     "CUSTOMER_NAME": "New Milford Liquors"
@@ -1257,8 +1265,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57006,
     "CUSTOMER_NAME": "New Milford Liquors"
@@ -1270,46 +1278,6 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 57006,
     "CUSTOMER_NAME": "New Milford Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 57006,
-    "CUSTOMER_NAME": "New Milford Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1323,6 +1291,38 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 40004,
     "CUSTOMER_NAME": "Simple Simon's (Z)"
@@ -1337,16 +1337,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 51018,
     "CUSTOMER_NAME": "Teaneck Discount Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 51018,
     "CUSTOMER_NAME": "Teaneck Discount Liquor"
@@ -1385,6 +1385,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 58001,
+    "CUSTOMER_NAME": "Total Wine & More (River Edge)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 58001,
+    "CUSTOMER_NAME": "Total Wine & More (River Edge)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
@@ -1401,22 +1417,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 58001,
-    "CUSTOMER_NAME": "Total Wine & More (River Edge)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 58001,
-    "CUSTOMER_NAME": "Total Wine & More (River Edge)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -1427,30 +1427,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 14007,
-    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 14007,
-    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 14007,
-    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)"
@@ -1459,6 +1435,30 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 14007,
+    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 14007,
+    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 14007,
+    "CUSTOMER_NAME": "Total Wine & More (Totowa)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)"
@@ -1481,6 +1481,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 52019,
+    "CUSTOMER_NAME": "W E Beverage (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -1489,11 +1497,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 52019,
-    "CUSTOMER_NAME": "W E Beverage (A)"
+    "CUSTOMER_NUM": 39012,
+    "CUSTOMER_NAME": "Wine And Liq Depot(A)"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1512,41 +1520,9 @@
     "CUSTOMER_NAME": "Wine And Liq Depot(A)"
   },
   {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 39012,
-    "CUSTOMER_NAME": "Wine And Liq Depot(A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15020,
-    "CUSTOMER_NAME": "Angel's Wine & Liquors"
-  },
-  {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15020,
-    "CUSTOMER_NAME": "Angel's Wine & Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15020,
-    "CUSTOMER_NAME": "Angel's Wine & Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15020,
     "CUSTOMER_NAME": "Angel's Wine & Liquors"
@@ -1563,6 +1539,30 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15020,
+    "CUSTOMER_NAME": "Angel's Wine & Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15020,
+    "CUSTOMER_NAME": "Angel's Wine & Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15020,
+    "CUSTOMER_NAME": "Angel's Wine & Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15020,
     "CUSTOMER_NAME": "Angel's Wine & Liquors"
@@ -1593,14 +1593,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15013,
-    "CUSTOMER_NAME": "El Oasis"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -1609,8 +1601,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15013,
+    "CUSTOMER_NAME": "El Oasis"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15013,
     "CUSTOMER_NAME": "El Oasis"
@@ -1619,6 +1619,14 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15013,
+    "CUSTOMER_NAME": "El Oasis"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15013,
     "CUSTOMER_NAME": "El Oasis"
@@ -1636,13 +1644,13 @@
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15013,
-    "CUSTOMER_NAME": "El Oasis"
+    "CUSTOMER_NUM": 21048,
+    "CUSTOMER_NAME": "Ferraro's Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21048,
     "CUSTOMER_NAME": "Ferraro's Liquor"
@@ -1657,8 +1665,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21048,
     "CUSTOMER_NAME": "Ferraro's Liquor"
@@ -1673,24 +1681,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21048,
     "CUSTOMER_NAME": "Ferraro's Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 21048,
-    "CUSTOMER_NAME": "Ferraro's Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20040,
     "CUSTOMER_NAME": "Hiciano Liquor Store"
@@ -1705,16 +1705,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20040,
     "CUSTOMER_NAME": "Hiciano Liquor Store"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15037,
+    "CUSTOMER_NAME": "Liquor Gallery (Paterson)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15037,
     "CUSTOMER_NAME": "Liquor Gallery (Paterson)"
@@ -1729,8 +1737,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15037,
     "CUSTOMER_NAME": "Liquor Gallery (Paterson)"
@@ -1753,24 +1761,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15037,
-    "CUSTOMER_NAME": "Liquor Gallery (Paterson)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20025,
-    "CUSTOMER_NAME": "Mercer Bar & Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20025,
     "CUSTOMER_NAME": "Mercer Bar & Liquors"
@@ -1793,8 +1785,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20025,
     "CUSTOMER_NAME": "Mercer Bar & Liquors"
@@ -1812,13 +1804,21 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 21050,
-    "CUSTOMER_NAME": "Quis Queya Liquor(P)"
+    "CUSTOMER_NUM": 20025,
+    "CUSTOMER_NAME": "Mercer Bar & Liquors"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 21050,
+    "CUSTOMER_NAME": "Quis Queya Liquor(P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21050,
     "CUSTOMER_NAME": "Quis Queya Liquor(P)"
@@ -1833,8 +1833,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 21050,
+    "CUSTOMER_NAME": "Quis Queya Liquor(P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21050,
     "CUSTOMER_NAME": "Quis Queya Liquor(P)"
@@ -1849,16 +1857,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 21050,
-    "CUSTOMER_NAME": "Quis Queya Liquor(P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20080,
     "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
@@ -1875,22 +1875,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20080,
-    "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20080,
-    "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20080,
     "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
@@ -1908,13 +1892,45 @@
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15023,
-    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
+    "CUSTOMER_NUM": 20080,
+    "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 20080,
+    "CUSTOMER_NAME": "Raphael & Angel Liq (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15023,
+    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15023,
+    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 15023,
+    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15023,
     "CUSTOMER_NAME": "Santana's Sport(P)Bella"
@@ -1934,30 +1950,6 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15023,
     "CUSTOMER_NAME": "Santana's Sport(P)Bella"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15023,
-    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 15023,
-    "CUSTOMER_NAME": "Santana's Sport(P)Bella"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 13001,
-    "CUSTOMER_NAME": "Shop Rite Liq (A)Littlefl"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1980,32 +1972,8 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23004,
-    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
+    "CUSTOMER_NUM": 13001,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Littlefl"
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2017,6 +1985,38 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 23004,
+    "CUSTOMER_NAME": "Shop Rite Wines/Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -2025,8 +2025,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15059,
     "CUSTOMER_NAME": "Belmont Liqrs (P)"
@@ -2041,19 +2041,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 15059,
     "CUSTOMER_NAME": "Belmont Liqrs (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 21026,
-    "CUSTOMER_NAME": "C Town Supermarket(P)"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2065,8 +2057,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21026,
     "CUSTOMER_NAME": "C Town Supermarket(P)"
@@ -2081,16 +2073,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21026,
     "CUSTOMER_NAME": "C Town Supermarket(P)"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 21026,
+    "CUSTOMER_NAME": "C Town Supermarket(P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21026,
     "CUSTOMER_NAME": "C Town Supermarket(P)"
@@ -2113,14 +2113,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20056,
-    "CUSTOMER_NAME": "East Side Bar Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -2137,6 +2129,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 20056,
+    "CUSTOMER_NAME": "East Side Bar Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -2145,16 +2145,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy"
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy"
@@ -2177,8 +2177,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy"
@@ -2209,24 +2209,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20069,
-    "CUSTOMER_NAME": "Segundo's (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 20069,
-    "CUSTOMER_NAME": "Segundo's (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20069,
     "CUSTOMER_NAME": "Segundo's (P)"
@@ -2241,16 +2225,56 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 20069,
+    "CUSTOMER_NAME": "Segundo's (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 20069,
+    "CUSTOMER_NAME": "Segundo's (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 20069,
     "CUSTOMER_NAME": "Segundo's (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191302,
+    "CUSTOMER_NAME": "Liquor Factory I Landing"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191302,
+    "CUSTOMER_NAME": "Liquor Factory I Landing"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191302,
+    "CUSTOMER_NAME": "Liquor Factory I Landing"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 191302,
     "CUSTOMER_NAME": "Liquor Factory I Landing"
@@ -2273,48 +2297,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191302,
-    "CUSTOMER_NAME": "Liquor Factory I Landing"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191302,
-    "CUSTOMER_NAME": "Liquor Factory I Landing"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191302,
-    "CUSTOMER_NAME": "Liquor Factory I Landing"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191010,
-    "CUSTOMER_NAME": "Liquor Factory II Jefferson"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191010,
-    "CUSTOMER_NAME": "Liquor Factory II Jefferson"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 191010,
     "CUSTOMER_NAME": "Liquor Factory II Jefferson"
@@ -2337,6 +2321,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191010,
+    "CUSTOMER_NAME": "Liquor Factory II Jefferson"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191010,
+    "CUSTOMER_NAME": "Liquor Factory II Jefferson"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -2345,8 +2345,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 231215,
     "CUSTOMER_NAME": "Mac & Lindy's W & S (A)"
@@ -2361,14 +2361,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 231215,
     "CUSTOMER_NAME": "Mac & Lindy's W & S (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 231316,
+    "CUSTOMER_NAME": "Patricks Wine Barn"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -2377,16 +2385,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn"
@@ -2401,32 +2409,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 231316,
     "CUSTOMER_NAME": "Patricks Wine Barn"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 231316,
-    "CUSTOMER_NAME": "Patricks Wine Barn"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230427,
-    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830"
@@ -2449,8 +2441,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230427,
+    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830"
@@ -2465,8 +2465,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230905,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin"
@@ -2489,16 +2489,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230905,
-    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230905,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin"
@@ -2510,35 +2502,43 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230905,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230905,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Franklin"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230105,
-    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230105,
-    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230105,
-    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
@@ -2553,8 +2553,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta"
@@ -2593,24 +2593,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230911,
-    "CUSTOMER_NAME": "The Right Bottle"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230911,
-    "CUSTOMER_NAME": "The Right Bottle"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230911,
     "CUSTOMER_NAME": "The Right Bottle"
@@ -2625,8 +2609,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230911,
     "CUSTOMER_NAME": "The Right Bottle"
@@ -2636,8 +2620,16 @@
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230412,
-    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)"
+    "CUSTOMER_NUM": 230911,
+    "CUSTOMER_NAME": "The Right Bottle"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230911,
+    "CUSTOMER_NAME": "The Right Bottle"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2649,8 +2641,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230412,
+    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230412,
     "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)"
@@ -2665,8 +2665,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230412,
     "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)"
@@ -2681,16 +2681,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230441,
     "CUSTOMER_NAME": "Wine Country Newton"
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 230441,
+    "CUSTOMER_NAME": "Wine Country Newton"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230441,
     "CUSTOMER_NAME": "Wine Country Newton"
@@ -2705,14 +2713,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 230441,
-    "CUSTOMER_NAME": "Wine Country Newton"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -2721,11 +2721,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 230441,
     "CUSTOMER_NAME": "Wine Country Newton"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 24014,
+    "CUSTOMER_NAME": "Bottleneck Liquors"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2745,24 +2753,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24014,
-    "CUSTOMER_NAME": "Bottleneck Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24016,
-    "CUSTOMER_NAME": "Broad Liquors (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24016,
     "CUSTOMER_NAME": "Broad Liquors (A)"
@@ -2777,16 +2769,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24016,
     "CUSTOMER_NAME": "Broad Liquors (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24016,
     "CUSTOMER_NAME": "Broad Liquors (A)"
@@ -2804,21 +2796,13 @@
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 25008,
-    "CUSTOMER_NAME": "Clifton Commons S & W"
+    "CUSTOMER_NUM": 24016,
+    "CUSTOMER_NAME": "Broad Liquors (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 25008,
-    "CUSTOMER_NAME": "Clifton Commons S & W"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W"
@@ -2833,16 +2817,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 25008,
+    "CUSTOMER_NAME": "Clifton Commons S & W"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 25008,
+    "CUSTOMER_NAME": "Clifton Commons S & W"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W"
@@ -2905,16 +2905,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 13008,
-    "CUSTOMER_NAME": "Little Falls Liq(P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 13008,
     "CUSTOMER_NAME": "Little Falls Liq(P)"
@@ -2937,59 +2929,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 13008,
-    "CUSTOMER_NAME": "Little Falls Liq(P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 13008,
     "CUSTOMER_NAME": "Little Falls Liq(P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)"
+    "CUSTOMER_NUM": 13008,
+    "CUSTOMER_NAME": "Little Falls Liq(P)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)"
+    "CUSTOMER_NUM": 13008,
+    "CUSTOMER_NAME": "Little Falls Liq(P)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3004,21 +2964,45 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 29013,
-    "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 29013,
-    "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29013,
     "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
@@ -3041,8 +3025,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29013,
     "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
@@ -3052,8 +3036,16 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 13017,
-    "CUSTOMER_NAME": "On The Rocks"
+    "CUSTOMER_NUM": 29013,
+    "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 29013,
+    "CUSTOMER_NAME": "Lyndhurst Liquors (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3065,6 +3057,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 13017,
+    "CUSTOMER_NAME": "On The Rocks"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -3073,22 +3073,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 29009,
-    "CUSTOMER_NAME": "Quick Buy"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 29009,
-    "CUSTOMER_NAME": "Quick Buy"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -3105,14 +3089,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 29009,
-    "CUSTOMER_NAME": "Quick Buy"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -3121,8 +3097,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 29009,
+    "CUSTOMER_NAME": "Quick Buy"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 29009,
+    "CUSTOMER_NAME": "Quick Buy"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 29009,
+    "CUSTOMER_NAME": "Quick Buy"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24009,
     "CUSTOMER_NAME": "Quik Stop Conv(Z)"
@@ -3131,14 +3131,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24009,
-    "CUSTOMER_NAME": "Quik Stop Conv(Z)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24009,
     "CUSTOMER_NAME": "Quik Stop Conv(Z)"
@@ -3147,6 +3139,22 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 24009,
+    "CUSTOMER_NAME": "Quik Stop Conv(Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 24009,
+    "CUSTOMER_NAME": "Quik Stop Conv(Z)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24009,
     "CUSTOMER_NAME": "Quik Stop Conv(Z)"
@@ -3161,16 +3169,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24009,
-    "CUSTOMER_NAME": "Quik Stop Conv(Z)"
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 24017,
+    "CUSTOMER_NAME": "Rainbow Liquor (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 24017,
     "CUSTOMER_NAME": "Rainbow Liquor (P)"
@@ -3193,14 +3209,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24017,
-    "CUSTOMER_NAME": "Rainbow Liquor (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
@@ -3209,11 +3217,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24017,
-    "CUSTOMER_NAME": "Rainbow Liquor (P)"
+    "CUSTOMER_NUM": 24002,
+    "CUSTOMER_NAME": "Swizzle Stick Liq (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3233,6 +3241,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 24002,
+    "CUSTOMER_NAME": "Swizzle Stick Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -3241,19 +3257,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24002,
-    "CUSTOMER_NAME": "Swizzle Stick Liq (A)"
+    "CUSTOMER_NUM": 23002,
+    "CUSTOMER_NAME": "Valley Liquors (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 24002,
-    "CUSTOMER_NAME": "Swizzle Stick Liq (A)"
+    "CUSTOMER_NUM": 23002,
+    "CUSTOMER_NAME": "Valley Liquors (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3276,22 +3292,6 @@
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23002,
-    "CUSTOMER_NAME": "Valley Liquors (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 23002,
-    "CUSTOMER_NAME": "Valley Liquors (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29011,
     "CUSTOMER_NAME": "World of Wine & Liquor"
   },
@@ -3305,8 +3305,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29011,
     "CUSTOMER_NAME": "World of Wine & Liquor"
@@ -3321,16 +3321,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29011,
     "CUSTOMER_NAME": "World of Wine & Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 29011,
     "CUSTOMER_NAME": "World of Wine & Liquor"
@@ -3339,14 +3339,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191518,
-    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 191518,
     "CUSTOMER_NAME": "3 IN 1 LIQUORS INC"
@@ -3364,6 +3356,14 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191518,
+    "CUSTOMER_NAME": "3 IN 1 LIQUORS INC"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 190302,
     "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)"
   },
@@ -3377,8 +3377,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 190302,
+    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 190302,
     "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)"
@@ -3393,8 +3401,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 190302,
     "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)"
@@ -3404,8 +3412,16 @@
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)"
+    "CUSTOMER_NUM": 190913,
+    "CUSTOMER_NAME": "Main Street Liquor"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 190913,
+    "CUSTOMER_NAME": "Main Street Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3414,38 +3430,6 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 190913,
     "CUSTOMER_NAME": "Main Street Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 190913,
-    "CUSTOMER_NAME": "Main Street Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 190913,
-    "CUSTOMER_NAME": "Main Street Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191814,
-    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191814,
-    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3457,6 +3441,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -3465,8 +3457,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 191814,
     "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)"
@@ -3481,11 +3473,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 191710,
-    "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope"
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)"
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -3505,6 +3497,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 191710,
+    "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 190304,
+    "CUSTOMER_NAME": "Shoppers Disc Liquor"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
@@ -3521,22 +3529,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 190304,
-    "CUSTOMER_NAME": "Shoppers Disc Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 190907,
-    "CUSTOMER_NAME": "Wharton Liquor Store"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -3552,6 +3544,14 @@
     "CUSTOMER_NAME": "Wharton Liquor Store"
   },
   {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 190907,
+    "CUSTOMER_NAME": "Wharton Liquor Store"
+  },
+  {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
@@ -3561,16 +3561,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)"
@@ -3601,6 +3601,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37002,
+    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37002,
+    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -3617,22 +3633,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37002,
-    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37002,
-    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -3641,19 +3641,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37002,
-    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36016,
-    "CUSTOMER_NAME": "King Liquors"
+    "CUSTOMER_NUM": 37002,
+    "CUSTOMER_NAME": "Garfield Bar & Liq (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3665,16 +3657,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36016,
-    "CUSTOMER_NAME": "King Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36016,
     "CUSTOMER_NAME": "King Liquors"
@@ -3689,8 +3673,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 36016,
+    "CUSTOMER_NAME": "King Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 36016,
+    "CUSTOMER_NAME": "King Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36016,
     "CUSTOMER_NAME": "King Liquors"
@@ -3713,24 +3713,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 31004,
-    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 31004,
-    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 31004,
     "CUSTOMER_NAME": "Metro Liquors (East Rutherford)"
@@ -3745,8 +3729,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 31004,
+    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 31004,
+    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 37044,
     "CUSTOMER_NAME": "Riverview Liquors & Bar"
@@ -3769,8 +3769,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37044,
+    "CUSTOMER_NAME": "Riverview Liquors & Bar"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 37044,
     "CUSTOMER_NAME": "Riverview Liquors & Bar"
@@ -3788,8 +3796,8 @@
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37044,
-    "CUSTOMER_NAME": "Riverview Liquors & Bar"
+    "CUSTOMER_NUM": 36007,
+    "CUSTOMER_NAME": "Shop Rite Of Wallington"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3801,8 +3809,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington"
@@ -3811,6 +3819,14 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 36007,
+    "CUSTOMER_NAME": "Shop Rite Of Wallington"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington"
@@ -3822,46 +3838,6 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36007,
-    "CUSTOMER_NAME": "Shop Rite Of Wallington"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36007,
-    "CUSTOMER_NAME": "Shop Rite Of Wallington"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3881,8 +3857,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 36006,
+    "CUSTOMER_NAME": "Wallington Liquor and Wine"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 36006,
     "CUSTOMER_NAME": "Wallington Liquor and Wine"
@@ -3892,29 +3876,21 @@
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37068,
-    "CUSTOMER_NAME": "Whoopee Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37068,
-    "CUSTOMER_NAME": "Whoopee Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 37068,
-    "CUSTOMER_NAME": "Whoopee Liq (A)"
+    "CUSTOMER_NUM": 36006,
+    "CUSTOMER_NAME": "Wallington Liquor and Wine"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 36006,
+    "CUSTOMER_NAME": "Wallington Liquor and Wine"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 37068,
     "CUSTOMER_NAME": "Whoopee Liq (A)"
@@ -3929,8 +3905,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37068,
+    "CUSTOMER_NAME": "Whoopee Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 37068,
     "CUSTOMER_NAME": "Whoopee Liq (A)"
@@ -3940,6 +3924,22 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37068,
+    "CUSTOMER_NAME": "Whoopee Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 37068,
+    "CUSTOMER_NAME": "Whoopee Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People"
   },
@@ -3947,14 +3947,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 42004,
-    "CUSTOMER_NAME": "Wine And People"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People"
@@ -3969,6 +3961,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 42004,
+    "CUSTOMER_NAME": "Wine And People"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -3977,16 +3977,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)"
@@ -4009,16 +4009,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)"
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)"
@@ -4030,6 +4030,14 @@
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 32017,
     "CUSTOMER_NAME": "Wine Grand (Carlstadt)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 12005,
+    "CUSTOMER_NAME": "Shay's Liquors"
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
@@ -4041,14 +4049,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 12005,
-    "CUSTOMER_NAME": "Shay's Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -4057,8 +4057,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 11014,
     "CUSTOMER_NAME": "Wayne Liquor Locker"
@@ -4073,11 +4073,19 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 11014,
     "CUSTOMER_NAME": "Wayne Liquor Locker"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 12011,
+    "CUSTOMER_NAME": "Bottle King (A) Wayne"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4100,8 +4108,8 @@
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 12011,
-    "CUSTOMER_NAME": "Bottle King (A) Wayne"
+    "CUSTOMER_NUM": 19009,
+    "CUSTOMER_NAME": "Diamond Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -4115,14 +4123,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 19009,
-    "CUSTOMER_NAME": "Diamond Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 19009,
     "CUSTOMER_NAME": "Diamond Liquor"
@@ -4161,6 +4161,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 19027,
+    "CUSTOMER_NAME": "Goffle Road Wine and More"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -4177,8 +4185,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 19027,
     "CUSTOMER_NAME": "Goffle Road Wine and More"
@@ -4188,13 +4196,21 @@
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 19027,
-    "CUSTOMER_NAME": "Goffle Road Wine and More"
+    "CUSTOMER_NUM": 19008,
+    "CUSTOMER_NAME": "Hawthorne Liq (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 19008,
+    "CUSTOMER_NAME": "Hawthorne Liq (A)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 19008,
     "CUSTOMER_NAME": "Hawthorne Liq (A)"
@@ -4212,22 +4228,6 @@
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 19008,
-    "CUSTOMER_NAME": "Hawthorne Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 19008,
-    "CUSTOMER_NAME": "Hawthorne Liq (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 17011,
     "CUSTOMER_NAME": "Nico's Wine & Spirits"
   },
@@ -4241,16 +4241,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 17011,
-    "CUSTOMER_NAME": "Nico's Wine & Spirits"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 17011,
     "CUSTOMER_NAME": "Nico's Wine & Spirits"
@@ -4265,8 +4257,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 17011,
+    "CUSTOMER_NAME": "Nico's Wine & Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 17011,
     "CUSTOMER_NAME": "Nico's Wine & Spirits"
@@ -4305,6 +4305,30 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 27005,
+    "CUSTOMER_NAME": "#1 Liqrs (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 27005,
+    "CUSTOMER_NAME": "#1 Liqrs (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 27005,
+    "CUSTOMER_NAME": "#1 Liqrs (P)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -4313,8 +4337,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 27021,
     "CUSTOMER_NAME": "Johnny's Liqs (P)"
@@ -4329,22 +4353,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 27021,
     "CUSTOMER_NAME": "Johnny's Liqs (P)"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 27072,
-    "CUSTOMER_NAME": "Passaic Discount Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -4364,6 +4380,22 @@
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 27072,
+    "CUSTOMER_NAME": "Passaic Discount Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 26014,
+    "CUSTOMER_NAME": "Regalado Liq"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 26014,
     "CUSTOMER_NAME": "Regalado Liq"
   },
@@ -4371,14 +4403,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 26014,
-    "CUSTOMER_NAME": "Regalado Liq"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 26014,
     "CUSTOMER_NAME": "Regalado Liq"
@@ -4393,16 +4417,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 27066,
     "CUSTOMER_NAME": "Sunny's Liqs.(P)"
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 27066,
     "CUSTOMER_NAME": "Sunny's Liqs.(P)"
@@ -4417,19 +4441,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 27066,
     "CUSTOMER_NAME": "Sunny's Liqs.(P)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 83010,
-    "CUSTOMER_NAME": "Bottle King (A) Glen Rock"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4441,8 +4457,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 83010,
     "CUSTOMER_NAME": "Bottle King (A) Glen Rock"
@@ -4452,8 +4468,8 @@
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket"
+    "CUSTOMER_NUM": 83010,
+    "CUSTOMER_NAME": "Bottle King (A) Glen Rock"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4473,11 +4489,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace"
+    "CUSTOMER_NUM": 43001,
+    "CUSTOMER_NAME": "City Supermarket"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4497,14 +4513,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
@@ -4513,8 +4521,24 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 83001,
     "CUSTOMER_NAME": "Food Universe Marketplace"
@@ -4529,6 +4553,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 46019,
+    "CUSTOMER_NAME": "Palisades Wine And Liquor"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
@@ -4537,24 +4569,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 46019,
-    "CUSTOMER_NAME": "Palisades Wine And Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 46019,
-    "CUSTOMER_NAME": "Palisades Wine And Liquor"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 46019,
     "CUSTOMER_NAME": "Palisades Wine And Liquor"
@@ -4569,8 +4585,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 46019,
+    "CUSTOMER_NAME": "Palisades Wine And Liquor"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 80005,
     "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
@@ -4579,22 +4603,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 80005,
-    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 80005,
-    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 80005,
     "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
@@ -4620,13 +4628,37 @@
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 80005,
+    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 80005,
+    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 38018,
     "CUSTOMER_NAME": "THE BOTTLE SHOP"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 38018,
+    "CUSTOMER_NAME": "THE BOTTLE SHOP"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 38018,
     "CUSTOMER_NAME": "THE BOTTLE SHOP"
@@ -4641,6 +4673,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 38018,
+    "CUSTOMER_NAME": "THE BOTTLE SHOP"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -4649,19 +4689,11 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP"
+    "CUSTOMER_NUM": 47004,
+    "CUSTOMER_NAME": "Wides Deli & Liquor"
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4680,25 +4712,17 @@
     "CUSTOMER_NAME": "Wides Deli & Liquor"
   },
   {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 47004,
-    "CUSTOMER_NAME": "Wides Deli & Liquor"
-  },
-  {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 60001,
     "CUSTOMER_NAME": "Bottle King (A) Dumont"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 60001,
     "CUSTOMER_NAME": "Bottle King (A) Dumont"
@@ -4713,14 +4737,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 92011,
-    "CUSTOMER_NAME": "Bottle King (A) Ramsey"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
@@ -4729,6 +4745,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Bottle King (A) Ramsey"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
@@ -4737,14 +4761,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 71003,
-    "CUSTOMER_NAME": "Brand Bar & Bev (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
@@ -4755,14 +4771,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 71003,
-    "CUSTOMER_NAME": "Brand Bar & Bev (A)"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 71003,
     "CUSTOMER_NAME": "Brand Bar & Bev (A)"
@@ -4777,27 +4785,27 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 71003,
     "CUSTOMER_NAME": "Brand Bar & Bev (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 55001,
-    "CUSTOMER_NAME": "Coasters Liquors"
+    "CUSTOMER_NUM": 71003,
+    "CUSTOMER_NAME": "Brand Bar & Bev (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 55001,
-    "CUSTOMER_NAME": "Coasters Liquors"
+    "CUSTOMER_NUM": 71003,
+    "CUSTOMER_NAME": "Brand Bar & Bev (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4811,14 +4819,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 55001,
-    "CUSTOMER_NAME": "Coasters Liquors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 55001,
     "CUSTOMER_NAME": "Coasters Liquors"
@@ -4833,16 +4833,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)"
+    "CUSTOMER_NUM": 55001,
+    "CUSTOMER_NAME": "Coasters Liquors"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 55001,
+    "CUSTOMER_NAME": "Coasters Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 55001,
+    "CUSTOMER_NAME": "Coasters Liquors"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 62001,
     "CUSTOMER_NAME": "Garden State Deli (A)"
@@ -4857,8 +4873,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 62001,
     "CUSTOMER_NAME": "Garden State Deli (A)"
@@ -4881,24 +4897,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 70003,
-    "CUSTOMER_NAME": "Montvale Wines & Spirits"
+    "CUSTOMER_NUM": 62001,
+    "CUSTOMER_NAME": "Garden State Deli (A)"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83055",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 70003,
-    "CUSTOMER_NAME": "Montvale Wines & Spirits"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 70003,
     "CUSTOMER_NAME": "Montvale Wines & Spirits"
@@ -4913,8 +4921,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 70003,
+    "CUSTOMER_NAME": "Montvale Wines & Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83055",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 70003,
     "CUSTOMER_NAME": "Montvale Wines & Spirits"
@@ -4923,6 +4939,14 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83054",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 70003,
+    "CUSTOMER_NAME": "Montvale Wines & Spirits"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 70003,
     "CUSTOMER_NAME": "Montvale Wines & Spirits"
@@ -4961,8 +4985,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83052",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 67005,
+    "CUSTOMER_NAME": "Shoprite Liq (A)Northvle"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 67005,
     "CUSTOMER_NAME": "Shoprite Liq (A)Northvle"
@@ -4985,8 +5017,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Strawberry Rita 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83052",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 67005,
     "CUSTOMER_NAME": "Shoprite Liq (A)Northvle"
@@ -5001,24 +5033,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 67005,
-    "CUSTOMER_NAME": "Shoprite Liq (A)Northvle"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83051",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 74005,
-    "CUSTOMER_NAME": "Winemart Discount"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83053",
+    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83056",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 74005,
     "CUSTOMER_NAME": "Winemart Discount"
@@ -5033,16 +5049,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Blue Raspberry 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83056",
-    "BRAND_FAMILY": "Lytt",
-    "CUSTOMER_NUM": 74005,
-    "CUSTOMER_NAME": "Winemart Discount"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
-    "PRODUCT_NUM": "83054",
+    "PRODUCT_NAME": "Lytt Tropical Punch 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83051",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 74005,
     "CUSTOMER_NAME": "Winemart Discount"
@@ -5051,6 +5059,22 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "Lytt Grape 1/24/6.8 oz Btl",
     "PRODUCT_NUM": "83055",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 74005,
+    "CUSTOMER_NAME": "Winemart Discount"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Peach Mango 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83053",
+    "BRAND_FAMILY": "Lytt",
+    "CUSTOMER_NUM": 74005,
+    "CUSTOMER_NAME": "Winemart Discount"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "Lytt Long Island Iced Tea 1/24/6.8 oz Btl",
+    "PRODUCT_NUM": "83054",
     "BRAND_FAMILY": "Lytt",
     "CUSTOMER_NUM": 74005,
     "CUSTOMER_NAME": "Winemart Discount"

@@ -1291,12 +1291,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230412,
-    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 231308,
     "CUSTOMER_NAME": "Wantage Plaza Liq Outlet",
     "AREA": "Sussex"
@@ -2241,12 +2235,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 27043,
     "CUSTOMER_NAME": "Monroe Wine & Liq(P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 26014,
-    "CUSTOMER_NAME": "Regalado Liq",
     "AREA": "Passaic"
   },
   {

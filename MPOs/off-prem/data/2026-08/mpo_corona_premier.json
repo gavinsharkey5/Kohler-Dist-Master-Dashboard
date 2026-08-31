@@ -490,6 +490,16 @@
     "CASES": 1.0
   },
   {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 26014,
+    "CUSTOMER_NAME": "Regalado Liq",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 1.0
+  },
+  {
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NUM": "2449",
     "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
@@ -668,6 +678,16 @@
     "DATE": "2026-08-01",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 26.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NUM": "2449",
+    "PRODUCT_NAME": "Corona Premier 1/24/12 oz Loose Can",
+    "CUSTOMER_NUM": 230412,
+    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
+    "DATE": "2026-08-01",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 10.0
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",

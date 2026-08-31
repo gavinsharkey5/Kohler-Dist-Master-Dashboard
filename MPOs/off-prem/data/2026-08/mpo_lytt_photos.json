@@ -2,6 +2,39 @@
  {
   "REP": "Chris Payton",
   "SOURCE": "Display",
+  "CUSTOMER_NAME": "CLIFTON DISC LIQ (A)",
+  "CITY": "CLIFTON",
+  "BRAND": "LYTT PEACH MANGO",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/28/2026 10:42 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/d5c2e1b2-844a-43bd-a352-7faae26b89fc/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "CLIFTON DISC LIQ (A)",
+  "CITY": "CLIFTON",
+  "BRAND": "LYTT TROPICAL PUNCH",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/28/2026 10:42 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/d5c2e1b2-844a-43bd-a352-7faae26b89fc/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
+  "CUSTOMER_NAME": "CLIFTON DISC LIQ (A)",
+  "CITY": "CLIFTON",
+  "BRAND": "LYTT STRAWBERRY RITA",
+  "DETAIL": "24 PK",
+  "QUANTITY": 1,
+  "DATE": "08/28/2026 10:42 AM",
+  "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/displays/d5c2e1b2-844a-43bd-a352-7faae26b89fc/"
+ },
+ {
+  "REP": "Chris Payton",
+  "SOURCE": "Display",
   "CUSTOMER_NAME": "RIDGEFIELD DELI & LIQ",
   "CITY": "RIDGEFIELD PARK",
   "BRAND": "LYTT PEACH MANGO",

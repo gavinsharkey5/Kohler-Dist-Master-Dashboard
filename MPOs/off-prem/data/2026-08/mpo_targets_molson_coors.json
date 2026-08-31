@@ -4402,15 +4402,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 50020,
-    "CUSTOMER_NAME": "Wineland",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "123",
-    "PRODUCT_NAME": "Coors Banquet 1/12/24 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 34003,
     "CUSTOMER_NAME": "Yoshi Liq/Wine (P)",
     "AREA": "Bergen",
@@ -52714,15 +52705,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 89005,
-    "CUSTOMER_NAME": "Allendale Wine Shoppe",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "118",
-    "PRODUCT_NAME": "Coors Banquet 2/12/12 oz Can",
-    "BRAND_FAMILY": "Coors"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 87004,
     "CUSTOMER_NAME": "Garbo's Ital Deli&Liq(Z)",
     "AREA": "Bergen",
@@ -53823,15 +53805,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 95004,
     "CUSTOMER_NAME": "Franklin Lake Liq",
-    "AREA": "Bergen",
-    "PRODUCT_NUM": "7144",
-    "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
-    "BRAND_FAMILY": "Peroni"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 87004,
-    "CUSTOMER_NAME": "Garbo's Ital Deli&Liq(Z)",
     "AREA": "Bergen",
     "PRODUCT_NUM": "7144",
     "PRODUCT_NAME": "Peroni 4/6/11.2 oz Can",
