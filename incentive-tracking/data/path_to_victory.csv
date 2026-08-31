@@ -1,504 +1,628 @@
 Sales Rep Assigned,Customer Num,Customer Name,Product Num,Product Name,Product Type,Package,Brand Family,Date,Buyer Count   8/1/2026 - 9/30/2026,Placement Count   8/1/2026 - 9/30/2026,Units   8/1/2026 - 9/30/2026
-Alex Rodriguez,150012,Kings Super Markets,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Alex Rodriguez,150012,Kings Super Markets,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Alex Rodriguez,150012,Kings Super Markets,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Alex Rodriguez,150155,L Town Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Alex Rodriguez,150155,L Town Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
 Alex Rodriguez,150012,Kings Super Markets,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,171328,Kearny Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,10.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,5.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,170056,Golden Beer & Liquor,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Alisa Acciardi,150109,Kelly's Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Alisa Acciardi,150109,Kelly's Liquors,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Alisa Acciardi,170123,City Line Liquors (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,6.00
-Alisa Acciardi,170205,Buy-Rite Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Alisa Acciardi,150109,Kelly's Liquors,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
-Alisa Acciardi,150171,21 Plaza Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,3.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
-Alisa Acciardi,150109,Kelly's Liquors,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
-Alisa Acciardi,170101,High Spirits Of Bayonne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,4.00
-Alisa Acciardi,170205,Buy-Rite Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Alisa Acciardi,150400,Liquor City,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,4.00
-Alisa Acciardi,150152,Krauszer Food & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Alisa Acciardi,170056,Golden Beer & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Alisa Acciardi,170205,Buy-Rite Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Alisa Acciardi,150109,Kelly's Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Alisa Acciardi,170205,Buy-Rite Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Alisa Acciardi,170056,Golden Beer & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Alisa Acciardi,170123,City Line Liquors (P),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alex Rodriguez,150012,Kings Super Markets,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Alex Rodriguez,150155,L Town Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Alex Rodriguez,150012,Kings Super Markets,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Alex Rodriguez,150155,L Town Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
+Alex Rodriguez,150012,Kings Super Markets,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
 Alisa Acciardi,170210,Eddy's Wine & Liq,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,4.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Alisa Acciardi,150400,Liquor City,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,4.00
+Alisa Acciardi,170205,Buy-Rite Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Alisa Acciardi,150109,Kelly's Liquors,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Alisa Acciardi,171328,Kearny Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,10.00
+Alisa Acciardi,170056,Golden Beer & Liquor,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Alisa Acciardi,150400,Liquor City,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Alisa Acciardi,171001,Bridgeview Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Alisa Acciardi,170123,City Line Liquors (P),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Alisa Acciardi,150171,21 Plaza Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,3.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,4.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Alisa Acciardi,150109,Kelly's Liquors,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Alisa Acciardi,152040,Top Shelf Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Alisa Acciardi,171304,Sun Liquors & Grocery,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Alisa Acciardi,171304,Sun Liquors & Grocery,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Alisa Acciardi,150152,Krauszer Food & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
 Alisa Acciardi,150052,Bottle King Glen Ridge,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Alisa Acciardi,150052,Bottle King Glen Ridge,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Alisa Acciardi,150400,Liquor City,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Alisa Acciardi,150400,Liquor City,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Alisa Acciardi,150152,Krauszer Food & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
 Alisa Acciardi,150146,Bello's,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Alisa Acciardi,170205,Buy-Rite Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,5.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Alisa Acciardi,171304,Sun Liquors & Grocery,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Alisa Acciardi,170205,Buy-Rite Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Alisa Acciardi,150400,Liquor City,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Alisa Acciardi,170056,Golden Beer & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Alisa Acciardi,171304,Sun Liquors & Grocery,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Alisa Acciardi,150109,Kelly's Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,4.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,4.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Alisa Acciardi,150152,Krauszer Food & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Alisa Acciardi,170205,Buy-Rite Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
 Alisa Acciardi,150052,Bottle King Glen Ridge,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Alisa Acciardi,171001,Bridgeview Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,6.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,171001,Bridgeview Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Alisa Acciardi,170123,City Line Liquors (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Alisa Acciardi,150400,Liquor City,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,3.00
+Alisa Acciardi,150109,Kelly's Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
 Alisa Acciardi,170210,Eddy's Wine & Liq,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,4.00
+Alisa Acciardi,150152,Krauszer Food & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Alisa Acciardi,150109,Kelly's Liquors,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
+Alisa Acciardi,152040,Top Shelf Wine & Liquor,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Alisa Acciardi,170056,Golden Beer & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Alisa Acciardi,171312,Shop Rite Wine & Spirits Kearny,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Alisa Acciardi,150052,Bottle King Glen Ridge,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Alisa Acciardi,170101,High Spirits Of Bayonne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
 Allison Scott,12001,T Bowl Tavern (Z),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
 Allison Scott,17006,The Yard,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
+Anthony Palmisano,4009,Usa Wine Traders Club (Bloomingdale),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,4005,Turnpike Discount Liquors,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Anthony Palmisano,3001,Best Cellars (Wanaque),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Anthony Palmisano,2003,Ringwood W&L,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,8007,Krauszer's Liquor Wine and Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
+Anthony Palmisano,3001,Best Cellars (Wanaque),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Anthony Palmisano,4005,Turnpike Discount Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,4005,Turnpike Discount Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
+Anthony Palmisano,1015,Greenwood Lake Disc.(P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
+Anthony Palmisano,8010,George's Market (A),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
+Anthony Palmisano,3001,Best Cellars (Wanaque),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Anthony Palmisano,2003,Ringwood W&L,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
 Anthony Palmisano,1031,Highland Wine&Liquor Inc,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,5.00
 Anthony Palmisano,2003,Ringwood W&L,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
-Anthony Palmisano,3005,Usa Wine Traders (Wanaque),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Anthony Palmisano,2003,Ringwood W&L,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Anthony Palmisano,8007,Krauszer's Liquor Wine and Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
-Anthony Palmisano,4005,Turnpike Discount Liquors,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Anthony Palmisano,2003,Ringwood W&L,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
-Anthony Palmisano,4005,Turnpike Discount Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Anthony Palmisano,4005,Turnpike Discount Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
-Anthony Palmisano,4005,Turnpike Discount Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Anthony Palmisano,3001,Best Cellars (Wanaque),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
-Anthony Palmisano,3001,Best Cellars (Wanaque),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
 Anthony Palmisano,3005,Usa Wine Traders (Wanaque),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,1015,Greenwood Lake Disc.(P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
 Anthony Palmisano,3001,Best Cellars (Wanaque),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Anthony Palmisano,3005,Usa Wine Traders (Wanaque),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
 Anthony Palmisano,4009,Usa Wine Traders Club (Bloomingdale),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,4009,Usa Wine Traders Club (Bloomingdale),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Anthony Palmisano,8010,George's Market (A),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
-Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Anthony Palmisano,3001,Best Cellars (Wanaque),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Chris Payton,79002,Hollywd Liq&Deli (A),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Chris Payton,79002,Hollywd Liq&Deli (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Chris Payton,34009,The Wine Rack Hasbrouck Hts,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Chris Payton,50020,Wineland,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Chris Payton,47011,Ridgefield Deli & Liq,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Chris Payton,38021,Buy Rite Of Main St Lodi,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Chris Payton,34009,The Wine Rack Hasbrouck Hts,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Chris Payton,50020,Wineland,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Chris Payton,50020,Wineland,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,4.00
-Chris Payton,38019,Circle Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Chris Payton,79002,Hollywd Liq&Deli (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Chris Payton,38016,Lodi Liquor Store(P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,4.00
-Chris Payton,79002,Hollywd Liq&Deli (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Chris Payton,47011,Ridgefield Deli & Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Anthony Palmisano,4005,Turnpike Discount Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Anthony Palmisano,1012,Uncorked Wines & Spirits (West Milford),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/3/2026,1.00,1.00,2.00
 Chris Payton,50020,Wineland,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Chris Payton,34007,Liquor Masters (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Chris Payton,79002,Hollywd Liq&Deli (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Chris Payton,79002,Hollywd Liq&Deli (A),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Chris Payton,47011,Ridgefield Deli & Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Chris Payton,79002,Hollywd Liq&Deli (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Chris Payton,34009,The Wine Rack Hasbrouck Hts,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Chris Payton,50020,Wineland,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,4.00
+Chris Payton,50020,Wineland,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Chris Payton,38019,Circle Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Chris Payton,50020,Wineland,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Chris Payton,38021,Buy Rite Of Main St Lodi,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Chris Payton,38016,Lodi Liquor Store(P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,4.00
+Chris Payton,79002,Hollywd Liq&Deli (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Chris Payton,47011,Ridgefield Deli & Liq,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Chris Payton,34009,The Wine Rack Hasbrouck Hts,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Chris Payton,34007,Liquor Masters (P),11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Chris Payton,38019,Circle Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
 Chris Politano,31037,Delaware North Met Life Stadium,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,5.00
+Dan Lagala,43013,Buy Rite Of Fairview,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dan Lagala,48006,Andres Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,5.00
 Dan Lagala,43013,Buy Rite Of Fairview,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
 Dan Lagala,54007,Wine Ventures,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Dan Lagala,48006,Andres Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,5.00
-Dan Lagala,43013,Buy Rite Of Fairview,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Dave Ehlers,56007,Portland Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,5.00
-Dave Ehlers,58001,Total Wine & More (River Edge),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Dave Ehlers,52040,Burgundy Convenience Store,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Dave Ehlers,51012,Teaneck Liquors,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Dave Ehlers,40010,Hackensack Liquors,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Dave Ehlers,40010,Hackensack Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Dave Ehlers,51018,Teaneck Discount Liquor,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
-Dave Ehlers,41012,Deli Mart (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Dave Ehlers,41015,99 Ranch Market,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Dave Ehlers,58001,Total Wine & More (River Edge),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,3.00
-Dave Ehlers,40010,Hackensack Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Dave Ehlers,14007,Total Wine & More (Totowa),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Dave Ehlers,40010,Hackensack Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Dave Ehlers,40010,Hackensack Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11847,Victory Witty Monkey Citrus Wheat Ale 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Dave Ehlers,51012,Teaneck Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Dave Ehlers,51012,Teaneck Liquors,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Dave Ehlers,51012,Teaneck Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Dave Ehlers,14007,Total Wine & More (Totowa),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Dave Ehlers,57001,Barrel & Brew Bar & Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Dave Ehlers,41012,Deli Mart (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Dave Ehlers,14007,Total Wine & More (Totowa),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Dave Ehlers,40001,Bottle & Cork,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
 Dave Ehlers,14007,Total Wine & More (Totowa),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,5.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
-Dave Ehlers,58001,Total Wine & More (River Edge),11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Dave Ehlers,58001,Total Wine & More (River Edge),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Dave Ehlers,14007,Total Wine & More (Totowa),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Dave Ehlers,51012,Teaneck Liquors,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
 Dave Ehlers,41012,Deli Mart (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Dave Ehlers,40010,Hackensack Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dave Ehlers,56007,Portland Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,5.00
 Dave Ehlers,58001,Total Wine & More (River Edge),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Dave Ehlers,14007,Total Wine & More (Totowa),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
-Dave Ehlers,40010,Hackensack Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Dave Ehlers,52040,Burgundy Convenience Store,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Dave Ehlers,51012,Teaneck Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
+Dave Ehlers,40010,Hackensack Liquors,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dave Ehlers,52015,Shop Rite Liq (A)Englewd,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
+Dave Ehlers,14007,Total Wine & More (Totowa),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Dave Ehlers,41012,Deli Mart (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Dave Ehlers,52040,Burgundy Convenience Store,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Dave Ehlers,14007,Total Wine & More (Totowa),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Dave Ehlers,52015,Shop Rite Liq (A)Englewd,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
 Dave Ehlers,58001,Total Wine & More (River Edge),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/11/2026,1.00,1.00,3.00
-Derrick Laws,13001,Shop Rite Liq (A)Littlefl,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Dave Ehlers,57001,Barrel & Brew Bar & Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Dave Ehlers,51012,Teaneck Liquors,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Dave Ehlers,58001,Total Wine & More (River Edge),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Dave Ehlers,40010,Hackensack Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dave Ehlers,58001,Total Wine & More (River Edge),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),11847,Victory Witty Monkey Citrus Wheat Ale 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Dave Ehlers,58001,Total Wine & More (River Edge),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,3.00
+Dave Ehlers,41012,Deli Mart (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Dave Ehlers,14007,Total Wine & More (Totowa),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Dave Ehlers,41012,Deli Mart (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Dave Ehlers,40010,Hackensack Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Dave Ehlers,40010,Hackensack Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11847,Victory Witty Monkey Citrus Wheat Ale 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Dave Ehlers,51012,Teaneck Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Dave Ehlers,40001,Bottle & Cork,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/26/2026,1.00,1.00,3.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Dave Ehlers,40010,Hackensack Liquors,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Dave Ehlers,52004,Grand Liquor & Delicatesen,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Dave Ehlers,58001,Total Wine & More (River Edge),11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Dave Ehlers,51018,Teaneck Discount Liquor,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
+Dave Ehlers,52040,Burgundy Convenience Store,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Dave Ehlers,41015,99 Ranch Market,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Dave Ehlers,52015,Shop Rite Liq (A)Englewd,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,3.00
 Derrick Laws,13001,Shop Rite Liq (A)Littlefl,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Dylan Rubino,170046,Palisade Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Dylan Rubino,170057,New Town Liquors (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,3.00
-Dylan Rubino,170034,Metro Liquors (1212 Jersey City),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Dylan Rubino,170029,Hollywood Liqs (P),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Dylan Rubino,171405,Waterfront Wine & Liq(P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Dylan Rubino,170151,Cool Vines,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Dylan Rubino,170909,A2Z Wine Club,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,-1.00
-Dylan Rubino,178000,Wine Spot,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Dylan Rubino,170012,Wine Outlet,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Dylan Rubino,170212,Empire Liq (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Dylan Rubino,170046,Palisade Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Dylan Rubino,170046,Palisade Wine & Liquor,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Dylan Rubino,170151,Cool Vines,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Dylan Rubino,170364,Red Feast W & L (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/11/2026,1.00,1.00,5.00
-Dylan Rubino,170199,H & H Discount Liq (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Dylan Rubino,170063,Boulevard Mart & Liq (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
-Dylan Rubino,171405,Waterfront Wine & Liq(P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
-Dylan Rubino,170199,H & H Discount Liq (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,4.00
-Dylan Rubino,178000,Wine Spot,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Dylan Rubino,170212,Empire Liq (P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
-Dylan Rubino,170023,Corks & Bottles (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,5.00
-Dylan Rubino,170034,Metro Liquors (1212 Jersey City),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,5.00
-Dylan Rubino,170029,Hollywood Liqs (P),11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Dylan Rubino,178000,Wine Spot,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Dylan Rubino,179014,Krauszers (Secaucus),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
-Dylan Rubino,170013,Universal Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Dylan Rubino,170046,Palisade Wine & Liquor,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Dylan Rubino,170151,Cool Vines,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Dylan Rubino,178000,Wine Spot,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Dylan Rubino,170012,Wine Outlet,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,4.00
-Dylan Rubino,170046,Palisade Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Derrick Laws,13001,Shop Rite Liq (A)Littlefl,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Derrick Laws,13001,Shop Rite Liq (A)Littlefl,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
+Derrick Laws,13001,Shop Rite Liq (A)Littlefl,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,3.00
 Dylan Rubino,170088,Sip Discount Liq (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Dylan Rubino,171327,Bergenline Liquor (Z),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
-Dylan Rubino,170088,Sip Discount Liq (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
-Dylan Rubino,179014,Krauszers (Secaucus),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
 Dylan Rubino,170029,Hollywood Liqs (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Hakan Sadik,150633,Wine Warehouse (Newark),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Hakan Sadik,150173,Bloomfield Buyrite,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150182,Liquor Cave,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Hakan Sadik,150173,Bloomfield Buyrite,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150055,Bottle King Livingston,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Hakan Sadik,150173,Bloomfield Buyrite,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,152002,Home Wine & Liquor (224 Newark),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Hakan Sadik,150011,Kingdom Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
-Hakan Sadik,150055,Bottle King Livingston,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,5.00
-Hakan Sadik,152002,Home Wine & Liquor (224 Newark),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Hakan Sadik,150633,Wine Warehouse (Newark),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dylan Rubino,170151,Cool Vines,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Dylan Rubino,170088,Sip Discount Liq (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Dylan Rubino,170046,Palisade Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dylan Rubino,170909,A2Z Wine Club,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,-1.00
+Dylan Rubino,170191,Wine Warehouse (P) (Union City),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,4.00
+Dylan Rubino,170203,Town Beverage,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Dylan Rubino,170024,Manhatten Liquors,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dylan Rubino,170046,Palisade Wine & Liquor,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dylan Rubino,170212,Empire Liq (P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
+Dylan Rubino,170013,Universal Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Dylan Rubino,179014,Krauszers (Secaucus),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Dylan Rubino,170212,Empire Liq (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Dylan Rubino,170063,Boulevard Mart & Liq (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
+Dylan Rubino,170046,Palisade Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dylan Rubino,170151,Cool Vines,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Dylan Rubino,170364,Red Feast W & L (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/11/2026,1.00,1.00,5.00
+Dylan Rubino,170909,A2Z Wine Club,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,2.00
+Dylan Rubino,178000,Wine Spot,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Dylan Rubino,179014,Krauszers (Secaucus),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Dylan Rubino,179014,Krauszers (Secaucus),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Dylan Rubino,170203,Town Beverage,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Dylan Rubino,170012,Wine Outlet,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,4.00
+Dylan Rubino,170199,H & H Discount Liq (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,4.00
+Dylan Rubino,170013,Universal Liquors (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Dylan Rubino,170199,H & H Discount Liq (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Dylan Rubino,170029,Hollywood Liqs (P),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dylan Rubino,170023,Corks & Bottles (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,5.00
+Dylan Rubino,170029,Hollywood Liqs (P),11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Dylan Rubino,170057,New Town Liquors (P),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,3.00
+Dylan Rubino,170046,Palisade Wine & Liquor,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Dylan Rubino,170310,Buy & Savings Ii (P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,2.00
+Dylan Rubino,170261,Bela Wine & Spirits_2,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Dylan Rubino,171320,Figi Wine & Liq (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,3.00
+Dylan Rubino,170013,Universal Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
+Dylan Rubino,178020,STOP & GO LIQUORS,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dylan Rubino,171405,Waterfront Wine & Liq(P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Dylan Rubino,170151,Cool Vines,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Dylan Rubino,178000,Wine Spot,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Dylan Rubino,170310,Buy & Savings Ii (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dylan Rubino,171405,Waterfront Wine & Liq(P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Dylan Rubino,179014,Krauszers (Secaucus),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
+Dylan Rubino,170034,Metro Liquors (1212 Jersey City),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,5.00
+Dylan Rubino,178000,Wine Spot,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Dylan Rubino,170909,A2Z Wine Club,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,2.00
+Dylan Rubino,170310,Buy & Savings Ii (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,2.00
+Dylan Rubino,170046,Palisade Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Dylan Rubino,170034,Metro Liquors (1212 Jersey City),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Dylan Rubino,178000,Wine Spot,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Dylan Rubino,170203,Town Beverage,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Dylan Rubino,171320,Figi Wine & Liq (P),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dylan Rubino,170364,Red Feast W & L (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,5.00
+Dylan Rubino,171327,Bergenline Liquor (Z),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,3.00
+Dylan Rubino,171320,Figi Wine & Liq (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Dylan Rubino,170012,Wine Outlet,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Dylan Rubino,179014,Krauszers (Secaucus),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
 Hakan Sadik,150055,Bottle King Livingston,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Hakan Sadik,150173,Bloomfield Buyrite,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Hakan Sadik,150615,Home Liquors(1277 Irvington),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Hakan Sadik,150044,South Orange Fine Wine & Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
 Hakan Sadik,150055,Bottle King Livingston,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150145,Wine 2 Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Hakan Sadik,150132,Boot Leggers W/L,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,5.00
+Hakan Sadik,150173,Bloomfield Buyrite,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Hakan Sadik,150055,Bottle King Livingston,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
+Hakan Sadik,150172,Maple Check,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,152002,Home Wine & Liquor (224 Newark),11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Hakan Sadik,150654,Joe Canals,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Hakan Sadik,150615,Home Liquors(1277 Irvington),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Hakan Sadik,150044,South Orange Fine Wine & Spirits,11812,Victory Witty Monkey Citrus Wheat Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150011,Kingdom Liquors (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Hakan Sadik,150055,Bottle King Livingston,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150145,Wine 2 Spirits,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,152002,Home Wine & Liquor (224 Newark),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Hakan Sadik,150633,Wine Warehouse (Newark),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Hakan Sadik,150633,Wine Warehouse (Newark),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150055,Bottle King Livingston,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Hakan Sadik,150145,Wine 2 Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Hakan Sadik,150044,South Orange Fine Wine & Spirits,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Hakan Sadik,150044,South Orange Fine Wine & Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
+Hakan Sadik,150135,Home Liquors(520 East Orange),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,5.00
+Hakan Sadik,150182,Liquor Cave,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150182,Liquor Cave,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Hakan Sadik,150654,Joe Canals,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,152002,Home Wine & Liquor (224 Newark),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Hakan Sadik,150172,Maple Check,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150132,Boot Leggers W/L,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,5.00
+Hakan Sadik,150011,Kingdom Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
+Hakan Sadik,150633,Wine Warehouse (Newark),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Hakan Sadik,150182,Liquor Cave,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150145,Wine 2 Spirits,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,3.00
+Hakan Sadik,152002,Home Wine & Liquor (224 Newark),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
 Hakan Sadik,150654,Joe Canals,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Hakan Sadik,150615,Home Liquors(1277 Irvington),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Hakan Sadik,150633,Wine Warehouse (Newark),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150011,Kingdom Liquors (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Hakan Sadik,150172,Maple Check,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
 Hakan Sadik,150182,Liquor Cave,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
 Hakan Sadik,150173,Bloomfield Buyrite,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Hakan Sadik,150055,Bottle King Livingston,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Hakan Sadik,150172,Maple Check,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150044,South Orange Fine Wine & Spirits,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150044,South Orange Fine Wine & Spirits,11812,Victory Witty Monkey Citrus Wheat Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150182,Liquor Cave,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150011,Kingdom Liquors (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Hakan Sadik,150011,Kingdom Liquors (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,2.00
-Hakan Sadik,150654,Joe Canals,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
-Hakan Sadik,150173,Bloomfield Buyrite,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Hakan Sadik,150145,Wine 2 Spirits,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150055,Bottle King Livingston,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
-Hakan Sadik,150615,Home Liquors(1277 Irvington),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Hakan Sadik,150633,Wine Warehouse (Newark),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Hakan Sadik,150145,Wine 2 Spirits,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Hakan Sadik,150654,Joe Canals,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150135,Home Liquors(520 East Orange),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,5.00
-Hakan Sadik,150145,Wine 2 Spirits,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,152002,Home Wine & Liquor (224 Newark),11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
 Hakan Sadik,150089,Buy Rite Wine & Liquor,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Hakan Sadik,150172,Maple Check,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150044,South Orange Fine Wine & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Hakan Sadik,150172,Maple Check,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Hakan Sadik,150633,Wine Warehouse (Newark),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150055,Bottle King Livingston,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
-Hakan Sadik,152002,Home Wine & Liquor (224 Newark),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Hakan Sadik,150654,Joe Canals,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
-Hakan Sadik,150182,Liquor Cave,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Hakan Sadik,150055,Bottle King Livingston,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,5.00
+Hakan Sadik,150173,Bloomfield Buyrite,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
 Hakan Sadik,150182,Liquor Cave,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Hakan Sadik,150172,Maple Check,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Hakan Sadik,150089,Buy Rite Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Hakan Sadik,150055,Bottle King Livingston,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Hakan Sadik,150173,Bloomfield Buyrite,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Jaime Colonna,173031,Sparrow's Wine & Liq(P) (1224 Hoboken),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
-Jaime Colonna,170021,Jersey City Buy Rite (A),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Jaime Colonna,170220,Sprove Marketplace,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
+Hakan Sadik,150145,Wine 2 Spirits,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150172,Maple Check,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Hakan Sadik,150654,Joe Canals,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Hakan Sadik,150173,Bloomfield Buyrite,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Hakan Sadik,150173,Bloomfield Buyrite,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Hakan Sadik,150055,Bottle King Livingston,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Hakan Sadik,150145,Wine 2 Spirits,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Hakan Sadik,150089,Buy Rite Wine & Liquor,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Hakan Sadik,150044,South Orange Fine Wine & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Hakan Sadik,150055,Bottle King Livingston,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Jaime Colonna,172015,Daniels Wine And Liq,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
 Jaime Colonna,172015,Daniels Wine And Liq,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,172015,Daniels Wine And Liq,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Jaime Colonna,170036,Cork Wines & Spirits (Harrison),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Jaime Colonna,170021,Jersey City Buy Rite (A),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Jaime Colonna,170037,Willow Grocery Liq.,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Jaime Colonna,170179,Shop Rite/Metro Plaza,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
+Jaime Colonna,170255,Liquor House,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Jaime Colonna,170158,Sunset wine & spirits,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
 Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Jaime Colonna,170125,Hudson Vine (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,5.00
-Jaime Colonna,170068,Central Ave Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Jaime Colonna,170158,Sunset wine & spirits,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Jaime Colonna,173031,Sparrow's Wine & Liq(P) (1224 Hoboken),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
+Jaime Colonna,170255,Liquor House,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Jaime Colonna,170258,Village Wine & Liquors Ii,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Jaime Colonna,170468,The Ferryman On 1st,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,5.00
+Jaime Colonna,170037,Willow Grocery Liq.,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Jaime Colonna,170021,Jersey City Buy Rite (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Jaime Colonna,172015,Daniels Wine And Liq,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Jaime Colonna,172015,Daniels Wine And Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Jaime Colonna,17026,Wine Dad's Jersey City,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
+Jaime Colonna,170068,Central Ave Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Jaime Colonna,170021,Jersey City Buy Rite (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Jaime Colonna,170008,Zeppelin Hall (Z),11566,Victory Berry Monkey Fruited Sour Ale Keg 15.5BBL,Keg Beer,15.5 Gal Keg,Monkey Family,8/27/2026,1.00,1.00,1.00
+Jaime Colonna,173031,Sparrow's Wine & Liq(P) (1224 Hoboken),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Jaime Colonna,170220,Sprove Marketplace,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,3.00
 Jaime Colonna,170220,Sprove Marketplace,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,170179,Shop Rite/Metro Plaza,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
 Jaime Colonna,170021,Jersey City Buy Rite (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
 Jaime Colonna,170037,Willow Grocery Liq.,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Jaime Colonna,170179,Shop Rite/Metro Plaza,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
-Jaime Colonna,170220,Sprove Marketplace,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Jaime Colonna,170021,Jersey City Buy Rite (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Jaime Colonna,170008,Zeppelin Hall (Z),11566,Victory Berry Monkey Fruited Sour Ale Keg 15.5BBL,Keg Beer,15.5 Gal Keg,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,17026,Wine Dad's Jersey City,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
-Jaime Colonna,170220,Sprove Marketplace,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,170068,Central Ave Liquors,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Jaime Colonna,172015,Daniels Wine And Liq,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,170255,Liquor House,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
 Jaime Colonna,170132,Cork City Pub,4879,Victory Golden Monkey Belgian-Style Tripel 5.2 Gal Keg,Keg Beer,1/6 BBL Keg (5.2 Gal),Monkey Family,8/20/2026,1.00,1.00,1.00
-Jaime Colonna,170258,Village Wine & Liquors Ii,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Jaime Colonna,170255,Liquor House,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Jaime Colonna,170037,Willow Grocery Liq.,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Jaime Colonna,170036,Cork Wines & Spirits (Harrison),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
-Jaime Colonna,170021,Jersey City Buy Rite (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Jaime Colonna,170021,Jersey City Buy Rite (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Jaime Colonna,173031,Sparrow's Wine & Liq(P) (1224 Hoboken),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Jaime Colonna,17026,Wine Dad's Jersey City,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
-Jaime Colonna,170050,Acme Markets (Hoboken),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
 Jaime Colonna,173031,Sparrow's Wine & Liq(P) (1224 Hoboken),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Jaime Colonna,172015,Daniels Wine And Liq,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Jaime Colonna,170021,Jersey City Buy Rite (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Jaime Colonna,170179,Shop Rite/Metro Plaza,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
+Jaime Colonna,170068,Central Ave Liquors,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Jaime Colonna,170050,Acme Markets (Hoboken),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
+Jaime Colonna,170021,Jersey City Buy Rite (A),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
 Jaime Colonna,170255,Liquor House,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Jaime Colonna,170037,Willow Grocery Liq.,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Jaime Colonna,170021,Jersey City Buy Rite (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Jaime Colonna,170008,Zeppelin Hall (Z),11566,Victory Berry Monkey Fruited Sour Ale Keg 15.5BBL,Keg Beer,15.5 Gal Keg,Monkey Family,8/5/2026,1.00,1.00,2.00
+Jaime Colonna,170125,Hudson Vine (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,5.00
+Jaime Colonna,17026,Wine Dad's Jersey City,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
 Jaime Colonna,170282,The Hoboken Biergarten,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Jaime Colonna,170468,The Ferryman On 1st,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,5.00
+Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Jaime Colonna,170220,Sprove Marketplace,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Jaime Colonna,170220,Sprove Marketplace,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
+Jaime Colonna,170018,ShopRite Wines & Spirits of Hoboken,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
 Javier Melo,25012,Bottle Liquor (P),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Javier Melo,25012,Bottle Liquor (P),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
 Javier Melo,25012,Bottle Liquor (P),11847,Victory Witty Monkey Citrus Wheat Ale 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Jim Heaney,25008,Clifton Commons S & W,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Jim Heaney,25008,Clifton Commons S & W,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Jim Heaney,24005,Henry's Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,5.00
-Jim Heaney,25008,Clifton Commons S & W,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Jim Heaney,30005,Rutherford Wine (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Jim Heaney,28011,Liquor Mart (North Arlington),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Jim Heaney,28007,Metro Liquors (North Arlington),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
-Jim Heaney,24005,Henry's Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,5.00
+Javier Melo,25012,Bottle Liquor (P),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
+Jim Heaney,25008,Clifton Commons S & W,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
 Jim Heaney,25008,Clifton Commons S & W,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Jim Heaney,24005,Henry's Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/21/2026,1.00,1.00,5.00
+Jim Heaney,28011,Liquor Mart (North Arlington),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
+Jim Heaney,30005,Rutherford Wine (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Jim Heaney,25008,Clifton Commons S & W,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
 Jim Heaney,25008,Clifton Commons S & W,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
 Jim Heaney,25008,Clifton Commons S & W,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Jim Heaney,28007,Metro Liquors (North Arlington),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
+Jim Heaney,25008,Clifton Commons S & W,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
+Jim Heaney,28011,Liquor Mart (North Arlington),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Jim Heaney,24005,Henry's Liquors,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,5.00
+Jim Heaney,28011,Liquor Mart (North Arlington),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Jim Heaney,25008,Clifton Commons S & W,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
 Jim Heaney,25008,Clifton Commons S & W,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Jim Heaney,25008,Clifton Commons S & W,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Jim Heaney,28007,Metro Liquors (North Arlington),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,3.00
+Jim Heaney,25008,Clifton Commons S & W,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Jim Heaney,28007,Metro Liquors (North Arlington),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/7/2026,1.00,1.00,2.00
 John O'Donoghue,150031,Fairfield Wine Cellar,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
-John O'Donoghue,150031,Fairfield Wine Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
 John O'Donoghue,150031,Fairfield Wine Cellar,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Matt Powierski,36007,Shop Rite Of Wallington,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Matt Powierski,77009,M & M Wine & Spirits,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Matt Powierski,32017,Wine Grand (Carlstadt),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Matt Powierski,36007,Shop Rite Of Wallington,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Matt Powierski,36007,Shop Rite Of Wallington,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Matt Powierski,36007,Shop Rite Of Wallington,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Matt Powierski,32017,Wine Grand (Carlstadt),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+John O'Donoghue,150031,Fairfield Wine Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
 Matt Powierski,36007,Shop Rite Of Wallington,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Matt Powierski,36007,Shop Rite Of Wallington,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Matt Powierski,77009,M & M Wine & Spirits,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Matt Powierski,36007,Shop Rite Of Wallington,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Matt Powierski,37068,Whoopee Liq (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
 Matt Powierski,36007,Shop Rite Of Wallington,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Matt Powierski,36007,Shop Rite Of Wallington,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Matt Powierski,31060,Bottle Republic (Rutherford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
-Matt Powierski,77022,All Star Wine & Liquor,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Matt Powierski,32017,Wine Grand (Carlstadt),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
 Matt Powierski,31060,Bottle Republic (Rutherford),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Matt Powierski,32017,Wine Grand (Carlstadt),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Matt Powierski,37068,Whoopee Liq (A),11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
 Matt Powierski,32017,Wine Grand (Carlstadt),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,151023,Grove Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
-Michael Harboy,150053,Pilgrim Liquor,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
-Michael Harboy,151023,Grove Liquors,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Matt Powierski,77022,All Star Wine & Liquor,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Matt Powierski,32017,Wine Grand (Carlstadt),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Matt Powierski,37068,Whoopee Liq (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Matt Powierski,32017,Wine Grand (Carlstadt),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Matt Powierski,31060,Bottle Republic (Rutherford),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
+Matt Powierski,36007,Shop Rite Of Wallington,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Matt Powierski,37068,Whoopee Liq (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,1.00
+Matt Powierski,36007,Shop Rite Of Wallington,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Matt Powierski,36007,Shop Rite Of Wallington,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Michael Harboy,150004,Merit (P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Michael Harboy,150190,Quick Stop Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Michael Harboy,150040,Krauser's Liquor Locker,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,0.00
+Michael Harboy,150008,Total Wine & More (West Orange),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Michael Harboy,150248,The Wine Rack North Caldwell,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,4.00
+Michael Harboy,150190,Quick Stop Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Michael Harboy,150008,Total Wine & More (West Orange),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,4.00
 Michael Harboy,151023,Grove Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
+Michael Harboy,150248,The Wine Rack North Caldwell,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
+Michael Harboy,150008,Total Wine & More (West Orange),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Michael Harboy,150203,B & B Liquors (West Orange),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Michael Harboy,150005,The Bottle Stop (Caldwell),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,5.00
+Michael Harboy,150001,Verona Wine Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
+Michael Harboy,150008,Total Wine & More (West Orange),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,5.00
+Michael Harboy,150040,Krauser's Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Michael Harboy,150040,Krauser's Liquor Locker,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150053,Pilgrim Liquor,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Michael Harboy,11014,Wayne Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Michael Harboy,150040,Krauser's Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
+Michael Harboy,150008,Total Wine & More (West Orange),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
 Michael Harboy,150040,Krauser's Liquor Locker,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,-1.00
 Michael Harboy,201048,ShopRite of West Caldwell,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Michael Harboy,150040,Krauser's Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
-Michael Harboy,150005,The Bottle Stop (Caldwell),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/5/2026,1.00,1.00,5.00
-Michael Harboy,150203,B & B Liquors (West Orange),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Michael Harboy,150248,The Wine Rack North Caldwell,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Michael Harboy,150081,Lucky 7 Wine & Liq (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Michael Harboy,11014,Wayne Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Michael Harboy,150008,Total Wine & More (West Orange),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Michael Harboy,150190,Quick Stop Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Michael Harboy,150008,Total Wine & More (West Orange),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Michael Harboy,150040,Krauser's Liquor Locker,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150008,Total Wine & More (West Orange),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Michael Harboy,150190,Quick Stop Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
 Michael Harboy,201048,ShopRite of West Caldwell,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,3.00
-Michael Harboy,150008,Total Wine & More (West Orange),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
-Michael Harboy,150248,The Wine Rack North Caldwell,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,4.00
-Michael Harboy,150103,Jacks Supermarket,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,3.00
-Michael Harboy,150008,Total Wine & More (West Orange),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
-Michael Harboy,150040,Krauser's Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Michael Harboy,151023,Grove Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
+Michael Harboy,150081,Lucky 7 Wine & Liq (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Michael Harboy,150190,Quick Stop Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
 Michael Harboy,150040,Krauser's Liquor Locker,11812,Victory Witty Monkey Citrus Wheat Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150190,Quick Stop Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,2.00
+Michael Harboy,150248,The Wine Rack North Caldwell,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,5.00
+Michael Harboy,150008,Total Wine & More (West Orange),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,3.00
+Michael Harboy,150002,Shoprite Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,5.00
+Michael Harboy,150008,Total Wine & More (West Orange),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
+Michael Harboy,150040,Krauser's Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150103,Jacks Supermarket,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,3.00
+Michael Harboy,150004,Merit (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
+Michael Harboy,11014,Wayne Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Michael Harboy,151023,Grove Liquors,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Michael Harboy,150248,The Wine Rack North Caldwell,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Michael Harboy,150040,Krauser's Liquor Locker,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150008,Total Wine & More (West Orange),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Michael Harboy,150203,B & B Liquors (West Orange),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
 Michael Harboy,11014,Wayne Liquor Locker,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
 Michael Harboy,150190,Quick Stop Liquors,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Michael Harboy,150001,Verona Wine Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,2.00
-Michael Harboy,150248,The Wine Rack North Caldwell,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,3.00
-Michael Harboy,150040,Krauser's Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,150203,B & B Liquors (West Orange),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
-Michael Harboy,150053,Pilgrim Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,150008,Total Wine & More (West Orange),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,5.00
-Michael Harboy,150008,Total Wine & More (West Orange),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Michael Harboy,11014,Wayne Liquor Locker,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Michael Harboy,150190,Quick Stop Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Michael Harboy,150040,Krauser's Liquor Locker,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Michael Harboy,150002,Shoprite Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/12/2026,1.00,1.00,5.00
-Michael Harboy,150004,Merit (P),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
-Michael Harboy,150040,Krauser's Liquor Locker,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,0.00
-Michael Harboy,150008,Total Wine & More (West Orange),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Michael Harboy,150004,Merit (P),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,2.00
 Michael Harboy,150004,Merit (P),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/26/2026,1.00,1.00,4.00
-Michael Harboy,150248,The Wine Rack North Caldwell,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,5.00
-Michael Harboy,150008,Total Wine & More (West Orange),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Michael Harboy,150036,Romany Liquor Shop (A),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/28/2026,1.00,1.00,4.00
+Michael Harboy,150040,Krauser's Liquor Locker,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150008,Total Wine & More (West Orange),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Michael Harboy,150053,Pilgrim Liquor,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Michael Harboy,150040,Krauser's Liquor Locker,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Michael Harboy,150040,Krauser's Liquor Locker,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
+Mike Ast,17010,Frank's Fine Wine & Foods,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,5.00
+Mike Ast,84004,Quick Stop Liquor & Wine,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,3.00
+Mike Ast,19027,Goffle Road Wine and More,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,4.00
+Mike Ast,94001,Long Hill Liquors (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
+Mike Ast,12011,Bottle King (A) Wayne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Mike Ast,12011,Bottle King (A) Wayne,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,93006,Mahwah Wine & Liquor (A),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
+Mike Ast,12011,Bottle King (A) Wayne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Mike Ast,17010,Frank's Fine Wine & Foods,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Mike Ast,84004,Quick Stop Liquor & Wine,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Mike Ast,84010,Ridgewood Super Cellar,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Mike Ast,88005,Waldwick Wine/Spirits,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,4.00
+Mike Ast,12011,Bottle King (A) Wayne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,12011,Bottle King (A) Wayne,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Mike Ast,81006,Fair Lawn Wine & Spirits,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
 Mike Ast,17010,Frank's Fine Wine & Foods,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
 Mike Ast,18001,Grand Opening Liq (A)_2,4879,Victory Golden Monkey Belgian-Style Tripel 5.2 Gal Keg,Keg Beer,1/6 BBL Keg (5.2 Gal),Monkey Family,8/24/2026,1.00,1.00,2.00
-Mike Ast,81006,Fair Lawn Wine & Spirits,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
-Mike Ast,12011,Bottle King (A) Wayne,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Mike Ast,94001,Long Hill Liquors (A),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
-Mike Ast,88005,Waldwick Wine/Spirits,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
-Mike Ast,17010,Frank's Fine Wine & Foods,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Mike Ast,84015,The Office 2131 Ridgewood,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/20/2026,1.00,1.00,1.00
-Mike Ast,81006,Fair Lawn Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Mike Ast,12011,Bottle King (A) Wayne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Mike Ast,12011,Bottle King (A) Wayne,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Mike Ast,84010,Ridgewood Super Cellar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Mike Ast,88005,Waldwick Wine/Spirits,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,4.00
-Mike Ast,94001,Long Hill Liquors (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Mike Ast,84010,Ridgewood Super Cellar,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Mike Ast,12011,Bottle King (A) Wayne,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Mike Ast,18001,Grand Opening Liq (A)_2,4879,Victory Golden Monkey Belgian-Style Tripel 5.2 Gal Keg,Keg Beer,1/6 BBL Keg (5.2 Gal),Monkey Family,8/6/2026,1.00,1.00,2.00
-Mike Ast,17010,Frank's Fine Wine & Foods,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Mike Ast,17010,Frank's Fine Wine & Foods,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,5.00
-Mike Ast,84004,Quick Stop Liquor & Wine,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Mike Ast,17010,Frank's Fine Wine & Foods,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,84010,Ridgewood Super Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Mike Ast,88005,Waldwick Wine/Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
 Mike Ast,12011,Bottle King (A) Wayne,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Mike Ast,84004,Quick Stop Liquor & Wine,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,94001,Long Hill Liquors (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Mike Ast,94001,Long Hill Liquors (A),11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
+Mike Ast,81006,Fair Lawn Wine & Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Mike Ast,19027,Goffle Road Wine and More,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Mike Ast,88005,Waldwick Wine/Spirits,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
+Mike Ast,12011,Bottle King (A) Wayne,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Mike Ast,84010,Ridgewood Super Cellar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
 Mike Ast,12011,Bottle King (A) Wayne,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
 Mike Ast,17010,Frank's Fine Wine & Foods,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Mike Ast,94001,Long Hill Liquors (A),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,2.00
-Mike Ast,81006,Fair Lawn Wine & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Mike Ast,81006,Fair Lawn Wine & Spirits,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
-Mike Ast,88005,Waldwick Wine/Spirits,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
-Mike Ast,84010,Ridgewood Super Cellar,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Mike Ast,17010,Frank's Fine Wine & Foods,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
 Mike Ast,81006,Fair Lawn Wine & Spirits,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/3/2026,1.00,1.00,1.00
-Mike Ast,84004,Quick Stop Liquor & Wine,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
-Mike Ast,19027,Goffle Road Wine and More,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Mike Ast,12011,Bottle King (A) Wayne,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
-Mike Ast,19027,Goffle Road Wine and More,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,4.00
-Mike Ast,12011,Bottle King (A) Wayne,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
 Mike Ast,12011,Bottle King (A) Wayne,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
 Mike Ast,19008,Hawthorne Liq (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
-Mike Ast,12011,Bottle King (A) Wayne,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Nick Melissari,80018,Millers Paramus Ale House,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/25/2026,1.00,1.00,1.00
-Nick Melissari,93005,Mason Jar Restaurant,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/3/2026,1.00,1.00,0.00
-Nick Melissari,80062,Hampton Inn Paramus,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Nick Melissari,37034,Blackjack Mulligans(P) (Garfield),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Mike Ast,84004,Quick Stop Liquor & Wine,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,81006,Fair Lawn Wine & Spirits,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Mike Ast,17010,Frank's Fine Wine & Foods,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,84004,Quick Stop Liquor & Wine,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,2.00
+Mike Ast,18001,Grand Opening Liq (A)_2,4879,Victory Golden Monkey Belgian-Style Tripel 5.2 Gal Keg,Keg Beer,1/6 BBL Keg (5.2 Gal),Monkey Family,8/6/2026,1.00,1.00,2.00
+Mike Ast,81006,Fair Lawn Wine & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Mike Ast,12011,Bottle King (A) Wayne,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Mike Ast,17010,Frank's Fine Wine & Foods,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/31/2026,1.00,1.00,9.00
+Mike Ast,17010,Frank's Fine Wine & Foods,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Mike Ast,84015,The Office 2131 Ridgewood,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/20/2026,1.00,1.00,1.00
 Nick Melissari,79001,Victor's Maywood Inn,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/13/2026,1.00,1.00,1.00
+Nick Melissari,80018,Millers Paramus Ale House,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/25/2026,1.00,1.00,1.00
 Nick Melissari,31046,H Mart Inc (Space A101-A),11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/13/2026,1.00,1.00,1.00
+Nick Melissari,93005,Mason Jar Restaurant,4878,Victory Golden Monkey Belgian-Style Tripel Keg 15.5 Gal Keg,Keg Beer,15.5 Gal Keg,Monkey Family,8/3/2026,1.00,1.00,0.00
+Nick Melissari,37034,Blackjack Mulligans(P) (Garfield),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/14/2026,1.00,1.00,1.00
+Nick Melissari,80062,Hampton Inn Paramus,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
 Paul Mclaughlin,57004,River & Henley,4879,Victory Golden Monkey Belgian-Style Tripel 5.2 Gal Keg,Keg Beer,1/6 BBL Keg (5.2 Gal),Monkey Family,8/3/2026,1.00,1.00,0.00
-Phil Ernst,29004,Shop-Rite Liq Lyndhurst,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
-Phil Ernst,89007,Acme Markets (Allendale),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
-Phil Ernst,46019,Palisades Wine And Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Phil Ernst,49039,Acme Markets (Fort Lee),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Phil Ernst,80005,Shop Rite Liq (Paramus),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Phil Ernst,76021,Saddle Brook Liquor & Bar,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
-Phil Ernst,39001,Home Wines & Liq 75 (A) (South Hackensack),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,3.00
-Phil Ernst,80026,Stew Leonard's(A) Paramus Wine,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Phil Ernst,29004,Shop-Rite Liq Lyndhurst,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Phil Ernst,76021,Saddle Brook Liquor & Bar,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,3.00
-Phil Ernst,49039,Acme Markets (Fort Lee),11812,Victory Witty Monkey Citrus Wheat Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Phil Ernst,49039,Acme Markets (Fort Lee),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
-Phil Ernst,76021,Saddle Brook Liquor & Bar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Phil Ernst,46019,Palisades Wine And Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Phil Ernst,29004,Shop-Rite Liq Lyndhurst,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
-Phil Ernst,46019,Palisades Wine And Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Phil Ernst,49039,Acme Markets (Fort Lee),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Phil Ernst,76021,Saddle Brook Liquor & Bar,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
-Phil Ernst,25010,Stew Leonard's Wines & Spirits of Clifton,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Phil Ernst,46019,Palisades Wine And Liquor,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Phil Ernst,76021,Saddle Brook Liquor & Bar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
-Phil Ernst,80005,Shop Rite Liq (Paramus),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
-Phil Ernst,83010,Bottle King (A) Glen Rock,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Phil Ernst,80005,Shop Rite Liq (Paramus),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Phil Ernst,49039,Acme Markets (Fort Lee),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Phil Ernst,76006,Wine Country Of Saddle Brook (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
 Phil Ernst,39001,Home Wines & Liq 75 (A) (South Hackensack),11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,2.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Shane Barreca,67004,Beverage Barn (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,3.00
-Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
-Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,92008,Ramsey Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,4.00
-Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Phil Ernst,76021,Saddle Brook Liquor & Bar,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Phil Ernst,80005,Shop Rite Liq (Paramus),11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Phil Ernst,46019,Palisades Wine And Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Phil Ernst,76021,Saddle Brook Liquor & Bar,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Phil Ernst,76021,Saddle Brook Liquor & Bar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Phil Ernst,80041,PRIME WINE CELLAR Liquor & Beer,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,2.00
+Phil Ernst,29004,Shop-Rite Liq Lyndhurst,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Phil Ernst,39001,Home Wines & Liq 75 (A) (South Hackensack),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/10/2026,1.00,1.00,3.00
+Phil Ernst,49039,Acme Markets (Fort Lee),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Phil Ernst,76006,Wine Country Of Saddle Brook (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/11/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Phil Ernst,46019,Palisades Wine And Liquor,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Phil Ernst,49039,Acme Markets (Fort Lee),11812,Victory Witty Monkey Citrus Wheat Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Phil Ernst,49039,Acme Markets (Fort Lee),4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Phil Ernst,89007,Acme Markets (Allendale),4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/21/2026,1.00,1.00,1.00
+Phil Ernst,80005,Shop Rite Liq (Paramus),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Phil Ernst,80041,PRIME WINE CELLAR Liquor & Beer,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Phil Ernst,29004,Shop-Rite Liq Lyndhurst,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Phil Ernst,46019,Palisades Wine And Liquor,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,2.00
+Phil Ernst,80005,Shop Rite Liq (Paramus),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
+Phil Ernst,81014,Shop Rite Liq(A) Fair Lwn,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Phil Ernst,80026,Stew Leonard's(A) Paramus Wine,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Phil Ernst,80041,PRIME WINE CELLAR Liquor & Beer,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Phil Ernst,46019,Palisades Wine And Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Phil Ernst,83010,Bottle King (A) Glen Rock,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Phil Ernst,76021,Saddle Brook Liquor & Bar,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
+Phil Ernst,49039,Acme Markets (Fort Lee),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/7/2026,1.00,1.00,1.00
+Phil Ernst,76021,Saddle Brook Liquor & Bar,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,3.00
+Phil Ernst,29004,Shop-Rite Liq Lyndhurst,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Phil Ernst,49039,Acme Markets (Fort Lee),4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Phil Ernst,25010,Stew Leonard's Wines & Spirits of Clifton,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,2.00
+Shane Barreca,68002,Wine And Beverage Spirits,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
+Shane Barreca,92011,Bottle King (A) Ramsey,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
 Shane Barreca,67004,Beverage Barn (A),5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,7.00
-Shane Barreca,92011,Bottle King (A) Ramsey,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
 Shane Barreca,68002,Wine And Beverage Spirits,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,2.00
+Shane Barreca,92011,Bottle King (A) Ramsey,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,4.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Shane Barreca,74009,Westwood Wine and Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
+Shane Barreca,71006,Ridgemont Liquors (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
 Shane Barreca,71006,Ridgemont Liquors (A),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Shane Barreca,74009,Westwood Wine and Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
 Shane Barreca,60001,Bottle King (A) Dumont,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,2.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Shane Barreca,73003,Bottle King (A) Hillsdale,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Shane Barreca,92008,Ramsey Wine & Liquor,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,4.00
+Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
 Shane Barreca,60001,Bottle King (A) Dumont,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Shane Barreca,73003,Bottle King (A) Hillsdale,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,4.00
+Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/20/2026,1.00,1.00,3.00
+Shane Barreca,60001,Bottle King (A) Dumont,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/27/2026,1.00,1.00,3.00
 Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
+Shane Barreca,71006,Ridgemont Liquors (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/28/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Shane Barreca,92011,Bottle King (A) Ramsey,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Shane Barreca,60001,Bottle King (A) Dumont,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Shane Barreca,67004,Beverage Barn (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,3.00
 Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
 Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
-Shane Barreca,70003,Montvale Wines & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
-Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
-Shane Barreca,92011,Bottle King (A) Ramsey,11508,Victory Monkey Mixed Variety Pack 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,92011,Bottle King (A) Ramsey,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
-Shane Barreca,68002,Wine And Beverage Spirits,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/12/2026,1.00,1.00,3.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,4.00
-Shane Barreca,92011,Bottle King (A) Ramsey,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/6/2026,1.00,1.00,3.00
-Shane Barreca,60001,Bottle King (A) Dumont,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,74009,Westwood Wine and Liquors,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,3.00
-Shane Barreca,92011,Bottle King (A) Ramsey,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
-Shane Barreca,71006,Ridgemont Liquors (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/5/2026,1.00,1.00,2.00
-Shane Barreca,92011,Bottle King (A) Ramsey,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
-Shane Barreca,92008,Ramsey Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
-Shane Barreca,74009,Westwood Wine and Liquors,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/19/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
 Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/20/2026,1.00,1.00,-1.00
-Shane Barreca,70001,Montvale Wine/Liq & Beer,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,1.00
-Shane Barreca,73003,Bottle King (A) Hillsdale,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
-Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
-Shane Barreca,71003,Brand Bar & Bev (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,5.00
-Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,2.00
+Shane Barreca,60001,Bottle King (A) Dumont,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
 Shane Barreca,73008,Shop Rite Liq (A)Hillsdal,11586,Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/25/2026,1.00,1.00,1.00
-Shane Barreca,60001,Bottle King (A) Dumont,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/31/2026,1.00,1.00,1.00
+Shane Barreca,71003,Brand Bar & Bev (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,5.00
+Shane Barreca,92008,Ramsey Wine & Liquor,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/10/2026,1.00,1.00,1.00
+Shane Barreca,71003,Brand Bar & Bev (A),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/31/2026,1.00,1.00,5.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/17/2026,1.00,1.00,2.00
+Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/18/2026,1.00,1.00,1.00
+Shane Barreca,73003,Bottle King (A) Hillsdale,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Shane Barreca,73003,Bottle King (A) Hillsdale,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/13/2026,1.00,1.00,2.00
+Shane Barreca,62009,Gary's Wine & Marketplace (Closter),4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,2.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4914,Victory Golden Monkey Belgian-Style Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/27/2026,1.00,1.00,1.00
+Shane Barreca,70003,Montvale Wines & Spirits,11588,Victory Juicy Monkey Hazy Imperial IPA 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/12/2026,1.00,1.00,1.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4909,Victory Golden Monkey Belgian-Style Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/17/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,5094,Victory Sour Monkey Sour Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,4.00
+Shane Barreca,92011,Bottle King (A) Ramsey,4910,Victory Sour Monkey Sour Tripel 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/31/2026,1.00,1.00,19.00
+Shane Barreca,60001,Bottle King (A) Dumont,11634,Victory Berry Monkey Fruited Sour Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,11810,Victory Witty Monkey Citrus Wheat Ale 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/6/2026,1.00,1.00,1.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Shane Barreca,70001,Montvale Wine/Liq & Beer,4965,Victory Golden Monkey Belgian-Style Tripel 2/12/12 oz Can,Case Beer,2/12/12oz Can,Monkey Family,8/4/2026,1.00,1.00,2.00
+Shane Barreca,60001,Bottle King (A) Dumont,4919,Victory Sour Monkey Sour Tripel 4/6/12 oz Can,Case Beer,4/6/12oz Can,Monkey Family,8/20/2026,1.00,1.00,1.00
+Shane Barreca,60001,Bottle King (A) Dumont,11572,Victory Berry Monkey Fruited Sour Ale 1/15/19.2 oz Can,Case Beer,1/15/19.2oz Can,Monkey Family,8/24/2026,1.00,1.00,1.00
