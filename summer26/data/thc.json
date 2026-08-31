@@ -76,8 +76,8 @@
     "SUPPLIER": "Crescent Canna",
     "BRAND_FAMILY": "Crescent 9",
     "CASE_EQUIV_2025": 34,
-    "CASE_EQUIV_2026": 7,
-    "CASE_EQUIV_UNIT_DIFFERENCE": -27
+    "CASE_EQUIV_2026": 10,
+    "CASE_EQUIV_UNIT_DIFFERENCE": -24
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -308,8 +308,8 @@
     "SUPPLIER": "Delta Beverage LLC",
     "BRAND_FAMILY": "Delta",
     "CASE_EQUIV_2025": 178,
-    "CASE_EQUIV_2026": 209,
-    "CASE_EQUIV_UNIT_DIFFERENCE": 31
+    "CASE_EQUIV_2026": 219,
+    "CASE_EQUIV_UNIT_DIFFERENCE": 41
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
