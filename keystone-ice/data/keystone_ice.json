@@ -1,0 +1,323 @@
+{
+  "meta": {
+    "program": "Keystone Ice 24 oz Cans \u2014 September 2026",
+    "window": "8/1/2026 \u2013 9/30/2026",
+    "repLevel": false,
+    "houseBuyers": 54,
+    "houseBase": 486,
+    "houseQualifier": 194.4,
+    "houseBonus": 243.0,
+    "repCount": 18
+  },
+  "rewards": {
+    "perPlacement": 5,
+    "perPlacementBonus": 10,
+    "isellPerPhoto": 5,
+    "topPerformer": [
+      300,
+      150
+    ]
+  },
+  "reps": [
+    {
+      "rep": "Dan Lagala",
+      "base": 43,
+      "qualifier": 17.2,
+      "bonus": 21.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Jim Heaney",
+      "base": 43,
+      "qualifier": 17.2,
+      "bonus": 21.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Chris Payton",
+      "base": 40,
+      "qualifier": 16.0,
+      "bonus": 20.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Matt Powierski",
+      "base": 40,
+      "qualifier": 16.0,
+      "bonus": 20.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Dave Ehlers",
+      "base": 35,
+      "qualifier": 14.0,
+      "bonus": 17.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Jayson Romine",
+      "base": 35,
+      "qualifier": 14.0,
+      "bonus": 17.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Derrick Laws",
+      "base": 32,
+      "qualifier": 12.8,
+      "bonus": 16.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Mike Ast",
+      "base": 30,
+      "qualifier": 12.0,
+      "bonus": 15.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Javier Melo",
+      "base": 29,
+      "qualifier": 11.6,
+      "bonus": 14.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Shane Barreca",
+      "base": 29,
+      "qualifier": 11.6,
+      "bonus": 14.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Pablo Lopez",
+      "base": 28,
+      "qualifier": 11.2,
+      "bonus": 14.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "base": 27,
+      "qualifier": 10.8,
+      "bonus": 13.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Klejdi Lamo",
+      "base": 27,
+      "qualifier": 10.8,
+      "bonus": 13.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Phil Ernst",
+      "base": 27,
+      "qualifier": 10.8,
+      "bonus": 13.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Brian Sengebush",
+      "base": 6,
+      "qualifier": 2.4,
+      "bonus": 3.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "Michael Harboy",
+      "base": 6,
+      "qualifier": 2.4,
+      "bonus": 3.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "John O'Donoghue",
+      "base": 5,
+      "qualifier": 2.0,
+      "bonus": 2.5,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    },
+    {
+      "rep": "John Neukum",
+      "base": 4,
+      "qualifier": 1.6,
+      "bonus": 2.0,
+      "buyers": null,
+      "pct": null,
+      "qualified": null,
+      "bonusHit": null,
+      "payout": 0
+    }
+  ],
+  "daily": [
+    {
+      "date": "8/4/2026",
+      "buyers": 6,
+      "cases": 163.0
+    },
+    {
+      "date": "8/5/2026",
+      "buyers": 7,
+      "cases": 200.0
+    },
+    {
+      "date": "8/6/2026",
+      "buyers": 3,
+      "cases": 65.0
+    },
+    {
+      "date": "8/7/2026",
+      "buyers": 4,
+      "cases": 95.0
+    },
+    {
+      "date": "8/10/2026",
+      "buyers": 3,
+      "cases": 20.0
+    },
+    {
+      "date": "8/11/2026",
+      "buyers": 1,
+      "cases": 30.0
+    },
+    {
+      "date": "8/12/2026",
+      "buyers": 1,
+      "cases": 3.0
+    },
+    {
+      "date": "8/13/2026",
+      "buyers": 5,
+      "cases": 62.0
+    },
+    {
+      "date": "8/14/2026",
+      "buyers": 2,
+      "cases": 7.0
+    },
+    {
+      "date": "8/17/2026",
+      "buyers": 2,
+      "cases": 6.0
+    },
+    {
+      "date": "8/18/2026",
+      "buyers": 3,
+      "cases": 11.0
+    },
+    {
+      "date": "8/19/2026",
+      "buyers": 1,
+      "cases": 2.0
+    },
+    {
+      "date": "8/21/2026",
+      "buyers": 2,
+      "cases": 10.0
+    },
+    {
+      "date": "8/24/2026",
+      "buyers": 3,
+      "cases": 4.0
+    },
+    {
+      "date": "8/25/2026",
+      "buyers": 3,
+      "cases": 12.0
+    },
+    {
+      "date": "8/26/2026",
+      "buyers": 1,
+      "cases": 3.0
+    },
+    {
+      "date": "8/27/2026",
+      "buyers": 3,
+      "cases": 8.0
+    },
+    {
+      "date": "8/28/2026",
+      "buyers": 4,
+      "cases": 14.0
+    },
+    {
+      "date": "8/31/2026",
+      "buyers": 2,
+      "cases": 2.0
+    },
+    {
+      "date": "9/1/2026",
+      "buyers": 6,
+      "cases": 13.0
+    }
+  ]
+}

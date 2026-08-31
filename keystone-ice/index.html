@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keystone Ice 24 oz Rewards — September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#0C0D11; --card:#15171E; --card2:#1B1E27; --ink:#F4F5F7; --ink-soft:#9097A6;
+  --line:#262A35; --line-soft:#1F222B;
+  --accent:#29A3DC; --accent2:#1B6FA0;        /* Keystone Ice blue */
+  --lime:#8CBF3F; --lime-soft:#1E2A12;        /* program slide green */
+  --gold:#E8C45A; --gold-soft:#332B12;
+  --green:#37C46B; --green-soft:#15301E;
+  --red:#E0603E; --red-soft:#33170F;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 44px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.45;
+  -webkit-tap-highlight-color:transparent}
+.num{font-family:"Space Grotesk",sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+a{color:inherit;text-decoration:none}
+
+.gx-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.gx-head::before{content:"";position:absolute;inset:-40% -10% auto;height:260px;
+  background:radial-gradient(60% 100% at 50% 0,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%);pointer-events:none}
+.gx-head .wrap{position:relative;padding:24px 16px 18px}
+.crumb{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.crumb a:hover{color:var(--accent)}
+.eyebrow{font-family:"Space Grotesk";letter-spacing:.16em;text-transform:uppercase;font-size:11px;font-weight:600;
+  color:var(--accent);margin:0 0 9px;display:flex;align-items:center;gap:8px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(26px,4vw,36px);margin:0 0 8px}
+.lede{color:var(--ink-soft);font-size:14.5px;max-width:820px;margin:0}
+.updated{color:var(--ink-soft);font-size:12px;margin-top:12px;display:flex;align-items:center;gap:7px}
+.livedot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+
+main{max-width:1200px;margin:20px auto 60px;padding:0 16px}
+
+.notice{background:color-mix(in srgb,var(--gold) 9%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 34%,transparent);
+  border-radius:12px;padding:13px 16px;margin:0 0 18px;font-size:13.5px;color:var(--ink);line-height:1.55}
+.notice b{color:var(--gold)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat-label{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.stat-val{font-family:"Space Grotesk";font-size:24px;font-weight:700}
+.stat-val.accent{color:var(--accent)}
+.stat-sub{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+.panel-head{padding:15px 18px 0}
+.panel-title{font-family:"Space Grotesk";font-size:15px;font-weight:700;margin:0 0 3px}
+.panel-sub{font-size:12.5px;color:var(--ink-soft);margin:0 0 13px}
+.panel-body{padding:0 18px 18px}
+
+/* house progress */
+.track{position:relative;height:30px;border-radius:8px;background:var(--card2);overflow:hidden;border:1px solid var(--line-soft)}
+.fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:8px 0 0 8px}
+.marker{position:absolute;top:0;bottom:0;width:2px;background:var(--ink-soft);opacity:.85}
+.marker.bonus{background:var(--lime)}
+.marker-labels{position:relative;height:32px;margin-top:6px;font-size:11px;color:var(--ink-soft)}
+.marker-lab{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;line-height:1.3}
+.marker-lab b{display:block;font-family:"Space Grotesk";color:var(--ink);font-size:12px}
+.marker-lab.bonus b{color:var(--lime)}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.rule{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+.rule-k{font-size:10.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:5px}
+.rule-v{font-family:"Space Grotesk";font-size:19px;font-weight:700;margin-bottom:3px}
+.rule-d{font-size:12px;color:var(--ink-soft);line-height:1.45}
+
+/* table */
+.table-scroll{overflow-x:auto}
+table{width:100%;min-width:760px;border-collapse:collapse;font-size:13px}
+thead th{position:sticky;top:0;background:#191B23;text-align:left;padding:9px 11px;font-size:10px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--ink-soft);border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;z-index:2}
+thead th:hover{color:var(--accent)}
+thead th.sorted::after{content:" \25BE";color:var(--accent)}
+thead th.sorted-asc::after{content:" \25B4";color:var(--accent)}
+tbody td{padding:9px 11px;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+tbody tr:hover{background:#191B23}
+.num-cell{text-align:right;font-variant-numeric:tabular-nums;font-family:"Space Grotesk"}
+.pending{color:var(--ink-soft);font-style:italic}
+.status-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.status-badge.bonus{background:var(--lime-soft);color:var(--lime)}
+.status-badge.qual{background:var(--green-soft);color:var(--green)}
+.status-badge.short{background:var(--red-soft);color:var(--red)}
+.status-badge.wait{background:var(--card2);color:var(--ink-soft)}
+.minibar{display:block;height:6px;width:74px;border-radius:4px;background:var(--line-soft);overflow:hidden;margin-top:5px}
+.minibar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+
+/* chart */
+figure{margin:0}
+.chart{width:100%;height:210px;display:block;overflow:visible}
+.chart .bar{fill:var(--accent);rx:3}
+.chart .bar:hover{fill:var(--lime)}
+.chart .axis{stroke:var(--line);stroke-width:1}
+.chart .tick{fill:var(--ink-soft);font-size:10px;font-family:"Inter"}
+.chart .vlab{fill:var(--ink);font-size:10.5px;font-family:"Space Grotesk";font-weight:600}
+.tip{position:fixed;pointer-events:none;background:#0A0B0F;border:1px solid var(--line);border-radius:8px;
+  padding:7px 10px;font-size:12px;box-shadow:var(--shadow);opacity:0;transition:opacity .1s;z-index:50}
+.tip b{font-family:"Space Grotesk"}
+
+footer{max-width:1200px;margin:0 auto 60px;padding:0 16px;color:var(--ink-soft);font-size:12.5px;line-height:1.65}
+footer p{margin:0 0 8px}
+footer b{color:var(--ink)}
+::-webkit-scrollbar{height:8px;width:8px}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+@media(max-width:620px){ .stat-val{font-size:20px} }
+</style>
+</head>
+<body>
+
+<div class="gx-head">
+  <div class="wrap">
+    <div class="crumb"><a href="../index.html">← Kohler Distributing</a></div>
+    <p class="eyebrow"><span class="dot"></span> Molson Coors · Off-Premise</p>
+    <h1>Keystone Ice 24 oz Rewards</h1>
+    <p class="lede">September 2026 program — every rep's off-premise distribution goal, both reward tiers, and where
+      the house stands. Scored on <b>buyer count</b> (distinct off-premise accounts carrying Keystone Ice 24 oz);
+      all placements made in August count toward the qualifier.</p>
+    <p class="updated" id="updated"></p>
+  </div>
+</div>
+
+<main>
+  <div id="notice"></div>
+  <div class="stats" id="stats"></div>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">House progress to the qualifier</h2>
+      <p class="panel-sub" id="houseSub"></p>
+    </div>
+    <div class="panel-body">
+      <div class="track" id="track"></div>
+      <div class="marker-labels" id="markerLabels"></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">How the program pays</h2>
+      <p class="panel-sub">Straight off Kohler's September 2026 one-pager — these figures aren't derived from any export.</p>
+    </div>
+    <div class="panel-body"><div class="rules" id="rules"></div></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">Goals by rep</h2>
+      <p class="panel-sub" id="repSub"></p>
+    </div>
+    <div class="table-scroll">
+      <table id="repTable">
+        <thead><tr>
+          <th data-k="rep">Rep</th>
+          <th data-k="base" class="num-cell">2026 Buyer Base</th>
+          <th data-k="qualifier" class="num-cell">Qualifier · 40%</th>
+          <th data-k="bonus" class="num-cell">Bonus Goal · 50%</th>
+          <th data-k="buyers" class="num-cell">Keystone Ice Buyers</th>
+          <th data-k="pct" class="num-cell">% of Base</th>
+          <th data-k="status">Status</th>
+          <th data-k="payout" class="num-cell">Projected $</th>
+        </tr></thead>
+        <tbody id="repBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 class="panel-title">Keystone Ice 24 oz buying accounts, by day</h2>
+      <p class="panel-sub" id="chartSub"></p>
+    </div>
+    <div class="panel-body">
+      <figure><svg class="chart" id="chart" role="img" aria-label="Distinct off-premise accounts buying Keystone Ice 24 oz each day"></svg></figure>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>Buyer count is distinct accounts, not transactions.</b> The daily bars above show how many accounts bought
+      on each day — an account buying twice in the window appears on both days, so the bars deliberately do not sum
+      to the house total. The house figure is the export's own distinct-account total for the window.</p>
+    <p><b>Cases are excluded on purpose.</b> The qualifier, the bonus and both top-performer awards are all scored on
+      buyer count, so the cases column in the source export is carried through unused.</p>
+    <p><b>Both goal sets ship from Kohler's workbook</b> rather than being recomputed here — Qualifier is 40% of a rep's
+      2026 off-premise buyer base and Bonus Goal is 50%, on every row of the file as issued.</p>
+  </footer>
+</main>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const money = n => "$" + Math.round(n).toLocaleString();
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const n1 = n => (Math.round(n * 10) / 10).toLocaleString(undefined, {maximumFractionDigits:1});
+let DATA = null, sortKey = "pct", sortAsc = false;
+
+async function boot(){
+  const cb = "?t=" + Date.now();
+  try{
+    const r = await fetch("data/keystone_ice.json" + cb, {cache:"no-store"});
+    if(!r.ok) throw new Error("no data");
+    DATA = await r.json();
+  }catch(e){
+    $("#notice").innerHTML = '<div class="notice">Couldn\'t load <code>data/keystone_ice.json</code> — run <code>python3 generate.py</code> in this folder and push.</div>';
+    return;
+  }
+  try{
+    const rm = await fetch("data/sync_meta.json" + cb, {cache:"no-store"});
+    if(rm.ok){
+      const m = await rm.json();
+      if(m.synced_at) $("#updated").innerHTML = '<span class="livedot"></span> Data refreshed ' +
+        new Date(m.synced_at).toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"});
+    }
+  }catch(e){}
+  render();
+}
+
+function render(){
+  const m = DATA.meta, R = DATA.rewards;
+
+  if(!m.repLevel){
+    $("#notice").innerHTML = '<div class="notice"><b>Rep-level progress is awaiting one more export.</b> ' +
+      'The Comparison export loaded here has no <i>Sales Rep Assigned</i> column, so Keystone Ice buyers can only be ' +
+      'counted house-wide (' + m.houseBuyers + ' accounts). Goals for all ' + m.repCount + ' reps are live below. ' +
+      'Re-pull the same Comparison report with <i>Sales Rep Assigned</i> and a <i>Customer</i> column added, save it ' +
+      'over <code>actuals.csv</code>, rerun <code>generate.py</code>, and every rep row fills in automatically.</div>';
+  }
+
+  const pctToQual = m.houseBuyers != null ? m.houseBuyers / m.houseQualifier * 100 : null;
+  $("#stats").innerHTML = [
+    ["Keystone Ice buyers", m.houseBuyers != null ? m.houseBuyers : "—", "distinct off-premise accounts, house-wide", true],
+    ["House qualifier", n1(m.houseQualifier), "40% of a " + m.houseBase + "-account base", false],
+    ["House bonus goal", n1(m.houseBonus), "50% of that same base", false],
+    ["To the qualifier", pctToQual != null ? n1(pctToQual) + "%" : "—",
+      m.houseBuyers != null ? n1(m.houseQualifier - m.houseBuyers) + " more accounts needed" : "", false],
+    ["Reps with goals", m.repCount, "from Kohler's goals workbook", false],
+  ].map(([l,v,s,a]) => '<div class="stat"><div class="stat-label">' + l + '</div>' +
+      '<div class="stat-val' + (a ? " accent" : "") + '">' + v + '</div>' +
+      '<div class="stat-sub">' + s + '</div></div>').join("");
+
+  // House bar is scaled to the BONUS goal so both thresholds sit on one axis.
+  const span = m.houseBonus;
+  const pctOf = v => Math.max(0, Math.min(100, v / span * 100));
+  $("#houseSub").textContent = "Every rep's goal added together — " + m.houseBuyers +
+    " of the " + n1(m.houseQualifier) + " accounts needed for a full-house qualifier, " +
+    n1(m.houseBonus) + " for a full-house bonus. Window " + m.window + ".";
+  $("#track").innerHTML = '<div class="fill" style="width:' + pctOf(m.houseBuyers) + '%"></div>' +
+    '<div class="marker" style="left:' + pctOf(m.houseQualifier) + '%"></div>' +
+    '<div class="marker bonus" style="left:calc(' + pctOf(m.houseBonus) + '% - 2px)"></div>';
+  $("#markerLabels").innerHTML =
+    '<span class="marker-lab" style="left:' + pctOf(m.houseBuyers) + '%"><b>' + m.houseBuyers + '</b>today</span>' +
+    '<span class="marker-lab" style="left:' + pctOf(m.houseQualifier) + '%"><b>' + n1(m.houseQualifier) + '</b>qualifier</span>' +
+    '<span class="marker-lab bonus" style="left:calc(' + pctOf(m.houseBonus) + '% - 26px)"><b>' + n1(m.houseBonus) + '</b>bonus</span>';
+
+  $("#rules").innerHTML = [
+    ["Qualifier", "40% of base", "A rep must reach their own off-premise distribution goal. All August placements count."],
+    ["Reward", money(R.perPlacement) + " / placement", "Paid on every off-premise Keystone Ice 24 oz placement once qualified."],
+    ["Bonus", money(R.perPlacementBonus) + " / placement", "Hit the 50% bonus goal and every placement pays double instead."],
+    ["iSell Beer bonus", money(R.isellPerPhoto) + " / photo", "Per cooler-door picture submitted — must sit next to Busch or Bud Ice, priced at or below them, with the cooler door sticker."],
+    ["Top performer", money(R.topPerformer[0]) + " / " + money(R.topPerformer[1]), "Highest and second-highest off-premise distribution percentage."],
+  ].map(([k,v,d]) => '<div class="rule"><div class="rule-k">' + k + '</div><div class="rule-v">' + v + '</div>' +
+      '<div class="rule-d">' + d + '</div></div>').join("");
+
+  $("#repSub").textContent = DATA.meta.repLevel
+    ? "Sorted by percentage of each rep's own account base — the measure the $300 / $150 top-performer awards are decided on."
+    : "Both goal tiers, live from Kohler's workbook. Buyer, percentage and payout columns fill in once the rep-level export lands.";
+  renderTable();
+  renderChart();
+}
+
+function renderTable(){
+  const rows = DATA.reps.slice().sort((a,b) => {
+    const av = a[sortKey], bv = b[sortKey];
+    if(sortKey === "rep") return sortAsc ? a.rep.localeCompare(b.rep) : b.rep.localeCompare(a.rep);
+    if(sortKey === "status"){
+      const rank = r => r.buyers == null ? -1 : (r.bonusHit ? 3 : r.qualified ? 2 : 1);
+      return sortAsc ? rank(a) - rank(b) : rank(b) - rank(a);
+    }
+    const an = av == null ? -1 : av, bn = bv == null ? -1 : bv;
+    return sortAsc ? an - bn : bn - an;
+  });
+  $("#repBody").innerHTML = rows.map(r => {
+    const pend = '<span class="pending">awaiting data</span>';
+    let status, pct, buyers, payout;
+    if(r.buyers == null){
+      status = '<span class="status-badge wait">Awaiting data</span>';
+      pct = pend; buyers = pend; payout = pend;
+    }else{
+      status = r.bonusHit ? '<span class="status-badge bonus">Bonus hit</span>'
+             : r.qualified ? '<span class="status-badge qual">Qualified</span>'
+             : '<span class="status-badge short">' + n1(r.qualifier - r.buyers) + ' short</span>';
+      buyers = '<b class="num">' + r.buyers + '</b>';
+      pct = '<b class="num">' + n1(r.pct) + '%</b><span class="minibar"><i style="width:' +
+            Math.min(100, r.pct / 50 * 100) + '%"></i></span>';
+      payout = '<b class="num">' + money(r.payout) + '</b>';
+    }
+    return '<tr><td>' + esc(r.rep) + '</td>' +
+      '<td class="num-cell">' + r.base + '</td>' +
+      '<td class="num-cell">' + n1(r.qualifier) + '</td>' +
+      '<td class="num-cell">' + n1(r.bonus) + '</td>' +
+      '<td class="num-cell">' + buyers + '</td>' +
+      '<td class="num-cell">' + pct + '</td>' +
+      '<td>' + status + '</td>' +
+      '<td class="num-cell">' + payout + '</td></tr>';
+  }).join("");
+  document.querySelectorAll("#repTable thead th").forEach(th => {
+    th.classList.toggle("sorted", th.dataset.k === sortKey && !sortAsc);
+    th.classList.toggle("sorted-asc", th.dataset.k === sortKey && sortAsc);
+  });
+}
+
+document.querySelectorAll("#repTable thead th").forEach(th => th.addEventListener("click", () => {
+  const k = th.dataset.k;
+  if(k === sortKey) sortAsc = !sortAsc; else { sortKey = k; sortAsc = (k === "rep"); }
+  renderTable();
+}));
+
+function renderChart(){
+  const d = DATA.daily, svg = $("#chart"), tip = $("#tip");
+  if(!d.length){ svg.innerHTML = ""; return; }
+  $("#chartSub").textContent = d.length + " days with Keystone Ice 24 oz activity across " + DATA.meta.window +
+    " — " + DATA.meta.houseBuyers + " distinct accounts in total (bars show each day's buyers, so they don't sum to that).";
+  const W = svg.clientWidth || 900, H = 210, padL = 30, padR = 8, padT = 18, padB = 30;
+  const maxV = Math.max(...d.map(x => x.buyers));
+  const bw = (W - padL - padR) / d.length;
+  const y = v => padT + (H - padT - padB) * (1 - v / maxV);
+  const parts = ['<line class="axis" x1="' + padL + '" y1="' + (H - padB) + '" x2="' + (W - padR) + '" y2="' + (H - padB) + '"/>'];
+  // y ticks at 0 and the max only -- the bars carry the detail, the axis stays recessive
+  [0, maxV].forEach(v => parts.push('<text class="tick" x="' + (padL - 7) + '" y="' + (y(v) + 3) + '" text-anchor="end">' + v + '</text>'));
+  d.forEach((x, i) => {
+    const h = Math.max(2, (H - padT - padB) * (x.buyers / maxV));
+    parts.push('<rect class="bar" x="' + (padL + i * bw + 1) + '" y="' + (H - padB - h) +
+      '" width="' + Math.max(2, bw - 2) + '" height="' + h + '" rx="3" data-i="' + i + '"><title>' +
+      esc(x.date) + ' — ' + x.buyers + ' account' + (x.buyers === 1 ? '' : 's') + '</title></rect>');
+    if(x.buyers === maxV) parts.push('<text class="vlab" x="' + (padL + i * bw + bw / 2) + '" y="' +
+      (H - padB - h - 5) + '" text-anchor="middle">' + x.buyers + '</text>');
+  });
+  // date labels: first, last and roughly every fifth day, so they never collide
+  d.forEach((x, i) => {
+    if(i === 0 || i === d.length - 1 || i % 5 === 0)
+      parts.push('<text class="tick" x="' + (padL + i * bw + bw / 2) + '" y="' + (H - padB + 15) +
+        '" text-anchor="middle">' + x.date.replace(/\/\d{4}$/, "") + '</text>');
+  });
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.innerHTML = parts.join("");
+  svg.querySelectorAll(".bar").forEach(b => {
+    b.addEventListener("mousemove", e => {
+      const x = d[+b.dataset.i];
+      tip.innerHTML = '<b>' + esc(x.date) + '</b><br>' + x.buyers + ' account' + (x.buyers === 1 ? '' : 's') + ' bought';
+      tip.style.opacity = 1; tip.style.left = (e.clientX + 13) + "px"; tip.style.top = (e.clientY - 34) + "px";
+    });
+    b.addEventListener("mouseleave", () => tip.style.opacity = 0);
+  });
+}
+
+addEventListener("resize", () => { if(DATA) renderChart(); });
+boot();
+</script>
+</body>
+</html>
