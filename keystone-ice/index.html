@@ -280,9 +280,12 @@ function render(){
     btn.setAttribute("aria-expanded", open ? "true" : "false");
   }));
 
+  // No "40% of your base" tile here: the qualifier is per-rep, and every rep
+  // card already leads with their own whole-number goal ("9 of 12 accounts to
+  // qualify"). A generic 40% tile restated it as a percentage nobody has to
+  // calculate, so it was removed (Gavin, 2026-08-31).
   $("#rules").innerHTML = [
-    ["Qualifier", "40% of your base", "Reach your own off-premise distribution goal. Every placement made in August counts."],
-    ["Reward", money(R.perPlacement) + " an account", "Paid on every off-premise Keystone Ice 24 oz account once you qualify."],
+    ["Reward", money(R.perPlacement) + " an account", "Paid on every off-premise Keystone Ice 24 oz account once you hit your goal."],
     ["Bonus", money(R.perPlacementBonus) + " an account", "Reach 50% of your base and every account pays double instead."],
     ["iSell Beer", money(R.isellPerPhoto) + " a photo", "Per cooler-door picture — next to Busch or Bud Ice, priced at or below them, with the cooler door sticker. Not tracked on this page yet."],
     ["Top performer", money(R.topPerformer[0]) + " / " + money(R.topPerformer[1]), "Highest and second-highest percentage of your own account base."],
