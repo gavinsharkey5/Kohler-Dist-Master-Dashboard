@@ -112,3 +112,25 @@ Note: each display's "View Photo" link comes from the hyperlink on the
 Photo column in the source .xlsx — a plain CSV can't carry that, which
 is why generate.py takes the .xlsx directly rather than a CSV export of
 it.
+
+ALSO FEEDS THE RECAP WORKBOOK (since 2026-09-01):
+Summer_Display_Auction_Jul-Aug_2026.xlsx in the repo root is rebuilt by
+make_display_recap.py, also in the root:
+
+  python3 make_display_recap.py Report_NN.xlsx
+
+That script imports THIS script's scoring functions (read_rows,
+build_displays, canonical_brand, classify, tier_for) rather than
+restating them, so the workbook cannot disagree with the board about
+what a display is, what tier it lands in, or what it pays. It adds only
+recap-only presentation on top: supplier attribution, lead brand, and
+duplicate clustering. If you rename or change the signature of one of
+those five functions, update make_display_recap.py in the same commit.
+
+Unlike this tracker, the recap has NO --merge mode -- it is a
+point-in-time recap rebuilt from scratch, not an accumulating archive,
+so it needs a genuine FULL-PERIOD export (07/01/2026 onward) and
+refuses anything whose Filters tab starts later. That is the opposite
+default from this folder's weekly workflow, so a normal weekly pull
+CANNOT remake the workbook; ask Gavin for a full-period re-pull when
+the recap needs refreshing.

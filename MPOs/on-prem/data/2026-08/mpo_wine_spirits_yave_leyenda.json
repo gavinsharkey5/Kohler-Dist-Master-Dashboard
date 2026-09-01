@@ -1,17 +1,6 @@
 [
   {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 39006,
-    "CUSTOMER_NAME": "Fat Bastard & Sons",
-    "DATE": "2026-08-31",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
     "PRODUCT_NUM": "200385",
     "BRAND_FAMILY": "YaVe Tequila",
@@ -31,6 +20,28 @@
     "DATE": "2026-08-31",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 39006,
+    "CUSTOMER_NAME": "Fat Bastard & Sons",
+    "DATE": "2026-08-31",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 40032,
+    "CUSTOMER_NAME": "Side Bar",
+    "DATE": "2026-08-28",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.33
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -55,20 +66,9 @@
     "CASES": 0.17
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 40032,
-    "CUSTOMER_NAME": "Side Bar",
-    "DATE": "2026-08-28",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.33
-  },
-  {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200218",
+    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200217",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 20061,
     "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
@@ -78,8 +78,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200217",
+    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200218",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 20061,
     "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
@@ -99,17 +99,6 @@
     "CASES": 0.33
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200218",
-    "BRAND_FAMILY": "Leyenda 1925",
-    "CUSTOMER_NUM": 84022,
-    "CUSTOMER_NAME": "Park West Tavern",
-    "DATE": "2026-08-26",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 1.0
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
     "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
     "PRODUCT_NUM": "200382",
@@ -121,26 +110,15 @@
     "CASES": 0.17
   },
   {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 7003,
-    "CUSTOMER_NAME": "Blu Ale House",
-    "DATE": "2026-08-25",
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200218",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 84022,
+    "CUSTOMER_NAME": "Park West Tavern",
+    "DATE": "2026-08-26",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 41023,
-    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
-    "DATE": "2026-08-25",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.17
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -154,6 +132,39 @@
     "CASES": 0.17
   },
   {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200218",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 41023,
+    "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
+    "DATE": "2026-08-25",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200218",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 84007,
+    "CUSTOMER_NAME": "Steel Wheel Tavern",
+    "DATE": "2026-08-25",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 7003,
+    "CUSTOMER_NAME": "Blu Ale House",
+    "DATE": "2026-08-25",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
     "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "PRODUCT_NUM": "200217",
@@ -165,21 +176,10 @@
     "CASES": 0.17
   },
   {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200218",
-    "BRAND_FAMILY": "Leyenda 1925",
-    "CUSTOMER_NUM": 84007,
-    "CUSTOMER_NAME": "Steel Wheel Tavern",
-    "DATE": "2026-08-25",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.17
-  },
-  {
     "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "Leyenda 1925 Reposado Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200218",
-    "BRAND_FAMILY": "Leyenda 1925",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
     "CUSTOMER_NUM": 41023,
     "CUSTOMER_NAME": "The Whiskey Priest (Hackensack)",
     "DATE": "2026-08-25",
@@ -220,17 +220,6 @@
     "CASES": 0.17
   },
   {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200384",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 36026,
-    "CUSTOMER_NAME": "Agave Cocina Mexicana",
-    "DATE": "2026-08-21",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.5
-  },
-  {
     "SALES_REP_ASSIGNED": "Brian Sengebush",
     "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "PRODUCT_NUM": "200217",
@@ -240,28 +229,6 @@
     "DATE": "2026-08-21",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 36026,
-    "CUSTOMER_NAME": "Agave Cocina Mexicana",
-    "DATE": "2026-08-21",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.5
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200381",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 36026,
-    "CUSTOMER_NAME": "Agave Cocina Mexicana",
-    "DATE": "2026-08-21",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.5
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -286,6 +253,39 @@
     "CASES": 0.33
   },
   {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 36026,
+    "CUSTOMER_NAME": "Agave Cocina Mexicana",
+    "DATE": "2026-08-21",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.5
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200381",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 36026,
+    "CUSTOMER_NAME": "Agave Cocina Mexicana",
+    "DATE": "2026-08-21",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.5
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200384",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 36026,
+    "CUSTOMER_NAME": "Agave Cocina Mexicana",
+    "DATE": "2026-08-21",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.5
+  },
+  {
     "SALES_REP_ASSIGNED": "Allison Scott",
     "PRODUCT_NAME": "YaVe Tequila Coconut 1/6/750 mL Btl",
     "PRODUCT_NUM": "200385",
@@ -306,28 +306,6 @@
     "DATE": "2026-08-20",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200381",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 12032,
-    "CUSTOMER_NAME": "Casa Don Manuel",
-    "DATE": "2026-08-19",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Allison Scott",
-    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200383",
-    "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 12032,
-    "CUSTOMER_NAME": "Casa Don Manuel",
-    "DATE": "2026-08-19",
-    "PLACEMENT_COUNT": 1.0,
-    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -353,6 +331,17 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "YaVe Tequila Mango 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200381",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 12032,
+    "CUSTOMER_NAME": "Casa Don Manuel",
+    "DATE": "2026-08-19",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
     "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
     "PRODUCT_NUM": "200384",
     "BRAND_FAMILY": "YaVe Tequila",
@@ -363,15 +352,15 @@
     "CASES": 0.33
   },
   {
-    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
-    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200382",
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "YaVe Tequila Reposado 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200383",
     "BRAND_FAMILY": "YaVe Tequila",
-    "CUSTOMER_NUM": 73001,
-    "CUSTOMER_NAME": "Lou's",
-    "DATE": "2026-08-07",
+    "CUSTOMER_NUM": 12032,
+    "CUSTOMER_NAME": "Casa Don Manuel",
+    "DATE": "2026-08-19",
     "PLACEMENT_COUNT": 1.0,
-    "CASES": 0.0
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -383,6 +372,17 @@
     "DATE": "2026-08-07",
     "PLACEMENT_COUNT": 1.0,
     "CASES": 0.17
+  },
+  {
+    "SALES_REP_ASSIGNED": "Paul Mclaughlin",
+    "PRODUCT_NAME": "YaVe Tequila Jalapeno 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200382",
+    "BRAND_FAMILY": "YaVe Tequila",
+    "CUSTOMER_NUM": 73001,
+    "CUSTOMER_NAME": "Lou's",
+    "DATE": "2026-08-07",
+    "PLACEMENT_COUNT": 1.0,
+    "CASES": 0.0
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -397,9 +397,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
-    "PRODUCT_NUM": "200217",
-    "BRAND_FAMILY": "Leyenda 1925",
+    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
+    "PRODUCT_NUM": "200384",
+    "BRAND_FAMILY": "YaVe Tequila",
     "CUSTOMER_NUM": 34016,
     "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
     "DATE": "2026-08-06",
@@ -408,9 +408,9 @@
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
-    "PRODUCT_NAME": "YaVe Tequila Blanco 1/6/750 mL Btl",
-    "PRODUCT_NUM": "200384",
-    "BRAND_FAMILY": "YaVe Tequila",
+    "PRODUCT_NAME": "Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "PRODUCT_NUM": "200217",
+    "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 34016,
     "CUSTOMER_NAME": "Vfw Hasbrouck (A)",
     "DATE": "2026-08-06",

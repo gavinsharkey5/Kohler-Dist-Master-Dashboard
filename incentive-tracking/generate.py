@@ -2355,6 +2355,80 @@ def build_display_auction():
     }
 
 
+
+# --- KEYSTONE ICE 24 OZ REWARDS (September 2026) -----------------------
+# Wired in 2026-08-31 at Gavin's request ("can you incorporate this into the
+# incentive tracker? this is one of the new incentives"). First of the eight
+# brand-new September programs to get real data, so it is also the first user
+# of the PROGRAM_DATA_2026_09 blob the September registry was built against.
+#
+# SOURCE IS THE KEYSTONE DASHBOARD'S OWN PUBLISHED JSON, same arrangement as
+# build_display_auction() above: keystone-ice/generate.py owns the scoring --
+# which accounts count (distinct customers, never a sum of the Buyer Count
+# column), and the whole-number ceiling on each rep's qualifier and bonus --
+# and this reads the finished numbers rather than rescoring anything. So this
+# page is only as current as the last Keystone dashboard refresh: refresh that
+# first, then run this.
+KEYSTONE_JSON = Path(__file__).resolve().parent.parent / "keystone-ice" / "data" / "keystone_ice.json"
+
+
+def build_keystone_ice():
+    """Per-rep Keystone Ice 24 oz distribution against each rep's own goal.
+
+    Kohler's goals workbook covers 18 reps, one of whom (John Neukum) is not on
+    this page's ROSTER -- dropped here for the same reason every other program
+    drops him. Reps with a goal but no accounts yet are KEPT, at zero: this is
+    a distribution program, so "you have sold none of your 12" is exactly the
+    thing a rep needs to see, and dropping them would quietly shorten the
+    leaderboard.
+    """
+    empty = {"byRep": {}, "meta": {}}
+    if not KEYSTONE_JSON.exists():
+        print("keystone_ice: SKIPPED -- no keystone-ice/data/keystone_ice.json found "
+              "(run keystone-ice/generate.py first)")
+        return empty
+    src = json.loads(KEYSTONE_JSON.read_text())
+    if not src.get("meta", {}).get("repLevel"):
+        print("keystone_ice: SKIPPED -- the Keystone dashboard has no rep-level data yet")
+        return empty
+
+    roster = set(ROSTER)
+    off_roster = sorted({r["rep"] for r in src["reps"] if r["rep"] not in roster})
+
+    by_rep = {}
+    for r in src["reps"]:
+        if r["rep"] not in roster:
+            continue
+        by_rep[r["rep"]] = {
+            "base": r["base"],
+            "qualifier": r["qualifier"],
+            "bonus": r["bonus"],
+            "accounts": r["buyers"],
+            "pct": r["pct"],
+            "qualified": bool(r["qualified"]),
+            "bonusHit": bool(r["bonusHit"]),
+            "toQualifier": r["toQualifier"],
+            "toBonus": r["toBonus"],
+            "payout": r["payout"],
+            "accountList": r["accounts"],
+        }
+    # Rank on percentage of own base -- the measure the $300/$150 top-performer
+    # award is decided on, not raw account count, so a small book competes.
+    for i, rep in enumerate(sorted(by_rep, key=lambda k: (-by_rep[k]["pct"], -by_rep[k]["base"], k)), 1):
+        by_rep[rep]["rank"] = i
+
+    return {
+        "byRep": by_rep,
+        "meta": {
+            "window": src["meta"].get("window", ""),
+            "houseAccounts": src["meta"].get("houseBuyers"),
+            "repCount": len(by_rep),
+            "offRoster": off_roster,
+            "rewards": src.get("rewards", {}),
+        },
+    }
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -2378,6 +2452,14 @@ def main():
         "constellation_retention": build_constellation_retention(),
         "yuengling_retention": build_yuengling_retention(),
         "display_auction": build_display_auction(),
+    }
+
+    # September 2026 lives in its own blob. The September registry in
+    # index.html reads PROGRAM_DATA_2026_09, and every program in it that has
+    # no builder yet stays on the zero-state card -- so programs switch on one
+    # at a time as their data arrives, without touching the August tab.
+    data_09 = {
+        "keystone_ice": build_keystone_ice(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -2475,6 +2557,15 @@ def main():
               f"excluded {len(da['excludedNames'])} non-roster ({da['excludedPoints']:,} pts): "
               f"{', '.join(da['excludedNames'])} | tracker window {da['meta'].get('startDate')} - {da['meta'].get('endDate')}")
 
+    ki = data_09["keystone_ice"]
+    if ki["byRep"]:
+        qualified = [r for r, d in ki["byRep"].items() if d["qualified"]]
+        lead = min(ki["byRep"].items(), key=lambda kv: kv[1]["rank"])
+        print(f"keystone_ice: {ki['meta']['houseAccounts']} accounts house-wide, "
+              f"{len(qualified)} of {ki['meta']['repCount']} reps qualified, "
+              f"leader {lead[0]} {lead[1]['accounts']} of {lead[1]['qualifier']} ({lead[1]['pct']}%)"
+              + (f" | off-roster, not shown: {', '.join(ki['meta']['offRoster'])}" if ki["meta"]["offRoster"] else ""))
+
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]
     print(f"yuengling_retention: {sum(d['goalsRetained'] for d in yu_goaled)} / {sum(d['goalsTotal'] for d in yu_goaled)} brand goals at 90%+ "
@@ -2495,6 +2586,13 @@ def main():
     core_keys = json.dumps(sorted(CORE_MARKET_PROGRAMS | CORE_MARKET_PROGRAMS_PENDING))
     html = html[:start] + (f"\nconst PROGRAM_DATA = {payload};\n"
                            f"const CORE_MARKET_PROGRAM_KEYS = new Set({core_keys});\n") + html[end:]
+
+    # September's blob is written the same way, into its own marker pair, so
+    # the two months' datasets never have to be merged into one object.
+    s09, e09 = "/* PROGRAM_DATA_09_START */", "/* PROGRAM_DATA_09_END */"
+    i09 = html.index(s09) + len(s09)
+    j09 = html.index(e09)
+    html = html[:i09] + f"\nconst PROGRAM_DATA_2026_09 = {json.dumps(data_09, indent=2)};\n" + html[j09:]
 
     today = datetime.date.today().strftime("%b %-d, %Y")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
