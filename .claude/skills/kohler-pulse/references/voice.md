@@ -22,7 +22,9 @@ These are real edits from real feedback. The pattern generalises.
 | "Angry Orchard draft hasn't started, and the reps who own it know who they are." | "Angry Orchard is one of the largest remaining draft opportunities in August." |
 | "Corona Premier stalled with half the off-premise team." | "Corona Premier has shown the placement is there — and there is still room to expand it." |
 | "Nobody is working it." | "The distribution is already won — reactivating it may be the quickest volume available." |
-| "Southern District is losing on both scoreboards." | "Southern District tap data is still developing." |
+| "Southern District is losing on both scoreboards." | Cut. Southern is never reported on tap share — see data-sources.md. |
+| "Southern District tap data is still developing." | Retired 2026-09-01. Report Southern on Wine & Spirits and off-premise placements instead. |
+| "Sam Adams Octoberfest jumped from 2,761 to 4,260 cases." | Cut — that is growth *within* August; the brand is down 20% year over year. Seasonal build is not a win. |
 | "Molson Coors distribution is falling." | "Molson Coors performance needs to be viewed alongside inventory availability." |
 | "Put the on-premise team on draft." | "Draft is the clearest late-August opportunity." |
 | "$13,640 in Amplify is still locked." | Cut. He does not think in payout. |
