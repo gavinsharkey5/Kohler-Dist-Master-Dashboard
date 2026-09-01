@@ -93,3 +93,36 @@ To refresh THC manually:
   (If Kohler changes a tier threshold or dollar amount, also edit
   THC_TIERS in index.html -- generate_thc.py only rebuilds the volume
   data, not the reward config.)
+
+Payout recap workbook (added 2026-09-01):
+  Summer_of_Success_Recap.xlsx  Four-tab qualifier/amplify payout model --
+                  Recap (rep x supplier), Program Setup (every constant plus
+                  the rules and open questions), Amplify Detail (rep x
+                  supplier x brand, since amplify pays PER BRAND on cases
+                  above that brand's goal), Rep Totals.
+  make_sos_recap.py             Rebuilds it from sales.csv + goals.csv:
+                    python3 make_sos_recap.py
+
+Only labels, the qualifier goal, the CE figures and the Program Setup
+constants are values; everything else is a live formula, so editing a tier
+threshold or a rate multiplier on Program Setup re-runs the whole model.
+Blue text marks the typed-in cells, per the workbook's own convention.
+
+goals.csv IS read by this script -- note that the "now-unused source files"
+line above applies to generate.py and index.html only. goals.csv carries the
+per-rep qualifier goals, and it names BRAND GROUPS ("Modelo/Corona") where
+sales.csv names suppliers; the qualifier rows' own "Qualifier: <brands>" tag
+is what ties the two together. Same trick joins the amplify goals.
+
+Managers come from incentive-tracking/index.html's DM_GROUPS, the repo's one
+rep->DM roster -- if that constant is renamed or moved, this script raises
+rather than silently emptying the Manager column.
+
+The workbook carries formulas with no cached values (openpyxl cannot compute
+them, and LibreOffice takes too long on a model this size to be worth
+wiring in). Excel calculates on open, so the numbers appear on first
+opening; the same was true of the hand-built workbook this replaces. If you
+need a version with values baked in, open it in Excel and save.
+
+Refresh order: overwrite sales.csv, run generate.py (dashboard), then
+make_sos_recap.py (workbook), so both come from the same export.
