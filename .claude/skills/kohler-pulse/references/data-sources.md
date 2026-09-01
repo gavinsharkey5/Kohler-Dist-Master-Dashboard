@@ -45,10 +45,16 @@ surveyed accounts. Directional, never exact.
 being built. Comparing two snapshots measures survey coverage, not the market.
 For draft direction use keg case-equivalents from `brand_package_trend.csv`.
 
-**Southern District coverage is thin and skewed.** Roughly 16% of its
-draft-capable accounts are surveyed against ~90% in Core Market, and the surveyed
-ones average far more handles each — reps walked the big craft rooms first. Any
-Southern share number is directional. Say so.
+**Never report tap share for the Southern District.** Standing instruction from
+Gavin, 2026-09-01: "always remember to not include tap share when talking about
+southern district. replace with something else." Roughly 18% of its draft-capable
+accounts are surveyed against ~90% in Core Market, and the surveyed ones average
+far more handles each — reps walked the big craft rooms first, so the number is
+not merely imprecise, it is unrepresentative. Do not print it, do not hedge it,
+do not bury it in a footnote. Southern is an off-premise, liquor-store book:
+report it on Wine & Spirits placements and activation against each rep's own
+account list, on off-premise MPO placements, or on displays per off-premise
+account. Those are the scoreboards its portfolio actually plays on.
 
 **Not every rep is on every card.** Off-premise MPO objectives only apply to reps
 with a real off-premise book (`core` base ≥ 25 in the customer base file).
