@@ -173,6 +173,60 @@ per customer. Wine & Spirits (Yave/Leyenda) is unaffected -- its export
 format didn't change, still a single-window buyer count with no base
 period concept.
 
+SEPTEMBER 2026 (added 2026-09-02, from September_ON_PREM_2026_MPO.docx)
+Four objectives at 25% each:
+  1. Lofted Spirits - (5) New Bardstown Menu Placements   NO EXPORT
+  2. Molson Coors - Fever Tree (3) New Placements
+  3. Spirits - Carbliss (10) New On Premise Buying Accounts
+  4. HUSA - (1) New XX Draft Line
+
+Objective 1 is menu/photo verified and has no RDE export, so it sits on the
+tab as hasData:false the way August's iSellBeer photo objective does -- name,
+weight and a "No data yet" tag, no numbers. Its type is 'manual' rather than
+reusing 'photos': renderObjectives() returns on !hasData before it ever reads
+type, so the label may as well say what the objective is. That is a FOURTH
+placeholder-ish type alongside the four real builders listed above.
+
+First numbers (9/1-9/2, so barely any month yet): Fever Tree 2 new placements,
+Carbliss 2 new buying accounts, HUSA 1 new draft line. Only HUSA has anyone at
+goal, because its goal is 1.
+
+SEPTEMBER'S EXPORTS CHANGED SHAPE three ways, which is why generate_2026-09.py
+exists rather than a tweak to August's:
+  1. Customer Num and Customer Name arrive as ONE column, "Customer Num &
+     Company" ("24038 J. Alexander's Restaurant"). split_customer() pulls them
+     apart on the leading digits; anything without a leading number keeps the
+     whole string as the name and gets no id, so a format change surfaces as a
+     missing id rather than a crash.
+  2. Fever Tree and Carbliss carry NO Date column at all. This one is a trap:
+     index.html's buildNewAccountsDataset() starts with
+     `if(!repCol||!custCol||!dateCol||!flagCol) return null;` -- with no date
+     column it returns null and the objective renders as if it had no data,
+     silently. So those two datasets are stamped with a placeholder DATE of the
+     current window's start (2026-09-01), exactly the trick off-prem's Corona
+     Premier export already uses for the same reason. HUSA does carry real
+     dates and keeps them. If a future export gains a real Date column, drop
+     the placeholder -- do not leave both.
+  3. The premise column is "On-Off Premise", not "Premise".
+
+NEW-PLACEMENT RULE is unchanged: current window (9/1-9/30) populated, base
+window (6/1-8/31) not. A populated cell counts even when its value is 0 --
+the question is whether the account transacted in that window at all, same as
+August. Classification is per (rep, customer); none of September's three
+objectives splits by brand, so classify_dual_period()'s brand_key machinery
+isn't needed and none of them uses the dual/subs config.
+
+NO TARGET ACCOUNTS for September. August built them for Angry Orchard and
+Peroni/Banquet only because Kohler had confirmed those sell in the six Core
+Market counties. Fever Tree, Carbliss and Dos Equis draft have no confirmed
+scope, and this README's own rule is that a prospect list is a claim a rep
+acts on and is never guessed. Add targetsFile entries in MONTHS and a
+build_targets() call once Kohler confirms.
+
+Off-premise exclusion still runs (1067 customer ids), even though all three
+exports look on-premise already -- the rule is about the account, not about
+what a given export happens to contain.
+
 Files:
   July 2026 (see generate.py's own docstring for full detail):
     carbliss_new_buyers.csv, sapporo_na_new_buyers.csv,
