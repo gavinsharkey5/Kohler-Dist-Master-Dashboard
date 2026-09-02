@@ -487,3 +487,62 @@ sum_cols() handles this by summing every column sharing the prefix
 lookup, so it works whether RDE exports one combined column or several
 split ones. Corona Premier and BBC Lytt haven't split (still one
 column each) but would also be handled fine if they start.
+
+SEPTEMBER 2026 (added 2026-09-02, from September_2026_MPO.docx)
+Five objectives:
+  1. Constellation - 30% Corona Gaintain Distro             30%  DATA
+  2. Molson Coors - Keystone Ice 40% Buying account         30%  DATA
+  3. Molson Coors - Fever Tree (10) New Placements          15%  no export
+  4. Wine & Spirits - (5) New Placements Any Brand          15%  DATA
+  5. POS - (5) Cooler Door Stickers Any Brand in iSellBeer  10%  no export
+
+OBJECTIVES 1 AND 2 ARE THE SAME CARD, which is the point of them. Gavin asked
+for Constellation to read like Keystone; rather than build a lookalike they now
+go through the SAME renderer -- the pct_of_base type BBC Lytt already used.
+Both are "reach this percentage and you are at goal". Only the denominator
+differs:
+  Constellation  base = the rep's Sept-Nov 2025 Corona Gaintain placements,
+                 qualifying = their Sept-Nov 2026 placements, goal 30%. So the
+                 headline reads THIS FALL AS A SHARE OF LAST FALL. Note 100%
+                 is flat year-over-year, NOT a full score -- 30% is the bar.
+  Keystone Ice   base = the rep's account base, qualifying = accounts buying
+                 Keystone Ice 24oz, goal 40%. Read straight from the Keystone
+                 dashboard's own JSON (keystone-ice/data/keystone_ice.json),
+                 which already computes a 40% qualifier -- that dashboard owns
+                 the scoring, same arrangement incentive-tracking uses.
+                 SO REFRESH keystone-ice FIRST, THEN THIS. If its JSON is
+                 missing the builder prints SKIPPED and the objective falls
+                 back to the zero-state card rather than breaking the tab.
+
+Making pct_of_base serve three objectives took three small generalisations,
+all defaulted so BBC Lytt is untouched:
+  * o.unitLabel      the rep-view subtext said "N of M accounts", which is
+                     wrong for a placements comparison.
+  * o.baseLabel /    the objective-view table hardcoded "Account Base" and
+    currentLabel /   "Lytt Accounts" as column headers.
+    pctLabel
+  * d.lineKind       the drill-down always called lineTableLytt(). The dataset
+                     now names its own table: 'yoy' (per-product last fall vs
+                     this fall), 'accounts' (account list), or the Lytt default.
+These two objectives ship as ALREADY-BUILT datasets via special:
+'pct_precomputed' -- generate_2026-09.py emits the exact shape
+buildPctOfBaseDataset() returns, because neither denominator is a customer-base
+file the client could join itself.
+
+First numbers: Constellation 5 of 27 reps at goal (best Jaime Colonna 4/4 =
+100%, Dave Ehlers 122/250 = 48.8%); Keystone 0 of 27; Wine & Spirits 62 new
+placements, 6 reps at goal.
+
+OBJECTIVE 3 IS NOT THE ON-PREM FEVER TREE FILE. That export is on-premise with
+a goal of 3; this is off-premise with a goal of 10. Dropping it in here would
+score the wrong reps against the wrong target. Both 3 and 5 carry hasData:false
+until their own exports arrive.
+
+WINE & SPIRITS ANY BRAND replaces the three-brand Le Grand/Leyenda/Green River
+split August used -- the September program is any-brand, so it is a plain
+new_accounts objective with a goal of 5, not a dual. Its export covers BOTH
+premises (2,068 off / 283 on); the on-premise rows are dropped here since this
+is the off-premise dashboard. NEW is keyed per rep+customer+PRODUCT, not per
+account: the objective counts placements, so a store adding a second brand is
+a second placement.
+

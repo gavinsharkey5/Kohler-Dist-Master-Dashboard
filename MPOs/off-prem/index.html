@@ -325,6 +325,25 @@ const OBJECTIVES_2026_08 = [
 // month's RDE exports are ready. Earlier months stay viewable forever.
 // MONTHS[MONTHS.length-1] is the default/active tab on page load, so the
 // most-recently-added month should stay last in this array.
+const OBJECTIVES_2026_09 = [
+  // Objectives 1 and 2 are deliberately the same card. Both are "reach this
+  // percentage and you are at goal", so both use the pct_of_base type the BBC
+  // Lytt objective already uses -- per Gavin, Constellation should read like
+  // Keystone. What differs is only the denominator, which unitLabel names.
+  {key:'constellation_gaintain', name:'Constellation – 30% Corona Gaintain Distro', shortName:'Constellation', weight:0.30, type:'pct_of_base', hasData:true,
+   goalLabel:'30% of last fall', unitLabel:'placements vs last fall',
+   baseLabel:'Last Fall', currentLabel:'This Fall', pctLabel:'% of Last Fall'},
+  {key:'keystone_ice', name:'Molson Coors – Keystone Ice 40% Buying Accounts', shortName:'Keystone Ice', weight:0.30, type:'pct_of_base', hasData:true,
+   goalLabel:'40% of account base', unitLabel:'accounts',
+   baseLabel:'Account Base', currentLabel:'Buying Accounts', pctLabel:'Penetration'},
+  // Not the on-prem Fever Tree export: that one is on-premise with a goal of
+  // 3, this is off-premise with a goal of 10.
+  {key:'fever_tree', name:'Molson Coors – Fever Tree (10) New Placements', shortName:'Fever Tree', weight:0.15, type:'new_accounts', hasData:false},
+  {key:'wine_spirits', name:'Wine & Spirits – (5) New Placements Any Brand (90-Day Non-Buy)', shortName:'Wine & Spirits', weight:0.15, type:'new_accounts', hasData:true,
+   goalLabel:'5 new placements each', flagLabel:'New Placement'},
+  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers Any Brand in iSellBeer', shortName:'POS Stickers', weight:0.10, type:'photos', hasData:false},
+];
+
 const MONTHS = [
   {key:'2026-07', label:'July 2026', dir:'data/2026-07/', objectives: OBJECTIVES_2026_07, tables: [
     {objKey:'new_belgium', special:'new_belgium', actualsFile:'mpo_new_belgium_actuals.json', goalsFile:'mpo_new_belgium_90goals.json'},
@@ -343,6 +362,17 @@ const MONTHS = [
     {objKey:'wine_spirits', file:'mpo_wine_spirits.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'new_accounts'},
     {objKey:'disruptors', file:'mpo_lytt_photos.json', target:8, builder:'photos'},
+  ]},
+  // Constellation and Keystone ship as ALREADY-BUILT pct_of_base datasets
+  // (generate_2026-09.py emits the exact shape buildPctOfBaseDataset returns),
+  // so they load straight in rather than being derived client-side from a base
+  // + numerator pair the way BBC Lytt is -- their denominators are last fall's
+  // placements and the Keystone dashboard's own account base, neither of which
+  // is a customer-base file.
+  {key:'2026-09', label:'September 2026', dir:'data/2026-09/', objectives: OBJECTIVES_2026_09, tables: [
+    {objKey:'constellation_gaintain', special:'pct_precomputed', file:'mpo_constellation_gaintain.json'},
+    {objKey:'keystone_ice', special:'pct_precomputed', file:'mpo_keystone_ice.json'},
+    {objKey:'wine_spirits', file:'mpo_wine_spirits_any_brand.json', target:5, builder:'new_accounts'},
   ]},
 ];
 let activeMonth = MONTHS[MONTHS.length-1].key;
@@ -518,6 +548,31 @@ function buildPctOfBaseDataset(baseRows, numRows, pct, minSkus){
 // only the way it reads changed. r.target is still what the bar and the
 // at-goal flag are scored on, so the two can never disagree.
 function penetration(r){ return r.base ? (r.qualifying/r.base)*100 : 0; }
+// pct_of_base now serves three objectives whose "lines" mean different things,
+// so the dataset names its own drill-down rather than every caller assuming
+// Lytt's. lineKind is set by generate_2026-09.py; BBC Lytt has none and keeps
+// the original table.
+function pctLineTable(d, r){
+  if(d.lineKind==='yoy') return lineTableYoy(r.lines);
+  if(d.lineKind==='accounts') return lineTableAccounts(r.lines);
+  return lineTableLytt(r.lines, r.minSkus);
+}
+// Last fall vs this fall, per product. Sorted biggest-last-fall first, since
+// that is where the gap a rep has to close actually sits.
+function lineTableYoy(lines){
+  if(!lines || !lines.length) return '<div class="no-lines">No Corona Gaintain history for this rep.</div>';
+  const rows = lines.map(l=>{
+    const pen = l.base ? (l.current/l.base)*100 : (l.current?100:0);
+    const cls = l.base && pen>=30 ? 'flag-hit' : 'flag-miss';
+    return `<tr><td>${l.product}</td><td class="num">${l.base}</td><td class="num">${l.current}</td><td class="num"><span class="${cls}">${l.base?fmtPen(pen):'—'}</span></td></tr>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th><th class="num">Last Fall</th><th class="num">This Fall</th><th class="num">% of Last Fall</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function lineTableAccounts(lines){
+  if(!lines || !lines.length) return '<div class="no-lines">No buying accounts yet.</div>';
+  const rows = lines.map(l=>`<tr><td>${l.customer||'—'}</td><td>${l.num?('#'+l.num):''}</td><td>${l.date||''}</td></tr>`).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Account</th><th>#</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
 // Whole numbers stay whole (25%, not 25.0%); anything else gets one decimal.
 function fmtPen(p){ return fmtPts(p)+'%'; }
 // The gap between two percentages is percentage POINTS, not percent -- the
@@ -799,6 +854,12 @@ async function loadMonth(monthKey){
           const built=buildNewBelgiumDataset(actuals, goals);
           if(built) DATA[t.objKey]=built;
         }
+        continue;
+      }
+      if(t.special==='pct_precomputed'){
+        // Already in the pct_of_base contract -- nothing to derive.
+        const built=await loadJSON(t.file);
+        if(built) DATA[t.objKey]=built;
         continue;
       }
       if(t.special==='pct_of_base'){
@@ -1214,14 +1275,14 @@ function renderRepView(){
           <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${o.goalLabel}</span></div>
           <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
         </div>
-        <div class="obj-right"><div><div class="obj-progress-txt">${fmtPen(pen)}${over?'<span class="over-badge">+'+fmtPts(pen-goalPen)+' pts over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.qualifying} of ${r.base} accounts</div></div></div>`;
+        <div class="obj-right"><div><div class="obj-progress-txt">${fmtPen(pen)}${over?'<span class="over-badge">+'+fmtPts(pen-goalPen)+' pts over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.qualifying} of ${r.base} ${o.unitLabel||'accounts'}</div></div></div>`;
       card.appendChild(head);
       const body = document.createElement('div');
       body.className='obj-body';
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = lineTableLytt(r.lines, r.minSkus) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
+      inner.innerHTML = pctLineTable(d, r) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1551,9 +1612,13 @@ function renderObjectiveView(){
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
         const tgtHtml = targetsBlockHtml((d.targetsByRep||{})[repName], o.shortName||o.name);
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines, r.minSkus)}${tgtHtml}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${pctLineTable(d, r)}${tgtHtml}</td></tr>`;
       });
-      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th class="num">Penetration</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      // Column names come from the objective -- the three pct_of_base
+      // objectives measure different denominators (an account base, and last
+      // fall's placements), so "Account Base / Lytt Accounts" is only right
+      // for BBC Lytt. Defaults keep that objective unchanged.
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">${o.baseLabel||'Account Base'}</th><th class="num">${o.currentLabel||'Lytt Accounts'}</th><th class="num">${o.pctLabel||'Penetration'}</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{

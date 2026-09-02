@@ -1,0 +1,411 @@
+{
+  "pct": 0.4,
+  "lineKind": "accounts",
+  "reps": [
+    {
+      "rep": "Anthony Palmisano",
+      "base": 27,
+      "qualifying": 2,
+      "target": 11,
+      "lines": [
+        {
+          "customer": "Shoppers Disc(A)Pompton",
+          "num": "8008",
+          "date": "9/1/2026"
+        },
+        {
+          "customer": "Krauszer's Liquor Wine and Spirits",
+          "num": "8007",
+          "date": "9/1/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Brian Sengebush",
+      "base": 6,
+      "qualifying": 1,
+      "target": 3,
+      "lines": [
+        {
+          "customer": "Chabons Ii Liq/Bar (A)",
+          "num": "191003",
+          "date": "8/18/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Chris Payton",
+      "base": 40,
+      "qualifying": 7,
+      "target": 16,
+      "lines": [
+        {
+          "customer": "Figlar's (P)",
+          "num": "25034",
+          "date": "8/7/2026"
+        },
+        {
+          "customer": "Clifton Disc Liq (A)",
+          "num": "25045",
+          "date": "8/7/2026"
+        },
+        {
+          "customer": "Exquisite W & L (A)",
+          "num": "47005",
+          "date": "8/10/2026"
+        },
+        {
+          "customer": "46 Discount Liquor Store",
+          "num": "23006",
+          "date": "8/13/2026"
+        },
+        {
+          "customer": "Garden Liquors (P)",
+          "num": "38007",
+          "date": "8/24/2026"
+        },
+        {
+          "customer": "Usa Wine Traders Club (Saddle Brook)",
+          "num": "76010",
+          "date": "9/1/2026"
+        },
+        {
+          "customer": "Buy Rite Of Main St Lodi",
+          "num": "38021",
+          "date": "9/1/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Dan Lagala",
+      "base": 43,
+      "qualifying": 2,
+      "target": 18,
+      "lines": [
+        {
+          "customer": "Linwood Wine-Linwood Plaza",
+          "num": "49027",
+          "date": "8/19/2026"
+        },
+        {
+          "customer": "Best Choice Liqrs (P)",
+          "num": "46002",
+          "date": "8/28/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Dave Ehlers",
+      "base": 35,
+      "qualifying": 3,
+      "target": 14,
+      "lines": [
+        {
+          "customer": "Hackensack Liquors",
+          "num": "40010",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "George's Liq",
+          "num": "41005",
+          "date": "8/6/2026"
+        },
+        {
+          "customer": "Deli Mart (A)",
+          "num": "41012",
+          "date": "9/1/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Derrick Laws",
+      "base": 32,
+      "qualifying": 9,
+      "target": 13,
+      "lines": [
+        {
+          "customer": "Mercer Bar & Liquors",
+          "num": "20025",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "Angel's Wine & Liquors",
+          "num": "15020",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "Raphael & Angel Liq (A)",
+          "num": "20080",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "Limestone Liquors (A)",
+          "num": "20079",
+          "date": "8/6/2026"
+        },
+        {
+          "customer": "El Oasis",
+          "num": "15013",
+          "date": "8/13/2026"
+        },
+        {
+          "customer": "Ferraro's Liquor",
+          "num": "21048",
+          "date": "8/18/2026"
+        },
+        {
+          "customer": "Santana's Sport(P)Bella",
+          "num": "15023",
+          "date": "8/21/2026"
+        },
+        {
+          "customer": "Hiciano Liquor Store",
+          "num": "20040",
+          "date": "8/21/2026"
+        },
+        {
+          "customer": "Ant's Bar & Liquors",
+          "num": "22006",
+          "date": "8/28/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Javier Melo",
+      "base": 29,
+      "qualifying": 9,
+      "target": 12,
+      "lines": [
+        {
+          "customer": "Liquor Stop (Passaic)",
+          "num": "27034",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "Bermuda Liquors (P)",
+          "num": "27008",
+          "date": "8/7/2026"
+        },
+        {
+          "customer": "Deli Parchardo Liquors",
+          "num": "15014",
+          "date": "8/7/2026"
+        },
+        {
+          "customer": "New Eagle Liquors",
+          "num": "27046",
+          "date": "8/12/2026"
+        },
+        {
+          "customer": "Park Avenue Liquors",
+          "num": "21021",
+          "date": "8/13/2026"
+        },
+        {
+          "customer": "President Liqrs (A)",
+          "num": "27002",
+          "date": "8/17/2026"
+        },
+        {
+          "customer": "Paruta's (A)",
+          "num": "20055",
+          "date": "8/25/2026"
+        },
+        {
+          "customer": "El Cantaro Liquors",
+          "num": "20117",
+          "date": "8/27/2026"
+        },
+        {
+          "customer": "Mariana's Liquors",
+          "num": "27071",
+          "date": "8/27/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Jayson Romine",
+      "base": 35,
+      "qualifying": 1,
+      "target": 14,
+      "lines": [
+        {
+          "customer": "Spring Street Liquors",
+          "num": "230420",
+          "date": "8/5/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Jim Heaney",
+      "base": 43,
+      "qualifying": 4,
+      "target": 18,
+      "lines": [
+        {
+          "customer": "Vasel's (A)",
+          "num": "24037",
+          "date": "8/13/2026"
+        },
+        {
+          "customer": "Savers Club Liquor Locker",
+          "num": "25017",
+          "date": "8/14/2026"
+        },
+        {
+          "customer": "Liquor Mart (North Arlington)",
+          "num": "28011",
+          "date": "8/14/2026"
+        },
+        {
+          "customer": "Valley Liquors (A)",
+          "num": "23002",
+          "date": "8/27/2026"
+        }
+      ]
+    },
+    {
+      "rep": "John O'Donoghue",
+      "base": 5,
+      "qualifying": 0,
+      "target": 2,
+      "lines": []
+    },
+    {
+      "rep": "Klejdi Lamo",
+      "base": 27,
+      "qualifying": 2,
+      "target": 11,
+      "lines": [
+        {
+          "customer": "Shop Rite Liq (A)Wharton",
+          "num": "190917",
+          "date": "8/10/2026"
+        },
+        {
+          "customer": "Midtown Liq",
+          "num": "190804",
+          "date": "8/17/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Matt Powierski",
+      "base": 40,
+      "qualifying": 2,
+      "target": 16,
+      "lines": [
+        {
+          "customer": "Luigi's Liquor (A)",
+          "num": "26001",
+          "date": "8/10/2026"
+        },
+        {
+          "customer": "Home Wine Liquor (Passaic)",
+          "num": "27031",
+          "date": "8/11/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Michael Harboy",
+      "base": 6,
+      "qualifying": 0,
+      "target": 3,
+      "lines": []
+    },
+    {
+      "rep": "Mike Ast",
+      "base": 30,
+      "qualifying": 1,
+      "target": 12,
+      "lines": [
+        {
+          "customer": "Nico's Wine & Spirits",
+          "num": "17011",
+          "date": "8/13/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Pablo Lopez",
+      "base": 28,
+      "qualifying": 9,
+      "target": 12,
+      "lines": [
+        {
+          "customer": "Schulman's (P) Deli",
+          "num": "21034",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "Johnny's Liqs (P)",
+          "num": "27021",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "Gene's Liquor",
+          "num": "15016",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "Regalado Liq",
+          "num": "26014",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "Broadway W&L",
+          "num": "27069",
+          "date": "8/4/2026"
+        },
+        {
+          "customer": "Midtown Liquors",
+          "num": "20042",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "Passaic Discount Liquors",
+          "num": "27072",
+          "date": "8/5/2026"
+        },
+        {
+          "customer": "EL BOHEMIO 2 LIQUOR STORE & BAR",
+          "num": "15030",
+          "date": "8/6/2026"
+        },
+        {
+          "customer": "Legacy Bar & Liquor",
+          "num": "15040",
+          "date": "9/1/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Phil Ernst",
+      "base": 27,
+      "qualifying": 2,
+      "target": 11,
+      "lines": [
+        {
+          "customer": "Super Wine Warehse(P)Pate",
+          "num": "20106",
+          "date": "8/18/2026"
+        },
+        {
+          "customer": "Bottle King (A) Glen Rock",
+          "num": "83010",
+          "date": "8/26/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Shane Barreca",
+      "base": 29,
+      "qualifying": 0,
+      "target": 12,
+      "lines": []
+    }
+  ],
+  "reps_at_goal": 0,
+  "reps_total": 27
+}

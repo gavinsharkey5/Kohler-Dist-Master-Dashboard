@@ -1,0 +1,659 @@
+{
+  "pct": 0.3,
+  "lineKind": "yoy",
+  "reps": [
+    {
+      "rep": "Alisa Acciardi",
+      "base": 8,
+      "qualifying": 0,
+      "target": 3,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 5,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 1,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 1,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 1,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Anthony Palmisano",
+      "base": 160,
+      "qualifying": 24,
+      "target": 48,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 88,
+          "current": 13
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 26,
+          "current": 5
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 24,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 12,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 10,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Brian Sengebush",
+      "base": 20,
+      "qualifying": 8,
+      "target": 6,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 11,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 4,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 4,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 1,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Chris Payton",
+      "base": 266,
+      "qualifying": 74,
+      "target": 80,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 156,
+          "current": 46
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 37,
+          "current": 9
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 33,
+          "current": 11
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 26,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 14,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Dan Lagala",
+      "base": 252,
+      "qualifying": 40,
+      "target": 76,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 142,
+          "current": 22
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 42,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 38,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 20,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 10,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Dave Ehlers",
+      "base": 250,
+      "qualifying": 122,
+      "target": 75,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 145,
+          "current": 73
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 33,
+          "current": 16
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 31,
+          "current": 15
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 21,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 20,
+          "current": 11
+        }
+      ]
+    },
+    {
+      "rep": "Derrick Laws",
+      "base": 246,
+      "qualifying": 68,
+      "target": 74,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 150,
+          "current": 49
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 28,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 28,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 26,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 14,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Dylan Rubino",
+      "base": 8,
+      "qualifying": 6,
+      "target": 3,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 5,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 1,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 1,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 1,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Jaime Colonna",
+      "base": 4,
+      "qualifying": 4,
+      "target": 2,
+      "lines": [
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 3,
+          "current": 3
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 1,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Javier Melo",
+      "base": 234,
+      "qualifying": 42,
+      "target": 71,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 142,
+          "current": 32
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 28,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 26,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 24,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 14,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Jayson Romine",
+      "base": 188,
+      "qualifying": 26,
+      "target": 57,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 105,
+          "current": 14
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 30,
+          "current": 5
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 28,
+          "current": 5
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 18,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 7,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Jim Heaney",
+      "base": 296,
+      "qualifying": 48,
+      "target": 89,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 179,
+          "current": 32
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 39,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 38,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 30,
+          "current": 3
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 10,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "John O'Donoghue",
+      "base": 8,
+      "qualifying": 4,
+      "target": 3,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 4,
+          "current": 3
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 3,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 1,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Klejdi Lamo",
+      "base": 196,
+      "qualifying": 38,
+      "target": 59,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 112,
+          "current": 25
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 26,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 26,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 21,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 11,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Matt Powierski",
+      "base": 306,
+      "qualifying": 64,
+      "target": 92,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 181,
+          "current": 41
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 37,
+          "current": 8
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 37,
+          "current": 8
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 32,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 19,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Michael Harboy",
+      "base": 36,
+      "qualifying": 4,
+      "target": 11,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 20,
+          "current": 2
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 6,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 6,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 2,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 2,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Mike Ast",
+      "base": 170,
+      "qualifying": 20,
+      "target": 51,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 94,
+          "current": 12
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 28,
+          "current": 4
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 25,
+          "current": 3
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 13,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 10,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Nick Melissari",
+      "base": 4,
+      "qualifying": 0,
+      "target": 2,
+      "lines": [
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 3,
+          "current": 0
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 1,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Pablo Lopez",
+      "base": 196,
+      "qualifying": 54,
+      "target": 59,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 119,
+          "current": 34
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 24,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 23,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 23,
+          "current": 8
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 7,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Phil Ernst",
+      "base": 218,
+      "qualifying": 50,
+      "target": 66,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 131,
+          "current": 30
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 26,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 25,
+          "current": 7
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 22,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 14,
+          "current": 1
+        }
+      ]
+    },
+    {
+      "rep": "Robin Feldman",
+      "base": 4,
+      "qualifying": 0,
+      "target": 2,
+      "lines": [
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 4,
+          "current": 0
+        }
+      ]
+    },
+    {
+      "rep": "Shane Barreca",
+      "base": 170,
+      "qualifying": 20,
+      "target": 51,
+      "lines": [
+        {
+          "product": "Coronita Extra 1/24/7 oz Btl",
+          "base": 93,
+          "current": 10
+        },
+        {
+          "product": "Corona Extra 2/12/12 oz Btl",
+          "base": 27,
+          "current": 3
+        },
+        {
+          "product": "Corona Extra 4/6/12 oz Btl",
+          "base": 26,
+          "current": 6
+        },
+        {
+          "product": "Corona Extra 1/24/12 oz Loose Btl",
+          "base": 16,
+          "current": 1
+        },
+        {
+          "product": "Corona Extra 1/18/12 oz Btl",
+          "base": 8,
+          "current": 0
+        }
+      ]
+    }
+  ],
+  "reps_at_goal": 5,
+  "reps_total": 27
+}
