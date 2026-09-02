@@ -210,6 +210,16 @@ one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
   * iSellBeer spells rep names its own way ("robin feldman"); build_bardstown_
     menu() canonicalises to the RDE ROSTER spelling. An unmatched name is kept
     as-is so it surfaces on the board rather than vanishing.
+  * THE PHOTO IS LINKED FROM THE ROW. A photo-verified objective proves itself
+    with the picture, so PHOTO_URL rides through to a "View Photo" link in the
+    drill-down. The column is ADDITIVE: buildNewAccountsDataset() looks for a
+    photo column via PHOTO_COLS and finds none on the other three objectives,
+    so their tables render exactly as before -- only a dataset that actually
+    carries photos grows the column. Links are deduped per account, since one
+    promo repeats its photo on every brand row; an account with genuinely
+    different photos gets "View Photo 1 / 2". The link comes from the
+    workbook's hyperlink, which is why the archive is .xlsx and not a CSV --
+    a CSV export drops it, the same reason the display auction keeps .xlsx.
 
 SEPTEMBER'S EXPORTS CHANGED SHAPE three ways, which is why generate_2026-09.py
 exists rather than a tweak to August's:
