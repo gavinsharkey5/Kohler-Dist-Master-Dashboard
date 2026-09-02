@@ -1,8 +1,11 @@
 Off-Prem MPO Tracker
 
-Same warm barrel-wood + amber-beer + Kohler-blue visual theme as the
-on-premise dashboard (see on-prem/index.html's :root CSS vars) --
-matched 2026-08-05 so both dashboards read as one system. index.html's
+Same Kohler Distributing navy theme as the on-premise dashboard (see
+on-prem/index.html's :root CSS vars) -- matched 2026-08-05 so both
+dashboards read as one system, and re-themed together 2026-09-01 from
+the original warm barrel-wood browns to navy, per Gavin ("black or dark
+blue... Kohler Distributing color scheme"). The Incentive Tracker and
+the tap tracker carry the identical palette; keep all four in sync. index.html's
 <style> block is the only place that differs meaningfully from
 on-prem's (plus off-prem's own extra classes: a 5-column KPI strip,
 .table-scroll for the July New Belgium goals table, and

@@ -216,10 +216,10 @@ and renderers throughout):
     unchanged). Find My Opportunities, the tiles, and both tabs
     otherwise behave exactly as before.
 
-Theme (2026-08-18, per Gavin: match the other dashboards): restyled from
-the original neutral dark-blue/magenta palette to the same warm
-barrel-wood + amber-beer + Kohler-blue theme as the MPO trackers and the
-Incentive Tracker, including their topbar breadcrumb and hero banner
+Theme (2026-08-18, per Gavin: match the other dashboards; re-themed
+2026-09-01 from those browns to Kohler navy, again to match): restyled
+from the original neutral dark-blue/magenta palette to the same theme as
+the MPO trackers and the Incentive Tracker, including their topbar breadcrumb and hero banner
 (../../assets/hero-banner.jpg + kohler-logo-badge.png). Only the :root
 variable VALUES changed (names kept), plus Ours=green / Competitor=red /
 Unverified=amber now match those dashboards' good/red/amber colors.
@@ -533,3 +533,15 @@ Notes:
   - A row with a blank Route / Sales Rep is dropped entirely rather than
     shown as a blank-named rep card -- seen once so far, a stray 0-tap
     placeholder row with no brand either.
+
+Navy re-theme (2026-09-01): the four dashboards moved off the barrel-wood
+browns to Kohler Distributing navy -- see incentive-tracking/README.txt
+for how the blue was chosen (it is anchored on the logo badge's own
+colours and the Sales Pulse's --kohler #14468C, not picked by eye). This
+page keeps its OWN variable names, so the swap was value-only as before.
+Two extras this page needed that the others did not: --card3, given
+#182338 so it sits at the old brown #2E2115's exact luminance and the
+four-surface ladder keeps its spacing; and two hardcoded #1A130C photo-tile
+backgrounds (.acct-photo / .acct-photo-ph) that are not driven by a
+variable at all -- they are now #0D1422. Grep for stray hex values, not
+just the :root block, if this palette is ever changed again.

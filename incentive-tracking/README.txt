@@ -1485,10 +1485,14 @@ Contrast improved across the board vs. the brown; text-mute crossed from
 text/text-dim/text-mute against canvas, card and card-alt rather than
 trusting that a darker background is automatically safer.
 
-NOT carried to the sibling dashboards: MPOs/on-prem, MPOs/off-prem and
-isellbeer/tap-survey-tracking still run the brown --canvas:#15100A, and
-their READMEs tell you to keep their theme in sync with each other. Those
-three now differ from this page on purpose, not by oversight -- only this
-page was asked for. Carry the same :root swap over if the brown is being
-retired everywhere. (summer26 and the display auction tracker were never
-brown; they use a neutral #0C0D11.)
+Carried to the sibling dashboards the same day, on Gavin's go-ahead:
+MPOs/on-prem, MPOs/off-prem and isellbeer/tap-survey-tracking now run
+this identical palette, so all four are back in sync -- keep them that
+way. Two things those pages needed that this one did not: their
+.hero-banner::after scrim hardcodes the canvas colour as
+rgba(21,16,10,...) rather than reading the variable (now rgba(8,12,22)),
+and the tap tracker has its own variable names plus a fourth surface
+(--card3, given #182338 to match the old brown's luminance) and two
+hardcoded photo-tile backgrounds. Grep for stray hex values, not just
+:root, if this palette changes again. (summer26 and the display auction
+tracker were never brown; they use a neutral #0C0D11.)

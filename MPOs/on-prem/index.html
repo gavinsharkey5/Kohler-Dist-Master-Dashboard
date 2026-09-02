@@ -8,16 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Same warm barrel-wood + amber-beer + Kohler-blue theme as the
-       6-Month Review dashboard, themed off Kohler Distributing's brand
-       photography rather than a generic neutral dark UI. */
-    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
-    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
-    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    /* Kohler Distributing navy -- shared with the Incentive Tracker and
+       the sibling MPO dashboard (swapped from the original barrel-wood
+       browns 2026-09-01). --accent-deep is Kohler's own brand navy,
+       #14468C, the same value the Sales Pulse template uses. The amber
+       and blue accents are left alone: they are the logo badge's own
+       two colours, and the navy is a surface for them. Keep these four
+       dashboards in sync. */
+    --canvas:#080C16; --card:#121A2B; --card-alt:#0E1524; --border:#24314A; --line-soft:#1A2334;
+    --text:#EEF2F9; --text-dim:#A7B4CA; --text-mute:#7B89A3;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#14468C;
     --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
     --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
     --red:#EB6A50; --red-soft:rgba(235,106,80,0.16);
-    --input-bg:#1A130C; --input-border:#4A3A26;
+    --input-bg:#0D1422; --input-border:#2C3A54;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -32,7 +36,7 @@
     border:1px solid var(--border);box-shadow:var(--shadow);background:var(--card)}
   .hero-banner-img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover}
   .hero-banner::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(21,16,10,.05) 0%,rgba(21,16,10,.6) 100%)}
+    background:linear-gradient(180deg,rgba(8,12,22,.05) 0%,rgba(8,12,22,.6) 100%)}
   .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
     filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
   @media (max-width:640px){

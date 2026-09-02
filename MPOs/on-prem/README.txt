@@ -293,3 +293,18 @@ To refresh August manually:
      export, how many off-premise-only customer IDs got excluded, and
      how many Target Accounts prospects were found per brand.
   3. Commit and push.
+
+Theme: Kohler navy (changed 2026-09-01)
+Re-themed from the original warm barrel-wood browns to Kohler
+Distributing navy, per Gavin ("black or dark blue... Kohler Distributing
+color scheme"), together with off-prem, the Incentive Tracker and the tap
+tracker -- all four share the palette, so keep them in sync (off-prem's
+README already says to carry theme tweaks across).
+
+The whole palette is index.html's :root, so this was a value-only swap.
+One thing that is NOT in :root and had to follow the canvas: the
+.hero-banner::after scrim, which fades the hero photo into the page
+background and was hardcoded rgba(21,16,10,...) -- the old brown. It is
+now rgba(8,12,22,...). Miss that and the photo fades to brown against a
+navy page. See incentive-tracking/README.txt for how the blue was chosen.
+

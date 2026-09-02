@@ -6,13 +6,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Same warm barrel-wood + amber-beer + Kohler-blue theme as the
-     MPO trackers and the Incentive Tracker, themed off Kohler
-     Distributing's brand photography rather than a generic neutral
-     dark UI. Variable NAMES kept from the original tap tracker so
-     the rest of this stylesheet is untouched. */
-  --canvas:#15100A; --card:#241A11; --card2:#1C130C; --card3:#2E2115; --ink:#F7F1E6; --ink-soft:#B7A489;
-  --line:#3D2E1D; --line-soft:#2A1F14;
+  /* Kohler Distributing navy -- shared with the Incentive Tracker and the
+     two MPO trackers (swapped from the original barrel-wood browns
+     2026-09-01). This page keeps its OWN variable names (--ink/--card2/
+     --card3/--us/--them/--unv) so the rest of the stylesheet is untouched,
+     but the values are the same navy ladder; --card3 #182338 was picked to
+     sit at the brown #2E2115's exact luminance so the four-surface spacing
+     this page relies on is preserved. Keep these four dashboards in sync. */
+  --canvas:#080C16; --card:#121A2B; --card2:#0E1524; --card3:#182338; --ink:#EEF2F9; --ink-soft:#A7B4CA;
+  --line:#24314A; --line-soft:#1A2334;
   --accent:#4E7CE8;
   --us:#4CC97A; --us-soft:rgba(76,201,122,0.16);
   --them:#EB6A50; --them-soft:rgba(235,106,80,0.16);
@@ -35,7 +37,7 @@ a{color:inherit}
   border:1px solid var(--line);box-shadow:var(--shadow);background:var(--card)}
 .hero-banner-img{display:block;width:100%;height:auto;max-height:220px;object-fit:cover}
 .hero-banner::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(21,16,10,.05) 0%,rgba(21,16,10,.6) 100%)}
+  background:linear-gradient(180deg,rgba(8,12,22,.05) 0%,rgba(8,12,22,.6) 100%)}
 .hero-logo-badge{position:absolute;top:14px;left:18px;height:52px;width:auto;z-index:1;
   filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
 @media (max-width:640px){
@@ -255,9 +257,9 @@ h1{font-family:"Space Grotesk";font-weight:700;font-size:26px;margin:0}
 .acct-head:hover{background:var(--card3)}
 .acct-chev{display:inline-block;transition:transform .15s;color:var(--ink-soft);font-size:10.5px;flex:none;width:10px}
 .acct-card.open .acct-chev{transform:rotate(90deg);color:var(--accent)}
-.acct-photo{width:42px;height:42px;border-radius:8px;flex:none;object-fit:cover;background:#1A130C;border:1px solid var(--line);display:block}
+.acct-photo{width:42px;height:42px;border-radius:8px;flex:none;object-fit:cover;background:#0D1422;border:1px solid var(--line);display:block}
 a:has(>.acct-photo){flex:none;display:block;line-height:0;cursor:pointer}
-.acct-photo-ph{width:42px;height:42px;border-radius:8px;flex:none;background:#1A130C;border:1px solid var(--line-soft);
+.acct-photo-ph{width:42px;height:42px;border-radius:8px;flex:none;background:#0D1422;border:1px solid var(--line-soft);
   display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-soft);opacity:.55}
 .acct-photo-lg{display:block;max-width:260px;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin:0 0 10px}
 .acct-info{flex:1;min-width:0}
