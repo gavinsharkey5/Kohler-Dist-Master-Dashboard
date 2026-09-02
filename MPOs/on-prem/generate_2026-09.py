@@ -3,15 +3,16 @@
 
 September's four objectives (25% each, from September_ON_PREM_2026_MPO.docx):
 
-  1. Lofted Spirits  - (5) New Bardstown Menu Placements   NO EXPORT
+  1. Lofted Spirits  - (5) New Bardstown Menu Placements   bardstown_menu_promos.xlsx
   2. Molson Coors    - Fever Tree (3) New Placements       fever_tree.csv
   3. Spirits         - Carbliss (10) New On Premise
                        Buying Accounts                     carbliss.csv
   4. HUSA            - (1) New XX Draft Line                husa_xx_draft.csv
 
-Objective 1 is menu/photo verified and has no RDE export, so it is carried on
-the tab as hasData:false the way August's iSellBeer photo objective is -- the
-rules show, the numbers do not.
+Objective 1 has no RDE export -- it is verified from iSellBeer promo photos
+instead, which is a DIFFERENT KIND of source from the other three: a partial
+weekly pull that must be MERGED onto a cumulative archive rather than
+overwritten (repo CLAUDE.md). See build_bardstown_menu() and --merge-bardstown.
 
 WHY THIS IS A SEPARATE SCRIPT FROM generate_2026-08.py: September's exports
 changed shape in three ways that would each have broken the August code, and
@@ -44,10 +45,14 @@ once scope is confirmed.
 Run: python3 generate_2026-09.py
 """
 import csv
+import importlib.util
 import json
 import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+import openpyxl
 
 HERE = Path(__file__).parent
 DATA_DIR = HERE / "data"
@@ -56,7 +61,22 @@ MONTH_KEY = "2026-09"
 FEVER_TREE_CSV = HERE / "fever_tree_new_placements.csv"
 CARBLISS_CSV = HERE / "carbliss_new_on_prem_buyers.csv"
 HUSA_CSV = HERE / "husa_xx_draft.csv"
+# Cumulative iSellBeer promo ARCHIVE for objective 1, not a scratch copy of the
+# latest pull -- see build_bardstown_menu().
+BARDSTOWN_XLSX = HERE / "bardstown_menu_promos.xlsx"
+# The off-prem Lytt POS tracker already solved partial-iSellBeer merging
+# (hyperlinks preserved, header-name column matching, volatile counter columns
+# ignored). Reused rather than reimplemented.
+LYTT_POS_PY = HERE.parent / "off-prem" / "generate_lytt_pos.py"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
+
+ROSTER = ["Alex Rodriguez", "Alisa Acciardi", "Allison Scott", "Andrew Lundy",
+          "Anthony Palmisano", "Brian Sengebush", "Chris Payton", "Dan Lagala",
+          "Dave Ehlers", "Derrick Laws", "Dylan Rubino", "Hakan Sadik",
+          "Jaime Colonna", "Javier Melo", "Jayson Romine", "Jim Heaney",
+          "John O'Donoghue", "Klejdi Lamo", "Matt Powierski", "Michael Harboy",
+          "Mike Ast", "Nick Melissari", "Pablo Lopez", "Paul Mclaughlin",
+          "Phil Ernst", "Robin Feldman", "Shane Barreca"]
 
 
 def load_csv(path):
@@ -230,17 +250,94 @@ def build_husa(off_premise_ids):
     return out, sum(1 for s in status.values() if s == "new"), len(status)
 
 
+def _lytt_pos():
+    spec = importlib.util.spec_from_file_location("lytt_pos", LYTT_POS_PY)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def build_bardstown_menu():
+    """Objective 1 -- (5) New Bardstown Menu Placements, from iSellBeer promos.
+
+    COUNTS DISTINCT SUBMISSIONS, NOT ROWS. One promo carries one row per brand
+    on the menu -- the first pull is a single table tent at Hilton Hasbrouck
+    Heights that lists two Bardstown SKUs, arriving as Promo # 1.1 and 1.2. That
+    is one menu placement, not two, and it is counted as one: the same rule the
+    display auction uses for photos ("one photo showing five Lytt items is ONE
+    pic"). A submission is (photo taker + account + date/time).
+
+    The sister program in incentive-tracking pays "per printed menu MENTION,
+    multiple mentions on one menu means multiple payouts" -- a deliberately
+    different unit. If this MPO objective turns out to be scored the same way,
+    the fix is to drop the dedupe and flag every row; both counts are printed
+    at build time so the gap is visible. Flagged for Gavin.
+
+    Every submission counts as new: the promos export is a single window with no
+    base period, so a menu placement submitted this month IS the new placement.
+    """
+    if not BARDSTOWN_XLSX.exists():
+        print("  Bardstown menu: no bardstown_menu_promos.xlsx -- objective stays rules-only")
+        return [], 0, 0
+    ws = openpyxl.load_workbook(BARDSTOWN_XLSX)["Report"]
+    header = [c.value for c in ws[1]]
+    idx = {h: i for i, h in enumerate(header) if h}
+    roster_by_lower = {r.lower(): r for r in ROSTER}
+
+    seen, out, mentions = set(), [], 0
+    for row in ws.iter_rows(min_row=2):
+        vals = [c.value for c in row]
+        if not vals or not vals[idx["Date/Time"]]:
+            continue
+        raw_rep = str(vals[idx["Photo taker"]] or "").strip()
+        # iSellBeer spells names its own way ("robin feldman"); the roster is
+        # the RDE spelling. Unmatched names are kept as-is so they surface
+        # rather than vanish.
+        rep = roster_by_lower.get(raw_rep.lower(), raw_rep)
+        dt = str(vals[idx["Date/Time"]]).strip()
+        acct = str(vals[idx["Account #"]] or "").strip()
+        key = (rep, acct, dt)
+        mentions += 1
+        photo_cell = row[idx["Photo"]]
+        out.append({
+            "SALES_REP_ASSIGNED": rep,
+            "CUSTOMER_NUM": int(acct) if acct.isdigit() else None,
+            "CUSTOMER_NAME": str(vals[idx["DBA"]] or "").strip(),
+            "BRAND_FAMILY": str(vals[idx["Brand"]] or "").strip(),
+            "DATE": datetime.strptime(dt.split()[0], "%m/%d/%Y").date().isoformat(),
+            "PERIOD": "current",
+            "PROMOTION_TYPE": str(vals[idx["Promotion type"]] or "").strip(),
+            "ELEMENTS": str(vals[idx["Elements"]] or "").strip(),
+            "PHOTO_URL": photo_cell.hyperlink.target if photo_cell.hyperlink else None,
+            # One flag per distinct submission, on its first row.
+            "NEW_PLACEMENT": 0 if key in seen else 1,
+        })
+        seen.add(key)
+    out.sort(key=lambda r: r["DATE"], reverse=True)
+    return out, len(seen), mentions
+
+
 def main():
+    if len(sys.argv) == 3 and sys.argv[1] == "--merge-bardstown":
+        # Partial weekly iSellBeer pulls MERGE onto the archive (repo CLAUDE.md)
+        # -- overwriting would drop every menu placement published before this
+        # window. "Promo #" is a per-export counter like PODS' "POD #", so it is
+        # excluded from the dedupe key or every overlapping row reads as new.
+        _lytt_pos().merge_export(BARDSTOWN_XLSX, Path(sys.argv[2]),
+                                 date_col="Date/Time", volatile_cols=("Promo #",))
+
     off_premise_ids = load_off_premise_only_ids()
     fever_rows, fever_new, fever_total = build_fever_tree(off_premise_ids)
     carb_rows, carb_new, carb_total = build_carbliss(off_premise_ids)
     husa_rows, husa_new, husa_total = build_husa(off_premise_ids)
+    bard_rows, bard_placements, bard_mentions = build_bardstown_menu()
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
     (month_dir / "mpo_fever_tree.json").write_text(json.dumps(fever_rows, indent=2))
     (month_dir / "mpo_carbliss.json").write_text(json.dumps(carb_rows, indent=2))
     (month_dir / "mpo_husa_xx_draft.json").write_text(json.dumps(husa_rows, indent=2))
+    (month_dir / "mpo_bardstown_menu.json").write_text(json.dumps(bard_rows, indent=2))
 
     synced_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
@@ -252,8 +349,9 @@ def main():
           f"({len(carb_rows)} rows written) -- no Date column, window-start placeholder stamped")
     print(f"HUSA XX draft (goal 1): {husa_new} new draft lines out of {husa_total} accounts "
           f"({len(husa_rows)} rows written)")
-    print("Bardstown menu placements (goal 5): no RDE export -- carried on the tab as "
-          "rules-only, same as August's iSellBeer photo objective")
+    print(f"Bardstown menu (goal 5): {bard_placements} distinct menu placements from "
+          f"{bard_mentions} brand mentions across {len(bard_rows)} promo rows "
+          f"-- counted per SUBMISSION; per-mention would read {bard_mentions} (unconfirmed)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 

@@ -175,21 +175,41 @@ period concept.
 
 SEPTEMBER 2026 (added 2026-09-02, from September_ON_PREM_2026_MPO.docx)
 Four objectives at 25% each:
-  1. Lofted Spirits - (5) New Bardstown Menu Placements   NO EXPORT
+  1. Lofted Spirits - (5) New Bardstown Menu Placements
   2. Molson Coors - Fever Tree (3) New Placements
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-Objective 1 is menu/photo verified and has no RDE export, so it sits on the
-tab as hasData:false the way August's iSellBeer photo objective does -- name,
-weight and a "No data yet" tag, no numbers. Its type is 'manual' rather than
-reusing 'photos': renderObjectives() returns on !hasData before it ever reads
-type, so the label may as well say what the objective is. That is a FOURTH
-placeholder-ish type alongside the four real builders listed above.
+All four are data-backed. First numbers (9/1-9/2, so barely any month yet):
+Bardstown 1 menu placement, Fever Tree 2 new placements, Carbliss 2 new buying
+accounts, HUSA 1 new draft line. Only HUSA has anyone at goal, its goal being 1.
 
-First numbers (9/1-9/2, so barely any month yet): Fever Tree 2 new placements,
-Carbliss 2 new buying accounts, HUSA 1 new draft line. Only HUSA has anyone at
-goal, because its goal is 1.
+OBJECTIVE 1 HAS A DIFFERENT KIND OF SOURCE from the other three, and it is the
+one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
+(Promos_Report_NN.xlsx), which means:
+
+  * It is a PARTIAL WEEKLY PULL. bardstown_menu_promos.xlsx in this folder is
+    the cumulative ARCHIVE, not a scratch copy of the latest pull. Saving a new
+    Promos_Report over it would silently drop every menu placement published
+    before that window (repo CLAUDE.md). Merge instead:
+        python3 generate_2026-09.py --merge-bardstown Promos_Report_NN.xlsx
+    That reuses off-prem's proven merge_export() (hyperlinks preserved, columns
+    matched by header name, re-merging an applied export is a no-op) with
+    "Promo #" passed as a volatile column -- it is a per-export counter like
+    PODS' "POD #", and leaving it in the dedupe key makes every overlapping row
+    read as new.
+  * IT COUNTS DISTINCT SUBMISSIONS, NOT ROWS. One promo carries one row per
+    brand on the menu. The first pull is a single table tent at Hilton
+    Hasbrouck Heights listing two Bardstown SKUs, arriving as Promo # 1.1 and
+    1.2 -- that is ONE menu placement, counted once, the same rule the display
+    auction uses for photos. A submission is (photo taker + account + date/time).
+    OPEN WITH GAVIN: the sister program in incentive-tracking pays "per printed
+    menu MENTION, multiple mentions on one menu means multiple payouts". If this
+    MPO objective is scored that way too, drop the dedupe and flag every row.
+    Both counts print at build time so the gap stays visible -- 1 vs 2 today.
+  * iSellBeer spells rep names its own way ("robin feldman"); build_bardstown_
+    menu() canonicalises to the RDE ROSTER spelling. An unmatched name is kept
+    as-is so it surfaces on the board rather than vanishing.
 
 SEPTEMBER'S EXPORTS CHANGED SHAPE three ways, which is why generate_2026-09.py
 exists rather than a tweak to August's:

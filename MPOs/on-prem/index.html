@@ -311,7 +311,7 @@ const OBJECTIVES_2026_09 = [
   // tab as hasData:false -- rules and weight show, numbers do not. type:'manual'
   // rather than reusing 'photos': the hasData:false branch returns before type
   // is ever read, so the label may as well say what the objective actually is.
-  {key:'bardstown_menu', name:'Lofted Spirits – (5) New Bardstown Menu Placements', shortName:'Bardstown Menu', weight:0.25, type:'manual', hasData:false},
+  {key:'bardstown_menu', name:'Lofted Spirits – (5) New Bardstown Menu Placements', shortName:'Bardstown Menu', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'5 new menu placements each', flagLabel:'Menu Placement'},
   {key:'fever_tree', name:'Molson Coors – Fever Tree (3) New Placements', shortName:'Fever Tree', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'3 new placements each', flagLabel:'New Placement'},
   {key:'carbliss', name:'Spirits – Carbliss (10) New On Premise Buying Accounts', shortName:'Carbliss', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'10 new accounts each', flagLabel:'New Buyer'},
   {key:'husa_xx_draft', name:'HUSA – (1) New XX Draft Line', shortName:'HUSA XX Draft', weight:0.25, type:'new_accounts', hasData:true, goalLabel:'1 new draft line each', flagLabel:'New Draft Line'},
@@ -337,12 +337,14 @@ const MONTHS = [
     {objKey:'wine_spirits', file:'mpo_wine_spirits_yave_leyenda.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'buyer_count'},
   ]},
-  // September's three data-backed objectives are all single-metric new-account
-  // counts, so none of them needs the dual/sub machinery August's Molson Coors
-  // and Wine & Spirits use. No targetsFile on any of them: Fever Tree, Carbliss
+  // All four September objectives are single-metric new-account counts, so none
+  // needs the dual/sub machinery August's Molson Coors and Wine & Spirits use.
+  // bardstown_menu comes from iSellBeer promo photos rather than RDE -- same
+  // builder, different source; see generate_2026-09.py. No targetsFile on any of them: Fever Tree, Carbliss
   // and Dos Equis draft have no confirmed territory scope, and a prospect list
   // is a claim a rep acts on -- see generate_2026-09.py.
   {key:'2026-09', label:'September 2026', dir:'data/2026-09/', objectives: OBJECTIVES_2026_09, tables: [
+    {objKey:'bardstown_menu', file:'mpo_bardstown_menu.json', target:5, builder:'new_accounts'},
     {objKey:'fever_tree', file:'mpo_fever_tree.json', target:3, builder:'new_accounts'},
     {objKey:'carbliss', file:'mpo_carbliss.json', target:10, builder:'new_accounts'},
     {objKey:'husa_xx_draft', file:'mpo_husa_xx_draft.json', target:1, builder:'new_accounts'},

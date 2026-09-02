@@ -1,0 +1,26 @@
+[
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 34018,
+    "CUSTOMER_NAME": "HILTON HASBRK HTS #50591",
+    "BRAND_FAMILY": "BARDSTOWN BOURBON COLLAB SERIES FOURSQUARE",
+    "DATE": "2026-09-02",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Feature Activation (on)",
+    "ELEMENTS": "Table Tent",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/7bc6809a-93f6-491e-a682-3d08ef3ef12f/",
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "CUSTOMER_NUM": 34018,
+    "CUSTOMER_NAME": "HILTON HASBRK HTS #50591",
+    "BRAND_FAMILY": "BARDSTOWN BOURBON COLLAB SERIES GOOSE ISLAND",
+    "DATE": "2026-09-02",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Feature Activation (on)",
+    "ELEMENTS": "Table Tent",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/7bc6809a-93f6-491e-a682-3d08ef3ef12f/",
+    "NEW_PLACEMENT": 0
+  }
+]
