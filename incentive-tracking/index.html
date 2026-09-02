@@ -8,13 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&family=Bungee&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#15100A; --card:#241A11; --card-alt:#1C130C; --border:#3D2E1D; --line-soft:#2A1F14;
-    --text:#F7F1E6; --text-dim:#B7A489; --text-mute:#8A7860;
-    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#1F3E82;
+    /* Kohler Distributing navy. Replaced the original barrel-wood browns
+       2026-09-01 at Gavin's request ("black or dark blue... Kohler
+       Distributing color scheme"). --accent-deep is Kohler's own brand navy,
+       the same #14468C the Sales Pulse template uses for --kohler, so the
+       dashboard and the exec briefing now anchor on one blue. The surfaces
+       are deliberately near-black so the brighter --accent still reads as
+       interactive against them; every text token gained contrast in the swap
+       (text-mute 4.30:1 -> 5.17:1, now AA body rather than just under it). */
+    --canvas:#080C16; --card:#121A2B; --card-alt:#0E1524; --border:#24314A; --line-soft:#1A2334;
+    --text:#EEF2F9; --text-dim:#A7B4CA; --text-mute:#7B89A3;
+    --accent:#4E7CE8; --accent-soft:rgba(78,124,232,0.16); --accent-deep:#14468C;
     --good:#4CC97A; --good-soft:rgba(76,201,122,0.16);
     --amber:#F4B83E; --amber-soft:rgba(244,184,62,0.16);
     --red:#EB6A50; --red-soft:rgba(235,106,80,0.16);
-    --input-bg:#1A130C; --input-border:#4A3A26;
+    --input-bg:#0D1422; --input-border:#2C3A54;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0;}

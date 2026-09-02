@@ -1459,3 +1459,36 @@ Summer Sequel (the $1.00/$1.50/$2.00 rate is "per CE over 2025" but
 the file's caseEquiv field was never confirmed to BE that growth
 figure vs. raw CE -- kept as progress-toward-goal only, same
 conservative call the pre-redesign card already made).
+
+Theme: Kohler navy (changed 2026-09-01)
+Gavin asked for "black or dark blue... Kohler Distributing color scheme"
+in place of the original barrel-wood browns. The whole palette lives in
+index.html's :root, so this was a variable swap -- no rule outside that
+block carried a brown, and every JS-injected color already resolved to
+a var (var(--good)/var(--amber)/etc.).
+
+The blue is anchored, not picked by eye. assets/kohler-logo-badge.png is
+57% amber (#E0A050) and 24% blue (#3080F0), and the Sales Pulse template
+(.claude/skills/kohler-pulse/assets/pulse-template.html) already carried
+--kohler: #14468C. So the surfaces went near-black navy, --accent-deep
+became that exact #14468C, and the amber headline + blue accents were
+LEFT ALONE -- they are the logo's own two colors, and the navy is a
+surface for them rather than a third competing hue.
+
+--accent stayed #4E7CE8 deliberately. Brightening it to clear AA body
+text as a link (4.45:1 -> 4.98:1) would have dropped white-on-accent for
+the .repchip.active / button backgrounds it also fills (3.91:1 ->
+3.49:1), which is the worse trade.
+
+Contrast improved across the board vs. the brown; text-mute crossed from
+4.30:1 (just under AA body) to 5.17:1. If you retune these, re-check
+text/text-dim/text-mute against canvas, card and card-alt rather than
+trusting that a darker background is automatically safer.
+
+NOT carried to the sibling dashboards: MPOs/on-prem, MPOs/off-prem and
+isellbeer/tap-survey-tracking still run the brown --canvas:#15100A, and
+their READMEs tell you to keep their theme in sync with each other. Those
+three now differ from this page on purpose, not by oversight -- only this
+page was asked for. Carry the same :root swap over if the brown is being
+retired everywhere. (summer26 and the display auction tracker were never
+brown; they use a neutral #0C0D11.)
