@@ -638,3 +638,28 @@ The per-product drill-down deliberately keeps its own Last Fall / 30% Goal /
 This Fall / % to Goal columns -- per product the useful question is "is this
 SKU at its own 30%", which is a different question from the rep's overall
 share and worth keeping alongside it.
+
+CONSTELLATION DOUBLE-COUNT, fixed 2026-09-02 (Gavin: "you counted the goals
+for the reps (last fall + this fall) 2x"). RDE prefixes each rep's block with
+a SUBTOTAL row, and it reuses the first product's NAME instead of saying
+"Total", so it cannot be spotted by label. Chris Payton's first "Coronita
+Extra 1/24/7 oz Btl" row is 133, which is exactly 26+33+37+23+14 -- the sum of
+his five real rows. Summing every row counted every rep twice (house-wide
+3,256 placements last fall instead of 1,628) and, because lines are aggregated
+by product name, also folded the subtotal into a real SKU sharing that name.
+
+_strip_rep_subtotal_rows() drops the first row of each rep's block, but ONLY
+when it actually equals the sum of the rest in BOTH columns. If RDE stops
+emitting subtotals, no row is thrown away and the script prints which reps
+looked wrong -- the failure mode is a warning, not silently halving real
+placements. It printed "dropped 24 per-rep subtotal row(s)" on the fix run,
+one per rep in the export, and every rep total was checked against the
+de-duplicated CSV afterwards (24 of 24 matching).
+
+Worth knowing for anyone comparing screenshots from before the fix: the
+PERCENTAGE was mostly unaffected, because numerator and denominator were both
+doubled -- Chris Payton read 27.8% either way. What was wrong was every
+absolute number on the card (266/74 instead of 133/37), plus a handful of
+at-goal flips from ceil() rounding on the doubled target. Do not assume a
+double-count is harmless just because the headline ratio looks stable.
+

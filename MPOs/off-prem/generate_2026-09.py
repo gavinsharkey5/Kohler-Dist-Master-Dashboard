@@ -25,10 +25,18 @@ THREE-MONTH program (Sept-Nov) tracked on September's tab, so partial
 progress is expected all month -- unlike the other four, it does not
 close out on 9/30.
 
-Duplicate product NAMES appear per rep (RDE labels two different SKUs
-"Coronita Extra 1/24/7 oz Btl"), so lines are aggregated by product name
--- rep totals are unaffected, it just stops the drill-down repeating a
-name with two different numbers next to it.
+RDE PREFIXES EACH REP'S BLOCK WITH A SUBTOTAL ROW, and that row reuses
+the first product's name rather than saying "Total" -- Chris Payton's
+first "Coronita Extra 1/24/7 oz Btl" row is 133, which is exactly
+26+33+37+23+14, the sum of his five real rows. Summing every row
+therefore counted each rep TWICE (house-wide 3,256 last fall instead of
+1,628), and aggregating by product name folded the subtotal into a real
+SKU of the same name on top of that. _strip_rep_subtotal_rows() drops
+that first row per rep, and only when it actually equals the sum of the
+rest in BOTH columns -- if RDE ever stops emitting it, the check fails
+loudly rather than silently halving real placements. Found by Gavin,
+2026-09-02: "you counted the goals for the reps (last fall + this fall)
+2x".
 
 --- Molson Coors: Keystone Ice 40% Buying Account (pct_of_base) ---
 Same objective shape as August's BBC Lytt, at 40% instead of 25% and with
@@ -163,14 +171,59 @@ def split_customer(raw):
 
 # ---------------------------------------------------------------- objective 1
 
+def _strip_rep_subtotal_rows(rows, goal_col, actual_col):
+    """Drop RDE's per-rep SUBTOTAL row -- see this script's docstring.
+
+    It is the first row of each rep's block and carries the first product's
+    name, so it cannot be spotted by label alone. It IS identifiable
+    arithmetically: its value equals the sum of that rep's remaining rows in
+    both columns. Only a row that passes that test is dropped, so if the export
+    ever stops carrying subtotals nothing is silently thrown away -- the rep is
+    left intact and a warning is printed.
+    """
+    by_rep = {}
+    order = []
+    for r in rows:
+        rep = (r.get("Sales Rep Assigned") or "").strip()
+        if not rep:
+            continue
+        if rep not in by_rep:
+            by_rep[rep] = []
+            order.append(rep)
+        by_rep[rep].append(r)
+
+    kept, dropped, suspicious = [], 0, []
+    for rep in order:
+        block = by_rep[rep]
+        if len(block) >= 2:
+            head, tail = block[0], block[1:]
+            head_g, head_a = to_num(head[goal_col]), to_num(head[actual_col])
+            tail_g = sum(to_num(r[goal_col]) for r in tail)
+            tail_a = sum(to_num(r[actual_col]) for r in tail)
+            if abs(head_g - tail_g) < 0.01 and abs(head_a - tail_a) < 0.01:
+                kept.extend(tail)
+                dropped += 1
+                continue
+            suspicious.append(rep)
+        kept.extend(block)
+    if suspicious:
+        print(f"  Constellation: NO subtotal row detected for {len(suspicious)} rep(s) "
+              f"({', '.join(sorted(suspicious))}) -- their rows were all kept. If the "
+              f"export format changed, check this before trusting the totals.")
+    return kept, dropped
+
+
 def build_constellation():
     rows = load_csv(CONSTELLATION_CSV)
     goal_col, actual_col = window_cols(rows[0].keys(), "Corona Gaintain SKUs Placements")
     check_window(goal_col, GOAL_WINDOW_START, "Constellation goal window")
     check_window(actual_col, ACTUAL_WINDOW_START, "Constellation actuals window")
+    rows, subtotals_dropped = _strip_rep_subtotal_rows(rows, goal_col, actual_col)
+    print(f"  Constellation: dropped {subtotals_dropped} per-rep subtotal row(s) before totalling")
 
-    # Aggregate by rep + product NAME (see this script's docstring -- RDE
-    # gives the same name to more than one SKU).
+    # Aggregate by rep + product NAME: with the subtotal gone, a repeated name
+    # is a genuine second SKU RDE labels identically, and those do belong
+    # together on one drill-down line.
     agg = {}
     order = []
     for r in rows:
