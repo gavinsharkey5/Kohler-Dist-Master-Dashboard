@@ -308,7 +308,7 @@ const OBJECTIVES_2026_07 = [
 // number), computed client-side from the Sales Reps' Customer Base export.
 const OBJECTIVES_2026_08 = [
   {key:'corona_premier', name:'Constellation – (5) Corona Premier Suitcase Placements', shortName:'Corona Premier', weight:0.30, type:'placements', hasData:true, goalLabel:'5 placements each'},
-  {key:'bbc_lytt', name:'BBC – Achieve Distro Lytt 25% of Account Base', shortName:'BBC Lytt', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'25% of account base (3+ SKUs each)'},
+  {key:'bbc_lytt', name:'BBC – Achieve Distro Lytt 25% of Account Base', shortName:'BBC Lytt', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'25% of account base (3+ SKUs each)', accountsLabel:'Lytt Accounts', brandLabel:'Lytt'},
   {key:'molson_coors', name:'Molson Coors – (4) New Peroni Placements, (4) New Banquet Placements (90-Day Non-Buy)', shortName:'Molson Coors', weight:0.15, type:'dual', hasData:true, goalLabel:'4 Peroni + 4 Banquet each',
     subs:[{key:'peroni', label:'Peroni', match:'peroni', target:4, flagLabel:'New Placement'}, {key:'banquet', label:'Banquet', match:'coors', target:4, flagLabel:'New Placement'}]},
   {key:'wine_spirits', name:'Wine & Spirits – (5) New Placements: (2) Le Grand Wines, (2) Leyenda, (1) Green River 50 mLs (90-Day Non-Buy)', shortName:'Wine & Spirits', weight:0.15, type:'dual', hasData:true, goalLabel:'2 Le Grand + 2 Leyenda + 1 Green River',
@@ -318,6 +318,37 @@ const OBJECTIVES_2026_08 = [
   // link are ONE pic toward the 8. Sales Reps only; every line must carry
   // a clickable photo (generate_lytt_pos.py enforces both).
   {key:'disruptors', name:'Disruptors – (8) Lytt POS Items Pics in iSellBeer', shortName:'Disruptors', weight:0.10, type:'photos', hasData:true, goalLabel:'8 POS item pics each'},
+];
+
+// September's five objectives (September_2026_MPO.docx) -- again entirely
+// different brands and rules from August's; see generate_2026-09.py for how
+// each dataset is built.
+//
+// Constellation is a NEW objective type, 'pct_of_goal': every rep's target
+// is 30% of their OWN Corona Gaintain placements last fall (9/1/2025 -
+// 11/30/2025), not a fixed number (per Gavin, 2026-09-02: "their goals is
+// the distribution (placements) made from 9/1/2025 - 11/30/2025. the 1st
+// column"). It is also the one objective here that runs a full THREE months
+// (9/1 - 11/30/2026), so it keeps accruing after September's other four
+// close out.
+//
+// Keystone Ice reuses August's 'pct_of_base' machinery at 40% with no
+// minimum-SKU bar (it is a single SKU, product 622), scored on the same
+// off-premise core-territory account base BBC Lytt used.
+//
+// Fever Tree and Wine & Spirits are both 'new_placements' -- the 90-day
+// non-buy rule read straight off RDE's two windowed columns rather than
+// from a transaction log, and counted in PLACEMENTS rather than rows (Fever
+// Tree's export is account-level, so one newly-opened account can be
+// several placements). See buildNewPlacementsDataset().
+const OBJECTIVES_2026_09 = [
+  {key:'constellation_gaintain', name:'Constellation – 30% Corona Gaintain Distro', shortName:'Corona Gaintain', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'30% of last fall\u2019s distro'},
+  {key:'keystone_ice', name:'Molson Coors – Keystone Ice 40% Buying Account', shortName:'Keystone Ice', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'40% of account base', accountsLabel:'Buying Accounts', brandLabel:'Keystone Ice'},
+  {key:'fever_tree', name:'Molson Coors – Fever Tree (10) New Placements (90-Day Non-Buy)', shortName:'Fever Tree', weight:0.15, type:'new_placements', hasData:true, goalLabel:'10 new placements each'},
+  {key:'wine_spirits_any', name:'Wine & Spirits – (5) New Placements, Any Brand (90-Day Non-Buy)', shortName:'W&S Any Brand', weight:0.15, type:'new_placements', hasData:true, goalLabel:'5 new placements each'},
+  // No iSellBeer cooler-door-sticker export exists yet -- placeholder card
+  // until one is pulled, same as July's Disruptors objective.
+  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', weight:0.10, type:'photos', hasData:false},
 ];
 
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
@@ -343,6 +374,14 @@ const MONTHS = [
     {objKey:'wine_spirits', file:'mpo_wine_spirits.json', dual:true, brandField:'BRAND_FAMILY',
       subs: OBJECTIVES_2026_08.find(o=>o.key==='wine_spirits').subs, builder:'new_accounts'},
     {objKey:'disruptors', file:'mpo_lytt_photos.json', target:8, builder:'photos'},
+  ]},
+  {key:'2026-09', label:'September 2026', dir:'data/2026-09/', objectives: OBJECTIVES_2026_09, tables: [
+    {objKey:'constellation_gaintain', special:'pct_of_goal', file:'mpo_constellation_gaintain.json', pct:0.30},
+    {objKey:'keystone_ice', special:'pct_of_base', baseFile:'mpo_sales_reps_customer_base_core.json', numFile:'mpo_keystone_ice_numerator.json', pct:0.40,
+      targetsFile:'mpo_targets_keystone_ice.json'},
+    {objKey:'fever_tree', file:'mpo_fever_tree.json', target:10, builder:'new_placements',
+      targetsFile:'mpo_targets_fever_tree.json'},
+    {objKey:'wine_spirits_any', file:'mpo_wine_spirits_any_brand.json', target:5, builder:'new_placements'},
   ]},
 ];
 let activeMonth = MONTHS[MONTHS.length-1].key;
@@ -552,7 +591,83 @@ function buildPhotosDataset(rows, target){
   return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
 }
 
-const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, photos: buildPhotosDataset};
+// September's Fever Tree / Wine & Spirits exports carry NO per-row Date:
+// RDE hands over one row per rep/account (Fever Tree) or rep/account/product
+// (Wine & Spirits) with two windowed placement columns -- a 6/1-8/31 base
+// (the 90-day non-buy window) and a 9/1-9/30 current -- instead of the
+// transaction log August's classify_dual_period() walked. So the same
+// "no purchase in the prior ~90 days, a purchase this month" rule is just a
+// column read, done in generate_2026-09.py, which sets NEW_PLACEMENT per row.
+//
+// Progress counts PLACEMENTS, not qualifying ROWS -- the difference that
+// makes this its own builder rather than a reuse of buildNewAccountsDataset().
+// Fever Tree's export is account-level, so a single newly-opened account
+// carrying 6 Fever Tree SKUs is 6 placements toward the 10. (Wine & Spirits
+// is product-level with every current value 1.00, so there the two counts
+// coincide.)
+function buildNewPlacementsDataset(rows, target){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.SALES_REP_ASSIGNED||"").trim(); if(!rep) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({
+      product:String(r.PRODUCT_NAME||"").trim(),
+      customer:String(r.CUSTOMER_NAME||"").trim(),
+      base:Number(r.BASE_PLACEMENTS)||0,
+      current:Number(r.CURRENT_PLACEMENTS)||0,
+      isNew:String(r.NEW_PLACEMENT)==="1",
+    });
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    const qualifying=lines.filter(l=>l.isNew).reduce((s,l)=>s+l.current,0);
+    reps.push({rep, qualifying, lines});
+  });
+  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+}
+
+// Per-rep VARIABLE target measured against the rep's OWN PRIOR-YEAR result
+// rather than their account base -- Constellation's "30% Corona Gaintain
+// Distro" (per Gavin, 2026-09-02: the goal is 30% of the placements a rep
+// made 9/1/2025 - 11/30/2025, the export's first column). Sibling of
+// buildPctOfBaseDataset(): same "every rep gets a different number" idea,
+// different denominator. One file carries both columns per rep/product, so
+// there is nothing to join.
+//
+// A rep in the export with no prior-fall placements at all still gets a
+// target of 1 (Math.max, same floor as pct_of_base) rather than a target of
+// 0 that anyone would clear by doing nothing.
+function buildPctOfGoalDataset(rows, pct){
+  if(!Array.isArray(rows)||!rows.length) return null;
+  const byRep=new Map();
+  rows.forEach(r=>{
+    const rep=String(r.SALES_REP_ASSIGNED||"").trim(); if(!rep) return;
+    if(!byRep.has(rep)) byRep.set(rep,[]);
+    byRep.get(rep).push({product:String(r.PRODUCT_NAME||"").trim(),
+                         base:Number(r.BASE_PLACEMENTS)||0, current:Number(r.CURRENT_PLACEMENTS)||0});
+  });
+  const reps=[];
+  byRep.forEach((lines,rep)=>{
+    const baseline=lines.reduce((s,l)=>s+l.base,0);
+    const placements=lines.reduce((s,l)=>s+l.current,0);
+    const target=Math.max(1,Math.ceil(baseline*pct));
+    lines.forEach(l=>{ l.goal=Math.ceil(l.base*pct); l.pct=l.goal>0?(l.current/l.goal)*100:0; });
+    // Products still short of their own 30% share first, worst first --
+    // same "surface the outstanding work" ordering as sortNBLines().
+    lines.sort((a,b)=>{
+      const ah=a.current>=a.goal?1:0, bh=b.current>=b.goal?1:0;
+      return ah!==bh ? ah-bh : (a.pct-b.pct || b.goal-a.goal);
+    });
+    reps.push({rep, baseline, target, placements, pct: (placements/target)*100,
+               hit: placements>=target, lines});
+  });
+  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.hit:false;}).length;
+  return {pct, reps, reps_at_goal, reps_total:ROSTER.length};
+}
+
+const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, photos: buildPhotosDataset, new_placements: buildNewPlacementsDataset};
 
 const AREA_COLS=[["area"]];
 
@@ -797,6 +912,14 @@ async function loadMonth(monthKey){
         const [actuals, goals] = await Promise.all([loadJSON(t.actualsFile), loadJSON(t.goalsFile)]);
         if(actuals && goals){
           const built=buildNewBelgiumDataset(actuals, goals);
+          if(built) DATA[t.objKey]=built;
+        }
+        continue;
+      }
+      if(t.special==='pct_of_goal'){
+        const rows=await loadJSON(t.file);
+        if(rows){
+          const built=buildPctOfGoalDataset(rows, t.pct);
           if(built) DATA[t.objKey]=built;
         }
         continue;
@@ -1087,8 +1210,9 @@ function existingAccountsBlockHtml(existing, hasProduct){
 // Accounts short of the bar are listed under their own heading with how many
 // more SKUs they need: they don't count yet, but they're the cheapest accounts
 // on a rep's list to convert, so burying them would waste the change.
-function lineTableLytt(lines, minSkus){
-  if(!lines || lines.length===0) return '<div class="no-lines">No Lytt-carrying accounts recorded this month.</div>';
+function lineTableLytt(lines, minSkus, brandLabel){
+  brandLabel = brandLabel || 'Lytt';
+  if(!lines || lines.length===0) return `<div class="no-lines">No ${brandLabel}-carrying accounts recorded this month.</div>`;
   const min = minSkus||1;
   const byCustomer = new Map();
   lines.forEach(l=>{
@@ -1112,7 +1236,7 @@ function lineTableLytt(lines, minSkus){
   const short = customers.filter(([,p])=>p.length<min);
   let html = qualifying.map(c=>block(c,false)).join('');
   if(short.length){
-    html += `<div class="lytt-short-head">${short.length} account${short.length===1?'':'s'} carrying Lytt but under ${min} SKUs — not counted yet</div>`
+    html += `<div class="lytt-short-head">${short.length} account${short.length===1?'':'s'} carrying ${brandLabel} but under ${min} SKUs — not counted yet</div>`
           + short.map(c=>block(c,true)).join('');
   }
   return `<div class="rep-sub-inner" style="padding-left:2px">${html}</div>`;
@@ -1136,6 +1260,50 @@ function lineTablePhotos(lines){
       `<td>${itemsHtml}</td><td>${f.source}</td><td style="white-space:nowrap">${f.date||'—'}</td></tr>`;
   }).join('');
   return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>Lytt items pictured</th><th>Source</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+// September's new-placement drill-down. Same shape as lineTableNewAccounts()
+// -- qualifying rows up top, everything that already carries the brand
+// tucked behind a collapsed "N Existing Accounts" dropdown -- but the two
+// middle columns are PLACEMENT COUNTS, not dates: these exports have no
+// per-row date to show (see buildNewPlacementsDataset()), and the counts are
+// what the objective is actually scored on.
+function lineTableNewPlacements(lines, flagLabel, targetsHtml){
+  flagLabel = flagLabel || 'New Placement';
+  targetsHtml = targetsHtml || '';
+  if(!lines || lines.length===0) return `<div class="no-lines">No activity recorded this month.</div>${targetsHtml}`;
+  const hasProduct = lines.some(l=>l.product);
+  const cols = `${hasProduct?'<th>Product</th>':''}<th>Customer</th><th class="num">Base Period</th><th class="num">This Month</th><th>Status</th>`;
+  const row = (l,status)=>`<tr>${hasProduct?`<td>${l.product}</td>`:''}<td>${l.customer}</td><td class="num">${l.base||'—'}</td><td class="num">${l.current||'—'}</td><td>${status}</td></tr>`;
+  const bySize = (a,b)=> b.current-a.current || a.customer.localeCompare(b.customer);
+  const newOnes = lines.filter(l=>l.isNew).sort(bySize);
+  const existing = lines.filter(l=>!l.isNew).sort(bySize);
+
+  const newRowsHtml = newOnes.length
+    ? `<table><thead><tr>${cols}</tr></thead><tbody>${newOnes.map(l=>row(l,`<span class="flag-hit">✓ ${flagLabel}</span>`)).join('')}</tbody></table>`
+    : `<div class="no-lines" style="padding:0">No new placements yet this month.</div>`;
+
+  let existingHtml = '';
+  if(existing.length){
+    const eid = 'exist'+(uid++);
+    const rows = existing.map(l=>row(l, `<span class="flag-miss">${l.current?'Repeat Buyer':'Bought in Base Period'}</span>`)).join('');
+    existingHtml = `<div class="targets-block">
+      <div class="targets-toggle" data-target="${eid}"><span class="targets-chev">▶</span>${existing.length} Existing Account${existing.length===1?'':'s'}<span class="targets-hint">— bought in the base period, not eligible for new-placement credit</span></div>
+      <div class="targets-table" id="${eid}"><table><thead><tr>${cols}</tr></thead><tbody>${rows}</tbody></table></div>
+    </div>`;
+  }
+  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${targetsHtml}${existingHtml}</div>`;
+}
+
+// Constellation's drill-down: one row per product, with that product's own
+// share of the 30% goal alongside last fall's and this fall's placements.
+function lineTableGoal(lines){
+  if(!lines || lines.length===0) return '<div class="no-lines">No distribution recorded for this rep.</div>';
+  const rows = lines.map(l=>{
+    const cell = l.goal>0 ? (l.current>=l.goal ? '<span class="complete-tag">At Goal</span>' : fmtPts(l.pct)+'%') : '—';
+    return `<tr class="${l.goal>0&&l.current<l.goal?'focus-row':''}"><td>${l.product}</td><td class="num">${l.base}</td><td class="num">${l.goal}</td><td class="num">${l.current}</td><td class="num">${cell}</td></tr>`;
+  }).join('');
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th><th class="num">Last Fall</th><th class="num">30% Goal</th><th class="num">This Fall</th><th class="num">% to Goal</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function renderRepView(){
@@ -1195,6 +1363,65 @@ function renderRepView(){
       return;
     }
 
+    if(o.type==='pct_of_goal'){
+      const d = DATA[o.key];
+      const r = d.reps.find(x=>x.rep===activeRep);
+      const head = document.createElement('div');
+      head.className='obj-head static';
+      if(!r){
+        head.innerHTML = `<div class="obj-left"><div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span></div></div><div class="empty-tag">No data yet</div>`;
+        card.appendChild(head);
+        container.appendChild(card);
+        return;
+      }
+      const over = r.placements>r.target;
+      head.innerHTML = `
+        <div class="obj-left">
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${o.goalLabel}</span></div>
+          <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${Math.min(r.pct,100)}%"></div></div>
+        </div>
+        <div class="obj-right"><div><div class="obj-progress-txt">${r.placements} / ${r.target}${over?'<span class="over-badge">+'+(r.placements-r.target)+' over</span>':''}</div><div class="obj-progress-sub">${r.hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.baseline} placements last fall</div></div></div>`;
+      card.appendChild(head);
+      const body = document.createElement('div');
+      body.className='obj-body';
+      const inner = document.createElement('div');
+      inner.className='obj-body-inner';
+      inner.style.paddingTop='0';
+      inner.innerHTML = lineTableGoal(r.lines);
+      body.appendChild(inner);
+      card.appendChild(body);
+      container.appendChild(card);
+      return;
+    }
+
+    if(o.type==='new_placements'){
+      const d = DATA[o.key];
+      const target = d.target_per_rep;
+      const r = repFind(o.key, activeRep);
+      const val = r ? r.qualifying : 0;
+      const pct = Math.min(val/target,1)*100, hit = val>=target, over = val>target;
+      const head = document.createElement('div');
+      head.className='obj-head static';
+      head.innerHTML = `
+        <div class="obj-left">
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} new placements per rep</span></div>
+          <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
+        </div>
+        <div class="obj-right"><div><div class="obj-progress-txt">${val} / ${target}${over?'<span class="over-badge">+'+(val-target)+' over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'}</div></div></div>`;
+      card.appendChild(head);
+      const body = document.createElement('div');
+      body.className='obj-body';
+      const inner = document.createElement('div');
+      inner.className='obj-body-inner';
+      inner.style.paddingTop='0';
+      inner.innerHTML = lineTableNewPlacements(r ? r.lines : [], 'New Placement',
+        targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name));
+      body.appendChild(inner);
+      card.appendChild(body);
+      container.appendChild(card);
+      return;
+    }
+
     if(o.type==='pct_of_base'){
       const d = DATA[o.key];
       const r = d.reps.find(x=>x.rep===activeRep);
@@ -1221,7 +1448,7 @@ function renderRepView(){
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = lineTableLytt(r.lines, r.minSkus) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
+      inner.innerHTML = lineTableLytt(r.lines, r.minSkus, o.brandLabel||o.shortName||o.name) + targetsBlockHtml((d.targetsByRep||{})[activeRep], o.shortName||o.name);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1420,7 +1647,9 @@ function renderObjectiveView(){
       goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} per rep</span>`;
     } else if(o.type==='photos'){
       goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} pics per rep</span>`;
-    } else if(o.type==='pct_of_base'){
+    } else if(o.type==='new_placements'){
+      goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} new placements per rep</span>`;
+    } else if(o.type==='pct_of_base' || o.type==='pct_of_goal'){
       goalTag = `<span class="goal-tag">${o.goalLabel}</span>`;
     }
 
@@ -1528,6 +1757,66 @@ function renderObjectiveView(){
           row.classList.toggle('expanded');
         });
       });
+    } else if(o.type==='new_placements'){
+      const d = DATA[o.key];
+      const target = d.target_per_rep;
+      const table = document.createElement('table');
+      let bodyRows = '';
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        const myTargets = (d.targetsByRep||{})[repName];
+        if(!r && !(myTargets&&myTargets.length)){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
+        const rowId = 'row'+(uid++);
+        const val = r?r.qualifying:0;
+        const rp = Math.min(val/target,1)*100, hit = val>=target, over = val>target;
+        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+          <td><span class="rep-chev">▶</span>${repName}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${val} / ${target}${over?'<span class="over-badge">+'+(val-target)+' over</span>':''}</td>
+          <td>${r?(hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'):'<span class="flag-miss">No activity</span>'}</td>
+        </tr>`;
+        const tgtHtml = targetsBlockHtml(myTargets, o.shortName||o.name);
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${r?lineTableNewPlacements(r.lines, 'New Placement', tgtHtml):'<div class="no-lines" style="padding-left:2px">No activity recorded this month.</div>'+tgtHtml}</td></tr>`;
+      });
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">New Placements</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      inner.appendChild(table);
+      table.querySelectorAll('.rep-row').forEach(row=>{
+        row.addEventListener('click',()=>{
+          document.getElementById(row.dataset.target).classList.toggle('open');
+          row.classList.toggle('expanded');
+        });
+      });
+    } else if(o.type==='pct_of_goal'){
+      const d = DATA[o.key];
+      const table = document.createElement('table');
+      let bodyRows = '';
+      ROSTER.forEach(repName=>{
+        const r = d.reps.find(x=>x.rep===repName);
+        if(!r){
+          bodyRows += `<tr class="rep-row-nodata"><td>${repName}</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="flag-miss">No data</span></td></tr>`;
+          return;
+        }
+        const rowId = 'row'+(uid++);
+        const rp = Math.min(r.pct,100), over = r.placements>r.target;
+        bodyRows += `<tr class="rep-row" data-target="${rowId}">
+          <td><span class="rep-chev">▶</span>${r.rep}</td>
+          <td class="num">${r.baseline}</td>
+          <td class="num">${r.target}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.placements}${over?'<span class="over-badge">+'+(r.placements-r.target)+' over</span>':''}</td>
+          <td>${r.hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
+        </tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableGoal(r.lines)}</td></tr>`;
+      });
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Last Fall</th><th class="num">30% Goal</th><th class="num">This Fall</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      inner.appendChild(table);
+      table.querySelectorAll('.rep-row').forEach(row=>{
+        row.addEventListener('click',()=>{
+          document.getElementById(row.dataset.target).classList.toggle('open');
+          row.classList.toggle('expanded');
+        });
+      });
     } else if(o.type==='pct_of_base'){
       const d = DATA[o.key];
       const table = document.createElement('table');
@@ -1551,9 +1840,9 @@ function renderObjectiveView(){
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
         const tgtHtml = targetsBlockHtml((d.targetsByRep||{})[repName], o.shortName||o.name);
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines, r.minSkus)}${tgtHtml}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableLytt(r.lines, r.minSkus, o.brandLabel||o.shortName||o.name)}${tgtHtml}</td></tr>`;
       });
-      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">Lytt Accounts</th><th class="num">Penetration</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Account Base</th><th class="num">${o.accountsLabel||'Accounts'}</th><th class="num">Penetration</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{
