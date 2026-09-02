@@ -617,3 +617,24 @@ sum_cols() handles this by summing every column sharing the prefix
 lookup, so it works whether RDE exports one combined column or several
 split ones. Corona Premier and BBC Lytt haven't split (still one
 column each) but would also be handled fine if they start.
+
+CONSTELLATION READS AS A PERCENTAGE (changed 2026-09-02, per Gavin: "shows
+last fall and this fall, then has the % in the status -- if the rep gets to
+30% they are at goal"). The card and the objective table now lead with
+r.share -- THIS FALL AS A PERCENTAGE OF LAST FALL -- rather than a raw
+placements/target pair, so the number on screen is the one the objective is
+named for. The columns are Last Fall / This Fall / % of Last Fall / Status.
+
+Two similarly-named fields, do not mix them up:
+  r.share  this fall / last fall * 100. The headline, and what 30% is judged
+           against. Brian Sengebush reads 40%, "+10 pts over", at goal.
+  r.pct    progress toward that 30% goal (placements / target * 100). What
+           the progress BAR fills on, so a rep at 15% of last fall shows a
+           half-full bar rather than a nearly-empty one.
+The at-goal flag is still r.hit (placements >= target), unchanged, so the
+flag and the percentage can never disagree the way two separate tests could.
+
+The per-product drill-down deliberately keeps its own Last Fall / 30% Goal /
+This Fall / % to Goal columns -- per product the useful question is "is this
+SKU at its own 30%", which is a different question from the rep's overall
+share and worth keeping alongside it.

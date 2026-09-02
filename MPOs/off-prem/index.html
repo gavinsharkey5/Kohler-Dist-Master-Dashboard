@@ -660,7 +660,14 @@ function buildPctOfGoalDataset(rows, pct){
       const ah=a.current>=a.goal?1:0, bh=b.current>=b.goal?1:0;
       return ah!==bh ? ah-bh : (a.pct-b.pct || b.goal-a.goal);
     });
+    lines.forEach(l=>{ l.share = l.base>0 ? (l.current/l.base)*100 : 0; });
     reps.push({rep, baseline, target, placements, pct: (placements/target)*100,
+               // share is THIS FALL AS A PERCENTAGE OF LAST FALL -- the number
+               // the objective is actually named for ("30% Corona Gaintain
+               // Distro"), and what the status reads. pct above is progress
+               // toward that 30%, which is what the bar fills on; the two are
+               // different and both are wanted.
+               share: baseline>0 ? (placements/baseline)*100 : 0,
                hit: placements>=target, lines});
   });
   const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.hit:false;}).length;
@@ -1380,7 +1387,7 @@ function renderRepView(){
           <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${o.goalLabel}</span></div>
           <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${Math.min(r.pct,100)}%"></div></div>
         </div>
-        <div class="obj-right"><div><div class="obj-progress-txt">${r.placements} / ${r.target}${over?'<span class="over-badge">+'+(r.placements-r.target)+' over</span>':''}</div><div class="obj-progress-sub">${r.hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.baseline} placements last fall</div></div></div>`;
+        <div class="obj-right"><div><div class="obj-progress-txt">${fmtPen(r.share)}${over?'<span class="over-badge">+'+fmtPts(r.share-d.pct*100)+' pts over</span>':''}</div><div class="obj-progress-sub">${r.hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · ${r.placements} of ${r.baseline} placements vs last fall</div></div></div>`;
       card.appendChild(head);
       const body = document.createElement('div');
       body.className='obj-body';
@@ -1803,13 +1810,13 @@ function renderObjectiveView(){
         bodyRows += `<tr class="rep-row" data-target="${rowId}">
           <td><span class="rep-chev">▶</span>${r.rep}</td>
           <td class="num">${r.baseline}</td>
-          <td class="num">${r.target}</td>
-          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.placements}${over?'<span class="over-badge">+'+(r.placements-r.target)+' over</span>':''}</td>
+          <td class="num">${r.placements}</td>
+          <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${fmtPen(r.share)}${over?'<span class="over-badge">+'+fmtPts(r.share-d.pct*100)+' pts over</span>':''}</td>
           <td>${r.hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
         bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="5">${lineTableGoal(r.lines)}</td></tr>`;
       });
-      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Last Fall</th><th class="num">30% Goal</th><th class="num">This Fall</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">Last Fall</th><th class="num">This Fall</th><th class="num">% of Last Fall</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{
