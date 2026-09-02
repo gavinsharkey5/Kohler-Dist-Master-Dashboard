@@ -35,13 +35,16 @@ applies by checking for a Product field on the target rows.
 Tracks each rep's progress toward the off-premise Monthly Program
 Objectives. Each month's objectives are tracked on their own tab --
 July 2026 (New Belgium / Wine & Spirits 2XO+Le Grand+Yave / Sapporo
-Light / Famosa 7oz) and August 2026 (Constellation Corona Premier /
+Light / Famosa 7oz), August 2026 (Constellation Corona Premier /
 BBC Lytt / Molson Coors Peroni+Banquet / Wine & Spirits Le Grand
-Noir+Leyenda+Green River) are entirely different programs, since
-Kohler changes the MPO objectives month to month.
+Noir+Leyenda+Green River) and September 2026 (Constellation Corona
+Gaintain / Molson Coors Keystone Ice / Molson Coors Fever Tree /
+Wine & Spirits any brand / POS cooler door stickers) are entirely
+different programs, since Kohler changes the MPO objectives month to
+month.
 
 Month tabs: data lives in a per-month snapshot folder,
-data/<MONTH_KEY>/ (e.g. data/2026-07/, data/2026-08/), and index.html
+data/<MONTH_KEY>/ (e.g. data/2026-07/, data/2026-08/, data/2026-09/), and index.html
 shows a tab bar so every past month stays permanently viewable --
 opening a new month's tab does not touch or overwrite an older one.
 The MOST RECENTLY ADDED entry in the MONTHS array (index.html) is the
@@ -50,10 +53,11 @@ new months to the END of that array, not the start.
 
 Because each month's objectives are usually different brands with
 different rules, EACH MONTH GETS ITS OWN generate_<MONTH_KEY>.py
-script (generate.py is specifically July's; generate_2026-08.py is
-August's) rather than one script branching on month -- the
-classification logic rarely has anything in common between two
-months' objectives. All of them write to data/<MONTH_KEY>/ and follow
+script (generate.py is specifically July's, generate_2026-08.py
+August's, generate_2026-09.py September's) rather than one script
+branching on month -- the classification logic rarely has anything in
+common between two months' objectives. All of them write to
+data/<MONTH_KEY>/ and follow
 the same "raw transaction rows + a computed flag, fuzzy-matched
 client-side" pattern (see index.html's tokens()/findCol()) so
 index.html doesn't care whether a file came from a manual CSV parse
@@ -158,8 +162,39 @@ Objective types (index.html):
                   (already_carrying() still treats any Lytt row as
                   carrying), which is why that drill-down section matters
                   -- it is the only place a 1-2 SKU account appears.
-  'photos'        Placeholder only (hasData:false) -- no iSellBeer
-                  photo-count data source exists yet for any month.
+  'new_placements'
+                  September's Fever Tree (10) and Wine & Spirits (5).
+                  Same 90-day-non-buy question as 'new_accounts', but
+                  read off RDE's TWO WINDOWED COLUMNS rather than a
+                  transaction log (those exports carry no per-row Date
+                  at all -- see generate_2026-09.py), and scored in
+                  PLACEMENTS rather than qualifying rows: Fever Tree's
+                  export is ACCOUNT-level, so one newly-opened account
+                  carrying 6 Fever Tree SKUs is 6 placements toward the
+                  10, not 1. Wine & Spirits' is product-level with every
+                  current value 1.00, so there rows and placements are
+                  the same number. buildNewPlacementsDataset() /
+                  lineTableNewPlacements() -- the drill-down's two middle
+                  columns are base-period and this-month PLACEMENT
+                  COUNTS, not dates, since there are no dates to show.
+  'pct_of_goal'   Per-rep VARIABLE target measured against the rep's own
+                  PRIOR-YEAR result: September's Constellation "30%
+                  Corona Gaintain Distro". Sibling of 'pct_of_base' --
+                  same "every rep gets a different number" idea, with
+                  last fall's distribution as the denominator instead of
+                  an account base. Per Gavin (2026-09-02): "their goals
+                  is the distribution (placements) made from 9/1/2025 -
+                  11/30/2025. the 1st column." One file carries both
+                  columns per rep/product, so nothing is joined
+                  (buildPctOfGoalDataset()). NOTE this objective runs
+                  9/1 - 11/30/2026 -- three months, not one -- so it
+                  keeps accruing on September's tab after the other four
+                  close out on 9/30; partial progress all month is
+                  expected and is not a data problem.
+  'photos'        Placeholder only when hasData:false -- July's
+                  Disruptors and September's POS cooler door stickers
+                  have no iSellBeer export yet. August's Lytt POS pics
+                  objective is the one with real data (see below).
 
 "90-Day Non-Buy" new-placement classification (Molson Coors Peroni/
 Banquet and Wine & Spirits Le Grand Noir/Leyenda 1925/Bardstown Green
@@ -328,6 +363,86 @@ Files:
                                         above (six datasets + three
                                         Target Accounts files).
 
+  September 2026 (see generate_2026-09.py's own docstring for full detail):
+    constellation_corona_gaintain.csv RDE "Constellation Corona Gaintain
+                                        FALL 2026 OFF w/ Goals" export:
+                                        Sales Rep Assigned, Product Name,
+                                        and TWO placement columns --
+                                        9/1/2025-11/30/2025 (last fall)
+                                        and 9/1/2026-11/30/2026 (this
+                                        fall). The FIRST column is the
+                                        goal source: each rep's target is
+                                        30% of their OWN prior-fall
+                                        number (per Gavin, 2026-09-02).
+                                        RDE gives the same Product Name
+                                        to more than one SKU, so lines are
+                                        aggregated by name -- rep totals
+                                        are unaffected.
+    keystone_ice_24oz.csv             RDE "KEYSTONE ICE 24 OZ CANS ARE
+                                        BACK SEPT 2026" export: one row
+                                        per rep/account/purchase with a
+                                        Date and a Buyer Count. Its own
+                                        window is 8/1/2026-9/30/2026 (an
+                                        Aug-Sept push, and RDE built the
+                                        export that way), so EVERY row in
+                                        it counts toward penetration --
+                                        scoring September's rows alone
+                                        would ignore two thirds of the
+                                        window RDE measured. Buying
+                                        accounts are counted DISTINCT
+                                        (buildPctOfBaseDataset() dedupes
+                                        on customer number), so three
+                                        purchases at one store is one
+                                        buying account. Numerator for the
+                                        40% pct_of_base objective; no
+                                        minSkus bar, since Keystone Ice
+                                        24 oz is a single SKU (product
+                                        622).
+    molson_coors_fever_tree.csv       RDE "Molson Coors - Fever Tree (10)
+                                        New Placements" export -- the new
+                                        two-window shape with NO per-row
+                                        Date: one row per rep/ACCOUNT
+                                        (its only Brand Family is Fever
+                                        Tree) with a 6/1-8/31 base column
+                                        and a 9/1-9/30 current column. New
+                                        placement = current populated,
+                                        base blank. Counted in PLACEMENTS
+                                        (the current column's value, 1-11
+                                        per account), not rows.
+    wine_spirits_new_placements.csv   RDE "Wine & Spirits (5) New
+                                        Placements Any Brand" export --
+                                        same two-window shape, but
+                                        PRODUCT-level (Product Num Name +
+                                        Brand Family), and every current
+                                        value is 1.00, so rows and
+                                        placements coincide. "Any brand"
+                                        means no sub-targets: it is a
+                                        single 'new_placements' objective,
+                                        not a 'dual' like August's.
+    sales_reps_customer_base_core.csv Reused unchanged from August (see
+                                        its entry above) as Keystone Ice's
+                                        account-base DENOMINATOR and as
+                                        the scope for both Target Accounts
+                                        lists. Keystone and Fever Tree are
+                                        Molson Coors brands sold in the
+                                        same core off-premise counties.
+                                        Gavin did not send a fresh core
+                                        base with September's exports --
+                                        re-pull and overwrite it if the
+                                        territory has moved.
+    generate_2026-09.py               Rebuilds the seven JSON files above
+                                        (five datasets + two Target
+                                        Accounts files). It hard-checks
+                                        each export's window start dates
+                                        and stops rather than silently
+                                        reclassifying if a re-pull moved
+                                        one.
+    (no file)                         POS - (5) Cooler Door Stickers has
+                                        no iSellBeer export yet, so it
+                                        ships as a hasData:false
+                                        placeholder card, same as July's
+                                        Disruptors.
+
   index.html   The page itself (shared by every month).
 
 Disruptors – (8) Lytt POS Items Pics (went live 2026-08-19, per Gavin):
@@ -455,6 +570,15 @@ To refresh August manually:
      sanity check against what you'd expect.
   3. Commit and push.
 
+To refresh September manually:
+  1. Save the new exports over constellation_corona_gaintain.csv /
+     keystone_ice_24oz.csv / molson_coors_fever_tree.csv /
+     wine_spirits_new_placements.csv (same column headers), and
+     sales_reps_customer_base_core.csv if the core territory changed.
+  2. Run: python3 generate_2026-09.py -- it prints new placements,
+     penetration and reps-at-goal counts, worth a sanity check.
+  3. Commit and push.
+
 Target Accounts (added 2026-08-05, extended to BBC Lytt 2026-08-10): a
 per-rep "who to go after" prospect list -- accounts in a rep's OWN
 off-premise core territory that don't carry the brand yet -- shown as
@@ -467,7 +591,13 @@ mpo_targets_molson_coors.json, and mpo_targets_bbc_lytt.json
 (generate_2026-08.py's build_targets(), scoped by
 sales_reps_customer_base_core.csv -- see that file's entry above).
 Wine & Spirits has no Target Accounts card since it isn't
-territory-restricted. BBC Lytt's Target Accounts sits alongside its
+territory-restricted. September adds the same treatment for Keystone Ice
+and Fever Tree (mpo_targets_keystone_ice.json /
+mpo_targets_fever_tree.json, generate_2026-09.py's build_targets(), same
+core-territory scope); September's Wine & Spirits is "any brand", so a
+"doesn't carry the brand yet" list has nothing to name, and Constellation
+Corona Gaintain is scored on placement volume across a rep's whole book
+rather than on reaching new accounts -- neither gets one. BBC Lytt's Target Accounts sits alongside its
 existing "Lytt Accounts" list (lineTableLytt() -- accounts that
 ALREADY carry Lytt, grouped by customer) rather than replacing it: the
 "Lytt Accounts" list shows progress made, Target Accounts shows what's
