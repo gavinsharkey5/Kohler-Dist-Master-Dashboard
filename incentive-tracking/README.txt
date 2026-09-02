@@ -96,6 +96,60 @@ example for the rest. What it took, end to end:
                 switching on any other September program -- the
                 structure-only metrics were guesses.
 
+THREE MORE SWITCHED ON 2026-09-02: touchdowns_tea, evil_genius, montauk.
+Their exports live in data/ as touchdowns_tea_off.csv + touchdowns_tea_on.csv,
+evil_genius.csv and montauk.csv. All four use the base/current two-column
+period shape the MPO trackers use, but they name the premise column "On-Off
+Premise" where every earlier file on this page says "Premise" -- normalised by
+_premise() rather than special-cased per builder.
+
+All three placeholder metrics in the registry were wrong and were repointed
+(exactly what the paragraph above warns about): evil_genius and montauk read
+d.newPlacements, which no builder emits -- the field is totalNewPlacements --
+and touchdowns_tea read d.cases, which does not exist at all. Left alone the
+leaderboards would have ranked every rep as undefined.
+
+  touchdowns_tea  Two exports, four payout legs, only two of them scoreable.
+                  $15 per new off-premise 12pk placement and $1 per on-premise
+                  case sold are in the data. The $1/case FLOOR display (25-case
+                  minimum, football POS, not co-branded) and the $25 football
+                  feature both depend on a photo and on POS conditions no
+                  export carries, so they render as a descriptive block the way
+                  Keystone's cooler-door photos do and are EXCLUDED from the
+                  payout figure. Ranked on trackable payout rather than either
+                  channel alone, since $15 and $1 legs are not comparable.
+                  The off-premise export arrives PRE-FILTERED to 12-packs
+                  (every row is a 2/12/12oz pack), so no product filter is
+                  applied. If a future export widens, add one or placements
+                  will be over-counted.
+
+  evil_genius     Hard 3-placement qualifier gates ALL payout, so payout is
+                  computed as zero until totalNewPlacements >= 3. Off-premise
+                  placements are account-level (the 1911 rule) because they pay
+                  one flat $10. Draft leg is Stacy's Mom only.
+                  THE BONUS IS DELIBERATELY NOT SCORED -- see open question 4.
+
+  montauk         The one program here that does NOT use the account-level
+                  rule. Its pack sizes pay different amounts ($10 a 6pk, $15 a
+                  12pk or 19.2oz), so placements are classified per (rep,
+                  customer, pack tier); an account taking 6pks and 12pks is two
+                  placements on the deck's wording. The account-level count is
+                  emitted alongside as newAccounts, and the card shows both --
+                  see open question 3.
+
+DRAFT MINIMUMS ARE A DIFFERENT KIND OF THRESHOLD from 1911/Woodchuck's.
+Those pay "after 2 barrels", a cumulative volume gate (bbl_threshold=2.0/3.0).
+Evil Genius and Montauk instead say "1 1/2 bbl or 2 1/6 bbls minimum", which
+describes the minimum KEG ORDER, so DRAFT_MIN_BBL is 1/3 (two sixtels, the
+smaller of the two acceptable orders) and is checked against the account's
+September keg volume, not a season total. Don't unify these two rules.
+
+FIRST-DAYS CAVEAT: the 2026-09-02 exports cover 9/1-9/4 only, so every number
+on these three is a handful of placements. That is the data, not a bug --
+touchdowns_tea 2 placements + 265 on-prem cases, evil_genius 1 placement (0
+reps past the qualifier), montauk 5 placements. Expect these to look empty for
+most reps until mid-month.
+
 Because build_keystone_ice() reads a sibling dashboard's output, THIS
 PAGE IS ONLY AS CURRENT AS THAT DASHBOARD. Refresh keystone-ice first
 (save the new RDE export over its actuals.csv, run its generate.py),
@@ -205,6 +259,21 @@ OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
      and bardstown_display are photo/documentation verified and may
      never have one, in which case their cards stay descriptive
      permanently (they are flagged manual:true and say so on the card).
+  4. EVIL GENIUS BONUS BASIS -- "$1.00 for every CE sold over 2025 sales".
+     The export's only 2025 column is the FULL CALENDAR YEAR (1/1-12/31)
+     and it is set against a September-2026 column. A single September
+     cannot beat a whole year: house-wide that is 7 CE against 1,230, so
+     every rep would show zero forever. The bonus is therefore NOT scored
+     -- the card shows CE sold and the 2025 figure side by side and says
+     the basis needs confirming. Most likely it means last September, or
+     the program period rather than the month. Fix build_evil_genius()
+     once Gavin confirms; the 2025 column is already carried through as
+     cases2025.
+  5. MONTAUK PLACEMENT GRAIN -- per pack tier (current, 5 placements) or
+     per account the way 1911 is (3)? The deck prices 6pk and 12pk/19.2oz
+     differently, which is why per-tier is the default here, but Gavin's
+     2026-08-17 ruling for 1911 was explicitly account-level. Both counts
+     are in the data and the card footnote states the difference.
 
 STATUS (2026-08-20): ALL 11 original-deck programs built and live --
 Le Grand Noir (program 11) went live 2026-08-20 when its first RDE

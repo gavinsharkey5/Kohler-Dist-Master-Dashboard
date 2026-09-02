@@ -2429,6 +2429,381 @@ def build_keystone_ice():
     }
 
 
+# The three September exports name their premise column "On-Off Premise" where
+# every earlier RDE file on this page says "Premise". Normalised on read rather
+# than special-cased in each builder.
+def _premise(row):
+    return (row.get("Premise") or row.get("On-Off Premise") or "").strip()
+
+
+# "1 1/2 bbl or 2 1/6 bbl minimum" (Evil Genius and Montauk draft). Two sixtels
+# is the smaller of the two acceptable orders, so 1/3 bbl is the qualifying
+# floor. NOTE this is a different KIND of threshold from 1911/Woodchuck's
+# "paid after 2 barrels", which is a cumulative volume gate -- here the deck is
+# describing the minimum keg order, so it is checked per account's September
+# keg volume, not against a season total.
+DRAFT_MIN_BBL = 1.0 / 3.0
+
+
+def _draft_accounts(rows, place_base_col, place_current_col, case_current_col,
+                    product_filter=None):
+    """Shared draft half of Evil Genius / Montauk: classify keg accounts as new
+    vs reorder and total each one's current-period barrels."""
+    by_cust, bbl, name = defaultdict(list), defaultdict(float), {}
+    for row in rows:
+        if _premise(row) != "On Premise" or not is_keg_package(row.get("Package")):
+            continue
+        if product_filter and not product_filter(row["Product Name"]):
+            continue
+        key = (row["Sales Rep Assigned"], row["Customer Num"])
+        by_cust[key].append(row)
+        name.setdefault(key, row["Customer Name"])
+        bbl[key] += (keg_bbl(row["Package"]) or 0.0) * to_num(row[case_current_col])
+    return by_cust, bbl, name, classify_by_customer(by_cust, place_base_col, place_current_col)
+
+
+def build_montauk():
+    """Montauk Wave Chaser new placements, September 2026 (deck p6).
+
+        $10  new placement of Wave Chaser 6pk cans
+        $15  new placement of Wave Chaser 12pk cans OR 19.2oz cans
+        $100 per new draught line, Wave Chaser only, 1x1/2bbl or 2x1/6bbl min
+
+    Because the package tiers pay DIFFERENT amounts, off-premise placements are
+    classified per (rep, customer, tier) rather than per (rep, customer) the way
+    1911/Woodchuck are. Those programs pay one flat rate for any new placement,
+    so Gavin's 2026-08-17 account-level rule ("a second SKU at an account that
+    already carries one is a reorder, not a new placement") collapses tiers
+    without losing money. Here it would: an account that takes 6pks and 12pks
+    is two placements at two prices on the deck's wording. The account-level
+    count is emitted alongside as newAccounts so the two readings can be
+    compared -- see the README, this is the one open question on this program.
+    """
+    rows = read_rows("montauk.csv")
+    fields = rows[0].keys() if rows else []
+    place_base, place_current = find_period_cols(fields, "Placement Count")
+    case_base, case_current = find_period_cols(fields, "Cases")
+
+    def tier_of(package):
+        p = (package or "").lower()
+        if "4/6/" in p:
+            return "sixpack"
+        if "2/12/" in p:
+            return "twelvepack"
+        if "19.2" in p:
+            return "nineteen2"
+        return None
+
+    TIER_RATE = {"sixpack": 10, "twelvepack": 15, "nineteen2": 15}
+    TIER_LABEL = {"sixpack": "6pk cans", "twelvepack": "12pk cans", "nineteen2": "19.2oz cans"}
+
+    by_rep = {rep: {"offPremNew": [], "offPremNewCount": 0, "offPremReorderCount": 0,
+                    "newAccounts": 0, "byTier": {t: 0 for t in TIER_RATE},
+                    "draftNew": [], "draftNewCount": 0, "draftReorderCount": 0,
+                    "draftQualifiedCount": 0, "draftAccounts": [],
+                    "caseVolume": 0.0, "packagePayout": 0, "draftPayout": 0,
+                    "payout": 0, "totalNewPlacements": 0, "draftChannelOk": False}
+              for rep in ROSTER}
+
+    pkg_by_tier, pkg_by_cust = defaultdict(list), defaultdict(list)
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["caseVolume"] += to_num(row[case_current])
+        if _premise(row) != "Off Premise":
+            continue
+        tier = tier_of(row.get("Package"))
+        if not tier:
+            continue
+        pkg_by_tier[(rep, row["Customer Num"], tier)].append(row)
+        pkg_by_cust[(rep, row["Customer Num"])].append(row)
+
+    for key, status in classify_by_customer(pkg_by_tier, place_base, place_current).items():
+        rep, _cust, tier = key
+        if status == "new":
+            krows = pkg_by_tier[key]
+            dates = sorted((r["Date"] for r in krows if r[place_current].strip()), reverse=True)
+            by_rep[rep]["offPremNew"].append({
+                "customer": krows[0]["Customer Name"],
+                "tier": TIER_LABEL[tier],
+                "rate": TIER_RATE[tier],
+                "date": dates[0] if dates else None,
+            })
+            by_rep[rep]["offPremNewCount"] += 1
+            by_rep[rep]["byTier"][tier] += 1
+            by_rep[rep]["packagePayout"] += TIER_RATE[tier]
+        elif status == "reorder":
+            by_rep[rep]["offPremReorderCount"] += 1
+
+    for key, status in classify_by_customer(pkg_by_cust, place_base, place_current).items():
+        if status == "new":
+            by_rep[key[0]]["newAccounts"] += 1
+
+    d_by_cust, d_bbl, d_name, d_class = _draft_accounts(
+        rows, place_base, place_current, case_current)
+    for key, status in d_class.items():
+        rep, _cust = key
+        if rep not in by_rep:
+            continue
+        bbl = round(d_bbl[key], 3)
+        qualifies = bbl >= DRAFT_MIN_BBL
+        by_rep[rep]["draftAccounts"].append({"customer": d_name[key], "bbl": bbl,
+                                             "qualifies": qualifies, "status": status})
+        if status == "new":
+            dates = sorted((r["Date"] for r in d_by_cust[key] if r[place_current].strip()), reverse=True)
+            by_rep[rep]["draftNew"].append({"customer": d_name[key], "bbl": bbl,
+                                            "qualifies": qualifies,
+                                            "date": dates[0] if dates else None})
+            by_rep[rep]["draftNewCount"] += 1
+            if qualifies:
+                by_rep[rep]["draftQualifiedCount"] += 1
+                by_rep[rep]["draftPayout"] += 100
+        elif status == "reorder":
+            by_rep[rep]["draftReorderCount"] += 1
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["caseVolume"] = round(d["caseVolume"], 2)
+        d["totalNewPlacements"] = d["offPremNewCount"] + d["draftQualifiedCount"]
+        d["payout"] = d["packagePayout"] + d["draftPayout"]
+        d["offPremNew"].sort(key=lambda e: (-e["rate"], e["date"] or ""))
+        d["draftAccounts"].sort(key=lambda a: -a["bbl"])
+        d["draftChannelOk"] = bool(d["draftAccounts"]) or d["draftNewCount"] > 0
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(
+            base_accounts(rep, premise="Off Premise"),
+            {c for (r, c) in pkg_by_cust if r == rep})
+        leaderboard.append({"rep": rep, "newPlacements": d["totalNewPlacements"],
+                            "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["newPlacements"], -x["payout"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "meta": {"draftMinBbl": round(DRAFT_MIN_BBL, 3),
+                     "rates": {"sixpack": 10, "twelvepack": 15, "nineteen2": 15, "draft": 100}}}
+
+
+def build_evil_genius():
+    """Evil Genius Core Growth, September 2026 (deck p4).
+
+        Qualifier: 3 placements minimum before ANYTHING pays
+        $10  every new off-premise placement of Stacy's Mom, Adulting or 867-5309
+        $100 every new placement of Stacy's Mom DRAFT, 1x1/2bbl or 2x1/6bbl min
+        Bonus: $1 for every CE sold over 2025 sales
+
+    Off-premise placements pay one flat rate, so they use the account-level
+    rule (1911 precedent) rather than Montauk's per-tier split.
+
+    THE BONUS IS NOT SCORED. Its export carries a full-year 2025 column
+    (1/1-12/31) against a September-2026 column, and September CE would have to
+    beat a whole year to pay -- house-wide that is 7 CE against 1,230, so nobody
+    could ever clear it on this reading. Rather than publish a payout everyone
+    fails, the card shows CE sold and the 2025 figure side by side and says the
+    comparison basis needs confirming. See the README's open questions.
+    """
+    rows = read_rows("evil_genius.csv")
+    fields = list(rows[0].keys()) if rows else []
+    # Three dated periods here (2025 full year, Jun-Aug 2026, Sept 2026), so
+    # find_period_cols -- which insists on exactly two -- cannot be used.
+    def dated(prefix):
+        out = []
+        for c in fields:
+            if c.startswith(prefix + " "):
+                m = DATE_RE.search(c)
+                if m:
+                    out.append((int(m.group(3)), int(m.group(1)), int(m.group(2)), c))
+        out.sort()
+        return [c for *_, c in out]
+    case_cols, place_cols = dated("Cases"), dated("Placement Count")
+    case_2025, _case_base, case_current = case_cols
+    place_base, place_current = place_cols[-2], place_cols[-1]
+
+    QUALIFIER = 3
+    by_rep = {rep: {"offPremNew": [], "offPremNewCount": 0, "offPremReorderCount": 0,
+                    "draftNew": [], "draftNewCount": 0, "draftReorderCount": 0,
+                    "draftQualifiedCount": 0, "draftAccounts": [],
+                    "totalNewPlacements": 0, "qualified": False, "toQualifier": QUALIFIER,
+                    "caseVolume": 0.0, "cases2025": 0.0, "payout": 0,
+                    "draftChannelOk": False}
+              for rep in ROSTER}
+
+    off_by_cust = defaultdict(list)
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["caseVolume"] += to_num(row[case_current])
+        by_rep[rep]["cases2025"] += to_num(row[case_2025])
+        if _premise(row) == "Off Premise":
+            off_by_cust[(rep, row["Customer Num"])].append(row)
+
+    for key, status in classify_by_customer(off_by_cust, place_base, place_current).items():
+        rep, _cust = key
+        krows = off_by_cust[key]
+        if status == "new":
+            cur = [r for r in krows if r[place_current].strip()]
+            dates = sorted((r["Date"] for r in cur), reverse=True)
+            by_rep[rep]["offPremNew"].append({
+                "customer": krows[0]["Customer Name"],
+                "products": sorted({r["Product Name"] for r in cur}),
+                "date": dates[0] if dates else None,
+            })
+            by_rep[rep]["offPremNewCount"] += 1
+        elif status == "reorder":
+            by_rep[rep]["offPremReorderCount"] += 1
+
+    # Draft leg is Stacy's Mom only, per the deck.
+    d_by_cust, d_bbl, d_name, d_class = _draft_accounts(
+        rows, place_base, place_current, case_current,
+        product_filter=lambda p: "stacy" in p.lower())
+    for key, status in d_class.items():
+        rep, _cust = key
+        if rep not in by_rep:
+            continue
+        bbl = round(d_bbl[key], 3)
+        qualifies = bbl >= DRAFT_MIN_BBL
+        by_rep[rep]["draftAccounts"].append({"customer": d_name[key], "bbl": bbl,
+                                             "qualifies": qualifies, "status": status})
+        if status == "new":
+            dates = sorted((r["Date"] for r in d_by_cust[key] if r[place_current].strip()), reverse=True)
+            by_rep[rep]["draftNew"].append({"customer": d_name[key], "bbl": bbl,
+                                            "qualifies": qualifies,
+                                            "date": dates[0] if dates else None})
+            by_rep[rep]["draftNewCount"] += 1
+            if qualifies:
+                by_rep[rep]["draftQualifiedCount"] += 1
+        elif status == "reorder":
+            by_rep[rep]["draftReorderCount"] += 1
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["caseVolume"] = round(d["caseVolume"], 2)
+        d["cases2025"] = round(d["cases2025"], 2)
+        d["totalNewPlacements"] = d["offPremNewCount"] + d["draftQualifiedCount"]
+        d["qualified"] = d["totalNewPlacements"] >= QUALIFIER
+        d["toQualifier"] = max(0, QUALIFIER - d["totalNewPlacements"])
+        # Nothing pays until the 3-placement qualifier is cleared.
+        d["payout"] = (d["offPremNewCount"] * 10 + d["draftQualifiedCount"] * 100) if d["qualified"] else 0
+        d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["draftAccounts"].sort(key=lambda a: -a["bbl"])
+        d["draftChannelOk"] = bool(d["draftAccounts"]) or d["draftNewCount"] > 0
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(
+            base_accounts(rep, premise="Off Premise"),
+            {c for (r, c) in off_by_cust if r == rep})
+        leaderboard.append({"rep": rep, "newPlacements": d["totalNewPlacements"],
+                            "payout": d["payout"]})
+    leaderboard.sort(key=lambda x: (-x["newPlacements"], -x["payout"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "meta": {"qualifier": QUALIFIER, "draftMinBbl": round(DRAFT_MIN_BBL, 3),
+                     "bonusScored": False,
+                     "rates": {"offPrem": 10, "draft": 100, "bonusPerCe": 1}}}
+
+
+def build_touchdowns_tea():
+    """Touchdowns & Tea, September 2026 (deck p3). Two exports, two channels.
+
+    OFF PREMISE  $15 per new placement of 12pks (Sun Cruiser or Twisted Tea)
+                 $1 per case on the floor with football POS, 25-case minimum,
+                 not co-branded, iSellBeer picture required
+    ON PREMISE   $1 per case sold
+                 $25 per account running a football feature, iSellBeer menu or
+                 bucket picture required, bucket special under $35 for 5 cans
+
+    Only two of those four legs can be scored from RDE. The $1/case FLOOR
+    payout and the $25 feature both depend on a photo and on POS conditions no
+    export carries, so they are shown as descriptive blocks the way Keystone's
+    cooler-door photos are, and are excluded from the payout figure.
+
+    The off-premise export arrives pre-filtered to 12-packs (every row is a
+    2/12/12oz pack), so no product filter is applied here -- if a future export
+    widens, this needs a 12pk filter added or it will over-count placements.
+    """
+    off_rows, on_rows = read_rows("touchdowns_tea_off.csv"), read_rows("touchdowns_tea_on.csv")
+    of, onf = off_rows[0].keys(), on_rows[0].keys()
+    off_pb, off_pc = find_period_cols(of, "Placement Count")
+    off_cb, off_cc = find_period_cols(of, "Cases")
+    on_cb, on_cc = find_period_cols(onf, "Cases")
+
+    def brand(product):
+        return "Sun Cruiser" if "sun cruiser" in product.lower() else "Twisted Tea"
+
+    by_rep = {rep: {"offPremNew": [], "offPremNewCount": 0, "offPremReorderCount": 0,
+                    "offPremCases": 0.0, "onPremCases": 0.0,
+                    "onPremAccounts": [], "onPremAccountCount": 0,
+                    "placementPayout": 0, "onPremCasePayout": 0, "payout": 0,
+                    "byBrand": {"Sun Cruiser": 0, "Twisted Tea": 0}}
+              for rep in ROSTER}
+
+    off_by_cust = defaultdict(list)
+    for row in off_rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        by_rep[rep]["offPremCases"] += to_num(row[off_cc])
+        off_by_cust[(rep, row["Customer Num"])].append(row)
+
+    for key, status in classify_by_customer(off_by_cust, off_pb, off_pc).items():
+        rep, _cust = key
+        krows = off_by_cust[key]
+        if status == "new":
+            cur = [r for r in krows if r[off_pc].strip()]
+            dates = sorted((r["Date"] for r in cur), reverse=True)
+            brands = sorted({brand(r["Product Name"]) for r in cur})
+            by_rep[rep]["offPremNew"].append({
+                "customer": krows[0]["Customer Name"],
+                "brands": brands,
+                "date": dates[0] if dates else None,
+            })
+            by_rep[rep]["offPremNewCount"] += 1
+            for b in brands:
+                by_rep[rep]["byBrand"][b] += 1
+        elif status == "reorder":
+            by_rep[rep]["offPremReorderCount"] += 1
+
+    on_by_cust = defaultdict(float)
+    on_name = {}
+    for row in on_rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        cases = to_num(row[on_cc])
+        by_rep[rep]["onPremCases"] += cases
+        if cases:
+            on_by_cust[(rep, row["Customer Num"])] += cases
+            on_name[(rep, row["Customer Num"])] = row["Customer Name"]
+
+    for (rep, _cust), cases in on_by_cust.items():
+        by_rep[rep]["onPremAccounts"].append({"customer": on_name[(rep, _cust)],
+                                              "cases": round(cases, 2)})
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["offPremCases"] = round(d["offPremCases"], 2)
+        d["onPremCases"] = round(d["onPremCases"], 2)
+        d["onPremAccounts"].sort(key=lambda a: -a["cases"])
+        d["onPremAccountCount"] = len(d["onPremAccounts"])
+        d["placementPayout"] = d["offPremNewCount"] * 15
+        d["onPremCasePayout"] = int(round(d["onPremCases"]))
+        d["payout"] = d["placementPayout"] + d["onPremCasePayout"]
+        d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["offPremTargets"], d["offPremTargetCount"] = targets_from(
+            base_accounts(rep, premise="Off Premise"),
+            {c for (r, c) in off_by_cust if r == rep})
+        leaderboard.append({"rep": rep, "payout": d["payout"],
+                            "newPlacements": d["offPremNewCount"]})
+    # Ranked on trackable payout, not placements alone: the two legs pay $15 and
+    # $1, so neither channel on its own represents where a rep stands.
+    leaderboard.sort(key=lambda x: (-x["payout"], -x["newPlacements"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "meta": {"rates": {"placement": 15, "onPremCase": 1, "floorCase": 1,
+                               "feature": 25, "floorMinCases": 25},
+                     "photoLegsTracked": False}}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -2460,6 +2835,9 @@ def main():
     # at a time as their data arrives, without touching the August tab.
     data_09 = {
         "keystone_ice": build_keystone_ice(),
+        "touchdowns_tea": build_touchdowns_tea(),
+        "evil_genius": build_evil_genius(),
+        "montauk": build_montauk(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -2565,6 +2943,28 @@ def main():
               f"{len(qualified)} of {ki['meta']['repCount']} reps qualified, "
               f"leader {lead[0]} {lead[1]['accounts']} of {lead[1]['qualifier']} ({lead[1]['pct']}%)"
               + (f" | off-roster, not shown: {', '.join(ki['meta']['offRoster'])}" if ki["meta"]["offRoster"] else ""))
+
+    td = data_09["touchdowns_tea"]["byRep"]
+    print(f"touchdowns_tea: {sum(d['offPremNewCount'] for d in td.values())} new off-prem 12pk placements, "
+          f"{sum(d['onPremCases'] for d in td.values()):,.0f} on-prem cases across "
+          f"{sum(1 for d in td.values() if d['onPremAccountCount'])} reps "
+          f"| trackable ${sum(d['payout'] for d in td.values()):,} (floor-display and feature legs are photo-verified, not scored)")
+
+    eg = data_09["evil_genius"]["byRep"]
+    eg_q = [r for r, d in eg.items() if d["qualified"]]
+    print(f"evil_genius: {sum(d['totalNewPlacements'] for d in eg.values())} new placements "
+          f"({sum(d['draftQualifiedCount'] for d in eg.values())} qualifying draft), "
+          f"{len(eg_q)} of {len(ROSTER)} reps past the 3-placement qualifier "
+          f"| CE {sum(d['caseVolume'] for d in eg.values()):,.0f} vs 2025 {sum(d['cases2025'] for d in eg.values()):,.0f} "
+          f"(bonus NOT scored -- comparison basis unconfirmed)")
+
+    mo = data_09["montauk"]["byRep"]
+    tiers = {t: sum(d["byTier"][t] for d in mo.values()) for t in ("sixpack", "twelvepack", "nineteen2")}
+    print(f"montauk: {sum(d['totalNewPlacements'] for d in mo.values())} new placements "
+          f"(6pk {tiers['sixpack']} + 12pk {tiers['twelvepack']} + 19.2oz {tiers['nineteen2']} "
+          f"+ draft {sum(d['draftQualifiedCount'] for d in mo.values())}) "
+          f"| {sum(d['newAccounts'] for d in mo.values())} distinct new ACCOUNTS if scored 1911-style "
+          f"| ${sum(d['payout'] for d in mo.values()):,}")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]
