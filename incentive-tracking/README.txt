@@ -124,10 +124,12 @@ leaderboards would have ranked every rep as undefined.
                   will be over-counted.
 
   evil_genius     Hard 3-placement qualifier gates ALL payout, so payout is
-                  computed as zero until totalNewPlacements >= 3. Off-premise
-                  placements are account-level (the 1911 rule) because they pay
-                  one flat $10. Draft leg is Stacy's Mom only.
-                  THE BONUS IS DELIBERATELY NOT SCORED -- see open question 4.
+                  computed as zero until totalNewPlacements >= 3 -- the volume
+                  bonus included, per the deck's "minimum for any payout".
+                  Off-premise placements are account-level (the 1911 rule)
+                  because they pay one flat $10. Draft leg is Stacy's Mom only.
+                  The bonus SCORES as of 2026-09-02 (see resolved question 4):
+                  $1 per CE over the rep's own September 2025, floored at zero.
 
   montauk         The one program here that does NOT use the account-level
                   rule. Its pack sizes pay different amounts ($10 a 6pk, $15 a
@@ -259,16 +261,20 @@ OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
      and bardstown_display are photo/documentation verified and may
      never have one, in which case their cards stay descriptive
      permanently (they are flagged manual:true and say so on the card).
-  4. EVIL GENIUS BONUS BASIS -- "$1.00 for every CE sold over 2025 sales".
-     The export's only 2025 column is the FULL CALENDAR YEAR (1/1-12/31)
-     and it is set against a September-2026 column. A single September
-     cannot beat a whole year: house-wide that is 7 CE against 1,230, so
-     every rep would show zero forever. The bonus is therefore NOT scored
-     -- the card shows CE sold and the 2025 figure side by side and says
-     the basis needs confirming. Most likely it means last September, or
-     the program period rather than the month. Fix build_evil_genius()
-     once Gavin confirms; the 2025 column is already carried through as
-     cases2025.
+  4. RESOLVED 2026-09-02 -- EVIL GENIUS BONUS BASIS. Was: the export's
+     only 2025 column was the FULL CALENDAR YEAR set against a single
+     September, which nobody could ever beat (7 CE vs 1,230 house-wide),
+     so the bonus was left unscored. Gavin re-pulled the export against
+     9/1-9/30/2025, the like-for-like month, and it now SCORES: $1 per CE
+     over that rep's own last-September figure, floored at zero and gated
+     by the same 3-placement qualifier as everything else ("3 placements
+     minimum for any payout" covers the bonus too).
+     No code change was needed to find the moved column -- dated() locates
+     the periods by their embedded dates, not by name, so the new layout
+     (Sept 2025 / Jun-Aug 2026 / Sept 2026) sorted into place on its own.
+     The per-rep field is casesBaseline, not cases2025, and the window
+     label is carried through as meta.baselineWindow so the card names the
+     actual comparison month rather than hardcoding one.
   5. MONTAUK PLACEMENT GRAIN -- per pack tier (current, 5 placements) or
      per account the way 1911 is (3)? The deck prices 6pk and 12pk/19.2oz
      differently, which is why per-tier is the default here, but Gavin's

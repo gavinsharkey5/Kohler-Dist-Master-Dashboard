@@ -2594,12 +2594,18 @@ def build_evil_genius():
     Off-premise placements pay one flat rate, so they use the account-level
     rule (1911 precedent) rather than Montauk's per-tier split.
 
-    THE BONUS IS NOT SCORED. Its export carries a full-year 2025 column
-    (1/1-12/31) against a September-2026 column, and September CE would have to
-    beat a whole year to pay -- house-wide that is 7 CE against 1,230, so nobody
-    could ever clear it on this reading. Rather than publish a payout everyone
-    fails, the card shows CE sold and the 2025 figure side by side and says the
-    comparison basis needs confirming. See the README's open questions.
+    THE BONUS IS SCORED as of the 2026-09-02 re-export. The first export
+    baselined against a full calendar year (1/1-12/31/2025) set beside a single
+    September, which nobody could ever beat -- 7 CE against 1,230 house-wide --
+    so it was left uncounted. Gavin re-pulled it against 9/1-9/30/2025, the
+    like-for-like month, and the bonus now pays $1 per CE over that figure.
+    The baseline column is located by its embedded date rather than by name, so
+    this needed no code change when the window moved.
+
+    Bonus CE is floored at zero per rep: being down against last September
+    costs nothing, it just pays nothing. And the bonus is gated by the same
+    3-placement qualifier as everything else -- the deck says "3 placements
+    minimum for any payout", not just for the placement money.
     """
     rows = read_rows("evil_genius.csv")
     fields = list(rows[0].keys()) if rows else []
@@ -2615,15 +2621,17 @@ def build_evil_genius():
         out.sort()
         return [c for *_, c in out]
     case_cols, place_cols = dated("Cases"), dated("Placement Count")
-    case_2025, _case_base, case_current = case_cols
+    case_baseline, _case_base, case_current = case_cols
     place_base, place_current = place_cols[-2], place_cols[-1]
+    baseline_window = case_baseline.split("  ")[-1].strip() or "prior year"
 
     QUALIFIER = 3
     by_rep = {rep: {"offPremNew": [], "offPremNewCount": 0, "offPremReorderCount": 0,
                     "draftNew": [], "draftNewCount": 0, "draftReorderCount": 0,
                     "draftQualifiedCount": 0, "draftAccounts": [],
                     "totalNewPlacements": 0, "qualified": False, "toQualifier": QUALIFIER,
-                    "caseVolume": 0.0, "cases2025": 0.0, "payout": 0,
+                    "caseVolume": 0.0, "casesBaseline": 0.0,
+                    "bonusCe": 0.0, "bonusPayout": 0, "payout": 0,
                     "draftChannelOk": False}
               for rep in ROSTER}
 
@@ -2633,7 +2641,7 @@ def build_evil_genius():
         if rep not in by_rep:
             continue
         by_rep[rep]["caseVolume"] += to_num(row[case_current])
-        by_rep[rep]["cases2025"] += to_num(row[case_2025])
+        by_rep[rep]["casesBaseline"] += to_num(row[case_baseline])
         if _premise(row) == "Off Premise":
             off_by_cust[(rep, row["Customer Num"])].append(row)
 
@@ -2678,12 +2686,18 @@ def build_evil_genius():
     leaderboard = []
     for rep, d in by_rep.items():
         d["caseVolume"] = round(d["caseVolume"], 2)
-        d["cases2025"] = round(d["cases2025"], 2)
+        d["casesBaseline"] = round(d["casesBaseline"], 2)
         d["totalNewPlacements"] = d["offPremNewCount"] + d["draftQualifiedCount"]
         d["qualified"] = d["totalNewPlacements"] >= QUALIFIER
         d["toQualifier"] = max(0, QUALIFIER - d["totalNewPlacements"])
-        # Nothing pays until the 3-placement qualifier is cleared.
-        d["payout"] = (d["offPremNewCount"] * 10 + d["draftQualifiedCount"] * 100) if d["qualified"] else 0
+        # Growth over the same month last year, floored at zero -- being down
+        # against last September pays nothing, it does not claw anything back.
+        d["bonusCe"] = round(max(0.0, d["caseVolume"] - d["casesBaseline"]), 2)
+        d["bonusPayout"] = int(round(d["bonusCe"])) if d["qualified"] else 0
+        # Nothing pays until the 3-placement qualifier is cleared -- the deck
+        # gates "any payout" on it, the bonus included.
+        d["payout"] = (d["offPremNewCount"] * 10 + d["draftQualifiedCount"] * 100
+                       + d["bonusPayout"]) if d["qualified"] else 0
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["draftAccounts"].sort(key=lambda a: -a["bbl"])
         d["draftChannelOk"] = bool(d["draftAccounts"]) or d["draftNewCount"] > 0
@@ -2697,7 +2711,7 @@ def build_evil_genius():
         e["rank"] = i + 1
     return {"byRep": by_rep, "leaderboard": leaderboard,
             "meta": {"qualifier": QUALIFIER, "draftMinBbl": round(DRAFT_MIN_BBL, 3),
-                     "bonusScored": False,
+                     "bonusScored": True, "baselineWindow": baseline_window,
                      "rates": {"offPrem": 10, "draft": 100, "bonusPerCe": 1}}}
 
 
@@ -2952,11 +2966,15 @@ def main():
 
     eg = data_09["evil_genius"]["byRep"]
     eg_q = [r for r, d in eg.items() if d["qualified"]]
+    eg_meta = data_09["evil_genius"]["meta"]
+    eg_ahead = [r for r, d in eg.items() if d["bonusCe"] > 0]
     print(f"evil_genius: {sum(d['totalNewPlacements'] for d in eg.values())} new placements "
           f"({sum(d['draftQualifiedCount'] for d in eg.values())} qualifying draft), "
           f"{len(eg_q)} of {len(ROSTER)} reps past the 3-placement qualifier "
-          f"| CE {sum(d['caseVolume'] for d in eg.values()):,.0f} vs 2025 {sum(d['cases2025'] for d in eg.values()):,.0f} "
-          f"(bonus NOT scored -- comparison basis unconfirmed)")
+          f"| CE {sum(d['caseVolume'] for d in eg.values()):,.0f} vs {eg_meta['baselineWindow']} "
+          f"{sum(d['casesBaseline'] for d in eg.values()):,.0f} -- {len(eg_ahead)} reps ahead, "
+          f"{sum(d['bonusCe'] for d in eg.values()):,.0f} bonus CE, "
+          f"${sum(d['bonusPayout'] for d in eg.values()):,} paid (qualifier-gated)")
 
     mo = data_09["montauk"]["byRep"]
     tiers = {t: sum(d["byTier"][t] for d in mo.values()) for t in ("sixpack", "twelvepack", "nineteen2")}
