@@ -3,6 +3,12 @@
 Rebuild Boston_Beer_Margin_Comparison.xlsx from the Boston Pricing Analysis file.
 
     python3 make_boston_margin_workbook.py [source.xlsx] [output.xlsx]
+    python3 make_boston_margin_workbook.py --fix-views workbook.xlsx
+
+Run --fix-views after ANY LibreOffice recalculation of this workbook. LibreOffice
+writes a selection state for the frozen bottom-right pane whose active cell is A1,
+a cell that is not in that pane; Excel then opens the sheet with the cursor
+parked outside the active pane and the arrow keys appear to do nothing.
 
 Everything that is NOT in the source file -- the DA amounts pulled out of the
 free text in the price cells, and the Kohler realized-sales figures from the
@@ -10,11 +16,43 @@ free text in the price cells, and the Kohler realized-sales figures from the
 with the reasoning written onto the workbook's Assumptions tab. Refresh those
 two tables when new data lands, then re-run.
 """
+import re
+import shutil
 import sys
+import zipfile
+
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter as gcl
 from openpyxl.comments import Comment
+
+def fix_sheet_views(path):
+    """Give every frozen sheet one valid selection: the top-left cell of its active pane."""
+    tmp = path + '.tmp'
+    with zipfile.ZipFile(path) as zin, zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if re.match(r'xl/worksheets/sheet\d+\.xml$', item.filename):
+                x = data.decode('utf-8')
+                pane = re.search(r'<pane [^>]*/>', x)
+                if pane:
+                    tl = re.search(r'topLeftCell="([^"]+)"', pane.group(0)).group(1)
+                    ap = re.search(r'activePane="([^"]+)"', pane.group(0)).group(1)
+                    sel = f'<selection pane="{ap}" activeCell="{tl}" sqref="{tl}"/>'
+                else:
+                    sel = '<selection activeCell="A1" sqref="A1"/>'
+                x = re.sub(r'(<selection [^>]*/>)+', sel, x, count=1)
+                x = re.sub(r'<selection [^>]*/>', '', x.replace(sel, '\x00', 1)).replace('\x00', sel)
+                data = x.encode('utf-8')
+            elif item.filename == 'xl/workbook.xml':
+                data = data.decode('utf-8').replace('<workbookProtection/>', '').encode('utf-8')
+            zout.writestr(item, data)
+    shutil.move(tmp, path)
+
+
+if len(sys.argv) > 1 and sys.argv[1] == '--fix-views':
+    fix_sheet_views(sys.argv[2])
+    sys.exit(0)
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else 'Boston_Pricing_Analysis.xlsx'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'Boston_Beer_Margin_Comparison.xlsx'
