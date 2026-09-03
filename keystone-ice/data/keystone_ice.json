@@ -4,7 +4,7 @@
     "window": "8/1/2026 \u2013 9/30/2026",
     "repLevel": true,
     "repCount": 18,
-    "houseBuyers": 54,
+    "houseBuyers": 75,
     "qualifiedCount": 0,
     "bonusCount": 0,
     "totalPayout": 0
@@ -19,6 +19,83 @@
     ]
   },
   "reps": [
+    {
+      "rep": "Derrick Laws",
+      "base": 32,
+      "qualifier": 13,
+      "bonus": 16,
+      "qualifierRaw": 12.8,
+      "bonusRaw": 16.0,
+      "buyers": 12,
+      "pct": 38,
+      "qualified": false,
+      "bonusHit": false,
+      "toQualifier": 1,
+      "toBonus": 4,
+      "payout": 0,
+      "accounts": [
+        {
+          "num": "20080",
+          "name": "Raphael & Angel Liq (A)",
+          "date": "8/5/2026"
+        },
+        {
+          "num": "20025",
+          "name": "Mercer Bar & Liquors",
+          "date": "8/5/2026"
+        },
+        {
+          "num": "15020",
+          "name": "Angel's Wine & Liquors",
+          "date": "8/5/2026"
+        },
+        {
+          "num": "20079",
+          "name": "Limestone Liquors (A)",
+          "date": "8/6/2026"
+        },
+        {
+          "num": "15013",
+          "name": "El Oasis",
+          "date": "8/13/2026"
+        },
+        {
+          "num": "21048",
+          "name": "Ferraro's Liquor",
+          "date": "8/18/2026"
+        },
+        {
+          "num": "20040",
+          "name": "Hiciano Liquor Store",
+          "date": "8/21/2026"
+        },
+        {
+          "num": "15023",
+          "name": "Santana's Sport(P)Bella",
+          "date": "8/21/2026"
+        },
+        {
+          "num": "22006",
+          "name": "Ant's Bar & Liquors",
+          "date": "8/28/2026"
+        },
+        {
+          "num": "21035",
+          "name": "M & R Disc (A) Liqs.",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "20027",
+          "name": "230 Liq & Groc.(A)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "23004",
+          "name": "Shop Rite Wines/Spirits",
+          "date": "9/4/2026"
+        }
+      ]
+    },
     {
       "rep": "Pablo Lopez",
       "base": 28,
@@ -35,23 +112,13 @@
       "payout": 0,
       "accounts": [
         {
-          "num": "21034",
-          "name": "Schulman's (P) Deli",
-          "date": "8/4/2026"
-        },
-        {
-          "num": "27021",
-          "name": "Johnny's Liqs (P)",
-          "date": "8/4/2026"
-        },
-        {
-          "num": "15016",
-          "name": "Gene's Liquor",
-          "date": "8/4/2026"
-        },
-        {
           "num": "26014",
           "name": "Regalado Liq",
+          "date": "8/4/2026"
+        },
+        {
+          "num": "21034",
+          "name": "Schulman's (P) Deli",
           "date": "8/4/2026"
         },
         {
@@ -60,13 +127,23 @@
           "date": "8/4/2026"
         },
         {
-          "num": "20042",
-          "name": "Midtown Liquors",
-          "date": "8/5/2026"
+          "num": "15016",
+          "name": "Gene's Liquor",
+          "date": "8/4/2026"
+        },
+        {
+          "num": "27021",
+          "name": "Johnny's Liqs (P)",
+          "date": "8/4/2026"
         },
         {
           "num": "27072",
           "name": "Passaic Discount Liquors",
+          "date": "8/5/2026"
+        },
+        {
+          "num": "20042",
+          "name": "Midtown Liquors",
           "date": "8/5/2026"
         },
         {
@@ -132,76 +209,14 @@
           "date": "8/25/2026"
         },
         {
-          "num": "20117",
-          "name": "El Cantaro Liquors",
-          "date": "8/27/2026"
-        },
-        {
           "num": "27071",
           "name": "Mariana's Liquors",
           "date": "8/27/2026"
-        }
-      ]
-    },
-    {
-      "rep": "Derrick Laws",
-      "base": 32,
-      "qualifier": 13,
-      "bonus": 16,
-      "qualifierRaw": 12.8,
-      "bonusRaw": 16.0,
-      "buyers": 9,
-      "pct": 28,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 4,
-      "toBonus": 7,
-      "payout": 0,
-      "accounts": [
-        {
-          "num": "20025",
-          "name": "Mercer Bar & Liquors",
-          "date": "8/5/2026"
         },
         {
-          "num": "15020",
-          "name": "Angel's Wine & Liquors",
-          "date": "8/5/2026"
-        },
-        {
-          "num": "20080",
-          "name": "Raphael & Angel Liq (A)",
-          "date": "8/5/2026"
-        },
-        {
-          "num": "20079",
-          "name": "Limestone Liquors (A)",
-          "date": "8/6/2026"
-        },
-        {
-          "num": "15013",
-          "name": "El Oasis",
-          "date": "8/13/2026"
-        },
-        {
-          "num": "21048",
-          "name": "Ferraro's Liquor",
-          "date": "8/18/2026"
-        },
-        {
-          "num": "15023",
-          "name": "Santana's Sport(P)Bella",
-          "date": "8/21/2026"
-        },
-        {
-          "num": "20040",
-          "name": "Hiciano Liquor Store",
-          "date": "8/21/2026"
-        },
-        {
-          "num": "22006",
-          "name": "Ant's Bar & Liquors",
-          "date": "8/28/2026"
+          "num": "20117",
+          "name": "El Cantaro Liquors",
+          "date": "8/27/2026"
         }
       ]
     },
@@ -212,22 +227,22 @@
       "bonus": 20,
       "qualifierRaw": 16.0,
       "bonusRaw": 20.0,
-      "buyers": 7,
-      "pct": 18,
+      "buyers": 11,
+      "pct": 28,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 9,
-      "toBonus": 13,
+      "toQualifier": 5,
+      "toBonus": 9,
       "payout": 0,
       "accounts": [
         {
-          "num": "25034",
-          "name": "Figlar's (P)",
+          "num": "25045",
+          "name": "Clifton Disc Liq (A)",
           "date": "8/7/2026"
         },
         {
-          "num": "25045",
-          "name": "Clifton Disc Liq (A)",
+          "num": "25034",
+          "name": "Figlar's (P)",
           "date": "8/7/2026"
         },
         {
@@ -246,14 +261,128 @@
           "date": "8/24/2026"
         },
         {
+          "num": "38021",
+          "name": "Buy Rite Of Main St Lodi",
+          "date": "9/1/2026"
+        },
+        {
           "num": "76010",
           "name": "Usa Wine Traders Club (Saddle Brook)",
           "date": "9/1/2026"
         },
         {
-          "num": "38021",
-          "name": "Buy Rite Of Main St Lodi",
+          "num": "80025",
+          "name": "Paramus Food Center",
           "date": "9/1/2026"
+        },
+        {
+          "num": "35002",
+          "name": "Woodridge Wines & Liq(A)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "50016",
+          "name": "Teaneck Quickshop(P)Conv",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "38017",
+          "name": "Quick Stop Food & Liq",
+          "date": "9/3/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Klejdi Lamo",
+      "base": 27,
+      "qualifier": 11,
+      "bonus": 14,
+      "qualifierRaw": 10.8,
+      "bonusRaw": 13.5,
+      "buyers": 6,
+      "pct": 22,
+      "qualified": false,
+      "bonusHit": false,
+      "toQualifier": 5,
+      "toBonus": 8,
+      "payout": 0,
+      "accounts": [
+        {
+          "num": "190917",
+          "name": "Shop Rite Liq (A)Wharton",
+          "date": "8/10/2026"
+        },
+        {
+          "num": "190804",
+          "name": "Midtown Liq",
+          "date": "8/17/2026"
+        },
+        {
+          "num": "190207",
+          "name": "Liquor Outlet",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "191710",
+          "name": "Shop Rite Wine & Spirits Stanhope",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "190907",
+          "name": "Wharton Liquor Store",
+          "date": "9/3/2026"
+        },
+        {
+          "num": "190913",
+          "name": "Main Street Liquor",
+          "date": "9/3/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Dave Ehlers",
+      "base": 35,
+      "qualifier": 14,
+      "bonus": 18,
+      "qualifierRaw": 14.0,
+      "bonusRaw": 17.5,
+      "buyers": 6,
+      "pct": 17,
+      "qualified": false,
+      "bonusHit": false,
+      "toQualifier": 8,
+      "toBonus": 12,
+      "payout": 0,
+      "accounts": [
+        {
+          "num": "40010",
+          "name": "Hackensack Liquors",
+          "date": "8/4/2026"
+        },
+        {
+          "num": "41005",
+          "name": "George's Liq",
+          "date": "8/6/2026"
+        },
+        {
+          "num": "41012",
+          "name": "Deli Mart (A)",
+          "date": "9/1/2026"
+        },
+        {
+          "num": "51013",
+          "name": "G & G Liquors & Bar",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "39012",
+          "name": "Wine And Liq Depot(A)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "51008",
+          "name": "H & R Disc. Liq (P)",
+          "date": "9/3/2026"
         }
       ]
     },
@@ -286,12 +415,12 @@
       "bonus": 22,
       "qualifierRaw": 17.2,
       "bonusRaw": 21.5,
-      "buyers": 4,
-      "pct": 9,
+      "buyers": 6,
+      "pct": 14,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 14,
-      "toBonus": 18,
+      "toQualifier": 12,
+      "toBonus": 16,
       "payout": 0,
       "accounts": [
         {
@@ -313,38 +442,90 @@
           "num": "23002",
           "name": "Valley Liquors (A)",
           "date": "8/27/2026"
+        },
+        {
+          "num": "29013",
+          "name": "Lyndhurst Liquors (P)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "25023",
+          "name": "Clifton Wine & Liquor",
+          "date": "9/3/2026"
         }
       ]
     },
     {
-      "rep": "Dave Ehlers",
+      "rep": "Jayson Romine",
       "base": 35,
       "qualifier": 14,
       "bonus": 18,
       "qualifierRaw": 14.0,
       "bonusRaw": 17.5,
-      "buyers": 3,
-      "pct": 9,
+      "buyers": 4,
+      "pct": 11,
       "qualified": false,
       "bonusHit": false,
-      "toQualifier": 11,
-      "toBonus": 15,
+      "toQualifier": 10,
+      "toBonus": 14,
       "payout": 0,
       "accounts": [
         {
-          "num": "40010",
-          "name": "Hackensack Liquors",
-          "date": "8/4/2026"
+          "num": "230420",
+          "name": "Spring Street Liquors",
+          "date": "8/5/2026"
         },
         {
-          "num": "41005",
-          "name": "George's Liq",
-          "date": "8/6/2026"
+          "num": "230905",
+          "name": "ShopRite Wines & Spirits of Franklin",
+          "date": "9/2/2026"
         },
         {
-          "num": "41012",
-          "name": "Deli Mart (A)",
-          "date": "9/1/2026"
+          "num": "231316",
+          "name": "Patricks Wine Barn",
+          "date": "9/3/2026"
+        },
+        {
+          "num": "408",
+          "name": "Fredon Liquor (Fredon Deli)",
+          "date": "9/4/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Matt Powierski",
+      "base": 40,
+      "qualifier": 16,
+      "bonus": 20,
+      "qualifierRaw": 16.0,
+      "bonusRaw": 20.0,
+      "buyers": 4,
+      "pct": 10,
+      "qualified": false,
+      "bonusHit": false,
+      "toQualifier": 12,
+      "toBonus": 16,
+      "payout": 0,
+      "accounts": [
+        {
+          "num": "26001",
+          "name": "Luigi's Liquor (A)",
+          "date": "8/10/2026"
+        },
+        {
+          "num": "27031",
+          "name": "Home Wine Liquor (Passaic)",
+          "date": "8/11/2026"
+        },
+        {
+          "num": "37068",
+          "name": "Whoopee Liq (A)",
+          "date": "9/2/2026"
+        },
+        {
+          "num": "77016",
+          "name": "Metro Liquor (Elmwood Park)",
+          "date": "9/3/2026"
         }
       ]
     },
@@ -372,33 +553,6 @@
           "num": "8007",
           "name": "Krauszer's Liquor Wine and Spirits",
           "date": "9/1/2026"
-        }
-      ]
-    },
-    {
-      "rep": "Klejdi Lamo",
-      "base": 27,
-      "qualifier": 11,
-      "bonus": 14,
-      "qualifierRaw": 10.8,
-      "bonusRaw": 13.5,
-      "buyers": 2,
-      "pct": 7,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 9,
-      "toBonus": 12,
-      "payout": 0,
-      "accounts": [
-        {
-          "num": "190917",
-          "name": "Shop Rite Liq (A)Wharton",
-          "date": "8/10/2026"
-        },
-        {
-          "num": "190804",
-          "name": "Midtown Liq",
-          "date": "8/17/2026"
         }
       ]
     },
@@ -453,55 +607,6 @@
           "num": "46002",
           "name": "Best Choice Liqrs (P)",
           "date": "8/28/2026"
-        }
-      ]
-    },
-    {
-      "rep": "Matt Powierski",
-      "base": 40,
-      "qualifier": 16,
-      "bonus": 20,
-      "qualifierRaw": 16.0,
-      "bonusRaw": 20.0,
-      "buyers": 2,
-      "pct": 5,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 14,
-      "toBonus": 18,
-      "payout": 0,
-      "accounts": [
-        {
-          "num": "26001",
-          "name": "Luigi's Liquor (A)",
-          "date": "8/10/2026"
-        },
-        {
-          "num": "27031",
-          "name": "Home Wine Liquor (Passaic)",
-          "date": "8/11/2026"
-        }
-      ]
-    },
-    {
-      "rep": "Jayson Romine",
-      "base": 35,
-      "qualifier": 14,
-      "bonus": 18,
-      "qualifierRaw": 14.0,
-      "bonusRaw": 17.5,
-      "buyers": 1,
-      "pct": 3,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 13,
-      "toBonus": 17,
-      "payout": 0,
-      "accounts": [
-        {
-          "num": "230420",
-          "name": "Spring Street Liquors",
-          "date": "8/5/2026"
         }
       ]
     },
@@ -671,7 +776,19 @@
     },
     {
       "date": "9/1/2026",
-      "buyers": 6
+      "buyers": 8
+    },
+    {
+      "date": "9/2/2026",
+      "buyers": 12
+    },
+    {
+      "date": "9/3/2026",
+      "buyers": 7
+    },
+    {
+      "date": "9/4/2026",
+      "buyers": 2
     }
   ]
 }
