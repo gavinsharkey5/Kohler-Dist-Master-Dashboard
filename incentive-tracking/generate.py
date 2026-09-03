@@ -2841,6 +2841,133 @@ def build_touchdowns_tea():
                      "photoLegsTracked": False}}
 
 
+def build_two_xo():
+    """2XO Bourbon, Sept-Oct 2026 (retro August) (deck p9).
+
+        OFF-PREMISE  $40 for 1 case American Oak + 1 case French Oak together
+                     +$35 more for 1 case White Oak Rye on top of that pair
+        ON-PREMISE   a 2-bottle POD qualifier pays $25, every 2-bottle POD pays
+                     $15 per POD cocktail menu placement (photo verified)
+        Targets 60-day non-buy accounts; August activity counts retroactively,
+        which is why the base window here is only 6/1-7/31 (60 days), not the
+        90-day window every other September program uses.
+
+    ONLY THE OFF-PREMISE PAIR BONUS IS SCORED. The rule is explicit that this
+    program pays for the PAIR, not either oak alone -- "1 case American Oak +
+    1 case French Oak pays $40" -- so classification runs per (rep, customer,
+    product) rather than Gavin's usual account-level rule (2026-08-17): an
+    account opening with American Oak only is not yet a placement this program
+    pays for, so collapsing to the account grain would have to invent whether
+    a single-SKU open counts, which the deck doesn't say. Comparing every new
+    account's set of newly-placed products against {American Oak, French Oak}
+    keeps that distinction instead of guessing it away. White Oak Rye is coded
+    the same way (stacks an extra $35 on an already-paired account) but has
+    never appeared in an export yet, so it is currently always $0 -- not a
+    bug, just no data to trigger it.
+
+    ON-PREMISE IS DELIBERATELY NOT SCORED. "A 2-bottle POD" is ambiguous in a
+    way the off-premise leg isn't: is it 2 bottles of one SKU, or does it need
+    the same American+French pairing as off-premise? The export's Cases values
+    are fractional case-equivalents (0.33 = 2 bottles at 6/case, matching the
+    on-premise sample rows suspiciously well), so the 2-bottle threshold COULD
+    be computed -- but guessing which reading Kohler means on a program that
+    pays real money wasn't a reasonable call to make alone. Cases and accounts
+    are still surfaced per rep so nothing is hidden, same treatment as
+    touchdowns_tea's photo-verified legs. Flagged for Gavin in the README.
+
+    The $15 POD-cocktail-menu leg is photo-verified with no export -- same
+    "shown, not scored" treatment.
+    """
+    rows = read_rows("two_xo.csv")
+    fields = rows[0].keys() if rows else []
+    place_base, place_current = find_period_cols(fields, "Placement Count")
+    case_base, case_current = find_period_cols(fields, "Cases")
+
+    def oak(product):
+        p = (product or "").lower()
+        if "american oak" in p:
+            return "American Oak"
+        if "french oak" in p:
+            return "French Oak"
+        if "white oak rye" in p:
+            return "White Oak Rye"
+        return None
+
+    by_rep = {rep: {"offPremNew": [], "offPremSingles": [], "offPremNewCount": 0,
+                    "offPremReorderCount": 0, "onPremCases": 0.0,
+                    "onPremAccounts": [], "onPremAccountCount": 0,
+                    "payout": 0}
+              for rep in ROSTER}
+
+    off_by_sku = defaultdict(list)   # (rep, customer, oak) -> rows
+    off_by_cust = defaultdict(set)   # (rep, customer) -> {oak names}
+    cust_name = {}
+    on_by_cust = defaultdict(float)
+    on_name = {}
+    for row in rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        product = oak(row["Product Name"])
+        if _premise(row) == "On Premise":
+            cases = to_num(row[case_current])
+            by_rep[rep]["onPremCases"] += cases
+            if cases:
+                key = (rep, row["Customer Num"])
+                on_by_cust[key] += cases
+                on_name[key] = row["Customer Name"]
+            continue
+        if not product:
+            continue
+        off_by_sku[(rep, row["Customer Num"], product)].append(row)
+        cust_name[(rep, row["Customer Num"])] = row["Customer Name"]
+
+    sku_status = classify_by_customer(off_by_sku, place_base, place_current)
+    new_products = defaultdict(set)   # (rep, customer) -> {oak names newly placed}
+    any_reorder = set()
+    for (rep, cust, product), status in sku_status.items():
+        if status == "new":
+            new_products[(rep, cust)].add(product)
+        elif status == "reorder":
+            any_reorder.add((rep, cust))
+
+    for (rep, cust), products in new_products.items():
+        krows = [r for p in products for r in off_by_sku[(rep, cust, p)] if r[place_current].strip()]
+        dates = sorted((r["Date"] for r in krows), reverse=True)
+        date = dates[0] if dates else None
+        if {"American Oak", "French Oak"} <= products:
+            payout = 40 + (35 if "White Oak Rye" in products else 0)
+            by_rep[rep]["offPremNew"].append({
+                "customer": cust_name[(rep, cust)], "products": sorted(products),
+                "payout": payout, "date": date,
+            })
+            by_rep[rep]["offPremNewCount"] += 1
+            by_rep[rep]["payout"] += payout
+        else:
+            by_rep[rep]["offPremSingles"].append({
+                "customer": cust_name[(rep, cust)], "products": sorted(products), "date": date,
+            })
+    for (rep, cust) in any_reorder:
+        by_rep[rep]["offPremReorderCount"] += 1
+
+    for (rep, cust), cases in on_by_cust.items():
+        by_rep[rep]["onPremAccounts"].append({"customer": on_name[(rep, cust)], "cases": round(cases, 2)})
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["onPremCases"] = round(d["onPremCases"], 2)
+        d["onPremAccounts"].sort(key=lambda a: -a["cases"])
+        d["onPremAccountCount"] = len(d["onPremAccounts"])
+        d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        leaderboard.append({"rep": rep, "payout": d["payout"], "newPlacements": d["offPremNewCount"]})
+    leaderboard.sort(key=lambda x: (-x["payout"], -x["newPlacements"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "meta": {"rates": {"pair": 40, "rye": 35, "podQualifier": 25, "podMenu": 15},
+                     "onPremScored": False}}
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -2875,6 +3002,7 @@ def main():
         "touchdowns_tea": build_touchdowns_tea(),
         "evil_genius": build_evil_genius(),
         "montauk": build_montauk(),
+        "two_xo": build_two_xo(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -3006,6 +3134,13 @@ def main():
           f"+ draft {sum(d['draftQualifiedCount'] for d in mo.values())}) "
           f"| {sum(d['newAccounts'] for d in mo.values())} distinct new ACCOUNTS if scored 1911-style "
           f"| ${sum(d['payout'] for d in mo.values()):,}")
+
+    xo = data_09["two_xo"]["byRep"]
+    xo_singles = sum(len(d["offPremSingles"]) for d in xo.values())
+    print(f"two_xo: {sum(d['offPremNewCount'] for d in xo.values())} new off-premise pairs "
+          f"(${sum(d['payout'] for d in xo.values()):,} paid) | {xo_singles} single-oak opens not paid "
+          f"(pair rule) | on-premise {sum(d['onPremCases'] for d in xo.values()):,.1f} cases across "
+          f"{sum(1 for d in xo.values() if d['onPremCases'])} reps, NOT scored -- see build_two_xo()")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]

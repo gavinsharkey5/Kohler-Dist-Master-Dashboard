@@ -139,6 +139,23 @@ leaderboards would have ranked every rep as undefined.
                   emitted alongside as newAccounts, and the card shows both --
                   see open question 3.
 
+A FOURTH SWITCHED ON 2026-09-04: two_xo. data/two_xo.csv, build_two_xo() in
+generate.py, cardTwoXo() in index.html.
+
+  two_xo          NEITHER the account-level rule NOR montauk's per-tier one --
+                  a THIRD classification shape. The deck pays for a SPECIFIC
+                  PAIR (1 case American Oak + 1 case French Oak = $40, neither
+                  alone), so classification runs per (rep, customer, product)
+                  and the two SKUs' new/reorder status is combined afterward:
+                  both newly placed together -> $40 (+$35 if White Oak Rye
+                  rides along, never seen in an export yet so currently always
+                  $0). Only one oak newly placed -> shown as a single-oak open
+                  on the card, not paid, since the deck prices no single-SKU
+                  rate. On-premise is intentionally UNSCORED -- see open
+                  question 6. Base window here is 6/1-7/31 (60 days, not the
+                  90-day window every other program uses), matching the deck's
+                  "60-day non-buy, August counts retroactively."
+
 DRAFT MINIMUMS ARE A DIFFERENT KIND OF THRESHOLD from 1911/Woodchuck's.
 Those pay "after 2 barrels", a cumulative volume gate (bbl_threshold=2.0/3.0).
 Evil Genius and Montauk instead say "1 1/2 bbl or 2 1/6 bbls minimum", which
@@ -314,6 +331,46 @@ OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
      differently, which is why per-tier is the default here, but Gavin's
      2026-08-17 ruling for 1911 was explicitly account-level. Both counts
      are in the data and the card footnote states the difference.
+  6. 2XO BOURBON ON-PREMISE POD DEFINITION -- added 2026-09-04 with the
+     program's first export (data/two_xo.csv, build_two_xo() in
+     generate.py, cardTwoXo() in index.html). Off-premise is fully scored
+     (the American+French Oak pair pays $40 -- see the builder's
+     docstring for why classification runs per-SKU instead of Gavin's
+     usual account-level rule). On-premise is NOT: the deck says "a
+     2-bottle POD qualifier pays $25, and every 2-bottle POD pays out,"
+     but doesn't say whether 2 bottles of ONE oak counts or it needs the
+     same pairing off-premise uses. The export's Cases values are
+     fractional case-equivalents that line up suspiciously well with a
+     6-bottle case (0.33 = 2 bottles), so this IS computable once
+     confirmed -- it just wasn't a call to make alone on a program that
+     pays real money. Cases and accounts are shown on the card unscored,
+     same treatment as touchdowns_tea's photo-verified legs.
+  7. OTHER HALF -- has no builder at all yet, on purpose. Two raw exports
+     landed 2026-09-04 (data/other_half_on.csv, data/other_half_off.csv,
+     "Core Draft 1st Half" and "3 Core SKUs OFF," both Sept-Oct 2026) and
+     are kept for traceability, but neither is wired into generate.py.
+     Two things block it, both bigger than a data-hygiene call:
+       - NO NON-BUY SIGNAL. The deck's whole payout structure keys off a
+         "non-buy target account" (on-premise $150/$250, off-premise $40
+         + $10/extra SKU), but both exports are single-window (9/1-10/31)
+         with no base/prior period column at all -- unlike every other
+         September program, there's nothing to classify new-vs-reorder
+         against. One reading: since Other Half is a brand-new launch,
+         EVERY account in these files is inherently non-buy (there was no
+         "before"), making this month's activity itself the new-placement
+         signal. That's plausible but unconfirmed, and it's the exact
+         kind of assumption that has been wrong before on this project
+         (see Bardstown's per-mention-vs-per-submission question).
+       - ON-PREMISE NEEDS OCTOBER DATA THAT DOESN'T EXIST YET. The $150
+         on-premise payout requires the SAME account to buy in BOTH
+         September and October -- unscoreable from a September-only pull
+         no matter how "non-buy" gets resolved.
+     The Southern District $50/account leg is also unclear relative to
+     the off-premise $40 -- additive, or does Southern District simply
+     replace the standard rate for accounts there? Ask Gavin all three
+     together rather than guessing any of them; once resolved this
+     builds the same way two_xo did (see #6, and build_two_xo()'s own
+     docstring for the classification pattern to follow).
 
 STATUS (2026-08-20): ALL 11 original-deck programs built and live --
 Le Grand Noir (program 11) went live 2026-08-20 when its first RDE
