@@ -180,9 +180,21 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. First numbers (9/1-9/2, so barely any month yet):
-Bardstown 1 menu placement, Fever Tree 2 new placements, Carbliss 2 new buying
-accounts, HUSA 1 new draft line. Only HUSA has anyone at goal, its goal being 1.
+All four are data-backed. Numbers as of the 2026-09-03 refresh (still only
+three days into the month): Bardstown 1 menu placement, Fever Tree 2 new
+placements, Carbliss 2 new buying accounts, HUSA 1 new draft line. Only HUSA
+has anyone at goal, its goal being 1. Those are the SAME four qualifying
+accounts the 2026-09-02 build found -- the wider 9/3 exports added plenty of
+September activity but all of it at accounts that already bought in 6/1-8/31,
+so it lands as repeat business, not new placements. Early-month flatness like
+this is expected, not a sign the refresh failed to take.
+
+One row to be aware of on the 2026-09-03 Carbliss export: Robin Feldman /
+230108 Vfw 7248 Sparta carries a load sheet date of 9/10/2026, a week in the
+FUTURE. It is a scheduled load sheet, not a data error to fix here, and it
+changes nothing -- that account also bought in the base period, so it reads as
+a repeat buyer either way. Worth a glance on future refreshes if a
+future-dated row ever lands on an account that WOULD otherwise qualify as new.
 
 OBJECTIVE 1 HAS A DIFFERENT KIND OF SOURCE from the other three, and it is the
 one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
@@ -228,15 +240,27 @@ exists rather than a tweak to August's:
      apart on the leading digits; anything without a leading number keeps the
      whole string as the name and gets no id, so a format change surfaces as a
      missing id rather than a crash.
-  2. Fever Tree and Carbliss carry NO Date column at all. This one is a trap:
-     index.html's buildNewAccountsDataset() starts with
-     `if(!repCol||!custCol||!dateCol||!flagCol) return null;` -- with no date
-     column it returns null and the objective renders as if it had no data,
-     silently. So those two datasets are stamped with a placeholder DATE of the
-     current window's start (2026-09-01), exactly the trick off-prem's Corona
-     Premier export already uses for the same reason. HUSA does carry real
-     dates and keeps them. If a future export gains a real Date column, drop
-     the placeholder -- do not leave both.
+  2. Fever Tree and Carbliss carried NO Date column at all in the 2026-09-02
+     export. This one is a trap: index.html's buildNewAccountsDataset() starts
+     with `if(!repCol||!custCol||!dateCol||!flagCol) return null;` -- with no
+     date column it returns null and the objective renders as if it had no
+     data, silently. So those two datasets were stamped with a placeholder
+     DATE of the current window's start (2026-09-01), the same trick
+     off-prem's Corona Premier export uses for the same reason.
+     RESOLVED as of the 2026-09-03 export, which changed shape again: Fever
+     Tree and Carbliss now arrive one row PER LOAD SHEET DATE (rather than one
+     aggregated row per account) and carry a real "Load Sheet Date" column.
+     generate_2026-09.py reads it via FEVER_TREE_DATE_COL/CARBLISS_DATE_COL
+     and the placeholder is gone for those two -- this README's own rule is
+     to drop the placeholder once a real date arrives rather than leave both.
+     That is not cosmetic: under the placeholder every base-period row also
+     read 2026-09-01, so the Existing Accounts dropdown showed September dates
+     in its "Base Period" column for accounts that had actually bought in June
+     or July. emit() still falls back to the window start for an individual
+     blank cell (a dataset with no dates at all would blank the objective
+     outright, which is worse), and the build log prints how many rows needed
+     that fallback -- it is 0 on a healthy export, and 0 on this one. If a
+     later export drops the date column again, that count is the tell.
   3. The premise column is "On-Off Premise", not "Premise".
 
 NEW-PLACEMENT RULE is unchanged: current window (9/1-9/30) populated, base
@@ -342,6 +366,37 @@ Files:
                                         (three MPO datasets + two Target
                                         Accounts prospect lists).
 
+  September 2026 (see generate_2026-09.py's own docstring for full detail):
+    fever_tree_new_placements.csv     RDE "Molson Coors - Fever Tree (3) New
+                                        Placements ON" export: Sales Rep
+                                        Assigned, Brand Family, Customer Num &
+                                        Company, On-Off Premise, Load Sheet
+                                        Date, and two Placement Count columns
+                                        (base 6/1-8/31, current 9/1-9/30).
+                                        One row per account per load sheet
+                                        date as of 2026-09-03; the 2026-09-02
+                                        version was one aggregated row per
+                                        account with no date column at all.
+    carbliss_new_on_prem_buyers.csv   RDE "Carbliss (10) New On Premise
+                                        Buying Accounts" export -- same shape
+                                        as Fever Tree but with a Buyer Count
+                                        pair instead of Placement Count.
+    husa_xx_draft.csv                 RDE "HUSA - (1) New XX Draft Line"
+                                        export: adds Package and a real Date
+                                        column, and carries a Units pair
+                                        alongside the Buyer Count pair. Brand
+                                        Family is "Dos Equis" (XX). This one
+                                        always had real dates.
+    bardstown_menu_promos.xlsx        Cumulative iSellBeer promo ARCHIVE for
+                                        objective 1 -- NOT a scratch copy of
+                                        the latest pull. Merge new
+                                        Promos_Report pulls onto it, never
+                                        overwrite (see objective 1 above and
+                                        repo CLAUDE.md).
+    sales_reps_customer_base.csv      Shared with August -- drives the
+                                        off-premise exclusion (see above).
+    generate_2026-09.py               Rebuilds the four JSON files above.
+
   index.html   The page itself (shared by every month).
 
 Normally each month's data is refreshed automatically by
@@ -377,6 +432,31 @@ To refresh August manually:
      export, how many off-premise-only customer IDs got excluded, and
      how many Target Accounts prospects were found per brand.
   3. Commit and push.
+
+To refresh September manually:
+  1. Save the new RDE exports over fever_tree_new_placements.csv /
+     carbliss_new_on_prem_buyers.csv / husa_xx_draft.csv. Keep the
+     base-then-current two-column format -- find_period_cols() reads each
+     header's embedded start date, so the exact day shifting between exports
+     is fine, but there must still be exactly 2 columns per prefix
+     ("Placement Count" for Fever Tree, "Buyer Count" for Carbliss, and both
+     "Buyer Count" and "Units" for HUSA).
+     DO NOT overwrite bardstown_menu_promos.xlsx with a new Promos_Report --
+     it is a cumulative archive fed by weekly partial pulls. Merge instead:
+       python3 generate_2026-09.py --merge-bardstown Promos_Report_NN.xlsx
+     which merges and then rebuilds in one pass.
+  2. Run: python3 generate_2026-09.py -- prints, per objective, how many
+     accounts qualified as new out of how many appeared in the export, how
+     many off-premise-only customer IDs got excluded, and how many rows had
+     no usable date and fell back to the window-start placeholder. That last
+     number should be 0; anything else means an export lost its date column
+     (see "SEPTEMBER'S EXPORTS CHANGED SHAPE", point 2).
+  3. Sanity-check the new-placement counts against the previous build before
+     committing. They move slowly by design -- an account only counts as new
+     if it did NOT buy in 6/1-8/31 -- so identical counts after a refresh are
+     usually correct, not a sign the new export failed to load. The row count
+     and the date range are the better tell that fresh data actually landed.
+  4. Commit and push.
 
 Theme: Kohler navy (changed 2026-09-01)
 Re-themed from the original warm barrel-wood browns to Kohler

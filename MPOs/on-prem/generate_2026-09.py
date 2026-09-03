@@ -22,12 +22,16 @@ the repo's convention is a script per month rather than one branching script.
      "Customer Num & Company" ("24038 J. Alexander's Restaurant"), where
      August had them separate. split_customer() pulls them apart on the
      leading digits.
-  2. Fever Tree and Carbliss carry NO Date column at all. The client's
+  2. Fever Tree and Carbliss arrive one row PER LOAD SHEET DATE rather than
+     one aggregated row per account, and they now carry a real date column
+     ("Load Sheet Date") where the 2026-09-02 exports had none. That date is
+     used directly (see DATE_COLS), so the window-start placeholder those two
+     datasets were stamped with is gone -- the README's rule is to drop the
+     placeholder once a real date arrives rather than leave both. emit() still
+     falls back to the placeholder for a blank cell, because the client's
      buildNewAccountsDataset() returns null outright when it cannot find a
-     date column, which would silently blank the objective, so those two
-     datasets are stamped with a placeholder DATE of the current window's
-     start -- the same trick off-prem's Corona Premier export already uses
-     for the same reason. HUSA does carry real dates and keeps them.
+     date column and would silently blank the whole objective; the build log
+     prints how many rows needed the fallback, and on a healthy export it is 0.
   3. The premise column is "On-Off Premise", not "Premise".
 
 NEW-PLACEMENT RULE is unchanged from August: a customer is NEW when the
@@ -61,6 +65,11 @@ MONTH_KEY = "2026-09"
 FEVER_TREE_CSV = HERE / "fever_tree_new_placements.csv"
 CARBLISS_CSV = HERE / "carbliss_new_on_prem_buyers.csv"
 HUSA_CSV = HERE / "husa_xx_draft.csv"
+# Per-export date column. Fever Tree and Carbliss report the load sheet date;
+# HUSA reports a plain Date. None of them had one before the 2026-09-03 refresh.
+FEVER_TREE_DATE_COL = "Load Sheet Date"
+CARBLISS_DATE_COL = "Load Sheet Date"
+HUSA_DATE_COL = "Date"
 # Cumulative iSellBeer promo ARCHIVE for objective 1, not a scratch copy of the
 # latest pull -- see build_bardstown_menu().
 BARDSTOWN_XLSX = HERE / "bardstown_menu_promos.xlsx"
@@ -180,9 +189,12 @@ def classify(rows, base_col, current_col, off_premise_ids):
 
 def emit(parsed, status, base_col, current_col, value_key, extra=None, date_col=None):
     """Shared row shape. One NEW_PLACEMENT=1 per new account, on its first
-    current-period row, so a second visit never double-counts."""
+    current-period row, so a second visit never double-counts.
+
+    Returns (rows, placeholder_count) -- how many rows had no usable date and
+    fell back to the window start, which should be 0 on a healthy export."""
     placeholder = window_start(current_col)
-    flagged, out = set(), []
+    flagged, out, placeholders = set(), [], 0
     for p in parsed:
         if p["has_current"]:
             period = "current"
@@ -198,9 +210,11 @@ def emit(parsed, status, base_col, current_col, value_key, extra=None, date_col=
         if raw_date:
             date = datetime.strptime(raw_date, "%m/%d/%Y").date().isoformat()
         else:
-            # No Date column on this export -- stamp the window start so the
-            # client's date-column check passes. See the module docstring.
+            # No usable date on this row -- stamp the window start so the
+            # client's date-column check still passes rather than blanking the
+            # objective. Counted and printed; see the module docstring.
             date = placeholder
+            placeholders += 1
         row = {
             "SALES_REP_ASSIGNED": p["rep"],
             "CUSTOMER_NUM": int(p["num"]) if p["num"] else None,
@@ -215,23 +229,25 @@ def emit(parsed, status, base_col, current_col, value_key, extra=None, date_col=
             row.update(extra(p["row"]))
         out.append(row)
     out.sort(key=lambda r: r["DATE"], reverse=True)
-    return out
+    return out, placeholders
 
 
 def build_fever_tree(off_premise_ids):
     rows = load_csv(FEVER_TREE_CSV)
     base, cur = find_period_cols(rows[0].keys(), "Placement Count")
     parsed, status = classify(rows, base, cur, off_premise_ids)
-    out = emit(parsed, status, base, cur, "PLACEMENT_COUNT")
-    return out, sum(1 for s in status.values() if s == "new"), len(status)
+    out, placeholders = emit(parsed, status, base, cur, "PLACEMENT_COUNT",
+                             date_col=FEVER_TREE_DATE_COL)
+    return out, sum(1 for s in status.values() if s == "new"), len(status), placeholders
 
 
 def build_carbliss(off_premise_ids):
     rows = load_csv(CARBLISS_CSV)
     base, cur = find_period_cols(rows[0].keys(), "Buyer Count")
     parsed, status = classify(rows, base, cur, off_premise_ids)
-    out = emit(parsed, status, base, cur, "BUYER_COUNT")
-    return out, sum(1 for s in status.values() if s == "new"), len(status)
+    out, placeholders = emit(parsed, status, base, cur, "BUYER_COUNT",
+                             date_col=CARBLISS_DATE_COL)
+    return out, sum(1 for s in status.values() if s == "new"), len(status), placeholders
 
 
 def build_husa(off_premise_ids):
@@ -242,12 +258,12 @@ def build_husa(off_premise_ids):
     base, cur = find_period_cols(rows[0].keys(), "Buyer Count")
     units_base, units_cur = find_period_cols(rows[0].keys(), "Units")
     parsed, status = classify(rows, base, cur, off_premise_ids)
-    out = emit(parsed, status, base, cur, "BUYER_COUNT",
-               extra=lambda r: {"PACKAGE": (r.get("Package") or "").strip(),
-                                "UNITS": to_num(r.get(units_cur) if (r.get(units_cur) or "").strip()
-                                                else r.get(units_base))},
-               date_col="Date")
-    return out, sum(1 for s in status.values() if s == "new"), len(status)
+    out, placeholders = emit(parsed, status, base, cur, "BUYER_COUNT",
+                             extra=lambda r: {"PACKAGE": (r.get("Package") or "").strip(),
+                                              "UNITS": to_num(r.get(units_cur) if (r.get(units_cur) or "").strip()
+                                                              else r.get(units_base))},
+                             date_col=HUSA_DATE_COL)
+    return out, sum(1 for s in status.values() if s == "new"), len(status), placeholders
 
 
 def _lytt_pos():
@@ -327,9 +343,9 @@ def main():
                                  date_col="Date/Time", volatile_cols=("Promo #",))
 
     off_premise_ids = load_off_premise_only_ids()
-    fever_rows, fever_new, fever_total = build_fever_tree(off_premise_ids)
-    carb_rows, carb_new, carb_total = build_carbliss(off_premise_ids)
-    husa_rows, husa_new, husa_total = build_husa(off_premise_ids)
+    fever_rows, fever_new, fever_total, fever_ph = build_fever_tree(off_premise_ids)
+    carb_rows, carb_new, carb_total, carb_ph = build_carbliss(off_premise_ids)
+    husa_rows, husa_new, husa_total, husa_ph = build_husa(off_premise_ids)
     bard_rows, bard_placements, bard_mentions = build_bardstown_menu()
 
     month_dir = DATA_DIR / MONTH_KEY
@@ -344,11 +360,11 @@ def main():
 
     print(f"Off-premise-only customer IDs excluded: {len(off_premise_ids)}")
     print(f"Fever Tree (goal 3): {fever_new} new placements out of {fever_total} accounts "
-          f"({len(fever_rows)} rows written) -- no Date column, window-start placeholder stamped")
+          f"({len(fever_rows)} rows written, {fever_ph} undated rows stamped with the window start)")
     print(f"Carbliss (goal 10): {carb_new} new buying accounts out of {carb_total} accounts "
-          f"({len(carb_rows)} rows written) -- no Date column, window-start placeholder stamped")
+          f"({len(carb_rows)} rows written, {carb_ph} undated rows stamped with the window start)")
     print(f"HUSA XX draft (goal 1): {husa_new} new draft lines out of {husa_total} accounts "
-          f"({len(husa_rows)} rows written)")
+          f"({len(husa_rows)} rows written, {husa_ph} undated rows stamped with the window start)")
     print(f"Bardstown menu (goal 5): {bard_placements} distinct menu placements from "
           f"{bard_mentions} brand mentions across {len(bard_rows)} promo rows "
           f"-- counted per SUBMISSION; per-mention would read {bard_mentions} (unconfirmed)")
