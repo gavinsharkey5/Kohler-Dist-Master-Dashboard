@@ -99360,6 +99360,13 @@ const DM_GROUPS = [
 // (all three are US in every county -- All Counties, nothing to add,
 // terrTag() shows that pill for any key in neither set by default).
 //
+// other_half resolved 2026-09-04 the same way Lytt was -- straight from
+// Gavin ("other half is all counties of distribution"), since the brand is
+// too new to be in the whitelist workbook at all. Removed from this set, so
+// it now shows the "All Counties" pill. Note that is the BRAND's sellable
+// territory, a different axis from the Southern District payout RATE inside
+// build_other_half(), which is still an unconfirmed reading of the deck.
+//
 // STILL unconfirmed, and not a guess away from being resolved:
 //   heineken_husa  The workbook's five Heineken SKUs disagree with each
 //                  other's footprint AND with Core Market (Heineken proper
@@ -99368,10 +99375,7 @@ const DM_GROUPS = [
 //                  Passaic only). HUSA SDD covers multiple brands with
 //                  genuinely different territories, so neither pill would
 //                  be accurate for the program as a whole.
-//   other_half     Not in the whitelist workbook at all -- too new to
-//                  Kohler's own tracker, the same place Lytt was before
-//                  Gavin confirmed it directly (2026-08-10).
-const TERRITORY_UNCONFIRMED = new Set(['other_half','heineken_husa']);
+const TERRITORY_UNCONFIRMED = new Set(['heineken_husa']);
 
 function terrTag(key){
   if(TERRITORY_UNCONFIRMED.has(key)) return '';
@@ -109838,7 +109842,7 @@ const PROGRAM_LIST_2026_09 = [
   {key:'other_half', group:'new', title:'Other Half Target Account Launch', shortTitle:'Other Half', tag:'Sept–Dec',
    pitch:`Open a non-buy target account on Other Half core draft and keep it buying — the back half pays more than the front.`,
    getRep:sept('other_half'),
-   metric:d=>d.accountsOpened, metricLabel:'accounts opened', fmt:v=>v.toFixed(0)},
+   metric:d=>d.offPremNewCount, metricLabel:'accounts opened', fmt:v=>v.toFixed(0)},
   {key:'montauk', group:'new', title:'Montauk Wave Chaser New Placements', shortTitle:'Montauk', tag:'September',
    pitch:`Every new Wave Chaser package placement pays, and a new draught line pays $100.`,
    getRep:sept('montauk'),
@@ -109856,7 +109860,7 @@ const PROGRAM_LIST_2026_09 = [
   {key:'two_xo', group:'new', title:'2XO Bourbon', shortTitle:'2XO Bourbon', tag:'Sept–Oct (retro Aug)',
    pitch:`60-day non-buy accounts: pair American Oak with French Oak off-premise, or land a 2-bottle POD on-premise.`,
    getRep:sept('two_xo'),
-   metric:d=>d.pods, metricLabel:'PODs / case pairs', fmt:v=>v.toFixed(0)},
+   metric:d=>d.offPremNewCount + d.onPremNewCount, metricLabel:'PODs / case pairs', fmt:v=>v.toFixed(0)},
 
   // --- Ongoing: live on both tabs, same data as August ------------------
   {key:'1911', group:'ongoing', title:'Beak & Skiff 1911 Rewards', shortTitle:'1911', tag:'Aug–Sept',

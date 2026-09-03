@@ -3134,6 +3134,62 @@ def build_other_half():
                      "southernDistrictReading": "unconfirmed"}}
 
 
+# The two getRep shapes in index.html's registry that read a builder's byRep
+# straight through. Anything else (fall_seasonal composes its own {po,pd})
+# is skipped by check_registry_metrics() rather than guessed at.
+_GETREP_SEPT = re.compile(r"getRep:sept\('([a-z0-9_]+)'\)")
+_GETREP_AUG = re.compile(r"getRep:rep=>\(PROGRAM_DATA\['([a-z0-9_]+)'\]\|\|\{\}\)\.byRep\?\.\[rep\]")
+
+
+def check_registry_metrics(html, data, data_09):
+    """Fail loudly when a registry `metric` reads a field no builder emits.
+
+    rankProgram() drops a rep whenever metric(d) returns undefined, so a
+    stale or invented field name never throws -- it silently empties that
+    program's ENTIRE leaderboard, which reads on the page as "this program
+    has no data." That has now bitten twice: once when September's
+    structure-only placeholders were first wired to real builders
+    (evil_genius/montauk read d.newPlacements, touchdowns_tea read d.cases),
+    and again on 2026-09-04 when other_half kept d.accountsOpened and two_xo
+    kept d.pods after their builders landed emitting different field names.
+    Both times the page looked fine -- no console error, rep cards rendering
+    correctly -- and only the leaderboard was empty. Checking it here is the
+    only way that stays caught.
+
+    Zero-state programs (no builder yet, so no blob) are skipped: an empty
+    leaderboard is the CORRECT rendering for those.
+    """
+    problems = []
+    for chunk in html.split("{key:'")[1:]:
+        key = chunk[:chunk.index("'")]
+        entry = chunk[:2000]
+        m = re.search(r"metric:d=>(.*?),\s*metricLabel", entry, re.S)
+        if not m:
+            continue
+        blob = None
+        for pattern, source in ((_GETREP_SEPT, data_09), (_GETREP_AUG, data)):
+            hit = pattern.search(entry)
+            if hit and hit.group(1) == key:
+                blob = source
+                break
+        if blob is None:
+            continue
+        prog = blob.get(key) or {}
+        if not prog.get("byRep"):
+            continue
+        sample = next(iter(prog["byRep"].values()))
+        missing = sorted({f for f in re.findall(r"d\.([A-Za-z0-9_]+)", m.group(1))
+                          if f not in sample})
+        if missing:
+            problems.append((key, missing))
+    for key, missing in problems:
+        print(f"  *** REGISTRY METRIC BROKEN: {key} reads {missing}, which its builder "
+              f"does not emit. rankProgram() will show an EMPTY leaderboard for it. ***")
+    if not problems:
+        print("registry metrics: all data-backed programs point at fields their builders emit")
+    return problems
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -3354,6 +3410,7 @@ def main():
     date_end = html.index(date_end_marker)
     html = html[:date_start] + today + html[date_end:]
 
+    check_registry_metrics(html, data, data_09)
     INDEX_HTML.write_text(html)
     print(f"Wrote PROGRAM_DATA into index.html, stamped Data Refreshed as {today}")
 

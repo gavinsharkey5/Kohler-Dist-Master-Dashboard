@@ -109,6 +109,20 @@ d.newPlacements, which no builder emits -- the field is totalNewPlacements --
 and touchdowns_tea read d.cases, which does not exist at all. Left alone the
 leaderboards would have ranked every rep as undefined.
 
+THIS IS NOW CHECKED AUTOMATICALLY -- check_registry_metrics() in generate.py,
+added 2026-09-04 after the exact same bug shipped a second time (other_half
+kept d.accountsOpened and two_xo kept d.pods after their builders landed
+emitting different names; Gavin reported it as "i see no data for other half
+and 2xo"). It is a nasty failure mode precisely because it looks like
+nothing: rankProgram() drops any rep whose metric returns undefined, so there
+is NO console error, the rep cards render perfectly, and only the program's
+leaderboard is silently empty. A browser sweep that only watches for JS
+errors will not catch it -- ask for the leaderboard view specifically. The
+check runs on every build, prints one line when clean, and names the program
+and field when not. Custom-getRep entries (fall_seasonal composes its own
+{po,pd}) are skipped rather than guessed at, and zero-state programs are
+skipped because an empty leaderboard is correct for those.
+
   touchdowns_tea  Two exports, four payout legs, only two of them scoreable.
                   $15 per new off-premise 12pk placement and $1 per on-premise
                   case sold are in the data. The $1/case FLOOR display (25-case
@@ -281,10 +295,15 @@ renders NO pill for these rather than guessing:
                  would be an accurate claim for the program as a whole
                  -- this isn't a case of "confirm it and move it," the
                  program itself straddles two territories.
-  other_half     Not in the whitelist workbook at all -- too new to
-                 Kohler's own tracker, same place Lytt was before Gavin
-                 confirmed it directly (2026-08-10). Ask Gavin the same
-                 way if it's needed before an official update lands.
+  other_half     RESOLVED 2026-09-04 -- ALL COUNTIES, straight from Gavin
+                 ("other half is all counties of distribution"), exactly
+                 how Lytt was settled (2026-08-10), since the brand is too
+                 new to be in the whitelist workbook at all. Removed from
+                 TERRITORY_UNCONFIRMED, so it shows the All Counties pill.
+                 Careful not to conflate this with the Southern District
+                 payout RATE inside build_other_half() -- that's about how
+                 much an account pays, not where the brand may be sold,
+                 and it is still an unconfirmed reading (open question 7).
 
 SEPTEMBER LOGOS (assets/logos/, added 2026-08-31)
 Pulled straight out of the September deck with poppler's pdfimages
