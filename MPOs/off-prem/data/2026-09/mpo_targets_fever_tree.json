@@ -157,12 +157,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 78003,
-    "CUSTOMER_NAME": "Ani Service Station Inc",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81001,
     "CUSTOMER_NAME": "B & B Liquors (Fair Lawn)",
     "AREA": "Bergen"
@@ -313,6 +307,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46008,
+    "CUSTOMER_NAME": "Bella Wine & Liquor",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46002,
     "CUSTOMER_NAME": "Best Choice Liqrs (P)",
     "AREA": "Bergen"
@@ -367,6 +367,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44006,
+    "CUSTOMER_NAME": "Garden St. Wine & Liquor",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44010,
     "CUSTOMER_NAME": "Garden State Food&Liq (P)",
     "AREA": "Bergen"
@@ -417,12 +423,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48002,
     "CUSTOMER_NAME": "Manor Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44009,
-    "CUSTOMER_NAME": "Metro Liquor (Cliffside Park)",
     "AREA": "Bergen"
   },
   {
@@ -495,12 +495,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57001,
     "CUSTOMER_NAME": "Barrel & Brew Bar & Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52040,
-    "CUSTOMER_NAME": "Burgundy Convenience Store",
     "AREA": "Bergen"
   },
   {
@@ -622,12 +616,6 @@
     "CUSTOMER_NUM": 14007,
     "CUSTOMER_NAME": "Total Wine & More (Totowa)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56015,
-    "CUSTOMER_NAME": "VINEYARD",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -775,12 +763,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20076,
-    "CUSTOMER_NAME": "Moca Liquors Ii",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20060,
     "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
     "AREA": "Passaic"
@@ -807,6 +789,12 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 15023,
     "CUSTOMER_NAME": "Santana's Sport(P)Bella",
+    "AREA": "Passaic"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20126,
+    "CUSTOMER_NAME": "Scheps Discount Bar/Liq",
     "AREA": "Passaic"
   },
   {
@@ -921,12 +909,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 22024,
     "CUSTOMER_NAME": "Edwards (P) Wine & Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20117,
-    "CUSTOMER_NAME": "El Cantaro Liquors",
     "AREA": "Passaic"
   },
   {
@@ -1099,18 +1081,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230437,
-    "CUSTOMER_NAME": "Weis Supermarkets 143 Newton",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230438,
-    "CUSTOMER_NAME": "Weiss Super Market 147 Franklin",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230441,
     "CUSTOMER_NAME": "Wine Country Newton",
     "AREA": "Sussex"
@@ -1126,6 +1096,12 @@
     "CUSTOMER_NUM": 231315,
     "CUSTOMER_NAME": "Woody's Liq Shop (A)",
     "AREA": "Sussex"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 24015,
+    "CUSTOMER_NAME": "Allwood Liquor Store",
+    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1210,6 +1186,12 @@
     "CUSTOMER_NUM": 27016,
     "CUSTOMER_NAME": "Marina's Wine & Spirits",
     "AREA": "Passaic"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 30003,
+    "CUSTOMER_NAME": "Mason's Cellar (A)",
+    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1375,12 +1357,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 1003,
-    "CUSTOMER_NAME": "23 liquor & Tobacco",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191518,
     "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
     "AREA": "Sussex"
@@ -1519,12 +1495,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 27032,
-    "CUSTOMER_NAME": "Cork and Barrel",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77001,
     "CUSTOMER_NAME": "Food Mart Liquor",
     "AREA": "Bergen"
@@ -1569,12 +1539,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42002,
     "CUSTOMER_NAME": "L. F. Wine Country (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77004,
-    "CUSTOMER_NAME": "Lidl Elmwood Park",
     "AREA": "Bergen"
   },
   {
@@ -1639,12 +1603,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37044,
-    "CUSTOMER_NAME": "Riverview Liquors & Bar",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36038,
     "CUSTOMER_NAME": "Tatra Haus Restaurant",
     "AREA": "Bergen"
@@ -1659,12 +1617,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42012,
     "CUSTOMER_NAME": "Vinny's Disc Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine",
     "AREA": "Bergen"
   },
   {
@@ -1951,8 +1903,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20124,
-    "CUSTOMER_NAME": "Lena y Carbon Broaster",
+    "CUSTOMER_NUM": 25015,
+    "CUSTOMER_NAME": "Limonta Liqs (A)",
     "AREA": "Passaic"
   },
   {
@@ -1977,12 +1929,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 26014,
     "CUSTOMER_NAME": "Regalado Liq",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20032,
-    "CUSTOMER_NAME": "Riverside Liquors (Paterson)",
     "AREA": "Passaic"
   },
   {
@@ -2029,20 +1975,14 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 49039,
-    "CUSTOMER_NAME": "Acme Markets (Fort Lee)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 85002,
-    "CUSTOMER_NAME": "Acme Markets (Midland Park)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 50003,
     "CUSTOMER_NAME": "Agave Liquor, Wine & Spirits",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 49082,
+    "CUSTOMER_NAME": "Beverage Depot",
     "AREA": "Bergen"
   },
   {
@@ -2101,12 +2041,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 80002,
     "CUSTOMER_NAME": "Whole Foods Market (Paramus)",
     "AREA": "Bergen"
@@ -2127,12 +2061,6 @@
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 52023,
     "CUSTOMER_NAME": "Jerry's Outlet",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 77008,
-    "CUSTOMER_NAME": "Pizza Town USA",
     "AREA": "Bergen"
   },
   {
@@ -2197,14 +2125,20 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 68002,
-    "CUSTOMER_NAME": "Wine And Beverage Spirits",
+    "CUSTOMER_NUM": 201097,
+    "CUSTOMER_NAME": "Whole Foods #10381 (Closter)",
     "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 67008,
-    "CUSTOMER_NAME": "Woori Mart",
+    "CUSTOMER_NUM": 201098,
+    "CUSTOMER_NAME": "Whole Foods #8407 (Woodcliff Lake)",
+    "AREA": "Bergen"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 68002,
+    "CUSTOMER_NAME": "Wine And Beverage Spirits",
     "AREA": "Bergen"
   }
 ]

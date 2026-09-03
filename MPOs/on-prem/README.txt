@@ -442,6 +442,23 @@ Files:
                                         repo CLAUDE.md).
     sales_reps_customer_base.csv      Shared with August -- drives the
                                         off-premise exclusion (see above).
+                                        Refreshed 2026-09-04 via the
+                                        repo-root territory-accounts/
+                                        folder, which applies Kohler's
+                                        "Entire Core Market / Southern
+                                        District, On/Off Prem" exports to
+                                        this file (and two others outside
+                                        this folder) in one pass -- see
+                                        territory-accounts/README.txt.
+                                        That refresh is scoped to the nine
+                                        areas those exports cover; rows
+                                        outside it (Morris 2, Middlesex,
+                                        RDE's "Sales" placeholder when its
+                                        County doesn't resolve) are left
+                                        untouched, since a refresh source
+                                        that never claims to describe a
+                                        territory is no basis for dropping
+                                        accounts in it.
     generate_2026-09.py               Rebuilds the four JSON files above.
 
   index.html   The page itself (shared by every month).

@@ -199,20 +199,51 @@ Distro; it will simply have nothing to show until October.
 
 TERRITORY PILLS ON SEPTEMBER PROGRAMS
 The "Core Market" / "All Counties" pill is a real claim a rep acts on,
-so it is never guessed. generate.py now has CORE_MARKET_PROGRAMS_PENDING
-alongside CORE_MARKET_PROGRAMS: pending holds Core-Market keys that have
-NO data yet (the four September continuations of programs already known
-to be Core Market), because the territoryEligible loop indexes
-data[key] and would KeyError on a program with no dataset. Both sets are
-unioned into the emitted CORE_MARKET_PROGRAM_KEYS. Move a key from
-pending up into CORE_MARKET_PROGRAMS the moment its September builder
-exists, so the pill and the eligibility blocking re-couple.
-The eight new September programs plus heineken_husa have never had their
-territory scope confirmed, so they are in neither set AND are listed in
-index.html's TERRITORY_UNCONFIRMED -- terrTag() renders NO pill for
-them rather than defaulting to "All Counties", which would be an
-unverified claim. Delete a key from TERRITORY_UNCONFIRMED once its scope
-is confirmed.
+so it is never guessed. generate.py has CORE_MARKET_PROGRAMS_PENDING
+alongside CORE_MARKET_PROGRAMS for exactly this: keys confirmed Core
+Market whose data can't run through the territoryEligible loop below
+(that loop indexes `data[key]` and would KeyError), for either of two
+reasons -- an August continuation with no builder yet, or a
+September-blob program (data_09, never walked by that loop at all, so
+these can never graduate to CORE_MARKET_PROGRAMS the way the August
+ones can; see the comment on CORE_MARKET_PROGRAMS_PENDING itself).
+Both sets are unioned into the emitted CORE_MARKET_PROGRAM_KEYS.
+
+RESOLVED 2026-09-04, against kohler_brands_whitelist_blacklist.xlsx's
+"Brand Family Territory (Enc)" and "Master Matrix View" sheets (the raw
+per-county US/THEM matrix, not just the summary label -- checked both
+so a brand whose footprint doesn't cleanly match Core Market's exact
+six counties wouldn't get mislabeled):
+  Core Market   keystone_ice, touchdowns_tea (Keystone, Twisted Tea and
+                Sun Cruiser are all US in exactly Bergen/Passaic/
+                Passaic-FF/Sussex/Morris 1/Morris 3 and THEM everywhere
+                else -- Core Market's own definition), printed_menu,
+                bardstown_display (Bardstown Bourbon and Bardstown
+                Green River, identical pattern). The latter two are
+                manual:true zero-state cards, which is why terrTag()
+                had to be added to cardAwaitingData()'s header row too
+                -- the individual cardXxx() functions already called it,
+                the shared zero-state renderer didn't.
+  All Counties  evil_genius, montauk, two_xo (all US in every county).
+                Nothing to add for these -- terrTag() already renders
+                "All Counties" for any key in neither set, so removing
+                them from TERRITORY_UNCONFIRMED was the whole change.
+
+STILL unconfirmed, in index.html's TERRITORY_UNCONFIRMED -- terrTag()
+renders NO pill for these rather than guessing:
+  heineken_husa  The workbook's five Heineken SKUs don't even agree with
+                 each other. Heineken proper is US in Bergen/Passaic/
+                 Passaic-FF/Morris 3 but THEM in Sussex/Morris 1 (which
+                 Core Market has); Dos Equis is narrower still, US only
+                 in Bergen & Passaic. HUSA SDD covers multiple brands
+                 with genuinely different footprints, so neither pill
+                 would be an accurate claim for the program as a whole
+                 -- this isn't a case of "confirm it and move it," the
+                 program itself straddles two territories.
+  other_half     Not in the whitelist workbook at all -- too new to
+                 Kohler's own tracker, same place Lytt was before Gavin
+                 confirmed it directly (2026-08-10). Ask Gavin the same
+                 way if it's needed before an official update lands.
 
 SEPTEMBER LOGOS (assets/logos/, added 2026-08-31)
 Pulled straight out of the September deck with poppler's pdfimages
@@ -255,8 +286,11 @@ OPEN QUESTIONS FOR GAVIN (September deck, not yet resolved)
      slide's stated on-premise package total of 2119 (Gaintain 1339 +
      Impact 631 + Innovation 149), so the card currently uses 631 and
      649 looks like the typo. Worth confirming before payouts.
-  2. Territory scope for the 8 new September programs and Heineken (see
-     TERRITORY_UNCONFIRMED above).
+  2. RESOLVED 2026-09-04 for 6 of the 8 -- see "TERRITORY PILLS ON
+     SEPTEMBER PROGRAMS" above. Still open: heineken_husa (the workbook's
+     own Heineken/Dos Equis brands don't share one territory, so this
+     isn't a lookup away from resolved) and other_half (not in the
+     whitelist workbook at all yet -- ask Gavin directly, as with Lytt).
   3. Which September programs get an RDE export at all -- printed_menu
      and bardstown_display are photo/documentation verified and may
      never have one, in which case their cards stay descriptive
@@ -503,12 +537,37 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    over them anyway. Refreshing them changes nothing; refresh the full
    file instead.
    Checked 2026-09-04, when Gavin sent a "Sales Reps: Customer Base
-   Core Off Prem" workbook for the MPO board: it is NOT a refresh path
-   for this program. It holds 501 Core Market off-premise accounts,
-   where customer_base_full.csv holds the whole book (2,376 rows, 1,068
-   of them off-premise) plus the Draft Package column several builders
-   read. It went to MPOs/off-prem/sales_reps_customer_base_core.csv
+   Core Off Prem" workbook for the MPO board: it was NOT a refresh path
+   for this program on its own. It holds only Core Market off-premise
+   accounts, where customer_base_full.csv holds the whole book (both
+   premises, all counties) plus the Draft Package column several
+   builders read. It went to MPOs/off-prem/sales_reps_customer_base_core.csv
    only -- see that folder's README for the full where-it-applies list.
+
+   REFRESHED for real the same day via a different, house-wide export:
+   Kohler's "Entire Core Market / Southern District, On/Off Prem"
+   pulls (four files -- Core Market and Southern District, each split
+   on/off premise), applied by the repo-root territory-accounts/
+   folder's refresh_customer_bases.py. See territory-accounts/README.txt
+   for the full mechanics; the two things worth knowing here:
+     - It's a SCOPED merge, not a full replace: only rows whose
+       Distribution Area falls in the nine areas those four exports
+       cover (Core Market's six plus Southern District's three) get
+       refreshed. Morris 2, Middlesex, and any "Sales"-placeholder row
+       whose County doesn't resolve to one of those nine are left
+       exactly as they were -- these exports don't claim to describe
+       that territory, so an account missing from them there is not
+       evidence of closure.
+     - Draft Package is preserved by Customer Num across the merge
+       (these four exports don't carry that column at all), so no
+       builder's draft-channel eligibility lost data in the refresh. A
+       brand-new account gets Draft Package = "" rather than a guessed
+       value -- is_draft_capable() reads that as not-draft-capable, an
+       honest default until a future export says otherwise.
+   This is the fix for "i still see the accounts that are closed still
+   populating" (Gavin, 2026-09-04) -- 113 closed accounts dropped from
+   customer_base_full.csv in that first pass, Shane Barreca's Cambridge
+   Wines (Woodcliff Lake) among them.
 
 7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [BUILT]
    - Juicy Haze / Two Hearted Draft: $100 new 1/2bbl POD / $50 rebuy;

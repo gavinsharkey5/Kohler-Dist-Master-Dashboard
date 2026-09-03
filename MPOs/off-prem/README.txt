@@ -620,6 +620,16 @@ CSV by hand (the workbook is hierarchical -- see that script's entry in Files).
   python3 convert_customer_base_core.py <workbook.xlsx>             # write
   python3 generate_2026-09.py                                       # rebuild
 
+A SECOND, HOUSE-WIDE refresh source exists now too: the repo-root
+territory-accounts/ folder takes Kohler's "Entire Core Market / Southern
+District, On/Off Prem" exports and applies them to THREE files at once,
+including this one -- MPOs/on-prem/sales_reps_customer_base.csv and
+incentive-tracking/data/customer_base_full.csv are the other two. See
+territory-accounts/README.txt. Either refresh path updates this file; use
+whichever export Gavin actually sends. If both land close together, order
+doesn't matter -- they're both "closed accounts are gone, open accounts are
+current" refreshes of the same underlying account book.
+
 WHERE THIS FILE APPLIES, and where it deliberately does not:
   YES  September's tab. Keystone Ice's denominator and the Keystone/Fever Tree
        Target Accounts lists all come from it. Rerun generate_2026-09.py.

@@ -1201,21 +1201,44 @@ CORE_MARKET_PROGRAMS = {"boston_beer", "sam_adams", "new_belgium", "new_belgium_
                         "mc_retention", "mabi_retention", "constellation_retention",
                         "yuengling_retention"}
 
-# Core-Market-restricted programs that have NO data yet, so they can't be run
-# through the territoryEligible loop below (data[key] would KeyError) but must
-# still show the "Core Market" pill on the September tab. These are the direct
-# September continuations of programs already in CORE_MARKET_PROGRAMS above --
-# same supplier, same restriction -- so the scope carries over rather than
-# being newly assumed. Move a key up into CORE_MARKET_PROGRAMS the moment its
-# September builder exists, so the pill and the blocking re-couple.
+# Core-Market-restricted programs whose data (if any) lives OUTSIDE the
+# `data` dict the territoryEligible loop below walks, so they can't be run
+# through it (data[key] would KeyError) but must still show the "Core
+# Market" pill. Two different reasons land a key here:
 #
-# NOT listed here: heineken_husa and the eight brand-new September programs.
-# Their territory scope has never been confirmed, and neither set is emitted,
-# so terrTag() shows no territory pill at all for them rather than asserting
-# "All Counties" (see TERRITORY_UNCONFIRMED in index.html).
+#   (a) August continuations with no builder yet -- direct September
+#       continuations of a program already in CORE_MARKET_PROGRAMS above,
+#       same supplier, same restriction, scope carried over rather than
+#       newly assumed. Move a key up into CORE_MARKET_PROGRAMS the moment
+#       its September builder exists, so the pill and the blocking re-couple.
+#   (b) September-blob programs (keys in data_09, not data) -- confirmed
+#       Core Market against kohler_brands_whitelist_blacklist.xlsx's
+#       "Brand Family Territory (Enc)" sheet 2026-09-04, but data_09 is
+#       never walked by the eligibility loop at all (it's a separate dict
+#       built after the loop runs), so these can NEVER move to
+#       CORE_MARKET_PROGRAMS the way (a)'s keys can -- eligibility
+#       (greying out non-Core-Market reps) for September's own programs is
+#       simply not wired up yet, pill aside. That is a real gap, not an
+#       oversight to silently paper over: keystone_ice and touchdowns_tea
+#       currently show every rep as eligible regardless of territory.
+#       printed_menu and bardstown_display have no builder yet either, so
+#       they're doubly not gated.
+#
+# NOT listed here: heineken_husa and other_half. heineken_husa's own five
+# SKUs in the whitelist workbook disagree with each other and with Core
+# Market (Heineken proper is US in Bergen/Passaic/Passaic-FF/Morris 3 only,
+# missing Sussex/Morris 1 that Core Market has; Dos Equis is narrower still,
+# Bergen & Passaic only) -- HUSA SDD covers multiple brands with genuinely
+# different footprints, so neither "Core Market" nor "All Counties" is an
+# accurate claim for the program as a whole. other_half isn't in the
+# whitelist workbook at all (too new, same situation Lytt was in before it
+# was confirmed directly with Gavin). Both keep showing no territory pill
+# (see TERRITORY_UNCONFIRMED in index.html) until confirmed some other way.
 CORE_MARKET_PROGRAMS_PENDING = {"constellation_fall", "mabi_retention_fall",
                                 "yuengling_retention_fall",
-                                "new_belgium_distribution_retain"}
+                                "new_belgium_distribution_retain",
+                                "keystone_ice", "touchdowns_tea",
+                                "printed_menu", "bardstown_display"}
 
 
 def load_core_market_reps():

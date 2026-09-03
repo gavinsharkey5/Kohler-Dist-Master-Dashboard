@@ -361,16 +361,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 78003,
-    "CUSTOMER_NAME": "Ani Service Station Inc",
-    "SHIPPING_ADDRESS": "178 RT 17 North",
-    "CITY": "Rochelle Park",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 244.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81001,
     "CUSTOMER_NAME": "B & B Liquors (Fair Lawn)",
     "SHIPPING_ADDRESS": "13-05 River Road",
@@ -801,6 +791,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 46008,
+    "CUSTOMER_NAME": "Bella Wine & Liquor",
+    "SHIPPING_ADDRESS": "331 Broad Ave.",
+    "CITY": "Palisades Park",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 30851.43
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46002,
     "CUSTOMER_NAME": "Best Choice Liqrs (P)",
     "SHIPPING_ADDRESS": "23 Broad Ave",
@@ -898,6 +898,16 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 1089.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "CUSTOMER_NUM": 44006,
+    "CUSTOMER_NAME": "Garden St. Wine & Liquor",
+    "SHIPPING_ADDRESS": "461 Palisade Ave",
+    "CITY": "Cliffside Park",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 89184.58
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1038,16 +1048,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 2428.5
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44009,
-    "CUSTOMER_NAME": "Metro Liquor (Cliffside Park)",
-    "SHIPPING_ADDRESS": "341 Gorge Rd.",
-    "CITY": "Cliffside Park",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 6012.17
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
@@ -1228,16 +1228,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 7562.33
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 52040,
-    "CUSTOMER_NAME": "Burgundy Convenience Store",
-    "SHIPPING_ADDRESS": "4 W Palisade Ave",
-    "CITY": "Englewood",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 31357.65
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -1501,16 +1491,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 56015,
-    "CUSTOMER_NAME": "VINEYARD",
-    "SHIPPING_ADDRESS": "89 New Bridge Rd",
-    "CITY": "Bergenfield",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 559.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 52019,
     "CUSTOMER_NAME": "W E Beverage (A)",
     "SHIPPING_ADDRESS": "91 W Palisade Ave",
@@ -1771,16 +1751,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20076,
-    "CUSTOMER_NAME": "Moca Liquors Ii",
-    "SHIPPING_ADDRESS": "497 Broadway",
-    "CITY": "Paterson",
-    "AREA": "Sales",
-    "COUNTY": "Passaic",
-    "CASES": 1508.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 20060,
     "CUSTOMER_NAME": "Moya E.Bar&Liq.(Z)",
     "SHIPPING_ADDRESS": "428 East 18th St",
@@ -1838,6 +1808,16 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 10374.75
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "CUSTOMER_NUM": 20126,
+    "CUSTOMER_NAME": "Scheps Discount Bar/Liq",
+    "SHIPPING_ADDRESS": "152 23rd Avenue",
+    "CITY": "Paterson",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 169480.89
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -2048,16 +2028,6 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 44151.21
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20117,
-    "CUSTOMER_NAME": "El Cantaro Liquors",
-    "SHIPPING_ADDRESS": "416 Market Street",
-    "CITY": "Paterson",
-    "AREA": "Sales",
-    "COUNTY": "Passaic",
-    "CASES": 25373.78
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -2491,26 +2461,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230437,
-    "CUSTOMER_NAME": "Weis Supermarkets 143 Newton",
-    "SHIPPING_ADDRESS": "121 Water St Rt 206",
-    "CITY": "Newton",
-    "AREA": "Sales",
-    "COUNTY": "Sussex",
-    "CASES": 11.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 230438,
-    "CUSTOMER_NAME": "Weiss Super Market 147 Franklin",
-    "SHIPPING_ADDRESS": "140-146 Rt 23",
-    "CITY": "Franklin",
-    "AREA": "Sales",
-    "COUNTY": "Sussex",
-    "CASES": 11.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230121,
     "CUSTOMER_NAME": "White Deer Inn",
     "SHIPPING_ADDRESS": "4 White Deer Plaza",
@@ -2548,6 +2498,16 @@
     "AREA": "Sussex",
     "COUNTY": "Sussex",
     "CASES": 4116.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 24015,
+    "CUSTOMER_NAME": "Allwood Liquor Store",
+    "SHIPPING_ADDRESS": "60 Market St",
+    "CITY": "Clifton",
+    "AREA": "Passaic",
+    "COUNTY": "Passaic",
+    "CASES": 32609.34
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -2738,6 +2698,16 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 9272.94
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "CUSTOMER_NUM": 30003,
+    "CUSTOMER_NAME": "Mason's Cellar (A)",
+    "SHIPPING_ADDRESS": "32 Ames Ave",
+    "CITY": "Rutherford",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 8409.7
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -3061,16 +3031,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 1003,
-    "CUSTOMER_NAME": "23 liquor & Tobacco",
-    "SHIPPING_ADDRESS": "3051 Route 23",
-    "CITY": "Oak Ridge",
-    "AREA": "Sales",
-    "COUNTY": "Passaic",
-    "CASES": 791.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191518,
     "CUSTOMER_NAME": "3 IN 1 LIQUORS INC",
     "SHIPPING_ADDRESS": "47 Hopatchung Rd",
@@ -3391,16 +3351,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 42011,
-    "CUSTOMER_NAME": "Buzzzrite Liquors",
-    "SHIPPING_ADDRESS": "269 Route Rt 46 West",
-    "CITY": "Little Ferry",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 4803.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)",
     "SHIPPING_ADDRESS": "226 Paterson Ave",
@@ -3418,16 +3368,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 4481.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 27032,
-    "CUSTOMER_NAME": "Cork and Barrel",
-    "SHIPPING_ADDRESS": "217 Brook Ave.",
-    "CITY": "Passaic",
-    "AREA": "Sales",
-    "COUNTY": "Passaic",
-    "CASES": 895.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3508,16 +3448,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 2711.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77004,
-    "CUSTOMER_NAME": "Lidl Elmwood Park",
-    "SHIPPING_ADDRESS": "58 Broadway",
-    "CITY": "Elmwood Park",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 1959.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -3621,16 +3551,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37044,
-    "CUSTOMER_NAME": "Riverview Liquors & Bar",
-    "SHIPPING_ADDRESS": "800 River Dr.",
-    "CITY": "Garfield",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 2030.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington",
     "SHIPPING_ADDRESS": "375 Paterson Ave",
@@ -3668,16 +3588,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 4159.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36006,
-    "CUSTOMER_NAME": "Wallington Liquor and Wine",
-    "SHIPPING_ADDRESS": "168 Main Ave",
-    "CITY": "Wallington",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 3450.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -4311,13 +4221,13 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20124,
-    "CUSTOMER_NAME": "Lena y Carbon Broaster",
-    "SHIPPING_ADDRESS": "21 Mill St.",
-    "CITY": "Paterson",
-    "AREA": "Sales",
+    "CUSTOMER_NUM": 25015,
+    "CUSTOMER_NAME": "Limonta Liqs (A)",
+    "SHIPPING_ADDRESS": "293 Vernon Ave",
+    "CITY": "Clifton",
+    "AREA": "Passaic",
     "COUNTY": "Passaic",
-    "CASES": 47.0
+    "CASES": 22880.94
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4358,16 +4268,6 @@
     "AREA": "Passaic",
     "COUNTY": "Passaic",
     "CASES": 12723.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20032,
-    "CUSTOMER_NAME": "Riverside Liquors (Paterson)",
-    "SHIPPING_ADDRESS": "402 River St",
-    "CITY": "Paterson",
-    "AREA": "Sales",
-    "COUNTY": "Passaic",
-    "CASES": 1830.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -4441,26 +4341,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 49039,
-    "CUSTOMER_NAME": "Acme Markets (Fort Lee)",
-    "SHIPPING_ADDRESS": "2160 Lemoine Ave",
-    "CITY": "Fort Lee",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 4177.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 85002,
-    "CUSTOMER_NAME": "Acme Markets (Midland Park)",
-    "SHIPPING_ADDRESS": "136 Lake Avenue",
-    "CITY": "Midland Park",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 4969.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 50003,
     "CUSTOMER_NAME": "Agave Liquor, Wine & Spirits",
     "SHIPPING_ADDRESS": "74 W Main St",
@@ -4468,6 +4348,16 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 51424.38
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "CUSTOMER_NUM": 49082,
+    "CUSTOMER_NAME": "Beverage Depot",
+    "SHIPPING_ADDRESS": "2151 Rt 4 East",
+    "CITY": "Fort Lee",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 85.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4548,16 +4438,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 496.17
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 80041,
-    "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
-    "SHIPPING_ADDRESS": "396 Rt 17 North",
-    "CITY": "Paramus",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 5701.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -4671,16 +4551,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 38018,
-    "CUSTOMER_NAME": "THE BOTTLE SHOP",
-    "SHIPPING_ADDRESS": "366 Essex St",
-    "CITY": "Lodi",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 1299.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 80002,
     "CUSTOMER_NAME": "Whole Foods Market (Paramus)",
     "SHIPPING_ADDRESS": "300 Bergen Town Center",
@@ -4718,16 +4588,6 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 343.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Robin Feldman",
-    "CUSTOMER_NUM": 77008,
-    "CUSTOMER_NAME": "Pizza Town USA",
-    "SHIPPING_ADDRESS": "95-111 RT 46 W",
-    "CITY": "Elmwood Park",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 79.0
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -4971,6 +4831,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 201097,
+    "CUSTOMER_NAME": "Whole Foods #10381 (Closter)",
+    "SHIPPING_ADDRESS": "45 Vervalen St.",
+    "CITY": "Closter",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 380.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "CUSTOMER_NUM": 201098,
+    "CUSTOMER_NAME": "Whole Foods #8407 (Woodcliff Lake)",
+    "SHIPPING_ADDRESS": "500 Chestnut Ridge Rd.",
+    "CITY": "Woodcliff Lake",
+    "AREA": "Bergen",
+    "COUNTY": "Bergen",
+    "CASES": 438.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 65001,
     "CUSTOMER_NAME": "Wine & Whiskey (A)",
     "SHIPPING_ADDRESS": "7 Broad St",
@@ -4998,15 +4878,5 @@
     "AREA": "Bergen",
     "COUNTY": "Bergen",
     "CASES": 8310.67
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 67008,
-    "CUSTOMER_NAME": "Woori Mart",
-    "SHIPPING_ADDRESS": "206 Pegasus Ave.",
-    "CITY": "Northvale",
-    "AREA": "Sales",
-    "COUNTY": "Bergen",
-    "CASES": 1183.0
   }
 ]
