@@ -1538,18 +1538,28 @@ def _strip_report_subtotals(rows, rep_col, dm_col=None):
     return _split_report_subtotals(rows, rep_col, dm_col=dm_col)[1]
 
 
-def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None):
+def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None,
+                           pre_stripped=False):
     """One brand-goal report -> {rep: [{label, actual, goal, pct}]}.
     value_prefix finds the metric column (its full header embeds the
     distribution/base period dates); the goals column ends ') Goals'.
-    The report's own '% of Goals' column is ignored and recomputed."""
+    The report's own '% of Goals' column is ignored and recomputed.
+
+    pre_stripped=True for a file that already contains ONLY real data rows.
+    The flat BI export flattens its on-screen subtotals into ordinary rows,
+    which _strip_report_subtotals() removes positionally -- but the GROUPED
+    export carries the same numbers as a tree, and convert_mc_retention.py
+    resolves that tree into clean rows with no subtotals to remove. Running
+    the positional strip over an already-clean file would silently eat the
+    first real brand row of every rep, so those files say so here."""
     rows = read_rows(filename)
     if not rows:
         return {}
     fieldnames = list(rows[0].keys())
     val_col = next(f for f in fieldnames if f.startswith(value_prefix))
     goal_col = next(f for f in fieldnames if f.rstrip().endswith(") Goals"))
-    rows = _strip_report_subtotals(rows, "Sales Rep Name", dm_col=dm_col)
+    if not pre_stripped:
+        rows = _strip_report_subtotals(rows, "Sales Rep Name", dm_col=dm_col)
     roster = set(ROSTER)
     by_rep = {}
     for r in rows:
@@ -1563,6 +1573,21 @@ def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None):
         actual = to_num(r.get(val_col))
         brands = by_rep.setdefault(rep, {})
         if label in brands:
+            if pre_stripped:
+                # A pre_stripped file is supposed to hold one row per (rep,
+                # brand). A duplicate here almost certainly means the FLAT
+                # export was dropped in without running convert_mc_retention.py
+                # -- its subtotal rows duplicate a (rep, brand) pair, and
+                # counting them as data roughly triples the totals (2,387 ->
+                # 6,809 placements when this was tried by accident). Silently
+                # summing that would publish inflated retention numbers, so
+                # this stops rather than warns.
+                raise SystemExit(
+                    f"{filename}: duplicate row for ({rep}, {label}) in a file read as "
+                    f"pre_stripped. This looks like the FLAT export, whose subtotal rows "
+                    f"would be counted as real data and inflate every total. Run "
+                    f"convert_mc_retention.py on the grouped workbooks instead, or set "
+                    f"pre_stripped=False if Kohler really has gone back to the flat export.")
             print(f"WARNING: {filename}: duplicate brand row for ({rep}, {label}) "
                   f"survived subtotal strip -- export shape may have changed; summing.")
             brands[label]["actual"] += actual
@@ -1631,10 +1656,15 @@ def build_mc_retention():
     Miller Lite, Blue Moon, Peroni -- pins the mapping); relabeled for
     display. Off-prem "Coors" is left as-is (the deck's off-prem list
     doesn't disambiguate it)."""
+    # Both files come from convert_mc_retention.py as of 2026-09-04 (Kohler
+    # switched these two reports to the grouped export), so they arrive with
+    # subtotals already resolved away -- hence pre_stripped. The other three
+    # retention programs still get the flat export and keep the positional strip.
     off = _parse_retention_goals("mc_retention_off_prem.csv", "Placements",
-                                 dm_col="District Manager Name")
+                                 dm_col="District Manager Name", pre_stripped=True)
     on = _parse_retention_goals("mc_retention_on_prem.csv", "Buyers",
-                                label_map={"Coors": "Coors Banquet", "Lite": "Miller Lite"})
+                                label_map={"Coors": "Coors Banquet", "Lite": "Miller Lite"},
+                                pre_stripped=True)
 
     by_rep = {}
     for rep in ROSTER:

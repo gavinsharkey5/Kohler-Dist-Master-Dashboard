@@ -1033,7 +1033,37 @@ math.
    Files: mc_retention_off_prem.csv (Placements by DM/rep/brand,
    brands Coors / Peroni / Fever Tree) and mc_retention_on_prem.csv
    (draft Buyers by rep/brand, all Keg Beer rows; brands Blue Moon /
-   Coors / Coors Light / Lite / Peroni). On-prem "Coors" is displayed
+   Coors / Coors Light / Lite / Peroni).
+
+   EXPORT SHAPE CHANGED 2026-09-04 -- these two now come from the BI
+   tool's GROUPED export (an .xlsx tree: one combined "DM / Rep / Brand"
+   column, level implied by position) instead of the FLAT one. Run
+   convert_mc_retention.py on the two workbooks to regenerate both CSVs;
+   see that script's docstring for how levels are resolved and proven.
+   Two things to know about the coupling it creates:
+     - The converted CSVs contain ONLY real data rows. The flat export
+       carried the on-screen subtotals flattened into ordinary rows, and
+       _strip_report_subtotals() dropped them positionally -- run that
+       over an already-clean file and it eats the first real brand row of
+       every rep, so build_mc_retention() passes pre_stripped=True. The
+       other three retention programs still get the flat export and keep
+       the positional strip; nothing about them changed.
+     - Dropping a FLAT export back over these CSVs without converting is
+       the dangerous mistake: its subtotal rows would be read as data and
+       roughly TRIPLE the totals (2,387 -> 6,809 placements, seen while
+       building this). _parse_retention_goals() now hard-errors on a
+       duplicate (rep, brand) when pre_stripped is set, which is exactly
+       that file's signature, rather than silently summing.
+   ON-PREM BRAND ROWS DO NOT SUM TO THE REP'S OWN TOTAL, and that is
+   correct: Buyers is a DISTINCT ACCOUNT count, so an account pouring
+   both Coors Light and Blue Moon is one buyer on the rep's line and a
+   buyer on each brand's (Allison Scott: brands sum to 164, her rep line
+   says 72). Off-prem Placements ARE additive. convert_mc_retention.py
+   reconciles each side accordingly -- exact sums off-prem, and on-prem
+   only the bound (a distinct count sits between its biggest single
+   brand and the sum of all of them). Worth remembering before
+   "fixing" any on-prem total that looks too big.
+   On-prem "Coors" is displayed
    as "Coors Banquet" and "Lite" as "Miller Lite" -- the deck's draft
    brand list (Coors Lt, Banquet, Miller Lite, Blue Moon, Peroni)
    pins the mapping; off-prem "Coors" is left as-is. NOTE/open

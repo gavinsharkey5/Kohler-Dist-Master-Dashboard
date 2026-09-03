@@ -1,77 +1,62 @@
 Sales Rep Name,Brand Family,Product Type,"Buyers   | Distribution Period: 07/27/2026 - 10/31/2026
 | Base Period: 05/01/2026 - 07/31/2026","( Buyers   | Distribution Period: 07/27/2026 - 10/31/2026
-| Base Period: 05/01/2026 - 07/31/2026 ) Goals","( Buyers   | Distribution Period: 07/27/2026 - 10/31/2026
-| Base Period: 05/01/2026 - 07/31/2026 ) % of Goals"
-Alisa Acciardi,Blue Moon,Keg Beer,1,,0%
+| Base Period: 05/01/2026 - 07/31/2026) Goals","( Buyers   | Distribution Period: 07/27/2026 - 10/31/2026
+| Base Period: 05/01/2026 - 07/31/2026) % of Goals"
 Alisa Acciardi,Blue Moon,Keg Beer,1,1,100%
-Allison Scott,Peroni,Keg Beer,71,,0%
-Allison Scott,Blue Moon,Keg Beer,55,58,94.8%
+Allison Scott,Blue Moon,Keg Beer,59,58,101.7%
 Allison Scott,Coors,Keg Beer,3,4,75.0%
 Allison Scott,Coors Light,Keg Beer,44,44,100%
 Allison Scott,Lite,Keg Beer,43,39,110.3%
-Allison Scott,Peroni,Keg Beer,14,18,77.8%
-Anthony Palmisano,Peroni,Keg Beer,30,,0%
+Allison Scott,Peroni,Keg Beer,15,18,83.3%
 Anthony Palmisano,Blue Moon,Keg Beer,19,36,52.8%
 Anthony Palmisano,Coors,Keg Beer,2,,0%
 Anthony Palmisano,Coors Light,Keg Beer,6,17,35.3%
 Anthony Palmisano,Lite,Keg Beer,22,33,66.7%
 Anthony Palmisano,Peroni,Keg Beer,1,2,50.0%
-Brian Sengebush,Peroni,Keg Beer,69,,0%
-Brian Sengebush,Blue Moon,Keg Beer,36,29,124.1%
-Brian Sengebush,Coors,Keg Beer,1,4,25.0%
+Brian Sengebush,Blue Moon,Keg Beer,37,29,127.6%
+Brian Sengebush,Coors,Keg Beer,2,4,50.0%
 Brian Sengebush,Coors Light,Keg Beer,28,20,140.0%
-Brian Sengebush,Lite,Keg Beer,48,45,106.7%
+Brian Sengebush,Lite,Keg Beer,49,45,108.9%
 Brian Sengebush,Peroni,Keg Beer,1,5,20.0%
-Chris Payton,Peroni,Keg Beer,4,,0%
 Chris Payton,Blue Moon,Keg Beer,2,5,40.0%
 Chris Payton,Coors Light,Keg Beer,2,3,66.7%
 Chris Payton,Lite,Keg Beer,0,4,0%
 Chris Payton,Peroni,Keg Beer,1,2,50.0%
-Chris Politano,Peroni,Keg Beer,1,,0%
 Chris Politano,Blue Moon,Keg Beer,1,1,100%
 Chris Politano,Coors Light,Keg Beer,1,1,100%
 Chris Politano,Lite,Keg Beer,1,1,100%
 Chris Politano,Peroni,Keg Beer,1,,0%
-Dan Lagala,Peroni,Keg Beer,12,,0%
 Dan Lagala,Blue Moon,Keg Beer,7,18,38.9%
 Dan Lagala,Coors Light,Keg Beer,4,9,44.4%
 Dan Lagala,Lite,Keg Beer,2,5,40.0%
 Dan Lagala,Peroni,Keg Beer,2,2,100%
-Derrick Laws,Coors Light,Keg Beer,1,,0%
 Derrick Laws,Coors Light,Keg Beer,1,2,50.0%
-Matt Powierski,Peroni,Keg Beer,5,,0%
-Matt Powierski,Blue Moon,Keg Beer,3,5,60.0%
+Matt Powierski,Blue Moon,Keg Beer,4,5,80.0%
 Matt Powierski,Coors,Keg Beer,1,,0%
-Matt Powierski,Coors Light,Keg Beer,2,4,50.0%
+Matt Powierski,Coors Light,Keg Beer,3,4,75.0%
 Matt Powierski,Lite,Keg Beer,1,4,25.0%
 Matt Powierski,Peroni,Keg Beer,1,,0%
-Mike Ast,Peroni,Keg Beer,6,,0%
-Mike Ast,Blue Moon,Keg Beer,4,7,57.1%
+Mike Ast,Blue Moon,Keg Beer,5,7,71.4%
 Mike Ast,Coors Light,Keg Beer,2,4,50.0%
 Mike Ast,Lite,Keg Beer,2,3,66.7%
 Mike Ast,Peroni,Keg Beer,0,2,0%
-Nick Melissari,Peroni,Keg Beer,88,,0%
-Nick Melissari,Blue Moon,Keg Beer,70,88,79.5%
+Nick Melissari,Blue Moon,Keg Beer,74,88,84.1%
 Nick Melissari,Coors,Keg Beer,2,3,66.7%
-Nick Melissari,Coors Light,Keg Beer,35,52,67.3%
-Nick Melissari,Lite,Keg Beer,38,50,76.0%
+Nick Melissari,Coors Light,Keg Beer,36,52,69.2%
+Nick Melissari,Lite,Keg Beer,39,50,78.0%
 Nick Melissari,Peroni,Keg Beer,16,30,53.3%
-Office Tell Sell,Peroni,Keg Beer,2,,0%
 Office Tell Sell,Blue Moon,Keg Beer,2,2,100%
 Office Tell Sell,Coors Light,Keg Beer,0,2,0%
 Office Tell Sell,Lite,Keg Beer,0,1,0%
 Office Tell Sell,Peroni,Keg Beer,0,,0%
-Pablo Lopez,Coors Light,Keg Beer,2,,0%
 Pablo Lopez,Blue Moon,Keg Beer,2,2,100%
 Pablo Lopez,Coors Light,Keg Beer,2,1,200%
-Paul Mclaughlin,Peroni,Keg Beer,51,,0%
-Paul Mclaughlin,Blue Moon,Keg Beer,31,46,67.4%
-Paul Mclaughlin,Coors Light,Keg Beer,18,24,75.0%
-Paul Mclaughlin,Lite,Keg Beer,15,24,62.5%
+Paul Mclaughlin,Blue Moon,Keg Beer,30,46,65.2%
+Paul Mclaughlin,Coors Light,Keg Beer,20,24,83.3%
+Paul Mclaughlin,Lite,Keg Beer,16,24,66.7%
 Paul Mclaughlin,Peroni,Keg Beer,18,16,112.5%
-Robin Feldman,Peroni,Keg Beer,49,,0%
-Robin Feldman,Blue Moon,Keg Beer,19,24,79.2%
+Robin Feldman,Blue Moon,Keg Beer,21,24,87.5%
 Robin Feldman,Coors,Keg Beer,0,,0%
-Robin Feldman,Coors Light,Keg Beer,15,,0%
-Robin Feldman,Lite,Keg Beer,22,30,73.3%
+Robin Feldman,Coors Light,Keg Beer,16,,0%
+Robin Feldman,Lite,Keg Beer,25,30,83.3%
 Robin Feldman,Peroni,Keg Beer,9,16,56.2%
