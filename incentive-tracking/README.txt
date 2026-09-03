@@ -490,12 +490,25 @@ The 11 programs (Aug 2026 unless noted), as read from the deck:
    sales_reps_customer_base_core.csv) -- that predates this change and
    is expected, so don't "fix" one to match the other.
 
-   Note: the on-prem/off-prem customer base files this program's
-   penetration math depends on live in incentive-tracking/data/ as
-   customer_base_off_prem.csv / customer_base_on_prem.csv -- re-pull
-   these periodically since the eligible-account universe (and
-   therefore every rep's penetration %) shifts as the customer base
-   changes, independent of new Lytt RDE pulls.
+   Note: the customer base this program's penetration math depends on
+   is customer_base_full.csv in incentive-tracking/data/ -- re-pull it
+   periodically, since the eligible-account universe (and therefore
+   every rep's penetration %) shifts as the customer base changes,
+   independent of new Lytt RDE pulls. That is the "Sales Reps' Customer
+   Base 4" export: the COMPLETE book, both premises, all counties.
+   The older customer_base_off_prem.csv / customer_base_on_prem.csv are
+   LEGACY as of 2026-08-18 -- the denominator switched to
+   customer_base_full.csv then, and they now feed only
+   load_premise_map(), where customer_base_full.csv overlays and wins
+   over them anyway. Refreshing them changes nothing; refresh the full
+   file instead.
+   Checked 2026-09-04, when Gavin sent a "Sales Reps: Customer Base
+   Core Off Prem" workbook for the MPO board: it is NOT a refresh path
+   for this program. It holds 501 Core Market off-premise accounts,
+   where customer_base_full.csv holds the whole book (2,376 rows, 1,068
+   of them off-premise) plus the Draft Package column several builders
+   read. It went to MPOs/off-prem/sales_reps_customer_base_core.csv
+   only -- see that folder's README for the full where-it-applies list.
 
 7. NEW BELGIUM DRAFT (Summer Draft Focus) -- August [BUILT]
    - Juicy Haze / Two Hearted Draft: $100 new 1/2bbl POD / $50 rebuy;

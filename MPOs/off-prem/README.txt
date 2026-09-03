@@ -440,10 +440,26 @@ Files:
                                         rep+account+SKU across several
                                         rows. See "EXPORTS CHANGED SHAPE"
                                         below.
-    sales_reps_customer_base_core.csv Reused unchanged from August (see
-                                        its entry above) as Keystone Ice's
-                                        account-base DENOMINATOR and as
-                                        the scope for both Target Accounts
+    convert_customer_base_core.py     Flattens RDE's "Sales Reps: Customer
+                                        Base Core Off Prem" WORKBOOK into
+                                        sales_reps_customer_base_core.csv.
+                                        Needed because that workbook is
+                                        hierarchical -- column B holds a rep
+                                        NAME on a grouping row and a customer
+                                        NUMBER on each of that rep's rows,
+                                        over a "Total" row and a Rank column
+                                        -- so a plain save-as would fill the
+                                        rep column with customer numbers.
+                                        Refuses to write on a bad pull (any
+                                        on-premise row, a duplicate rep+
+                                        customer pair, a non-Core-Market
+                                        area, or a row count outside
+                                        400-700), and --dry-run prints the
+                                        adds and drops first. See "REFRESHING
+                                        THE CORE OFF-PREMISE BASE" below.
+    sales_reps_customer_base_core.csv Keystone Ice's account-base
+                                        DENOMINATOR and the scope for both
+                                        Target Accounts
                                         lists. Keystone and Fever Tree are
                                         Molson Coors brands sold in the
                                         same core off-premise counties.
@@ -590,6 +606,54 @@ To refresh August manually:
      placements/rows qualified out of how many were exported, worth a
      sanity check against what you'd expect.
   3. Commit and push.
+
+REFRESHING THE CORE OFF-PREMISE CUSTOMER BASE (2026-09-04)
+sales_reps_customer_base_core.csv is the Core Market off-premise account book:
+Keystone Ice's penetration DENOMINATOR, and the scope for both Target Accounts
+lists. It moves on its own schedule -- accounts open and close independent of
+any brand's RDE pull -- so re-pull it periodically, not just when an objective
+changes. Gavin sends it as the "Sales Reps: Customer Base Core Off Prem"
+workbook; run it through convert_customer_base_core.py rather than saving it to
+CSV by hand (the workbook is hierarchical -- see that script's entry in Files).
+
+  python3 convert_customer_base_core.py <workbook.xlsx> --dry-run   # review
+  python3 convert_customer_base_core.py <workbook.xlsx>             # write
+  python3 generate_2026-09.py                                       # rebuild
+
+WHERE THIS FILE APPLIES, and where it deliberately does not:
+  YES  September's tab. Keystone Ice's denominator and the Keystone/Fever Tree
+       Target Accounts lists all come from it. Rerun generate_2026-09.py.
+  NO   August's tab, even though generate_2026-08.py reads the same file. That
+       month closed on 8/31 and its tab is a published snapshot; rebuilding it
+       against a September-dated account book would retroactively restate
+       scores reps were already measured on. Leave it. The same goes for any
+       future closed month -- only the CURRENT month's generator gets rerun.
+  NO   MPOs/on-prem/sales_reps_customer_base.csv. That one drives the
+       off-premise EXCLUSION, which needs to see both premises to decide which
+       customers are off-premise-ONLY. This export is off-premise rows only,
+       so feeding it in would mark the entire on-prem book excluded.
+  NO   incentive-tracking/. Its Lytt penetration denominator moved to
+       customer_base_full.csv on 2026-08-18 ("same six-county universe, fresher
+       pull, one consistent source" -- see generate.py's build_lytt comment).
+       The legacy customer_base_off_prem.csv survives only as a premise-map
+       fallback that customer_base_full.csv then overlays and wins over, so
+       overwriting it would change nothing. And this workbook cannot refresh
+       customer_base_full.csv in its place: that file is the COMPLETE book --
+       both premises, all counties including the blackout ones, plus a Draft
+       Package column -- where this one is 501 core off-premise accounts.
+       Refreshing the incentive tracker needs a new "Sales Reps' Customer
+       Base 4" pull, which is a different export.
+
+The 2026-09-04 pull: 501 accounts across 26 reps, one in (Klejdi Lamo /
+Mountain Lakes Wine & Liquor) and one out (Shane Barreca / Cambridge Wines,
+Woodcliff Lake), so Klejdi's base went 27 -> 28 and Shane's 29 -> 28. Neither
+crosses the 40% Keystone bar (21.4% and 0.0%), and both Target Accounts lists
+swapped the same one account, staying at 427 and 368. The CSV also went 527
+rows -> 501: older pulls carried ONE ROW PER SHIPPING ADDRESS, so 26 accounts
+appeared twice. Nothing downstream counted those twice -- buildPctOfBaseDataset()
+counts distinct customer numbers and load_core_customer_base() dedupes by
+(rep, customer) -- but the dedupe does mean an account's Distribution Area is
+now its real one rather than whichever duplicate row happened to come first.
 
 To refresh September manually:
   1. Save the new exports over constellation_corona_gaintain.csv /

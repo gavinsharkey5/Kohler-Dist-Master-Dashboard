@@ -352,7 +352,20 @@ Files:
                                         early in the month) -- that's
                                         expected, not a data bug.
     sales_reps_customer_base.csv      RDE "Sales Reps: Customer Base Core
-                                        Territory" export: Sales Rep
+                                        Territory" export. NOT interchangeable
+                                        with off-prem's
+                                        sales_reps_customer_base_core.csv,
+                                        despite the similar name: this one
+                                        must carry BOTH premises, because
+                                        load_off_premise_only_ids() decides
+                                        which customers are off-premise-ONLY
+                                        by checking whether an account ever
+                                        appears as "On Premise". Hand it an
+                                        off-premise-only book (like the "Core
+                                        Off Prem" workbook off-prem takes) and
+                                        every on-premise account would read as
+                                        off-premise-only and get stripped from
+                                        all four objectives. Columns: Sales Rep
                                         Assigned, Customer Num, Customer
                                         Name, Shipping Address,
                                         Distribution Area, County, City,
