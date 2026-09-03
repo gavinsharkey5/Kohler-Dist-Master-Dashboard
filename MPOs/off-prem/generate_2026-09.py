@@ -52,29 +52,71 @@ measured. Buying accounts are counted DISTINCT: a rep who sold the same
 store three times has one buying account.
 
 --- Fever Tree (10) and Wine & Spirits (5): new placements ---
-Both exports are the new RDE two-window shape with NO per-row Date at
-all: one row per rep/account (Fever Tree) or rep/account/product (Wine &
-Spirits) carrying a base-period column (6/1/2026 - 8/31/2026, the 90-day
-non-buy window) and a current column (9/1/2026 - 9/30/2026). That makes
-the classification a column read rather than the date-walking
-classify_dual_period() August needed: a row is a NEW placement when the
-current column is populated and the base column is not. Same rule as
-every prior month -- "no purchase in the prior ~90 days, a purchase this
-month" -- just handed to us pre-windowed.
+Both exports carry a base-period column (6/1/2026 - 8/31/2026, the 90-day
+non-buy window) and a current column (9/1/2026 - 9/30/2026), so the
+classification is a column read rather than the date-walking
+classify_dual_period() August needed: NEW means the current window is
+populated and the base window is not. Same rule as every prior month --
+"no purchase in the prior ~90 days, a purchase this month" -- handed to
+us pre-windowed.
 
-Progress counts PLACEMENTS, not rows. Wine & Spirits' export is
-product-level and every current value is 1.00, so there the two are the
-same number. Fever Tree's is ACCOUNT-level (its only Brand Family is
-Fever Tree) with current values from 1 to 11 -- one newly-opened account
-placing 6 Fever Tree SKUs is 6 placements toward the 10, not 1.
+SHAPE CHANGE, 2026-09-04 -- ONE ROW PER LOAD SHEET DATE. Both exports
+gained a "Load Sheet Date" column and dropped "Placement Count Percentage
+Total". They are now transaction logs: the same rep/account (Fever Tree)
+or rep/account/SKU (Wine & Spirits) appears once per load sheet, each row
+carrying only that sheet's window. The pre-2026-09-04 exports were
+pre-aggregated, one row per key with both windows filled in on the same
+row, which is why the original build_new_placements() classified row by
+row.
+
+That per-row read is now WRONG, and wrong in the dangerous direction. An
+account that bought in July and again in September no longer has one row
+with both columns filled -- it has a July row with only the base column
+and a September row with only the current column, and the September row
+read alone looks exactly like a brand-new placement. On this export that
+turns Fever Tree's 1 genuinely new account into 20, and Wine & Spirits'
+75 new placements into 129. build_new_placements() therefore folds every
+row for a key together BEFORE classifying.
+
+COUNTING PLACEMENTS ACROSS LOAD SHEETS -- the one open question here.
+Progress counts PLACEMENTS, not rows: Wine & Spirits' export is
+product-level with every current value 1.00, but Fever Tree's is
+ACCOUNT-level (its only Brand Family is Fever Tree) with values from 1 to
+19, so one newly-opened account placing 6 Fever Tree SKUs is 6 placements
+toward the 10, not 1.
+
+Summing a key's rows across load sheets does NOT reproduce the number the
+old pre-aggregated export gave for the same window: Klejdi Lamo's Shop
+Rite Stanhope reads 24 base placements on the 2026-09-02 export and 44 if
+you sum the same window's load sheets on the 2026-09-04 one. The old
+column was a DISTINCT count -- SKUs placed in the window -- and a SKU
+reordered on three load sheets is one placement, not three. The new export
+cannot be de-duplicated the same way, because for Fever Tree it never says
+WHICH SKUs a load sheet carried, only how many.
+
+So the value taken per key is the LARGEST SINGLE LOAD SHEET's count, not
+the sum: it cannot over-credit a rep for reorders, where summing inflates
+the base window by ~80%. It can under-credit an account that genuinely
+adds new SKUs on a later sheet. Today the two agree exactly -- the one
+newly-opened Fever Tree account has a single current-window row (6
+placements on 9/2), and no Wine & Spirits key has more than one -- so
+nothing rides on the choice yet, but it will once September fills in.
+Both numbers print at build time so the gap stays visible.
+OPEN WITH GAVIN: if a rep should be credited per load sheet line rather
+than per distinct SKU, switch to the "current_sum" the aggregator already
+tracks. Ideally RDE adds a product column to the Fever Tree export, which
+would make the distinct count exact and retire the question.
 
 --- POS: (5) Cooler Door Stickers ---
 No data source yet (the iSellBeer photo export for cooler door stickers
 hasn't been pulled), so it ships as a hasData:false placeholder in
 index.html, exactly like July's Disruptors did. Nothing to generate.
 
-To refresh: save new exports over the four CSVs named below (same column
-headers), run this script, commit and push.
+To refresh: save new exports over the four CSVs named below, run this
+script, commit and push. A "Load Sheet Date" column on Fever Tree or Wine
+& Spirits is expected and handled; what must not change is the pair of
+date-windowed "Placement Count" columns, which check_window() verifies
+start on 6/1/2026 and 9/1/2026 and which the script refuses to guess at.
 """
 
 import csv
@@ -128,9 +170,10 @@ def window_cols(fieldnames, prefix):
     find_period_cols()). Sorted by the START date embedded in the header
     rather than matched on exact text, so a window that shifts by a day in
     a future export still resolves. Returns (earlier_col, later_col)."""
-    # Only the DATE-WINDOWED columns: the same prefix also picks up RDE's
-    # trailing "Placement Count Percentage Total" roll-up column, which
-    # carries no window and is not one of the two periods.
+    # Only the DATE-WINDOWED columns. The 2026-09-04 exports dropped RDE's
+    # trailing "Placement Count Percentage Total" roll-up, but older ones
+    # carry it and it shares this prefix while having no window of its own,
+    # so it stays filtered out rather than counted as a third period.
     cols = [f for f in fieldnames
             if f.startswith(prefix) and re.search(r"\d{1,2}/\d{1,2}/\d{4}", f)]
     if len(cols) != 2:
@@ -309,52 +352,77 @@ def build_customer_base_core():
 
 def build_new_placements(path, product_col=None):
     """The two-window new-placement read (see this script's docstring): a
-    row is NEW when its current-window column is populated and its
-    base-window column is not. Each source row is already one
-    rep/account(/product) pair -- there is no per-row Date and no repeat
-    rows to collapse -- so a row maps to exactly one output row, and no
-    "first qualifying row wins" flagging is needed the way August's
-    transaction-log exports required.
+    key is NEW when its current window is populated and its base window is
+    not. The key is one rep/account (Fever Tree) or rep/account/product
+    (Wine & Spirits), and the 2026-09-04 exports carry SEVERAL ROWS PER KEY
+    -- one per load sheet date -- so every row for a key is folded together
+    BEFORE classifying. Doing this per row instead, as the pre-2026-09-04
+    aggregated exports allowed, reads an account's base-window row and its
+    current-window row as two unrelated rows and calls the second one a new
+    placement: on this export that turns Fever Tree's 1 genuinely new
+    account into 20 and Wine & Spirits' 75 new placements into 129.
 
-    Returns (rows, new_placements, new_rows, total_rows). new_placements
-    sums the current column (Fever Tree's export is account-level: one new
-    account can be several placements); new_rows counts the qualifying rows
-    themselves, which is the same number only for product-level exports."""
+    PLACEMENTS PER KEY ARE NOT SUMMED ACROSS LOAD SHEETS -- see the
+    docstring's "counting placements" note. The value taken is the largest
+    single load sheet's count, and the summed alternative is returned
+    alongside it so main() can print both.
+
+    Returns (rows, new_placements, new_keys, total_keys, summed_alt)."""
     rows = load_csv(path)
     base_col, current_col = window_cols(rows[0].keys(), "Placement Count")
     check_window(base_col, datetime(2026, 6, 1), f"{path.name} base window")
     check_window(current_col, ACTUAL_WINDOW_START, f"{path.name} current window")
 
-    out = []
-    new_placements = 0.0
-    new_rows = 0
+    agg, order = {}, []
     for r in rows:
         rep = (r.get("Sales Rep Assigned") or "").strip()
         if not rep:
             continue
         num, name = split_customer(r.get("Customer Num & Company"))
-        base = to_num(r[base_col])
-        current = to_num(r[current_col])
-        # Populated-ness, not quantity: an existing account whose base row
-        # happens to read 0 still bought in the base window.
-        has_base = (r[base_col] or "").strip() != ""
-        has_current = (r[current_col] or "").strip() != ""
-        is_new = 1 if (has_current and not has_base) else 0
+        product = (r.get(product_col) or "").strip() if product_col else ""
+        key = (rep, num, product)
+        if key not in agg:
+            agg[key] = {"rep": rep, "num": num, "name": name, "product": product,
+                        "brand": (r.get("Brand Family") or "").strip(),
+                        "base": 0.0, "current": 0.0,
+                        "base_sum": 0.0, "current_sum": 0.0,
+                        "has_base": False, "has_current": False}
+            order.append(key)
+        a = agg[key]
+        # Populated-ness, not quantity: an account whose base row happens to
+        # read 0 still transacted in the base window.
+        if (r[base_col] or "").strip() != "":
+            a["has_base"] = True
+            a["base"] = max(a["base"], to_num(r[base_col]))
+            a["base_sum"] += to_num(r[base_col])
+        if (r[current_col] or "").strip() != "":
+            a["has_current"] = True
+            a["current"] = max(a["current"], to_num(r[current_col]))
+            a["current_sum"] += to_num(r[current_col])
+
+    out = []
+    new_placements = 0.0
+    summed_alt = 0.0
+    new_keys = 0
+    for key in order:
+        a = agg[key]
+        is_new = 1 if (a["has_current"] and not a["has_base"]) else 0
         if is_new:
-            new_placements += current
-            new_rows += 1
+            new_placements += a["current"]
+            summed_alt += a["current_sum"]
+            new_keys += 1
         out.append({
-            "SALES_REP_ASSIGNED": rep,
-            "PRODUCT_NAME": (r.get(product_col) or "").strip() if product_col else "",
-            "BRAND_FAMILY": (r.get("Brand Family") or "").strip(),
-            "CUSTOMER_NUM": int(num) if num.isdigit() else num,
-            "CUSTOMER_NAME": name,
-            "BASE_PLACEMENTS": base,
-            "CURRENT_PLACEMENTS": current,
+            "SALES_REP_ASSIGNED": a["rep"],
+            "PRODUCT_NAME": a["product"],
+            "BRAND_FAMILY": a["brand"],
+            "CUSTOMER_NUM": int(a["num"]) if a["num"].isdigit() else a["num"],
+            "CUSTOMER_NAME": a["name"],
+            "BASE_PLACEMENTS": a["base"],
+            "CURRENT_PLACEMENTS": a["current"],
             "NEW_PLACEMENT": is_new,
         })
     out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"], row["PRODUCT_NAME"]))
-    return out, new_placements, new_rows, len(out)
+    return out, new_placements, new_keys, len(out), summed_alt
 
 
 # --------------------------------------------------------------- target lists
@@ -410,8 +478,8 @@ def main():
     constellation_rows = build_constellation()
     keystone_rows = build_keystone_numerator()
     customer_base_core_rows = build_customer_base_core()
-    fever_tree_rows, ft_new, ft_new_rows, ft_total = build_new_placements(FEVER_TREE_CSV)
-    wine_spirits_rows, ws_new, ws_new_rows, ws_total = build_new_placements(
+    fever_tree_rows, ft_new, ft_new_rows, ft_total, ft_summed = build_new_placements(FEVER_TREE_CSV)
+    wine_spirits_rows, ws_new, ws_new_rows, ws_total, ws_summed = build_new_placements(
         WINE_SPIRITS_CSV, product_col="Product Num Name")
 
     core_by_rep = load_core_customer_base()
@@ -457,9 +525,11 @@ def main():
           f"{ks_at_goal} of {len(base_by_rep)} reps with a core-territory base at 40% penetration")
     print(f"Sales Reps Customer Base (Core, Keystone's denominator): {len(customer_base_core_rows)} rows")
     print(f"Fever Tree: {ft_new:.0f} new placements across {ft_new_rows} newly-opened accounts "
-          f"(out of {ft_total} rep+account rows exported)")
-    print(f"Wine & Spirits (any brand): {ws_new:.0f} new placements across {ws_new_rows} rows "
-          f"(out of {ws_total} rep+account+product rows exported)")
+          f"(out of {ft_total} rep+account keys exported); summing load sheets instead "
+          f"would read {ft_summed:.0f} -- see 'counting placements' in the docstring")
+    print(f"Wine & Spirits (any brand): {ws_new:.0f} new placements across {ws_new_rows} "
+          f"newly-placed rep+account+SKU keys (out of {ws_total} exported); summing load "
+          f"sheets instead would read {ws_summed:.0f}")
     print(f"Target accounts -- Keystone Ice: {len(targets_keystone)} prospects (core territory only)")
     print(f"Target accounts -- Fever Tree: {len(targets_fever_tree)} prospects (core territory only)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")

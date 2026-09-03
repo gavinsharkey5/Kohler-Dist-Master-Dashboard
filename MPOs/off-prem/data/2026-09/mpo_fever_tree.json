@@ -15,7 +15,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 3001,
     "CUSTOMER_NAME": "Best Cellars (Wanaque)",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 2.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -35,7 +35,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -65,7 +65,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 1012,
     "CUSTOMER_NAME": "Uncorked Wines & Spirits (West Milford)",
-    "BASE_PLACEMENTS": 10.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -105,7 +105,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 38040,
     "CUSTOMER_NAME": "Buy Rite Discount Liquor",
-    "BASE_PLACEMENTS": 9.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -115,7 +115,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 46033,
     "CUSTOMER_NAME": "Discount Lqr(A) Outlet",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 2.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -125,7 +125,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 47005,
     "CUSTOMER_NAME": "Exquisite W & L (A)",
-    "BASE_PLACEMENTS": 6.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -225,7 +225,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 34009,
     "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
-    "BASE_PLACEMENTS": 6.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -235,7 +235,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -265,7 +265,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 50020,
     "CUSTOMER_NAME": "Wineland",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -285,7 +285,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 49055,
     "CUSTOMER_NAME": "Edgewater Liquor (A)",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 6.0,
     "NEW_PLACEMENT": 0
   },
@@ -305,7 +305,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 49044,
     "CUSTOMER_NAME": "Linwood Wine-Hudson Light",
-    "BASE_PLACEMENTS": 10.0,
+    "BASE_PLACEMENTS": 9.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -315,7 +315,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 49027,
     "CUSTOMER_NAME": "Linwood Wine-Linwood Plaza",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 2.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -365,7 +365,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 54006,
     "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
-    "BASE_PLACEMENTS": 9.0,
+    "BASE_PLACEMENTS": 5.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -385,7 +385,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 56008,
     "CUSTOMER_NAME": "Bergenfield Liq & Fw",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 2.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -395,7 +395,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 40001,
     "CUSTOMER_NAME": "Bottle & Cork",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -405,7 +405,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -445,7 +445,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
-    "BASE_PLACEMENTS": 7.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -505,7 +505,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
-    "BASE_PLACEMENTS": 15.0,
+    "BASE_PLACEMENTS": 10.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -535,7 +535,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 231701,
     "CUSTOMER_NAME": "George's Wine & Spirits",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 5.0,
     "CURRENT_PLACEMENTS": 4.0,
     "NEW_PLACEMENT": 0
   },
@@ -545,7 +545,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 231501,
     "CUSTOMER_NAME": "Highland General Store",
-    "BASE_PLACEMENTS": 4.0,
+    "BASE_PLACEMENTS": 3.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -555,7 +555,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191302,
     "CUSTOMER_NAME": "Liquor Factory I Landing",
-    "BASE_PLACEMENTS": 2.0,
+    "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
@@ -565,7 +565,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191010,
     "CUSTOMER_NAME": "Liquor Factory II Jefferson",
-    "BASE_PLACEMENTS": 7.0,
+    "BASE_PLACEMENTS": 3.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -575,7 +575,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
-    "BASE_PLACEMENTS": 18.0,
+    "BASE_PLACEMENTS": 9.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -585,7 +585,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191526,
     "CUSTOMER_NAME": "Liquor Factory IV Hopatcong",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -595,7 +595,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 230314,
     "CUSTOMER_NAME": "Liquor Factory V Andover",
-    "BASE_PLACEMENTS": 4.0,
+    "BASE_PLACEMENTS": 3.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -605,7 +605,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191702,
     "CUSTOMER_NAME": "Liquor Factory VI Byram",
-    "BASE_PLACEMENTS": 5.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -615,7 +615,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 231215,
     "CUSTOMER_NAME": "Mac & Lindy's W & S (A)",
-    "BASE_PLACEMENTS": 10.0,
+    "BASE_PLACEMENTS": 9.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -625,7 +625,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
-    "BASE_PLACEMENTS": 12.0,
+    "BASE_PLACEMENTS": 5.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
@@ -645,8 +645,8 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
-    "BASE_PLACEMENTS": 17.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "BASE_PLACEMENTS": 9.0,
+    "CURRENT_PLACEMENTS": 7.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -655,7 +655,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 230412,
     "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
-    "BASE_PLACEMENTS": 11.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -685,7 +685,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
-    "BASE_PLACEMENTS": 11.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -695,7 +695,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 28011,
     "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
-    "BASE_PLACEMENTS": 4.0,
+    "BASE_PLACEMENTS": 3.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -715,7 +715,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 28012,
     "CUSTOMER_NAME": "Lucky 7 (A)",
-    "BASE_PLACEMENTS": 5.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -735,7 +735,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 30005,
     "CUSTOMER_NAME": "Rutherford Wine (A)",
-    "BASE_PLACEMENTS": 5.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -755,7 +755,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 29011,
     "CUSTOMER_NAME": "World of Wine & Liquor",
-    "BASE_PLACEMENTS": 5.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -785,7 +785,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 190207,
     "CUSTOMER_NAME": "Liquor Outlet",
-    "BASE_PLACEMENTS": 9.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -825,7 +825,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191814,
     "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
-    "BASE_PLACEMENTS": 14.0,
+    "BASE_PLACEMENTS": 10.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -835,7 +835,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 190917,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
-    "BASE_PLACEMENTS": 15.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -845,7 +845,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 191710,
     "CUSTOMER_NAME": "Shop Rite Wine & Spirits Stanhope",
-    "BASE_PLACEMENTS": 24.0,
+    "BASE_PLACEMENTS": 11.0,
     "CURRENT_PLACEMENTS": 5.0,
     "NEW_PLACEMENT": 0
   },
@@ -865,7 +865,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 31060,
     "CUSTOMER_NAME": "Bottle Republic (Rutherford)",
-    "BASE_PLACEMENTS": 21.0,
+    "BASE_PLACEMENTS": 17.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -895,7 +895,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington",
-    "BASE_PLACEMENTS": 13.0,
+    "BASE_PLACEMENTS": 9.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -925,8 +925,8 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 12005,
     "CUSTOMER_NAME": "Shay's Liquors",
-    "BASE_PLACEMENTS": 11.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "BASE_PLACEMENTS": 5.0,
+    "CURRENT_PLACEMENTS": 3.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -935,7 +935,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 89005,
     "CUSTOMER_NAME": "Allendale Wine Shoppe",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 2.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -945,7 +945,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
-    "BASE_PLACEMENTS": 16.0,
+    "BASE_PLACEMENTS": 13.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -975,7 +975,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 18001,
     "CUSTOMER_NAME": "Grand Opening Liq (A)_2",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -985,7 +985,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 11003,
     "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
-    "BASE_PLACEMENTS": 16.0,
+    "BASE_PLACEMENTS": 7.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -995,7 +995,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 94001,
     "CUSTOMER_NAME": "Long Hill Liquors (A)",
-    "BASE_PLACEMENTS": 8.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1015,7 +1015,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 94008,
     "CUSTOMER_NAME": "Oakland Wine (A)",
-    "BASE_PLACEMENTS": 2.0,
+    "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1025,7 +1025,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 84010,
     "CUSTOMER_NAME": "Ridgewood Super Cellar",
-    "BASE_PLACEMENTS": 7.0,
+    "BASE_PLACEMENTS": 5.0,
     "CURRENT_PLACEMENTS": 2.0,
     "NEW_PLACEMENT": 0
   },
@@ -1035,7 +1035,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 87001,
     "CUSTOMER_NAME": "Uncorked Wine & Spirits (Hohokus)",
-    "BASE_PLACEMENTS": 6.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1045,7 +1045,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 88005,
     "CUSTOMER_NAME": "Waldwick Wine/Spirits",
-    "BASE_PLACEMENTS": 7.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1055,7 +1055,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 96002,
     "CUSTOMER_NAME": "Wine & Spirit World(W)",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 11.0,
     "CURRENT_PLACEMENTS": 2.0,
     "NEW_PLACEMENT": 0
   },
@@ -1065,7 +1065,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 83010,
     "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
-    "BASE_PLACEMENTS": 21.0,
+    "BASE_PLACEMENTS": 15.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1085,7 +1085,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 80041,
     "CUSTOMER_NAME": "PRIME WINE CELLAR Liquor & Beer",
-    "BASE_PLACEMENTS": 11.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1105,7 +1105,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 80005,
     "CUSTOMER_NAME": "Shop Rite Liq (Paramus)",
-    "BASE_PLACEMENTS": 11.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1125,8 +1125,8 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 78008,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
-    "BASE_PLACEMENTS": 6.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "BASE_PLACEMENTS": 3.0,
+    "CURRENT_PLACEMENTS": 2.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1135,7 +1135,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 29004,
     "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "BASE_PLACEMENTS": 7.0,
+    "BASE_PLACEMENTS": 5.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1145,7 +1145,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 25010,
     "CUSTOMER_NAME": "Stew Leonard's Wines & Spirits of Clifton",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 10.0,
     "CURRENT_PLACEMENTS": 11.0,
     "NEW_PLACEMENT": 0
   },
@@ -1155,7 +1155,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
-    "BASE_PLACEMENTS": 15.0,
+    "BASE_PLACEMENTS": 8.0,
     "CURRENT_PLACEMENTS": 9.0,
     "NEW_PLACEMENT": 0
   },
@@ -1175,7 +1175,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 67004,
     "CUSTOMER_NAME": "Beverage Barn (A)",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 8.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1185,7 +1185,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 60001,
     "CUSTOMER_NAME": "Bottle King (A) Dumont",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 15.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
@@ -1195,7 +1195,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 73003,
     "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
-    "BASE_PLACEMENTS": 11.0,
+    "BASE_PLACEMENTS": 8.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1205,7 +1205,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
-    "BASE_PLACEMENTS": 17.0,
+    "BASE_PLACEMENTS": 15.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1215,7 +1215,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 75004,
     "CUSTOMER_NAME": "Cork & Keg (A)",
-    "BASE_PLACEMENTS": 6.0,
+    "BASE_PLACEMENTS": 4.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1225,7 +1225,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
-    "BASE_PLACEMENTS": 15.0,
+    "BASE_PLACEMENTS": 10.0,
     "CURRENT_PLACEMENTS": 3.0,
     "NEW_PLACEMENT": 0
   },
@@ -1235,7 +1235,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 92008,
     "CUSTOMER_NAME": "Ramsey Wine & Liquor",
-    "BASE_PLACEMENTS": 9.0,
+    "BASE_PLACEMENTS": 6.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1245,7 +1245,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 71006,
     "CUSTOMER_NAME": "Ridgemont Liquors (A)",
-    "BASE_PLACEMENTS": 2.0,
+    "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1265,7 +1265,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 75002,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Emerson",
-    "BASE_PLACEMENTS": 6.0,
+    "BASE_PLACEMENTS": 3.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1275,7 +1275,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 73008,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Hillsdal",
-    "BASE_PLACEMENTS": 16.0,
+    "BASE_PLACEMENTS": 9.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1285,7 +1285,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 67005,
     "CUSTOMER_NAME": "Shoprite Liq (A)Northvle",
-    "BASE_PLACEMENTS": 22.0,
+    "BASE_PLACEMENTS": 19.0,
     "CURRENT_PLACEMENTS": 2.0,
     "NEW_PLACEMENT": 0
   },
@@ -1295,7 +1295,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 86003,
     "CUSTOMER_NAME": "Township Liq (P)",
-    "BASE_PLACEMENTS": 2.0,
+    "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },
@@ -1315,7 +1315,7 @@
     "BRAND_FAMILY": "Fever Tree",
     "CUSTOMER_NUM": 65001,
     "CUSTOMER_NAME": "Wine & Whiskey (A)",
-    "BASE_PLACEMENTS": 3.0,
+    "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
   },

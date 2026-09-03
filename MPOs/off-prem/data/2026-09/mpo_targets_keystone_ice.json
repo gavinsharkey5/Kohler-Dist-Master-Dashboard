@@ -691,12 +691,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 51008,
-    "CUSTOMER_NAME": "H & R Disc. Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 57003,
     "CUSTOMER_NAME": "Joes Beer Wine & Spirits",
     "AREA": "Bergen"
@@ -1093,12 +1087,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 408,
-    "CUSTOMER_NAME": "Fredon Liquor (Fredon Deli)",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 231701,
     "CUSTOMER_NAME": "George's Wine & Spirits",
     "AREA": "Sussex"
@@ -1173,6 +1161,12 @@
     "SALES_REP_ASSIGNED": "Jayson Romine",
     "CUSTOMER_NUM": 230431,
     "CUSTOMER_NAME": "Seplow's Liquors",
+    "AREA": "Sussex"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "CUSTOMER_NUM": 230427,
+    "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "AREA": "Sussex"
   },
   {
@@ -1275,12 +1269,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 25023,
-    "CUSTOMER_NAME": "Clifton Wine & Liquor",
     "AREA": "Passaic"
   },
   {
@@ -1767,12 +1755,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77009,
     "CUSTOMER_NAME": "M & M Wine & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77016,
-    "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
     "AREA": "Bergen"
   },
   {

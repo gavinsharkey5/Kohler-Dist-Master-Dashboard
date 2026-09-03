@@ -1066,7 +1066,7 @@
     "CUSTOMER_NUM": 19004,
     "CUSTOMER_NAME": "Shortways' Barn (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5101,6 +5101,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200517 Southern Tier Pumking Whiskey 6/750 mL Btl",
+    "BRAND_FAMILY": "Southern Tier Distilling",
+    "CUSTOMER_NUM": 171353,
+    "CUSTOMER_NAME": "Fork Hill Kitchen",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
     "PRODUCT_NAME": "200311 Pride & Clarke Vodka 12/1 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 170127,
@@ -5198,6 +5208,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170103,
+    "CUSTOMER_NAME": "Heaven's Liquor & Deli",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -8601,6 +8621,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 152029,
+    "CUSTOMER_NAME": "Skyline Liquors Iii",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
     "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 152029,
@@ -9056,7 +9086,7 @@
     "CUSTOMER_NUM": 170042,
     "CUSTOMER_NAME": "O'nieal's (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9978,6 +10008,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 230902,
+    "CUSTOMER_NAME": "Buy Rite Liquors Franklin",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -11536,7 +11576,7 @@
     "CUSTOMER_NUM": 190016,
     "CUSTOMER_NAME": "12 Islands Greek Taverna",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14846,7 +14886,7 @@
     "CUSTOMER_NUM": 39004,
     "CUSTOMER_NAME": "Noches De Colombia (S. Hackensack))",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14866,7 +14906,7 @@
     "CUSTOMER_NUM": 27072,
     "CUSTOMER_NAME": "Passaic Discount Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

@@ -165,18 +165,24 @@ Objective types (index.html):
   'new_placements'
                   September's Fever Tree (10) and Wine & Spirits (5).
                   Same 90-day-non-buy question as 'new_accounts', but
-                  read off RDE's TWO WINDOWED COLUMNS rather than a
-                  transaction log (those exports carry no per-row Date
-                  at all -- see generate_2026-09.py), and scored in
-                  PLACEMENTS rather than qualifying rows: Fever Tree's
-                  export is ACCOUNT-level, so one newly-opened account
-                  carrying 6 Fever Tree SKUs is 6 placements toward the
-                  10, not 1. Wine & Spirits' is product-level with every
-                  current value 1.00, so there rows and placements are
-                  the same number. buildNewPlacementsDataset() /
-                  lineTableNewPlacements() -- the drill-down's two middle
-                  columns are base-period and this-month PLACEMENT
-                  COUNTS, not dates, since there are no dates to show.
+                  read off RDE's TWO WINDOWED COLUMNS rather than by
+                  walking dates, and scored in PLACEMENTS rather than
+                  qualifying rows: Fever Tree's export is ACCOUNT-level,
+                  so one newly-opened account carrying 6 Fever Tree SKUs
+                  is 6 placements toward the 10, not 1. Wine & Spirits'
+                  is product-level with every current value 1.00, so
+                  there rows and placements are the same number.
+                  buildNewPlacementsDataset() / lineTableNewPlacements()
+                  -- the drill-down's two middle columns are base-period
+                  and this-month PLACEMENT COUNTS, not dates.
+                  As of the 2026-09-04 exports these two sources are
+                  TRANSACTION LOGS (one row per load sheet date), not the
+                  pre-aggregated one-row-per-key shape they started as,
+                  so generate_2026-09.py folds a key's rows together
+                  before classifying and the JSON the client reads is
+                  still one row per key. See "SEPTEMBER'S FEVER TREE AND
+                  WINE & SPIRITS EXPORTS CHANGED SHAPE" below -- the
+                  client is unaffected, but the generator very much is.
   'pct_of_goal'   Per-rep VARIABLE target measured against the rep's own
                   PRIOR-YEAR result: September's Constellation "30%
                   Corona Gaintain Distro". Sibling of 'pct_of_base' --
@@ -399,26 +405,37 @@ Files:
                                         24 oz is a single SKU (product
                                         622).
     molson_coors_fever_tree.csv       RDE "Molson Coors - Fever Tree (10)
-                                        New Placements" export -- the new
-                                        two-window shape with NO per-row
-                                        Date: one row per rep/ACCOUNT
-                                        (its only Brand Family is Fever
-                                        Tree) with a 6/1-8/31 base column
-                                        and a 9/1-9/30 current column. New
-                                        placement = current populated,
-                                        base blank. Counted in PLACEMENTS
-                                        (the current column's value, 1-11
-                                        per account), not rows.
+                                        New Placements" export -- a
+                                        6/1-8/31 base column and a
+                                        9/1-9/30 current column, its only
+                                        Brand Family being Fever Tree, so
+                                        it is ACCOUNT-level with no SKU
+                                        detail. New placement = current
+                                        populated, base blank. Counted in
+                                        PLACEMENTS (the current column's
+                                        value, 1-19 per account), not
+                                        rows. As of 2026-09-04 it carries
+                                        a Load Sheet Date and repeats an
+                                        account once per load sheet; it
+                                        dropped "Placement Count
+                                        Percentage Total". See "EXPORTS
+                                        CHANGED SHAPE" below.
     wine_spirits_new_placements.csv   RDE "Wine & Spirits (5) New
                                         Placements Any Brand" export --
-                                        same two-window shape, but
+                                        same two windows, but
                                         PRODUCT-level (Product Num Name +
                                         Brand Family), and every current
-                                        value is 1.00, so rows and
-                                        placements coincide. "Any brand"
-                                        means no sub-targets: it is a
-                                        single 'new_placements' objective,
-                                        not a 'dual' like August's.
+                                        value is 1.00, so a key and a
+                                        placement are the same thing.
+                                        "Any brand" means no sub-targets:
+                                        it is a single 'new_placements'
+                                        objective, not a 'dual' like
+                                        August's. Same 2026-09-04 Load
+                                        Sheet Date change as Fever Tree
+                                        -- the key is now
+                                        rep+account+SKU across several
+                                        rows. See "EXPORTS CHANGED SHAPE"
+                                        below.
     sales_reps_customer_base_core.csv Reused unchanged from August (see
                                         its entry above) as Keystone Ice's
                                         account-base DENOMINATOR and as
@@ -573,11 +590,79 @@ To refresh August manually:
 To refresh September manually:
   1. Save the new exports over constellation_corona_gaintain.csv /
      keystone_ice_24oz.csv / molson_coors_fever_tree.csv /
-     wine_spirits_new_placements.csv (same column headers), and
-     sales_reps_customer_base_core.csv if the core territory changed.
+     wine_spirits_new_placements.csv, and sales_reps_customer_base_core.csv
+     if the core territory changed. A Load Sheet Date column on the two
+     new-placement exports is expected and handled; what must NOT change
+     is the pair of date-windowed "Placement Count" columns, which
+     check_window() verifies start on 6/1/2026 and 9/1/2026 and refuses to
+     guess at. Constellation must keep its per-rep subtotal rows (see
+     _strip_rep_subtotal_rows()) and its 9/1/2025 + 9/1/2026 windows.
   2. Run: python3 generate_2026-09.py -- it prints new placements,
      penetration and reps-at-goal counts, worth a sanity check.
-  3. Commit and push.
+  3. Sanity-check against the previous build before committing. These
+     numbers should only ever GROW within a month: a refresh that drops a
+     previously-qualifying account is the signal that something reclassified
+     wrongly, which is exactly what the shape change below would have caused.
+  4. Commit and push.
+
+SEPTEMBER'S FEVER TREE AND WINE & SPIRITS EXPORTS CHANGED SHAPE (2026-09-04)
+Both gained a "Load Sheet Date" column, dropped "Placement Count Percentage
+Total", and are now TRANSACTION LOGS -- the same rep/account (Fever Tree) or
+rep/account/SKU (Wine & Spirits) appears once per load sheet, each row
+carrying only that sheet's window. They used to be pre-aggregated: one row
+per key with both windows filled in on that one row.
+
+THIS SILENTLY BREAKS A PER-ROW CLASSIFICATION, in the direction that
+over-credits reps. An account that bought in July and again in September no
+longer has a single row with both columns filled -- it has a July row with
+only the base column and a September row with only the current column, and
+that September row read on its own looks exactly like a brand-new placement.
+Rerunning the old per-row logic against these exports would have reported 20
+newly-opened Fever Tree accounts instead of 1, and 129 Wine & Spirits new
+placements instead of 75. build_new_placements() now folds every row for a
+key together BEFORE classifying, so the JSON the client reads is still one
+row per key and index.html needed no change at all.
+
+COUNTING PLACEMENTS ACROSS LOAD SHEETS is the open question this leaves.
+Summing a key's rows does NOT reproduce what the old pre-aggregated export
+reported for the same window -- Klejdi Lamo's Shop Rite Stanhope reads 24
+base placements on the 2026-09-02 export and 44 if you sum the same window's
+load sheets on the 2026-09-04 one. The old column was a DISTINCT count (SKUs
+placed in the window); a SKU reordered on three load sheets is one placement,
+not three. The new export cannot be de-duplicated the same way because for
+Fever Tree it never says WHICH SKUs a load sheet carried, only how many.
+So the generator takes the LARGEST SINGLE LOAD SHEET's count per key rather
+than the sum: it cannot over-credit reorders, where summing inflates the base
+window by ~80%. It can under-credit an account that genuinely adds new SKUs
+on a later sheet. Today the two agree exactly -- the one newly-opened Fever
+Tree account has a single current-window row (6 placements on 9/2) and no
+Wine & Spirits key has more than one -- so nothing rides on it yet, but it
+will once September fills in. Both numbers print at build time.
+OPEN WITH GAVIN: if credit is meant per load sheet line rather than per
+distinct SKU, switch to the "current_sum" the aggregator already tracks.
+Better still, RDE adding a product column to the Fever Tree export would make
+the distinct count exact and retire the question.
+
+TWO NAMES IN THE EXPORTS ARE NOT ON THE BOARD (pre-existing, NOT changed
+here). Constellation carries "John Neukum" and "Office Tell Sell", and Fever
+Tree carries "John Neukum"; neither is in index.html's ROSTER, and every view
+iterates ROSTER, so their rows are generated into the JSON and then never
+rendered. "Office Tell Sell" is the known non-rep entity the on-prem README
+also calls out -- correct to skip. John Neukum is not: he shows 7 Corona
+Gaintain placements last fall and 7 this fall, which would put him at goal,
+plus one Fever Tree account. He was in the 2026-09-02 exports too, so this is
+not new. Deliberately left alone: adding a name to ROSTER is a claim about who
+is on the program, and this README's rule is that those are confirmed, never
+guessed. ASK GAVIN whether he belongs on the board.
+
+ONE MORE THING WORTH CONFIRMING (pre-existing, NOT changed here): on-prem and
+off-prem count Fever Tree in DIFFERENT UNITS. Off-prem's "(10) New
+Placements" scores the placement COUNT (a new account taking 6 SKUs is 6),
+while on-prem's "(3) New Placements" uses buildNewAccountsDataset() and
+scores one per new ACCOUNT regardless of SKUs. Both of September's on-prem
+new accounts happen to carry a placement count of 1, so no current number
+differs either way -- but the two boards would diverge the moment an on-prem
+account takes several SKUs at once.
 
 Target Accounts (added 2026-08-05, extended to BBC Lytt 2026-08-10): a
 per-rep "who to go after" prospect list -- accounts in a rep's OWN
