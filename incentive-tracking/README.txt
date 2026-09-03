@@ -236,21 +236,47 @@ Three groups, per Gavin, 2026-08-31:
               SAME card functions August uses and show live numbers on
               both tabs. Nothing is duplicated; both tabs read one
               source.
-  retention   The new Sept-Nov period with NEW goals:
-              constellation_fall, mabi_retention_fall,
-              yuengling_retention_fall, heineken_husa,
-              new_belgium_distribution_retain. August keeps showing the
-              Jun-Aug period it already tracks -- the two tabs track
-              different periods of the same programs, deliberately.
+  retention   mc_retention first, then the new Sept-Nov period with NEW
+              goals: constellation_fall, mabi_retention_fall,
+              yuengling_retention_fall. August keeps showing the Jun-Aug
+              period it already tracks -- the two tabs track different
+              periods of the same programs, deliberately.
+
+              MC RETENTION IS THE EXCEPTION IN THIS GROUP (added to
+              September 2026-09-04, per Gavin: "molson coors retention
+              program is the same one from august. it goes through
+              october"). It is NOT a new Sept-Nov period -- it is the
+              same August program still running, so it reads PROGRAM_DATA
+              and reuses cardMcRetention() the way the `ongoing` group
+              does, rather than reading PROGRAM_DATA_2026_09. One
+              dataset, one card, both tabs. It leads the group because
+              it is the only retention card here with live numbers; keep
+              it first in BOTH PROGRAM_LIST_2026_09 and the month's
+              repCards.retention or the jump nav and the cards disagree
+              about the order.
+
+              REMOVED FROM SEPTEMBER 2026-09-04: heineken_husa and
+              new_belgium_distribution_retain, per Gavin -- both START in
+              October, so a September card for either would show reps a
+              program they cannot earn on yet. Only their two registry
+              entries and their repCards slots came out; PROGRAM_RULES,
+              logos, TERRITORY_UNCONFIRMED (heineken_husa) and
+              CORE_MARKET_PROGRAMS_PENDING (new_belgium_distribution_retain)
+              are all still in place, so putting them on an October tab
+              is those few lines again, not a rebuild.
 
 heineken_husa (HUSA SDD) has never been on this dashboard before and is
-new in every sense -- no data, no prior period, no card function.
+new in every sense -- no data, no prior period, no card function. Off
+the September tab as of 2026-09-04; it starts in October.
 
-new_belgium_distribution_retain carries a note explaining that its
-retain phase does not start until October (the deck runs Achieve
-May-Jun, Push Volume Jul-Aug, Retain Oct-Nov), so September is a gap
-month for it. It is on the tab because the cover checklist lists NBB
-Distro; it will simply have nothing to show until October.
+new_belgium_distribution_retain's retain phase does not start until
+October either (the deck runs Achieve May-Jun, Push Volume Jul-Aug,
+Retain Oct-Nov), so September was a gap month for it. It used to sit on
+the September tab anyway, carrying a note that its numbers begin in
+October, because the cover checklist lists NBB Distro. Gavin removed it
+2026-09-04 along with heineken_husa: a card a rep cannot earn on this
+month is noise, and the note was doing the work an absent card does
+better. Both come back on the October tab.
 
 TERRITORY PILLS ON SEPTEMBER PROGRAMS
 The "Core Market" / "All Counties" pill is a real claim a rep acts on,

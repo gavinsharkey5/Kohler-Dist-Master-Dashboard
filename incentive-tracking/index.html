@@ -109888,7 +109888,18 @@ const PROGRAM_LIST_2026_09 = [
    getRep:rep=>(PROGRAM_DATA['garage_beer_president']||{}).byRep?.[rep],
    metric:d=>d.caseGrowthOverLastYear, metricLabel:'CE growth over LY', fmt:v=>(v>0?'+':'')+v.toFixed(0)},
 
-  // --- Retention: the new Sept–Nov period, new goals --------------------
+  // --- Retention --------------------------------------------------------
+  // MolsonCoors leads this group deliberately: it is the only retention
+  // program here with live numbers (the Sept-Nov ones below are awaiting
+  // their first pull), so a rep opening the section sees the one they can
+  // act on first. Kept first in BOTH this list and the month's repCards
+  // order, or the jump nav and the cards disagree about the order.
+  {key:'mc_retention', group:'retention', title:'MolsonCoors Distro Rewards — Retention', shortTitle:'MolsonCoors', tag:'Aug–Oct',
+   pitch:`Hold the MolsonCoors distribution you built — every brand goal you keep through October pays.`,
+   getRep:rep=>(PROGRAM_DATA['mc_retention']||{}).byRep?.[rep],
+   metric:d=>d.overallPct, metricLabel:'overall % of goal', fmt:v=>v.toFixed(0)+'%'},
+
+  // The new Sept–Nov period, new goals:
   {key:'constellation_fall', group:'retention', title:'Constellation Fall Distribution Rewards', shortTitle:'Constellation', tag:'Sept–Nov',
    pitch:`A fresh set of Corona, Modelo, Impact and Innovation goals for the fall period.`,
    getRep:sept('constellation_fall'),
@@ -109901,15 +109912,19 @@ const PROGRAM_LIST_2026_09 = [
    pitch:`Hold every Yuengling brand goal through November — each one retained pays.`,
    getRep:sept('yuengling_retention_fall'),
    metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
-  {key:'heineken_husa', group:'retention', title:'HUSA SDD On & Off Premise Distro Rewards', shortTitle:'Heineken', tag:'Sept–Nov',
-   pitch:`Hold your Heineken, 0.0 and Dos Equis distribution goals through November.`,
-   getRep:sept('heineken_husa'),
-   metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
-  {key:'new_belgium_distribution_retain', group:'retention', title:'New Belgium Distribution — Retain', shortTitle:'NB Distribution', tag:'Oct–Nov',
-   pitch:`Hold the New Belgium distribution you built, then grow it through October for the core bonus.`,
-   getRep:sept('new_belgium_distribution_retain'),
-   metric:d=>d.pct, metricLabel:'% of goal retained', fmt:v=>v.toFixed(0)+'%',
-   awaitingNote:`The New Belgium retain phase does not start until October — the deck runs Achieve (May–Jun), Push Volume (Jul–Aug), then Retain (Oct–Nov). This card is here so the program stays visible through September; numbers begin when the retain period opens.`},
+  // MolsonCoors retention is the ONE retention program here that is not a
+  // new Sept-Nov period -- it is the SAME August program running through
+  // October (per Gavin, 2026-09-04), so it reads PROGRAM_DATA and reuses
+  // cardMcRetention() exactly the way the ongoing block above does. One
+  // dataset, one card, shown on both tabs; nothing is duplicated. Its entry
+  // is at the TOP of this retention block.
+  //
+  // heineken_husa and new_belgium_distribution_retain were here until
+  // 2026-09-04 and come back on the October tab -- per Gavin, both START in
+  // October, so a September card for either would be showing reps a program
+  // they cannot earn on yet. Their PROGRAM_RULES, logos, TERRITORY_UNCONFIRMED
+  // and CORE_MARKET_PROGRAMS_PENDING entries are all left in place, so
+  // re-adding them to October's list is just these few lines again.
 ];
 
 // Month tabs. September is the landing page as of 2026-09-04 (per Gavin:
@@ -109938,7 +109953,7 @@ const MONTHS = [
    repCards:{
      new:['keystone_ice','touchdowns_tea','evil_genius','other_half','montauk','printed_menu','bardstown_display','two_xo'],
      ongoing:['1911','woodchuck','tona','lytt','le_grand_noir','garage_beer_president'],
-     retention:['constellation_fall','mabi_retention_fall','yuengling_retention_fall','heineken_husa','new_belgium_distribution_retain'],
+     retention:['mc_retention','constellation_fall','mabi_retention_fall','yuengling_retention_fall'],
    }},
 ];
 const DEFAULT_MONTH_KEY = '2026-09';
