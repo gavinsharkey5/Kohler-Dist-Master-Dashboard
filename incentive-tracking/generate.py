@@ -2852,36 +2852,41 @@ def build_two_xo():
         which is why the base window here is only 6/1-7/31 (60 days), not the
         90-day window every other September program uses.
 
-    ONLY THE OFF-PREMISE PAIR BONUS IS SCORED. The rule is explicit that this
-    program pays for the PAIR, not either oak alone -- "1 case American Oak +
-    1 case French Oak pays $40" -- so classification runs per (rep, customer,
-    product) rather than Gavin's usual account-level rule (2026-08-17): an
-    account opening with American Oak only is not yet a placement this program
-    pays for, so collapsing to the account grain would have to invent whether
-    a single-SKU open counts, which the deck doesn't say. Comparing every new
-    account's set of newly-placed products against {American Oak, French Oak}
-    keeps that distinction instead of guessing it away. White Oak Rye is coded
-    the same way (stacks an extra $35 on an already-paired account) but has
-    never appeared in an export yet, so it is currently always $0 -- not a
-    bug, just no data to trigger it.
+    OFF-PREMISE pays for the PAIR, not either oak alone -- "1 case American
+    Oak + 1 case French Oak pays $40" -- so classification runs per (rep,
+    customer, product) rather than Gavin's usual account-level rule
+    (2026-08-17): an account opening with American Oak only is not yet a
+    placement this program pays for, so collapsing to the account grain would
+    have to invent whether a single-SKU open counts, which the deck doesn't
+    say. Comparing every new account's set of newly-placed products against
+    {American Oak, French Oak} keeps that distinction instead of guessing it
+    away. White Oak Rye is coded the same way (stacks an extra $35 on an
+    already-paired account) but has never appeared in an export yet, so it is
+    currently always $0 -- not a bug, just no data to trigger it.
 
-    ON-PREMISE IS DELIBERATELY NOT SCORED. "A 2-bottle POD" is ambiguous in a
-    way the off-premise leg isn't: is it 2 bottles of one SKU, or does it need
-    the same American+French pairing as off-premise? The export's Cases values
-    are fractional case-equivalents (0.33 = 2 bottles at 6/case, matching the
-    on-premise sample rows suspiciously well), so the 2-bottle threshold COULD
-    be computed -- but guessing which reading Kohler means on a program that
-    pays real money wasn't a reasonable call to make alone. Cases and accounts
-    are still surfaced per rep so nothing is hidden, same treatment as
-    touchdowns_tea's photo-verified legs. Flagged for Gavin in the README.
+    ON-PREMISE: RESOLVED 2026-09-04, per Gavin -- "it doesn't matter the
+    specific product, it is just 2 pods for 2xo for the on premise." So
+    unlike off-premise, product identity doesn't matter here: this is the
+    ACCOUNT-level rule (Gavin's usual one), summing UNITS (not cases) across
+    every 2XO product a NEW account buys in the current window. >=2 units
+    pays $25 flat, once, on the account's first qualifying window -- same
+    "pays once per new account" convention as every other new-placement
+    program on this page, not a repeating bonus each time 2+ units ship. The
+    export's Units column arrived with this refresh specifically to settle
+    this (Cases alone was ambiguous -- see git history). No on-premise row in
+    the current export is both non-buy AND >=2 units yet (the one on-premise
+    account with current-window activity, Andiamo, already bought French Oak
+    in the base window, so it's a reorder), so this leg pays $0 today; the
+    mechanism is verified against that by hand, not just "runs without
+    crashing."
 
-    The $15 POD-cocktail-menu leg is photo-verified with no export -- same
-    "shown, not scored" treatment.
+    The $15 POD-cocktail-menu leg is still photo-verified with no export --
+    "shown, not scored" treatment, same as touchdowns_tea's floor/feature legs.
     """
     rows = read_rows("two_xo.csv")
     fields = rows[0].keys() if rows else []
     place_base, place_current = find_period_cols(fields, "Placement Count")
-    case_base, case_current = find_period_cols(fields, "Cases")
+    unit_base, unit_current = find_period_cols(fields, "Units")
 
     def oak(product):
         p = (product or "").lower()
@@ -2894,42 +2899,36 @@ def build_two_xo():
         return None
 
     by_rep = {rep: {"offPremNew": [], "offPremSingles": [], "offPremNewCount": 0,
-                    "offPremReorderCount": 0, "onPremCases": 0.0,
-                    "onPremAccounts": [], "onPremAccountCount": 0,
-                    "payout": 0}
+                    "offPremReorderCount": 0, "onPremNew": [], "onPremBuilding": [],
+                    "onPremNewCount": 0, "onPremReorderCount": 0,
+                    "onPremUnits": 0.0, "onPremPayout": 0, "payout": 0}
               for rep in ROSTER}
 
-    off_by_sku = defaultdict(list)   # (rep, customer, oak) -> rows
-    off_by_cust = defaultdict(set)   # (rep, customer) -> {oak names}
+    off_by_sku = defaultdict(list)    # (rep, customer, oak) -> rows
+    on_by_cust = defaultdict(list)    # (rep, customer) -> rows (any product)
     cust_name = {}
-    on_by_cust = defaultdict(float)
-    on_name = {}
     for row in rows:
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
-        product = oak(row["Product Name"])
+        cust_name[(rep, row["Customer Num"])] = row["Customer Name"]
+        by_rep[rep]["onPremUnits"] += to_num(row[unit_current]) if _premise(row) == "On Premise" else 0
         if _premise(row) == "On Premise":
-            cases = to_num(row[case_current])
-            by_rep[rep]["onPremCases"] += cases
-            if cases:
-                key = (rep, row["Customer Num"])
-                on_by_cust[key] += cases
-                on_name[key] = row["Customer Name"]
+            on_by_cust[(rep, row["Customer Num"])].append(row)
             continue
+        product = oak(row["Product Name"])
         if not product:
             continue
         off_by_sku[(rep, row["Customer Num"], product)].append(row)
-        cust_name[(rep, row["Customer Num"])] = row["Customer Name"]
 
     sku_status = classify_by_customer(off_by_sku, place_base, place_current)
     new_products = defaultdict(set)   # (rep, customer) -> {oak names newly placed}
-    any_reorder = set()
+    any_off_reorder = set()
     for (rep, cust, product), status in sku_status.items():
         if status == "new":
             new_products[(rep, cust)].add(product)
         elif status == "reorder":
-            any_reorder.add((rep, cust))
+            any_off_reorder.add((rep, cust))
 
     for (rep, cust), products in new_products.items():
         krows = [r for p in products for r in off_by_sku[(rep, cust, p)] if r[place_current].strip()]
@@ -2947,25 +2946,192 @@ def build_two_xo():
             by_rep[rep]["offPremSingles"].append({
                 "customer": cust_name[(rep, cust)], "products": sorted(products), "date": date,
             })
-    for (rep, cust) in any_reorder:
+    for (rep, cust) in any_off_reorder:
         by_rep[rep]["offPremReorderCount"] += 1
 
-    for (rep, cust), cases in on_by_cust.items():
-        by_rep[rep]["onPremAccounts"].append({"customer": on_name[(rep, cust)], "cases": round(cases, 2)})
+    on_status = classify_by_customer(on_by_cust, place_base, place_current)
+    for (rep, cust), status in on_status.items():
+        if status == "reorder":
+            by_rep[rep]["onPremReorderCount"] += 1
+            continue
+        if status != "new":
+            continue
+        krows = on_by_cust[(rep, cust)]
+        units = sum(to_num(r[unit_current]) for r in krows)
+        dates = sorted((r["Date"] for r in krows if r[unit_current].strip()), reverse=True)
+        date = dates[0] if dates else None
+        entry = {"customer": cust_name[(rep, cust)], "units": units, "date": date}
+        if units >= 2:
+            entry["payout"] = 25
+            by_rep[rep]["onPremNew"].append(entry)
+            by_rep[rep]["onPremNewCount"] += 1
+            by_rep[rep]["onPremPayout"] += 25
+            by_rep[rep]["payout"] += 25
+        else:
+            by_rep[rep]["onPremBuilding"].append(entry)
 
     leaderboard = []
     for rep, d in by_rep.items():
-        d["onPremCases"] = round(d["onPremCases"], 2)
-        d["onPremAccounts"].sort(key=lambda a: -a["cases"])
-        d["onPremAccountCount"] = len(d["onPremAccounts"])
+        d["onPremUnits"] = round(d["onPremUnits"], 1)
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        d["onPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
+        leaderboard.append({"rep": rep, "payout": d["payout"],
+                            "newPlacements": d["offPremNewCount"] + d["onPremNewCount"]})
+    leaderboard.sort(key=lambda x: (-x["payout"], -x["newPlacements"]))
+    for i, e in enumerate(leaderboard):
+        e["rank"] = i + 1
+    return {"byRep": by_rep, "leaderboard": leaderboard,
+            "meta": {"rates": {"pair": 40, "rye": 35, "pod": 25, "podMenu": 15},
+                     "onPremScored": True}}
+
+
+# Kohler's most recent Southern District off-premise account pull -- read
+# ONLY to route Other Half's off-premise payout formula (see
+# build_other_half()). Cross-folder read, same pattern as KEYSTONE_JSON /
+# AUCTION_INDEX above -- territory-accounts/ is a repo-root utility shared
+# with MPOs/, not something to duplicate into this folder's data/.
+SOUTHERN_DISTRICT_OFF_CSV = Path(__file__).resolve().parent.parent / "territory-accounts" / "southern_district_off_prem.csv"
+
+
+def _southern_district_off_accounts():
+    if not SOUTHERN_DISTRICT_OFF_CSV.exists():
+        return set()
+    with open(SOUTHERN_DISTRICT_OFF_CSV, newline="", encoding="utf-8-sig") as f:
+        return {r["Customer Num"] for r in csv.DictReader(f)}
+
+
+def split_customer(raw):
+    """"9002 Tavern 5_2" -> ("9002", "Tavern 5_2"). Other Half's exports pack
+    Customer Num and Company into one column the way September's on-prem MPO
+    exports do -- see MPOs/on-prem/generate_2026-09.py's split_customer()."""
+    raw = (raw or "").strip()
+    m = re.match(r"(\d+)\s+(.*)", raw)
+    if not m:
+        return None, raw
+    return m.group(1), m.group(2)
+
+
+def build_other_half():
+    """Other Half Target Account Launch, Sept-Dec 2026 (deck p4).
+
+        ON-PREMISE 1st half (Sept-Oct): a non-buy target account buying OH
+                   core draft in BOTH months pays $150
+        ON-PREMISE 2nd half (Nov-Dec): the same account buying both months
+                   again pays $250
+                   (account must purchase 1/2 bbl, or two 1/6 bbls, each month)
+        OFF-PREMISE $40 per non-buy account opened with a minimum of 3 core
+                   SKUs, +$10 for every SKU beyond the first 3
+        SOUTHERN DISTRICT $50 per account opened with Other Half
+
+    EVERY ACCOUNT IS NON-BUY -- confirmed by Gavin, 2026-09-04 ("we just
+    acquired this brand so there is no base period ... every account is a
+    non buy"). Other Half has no history with Kohler before this export, so
+    unlike every other new-placement program on this page there is no
+    base/current column pair to classify against: both exports are a SINGLE
+    WINDOW (9/1-10/31), and every row in them qualifies as non-buy by
+    definition. That resolves the biggest blocker to scoring this program at
+    all. Two things remain open, and they are handled differently:
+
+    OFF-PREMISE SOUTHERN DISTRICT RATE IS A READING OF THE DECK, NOT A
+    CONFIRMATION FROM KOHLER. The "minimum of 3 core SKUs" / "$10 per SKU
+    beyond the first 3" language only appears on the two bullets that don't
+    mention Southern District; the Southern District bullet stands alone
+    with no SKU count at all. Taken at face value, that means a Southern
+    District account gets a flat $50 per account opened -- no 3-SKU
+    minimum -- INSTEAD OF the $40+$10/extra formula, not on top of it.
+    Territory is resolved against territory-accounts/southern_district_off_prem.csv
+    (that folder's most recent Southern District off-premise pull, see its
+    README); an account not found there -- Core Market, or one of the areas
+    that pull doesn't cover -- scores under the standard formula. This
+    prices real dollars on a specific reading of ambiguous deck wording, so
+    the card says so and it needs Kohler confirmation, same spirit as
+    Montauk's placement-grain footnote.
+
+    ON-PREMISE IS NOT SCORED -- this one is a data gap, not a reading
+    question. The $150 needs the SAME account to buy in BOTH September and
+    October; only September exists right now. September activity is shown
+    as "bought this month, needs October too" progress with NO dollar
+    figure attached -- attaching one would overstate a confirmed payout that
+    doesn't exist yet. Comes back and gets priced once an October export
+    lands; the account-level tracking here (draft volume vs. the 1/3 bbl
+    floor) is what that will key off.
+    """
+    off_rows = read_rows("other_half_off.csv")
+    on_rows = read_rows("other_half_on.csv")
+    off_unit_col = find_single_col(off_rows[0].keys(), "Units") if off_rows else None
+    on_unit_col = find_single_col(on_rows[0].keys(), "Units") if on_rows else None
+    south_accounts = _southern_district_off_accounts()
+
+    by_rep = {rep: {"offPremNew": [], "offPremNewCount": 0, "offPremPayout": 0,
+                    "onPremSeptember": [], "onPremQualifyingCount": 0,
+                    "payout": 0}
+              for rep in ROSTER}
+
+    off_by_cust = defaultdict(set)   # (rep, customer) -> {product keys}
+    cust_name = {}
+    for row in off_rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        num, name = split_customer(row["Customer Num & Company"])
+        if not num:
+            continue
+        off_by_cust[(rep, num)].add(row["Product Num & Name"])
+        cust_name[(rep, num)] = name
+
+    for (rep, num), products in off_by_cust.items():
+        sku_count = len(products)
+        if sku_count < 1:
+            continue
+        southern = num in south_accounts
+        if southern:
+            payout = 50
+        elif sku_count >= 3:
+            payout = 40 + 10 * (sku_count - 3)
+        else:
+            continue
+        by_rep[rep]["offPremNew"].append({
+            "customer": cust_name[(rep, num)], "skuCount": sku_count,
+            "southern": southern, "payout": payout,
+        })
+        by_rep[rep]["offPremNewCount"] += 1
+        by_rep[rep]["offPremPayout"] += payout
+        by_rep[rep]["payout"] += payout
+
+    on_by_cust = defaultdict(list)
+    for row in on_rows:
+        rep = row["Sales Rep Assigned"]
+        if rep not in by_rep:
+            continue
+        num, name = split_customer(row["Customer Num & Company"])
+        if not num:
+            continue
+        on_by_cust[(rep, num)].append(row)
+        cust_name[(rep, num)] = name
+
+    for (rep, num), krows in on_by_cust.items():
+        bbl = sum((keg_bbl(r["Package"]) or 0.0) * to_num(r[on_unit_col]) for r in krows)
+        bbl = round(bbl, 3)
+        qualifies = bbl >= DRAFT_MIN_BBL
+        by_rep[rep]["onPremSeptember"].append({
+            "customer": cust_name[(rep, num)], "bbl": bbl, "qualifies": qualifies,
+        })
+        if qualifies:
+            by_rep[rep]["onPremQualifyingCount"] += 1
+
+    leaderboard = []
+    for rep, d in by_rep.items():
+        d["offPremNew"].sort(key=lambda e: -e["payout"])
+        d["onPremSeptember"].sort(key=lambda e: -e["bbl"])
         leaderboard.append({"rep": rep, "payout": d["payout"], "newPlacements": d["offPremNewCount"]})
     leaderboard.sort(key=lambda x: (-x["payout"], -x["newPlacements"]))
     for i, e in enumerate(leaderboard):
         e["rank"] = i + 1
     return {"byRep": by_rep, "leaderboard": leaderboard,
-            "meta": {"rates": {"pair": 40, "rye": 35, "podQualifier": 25, "podMenu": 15},
-                     "onPremScored": False}}
+            "meta": {"rates": {"offPrem": 40, "offPremExtraSku": 10, "southernDistrict": 50,
+                               "onPrem1stHalf": 150, "onPrem2ndHalf": 250},
+                     "draftMinBbl": round(DRAFT_MIN_BBL, 3), "onPremScored": False,
+                     "southernDistrictReading": "unconfirmed"}}
 
 
 def main():
@@ -3003,6 +3169,7 @@ def main():
         "evil_genius": build_evil_genius(),
         "montauk": build_montauk(),
         "two_xo": build_two_xo(),
+        "other_half": build_other_half(),
     }
 
     for key in ("1911", "woodchuck"):
@@ -3137,10 +3304,20 @@ def main():
 
     xo = data_09["two_xo"]["byRep"]
     xo_singles = sum(len(d["offPremSingles"]) for d in xo.values())
+    xo_building = sum(len(d["onPremBuilding"]) for d in xo.values())
     print(f"two_xo: {sum(d['offPremNewCount'] for d in xo.values())} new off-premise pairs "
-          f"(${sum(d['payout'] for d in xo.values()):,} paid) | {xo_singles} single-oak opens not paid "
-          f"(pair rule) | on-premise {sum(d['onPremCases'] for d in xo.values()):,.1f} cases across "
-          f"{sum(1 for d in xo.values() if d['onPremCases'])} reps, NOT scored -- see build_two_xo()")
+          f"(${sum(d['payout'] for d in xo.values()):,} paid total) | {xo_singles} single-oak opens not paid "
+          f"(pair rule) | on-premise {sum(d['onPremNewCount'] for d in xo.values())} new 2+-unit PODs "
+          f"(${sum(d['onPremPayout'] for d in xo.values()):,}), {xo_building} new accounts under 2 units "
+          f"not yet paid, {sum(d['onPremUnits'] for d in xo.values()):,.1f} total on-premise units")
+
+    oh = data_09["other_half"]["byRep"]
+    oh_south = sum(1 for d in oh.values() for e in d["offPremNew"] if e["southern"])
+    print(f"other_half: {sum(d['offPremNewCount'] for d in oh.values())} off-premise accounts opened "
+          f"(${sum(d['offPremPayout'] for d in oh.values()):,} -- {oh_south} at the Southern District "
+          f"$50 flat rate, unconfirmed reading) | on-premise {sum(len(d['onPremSeptember']) for d in oh.values())} "
+          f"accounts active in September ({sum(d['onPremQualifyingCount'] for d in oh.values())} at the "
+          f"1/3 bbl floor), NOT paid -- needs October to confirm the two-month hold")
 
     yu = data["yuengling_retention"]["byRep"]
     yu_goaled = [d for d in yu.values() if d["goalsTotal"]]
