@@ -1,29 +1,30 @@
 Sales Rep Assigned,Customer Num,Customer Name,Product Num,Product Name,Product Type,Package,Brand Family,Date,Cases   8/1/2026 - 10/31/2026,Units   8/1/2026 - 10/31/2026
-Dan Lagala,44016,Liquor City(A)Cliffside,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
-Dan Lagala,45004,Ridgefield Liq (Z),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/25/2026,1,1.00
 Dan Lagala,45004,Ridgefield Liq (Z),100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/25/2026,1,1.00
-Dave Ehlers,40004,Simple Simon's (Z),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
+Dan Lagala,45004,Ridgefield Liq (Z),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/25/2026,1,1.00
+Dan Lagala,44016,Liquor City(A)Cliffside,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
+Dave Ehlers,40004,Simple Simon's (Z),100120,Le Grand Noir Chardonnay 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
 Dave Ehlers,51013,G & G Liquors & Bar,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/26/2026,1,1.00
 Dave Ehlers,40004,Simple Simon's (Z),100121,Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
 Dave Ehlers,51013,G & G Liquors & Bar,100121,Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/26/2026,1,1.00
-Dave Ehlers,40004,Simple Simon's (Z),100120,Le Grand Noir Chardonnay 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
+Dave Ehlers,40004,Simple Simon's (Z),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
 Derrick Laws,23004,Shop Rite Wines/Spirits,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/21/2026,2,2.00
-Javier Melo,27002,President Liqrs (A),100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/21/2026,1,1.00
 Javier Melo,25047,Parker Liquors (Z),100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/19/2026,1,1.00
-Jayson Romine,231701,George's Wine & Spirits,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/6/2026,3,3.00
+Javier Melo,27002,President Liqrs (A),100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/21/2026,1,1.00
 Jayson Romine,230924,Sussex Co.Discount Liq(P),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/26/2026,1,1.00
+Jayson Romine,231701,George's Wine & Spirits,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/6/2026,3,3.00
 Klejdi Lamo,190603,Denville W & L,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/28/2026,1,1.00
 Klejdi Lamo,190216,House of Wine & Liquor,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/27/2026,1,1.00
-Matt Powierski,32017,Wine Grand (Carlstadt),100120,Le Grand Noir Chardonnay 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/18/2026,1,1.00
 Matt Powierski,42004,Wine And People,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/11/2026,1,1.00
+Matt Powierski,32017,Wine Grand (Carlstadt),100120,Le Grand Noir Chardonnay 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/18/2026,1,1.00
 Matt Powierski,42004,Wine And People,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/11/2026,2,2.00
 Mike Ast,17011,Nico's Wine & Spirits,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/24/2026,1,1.00
-Pablo Lopez,27072,Passaic Discount Liquors,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,9/2/2026,1,1.00
+Pablo Lopez,27072,Passaic Discount Liquors,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,9/2/2026,0,0.00
 Pablo Lopez,27072,Passaic Discount Liquors,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/26/2026,1,1.00
+Pablo Lopez,27072,Passaic Discount Liquors,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,9/2/2026,1,1.00
 Pablo Lopez,27072,Passaic Discount Liquors,100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/26/2026,1,1.00
 Phil Ernst,83001,Food Universe Marketplace,100120,Le Grand Noir Chardonnay 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/24/2026,1,1.00
-Phil Ernst,83001,Food Universe Marketplace,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/24/2026,1,1.00
 Phil Ernst,83001,Food Universe Marketplace,100121,Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/24/2026,1,1.00
+Phil Ernst,83001,Food Universe Marketplace,100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/24/2026,1,1.00
 Shane Barreca,67004,Beverage Barn (A),100121,Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/27/2026,1,1.00
-Shane Barreca,67004,Beverage Barn (A),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/27/2026,1,1.00
 Shane Barreca,67004,Beverage Barn (A),100125,Le Grand Noir Rose 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/27/2026,1,1.00
+Shane Barreca,67004,Beverage Barn (A),100122,Le Grand Noir Pinot Noir 1/12/750 mL Btl,Still Wine,1/12/750ml Btl,Le Grand Noir,8/27/2026,1,1.00
