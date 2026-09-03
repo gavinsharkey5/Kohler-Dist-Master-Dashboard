@@ -167,11 +167,11 @@ Objective types (index.html):
                   Same 90-day-non-buy question as 'new_accounts', but
                   read off RDE's TWO WINDOWED COLUMNS rather than by
                   walking dates, and scored in PLACEMENTS rather than
-                  qualifying rows: Fever Tree's export is ACCOUNT-level,
-                  so one newly-opened account carrying 6 Fever Tree SKUs
-                  is 6 placements toward the 10, not 1. Wine & Spirits'
-                  is product-level with every current value 1.00, so
-                  there rows and placements are the same number.
+                  qualifying rows. Both exports are PRODUCT-level as of
+                  2026-09-04, every current value is 1.00, and ONE
+                  PLACEMENT IS ONE SKU IN ONE ACCOUNT -- a store already
+                  carrying Fever Tree Tonic still earns credit for a
+                  first order of Ginger Beer (confirmed with Gavin).
                   buildNewPlacementsDataset() / lineTableNewPlacements()
                   -- the drill-down's two middle columns are base-period
                   and this-month PLACEMENT COUNTS, not dates.
@@ -414,11 +414,15 @@ Files:
                                         populated, base blank. Counted in
                                         PLACEMENTS (the current column's
                                         value, 1-19 per account), not
-                                        rows. As of 2026-09-04 it carries
-                                        a Load Sheet Date and repeats an
-                                        account once per load sheet; it
-                                        dropped "Placement Count
-                                        Percentage Total". See "EXPORTS
+                                        rows. As of the 2026-09-04
+                                        re-pull it is PRODUCT-level
+                                        ("Product Num Name" replaces
+                                        "Brand Family"), carries a Load
+                                        Sheet Date, repeats a key once per
+                                        load sheet, and dropped "Placement
+                                        Count Percentage Total" -- the same
+                                        shape as Wine & Spirits, built by
+                                        the same call. See "EXPORTS
                                         CHANGED SHAPE" below.
     wine_spirits_new_placements.csv   RDE "Wine & Spirits (5) New
                                         Placements Any Brand" export --
@@ -607,7 +611,8 @@ To refresh September manually:
 
 SEPTEMBER'S FEVER TREE AND WINE & SPIRITS EXPORTS CHANGED SHAPE (2026-09-04)
 Both gained a "Load Sheet Date" column, dropped "Placement Count Percentage
-Total", and are now TRANSACTION LOGS -- the same rep/account (Fever Tree) or
+Total", and are now TRANSACTION LOGS (Fever Tree was re-pulled again the same
+day at the PRODUCT level, so both are keyed rep+account+SKU) -- the same rep/account (Fever Tree) or
 rep/account/SKU (Wine & Spirits) appears once per load sheet, each row
 carrying only that sheet's window. They used to be pre-aggregated: one row
 per key with both windows filled in on that one row.
@@ -623,25 +628,33 @@ placements instead of 75. build_new_placements() now folds every row for a
 key together BEFORE classifying, so the JSON the client reads is still one
 row per key and index.html needed no change at all.
 
-COUNTING PLACEMENTS ACROSS LOAD SHEETS is the open question this leaves.
-Summing a key's rows does NOT reproduce what the old pre-aggregated export
-reported for the same window -- Klejdi Lamo's Shop Rite Stanhope reads 24
-base placements on the 2026-09-02 export and 44 if you sum the same window's
-load sheets on the 2026-09-04 one. The old column was a DISTINCT count (SKUs
-placed in the window); a SKU reordered on three load sheets is one placement,
-not three. The new export cannot be de-duplicated the same way because for
-Fever Tree it never says WHICH SKUs a load sheet carried, only how many.
-So the generator takes the LARGEST SINGLE LOAD SHEET's count per key rather
-than the sum: it cannot over-credit reorders, where summing inflates the base
-window by ~80%. It can under-credit an account that genuinely adds new SKUs
-on a later sheet. Today the two agree exactly -- the one newly-opened Fever
-Tree account has a single current-window row (6 placements on 9/2) and no
-Wine & Spirits key has more than one -- so nothing rides on it yet, but it
-will once September fills in. Both numbers print at build time.
-OPEN WITH GAVIN: if credit is meant per load sheet line rather than per
-distinct SKU, switch to the "current_sum" the aggregator already tracks.
-Better still, RDE adding a product column to the Fever Tree export would make
-the distinct count exact and retire the question.
+COUNTING PLACEMENTS ACROSS LOAD SHEETS -- RESOLVED 2026-09-04, and the
+reasoning is kept because it is how the resolution was verified. When Fever
+Tree was still ACCOUNT-level, summing a key's load sheets did not reproduce
+what the pre-aggregated export reported for the same window (Klejdi Lamo's
+Shop Rite Stanhope: 24 base placements on the 2026-09-02 export, 44 if you
+summed the same window's load sheets on the 2026-09-04 one), because the old
+column was a DISTINCT count of SKUs placed and a SKU reordered on three load
+sheets is one placement, not three. That could not be de-duplicated from an
+account-level export, which never says WHICH SKUs a load sheet carried.
+Gavin then re-pulled Fever Tree at the PRODUCT level, which settles it: with
+"Product Num Name" in place of "Brand Family" the key is rep+account+SKU and
+every Placement Count value is 1.00, so a reorder is the same key rather than
+an extra count, and max-per-sheet and sum-of-sheets now agree by construction
+(18 and 18). The distinct-SKU reading was confirmed against the old export
+before switching -- counting distinct SKUs per account in the product-level
+file reproduces all 133 of the 2026-09-02 account-level base-window values
+exactly, Stanhope's 24 included. Both numbers still print at build time; if
+they ever diverge again, an export has gone back to account level.
+
+A PLACEMENT IS ONE SKU IN ONE ACCOUNT (confirmed with Gavin, 2026-09-04), not
+one newly-opened account. A store already carrying Fever Tree Tonic still
+earns credit for a first order of Ginger Beer. That is the unit Wine & Spirits
+has always used here, and it is what the product-level re-pull is for. It
+matters: off-prem September reads 18 new placements per SKU against 6 per
+account, and Jayson Romine reaches the goal of 10 only under the SKU reading.
+On-prem now scores Fever Tree the same way (4 placements, nobody at 3 yet),
+which retires the on-prem/off-prem unit mismatch previously noted here.
 
 TWO NAMES IN THE EXPORTS ARE NOT ON THE BOARD (pre-existing, NOT changed
 here). Constellation carries "John Neukum" and "Office Tell Sell", and Fever
@@ -651,18 +664,11 @@ rendered. "Office Tell Sell" is the known non-rep entity the on-prem README
 also calls out -- correct to skip. John Neukum is not: he shows 7 Corona
 Gaintain placements last fall and 7 this fall, which would put him at goal,
 plus one Fever Tree account. He was in the 2026-09-02 exports too, so this is
-not new. Deliberately left alone: adding a name to ROSTER is a claim about who
-is on the program, and this README's rule is that those are confirmed, never
-guessed. ASK GAVIN whether he belongs on the board.
+not new. SETTLED 2026-09-04, per Gavin: "do not add neukum, disregard him."
+So both names stay off ROSTER and their rows stay unrendered -- correct as
+built, nothing to do. Kept on the record because his rows keep arriving in the
+export and would otherwise look like a bug to whoever notices them next.
 
-ONE MORE THING WORTH CONFIRMING (pre-existing, NOT changed here): on-prem and
-off-prem count Fever Tree in DIFFERENT UNITS. Off-prem's "(10) New
-Placements" scores the placement COUNT (a new account taking 6 SKUs is 6),
-while on-prem's "(3) New Placements" uses buildNewAccountsDataset() and
-scores one per new ACCOUNT regardless of SKUs. Both of September's on-prem
-new accounts happen to carry a placement count of 1, so no current number
-differs either way -- but the two boards would diverge the moment an on-prem
-account takes several SKUs at once.
 
 Target Accounts (added 2026-08-05, extended to BBC Lytt 2026-08-10): a
 per-rep "who to go after" prospect list -- accounts in a rep's OWN

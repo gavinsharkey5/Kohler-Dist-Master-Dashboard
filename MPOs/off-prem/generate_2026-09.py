@@ -478,7 +478,8 @@ def main():
     constellation_rows = build_constellation()
     keystone_rows = build_keystone_numerator()
     customer_base_core_rows = build_customer_base_core()
-    fever_tree_rows, ft_new, ft_new_rows, ft_total, ft_summed = build_new_placements(FEVER_TREE_CSV)
+    fever_tree_rows, ft_new, ft_new_rows, ft_total, ft_summed = build_new_placements(
+        FEVER_TREE_CSV, product_col="Product Num Name")
     wine_spirits_rows, ws_new, ws_new_rows, ws_total, ws_summed = build_new_placements(
         WINE_SPIRITS_CSV, product_col="Product Num Name")
 
@@ -524,9 +525,9 @@ def main():
           f"{len({r['CUSTOMER_NUM'] for r in keystone_rows})} distinct buying accounts; "
           f"{ks_at_goal} of {len(base_by_rep)} reps with a core-territory base at 40% penetration")
     print(f"Sales Reps Customer Base (Core, Keystone's denominator): {len(customer_base_core_rows)} rows")
-    print(f"Fever Tree: {ft_new:.0f} new placements across {ft_new_rows} newly-opened accounts "
-          f"(out of {ft_total} rep+account keys exported); summing load sheets instead "
-          f"would read {ft_summed:.0f} -- see 'counting placements' in the docstring")
+    print(f"Fever Tree: {ft_new:.0f} new placements across {ft_new_rows} newly-placed "
+          f"rep+account+SKU keys (out of {ft_total} exported); summing load sheets instead "
+          f"would read {ft_summed:.0f}")
     print(f"Wine & Spirits (any brand): {ws_new:.0f} new placements across {ws_new_rows} "
           f"newly-placed rep+account+SKU keys (out of {ws_total} exported); summing load "
           f"sheets instead would read {ws_summed:.0f}")

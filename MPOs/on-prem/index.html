@@ -391,18 +391,25 @@ const COUNT_COLS=[["count"],["qty"],["quantity"],["cases"],["units"]];
 // Every other objective has no such column, so findCol simply returns null and
 // the drill-down renders exactly as before -- the column is additive.
 const PHOTO_COLS=[["photo","url"],["photo","link"],["photo"]];
+// Deliberately narrower than PRODUCT_COLS, which falls back to ["brand"] and
+// would match BRAND_FAMILY -- hanging a constant "Carbliss"/"Dos Equis" column
+// off objectives that are scored per ACCOUNT. Only a dataset carrying a real
+// SKU column (September's Fever Tree) grows the Product column and gets its
+// drill-down keyed per SKU. See generate_2026-09.py's classify(product_col=).
+const SKU_COLS=[["product","name"]];
 
 function buildNewAccountsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
         dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
-        periodCol=findCol(rows[0],PERIOD_COLS), photoCol=findCol(rows[0],PHOTO_COLS);
+        periodCol=findCol(rows[0],PERIOD_COLS), photoCol=findCol(rows[0],PHOTO_COLS),
+        skuCol=findCol(rows[0],SKU_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", photo: photoCol?String(r[photoCol]||"").trim():""});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", photo: photoCol?String(r[photoCol]||"").trim():"", product: skuCol?String(r[skuCol]||"").trim():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{
@@ -707,8 +714,13 @@ function lineTableNewAccounts(lines, flagLabel, targetsHtml){
 
   const byCustomer = new Map();
   lines.forEach(l=>{
-    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {customer:l.customer, isNew:false, baseDate:null, currentDate:null, photos:[]});
-    const c = byCustomer.get(l.customer);
+    // Keyed per customer+SKU where the dataset carries a SKU (Fever Tree is
+    // scored per placement, so one account taking two new SKUs is two rows),
+    // and per customer everywhere else, where product is "" and this is the
+    // original behaviour exactly.
+    const ckey = l.customer+"\u0000"+(l.product||"");
+    if(!byCustomer.has(ckey)) byCustomer.set(ckey, {customer:l.customer, product:l.product||"", isNew:false, baseDate:null, currentDate:null, photos:[]});
+    const c = byCustomer.get(ckey);
     if(l.new_buyer==='1') c.isNew = true;
     if(l.period==='current' && (!c.currentDate || l.date>c.currentDate)) c.currentDate = l.date;
     if(l.period==='base' && (!c.baseDate || l.date>c.baseDate)) c.baseDate = l.date;
@@ -718,6 +730,7 @@ function lineTableNewAccounts(lines, flagLabel, targetsHtml){
   });
   const all = [...byCustomer.values()];
   const anyPhotos = all.some(c=>c.photos && c.photos.length);
+  const anyProduct = all.some(c=>c.product);
 
   // Only New Buyers are shown directly -- Repeat Buyers and Bought-in-
   // Base-Period accounts already carry the brand, so they're not
@@ -735,12 +748,12 @@ function lineTableNewAccounts(lines, flagLabel, targetsHtml){
     });
 
   const newRowsHtml = newOnes.length
-    ? `<table><thead><tr><th>Customer</th><th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${
-        newOnes.map(c=>`<tr><td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-hit">✓ ${flagLabel}</span></td>${anyPhotos?`<td>${photoCellHtml(c.photos)}</td>`:''}</tr>`).join('')
+    ? `<table><thead><tr><th>Customer</th>${anyProduct?'<th>Product</th>':''}<th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${
+        newOnes.map(c=>`<tr><td>${c.customer}</td>${anyProduct?`<td>${c.product||''}</td>`:''}<td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-hit">✓ ${flagLabel}</span></td>${anyPhotos?`<td>${photoCellHtml(c.photos)}</td>`:''}</tr>`).join('')
       }</tbody></table>`
     : `<div class="no-lines" style="padding:0">No new placements yet this month.</div>`;
 
-  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${targetsHtml}${existingAccountsBlockHtml(existing, anyPhotos)}</div>`;
+  return `<div class="rep-sub-inner" style="padding-left:2px">${newRowsHtml}${targetsHtml}${existingAccountsBlockHtml(existing, anyPhotos, anyProduct)}</div>`;
 }
 
 // A photo-verified objective (currently only Bardstown menu placements) proves
@@ -754,16 +767,16 @@ function photoCellHtml(photos){
 // already carry the brand (Repeat Buyer or Bought in Base Period) -- kept
 // available for full traceability, just not part of what a rep sees by
 // default when they open the program.
-function existingAccountsBlockHtml(existing, anyPhotos){
+function existingAccountsBlockHtml(existing, anyPhotos, anyProduct){
   if(!existing.length) return '';
   const eid = 'exist'+(uid++);
   const rows = existing.map(c=>{
     const status = (c.baseDate && c.currentDate) ? 'Repeat Buyer' : 'Bought in Base Period';
-    return `<tr><td>${c.customer}</td><td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-miss">${status}</span></td>${anyPhotos?`<td>${photoCellHtml(c.photos)}</td>`:''}</tr>`;
+    return `<tr><td>${c.customer}</td>${anyProduct?`<td>${c.product||''}</td>`:''}<td>${c.baseDate||''}</td><td>${c.currentDate||''}</td><td><span class="flag-miss">${status}</span></td>${anyPhotos?`<td>${photoCellHtml(c.photos)}</td>`:''}</tr>`;
   }).join('');
   return `<div class="targets-block">
     <div class="targets-toggle" data-target="${eid}"><span class="targets-chev">▶</span>${existing.length} Existing Account${existing.length===1?'':'s'}<span class="targets-hint">— already carry it, not eligible for new-placement credit</span></div>
-    <div class="targets-table" id="${eid}"><table><thead><tr><th>Customer</th><th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="targets-table" id="${eid}"><table><thead><tr><th>Customer</th>${anyProduct?'<th>Product</th>':''}<th>Base Period</th><th>This Month</th><th>Status</th>${anyPhotos?'<th>Photo</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>
   </div>`;
 }
 function lineTablePlacements(lines){

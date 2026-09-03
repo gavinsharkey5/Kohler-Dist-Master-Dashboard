@@ -68,6 +68,8 @@ HUSA_CSV = HERE / "husa_xx_draft.csv"
 # Per-export date column. Fever Tree and Carbliss report the load sheet date;
 # HUSA reports a plain Date. None of them had one before the 2026-09-03 refresh.
 FEVER_TREE_DATE_COL = "Load Sheet Date"
+# Fever Tree alone is scored per SKU -- see classify()'s product_col note.
+FEVER_TREE_PRODUCT_COL = "Product Num Name"
 CARBLISS_DATE_COL = "Load Sheet Date"
 HUSA_DATE_COL = "Date"
 # Cumulative iSellBeer promo ARCHIVE for objective 1, not a scratch copy of the
@@ -159,8 +161,16 @@ def load_off_premise_only_ids():
     return {c for c, p in by_cust.items() if p == {"Off Premise"}}
 
 
-def classify(rows, base_col, current_col, off_premise_ids):
-    """(rep, customer) -> "new" / "rebuy" / "base_only", plus the parsed rows.
+def classify(rows, base_col, current_col, off_premise_ids, product_col=None):
+    """(rep, customer[, product]) -> "new"/"rebuy"/"base_only", plus the rows.
+
+    Passing product_col makes the SKU part of the key, so a placement is
+    scored per SKU rather than per account -- an account already carrying
+    Fever Tree Tonic still earns credit for a first order of Ginger Beer.
+    Per Gavin, 2026-09-04, when he re-pulled Fever Tree at the product level;
+    it is the unit Wine & Spirits has always used off-prem. Carbliss and HUSA
+    stay account-keyed: a new BUYING ACCOUNT and a new DRAFT LINE are account
+    facts, not SKU facts.
 
     NEW means the current window is populated and the base window is not.
     A populated cell counts even when its value is 0, matching August: the
@@ -172,14 +182,16 @@ def classify(rows, base_col, current_col, off_premise_ids):
         if num and num in off_premise_ids:
             continue
         rep = r["Sales Rep Assigned"].strip()
-        key = (rep, num or name)
+        product = (r.get(product_col) or "").strip() if product_col else ""
+        key = (rep, num or name, product)
         has_base = (r.get(base_col) or "").strip() != ""
         has_cur = (r.get(current_col) or "").strip() != ""
         st = state.setdefault(key, {"base": False, "current": False})
         st["base"] = st["base"] or has_base
         st["current"] = st["current"] or has_cur
         parsed.append({"row": r, "rep": rep, "num": num, "name": name,
-                       "key": key, "has_base": has_base, "has_current": has_cur})
+                       "product": product, "key": key,
+                       "has_base": has_base, "has_current": has_cur})
     status = {k: ("rebuy" if v["base"] and v["current"]
                   else "new" if v["current"]
                   else "base_only")
@@ -220,6 +232,7 @@ def emit(parsed, status, base_col, current_col, value_key, extra=None, date_col=
             "CUSTOMER_NUM": int(p["num"]) if p["num"] else None,
             "CUSTOMER_NAME": p["name"],
             "BRAND_FAMILY": (p["row"].get("Brand Family") or "").strip(),
+            "PRODUCT_NAME": p["product"],
             "DATE": date,
             "PERIOD": period,
             value_key: to_num(p["row"][current_col if period == "current" else base_col]),
@@ -233,9 +246,13 @@ def emit(parsed, status, base_col, current_col, value_key, extra=None, date_col=
 
 
 def build_fever_tree(off_premise_ids):
+    """PRODUCT-LEVEL as of the 2026-09-04 re-pull: "Product Num Name" replaced
+    "Brand Family", so a placement is one SKU in one account (see classify()'s
+    product_col note) and every Placement Count value is 1.00."""
     rows = load_csv(FEVER_TREE_CSV)
     base, cur = find_period_cols(rows[0].keys(), "Placement Count")
-    parsed, status = classify(rows, base, cur, off_premise_ids)
+    parsed, status = classify(rows, base, cur, off_premise_ids,
+                              product_col=FEVER_TREE_PRODUCT_COL)
     out, placeholders = emit(parsed, status, base, cur, "PLACEMENT_COUNT",
                              date_col=FEVER_TREE_DATE_COL)
     return out, sum(1 for s in status.values() if s == "new"), len(status), placeholders
@@ -359,7 +376,7 @@ def main():
     (month_dir / "sync_meta.json").write_text(json.dumps({"synced_at": synced_at}, indent=2))
 
     print(f"Off-premise-only customer IDs excluded: {len(off_premise_ids)}")
-    print(f"Fever Tree (goal 3): {fever_new} new placements out of {fever_total} accounts "
+    print(f"Fever Tree (goal 3): {fever_new} new placements out of {fever_total} account+SKU pairs "
           f"({len(fever_rows)} rows written, {fever_ph} undated rows stamped with the window start)")
     print(f"Carbliss (goal 10): {carb_new} new buying accounts out of {carb_total} accounts "
           f"({len(carb_rows)} rows written, {carb_ph} undated rows stamped with the window start)")

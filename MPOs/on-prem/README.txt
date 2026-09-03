@@ -180,7 +180,12 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-03 refresh (still only
+All four are data-backed. Numbers as of the 2026-09-04 refresh (Fever Tree
+re-read per SKU -- see "A FEVER TREE PLACEMENT IS ONE SKU" below): Bardstown 1
+menu placement, Fever Tree 4 new placements, Carbliss 2 new buying accounts,
+HUSA 1 new draft line. Only HUSA has anyone at goal.
+
+Superseded, kept for the reasoning: numbers as of the 2026-09-03 refresh (still only
 three days into the month): Bardstown 1 menu placement, Fever Tree 2 new
 placements, Carbliss 2 new buying accounts, HUSA 1 new draft line. Only HUSA
 has anyone at goal, its goal being 1. Those are the SAME four qualifying
@@ -233,6 +238,32 @@ one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
     workbook's hyperlink, which is why the archive is .xlsx and not a CSV --
     a CSV export drops it, the same reason the display auction keeps .xlsx.
 
+A FEVER TREE PLACEMENT IS ONE SKU IN ONE ACCOUNT (confirmed with Gavin,
+2026-09-04), not one newly-opened account. A restaurant already pouring Fever
+Tree Tonic still earns credit for a first order of Ginger Beer. Gavin re-pulled
+the export at the PRODUCT level that day for exactly this -- "Product Num Name"
+replaces "Brand Family" -- so classify() takes a product_col and keys Fever
+Tree per (rep, customer, SKU). It reads 4 new placements per SKU against 2 per
+account; nobody is at the goal of 3 either way, but the boards would diverge
+as the month fills in. Off-prem's Fever Tree and Wine & Spirits objectives use
+the same unit, so all three now agree.
+
+CARBLISS AND HUSA STAY ACCOUNT-KEYED, deliberately. Their objectives are "(10)
+New On Premise BUYING ACCOUNTS" and "(1) New XX DRAFT LINE" -- both are facts
+about an account, not about a SKU, and Carbliss' export has no product column
+anyway. classify()'s product_col defaults to None, so they are unchanged.
+
+THE DRILL-DOWN NAMES THE SKU, since it is now the unit of credit. The Product
+column is ADDITIVE, the same trick the Bardstown photo column uses:
+buildNewAccountsDataset() looks for a SKU column via SKU_COLS and finds none on
+Carbliss, HUSA or Bardstown, so their tables render exactly as before. SKU_COLS
+is deliberately narrower than the existing PRODUCT_COLS, which falls back to
+["brand"] and would have matched BRAND_FAMILY -- hanging a useless constant
+"Carbliss"/"Dos Equis" column off the account-scored objectives. A dataset that
+carries a SKU also gets its drill-down keyed per customer+SKU rather than per
+customer, so two new SKUs at one account render as two rows; collapsing them
+would have made the card's count disagree with its own table.
+
 SEPTEMBER'S EXPORTS CHANGED SHAPE three ways, which is why generate_2026-09.py
 exists rather than a tweak to August's:
   1. Customer Num and Customer Name arrive as ONE column, "Customer Num &
@@ -241,7 +272,9 @@ exists rather than a tweak to August's:
      whole string as the name and gets no id, so a format change surfaces as a
      missing id rather than a crash.
   2. Fever Tree and Carbliss carried NO Date column at all in the 2026-09-02
-     export. This one is a trap: index.html's buildNewAccountsDataset() starts
+     export. (Fever Tree changed again on 2026-09-04, to product level -- see
+     "A FEVER TREE PLACEMENT IS ONE SKU" above. The date story below still
+     applies to both.) This one is a trap: index.html's buildNewAccountsDataset() starts
      with `if(!repCol||!custCol||!dateCol||!flagCol) return null;` -- with no
      date column it returns null and the objective renders as if it had no
      data, silently. So those two datasets were stamped with a placeholder
@@ -249,7 +282,8 @@ exists rather than a tweak to August's:
      off-prem's Corona Premier export uses for the same reason.
      RESOLVED as of the 2026-09-03 export, which changed shape again: Fever
      Tree and Carbliss now arrive one row PER LOAD SHEET DATE (rather than one
-     aggregated row per account) and carry a real "Load Sheet Date" column.
+     aggregated row per account -- for Fever Tree, per account AND SKU) and
+     carry a real "Load Sheet Date" column.
      generate_2026-09.py reads it via FEVER_TREE_DATE_COL/CARBLISS_DATE_COL
      and the placeholder is gone for those two -- this README's own rule is
      to drop the placeholder once a real date arrives rather than leave both.
@@ -435,7 +469,11 @@ To refresh August manually:
 
 To refresh September manually:
   1. Save the new RDE exports over fever_tree_new_placements.csv /
-     carbliss_new_on_prem_buyers.csv / husa_xx_draft.csv. Keep the
+     carbliss_new_on_prem_buyers.csv / husa_xx_draft.csv. Fever Tree must stay
+     PRODUCT-level ("Product Num Name"); if it ever comes back with "Brand
+     Family" instead, classify() silently falls back to one key per account and
+     the count drops without erroring, so check the build log's
+     "account+SKU pairs" line looks right. Keep the
      base-then-current two-column format -- find_period_cols() reads each
      header's embedded start date, so the exact day shifting between exports
      is fine, but there must still be exactly 2 columns per prefix
