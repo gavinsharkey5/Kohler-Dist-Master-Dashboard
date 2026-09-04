@@ -395,8 +395,8 @@ To refresh with a new export:
   unmatched rows just vanish. Always compare generate.py's printed tap
   count against the previous refresh; it should only go up.
 
-Repairing a half-finished audit matrix -- NOT a one-off; it has now
-arrived this way twice running, so treat build_mediator.py as a normal
+Repairing a half-finished audit matrix -- NOT a one-off; EVERY delivery
+since 8.20.26 has arrived this way, so treat build_mediator.py as a normal
 step of the refresh and check for these defects EVERY time:
   8.20.26  Sheet9 5,581 rows with 196 duplicate "#"; Import Template
            populated for 82 of them.
@@ -428,6 +428,18 @@ step of the refresh and check for these defects EVERY time:
            scripts are standalone: generate.py has no __main__ guard, so
            importing it would run the whole build). If the tab is renamed
            again, neither script cares now.
+  9.4.26   ("vF1") Same two defects, and the duplicate "#" no longer sits
+           in one appended block at the bottom: ISB_Raw_Data came back
+           re-sorted (roughly by visit date), 6,038 rows, with 935 of them
+           sharing 239 "#" values scattered from row ~5,031 on. The Import
+           Template was populated for 133 rows -- the newest block only.
+           Run as-is, generate.py would have published 133 taps instead of
+           6,795, silently. Repaired with build_mediator.py unchanged: it
+           renumbers "#" 1..N in the sheet's delivered order and repastes
+           every row, so where the duplicates sit doesn't matter -- OK
+           5,823 / Review 201 / MISMATCH 14, same character as 8.27's
+           5,707/188/10 over more rows. Same repaired workbook used for
+           both dashboards, as on 8.21 and 8.27.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
