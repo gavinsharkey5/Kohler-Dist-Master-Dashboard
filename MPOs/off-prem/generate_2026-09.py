@@ -107,10 +107,42 @@ than per distinct SKU, switch to the "current_sum" the aggregator already
 tracks. Ideally RDE adds a product column to the Fever Tree export, which
 would make the distinct count exact and retire the question.
 
---- POS: (5) Cooler Door Stickers ---
-No data source yet (the iSellBeer photo export for cooler door stickers
-hasn't been pulled), so it ships as a hasData:false placeholder in
-index.html, exactly like July's Disruptors did. Nothing to generate.
+--- POS: (5) Cooler Door Stickers, Any Brand in iSellBeer ---
+LIVE as of 2026-09-04, from an iSellBeer Promos_Report -- the same export
+family behind on-prem's Bardstown menu objective, not RDE. Three things
+follow from that:
+
+  * IT IS A PARTIAL WEEKLY PULL, so pos_cooler_door_promos.xlsx here is the
+    cumulative ARCHIVE, not a copy of the latest report. Saving a new
+    Promos_Report over it would drop every sticker published before that
+    window (repo CLAUDE.md). Merge instead:
+        python3 generate_2026-09.py --merge-cooler-doors Promos_Report_NN.xlsx
+    which reuses generate_lytt_pos.py's merge_export() with "Promo #" as a
+    volatile column -- it is a per-export counter like PODS' "POD #", and
+    leaving it in the dedupe key makes every overlapping row read as new.
+
+  * ONE PROMOS_REPORT CARRIES EVERY ELEMENT IN ITS WINDOW, not just cooler
+    doors: Promos_Report_10 held 22 rows, of which 14 were cooler doors and
+    the rest were table tents (on-prem's Bardstown objective), signage and a
+    Lytt POS pic. So the archive is filtered on the way in -- see
+    is_cooler_door() and merge_export()'s row_filter. Merging a whole report
+    unfiltered would import on-premise Bardstown rows into an off-premise
+    cooler-door count. Confirmed with Gavin, 2026-09-04: "do not count the
+    bardstown rows. those are for on premise."
+
+  * IT COUNTS DISTINCT PHOTOS, NOT ROWS. One promo carries one row per brand
+    on the sticker, and both rows share a photo URL -- promo 4 at USA Wine
+    Traders is one cooler door wrap listing Corona Extra AND Modelo Especial.
+    That is ONE sticker. buildPhotosDataset() in index.html already counts
+    distinct PHOTO_URL, which is exactly the submission, so no dedupe is
+    needed here; both counts print at build time so the gap stays visible
+    (12 stickers vs 14 brand rows today). This matches the display auction's
+    "one photo showing five Lytt items is ONE pic" rule.
+
+The element filter matches any Elements value CONTAINING "cooler door"
+(today only "Cooler Door Wrap"), so a future "Cooler Door Sticker" or
+"...Decal" still lands; the build log prints which values matched, so a new
+variant is visible rather than silently dropped.
 
 To refresh: save new exports over the four CSVs named below, run this
 script, commit and push. A "Load Sheet Date" column on Fever Tree or Wine
@@ -120,11 +152,15 @@ start on 6/1/2026 and 9/1/2026 and which the script refuses to guess at.
 """
 
 import csv
+import importlib.util
 import json
 import math
 import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+import openpyxl
 
 HERE = Path(__file__).parent
 DATA_DIR = HERE / "data"
@@ -135,6 +171,8 @@ KEYSTONE_CSV = HERE / "keystone_ice_24oz.csv"
 FEVER_TREE_CSV = HERE / "molson_coors_fever_tree.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_new_placements.csv"
 CUSTOMER_BASE_CORE_CSV = HERE / "sales_reps_customer_base_core.csv"
+COOLER_DOOR_XLSX = HERE / "pos_cooler_door_promos.xlsx"
+LYTT_POS_PY = HERE / "generate_lytt_pos.py"
 
 # KEYSTONE-ONLY ACCOUNT-BASE EXCLUSIONS (per Gavin, 2026-09-04). Accounts that
 # sit in a rep's core off-premise book but must not count toward the Keystone
@@ -453,6 +491,73 @@ def build_new_placements(path, product_col=None):
     return out, new_placements, new_keys, len(out), summed_alt
 
 
+# ------------------------------------------------- objective 5: cooler doors
+
+def _lytt_pos():
+    """merge_export() lives in generate_lytt_pos.py; load it by path rather
+    than duplicating it (same shim on-prem's generate_2026-09.py uses)."""
+    spec = importlib.util.spec_from_file_location("lytt_pos", LYTT_POS_PY)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def is_cooler_door(vals):
+    """A Promos_Report row belonging to THIS objective. Matched on substring so
+    a future "Cooler Door Sticker"/"Decal" still lands -- today every row reads
+    "Cooler Door Wrap". Everything else in the report (table tents, signage,
+    Lytt POS pics) belongs to another objective or another board."""
+    return "cooler door" in str(vals.get("Elements") or "").lower()
+
+
+def build_pos_cooler_doors():
+    """Objective 5 -- (5) Cooler Door Stickers, Any Brand, from iSellBeer.
+
+    Emits the same row shape as August's Lytt POS photos objective, so
+    index.html's buildPhotosDataset() reads it unchanged -- which also means
+    the scoring unit is DISTINCT PHOTO_URL. One promo carries one row per
+    brand on the sticker and those rows share a photo, so a single cooler door
+    wrap listing Corona and Modelo counts once, not twice.
+    """
+    if not COOLER_DOOR_XLSX.exists():
+        print("  POS cooler doors: no pos_cooler_door_promos.xlsx -- objective stays rules-only")
+        return [], 0, 0, set()
+    ws = openpyxl.load_workbook(COOLER_DOOR_XLSX)["Report"]
+    header = [c.value for c in ws[1]]
+    idx = {h: i for i, h in enumerate(header) if h}
+    # Borrow the roster from generate_lytt_pos.py rather than re-listing it --
+    # a second copy is one more thing to drift when a rep joins or leaves.
+    roster_by_lower = {r.lower(): r for r in _lytt_pos().ROSTER}
+
+    out, elements = [], set()
+    for row in ws.iter_rows(min_row=2):
+        vals = [c.value for c in row]
+        if not vals or not vals[idx["Date/Time"]]:
+            continue
+        rowmap = {h: vals[i] for h, i in idx.items()}
+        if not is_cooler_door(rowmap):
+            continue
+        elements.add(str(rowmap.get("Elements") or "").strip())
+        # iSellBeer spells names its own way ("robin feldman"); the roster is
+        # the RDE spelling. Unmatched names are kept as-is so they surface on
+        # the board rather than vanish.
+        raw_rep = str(vals[idx["Photo taker"]] or "").strip()
+        photo_cell = row[idx["Photo"]]
+        out.append({
+            "REP": roster_by_lower.get(raw_rep.lower(), raw_rep),
+            "SOURCE": "Promo",
+            "CUSTOMER_NAME": str(vals[idx["DBA"]] or "").strip(),
+            "CITY": str(vals[idx["City"]] or "").strip(),
+            "BRAND": str(vals[idx["Brand"]] or "").strip(),
+            "DETAIL": str(vals[idx["Elements"]] or "").strip(),
+            "QUANTITY": vals[idx["Quantity"]],
+            "DATE": str(vals[idx["Date/Time"]]).strip(),
+            "PHOTO_URL": photo_cell.hyperlink.target if photo_cell.hyperlink else None,
+        })
+    photos = len({r["PHOTO_URL"] for r in out if r["PHOTO_URL"]})
+    return out, photos, len(out), elements
+
+
 # --------------------------------------------------------------- target lists
 
 def load_core_customer_base():
@@ -510,6 +615,14 @@ def carrying_nums(rows):
 
 
 def main():
+    if len(sys.argv) == 3 and sys.argv[1] == "--merge-cooler-doors":
+        # Partial weekly iSellBeer pulls MERGE onto the archive (repo CLAUDE.md).
+        # Filtered to cooler-door rows: one Promos_Report carries every element
+        # in its window, table tents for on-prem's Bardstown objective included.
+        _lytt_pos().merge_export(COOLER_DOOR_XLSX, Path(sys.argv[2]),
+                                 date_col="Date/Time", volatile_cols=("Promo #",),
+                                 row_filter=is_cooler_door)
+
     constellation_rows = build_constellation()
     keystone_rows = build_keystone_numerator()
     customer_base_core_rows = build_customer_base_core()
@@ -517,6 +630,8 @@ def main():
         FEVER_TREE_CSV, product_col="Product Num Name")
     wine_spirits_rows, ws_new, ws_new_rows, ws_total, ws_summed = build_new_placements(
         WINE_SPIRITS_CSV, product_col="Product Num Name")
+
+    cooler_rows, cooler_photos, cooler_mentions, cooler_elements = build_pos_cooler_doors()
 
     core_by_rep = load_core_customer_base()
     targets_keystone = build_targets(core_by_rep, carrying_nums(keystone_rows),
@@ -530,6 +645,7 @@ def main():
     (month_dir / "mpo_sales_reps_customer_base_core.json").write_text(json.dumps(customer_base_core_rows, indent=2))
     (month_dir / "mpo_fever_tree.json").write_text(json.dumps(fever_tree_rows, indent=2))
     (month_dir / "mpo_wine_spirits_any_brand.json").write_text(json.dumps(wine_spirits_rows, indent=2))
+    (month_dir / "mpo_pos_cooler_doors.json").write_text(json.dumps(cooler_rows, indent=2))
     (month_dir / "mpo_targets_keystone_ice.json").write_text(json.dumps(targets_keystone, indent=2))
     (month_dir / "mpo_targets_fever_tree.json").write_text(json.dumps(targets_fever_tree, indent=2))
 
@@ -569,6 +685,13 @@ def main():
     print(f"Wine & Spirits (any brand): {ws_new:.0f} new placements across {ws_new_rows} "
           f"newly-placed rep+account+SKU keys (out of {ws_total} exported); summing load "
           f"sheets instead would read {ws_summed:.0f}")
+    at_goal = sum(1 for rep in _lytt_pos().ROSTER
+                  if len({r["PHOTO_URL"] for r in cooler_rows
+                          if r["REP"] == rep and r["PHOTO_URL"]}) >= 5)
+    print(f"POS cooler doors (goal 5): {cooler_photos} distinct stickers from "
+          f"{cooler_mentions} brand rows -- counted per PHOTO; per-brand-row would read "
+          f"{cooler_mentions}. {at_goal} rep(s) at goal. Elements matched: "
+          + (", ".join(sorted(cooler_elements)) or "none"))
     print(f"Target accounts -- Keystone Ice: {len(targets_keystone)} prospects (core territory only)")
     print(f"Target accounts -- Fever Tree: {len(targets_fever_tree)} prospects (core territory only)")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")

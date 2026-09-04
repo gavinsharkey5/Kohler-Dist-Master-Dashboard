@@ -104,7 +104,7 @@ def parse_dt(s):
     return datetime.datetime.strptime(str(s).strip(), "%m/%d/%Y %I:%M %p")
 
 
-def merge_export(stable, incoming, date_col="Date/Time", volatile_cols=()):
+def merge_export(stable, incoming, date_col="Date/Time", volatile_cols=(), row_filter=None):
     """Union a PARTIAL iSellBeer photo export into its cumulative stable
     workbook, keeping every row already published.
 
@@ -135,6 +135,15 @@ def merge_export(stable, incoming, date_col="Date/Time", volatile_cols=()):
     re-added 3 already-published photos). Same reason "#" is ignored; the
     archive keeps whichever value it already had, and nothing downstream reads
     either column.
+
+    row_filter(vals) -> bool keeps a per-objective archive per-objective. One
+    iSellBeer Promos_Report carries EVERY promo element in its window -- cooler
+    door wraps, table tents, signage -- while each archive holds only its own
+    objective's rows (bardstown_menu_promos.xlsx is table tents only). Without a
+    filter, merging a full report into one of those archives quietly imports
+    every other objective's rows and inflates its count. Called with the
+    incoming row's {header: value} dict; None keeps everything, which is what
+    every pre-existing caller does.
 
     Rows carrying a date sort newest-first; undated ones (PODS rows published
     before it grew a Date/Time) keep their existing order at the bottom.
@@ -168,6 +177,12 @@ def merge_export(stable, incoming, date_col="Date/Time", volatile_cols=()):
 
     published = collect(ws, headers)
     incoming_rows = collect(ws_in, headers_in)
+    if row_filter is not None:
+        kept = [r for r in incoming_rows if row_filter(r[0])]
+        print(f"  Filter: {len(incoming_rows)} row(s) in {incoming.name}, "
+              f"{len(kept)} for this archive, {len(incoming_rows)-len(kept)} "
+              f"belong to other objectives and are skipped.")
+        incoming_rows = kept
 
     ignored = {"#", *volatile_cols}
 

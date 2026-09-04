@@ -197,10 +197,17 @@ Objective types (index.html):
                   keeps accruing on September's tab after the other four
                   close out on 9/30; partial progress all month is
                   expected and is not a data problem.
-  'photos'        Placeholder only when hasData:false -- July's
-                  Disruptors and September's POS cooler door stickers
-                  have no iSellBeer export yet. August's Lytt POS pics
-                  objective is the one with real data (see below).
+  'photos'        August's Lytt POS pics and, since 2026-09-04,
+                  September's POS cooler door stickers. Scored on
+                  DISTINCT PHOTO_URL by buildPhotosDataset(), which is
+                  what makes one promo one submission however many brand
+                  rows it carries. Still placeholder-only where
+                  hasData:false (July's Disruptors, which has no
+                  iSellBeer export). The drill-down's wording follows the
+                  objective -- photoUnit / photoColLabel /
+                  photoItemsLabel / photoEmptyLabel on the objective
+                  definition, defaulting to the Lytt phrasing so August
+                  reads exactly as it always did.
 
 "90-Day Non-Buy" new-placement classification (Molson Coors Peroni/
 Banquet and Wine & Spirits Le Grand Noir/Leyenda 1925/Bardstown Green
@@ -474,8 +481,16 @@ Files:
                                         and stops rather than silently
                                         reclassifying if a re-pull moved
                                         one.
-    (no file)                         POS - (5) Cooler Door Stickers has
-                                        no iSellBeer export yet, so it
+    pos_cooler_door_promos.xlsx       Cumulative iSellBeer promo ARCHIVE
+                                        for the POS cooler door sticker
+                                        objective -- NOT a scratch copy of
+                                        the latest Promos_Report. Merge new
+                                        pulls onto it, never overwrite, and
+                                        the merge FILTERS to cooler-door
+                                        rows (see the objective's section
+                                        below and repo CLAUDE.md).
+    (no file, July only)              July's Disruptors objective has
+                                        no iSellBeer export, so it
                                         ships as a hasData:false
                                         placeholder card, same as July's
                                         Disruptors.
@@ -674,7 +689,12 @@ To refresh September manually:
   1. Save the new exports over constellation_corona_gaintain.csv /
      keystone_ice_24oz.csv / molson_coors_fever_tree.csv /
      wine_spirits_new_placements.csv, and sales_reps_customer_base_core.csv
-     if the core territory changed. A Load Sheet Date column on the two
+     if the core territory changed.
+     DO NOT overwrite pos_cooler_door_promos.xlsx with a new Promos_Report
+     -- it is a cumulative archive fed by weekly partial pulls, and one
+     report also carries other objectives' rows. Merge instead:
+       python3 generate_2026-09.py --merge-cooler-doors Promos_Report_NN.xlsx
+     which filters to cooler-door rows, merges and rebuilds in one pass. A Load Sheet Date column on the two
      new-placement exports is expected and handled; what must NOT change
      is the pair of date-windowed "Placement Count" columns, which
      check_window() verifies start on 6/1/2026 and 9/1/2026 and refuses to
@@ -687,6 +707,57 @@ To refresh September manually:
      previously-qualifying account is the signal that something reclassified
      wrongly, which is exactly what the shape change below would have caused.
   4. Commit and push.
+
+POS - (5) COOLER DOOR STICKERS WENT LIVE (2026-09-04)
+Was a hasData:false placeholder; now scored off an iSellBeer Promos_Report,
+the same export family as on-prem's Bardstown menu objective. First pull
+(Promos_Report_10, window 9/1-9/4): 12 distinct stickers from 14 brand rows,
+Chris Payton 11 (at goal, target 5) and Mike Ast 1. Nobody else has submitted
+one yet.
+
+ONE PROMOS_REPORT CARRIES EVERY ELEMENT IN ITS WINDOW. Promos_Report_10 held
+22 rows: 14 cooler door wraps, 5 signage, 2 table tents and 1 Lytt POS pic.
+The table tents are on-prem's Bardstown menu placement -- per Gavin,
+2026-09-04: "do not count the bardstown rows. those are for on premise." So
+the archive is FILTERED on the way in: is_cooler_door() keeps any Elements
+value containing "cooler door" (today only "Cooler Door Wrap", written wide
+enough that a future "Cooler Door Sticker"/"Decal" still lands), and
+merge_export() grew a row_filter parameter to apply it. The build log prints
+which Elements values matched and how many rows were skipped, so a new variant
+shows up rather than silently vanishing.
+
+That filter is not optional bookkeeping. Merging a whole Promos_Report into a
+per-objective archive unfiltered imports every other objective's rows -- an
+on-premise Bardstown table tent would have counted as an off-premise cooler
+door sticker. The same trap applies in the other direction to on-prem's
+bardstown_menu_promos.xlsx, which is table-tents-only and whose merge call
+does NOT yet pass a row_filter; it has only ever been fed narrow pulls, but
+hand it a full report and it would take the cooler doors. Worth fixing there
+the next time that path is touched.
+
+IT COUNTS DISTINCT PHOTOS, NOT ROWS. One promo emits a row per brand on the
+sticker and every one of those rows shares a photo URL -- promo 4 at USA Wine
+Traders is a single wrap listing Corona Extra AND Modelo Especial. That is one
+sticker. index.html's buildPhotosDataset() already counts distinct PHOTO_URL,
+so no dedupe was needed in the generator; both figures print at build time (12
+stickers vs 14 brand rows) so the gap stays visible if the objective ever turns
+out to be scored per mention, the way incentive-tracking's sister menu program
+is.
+
+PARTIAL WEEKLY PULL, so pos_cooler_door_promos.xlsx is the cumulative archive
+(repo CLAUDE.md). Refresh with:
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_NN.xlsx
+which merges and rebuilds in one pass. Re-merging an applied export is a no-op
+(verified on Promos_Report_10: 14 in, 0 new, 14 already published). "Promo #"
+is passed as a volatile column -- it is a per-export counter like PODS' "POD
+#", and leaving it in the dedupe key makes every overlapping row read as new.
+The archive is .xlsx and not a CSV because the photo link lives in the cell's
+hyperlink, which a CSV export drops.
+
+iSellBeer spells rep names its own way ("robin feldman"); the builder
+canonicalises to the roster spelling, borrowing ROSTER from
+generate_lytt_pos.py rather than keeping a second copy to drift. An unmatched
+name is kept as-is so it surfaces on the board rather than vanishing.
 
 KEYSTONE-ONLY ACCOUNT-BASE EXCLUSIONS (2026-09-04, per Gavin)
 Two of Shane Barreca's accounts are out of the Keystone Ice objective:

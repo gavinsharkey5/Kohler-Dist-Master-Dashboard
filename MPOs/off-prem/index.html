@@ -346,9 +346,12 @@ const OBJECTIVES_2026_09 = [
   {key:'keystone_ice', name:'Molson Coors – Keystone Ice 40% Buying Account', shortName:'Keystone Ice', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'40% of account base', accountsLabel:'Buying Accounts', brandLabel:'Keystone Ice'},
   {key:'fever_tree', name:'Molson Coors – Fever Tree (10) New Placements (90-Day Non-Buy)', shortName:'Fever Tree', weight:0.15, type:'new_placements', hasData:true, goalLabel:'10 new placements each'},
   {key:'wine_spirits_any', name:'Wine & Spirits – (5) New Placements, Any Brand (90-Day Non-Buy)', shortName:'W&S Any Brand', weight:0.15, type:'new_placements', hasData:true, goalLabel:'5 new placements each'},
-  // No iSellBeer cooler-door-sticker export exists yet -- placeholder card
-  // until one is pulled, same as July's Disruptors objective.
-  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', weight:0.10, type:'photos', hasData:false},
+  // Live since 2026-09-04, from an iSellBeer Promos_Report (not RDE). Scored on
+  // DISTINCT PHOTOS, which buildPhotosDataset() already counts: one promo puts
+  // out a row per brand on the sticker and those rows share a photo URL, so a
+  // cooler door wrap listing Corona and Modelo is one sticker, not two.
+  {key:'pos_stickers', name:'POS – (5) Cooler Door Stickers, Any Brand in iSellBeer', shortName:'Cooler Door Stickers', weight:0.10, type:'photos', hasData:true, goalLabel:'5 cooler door stickers each',
+   photoUnit:'stickers', photoColLabel:'Stickers', photoItemsLabel:'Brands on the sticker', photoEmptyLabel:'cooler door stickers'},
 ];
 
 // Each entry is a permanent monthly snapshot -- add a new one here (and a
@@ -382,6 +385,7 @@ const MONTHS = [
     {objKey:'fever_tree', file:'mpo_fever_tree.json', target:10, builder:'new_placements',
       targetsFile:'mpo_targets_fever_tree.json'},
     {objKey:'wine_spirits_any', file:'mpo_wine_spirits_any_brand.json', target:5, builder:'new_placements'},
+    {objKey:'pos_stickers', file:'mpo_pos_cooler_doors.json', target:5, builder:'photos'},
   ]},
 ];
 let activeMonth = MONTHS[MONTHS.length-1].key;
@@ -1252,8 +1256,15 @@ function lineTableLytt(lines, minSkus, brandLabel){
 // One table row per DISTINCT PHOTO (matching how the 8-pic target is
 // counted), with every Lytt item pictured in it listed on that row --
 // mirrors the display-auction tracker's photo-first, rep-grouped layout.
-function lineTablePhotos(lines){
-  if(!lines || lines.length===0) return '<div class="no-lines">No Lytt POS photos submitted yet this month.</div>';
+// The photos drill-down is shared by August's Lytt POS pics and September's
+// cooler door stickers, so its wording comes off the objective rather than
+// being hardcoded. Defaults reproduce the Lytt wording exactly, which is what
+// every caller that passes no objective still gets.
+function lineTablePhotos(lines, o){
+  o = o || {};
+  const emptyLabel = o.photoEmptyLabel || 'Lytt POS photos';
+  const itemsLabel = o.photoItemsLabel || 'Lytt items pictured';
+  if(!lines || lines.length===0) return `<div class="no-lines">No ${emptyLabel} submitted yet this month.</div>`;
   const byPhoto=new Map();
   lines.forEach(l=>{
     if(!byPhoto.has(l.photo)) byPhoto.set(l.photo,[]);
@@ -1266,7 +1277,7 @@ function lineTablePhotos(lines){
       `<td>${f.customer}${f.city?` <span class="photo-sub">· ${f.city}</span>`:''}</td>`+
       `<td>${itemsHtml}</td><td>${f.source}</td><td style="white-space:nowrap">${f.date||'—'}</td></tr>`;
   }).join('');
-  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>Lytt items pictured</th><th>Source</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  return `<div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Photo</th><th>Account</th><th>${itemsLabel}</th><th>Source</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // September's new-placement drill-down. Same shape as lineTableNewAccounts()
@@ -1501,7 +1512,7 @@ function renderRepView(){
       head.className='obj-head static';
       head.innerHTML = `
         <div class="obj-left">
-          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} pics per rep</span></div>
+          <div class="obj-name-row"><span class="obj-name">${o.name}</span><span class="weight-tag">${(o.weight*100).toFixed(0)}% weight</span><span class="goal-tag">${target} ${o.photoUnit || 'pics'} per rep</span></div>
           <div class="obj-bar-track"><div class="obj-bar-fill${over?' over':''}" style="width:${pct}%"></div></div>
         </div>
         <div class="obj-right"><div><div class="obj-progress-txt">${val} / ${target}${over?'<span class="over-badge">+'+(val-target)+' over</span>':''}</div><div class="obj-progress-sub">${hit?'<span class="flag-hit">✓ At goal</span>':'In progress'} · distinct photos</div></div></div>`;
@@ -1511,7 +1522,7 @@ function renderRepView(){
       const inner = document.createElement('div');
       inner.className='obj-body-inner';
       inner.style.paddingTop='0';
-      inner.innerHTML = lineTablePhotos(r ? r.lines : []);
+      inner.innerHTML = lineTablePhotos(r ? r.lines : [], o);
       body.appendChild(inner);
       card.appendChild(body);
       container.appendChild(card);
@@ -1653,7 +1664,7 @@ function renderObjectiveView(){
     if(o.type==='placements' || o.type==='new_accounts'){
       goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} per rep</span>`;
     } else if(o.type==='photos'){
-      goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} pics per rep</span>`;
+      goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} ${o.photoUnit || 'pics'} per rep</span>`;
     } else if(o.type==='new_placements'){
       goalTag = `<span class="goal-tag">${DATA[o.key].target_per_rep} new placements per rep</span>`;
     } else if(o.type==='pct_of_base' || o.type==='pct_of_goal'){
@@ -1754,9 +1765,9 @@ function renderObjectiveView(){
           <td class="num"><span class="mini-bar-track"><span class="mini-bar-fill${over?' over':''}" style="width:${rp}%"></span></span>${r.count} / ${target}${over?'<span class="over-badge">+'+(r.count-target)+' over</span>':''}</td>
           <td>${hit?'<span class="flag-hit">✓ At goal</span>':'<span class="flag-miss">In progress</span>'}</td>
         </tr>`;
-        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePhotos(r.lines)}</td></tr>`;
+        bodyRows += `<tr class="rep-sub" id="${rowId}"><td colspan="3">${lineTablePhotos(r.lines, o)}</td></tr>`;
       });
-      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">POS Pics</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
+      table.innerHTML = `<thead><tr><th>Rep</th><th class="num">${o.photoColLabel || 'POS Pics'}</th><th>Status</th></tr></thead><tbody>${bodyRows}</tbody>`;
       inner.appendChild(table);
       table.querySelectorAll('.rep-row').forEach(row=>{
         row.addEventListener('click',()=>{
