@@ -602,6 +602,163 @@
     .v2-count{min-width:88px;padding:9px 12px;}
   }
 
+  /* ==================================================================
+     v3 GUIDED FLOW (2026-09-04, second pass)
+     ------------------------------------------------------------------
+     v2 kept supplier grouping but still put every program's progress on
+     one screen, so a rep still had to scan to find what was tappable.
+     v3 makes the path four SCREENS, one decision each:
+
+        Step 1 Choose your name -> Step 2 Choose a supplier
+        -> Step 3 Choose an incentive -> Your progress
+
+     Rules this stylesheet enforces, all of them from the brief:
+       * one screen = one question, asked in a big plain-English title
+       * every choice is a full-width button with an explicit verb on it
+         ("VIEW MY PROGRESS"), never a bare title a rep has to guess is
+         tappable
+       * 64px minimum tap height, single column, no hover-only affordance
+       * the progress screen leads with ONE number, everything else is
+         secondary or behind "See full details"
+     Phone is the primary layout here: the desktop rules are the media
+     query, not the other way round.
+     ================================================================== */
+  .v3{width:100%;}
+  .v3-step-head{margin:4px 0 18px;}
+  .v3-eyebrow{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+    background:var(--accent-soft);border:1px solid rgba(78,124,232,.4);border-radius:999px;
+    padding:6px 14px;margin-bottom:11px;}
+  .v3-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);
+    font-size:clamp(27px,6.4vw,38px);line-height:1.18;}
+  .v3-sub{color:var(--text-dim);font-size:clamp(16px,4vw,18px);margin-top:8px;line-height:1.5;}
+
+  /* Back: always the first thing under the header, always says where to. */
+  .v3-back{display:flex;align-items:center;gap:9px;width:100%;background:var(--card);
+    border:1px solid var(--border);border-radius:12px;color:var(--text-dim);
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.02em;
+    text-transform:uppercase;padding:15px 18px;min-height:56px;cursor:pointer;margin-bottom:16px;
+    text-align:left;transition:background .13s,color .13s;}
+  .v3-back:hover{background:var(--card-alt);color:var(--text);}
+  .v3-back .ar{font-size:19px;line-height:1;}
+
+  /* The one repeated element: a big, obviously-pressable choice. */
+  .v3-pick{display:block;width:100%;background:var(--card);border:1px solid var(--border);
+    border-radius:16px;padding:18px 20px;margin-bottom:12px;cursor:pointer;text-align:left;
+    font:inherit;color:inherit;box-shadow:var(--shadow);
+    transition:border-color .13s,transform .08s,background .13s;}
+  .v3-pick:hover{border-color:var(--accent);background:var(--card-alt);}
+  .v3-pick:active{transform:scale(.988);}
+  .v3-pick-top{display:flex;align-items:center;gap:14px;}
+  .v3-pick-logo{width:64px;height:44px;flex-shrink:0;background:#fff;border-radius:9px;padding:4px;
+    display:flex;align-items:center;justify-content:center;}
+  .v3-pick-logo img{max-width:100%;max-height:100%;object-fit:contain;}
+  .v3-pick-logo.blank{background:var(--input-bg);border:1px solid var(--border);color:var(--text-mute);
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;}
+  .v3-pick-text{flex:1;min-width:0;}
+  .v3-pick-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(19px,4.8vw,23px);color:var(--text);line-height:1.22;}
+  .v3-pick-note{display:block;color:var(--text-dim);font-size:16px;margin-top:5px;line-height:1.45;}
+  .v3-pick-note strong{color:var(--text);font-weight:700;}
+  .v3-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;
+    background:var(--accent);color:#fff;border-radius:11px;padding:15px 18px;min-height:58px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:.05em;
+    text-transform:uppercase;}
+  .v3-pick:hover .v3-cta{background:#3C6AD8;}
+  .v3-cta .ar{font-size:21px;line-height:1;}
+  .v3-cta.quiet{background:var(--input-bg);color:var(--text-dim);border:1px solid var(--border);}
+
+  /* Name buttons: no logo, so they get their own tighter shape. */
+  .v3-name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;
+    min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:20px;color:var(--text);margin-bottom:10px;
+    transition:border-color .13s,background .13s,transform .08s;}
+  .v3-name:hover{border-color:var(--accent);background:var(--card-alt);}
+  .v3-name:active{transform:scale(.988);}
+  .v3-name .ar{color:var(--accent);font-size:22px;}
+  .v3-dm{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
+  .v3-dm:first-of-type{margin-top:4px;}
+
+  /* Status pill -- word + icon, never colour alone. */
+  .v3-pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 14px;
+    font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;white-space:nowrap;
+    border:1px solid transparent;line-height:1.2;}
+  .v3-pill.earned{background:var(--good-soft);color:var(--good);border-color:rgba(76,201,122,.45);}
+  .v3-pill.close{background:var(--amber-soft);color:var(--amber);border-color:rgba(244,184,62,.45);}
+  .v3-pill.ontrack{background:var(--accent-soft);color:var(--accent);border-color:rgba(78,124,232,.45);}
+  .v3-pill.attention{background:var(--red-soft);color:var(--red);border-color:rgba(235,106,80,.45);}
+  .v3-pill.notstarted,.v3-pill.soon{background:var(--input-bg);color:var(--text-mute);border-color:var(--border);}
+
+  /* ---- Step 4: your progress. One number owns the screen. ---- */
+  .v3-hero{background:var(--card);border:1px solid var(--border);border-radius:18px;
+    padding:26px 22px;box-shadow:var(--shadow);margin-bottom:14px;text-align:center;}
+  .v3-hero-sup{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--text-mute);font-weight:700;}
+  .v3-hero-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);
+    font-size:clamp(22px,5.4vw,29px);line-height:1.22;margin:7px 0 20px;}
+  .v3-big{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1;
+    font-size:clamp(52px,15vw,84px);letter-spacing:-.02em;}
+  .v3-big.earned{color:var(--good);} .v3-big.close{color:var(--amber);}
+  .v3-big.ontrack{color:var(--accent);} .v3-big.attention{color:var(--red);}
+  .v3-big.notstarted,.v3-big.soon{color:var(--text-mute);}
+  .v3-big-cap{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);
+    font-size:clamp(19px,4.8vw,23px);margin-top:10px;}
+  .v3-hero-bar{height:20px;background:var(--input-bg);border:1px solid var(--line-soft);
+    border-radius:999px;overflow:hidden;margin:20px 0 14px;}
+  .v3-hero-fill{height:100%;border-radius:999px;background:var(--accent);transition:width .4s;}
+  .v3-hero-fill.earned{background:var(--good);} .v3-hero-fill.close{background:var(--amber);}
+  .v3-hero-fill.attention{background:var(--red);} .v3-hero-fill.notstarted{background:var(--border);}
+  .v3-hero-remain{color:var(--text-dim);font-size:17px;font-weight:600;}
+
+  /* The single most important line on the page. */
+  .v3-next{background:var(--accent-soft);border:1px solid rgba(78,124,232,.42);border-left:5px solid var(--accent);
+    border-radius:14px;padding:19px 21px;margin-bottom:14px;}
+  .v3-next-l{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .v3-next-t{color:var(--text);font-size:clamp(17px,4.3vw,20px);line-height:1.5;font-weight:600;}
+  .v3-next-t strong{color:#fff;font-weight:700;}
+
+  .v3-more{width:100%;background:var(--card);border:1px solid var(--border);border-radius:13px;
+    padding:17px 20px;min-height:60px;cursor:pointer;color:var(--text-dim);text-align:left;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:.04em;
+    text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    transition:background .13s,color .13s;}
+  .v3-more:hover{background:var(--card-alt);color:var(--text);}
+  .v3-more .ar{transition:transform .18s;font-size:15px;}
+  .v3-more.open .ar{transform:rotate(90deg);}
+  .v3-more-body{display:none;margin-top:12px;}
+  .v3-more-body.open{display:block;}
+  .v3-more-body .prog-card{border:1px solid var(--border);}
+
+  .v3-note{background:var(--card);border:1px dashed var(--border);border-radius:14px;padding:22px;
+    color:var(--text-dim);font-size:16.5px;line-height:1.5;text-align:center;}
+
+  @media (min-width:760px){
+    /* Desktop gets a second column of choices, nothing more: the flow, the
+       type scale and the tap targets are the phone's. */
+    .v3-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;}
+    .v3-grid .v3-pick,.v3-grid .v3-name{margin-bottom:0;}
+    .v3-hero{padding:34px 30px;}
+    .v3-back{width:auto;min-width:290px;}
+  }
+  .month-tabs-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;
+    letter-spacing:.11em;text-transform:uppercase;color:var(--text-mute);margin:2px 0 7px;}
+  /* Step 1 IS the start, so "Start Over" there is a button that does
+     nothing a rep can perceive. It appears from step 2 on. */
+  #pickerWrap{display:none;}
+  body.v3-deep #pickerWrap{display:block;}
+  @media (max-width:640px){
+    /* The banner is decoration; on a phone it was pushing the one question
+       of the screen most of the way down the viewport. */
+    .nj-hero{padding:11px 16px 10px;}
+    .nj-hero-script{font-size:clamp(21px,6vw,28px);}
+    .hero-logo-badge{height:30px;}
+    .nj-hero-kicker{font-size:12.5px;letter-spacing:.05em;}
+    .v3-title{font-size:26px;}
+  }
+
 </style>
 </head>
 <body>
@@ -623,20 +780,13 @@
 
 <header>
   <h1>Incentive Tracker</h1>
+  <p class="month-tabs-label">Which month?</p>
   <div class="month-tabs" id="monthTabs"></div>
-  <p class="sub">All of your incentives in one place.</p>
   <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Sep 4, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
 <div class="v2-picker" id="pickerWrap">
-  <div class="v2-picker-card">
-    <div class="v2-picker-head">
-      <div class="v2-picker-title"><span class="v2-step-dot">1</span>Select your name</div>
-      <button class="reset-home-btn" id="resetHomeBtn" title="Clear rep, program, and any expanded detail — back to the start">🏠 Start Over</button>
-    </div>
-    <p class="v2-picker-sub">Tap your name to see where you stand in every incentive and what to do next.</p>
-    <div class="repbar" id="repbar"></div>
-  </div>
+  <button class="reset-home-btn" id="resetHomeBtn" title="Go back to the list of names">🏠 Start Over</button>
 </div>
 
 <main id="main"></main>
@@ -113204,6 +113354,214 @@ function renderBrowseV2(){
   </div>`;
 }
 
+/* ====================================================================
+   v3 GUIDED FLOW (2026-09-04, second pass)
+   --------------------------------------------------------------------
+   v2 grouped by supplier but still rendered every program's progress on
+   one screen, so a rep still had to scan to find what was tappable.
+   v3 splits the path into four SCREENS with one decision each:
+
+     Step 1  Choose your name
+     Step 2  Choose a supplier
+     Step 3  Choose an incentive
+     (4)     Your progress
+
+   Only one is on screen at a time. Every choice is a full-width button
+   carrying an explicit verb, so nothing relies on a rep working out that
+   a title or a chevron is tappable. The progress screen leads with ONE
+   number; the old detailed card is behind "See full details" and is
+   otherwise untouched.
+
+   State is three variables. Which screen renders is simply how many of
+   them are set, so Back is always "clear the last one" and there is no
+   separate history to keep in sync.
+   ==================================================================== */
+let vRep = null, vSup = null, vProg = null;
+
+function goStep(rep, sup, prog){
+  vRep = rep; vSup = sup; vProg = prog;
+  activeRep = rep;            // keeps cardFor()/rankProgram() working unchanged
+  activeProgram = null;
+  renderMain();
+  scrollToContent();
+}
+
+// Programs a rep is in, grouped by supplier, in the month's own order.
+function repSuppliers(rep){
+  const order = [].concat(activeMonth.repCards.new, activeMonth.repCards.ongoing, activeMonth.repCards.retention);
+  const groups = new Map();
+  order.forEach(key=>{
+    const entry = PROGRAM_LIST.find(e=>e.key===key);
+    if(!entry) return;
+    const sk = PROGRAM_SUPPLIER[key] || 'house';
+    if(!groups.has(sk)) groups.set(sk, []);
+    groups.get(sk).push({entry, sum:summarize(entry, rep)});
+  });
+  // Suppliers with live programs first, then alphabetical -- a rep should
+  // meet the ones they can act on before the ones awaiting an export.
+  return [...groups.entries()].sort((a,b)=>{
+    const live = g => g[1].filter(x=>!x.sum.soon).length;
+    return live(b)-live(a) || SUPPLIERS[a[0]].name.localeCompare(SUPPLIERS[b[0]].name);
+  });
+}
+
+function v3Logo(sk){
+  const s = SUPPLIERS[sk];
+  return s && s.logo
+    ? `<span class="v3-pick-logo"><img src="${esc(s.logo)}" alt="" loading="lazy"></span>`
+    : `<span class="v3-pick-logo blank">${esc((s?s.name:'?').slice(0,2).toUpperCase())}</span>`;
+}
+function v3Pill(st){
+  const m = STATUS_META[st] || STATUS_META.notstarted;
+  return `<span class="v3-pill ${st}">${m.ic} ${esc(m.label)}</span>`;
+}
+function stepHead(step, title, sub){
+  return `<div class="v3-step-head">
+    ${step?`<span class="v3-eyebrow">Step ${step}</span>`:''}
+    <div class="v3-title">${title}</div>
+    ${sub?`<div class="v3-sub">${sub}</div>`:''}
+  </div>`;
+}
+function backBtn(label, rep, sup, prog){
+  return `<button class="v3-back js-go" data-rep="${esc(rep||'')}" data-sup="${esc(sup||'')}" data-prog="${esc(prog||'')}">
+    <span class="ar">&#8592;</span>${esc(label)}</button>`;
+}
+
+/* ---- Step 1 ------------------------------------------------------- */
+function screenName(){
+  const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
+  const leftovers = ROSTER.filter(r=>!grouped.has(r));
+  const groups = leftovers.length ? [...DM_GROUPS, {dm:'Other', reps:leftovers}] : DM_GROUPS;
+  return `<div class="v3">
+    ${stepHead(1, 'Choose your name', 'Tap your name to see your incentives.')}
+    ${groups.map(g=>`
+      <div class="v3-dm">${esc(g.dm)}</div>
+      <div class="v3-grid">${g.reps.map(r=>
+        `<button class="v3-name js-go" data-rep="${esc(r)}">${esc(r)}<span class="ar">&#8594;</span></button>`
+      ).join('')}</div>`).join('')}
+  </div>`;
+}
+
+/* ---- Step 2 ------------------------------------------------------- */
+function screenSupplier(){
+  const rep = vRep, first = rep.split(' ')[0];
+  const sups = repSuppliers(rep);
+  return `<div class="v3">
+    ${backBtn('Back to names', '', '', '')}
+    ${stepHead(2, `${esc(first)}, choose a supplier`, `Tap a supplier to see your ${esc(activeMonth.label)} incentives for them.`)}
+    <div class="v3-grid">
+    ${sups.map(([sk,items])=>{
+      const live = items.filter(x=>!x.sum.soon);
+      const earned = live.filter(x=>x.sum.status==='earned').length;
+      const note = earned
+        ? `${pl(items.length,'incentive')} · <strong>${earned} already earned</strong>`
+        : `${pl(items.length,'incentive')}`;
+      return `<button class="v3-pick js-go" data-rep="${esc(rep)}" data-sup="${esc(sk)}">
+        <span class="v3-pick-top">
+          ${v3Logo(sk)}
+          <span class="v3-pick-text">
+            <span class="v3-pick-name">${esc(SUPPLIERS[sk].name)}</span>
+            <span class="v3-pick-note">${note}</span>
+          </span>
+        </span>
+        <span class="v3-cta">See these incentives<span class="ar">&#8594;</span></span>
+      </button>`;
+    }).join('')}
+    </div>
+  </div>`;
+}
+
+/* ---- Step 3 ------------------------------------------------------- */
+function screenIncentive(){
+  const rep = vRep, sk = vSup;
+  const found = repSuppliers(rep).find(g=>g[0]===sk);
+  const items = found ? found[1] : [];
+  return `<div class="v3">
+    ${backBtn('Back to suppliers', rep, '', '')}
+    ${stepHead(3, `${esc(SUPPLIERS[sk].name)}`, 'Choose an incentive to see how you are doing.')}
+    <div class="v3-grid">
+    ${items.map(({entry,sum})=>{
+      const note = sum.soon
+        ? 'Not being tracked yet'
+        : (sum.goal ? `Goal: <strong>${esc(sum.label||'')}</strong>` : esc(sum.label||''));
+      return `<button class="v3-pick js-go" data-rep="${esc(rep)}" data-sup="${esc(sk)}" data-prog="${esc(entry.key)}">
+        <span class="v3-pick-top">
+          <span class="v3-pick-text">
+            <span class="v3-pick-name">${esc(entry.title)}</span>
+            <span class="v3-pick-note">${note}</span>
+          </span>
+        </span>
+        <span style="display:block;margin-top:13px">${v3Pill(sum.status)}</span>
+        <span class="v3-cta${sum.soon?' quiet':''}">${sum.soon?'See the rules':'See my progress'}<span class="ar">&#8594;</span></span>
+      </button>`;
+    }).join('')}
+    </div>
+  </div>`;
+}
+
+/* ---- Step 4: your progress ---------------------------------------- */
+// The hero answers "where do I stand" in one number before anything else
+// on the screen. A program with a threshold leads with percent complete;
+// an open-ended one has no percent to show, so it leads with what the rep
+// has actually landed or earned. Inventing a percentage for the second
+// kind would be a made-up number, which is worse than no number.
+function heroFor(sum){
+  if(sum.soon) return {big:'—', cap:'Not being tracked yet', bar:false};
+  if(sum.goal){
+    const pct = Math.round(sum.pct||0);
+    return {big:pct+'%', cap:'Complete', bar:true, under:sum.label||''};
+  }
+  return {big:sum.label||'', cap:sum.sub||'So far this period', bar:false};
+}
+
+function screenProgress(){
+  const rep = vRep, sk = vSup, key = vProg;
+  const entry = PROGRAM_LIST.find(e=>e.key===key);
+  if(!entry) return screenIncentive();
+  const sum = summarize(entry, rep);
+  const h = heroFor(sum);
+  const st = sum.status;
+
+  const hero = `<div class="v3-hero">
+    <div class="v3-hero-sup">${esc(SUPPLIERS[sk].name)}</div>
+    <div class="v3-hero-name">${esc(entry.title)}</div>
+    <div class="v3-big ${st}">${esc(h.big)}</div>
+    <div class="v3-big-cap">${esc(h.cap)}</div>
+    ${h.bar?`<div class="v3-hero-bar"><div class="v3-hero-fill ${st}" style="width:${Math.max(sum.pct||0,(sum.pct?2:0))}%"></div></div>
+      <div class="v3-hero-remain">${esc(h.under||'')}${sum.remain?` &nbsp;·&nbsp; ${esc(sum.remain)}`:''}</div>`
+     :`<div style="margin-top:18px">${v3Pill(st)}</div>`}
+  </div>`;
+
+  const next = sum.next ? `<div class="v3-next">
+      <div class="v3-next-l">What to do next</div>
+      <div class="v3-next-t">${sum.next}</div>
+    </div>` : '';
+
+  const detail = sum.soon
+    ? `<div class="v3-note">${esc(entry.manual
+        ? 'This one is submitted and checked by hand, so there are no numbers to show here yet. The rules above are the whole program.'
+        : 'The first report for this incentive has not arrived yet. Your progress will appear here as soon as it does.')}</div>`
+    : `<button class="v3-more js-more" data-target="more-${esc(key)}">See full details<span class="ar">&#9656;</span></button>
+       <div class="v3-more-body" id="more-${esc(key)}">${cardFor(key, rep)}</div>`;
+
+  return `<div class="v3">
+    ${backBtn(`Back to ${SUPPLIERS[sk].name}`, rep, sk, '')}
+    ${stepHead('', 'Your progress', `Here is where you stand, ${esc(rep.split(' ')[0])}.`)}
+    ${hero}
+    ${next}
+    ${detail}
+  </div>`;
+}
+
+function renderGuided(){
+  const main = document.getElementById('main');
+  document.body.classList.toggle('v3-deep', !!vRep);
+  if(!vRep)       main.innerHTML = screenName();
+  else if(!vSup)  main.innerHTML = screenSupplier();
+  else if(!vProg) main.innerHTML = screenIncentive();
+  else            main.innerHTML = screenProgress();
+}
+
 function renderPillNav(rep){
   const grp = g => PROGRAM_LIST.filter(e=>e.group===g).map(e=>{
     const has = !!e.getRep(rep);
@@ -113876,16 +114234,14 @@ function renderProgramDetail(key){
 }
 
 function renderMain(){
-  if(activeRep) renderRep();
-  else if(activeProgram) renderProgramDetail(activeProgram);
-  else renderOverview();
+  if(activeProgram) renderProgramDetail(activeProgram);
+  else renderGuided();
 }
 
 function resetToHome(){
+  vRep = vSup = vProg = null;
   activeRep = null;
   activeProgram = null;
-  const bar = document.getElementById('repbar');
-  if(bar) bar.querySelectorAll('.repchip').forEach(x=>x.classList.remove('active'));
   renderMain();
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -113899,6 +114255,7 @@ function setMonth(key){
   activeMonth = m;
   PROGRAM_LIST = m.programs;
   activeProgram = null;
+  vSup = null; vProg = null;
   renderMonthTabs();
   renderMain();
   scrollToContent();
@@ -113916,22 +114273,6 @@ function renderMonthTabs(){
 
 function boot(){
   renderMonthTabs();
-  const bar = document.getElementById('repbar');
-  const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
-  const leftovers = ROSTER.filter(r=>!grouped.has(r));
-  const groups = leftovers.length ? [...DM_GROUPS, {dm:'Other', reps:leftovers}] : DM_GROUPS;
-  bar.innerHTML = groups.map(g=>`<div class="v2-dm-group">
-      <div class="v2-dm-label">${esc(g.dm)}</div>
-      <div class="v2-dm-pills">${g.reps.map(r=>`<button class="v2-repchip repchip" data-rep="${esc(r)}">${esc(r)}</button>`).join('')}</div>
-    </div>`).join('');
-  bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click', ()=>{
-    activeRep = b.dataset.rep;
-    activeProgram = null;
-    bar.querySelectorAll('.repchip').forEach(x=>x.classList.toggle('active', x===b));
-    renderMain();
-    // Land on the rep's own summary, not the picker they just used.
-    scrollToContent();
-  }));
   document.getElementById('resetHomeBtn').addEventListener('click', resetToHome);
   renderMain();
 }
@@ -113945,6 +114286,26 @@ document.addEventListener('click', (e)=>{
   const body = document.getElementById(t.dataset.target);
   t.classList.toggle('open');
   if(body) body.classList.toggle('open');
+});
+
+// Every navigation in the guided flow is one handler: a button carries the
+// state it wants (rep / supplier / incentive) and empty means "go back to
+// that step". Back buttons are the same element with fewer fields set, so
+// forward and back can never disagree about where they land.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-go');
+  if(!t) return;
+  goStep(t.dataset.rep || null, t.dataset.sup || null, t.dataset.prog || null);
+});
+
+// "See full details" on the progress screen.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-more');
+  if(!t) return;
+  const body = document.getElementById(t.dataset.target);
+  const open = t.classList.toggle('open');
+  if(body) body.classList.toggle('open', open);
+  t.firstChild.textContent = open ? 'Hide full details' : 'See full details';
 });
 
 // One program row: expand it in place into its full card. Rows are the

@@ -28,6 +28,73 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
+GUIDED FOUR-STEP FLOW (2026-09-04, second pass -- supersedes v2 below)
+======================================================================
+The supplier-first pass below was the right structure but still put every
+program's progress on one screen, so a rep still had to scan to work out
+what was tappable. Gavin's standard for this page: "someone who has never
+used a phone, computer, or dashboard before should still be able to figure
+it out." So the path is now four SCREENS, one decision each, and only one
+is ever on the page:
+
+    Step 1  Choose your name
+    Step 2  <First>, choose a supplier
+    Step 3  <Supplier>  -- choose an incentive
+    (—)     Your progress
+
+STATE IS THREE VARIABLES -- vRep, vSup, vProg. Which screen renders is just
+how many are set (renderGuided()), so Back is "clear the last one" and
+there is no second history model to keep in sync. Every navigation, forward
+and back, is ONE delegated handler on .js-go reading data-rep/-sup/-prog;
+a Back button is the same element with fewer fields filled. Forward and
+back therefore cannot disagree about where they land.
+
+WHAT EACH SCREEN MAY CONTAIN
+  Steps 1-3  a title saying what the rep is doing, and nothing but full
+             width choice buttons. Every button carries an explicit verb
+             ("SEE THESE INCENTIVES", "SEE MY PROGRESS") -- a rep is never
+             asked to work out that a title, a chevron or a card is
+             tappable. 64px minimum tap height, single column on a phone.
+  Step 4     ONE number owns the screen: percent complete for a program
+             with a threshold, or what they have landed/earned for an
+             open-ended one. Then "What to do next" in a sentence. Then
+             "See full details", collapsed, which opens the ORIGINAL card.
+
+THE HERO NUMBER IS NOT ALWAYS A PERCENT, on purpose. heroFor() shows a
+percent only for goal:true programs. An open-ended program (every
+placement pays from the first) has no denominator, so it leads with the
+real figure -- "$15 earned" -- rather than a percentage invented from
+nothing. A made-up 100% on a rep's first placement would be worse than no
+percentage at all.
+
+MOBILE IS THE PRIMARY LAYOUT HERE. The phone rules are the base
+stylesheet; the only desktop rule is a media query that lets the choice
+buttons sit two or three across. Type scale, tap targets and the flow are
+the phone's everywhere. Verified with no horizontal overflow at 390 / 834
+/ 1280 px.
+
+WHAT WAS REMOVED FROM THE DEFAULT VIEW, and where it went:
+  the rep bar above <main>      -> is now Step 1 inside the flow
+  the v2 supplier accordions    -> Steps 2 and 3
+  the "Where to focus next" row -> dropped: it competed with the one
+                                   decision each screen is asking for
+  every program's stat tiles    -> behind "See full details" on step 4
+  "Start Over"                  -> hidden on Step 1 (body.v3-deep), where
+                                   it was a button that did nothing visible
+  the month tabs                -> kept, but labelled "Which month?"; two
+                                   unlabelled chips read as noise
+
+v2's SUPPLIERS / PROGRAM_SUPPLIER / PROGRAM_SUMMARY / summarize() are
+UNCHANGED and still the single source for grouping, numbers and status --
+v3 only replaced the screens that draw them. renderRepV2()/renderBrowseV2()
+and the v2- CSS are still in the file but no longer routed to; renderMain()
+calls renderGuided(). Deleting them is safe, they are kept only so the v2
+view is one line away if this proves too many taps for daily use.
+
+generate.py is unaffected -- it only rewrites the PROGRAM_DATA blob and the
+refresh date. Verified by running it after the rebuild and diffing
+everything else: no change.
+
 SUPPLIER-FIRST REDESIGN (2026-09-04)
 ====================================
 Reps' feedback was that the page had "too much going on". The old default
