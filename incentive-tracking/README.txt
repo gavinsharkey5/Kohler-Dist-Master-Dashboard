@@ -207,6 +207,46 @@ touchdowns_tea 2 placements + 265 on-prem cases, evil_genius 1 placement (0
 reps past the qualifier), montauk 5 placements. Expect these to look empty for
 most reps until mid-month.
 
+2026-09-04 REFRESH -- five exports, and the Keystone dependency finally bit
+Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. All five grew with
+NO row removed (+11 / +5 / +8 / +18 / +11 rows); the one 1911 row that looked
+dropped was the same key with its Cases revised (-3.00 -> -2.00, a return
+partly reversed), with Buyer and Placement Count untouched, so nothing
+reclassified.
+
+KEYSTONE IS THE HEADLINE: 75 -> 84 accounts house-wide and 0 -> 2 reps
+qualified, the first on this program -- Pablo Lopez 12 of 12 (43% of 28, rank
+#1) and Derrick Laws 13 of 13 (41% of 32). Projected payout $0 -> $125.
+This is exactly the failure the ordering rule below exists to prevent, so it
+is worth recording that it actually happened: keystone-ice/actuals.csv had
+been left on the older 85-row pull while MPOs/off-prem carried the newer
+96-row one, so this page showed 0 qualified while the off-prem board already
+showed 2. The two files are the SAME RDE export and are now byte-identical
+again. If the Keystone card ever disagrees with the off-prem board, compare
+those two files first -- that is the bug, every time.
+
+THE OTHER FOUR MOVED WITHOUT MOVING THEIR HEADLINES, which is expected and
+not a failed load. New-placement totals held at 1911 34, Woodchuck 8 and Tona
+12 because every added row is a REORDER at an account that already bought in
+the 5/1-7/31 base window -- new placements only ever come from accounts with
+no base-period row, so mid-program refreshes move volume long before they move
+placements. What did move, and is the proof the data landed:
+  1911       case volume up for Andrew Lundy (62->66), Jayson Romine (61->62),
+             John O'Donoghue (88->93) and Mike Ast (55->59); off-prem reorders
+             up for O'Donoghue (11->12) and Ast (3->4).
+  Woodchuck  case volume up for Andrew Lundy (20->24), Dylan Rubino (11->12),
+             Hakan Sadik (16->17), John O'Donoghue (19->21), Phil Ernst (8->9);
+             reorders up for Sadik, O'Donoghue and Ernst.
+  Tona       other-Tona cases up for five reps; Dylan Rubino's 24 oz cases
+             4 -> 6. Still nobody at the 20-case 24 oz qualifier -- Rubino
+             leads at 6, so that leg is unpaid house-wide.
+  Lytt       three reps each gained a buying account: Jayson Romine 11->12
+             (33.3%->36.4%), Matt Powierski 10->11 (28.6%->31.4%), Phil Ernst
+             7->8 (28.0%->32.0%). No tier changed -- all ten tiered reps are
+             still "Gettin' Lytt" at $0.50, so no rate moved.
+A refresh that leaves a placement count flat is therefore NOT evidence the file
+failed to load. Check the per-rep case volumes, which move first.
+
 Because build_keystone_ice() reads a sibling dashboard's output, THIS
 PAGE IS ONLY AS CURRENT AS THAT DASHBOARD. Refresh keystone-ice first
 (save the new RDE export over its actuals.csv, run its generate.py),
