@@ -40,9 +40,14 @@ Input (keep this filename when re-exporting):
 index.html does all the rep -> account -> brand grouping client-side from
 the flat row list emitted here, the same way it re-groups after search/
 county/status filtering -- so there's exactly one grouping implementation
-to keep correct, not two. This export is one snapshot in time (each account
-has a single visit date here), so "most recent visit"/"most recent photo"
-is just that snapshot's values.
+to keep correct, not two. That single list is also why the current-lineup
+filter below is a one-place fix: every number the page shows is derived
+from it.
+
+Exports are no longer one snapshot in time. As of 9.4.26 an account can
+carry several survey passes; only its newest feeds `records`, and the
+earlier ones are emitted separately as `history`. See the "current lineup
+vs. survey history" block below.
 
 Run: python3 generate.py
 """
@@ -373,6 +378,124 @@ for n, raw in raw_by_num.items():
         'photo': raw['photo'],
     })
 
+# ---------- current lineup vs. survey history (added 2026-09-04, per Gavin:
+# the dashboard "appears to be combining multiple surveys for the same
+# account instead of showing only the account's most recent tap lineup") ---
+# Every export until now gave each account exactly one visit date, so a flat
+# row list WAS the current tap wall and this file said as much. The 9.4.26
+# workbook is the first with repeat survey passes: 70 accounts carry two
+# Date/Time stamps and one carries three. Summing every row double-counted
+# brands that were on tap both times and kept showing brands that had since
+# come off -- Applebee's Clifton (24022) read 17 taps (a 9-tap 7/15 survey
+# plus an 8-tap 9/2 one) for a wall that holds 8.
+#
+# A survey submission is one (Account #, Date/Time) pair. Only the newest
+# one per account survives into `records`, and since index.html derives
+# EVERY number it shows from that one list -- rep and DM rollups, brand /
+# supplier / segment totals, the KPI tiles, the target and opportunity
+# tools, accounts surveyed -- filtering here is what makes the whole
+# dashboard current-state. No per-metric change is needed, and none can be
+# missed. Superseded rows are not discarded: they go to `history` below,
+# which feeds the account card's own Survey history section.
+#
+# Do NOT be tempted to use "iSellBeer Import Template" as the current-lineup
+# source instead. It looked like one in the 9.4 delivery -- it held exactly
+# this account's 8 September rows and nothing older -- but that is the
+# half-finished-audit defect (see README's "Repairing a half-finished audit
+# matrix"), not curation: the sheet arrived populated for 133 rows across 26
+# accounts, i.e. only the newest appended block, and build_mediator.py
+# repastes all 6,038 rows into it as part of the normal refresh. Post-repair
+# it carries every survey, exactly like the raw sheet. Latest-per-account
+# has to be computed; it is never a sheet you can just read.
+SURVEY_ROW_FIELDS = ('brand', 'brandFamily', 'supplier', 'segment', 'status',
+                     'flipped', 'rawStatus', 'reason')
+
+
+def survey_entry(visited, rows):
+    """One survey submission, with its brand rows aggregated on the same key
+    index.html uses for the current view (brand + family + supplier +
+    status), so a historical table reads exactly like the current one."""
+    agg, order = {}, []
+    for r in rows:
+        key = (r['brand'], r['brandFamily'], r['supplier'], r['status'])
+        if key not in agg:
+            agg[key] = {f: r[f] for f in SURVEY_ROW_FIELDS}
+            agg[key]['taps'] = 0
+            order.append(key)
+        agg[key]['taps'] += r['taps']
+    brands = sorted((agg[k] for k in order), key=lambda b: -b['taps'])
+    dt = datetime.datetime.fromisoformat(visited)
+    def side(s):
+        return sum(b['taps'] for b in brands if b['status'] == s)
+    total = sum(b['taps'] for b in brands)
+    return {
+        'visited': visited,
+        'display': dt.strftime('%b %-d, %Y'),
+        'displayFull': dt.strftime('%b %-d, %Y at %-I:%M %p'),
+        'taps': total,
+        'us': side('US'),
+        'them': side('THEM'),
+        'unv': total - side('US') - side('THEM'),
+        'brands': brands,
+    }
+
+
+surveys = defaultdict(lambda: defaultdict(list))
+for r in records:
+    surveys[r['account']][r['visited']].append(r)
+
+# ISO timestamps sort chronologically as plain strings, so max() is the
+# account's newest submission.
+current_visit = {acct: max(by_date) for acct, by_date in surveys.items()}
+
+# History is emitted for re-surveyed accounts only. An account with a single
+# survey has nothing to compare and its one date is already on the card
+# head, so carrying ~5,400 more rows for it would only inflate the page.
+history = {acct: [survey_entry(d, by_date[d]) for d in sorted(by_date, reverse=True)]
+           for acct, by_date in surveys.items() if len(by_date) > 1}
+
+superseded_taps = sum(r['taps'] for r in records if r['visited'] != current_visit[r['account']])
+records = [r for r in records if r['visited'] == current_visit[r['account']]]
+
+
+def reconcile():
+    """Re-derive the published tap count for every account straight from the
+    raw sheet -- not from `records` -- and refuse to write a dashboard that
+    disagrees. Two invariants: an account shows exactly its newest survey's
+    SUM("# of Taps"), and no account mixes survey dates. Cheap insurance
+    against both a regression here and a future export whose Date/Time shape
+    breaks the survey key (which would silently re-merge the surveys)."""
+    expected = defaultdict(lambda: defaultdict(int))
+    for n, raw in raw_by_num.items():
+        acct = raw['Account #'].strip()
+        if n not in tmpl_by_num or acct in package_only_ids or not raw['Route / Sales Rep'].strip():
+            continue
+        expected[acct][parse_datetime(raw['Date/Time']).isoformat()] += num(raw['# of Taps'])
+    published, dates = defaultdict(int), defaultdict(set)
+    for r in records:
+        published[r['account']] += r['taps']
+        dates[r['account']].add(r['visited'])
+    problems = []
+    if set(expected) != set(published):
+        for acct in set(expected) ^ set(published):
+            problems.append(f"{acct}: in the workbook but not published, or vice versa")
+    for acct, by_date in expected.items():
+        latest = max(by_date)
+        if published.get(acct, 0) != by_date[latest]:
+            problems.append(f"{acct}: published {published.get(acct, 0)} taps, "
+                            f"newest survey ({latest}) has {by_date[latest]}")
+    for acct, ds in dates.items():
+        if len(ds) > 1:
+            problems.append(f"{acct}: current view mixes {len(ds)} survey dates -- {sorted(ds)}")
+    if problems:
+        raise SystemExit(f"Reconciliation FAILED for {len(problems)} account(s):\n  "
+                         + "\n  ".join(problems[:20]))
+    return len(expected)
+
+
+reconciled_accounts = reconcile()
+
+
 # ---------- brand-rights matrix (added 2026-08-17, per Gavin: the
 # opportunity engine must never suggest a brand a rep can't sell in that
 # account's county). "Master - US vs THEM" is the audit engine's own final
@@ -437,8 +560,14 @@ payload = {
         'repCount': len(reps), 'accountCount': len(accounts),
         'photosAvailable': photos_available,
         'flipped': total_flipped,
+        # current-state framing for the page's own footnotes
+        'resurveyedAccounts': len(history),
+        'supersededTaps': superseded_taps,
     },
     'records': records,
+    # account # -> its surveys, newest first (re-surveyed accounts only --
+    # see the history block above). Never folded into the numbers above.
+    'history': history,
     'brandRights': brand_rights,
 }
 
@@ -460,6 +589,8 @@ print(f"Draft/Package filter: {len(package_only_dropped)} surveyed accounts drop
       f"{len(surveyed_not_in_export)} kept accounts not in the export at all (treated as unknown, kept)")
 print(f"{len(reps)} reps, {len(accounts)} accounts, {total_taps} taps "
       f"({total_us} ours / {total_them} competitor / {total_unv} unverified)")
+print(f"Current lineup only: {len(history)} account(s) re-surveyed, {superseded_taps} superseded taps "
+      f"held back for history; reconciled {reconciled_accounts} accounts against the raw sheet")
 print(f"Corrected vs. iSellBeer's own raw flag: {total_flipped} of {len(records)} rows")
 print(f"Accounts with a photo on file: {photos_available} of {len(accounts)}")
 seg_total = sum(segment_stats.values())

@@ -300,7 +300,32 @@ for n, raw in raw_by_num.items():
         'supplier': raw['Supplier'].strip(),
         'taps': num(raw['# of Taps']),
         'status': resolve_status(sheet_status, corrected, raw['Supplier']),
+        'visited': datetime.strptime(raw['Date/Time'].strip(), '%m/%d/%Y %I:%M %p').isoformat(),
     })
+
+# ---------- current lineup only (added 2026-09-04) ----------
+# Same defect and same fix as ../tap-survey-tracking/generate.py -- read that
+# file's "current lineup vs. survey history" block for the full reasoning;
+# both pages join the same two sheets of the same workbook, so both had it.
+# In short: the 9.4.26 export is the first where an account can be surveyed
+# more than once (a survey submission = one Account # + Date/Time pair), and
+# summing every row counted a brand once per pass and kept pouring brands
+# that had since come off the wall. Only the newest pass per account counts
+# toward what is on tap TODAY, which is the only question this page answers
+# -- so the filter goes here, above every total, split, area card, velocity
+# join and flip-target list, rather than in each of them.
+#
+# This page keeps no history section (it is the one-scroll executive view,
+# not the rep drill-down); the tap tracker holds the superseded passes.
+survey_dates = defaultdict(set)
+for r in records:
+    survey_dates[r['account']].add(r['visited'])
+current_visit = {acct: max(dates) for acct, dates in survey_dates.items()}
+superseded_taps = sum(r['taps'] for r in records if r['visited'] != current_visit[r['account']])
+resurveyed_accounts = sum(1 for dates in survey_dates.values() if len(dates) > 1)
+records = [r for r in records if r['visited'] == current_visit[r['account']]]
+assert all(len({r['visited'] for r in records if r['account'] == a}) == 1 for a in current_visit), \
+    'an account is still showing more than one survey pass'
 
 # ---------- fix the "Sales" placeholder area via city majority-vote ----------
 city_area_votes = defaultdict(Counter)
@@ -723,6 +748,8 @@ HTML.write_text(new_html, encoding='utf-8')
 print(f"CORE MARKET: {summary['totalTaps']} taps at {summary['accountsSurveyed']} accounts: "
       f"{summary['usTaps']} ours ({summary['usPct']}%) / {summary['themTaps']} competitor ({summary['themPct']}%)")
 print(f"  by area: {', '.join(a['area'] + ' ' + str(a['totalTaps']) for a in core_areas_out)}")
+print(f"Current lineup only: {resurveyed_accounts} account(s) re-surveyed, "
+      f"{superseded_taps} superseded taps excluded company-wide")
 print(f"Company-wide (reference only): {company_wide['totalTaps']} taps, "
       f"{company_wide['usPct']}% ours / {company_wide['themPct']}% competitor")
 print(f"Velocity: {len(velocity_brands)} US brand(s) matched to Encompass out of {len(candidate_us_brands)} candidates "

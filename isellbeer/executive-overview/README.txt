@@ -271,6 +271,28 @@ To refresh with new exports:
      worth a sanity check against what you'd expect.
   4. Commit and push.
 
+Current lineup only (added 2026-09-04): every number on this page counts
+each account's MOST RECENT survey pass only. A survey submission is one
+(Account # + Date/Time) pair; through 8.27.26 each account had exactly one,
+so summing every row was the same thing as the current tap wall. The 9.4.26
+workbook is the first with repeat passes -- 70 accounts with two, one with
+three -- and summing them all counted a brand once per pass and kept
+pouring brands that had since come off. The filter sits immediately after
+the record loop in generate.py, above every total, split, area card,
+velocity join and flip-target list, rather than in each of them. Core
+market went 5,971 -> 5,525 taps; the split barely moved (51.4% / 48.6%),
+and the 718-account book is unchanged. An assert refuses to build if any
+account still carries more than one pass.
+  ../tap-survey-tracking/generate.py got the same filter the same day --
+  it joins the same two sheets of the same workbook and had the identical
+  double-count -- plus a per-account Survey history section, which is where
+  the superseded passes are viewable. This page keeps none: it's the
+  one-scroll executive view, and a "what changed at this account" panel
+  belongs on the rep drill-down. Read that folder's README ("Current
+  lineup only" / "Survey history") for the full reasoning, including why
+  the "iSellBeer Import Template" sheet is NOT a shortcut to the latest
+  pass despite looking like one in the 9.4 delivery.
+
 Supplier policy override (confirmed with the user 2026-08-12): the 8.12.26
 source file added an "Unverified Brands" sheet ruling that taps from
 suppliers marked "(In-House)", Other Half, Industrial Arts, and Pabst count

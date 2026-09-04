@@ -395,6 +395,66 @@ To refresh with a new export:
   unmatched rows just vanish. Always compare generate.py's printed tap
   count against the previous refresh; it should only go up.
 
+Current lineup only -- the dashboard shows what is on tap NOW (added
+2026-09-04, per Gavin: it "appears to be combining multiple surveys for the
+same account instead of showing only the account's most recent tap lineup"):
+  A survey submission is one (Account # + Date/Time) pair. Through 8.27.26
+  every account had exactly one, so a flat row list WAS the current tap
+  wall and nothing here distinguished the two. The 9.4.26 workbook is the
+  first with repeat passes -- 70 accounts with two, one with three -- and
+  summing every row counted a brand once per pass and kept pouring brands
+  that had since come off. Applebee's Clifton (24022) read 17 taps (a
+  9-tap 7/15 pass plus an 8-tap 9/2 one) for a wall that holds 8.
+  generate.py now keeps only each account's newest pass in `records`.
+  That is deliberately ONE filter in ONE place: index.html derives every
+  number it shows -- account handles, rep and DM rollups, brand / supplier
+  / segment totals, the KPI tiles, the target and opportunity tools,
+  accounts surveyed -- from that single list, so filtering it makes the
+  whole page current-state and no metric can be missed. 6,795 taps ->
+  6,215; the 745-account book is unchanged (every account keeps its
+  newest pass).
+  DON'T "fix" this by reading "iSellBeer Import Template" instead. In the
+  9.4 delivery that sheet held exactly this account's 8 September rows and
+  nothing older, which reads like curation but is the half-finished-audit
+  defect below: 133 rows across 26 accounts, i.e. only the newest appended
+  block. build_mediator.py repastes all 6,038 rows into it as a normal part
+  of the refresh, so post-repair it carries every pass, same as the raw
+  sheet. Latest-per-account must be computed; no sheet in the workbook
+  hands it to you.
+  Reconciliation runs on every build and is FATAL, not a warning:
+  reconcile() re-derives each account's expected taps straight from the raw
+  sheet (not from `records`) and refuses to write index.html unless every
+  account matches its newest pass's SUM("# of Taps") and no account mixes
+  dates. That is the check that would catch a future export whose Date/Time
+  format shifts, which would otherwise silently re-merge the passes.
+  ../executive-overview/generate.py got the identical filter the same day
+  (it joins the same two sheets and had the same double-count): core market
+  5,971 -> 5,525 taps, split essentially unchanged at 51.4/48.6.
+
+Survey history (added 2026-09-04, same change): superseded passes are not
+discarded, they are emitted as a separate `history` payload -- account # ->
+its passes, newest first, each with its own brand rows, tap/us/them totals
+and timestamp. Only re-surveyed accounts get an entry (a single-pass
+account has nothing to compare and its one date already sits on the card
+head; carrying the other ~5,400 rows would only bloat the page).
+  On the page: a re-surveyed account row shows a "* N passes" badge, and
+  expanding the account reveals a collapsed "Survey history" section --
+  date buttons for every pass, the selected pass's full lineup, and an
+  Added / Removed / Retained comparison against the current pass. The diff
+  keys on brand + family and deliberately NOT on status, so a handle whose
+  US/THEM ruling changed between passes reads as retained, not as one
+  removal plus one addition.
+  Nothing in that section is ever summed into a page total -- HISTORY is
+  read only by historyHtml(); RECORDS is what every metric uses.
+  There is deliberately no company-wide "vs. last survey" trend: 70 of 745
+  accounts have a second pass, far too few a base to trend honestly.
+
+Rows are not taps (fixed 2026-09-04, alongside the above): both tab headers
+read "N taps across ..." while actually printing records.length, i.e. the
+ROW count. A row can carry several handles ("# of Taps" > 1), so the header
+undercounted -- 5,459 "taps" against a real 6,215. Both now call tapsIn().
+Every other number on the page already summed # of Taps correctly.
+
 Repairing a half-finished audit matrix -- NOT a one-off; EVERY delivery
 since 8.20.26 has arrived this way, so treat build_mediator.py as a normal
 step of the refresh and check for these defects EVERY time:
@@ -489,11 +549,12 @@ Notes:
   - "# of Taps" (not row count) is what's summed for every tally in this
     dashboard -- an account with 3 handles of the same brand counts as 3
     taps, not 1 row.
-  - This export is one snapshot in time: each account appears with exactly
-    one visit date. "Most recent visit" / "most recent photo" is just that
-    snapshot's value. If a future export ever contains multiple dates for
-    the same account (repeat survey passes), generate.py already takes the
-    latest one per account, so no code change would be needed for that.
+  - Exports are NO LONGER one snapshot in time -- see "Current lineup only"
+    below. Through 8.27.26 each account appeared with exactly one visit
+    date; the 9.4.26 export is the first with repeat survey passes, and
+    the old prediction here ("generate.py already takes the latest one per
+    account") was only half true: it took the latest DATE for the visit
+    label and photo, but still summed every pass's tap rows.
   - index.html does all the rep -> account -> brand grouping client-side
     from the flat row list generate.py emits, and re-groups the same way
     after search/county/status filtering -- so there's exactly one

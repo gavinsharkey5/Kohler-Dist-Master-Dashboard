@@ -62,3 +62,26 @@ exactly this and it is the DEFAULT for that dashboard -- see its
 README.txt. Don't ask Gavin to re-pull a whole period as a matter of
 course; --merge is the routine path. If another dashboard moves to
 weekly pulls, it needs the same treatment rather than a plain rerun.
+
+## Tap dashboards show the CURRENT lineup, not every survey ever (2026-09-04)
+
+An iSellBeer tap export can now contain more than one survey pass for the
+same account -- one submission is an `Account # + Date/Time` pair. The
+9.4.26 workbook was the first: 70 accounts surveyed twice, one three times.
+Both tap dashboards (`isellbeer/tap-survey-tracking/`,
+`isellbeer/executive-overview/`) read that workbook, and both were summing
+every pass, so a brand on tap at both visits counted twice and a brand
+since removed still poured. Applebee's Clifton read 17 taps for a wall
+that holds 8.
+
+Both generators now keep only each account's newest pass. Do NOT undo this
+by "restoring" the missing taps -- the drop (6,795 -> 6,215 on the tracker,
+5,971 -> 5,525 core on the exec page) is the fix, not data loss. The
+superseded passes are still published: the tracker emits them as a separate
+`history` payload and renders them per account under "Survey history",
+where nothing feeds a total.
+
+The tracker's `generate.py` has a `reconcile()` that re-derives every
+account's taps from the raw sheet and HARD-FAILS the build on a mismatch or
+a mixed-date account. If a future export changes the Date/Time format, that
+check is what fires -- fix the parsing, never loosen the check.
