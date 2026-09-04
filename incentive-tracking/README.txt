@@ -28,6 +28,35 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
+BRAND MARKS AT THE INCENTIVE LEVEL (2026-09-04)
+===============================================
+The guided flow shows the SUPPLIER logo on step 2 and now the BRAND marks
+on step 3 (the incentive chooser) and on the step 4 progress hero, per
+Gavin. A rep recognises the Sun Cruiser sun or the Lytt wordmark faster
+than they read a program title, so the marks sit at the TOP of the card,
+not as trailing decoration.
+
+PROGRAM_LOGOS VALUES MAY NOW BE AN ARRAY. A program can carry more than one
+brand -- Touchdowns & Tea is a Sun Cruiser AND Twisted Tea program -- so
+progLogos() normalises a string or a list to a list and progLogo() /
+v3Brands() render one tile each. Every existing single-string entry is
+untouched and still works.
+
+MISSING ASSET: assets/logos/twisted_tea.png. Touchdowns & Tea is mapped to
+BOTH sun_cruiser.png and twisted_tea.png, but the Twisted Tea file does not
+exist yet -- the September deck has no Twisted Tea artwork anywhere (its
+only Touchdowns art is two Sun Cruiser football banners, checked by
+extracting the slide's images), and there is no Twisted Tea mark elsewhere
+in the repo. Drop the file at that path and it renders with NO code change.
+Until then the <img> removes its own tile via onerror, so the card shows
+Sun Cruiser alone rather than a broken-image icon -- verified in a browser
+with the file genuinely absent.
+
+STILL UNMAPPED: le_grand_noir has no brand mark (it had none in August
+either) and there is no Le Grand Noir asset in the repo. Its card renders
+with no brand tile, which is the correct degradation -- v3Brands() returns
+an empty string for an unmapped key. Same one-line fix if a mark arrives.
+
 PLACEMENT vs BUYER: THE GRAIN RULE (2026-09-04) -- REVERSES 2026-08-17
 =====================================================================
 Per Gavin, reading the September Rewards Deck: "any time the incentive says

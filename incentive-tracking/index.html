@@ -759,6 +759,22 @@
     .v3-title{font-size:26px;}
   }
 
+  /* Program (brand) marks on the incentive chooser and the progress hero.
+     A rep recognises "Lytt" or the Sun Cruiser sun faster than the program
+     title, so these are the first thing on the card, not decoration at the
+     end. A program may carry more than one -- Touchdowns & Tea is Sun
+     Cruiser AND Twisted Tea. */
+  .v3-brands{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .v3-brand{width:74px;height:46px;background:#fff;border-radius:9px;padding:5px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;}
+  .v3-brand img{max-width:100%;max-height:100%;object-fit:contain;}
+  .v3-hero .v3-brands{justify-content:center;margin-bottom:14px;}
+  .v3-hero .v3-brand{width:88px;height:54px;}
+  @media (max-width:480px){
+    .v3-brand{width:64px;height:40px;}
+    .v3-hero .v3-brand{width:78px;height:48px;}
+  }
+
 </style>
 </head>
 <body>
@@ -102071,10 +102087,13 @@ const PROGRAM_LOGOS = {
   // same way August points two Garage Beer programs at one logo).
   'printed_menu': 'assets/logos/bardstown.png',
   'bardstown_display': 'assets/logos/bardstown.png',
-  // Touchdowns & Tea is a Sun Cruiser / Twisted Tea program. The deck's only
-  // art for it is a football promo banner, not a logo, so this reuses the Sun
-  // Cruiser mark already in the repo rather than shrinking a busy banner.
-  'touchdowns_tea': 'assets/logos/sun_cruiser.png',
+  // Touchdowns & Tea is a Sun Cruiser AND Twisted Tea program, so it carries
+  // both marks (2026-09-04). The deck has no Twisted Tea artwork -- its only
+  // Touchdowns art is two Sun Cruiser football banners -- so twisted_tea.png
+  // is whatever Kohler supplies; drop the file in and it renders. If it is
+  // missing the <img> simply fails to paint and the Sun Cruiser mark still
+  // shows, so a missing asset degrades rather than breaks.
+  'touchdowns_tea': ['assets/logos/sun_cruiser.png', 'assets/logos/twisted_tea.png'],
   // September retention programs are the same suppliers as their August
   // counterparts, so they reuse those marks.
   'constellation_fall': 'assets/logos/constellation.png',
@@ -102086,9 +102105,18 @@ const PROGRAM_LOGOS = {
   // renders no chip for an unmapped key. Drop a Heineken mark in here if one
   // ever arrives; nothing else needs changing.
 };
+// A program may carry SEVERAL marks -- Touchdowns & Tea is a Sun Cruiser AND
+// Twisted Tea program, and a rep recognises the brand faster than the program
+// name. PROGRAM_LOGOS values may be a single path or an array of them;
+// progLogos() always returns an array so callers do not branch.
+function progLogos(key){
+  const v = PROGRAM_LOGOS[key];
+  return !v ? [] : (Array.isArray(v) ? v : [v]);
+}
 function progLogo(key){
-  const src = PROGRAM_LOGOS[key];
-  return src ? `<span class="prog-logo-chip"><img src="${esc(src)}" alt="" loading="lazy"></span>` : '';
+  return progLogos(key).map(src =>
+    `<span class="prog-logo-chip"><img src="${esc(src)}" alt="" loading="lazy"` +
+    ` onerror="this.parentNode.remove()"></span>`).join('');
 }
 const LYTT_TIER_DEFS = [{pct:0.25,label:"Gettin' Lytt",rate:0.50},{pct:0.50,label:'Lytty City',rate:1.00},{pct:0.75,label:'Lytt-Faced',rate:2.00}];
 
@@ -115991,6 +116019,15 @@ function v3Logo(sk){
     ? `<span class="v3-pick-logo"><img src="${esc(s.logo)}" alt="" loading="lazy"></span>`
     : `<span class="v3-pick-logo blank">${esc((s?s.name:'?').slice(0,2).toUpperCase())}</span>`;
 }
+// Brand marks for a program. Empty string when the program has none mapped,
+// so a program without artwork just renders its title as before.
+function v3Brands(key){
+  const l = progLogos(key);
+  if(!l.length) return '';
+  return `<span class="v3-brands">${l.map(src=>
+    `<span class="v3-brand"><img src="${esc(src)}" alt="" loading="lazy"` +
+    ` onerror="this.parentNode.remove()"></span>`).join('')}</span>`;
+}
 function v3Pill(st){
   const m = STATUS_META[st] || STATUS_META.notstarted;
   return `<span class="v3-pill ${st}">${m.ic} ${esc(m.label)}</span>`;
@@ -116065,6 +116102,7 @@ function screenIncentive(){
         ? 'Not being tracked yet'
         : (sum.goal ? `Goal: <strong>${esc(sum.label||'')}</strong>` : esc(sum.label||''));
       return `<button class="v3-pick js-go" data-rep="${esc(rep)}" data-sup="${esc(sk)}" data-prog="${esc(entry.key)}">
+        ${v3Brands(entry.key)}
         <span class="v3-pick-top">
           <span class="v3-pick-text">
             <span class="v3-pick-name">${esc(entry.title)}</span>
@@ -116103,6 +116141,7 @@ function screenProgress(){
   const st = sum.status;
 
   const hero = `<div class="v3-hero">
+    ${v3Brands(key)}
     <div class="v3-hero-sup">${esc(SUPPLIERS[sk].name)}</div>
     <div class="v3-hero-name">${esc(entry.title)}</div>
     <div class="v3-big ${st}">${esc(h.big)}</div>
