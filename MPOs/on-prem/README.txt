@@ -180,10 +180,32 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-04 refresh (Fever Tree
-re-read per SKU -- see "A FEVER TREE PLACEMENT IS ONE SKU" below): Bardstown 1
-menu placement, Fever Tree 4 new placements, Carbliss 2 new buying accounts,
-HUSA 1 new draft line. Only HUSA has anyone at goal.
+All four are data-backed. Numbers as of the SECOND 2026-09-04 refresh (exports
+now run through 9/4; Fever Tree stayed PRODUCT-level -- see "A FEVER TREE
+PLACEMENT IS ONE SKU" below): Bardstown 1 menu placement, Fever Tree 8 new
+placements, Carbliss 2 new buying accounts, HUSA 1 new draft line.
+
+FIRST REP AT GOAL ON FEVER TREE: Allison Scott has 3 of 3 (Buffalo Wild Wings
+Wayne took Ginger Beer, Club Soda and Tonic Water on 9/4 -- one account, three
+SKUs, three placements under the per-SKU rule). Paul Mclaughlin 2, and Robin
+Feldman / Brian Sengebush / Nick Melissari 1 each. This is the first month
+where the per-SKU vs per-account choice actually decides whether someone gets
+paid: per ACCOUNT those same three rows would be ONE placement and Allison
+would sit at 1, not 3. Gavin confirmed per-SKU on 2026-09-04.
+
+That jump came entirely from six new 9/4 Fever Tree rows, of which four
+qualified -- the Allison Scott trio above plus Robin Feldman / 76004 Marriot
+Hotel Saddle Brook (Ginger Beer). The other two (Anthonys CF Pizza 12048,
+Pazza 95001) are accounts that already bought that SKU in 6/1-8/31, so they
+read as repeat. The four placements the earlier 9/4 build found all survived
+unchanged; nothing was reclassified.
+
+CARBLISS AND HUSA DID NOT MOVE, and that is the export, not the build: this
+pull's Carbliss and HUSA files are the SAME ROWS as the previous one, merely
+re-sorted (verified set-identical before the run; both still top out at 9/3
+and 9/10 respectively, same as before). Only Fever Tree carried genuinely new
+data. If a future pull's Carbliss/HUSA counts hold still, check whether the
+rows themselves actually changed before hunting for a bug in classify().
 
 Superseded, kept for the reasoning: numbers as of the 2026-09-03 refresh (still only
 three days into the month): Bardstown 1 menu placement, Fever Tree 2 new
@@ -311,7 +333,10 @@ scope, and this README's own rule is that a prospect list is a claim a rep
 acts on and is never guessed. Add targetsFile entries in MONTHS and a
 build_targets() call once Kohler confirms.
 
-Off-premise exclusion still runs (1067 customer ids), even though all three
+Off-premise exclusion still runs (1043 customer ids on the current
+sales_reps_customer_base.csv; the 1067 this line used to quote predates the
+2026-09-03 closed-account fix in dd74143, which is the last commit to touch
+that file), even though all three
 exports look on-premise already -- the rule is about the account, not about
 what a given export happens to contain.
 
