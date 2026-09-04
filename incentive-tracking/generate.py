@@ -105,16 +105,25 @@ def classify_dual(rows, base_col, current_col, key_fields):
     return classified, by_key
 
 
-def classify_by_customer(krows_by_cust, base_col, current_col):
-    """Classify each (rep, customer) group as 'new' / 'reorder' / 'lapsed' by
-    whether ANY row for that customer (across all its qualifying products) has
-    base/current period activity. This is the account-level definition most
-    placement incentives actually use -- an account that already carries one
-    SKU and adds a second SKU is not a new ACCOUNT placement, so classification
-    must happen at the customer grain, not per (customer, product) row. Per
-    Gavin, 2026-08-17 (correcting the original per-product assumption)."""
+def classify_groups(krows_by_key, base_col, current_col):
+    """Classify each GROUP as 'new' / 'reorder' / 'lapsed' by whether any row
+    in it has base-period and/or current-period activity. The caller decides
+    the grain by choosing the key.
+
+    WHICH GRAIN TO USE, per Gavin 2026-09-04, reading the rewards deck:
+      "New PLACEMENT"  -> SKU level, key (rep, customer, Product Num)
+      "New BUYER"      -> brand/account level, key (rep, customer)
+    So an account already carrying one 1911 SKU that adds a second one IS a
+    new placement on a program whose deck says "placements", because the
+    payout is per SKU placed, not per account opened.
+
+    This REVERSES the 2026-08-17 ruling that made everything account-level;
+    that call predated the deck wording being used as the test. `Product Num`
+    is the SKU field on every export that carries one. classify_by_customer
+    is kept as an alias for the legs that really are account-scoped (Other
+    Half's "per account opened", 2XO's on-premise 2-bottle POD)."""
     classified = {}
-    for key, krows in krows_by_cust.items():
+    for key, krows in krows_by_key.items():
         has_current = any(r[current_col].strip() != "" for r in krows)
         has_base = any(r[base_col].strip() != "" for r in krows)
         if has_current and has_base:
@@ -124,6 +133,10 @@ def classify_by_customer(krows_by_cust, base_col, current_col):
         elif has_base:
             classified[key] = "lapsed"
     return classified
+
+
+# Account-grain alias, for the legs whose deck wording really is per account.
+classify_by_customer = classify_groups
 
 
 def latest_date(krows, col):
@@ -158,15 +171,21 @@ def period_dates(krows, col):
 
 
 def build_1911_or_woodchuck(filename, bbl_threshold):
-    """Per Gavin, 2026-08-17: 'new placement' means the ACCOUNT had zero
-    qualifying purchases of ANY product in that channel (off-prem package,
-    or draft) during the base period, and buys at least one qualifying
-    product in that channel during the current period -- account-level, not
-    per-SKU. An account that already carried one 1911 SKU and adds a second
-    one this period is a reorder/existing-buyer event, not a new placement,
-    even though that second SKU itself is new to the account. Classification
-    is therefore done per (rep, customer) within each channel, not per (rep,
-    customer, product) as originally built.
+    """SKU-LEVEL as of 2026-09-04, per Gavin, reading the rewards deck:
+    "any time the incentive says 'New PLACEMENT' this is at the sku level;
+    any time it says 'New BUYER' this is at the brand family/brand level."
+    The 1911 and Woodchuck decks both say "all new Off-Premise PLACEMENTS
+    of 1911 Cider" and "new placements of 1911 Draft", so a placement is one
+    SKU in one account: an account already carrying one 1911 SKU that adds a
+    second one this period earns a second placement.
+
+    THIS REVERSES the 2026-08-17 account-level ruling, which said the exact
+    opposite ("an account that already carried one 1911 SKU and adds a
+    second one is a reorder, not a new placement"). That call was made
+    before the deck's placement/buyer wording was adopted as the test.
+    Classification is per (rep, customer, Product Num) within each channel.
+    It moves real money: off-premise placements went 29 -> 250 house-wide on
+    the 2026-09-04 data, i.e. $290 -> $2,500 on the $10 leg.
 
     Per Gavin, 2026-08-18: these are NEW-PLACEMENT programs, so no win-back
     / lapsed list is shown -- prior buyers can never re-qualify as "new"
@@ -216,7 +235,10 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
             acct_key = (rep, row["Customer Num"])
             entry = case_by_account.setdefault(acct_key, {"customer": row["Customer Name"], "cases": 0.0})
             entry["cases"] += cases
-        cust_key = (rep, row["Customer Num"])
+        # Deck says "all new Off-Premise PLACEMENTS of 1911 Cider" (and the
+        # same for the draft leg), so the grain is the SKU -- see
+        # classify_groups(). Keyed (rep, customer, product).
+        cust_key = (rep, row["Customer Num"], row["Product Num"])
         if row["Premise"] == "Off Premise":
             off_by_cust[cust_key].append(row)
         elif row["Premise"] == "On Premise" and is_keg_package(row["Package"]):
@@ -237,9 +259,9 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
         out.sort(key=lambda e: e["date"] or "", reverse=True)
         return out
 
-    off_classified = classify_by_customer(off_by_cust, place_base_col, place_current_col)
+    off_classified = classify_groups(off_by_cust, place_base_col, place_current_col)
     for cust_key, status in off_classified.items():
-        rep, cust_num = cust_key
+        rep, cust_num, _prod = cust_key
         krows = off_by_cust[cust_key]
         sample = krows[0]
         if status == "new":
@@ -253,9 +275,9 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
         elif status == "reorder":
             by_rep[rep]["offPremReorderCount"] += 1
 
-    draft_classified = classify_by_customer(draft_by_cust, place_base_col, place_current_col)
+    draft_classified = classify_groups(draft_by_cust, place_base_col, place_current_col)
     for cust_key, status in draft_classified.items():
-        rep, cust_num = cust_key
+        rep, cust_num, _prod = cust_key
         krows = draft_by_cust[cust_key]
         sample = krows[0]
         if status == "new":
@@ -289,10 +311,10 @@ def build_1911_or_woodchuck(filename, bbl_threshold):
     # Woodchuck are All-Counties brands), and draft targets only include
     # accounts whose Draft Package flag says they can actually buy kegs.
     for rep, d in by_rep.items():
-        off_seen = {c for (r, c) in off_by_cust if r == rep}
+        off_seen = {c for (r, c, _p) in off_by_cust if r == rep}
         d["offPremTargets"], d["offPremTargetCount"] = targets_from(
             base_accounts(rep, premise="Off Premise"), off_seen)
-        draft_seen = {c for (r, c) in draft_by_cust if r == rep}
+        draft_seen = {c for (r, c, _p) in draft_by_cust if r == rep}
         d["draftTargets"], d["draftTargetCount"] = targets_from(
             base_accounts(rep, premise="On Premise", draft=True), draft_seen)
 
@@ -334,7 +356,9 @@ def build_tona():
         "qualifies": False,
     } for rep in ROSTER}
 
-    # "New placement" is account-level within the 24oz-can product (per
+    # Per SKU (deck says "placements"), though Tona 24oz is a single SKU
+    # (7275), so the SKU and account grains give the same count here.
+    # Historical note -- this was account-level within the 24oz product (per
     # Gavin, 2026-08-17): zero 24oz placement activity in the base period,
     # then activity in the current period, for that customer.
     can24_by_cust = defaultdict(list)
@@ -344,7 +368,8 @@ def build_tona():
         rep = row["Sales Rep Assigned"]
         if rep not in by_rep:
             continue
-        can24_by_cust[(rep, row["Customer Num"])].append(row)
+        # "all new Off-Premise PLACEMENTS of the new TONA" -> per SKU.
+        can24_by_cust[(rep, row["Customer Num"], row["Product Num"])].append(row)
 
     case24_by_account = {}
     caseOther_by_account = {}
@@ -371,9 +396,9 @@ def build_tona():
         if rep in by_rep:
             by_rep[rep]["caseVolumeOtherByAccount"].append({"customer": info["customer"], "cases": round(info["cases"], 2)})
 
-    can24_classified = classify_by_customer(can24_by_cust, place_base_col, place_current_col)
+    can24_classified = classify_groups(can24_by_cust, place_base_col, place_current_col)
     for cust_key, status in can24_classified.items():
-        rep, cust_num = cust_key
+        rep, cust_num, _prod = cust_key
         krows = can24_by_cust[cust_key]
         sample = krows[0]
         if status == "new":
@@ -390,7 +415,7 @@ def build_tona():
     # docstring): off-prem accounts with zero 24oz-can activity in either
     # period, from the FULL route universe (Tona is All-Counties).
     for rep, d in by_rep.items():
-        seen = {c for (r, c) in can24_by_cust if r == rep}
+        seen = {c for (r, c, _p) in can24_by_cust if r == rep}
         d["targets24oz"], d["targets24ozCount"] = targets_from(
             base_accounts(rep, premise="Off Premise"), seen)
 
@@ -2522,15 +2547,16 @@ def build_montauk():
         $15  new placement of Wave Chaser 12pk cans OR 19.2oz cans
         $100 per new draught line, Wave Chaser only, 1x1/2bbl or 2x1/6bbl min
 
-    Because the package tiers pay DIFFERENT amounts, off-premise placements are
-    classified per (rep, customer, tier) rather than per (rep, customer) the way
-    1911/Woodchuck are. Those programs pay one flat rate for any new placement,
-    so Gavin's 2026-08-17 account-level rule ("a second SKU at an account that
-    already carries one is a reorder, not a new placement") collapses tiers
-    without losing money. Here it would: an account that takes 6pks and 12pks
-    is two placements at two prices on the deck's wording. The account-level
-    count is emitted alongside as newAccounts so the two readings can be
-    compared -- see the README, this is the one open question on this program.
+    Off-premise placements are classified per (rep, customer, Product Num) --
+    the deck says "New PLACEMENT", which is the SKU grain (Gavin, 2026-09-04).
+    This was the PACK TIER grain until then, which merged two 12pk SKUs at one
+    account into one placement; on the 2026-09-04 data no account had two SKUs
+    in the same tier, so the count did not move, but it would the moment one
+    does. The tier still sets the RATE (6pk $10, 12pk/19.2oz $15) and a SKU
+    only ever sits in one tier, so it is read back off the rows.
+
+    The per-ACCOUNT count is still emitted alongside as newAccounts, now purely
+    as a cross-check -- it is no longer what any program here pays on.
     """
     rows = read_rows("montauk.csv")
     fields = rows[0].keys() if rows else []
@@ -2569,13 +2595,19 @@ def build_montauk():
         tier = tier_of(row.get("Package"))
         if not tier:
             continue
-        pkg_by_tier[(rep, row["Customer Num"], tier)].append(row)
+        # Deck: "$10 New PLACEMENT of Wave Chaser 6pk Cans / $15 New
+        # PLACEMENT of ... 12pk Cans or 19.2oz Cans" -> the grain is the SKU.
+        # It used to be the PACK TIER, which merged two 12pk SKUs at one
+        # account into a single placement. The tier still sets the RATE, and
+        # a SKU only ever sits in one tier, so it is read back off the rows.
+        pkg_by_tier[(rep, row["Customer Num"], row["Product Num"])].append(row)
         pkg_by_cust[(rep, row["Customer Num"])].append(row)
 
-    for key, status in classify_by_customer(pkg_by_tier, place_base, place_current).items():
-        rep, _cust, tier = key
+    for key, status in classify_groups(pkg_by_tier, place_base, place_current).items():
+        rep, _cust, _prod = key
+        krows = pkg_by_tier[key]
+        tier = tier_of(krows[0].get("Package"))
         if status == "new":
-            krows = pkg_by_tier[key]
             dates = sorted((r["Date"] for r in krows if r[place_current].strip()), reverse=True)
             by_rep[rep]["offPremNew"].append({
                 "customer": krows[0]["Customer Name"],
@@ -2644,8 +2676,12 @@ def build_evil_genius():
         $100 every new placement of Stacy's Mom DRAFT, 1x1/2bbl or 2x1/6bbl min
         Bonus: $1 for every CE sold over 2025 sales
 
-    Off-premise placements pay one flat rate, so they use the account-level
-    rule (1911 precedent) rather than Montauk's per-tier split.
+    Off-premise placements are per (rep, customer, Product Num) -- the deck
+    says "all new Off-Premise PLACEMENTS of ...", which is the SKU grain
+    (Gavin, 2026-09-04). Nine off-premise accounts carry more than one of the
+    three qualifying SKUs, so this can differ from the account grain; on the
+    2026-09-04 data none of them was a newly-placed account, so the count did
+    not move.
 
     THE BONUS IS SCORED as of the 2026-09-02 re-export. The first export
     baselined against a full calendar year (1/1-12/31/2025) set beside a single
@@ -2696,10 +2732,12 @@ def build_evil_genius():
         by_rep[rep]["caseVolume"] += to_num(row[case_current])
         by_rep[rep]["casesBaseline"] += to_num(row[case_baseline])
         if _premise(row) == "Off Premise":
-            off_by_cust[(rep, row["Customer Num"])].append(row)
+            # "all new Off-Premise PLACEMENTS of Evil Genius Stacy's Mom,
+            # Adulting, or 867-5309" -> per SKU.
+            off_by_cust[(rep, row["Customer Num"], row["Product Num"])].append(row)
 
-    for key, status in classify_by_customer(off_by_cust, place_base, place_current).items():
-        rep, _cust = key
+    for key, status in classify_groups(off_by_cust, place_base, place_current).items():
+        rep, _cust, _prod = key
         krows = off_by_cust[key]
         if status == "new":
             cur = [r for r in krows if r[place_current].strip()]
@@ -2756,7 +2794,7 @@ def build_evil_genius():
         d["draftChannelOk"] = bool(d["draftAccounts"]) or d["draftNewCount"] > 0
         d["offPremTargets"], d["offPremTargetCount"] = targets_from(
             base_accounts(rep, premise="Off Premise"),
-            {c for (r, c) in off_by_cust if r == rep})
+            {c for (r, c, _p) in off_by_cust if r == rep})
         leaderboard.append({"rep": rep, "newPlacements": d["totalNewPlacements"],
                             "payout": d["payout"]})
     leaderboard.sort(key=lambda x: (-x["newPlacements"], -x["payout"]))
@@ -2809,10 +2847,12 @@ def build_touchdowns_tea():
         if rep not in by_rep:
             continue
         by_rep[rep]["offPremCases"] += to_num(row[off_cc])
-        off_by_cust[(rep, row["Customer Num"])].append(row)
+        # "$15 for all new PLACEMENTS of 12pks" -> per SKU. The export is
+        # already pre-filtered to 12-packs, so every row here is a 12pk SKU.
+        off_by_cust[(rep, row["Customer Num"], row["Product Num"])].append(row)
 
-    for key, status in classify_by_customer(off_by_cust, off_pb, off_pc).items():
-        rep, _cust = key
+    for key, status in classify_groups(off_by_cust, off_pb, off_pc).items():
+        rep, _cust, _prod = key
         krows = off_by_cust[key]
         if status == "new":
             cur = [r for r in krows if r[off_pc].strip()]
@@ -2857,7 +2897,7 @@ def build_touchdowns_tea():
         d["offPremNew"].sort(key=lambda e: e["date"] or "", reverse=True)
         d["offPremTargets"], d["offPremTargetCount"] = targets_from(
             base_accounts(rep, premise="Off Premise"),
-            {c for (r, c) in off_by_cust if r == rep})
+            {c for (r, c, _p) in off_by_cust if r == rep})
         leaderboard.append({"rep": rep, "payout": d["payout"],
                             "newPlacements": d["offPremNewCount"]})
     # Ranked on trackable payout, not placements alone: the two legs pay $15 and
@@ -3385,7 +3425,7 @@ def main():
     print(f"montauk: {sum(d['totalNewPlacements'] for d in mo.values())} new placements "
           f"(6pk {tiers['sixpack']} + 12pk {tiers['twelvepack']} + 19.2oz {tiers['nineteen2']} "
           f"+ draft {sum(d['draftQualifiedCount'] for d in mo.values())}) "
-          f"| {sum(d['newAccounts'] for d in mo.values())} distinct new ACCOUNTS if scored 1911-style "
+          f"| {sum(d['newAccounts'] for d in mo.values())} distinct new ACCOUNTS if scored per account "
           f"| ${sum(d['payout'] for d in mo.values()):,}")
 
     xo = data_09["two_xo"]["byRep"]

@@ -28,6 +28,68 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
+PLACEMENT vs BUYER: THE GRAIN RULE (2026-09-04) -- REVERSES 2026-08-17
+=====================================================================
+Per Gavin, reading the September Rewards Deck: "any time the incentive says
+'New PLACEMENT' this is at the SKU level. any time it says 'New BUYER' this
+is at the brand family/brand level." The deck's own wording is now the test
+for how a program is scored, and it decides the classification key:
+
+    "New PLACEMENT"  ->  key (rep, customer, Product Num)
+    "New BUYER"      ->  key (rep, customer)
+
+THIS REVERSES THE 2026-08-17 RULING, which said the exact opposite -- that
+an account already carrying one 1911 SKU that adds a second is a reorder,
+not a new placement. That call predated the deck wording being used as the
+test. Anyone reading the old note in git history should know it is dead.
+
+IT MOVES REAL MONEY. On the 2026-09-04 data:
+    1911 off-premise placements     29  ->  250   ($290 -> $2,500 at $10)
+    1911 total (incl. draft)        34  ->  256
+    Woodchuck off-premise            8  ->   31   ($80 -> $310)
+    Touchdowns & Tea 12pk           4  ->   45   ($60 -> $675 placement leg,
+                                                  total tracked $474 -> $1,089)
+Reorder counts rise correspondingly (they are now per SKU too), which is
+why the reorder figures on those cards jumped as well.
+
+THREE PROGRAMS DID NOT MOVE, and it is worth recording why so nobody
+"fixes" them later:
+    tona         switched to per SKU, but Tona 24oz is a single SKU (7275),
+                 so the SKU and account grains are identical here.
+    evil_genius  switched to per SKU. Nine off-premise accounts carry more
+                 than one of the three qualifying SKUs, but none of them was
+                 a newly-placed account on this data, so the count held at 2.
+    montauk      was already finer than account level (per PACK TIER) and is
+                 now per SKU. No account had two SKUs in the same tier on
+                 this data, so the count held at 8 -- but it would move the
+                 moment one does.
+
+NOT CHANGED, deliberately:
+    other_half   the deck says "$40 per non-buy ACCOUNT OPENED purchasing
+                 minimum 3 CORE SKUs", plus "$10 per SKU sold over 3". That
+                 is an account-grain qualifier with a per-SKU kicker, and is
+                 already built that way.
+    two_xo       off-premise was already per SKU (the deck prices an
+                 American Oak + French Oak PAIR); the on-premise leg is a
+                 "2 bottle POD" per account.
+    keystone_ice scored on distinct buying ACCOUNTS, and Keystone Ice 24oz
+                 is one SKU (622) anyway.
+
+STILL OPEN -- THE AUGUST-ONLY PROGRAMS. boston_beer classifies both its
+draft and package legs at account level and its August deck says "POD" and
+"placement", so the same rule probably applies. It is NOT changed here for
+two reasons: the August deck is not in hand to check the wording, and
+August is a closed month whose tab is a published snapshot -- restating it
+would change scores reps were already measured on. Raise it with Gavin
+before touching it. path_to_victory, sam_adams, new_belgium and mollys
+either already key per Product Num or are not placement-scored, so they
+need nothing.
+
+WHERE THE CODE LIVES: classify_groups() in generate.py (renamed from
+classify_by_customer, which survives as an alias for the genuinely
+account-scoped legs). The grain is chosen by the KEY each builder assembles
+before calling it -- grep for "Product Num"] in the key tuples.
+
 GUIDED FOUR-STEP FLOW (2026-09-04, second pass -- supersedes v2 below)
 ======================================================================
 The supplier-first pass below was the right structure but still put every
