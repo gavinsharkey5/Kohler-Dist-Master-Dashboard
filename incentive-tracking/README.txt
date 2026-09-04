@@ -207,6 +207,40 @@ touchdowns_tea 2 placements + 265 on-prem cases, evil_genius 1 placement (0
 reps past the qualifier), montauk 5 placements. Expect these to look empty for
 most reps until mid-month.
 
+2026-09-04 REFRESH, BATCH 3 -- Montauk, 2XO, Other Half (both legs)
+All four exports grew or held with NO row removed (+8 Montauk, +30 Other Half
+off, +3 Other Half draft, 2XO unchanged).
+  other_half   THE ONE THAT MOVED: off-premise accounts opened 68 -> 76 and
+               tracked earnings $3,410 -> $3,810. Seven reps gained accounts --
+               John O'Donoghue +2 (6->8, $280->$400), Alisa Acciardi, Andrew
+               Lundy, Dan Lagala, Dave Ehlers and Jim Heaney +1 each, and Phil
+               Ernst opened his first (0->1, $40). On the draft leg, September
+               active accounts 15 -> 18 with 10 now at the 1/3 bbl floor
+               (Michael Harboy 0->1, Paul Mclaughlin 1->2). That leg is STILL
+               unpaid and still needs October to confirm the two-month hold --
+               the count moving is not the same as it paying.
+  montauk      8 new placements and $95, both UNCHANGED, and that is the
+               export: all 8 added rows are reorders at accounts already
+               placed. Case volume moved for six reps (Shane Barreca 13->20,
+               Dylan Rubino 9->12, John O'Donoghue 6->8, Andrew Lundy 4->6,
+               Phil Ernst 12->13) and Klejdi Lamo logged his first Montauk
+               activity (0->1 reorder). Same rule as the batch-1 programs: on
+               a new-vs-repeat program, volume moves before placements do.
+  two_xo       NO CHANGE. This pull is the same 70 rows as the last, only
+               re-sorted. Still 0 new off-premise pairs, 1 unpaid single-oak
+               open, 0 on-premise 2+-unit PODs. Unlike evil_genius in batch 2,
+               its block in index.html did not even churn -- build_two_xo()
+               sorts deterministically, so a re-sorted source produces a
+               byte-identical blob.
+
+A FUTURE-DATED ROW arrived on the Other Half draft export: Paul Mclaughlin /
+50008 101 Pub (A), dated 9/7/2026 against a 9/4 pull. It is a scheduled load,
+not an error, and other_half_off.csv has carried 9/7 rows since the previous
+pull, so this is normal for this export rather than new. It does count toward
+his September activity. Same class of thing as the Carbliss 9/10 load sheet
+noted in MPOs/on-prem/README.txt -- worth a glance only if a future-dated row
+ever lands on an account that would otherwise not qualify.
+
 2026-09-04 REFRESH, BATCH 2 -- Garage Beer, Le Grand Noir, Touchdowns & Tea,
 Evil Genius. Headlines:
   garage_beer_president  house CE 7,002.36 -> 7,028.36 of 9,305. Four reps
