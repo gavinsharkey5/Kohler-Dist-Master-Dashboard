@@ -207,6 +207,42 @@ touchdowns_tea 2 placements + 265 on-prem cases, evil_genius 1 placement (0
 reps past the qualifier), montauk 5 placements. Expect these to look empty for
 most reps until mid-month.
 
+2026-09-04 REFRESH, BATCH 2 -- Garage Beer, Le Grand Noir, Touchdowns & Tea,
+Evil Genius. Headlines:
+  garage_beer_president  house CE 7,002.36 -> 7,028.36 of 9,305. Four reps
+                         revised, three up (Jayson Romine +6, John O'Donoghue
+                         +20, Phil Ernst +1) and Michael Harboy -1. No rows
+                         added or removed -- this export restates values
+                         rather than appending, so a same-row-count pull is
+                         normal here and is not a stale file.
+  le_grand_noir          house cases 32 -> 30 of the 70 gate. IT WENT DOWN,
+                         legitimately: the single added row is a -2 case
+                         RETURN by Derrick Laws at Shop Rite Wines/Spirits on
+                         9/4, which exactly reverses his earlier +2, taking
+                         him from 2 cases to 0. Everyone else is unchanged.
+                         This is the one program here whose numbers can fall
+                         on a clean refresh, because it scores raw Cases with
+                         no new-vs-repeat gate, and RDE books returns as
+                         negative case rows. Do not "fix" a drop like this;
+                         check for a negative Cases row first.
+  touchdowns_tea         3 -> 4 new off-prem 12pk placements and 373 -> 414
+                         on-prem cases, trackable payout $418 -> $474. Jim
+                         Heaney takes the new placement (his first, $15).
+                         On-prem cases up for Allison Scott (97->107), Anthony
+                         Palmisano (51->60), Paul Mclaughlin (62->84); off-prem
+                         cases up for eight reps. Derrick Laws' off-prem cases
+                         fell 23 -> 18 on a restated row (same key, Cases
+                         10.00 -> 5.00, Placement Count untouched, so nothing
+                         reclassified).
+  evil_genius            NO CHANGE, and the export is why: this pull is the
+                         SAME 320 rows as the last one, merely re-sorted
+                         (verified set-identical). Still 2 placements and 0 of
+                         27 reps past the 3-placement qualifier. The rebuild
+                         does rewrite evil_genius' byRep in index.html, but
+                         only the ORDER of its lists -- every scored value is
+                         identical. A diff on that program alone is churn, not
+                         a data change.
+
 2026-09-04 REFRESH -- five exports, and the Keystone dependency finally bit
 Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. All five grew with
 NO row removed (+11 / +5 / +8 / +18 / +11 rows); the one 1911 row that looked
