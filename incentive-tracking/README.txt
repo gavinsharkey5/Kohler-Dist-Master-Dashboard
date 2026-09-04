@@ -28,6 +28,80 @@ Files:
                       (kept for traceability, like MPOs/). Re-run
                       generate.py after dropping in a refreshed file.
 
+SUPPLIER-FIRST REDESIGN (2026-09-04)
+====================================
+Reps' feedback was that the page had "too much going on". The old default
+view stacked ~20 full program cards, each with its stat tiles already open,
+so answering "where do I stand" meant scanning every one. The page is now
+built around the four questions a rep actually opens it with, and hides
+everything else behind a tap.
+
+WHAT A REP SEES NOW
+  1. "Select your name", labelled step 1, is the only control above the fold.
+  2. Picking a name renders "<First>'s Incentives" with four counts --
+     Earned / On Track / Needs Attention / Not Started.
+  3. "Where to focus next": the three unearned programs closest to paying,
+     ranked by status then by percent complete, so the top card is the one
+     they can finish soonest rather than the one furthest behind.
+  4. Supplier sections, each a compact header ([logo] Molson Coors ·
+     2 incentives · tally chips) over ONE ROW per program carrying exactly
+     six things: program name, progress, goal, status, what's left, and the
+     next step in a sentence.
+  5. Tapping a row expands the ORIGINAL detailed card, unchanged.
+
+Nothing was deleted. renderRepV2() replaced renderRep()'s body; the old
+repSection()/renderPillNav() helpers and every card function are still
+there and still used -- a row IS the old card, one tap deeper. Reinstating
+the old stacked view is a one-line change in renderRep().
+
+SUPPLIER IS THE TOP LEVEL because reps already navigate Encompass that way
+(Gavin, 2026-09-04: "incentives are housed underneath their respective
+supplier"). The groupings are NOT guessed: every one is the "Supplier"
+value Kohler's own RDE exports carry for that program's brand family,
+read straight out of the repo's CSVs -- Keystone -> "MolsonCoors Beverage
+Company", Lytt AND Twisted Tea -> "Boston Beer Company", 2XO AND Le Grand
+Noir -> "Prestige Beverage Group", Woodchuck -> "Vermont Hard Cider",
+Tona -> "Artisanal Imports". Display names are trimmed to what a rep says
+out loud; the RDE spelling is kept in SUPPLIERS[x].rde so the mapping can
+be re-checked against a fresh export. Two programs span several suppliers
+(fall_seasonal, display_auction) and sit under "Kohler House Programs"
+rather than being filed under whichever brand happens to lead them.
+PROGRAM_SUPPLIER is the ONLY place a supplier is decided -- nothing infers
+one from a logo or a title.
+
+PROGRAM_SUMMARY is the new per-program layer and the one to edit when a
+number looks wrong. Each entry turns a rep's data into {now, target,
+label, remain, next}. Two shapes:
+  goal:true   a threshold switches money on -- the bar fills toward it and
+              "X to go" is real (Keystone, Evil Genius, Tona, Woodchuck,
+              the retention programs, and the two HOUSE-goal programs).
+  goal:false  open-ended, every placement pays from the first one. There is
+              no bar to fill, so the row carries what they have landed or
+              earned and the status is simply whether they are on the board.
+It reads the SAME fields the detailed cards read, so a row and the card it
+opens cannot disagree. A program with no data returns null and renders
+"Coming Soon" rather than an empty card -- that covers the manual
+(photo-verified) programs and any September program still awaiting its
+first export.
+
+THE STATUS LADDER is five words, each with an icon, so meaning never rides
+on colour alone: Earned / Close / On Track / Needs Attention / Not Started,
+plus Coming Soon for a program with no feed. summarize() is the single
+place that decides one, so the row chip, the header counts and the Focus
+ranking can never disagree.
+
+ONE SUBTLETY WORTH KEEPING: Lytt's bar tracks progress to the NEXT RATE,
+not raw penetration. A rep at 19% is 76% of the way to the 25% tier;
+filling the bar to 19% made that read "Needs Attention" when they are an
+account or two from a raise. Any future tiered program needs the same
+treatment (see pctOverride).
+
+generate.py IS UNAFFECTED -- it only rewrites the PROGRAM_DATA blob and the
+refresh date, both outside this markup. Verified by running it after the
+redesign and diffing everything except the data blob: no change. Verified
+in a browser at 1280 / 834 / 390 px across both month tabs and three reps:
+no JS errors, no horizontal overflow, rows and cards present throughout.
+
 MONTH TABS (added 2026-08-31)
 =============================
 This page used to be August-only. It now carries a month tab bar in the

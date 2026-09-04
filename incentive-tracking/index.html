@@ -44,7 +44,7 @@
     border:1px solid var(--border);box-shadow:var(--shadow);background:var(--card)}
   .nj-hero{background:
     radial-gradient(130% 170% at 12% -10%, #7397da 0%, #4d75c3 48%, #37599f 100%);
-    padding:34px 24px 30px;text-align:center;}
+    padding:18px 24px 16px;text-align:center;}
   .nj-hero::before{content:"";position:absolute;inset:0;opacity:.25;pointer-events:none;
     background-image:radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.4px);
     background-size:26px 26px;}
@@ -52,10 +52,10 @@
   .nj-hero-kicker{font-family:'Space Grotesk',sans-serif;font-weight:700;text-transform:uppercase;
     color:#fff;font-size:clamp(15.5px,2.4vw,23px);letter-spacing:.08em;line-height:1.35;
     text-shadow:0 2px 10px rgba(0,0,0,.3);}
-  .nj-hero-script{font-family:'Pacifico',cursive;color:#152a63;font-size:clamp(36px,6vw,60px);
+  .nj-hero-script{font-family:'Pacifico',cursive;color:#152a63;font-size:clamp(26px,4vw,40px);
     line-height:1.35;text-shadow:0 1px 0 rgba(255,255,255,.18);}
   .nj-hero-row{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:6px;flex-wrap:wrap;}
-  .hero-logo-badge{height:58px;width:auto;flex-shrink:0;
+  .hero-logo-badge{height:42px;width:auto;flex-shrink:0;
     filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
   @media (max-width:640px){
     .nj-hero{padding:22px 14px 20px;}
@@ -66,7 +66,7 @@
   .start-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px;}
   .start-head .start-here{margin-bottom:0;}
 
-  header{max-width:1200px;margin:0 auto;padding:22px 32px 20px;border-bottom:1px solid var(--border);}
+  header{max-width:1200px;margin:0 auto;padding:14px 32px 14px;border-bottom:1px solid var(--border);}
   .month-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px;}
   .month-tab{display:inline-flex;align-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;
     font-size:15.5px;padding:9px 19px;min-height:42px;border-radius:22px;
@@ -452,6 +452,156 @@
     .stat-tile{padding:12px 13px;}
     .stat-tile-num{font-size:29px;}
   }
+  /* ==================================================================
+     v2 LAYOUT (2026-09-04) -- supplier-first, progressive disclosure.
+     Reps said the old page was "too much going on": every program was a
+     full-width card with 3-4 stat tiles open at once, so understanding
+     "where do I stand" meant scanning ~20 cards. This layer replaces the
+     default view with one compact ROW per program, grouped under its
+     SUPPLIER (the Encompass mental model reps already know), and moves
+     every detail behind an explicit tap. The old .prog-card markup is
+     untouched -- it is what a row expands into.
+     ================================================================== */
+
+  /* ---- Step 1: pick your name ---- */
+  .v2-picker{max-width:1200px;margin:0 auto 22px;padding:0 32px;}
+  .v2-picker-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:22px 24px;box-shadow:var(--shadow);}
+  .v2-picker-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;margin-bottom:4px;}
+  .v2-picker-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,26px);
+    color:var(--text);display:flex;align-items:center;gap:10px;}
+  .v2-step-dot{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+    border-radius:50%;background:var(--accent);color:#fff;font-size:15px;font-weight:700;flex-shrink:0;}
+  .v2-picker-sub{color:var(--text-dim);font-size:15.5px;margin:2px 0 16px;}
+  .v2-dm-group{margin-bottom:14px;}
+  .v2-dm-label{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-mute);
+    font-weight:700;margin-bottom:7px;}
+  .v2-dm-pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .v2-repchip{font-family:'Inter',sans-serif;font-size:15px;font-weight:600;background:var(--input-bg);
+    color:var(--text-dim);border:1px solid var(--input-border);border-radius:999px;padding:11px 17px;
+    min-height:44px;cursor:pointer;transition:background .13s,color .13s,border-color .13s,transform .1s;}
+  .v2-repchip:hover{border-color:var(--accent);color:var(--text);}
+  .v2-repchip:active{transform:scale(.97);}
+  .v2-repchip.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  /* ---- Personalized header ---- */
+  .v2-me{width:100%;margin:0 0 18px;}
+  .v2-me-card{background:linear-gradient(135deg,var(--accent-deep) 0%,#0F2E5C 62%,#101A2E 100%);
+    border:1px solid var(--border);border-radius:16px;padding:20px 24px;box-shadow:var(--shadow);}
+  .v2-me-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .v2-me-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;
+    font-size:clamp(23px,3.4vw,32px);line-height:1.2;}
+  .v2-me-sub{color:#C7D6F0;font-size:15px;margin-top:3px;}
+  .v2-switch{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;background:rgba(255,255,255,.13);
+    color:#fff;border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:10px 18px;min-height:44px;
+    cursor:pointer;white-space:nowrap;transition:background .13s;}
+  .v2-switch:hover{background:rgba(255,255,255,.24);}
+  .v2-counts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .v2-count{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);border-radius:12px;
+    padding:10px 15px;min-width:104px;}
+  .v2-count-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:25px;color:#fff;line-height:1.1;}
+  .v2-count-l{font-size:12.5px;color:#C7D6F0;margin-top:2px;font-weight:600;}
+  .v2-count.good .v2-count-n{color:#8CE8AD;}
+  .v2-count.warn .v2-count-n{color:#FFD37A;}
+
+  /* ---- Focus next ---- */
+  .v2-focus{width:100%;margin:0 0 20px;}
+  .v2-focus-head{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--text);
+    margin-bottom:3px;display:flex;align-items:center;gap:9px;}
+  .v2-focus-sub{color:var(--text-mute);font-size:14px;margin-bottom:12px;}
+  .v2-focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:12px;}
+  .v2-focus-card{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--amber);
+    border-radius:13px;padding:15px 17px;text-align:left;cursor:pointer;font:inherit;color:inherit;
+    display:flex;flex-direction:column;gap:7px;transition:border-color .13s,transform .1s;}
+  .v2-focus-card:hover{border-color:var(--accent);border-left-color:var(--accent);}
+  .v2-focus-card:active{transform:scale(.99);}
+  .v2-focus-sup{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-mute);font-weight:700;}
+  .v2-focus-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;color:var(--text);line-height:1.25;}
+  .v2-focus-next{display:block;font-size:14.5px;color:var(--text-dim);line-height:1.45;}
+
+  /* ---- Supplier sections ---- */
+  .v2-wrap{width:100%;}
+  .v2-section-label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--text);
+    margin:26px 0 3px;}
+  .v2-section-sub{color:var(--text-mute);font-size:14px;margin-bottom:13px;}
+  .v2-sup{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:11px;
+    overflow:hidden;}
+  .v2-sup-head{display:flex;align-items:center;gap:13px;width:100%;background:none;border:0;
+    padding:14px 18px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:background .13s;}
+  .v2-sup-head:hover{background:var(--card-alt);}
+  .v2-sup-logo{width:64px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    background:#fff;border-radius:7px;padding:3px;}
+  .v2-sup-logo img{max-width:100%;max-height:100%;object-fit:contain;}
+  .v2-sup-logo.blank{background:var(--input-bg);border:1px solid var(--border);color:var(--text-mute);
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+  .v2-sup-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17.5px;color:var(--text);
+    line-height:1.25;flex:1;min-width:0;}
+  .v2-sup-meta{font-size:13.5px;color:var(--text-mute);font-weight:500;margin-top:2px;display:block;}
+  .v2-sup-tally{display:flex;gap:6px;align-items:center;flex-wrap:wrap;flex-shrink:0;}
+  .v2-chev{color:var(--text-mute);font-size:13px;flex-shrink:0;transition:transform .18s;margin-left:2px;}
+  .v2-sup-head.open .v2-chev{transform:rotate(90deg);}
+  .v2-sup-body{display:none;border-top:1px solid var(--line-soft);}
+  .v2-sup-body.open{display:block;}
+
+  /* ---- One program row ---- */
+  .v2-row{border-bottom:1px solid var(--line-soft);}
+  .v2-row:last-child{border-bottom:0;}
+  .v2-row-main{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(150px,.85fr) auto;gap:14px;
+    align-items:center;width:100%;background:none;border:0;padding:14px 18px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;transition:background .13s;}
+  .v2-row-main:hover{background:var(--card-alt);}
+  .v2-row-l{min-width:0;display:block;}
+  .v2-row-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
+    color:var(--text);line-height:1.3;}
+  .v2-row-next{display:block;font-size:14px;color:var(--text-dim);line-height:1.45;margin-top:4px;}
+  .v2-row-next strong{color:var(--text);font-weight:600;}
+  .v2-row-m{min-width:0;display:block;}
+  .v2-prog-nums{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:6px;}
+  .v2-prog-now{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:var(--text);line-height:1;}
+  .v2-prog-of{font-size:13.5px;color:var(--text-mute);font-weight:500;}
+  .v2-bar{height:8px;background:var(--input-bg);border-radius:999px;overflow:hidden;border:1px solid var(--line-soft);}
+  .v2-bar-fill{height:100%;border-radius:999px;background:var(--accent);transition:width .3s;}
+  .v2-bar-fill.good{background:var(--good);}
+  .v2-bar-fill.warn{background:var(--amber);}
+  .v2-bar-fill.dim{background:var(--border);}
+  .v2-remain{font-size:13px;color:var(--text-mute);margin-top:5px;}
+  .v2-row-r{display:flex;align-items:center;gap:11px;flex-shrink:0;}
+
+  /* ---- Status chips: icon + word, never colour alone ---- */
+  .v2-chip{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;
+    font-size:13px;font-weight:700;white-space:nowrap;border:1px solid transparent;line-height:1.2;}
+  .v2-chip .ic{font-size:12.5px;}
+  .v2-chip.earned{background:var(--good-soft);color:var(--good);border-color:rgba(76,201,122,.42);}
+  .v2-chip.close{background:var(--amber-soft);color:var(--amber);border-color:rgba(244,184,62,.42);}
+  .v2-chip.ontrack{background:var(--accent-soft);color:var(--accent);border-color:rgba(78,124,232,.42);}
+  .v2-chip.attention{background:var(--red-soft);color:var(--red);border-color:rgba(235,106,80,.42);}
+  .v2-chip.notstarted{background:var(--input-bg);color:var(--text-mute);border-color:var(--border);}
+  .v2-chip.soon{background:var(--input-bg);color:var(--text-mute);border-color:var(--border);}
+  .v2-chip.sm{padding:4px 9px;font-size:12px;}
+
+  .v2-detail{display:none;padding:2px 14px 16px;background:var(--card-alt);}
+  .v2-detail.open{display:block;}
+  .v2-detail .prog-card{border:0;box-shadow:none;background:transparent;}
+  .v2-detail-hint{font-size:13px;color:var(--text-mute);padding:0 4px 10px;}
+
+  .v2-empty{background:var(--card);border:1px dashed var(--border);border-radius:14px;padding:26px;
+    text-align:center;color:var(--text-dim);font-size:15.5px;}
+
+  /* Browse mode (no rep selected) keeps rows tappable but shows no numbers. */
+  .v2-browse-note{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+    border-radius:13px;padding:15px 18px;color:var(--text-dim);font-size:15px;margin-bottom:18px;line-height:1.5;}
+
+  @media (max-width:820px){
+    .v2-row-main{grid-template-columns:1fr;gap:11px;}
+    .v2-row-r{justify-content:flex-start;}
+    .v2-picker{padding:0 16px;}
+  }
+  @media (max-width:480px){
+    .v2-sup-head{padding:12px 13px;gap:10px;}
+    .v2-row-main{padding:13px;}
+    .v2-count{min-width:88px;padding:9px 12px;}
+  }
+
 </style>
 </head>
 <body>
@@ -478,14 +628,13 @@
   <p class="updated"><span class="livedot"></span> Data refreshed <!-- DATA_REFRESHED_START -->Sep 4, 2026<!-- DATA_REFRESHED_END --></p>
 </header>
 
-<div class="repbar-wrap">
-  <div class="start-panel">
-    <div class="start-head">
-      <div class="start-here">Start Here — Select Your Name</div>
-      <button class="reset-home-btn" id="resetHomeBtn" title="Clear rep, program, and any expanded detail — back to the start">🏠 Reset / Home</button>
+<div class="v2-picker" id="pickerWrap">
+  <div class="v2-picker-card">
+    <div class="v2-picker-head">
+      <div class="v2-picker-title"><span class="v2-step-dot">1</span>Select your name</div>
+      <button class="reset-home-btn" id="resetHomeBtn" title="Clear rep, program, and any expanded detail — back to the start">🏠 Start Over</button>
     </div>
-    <p class="start-sub">Select your name to see your progress across every incentive.</p>
-    <p class="start-sub dim">Track what you've completed, what's left, and where to focus next.</p>
+    <p class="v2-picker-sub">Tap your name to see where you stand in every incentive and what to do next.</p>
     <div class="repbar" id="repbar"></div>
   </div>
 </div>
@@ -112608,6 +112757,453 @@ function cardYuenglingRetention(rep){
   </div>`;
 }
 
+/* ====================================================================
+   SUPPLIER-FIRST VIEW (2026-09-04)
+   --------------------------------------------------------------------
+   Reps' feedback was that the page had "too much going on": every program
+   rendered as a full card with its stat tiles already open, so answering
+   "where do I stand" meant reading ~20 cards. This layer answers the four
+   questions a rep actually opens the page with --
+
+     1. Which programs am I in?      -> supplier sections, one row each
+     2. Where do I stand?            -> one number pair + one bar per row
+     3. What do I still have to do?  -> the next-step line on every row
+     4. What should I do next?       -> the Focus section, ranked
+
+   -- and hides everything else behind a tap. The detailed cards below are
+   untouched: a row expands into exactly the card that used to be the
+   default view, so nothing a rep relied on is gone, it is one tap deeper.
+
+   SUPPLIER IS THE TOP LEVEL because reps already navigate Encompass that
+   way (Gavin, 2026-09-04). The names and groupings here are NOT invented:
+   every one is the "Supplier" value Kohler's own RDE exports carry for
+   that program's brand family (checked across the repo's CSVs -- e.g.
+   Keystone -> "MolsonCoors Beverage Company", Lytt and Twisted Tea ->
+   "Boston Beer Company", 2XO and Le Grand Noir -> "Prestige Beverage
+   Group"). Display names are trimmed to what a rep says out loud
+   ("Molson Coors", not "MolsonCoors Beverage Company"); the RDE spelling
+   is kept in `rde` so the mapping can be re-checked against a fresh
+   export. If a program's supplier is ever wrong, fix it HERE -- it is the
+   single source for grouping, and nothing else infers a supplier.
+   ==================================================================== */
+const SUPPLIERS = {
+  molson_coors:  {name:'Molson Coors',      rde:'MolsonCoors Beverage Company', logo:'assets/logos/molson_coors.png'},
+  boston_beer:   {name:'Boston Beer',       rde:'Boston Beer Company',          logo:'assets/logos/boston_beer.png'},
+  constellation: {name:'Constellation',     rde:'Constellation Brands',         logo:'assets/logos/constellation.png'},
+  mark_anthony:  {name:'Mark Anthony',      rde:'Mark Anthony',                 logo:'assets/logos/mark_anthony.png'},
+  yuengling:     {name:'Yuengling',         rde:'DG Yuengling Inc',             logo:'assets/logos/yuengling.png'},
+  bardstown:     {name:'Bardstown Bourbon', rde:'Bardstown Bourbon Co',         logo:'assets/logos/bardstown.png'},
+  new_belgium:   {name:'New Belgium',       rde:'New Belgium Brewing Company',  logo:'assets/logos/new_belgium.png'},
+  beak_skiff:    {name:'Beak & Skiff',      rde:'Beak & Skiff',                 logo:'assets/logos/1911.png'},
+  vermont_cider: {name:'Woodchuck',         rde:'Vermont Hard Cider',           logo:'assets/logos/woodchuck.png'},
+  artisanal:     {name:'Tona',              rde:'Artisanal Imports',            logo:'assets/logos/tona.png'},
+  prestige:      {name:'Prestige Beverage', rde:'Prestige Beverage Group',      logo:'assets/logos/two_xo.png'},
+  garage_beer:   {name:'Garage Beer',       rde:'Garage Beer',                  logo:'assets/logos/garage_beer.png'},
+  evil_genius:   {name:'Evil Genius',       rde:'Evil Genius',                  logo:'assets/logos/evil_genius.png'},
+  other_half:    {name:'Other Half',        rde:'Other Half Brewing Co',        logo:'assets/logos/other_half.png'},
+  montauk:       {name:'Montauk',           rde:'Montauk Brewing Co',           logo:'assets/logos/montauk.png'},
+  victory:       {name:'Victory Brewing',   rde:'Victory Brewing Company',      logo:'assets/logos/victory.png'},
+  cruz:          {name:'YaVe Tequila',      rde:'Cruz Beverage',                logo:'assets/logos/yave.png'},
+  mollys:        {name:"Molly's",           rde:"Molly's",                      logo:'assets/logos/mollys.png'},
+  house:         {name:'Kohler House Programs', rde:'(multiple suppliers)',     logo:'../assets/kohler-logo-badge.png'},
+};
+// Program -> supplier key. Programs spanning several suppliers (the fall
+// seasonal push, the display auction) sit under "Kohler House Programs"
+// rather than being filed under whichever brand happens to lead them.
+const PROGRAM_SUPPLIER = {
+  keystone_ice:'molson_coors', mc_retention:'molson_coors',
+  touchdowns_tea:'boston_beer', lytt:'boston_beer', sam_adams:'boston_beer', boston_beer:'boston_beer', sun_cruiser:'boston_beer',
+  constellation_fall:'constellation', constellation_retention:'constellation',
+  mabi_retention:'mark_anthony', mabi_retention_fall:'mark_anthony',
+  yuengling_retention:'yuengling', yuengling_retention_fall:'yuengling',
+  printed_menu:'bardstown', bardstown_display:'bardstown',
+  new_belgium:'new_belgium', new_belgium_distribution:'new_belgium', new_belgium_distribution_retain:'new_belgium',
+  '1911':'beak_skiff', woodchuck:'vermont_cider', tona:'artisanal',
+  two_xo:'prestige', le_grand_noir:'prestige',
+  garage_beer_president:'garage_beer', garage_beer_summer_sequel:'garage_beer',
+  evil_genius:'evil_genius', other_half:'other_half', montauk:'montauk',
+  path_to_victory:'victory', yave:'cruz', mollys:'mollys',
+  fall_seasonal:'house', display_auction:'house',
+};
+function supplierOf(key){ return SUPPLIERS[PROGRAM_SUPPLIER[key]] || SUPPLIERS.house; }
+
+/* --------------------------------------------------------------------
+   PROGRAM SUMMARY -- the one-line answer per program.
+   Each entry turns a rep's data into: how far along they are, out of what,
+   and the single sentence telling them what to do next. Two shapes:
+
+     goal:true   the program has a threshold that switches money on. `now`
+                 and `goal` drive the bar, and "X to go" is real.
+     goal:false  open-ended -- every placement pays from the first one.
+                 There is no bar to fill, so `now` carries what they have
+                 earned or landed and the status is simply whether they
+                 are on the board.
+
+   Anything returning null renders as "Coming Soon" (no export yet). The
+   numbers here are read from the SAME fields the detailed cards use, so a
+   row and the card it opens can never disagree.
+   -------------------------------------------------------------------- */
+const pl = (n,w) => `${n} ${w}${n===1?'':'s'}`;
+const money = v => '$'+Math.round(v||0).toLocaleString('en-US');
+
+const PROGRAM_SUMMARY = {
+  keystone_ice:(d)=>({goal:true, now:d.accounts, target:d.qualifier, unit:'accounts',
+    label:`${d.accounts} of ${d.qualifier} accounts`,
+    remain:d.qualified?null:`${pl(d.toQualifier,'account')} to go`,
+    next:d.qualified
+      ? (d.bonusHit ? `You are at the top rate — every account pays $10.`
+                    : `You are earning $5 an account. <strong>${pl(d.toBonus,'more account')}</strong> doubles it to $10 on every one.`)
+      : `Sell Keystone Ice 24oz into <strong>${pl(d.toQualifier,'more account')}</strong> to switch your payout on.`}),
+
+  touchdowns_tea:(d)=>({goal:false, now:d.payout, unit:'$',
+    label:money(d.payout)+' earned', sub:`${pl(d.offPremNewCount,'new 12pk placement')} · ${Math.round(d.onPremCases)} on-prem cases`,
+    next:`Every new 12pk placement pays <strong>$15</strong> and every on-premise case pays <strong>$1</strong>.`}),
+
+  evil_genius:(d,m)=>({goal:true, now:d.totalNewPlacements, target:(m&&m.qualifier)||3, unit:'placements',
+    label:`${d.totalNewPlacements} of ${(m&&m.qualifier)||3} placements`,
+    remain:d.qualified?null:`${pl(d.toQualifier,'placement')} to go`,
+    next:d.qualified
+      ? `You are past the qualifier — every new placement is paying.`
+      : `Land <strong>${pl(d.toQualifier,'more placement')}</strong>. Nothing pays until you reach ${(m&&m.qualifier)||3}.`}),
+
+  montauk:(d)=>({goal:false, now:d.payout, unit:'$',
+    label:money(d.payout)+' earned', sub:`${pl(d.totalNewPlacements,'new placement')}`,
+    next:`Every new Wave Chaser placement pays <strong>$10–$15</strong>, and a new draught line pays <strong>$100</strong>.`}),
+
+  two_xo:(d)=>({goal:false, now:d.offPremNewCount+d.onPremNewCount, unit:'PODs',
+    label:`${d.offPremNewCount+d.onPremNewCount} landed`,
+    next:`Pair American Oak with French Oak in an off-premise account, or land a <strong>2-bottle on-premise POD</strong>.`}),
+
+  other_half:(d)=>({goal:false, now:d.offPremNewCount, unit:'accounts',
+    label:`${pl(d.offPremNewCount,'account')} opened`, sub:money(d.offPremPayout)+' earned',
+    next:`Open another target account on Other Half core draft — each one pays <strong>$40+</strong>.`}),
+
+  '1911':(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
+    label:`${pl(d.totalNewPlacements,'new placement')}`, sub:`${Math.round(d.caseVolume)} cases`,
+    next:`Every new off-premise placement pays <strong>$10</strong>; a new draft line pays <strong>$100</strong> once that account hits 2 barrels.`}),
+
+  woodchuck:(d)=>({goal:true, now:d.totalNewPlacements, target:3, unit:'placements',
+    label:`${d.totalNewPlacements} of 3 placements`,
+    remain:d.totalNewPlacements>=3?null:`${pl(3-d.totalNewPlacements,'placement')} to go`,
+    next:d.totalNewPlacements>=3
+      ? `You are qualified — every placement and every case is paying.`
+      : `Get <strong>${pl(3-d.totalNewPlacements,'more placement')}</strong> to qualify. Nothing pays until you reach 3.`}),
+
+  tona:(d,m,P)=>{const g=(P&&P.qualifierGoal)||20, need=Math.max(0,g-d.caseVolume24oz);
+    return {goal:true, now:d.caseVolume24oz, target:g, unit:'cases',
+      label:`${Math.round(d.caseVolume24oz)} of ${g} cases`,
+      remain:need>0?`${Math.round(need)} cases to go`:null,
+      next:need>0
+        ? `Sell <strong>${Math.round(need)} more cases</strong> of Tona 24oz to unlock every payout on this program.`
+        : `You cleared 20 cases — your placements and case money are both paying.`};},
+
+  lytt:(d)=>{const p=d.penetrationPct, tier=p>=75?null:(p>=50?75:(p>=25?50:25));
+    // The bar tracks progress to the NEXT RATE, not raw penetration: a rep at
+    // 19% is 76% of the way to the 25% tier, and showing 19% filled made that
+    // read "Needs Attention" when they are one account or two from a raise.
+    return {goal:true, now:p, target:tier||100, unit:'%',
+      pctOverride:tier?Math.min(100,p/tier*100):100,
+      label:`${p.toFixed(0)}% of your accounts`, sub:d.tier?`${d.tier} · $${d.rate.toFixed(2)}/case`:'No tier yet',
+      remain:tier?`${(tier-p).toFixed(0)}% more to reach the ${tier}% rate`:null,
+      next:tier
+        ? `Get Lytt into more accounts — reach <strong>${tier}%</strong> and your rate goes up.`
+        : `You are at the top tier — every case pays <strong>$2.00</strong>.`};},
+
+  le_grand_noir:(d,m,P)=>{const g=(P&&P.houseGoal)||70, house=(P&&P.companyCases)||0, need=Math.max(0,g-house);
+    return {goal:true, now:house, target:g, unit:'cases', house:true,
+      label:`House ${Math.round(house)} of ${g} cases`, sub:`You: ${Math.round(d.cases)} cases`,
+      remain:need>0?`${Math.round(need)} cases to unlock`:null,
+      next:need>0
+        ? `The house needs <strong>${Math.round(need)} more cases</strong> before anyone gets paid — every case you sell counts.`
+        : `The house goal is cleared — every case you sell pays <strong>$10</strong>.`};},
+
+  garage_beer_president:(d,m,P)=>{const g=(P&&P.houseGoal)||9305, house=(P&&P.companyTotalThisYear)||0, need=Math.max(0,g-house);
+    return {goal:true, now:house, target:g, unit:'CE', house:true,
+      label:`House ${Math.round(house).toLocaleString('en-US')} of ${g.toLocaleString('en-US')} CE`,
+      sub:`You: ${d.caseGrowthOverLastYear>0?'+':''}${Math.round(d.caseGrowthOverLastYear)} vs last year`,
+      remain:need>0?`${Math.round(need).toLocaleString('en-US')} CE to unlock`:null,
+      next:need>0
+        ? `The house needs <strong>${Math.round(need).toLocaleString('en-US')} more CE</strong> to unlock this. Then every case you grew over last year pays $1.`
+        : `House goal cleared — every case you grew over last year pays <strong>$1</strong>.`};},
+
+  mc_retention:(d)=>({goal:true, now:d.goalsRetained, target:d.goalsTotal, unit:'goals',
+    label:`${d.goalsRetained} of ${d.goalsTotal} goals held`, sub:`${(d.overallPct||0).toFixed(0)}% of goal`,
+    remain:d.goalsRetained>=d.goalsTotal?null:`${pl(d.goalsTotal-d.goalsRetained,'goal')} at risk`,
+    next:d.goalsTotal===0 ? `No MolsonCoors goals on file for you.`
+      : d.goalsRetained>=d.goalsTotal
+        ? `Every goal is held — keep them there through October.`
+        : `<strong>${pl(d.goalsTotal-d.goalsRetained,'goal')}</strong> ${d.goalsTotal-d.goalsRetained===1?'is':'are'} below target. Rebuild those before October ends.`}),
+
+  /* ---- August-tab programs ---- */
+  path_to_victory:(d)=>({goal:false, now:d.sixPackAccountCount+d.nineteenTwoAccountCount, unit:'accounts',
+    label:`${pl(d.sixPackAccountCount+d.nineteenTwoAccountCount,'account')}`,
+    next:`$25 per account buying 5+ Victory Monkey 6pks, plus <strong>$10</strong> a new POD. Submit through iSellBeer to get paid.`}),
+  sam_adams:(d)=>({goal:true, now:d.allSkuUnitsThisYear, target:d.allSkuUnitsLastYear, unit:'cases',
+    label:`${Math.round(d.allSkuUnitsThisYear)} vs ${Math.round(d.allSkuUnitsLastYear)} last year`,
+    remain:d.isPositive?null:`${Math.round(d.allSkuUnitsLastYear-d.allSkuUnitsThisYear)} cases behind`,
+    next:d.isPositive ? `You are ahead of last August — your commission doubles.`
+      : `Sell <strong>${Math.round(d.allSkuUnitsLastYear-d.allSkuUnitsThisYear)} more cases</strong> to beat last August and double your commission.`}),
+  boston_beer:(d)=>({goal:false, now:d.points, unit:'points',
+    label:`${d.points} trip points`, sub:`${pl(d.draftNewCount,'new draft POD')}`,
+    next:`Draft PODs are worth <strong>2 points</strong> and $100 each; package placements are 1 point and $10.`}),
+  new_belgium:(d,m,P)=>{const g=(P&&P.houseGoal)||70, house=(P&&P.housePodsTotal)||0;
+    return {goal:true, now:house, target:g, unit:'PODs', house:true,
+      label:`House ${house} of ${g} PODs`, sub:`You: ${pl(d.housePods,'POD')}`,
+      remain:house>=g?null:`${g-house} to go`,
+      next:house>=g ? `House goal cleared.` : `The house needs <strong>${pl(g-house,'more POD')}</strong> by month end.`};},
+  sun_cruiser:(d)=>({goal:false, now:d.rate1CaseGrowth, unit:'cases',
+    label:`${Math.round(d.rate1CaseGrowth)} cases grown`,
+    next:`Every case you grow over last year pays — the higher-rate SKUs pay <strong>$3</strong>.`}),
+  yave:(d)=>({goal:false, now:d.onPremAccountCount+d.offPremAccountCount, unit:'accounts',
+    label:`${pl(d.onPremAccountCount+d.offPremAccountCount,'account')}`,
+    next:`Every new YaVe account counts — on-premise bottles and off-premise cases both pay.`}),
+  mollys:(d)=>({goal:false, now:d.newPodCount, unit:'PODs',
+    label:`${pl(d.newPodCount,'new POD')}`, sub:`${pl(d.rebuyCount,'rebuy')}`,
+    next:`Every new Molly's POD pays, and rebuys pay again.`}),
+  garage_beer_summer_sequel:(d)=>({goal:true, now:d.caseEquiv, target:d.tieredGoal, unit:'CE',
+    label:`${Math.round(d.caseEquiv)} of ${Math.round(d.tieredGoal)} CE`, sub:d.tier?`Tier: ${d.tier}`:'No tier yet',
+    remain:d.caseEquiv>=d.tieredGoal?null:`${Math.round(d.tieredGoal-d.caseEquiv)} CE to go`,
+    next:d.caseEquiv>=d.tieredGoal ? `You cleared your tier goal.`
+      : `Sell <strong>${Math.round(d.tieredGoal-d.caseEquiv)} more CE</strong> to hit your tier.`}),
+  new_belgium_distribution:(d)=>({goal:false, now:d.pushVolumeCE, unit:'CE',
+    label:`${Math.round(d.pushVolumeCE)} CE pushed`,
+    next:`Push volume above your monthly average — every case over the base counts.`}),
+  display_auction:(d)=>({goal:false, now:d.points, unit:'points',
+    label:`${(d.points||0).toLocaleString('en-US')} points`, sub:`${pl(d.qualifying,'qualifying display')}`,
+    next:`Every qualifying display you photograph in iSellBeer adds points to the auction.`}),
+  mabi_retention:(d)=>({goal:true, now:d.placements, target:d.goal, unit:'placements',
+    label:`${d.placements} of ${d.goal} placements`, sub:`${(d.pct||0).toFixed(0)}% of goal`,
+    remain:d.pct>=90?null:`${(90-(d.pct||0)).toFixed(0)}% to the 90% bar`,
+    next:d.pct>=90 ? `You are holding above 90% — keep it there.`
+      : `Rebuild to <strong>90% of your MADE goal</strong> to keep this paying.`}),
+  constellation_retention:(d)=>({goal:true, now:d.offGoalsRetained, target:d.offGoalsTotal, unit:'goals',
+    label:`${d.offGoalsRetained} of ${d.offGoalsTotal} goals held`, sub:`${(d.offPct||0).toFixed(0)}% of goal`,
+    remain:d.offGoalsRetained>=d.offGoalsTotal?null:`${pl(d.offGoalsTotal-d.offGoalsRetained,'goal')} at risk`,
+    next:d.offGoalsTotal===0 ? `No Constellation goals on file for you.`
+      : d.offGoalsRetained>=d.offGoalsTotal ? `Every goal is held — keep them there.`
+      : `<strong>${pl(d.offGoalsTotal-d.offGoalsRetained,'goal')}</strong> below target. Rebuild those placements.`}),
+  yuengling_retention:(d)=>({goal:true, now:d.goalsRetained, target:d.goalsTotal, unit:'goals',
+    label:`${d.goalsRetained} of ${d.goalsTotal} goals held`, sub:`${pl(d.heldCount,'account')} held of ${d.listedCount}`,
+    remain:d.goalsRetained>=d.goalsTotal?null:`${pl(d.goalsTotal-d.goalsRetained,'goal')} at risk`,
+    next:d.goalsTotal===0 ? `No Yuengling goals on file for you.`
+      : d.goalsRetained>=d.goalsTotal ? `Every goal is held — keep them there.`
+      : `<strong>${pl(d.goalsTotal-d.goalsRetained,'goal')}</strong> below target. Rebuild those before the period ends.`}),
+};
+
+// Status ladder. Deliberately five words a rep reads the same way every
+// time, each paired with an icon so the meaning never rides on colour
+// alone (a colour-blind rep, or a printed page, still reads correctly).
+const STATUS_META = {
+  earned:     {label:'Earned',         ic:'✓'},
+  close:      {label:'Close',          ic:'◗'},
+  ontrack:    {label:'On Track',       ic:'▲'},
+  attention:  {label:'Needs Attention',ic:'!'},
+  notstarted: {label:'Not Started',    ic:'○'},
+  soon:       {label:'Coming Soon',    ic:'⋯'},
+};
+function statusChip(st, small){
+  const m = STATUS_META[st] || STATUS_META.notstarted;
+  return `<span class="v2-chip ${st}${small?' sm':''}"><span class="ic">${m.ic}</span>${esc(m.label)}</span>`;
+}
+
+// One place decides a program's status, so the chip, the counts in the
+// header and the Focus ranking can never disagree with each other.
+function summarize(entry, rep){
+  const d = entry.getRep(rep);
+  const fn = PROGRAM_SUMMARY[entry.key];
+  if(!d || !fn) return {status:'soon', soon:true,
+    next:entry.manual ? 'Submitted and verified by hand — nothing to track here yet.'
+                      : 'Waiting on the first export for this program.'};
+  const P = (PROGRAM_DATA_2026_09[entry.key] || PROGRAM_DATA[entry.key] || {});
+  const s = fn(d, P.meta, P) || {};
+  let pct;
+  if(s.pctOverride!=null) pct = s.pctOverride;
+  else if(s.goal && s.target) pct = Math.min(100, (s.now/s.target)*100);
+  else pct = s.now>0 ? 100 : 0;
+  let status;
+  if(!s.goal)                 status = s.now>0 ? 'earned' : 'notstarted';
+  else if(s.target && s.now>=s.target) status = 'earned';
+  else if(s.now<=0)           status = 'notstarted';
+  else if(pct>=75)            status = 'close';
+  else if(pct>=40)            status = 'ontrack';
+  else                        status = 'attention';
+  return Object.assign({}, s, {status, pct});
+}
+
+/* --------------------------------------------------------------------
+   Rendering
+   -------------------------------------------------------------------- */
+// Programs a rep can act on, grouped by supplier, in the month's own order.
+function repProgramsBySupplier(rep){
+  const order = [].concat(activeMonth.repCards.new, activeMonth.repCards.ongoing, activeMonth.repCards.retention);
+  const groups = new Map();
+  order.forEach(key=>{
+    const entry = PROGRAM_LIST.find(e=>e.key===key);
+    if(!entry) return;
+    const sk = PROGRAM_SUPPLIER[key] || 'house';
+    if(!groups.has(sk)) groups.set(sk, []);
+    groups.get(sk).push({entry, sum:summarize(entry, rep)});
+  });
+  // Suppliers with something live come first; "Coming Soon" ones sink.
+  return [...groups.entries()].sort((a,b)=>{
+    const live = g => g[1].filter(x=>!x.sum.soon).length;
+    return live(b)-live(a) || SUPPLIERS[a[0]].name.localeCompare(SUPPLIERS[b[0]].name);
+  });
+}
+
+function supLogoHtml(sk){
+  const s = SUPPLIERS[sk];
+  return s && s.logo
+    ? `<span class="v2-sup-logo"><img src="${esc(s.logo)}" alt="" loading="lazy"></span>`
+    : `<span class="v2-sup-logo blank">${esc((s?s.name:'?').slice(0,2).toUpperCase())}</span>`;
+}
+
+function progressHtml(sum){
+  if(sum.soon) return `<div class="v2-remain">Not tracked yet</div>`;
+  const cls = sum.status==='earned' ? 'good' : (sum.status==='close' ? 'warn' : (sum.status==='notstarted' ? 'dim' : ''));
+  return `<div class="v2-prog-nums"><span class="v2-prog-now">${sum.label||''}</span>${
+      sum.sub?`<span class="v2-prog-of">${sum.sub}</span>`:''}</div>
+    <div class="v2-bar"><div class="v2-bar-fill ${cls}" style="width:${Math.max(sum.pct||0,sum.pct?2:0)}%"></div></div>
+    ${sum.remain?`<div class="v2-remain">${esc(sum.remain)}</div>`:''}`;
+}
+
+function programRow(entry, sum, rep){
+  const rid = 'd'+(uid++);
+  return `<div class="v2-row">
+    <button class="v2-row-main js-rowtoggle" data-target="${rid}" aria-expanded="false">
+      <span class="v2-row-l">
+        <span class="v2-row-name" data-key="${esc(entry.key)}">${esc(entry.title)}</span>
+        <span class="v2-row-next">${sum.next||''}</span>
+      </span>
+      <span class="v2-row-m">${progressHtml(sum)}</span>
+      <span class="v2-row-r">${statusChip(sum.status)}<span class="v2-chev">&#9656;</span></span>
+    </button>
+    <div class="v2-detail" id="${rid}">
+      ${rep ? cardFor(entry.key, rep) : (renderProgramTile(entry))}
+    </div>
+  </div>`;
+}
+
+function supplierSection(sk, items, rep){
+  const s = SUPPLIERS[sk];
+  const live = items.filter(x=>!x.sum.soon);
+  const earned = live.filter(x=>x.sum.status==='earned').length;
+  const attention = live.filter(x=>x.sum.status==='attention').length;
+  const tally = [
+    earned ? `<span class="v2-chip earned sm"><span class="ic">✓</span>${earned} earned</span>` : '',
+    attention ? `<span class="v2-chip attention sm"><span class="ic">!</span>${attention}</span>` : '',
+  ].join('');
+  const bid = 's'+(uid++);
+  return `<div class="v2-sup">
+    <button class="v2-sup-head js-suptoggle open" data-target="${bid}" aria-expanded="true">
+      ${supLogoHtml(sk)}
+      <span class="v2-sup-name">${esc(s.name)}
+        <span class="v2-sup-meta">${pl(items.length,'incentive')}${live.length<items.length?` · ${items.length-live.length} coming soon`:''}</span>
+      </span>
+      <span class="v2-sup-tally">${tally}</span>
+      <span class="v2-chev">&#9656;</span>
+    </button>
+    <div class="v2-sup-body open" id="${bid}">
+      ${items.map(x=>programRow(x.entry, x.sum, rep)).join('')}
+    </div>
+  </div>`;
+}
+
+// "What should I do next?" -- the programs where effort converts fastest.
+// Ranked by how close an unearned goal is, so the top card is always the
+// one a rep can finish soonest, not merely the one that is furthest behind.
+function focusItems(bySupplier){
+  const all = [];
+  bySupplier.forEach(([sk,items])=>items.forEach(x=>{ if(!x.sum.soon) all.push(Object.assign({sk},x)); }));
+  const open = all.filter(x=>x.sum.status!=='earned');
+  open.sort((a,b)=>{
+    const rank = s => s.status==='close'?0:(s.status==='ontrack'?1:(s.status==='attention'?2:3));
+    return rank(a.sum)-rank(b.sum) || (b.sum.pct||0)-(a.sum.pct||0);
+  });
+  return open.slice(0,3);
+}
+
+function renderRepV2(){
+  const rep = activeRep;
+  const bySupplier = repProgramsBySupplier(rep);
+  const flat = [];
+  bySupplier.forEach(([sk,items])=>items.forEach(x=>flat.push(x)));
+  const live = flat.filter(x=>!x.sum.soon);
+  const earned = live.filter(x=>x.sum.status==='earned').length;
+  const going = live.filter(x=>x.sum.status==='close'||x.sum.status==='ontrack').length;
+  const needs = live.filter(x=>x.sum.status==='attention').length;
+  const notyet = live.filter(x=>x.sum.status==='notstarted').length;
+  const first = (rep||'').split(' ')[0];
+
+  const focus = focusItems(bySupplier);
+  const focusHtml = focus.length ? `<div class="v2-focus">
+      <div class="v2-focus-head">🎯 Where to focus next</div>
+      <div class="v2-focus-sub">The three closest to paying out.</div>
+      <div class="v2-focus-grid">${focus.map(x=>`
+        <button class="v2-focus-card js-jump" data-key="${esc(x.entry.key)}">
+          <span class="v2-focus-sup">${esc(SUPPLIERS[x.sk].name)}</span>
+          <span class="v2-focus-name">${esc(x.entry.shortTitle||x.entry.title)}</span>
+          ${statusChip(x.sum.status, true)}
+          <span class="v2-focus-next">${x.sum.next||''}</span>
+        </button>`).join('')}</div>
+    </div>` : '';
+
+  return `
+    <div class="v2-me"><div class="v2-me-card">
+      <div class="v2-me-top">
+        <div>
+          <div class="v2-me-name">${esc(first)}’s Incentives</div>
+          <div class="v2-me-sub">${esc(activeMonth.label)} · ${pl(live.length,'active program')}</div>
+        </div>
+        <button class="v2-switch" id="switchRep">Change name</button>
+      </div>
+      <div class="v2-counts">
+        <div class="v2-count good"><div class="v2-count-n">${earned}</div><div class="v2-count-l">Earned</div></div>
+        <div class="v2-count"><div class="v2-count-n">${going}</div><div class="v2-count-l">On Track</div></div>
+        <div class="v2-count warn"><div class="v2-count-n">${needs}</div><div class="v2-count-l">Needs Attention</div></div>
+        <div class="v2-count"><div class="v2-count-n">${notyet}</div><div class="v2-count-l">Not Started</div></div>
+      </div>
+    </div></div>
+    ${focusHtml}
+    <div class="v2-wrap">
+      <div class="v2-section-label">Your programs by supplier</div>
+      <div class="v2-section-sub">Tap any program to see the full detail.</div>
+      ${bySupplier.map(([sk,items])=>supplierSection(sk, items, rep)).join('')}
+    </div>`;
+}
+
+function renderBrowseV2(){
+  const groups = new Map();
+  PROGRAM_LIST.forEach(entry=>{
+    const sk = PROGRAM_SUPPLIER[entry.key] || 'house';
+    if(!groups.has(sk)) groups.set(sk, []);
+    groups.get(sk).push(entry);
+  });
+  const secs = [...groups.entries()].sort((a,b)=>SUPPLIERS[a[0]].name.localeCompare(SUPPLIERS[b[0]].name));
+  return `<div class="v2-wrap">
+    <div class="v2-browse-note">👆 <strong>Pick your name above</strong> to see where you stand in each of these programs and what to do next. Until then, this is the full list of what is running in ${esc(activeMonth.label)}.</div>
+    ${secs.map(([sk,items])=>{
+      const bid='b'+(uid++);
+      return `<div class="v2-sup">
+        <button class="v2-sup-head js-suptoggle" data-target="${bid}" aria-expanded="false">
+          ${supLogoHtml(sk)}
+          <span class="v2-sup-name">${esc(SUPPLIERS[sk].name)}
+            <span class="v2-sup-meta">${pl(items.length,'incentive')}</span></span>
+          <span class="v2-chev">&#9656;</span>
+        </button>
+        <div class="v2-sup-body" id="${bid}">
+          ${items.map(e=>`<div class="v2-row"><button class="v2-row-main js-openprog" data-program="${esc(e.key)}">
+            <span class="v2-row-l"><span class="v2-row-name">${esc(e.title)}</span>
+              <span class="v2-row-next">${esc(e.pitch||'')}</span></span>
+            <span class="v2-row-m"><span class="v2-remain">${esc(e.tag)}</span></span>
+            <span class="v2-row-r"><span class="v2-chip notstarted sm">See program</span><span class="v2-chev">&#9656;</span></span>
+          </button></div>`).join('')}
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
 function renderPillNav(rep){
   const grp = g => PROGRAM_LIST.filter(e=>e.group===g).map(e=>{
     const has = !!e.getRep(rep);
@@ -112633,22 +113229,14 @@ function repSection(title, sub, keys){
       </div>`;
 }
 
+// The rep view is now renderRepV2() -- supplier sections of one-line
+// program rows, each expanding into the detailed card that used to be the
+// default. repSection()/renderPillNav() above are kept because the program
+// LEADERBOARD page still uses cardFor(), and because reinstating the old
+// stacked view is then a one-line change here rather than a rebuild.
 function renderRep(){
   const main = document.getElementById('main');
-  main.innerHTML = `
-    <button class="backbtn" id="backbtn">&lsaquo; All reps</button>
-    <div class="sticky-nav">
-      <div class="rep-hero"><h2>${esc(activeRep)}</h2><button class="reset-home-btn sticky-home" id="stickyHomeBtn">🏠 Home</button></div>
-      ${renderPillNav(activeRep)}
-    </div>
-    <div class="prog-grid">
-      ${repSection('New Incentives', activeMonth.newLabel, activeMonth.repCards.new)}
-      ${repSection('Ongoing Incentives', 'Continuing programs', activeMonth.repCards.ongoing)}
-      ${repSection('Retention Programs', 'Hold the distribution you built', activeMonth.repCards.retention)}
-    </div>
-  `;
-  document.getElementById('backbtn').addEventListener('click', ()=>{ activeRep=null; renderMain(); });
-  document.getElementById('stickyHomeBtn').addEventListener('click', resetToHome);
+  main.innerHTML = renderRepV2();
 }
 
 // Mobile/iPad: the crumb, hero banner, page header, and "Start Here" rep
@@ -112678,32 +113266,12 @@ function renderProgramTile(entry){
   </button>`;
 }
 
+// No rep picked yet. The old overview opened with 20 full tiles, which is
+// the "too much going on" the redesign is answering -- so this is now a
+// quiet supplier index that says, plainly, to pick a name first.
 function renderOverview(){
   const main = document.getElementById('main');
-  const newTiles = PROGRAM_LIST.filter(e=>e.group==='new').map(renderProgramTile).join('');
-  const ongoingTiles = PROGRAM_LIST.filter(e=>e.group==='ongoing').map(renderProgramTile).join('');
-  const retentionTiles = PROGRAM_LIST.filter(e=>e.group==='retention').map(renderProgramTile).join('');
-  main.innerHTML = `
-    <div class="prog-grid">
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">New Incentives</span><span class="prog-section-sub">${esc(activeMonth.newLabel)}</span></div>
-        <div class="tile-grid">${newTiles}</div>
-      </div>
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">Ongoing Incentives</span><span class="prog-section-sub">Continuing programs</span></div>
-        <div class="tile-grid">${ongoingTiles}</div>
-      </div>
-      <div class="prog-section">
-        <div class="prog-section-head"><span class="prog-section-title">Retention Programs</span><span class="prog-section-sub">Hold the distribution you built</span></div>
-        <div class="tile-grid">${retentionTiles}</div>
-      </div>
-    </div>
-  `;
-  main.querySelectorAll('.prog-tile-link').forEach(b=>b.addEventListener('click', ()=>{
-    activeProgram = b.dataset.program;
-    renderMain();
-    scrollToContent();
-  }));
+  main.innerHTML = renderBrowseV2();
 }
 
 // Program rules as short bullets, shown big at the top of each program's
@@ -113352,15 +113920,17 @@ function boot(){
   const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
   const leftovers = ROSTER.filter(r=>!grouped.has(r));
   const groups = leftovers.length ? [...DM_GROUPS, {dm:'Other', reps:leftovers}] : DM_GROUPS;
-  bar.innerHTML = groups.map(g=>`<div class="dm-group">
-      <div class="dm-label">${esc(g.dm)}</div>
-      <div class="dm-pills">${g.reps.map(r=>`<button class="repchip" data-rep="${esc(r)}">${esc(r)}</button>`).join('')}</div>
+  bar.innerHTML = groups.map(g=>`<div class="v2-dm-group">
+      <div class="v2-dm-label">${esc(g.dm)}</div>
+      <div class="v2-dm-pills">${g.reps.map(r=>`<button class="v2-repchip repchip" data-rep="${esc(r)}">${esc(r)}</button>`).join('')}</div>
     </div>`).join('');
   bar.querySelectorAll('.repchip').forEach(b=>b.addEventListener('click', ()=>{
     activeRep = b.dataset.rep;
+    activeProgram = null;
     bar.querySelectorAll('.repchip').forEach(x=>x.classList.toggle('active', x===b));
     renderMain();
-    window.scrollTo({top:0,behavior:'smooth'});
+    // Land on the rep's own summary, not the picker they just used.
+    scrollToContent();
   }));
   document.getElementById('resetHomeBtn').addEventListener('click', resetToHome);
   renderMain();
@@ -113375,6 +113945,65 @@ document.addEventListener('click', (e)=>{
   const body = document.getElementById(t.dataset.target);
   t.classList.toggle('open');
   if(body) body.classList.toggle('open');
+});
+
+// One program row: expand it in place into its full card. Rows are the
+// whole progressive-disclosure story -- the summary is always visible, the
+// detail never is until asked for.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-rowtoggle');
+  if(!t) return;
+  const body = document.getElementById(t.dataset.target);
+  const open = t.classList.toggle('open');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(body) body.classList.toggle('open', open);
+});
+
+// A supplier section. Open by default for a rep (their rows ARE the page);
+// collapsed in browse mode, where the list is only an index.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-suptoggle');
+  if(!t) return;
+  const body = document.getElementById(t.dataset.target);
+  const open = t.classList.toggle('open');
+  t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if(body) body.classList.toggle('open', open);
+});
+
+// "Where to focus next" -> scroll to that program's row and open it, so the
+// card answers the question the focus card just raised.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-jump');
+  if(!t) return;
+  const row = [...document.querySelectorAll('.v2-row-name')]
+    .find(el=>el.dataset.key===t.dataset.key);
+  if(!row) return;
+  const btn = row.closest('.v2-row-main');
+  const sec = row.closest('.v2-sup-body');
+  const head = sec && sec.previousElementSibling;
+  if(sec && !sec.classList.contains('open')){
+    sec.classList.add('open');
+    if(head){ head.classList.add('open'); head.setAttribute('aria-expanded','true'); }
+  }
+  if(btn && !btn.classList.contains('open')) btn.click();
+  btn.scrollIntoView({behavior:'smooth', block:'center'});
+});
+
+// Browse mode: a row opens that program's leaderboard page.
+document.addEventListener('click', (e)=>{
+  const t = e.target.closest('.js-openprog');
+  if(!t) return;
+  activeProgram = t.dataset.program;
+  renderMain();
+  scrollToContent();
+});
+
+// "Change name" jumps back to the picker rather than clearing the rep --
+// a rep switching names still wants a name selected when they land.
+document.addEventListener('click', (e)=>{
+  if(!e.target.closest('#switchRep')) return;
+  const w = document.getElementById('pickerWrap');
+  if(w) w.scrollIntoView({behavior:'smooth', block:'start'});
 });
 
 document.addEventListener('click', (e)=>{
