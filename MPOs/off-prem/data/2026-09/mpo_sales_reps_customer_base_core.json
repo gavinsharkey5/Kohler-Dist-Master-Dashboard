@@ -4831,26 +4831,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 201097,
-    "CUSTOMER_NAME": "Whole Foods #10381 (Closter)",
-    "SHIPPING_ADDRESS": "45 Vervalen St.",
-    "CITY": "Closter",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 380.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 201098,
-    "CUSTOMER_NAME": "Whole Foods #8407 (Woodcliff Lake)",
-    "SHIPPING_ADDRESS": "500 Chestnut Ridge Rd.",
-    "CITY": "Woodcliff Lake",
-    "AREA": "Bergen",
-    "COUNTY": "Bergen",
-    "CASES": 438.0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 65001,
     "CUSTOMER_NAME": "Wine & Whiskey (A)",
     "SHIPPING_ADDRESS": "7 Broad St",

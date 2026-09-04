@@ -14,6 +14,29 @@ here: Qualifier is 40% of a rep's 2026 off-premise buyer base and Bonus
 Goal is 50%. If Kohler reissues the goals with different percentages,
 the new file carries the new numbers and no code changes.
 
+ONE DELIBERATE DEPARTURE FROM THE WORKBOOK (2026-09-04, per Gavin):
+SHANE BARRECA'S BASE IS 27 IN goals.csv AND 29 IN goals.xlsx. Two of his
+accounts -- Whole Foods #10381 (Closter, 201097) and Whole Foods #8407
+(Woodcliff Lake, 201098) -- were taken out of his Keystone account base
+on Gavin's instruction, so his row was recomputed at the SAME 40%/50%
+the workbook uses: 27 / 10.8 / 13.5, which ceil to a qualifier of 11 and
+a bonus of 14 (was 12 and 15). No other rep's row was touched.
+
+THIS IS THE ONE THING A GOALS RE-EXTRACT WILL SILENTLY UNDO. Step 1 of
+"To refresh" below says to re-extract goals.csv from a reissued
+workbook -- doing that verbatim hands Shane 29 back and quietly raises
+his bar by one account in each tier. If Kohler reissues the goals,
+re-apply this exclusion afterwards (or check whether the reissue already
+drops the two accounts, in which case it is settled at source and this
+note can go). The same two accounts are excluded on the MPO off-premise
+board's Keystone objective, where the exclusion lives in code -- see
+KEYSTONE_BASE_EXCLUDED in MPOs/off-prem/generate_2026-09.py, which is
+the better-protected half of the same decision. Keep the two in step.
+
+Scoped to Keystone. Both accounts remain in Shane's book everywhere
+else, including his Fever Tree Target Accounts list on the off-prem
+board -- the ask named Keystone and nothing else.
+
 WHOLE NUMBERS EVERYWHERE (per Gavin, 2026-08-31: "make the rep goals and
 all other decimals whole numbers... easier on the eyes for a rep on
 their iPad"). Kohler's goals arrive fractional -- 40% of a 43-account
@@ -44,7 +67,10 @@ Files:
   goals.csv    Extracted from Kohler's "2026 Key Ice Goals" workbook
                (goals.xlsx, kept alongside as the original): Sales Rep
                Assigned, Buyer Count 2026, Qualifier, Bonus Goal. One
-               row per rep, 18 reps as issued 08/18/2026.
+               row per rep, 18 reps as issued 08/18/2026 -- with Shane
+               Barreca's row since edited away from the workbook on
+               purpose (27, not 29; see the departure note above before
+               re-extracting this file).
   goals.xlsx   The workbook Kohler sent, untouched. generate.py does
                NOT read it -- it reads goals.csv -- but it is the
                provenance for those numbers, so keep them in step if

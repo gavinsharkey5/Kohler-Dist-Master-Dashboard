@@ -136,6 +136,32 @@ FEVER_TREE_CSV = HERE / "molson_coors_fever_tree.csv"
 WINE_SPIRITS_CSV = HERE / "wine_spirits_new_placements.csv"
 CUSTOMER_BASE_CORE_CSV = HERE / "sales_reps_customer_base_core.csv"
 
+# KEYSTONE-ONLY ACCOUNT-BASE EXCLUSIONS (per Gavin, 2026-09-04). Accounts that
+# sit in a rep's core off-premise book but must not count toward the Keystone
+# Ice 40% objective -- so they come out of BOTH the penetration DENOMINATOR
+# and the Keystone Target Accounts list, and nothing else.
+#
+# This lives here, in code, rather than as a hand-deletion from
+# sales_reps_customer_base_core.csv, because that CSV is REGENERATED -- by
+# convert_customer_base_core.py from Kohler's workbook, and by the repo-root
+# territory-accounts/ pass. Either one would quietly hand the rows back and
+# put Shane's denominator to 29 again with nothing in the diff to explain it.
+#
+# SCOPED TO KEYSTONE DELIBERATELY. Both accounts are still in Shane's Fever
+# Tree Target Accounts list, because the ask named Keystone. If they should be
+# out of the core book altogether, that is a different (and bigger) change --
+# widen it here only on an explicit ask.
+KEYSTONE_BASE_EXCLUDED = {
+    # (rep, customer num): why
+    ("Shane Barreca", "201097"): "Whole Foods #10381 (Closter)",
+    ("Shane Barreca", "201098"): "Whole Foods #8407 (Woodcliff Lake)",
+}
+
+
+def keystone_excluded(rep, customer_num):
+    return (rep.strip(), str(customer_num).strip()) in KEYSTONE_BASE_EXCLUDED
+
+
 # Corona Gaintain's goal window (last fall) and this fall's actuals window.
 CONSTELLATION_GOAL_PCT = 0.30
 GOAL_WINDOW_START = datetime(2025, 9, 1)
@@ -334,6 +360,8 @@ def build_customer_base_core():
         rep = (r.get("Sales Rep Assigned") or "").strip()
         if not rep:
             continue
+        if keystone_excluded(rep, r.get("Customer Num")):
+            continue
         out.append({
             "SALES_REP_ASSIGNED": rep,
             "CUSTOMER_NUM": int(r["Customer Num"]),
@@ -452,13 +480,20 @@ def load_core_customer_base():
     return by_rep
 
 
-def build_targets(customer_base_by_rep, carrying):
+def build_targets(customer_base_by_rep, carrying, exclude=None):
     """Core-territory accounts with NO row at all in the brand's export --
-    the "hasn't touched it" prospect list, same as August's."""
+    the "hasn't touched it" prospect list, same as August's.
+
+    `exclude(rep, customer_num) -> bool` drops accounts that are in the core
+    book but out of scope for THIS brand (see KEYSTONE_BASE_EXCLUDED). It is
+    per-brand on purpose: an account excluded from Keystone is still a live
+    prospect for Fever Tree unless someone says otherwise."""
     out = []
     for rep, accounts in customer_base_by_rep.items():
         for a in accounts:
             if a["customer_num"] in carrying:
+                continue
+            if exclude and exclude(rep, a["customer_num"]):
                 continue
             out.append({
                 "SALES_REP_ASSIGNED": rep,
@@ -484,7 +519,8 @@ def main():
         WINE_SPIRITS_CSV, product_col="Product Num Name")
 
     core_by_rep = load_core_customer_base()
-    targets_keystone = build_targets(core_by_rep, carrying_nums(keystone_rows))
+    targets_keystone = build_targets(core_by_rep, carrying_nums(keystone_rows),
+                                     exclude=keystone_excluded)
     targets_fever_tree = build_targets(core_by_rep, carrying_nums(fever_tree_rows))
 
     month_dir = DATA_DIR / MONTH_KEY
@@ -524,7 +560,9 @@ def main():
     print(f"Keystone Ice: {len(keystone_rows)} purchase rows, "
           f"{len({r['CUSTOMER_NUM'] for r in keystone_rows})} distinct buying accounts; "
           f"{ks_at_goal} of {len(base_by_rep)} reps with a core-territory base at 40% penetration")
-    print(f"Sales Reps Customer Base (Core, Keystone's denominator): {len(customer_base_core_rows)} rows")
+    print(f"Sales Reps Customer Base (Core, Keystone's denominator): {len(customer_base_core_rows)} rows "
+          f"({len(KEYSTONE_BASE_EXCLUDED)} account(s) excluded from Keystone only -- "
+          + ", ".join(f"{rep}/{name}" for (rep, _), name in KEYSTONE_BASE_EXCLUDED.items()) + ")")
     print(f"Fever Tree: {ft_new:.0f} new placements across {ft_new_rows} newly-placed "
           f"rep+account+SKU keys (out of {ft_total} exported); summing load sheets instead "
           f"would read {ft_summed:.0f}")
