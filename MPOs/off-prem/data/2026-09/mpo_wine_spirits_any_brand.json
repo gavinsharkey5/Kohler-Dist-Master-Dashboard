@@ -651,6 +651,36 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 121004,
+    "CUSTOMER_NAME": "Harry's Wine Cellar",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 121004,
+    "CUSTOMER_NAME": "Harry's Wine Cellar",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 121004,
+    "CUSTOMER_NAME": "Harry's Wine Cellar",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alisa Acciardi",
     "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
     "BRAND_FAMILY": "New Holland Brewing Co",
     "CUSTOMER_NUM": 170101,
@@ -1108,6 +1138,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "201077 Green River Honey 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 12026,
+    "CUSTOMER_NAME": "WAYNE ALE HOUSE & PIZZA",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
@@ -3311,6 +3351,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 40010,
+    "CUSTOMER_NAME": "Hackensack Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 40010,
+    "CUSTOMER_NAME": "Hackensack Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 57003,
@@ -3411,6 +3471,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 40004,
+    "CUSTOMER_NAME": "Simple Simon's (Z)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "100961 2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "CUSTOMER_NUM": 51018,
@@ -3486,7 +3556,7 @@
     "CUSTOMER_NUM": 56013,
     "CUSTOMER_NAME": "Time Lounge And Liq (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3556,7 +3626,7 @@
     "CUSTOMER_NUM": 58001,
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3576,7 +3646,7 @@
     "CUSTOMER_NUM": 58001,
     "CUSTOMER_NAME": "Total Wine & More (River Edge)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3658,6 +3728,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 39012,
+    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 39012,
+    "CUSTOMER_NAME": "Wine And Liq Depot(A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -3858,6 +3948,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 22067,
+    "CUSTOMER_NAME": "Gonzalez Liq & Bar(A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -4346,7 +4446,7 @@
     "CUSTOMER_NUM": 23004,
     "CUSTOMER_NAME": "Shop Rite Wines/Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5186,7 +5286,7 @@
     "CUSTOMER_NUM": 178009,
     "CUSTOMER_NAME": "Heaven Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5196,8 +5296,18 @@
     "CUSTOMER_NUM": 178009,
     "CUSTOMER_NAME": "Heaven Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 178009,
+    "CUSTOMER_NAME": "Heaven Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -5206,7 +5316,7 @@
     "CUSTOMER_NUM": 178009,
     "CUSTOMER_NAME": "Heaven Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5726,7 +5836,7 @@
     "CUSTOMER_NUM": 170094,
     "CUSTOMER_NAME": "Palace Drugs (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -6886,7 +6996,7 @@
     "CUSTOMER_NUM": 152035,
     "CUSTOMER_NAME": "City Line Super Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -6896,7 +7006,7 @@
     "CUSTOMER_NUM": 152035,
     "CUSTOMER_NAME": "City Line Super Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -6906,7 +7016,7 @@
     "CUSTOMER_NUM": 152035,
     "CUSTOMER_NAME": "City Line Super Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -6916,7 +7026,7 @@
     "CUSTOMER_NUM": 152035,
     "CUSTOMER_NAME": "City Line Super Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -6926,7 +7036,7 @@
     "CUSTOMER_NUM": 152035,
     "CUSTOMER_NAME": "City Line Super Liquor",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8156,7 +8266,7 @@
     "CUSTOMER_NUM": 150638,
     "CUSTOMER_NAME": "New Silver Key Liq Ii",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8166,7 +8276,7 @@
     "CUSTOMER_NUM": 150638,
     "CUSTOMER_NAME": "New Silver Key Liq Ii",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8176,8 +8286,18 @@
     "CUSTOMER_NUM": 150638,
     "CUSTOMER_NAME": "New Silver Key Liq Ii",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 150638,
+    "CUSTOMER_NAME": "New Silver Key Liq Ii",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -8716,7 +8836,7 @@
     "CUSTOMER_NUM": 150154,
     "CUSTOMER_NAME": "Toast Of The Town",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8736,7 +8856,7 @@
     "CUSTOMER_NUM": 150154,
     "CUSTOMER_NAME": "Toast Of The Town",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13661,6 +13781,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 11003,
+    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 11003,
+    "CUSTOMER_NAME": "Lincoln Park Fine Wines & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "200261 Sammy's Beach Bar Platinum Rum 1/6/750 mL Btl",
     "BRAND_FAMILY": "Sammy's Beach Bum",
     "CUSTOMER_NUM": 11003,
@@ -14181,6 +14321,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "201058 Bardstown Origin Series High Wheat 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 96002,
+    "CUSTOMER_NAME": "Wine & Spirit World(W)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "201076 Green River Wheated Full Proof 1/750 ml Btl",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 96002,
@@ -14308,6 +14458,36 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "200216 Leyenda 1925 Anejo Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 49049,
+    "CUSTOMER_NAME": "The Metropolitan Lounge",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 49049,
+    "CUSTOMER_NAME": "The Metropolitan Lounge",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 49049,
+    "CUSTOMER_NAME": "The Metropolitan Lounge",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
@@ -15496,7 +15676,7 @@
     "CUSTOMER_NUM": 41006,
     "CUSTOMER_NAME": "Straphanger Saloon (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -15836,7 +16016,7 @@
     "CUSTOMER_NUM": 83001,
     "CUSTOMER_NAME": "Food Universe Marketplace",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

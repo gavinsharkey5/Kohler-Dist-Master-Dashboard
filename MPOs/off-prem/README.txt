@@ -657,8 +657,13 @@ WHERE THIS FILE APPLIES, and where it deliberately does not:
 The 2026-09-04 pull: 501 accounts across 26 reps, one in (Klejdi Lamo /
 Mountain Lakes Wine & Liquor) and one out (Shane Barreca / Cambridge Wines,
 Woodcliff Lake), so Klejdi's base went 27 -> 28 and Shane's 29 -> 28. Neither
-crosses the 40% Keystone bar (21.4% and 0.0%), and both Target Accounts lists
-swapped the same one account, staying at 427 and 368. The CSV also went 527
+crossed the 40% Keystone bar at the time (21.4% and 0.0%), and both Target
+Accounts lists swapped the same one account, staying at 427 and 368.
+SUPERSEDED THE SAME DAY by dd74143's house-wide closed-account fix, which is
+what the file actually holds now: 488 rows, and the Target Accounts lists
+rebuilt to 415 and 357 off it. The 501/427/368 above describe bd58a4c only --
+kept because they are the before-picture for that fix, not the current file.
+Read the current count off the build log, which prints it every run. The CSV also went 527
 rows -> 501: older pulls carried ONE ROW PER SHIPPING ADDRESS, so 26 accounts
 appeared twice. Nothing downstream counted those twice -- buildPctOfBaseDataset()
 counts distinct customer numbers and load_core_customer_base() dedupes by
@@ -682,6 +687,51 @@ To refresh September manually:
      previously-qualifying account is the signal that something reclassified
      wrongly, which is exactly what the shape change below would have caused.
   4. Commit and push.
+
+SECOND 2026-09-04 REFRESH -- all four exports moved, every objective grew
+Re-pulled the same day as the shape change above, and this time it is real
+new data rather than a re-shaping: Keystone, Fever Tree and Wine & Spirits
+each gained rows with NO row removed (+11 / +22 / +38), and Constellation kept
+its 122 rows but revised 70 of them upward. Before -> after:
+
+  Constellation Corona Gaintain   394 -> 502 placements this fall
+                                  7 -> 12 roster reps at their own 30% goal
+                                  (newly: Alisa Acciardi, Derrick Laws,
+                                  Javier Melo, Klejdi Lamo, Phil Ernst)
+  Keystone Ice (40% penetration)  75 -> 84 distinct buying accounts
+                                  0 -> 2 reps at goal -- the FIRST any month:
+                                  Pablo Lopez 12/26 = 46.2%, Derrick Laws
+                                  13/32 = 40.6%
+  Fever Tree (10 placements)      18 -> 33 new placements, 1 -> 2 reps at
+                                  goal (Matt Powierski 12 joins Jayson
+                                  Romine 10)
+  Wine & Spirits (5 placements)   75 -> 93 new placements, 6 -> 7 reps at
+                                  goal (Derrick Laws newly at 5)
+
+THE SANITY CHECK THIS README ASKS FOR PASSED, and it is worth recording how,
+since the shape change above is exactly the failure it guards against: every
+one of the 18 previously-qualifying Fever Tree keys and all 75 Wine & Spirits
+keys survived unchanged, with 15 and 18 added respectively and ZERO dropped.
+Constellation likewise moved monotonically -- no rep's this-fall total went
+down and no rep lost goal. A dropped key is the tell that a re-pull
+reclassified something wrongly; there were none.
+
+DERRICK LAWS CLEARS THE KEYSTONE BAR BY ONE ACCOUNT (13 of 32 = 40.6%; 12
+would be 37.5% and short). Worth knowing before anyone pays on it, because the
+denominator is not frozen: it is sales_reps_customer_base_core.csv, which
+moves on its own schedule (see "REFRESHING THE CORE OFF-PREMISE BASE" above),
+and one closed account in his book would push him back under without any
+change to his selling. Pablo Lopez at 46.2% has more room.
+
+TARGET ACCOUNTS SHRANK, which is the good direction: 415 -> 407 Keystone and
+357 -> 355 Fever Tree. Nothing changed in the core base (unchanged at 488
+rows this run) -- the lists got shorter purely because more accounts now carry
+the brand and dropped out of "doesn't carry it yet". A prospect list that
+grows while the numerator also grows would be the odd result, not this.
+
+sales_reps_customer_base_core.csv was NOT part of this pull and was left
+alone, so the Keystone denominator and both Target Accounts scopes are the
+same book as the previous build. Nothing in the two closed months was touched.
 
 SEPTEMBER'S FEVER TREE AND WINE & SPIRITS EXPORTS CHANGED SHAPE (2026-09-04)
 Both gained a "Load Sheet Date" column, dropped "Placement Count Percentage
@@ -725,8 +775,11 @@ A PLACEMENT IS ONE SKU IN ONE ACCOUNT (confirmed with Gavin, 2026-09-04), not
 one newly-opened account. A store already carrying Fever Tree Tonic still
 earns credit for a first order of Ginger Beer. That is the unit Wine & Spirits
 has always used here, and it is what the product-level re-pull is for. It
-matters: off-prem September reads 18 new placements per SKU against 6 per
-account, and Jayson Romine reaches the goal of 10 only under the SKU reading.
+matters: at the time off-prem September read 18 new placements per SKU against
+6 per account, and Jayson Romine reached the goal of 10 only under the SKU
+reading. As of the second 2026-09-04 refresh it is 33 per SKU and Matt
+Powierski has joined him at goal (12) -- see "SECOND 2026-09-04 REFRESH"
+below.
 On-prem now scores Fever Tree the same way (4 placements, nobody at 3 yet),
 which retires the on-prem/off-prem unit mismatch previously noted here.
 

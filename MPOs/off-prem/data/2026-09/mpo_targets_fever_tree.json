@@ -1393,12 +1393,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191803,
-    "CUSTOMER_NAME": "Kingston Liquors",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190913,
     "CUSTOMER_NAME": "Main Street Liquor",
     "AREA": "Morris 1"
@@ -1623,12 +1617,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37068,
     "CUSTOMER_NAME": "Whoopee Liq (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "AREA": "Bergen"
   },
   {

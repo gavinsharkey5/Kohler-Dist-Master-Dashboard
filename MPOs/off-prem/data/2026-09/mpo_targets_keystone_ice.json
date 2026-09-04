@@ -829,12 +829,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22067,
-    "CUSTOMER_NAME": "Gonzalez Liq & Bar(A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 17002,
     "CUSTOMER_NAME": "Hillcrest Liqrs (A)",
     "AREA": "Passaic"
@@ -1011,12 +1005,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21044,
     "CUSTOMER_NAME": "Farm Boy",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 20031,
-    "CUSTOMER_NAME": "La Joya Liquors",
     "AREA": "Passaic"
   },
   {
@@ -1531,12 +1519,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190208,
-    "CUSTOMER_NAME": "Boonton Liquor Locker",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190603,
     "CUSTOMER_NAME": "Denville W & L",
     "AREA": "Morris 1"
@@ -1729,12 +1711,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77009,
-    "CUSTOMER_NAME": "M & M Wine & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31004,
     "CUSTOMER_NAME": "Metro Liquors (East Rutherford)",
     "AREA": "Bergen"
@@ -1797,12 +1773,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42004,
     "CUSTOMER_NAME": "Wine And People",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32017,
-    "CUSTOMER_NAME": "Wine Grand (Carlstadt)",
     "AREA": "Bergen"
   },
   {
@@ -2107,18 +2077,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20068,
-    "CUSTOMER_NAME": "Florida Drugs (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15047,
-    "CUSTOMER_NAME": "Freddie's Corner",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20062,
     "CUSTOMER_NAME": "Intensity Lounge/Angie's Liquors",
     "AREA": "Passaic"
@@ -2367,12 +2325,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 74007,
     "CUSTOMER_NAME": "Djm Liq Inc. (P)(Andrew)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 62001,
-    "CUSTOMER_NAME": "Garden State Deli (A)",
     "AREA": "Bergen"
   },
   {
