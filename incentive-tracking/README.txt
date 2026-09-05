@@ -12,6 +12,67 @@ program's tiers/qualifiers/goals -- NOT estimated dollar payouts. No
 $ leaderboard, no per-rep $ totals. Progress bars / tier status /
 qualifier-met flags only, same visual language as the MPO tracker.
 
+NO COMPUTED $ FIGURES ON THE PAGE (2026-09-05) -- RESTATES THE 2026-08-05 RULE
+=============================================================================
+Per Gavin, 2026-09-05: "hide all $ amounts ... I don't want there to be
+discrepancies when managers go to recap." The page had drifted back into
+showing per-rep dollar totals -- exactly what the 2026-08-05 rule above
+forbids -- and a rep's card disagreeing with the manager's recap sheet is
+worse than no figure at all.
+
+WHAT WAS REMOVED: every dollar figure the DASHBOARD COMPUTES for a rep.
+    stat tiles      "Earned So Far" / "Tracked Earnings" / "Earned" /
+                    "Bonus Earned" on keystone_ice, touchdowns_tea,
+                    evil_genius, montauk, two_xo, other_half
+    hero numbers    the step-4 big number and the supplier-row label for
+                    touchdowns_tea, montauk and other_half (PROGRAM_SUMMARY)
+    leaderboards    the "$N earned/tracked" metric and status chip on
+                    keystone_ice, touchdowns_tea, evil_genius, montauk
+                    (PROGRAM_BOARD), and the "tracked $" ranking label
+    per-account $   the payout column in the Your Activity lists on
+                    montauk, two_xo, other_half and new_belgium
+    yave            the rate badge showed the milestone the rep had already
+                    banked ($25 / $125); it is the static "EARN $10+" /
+                    "EARN $15+" ladder again, and "$25 milestone hit" on the
+                    board now names the tier by accounts ("Top milestone hit
+                    -- 2 accounts"). The forward-looking "2 more for $50" is
+                    a rate, not a total, and stays
+money() has no callers left and is gone.
+
+WHAT WAS KEPT, deliberately: the PROGRAM RATES out of the deck -- the
+"EARN $15" badges, the rateNotes, the tier ladders, the pitch and
+next-step copy. Those are the same for every rep and come from the deck
+itself, so they cannot disagree with a recap; a rep who can't see what a
+placement pays has no reason to chase it. Only figures derived from a
+rep's own data were removed.
+
+THE UNDERLYING FIELDS ARE UNTOUCHED. payout / bonusPayout / offPremPayout
+/ onPremCasePayout are still built by generate.py and still in the data
+blob, and touchdowns_tea's leaderboard still RANKS on d.payout (a $15
+placement and a $1 case are not comparable any other way -- see the
+2026-09-02 note below). Only the display changed, so nothing needs a
+rebuild and check_registry_metrics() still passes. If a figure has to come
+back, it is a display change, not a data one.
+
+WHERE THE TILES WENT, so nobody reads the replacements as invented: each
+removed money tile was either dropped or repointed at a real count already
+in the data -- on-prem accounts buying (touchdowns_tea), CE this month
+(evil_genius), accounts opened (montauk, its existing newAccounts field),
+reorders (two_xo), core SKUs placed (other_half, summed from skuCount).
+new_belgium's activity rows show the keg size ("half bbl" / "small keg")
+where they used to show $100/$50/$25.
+
+ONE COPY FIX RODE ALONG: touchdowns_tea's hero used to read "$107 earned".
+Swapping it for the placement count made a case-only rep headline "0 new
+12pk placements", so the summary now leads with whichever leg the rep
+actually has.
+
+Verified headless across both month tabs, all 27 reps and every program:
+no JS errors, no program throws, and zero dollar figures left in any
+number-rendering element (.earn-stat-num / .stat-num / .board-metric-num /
+.detail-row-stat / .prod-stat / the step-4 hero). Every remaining "$" on
+the page was read back and classified by hand as deck rate copy.
+
 Files:
   generate.py        Rebuilds the embedded JSON in index.html from the
                       raw data files in data/. Run: python3 generate.py

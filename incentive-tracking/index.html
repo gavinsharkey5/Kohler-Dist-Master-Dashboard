@@ -112940,7 +112940,7 @@ const PROGRAM_LIST_2026_09 = [
   {key:'touchdowns_tea', group:'new', title:'Touchdowns & Tea', shortTitle:'Touchdowns & Tea', tag:'September',
    pitch:`Own football season for Sun Cruiser and Twisted Tea — floor displays and bucket features both pay.`,
    getRep:sept('touchdowns_tea'),
-   metric:d=>d.payout, metricLabel:'tracked $', fmt:v=>'$'+v.toLocaleString('en-US')},
+   metric:d=>d.payout, metricLabel:'tracked 12pk placements and on-prem cases', fmt:v=>v.toFixed(0)},
   {key:'evil_genius', group:'new', title:'Evil Genius Core Growth', shortTitle:'Evil Genius', tag:'September',
    pitch:`Three placements unlocks the program — then every new Evil Genius placement pays.`,
    getRep:sept('evil_genius'),
@@ -113105,7 +113105,6 @@ function cardKeystoneIce(rep){
     stats:[
       {num:String(d.accounts), label:'Accounts Sold'},
       {num:`${d.pct}%`, label:'Of Your Base'},
-      {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', dim:!d.payout},
     ],
     progress:{pct:Math.min(100, d.qualifier?d.accounts/d.qualifier*100:0),
       caption:d.qualified?`Qualifier cleared — ${d.bonusHit?'bonus cleared too':d.toBonus+' account'+(d.toBonus===1?'':'s')+' to the bonus'}`
@@ -113151,7 +113150,7 @@ function cardTouchdownsTea(rep){
   const board = statBoard([
     {num:d.offPremNewCount, label:'New 12pk Placements', status:cntStatus(d.offPremNewCount), sub:`$${R.placement||15} each, off-premise`},
     {num:d.onPremCases.toFixed(0), label:'On-Prem Cases', status:cntStatus(d.onPremCases), sub:`$${R.onPremCase||1} a case`},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Floor displays and features pay on top — not counted here'},
+    {num:d.onPremAccountCount, label:'On-Prem Accounts Buying', sub:'Floor displays and features pay on top — not counted here'},
   ]);
 
   const pkgBlock = earnBlock({
@@ -113187,7 +113186,6 @@ function cardTouchdownsTea(rep){
     stats:[
       {num:d.onPremCases.toFixed(0), label:'Cases Sold'},
       {num:d.onPremAccountCount, label:'Accounts Buying'},
-      {num:`$${d.onPremCasePayout.toLocaleString('en-US')}`, label:'Earned', cls:d.onPremCasePayout?'':'dim'},
     ],
     detail:{
       label:'Your On-Premise Accounts',
@@ -113232,8 +113230,8 @@ function cardEvilGenius(rep){
     {num:d.offPremNewCount, label:'New Off-Prem Accounts', sub:`$${R.offPrem||10} each`},
     {num:d.draftChannelOk===false?'N/A':d.draftQualifiedCount, label:'New Stacy’s Mom Draft',
      sub:d.draftChannelOk===false?'No keg accounts on your route':`$${R.draft||100} each`},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far',
-     sub:d.qualified?'Placements + volume bonus':'Nothing pays until the qualifier clears'},
+    {num:d.caseVolume.toFixed(0), label:'CE This Month',
+     sub:d.qualified?'Placements + volume bonus are live':'Nothing pays until the qualifier clears'},
   ]);
 
   const pkgBlock = earnBlock({
@@ -113290,14 +113288,13 @@ function cardEvilGenius(rep){
     rate:`$${R.bonusPerCe||1} A CASE OVER LAST SEPTEMBER`,
     rateNote:`every CE above what you sold in ${meta.baselineWindow||'September 2025'}`,
     whatToDo:ahead>0
-      ? `You are ${ahead.toFixed(0)} CE ahead of last September, which is $${d.bonusPayout.toLocaleString('en-US')} on top of your placement money${d.qualified?'':' — once you clear the 3-placement qualifier, which gates this too'}. Every case from here adds a dollar.`
+      ? `You are ${ahead.toFixed(0)} CE ahead of last September, so the volume bonus is running on top of your placements${d.qualified?'':' — once you clear the 3-placement qualifier, which gates this too'}. Every case from here adds to it.`
       : ahead===0
         ? `You are level with last September. The next case you sell is the first bonus dollar.`
         : `You are ${Math.abs(ahead).toFixed(0)} CE behind last September. Being down costs you nothing, but the bonus does not start until you pass ${d.casesBaseline.toFixed(0)} CE.`,
     stats:[
       {num:d.caseVolume.toFixed(0), label:'CE This Month'},
       {num:d.casesBaseline.toFixed(0), label:'Last September'},
-      {num:d.bonusPayout?`$${d.bonusPayout.toLocaleString('en-US')}`:'$0', label:'Bonus Earned', cls:d.bonusPayout?'':'dim'},
     ],
     progress:{pct:d.casesBaseline>0?Math.min(100, d.caseVolume/d.casesBaseline*100):(d.caseVolume>0?100:0),
       over:ahead>0,
@@ -113333,7 +113330,7 @@ function cardMontauk(rep){
     {num:d.offPremNewCount, label:'Package Placements', sub:`${t.sixpack||0} 6pk · ${t.twelvepack||0} 12pk · ${t.nineteen2||0} 19.2oz`},
     {num:d.draftChannelOk===false?'N/A':d.draftQualifiedCount, label:'New Draught Lines',
      sub:d.draftChannelOk===false?'No keg accounts on your route':`$${R.draft||100} each`},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Earned So Far', sub:'Sept 1–30'},
+    {num:d.newAccounts, label:'Accounts Opened', sub:'Sept 1–30 · counted once however many pack sizes'},
   ]);
 
   const pkgBlock = earnBlock({
@@ -113348,7 +113345,7 @@ function cardMontauk(rep){
     ],
     detail:{
       label:'Your New Placements',
-      items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:a.tier, stat:'$'+a.rate})),
+      items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:a.tier, stat:a.date||''})),
       emptyMsg:'No new package placements yet this month.',
     },
     opportunity:{
@@ -113411,7 +113408,7 @@ function cardTwoXo(rep){
   const board = statBoard([
     {num:d.offPremNewCount, label:'New Oak Pairs', status:cntStatus(d.offPremNewCount), sub:`$${R.pair||40} each, off-premise`},
     {num:d.onPremNewCount, label:'New On-Prem PODs', status:cntStatus(d.onPremNewCount), sub:`$${R.pod||25} each, 2+ units`},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'POD cocktail menus pay on top — not counted here'},
+    {num:d.offPremReorderCount+d.onPremReorderCount, label:'Reorders', sub:'POD cocktail menus pay on top — not counted here'},
   ]);
 
   const pairBlock = earnBlock({
@@ -113425,7 +113422,7 @@ function cardTwoXo(rep){
     ],
     detail:{
       label:'Your New Oak Pairs',
-      items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:a.products.join(' + '), stat:'$'+a.payout})),
+      items:(d.offPremNew||[]).map(a=>({name:a.customer, sub:a.products.join(' + ')})),
       emptyMsg:'No new oak pairs yet this month.',
     },
   });
@@ -113452,7 +113449,7 @@ function cardTwoXo(rep){
     ],
     detail:{
       label:'Your New On-Premise PODs',
-      items:(d.onPremNew||[]).map(a=>({name:a.customer, stat:'$'+a.payout+' · '+a.units+' units'})),
+      items:(d.onPremNew||[]).map(a=>({name:a.customer, stat:a.units+' units'})),
       emptyMsg:'No new on-premise PODs yet this month.',
     },
   });
@@ -113498,7 +113495,7 @@ function cardOtherHalf(rep){
   const board = statBoard([
     {num:d.offPremNewCount, label:'New Off-Premise Accounts', status:cntStatus(d.offPremNewCount), sub:`$${R.offPrem||40}+ each — every account here is new to Other Half`},
     {num:(d.onPremSeptember||[]).length, label:'On-Premise Accounts, September', sub:'Needs October too before the $150 pays'},
-    {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'Tracked Earnings', sub:'Off-premise only — on-premise isn’t priced yet'},
+    {num:(d.offPremNew||[]).reduce((s,a)=>s+(a.skuCount||0),0), label:'Core SKUs Placed', sub:'Off-premise only — on-premise isn’t priced yet'},
   ]);
 
   const offBlock = earnBlock({
@@ -113508,14 +113505,12 @@ function cardOtherHalf(rep){
     whatToDo:'Get 3 or more core Other Half SKUs into a new off-premise account — the more SKUs in the same order, the more it pays.',
     stats:[
       {num:d.offPremNewCount, label:'New Accounts'},
-      {num:`$${d.offPremPayout.toLocaleString('en-US')}`, label:'Earned'},
     ],
     detail:{
       label:'Your New Off-Premise Accounts',
       items:(d.offPremNew||[]).map(a=>({
         name:a.customer,
         sub:a.southern ? 'Southern District rate' : (a.skuCount+' SKU'+(a.skuCount===1?'':'s')),
-        stat:'$'+a.payout,
       })),
       emptyMsg:'No new off-premise accounts yet this month.',
     },
@@ -114332,7 +114327,7 @@ function cardNewBelgium(rep){
   ]);
 
   const houseBanner = qualifierBanner({
-    label:'Company-wide goal, informational only — your own $ payouts below aren\'t gated by this',
+    label:'Company-wide goal, informational only — your own payouts below aren\'t gated by this',
     current:prog.housePodsTotal||0, goal:prog.houseGoal||70, unit:'house PODs', met:(prog.housePodsTotal||0)>=(prog.houseGoal||70),
     metTitle:'Company Goal Hit', lockedTitle:'Company Progress',
   });
@@ -114340,8 +114335,8 @@ function cardNewBelgium(rep){
   const featuredLapsed = dedupeByCustomer(d.featuredLapsed);
   const featuredWhitespace = d.featuredWhitespace||[];
   const featuredItems = [
-    ...d.featuredNew.map(a=>({name:a.customer, sub:a.product, stat:(a.isHalfBbl?'$100':'$50')+' · new · '+(a.date||''), status:'qualified'})),
-    ...d.featuredRebuy.map(a=>({name:a.customer, sub:a.product, stat:(a.isHalfBbl?'$50':'$25')+' · rebuy · '+(a.date||''), status:'qualified'})),
+    ...d.featuredNew.map(a=>({name:a.customer, sub:a.product, stat:(a.isHalfBbl?'half bbl':'small keg')+' · new · '+(a.date||''), status:'qualified'})),
+    ...d.featuredRebuy.map(a=>({name:a.customer, sub:a.product, stat:(a.isHalfBbl?'half bbl':'small keg')+' · rebuy · '+(a.date||''), status:'qualified'})),
   ];
   const featuredBlock = earnBlock({
     icon:'🍺', title:'Featured Draft — Juicy Haze / Two Hearted',
@@ -114627,21 +114622,20 @@ function cardYave(rep){
     d.hasOnPremAccounts===false
       ? {num:'N/A', label:'On-Premise', sub:'No on-premise accounts on your route'}
       : {num:`${d.onPremAccountCount} / 2`, label:'On-Prem Accounts', status:onStatus,
-         sub:d.onPremAccountCount>=2?'$25 milestone hit':(d.onPremAccountCount>=1?'1 more for $25':'First account pays $10')},
+         sub:d.onPremAccountCount>=2?'Top milestone hit — 2 accounts':(d.onPremAccountCount>=1?'1 more for $25':'First account pays $10')},
     d.hasOffPremAccounts===false
       ? {num:'N/A', label:'Off-Premise', sub:'No off-premise accounts on your route'}
       : {num:`${d.offPremAccountCount} / 5`, label:'Off-Prem Accounts', status:offStatus,
-         sub:d.offPremAccountCount>=5?'$125 milestone hit':(d.offPremAccountCount>=3?`${5-d.offPremAccountCount} more for $125`:(d.offPremAccountCount>=1?`${3-d.offPremAccountCount} more for $50`:'First account pays $15'))},
+         sub:d.offPremAccountCount>=5?'Top milestone hit — 5 accounts':(d.offPremAccountCount>=3?`${5-d.offPremAccountCount} more for $125`:(d.offPremAccountCount>=1?`${3-d.offPremAccountCount} more for $50`:'First account pays $15'))},
   ]);
 
-  const onMilestone = d.onPremAccountCount>=2 ? 25 : (d.onPremAccountCount>=1 ? 10 : 0);
   const onNextGoal = d.onPremAccountCount<1 ? 1 : 2;
   const onBlock = d.hasOnPremAccounts===false
     ? naBlock('On-Premise — Not Applicable To Your Route',
         'You have no on-premise accounts on your route, so the bar/restaurant side of this launch doesn\'t apply to you. The off-premise side below is your opportunity.')
     : earnBlock({
     icon:'🍸', title:'On-Premise (Bottles)',
-    rate: onMilestone ? '$'+onMilestone : 'EARN $10+', rateNote:'1 qualifying account = $10, 2 qualifying accounts = $25. An account qualifies at 2+ bottles.',
+    rate:'EARN $10+', rateNote:'1 qualifying account = $10, 2 qualifying accounts = $25. An account qualifies at 2+ bottles.',
     whatToDo:'Get bars pouring Yave — 2 bottles at an account makes it count.',
     stats:[{num:d.onPremAccountCount, label:'Qualifying Accounts (2+ bottles)'}],
     progress:{pct:Math.min(d.onPremAccountCount/2,1)*100, caption: d.onPremAccountCount>=2 ? 'Top milestone reached' : `${onNextGoal-d.onPremAccountCount} more account${onNextGoal-d.onPremAccountCount===1?'':'s'} to $${d.onPremAccountCount<1?10:25}`},
@@ -114652,14 +114646,13 @@ function cardYave(rep){
     },
   });
 
-  const offMilestone = d.offPremAccountCount>=5?125:(d.offPremAccountCount>=3?50:(d.offPremAccountCount>=1?15:0));
   const offNextGoal = d.offPremAccountCount<1?1:(d.offPremAccountCount<3?3:5);
   const offBlock = d.hasOffPremAccounts===false
     ? naBlock('Off-Premise — Not Applicable To Your Route',
         'You have no off-premise accounts on your route, so the store side of this launch doesn\'t apply to you. The on-premise side above is your opportunity.')
     : earnBlock({
     icon:'🛍️', title:'Off-Premise (Cases)',
-    rate: offMilestone ? '$'+offMilestone : 'EARN $15+', rateNote:'1 account = $15, 3 accounts = $50, 5 accounts = $125. An account qualifies at 1+ case (6pk).',
+    rate:'EARN $15+', rateNote:'1 account = $15, 3 accounts = $50, 5 accounts = $125. An account qualifies at 1+ case (6pk).',
     whatToDo:'Get stores stocking Yave — 1 case at an account makes it count.',
     stats:[{num:d.offPremAccountCount, label:'Qualifying Accounts (1+ case)'}],
     progress:{pct:Math.min(d.offPremAccountCount/5,1)*100, caption: d.offPremAccountCount>=5 ? 'Top milestone reached' : `${offNextGoal-d.offPremAccountCount} more account${offNextGoal-d.offPremAccountCount===1?'':'s'} to the next milestone`},
@@ -115602,7 +115595,6 @@ function supplierOf(key){ return SUPPLIERS[PROGRAM_SUPPLIER[key]] || SUPPLIERS.h
    row and the card it opens can never disagree.
    -------------------------------------------------------------------- */
 const pl = (n,w) => `${n} ${w}${n===1?'':'s'}`;
-const money = v => '$'+Math.round(v||0).toLocaleString('en-US');
 
 const PROGRAM_SUMMARY = {
   keystone_ice:(d)=>({goal:true, now:d.accounts, target:d.qualifier, unit:'accounts',
@@ -115613,9 +115605,13 @@ const PROGRAM_SUMMARY = {
                     : `You are earning $5 an account. <strong>${pl(d.toBonus,'more account')}</strong> doubles it to $10 on every one.`)
       : `Sell Keystone Ice 24oz into <strong>${pl(d.toQualifier,'more account')}</strong> to switch your payout on.`}),
 
-  touchdowns_tea:(d)=>({goal:false, now:d.payout, unit:'$',
-    label:money(d.payout)+' earned', sub:`${pl(d.offPremNewCount,'new 12pk placement')} · ${Math.round(d.onPremCases)} on-prem cases`,
-    next:`Every new 12pk placement pays <strong>$15</strong> and every on-premise case pays <strong>$1</strong>.`}),
+  // Leads with whichever leg the rep actually has: a rep selling only
+  // on-premise cases would otherwise headline "0 new 12pk placements".
+  touchdowns_tea:(d)=>{const c=Math.round(d.onPremCases);
+    return {goal:false, now:d.offPremNewCount+d.onPremCases, unit:'placements',
+      label:d.offPremNewCount ? `${pl(d.offPremNewCount,'12pk placement')}` : `${pl(c,'on-prem case')}`,
+      sub:d.offPremNewCount ? `${c} on-prem cases` : 'No new 12pk placements yet',
+      next:`Every new 12pk placement pays <strong>$15</strong> and every on-premise case pays <strong>$1</strong>.`};},
 
   evil_genius:(d,m)=>({goal:true, now:d.totalNewPlacements, target:(m&&m.qualifier)||3, unit:'placements',
     label:`${d.totalNewPlacements} of ${(m&&m.qualifier)||3} placements`,
@@ -115624,8 +115620,8 @@ const PROGRAM_SUMMARY = {
       ? `You are past the qualifier — every new placement is paying.`
       : `Land <strong>${pl(d.toQualifier,'more placement')}</strong>. Nothing pays until you reach ${(m&&m.qualifier)||3}.`}),
 
-  montauk:(d)=>({goal:false, now:d.payout, unit:'$',
-    label:money(d.payout)+' earned', sub:`${pl(d.totalNewPlacements,'new placement')}`,
+  montauk:(d)=>({goal:false, now:d.totalNewPlacements+(d.draftQualifiedCount||0), unit:'placements',
+    label:`${pl(d.totalNewPlacements,'new placement')}`, sub:`${pl(d.newAccounts,'account')} opened`,
     next:`Every new Wave Chaser placement pays <strong>$10–$15</strong>, and a new draught line pays <strong>$100</strong>.`}),
 
   two_xo:(d)=>({goal:false, now:d.offPremNewCount+d.onPremNewCount, unit:'PODs',
@@ -115633,7 +115629,7 @@ const PROGRAM_SUMMARY = {
     next:`Pair American Oak with French Oak in an off-premise account, or land a <strong>2-bottle on-premise POD</strong>.`}),
 
   other_half:(d)=>({goal:false, now:d.offPremNewCount, unit:'accounts',
-    label:`${pl(d.offPremNewCount,'account')} opened`, sub:money(d.offPremPayout)+' earned',
+    label:`${pl(d.offPremNewCount,'account')} opened`, sub:`${(d.offPremNew||[]).reduce((s,a)=>s+(a.skuCount||0),0)} core SKUs placed`,
     next:`Open another target account on Other Half core draft — each one pays <strong>$40+</strong>.`}),
 
   '1911':(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
@@ -116487,7 +116483,6 @@ const PROGRAM_BOARD = {
     metrics:[
       {num:`${d.accounts} / ${d.qualifier}`, label:'accounts', cls:d.qualified?'good':(d.accounts>0?'warn':'dim')},
       {num:`${d.pct}%`, label:'of base'},
-      {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'earned', cls:d.payout?'good':'dim'},
     ],
     status: d.bonusHit ? {cls:'good', label:'✅ Bonus — double pay'}
       : d.qualified ? {cls:'good', label:'✅ Qualified'}
@@ -116498,16 +116493,14 @@ const PROGRAM_BOARD = {
     metrics:[
       {num:d.offPremNewCount, label:'12pk placements', cls:d.offPremNewCount>0?'good':'dim'},
       {num:d.onPremCases.toFixed(0), label:'on-prem cases', cls:d.onPremCases>0?'good':'dim'},
-      {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'tracked', cls:d.payout?'good':'dim'},
     ],
-    status: d.payout>0 ? {cls:'good', label:`✅ $${d.payout.toLocaleString('en-US')} tracked`}
+    status: d.payout>0 ? {cls:'good', label:'✅ On the board'}
       : {cls:'gray', label:'Nothing yet this month'},
   }),
   'evil_genius': d=>({
     metrics:[
       {num:`${d.totalNewPlacements} / 3`, label:'to qualify', cls:d.qualified?'good':(d.totalNewPlacements>0?'warn':'dim')},
       {num:d.offPremNewCount, label:'new accounts'},
-      {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'earned', cls:d.payout?'good':'dim'},
     ],
     status: d.qualified ? {cls:'good', label:'✅ Qualified'}
       : d.totalNewPlacements>0 ? {cls:'warn', label:`${d.toQualifier} placement${d.toQualifier===1?'':'s'} to qualify`}
@@ -116518,9 +116511,9 @@ const PROGRAM_BOARD = {
       {num:d.totalNewPlacements, label:'placements', cls:d.totalNewPlacements>0?'good':'dim'},
       d.draftChannelOk===false ? {num:'N/A', label:'draught', cls:'dim'}
         : {num:d.draftQualifiedCount, label:'draught lines', cls:d.draftQualifiedCount>0?'good':null},
-      {num:d.payout?`$${d.payout.toLocaleString('en-US')}`:'$0', label:'earned', cls:d.payout?'good':'dim'},
+      {num:d.newAccounts, label:'accounts', cls:d.newAccounts>0?'good':'dim'},
     ],
-    status: d.payout>0 ? {cls:'good', label:`✅ $${d.payout.toLocaleString('en-US')} earned`}
+    status: d.payout>0 ? {cls:'good', label:'✅ On the board'}
       : {cls:'gray', label:'No placements yet'},
   }),
   '1911': d=>({
