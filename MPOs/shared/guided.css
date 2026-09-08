@@ -1,0 +1,228 @@
+/* ====================================================================
+   Guided MPO UI -- shared by MPOs/on-prem/ and MPOs/off-prem/.
+   --------------------------------------------------------------------
+   The design language is lifted from incentive-tracking/index.html's v3
+   guided flow (Step 1 "choose your name" -> your progress), which is the
+   reference experience Gavin asked both MPO dashboards to match. Class
+   names are prefixed g- rather than v3- because this is a separate file
+   serving two pages; the tokens, type scale, radii and tap targets are
+   deliberately identical to the tracker's so the three dashboards read as
+   one system.
+
+   Both MPO pages already define the Kohler navy palette in their own
+   :root (same values as the tracker). This file only consumes those
+   variables -- it never redefines them, so a palette tweak still happens
+   in one place per page and the four dashboards stay in sync.
+
+   Phone is the primary layout: desktop rules live in the min-width media
+   query at the bottom, not the other way round.
+   ==================================================================== */
+
+/* ---- Segmented view toggle: Rep vs Program ------------------------- */
+.g-viewbar{max-width:1200px;margin:26px auto 0;padding:0 32px;}
+.g-seg{display:inline-flex;background:var(--input-bg);border:1px solid var(--border);
+  border-radius:999px;padding:4px;gap:4px;width:100%;max-width:420px;}
+.g-seg-btn{flex:1;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;
+  letter-spacing:.03em;color:var(--text-dim);background:none;border:0;border-radius:999px;
+  padding:11px 14px;min-height:46px;cursor:pointer;white-space:nowrap;
+  transition:background .15s,color .15s;}
+.g-seg-btn:hover{color:var(--text);}
+.g-seg-btn.active{background:var(--accent);color:#fff;}
+.g-seg-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+/* ---- Screen wrapper + the subtle cross-fade between screens -------- */
+.g{width:100%;}
+.g-fade{animation:gfade .22s ease-out;}
+@keyframes gfade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){
+  .g-fade{animation:none;}
+  .g-bar-fill,.g-chev,.g-more .ar{transition:none !important;}
+}
+
+/* ---- Step header --------------------------------------------------- */
+.g-step-head{margin:4px 0 18px;}
+.g-eyebrow{display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+  background:var(--accent-soft);border:1px solid rgba(78,124,232,.4);border-radius:999px;
+  padding:6px 14px;margin-bottom:11px;}
+.g-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);
+  font-size:clamp(27px,6.4vw,38px);line-height:1.18;}
+.g-sub{color:var(--text-dim);font-size:clamp(16px,4vw,18px);margin-top:8px;line-height:1.5;}
+
+/* ---- Back / Start over -------------------------------------------- */
+.g-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.g-back{display:flex;align-items:center;gap:9px;background:var(--card);
+  border:1px solid var(--border);border-radius:12px;color:var(--text-dim);
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.02em;
+  text-transform:uppercase;padding:15px 18px;min-height:56px;cursor:pointer;
+  text-align:left;flex:1 1 100%;transition:background .13s,color .13s;}
+.g-back:hover{background:var(--card-alt);color:var(--text);}
+.g-back .ar{font-size:19px;line-height:1;}
+
+/* ---- Rep name buttons (Step 1) ------------------------------------- */
+.g-name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;
+  min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:20px;color:var(--text);margin-bottom:10px;
+  transition:border-color .13s,background .13s,transform .08s;}
+.g-name:hover{border-color:var(--accent);background:var(--card-alt);}
+.g-name:active{transform:scale(.988);}
+.g-name .ar{color:var(--accent);font-size:22px;}
+.g-dm{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
+.g-dm:first-of-type{margin-top:4px;}
+
+/* ---- Summary cards -------------------------------------------------- */
+.g-sum-grid{display:grid;grid-template-columns:1fr;gap:11px;margin-bottom:22px;}
+.g-sum{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px 18px;box-shadow:var(--shadow);}
+.g-sum-l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);
+  font-weight:700;line-height:1.35;}
+.g-sum-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;
+  color:var(--amber);line-height:1.1;margin-top:7px;}
+.g-sum-n.good{color:var(--good);}
+.g-sum-n.accent{color:var(--accent);}
+.g-sum-n.mute{color:var(--text-mute);}
+.g-sum-s{font-size:13px;color:var(--text-dim);margin-top:4px;line-height:1.4;}
+
+/* ---- Objective card (rep view) -------------------------------------- */
+.g-obj{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:18px 20px;margin-bottom:12px;box-shadow:var(--shadow);}
+.g-obj.achieved{border-left:4px solid var(--good);}
+.g-obj.inprogress{border-left:4px solid var(--accent);}
+.g-obj.notstarted{border-left:4px solid var(--border);}
+.g-obj-sup{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--text-mute);font-weight:700;}
+.g-obj-name{font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(18px,4.4vw,21px);color:var(--text);line-height:1.25;margin:6px 0 12px;}
+.g-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+.g-tag{font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:700;
+  background:var(--input-bg);color:var(--text-dim);border:1px solid var(--border);
+  border-radius:999px;padding:5px 11px;}
+.g-tag.weight{color:var(--amber);border-color:rgba(244,184,62,.4);background:var(--amber-soft);}
+
+/* The four plain-language answers, one per line, always in this order:
+   goal -> where I am -> how much more -> credit earned. */
+.g-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.g-fact-l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);
+  font-weight:700;}
+.g-fact-v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;
+  color:var(--text);margin-top:4px;line-height:1.2;}
+.g-fact-v.good{color:var(--good);}
+.g-fact-v.mute{color:var(--text-mute);}
+
+.g-bar{height:14px;background:var(--input-bg);border:1px solid var(--line-soft);
+  border-radius:999px;overflow:hidden;margin:4px 0 9px;}
+.g-bar-fill{height:100%;border-radius:999px;background:var(--accent);transition:width .4s;}
+.g-bar-fill.achieved{background:var(--good);}
+.g-bar-fill.notstarted{background:var(--border);}
+.g-barcap{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font-size:13.5px;color:var(--text-dim);margin-bottom:14px;}
+.g-barcap strong{font-family:'Space Grotesk',sans-serif;color:var(--text);font-size:15px;}
+
+/* ---- Status pill: word + mark, never colour alone ------------------- */
+.g-pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 13px;
+  font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;white-space:nowrap;
+  border:1px solid transparent;line-height:1.2;}
+.g-pill.achieved{background:var(--good-soft);color:var(--good);border-color:rgba(76,201,122,.45);}
+.g-pill.inprogress{background:var(--accent-soft);color:var(--accent);border-color:rgba(78,124,232,.45);}
+.g-pill.notstarted{background:var(--input-bg);color:var(--text-mute);border-color:var(--border);}
+.g-pill.nodata{background:var(--input-bg);color:var(--text-mute);border-color:var(--border);}
+
+/* ---- "See my progress" disclosure ----------------------------------- */
+.g-more{width:100%;background:var(--accent);color:#fff;border:0;border-radius:11px;
+  padding:15px 18px;min-height:56px;cursor:pointer;text-align:left;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:.05em;
+  text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  transition:background .13s;}
+.g-more:hover{background:#3C6AD8;}
+.g-more .ar{transition:transform .18s;font-size:15px;}
+.g-more.open .ar{transform:rotate(90deg);}
+.g-more-body{display:none;margin-top:14px;}
+.g-more-body.open{display:block;}
+.g-note{background:var(--card-alt);border:1px dashed var(--border);border-radius:12px;
+  padding:16px 18px;color:var(--text-dim);font-size:15px;line-height:1.5;}
+
+/* ---- Program view: one expandable card per program ------------------ */
+.g-prog{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);}
+.g-prog-head{display:block;width:100%;background:none;border:0;padding:18px 20px;
+  cursor:pointer;text-align:left;font:inherit;color:inherit;transition:background .13s;}
+.g-prog-head:hover{background:var(--card-alt);}
+.g-prog-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.g-prog-name{font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:clamp(17px,4.2vw,20px);color:var(--text);line-height:1.25;flex:1;min-width:0;}
+.g-prog-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.g-prog-atgoal{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;
+  color:var(--amber);line-height:1.1;text-align:right;}
+.g-prog-atgoal.good{color:var(--good);}
+.g-prog-atgoal-l{display:block;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--text-mute);margin-top:3px;}
+.g-chev{color:var(--text-mute);font-size:13px;transition:transform .18s;flex-shrink:0;}
+.g-prog-head.open .g-chev{transform:rotate(90deg);}
+.g-prog-body{display:none;border-top:1px solid var(--line-soft);padding:16px 20px 20px;}
+.g-prog-body.open{display:block;}
+
+/* ---- Program view: rep results -------------------------------------- */
+.g-sortbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:13px;}
+.g-sortlabel{font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:700;}
+.g-sortbtn{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;
+  background:var(--input-bg);color:var(--text-dim);border:1px solid var(--input-border);
+  border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer;
+  transition:background .13s,color .13s,border-color .13s;}
+.g-sortbtn:hover{border-color:var(--accent);color:var(--text);}
+.g-sortbtn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* Rep results are CARDS, not a table: a 7-column table cannot be made to
+   work on a phone without either horizontal scroll or unreadable type,
+   and this grid collapses to one column instead. */
+.g-repgrid{display:grid;grid-template-columns:1fr;gap:9px;}
+.g-reprow{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;
+  background:var(--card-alt);border:1px solid var(--line-soft);border-radius:12px;
+  padding:13px 15px;}
+.g-reprow.achieved{border-left:3px solid var(--good);}
+.g-reprow.inprogress{border-left:3px solid var(--accent);}
+.g-reprow.notstarted,.g-reprow.nodata{border-left:3px solid var(--border);}
+.g-reprow-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
+  color:var(--text);line-height:1.25;}
+.g-reprow-dm{display:block;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;
+  color:var(--text-mute);margin-top:2px;}
+.g-reprow-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
+  color:var(--text);text-align:right;white-space:nowrap;}
+.g-reprow-val.mute{color:var(--text-mute);}
+.g-reprow-meta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+  margin-top:2px;}
+.g-reprow-bar{flex:1;min-width:120px;height:8px;background:var(--input-bg);
+  border:1px solid var(--line-soft);border-radius:999px;overflow:hidden;}
+.g-reprow-fill{height:100%;border-radius:999px;background:var(--accent);transition:width .4s;}
+.g-reprow-fill.achieved{background:var(--good);}
+.g-reprow-fill.notstarted{background:var(--border);}
+.g-reprow-remain{font-size:13px;color:var(--text-dim);white-space:nowrap;}
+
+/* ---- Empty / no-data ------------------------------------------------ */
+.g-empty{background:var(--card);border:1px dashed var(--border);border-radius:14px;
+  padding:22px;color:var(--text-dim);font-size:16px;line-height:1.5;text-align:center;
+  margin-bottom:12px;}
+
+/* ---- Desktop / tablet ----------------------------------------------- */
+@media (max-width:640px){
+  .g-viewbar{padding:0 16px;margin-top:20px;}
+  .g-seg{max-width:none;}
+}
+@media (min-width:760px){
+  /* Three columns of choices, exactly the tracker's Step 1 shape. The flow,
+     the type scale and the tap targets stay the phone's. */
+  .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+  .g-grid .g-name{margin-bottom:0;}
+  .g-sum-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
+  .g-back{flex:0 0 auto;min-width:260px;}
+  .g-obj{padding:22px 24px;}
+  .g-facts{grid-template-columns:repeat(4,1fr);}
+  .g-reprow{grid-template-columns:minmax(0,1.5fr) minmax(150px,1fr) auto auto;}
+  .g-reprow-meta{grid-column:auto;margin-top:0;}
+  .g-reprow-remain{min-width:118px;text-align:right;}
+}
+@media (min-width:1100px){
+  .g-grid{grid-template-columns:repeat(3,1fr);}
+}

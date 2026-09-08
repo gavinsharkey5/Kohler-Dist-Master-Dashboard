@@ -7,6 +7,85 @@ July 2026 (Carbliss / Sapporo NA / Wine & Spirits) and August 2026
 Spirits Yave+Leyenda) are entirely different programs, since Kohler
 changes the MPO objectives month to month.
 
+GUIDED REP VIEW / PROGRAM VIEW (2026-09-08)
+Both MPO dashboards were rebuilt around the Incentive Tracker's guided
+flow, per Gavin: "use the Incentive Tracker as the design and
+user-experience reference". A segmented toggle under the header picks
+between two ways in, and REP VIEW IS THE DEFAULT:
+
+  Rep View      Step 1 is the tracker's own chooser -- one large card per
+                rep, grouped under their sales manager, three columns on
+                desktop and one on a phone. Picking a name replaces the
+                chooser with that rep's own dashboard: four summary cards
+                (weighted MPO, achieved / in progress / not started) and
+                one card per objective answering, in plain words, what the
+                goal is, where they are, how much more they need and
+                whether credit is earned yet. The existing drill-down
+                moves behind a "See My Progress" button rather than being
+                always-open.
+  Program View  the manager read, and the old page's content: company KPI
+                cards, then one expandable card per objective with every
+                rep's result inside, sortable by progress, closest-to-goal
+                or name.
+
+WHERE THE CODE LIVES. The UI is shared: MPOs/shared/guided.css and
+MPOs/shared/guided.js serve BOTH dashboards, so a change to the flow or
+the styling happens once. Each index.html supplies a host object
+(MPOGuided.init) with the things only that page knows -- its ROSTER,
+its objectives, and two functions:
+
+  metricFor(objective, rep)  ONE normalized shape per rep+objective:
+                             value, goal, pct, remaining, status, plus the
+                             display strings. Rep View's cards, Program
+                             View's rows, the summary counts AND the
+                             sorting all read this, which is what stops
+                             the two views from disagreeing.
+  detailFor(objective, rep)  the existing drill-down markup, unchanged.
+
+The per-objective-type arithmetic in metricFor() is lifted verbatim from
+the old renderRepView()/renderObjectiveView() -- same targets, same
+qualification tests, same percentages. Those two renderers are gone; they
+were ~500 lines that computed the same numbers twice, once per view.
+
+NO MPO MATHS CHANGED. Weights, per-rep targets, the builders, the
+"reps at goal" counts and objPct() are all untouched, and the company
+figure in Program View is the same number the old KPI strip showed.
+
+ONE NUMBER IS NEW, because none existed before: the per-rep weighted
+total on a rep's own dashboard. The company formula is
+sum(weight x % of reps at goal), which narrowed to a single rep is just
+"did they hit it" -- so the headline is the weight a rep has actually
+EARNED, which is what pays. Partial progress is printed beside it rather
+than folded into it, because a rep at 9 of 10 has earned nothing on that
+objective yet and a headline implying otherwise would be wrong on payday.
+
+REPS WITH NO GOAL ON AN OBJECTIVE ARE EXCLUDED, NOT ZEROED. Four reps
+(Alex Rodriguez, Allison Scott, Andrew Lundy, Hakan Sadik) are
+on-premise only and have no off-premise core account base, so off-prem's
+pct_of_base / pct_of_goal objectives have nothing to measure them
+against. Their cards read "Not scored" and their weight is left out of
+that rep's denominator; scoring them as a zero would read as
+underperformance where there is simply nothing to do. Program View shows
+them as "No goal this month" and never ranks them as closest-to-goal.
+OPEN WITH GAVIN if Kohler actually re-weights those reps differently.
+
+STATE AND THE BACK BUTTON. The URL hash carries view + rep + program +
+month, so a drill-down is linkable and the browser Back button walks it
+(expanded program -> program view -> rep -> chooser). Month tabs use
+replaceState rather than pushState -- Back should walk the drill-down,
+not the month tabs -- but the hash still names the month on screen, so a
+reload lands where you were. The last view/rep/month is also remembered
+in localStorage per dashboard; a remembered rep who is no longer on the
+roster is discarded rather than wedging the page.
+
+The month tabs, the data-refresh pill, the breadcrumb, every generate
+script and every data file are unchanged. The breadcrumb gained a link
+back to the main Kohler Dashboard alongside the MPO Tracker one.
+Dead CSS from the old renderers was removed (~70 rules per page,
+verified against a pixel diff of every month x view: identical except the
+pulsing "data refreshed" dot).
+
+
 Month tabs: data lives in a per-month snapshot folder,
 data/<MONTH_KEY>/ (e.g. data/2026-07/, data/2026-08/), and index.html
 shows a tab bar so every past month stays permanently viewable --
