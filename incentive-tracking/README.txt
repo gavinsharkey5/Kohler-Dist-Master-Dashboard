@@ -509,6 +509,70 @@ Evil Genius. Headlines:
                          identical. A diff on that program alone is churn, not
                          a data change.
 
+MABI FALL RETENTION IS LIVE (2026-09-08)
+mabi_retention_fall was a zero-state placeholder; it now has data. The Sept-Nov
+period is a NEW program with NEW goals -- the summer mabi_retention (Jun-Aug)
+is a different window and is untouched on the August tab.
+
+  goal      Kohler's "90% of Placement Count GOAL" column, over the 6/1-8/31
+            BASE window, held against 9/1-11/30 actuals (per Gavin,
+            2026-09-08). Verified as round-half-up(0.9 x base) on all 949
+            rows, so nothing is recomputed here -- the workbook's number is
+            the bar, and a reissue that changes the percentage fails the check
+            in convert_mabi_fall.py rather than silently moving everyone's bar.
+  first run house 2,178 of 7,326 (29.7%), 0 of 24 reps at their goal, day 8 of
+            91. Off-roster and not shown: Default, John Neukum.
+
+BOTH SOURCE FILES ARE GROUPED TREES AND MUST BE CONVERTED FIRST. The actuals
+CSV looks flat -- rep / brand / product in three real columns -- but the first
+row of a rep block is that rep's TOTAL and the first row of each brand block is
+that brand's SUBTOTAL, with nothing marking either. Read at face value it sums
+to 6,543 against a true 2,181: EXACTLY 3x, because every product is counted
+again at brand level and again at rep level. The goals workbook is the same
+shape in a single column. So:
+
+    python3 convert_mabi_fall.py <actuals.csv> <goals.xlsx>   # then generate.py
+
+convert_mabi_fall.py writes data/mabi_retention_fall.csv (clean product rows)
+and data/mabi_retention_fall_goals.csv (clean per-rep goals), reconciling every
+brand subtotal against its products, every rep total against its brands, and
+the goals base column against the workbook's own Total row. It REFUSES TO WRITE
+on a mismatch, the same defence convert_mc_retention.py uses. The raw goals
+workbook is kept alongside as data/mabi_retention_fall_goals.xlsx for
+provenance; generate.py does not read it.
+
+ONLY THE BASE COLUMN RECONCILES, AND THAT IS EXPECTED. Each level of the goals
+tree rounds its own 90% independently, so brand goals do not sum to the rep
+goal and the rep goals sum to 7,329 against a Total row of 7,326. That is
+rounding, not an error -- which is why the REP-LEVEL goal row is what scores a
+rep, and why only the base column is reconciled against the Total.
+
+THE THREE TERRITORY-INELIGIBLE REPS NEED NO GATING HERE. Alex Rodriguez,
+Andrew Lundy and Hakan Sadik are greyed out of the summer MABI by the Core
+Market blackout, and Kohler's fall workbook simply gives them no goal at all --
+the restriction is already settled at source. Their card says so plainly rather
+than showing an empty goal. This is why mabi_retention_fall can stay in
+CORE_MARKET_PROGRAMS_PENDING: the eligibility loop still cannot reach data_09,
+but for this program there is nothing left for it to do. keystone_ice and
+touchdowns_tea remain genuinely ungated.
+
+REPS WITH A GOAL AND NO PLACEMENTS YET ARE KEPT AT ZERO (Dylan Rubino, John
+O'Donoghue as of the first run). "You are holding none of your 14" is what a
+retention program needs to say; dropping them would quietly shorten the board.
+
+THE STATUS CHIP, NOT THE NUMBER, IS PACE-AWARE. Every figure a rep reads is the
+raw percentage of goal -- Dave Ehlers reads 44%, Alisa Acciardi reads 5%.
+But the five-word status ladder has no "too early to tell", and on day 8 of 91
+a raw 44% would print "Needs Attention" for a goal not due until Nov 30. So
+through the FIRST QUARTER of the window the summary sets statusOverride: a rep
+with any placements reads "On Track", a rep with none reads "Not Started", and
+a rep already at goal reads "Earned"; after 25% of the window the normal bands
+resume on the raw percentage. summarize() gained a general statusOverride hook
+for this (it previously had only pctOverride, which would have rewritten the
+displayed number too -- the wrong fix, and it did briefly show Alisa 57%).
+If Gavin would rather see the raw bands from day one, delete the override in
+PROGRAM_SUMMARY.mabi_retention_fall and nothing else changes.
+
 2026-09-08 THIRD REFRESH -- Montauk, 2XO, Other Half (off and on)
 The day's last four exports. Headlines:
 

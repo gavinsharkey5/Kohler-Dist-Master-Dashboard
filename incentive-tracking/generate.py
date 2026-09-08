@@ -1833,6 +1833,109 @@ def build_mabi_retention():
             "retainThresholdPct": int(MABI_RETAIN_THRESHOLD * 100)}
 
 
+# ---------------------------------------------------------------------------
+# MABI Fall retention (Sept-Nov 2026). A NEW period with NEW goals -- the
+# summer program above (build_mabi_retention) is a different window and stays
+# on the August tab untouched.
+MABI_FALL_START = datetime.date(2026, 9, 1)
+MABI_FALL_END = datetime.date(2026, 11, 30)
+
+
+def build_mabi_retention_fall():
+    """Mark Anthony MADE Distro Rewards -- Retention, Sept-Nov 2026.
+
+    GOAL IS 90% OF THE SUMMER BASE. Kohler's workbook carries a rep's
+    6/1-8/31 placement count and a "90% of Placement Count GOAL" column, and
+    that goal column is what a rep must hold over 9/1-11/30 (per Gavin,
+    2026-09-08). The percentage is already applied in the source -- verified
+    as round-half-up(0.9 x base) on every row -- so nothing is recomputed
+    here; the workbook's own number is the bar.
+
+    Reads the CLEAN CSVs convert_mabi_fall.py writes, never the raw exports:
+    both raw files are grouped trees whose subtotal rows would treble every
+    total. That script reconciles and refuses to write on a mismatch, so by
+    the time these files exist the arithmetic has already been checked.
+
+    THE PERIOD IS THE POINT. This is a 3-month goal read mid-flight, so the
+    payload carries the window and how much of it has elapsed; the card leads
+    with that so a rep at 35% on day 8 reads as ahead of pace rather than
+    failing. pctOfPace is progress against a straight-line expectation and is
+    presentational only -- retention is settled on 11/30, not on pace.
+
+    Reps with a goal but no placements yet are KEPT at zero: "you are holding
+    none of your 46" is exactly what a retention program needs to show, and
+    dropping them would quietly shorten the leaderboard. Non-roster names in
+    the source (Kohler's "Default" bucket, John Neukum) fall out on the ROSTER
+    loop and are reported in meta.offRoster."""
+    goals, house_goal, house_base = {}, None, None
+    for row in read_rows("mabi_retention_fall_goals.csv"):
+        rep = (row["Sales Rep Name"] or "").strip()
+        if rep == "Total":
+            house_base, house_goal = to_num(row["Base Placements"]), to_num(row["Goal"])
+            continue
+        if rep:
+            goals[rep] = (to_num(row["Base Placements"]), to_num(row["Goal"]))
+
+    by_prod = defaultdict(list)
+    for row in read_rows("mabi_retention_fall.csv"):
+        by_prod[(row["Sales Rep Name"] or "").strip()].append(row)
+
+    today = datetime.date.today()
+    span = (MABI_FALL_END - MABI_FALL_START).days + 1
+    elapsed = min(max((today - MABI_FALL_START).days + 1, 0), span)
+    pace = elapsed / span * 100 if span else 0.0
+
+    by_rep = {}
+    for rep in ROSTER:
+        base, goal = goals.get(rep, (None, None))
+        rows = by_prod.get(rep, [])
+        placements = sum(to_num(r["Placements"]) for r in rows)
+        pct = round(placements / goal * 100, 1) if goal else None
+
+        prods = [{"product": r["Product Num Name"].strip(),
+                  "brand": r["Brand Family"].strip(),
+                  "placements": round(to_num(r["Placements"]))}
+                 for r in rows if to_num(r["Placements"]) > 0]
+        prods.sort(key=lambda p: (-p["placements"], p["product"]))
+
+        brands = defaultdict(float)
+        for r in rows:
+            brands[r["Brand Family"].strip()] += to_num(r["Placements"])
+        brand_rows = sorted(({"brand": b, "placements": round(v)}
+                             for b, v in brands.items()),
+                            key=lambda x: (-x["placements"], x["brand"]))
+
+        by_rep[rep] = {
+            "placements": round(placements),
+            "base": round(base) if base is not None else None,
+            "goal": round(goal) if goal else None,
+            "pct": pct,
+            "toGo": round(goal - placements) if goal and placements < goal else 0,
+            "retained": bool(goal and placements >= goal),
+            "hasGoal": goal is not None,
+            "pctOfPace": round(pct / pace * 100, 1) if (pct is not None and pace) else None,
+            "products": prods, "brands": brand_rows,
+            "skusHeld": len(prods),
+        }
+
+    house_total = sum(d["placements"] for d in by_rep.values())
+    scored = [d for d in by_rep.values() if d["hasGoal"]]
+    off_roster = sorted(set(goals) - set(ROSTER))
+    return {
+        "byRep": by_rep,
+        "houseTotal": house_total,
+        "houseGoal": round(house_goal) if house_goal else None,
+        "houseBase": round(house_base) if house_base else None,
+        "housePct": round(house_total / house_goal * 100, 1) if house_goal else None,
+        "repsRetained": sum(1 for d in scored if d["retained"]),
+        "repsWithGoal": len(scored),
+        "periodStart": MABI_FALL_START.isoformat(),
+        "periodEnd": MABI_FALL_END.isoformat(),
+        "periodDays": span, "daysElapsed": elapsed, "pacePct": round(pace, 1),
+        "meta": {"offRoster": off_roster},
+    }
+
+
 # Constellation off-premise retention: one file per goal category, each
 # with the deck's own off-prem house goal (slide 18). Same report shape as
 # MABI -- the rep-total row carries the goal, the rows beneath it are that
@@ -3256,7 +3359,12 @@ def check_registry_metrics(html, data, data_09):
         print(f"  *** REGISTRY METRIC BROKEN: {key} reads {missing}, which its builder "
               f"does not emit. rankProgram() will show an EMPTY leaderboard for it. ***")
     if not problems:
-        print("registry metrics: all data-backed programs point at fields their builders emit")
+        mf = data_09["mabi_retention_fall"]
+    print(f"mabi_retention_fall: house {mf['houseTotal']} / {mf['houseGoal']} MADE placements "
+          f"({mf['housePct']}%), {mf['repsRetained']} / {mf['repsWithGoal']} reps at their 90% goal "
+          f"| day {mf['daysElapsed']} of {mf['periodDays']} ({mf['pacePct']}% of the window elapsed)"
+          + (f" | off-roster, not shown: {', '.join(mf['meta']['offRoster'])}" if mf['meta']['offRoster'] else ""))
+    print("registry metrics: all data-backed programs point at fields their builders emit")
     return problems
 
 
@@ -3296,6 +3404,7 @@ def main():
         "montauk": build_montauk(),
         "two_xo": build_two_xo(),
         "other_half": build_other_half(),
+        "mabi_retention_fall": build_mabi_retention_fall(),
     }
 
     for key in ("1911", "woodchuck"):
