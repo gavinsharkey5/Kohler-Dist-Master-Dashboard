@@ -1862,6 +1862,117 @@ CONSTELLATION_FALL_CATEGORIES = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# The ON-PREMISE half of the same fall program: two reports, "Packages ON" and
+# "Draft ON", each carrying a rep's fall-2025 buyer count beside their
+# fall-2026 one. Same rule as the off-premise leg -- the prior column IS the
+# goal, at 100%.
+#
+# CRITICAL, AND DIFFERENT FROM THE OFF-PREMISE FILES: the measure here is
+# "Buyer Count", a DISTINCT-ACCOUNT count at every grouping level, NOT a
+# summable one. A rep's total row is therefore NOT the sum of its brand rows
+# and must never be reconstructed by adding them up -- an account stocking
+# Corona Extra and Modelo Especial is one buyer, counted once at rep level and
+# twice across the brand rows. Allison Scott is 110 buyers whose brand rows add
+# to 261 (2.4x), and only 1 of the 22 package blocks happens to sum (the one
+# rep with a single brand). This is the same trap the summer draft report
+# carries -- see the "New Buyers" note above CONSTELLATION_ON_PKG_PREFIXES.
+#
+# So the rep TOTAL ROW is the only trustworthy rep-level number here, the brand
+# rows are breakdown for display only, and the arithmetic reconciliation the
+# off-premise leg uses cannot apply. Two checks stand in its place, both of
+# which a layout change would break:
+#   1. the total row's Brand Family label duplicates one of the brand rows
+#      beneath it (the flattening borrows a child's label), so a missing total
+#      row is detectable positively rather than assumed;
+#   2. max(brand rows) <= total <= sum(brand rows) on BOTH columns, which is
+#      exactly the range a distinct count must fall in -- an export that
+#      switched to a summable measure, or lost its total rows, would leave it.
+CONSTELLATION_FALL_ON_CATEGORIES = [
+    {"key": "packages_on", "label": "Packages",
+     "file": "constellation_fall_packages_on.csv"},
+    {"key": "draft_on", "label": "Draft",
+     "file": "constellation_fall_draft_on.csv"},
+]
+
+
+def _constellation_fall_on(cat):
+    """One on-premise fall report -> ({rep: category dict}, house_total,
+    house_goal, base_window)."""
+    rows = [r for r in read_rows(cat["file"])
+            if (r.get("Sales Rep Assigned") or "").strip()]
+    if not rows:
+        raise SystemExit(f"{cat['file']}: empty")
+    fieldnames = list(rows[0].keys())
+    base_col, val_col = find_period_cols(fieldnames, "Buyer Count")
+    base_window = base_col.split("Buyer Count", 1)[1].strip()
+
+    # Check 1: every rep block must open with a total row, identified by its
+    # Brand Family label reappearing among the rows beneath it.
+    i = 0
+    while i < len(rows):
+        rep = rows[i]["Sales Rep Assigned"].strip()
+        j = i
+        while j < len(rows) and rows[j]["Sales Rep Assigned"].strip() == rep:
+            j += 1
+        block = rows[i:j]
+        below = {r["Brand Family"].strip() for r in block[1:]}
+        if len(block) < 2 or block[0]["Brand Family"].strip() not in below:
+            raise SystemExit(
+                f"{cat['file']}: {rep}'s block does not open with a total row "
+                f"(its label {block[0]['Brand Family'].strip()!r} is not repeated "
+                f"below) -- the export's subtotal layout has changed, refusing "
+                f"to publish.")
+        i = j
+
+    totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+
+    brands = defaultdict(list)
+    span = defaultdict(lambda: [0.0, 0.0, 0.0, 0.0])   # maxBase,sumBase,maxVal,sumVal
+    for r in detail:
+        rep = r["Sales Rep Assigned"].strip()
+        b, v = to_num(r[base_col]), to_num(r[val_col])
+        sp = span[rep]
+        sp[0] = max(sp[0], b); sp[1] += b
+        sp[2] = max(sp[2], v); sp[3] += v
+        brands[rep].append({"brand": r["Brand Family"].strip(),
+                            "buyers": round(v), "base": round(b)})
+
+    # Check 2: a distinct count must sit between its largest part and their sum.
+    for rep, trow in totals.items():
+        tb, tv = to_num(trow[base_col]), to_num(trow[val_col])
+        mb, sb, mv, sv = span.get(rep, [0.0, 0.0, 0.0, 0.0])
+        if not (mb - 1e-6 <= tb <= sb + 1e-6) or not (mv - 1e-6 <= tv <= sv + 1e-6):
+            raise SystemExit(
+                f"{cat['file']}: {rep}'s total ({tb:g}/{tv:g}) is outside the range "
+                f"its brand rows allow ([{mb:g},{sb:g}] / [{mv:g},{sv:g}]) -- "
+                f"'Buyer Count' may no longer be a distinct-account count, "
+                f"refusing to publish.")
+
+    out, house_total, house_goal = {}, 0.0, 0.0
+    for rep in ROSTER:
+        trow = totals.get(rep)
+        if trow is None:
+            out[rep] = {"key": cat["key"], "label": cat["label"], "buyers": 0,
+                        "goal": None, "pct": None, "retained": False, "toGo": 0,
+                        "inReport": False, "brands": [], "baseWindow": base_window}
+            continue
+        buyers, goal = to_num(trow[val_col]), to_num(trow[base_col])
+        house_total += buyers
+        house_goal += goal
+        blist = sorted([b for b in brands.get(rep, []) if b["buyers"] or b["base"]],
+                       key=lambda b: (-b["buyers"], -b["base"], b["brand"]))
+        out[rep] = {
+            "key": cat["key"], "label": cat["label"], "buyers": round(buyers),
+            "goal": round(goal) if goal else None,
+            "pct": round(buyers / goal * 100, 4) if goal else None,
+            "retained": bool(goal and buyers >= goal),
+            "toGo": round(goal - buyers) if goal and buyers < goal else 0,
+            "inReport": True, "brands": blist, "baseWindow": base_window,
+        }
+    return out, house_total, house_goal, base_window
+
+
 def build_constellation_fall():
     """Constellation Fall Distribution Rewards -- retention, OFF PREMISE,
     Sept-Nov 2026.
@@ -1890,10 +2001,16 @@ def build_constellation_fall():
     in all four files (24/25/22/19), and reconciled again at build time -- a
     mismatch raises rather than publishing a total that is silently doubled.
 
-    Off-premise only. The on-premise package and draft goals are a separate
-    export, same as the summer program."""
-    by_rep = {rep: {"offCategories": [], "inReport": False} for rep in ROSTER}
+    BOTH CHANNELS ARE NOW IN. The two on-premise reports arrived separately
+    (2026-09-08) and follow the same prior-column-is-the-goal rule -- but their
+    measure is a DISTINCT-ACCOUNT buyer count rather than SKU placements, so
+    they are built by _constellation_fall_on() above and scored as their own
+    leg. Nothing blends the two into one percentage; see the note in the
+    per-rep loop."""
+    by_rep = {rep: {"offCategories": [], "onCategories": [], "inReport": False,
+                    "onInReport": False} for rep in ROSTER}
     house = []
+    house_on = []
 
     today = datetime.date.today()
     span = (CONSTELLATION_FALL_END - CONSTELLATION_FALL_START).days + 1
@@ -1952,7 +2069,10 @@ def build_constellation_fall():
             by_rep[rep]["offCategories"].append({
                 "key": cat["key"], "label": cat["label"], "placements": round(placements),
                 "goal": round(goal) if goal else None,
-                "pct": round(placements / goal * 100, 1) if goal else None,
+                # 4 dp, not 1: a 1-dp store double-rounds in the page
+                # (61.469 -> 61.5 -> "62") and splits the card from the
+                # ranking table by a point on the same rep.
+                "pct": round(placements / goal * 100, 4) if goal else None,
                 # 100% of the base, per Gavin -- deliberately not the 90% bar.
                 "retained": bool(goal and placements >= goal),
                 "toGo": round(goal - placements) if goal and placements < goal else 0,
@@ -1965,19 +2085,46 @@ def build_constellation_fall():
                       "short": max(0, round(house_goal - house_total)),
                       "baseWindow": cat["baseWindow"]})
 
+    for cat in CONSTELLATION_FALL_ON_CATEGORIES:
+        per_rep, ht, hg, base_window = _constellation_fall_on(cat)
+        for rep, c in per_rep.items():
+            by_rep[rep]["onCategories"].append(c)
+            if c["inReport"]:
+                by_rep[rep]["onInReport"] = True
+        house_on.append({"key": cat["key"], "label": cat["label"],
+                         "total": round(ht), "goal": round(hg),
+                         "met": ht >= hg, "short": max(0, round(hg - ht)),
+                         "baseWindow": base_window})
+
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]
         d["offGoalsTotal"] = len(goaled)
         d["offGoalsRetained"] = sum(1 for c in goaled if c["retained"])
         d["offPlacements"] = sum(c["placements"] for c in d["offCategories"])
         d["offGoal"] = sum(c["goal"] for c in goaled)
-        d["offPct"] = (round(sum(c["placements"] for c in goaled) / d["offGoal"] * 100, 1)
+        d["offPct"] = (round(sum(c["placements"] for c in goaled) / d["offGoal"] * 100, 4)
                        if d["offGoal"] else None)
         d["offToGo"] = max(0, d["offGoal"] - sum(c["placements"] for c in goaled))
 
-    return {"byRep": by_rep, "house": house,
+        # On-premise is kept as its OWN leg rather than folded into the numbers
+        # above: buyers are DISTINCT ACCOUNTS and off-premise placements are SKU
+        # lines, so a single combined "% of goal" would be adding two different
+        # units -- and the far larger off-premise counts would swamp the
+        # on-premise ones. Each leg is scored against its own goals.
+        on_goaled = [c for c in d["onCategories"] if c["goal"]]
+        d["onGoalsTotal"] = len(on_goaled)
+        d["onGoalsRetained"] = sum(1 for c in on_goaled if c["retained"])
+        d["onBuyers"] = sum(c["buyers"] for c in on_goaled)
+        d["onGoal"] = sum(c["goal"] for c in on_goaled)
+        d["onPct"] = (round(d["onBuyers"] / d["onGoal"] * 100, 4)
+                      if d["onGoal"] else None)
+        d["onToGo"] = max(0, d["onGoal"] - d["onBuyers"])
+
+    return {"byRep": by_rep, "house": house, "houseOn": house_on,
             "houseTotal": sum(h["total"] for h in house),
             "houseGoal": sum(h["goal"] for h in house),
+            "houseOnTotal": sum(h["total"] for h in house_on),
+            "houseOnGoal": sum(h["goal"] for h in house_on),
             "retainThresholdPct": 100,
             "periodStart": CONSTELLATION_FALL_START.isoformat(),
             "periodEnd": CONSTELLATION_FALL_END.isoformat(),
@@ -3522,6 +3669,10 @@ def check_registry_metrics(html, data, data_09):
         + f" | {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'] and d['offGoalsRetained']==d['offGoalsTotal'])}"
         + f" of {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'])} reps holding every category"
         + f" | day {cf['daysElapsed']} of {cf['periodDays']}")
+    print("constellation_fall ON: house " + " · ".join(
+        f"{h['label']} {h['total']}/{h['goal']} buyers" for h in cf["houseOn"])
+        + f" | {sum(1 for d in cf['byRep'].values() if d['onGoalsTotal'] and d['onGoalsRetained']==d['onGoalsTotal'])}"
+        + f" of {sum(1 for d in cf['byRep'].values() if d['onGoalsTotal'])} reps holding every on-prem category")
     print("registry metrics: all data-backed programs point at fields their builders emit")
     return problems
 

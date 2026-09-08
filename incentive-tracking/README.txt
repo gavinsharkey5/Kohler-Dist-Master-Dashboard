@@ -557,8 +557,64 @@ true of nearly every rep on day 8 and says nothing about ground covered --
 Dave would have read 0% instead of 61%. Categories held stay on the stat
 board, where they are the right summary at the END of the period.
 
-Off-premise only, same as the summer program -- the on-premise package and
-draft goals are a separate export that has not arrived.
+THE ON-PREMISE HALF LANDED THE SAME DAY (2026-09-08) -- both channels are now
+live. Two more exports, "Constellation Packages ON FALL 2026" and
+"Constellation Draft ON FALL 2026", staged as
+data/constellation_fall_packages_on.csv and _draft_on.csv, built by
+_constellation_fall_on() and scored by the same rule: your prior-period number
+IS the goal, at 100%.
+
+  first run  Packages 401/872 accounts · Draft 132/260 accounts
+             3 of 20 reps holding both, day 8 of 91
+
+  THE MEASURE IS "BUYER COUNT", A DISTINCT-ACCOUNT COUNT -- NOT SUMMABLE.
+  This is the single most important thing about these two files and the one
+  way to get badly wrong numbers out of them. A rep's total row is NOT the sum
+  of its brand rows: an account stocking Corona Extra and Modelo Especial is
+  ONE buyer, counted once at rep level and twice across the brand rows.
+  Allison Scott is 110 accounts whose brand rows add to 261 (2.4x), and only 1
+  of the 22 package blocks happens to sum at all (the one rep with a single
+  brand). Never reconstruct a rep-level figure by adding brand rows, and never
+  add the two channels together -- off-premise counts SKU PLACEMENTS and
+  on-premise counts ACCOUNTS. The same trap is already documented for the
+  summer draft report's "New Buyers" column above CONSTELLATION_ON_PKG_PREFIXES.
+
+  BECAUSE THE OFF-PREMISE ARITHMETIC CHECK CANNOT APPLY, two other guards
+  stand in its place, and both were mutation-tested on 2026-09-08 (delete the
+  total rows -> guard 1 fires; inflate a total above its brand rows -> guard 2
+  fires; neither reaches the page):
+    1. the total row's Brand Family label duplicates one of the brand rows
+       beneath it -- the flattening borrows a child's label -- so a MISSING
+       total row is detected positively rather than assumed;
+    2. max(brand rows) <= total <= sum(brand rows) on BOTH columns, which is
+       exactly the range a distinct count must occupy. An export that switched
+       to a summable measure, or lost its total rows, leaves that range.
+  Either one raises SystemExit rather than publishing.
+
+  THE TWO LEGS ARE NEVER BLENDED INTO ONE PERCENTAGE. Different units, and the
+  much larger off-premise counts would swamp the on-premise ones. Each leg has
+  its own goals, bar, percentage and house block on the card. The hero leads
+  with whichever leg the rep actually works (off-premise when they work both,
+  since it is the larger book) and spells the other out beside it. That matters
+  for ALLISON SCOTT and PAUL McLAUGHLIN, who have no off-premise rows at all
+  and until now saw "no goal set for you" on this program -- they are the two
+  biggest on-premise books (170 and 147 accounts). The ranking table still
+  ranks the off-premise leg only, and is labelled as such; they drop out of it.
+
+  THE DECK'S ON-PREMISE NUMBERS DO NOT MATCH AND SHOULD NOT BE SUBSTITUTED.
+  Slide figures are packages 2,119 and draft 374; the reports give 872 and 260
+  accounts. Those count placements, not accounts, so they are not the same
+  quantity -- worth confirming with Constellation which one the payout is
+  written against, alongside the Impact question in point 2 above. Both sets
+  are on the card's rules list, labelled.
+
+  PERCENTAGES ARE STORED AT 4 DP, NOT 1. A 1-dp store double-rounds in the
+  page: Dave Ehlers' 61.469% became 61.5 in the JSON and then "62%" wherever
+  JS rounded it again, so the card said 61 and the ranking table said 62 for
+  the same rep on the same day. Every constellation_fall percentage now keeps
+  4 dp and every display derives from the same value; a headless check
+  compares the card tile, hero, summary line and ranking entry for all 24
+  reps with goals and requires them to agree.
 
 MABI FALL RETENTION IS LIVE (2026-09-08)
 mabi_retention_fall was a zero-state placeholder; it now has data. The Sept-Nov
