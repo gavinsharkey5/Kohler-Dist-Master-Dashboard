@@ -121,12 +121,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 5006,
-    "CUSTOMER_NAME": "Roserne Pkg Store South",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 4005,
     "CUSTOMER_NAME": "Turnpike Discount Liquors",
     "AREA": "Passaic"
@@ -415,12 +409,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43013,
-    "CUSTOMER_NAME": "Buy Rite Of Fairview",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44014,
     "CUSTOMER_NAME": "Campbell's Wines & Liquor",
     "AREA": "Bergen"
@@ -435,12 +423,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49055,
     "CUSTOMER_NAME": "Edgewater Liquor (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43006,
-    "CUSTOMER_NAME": "Fairview Liq & Groc.(A)",
     "AREA": "Bergen"
   },
   {
@@ -487,12 +469,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46012,
-    "CUSTOMER_NAME": "Jay Cee (P) Deli & Liq.",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49036,
     "CUSTOMER_NAME": "Junction Liquors",
     "AREA": "Bergen"
@@ -523,20 +499,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49045,
-    "CUSTOMER_NAME": "Liquor World",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48002,
     "CUSTOMER_NAME": "Manor Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44052,
-    "CUSTOMER_NAME": "Minit Mart_2",
     "AREA": "Bergen"
   },
   {
@@ -585,12 +549,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 54006,
     "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49031,
-    "CUSTOMER_NAME": "Top Shelf Liquors",
     "AREA": "Bergen"
   },
   {
@@ -931,12 +889,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 25012,
-    "CUSTOMER_NAME": "Bottle Liquor (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21054,
     "CUSTOMER_NAME": "C & S Lucky Liquors (P)",
     "AREA": "Passaic"
@@ -1023,12 +975,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 24003,
     "CUSTOMER_NAME": "Paulison Liquors (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 15031,
-    "CUSTOMER_NAME": "Pete's Family Liqs",
     "AREA": "Passaic"
   },
   {
@@ -1276,12 +1222,6 @@
     "CUSTOMER_NUM": 29008,
     "CUSTOMER_NAME": "Krauszers Food",
     "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 25031,
-    "CUSTOMER_NAME": "Lexington Liquors (Z)",
-    "AREA": "Passaic"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",

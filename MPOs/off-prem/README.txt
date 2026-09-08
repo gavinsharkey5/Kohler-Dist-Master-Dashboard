@@ -793,6 +793,71 @@ is NOT protected against a refresh -- re-extracting goals.csv from a reissued
 goals.xlsx silently restores 29. See keystone-ice/README.txt. Keep the two
 halves in step: they are one decision expressed in two places.
 
+2026-09-08 REFRESH -- all four exports moved, plus Promos_Report_11
+Exports now run through 9/9 (Keystone) / 9/8 (Fever Tree, Wine & Spirits).
+Keystone, Fever Tree and Wine & Spirits gained rows (+12 / +19 / +55) and
+Constellation kept its 122 rows but revised 65 of them upward. Before -> after:
+
+  Constellation Corona Gaintain   502 -> 598 placements this fall
+                                  12 -> 15 roster reps at their own 30% goal
+                                  (newly: Jim Heaney, Matt Powierski,
+                                  Michael Harboy)
+  Keystone Ice (40% penetration)  84 -> 94 distinct buying accounts
+                                  2 -> 3 reps at goal (Javier Melo newly at
+                                  12/28 = 42.9%, joining Pablo Lopez 12/26 =
+                                  46.2% and Derrick Laws 13/32 = 40.6%)
+  Fever Tree (10 placements)      33 -> 39 new placements, still 2 reps at
+                                  goal (Matt Powierski 12, Jayson Romine
+                                  10 -> 11)
+  Wine & Spirits (5 placements)   93 -> 122 new placements, 7 -> 9 reps at
+                                  goal (newly: Michael Harboy 2 -> 8, Mike
+                                  Ast 3 -> 5)
+  POS cooler door stickers        12 stickers, 1 rep at goal -- UNCHANGED,
+                                  see Promos_Report_11 below
+
+THE SANITY CHECK PASSED AT REP LEVEL BUT NOT AT ROW LEVEL, and the exception
+is worth knowing about because it is the first one. No rep on any objective
+went down, and no rep lost goal. But Wine & Spirits is the first export to
+REMOVE a row rather than only add: one row is gone,
+
+    Dave Ehlers / 40004 Simple Simon's (Z) /
+    201056 Bardstown Origin Series Bourbon 1/750 mL Btl / 9/4/2026
+
+and it was a QUALIFYING new placement in the previous build. It is genuinely
+absent from the new export -- not re-dated, not reassigned to another rep, and
+that account+SKU appears nowhere in the new file (checked before rebuilding).
+So this is RDE dropping a transaction on its own side, the shape of a voided
+or returned order, NOT the reclassification bug this README's "should only
+ever GROW" rule is written to catch. Dave Ehlers still reads 12 because he
+picked up a different placement in the same pull (Shop Rite Liq (A) Englewd /
+200741 Poggio Torselli Chianti Classico), so the coincidence hides it on the
+board -- which is exactly why it is recorded here. If a future refresh drops a
+row that ISN'T offset, a rep's total will fall and the check will fire.
+
+PROMOS_REPORT_11 MERGED ZERO NEW COOLER DOORS, and that is correct rather than
+a merge that failed to take. Its window is 9/1-9/8 (vs Report_10's 9/1-9/4),
+it carries 23 rows of which 14 are cooler doors, and all 14 are the same rows
+already published -- nobody submitted a cooler door sticker between 9/5 and
+9/8. The build log says so plainly ("14 row(s) in, 0 new, 14 already
+published"), which is the re-merge no-op the archive is designed for. The
+filter also did its job: 9 rows belonging to other objectives were skipped,
+including the SAME two Bardstown table-tent rows that on-prem's archive
+holds -- confirmation that the row_filter this README warns about is the only
+thing keeping an on-premise menu placement out of the off-premise cooler door
+count.
+
+OPEN WITH GAVIN -- COOLER DOORS ARE STILL SCORED PER PHOTO. On 2026-09-08 he
+settled the sister question on on-prem's Bardstown menu objective the other
+way: that one now counts per brand MENTION, so one table tent listing two
+brands is two placements (see on-prem/README.txt). Cooler doors have the
+identical shape -- promo 4 at USA Wine Traders is one wrap listing Corona
+Extra AND Modelo Especial -- and are still counted per distinct PHOTO, which
+reads 12 where per-brand-row would read 14. That was NOT changed here, because
+he asked about menu placements and these are a different objective with a
+different Kohler program behind it. Both numbers still print at build time. If
+he wants them consistent, it is a switch to buildPhotosDataset()'s counting,
+not a data problem.
+
 SECOND 2026-09-04 REFRESH -- all four exports moved, every objective grew
 Re-pulled the same day as the shape change above, and this time it is real
 new data rather than a re-shaping: Keystone, Fever Tree and Wine & Spirits

@@ -1646,7 +1646,7 @@
     "CUSTOMER_NUM": 49045,
     "CUSTOMER_NAME": "Liquor World",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2213,6 +2213,36 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 52015,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 52015,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 52015,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 51012,
     "CUSTOMER_NAME": "Teaneck Liquors",
     "BASE_PLACEMENTS": 1.0,
@@ -2726,7 +2756,7 @@
     "CUSTOMER_NUM": 191010,
     "CUSTOMER_NAME": "Liquor Factory II Jefferson",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2766,7 +2796,7 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2876,7 +2906,7 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2886,7 +2916,7 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2916,7 +2946,7 @@
     "CUSTOMER_NUM": 230114,
     "CUSTOMER_NAME": "Liquor Factory III Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2946,8 +2976,18 @@
     "CUSTOMER_NUM": 191526,
     "CUSTOMER_NAME": "Liquor Factory IV Hopatcong",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 191526,
+    "CUSTOMER_NAME": "Liquor Factory IV Hopatcong",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -2956,7 +2996,7 @@
     "CUSTOMER_NUM": 191526,
     "CUSTOMER_NAME": "Liquor Factory IV Hopatcong",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5751,12 +5791,32 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1157 Fever Tree Club Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 89005,
+    "CUSTOMER_NAME": "Allendale Wine Shoppe",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 89005,
+    "CUSTOMER_NAME": "Allendale Wine Shoppe",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "1168 Fever Tree mediterranean Tonic Water 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 89005,
     "CUSTOMER_NAME": "Allendale Wine Shoppe",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -7896,7 +7956,7 @@
     "CUSTOMER_NUM": 67004,
     "CUSTOMER_NAME": "Beverage Barn (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -7936,7 +7996,7 @@
     "CUSTOMER_NUM": 67004,
     "CUSTOMER_NAME": "Beverage Barn (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -7976,7 +8036,7 @@
     "CUSTOMER_NUM": 67004,
     "CUSTOMER_NAME": "Beverage Barn (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -7996,7 +8056,7 @@
     "CUSTOMER_NUM": 67004,
     "CUSTOMER_NAME": "Beverage Barn (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

@@ -1151,6 +1151,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Allison Scott",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 8006,
+    "CUSTOMER_NAME": "pompton crafthouse",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Allison Scott",
     "PRODUCT_NAME": "200517 Southern Tier Pumking Whiskey 6/750 mL Btl",
     "BRAND_FAMILY": "Southern Tier Distilling",
     "CUSTOMER_NUM": 8006,
@@ -1521,6 +1531,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 3001,
+    "CUSTOMER_NAME": "Best Cellars (Wanaque)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 10003,
@@ -1556,7 +1576,7 @@
     "CUSTOMER_NUM": 8002,
     "CUSTOMER_NAME": "Country Convenience Store",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1626,7 +1646,7 @@
     "CUSTOMER_NUM": 8007,
     "CUSTOMER_NAME": "Krauszer's Liquor Wine and Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2206,7 +2226,7 @@
     "CUSTOMER_NUM": 76015,
     "CUSTOMER_NAME": "Discount Liq & Bar",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -2771,6 +2791,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 43013,
+    "CUSTOMER_NAME": "Buy Rite Of Fairview",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 43013,
@@ -3286,7 +3316,7 @@
     "CUSTOMER_NUM": 41012,
     "CUSTOMER_NAME": "Deli Mart (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3441,6 +3471,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200741 Poggio Torselli Chianti Classico 1/6/750 mL Btl",
+    "BRAND_FAMILY": "Poggio Torselli",
+    "CUSTOMER_NUM": 52015,
+    "CUSTOMER_NAME": "Shop Rite Liq (A)Englewd",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "100120 Le Grand Noir Chardonnay 1/12/750 mL Btl",
     "BRAND_FAMILY": "Le Grand Noir",
     "CUSTOMER_NUM": 40004,
@@ -3468,16 +3508,6 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
-    "BRAND_FAMILY": "Bardstown Bourbon",
-    "CUSTOMER_NUM": 40004,
-    "CUSTOMER_NAME": "Simple Simon's (Z)",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4908,6 +4938,46 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170190,
+    "CUSTOMER_NAME": "Belmont Wine & Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170190,
+    "CUSTOMER_NAME": "Belmont Wine & Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170190,
+    "CUSTOMER_NAME": "Belmont Wine & Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170190,
+    "CUSTOMER_NAME": "Belmont Wine & Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -6686,7 +6756,7 @@
     "CUSTOMER_NUM": 150639,
     "CUSTOMER_NAME": "Azcona Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8681,6 +8751,36 @@
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 150606,
+    "CUSTOMER_NAME": "Skyline Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 150606,
+    "CUSTOMER_NAME": "Skyline Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 150606,
+    "CUSTOMER_NAME": "Skyline Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
     "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 152006,
@@ -9496,7 +9596,7 @@
     "CUSTOMER_NUM": 21054,
     "CUSTOMER_NAME": "C & S Lucky Liquors (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9506,7 +9606,7 @@
     "CUSTOMER_NUM": 21054,
     "CUSTOMER_NAME": "C & S Lucky Liquors (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -10728,6 +10828,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 231308,
+    "CUSTOMER_NAME": "Wantage Plaza Liq Outlet",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -12736,7 +12846,7 @@
     "CUSTOMER_NUM": 26001,
     "CUSTOMER_NAME": "Luigi's Liquor (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13141,6 +13251,66 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200171 Chateau Diana Caberner Sauvigon 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200172 Chateau Diana Chardonnay 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200173 Chateau Diana Merlot 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200176 Chateau Diana Sangria 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200191 Chateau Diana Non-Alcoholic Cabernet Sauvignon 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
+    "PRODUCT_NAME": "200193 Chateau Diana Non-Alcoholic Merlot 12/750 mL Btl",
+    "BRAND_FAMILY": "Chateau Diana",
+    "CUSTOMER_NUM": 150041,
+    "CUSTOMER_NAME": "A&M Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Michael Harboy",
     "PRODUCT_NAME": "200261 Sammy's Beach Bar Platinum Rum 1/6/750 mL Btl",
     "BRAND_FAMILY": "Sammy's Beach Bum",
     "CUSTOMER_NUM": 150048,
@@ -13486,7 +13656,7 @@
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13496,7 +13666,7 @@
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13506,7 +13676,7 @@
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13536,7 +13706,7 @@
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13546,8 +13716,28 @@
     "CUSTOMER_NUM": 12011,
     "CUSTOMER_NAME": "Bottle King (A) Wayne",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 12011,
+    "CUSTOMER_NAME": "Bottle King (A) Wayne",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 12011,
+    "CUSTOMER_NAME": "Bottle King (A) Wayne",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
@@ -13866,7 +14056,7 @@
     "CUSTOMER_NUM": 94001,
     "CUSTOMER_NAME": "Long Hill Liquors (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14451,6 +14641,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Nick Melissari",
+    "PRODUCT_NAME": "201077 Green River Honey 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 31027,
+    "CUSTOMER_NAME": "New Park Tav (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Nick Melissari",
     "PRODUCT_NAME": "100961 2XO American Oak 1/750 mL Btl",
     "BRAND_FAMILY": "2XO",
     "CUSTOMER_NUM": 38002,
@@ -14551,6 +14751,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200310 Pride & Clarke Vodka 6/1.75 L Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 27069,
+    "CUSTOMER_NAME": "Broadway W&L",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "PRODUCT_NAME": "200311 Pride & Clarke Vodka 12/1 L Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 27069,
@@ -14566,7 +14776,7 @@
     "CUSTOMER_NUM": 27069,
     "CUSTOMER_NAME": "Broadway W&L",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14576,7 +14786,7 @@
     "CUSTOMER_NUM": 27069,
     "CUSTOMER_NAME": "Broadway W&L",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14586,7 +14796,7 @@
     "CUSTOMER_NUM": 27069,
     "CUSTOMER_NAME": "Broadway W&L",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14638,6 +14848,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 21032,
+    "CUSTOMER_NAME": "Carisma Liq & Groc (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -14746,7 +14966,7 @@
     "CUSTOMER_NUM": 15047,
     "CUSTOMER_NAME": "Freddie's Corner",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14756,7 +14976,7 @@
     "CUSTOMER_NUM": 15047,
     "CUSTOMER_NAME": "Freddie's Corner",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14766,7 +14986,7 @@
     "CUSTOMER_NUM": 15047,
     "CUSTOMER_NAME": "Freddie's Corner",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -16146,7 +16366,7 @@
     "CUSTOMER_NUM": 81014,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -16156,7 +16376,7 @@
     "CUSTOMER_NUM": 81014,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -16971,6 +17191,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 60001,
+    "CUSTOMER_NAME": "Bottle King (A) Dumont",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 60001,
+    "CUSTOMER_NAME": "Bottle King (A) Dumont",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "200736 Lou Lou Bubbly Brut Rose 1/12/12 oz Can",
     "BRAND_FAMILY": "Caravella",
     "CUSTOMER_NUM": 73003,
@@ -17028,6 +17268,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 73003,
+    "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 73003,
+    "CUSTOMER_NAME": "Bottle King (A) Hillsdale",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
@@ -17151,6 +17411,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Bottle King (A) Ramsey",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Bottle King (A) Ramsey",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 72001,
@@ -17256,7 +17536,7 @@
     "CUSTOMER_NUM": 75004,
     "CUSTOMER_NAME": "Cork & Keg (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17291,12 +17571,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 75004,
+    "CUSTOMER_NAME": "Cork & Keg (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 75004,
     "CUSTOMER_NAME": "Cork & Keg (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17316,7 +17606,7 @@
     "CUSTOMER_NUM": 75004,
     "CUSTOMER_NAME": "Cork & Keg (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
