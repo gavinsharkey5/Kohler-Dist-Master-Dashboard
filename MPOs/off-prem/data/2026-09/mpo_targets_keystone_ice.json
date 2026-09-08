@@ -397,18 +397,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43004,
-    "CUSTOMER_NAME": "Boulevard Liq.(Fairview)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49019,
-    "CUSTOMER_NAME": "Bp Gas Station",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44014,
     "CUSTOMER_NAME": "Campbell's Wines & Liquor",
     "AREA": "Bergen"
@@ -475,12 +463,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43015,
-    "CUSTOMER_NAME": "Kikos Liquors Ii",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48005,
     "CUSTOMER_NAME": "Leonia Wine & Spirits",
     "AREA": "Bergen"
@@ -523,12 +505,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 45004,
-    "CUSTOMER_NAME": "Ridgefield Liq (Z)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44049,
     "CUSTOMER_NAME": "Rome Liquor (Cliffside Park)",
     "AREA": "Bergen"
@@ -555,12 +531,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 201096,
     "CUSTOMER_NAME": "Whole Foods #10102 (Edgewater)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44002,
-    "CUSTOMER_NAME": "Wine And Food Mart (Z)",
     "AREA": "Bergen"
   },
   {
@@ -765,12 +735,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21031,
     "CUSTOMER_NAME": "Broadway Liq (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 22022,
-    "CUSTOMER_NAME": "C Town (A)",
     "AREA": "Passaic"
   },
   {

@@ -509,6 +509,58 @@ Evil Genius. Headlines:
                          identical. A diff on that program alone is churn, not
                          a data change.
 
+2026-09-08 REFRESH -- five exports, and the Keystone files were out of sync
+Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. Headlines:
+
+  1911       256 -> 262 new placements   (+22 rows, none removed)
+  Woodchuck   31 ->  31 new placements   (+13 rows, none removed)
+  Tona        12 ->  12 new 24 oz plc    (+6 rows, ONE REMOVED -- see below)
+  Lytt        no change at all           (export was set-identical)
+  Keystone    84 -> 101 accounts, 2 -> 3 qualified, $125 -> $190 projected
+
+KEYSTONE IS AGAIN THE HEADLINE, AND THE SYNC RULE BELOW FIRED AGAIN. The two
+copies of the same RDE export had drifted apart BEFORE this refresh --
+keystone-ice/actuals.csv was still on the 96-row pull while
+MPOs/off-prem/keystone_ice_24oz.csv carried a 108-row one. Both are now on
+this refresh's 115-row export and are byte-identical again, and the two boards
+were cross-checked per rep afterwards: 101 accounts house-wide on each, zero
+per-rep differences. If they ever disagree, diff those two files first.
+
+Javier Melo is the new qualifier (12 of 12, 41% of 29), joining Pablo Lopez
+(12 of 12) and Derrick Laws, who went 13 -> 14 and took rank #1. Dan Lagala
+made the biggest move without qualifying: 4 short of his 18, up from 16 short,
+which lifts him from rank 13 to rank 4.
+
+THE OTHER FOUR AGAIN MOVED WITHOUT MOVING THEIR HEADLINES, the same pattern
+the 2026-09-04 note describes -- new placements only come from accounts with
+no base-period row, so a mid-program pull moves case volume long before it
+moves placements. The check that the data actually landed is the per-rep
+scalars, and they moved: 1911 17 metrics, all upward; Woodchuck 10, all
+upward. Nothing regressed on either.
+
+LYTT DID NOT MOVE AT ALL, and that is the export, not the build. The file is
+SET-IDENTICAL to the previous pull -- 698 rows, nothing added, nothing
+removed, merely re-sorted (verified before the run). Not one scalar metric
+changed. The rebuild still rewrites Lytt's byRep lists in index.html, but only
+their ORDER; this is the same churn the 2026-09-03 note records for
+evil_genius, and a diff confined to that program is not a data change. Check
+whether the rows themselves differ before hunting for a bug.
+
+ONE TONA ROW WAS REMOVED BY RDE, the second time an export has dropped a row
+rather than only adding (off-prem's Wine & Spirits was the first, 2026-09-08):
+
+    John O'Donoghue / 190012 Joe Canal's Disc Liq /
+    7270 Tona 4/6/12 oz Btl / 9/4/2026 / 3 cases
+
+It is genuinely absent from the new file -- not re-dated, not reassigned, and
+that customer+product appears nowhere else in it (checked before rebuilding).
+It reads as an RDE-side reversal, the shape of a voided or returned order, not
+a reclassification. It costs O'Donoghue caseVolumeOther 10 -> 7 and one
+account off that list, and it is the ONLY metric anywhere in this refresh that
+went down. It does NOT touch the 24 oz leg, which is the one Tona scores its
+qualifier on, so nobody's payout moves -- but it is recorded here because a
+silent drop is exactly what nobody would notice.
+
 2026-09-04 REFRESH -- five exports, and the Keystone dependency finally bit
 Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. All five grew with
 NO row removed (+11 / +5 / +8 / +18 / +11 rows); the one 1911 row that looked

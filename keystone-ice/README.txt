@@ -83,6 +83,21 @@ Files:
   generate.py  Rebuilds data/keystone_ice.json + data/sync_meta.json.
   index.html   The page itself.
 
+2026-09-08 REFRESH
+101 distinct accounts house-wide (was 84), 3 reps qualified (was 2), $190
+projected (was $125). Javier Melo qualified at 12 of 12; Derrick Laws went
+13 -> 14 and passed Pablo Lopez for rank #1. Actuals grew 96 -> 115 rows with
+none removed. Goals were NOT reissued, so the Shane Barreca exclusion above
+still stands untouched.
+
+THIS REFRESH ALSO REPAIRED A DRIFT. actuals.csv here was still on the 96-row
+pull while MPOs/off-prem/keystone_ice_24oz.csv already carried a 108-row one
+-- the same divergence the 2026-09-04 note in incentive-tracking/README.txt
+describes. Both files now hold this refresh's identical 115-row export, and
+the two boards were cross-checked per rep afterwards (101 accounts each, zero
+differences). Whenever this file changes, change that one to match in the same
+commit.
+
 To refresh:
   1. Save the new Comparison export over actuals.csv (and a reissued
      goals workbook over goals.xlsx, re-extracting goals.csv from it).

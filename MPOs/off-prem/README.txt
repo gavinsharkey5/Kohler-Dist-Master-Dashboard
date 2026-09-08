@@ -875,6 +875,16 @@ is NOT protected against a refresh -- re-extracting goals.csv from a reissued
 goals.xlsx silently restores 29. See keystone-ice/README.txt. Keep the two
 halves in step: they are one decision expressed in two places.
 
+KEYSTONE EXPORT IS SHARED WITH TWO OTHER DASHBOARDS (2026-09-08)
+keystone_ice_24oz.csv is the SAME RDE export as keystone-ice/actuals.csv, and
+incentive-tracking reads keystone-ice's published JSON in turn. All three must
+move together: refresh keystone-ice first, then this board, then
+incentive-tracking. On 2026-09-08 this file was found a pull AHEAD of
+keystone-ice (108 rows vs 96) and both were brought onto the same 115-row
+export; a per-rep cross-check then agreed exactly (101 accounts on each). A
+disagreement between this board's Keystone objective and the keystone-ice page
+means these two CSVs differ -- diff them first.
+
 2026-09-08 REFRESH -- all four exports moved, plus Promos_Report_11
 Exports now run through 9/9 (Keystone) / 9/8 (Fever Tree, Wine & Spirits).
 Keystone, Fever Tree and Wine & Spirits gained rows (+12 / +19 / +55) and
