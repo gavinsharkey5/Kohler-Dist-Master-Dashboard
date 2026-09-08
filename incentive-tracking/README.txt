@@ -509,6 +509,57 @@ Evil Genius. Headlines:
                          identical. A diff on that program alone is churn, not
                          a data change.
 
+CONSTELLATION FALL DISTRIBUTION IS LIVE (2026-09-08)
+constellation_fall was a zero-state placeholder; it now has data, off-premise
+only. This is the Sept-Nov period -- each month has its own retention program,
+and build_constellation_retention (Jun-Aug) is untouched on the August tab.
+
+  first run  Corona Gaintain 671/1,620 · Modelo Gaintain 1,305/2,405 ·
+             Impact 1,484/3,136 · Innovation 253/1,419
+             0 of 22 reps holding every category, day 8 of 91
+
+THREE THINGS WERE SETTLED WITH GAVIN ON 2026-09-08, and all three differ from
+what you would guess from the summer program:
+
+  1. THE GOAL IS THE BASE COLUMN AT 100%, not 90%. Every other retention
+     program here (MABI, Yuengling, and Constellation's own summer window)
+     scores at the deck's "Retain 90% Distribution Goals". This one is 100%
+     of the rep's own prior placements -- confirmed explicitly. Do NOT "fix"
+     it to match the others.
+  2. THE HOUSE GOAL IS THE SUM OF THE REP GOALS, not the April deck's fixed
+     numbers. They disagree, and on Impact it matters: the deck says 3,433
+     while the reps' own fall-2025 placements add to 3,136, so the deck figure
+     could not be reached even with every rep at 100%. Innovation runs the
+     other way (1,419 vs 1,336). Summing the rep goals keeps the house bar and
+     the rep bars measuring the same thing.
+  3. BASE WINDOWS DIFFER BY CATEGORY. Corona Gaintain, Modelo Gaintain and
+     Impact measure against fall 2025 (9/1-11/30/2025). Innovation measures
+     against SPRING 2026 (3/1-5/31/2026) because it did not exist a year ago.
+     Each category carries its own baseWindow and the card prints it on the
+     row ("Goal: 105 (your 3/1/2026 - 5/31/2026)"), so nobody has to remember
+     which is which.
+
+THE EXPORTS CHANGED SHAPE from the summer files. Those carry an explicit
+"( ... ) Goals" column with the goal on the rep-total row; these carry TWO
+windowed placement columns and no goal column at all, so the summer builder
+cannot read them -- hence build_constellation_fall(). Both generations share
+the flattened-subtotal layout (first row of a rep block is that rep's total,
+mislabelled with a product name), which _split_report_subtotals() already
+handles. The fall builder RE-RECONCILES every rep's total against its own
+product rows on BOTH columns and raises rather than publishing if they
+disagree -- verified 24/25/22/19 reps across the four files.
+
+MID-WINDOW PRESENTATION MATCHES THE MABI FALL CARD. The hero is the raw
+percentage of the placement goal (Dave Ehlers 61%, Matt Powierski 39%), and
+only the status chip is period-aware through the first quarter of the window.
+The hero counts PLACEMENTS, not categories-fully-held: "0 of 4 categories" is
+true of nearly every rep on day 8 and says nothing about ground covered --
+Dave would have read 0% instead of 61%. Categories held stay on the stat
+board, where they are the right summary at the END of the period.
+
+Off-premise only, same as the summer program -- the on-premise package and
+draft goals are a separate export that has not arrived.
+
 MABI FALL RETENTION IS LIVE (2026-09-08)
 mabi_retention_fall was a zero-state placeholder; it now has data. The Sept-Nov
 period is a NEW program with NEW goals -- the summer mabi_retention (Jun-Aug)

@@ -1834,6 +1834,158 @@ def build_mabi_retention():
 
 
 # ---------------------------------------------------------------------------
+# Constellation Fall retention (Sept-Nov 2026), OFF PREMISE.
+# A NEW period with NEW goals -- build_constellation_retention above is the
+# Jun-Aug window and stays on the August tab untouched.
+CONSTELLATION_FALL_START = datetime.date(2026, 9, 1)
+CONSTELLATION_FALL_END = datetime.date(2026, 11, 30)
+
+# Each file carries TWO windowed placement columns and NO goal column, unlike
+# the summer files' explicit "( ... ) Goals". The BASE column is the goal (per
+# Gavin, 2026-09-08: "their goals are placements they accomplished in 2025").
+# Innovation is the one exception -- its base window is spring 2026, not fall
+# 2025 -- which is why the base window is named per category rather than
+# assumed.
+CONSTELLATION_FALL_CATEGORIES = [
+    {"key": "corona_gaintain", "label": "Corona Gaintain",
+     "file": "constellation_fall_corona_gaintain_off.csv",
+     "prefix": "Corona Gaintain SKUs Placements", "baseWindow": "9/1/2025 - 11/30/2025"},
+    {"key": "modelo_gaintain", "label": "Modelo Gaintain",
+     "file": "constellation_fall_modelo_gaintain_off.csv",
+     "prefix": "Modelo Gaintain SKUs Placements", "baseWindow": "9/1/2025 - 11/30/2025"},
+    {"key": "impact", "label": "Impact",
+     "file": "constellation_fall_impact_off.csv",
+     "prefix": "Impact SKUs Placements", "baseWindow": "9/1/2025 - 11/30/2025"},
+    {"key": "innovation", "label": "Innovation",
+     "file": "constellation_fall_innovation_off.csv",
+     "prefix": "Innovation SKUs Placements", "baseWindow": "3/1/2026 - 5/31/2026"},
+]
+
+
+def build_constellation_fall():
+    """Constellation Fall Distribution Rewards -- retention, OFF PREMISE,
+    Sept-Nov 2026.
+
+    THE GOAL IS THE BASE COLUMN, AT 100%. Each export carries a rep's prior
+    placements and their 9/1-11/30/2026 placements side by side, and the prior
+    column IS the goal (Gavin, 2026-09-08). The bar is 100% of it, NOT the 90%
+    every other retention program on this page uses -- confirmed explicitly,
+    so do not "fix" this to match MABI/Yuengling.
+
+    THE HOUSE GOAL IS THE SUM OF THE REP GOALS, not the April deck's fixed
+    numbers (Gavin, 2026-09-08). They disagree, and materially: the deck has
+    Impact at 3,433 while the reps' own fall-2025 placements add to 3,136, so
+    the deck number could not be reached even with every rep at 100%. Summing
+    the rep goals keeps the house bar and the rep bars describing the same
+    thing.
+
+    BASE WINDOWS DIFFER BY CATEGORY. Corona Gaintain, Modelo Gaintain and
+    Impact measure against fall 2025 (9/1-11/30/2025); Innovation measures
+    against spring 2026 (3/1-5/31/2026) because it did not exist a year ago.
+    Each category names its own window rather than inheriting one.
+
+    SAME FLATTENED-SUBTOTAL SHAPE as the summer files: the first row of a rep
+    block is that rep's total, mislabelled with a product name, and the rows
+    beneath are the per-SKU breakdown. Verified on both columns for every rep
+    in all four files (24/25/22/19), and reconciled again at build time -- a
+    mismatch raises rather than publishing a total that is silently doubled.
+
+    Off-premise only. The on-premise package and draft goals are a separate
+    export, same as the summer program."""
+    by_rep = {rep: {"offCategories": [], "inReport": False} for rep in ROSTER}
+    house = []
+
+    today = datetime.date.today()
+    span = (CONSTELLATION_FALL_END - CONSTELLATION_FALL_START).days + 1
+    elapsed = min(max((today - CONSTELLATION_FALL_START).days + 1, 0), span)
+
+    for cat in CONSTELLATION_FALL_CATEGORIES:
+        rows = read_rows(cat["file"])
+        fieldnames = list(rows[0].keys()) if rows else []
+        cols = [f for f in fieldnames if f.startswith(cat["prefix"])]
+        if len(cols) != 2:
+            raise SystemExit(f"{cat['file']}: expected 2 '{cat['prefix']}' columns, got {len(cols)}")
+        base_col = next((f for f in cols if cat["baseWindow"] in f), None)
+        if base_col is None:
+            raise SystemExit(f"{cat['file']}: no column for base window {cat['baseWindow']}")
+        val_col = next(f for f in cols if f != base_col)
+
+        totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+
+        # Reconcile: a rep's total row must equal the sum of its product rows
+        # on BOTH columns, or the subtotal layout has changed under us.
+        sums = defaultdict(lambda: [0.0, 0.0])
+        prods = defaultdict(list)
+        for r in detail:
+            rep = r["Sales Rep Assigned"]
+            sums[rep][0] += to_num(r[base_col])
+            sums[rep][1] += to_num(r[val_col])
+            n = to_num(r[val_col])
+            if n > 0:
+                prods[rep].append({"product": r["Product Name"].strip(),
+                                   "placements": round(n),
+                                   "base": round(to_num(r[base_col]))})
+        for rep, trow in totals.items():
+            b, v = sums.get(rep, [0.0, 0.0])
+            if abs(to_num(trow[base_col]) - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
+                raise SystemExit(
+                    f"{cat['file']}: {rep}'s total row does not equal its product rows "
+                    f"({to_num(trow[base_col]):g}/{to_num(trow[val_col]):g} vs {b:g}/{v:g}) "
+                    f"-- the export's subtotal layout has changed, refusing to publish.")
+
+        house_total = house_goal = 0.0
+        for rep in ROSTER:
+            trow = totals.get(rep)
+            if trow is None:
+                by_rep[rep]["offCategories"].append({
+                    "key": cat["key"], "label": cat["label"], "placements": 0,
+                    "goal": None, "pct": None, "retained": False,
+                    "inReport": False, "products": [], "baseWindow": cat["baseWindow"],
+                })
+                continue
+            by_rep[rep]["inReport"] = True
+            placements = to_num(trow[val_col])
+            goal = to_num(trow[base_col])
+            house_total += placements
+            house_goal += goal
+            plist = sorted(prods.get(rep, []), key=lambda p: (-p["placements"], p["product"]))
+            by_rep[rep]["offCategories"].append({
+                "key": cat["key"], "label": cat["label"], "placements": round(placements),
+                "goal": round(goal) if goal else None,
+                "pct": round(placements / goal * 100, 1) if goal else None,
+                # 100% of the base, per Gavin -- deliberately not the 90% bar.
+                "retained": bool(goal and placements >= goal),
+                "toGo": round(goal - placements) if goal and placements < goal else 0,
+                "inReport": True, "products": plist, "baseWindow": cat["baseWindow"],
+            })
+
+        house.append({"key": cat["key"], "label": cat["label"],
+                      "total": round(house_total), "goal": round(house_goal),
+                      "met": house_total >= house_goal,
+                      "short": max(0, round(house_goal - house_total)),
+                      "baseWindow": cat["baseWindow"]})
+
+    for rep, d in by_rep.items():
+        goaled = [c for c in d["offCategories"] if c["goal"]]
+        d["offGoalsTotal"] = len(goaled)
+        d["offGoalsRetained"] = sum(1 for c in goaled if c["retained"])
+        d["offPlacements"] = sum(c["placements"] for c in d["offCategories"])
+        d["offGoal"] = sum(c["goal"] for c in goaled)
+        d["offPct"] = (round(sum(c["placements"] for c in goaled) / d["offGoal"] * 100, 1)
+                       if d["offGoal"] else None)
+        d["offToGo"] = max(0, d["offGoal"] - sum(c["placements"] for c in goaled))
+
+    return {"byRep": by_rep, "house": house,
+            "houseTotal": sum(h["total"] for h in house),
+            "houseGoal": sum(h["goal"] for h in house),
+            "retainThresholdPct": 100,
+            "periodStart": CONSTELLATION_FALL_START.isoformat(),
+            "periodEnd": CONSTELLATION_FALL_END.isoformat(),
+            "periodDays": span, "daysElapsed": elapsed,
+            "pacePct": round(elapsed / span * 100, 1) if span else 0}
+
+
+# ---------------------------------------------------------------------------
 # MABI Fall retention (Sept-Nov 2026). A NEW period with NEW goals -- the
 # summer program above (build_mabi_retention) is a different window and stays
 # on the August tab untouched.
@@ -3364,6 +3516,12 @@ def check_registry_metrics(html, data, data_09):
           f"({mf['housePct']}%), {mf['repsRetained']} / {mf['repsWithGoal']} reps at their 90% goal "
           f"| day {mf['daysElapsed']} of {mf['periodDays']} ({mf['pacePct']}% of the window elapsed)"
           + (f" | off-roster, not shown: {', '.join(mf['meta']['offRoster'])}" if mf['meta']['offRoster'] else ""))
+    cf = data_09["constellation_fall"]
+    print("constellation_fall: house " + " · ".join(
+        f"{h['label']} {h['total']}/{h['goal']}" for h in cf["house"])
+        + f" | {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'] and d['offGoalsRetained']==d['offGoalsTotal'])}"
+        + f" of {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'])} reps holding every category"
+        + f" | day {cf['daysElapsed']} of {cf['periodDays']}")
     print("registry metrics: all data-backed programs point at fields their builders emit")
     return problems
 
@@ -3405,6 +3563,7 @@ def main():
         "two_xo": build_two_xo(),
         "other_half": build_other_half(),
         "mabi_retention_fall": build_mabi_retention_fall(),
+        "constellation_fall": build_constellation_fall(),
     }
 
     for key in ("1911", "woodchuck"):
