@@ -509,6 +509,51 @@ Evil Genius. Headlines:
                          identical. A diff on that program alone is churn, not
                          a data change.
 
+2026-09-08 SECOND REFRESH -- five more exports, same day
+Le Grand Noir, Garage Beer President's comparison, Touchdowns & Tea (off and
+on) and Evil Genius, on top of the five earlier the same day. Headlines:
+
+  Garage Beer   7028.36 -> 7432.69 house CE (goal 9305)
+  Touchdowns    45 -> 46 off-prem 12pk placements, on-prem cases 414 -> 545,
+                trackable $1,089 -> $1,235
+  Evil Genius   still 2 new placements and 0 of 27 past the 3-placement
+                qualifier; CE 20 -> 33, reps ahead 4 -> 5, bonus CE 6 -> 7,
+                still $0 because the qualifier gates it
+  Le Grand Noir no change at all (export was set-identical)
+
+LE GRAND NOIR DID NOT MOVE, and like Lytt earlier today that is the export.
+The file is set-identical to the previous pull -- 30 rows, nothing added,
+nothing removed, merely re-sorted -- so it shows as modified in git while not
+one scalar moved. House stays 30.0 of 70 cases.
+
+RDE REMOVED ROWS FOR THE THIRD EXPORT SET RUNNING, and this time it cost a
+rep money. Touchdowns off-prem lost three rows against 70 added, and the three
+are NOT the same kind of thing -- worth separating, because only one of them
+changes a payout:
+
+  1. Dave Ehlers / 56007 Portland Wine & Liquor / 8373 Twisted Tea Light
+     Party Pack / 9/4 -- GENUINELY GONE, and it was the only row for that
+     customer+product, so it had no base-period row and counted as a NEW
+     PLACEMENT. Dave goes 17 -> 16 placements and $255 -> $240.
+  2. Dave Ehlers / same account / 8333 Twisted Tea / 9/4 -- also gone, but
+     that key HAS base-period rows (6/29, 7/20, 8/10), so it was a reorder.
+     Costs 13 cases, no placement, no payout.
+  3. Matt Powierski / 77007 Wine Land / 200668 Sun Cruiser Lemonade / 9/4 --
+     NOT removed at all. Same key and date, Cases revised 2.00 -> 1.00, so it
+     only looks dropped to a whole-line diff. A partial return.
+Check which of the three shapes a "removed" row is before reporting it: only
+the first kind moves a placement count.
+
+JAYSON ROMINE'S TARGET COUNT FELL 6 -> 5 AND THAT IS GOOD NEWS, not a loss.
+Liquor Factory I Landing left his offPremTargets list and appeared in
+offPremNew dated 9/8 -- he converted a target account. A falling target count
+on this program is the intended direction; read it alongside offPremNew before
+treating it as a regression.
+
+Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
+none down. The only metrics that fell anywhere in this refresh are Dave
+Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
+
 2026-09-08 REFRESH -- five exports, and the Keystone files were out of sync
 Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. Headlines:
 
