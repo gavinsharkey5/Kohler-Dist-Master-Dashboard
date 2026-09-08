@@ -509,6 +509,36 @@ Evil Genius. Headlines:
                          identical. A diff on that program alone is churn, not
                          a data change.
 
+2026-09-08 THIRD REFRESH -- Montauk, 2XO, Other Half (off and on)
+The day's last four exports. Headlines:
+
+  Montauk       8 -> 9 new placements, $95 -> $195
+  Other Half    76 -> 85 off-prem accounts opened, $3,810 -> $4,340;
+                on-prem 18 -> 24 active (10 -> 13 at the 1/3 bbl floor)
+  2XO           still 0 new off-premise pairs and $0; on-premise units
+                2.0 -> 5.0, still 0 new 2+-unit PODs
+
+NOT ONE METRIC WENT DOWN, the first refresh today that can say so. Montauk 26
+scalars, Other Half 30, 2XO 1 -- every one of them upward, and ten Other Half
+reps gained payout with none losing any.
+
+MONTAUK'S WHOLE $100 IS ONE DRAFT ACCOUNT. Paul Mclaughlin opened Grant
+Street Cafe (A) at 0.5 bbl on 9/9 -- the program's FIRST qualifying draft
+placement (the draft leg had been 0 all month), and draft pays $100 against
+the package legs' smaller rates, which is why 8 -> 9 placements moves $95 ->
+$195. Nobody else's Montauk payout changed.
+
+THE "REMOVED" ROWS THIS TIME WERE ALL DATE REVISIONS, unlike the three
+refreshes before it. Other Half off lost 5 rows and on lost 1 to a
+whole-line diff, but every one of them reappears in the new file with the
+same rep, account, product and values and only the date moved 9/7 -> 9/8:
+Chris Payton's five SKUs at 38008 Shop Rite Liq.(A)Lodi, and Paul
+Mclaughlin's Forever Ever keg at 50008 101 Pub (A). Nothing was actually
+withdrawn. This is the fourth distinct shape a "removed" row has taken this
+week -- genuine drop, reorder drop, value revision, and now date revision --
+so the rule stands: look up the key in the new file before calling anything
+lost.
+
 2026-09-08 SECOND REFRESH -- five more exports, same day
 Le Grand Noir, Garage Beer President's comparison, Touchdowns & Tea (off and
 on) and Evil Genius, on top of the five earlier the same day. Headlines:
