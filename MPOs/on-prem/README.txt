@@ -180,14 +180,40 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the SECOND 2026-09-04 refresh (exports
-now run through 9/4; Fever Tree stayed PRODUCT-level -- see "A FEVER TREE
-PLACEMENT IS ONE SKU" below): Bardstown 1 menu placement, Fever Tree 8 new
-placements, Carbliss 2 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-08 refresh (RDE exports run
+through 9/8): Bardstown 2 menu placements, Fever Tree 11 new placements,
+Carbliss 2 new buying accounts, HUSA 1 new draft line.
 
-FIRST REP AT GOAL ON FEVER TREE: Allison Scott has 3 of 3 (Buffalo Wild Wings
-Wayne took Ginger Beer, Club Soda and Tonic Water on 9/4 -- one account, three
-SKUs, three placements under the per-SKU rule). Paul Mclaughlin 2, and Robin
+TWO REPS ARE NOW AT GOAL ON FEVER TREE, and one of them is new: Paul Mclaughlin
+4 of 3 (Marriott Park Ridge took Ginger Beer and Pink Grapefruit Soda on 9/8,
+on top of the Andy's Corner and QB's placements he already had) and Allison
+Scott 3 of 3 (unchanged). Pablo Lopez opens his account with Noches De Colombia
+Clifton on 9/8; Robin Feldman, Brian Sengebush and Nick Melissari hold at 1
+each. Fever Tree went 8 -> 11 on 12 new 9/8 rows, of which 3 qualified -- the
+other 9 are accounts that already bought that SKU in 6/1-8/31.
+
+Bardstown went 1 -> 2 WITHOUT NEW DATA: the promo archive is the same single
+table tent, re-scored per brand mention rather than per submission (see
+objective 1 below). No new Promos_Report was pulled for this refresh, so
+bardstown_menu_promos.xlsx is untouched.
+
+CARBLISS AND HUSA BARELY MOVED, and again that is the export: the Carbliss
+file is set-identical to the previous pull (same 256 rows, merely re-sorted --
+verified before the run, exactly the case the 2026-09-04 note below warned to
+check for), and HUSA gained one row (Nick Melissari / Millers Paramus Ale
+House, 9/8) at an account that already bought in the base period, so it reads
+as repeat. Both counts holding still is the data, not the build.
+
+Superseded, kept for the reasoning: numbers as of the SECOND 2026-09-04 refresh
+(exports ran through 9/4; Fever Tree stayed PRODUCT-level -- see "A FEVER TREE
+PLACEMENT IS ONE SKU" below): Bardstown 1 menu placement (under the old
+per-submission rule), Fever Tree 8 new placements, Carbliss 2 new buying
+accounts, HUSA 1 new draft line.
+
+FIRST REP AT GOAL ON FEVER TREE (as of 2026-09-04): Allison Scott has 3 of 3
+(Buffalo Wild Wings Wayne took Ginger Beer, Club Soda and Tonic Water on 9/4 --
+one account, three SKUs, three placements under the per-SKU rule). Paul
+Mclaughlin 2, and Robin
 Feldman / Brian Sengebush / Nick Melissari 1 each. This is the first month
 where the per-SKU vs per-account choice actually decides whether someone gets
 paid: per ACCOUNT those same three rows would be ONE placement and Allison
@@ -237,15 +263,31 @@ one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
     "Promo #" passed as a volatile column -- it is a per-export counter like
     PODS' "POD #", and leaving it in the dedupe key makes every overlapping row
     read as new.
-  * IT COUNTS DISTINCT SUBMISSIONS, NOT ROWS. One promo carries one row per
-    brand on the menu. The first pull is a single table tent at Hilton
-    Hasbrouck Heights listing two Bardstown SKUs, arriving as Promo # 1.1 and
-    1.2 -- that is ONE menu placement, counted once, the same rule the display
-    auction uses for photos. A submission is (photo taker + account + date/time).
-    OPEN WITH GAVIN: the sister program in incentive-tracking pays "per printed
-    menu MENTION, multiple mentions on one menu means multiple payouts". If this
-    MPO objective is scored that way too, drop the dedupe and flag every row.
-    Both counts print at build time so the gap stays visible -- 1 vs 2 today.
+  * IT COUNTS BRAND MENTIONS, NOT SUBMISSIONS (settled with Gavin, 2026-09-08 --
+    was the other way round until then). One promo carries one row per brand on
+    the menu. The first pull is a single table tent at Hilton Hasbrouck Heights
+    listing two Bardstown SKUs, arriving as Promo # 1.1 and 1.2 -- that is TWO
+    menu placements, and Robin Feldman reads 2/5 off that one photo ("she got
+    bardstown and green river on that photo she has attached"). This objective
+    is scored like the sister program in incentive-tracking, which pays "per
+    printed menu MENTION, multiple mentions on one menu means multiple payouts"
+    -- deliberately NOT the display auction's photo rule, where one picture of
+    five items is one pic. The unit here is the menu line, not the picture.
+    The dedupe key is (photo taker + account + date/time + BRAND), not the bare
+    submission: a promo that repeated one brand across two rows is still one
+    placement for that brand, while two brands on one menu are two. Both counts
+    still print at build time, so reversing this again is a one-line edit.
+    Note on the brand names: Gavin describes the photo as Bardstown + Green
+    River, but the export labels its two rows BARDSTOWN BOURBON COLLAB SERIES
+    FOURSQUARE and ... GOOSE ISLAND (the Promos_Report was filtered to exactly
+    those two brands). Two mentions either way, so the count is right; if Green
+    River needs to show under its own name, that is an iSellBeer-side brand
+    label, not something to rewrite here.
+    Because the count is now per row rather than per account, each row also
+    carries the brand as PRODUCT_NAME, which is what makes the drill-down key
+    per customer+brand (index.html SKU_COLS) instead of collapsing both
+    mentions into a single line -- without it the card would read 2 above a
+    table showing 1.
   * iSellBeer spells rep names its own way ("robin feldman"); build_bardstown_
     menu() canonicalises to the RDE ROSTER spelling. An unmatched name is kept
     as-is so it surfaces on the board rather than vanishing.

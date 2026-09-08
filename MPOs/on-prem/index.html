@@ -394,8 +394,10 @@ const PHOTO_COLS=[["photo","url"],["photo","link"],["photo"]];
 // Deliberately narrower than PRODUCT_COLS, which falls back to ["brand"] and
 // would match BRAND_FAMILY -- hanging a constant "Carbliss"/"Dos Equis" column
 // off objectives that are scored per ACCOUNT. Only a dataset carrying a real
-// SKU column (September's Fever Tree) grows the Product column and gets its
-// drill-down keyed per SKU. See generate_2026-09.py's classify(product_col=).
+// per-placement column (September's Fever Tree SKUs, and the Bardstown menu's
+// per-brand mentions) grows the Product column and gets its drill-down keyed
+// per placement rather than per account. See generate_2026-09.py's
+// classify(product_col=) and build_bardstown_menu().
 const SKU_COLS=[["product","name"]];
 
 function buildNewAccountsDataset(rows, target){
@@ -715,17 +717,19 @@ function lineTableNewAccounts(lines, flagLabel, targetsHtml){
   const byCustomer = new Map();
   lines.forEach(l=>{
     // Keyed per customer+SKU where the dataset carries a SKU (Fever Tree is
-    // scored per placement, so one account taking two new SKUs is two rows),
-    // and per customer everywhere else, where product is "" and this is the
-    // original behaviour exactly.
+    // scored per placement, so one account taking two new SKUs is two rows;
+    // the Bardstown menu is scored per brand mention, so two brands on one
+    // table tent are two rows), and per customer everywhere else, where
+    // product is "" and this is the original behaviour exactly.
     const ckey = l.customer+"\u0000"+(l.product||"");
     if(!byCustomer.has(ckey)) byCustomer.set(ckey, {customer:l.customer, product:l.product||"", isNew:false, baseDate:null, currentDate:null, photos:[]});
     const c = byCustomer.get(ckey);
     if(l.new_buyer==='1') c.isNew = true;
     if(l.period==='current' && (!c.currentDate || l.date>c.currentDate)) c.currentDate = l.date;
     if(l.period==='base' && (!c.baseDate || l.date>c.baseDate)) c.baseDate = l.date;
-    // One promo submission repeats its photo on every brand row, so dedupe --
-    // an account gets one link per distinct photo, not one per SKU on the menu.
+    // Dedupe the photo per row key -- one promo submission repeats the same
+    // photo on every brand row, and an account with genuinely different photos
+    // still gets "View Photo 1 / 2".
     if(l.photo && !c.photos.includes(l.photo)) c.photos.push(l.photo);
   });
   const all = [...byCustomer.values()];

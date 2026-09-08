@@ -293,20 +293,29 @@ def _lytt_pos():
 def build_bardstown_menu():
     """Objective 1 -- (5) New Bardstown Menu Placements, from iSellBeer promos.
 
-    COUNTS DISTINCT SUBMISSIONS, NOT ROWS. One promo carries one row per brand
-    on the menu -- the first pull is a single table tent at Hilton Hasbrouck
-    Heights that lists two Bardstown SKUs, arriving as Promo # 1.1 and 1.2. That
-    is one menu placement, not two, and it is counted as one: the same rule the
-    display auction uses for photos ("one photo showing five Lytt items is ONE
-    pic"). A submission is (photo taker + account + date/time).
+    COUNTS DISTINCT BRAND MENTIONS, NOT SUBMISSIONS (confirmed with Gavin,
+    2026-09-08: "make robin show 2/5 menu placements, she got bardstown and
+    green river on that photo"). One promo carries one row per brand on the
+    menu -- the first pull is a single table tent at Hilton Hasbrouck Heights
+    listing two Bardstown SKUs, arriving as Promo # 1.1 and 1.2. That is TWO
+    menu placements, not one: this objective is scored the same way as the
+    sister program in incentive-tracking, which pays "per printed menu MENTION,
+    multiple mentions on one menu means multiple payouts". It is deliberately
+    NOT the display auction's photo rule ("one photo showing five Lytt items is
+    ONE pic") -- the unit here is the menu line, not the picture.
 
-    The sister program in incentive-tracking pays "per printed menu MENTION,
-    multiple mentions on one menu means multiple payouts" -- a deliberately
-    different unit. If this MPO objective turns out to be scored the same way,
-    the fix is to drop the dedupe and flag every row; both counts are printed
-    at build time so the gap is visible. Flagged for Gavin.
+    The dedupe key is therefore (photo taker + account + date/time + brand),
+    not (photo taker + account + date/time): a submission that repeated the
+    same brand on two rows would still be one placement for that brand, while
+    two different brands on one menu are two. Both counts are still printed at
+    build time so a future rule change stays a one-line edit.
 
-    Every submission counts as new: the promos export is a single window with no
+    The brand also rides out as PRODUCT_NAME, which is what makes the drill-down
+    key per customer+brand (index.html SKU_COLS/lineTableNewAccounts) rather
+    than collapse both mentions into one row -- otherwise a rep's card would
+    read 2 above a table showing 1.
+
+    Every mention counts as new: the promos export is a single window with no
     base period, so a menu placement submitted this month IS the new placement.
     """
     if not BARDSTOWN_XLSX.exists():
@@ -317,7 +326,7 @@ def build_bardstown_menu():
     idx = {h: i for i, h in enumerate(header) if h}
     roster_by_lower = {r.lower(): r for r in ROSTER}
 
-    seen, out, mentions = set(), [], 0
+    seen, out, mentions, submissions = set(), [], 0, set()
     for row in ws.iter_rows(min_row=2):
         vals = [c.value for c in row]
         if not vals or not vals[idx["Date/Time"]]:
@@ -329,25 +338,30 @@ def build_bardstown_menu():
         rep = roster_by_lower.get(raw_rep.lower(), raw_rep)
         dt = str(vals[idx["Date/Time"]]).strip()
         acct = str(vals[idx["Account #"]] or "").strip()
-        key = (rep, acct, dt)
+        brand = str(vals[idx["Brand"]] or "").strip()
+        # Brand is part of the key: two brands on one menu are two placements.
+        key = (rep, acct, dt, brand)
+        submissions.add((rep, acct, dt))
         mentions += 1
         photo_cell = row[idx["Photo"]]
         out.append({
             "SALES_REP_ASSIGNED": rep,
             "CUSTOMER_NUM": int(acct) if acct.isdigit() else None,
             "CUSTOMER_NAME": str(vals[idx["DBA"]] or "").strip(),
-            "BRAND_FAMILY": str(vals[idx["Brand"]] or "").strip(),
+            "BRAND_FAMILY": brand,
+            # Also the drill-down's per-row key -- see the docstring.
+            "PRODUCT_NAME": brand,
             "DATE": datetime.strptime(dt.split()[0], "%m/%d/%Y").date().isoformat(),
             "PERIOD": "current",
             "PROMOTION_TYPE": str(vals[idx["Promotion type"]] or "").strip(),
             "ELEMENTS": str(vals[idx["Elements"]] or "").strip(),
             "PHOTO_URL": photo_cell.hyperlink.target if photo_cell.hyperlink else None,
-            # One flag per distinct submission, on its first row.
+            # One flag per distinct brand mention, on its first row.
             "NEW_PLACEMENT": 0 if key in seen else 1,
         })
         seen.add(key)
     out.sort(key=lambda r: r["DATE"], reverse=True)
-    return out, len(seen), mentions
+    return out, len(seen), len(submissions)
 
 
 def main():
@@ -363,7 +377,7 @@ def main():
     fever_rows, fever_new, fever_total, fever_ph = build_fever_tree(off_premise_ids)
     carb_rows, carb_new, carb_total, carb_ph = build_carbliss(off_premise_ids)
     husa_rows, husa_new, husa_total, husa_ph = build_husa(off_premise_ids)
-    bard_rows, bard_placements, bard_mentions = build_bardstown_menu()
+    bard_rows, bard_placements, bard_submissions = build_bardstown_menu()
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)
@@ -382,9 +396,9 @@ def main():
           f"({len(carb_rows)} rows written, {carb_ph} undated rows stamped with the window start)")
     print(f"HUSA XX draft (goal 1): {husa_new} new draft lines out of {husa_total} accounts "
           f"({len(husa_rows)} rows written, {husa_ph} undated rows stamped with the window start)")
-    print(f"Bardstown menu (goal 5): {bard_placements} distinct menu placements from "
-          f"{bard_mentions} brand mentions across {len(bard_rows)} promo rows "
-          f"-- counted per SUBMISSION; per-mention would read {bard_mentions} (unconfirmed)")
+    print(f"Bardstown menu (goal 5): {bard_placements} menu placements across "
+          f"{len(bard_rows)} promo rows -- counted per brand MENTION (Gavin, "
+          f"2026-09-08); per-submission would read {bard_submissions}")
     print(f"sync_meta.json timestamped {synced_at} in data/{MONTH_KEY}/")
 
 
