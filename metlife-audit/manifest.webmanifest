@@ -1,0 +1,11 @@
+{
+  "name": "MetLife Beer Audit",
+  "short_name": "Beer Audit",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0E1014",
+  "theme_color": "#0E1014",
+  "icons": [
+    { "src": "../assets/kohler-logo-badge.png", "sizes": "any", "type": "image/png" }
+  ]
+}
