@@ -539,59 +539,67 @@ what you would guess from the summer program:
      row ("Goal: 105 (your 3/1/2026 - 5/31/2026)"), so nobody has to remember
      which is which.
 
-CONSTELLATION FALL -- ON-PREMISE RETENTION FILES (dropped 2026-09-09, NOT YET
-BUILT; the card is still off-premise only). Gavin's rules for these, verbatim
-in spirit, so the build follows them:
+CONSTELLATION FALL -- ON-PREMISE PACKAGES AND DRAFT (built 2026-09-09). The
+card now has three sections -- off-premise categories, on-premise packages,
+on-premise draft -- and the leaderboard ranks on overallPct across all of
+them. Gavin's rules, settled the same day:
 
-  * "Buyer Count 3/1/2026 - 5/31/2026" IS THE GOAL for the fall distribution
-    period. "Buyer Count 9/1/2026 - 11/30/2026" is current distribution. Same
-    base-column-is-the-goal convention as the off-premise files above, but
-    the base window is SPRING 2026 (3/1-5/31), not fall 2025.
-  * Tracked at BRAND FAMILY level (Corona Extra, Corona Light, Modelo
-    Especial, Pacifico, ...), per rep. Buyers are the measure.
-  * DRAFT carries Units next to Buyer Count; "we are measuring buyers, but
-    the units are there to show if there is an actual unit in the account
-    and it wasn't an empty that was picked up." A buyer-count row with zero
-    or negative units in the current window is an empty-keg pickup, not
-    distribution. Packages carries no Units column.
-  * Two shapes per channel, both from RDE:
-      data/constellation_fall_draft_on_goals.csv      brand-family level: rep,
-      data/constellation_fall_packages_on_goals.csv   brand family, the two
-                                                      Buyer Count columns (+ two
-                                                      Units columns on draft).
-                                                      THE GOALS -- Gavin's first
-                                                      two files.
-      data/constellation_fall_draft_on.csv            customer + product level:
-      data/constellation_fall_packages_on.csv         the same columns plus
-                                                      Customer Num Name, Product
-                                                      Num Name, Load Sheet Date.
-                                                      THE ONGOING UPLOADS --
-                                                      Gavin will drop these two
-                                                      to refresh.
-    On 2026-09-09 the detail files reconcile to the brand-family files
-    exactly: distinct customers per rep + brand family match on BOTH columns
-    for every row (46 draft, 121 package rows, 0 mismatches). The detail
-    files therefore carry the goal column too; whether the goal is read from
-    them each refresh or frozen from the first pull is an open question
-    below. The detail draft file shows 57 current-window buyers with net
-    units <= 0 -- the empty pickups the units rule is for.
-  * Off-roster names in both: Chris Politano (MetLife), Office Tell Sell;
-    Chris Politano has current-window draft buyers and no goal.
+  1. THE GOAL IS 100% OF THE SPRING BUYERS. "Buyer Count 3/1/2026 -
+     5/31/2026" is the goal; "Buyer Count 9/1/2026 - 11/30/2026" is current
+     distribution. Same base-column-is-the-goal convention as off-premise,
+     but the base window is spring 2026, not fall 2025.
+  2. THE GOAL IS FROZEN from the first pull's brand-family exports
+     (data/constellation_fall_packages_on_goals.csv and
+     data/constellation_fall_draft_on_goals.csv). Gavin is removing the
+     March-May columns from the RDE report, so the ongoing detail uploads
+     will carry only the 9/1-11/30 columns; _build_constellation_fall_
+     on_prem() reads goals ONLY from the _goals files and current ONLY from
+     the detail files. While a detail file still carries the spring columns
+     they are used for one thing: a drift warning in the build log when its
+     distinct spring buyers disagree with the frozen goal (0 rows on 9/9).
+     Do not "refresh" the _goals files from a later pull -- an account
+     reassigned between reps would silently move a goal.
+  3. EACH BRAND FAMILY IS ITS OWN GOAL, separately for on-premise packages
+     and on-premise draft, exactly as each off-premise category is. A rep
+     holding Corona Extra but short on Modelo Especial has one goal held and
+     one building. Families a rep buys this period without a spring goal are
+     listed as new distribution and never scored.
+  4. DRAFT COUNTS A BUYER ONLY ON A REAL KEG: a customer is a draft buyer of
+     a family when any of its rows has the 9/1-11/30 Buyer Count populated
+     AND its net 9/1-11/30 Units across the family are > 0. "The units are
+     there to show if there is an actual unit in the account and it wasn't
+     an empty that was picked up." 57 empty pickups excluded on 9/9.
+     Packages has no Units column; a populated Buyer Count is a buyer.
+  5. ONE CARD, off and on kept separate inside it: house blocks (off-prem
+     categories, on-prem packages by family, on-prem draft by family), a
+     stat board (goals held across all three, overall %, off-prem %, on-prem
+     %), then an earn block per section with its family rows and an accounts
+     accordion. The summary/hero counts placements + buyers held against
+     every goal the rep has; goals held sit on the stat board.
 
-OPEN WITH GAVIN before building (asked 2026-09-09):
-  1. Goal bar -- 100% of the spring buyers, like the off-premise fall
-     categories, or the deck's 90%?
-  2. Freeze the goal from the first pull (the _goals files) or re-read it
-     from each detail upload? The 3/1-5/31 window is closed, so the numbers
-     only move when RDE reassigns an account between reps (Blackjack
-     Mulligans moved from Nick Melissari to Allison Scott on 9/9).
-  3. Score per brand family (each family retained on its own, like the
-     off-premise categories) or per rep total (all on-premise buyers vs all
-     goals)?
-  4. Draft units rule -- exclude a current-window buyer whose net units in
-     the window are <= 0? Confirm.
-  5. One card with off-premise + on-premise package + on-premise draft, or
-     separate cards?
+  data/constellation_fall_packages_on_goals.csv   Brand-family goals, FROZEN
+  data/constellation_fall_draft_on_goals.csv      (rep, brand family, the two
+                                                  Buyer Count columns; draft
+                                                  also two Units columns).
+  data/constellation_fall_packages_on.csv         Customer + product detail:
+  data/constellation_fall_draft_on.csv            THE ONGOING UPLOADS. Save
+                                                  the new RDE exports over
+                                                  these two and run
+                                                  generate.py. The spring
+                                                  columns may be absent.
+
+TO REFRESH ON-PREMISE: save the two detail exports over the two detail
+files, run python3 generate.py, and read its three constellation_fall
+lines -- "goal drift" should stay 0 while the spring columns exist and the
+line should say "goals frozen" once they are gone; "empty-keg pickups
+excluded" is expected to be non-zero on draft.
+
+FIRST RUN (2026-09-09, day 9 of 91): on-premise packages 747 of 2,107
+buyers across 8 brand families (0 families at goal house-wide; 3 of 20 reps
+holding every family, all on one-buyer goals); on-premise draft 98 of 381
+across 5 families (0 at goal; 0 of 12 reps holding every family). 0 of 24
+reps holding every goal across off + on. Off roster on both files: Chris
+Politano (MetLife, current buyers and no goal), Office Tell Sell.
 
 THE EXPORTS CHANGED SHAPE from the summer files. Those carry an explicit
 "( ... ) Goals" column with the goal on the rep-total row; these carry TWO

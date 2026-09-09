@@ -1861,6 +1861,131 @@ CONSTELLATION_FALL_CATEGORIES = [
      "prefix": "Innovation SKUs Placements", "baseWindow": "3/1/2026 - 5/31/2026"},
 ]
 
+# ON-PREMISE (added 2026-09-09, per Gavin). Two channels, packages and draft,
+# each scored PER BRAND FAMILY against a FROZEN goal: the rep's distinct
+# buyers of that family in spring 2026 (3/1-5/31), read from the *_goals.csv
+# brand-family exports of the first pull and never from the detail uploads --
+# Gavin is dropping the March-May columns from the RDE report, so the ongoing
+# detail files carry only the 9/1-11/30 columns. The goal bar is 100%. Draft
+# counts a buyer only when its net units in the window are positive: "the
+# units are there to show if there is an actual unit in the account and it
+# wasn't an empty that was picked up." Packages carries no units column.
+CONSTELLATION_FALL_ON_PREM = [
+    {"key": "packages", "label": "On-Premise Packages", "goalsFile": "constellation_fall_packages_on_goals.csv",
+     "file": "constellation_fall_packages_on.csv", "units": False},
+    {"key": "draft", "label": "On-Premise Draft", "goalsFile": "constellation_fall_draft_on_goals.csv",
+     "file": "constellation_fall_draft_on.csv", "units": True},
+]
+CONSTELLATION_FALL_ON_BASE_WINDOW = "3/1/2026 - 5/31/2026"
+
+
+def _build_constellation_fall_on_prem(channel):
+    """One on-premise channel (packages or draft) of Constellation Fall, per
+    rep per brand family. Returns (by_rep_families, house_rows, meta).
+
+    GOALS come from the brand-family goals export of the first pull and are
+    FROZEN: a rep's distinct spring-2026 buyers of the family. CURRENT comes
+    from the customer+product detail export: a customer counts as a buyer of
+    a family when any of its rows has the 9/1-11/30 Buyer Count populated
+    and, on draft, when its net 9/1-11/30 Units across the family are > 0
+    (an empty keg picked up is a Buyer Count row with 0 or negative units).
+    The detail file's own 3/1-5/31 columns, while it still carries them, are
+    only used for a drift warning against the frozen goals."""
+    goals = {}
+    grows = read_rows(channel["goalsFile"])
+    gcols = list(grows[0].keys()) if grows else []
+    gcol = next((c for c in gcols if c.startswith("Buyer Count") and "3/1/2026" in c), None)
+    if gcol is None:
+        raise SystemExit(f"{channel['goalsFile']}: no 'Buyer Count 3/1/2026 - 5/31/2026' goal column")
+    for r in grows:
+        rep, fam = r["Sales Rep Assigned"].strip(), r["Brand Family"].strip()
+        g = to_num(r[gcol])
+        if g > 0:
+            goals[(rep, fam)] = int(round(g))
+
+    rows = read_rows(channel["file"])
+    cols = list(rows[0].keys()) if rows else []
+    ccol = next((c for c in cols if c.startswith("Buyer Count") and "9/1/2026" in c), None)
+    if ccol is None:
+        raise SystemExit(f"{channel['file']}: no 'Buyer Count 9/1/2026 - 11/30/2026' column")
+    ucol = next((c for c in cols if c.startswith("Units") and "9/1/2026" in c), None)
+    if channel["units"] and ucol is None:
+        raise SystemExit(f"{channel['file']}: draft needs a 'Units 9/1/2026 - 11/30/2026' column")
+    bcol = next((c for c in cols if c.startswith("Buyer Count") and "3/1/2026" in c), None)
+
+    cust = {}   # (rep, fam, customer) -> {"populated", "units", "products": {product: units}}
+    base_seen = defaultdict(set)
+    for r in rows:
+        rep, fam = r["Sales Rep Assigned"].strip(), r["Brand Family"].strip()
+        c = r["Customer Num Name"].strip()
+        k = (rep, fam, c)
+        a = cust.setdefault(k, {"populated": False, "units": 0.0, "products": defaultdict(float), "lastDate": None})
+        if (r[ccol] or "").strip():
+            a["populated"] = True
+            u = to_num(r[ucol]) if ucol else 1.0
+            a["units"] += u
+            a["products"][r["Product Num Name"].strip()] += u
+            d = None
+            m = DATE_RE.search(r.get("Load Sheet Date") or "")
+            if m:
+                d = datetime.date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
+            if d and (a["lastDate"] is None or d > a["lastDate"]):
+                a["lastDate"] = d
+        if bcol and (r[bcol] or "").strip():
+            base_seen[(rep, fam)].add(c)
+
+    drift = []
+    if bcol:
+        for (rep, fam), custs in base_seen.items():
+            if rep in ROSTER and goals.get((rep, fam), 0) != len(custs):
+                drift.append((rep, fam, goals.get((rep, fam), 0), len(custs)))
+
+    fams_by_rep = defaultdict(dict)
+    empties = defaultdict(int)
+    for (rep, fam, c), a in cust.items():
+        if not a["populated"]:
+            continue
+        counts = (a["units"] > 0) if channel["units"] else True
+        if not counts:
+            empties[(rep, fam)] += 1
+            continue
+        fams_by_rep[(rep, fam)][c] = a
+
+    out = {rep: [] for rep in ROSTER}
+    keys = {(rep, fam) for (rep, fam) in goals} | set(fams_by_rep)
+    house_tot, house_goal = defaultdict(int), defaultdict(int)
+    for rep, fam in sorted(keys):
+        if rep not in ROSTER:
+            continue
+        buyers = fams_by_rep.get((rep, fam), {})
+        goal = goals.get((rep, fam))
+        n = len(buyers)
+        accounts = [{"customer": re.sub(r"^\d+\s+", "", c), "num": (re.match(r"(\d+)", c) or [None, None])[1],
+                     "units": round(a["units"], 1) if channel["units"] else None,
+                     "lastDate": a["lastDate"].isoformat() if a["lastDate"] else None,
+                     "products": sorted(a["products"].keys())}
+                    for c, a in sorted(buyers.items(), key=lambda kv: (-(kv[1]["units"]), kv[0]))]
+        out[rep].append({
+            "key": re.sub(r"[^a-z0-9]+", "_", fam.lower()).strip("_"), "label": fam,
+            "buyers": n, "goal": goal,
+            "pct": round(n / goal * 100, 1) if goal else None,
+            "retained": bool(goal and n >= goal),
+            "toGo": max(0, goal - n) if goal else 0,
+            "emptyPickups": empties.get((rep, fam), 0),
+            "accounts": accounts, "baseWindow": CONSTELLATION_FALL_ON_BASE_WINDOW,
+        })
+        if goal:
+            house_tot[fam] += n
+            house_goal[fam] += goal
+    house = [{"key": re.sub(r"[^a-z0-9]+", "_", fam.lower()).strip("_"), "label": fam,
+              "total": house_tot[fam], "goal": house_goal[fam], "met": house_tot[fam] >= house_goal[fam],
+              "short": max(0, house_goal[fam] - house_tot[fam]), "baseWindow": CONSTELLATION_FALL_ON_BASE_WINDOW}
+             for fam in sorted(house_goal, key=lambda f: -house_goal[f])]
+    meta = {"offRoster": sorted({rep for (rep, _) in keys if rep not in ROSTER}),
+            "drift": drift, "detailCarriesGoalColumns": bcol is not None,
+            "emptyPickups": sum(empties.values())}
+    return out, house, meta
+
 
 def build_constellation_fall():
     """Constellation Fall Distribution Rewards -- retention, OFF PREMISE,
@@ -1890,8 +2015,12 @@ def build_constellation_fall():
     in all four files (24/25/22/19), and reconciled again at build time -- a
     mismatch raises rather than publishing a total that is silently doubled.
 
-    Off-premise only. The on-premise package and draft goals are a separate
-    export, same as the summer program."""
+    ON-PREMISE (2026-09-09, per Gavin) is scored alongside, separately: see
+    CONSTELLATION_FALL_ON_PREM and _build_constellation_fall_on_prem(). Each
+    brand family on each channel is its own goal, frozen from the spring
+    brand-family export; the card shows off-premise, on-premise packages and
+    on-premise draft as three sections and the leaderboard ranks on the rep's
+    overall % across all of them."""
     by_rep = {rep: {"offCategories": [], "inReport": False} for rep in ROSTER}
     house = []
 
@@ -1975,14 +2104,43 @@ def build_constellation_fall():
                        if d["offGoal"] else None)
         d["offToGo"] = max(0, d["offGoal"] - sum(c["placements"] for c in goaled))
 
-    return {"byRep": by_rep, "house": house,
+    # ---- on-premise: packages and draft, per brand family, frozen goals ----
+    on_house, on_meta = {}, {}
+    for ch in CONSTELLATION_FALL_ON_PREM:
+        fams, h, m = _build_constellation_fall_on_prem(ch)
+        on_house[ch["key"]], on_meta[ch["key"]] = h, m
+        for rep, d in by_rep.items():
+            lst = fams.get(rep, [])
+            goaled = [f for f in lst if f["goal"]]
+            held = sum(f["buyers"] for f in goaled)
+            g = sum(f["goal"] for f in goaled)
+            d[f"on_{ch['key']}"] = {
+                "families": lst, "goalsTotal": len(goaled),
+                "goalsRetained": sum(1 for f in goaled if f["retained"]),
+                "buyers": sum(f["buyers"] for f in lst), "held": held, "goal": g,
+                "pct": round(held / g * 100, 1) if g else None, "toGo": max(0, g - held),
+                "emptyPickups": sum(f["emptyPickups"] for f in lst),
+            }
+    for rep, d in by_rep.items():
+        pk, dr = d["on_packages"], d["on_draft"]
+        off_held = sum(c["placements"] for c in d["offCategories"] if c["goal"])
+        d["goalsTotal"] = d["offGoalsTotal"] + pk["goalsTotal"] + dr["goalsTotal"]
+        d["goalsRetained"] = d["offGoalsRetained"] + pk["goalsRetained"] + dr["goalsRetained"]
+        d["overallHeld"] = off_held + pk["held"] + dr["held"]
+        d["overallGoal"] = d["offGoal"] + pk["goal"] + dr["goal"]
+        d["overallPct"] = round(d["overallHeld"] / d["overallGoal"] * 100, 1) if d["overallGoal"] else None
+        d["overallToGo"] = max(0, d["overallGoal"] - d["overallHeld"])
+        d["hasAnyGoal"] = d["goalsTotal"] > 0
+
+    return {"byRep": by_rep, "house": house, "houseOn": on_house,
             "houseTotal": sum(h["total"] for h in house),
             "houseGoal": sum(h["goal"] for h in house),
             "retainThresholdPct": 100,
             "periodStart": CONSTELLATION_FALL_START.isoformat(),
             "periodEnd": CONSTELLATION_FALL_END.isoformat(),
             "periodDays": span, "daysElapsed": elapsed,
-            "pacePct": round(elapsed / span * 100, 1) if span else 0}
+            "pacePct": round(elapsed / span * 100, 1) if span else 0,
+            "meta": {"onPrem": on_meta, "onBaseWindow": CONSTELLATION_FALL_ON_BASE_WINDOW}}
 
 
 # ---------------------------------------------------------------------------
@@ -3517,11 +3675,22 @@ def check_registry_metrics(html, data, data_09):
           f"| day {mf['daysElapsed']} of {mf['periodDays']} ({mf['pacePct']}% of the window elapsed)"
           + (f" | off-roster, not shown: {', '.join(mf['meta']['offRoster'])}" if mf['meta']['offRoster'] else ""))
     cf = data_09["constellation_fall"]
-    print("constellation_fall: house " + " · ".join(
+    print("constellation_fall: off-prem house " + " · ".join(
         f"{h['label']} {h['total']}/{h['goal']}" for h in cf["house"])
         + f" | {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'] and d['offGoalsRetained']==d['offGoalsTotal'])}"
-        + f" of {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'])} reps holding every category"
+        + f" of {sum(1 for d in cf['byRep'].values() if d['offGoalsTotal'])} reps holding every off-prem category"
         + f" | day {cf['daysElapsed']} of {cf['periodDays']}")
+    for ch in ("packages", "draft"):
+        hs = cf["houseOn"][ch]; m = cf["meta"]["onPrem"][ch]
+        print(f"constellation_fall on-prem {ch}: house {sum(h['total'] for h in hs)}/{sum(h['goal'] for h in hs)} buyers "
+              f"across {len(hs)} brand families ({sum(1 for h in hs if h['met'])} at goal); "
+              f"{sum(1 for d in cf['byRep'].values() if d['on_'+ch]['goalsTotal'] and d['on_'+ch]['goalsRetained']==d['on_'+ch]['goalsTotal'])} of "
+              f"{sum(1 for d in cf['byRep'].values() if d['on_'+ch]['goalsTotal'])} reps holding every family"
+              + (f" | {m['emptyPickups']} empty-keg pickups excluded" if ch == "draft" else "")
+              + (f" | detail still carries the spring columns; goal drift vs frozen goals on {len(m['drift'])} rep+family rows" if m["detailCarriesGoalColumns"] else " | detail carries no spring columns (goals frozen)")
+              + (f" | off roster: {', '.join(m['offRoster'])}" if m["offRoster"] else ""))
+    print(f"constellation_fall overall: {sum(1 for d in cf['byRep'].values() if d['hasAnyGoal'] and d['goalsRetained']==d['goalsTotal'])} of "
+          f"{sum(1 for d in cf['byRep'].values() if d['hasAnyGoal'])} reps holding every goal across off + on")
     print("registry metrics: all data-backed programs point at fields their builders emit")
     return problems
 
