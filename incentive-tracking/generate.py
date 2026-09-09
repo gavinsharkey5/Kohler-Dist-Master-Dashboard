@@ -3526,6 +3526,230 @@ def check_registry_metrics(html, data, data_09):
     return problems
 
 
+# ---------------------------------------------------------------------------
+# Sam Adams Summer Ale -> Octoberfest draft conversion (Boston Beer, on
+# premise). Windows per Gavin, 2026-09-09: BASE 4/1-7/17 (who poured Summer
+# Ale), DISTRIBUTION 7/20-9/30 (who has taken Octoberfest since). A Summer Ale
+# draft line "converts" when its account buys an Octoberfest keg in the
+# distribution window.
+SAM_CONV_BASE_START = datetime.date(2026, 4, 1)
+SAM_CONV_BASE_END = datetime.date(2026, 7, 17)
+SAM_CONV_DIST_START = datetime.date(2026, 7, 20)
+SAM_CONV_DIST_END = datetime.date(2026, 9, 30)
+
+
+def build_sam_adams_conversion():
+    """Sam Adams Summer Ale -> Octoberfest draft conversion, Jul 20 - Sep 30
+    2026 (Boston Beer, on premise).
+
+    SOURCE IS THE RDE KEG EXPORT, not Boston Beer's workbook. Gavin gets two
+    workbooks from Boston Beer every couple of weeks (a per-rep conversion
+    scoreboard and an unconverted-account list) and wanted a report he can
+    pull from Encompass DAILY instead. Of the two RDE exports he built, this
+    one ("Sam Adams Kegs: Summer Ale to Octoberfest") is the one to keep
+    uploading: one row per rep / account / keg SKU / load-sheet date with Buyer
+    Count and Units over the whole 4/1-9/30 span. Scored against the windows
+    above it reproduces the other export ("Draft Lines Conversion", a
+    pre-classified BASE/DIST matrix with no dates or units) exactly, 338
+    prior-season lines and 242 conversions on the 2026-09-09 pull, and it
+    can do what that one cannot: date each
+    conversion, count the kegs behind it, and show whether an unconverted
+    account is STILL pouring Summer Ale after 7/20. It also lands within a
+    few accounts of Boston Beer's own numbers (Nick Melissari 79/64 vs their
+    79/63; Allison Scott 56/44 vs 54/43), the gap being route boundaries and
+    the day the two were pulled.
+
+    THE UNIT IS THE ACCOUNT (a draft line), not the keg. An account is in the
+    BASE if its Summer Ale keg units dated 4/1-7/17 net to more than zero, and
+    in the DISTRIBUTION if its Octoberfest keg units dated 7/20-9/30 do -- a
+    keg bought and returned is neither a line nor a conversion, and scoring
+    on net units (rather than on a row existing) is what makes this file
+    match the Draft Lines export account for account. Both = converted; base
+    only = not converted; distribution only = gained (a new Octoberfest line
+    that never poured Summer Ale -- credited on the board as current-season
+    distribution, not as a conversion, matching Boston Beer's "Gained Not
+    from Conversion" column). The one Octoberfest row before 7/20 (Skyview
+    Golf, 4/1) is outside the window and ignored.
+
+    KEG COUNTS ARE UNITS, signed: RDE books a return as -1, so an account's
+    Octoberfest kegs can net to zero. The classification does not depend on
+    units, only the volume figures do. Barrels use keg_bbl() on the product
+    name (15.5 gal = 1/2 bbl, 5.2 gal = 1/6 bbl).
+
+    BOSTON BEER'S OWN COUNT RIDES ALONG for reconciliation: convert their
+    workbook with convert_sam_adams_official.py and each rep's card prints
+    "Boston Beer's count as of <date>" under the daily number. It is not used
+    for scoring. Payout structure is NOT on file yet -- the card tracks the
+    conversion percentage and lists the accounts; add rates to meta when the
+    program sheet arrives.
+
+    Reps on the roster with no Summer Ale base and no Octoberfest line are
+    kept with zeros and hasBase False (the card says the program does not
+    reach their book). Names outside ROSTER (Chris Politano, Default, Office
+    Tell Sell) fall out and are reported in meta.offRoster."""
+    rows = read_rows("sam_adams_keg_conversion.csv")
+    fieldnames = list(rows[0].keys()) if rows else []
+    units_col = next((f for f in fieldnames if f.startswith("Units")), None)
+    if units_col is None:
+        raise SystemExit("sam_adams_keg_conversion.csv: no 'Units' column")
+
+    def parse_date(s):
+        m = DATE_RE.search(s or "")
+        if not m:
+            return None
+        return datetime.date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
+
+    accts = {}
+    export_through = None
+    for r in rows:
+        rep = (r["Sales Rep Assigned"] or "").strip()
+        cust = (r["Customer Num & Company"] or "").strip()
+        prod = (r["Product Num & Name"] or "").strip()
+        d = parse_date(r["Date"])
+        if d is None:
+            raise SystemExit(f"sam_adams_keg_conversion.csv: undated row for {rep} / {cust}")
+        export_through = d if export_through is None or d > export_through else export_through
+        units = to_num(r[units_col])
+        bbl = keg_bbl(prod) or 0.0
+        kind = "summer" if "summer ale" in prod.lower() else ("oct" if "octoberfest" in prod.lower() else None)
+        if kind is None:
+            raise SystemExit(f"sam_adams_keg_conversion.csv: unexpected product {prod!r}")
+        m = re.match(r"(\d+)\s+(.*)", cust)
+        num, name = (m.group(1), m.group(2)) if m else (None, cust)
+        a = accts.setdefault((rep, cust), {
+            "customer": name, "num": num,
+            "summerBase": False, "summerKegsBase": 0.0, "summerOrdersBase": 0, "lastSummer": None,
+            "summerKegsDist": 0.0, "lastSummerDist": None,
+            "octDist": False, "octKegs": 0.0, "octBbl": 0.0, "firstOct": None, "lastOct": None,
+            "octSizes": defaultdict(float),
+        })
+        if kind == "summer":
+            if SAM_CONV_BASE_START <= d <= SAM_CONV_BASE_END:
+                a["summerKegsBase"] += units
+                if units > 0:
+                    a["summerOrdersBase"] += 1
+                if a["lastSummer"] is None or d > a["lastSummer"]:
+                    a["lastSummer"] = d
+            elif SAM_CONV_DIST_START <= d <= SAM_CONV_DIST_END:
+                a["summerKegsDist"] += units
+                if a["lastSummerDist"] is None or d > a["lastSummerDist"]:
+                    a["lastSummerDist"] = d
+        else:
+            if SAM_CONV_DIST_START <= d <= SAM_CONV_DIST_END:
+                a["octKegs"] += units
+                a["octBbl"] += units * bbl
+                a["octSizes"]["1/2 bbl" if bbl >= 0.49 else "1/6 bbl"] += units
+                if a["firstOct"] is None or d < a["firstOct"]:
+                    a["firstOct"] = d
+                if a["lastOct"] is None or d > a["lastOct"]:
+                    a["lastOct"] = d
+
+    # Membership is decided on NET units, not on the row existing: an account
+    # that bought Summer Ale kegs and returned them all (Jim Heaney's two
+    # liquor stores, +1 then -1) never poured it, and an Octoberfest keg that
+    # came back is not a conversion. Scored this way the file matches the
+    # "Draft Lines Conversion" export account for account (0 mismatches on
+    # 2026-09-09); on the row-exists rule it carried those two phantom lines.
+    for a in accts.values():
+        a["summerBase"] = a["summerKegsBase"] > 0
+        a["octDist"] = a["octKegs"] > 0
+
+    official = {}
+    official_house = None
+    official_as_of = None
+    off_path = DATA_DIR / "sam_adams_conversion_official.csv"
+    if off_path.exists():
+        for o in read_rows("sam_adams_conversion_official.csv"):
+            official[o["Sales Rep Name"]] = {
+                "prev": int(to_num(o["Prev Season Dist"])), "converted": int(to_num(o["Converted"])),
+                "notConverted": int(to_num(o["Not Converted"])), "gained": int(to_num(o["Gained"])),
+                "current": int(to_num(o["Current Season Dist"])),
+                "currentLY": int(to_num(o["Current Season LY Dist"])),
+                "fallLY": int(to_num(o["Fall Distribution LY"])),
+                "route": o["Route"], "asOf": o["As Of"]}
+            official_as_of = o["As Of"]
+        for v in official.values():
+            v["pct"] = round(v["converted"] / v["prev"] * 100, 1) if v["prev"] else None
+        official_house = {k: sum(v[k] for v in official.values())
+                          for k in ("prev", "converted", "notConverted", "gained", "current", "currentLY", "fallLY")}
+        official_house["pct"] = (round(official_house["converted"] / official_house["prev"] * 100, 1)
+                                 if official_house["prev"] else None)
+
+    def iso(d):
+        return d.isoformat() if d else None
+
+    by_rep = {}
+    reps_in_file = sorted({k[0] for k in accts})
+    for rep in ROSTER:
+        mine = [a for (r, _), a in accts.items() if r == rep]
+        conv = [a for a in mine if a["summerBase"] and a["octDist"]]
+        notc = [a for a in mine if a["summerBase"] and not a["octDist"]]
+        gained = [a for a in mine if a["octDist"] and not a["summerBase"]]
+        prev = len(conv) + len(notc)
+        current = len(conv) + len(gained)
+        by_rep[rep] = {
+            "prevSeason": prev, "converted": len(conv), "notConverted": len(notc),
+            "gained": len(gained), "currentSeason": current,
+            "convertedPct": round(len(conv) / prev * 100, 1) if prev else None,
+            "toGo": len(notc),
+            "hasBase": prev > 0, "inReport": rep in reps_in_file,
+            "octKegs": round(sum(a["octKegs"] for a in conv + gained), 1),
+            "octBbl": round(sum(a["octBbl"] for a in conv + gained), 2),
+            "summerKegsBase": round(sum(a["summerKegsBase"] for a in conv + notc), 1),
+            "summerKegsStillPouring": round(sum(a["summerKegsDist"] for a in mine), 1),
+            "stillPouringSummerCount": sum(1 for a in notc if a["summerKegsDist"] > 0),
+            "convertedAccounts": [
+                {"customer": a["customer"], "num": a["num"], "firstOct": iso(a["firstOct"]),
+                 "lastOct": iso(a["lastOct"]), "octKegs": round(a["octKegs"], 1),
+                 "octBbl": round(a["octBbl"], 2), "summerKegsBase": round(a["summerKegsBase"], 1),
+                 "sizes": {k: round(v, 1) for k, v in a["octSizes"].items() if v}}
+                for a in sorted(conv, key=lambda a: (a["firstOct"] or datetime.date.min, a["customer"]), reverse=True)],
+            "notConvertedAccounts": [
+                {"customer": a["customer"], "num": a["num"], "summerKegsBase": round(a["summerKegsBase"], 1),
+                 "summerOrdersBase": a["summerOrdersBase"], "lastSummer": iso(a["lastSummer"]),
+                 "summerKegsSince": round(a["summerKegsDist"], 1), "lastSummerSince": iso(a["lastSummerDist"]),
+                 "stillPouringSummer": a["summerKegsDist"] > 0}
+                for a in sorted(notc, key=lambda a: (-a["summerKegsBase"], -a["summerKegsDist"], a["customer"]))],
+            "gainedAccounts": [
+                {"customer": a["customer"], "num": a["num"], "firstOct": iso(a["firstOct"]),
+                 "octKegs": round(a["octKegs"], 1), "octBbl": round(a["octBbl"], 2)}
+                for a in sorted(gained, key=lambda a: (a["firstOct"] or datetime.date.min, a["customer"]), reverse=True)],
+            "official": official.get(rep),
+        }
+
+    off_roster = sorted(set(reps_in_file) - set(ROSTER))
+    official_off_roster = sorted(set(official) - set(ROSTER))
+    house = {k: sum(d[k] for d in by_rep.values())
+             for k in ("prevSeason", "converted", "notConverted", "gained", "currentSeason")}
+    house["convertedPct"] = round(house["converted"] / house["prevSeason"] * 100, 1) if house["prevSeason"] else None
+    house["octKegs"] = round(sum(d["octKegs"] for d in by_rep.values()), 1)
+    # Off-roster accounts are not on any rep's card but are still part of the
+    # house picture; count them separately so the house line can say so.
+    other = [a for (r, _), a in accts.items() if r not in ROSTER]
+    house["offRosterConverted"] = sum(1 for a in other if a["summerBase"] and a["octDist"])
+    house["offRosterPrev"] = sum(1 for a in other if a["summerBase"])
+
+    today = datetime.date.today()
+    span = (SAM_CONV_DIST_END - SAM_CONV_DIST_START).days + 1
+    elapsed = min(max((today - SAM_CONV_DIST_START).days + 1, 0), span)
+    return {
+        "byRep": by_rep, "house": house,
+        "officialHouse": official_house,
+        "periodStart": SAM_CONV_DIST_START.isoformat(), "periodEnd": SAM_CONV_DIST_END.isoformat(),
+        "periodDays": span, "daysElapsed": elapsed, "pacePct": round(elapsed / span * 100, 1),
+        "meta": {
+            "baseStart": SAM_CONV_BASE_START.isoformat(), "baseEnd": SAM_CONV_BASE_END.isoformat(),
+            "distStart": SAM_CONV_DIST_START.isoformat(), "distEnd": SAM_CONV_DIST_END.isoformat(),
+            "exportThrough": iso(export_through),
+            "officialAsOf": official_as_of,
+            "offRoster": off_roster, "officialOffRoster": official_off_roster,
+            # No rates on file yet (2026-09-09) -- the program sheet has not
+            # been shared. The card scores conversion % only until it is.
+            "rates": None,
+        },
+    }
+
+
 def main():
     data = {
         "1911": build_1911_or_woodchuck("1911_rewards.csv", bbl_threshold=2.0),
@@ -3564,7 +3788,16 @@ def main():
         "other_half": build_other_half(),
         "mabi_retention_fall": build_mabi_retention_fall(),
         "constellation_fall": build_constellation_fall(),
+        "sam_adams_conversion": build_sam_adams_conversion(),
     }
+    sc = data_09["sam_adams_conversion"]
+    print(f"sam_adams_conversion: house {sc['house']['converted']} of {sc['house']['prevSeason']} Summer Ale "
+          f"lines converted to Octoberfest ({sc['house']['convertedPct']}%), {sc['house']['gained']} gained, "
+          f"{sc['house']['octKegs']:g} Octoberfest kegs | export through {sc['meta']['exportThrough']} | "
+          f"Boston Beer's own count as of {sc['meta']['officialAsOf']}: "
+          + (f"{sc['officialHouse']['converted']} of {sc['officialHouse']['prev']} ({sc['officialHouse']['pct']}%)" if sc['officialHouse'] else "n/a")
+          + f" | day {sc['daysElapsed']} of {sc['periodDays']}"
+          + (f" | off-roster, not shown: {', '.join(sc['meta']['offRoster'])}" if sc['meta']['offRoster'] else ""))
 
     for key in ("1911", "woodchuck"):
         for rep, d in data[key]["byRep"].items():

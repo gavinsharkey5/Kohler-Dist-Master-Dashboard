@@ -699,6 +699,106 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 NEW PROGRAM -- SAM ADAMS SUMMER ALE -> OCTOBERFEST DRAFT CONVERSION
+(Boston Beer, on premise, Jul 20 - Sep 30). Key sam_adams_conversion, in the
+September registry's "new" group, PROGRAM_DATA_2026_09, supplier boston_beer.
+Gavin asked for it 2026-09-09: "the program is swapping summer ale kegs for
+octoberfest kegs." Windows per Gavin the same day: BASE 4/1-7/17 (who poured
+Summer Ale), DISTRIBUTION 7/20-9/30 (who has taken Octoberfest since).
+
+WHAT TO UPLOAD. Boston Beer sends two workbooks every couple of weeks (a
+per-rep conversion scoreboard and an unconverted-account list); Gavin built
+two RDE exports to stand in for them daily and asked which to keep. The
+answer is the KEG export, and only it:
+
+  data/sam_adams_keg_conversion.csv   RDE "Sam Adams Kegs: Summer Ale to
+                                       Octoberfest" -- one row per rep /
+                                       account / keg SKU / load-sheet date
+                                       with Buyer Count and Units over the
+                                       whole 4/1-9/30 span. THE DAILY UPLOAD.
+                                       Keep its window covering both periods
+                                       (4/1 through at least 9/30) or the base
+                                       silently shrinks.
+  (not kept)                           RDE "Draft Lines Conversion" -- a
+                                       pre-classified BASE/DIST matrix, one
+                                       row per account, no dates, no units.
+                                       Everything in it is derivable from the
+                                       keg export, and it cannot say WHEN an
+                                       account converted, how many kegs, or
+                                       whether an unconverted account is still
+                                       ordering Summer Ale. Scored on the
+                                       windows above, the keg export matches
+                                       it account for account (0 mismatches on
+                                       2026-09-09: 338 prior-season lines, 242
+                                       converted) once membership is decided
+                                       on NET units -- see below.
+  data/sam_adams_conversion_official.csv
+                                       Boston Beer's own per-rep scoreboard,
+                                       flattened by convert_sam_adams_official.py
+                                       from their "MMDDYY_Sam_Adams_Seasonal_
+                                       Conversion_Fall.xlsx" (archived as
+                                       data/sam_adams_conversion_boston_beer.xlsx).
+                                       NOT used for scoring: each rep's card
+                                       prints "Boston Beer's count as of <date>"
+                                       under the daily number so the two can be
+                                       reconciled by eye. Re-run the converter
+                                       when a new workbook arrives; the as-of
+                                       date comes from the filename.
+  data/sam_adams_unconverted_boston_beer.xlsx
+                                       Boston Beer's unconverted-account list,
+                                       archived for provenance only. The card's
+                                       "Summer Ale Lines Still To Convert" list
+                                       is built from the keg export instead,
+                                       which names the account the way RDE
+                                       does and adds the Summer Ale keg count
+                                       and whether it is still ordering.
+  convert_sam_adams_official.py        The workbook flattener. Reconciles the
+                                       Total row against the rep rows and
+                                       refuses to write on a mismatch. Boston
+                                       Beer leaves "Prev Season Dist" and
+                                       "Current Season Dist" BLANK on some
+                                       rows (Brian Sengebush, James Heaney on
+                                       9/8) even though the Total counts them;
+                                       a blank is derived as converted + not
+                                       converted / converted + gained rather
+                                       than read as zero, which is what made
+                                       the first run fail to reconcile. Maps
+                                       their spellings (Paul McLaughlin, Clay
+                                       Lamo, Dan LaGala, James Heaney) onto the
+                                       roster's; the nameless route-90 row is
+                                       written as "Route 90 (unassigned)".
+
+HOW IT SCORES (build_sam_adams_conversion). The unit is the ACCOUNT -- a draft
+line -- not the keg. An account is in the base if its Summer Ale keg units
+dated 4/1-7/17 NET to more than zero, and in the distribution if its
+Octoberfest keg units dated 7/20-9/30 do. Both = converted; base only = not
+converted; distribution only = gained (Boston Beer's "Gained Not from
+Conversion" -- on the board as current-season distribution, never as a
+conversion). Net units matter: on the row-exists rule Jim Heaney carried two
+liquor stores that bought a Summer Ale keg and returned it (+1 then -1) as
+unconverted lines; Boston Beer has him at zero and so does the Draft Lines
+export. The one Octoberfest row before 7/20 (Skyview Golf, 4/1) is outside
+the window and ignored. Keg counts are signed units (RDE books returns as
+-1); barrels via keg_bbl() on the product name.
+
+FIRST RUN (export through 9/10, day 52 of 73): house 241 of 335 Summer Ale
+lines converted (71.9%), 40 gained, 693 Octoberfest kegs. Boston Beer's own
+9/8 scoreboard: 219 of 307 (71.3%). The gap is scope, not scoring -- their
+count is by route and excludes accounts this one keeps (Total Wine, Bottle
+King and other package accounts that took a keg; Jayson Romine reads 12
+prior lines here vs their 1) -- and the two agree on the percentage. Nick
+Melissari leads at 64 of 79 (81%); Allison Scott 44 of 56, Brian Sengebush
+43 of 53, Paul Mclaughlin 29 of 46, Robin Feldman 17 of 25. Off-roster and
+not shown: Chris Politano (MetLife), Default, Office Tell Sell.
+
+NO PAYOUT RATES ARE ON FILE. The program sheet has not been shared; the card
+tracks the conversion percentage, lists the converted / still-to-convert /
+gained accounts, and says so in its rules. meta.rates is None -- add the
+rates there and to the card's rate badge when they arrive. The leaderboard
+ranks on Converted % (Boston Beer's own measure), so a 4-line book competes
+with a 79-line one; reps with no Summer Ale base return null and are left
+off it, their card explaining why.
+
 2026-09-09 SEVENTH REFRESH -- MABI Fall retention
 Actuals converted through convert_mabi_fall.py against the goals workbook
 already on file (data/mabi_retention_fall_goals.xlsx, Kohler's 9/8 issue --
