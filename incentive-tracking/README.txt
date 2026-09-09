@@ -699,6 +699,34 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs); 2XO no-op.
+Exports run through 9/10 (one Montauk row and one Other Half draft row dated
+9/11). Every rep grew or held. Headlines:
+
+  other_half   off-premise accounts opened 85 -> 94, tracked earnings
+               $4,340 -> $4,810. Six reps gained: Anthony Palmisano +2
+               (1->3, $60->$180: Highland Wine & Liquor and USA Wine Traders
+               Wanaque, 9/10), Klejdi Lamo +2 (5->7), Michael Harboy +2
+               (8->10, $490 -- new leader), Dan Lagala +1, John O'Donoghue +1
+               (8->9, $460), Mike Ast +1. Draft leg: September active
+               accounts 28, at the 1/3 bbl floor 13 -> 16 (Jaime Colonna
+               1->3 on 8th Street Tavern and Hudson Hall, Alisa Acciardi 0->1
+               on Fitzgerald 1928). Still unpaid pending October's hold.
+  montauk      9 -> 10 new placements, $195 -> $205: Jim Heaney's second
+               six-pack placement, Little Falls Liquor on 9/10. The other 24
+               added rows are reorders; case volume up for 15 reps (Dan
+               Lagala 2->9, Mike Ast 9->16, Shane Barreca 24->31).
+  two_xo       NO CHANGE -- same 71 rows as the previous pull, re-sorted;
+               byte-identical blob, as build_two_xo() sorts deterministically.
+
+ROWS THAT LEFT, ALL BENIGN, and the same three shapes as every export
+today: Montauk's three 9/9 rows (Village Wine Shop, Cedar Grove Liq, The
+Wine Rack Summit) and Other Half off's eight (Providence Liquors x3, A&M
+Liquor x5) came back dated 9/10; Other Half draft re-dated Paul Mclaughlin's
+Andiamo keg 9/8 -> 9/11 and moved the Blackjack Mulligans (Hawthorne)
+Broccoli keg from Nick Melissari to Allison Scott. Jim Heaney's Montauk
+offPremTargetCount 37 -> 36 is his new placement leaving the prospect list.
+
 2026-09-09 THIRD REFRESH -- Garage Beer, Touchdowns & Tea, Evil Genius (Le Grand
 Noir no-op). Exports run through 9/10 (one Evil Genius row dated 9/11).
 Headlines:
