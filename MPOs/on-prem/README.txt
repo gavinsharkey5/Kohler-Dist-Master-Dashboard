@@ -259,9 +259,48 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-08 refresh (RDE exports run
-through 9/8): Bardstown 2 menu placements, Fever Tree 11 new placements,
-Carbliss 2 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-09 refresh (RDE exports run
+through 9/9, Carbliss carrying two 9/10 load sheets): Bardstown 2 menu
+placements, Fever Tree 12 new placements, Carbliss 5 new buying accounts, HUSA
+1 new draft line.
+
+ALLISON SCOTT MOVED TO 4 OF 3 ON FEVER TREE (The Side Door took Ginger Beer
+150 mL cans on 9/9); Paul Mclaughlin holds at 4 of 3. Fever Tree gained 7 rows
+dated 9/9, and only that one qualified -- the other six (Anthony's Coal Fired
+Pizza, Stosh's, Double Ai, Eleven Central, BWW Rockaway, and Chris Politano's
+MetLife Bloody Mary mix) are SKUs those accounts already bought in 6/1-8/31.
+
+CARBLISS FINALLY MOVED, 2 -> 5, on five new rows: Paul Mclaughlin 3 of 10
+(Haworth Golf Club, 9/9, on top of the two he had) and Allison Scott 2 of 10
+(River Terrace Inn and Duffy's Tavern). BOTH OF ALLISON'S ARE DATED 9/10, A
+DAY IN THE FUTURE -- scheduled load sheets, exactly the case the 2026-09-03
+note below said to glance at when a future-dated row lands on an account that
+qualifies as new. They are left in: the export is the record and the load
+sheet is on the books, but if either delivery falls through, the next pull
+will carry the correction and the count will drop by itself. Andiamo and The
+Stuffed Olive (9/9) are repeat buyers. One base-period row also changed hands
+in this export -- 19006 Blackjack Mulligans (Hawthorne), 6/5, moved from Nick
+Melissari to Allison Scott -- which touches no count since it is base-only.
+
+HUSA IS SET-IDENTICAL to the previous pull (same 84 rows, re-sorted; verified
+before the run), so 1 of 1 holding still is the data.
+
+THE PROMOS REPORT THAT CAME WITH THIS REFRESH WAS NOT BARDSTOWN. Promos_Report_12
+was pulled with a YAVE TEQUILA brand filter -- four Cocktail List Activation
+rows at Casa Don Manuel (Allison Scott, 9/8), one per Yave SKU -- and no
+September on-prem objective tracks Yave. It was NOT merged onto
+bardstown_menu_promos.xlsx: build_bardstown_menu() counts every archive row,
+so merging it would have credited Allison with 4 of 5 Bardstown menu
+placements off a tequila table tent. The archive is unchanged and Bardstown
+stays at Robin Feldman 2 of 5. To close that trap for good, build_bardstown_
+menu() now SKIPS any archive row whose Supplier is not Bardstown and prints
+how many it skipped -- 0 on the current archive. If Casa Don Manuel is meant
+to count somewhere, it is a Yave program, not this objective; re-pull the
+Bardstown-filtered Promos_Report for objective 1.
+
+Superseded, kept for the reasoning: numbers as of the 2026-09-08 refresh (RDE
+exports run through 9/8): Bardstown 2 menu placements, Fever Tree 11 new
+placements, Carbliss 2 new buying accounts, HUSA 1 new draft line.
 
 TWO REPS ARE NOW AT GOAL ON FEVER TREE, and one of them is new: Paul Mclaughlin
 4 of 3 (Marriott Park Ridge took Ginger Beer and Pink Grapefruit Soda on 9/8,
@@ -367,6 +406,11 @@ one to be careful with. It is not RDE -- it is an iSellBeer PROMOS export
     per customer+brand (index.html SKU_COLS) instead of collapsing both
     mentions into a single line -- without it the card would read 2 above a
     table showing 1.
+  * ONLY ROWS WHOSE SUPPLIER IS BARDSTOWN COUNT (added 2026-09-09). A
+    Promos_Report is whatever brand filter it was pulled with, and the 9/9
+    pull arrived filtered to Yave Tequila. build_bardstown_menu() skips
+    non-Bardstown rows and prints the skipped count, so a mis-filtered pull
+    merged by mistake shows up as a number in the build log, never as credit.
   * iSellBeer spells rep names its own way ("robin feldman"); build_bardstown_
     menu() canonicalises to the RDE ROSTER spelling. An unmatched name is kept
     as-is so it surfaces on the board rather than vanishing.

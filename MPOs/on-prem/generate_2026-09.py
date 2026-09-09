@@ -317,6 +317,14 @@ def build_bardstown_menu():
 
     Every mention counts as new: the promos export is a single window with no
     base period, so a menu placement submitted this month IS the new placement.
+
+    ONLY BARDSTOWN ROWS COUNT. The archive is fed by iSellBeer Promos_Report
+    pulls, and a pull is whatever brand filter it was run with: Promos_Report_12
+    (2026-09-09) arrived filtered to YAVE TEQUILA -- four Casa Don Manuel
+    cocktail-list rows -- which, merged in unguarded, would have read as four
+    Bardstown menu placements. Rows whose Supplier is not Bardstown are skipped
+    and counted in the build log, so a mis-filtered pull surfaces as a number
+    rather than as credit on the board.
     """
     if not BARDSTOWN_XLSX.exists():
         print("  Bardstown menu: no bardstown_menu_promos.xlsx -- objective stays rules-only")
@@ -326,10 +334,14 @@ def build_bardstown_menu():
     idx = {h: i for i, h in enumerate(header) if h}
     roster_by_lower = {r.lower(): r for r in ROSTER}
 
-    seen, out, mentions, submissions = set(), [], 0, set()
+    seen, out, mentions, submissions, skipped = set(), [], 0, set(), 0
     for row in ws.iter_rows(min_row=2):
         vals = [c.value for c in row]
         if not vals or not vals[idx["Date/Time"]]:
+            continue
+        supplier = str(vals[idx["Supplier"]] or "").strip()
+        if "BARDSTOWN" not in supplier.upper():
+            skipped += 1
             continue
         raw_rep = str(vals[idx["Photo taker"]] or "").strip()
         # iSellBeer spells names its own way ("robin feldman"); the roster is
@@ -361,6 +373,9 @@ def build_bardstown_menu():
         })
         seen.add(key)
     out.sort(key=lambda r: r["DATE"], reverse=True)
+    if skipped:
+        print(f"  Bardstown menu: {skipped} non-Bardstown promo row(s) in the archive "
+              f"skipped -- check what brand filter the last Promos_Report was pulled with")
     return out, len(seen), len(submissions)
 
 
