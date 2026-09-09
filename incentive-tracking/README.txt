@@ -706,98 +706,107 @@ Gavin asked for it 2026-09-09: "the program is swapping summer ale kegs for
 octoberfest kegs." Windows per Gavin the same day: BASE 4/1-7/17 (who poured
 Summer Ale), DISTRIBUTION 7/20-9/30 (who has taken Octoberfest since).
 
-WHAT TO UPLOAD. Boston Beer sends two workbooks every couple of weeks (a
-per-rep conversion scoreboard and an unconverted-account list); Gavin built
-two RDE exports to stand in for them daily and asked which to keep. The
-answer is the KEG export, and only it:
+BOSTON BEER'S WORKBOOKS ARE THE SOURCE OF TRUTH (Gavin, 2026-09-09, after the
+first cut scored from Encompass: "this should be the main source for this
+program"). Every scored number on a rep's card -- prior-season lines,
+converted, not converted, gained, current season vs last year, Converted % --
+is the rep's row on Boston Beer's scoreboard, and the "still to convert" list
+is Boston Beer's unconverted-account list, assigned by Route. The leaderboard
+ranks on their Converted %. The Encompass keg export is the DAILY SUPPLEMENT
+and never changes a scored number.
 
-  data/sam_adams_keg_conversion.csv   RDE "Sam Adams Kegs: Summer Ale to
+  data/sam_adams_conversion_boston_beer.xlsx      Boston Beer's per-rep
+  data/sam_adams_unconverted_boston_beer.xlsx     scoreboard and unconverted
+                                       list, archived as received (the
+                                       filename's leading MMDDYY is the as-of
+                                       date). generate.py never reads them.
+  data/sam_adams_conversion_official.csv
+  data/sam_adams_unconverted_official.csv
+                                       The two workbooks flattened by
+                                       convert_sam_adams_official.py, as-of
+                                       date on every row. THESE SCORE THE
+                                       PROGRAM. The unconverted list has no
+                                       rep column, only a Route; the converter
+                                       maps each route to the rep who owns it
+                                       on the scoreboard (4 Allison Scott, 5
+                                       Mike Ast, 7 Paul Mclaughlin, 11 Brian
+                                       Sengebush, 12 Klejdi Lamo, 13 Jayson
+                                       Romine, 18 Matt Powierski, 19 Robin
+                                       Feldman, 20 Dan Lagala, 23 Chris Payton,
+                                       25 Jim Heaney, 26 Anthony Palmisano, 27
+                                       Nick Melissari, 90 unassigned) and
+                                       reconciles the per-route count against
+                                       that rep's Not Converted -- refusing to
+                                       write on a mismatch, which is the
+                                       signature of two workbooks from
+                                       different pulls. build_sam_adams_
+                                       conversion() re-checks the same thing.
+  data/sam_adams_keg_conversion.csv    RDE "Sam Adams Kegs: Summer Ale to
                                        Octoberfest" -- one row per rep /
                                        account / keg SKU / load-sheet date
                                        with Buyer Count and Units over the
                                        whole 4/1-9/30 span. THE DAILY UPLOAD.
-                                       Keep its window covering both periods
-                                       (4/1 through at least 9/30) or the base
-                                       silently shrinks.
-  (not kept)                           RDE "Draft Lines Conversion" -- a
-                                       pre-classified BASE/DIST matrix, one
-                                       row per account, no dates, no units.
-                                       Everything in it is derivable from the
-                                       keg export, and it cannot say WHEN an
-                                       account converted, how many kegs, or
-                                       whether an unconverted account is still
-                                       ordering Summer Ale. Scored on the
-                                       windows above, the keg export matches
-                                       it account for account (0 mismatches on
-                                       2026-09-09: 338 prior-season lines, 242
-                                       converted) once membership is decided
-                                       on NET units -- see below.
-  data/sam_adams_conversion_official.csv
-                                       Boston Beer's own per-rep scoreboard,
-                                       flattened by convert_sam_adams_official.py
-                                       from their "MMDDYY_Sam_Adams_Seasonal_
-                                       Conversion_Fall.xlsx" (archived as
-                                       data/sam_adams_conversion_boston_beer.xlsx).
-                                       NOT used for scoring: each rep's card
-                                       prints "Boston Beer's count as of <date>"
-                                       under the daily number so the two can be
-                                       reconciled by eye. Re-run the converter
-                                       when a new workbook arrives; the as-of
-                                       date comes from the filename.
-  data/sam_adams_unconverted_boston_beer.xlsx
-                                       Boston Beer's unconverted-account list,
-                                       archived for provenance only. The card's
-                                       "Summer Ale Lines Still To Convert" list
-                                       is built from the keg export instead,
-                                       which names the account the way RDE
-                                       does and adds the Summer Ale keg count
-                                       and whether it is still ordering.
-  convert_sam_adams_official.py        The workbook flattener. Reconciles the
-                                       Total row against the rep rows and
-                                       refuses to write on a mismatch. Boston
+                                       Keep its window covering 4/1 through at
+                                       least 9/30. Scored on the program
+                                       windows (membership on NET units, so a
+                                       keg bought and returned is nothing) it
+                                       shows, per rep: the accounts that took
+                                       their FIRST Octoberfest keg after the
+                                       workbook's as-of date -- conversions
+                                       Boston Beer has not counted yet --
+                                       Octoberfest kegs loaded since, and the
+                                       full Encompass account lists.
+  (not kept)                           RDE "Draft Lines Conversion" -- the
+                                       same thing as the keg export with the
+                                       dates and units stripped off. The keg
+                                       export matches it account for account
+                                       on the windows above (0 mismatches,
+                                       2026-09-09), so it adds nothing.
+  convert_sam_adams_official.py        Run it on BOTH workbooks from one pull:
+                                         python3 convert_sam_adams_official.py <conversion.xlsx> <unconverted.xlsx>
+                                       then python3 generate.py. Reconciles
+                                       the scoreboard's Total row against the
+                                       rep rows and the unconverted list
+                                       against the scoreboard by route. Boston
                                        Beer leaves "Prev Season Dist" and
                                        "Current Season Dist" BLANK on some
                                        rows (Brian Sengebush, James Heaney on
                                        9/8) even though the Total counts them;
                                        a blank is derived as converted + not
-                                       converted / converted + gained rather
-                                       than read as zero, which is what made
-                                       the first run fail to reconcile. Maps
-                                       their spellings (Paul McLaughlin, Clay
-                                       Lamo, Dan LaGala, James Heaney) onto the
-                                       roster's; the nameless route-90 row is
-                                       written as "Route 90 (unassigned)".
+                                       converted / converted + gained, not
+                                       read as zero. Maps their spellings
+                                       (Paul McLaughlin, Clay Lamo, Dan
+                                       LaGala, James Heaney) onto the roster's.
 
-HOW IT SCORES (build_sam_adams_conversion). The unit is the ACCOUNT -- a draft
-line -- not the keg. An account is in the base if its Summer Ale keg units
-dated 4/1-7/17 NET to more than zero, and in the distribution if its
-Octoberfest keg units dated 7/20-9/30 do. Both = converted; base only = not
-converted; distribution only = gained (Boston Beer's "Gained Not from
-Conversion" -- on the board as current-season distribution, never as a
-conversion). Net units matter: on the row-exists rule Jim Heaney carried two
-liquor stores that bought a Summer Ale keg and returned it (+1 then -1) as
-unconverted lines; Boston Beer has him at zero and so does the Draft Lines
-export. The one Octoberfest row before 7/20 (Skyview Golf, 4/1) is outside
-the window and ignored. Keg counts are signed units (RDE books returns as
--1); barrels via keg_bbl() on the product name.
+TO REFRESH: workbooks every couple of weeks -> converter -> generate.py; keg
+export daily -> save over data/sam_adams_keg_conversion.csv -> generate.py.
+A keg-export refresh alone moves only the Encompass tiles and lists (the
+"first Octoberfest kegs since <as-of>" list is the one reps should watch
+between workbooks); the scored numbers move only when a new workbook lands.
 
-FIRST RUN (export through 9/10, day 52 of 73): house 241 of 335 Summer Ale
-lines converted (71.9%), 40 gained, 693 Octoberfest kegs. Boston Beer's own
-9/8 scoreboard: 219 of 307 (71.3%). The gap is scope, not scoring -- their
-count is by route and excludes accounts this one keeps (Total Wine, Bottle
-King and other package accounts that took a keg; Jayson Romine reads 12
-prior lines here vs their 1) -- and the two agree on the percentage. Nick
-Melissari leads at 64 of 79 (81%); Allison Scott 44 of 56, Brian Sengebush
-43 of 53, Paul Mclaughlin 29 of 46, Robin Feldman 17 of 25. Off-roster and
-not shown: Chris Politano (MetLife), Default, Office Tell Sell.
+WHY THE TWO SOURCES DIFFER, so nobody "fixes" it: Boston Beer counts by
+ROUTE and excludes accounts Encompass keeps (package accounts that took a
+keg -- Total Wine, Bottle King, liquor stores; Jayson Romine reads 12 prior
+lines in Encompass vs 1 on his route), and the two are pulled on different
+days. On 2026-09-09: Boston Beer 219 of 307 (71.3%, as of 9/8) vs Encompass
+241 of 335 (71.9%, loads through 9/10). Same percentage, different scope.
+Reps with no row on the scoreboard (Dave Ehlers, Phil Ernst, Shane Barreca,
+Javier Melo, Derrick Laws, and the rest) have no score and are off the
+leaderboard; their card says so and shows their Encompass keg activity.
+
+FIRST RUN (scoreboard as of 9/8, day 52 of 73): house 219 of 307 Summer Ale
+lines converted (71.3%), 88 not converted, 30 gained. Nick Melissari 63 of
+79 (80%), Allison Scott 43 of 54 (80%), Brian Sengebush 39 of 54, Paul
+Mclaughlin 28 of 46, Anthony Palmisano 17 of 25, Robin Feldman 16 of 28;
+Jayson Romine and Matt Powierski 1 of 1. Encompass through 9/10 shows first
+Octoberfest kegs after 9/8 at accounts Boston Beer has not counted yet.
+Scoreboard row off roster: Route 90 (unassigned). Encompass reps off roster:
+Chris Politano (MetLife), Default, Office Tell Sell.
 
 NO PAYOUT RATES ARE ON FILE. The program sheet has not been shared; the card
-tracks the conversion percentage, lists the converted / still-to-convert /
-gained accounts, and says so in its rules. meta.rates is None -- add the
-rates there and to the card's rate badge when they arrive. The leaderboard
-ranks on Converted % (Boston Beer's own measure), so a 4-line book competes
-with a 79-line one; reps with no Summer Ale base return null and are left
-off it, their card explaining why.
+tracks Converted % and lists the accounts, and says so in its rules.
+meta.rates is None -- add the rates there and to the card's rate badge when
+they arrive.
 
 2026-09-09 SEVENTH REFRESH -- MABI Fall retention
 Actuals converted through convert_mabi_fall.py against the goals workbook
