@@ -704,8 +704,8 @@ Both grouped workbooks converted through convert_mc_retention.py; every
 rep, DM and report total reconciled, 0 new and 0 gone rep/brand pairs, so
 the structure is unchanged and only values moved.
 
-  brand goals retained   26 -> 27 of 100 (Anthony Palmisano 2 -> 3, on
-                         ?, off-prem 96.8% -> 99.4%)
+  brand goals retained   26 -> 27 of 100 (Anthony Palmisano 2 -> 3: off-prem
+                         Coors 85 -> 87 of 87, his off-prem 96.8% -> 99.4%)
   off-prem placements    2,499 -> 2,545 of 2,912
   on-prem buyers         695 -> 708 of 840
 
