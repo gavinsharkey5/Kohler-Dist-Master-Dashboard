@@ -885,6 +885,59 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-09 REFRESH -- all four exports moved, plus Promos_Report_13
+Exports now run through 9/11 (Keystone, one future-dated C Town load sheet
+for Derrick Laws), 9/10 (Wine & Spirits) and 9/9 (Fever Tree). Keystone,
+Fever Tree and Wine & Spirits gained rows (+9 / +100 / +66, W&S also -7, see
+below) and Constellation kept its 122 rows but revised 69 upward. Before ->
+after:
+
+  Constellation Corona Gaintain   598 -> 726 placements this fall
+                                  15 -> 16 roster reps at their own 30% goal
+                                  (newly: Shane Barreca 24 -> 39 of 85)
+  Keystone Ice (40% penetration)  101 -> 109 distinct buying accounts, still
+                                  3 reps at goal (Javier Melo 13/28, Pablo
+                                  Lopez 12/26, Derrick Laws 14/32). Dan
+                                  Lagala 14 -> 17 of 45 = 37.8%, one account
+                                  short of 40%.
+  Fever Tree (10 placements)      39 -> 60 new placements, still 2 reps at
+                                  goal (Matt Powierski 12, Jayson Romine 11);
+                                  Derrick Laws 2 -> 9 is one away, Javier
+                                  Melo opens at 7.
+  Wine & Spirits (5 placements)   122 -> 147 new placements, 9 -> 13 reps at
+                                  goal (newly: Anthony Palmisano 1 -> 6, Jim
+                                  Heaney 2 -> 7, Allison Scott 4 -> 5, Klejdi
+                                  Lamo 3 -> 5)
+  POS cooler door stickers        12 -> 20 distinct stickers, 1 -> 2 reps at
+                                  goal (Derrick Laws opens at 5 of 5 on 9/8:
+                                  four wraps at The Liquor Shop and one at
+                                  Raphael & Angel; Chris Payton 11 -> 12 with
+                                  Wineland on 9/9; Mike Ast 1 -> 3 with two
+                                  at Waldwick Wine/Spirits on 9/8)
+
+THE ROW-LEVEL CHECK FIRED AGAIN ON WINE & SPIRITS, and again it is benign.
+Seven rows left the export: six Michael Harboy / 150041 A&M Liquor Chateau
+Diana rows dated 9/9 came back dated 9/10 (RDE re-stamped the load sheet, so
+they are still the same six qualifying placements -- he reads 8 -> 12 because
+Lo Secco Prosecco and others landed at the same account), and Nick Melissari's
+19006 Blackjack Mulligans (Hawthorne) Yave row moved to Allison Scott, the
+same rep reassignment on-prem's Carbliss export carried the same day. No rep
+went down on any objective and nobody lost goal.
+
+PROMOS_REPORT_13 MERGED 8 NEW COOLER DOORS out of 22 in its window (9/2-9/9;
+the other 14 were the already-published rows, a no-op). The 9 rows it skipped
+were signage, a window sign, a Lytt POS pic and the two Bardstown table tents
+-- the row_filter doing its job again. merge_export() warned that 9/4 and
+9/7 had no cooler-door rows between the last published row and this export's
+first new one: the export's window covers both days (Pablo Lopez's 9/4
+window sign is in it), so that is a quiet stretch, not a gap to re-pull.
+iSellBeer spelled Derrick as "Derrick laws"; the roster match is
+case-insensitive, so he lands under his RDE name.
+
+Keystone moved with keystone-ice/ (actuals.csv on the same 124-row export,
+109 accounts on both boards) and incentive-tracking/ was rebuilt after it,
+per the sync rule above.
+
 2026-09-08 REFRESH -- all four exports moved, plus Promos_Report_11
 Exports now run through 9/9 (Keystone) / 9/8 (Fever Tree, Wine & Spirits).
 Keystone, Fever Tree and Wine & Spirits gained rows (+12 / +19 / +55) and

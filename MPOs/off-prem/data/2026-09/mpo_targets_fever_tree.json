@@ -421,12 +421,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 48002,
-    "CUSTOMER_NAME": "Manor Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44052,
     "CUSTOMER_NAME": "Minit Mart_2",
     "AREA": "Bergen"
@@ -849,12 +843,6 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21055,
     "CUSTOMER_NAME": "C & S Lucky Liquors II",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21026,
-    "CUSTOMER_NAME": "C Town Supermarket(P)",
     "AREA": "Passaic"
   },
   {

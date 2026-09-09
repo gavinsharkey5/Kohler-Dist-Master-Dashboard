@@ -699,6 +699,13 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 REFRESH -- Keystone only, riding the off-prem MPO refresh
+keystone-ice/actuals.csv and MPOs/off-prem/keystone_ice_24oz.csv moved
+together onto the 124-row export (the sync rule below, followed this time
+rather than repaired): 101 -> 109 accounts, still 3 qualified, $190 -> $195
+projected. Nothing else on this page was re-pulled; the rebuild only
+re-embedded the Keystone card from keystone-ice's JSON.
+
 2026-09-08 REFRESH -- five exports, and the Keystone files were out of sync
 Refreshed 1911, Woodchuck, Tona, Lytt Launch and Keystone. Headlines:
 

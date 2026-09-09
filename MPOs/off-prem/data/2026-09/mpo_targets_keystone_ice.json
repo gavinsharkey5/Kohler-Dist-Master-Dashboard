@@ -379,12 +379,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 49033,
-    "CUSTOMER_NAME": "Banner Liquor Iii",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46008,
     "CUSTOMER_NAME": "Bella Wine & Liquor",
     "AREA": "Bergen"
@@ -435,12 +429,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 49035,
     "CUSTOMER_NAME": "Gulf Express Fort Lee",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 46011,
-    "CUSTOMER_NAME": "Han Mi Supermkt (A)",
     "AREA": "Bergen"
   },
   {
@@ -507,12 +495,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 44049,
     "CUSTOMER_NAME": "Rome Liquor (Cliffside Park)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43005,
-    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "AREA": "Bergen"
   },
   {
@@ -859,12 +841,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21055,
-    "CUSTOMER_NAME": "C & S Lucky Liquors II",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 21026,
     "CUSTOMER_NAME": "C Town Supermarket(P)",
     "AREA": "Passaic"
@@ -1177,12 +1153,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 30010,
-    "CUSTOMER_NAME": "Krauser Food & Liq(A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 29008,
     "CUSTOMER_NAME": "Krauszers Food",
     "AREA": "Bergen"
@@ -1210,12 +1180,6 @@
     "CUSTOMER_NUM": 13008,
     "CUSTOMER_NAME": "Little Falls Liq(P)",
     "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 28012,
-    "CUSTOMER_NAME": "Lucky 7 (A)",
-    "AREA": "Bergen"
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -1477,12 +1441,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191606,
-    "CUSTOMER_NAME": "Quick Check Liquor (A)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190705,
     "CUSTOMER_NAME": "Rockaway W/L",
     "AREA": "Morris 1"
@@ -1611,12 +1569,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42010,
     "CUSTOMER_NAME": "Little Ferry Wines/Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 31004,
-    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)",
     "AREA": "Bergen"
   },
   {

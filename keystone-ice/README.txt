@@ -98,6 +98,13 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-09 REFRESH: actuals.csv onto the 124-row export (through 9/11 -- one
+future-dated C Town load sheet for Derrick Laws), 101 -> 109 distinct
+accounts, still 3 qualified (Javier Melo 13, Derrick Laws 14, Pablo Lopez
+12), $190 -> $195 projected. Dan Lagala sits at 17 of 18. Same export applied
+to MPOs/off-prem/keystone_ice_24oz.csv in the same commit; both boards read
+109. incentive-tracking rebuilt afterwards.
+
 To refresh:
   1. Save the new Comparison export over actuals.csv (and a reissued
      goals workbook over goals.xlsx, re-extracting goals.csv from it).

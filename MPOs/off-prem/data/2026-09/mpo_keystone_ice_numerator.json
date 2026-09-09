@@ -174,6 +174,15 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 49033,
+    "CUSTOMER_NAME": "Banner Liquor Iii",
+    "DATE": "9/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 46002,
     "CUSTOMER_NAME": "Best Choice Liqrs (P)",
     "DATE": "8/28/2026",
@@ -213,6 +222,15 @@
     "CUSTOMER_NUM": 43006,
     "CUSTOMER_NAME": "Fairview Liq & Groc.(A)",
     "DATE": "9/8/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 46011,
+    "CUSTOMER_NAME": "Han Mi Supermkt (A)",
+    "DATE": "9/9/2026",
     "CASES": 2.0
   },
   {
@@ -275,6 +293,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 45004,
     "CUSTOMER_NAME": "Ridgefield Liq (Z)",
+    "DATE": "9/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 43005,
+    "CUSTOMER_NAME": "Rome Liquors (Fairview)",
     "DATE": "9/9/2026",
     "CASES": 2.0
   },
@@ -543,6 +570,15 @@
     "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 21055,
+    "CUSTOMER_NAME": "C & S Lucky Liquors II",
+    "DATE": "9/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 15014,
     "CUSTOMER_NAME": "Deli Parchardo Liquors",
     "DATE": "8/7/2026",
@@ -705,6 +741,15 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 30010,
+    "CUSTOMER_NAME": "Krauser Food & Liq(A)",
+    "DATE": "9/10/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 25031,
     "CUSTOMER_NAME": "Lexington Liquors (Z)",
     "DATE": "9/8/2026",
@@ -718,6 +763,15 @@
     "CUSTOMER_NAME": "Liquor Mart (North Arlington)",
     "DATE": "8/14/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 28012,
+    "CUSTOMER_NAME": "Lucky 7 (A)",
+    "DATE": "9/9/2026",
+    "CASES": 2.0
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
@@ -795,6 +849,15 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 191606,
+    "CUSTOMER_NAME": "Quick Check Liquor (A)",
+    "DATE": "9/9/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 190917,
     "CUSTOMER_NAME": "Shop Rite Liq (A)Wharton",
     "DATE": "8/10/2026",
@@ -852,6 +915,15 @@
     "CUSTOMER_NUM": 77016,
     "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
     "DATE": "9/3/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 31004,
+    "CUSTOMER_NAME": "Metro Liquors (East Rutherford)",
+    "DATE": "9/10/2026",
     "CASES": 2.0
   },
   {
@@ -952,6 +1024,15 @@
     "CUSTOMER_NAME": "Legacy Bar & Liquor",
     "DATE": "9/1/2026",
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 20042,
+    "CUSTOMER_NAME": "Midtown Liquors",
+    "DATE": "9/9/2026",
+    "CASES": 50.0
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
