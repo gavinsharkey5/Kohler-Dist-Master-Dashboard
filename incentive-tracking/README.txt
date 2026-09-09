@@ -699,6 +699,41 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt Launch (Keystone no-op)
+Exports now run through 9/10. The Keystone file Gavin sent with this batch is
+byte-identical to the 124-row export both Keystone copies already hold, so
+nothing moved there. Headlines:
+
+  1911       262 -> 263 new placements   (+32 rows, 9 removed -- see below)
+  Woodchuck   31 ->  31 new placements   (+9 rows, 1 removed -- see below)
+  Tona        12 ->  12 new 24 oz plc    (+7 rows, 2 re-dated 9/9 -> 9/10)
+  Lytt        Phil Ernst 8 -> 9 accounts, 32% -> 36% penetration (Stew
+             Leonard's Clifton took all six SKUs on 9/10); no tier change
+  Keystone    unchanged, 109 accounts, 3 qualified
+
+DAVE EHLERS IS THE ONE REP WHO WENT DOWN, on two programs at once, and it is
+RDE dropping a 9/9 Total Wine & More (Totowa) order, not a reclassification:
+
+    1911      14007 Total Wine (Totowa) / 9142 Candy Corn 6/4/16 oz Can / 9/9
+              14007 Total Wine (Totowa) / 9129 Maple Bourbon 6/4/16 oz Can / 9/9
+    Woodchuck 14007 Total Wine (Totowa) / 8022 Amber 4/6/12 oz Btl / 9/9 / 5 cs
+
+All three are genuinely absent from the new files -- not re-dated, not
+reassigned, and that account+product appears nowhere else in either export
+(checked before rebuilding). It costs him 1911 offPremNewCount 8 -> 6 (both
+were qualifying new placements) and Woodchuck caseVolume 37 -> 32, and it
+does NOT move his tier on either. Third time an export has removed a row
+(Tona 9/8, off-prem W&S 9/8); same shape each time, a voided or returned
+order on RDE's side.
+
+The other six removed 1911 rows are benign: Andrew Lundy's four Wine
+Anthology rows came back dated 9/10 instead of 9/9, and Nick Melissari's
+three Blackjack Mulligans (Hawthorne) Honey Crisp keg rows moved to Allison
+Scott -- the same rep reassignment both MPO boards carried today -- so his
+draftNewCount 2 -> 1 and hers 1 -> 2. John O'Donoghue 27 -> 29 and Shane
+Barreca 16 -> 17 are the real 1911 gains (Best Cellars Ledgewood and Ramsey
+Wine & Liquor, both 9/10).
+
 2026-09-09 REFRESH -- Keystone only, riding the off-prem MPO refresh
 keystone-ice/actuals.csv and MPOs/off-prem/keystone_ice_24oz.csv moved
 together onto the 124-row export (the sync rule below, followed this time
