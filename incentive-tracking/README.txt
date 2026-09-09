@@ -699,6 +699,27 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 SEVENTH REFRESH -- MABI Fall retention
+Actuals converted through convert_mabi_fall.py against the goals workbook
+already on file (data/mabi_retention_fall_goals.xlsx, Kohler's 9/8 issue --
+no new goals were needed or supplied, and the base/goal reconciliation
+passed unchanged: house base 8,140, goal 7,326). Every brand subtotal and
+rep total reconciled; actuals house 2,415 on the export, 2,412 scored after
+the off-roster rows.
+
+  house      2,178 -> 2,412 of 7,326 MADE placements (29.7% -> 32.9%)
+             still 0 of 24 reps at their 90% goal, day 9 of 91
+             no 9/1-11/30 activity yet: Dylan Rubino, John O'Donoghue
+
+Biggest moves: Anthony Palmisano 35.2% -> 41.1%, Derrick Laws 24.6% ->
+29.8%, Javier Melo 26.3% -> 31.7%. Dave Ehlers still leads at 46.1%.
+
+BRIAN SENGEBUSH IS THE ONE REP WHO WENT DOWN, 55 -> 53 placements and 21 ->
+19 SKUs held (44.7% -> 43.1%): Cayman Jack Margarita Variety 2/12/12 oz Can 1 -> 0; Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can 1 -> 0. Those rows are gone from RDE's
+export rather than re-dated -- this file carries no dates to re-stamp -- so
+it reads as a voided or returned order on RDE's side, the same shape as the
+1911/Woodchuck drop for Dave Ehlers earlier today. Nobody else fell.
+
 2026-09-09 SIXTH REFRESH -- Molson Coors retention (on + off prem)
 Both grouped workbooks converted through convert_mc_retention.py; every
 rep, DM and report total reconciled, 0 new and 0 gone rep/brand pairs, so
