@@ -711,6 +711,18 @@
   .v3-hero-fill.earned{background:var(--good);} .v3-hero-fill.close{background:var(--amber);}
   .v3-hero-fill.attention{background:var(--red);} .v3-hero-fill.notstarted{background:var(--border);}
   .v3-hero-remain{color:var(--text-dim);font-size:17px;font-weight:600;}
+  /* Optional per-section breakdown under the hero bar (a program with more
+     than one scored side, e.g. Constellation off- vs on-premise). Each tile
+     is its own small hero: label, percent, bar, count line. */
+  .v3-hero-segs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:18px;text-align:left;}
+  .v3-seg{background:var(--input-bg);border:1px solid var(--line-soft);border-radius:12px;padding:12px 14px;}
+  .v3-seg-l{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-mute);font-weight:700;}
+  .v3-seg-big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;line-height:1.1;margin-top:4px;color:var(--text);}
+  .v3-seg-big.earned{color:var(--good);} .v3-seg-big.dim{color:var(--text-mute);}
+  .v3-seg-bar{height:8px;background:var(--card);border:1px solid var(--line-soft);border-radius:999px;overflow:hidden;margin:8px 0 6px;}
+  .v3-seg-fill{height:100%;border-radius:999px;background:var(--accent);}
+  .v3-seg-fill.earned{background:var(--good);}
+  .v3-seg-line{color:var(--text-dim);font-size:13px;font-weight:600;line-height:1.3;}
 
   /* The single most important line on the page. */
   .v3-next{background:var(--accent-soft);border:1px solid rgba(78,124,232,.42);border-left:5px solid var(--accent);
@@ -139771,7 +139783,16 @@ const PROGRAM_SUMMARY = {
     // goals" is true of nearly everyone and tells a rep nothing about the
     // ground they have covered. Goals held stay on the stat board.
     const PK = d.on_packages||{}, DR = d.on_draft||{};
-    return {goal:true, now:d.overallHeld, target:d.overallGoal, unit:'',
+    const offHeld = (d.offCategories||[]).filter(c=>c.goal).reduce((t,c)=>t+c.placements,0);
+    const seg = (label, held, goal, kept, total, unit) => goal
+      ? {label, pct:(held/goal)*100, line:`${held.toLocaleString('en-US')} of ${goal.toLocaleString('en-US')} ${unit} · ${kept} of ${total} goal${total===1?'':'s'} held`}
+      : {label, pct:null, line:'No goal for you'};
+    const segments = [
+      seg('Off-Premise', offHeld, d.offGoal||0, d.offGoalsRetained||0, d.offGoalsTotal||0, 'placements'),
+      seg('On-Prem Packages', PK.held||0, PK.goal||0, PK.goalsRetained||0, PK.goalsTotal||0, 'buyers'),
+      seg('On-Prem Draft', DR.held||0, DR.goal||0, DR.goalsRetained||0, DR.goalsTotal||0, 'buyers'),
+    ];
+    return {goal:true, now:d.overallHeld, target:d.overallGoal, unit:'', segments,
       statusOverride,
       label:`${d.overallHeld} of ${d.overallGoal} · ${d.goalsRetained} of ${d.goalsTotal} goals held`,
       sub:`${(d.overallPct||0).toFixed(0)}% of goal · off-prem ${d.offGoalsRetained}/${d.offGoalsTotal} · packages ${PK.goalsRetained||0}/${PK.goalsTotal||0} · draft ${DR.goalsRetained||0}/${DR.goalsTotal||0} · day ${P.daysElapsed} of ${P.periodDays}`,
@@ -140237,6 +140258,15 @@ function screenProgress(){
     ${h.bar?`<div class="v3-hero-bar"><div class="v3-hero-fill ${st}" style="width:${Math.max(sum.pct||0,(sum.pct?2:0))}%"></div></div>
       <div class="v3-hero-remain">${esc(h.under||'')}${sum.remain?` &nbsp;·&nbsp; ${esc(sum.remain)}`:''}</div>`
      :`<div style="margin-top:18px">${v3Pill(st)}</div>`}
+    ${(sum.segments&&sum.segments.length)?`<div class="v3-hero-segs">${sum.segments.map(g=>{
+        const has = g.pct!=null;
+        const cls = !has ? 'dim' : (g.pct>=100 ? 'earned' : '');
+        return `<div class="v3-seg">
+          <div class="v3-seg-l">${esc(g.label)}</div>
+          <div class="v3-seg-big ${cls}">${has?Math.round(g.pct)+'%':'—'}</div>
+          ${has?`<div class="v3-seg-bar"><div class="v3-seg-fill ${cls}" style="width:${Math.min(100,Math.max(g.pct,2))}%"></div></div>`:''}
+          <div class="v3-seg-line">${esc(g.line||'')}</div>
+        </div>`;}).join('')}</div>`:''}
   </div>`;
 
   const next = sum.next ? `<div class="v3-next">
