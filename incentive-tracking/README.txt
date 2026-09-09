@@ -699,6 +699,22 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 SIXTH REFRESH -- Molson Coors retention (on + off prem)
+Both grouped workbooks converted through convert_mc_retention.py; every
+rep, DM and report total reconciled, 0 new and 0 gone rep/brand pairs, so
+the structure is unchanged and only values moved.
+
+  brand goals retained   26 -> 27 of 100 (Anthony Palmisano 2 -> 3, on
+                         ?, off-prem 96.8% -> 99.4%)
+  off-prem placements    2,499 -> 2,545 of 2,912
+  on-prem buyers         695 -> 708 of 840
+
+53 metrics moved and NOTHING went down this time (the 9/8 refresh had the
+one Peroni placement lost). Robin Feldman's off-prem doubled 22.2% -> 44.4%
+on a tiny base; Javier Melo 65.8% -> 69.7% and Klejdi Lamo 88.7% -> 91.4%
+were the larger real moves. Dave Ehlers (109.4%), Allison Scott (103.7% on
+draft) and Brian Sengebush (116.5% on draft) are past their goals.
+
 2026-09-09 FIFTH REFRESH -- Constellation Fall, all four categories
 Impact, Modelo Gaintain and Innovation from today's exports; Corona Gaintain
 was NOT in this batch, but the same RDE export ("Constellation Corona
