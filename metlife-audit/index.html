@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Beer Audit">
+<meta name="theme-color" content="#0E1014">
+<link rel="manifest" href="manifest.webmanifest">
+<title>MetLife Beer Audit — Kohler Distributing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#0E1014;--card:#181B22;--card-h:#1F232C;--card-2:#12151B;--ink:#FFFFFF;--ink-soft:#9AA1B0;--ink-mute:#6B7280;
+    --line:#2A2E38;--line-2:#363B47;--accent:#3E8EF7;--accent-2:#2563C7;--good:#0ca30c;--warn:#fab219;--bad:#d03b3b;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.45);
+    --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767;--s0:#4b5160;
+    --seq1:#0d366b;--seq2:#184f95;--seq3:#256abf;--seq4:#3987e5;--seq5:#6da7ec;--seq6:#9ec5f4;
+    --map-empty:#1c2029;--map-stroke:#0E1014;--field:#1d3a2a;
+  }
+  :root[data-theme="light"]{
+    --canvas:#F4F5F7;--card:#FFFFFF;--card-h:#F7F8FA;--card-2:#F1F2F5;--ink:#0b0b0b;--ink-soft:#52514e;--ink-mute:#898781;
+    --line:#E1E0D9;--line-2:#CFCEC8;--accent:#2563C7;--accent-2:#1c4fa0;
+    --shadow:0 1px 2px rgba(0,0,0,.06),0 10px 30px rgba(0,0,0,.08);
+    --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#4a3aa7;--s8:#e34948;--s0:#b9bcc6;
+    --seq1:#cde2fb;--seq2:#9ec5f4;--seq3:#6da7ec;--seq4:#3987e5;--seq5:#256abf;--seq6:#184f95;
+    --map-empty:#e6e7eb;--map-stroke:#FFFFFF;--field:#cfe9d6;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--canvas);color:var(--ink);min-height:100vh;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;padding-bottom:calc(env(safe-area-inset-bottom) + 90px)}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  a{color:var(--accent)}
+  h1,h2,h3{font-family:"Space Grotesk","Inter",sans-serif;letter-spacing:-.01em;margin:0}
+  .eyebrow{font-family:"Space Grotesk";letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--ink-soft)}
+  .mono{font-variant-numeric:tabular-nums}
+  .hidden,[hidden]{display:none!important}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--line);padding:calc(env(safe-area-inset-top) + 8px) 14px 8px}
+  .topbar .row{display:flex;align-items:center;gap:10px;max-width:1180px;margin:0 auto}
+  .brandmark{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-width:0}
+  .brandmark img{width:30px;height:30px;border-radius:8px;flex:none}
+  .brandmark .t{font-family:"Space Grotesk";font-weight:700;font-size:15px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brandmark .s{font-size:11px;color:var(--ink-soft);line-height:1.1}
+  .spacer{flex:1}
+  .iconbtn{border:1px solid var(--line);background:var(--card);border-radius:10px;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+  .tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px}
+  .tabs button{border:0;background:transparent;border-radius:9px;padding:7px 12px;font-weight:600;font-size:13px;color:var(--ink-soft)}
+  .tabs button[aria-selected="true"]{background:var(--accent);color:#fff}
+  .tabs .ic{margin-right:5px}
+  @media (max-width:640px){
+    .tabs{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom) + 12px);z-index:30;box-shadow:var(--shadow)}
+    .tabs button{flex:1;padding:11px 6px;font-size:14px;white-space:nowrap}
+    .tabs .ic{display:none}
+  }
+
+  main{max-width:1180px;margin:0 auto;padding:16px 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .card + .card{margin-top:14px}
+  .card h2{font-size:17px;font-weight:700;margin-bottom:6px}
+  .muted{color:var(--ink-soft)}
+  .small{font-size:12.5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr}}
+
+  /* ---------- form controls ---------- */
+  label.f{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin:12px 0 6px}
+  .in{width:100%;background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16px;outline:none}
+  .in:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+  textarea.in{min-height:70px;resize:vertical}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--card-h);border-radius:12px;padding:12px 16px;font-weight:600;font-size:15px;min-height:46px}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.ghost{background:transparent}
+  .btn.danger{color:#ff7b7b;border-color:#5a2a2a}
+  .btn.block{width:100%}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .btnrow .btn{flex:1 1 auto}
+  @media (max-width:640px){.btnrow .btn{flex:1 1 44%}}
+
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .seg button{border:1.5px solid var(--line);background:var(--card-2);border-radius:14px;padding:14px 8px;font-weight:700;font-size:15px;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:74px}
+  .seg button .ic{font-size:24px;line-height:1}
+  .seg button[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--card-2));color:var(--ink)}
+
+  .locbanner{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 30%,var(--card)),var(--card));border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+  .locbanner .id{font-family:"Space Grotesk";font-weight:700;font-size:38px;letter-spacing:-.02em;line-height:1}
+  .locbanner .meta{font-size:12.5px;color:var(--ink-soft)}
+  .locbanner .rt{margin-left:auto;text-align:right}
+  .locbanner .rt .n{font-family:"Space Grotesk";font-weight:700;font-size:22px;line-height:1}
+
+  .brandbox{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card-2);margin-top:10px}
+  .brandbox h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .brandbox h3 .tot{margin-left:auto;font-weight:600;color:var(--ink-soft);font-size:12.5px}
+  .brow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .brow:last-of-type{border-bottom:0}
+  .brow .nm{flex:1;font-weight:600;font-size:14px;line-height:1.2;min-width:0;overflow-wrap:anywhere}
+  .brow .nm .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+  .stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+  .stepper button{border:0;background:transparent;width:40px;height:42px;font-size:22px;font-weight:600;color:var(--ink)}
+  .stepper input{width:40px;text-align:center;border:0;background:transparent;font-weight:700;font-size:17px;padding:0;-moz-appearance:textfield}
+  .stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{-webkit-appearance:none}
+  .brow .rm{border:0;background:transparent;color:var(--ink-mute);font-size:18px;width:30px;height:42px;padding:0}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 12px;font-size:13.5px;font-weight:600;white-space:nowrap}
+  .chip.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 18%,var(--card));}
+  .addrow{display:flex;gap:8px;margin-top:10px}
+  .addrow .in{flex:1;padding:11px 12px}
+  .addrow .btn{padding:0 16px}
+
+  .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:10px}
+  .ph{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--card-2);border:1px solid var(--line)}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph button{position:absolute;top:4px;right:4px;border:0;background:rgba(0,0,0,.65);color:#fff;border-radius:50%;width:24px;height:24px;font-size:14px;line-height:1}
+  .ph.add{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:var(--ink-soft);border-style:dashed;cursor:pointer}
+  .ph.add .ic{font-size:24px}
+
+  .savebar{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 74px);z-index:15;margin-top:14px}
+  @media (min-width:641px){.savebar{bottom:12px}}
+  .savebar .btn{box-shadow:var(--shadow);font-size:16px;min-height:52px}
+  .err{color:#ff8a8a;font-size:13px;margin-top:8px}
+
+  /* ---------- log ---------- */
+  .loglist{display:flex;flex-direction:column;gap:8px}
+  .logitem{display:flex;gap:12px;align-items:center;background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .logitem .id{font-family:"Space Grotesk";font-weight:700;font-size:17px;min-width:70px}
+  .logitem .d{flex:1;min-width:0;font-size:13px;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .logitem .th{width:42px;height:42px;border-radius:8px;object-fit:cover;background:var(--card);flex:none}
+  .logitem .acts{display:flex;gap:6px}
+  .logitem .acts button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 9px;font-size:12.5px;font-weight:600}
+
+  /* ---------- dashboard ---------- */
+  .dashhead{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:14px}
+  .dashhead h1{font-size:clamp(24px,4vw,34px);font-weight:700;line-height:1.05}
+  .dashhead .sub{color:var(--ink-soft);font-size:14px;margin-top:4px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .filters select,.filters .in{width:auto;padding:9px 12px;font-size:14px;border-radius:10px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .kpi .l{font-size:12px;color:var(--ink-soft);font-weight:600}
+  .kpi .v{font-family:"Space Grotesk";font-weight:700;font-size:30px;line-height:1.1;margin-top:4px}
+  .kpi .h{font-size:12px;color:var(--ink-soft);margin-top:4px}
+  .dashgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:start}
+  @media (max-width:900px){.dashgrid{grid-template-columns:1fr}}
+  .card .hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .card .hd h2{margin:0}
+  .card .hd .ctl{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  .card .hd select{background:var(--card-2);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-soft);margin-top:10px}
+  .legend span i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .legend .ramp{display:inline-flex;gap:0;vertical-align:middle;border-radius:3px;overflow:hidden;margin:0 6px}
+  .legend .ramp i{width:14px;height:10px;border-radius:0;margin:0}
+
+  /* bar list (brand metrics) */
+  .bars{display:flex;flex-direction:column;gap:7px}
+  .bar{display:grid;grid-template-columns:minmax(90px,150px) 1fr 58px;gap:10px;align-items:center;font-size:13.5px}
+  .bar .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:7px}
+  .bar .n i{width:9px;height:9px;border-radius:50%;flex:none}
+  .bar .n .kb{font-size:9px;font-weight:700;letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:0 3px;line-height:1.4}
+  .bar .t{height:16px;background:var(--card-2);border-radius:4px;overflow:hidden;position:relative}
+  .bar .t b{display:block;height:100%;border-radius:0 4px 4px 0;min-width:2px}
+  .bar .v{text-align:right;font-weight:600;color:var(--ink-soft)}
+  .bar.kohler .n{color:var(--ink)}
+
+  /* stacked rows */
+  .stack{display:grid;grid-template-columns:minmax(80px,130px) 1fr 50px;gap:10px;align-items:center;font-size:13px;padding:5px 0}
+  .stack .n{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stack .n small{display:block;font-weight:500;color:var(--ink-soft);font-size:11px}
+  .stack .s{display:flex;height:18px;gap:2px;border-radius:4px;overflow:hidden}
+  .stack .s i{display:block;height:100%;min-width:1px}
+  .stack .v{text-align:right;color:var(--ink-soft);font-weight:600}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:13px}
+  table.tbl th{text-align:left;font-weight:600;color:var(--ink-soft);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--line)}
+  table.tbl td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.tbl td.num,table.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* map */
+  .mapwrap{position:relative}
+  .mapwrap svg{width:100%;height:auto;display:block;touch-action:manipulation}
+  .sec{stroke:var(--map-stroke);stroke-width:1.5;fill:var(--map-empty);cursor:pointer;transition:opacity .12s}
+  .sec.has{cursor:pointer}
+  .sec.sel{stroke:var(--ink);stroke-width:2.5}
+  .sec:hover{opacity:.82}
+  .seclbl{font-family:"Inter",sans-serif;font-size:8.5px;fill:var(--ink-soft);pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:500}
+  .seclbl.has{fill:#fff;font-weight:700}
+  :root[data-theme="light"] .seclbl.has{fill:#0b0b0b}
+  .fieldlbl{font-family:"Space Grotesk",sans-serif;font-size:12px;fill:var(--ink-soft);text-anchor:middle;dominant-baseline:central;letter-spacing:.2em;font-weight:600}
+  .lvllbl{font-family:"Inter",sans-serif;font-size:10px;fill:var(--ink-mute);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+  .mapctl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .mapctl select{max-width:180px}
+  .otherareas{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .otherareas button{border:1px solid var(--line);background:var(--card-2);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:600}
+  .otherareas button.sel{border-color:var(--ink)}
+
+  /* section detail */
+  .secdetail .hdr{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .secdetail .hdr h2{font-size:22px}
+  .secdetail .hdr .lv{color:var(--ink-soft);font-size:13px}
+  .secdetail .stats{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin:6px 0 10px}
+  .secdetail .stats b{color:var(--ink);font-family:"Space Grotesk";font-size:16px}
+  .loccard{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card-2);margin-top:10px}
+  .loccard .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .loccard .top .id{font-family:"Space Grotesk";font-weight:700;font-size:18px}
+  .loccard .top .ty{font-size:12px;font-weight:600;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+  .loccard .top .st{font-size:12.5px;color:var(--ink-soft)}
+  .loccard .lines{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:8px;font-size:13.5px}
+  @media (max-width:520px){.loccard .lines{grid-template-columns:1fr}}
+  .loccard .lines div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding:3px 0}
+  .loccard .lines div span:first-child{display:flex;align-items:center;gap:7px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .loccard .lines i{width:8px;height:8px;border-radius:50%;flex:none}
+  .loccard .lines .cnt{font-weight:700;white-space:nowrap}
+  .loccard .lines .cnt small{font-weight:500;color:var(--ink-soft)}
+  .loccard .lines h4{grid-column:1/-1;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-mute);margin:6px 0 0}
+  .loccard .pics{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .loccard .pics img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line);cursor:zoom-in}
+  .loccard .note{font-size:12.5px;color:var(--ink-soft);margin-top:6px;font-style:italic}
+  .loccard .who{font-size:11px;color:var(--ink-mute);margin-top:6px}
+  .empty{color:var(--ink-soft);font-size:14px;padding:12px 0}
+
+  /* tooltip, toast, lightbox */
+  #tooltip{position:fixed;z-index:60;pointer-events:none;background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:8px 10px;font-size:12.5px;box-shadow:var(--shadow);max-width:240px;display:none}
+  #tooltip b{font-family:"Space Grotesk";font-size:14px}
+  #tooltip .r{display:flex;justify-content:space-between;gap:12px}
+  #tooltip .r i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom) + 84px);z-index:70;background:var(--ink);color:var(--canvas);padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+  #toast.show{opacity:1}
+  #lightbox{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:20px}
+  #lightbox img{max-width:100%;max-height:100%;border-radius:8px}
+  #lightbox .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#fff;font-weight:600}
+  #lightbox .x{position:absolute;top:calc(env(safe-area-inset-top) + 12px);right:16px;border:0;background:rgba(255,255,255,.15);color:#fff;border-radius:50%;width:40px;height:40px;font-size:20px}
+
+  details.defs{margin-top:14px;font-size:13px;color:var(--ink-soft)}
+  details.defs summary{cursor:pointer;font-weight:600;color:var(--ink)}
+  details.defs dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:10px 0 0}
+  details.defs dt{font-weight:600;color:var(--ink)}
+  details.defs dd{margin:0}
+  .note{font-size:12.5px;color:var(--ink-soft)}
+  .pill{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--ink-soft)}
+  @media print{
+    .topbar,.tabs,.savebar,#toast{display:none!important}
+    body{background:#fff;color:#000;padding:0}
+    .card{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="row">
+    <a class="brandmark" href="../">
+      <img src="../assets/kohler-logo-badge.png" alt="">
+      <span><span class="t">MetLife Beer Audit</span><br><span class="s">Kohler Distributing · field capture &amp; results</span></span>
+    </a>
+    <span class="spacer"></span>
+    <nav class="tabs" role="tablist" aria-label="Views">
+      <button role="tab" data-view="audit" aria-selected="true"><span class="ic">📝</span>Audit</button>
+      <button role="tab" data-view="log" aria-selected="false"><span class="ic">📋</span>Log <span id="logcount" class="mono"></span></button>
+      <button role="tab" data-view="dash" aria-selected="false"><span class="ic">🏟️</span>Dashboard</button>
+    </nav>
+    <button class="iconbtn" id="themebtn" title="Toggle light/dark">☀️</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= AUDIT VIEW ================= -->
+<section id="view-audit">
+
+  <div class="card" id="startcard">
+    <p class="eyebrow">Start audit</p>
+    <h2>Who, what game, and where are you starting?</h2>
+    <p class="muted small">Set once. The location number advances by itself after every save — you only pick a new section when you walk into one.</p>
+    <label class="f" for="auditor">Auditor</label>
+    <input class="in" id="auditor" placeholder="Your name" autocomplete="name">
+    <label class="f" for="event">Event / game</label>
+    <input class="in" id="event" placeholder="e.g. Giants vs. Cowboys · Sep 10, 2026">
+    <label class="f" for="startsection">Starting section</label>
+    <input class="in mono" id="startsection" inputmode="numeric" pattern="[0-9A-Za-z ]*" placeholder="e.g. 125" style="font-size:22px;font-family:'Space Grotesk';font-weight:700">
+    <div class="btnrow"><button class="btn primary block" id="startbtn">Start audit →</button></div>
+    <p class="note" style="margin-top:12px">Everything you capture is saved on this phone as you go (works without signal). Export from the Log tab when you're done.</p>
+  </div>
+
+  <div id="formcard" hidden>
+    <div class="locbanner">
+      <div>
+        <div class="id mono" id="locid">125-01</div>
+        <div class="meta"><span id="loclevel">Lower Level</span> · <button class="btn ghost" id="changesec" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Change section</button> <button class="btn ghost" id="editid" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Edit #</button></div>
+      </div>
+      <div class="rt"><div class="n mono" id="sectiondone">0</div><div class="meta">in this section</div><div class="n mono" id="totaldone" style="margin-top:6px">0</div><div class="meta">total saved</div></div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>What's here?</h2>
+      <div class="seg" id="typeseg" style="margin-top:10px">
+        <button data-type="cooler" aria-pressed="false"><span class="ic">🧊</span>Cooler</button>
+        <button data-type="taps" aria-pressed="false"><span class="ic">🍺</span>Taps</button>
+        <button data-type="both" aria-pressed="false"><span class="ic">🧊🍺</span>Both</button>
+      </div>
+
+      <label class="f" for="stand">Stand / bar name <span class="muted" style="font-weight:500">(optional)</span></label>
+      <input class="in" id="stand" placeholder="e.g. Bud Light Bar, Concessions 125, Portable cart">
+
+      <div class="brandbox" id="coolerbox" hidden>
+        <h3>🧊 Cooler brands <span class="tot">Facings: <b id="coolertot" class="mono">0</b></span></h3>
+        <div id="coolerrows"></div>
+        <div class="chips" id="coolerchips"></div>
+        <div class="addrow"><input class="in" id="cooleradd" list="brandlist" placeholder="Add brand…" autocomplete="off"><button class="btn" id="cooleraddbtn">Add</button></div>
+      </div>
+
+      <div class="brandbox" id="tapbox" hidden>
+        <h3>🍺 Tap brands <span class="tot">Taps: <b id="taptot" class="mono">0</b></span></h3>
+        <div id="taprows"></div>
+        <div class="chips" id="tapchips"></div>
+        <div class="addrow"><input class="in" id="tapadd" list="brandlist" placeholder="Add brand…" autocomplete="off"><button class="btn" id="tapaddbtn">Add</button></div>
+      </div>
+      <datalist id="brandlist"></datalist>
+
+      <label class="f">Photos</label>
+      <div class="photos" id="photos">
+        <label class="ph add" for="photoinput"><span class="ic">📷</span>Take photo<input id="photoinput" type="file" accept="image/*" capture="environment" multiple hidden></label>
+      </div>
+
+      <label class="f" for="notes">Notes <span class="muted" style="font-weight:500">(optional)</span></label>
+      <textarea class="in" id="notes" placeholder="Anything worth flagging — out-of-stock, competitor signage, pricing…"></textarea>
+      <div class="err" id="formerr" hidden></div>
+      <div class="btnrow"><button class="btn ghost" id="cancelEdit" hidden>Cancel edit</button><button class="btn ghost" id="clearform">Clear form</button></div>
+    </div>
+
+    <div class="savebar">
+      <button class="btn primary block" id="savebtn">Save &amp; next location →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOG VIEW ================= -->
+<section id="view-log" hidden>
+  <div class="card">
+    <div class="hd"><h2>Saved locations</h2><span class="pill" id="logsummary"></span></div>
+    <div class="btnrow" style="margin-top:0">
+      <button class="btn" id="exportbtn">⬇️ Export + photos</button>
+      <button class="btn" id="exportlite">Export (no photos)</button>
+      <button class="btn" id="exportcsv">CSV</button>
+      <label class="btn" for="importinput">⬆️ Import<input id="importinput" type="file" accept="application/json,.json" multiple hidden></label>
+    </div>
+    <p class="note" style="margin-top:10px">Export creates a single <code>.json</code> file with every location and photo. Import merges files from other auditors' phones onto this one (newest edit of each location wins). To publish for management, drop the export at <code>metlife-audit/data/audit.json</code> in the repo.</p>
+  </div>
+  <div class="card">
+    <div class="hd"><h2>Log</h2><select id="logfilter" style="margin-left:auto"></select></div>
+    <div class="loglist" id="loglist"></div>
+  </div>
+  <div class="card">
+    <h2>Settings</h2>
+    <label class="f" for="kohlerbrands">Kohler portfolio brands (one per line) — highlighted on the dashboard</label>
+    <textarea class="in" id="kohlerbrands" style="min-height:120px;font-size:14px"></textarea>
+    <div class="btnrow"><button class="btn" id="savekohler">Save portfolio list</button><button class="btn danger" id="wipebtn">Delete all data on this device…</button></div>
+  </div>
+</section>
+
+<!-- ================= DASHBOARD VIEW ================= -->
+<section id="view-dash" hidden>
+  <div class="dashhead">
+    <div>
+      <p class="eyebrow">MetLife Stadium · beer distribution audit</p>
+      <h1 id="dashtitle">MetLife Beer Audit</h1>
+      <div class="sub" id="dashsub">—</div>
+    </div>
+    <span class="spacer"></span>
+    <div class="filters">
+      <select id="eventfilter" class="in" title="Event"></select>
+      <select id="levelfilter" class="in" title="Level">
+        <option value="">All levels</option>
+      </select>
+      <button class="btn" id="printbtn" style="min-height:0;padding:9px 12px;font-size:14px">🖨️ Print / PDF</button>
+    </div>
+  </div>
+
+  <div id="dashempty" class="card" hidden>
+    <h2>No audit data yet</h2>
+    <p class="muted">Capture locations in the Audit tab, import an export file in the Log tab, or open <code>?demo=1</code> to preview the dashboard with sample data.</p>
+  </div>
+
+  <div id="dashbody">
+    <div class="kpis" id="kpis"></div>
+
+    <div class="dashgrid">
+      <div>
+        <div class="card">
+          <div class="hd">
+            <h2>Stadium map</h2>
+            <div class="ctl mapctl">
+              <select id="mapmode">
+                <option value="coverage">Color: locations audited</option>
+                <option value="leader">Color: leading brand</option>
+                <option value="brand">Color: brand share of…</option>
+                <option value="kohler">Color: Kohler portfolio share</option>
+              </select>
+              <select id="mapbrand" hidden></select>
+              <select id="secjump"><option value="">Jump to section…</option></select>
+            </div>
+          </div>
+          <p class="note" style="margin:-4px 0 8px">Hover or tap a section to see every audited location in it. Schematic layout: 100s lower bowl, 200s mezzanine, 300s upper deck.</p>
+          <div class="mapwrap" id="mapwrap"></div>
+          <div class="legend" id="maplegend"></div>
+          <div id="otherareas" class="otherareas"></div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><h2>Brand share</h2>
+            <div class="ctl"><select id="metricsel">
+              <option value="brandShare">Brand share (facings + taps)</option>
+              <option value="facingsShare">Facings share (cooler)</option>
+              <option value="draftShare">Draft share (taps)</option>
+              <option value="coolerShare">Cooler share (% of coolers)</option>
+              <option value="distribution">Distribution (% of locations)</option>
+            </select></div>
+          </div>
+          <p class="note" id="metricnote" style="margin:-4px 0 10px"></p>
+          <div class="bars" id="brandbars"></div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><h2>Share by stadium level</h2></div>
+          <div id="levelstack"></div>
+          <div class="legend" id="stacklegend"></div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><h2>Share by section</h2><span class="pill" id="seccount"></span></div>
+          <div id="sectionstack" style="max-height:560px;overflow:auto;padding-right:4px"></div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><h2>Brand table</h2></div>
+          <div class="tscroll"><table class="tbl" id="brandtable"></table></div>
+          <details class="defs">
+            <summary>How each number is calculated</summary>
+            <dl>
+              <dt>Locations audited</dt><dd>Count of saved locations (each cooler, bar or stand you logged is one location).</dd>
+              <dt>Brand share</dt><dd>Brand's cooler facings + tap handles ÷ all facings + tap handles audited.</dd>
+              <dt>Facings share</dt><dd>Brand's cooler facings ÷ all cooler facings.</dd>
+              <dt>Draft share</dt><dd>Brand's tap handles ÷ all tap handles.</dd>
+              <dt>Cooler share</dt><dd>% of cooler locations where the brand has at least one facing.</dd>
+              <dt>Distribution</dt><dd>% of all audited locations (cooler or tap) carrying the brand.</dd>
+              <dt>Share by section / level</dt><dd>Brand share recomputed inside that section or level only.</dd>
+              <dt>Kohler portfolio</dt><dd>Brands in the editable list under Log → Settings, combined.</dd>
+            </dl>
+          </details>
+        </div>
+      </div>
+
+      <div>
+        <div class="card secdetail" id="secdetail">
+          <div class="empty">Select a section on the map to see every audited location in it — brands, facings, taps and photos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="tooltip"></div>
+<div id="toast"></div>
+<div id="lightbox" hidden><button class="x" id="lbclose">✕</button><img id="lbimg" alt=""><div class="cap" id="lbcap"></div></div>
+
+<script>
+/* =====================================================================
+   MetLife Beer Audit — single-file app
+   - Audit form (phone) -> IndexedDB on the device
+   - Log: edit/delete, export/import JSON, CSV
+   - Dashboard: KPIs, brand metrics, share by level/section, stadium map
+   ===================================================================== */
+'use strict';
+
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = (x, d=0) => (isFinite(x) ? (x*100).toFixed(d) + '%' : '—');
+const fmt = n => Number(n||0).toLocaleString('en-US');
+
+/* ---------- constants ---------- */
+const COMMON_BRANDS = ['Michelob Ultra','Bud Light','Budweiser','Coors Light','Miller Lite','Modelo Especial','Corona Extra','Corona Premier','Heineken','Heineken 0.0','Stella Artois','Blue Moon','Yuengling','Samuel Adams','Guinness','Pacifico','Dos Equis','Goose Island IPA','Brooklyn Lager','Lagunitas IPA','Voodoo Ranger','Kona Big Wave','Athletic Brewing','White Claw','High Noon','Truly','Twisted Tea','Nutrl','Cutwater','Surfside','Sierra Nevada','Peroni'];
+const DEFAULT_KOHLER = ['Coors Light','Miller Lite','Coors Banquet','Blue Moon','Vizzy','Topo Chico Hard Seltzer','Heineken','Heineken 0.0','Dos Equis','Amstel Light','Tecate','Corona Extra','Corona Premier','Corona Familiar','Modelo Especial','Modelo Negra','Pacifico','Victoria','Samuel Adams','Truly','Twisted Tea','Angry Orchard','Yuengling','Yuengling Flight','White Claw',"Mike's Hard",'Cayman Jack','Carbliss','Garage Beer','Keystone Ice','Keystone Light','Montauk','Other Half','Evil Genius','Peroni'];
+const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6','--s7','--s8'];
+const SEQ = ['--seq1','--seq2','--seq3','--seq4','--seq5','--seq6'];
+const LEVELS = ['Lower Level (100s)','Mezzanine (200s)','Upper Level (300s)','Clubs & Other'];
+
+function levelOf(section){
+  const n = parseInt(String(section).replace(/[^0-9]/g,'').slice(0,3), 10);
+  if (!isNaN(n)) {
+    if (n>=100 && n<200) return LEVELS[0];
+    if (n>=200 && n<300) return LEVELS[1];
+    if (n>=300 && n<400) return LEVELS[2];
+  }
+  return LEVELS[3];
+}
+function levelShort(section){ return levelOf(section).replace(/ \(.*\)/,''); }
+function mapKeyOf(section){ const m = String(section).match(/^\s*([0-9]{3})/); return m ? m[1] : null; }
+function normSection(s){ return String(s||'').trim().toUpperCase().replace(/\s+/g,' '); }
+function locId(section, seq){ return `${section}-${String(seq).padStart(2,'0')}`; }
+function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+/* ---------- settings (localStorage) ---------- */
+const Settings = {
+  get(){ try { return JSON.parse(localStorage.getItem('mla.settings')||'{}'); } catch(e){ return {}; } },
+  set(patch){ const s = Object.assign(this.get(), patch); try { localStorage.setItem('mla.settings', JSON.stringify(s)); } catch(e){} return s; }
+};
+
+/* ---------- IndexedDB ---------- */
+const DB = (() => {
+  let dbp = null;
+  function open(){
+    if (dbp) return dbp;
+    dbp = new Promise((res, rej) => {
+      const r = indexedDB.open('metlife-beer-audit', 1);
+      r.onupgradeneeded = () => {
+        const db = r.result;
+        if (!db.objectStoreNames.contains('locations')) db.createObjectStore('locations', {keyPath:'key'});
+        if (!db.objectStoreNames.contains('photos')) { const p = db.createObjectStore('photos', {keyPath:'id'}); p.createIndex('loc','locKey'); }
+      };
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+    return dbp;
+  }
+  async function tx(store, mode, fn){
+    const db = await open();
+    return new Promise((res, rej) => {
+      const t = db.transaction(store, mode); const s = t.objectStore(store);
+      let out; try { out = fn(s); } catch(e){ rej(e); return; }
+      t.oncomplete = () => res(out && out.result !== undefined ? out.result : out);
+      t.onerror = () => rej(t.error); t.onabort = () => rej(t.error);
+    });
+  }
+  const req = r => new Promise((res, rej) => { r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+  return {
+    allLocations: async () => { const db = await open(); return req(db.transaction('locations').objectStore('locations').getAll()); },
+    putLocation: loc => tx('locations','readwrite', s => s.put(loc)),
+    deleteLocation: key => tx('locations','readwrite', s => s.delete(key)),
+    putPhoto: p => tx('photos','readwrite', s => s.put(p)),
+    deletePhoto: id => tx('photos','readwrite', s => s.delete(id)),
+    getPhoto: async id => { const db = await open(); return req(db.transaction('photos').objectStore('photos').get(id)); },
+    photosFor: async locKey => { const db = await open(); return req(db.transaction('photos').objectStore('photos').index('loc').getAll(locKey)); },
+    allPhotos: async () => { const db = await open(); return req(db.transaction('photos').objectStore('photos').getAll()); },
+    clear: async () => { await tx('locations','readwrite', s => s.clear()); await tx('photos','readwrite', s => s.clear()); }
+  };
+})();
+
+/* ---------- image helpers ---------- */
+function loadImage(src){ return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; }); }
+async function compressFile(file, max=1280, q=0.78){
+  const url = URL.createObjectURL(file);
+  try {
+    let bmp;
+    try { bmp = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch(e){ bmp = await loadImage(url); }
+    const w = bmp.width, h = bmp.height, sc = Math.min(1, max/Math.max(w,h));
+    const cw = Math.round(w*sc), ch = Math.round(h*sc);
+    const c = document.createElement('canvas'); c.width = cw; c.height = ch;
+    c.getContext('2d').drawImage(bmp, 0, 0, cw, ch);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
+    return {blob, w:cw, h:ch};
+  } finally { URL.revokeObjectURL(url); }
+}
+function blobToDataUrl(blob){ return new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); }); }
+async function dataUrlToBlob(d){ const r = await fetch(d); return r.blob(); }
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 1800); }
+
+/* ---------- theme ---------- */
+function applyTheme(t){ if (t==='light') document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme'); $('#themebtn').textContent = t==='light' ? '🌙' : '☀️'; $('meta[name=theme-color]').content = t==='light' ? '#F4F5F7' : '#0E1014'; }
+applyTheme(Settings.get().theme || 'dark');
+$('#themebtn').onclick = () => { const t = Settings.get().theme==='light' ? 'dark' : 'light'; Settings.set({theme:t}); applyTheme(t); if (currentView==='dash') renderDashboard(); };
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+let locations = [];          // all saved locations (from DB) + published
+let published = [];          // from data/audit.json (read-only)
+let demoMode = new URLSearchParams(location.search).get('demo') === '1';
+let currentView = 'audit';
+const form = { type:null, cooler:[], taps:[], photos:[], editingKey:null };   // photos: {id, blob, url, w, h, existing}
+
+function allLocations(){
+  // merge device + published, keyed by key; newest updatedAt wins
+  const m = new Map();
+  for (const l of published) m.set(l.key, l);
+  for (const l of locations) { const p = m.get(l.key); if (!p || (l.updatedAt||0) >= (p.updatedAt||0)) m.set(l.key, l); }
+  return Array.from(m.values());
+}
+function locKey(event, id){ return `${event}|${id}`; }
+
+/* =====================================================================
+   VIEWS
+   ===================================================================== */
+function showView(v){
+  currentView = v;
+  $$('.tabs [role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.view===v ? 'true' : 'false'));
+  $('#view-audit').hidden = v!=='audit'; $('#view-log').hidden = v!=='log'; $('#view-dash').hidden = v!=='dash';
+  if (v==='log') renderLog();
+  if (v==='dash') renderDashboard();
+  window.scrollTo({top:0});
+}
+$$('.tabs [role=tab]').forEach(b => b.onclick = () => showView(b.dataset.view));
+
+/* =====================================================================
+   AUDIT FORM
+   ===================================================================== */
+function brandNames(){
+  const seen = new Map();
+  for (const l of allLocations()) for (const r of [...(l.cooler||[]), ...(l.taps||[])]) seen.set(r.brand.toLowerCase(), r.brand);
+  return seen;
+}
+function canonBrand(name){
+  const n = String(name||'').trim().replace(/\s+/g,' ');
+  if (!n) return '';
+  const low = n.toLowerCase();
+  const seen = brandNames();
+  if (seen.has(low)) return seen.get(low);
+  const c = COMMON_BRANDS.find(b => b.toLowerCase()===low); if (c) return c;
+  const k = kohlerList().find(b => b.toLowerCase()===low); if (k) return k;
+  return n;
+}
+function kohlerList(){ const s = Settings.get(); return Array.isArray(s.kohler) ? s.kohler : DEFAULT_KOHLER; }
+function isKohler(brand){ const set = new Set(kohlerList().map(b => b.toLowerCase())); return set.has(String(brand).toLowerCase()); }
+function recentBrands(kind){
+  const cnt = new Map();
+  for (const l of allLocations()) for (const r of (kind==='cooler' ? (l.cooler||[]) : (l.taps||[]))) cnt.set(r.brand, (cnt.get(r.brand)||0)+1);
+  return Array.from(cnt.entries()).sort((a,b) => b[1]-a[1]).map(e => e[0]);
+}
+
+function nextSeq(event, section){
+  let max = 0;
+  for (const l of allLocations()) if (l.event===event && l.section===section && l.seq>max) max = l.seq;
+  return max+1;
+}
+function refreshBanner(){
+  const s = Settings.get();
+  const section = s.section, event = s.event;
+  const id = form.editingKey ? form.editingId : locId(section, nextSeq(event, section));
+  form.currentId = id;
+  $('#locid').textContent = id;
+  $('#loclevel').textContent = levelShort(section) + (form.editingKey ? ' · editing' : '');
+  const inSec = allLocations().filter(l => l.event===event && l.section===section).length;
+  $('#sectiondone').textContent = inSec;
+  $('#totaldone').textContent = allLocations().filter(l => l.event===event).length;
+  $('#logcount').textContent = locations.length ? `(${locations.length})` : '';
+}
+function setType(t){
+  form.type = t;
+  $$('#typeseg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.type===t ? 'true' : 'false'));
+  $('#coolerbox').hidden = !(t==='cooler' || t==='both');
+  $('#tapbox').hidden = !(t==='taps' || t==='both');
+  renderChips();
+}
+$$('#typeseg button').forEach(b => b.onclick = () => setType(b.dataset.type));
+
+function renderRows(kind){
+  const rows = kind==='cooler' ? form.cooler : form.taps;
+  const el = kind==='cooler' ? $('#coolerrows') : $('#taprows');
+  const unit = kind==='cooler' ? 'facings' : 'taps';
+  el.innerHTML = rows.map((r,i) => `
+    <div class="brow" data-i="${i}">
+      <span class="nm"><span class="k" style="background:${isKohler(r.brand)?'var(--accent)':'var(--ink-mute)'}"></span>${esc(r.brand)}</span>
+      <span class="stepper"><button type="button" data-d="-1" aria-label="fewer ${unit}">−</button><input type="number" inputmode="numeric" min="0" value="${r.n}" aria-label="${unit}"><button type="button" data-d="1" aria-label="more ${unit}">+</button></span>
+      <button type="button" class="rm" aria-label="remove">✕</button>
+    </div>`).join('');
+  const tot = rows.reduce((a,r) => a + (r.n||0), 0);
+  (kind==='cooler' ? $('#coolertot') : $('#taptot')).textContent = tot;
+  $$('.brow', el).forEach(row => {
+    const i = +row.dataset.i;
+    const inp = $('input', row);
+    $$('.stepper button', row).forEach(b => b.onclick = () => { rows[i].n = Math.max(0, (rows[i].n||0) + (+b.dataset.d)); renderRows(kind); });
+    inp.onchange = () => { rows[i].n = Math.max(0, parseInt(inp.value,10)||0); renderRows(kind); };
+    $('.rm', row).onclick = () => { rows.splice(i,1); renderRows(kind); renderChips(); };
+  });
+}
+function addBrand(kind, name){
+  const b = canonBrand(name); if (!b) return;
+  const rows = kind==='cooler' ? form.cooler : form.taps;
+  if (rows.some(r => r.brand.toLowerCase()===b.toLowerCase())) { toast(`${b} already listed`); return; }
+  rows.push({brand:b, n:1});
+  renderRows(kind); renderChips();
+}
+function renderChips(){
+  for (const kind of ['cooler','taps']) {
+    const rows = kind==='cooler' ? form.cooler : form.taps;
+    const have = new Set(rows.map(r => r.brand.toLowerCase()));
+    const list = []; const seen = new Set();
+    for (const b of [...recentBrands(kind), ...COMMON_BRANDS]) { const k=b.toLowerCase(); if (!seen.has(k)) { seen.add(k); list.push(b); } }
+    const el = kind==='cooler' ? $('#coolerchips') : $('#tapchips');
+    el.innerHTML = list.slice(0, 14).filter(b => !have.has(b.toLowerCase())).map(b => `<button type="button" class="chip">${esc(b)}</button>`).join('');
+    $$('.chip', el).forEach(c => c.onclick = () => addBrand(kind, c.textContent));
+  }
+  const dl = $('#brandlist'); const names = new Set([...brandNames().values(), ...COMMON_BRANDS, ...kohlerList()]);
+  dl.innerHTML = Array.from(names).sort().map(b => `<option value="${esc(b)}">`).join('');
+}
+$('#cooleraddbtn').onclick = () => { addBrand('cooler', $('#cooleradd').value); $('#cooleradd').value=''; };
+$('#tapaddbtn').onclick = () => { addBrand('taps', $('#tapadd').value); $('#tapadd').value=''; };
+$('#cooleradd').addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); $('#cooleraddbtn').click(); } });
+$('#tapadd').addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); $('#tapaddbtn').click(); } });
+
+function renderPhotos(){
+  const el = $('#photos');
+  $$('.ph:not(.add)', el).forEach(n => n.remove());
+  for (const p of form.photos) {
+    const d = document.createElement('div'); d.className = 'ph';
+    d.innerHTML = `<img src="${p.url}" alt=""><button type="button" aria-label="remove photo">✕</button>`;
+    $('button', d).onclick = () => { form.photos = form.photos.filter(x => x!==p); renderPhotos(); };
+    $('img', d).onclick = () => openLightbox(p.url, form.currentId);
+    el.insertBefore(d, $('.ph.add', el));
+  }
+}
+$('#photoinput').addEventListener('change', async e => {
+  const files = Array.from(e.target.files||[]); e.target.value = '';
+  for (const f of files) {
+    try { const {blob,w,h} = await compressFile(f); form.photos.push({id:uid(), blob, w, h, url:URL.createObjectURL(blob)}); }
+    catch(err){ console.error(err); toast('Could not read photo'); }
+  }
+  renderPhotos();
+});
+
+function resetForm(keepType=false){
+  form.cooler = []; form.taps = []; form.photos.forEach(p => { if (!p.existing) URL.revokeObjectURL(p.url); }); form.photos = [];
+  form.editingKey = null; form.editingId = null;
+  if (!keepType) setType(null); else setType(form.type);
+  $('#stand').value = ''; $('#notes').value = ''; $('#formerr').hidden = true;
+  $('#cancelEdit').hidden = true; $('#savebtn').innerHTML = 'Save &amp; next location →';
+  renderRows('cooler'); renderRows('taps'); renderPhotos(); refreshBanner();
+}
+$('#clearform').onclick = () => { resetForm(); toast('Form cleared'); };
+$('#cancelEdit').onclick = () => { resetForm(); showView('log'); };
+
+$('#startbtn').onclick = () => {
+  const auditor = $('#auditor').value.trim(), event = $('#event').value.trim(), section = normSection($('#startsection').value);
+  if (!auditor || !event || !section) { toast('Fill in auditor, event and section'); return; }
+  Settings.set({auditor, event, section, started:true});
+  $('#startcard').hidden = true; $('#formcard').hidden = false; resetForm();
+};
+$('#changesec').onclick = () => {
+  const v = prompt('New section number (e.g. 126):', Settings.get().section||''); if (v==null) return;
+  const s = normSection(v); if (!s) return;
+  Settings.set({section:s}); form.editingKey = null; refreshBanner(); toast(`Now in section ${s}`);
+};
+$('#editid').onclick = () => {
+  const v = prompt('Override location number for this save (section-##):', form.currentId); if (v==null) return;
+  const m = String(v).trim().toUpperCase().match(/^([0-9A-Z ]+?)-(\d{1,3})$/); if (!m) { toast('Use the form 125-07'); return; }
+  form.overrideId = {section:normSection(m[1]), seq:parseInt(m[2],10)}; $('#locid').textContent = locId(form.overrideId.section, form.overrideId.seq); form.currentId = $('#locid').textContent;
+};
+
+async function saveLocation(){
+  const s = Settings.get(); const err = $('#formerr');
+  const type = form.type;
+  const cooler = (type==='cooler'||type==='both') ? form.cooler.filter(r => r.n>0) : [];
+  const taps = (type==='taps'||type==='both') ? form.taps.filter(r => r.n>0) : [];
+  const problems = [];
+  if (!type) problems.push('Pick what\'s here: Cooler, Taps or Both.');
+  if ((type==='cooler'||type==='both') && !cooler.length) problems.push('Add at least one cooler brand with facings.');
+  if ((type==='taps'||type==='both') && !taps.length) problems.push('Add at least one tap brand with taps.');
+  if (problems.length) { err.hidden = false; err.textContent = problems.join(' '); return; }
+  err.hidden = true;
+
+  let section = s.section, seq, id, key, createdAt = Date.now();
+  if (form.editingKey) { const old = locations.find(l => l.key===form.editingKey); section = old.section; seq = old.seq; id = old.id; key = old.key; createdAt = old.createdAt; }
+  else if (form.overrideId) { section = form.overrideId.section; seq = form.overrideId.seq; id = locId(section, seq); key = locKey(s.event, id); form.overrideId = null; Settings.set({section}); }
+  else { seq = nextSeq(s.event, section); id = locId(section, seq); key = locKey(s.event, id); }
+
+  if (!form.editingKey && allLocations().some(l => l.key===key)) {
+    if (!confirm(`${id} already exists for this event. Overwrite it?`)) return;
+  }
+  // photos: persist new blobs
+  const photoIds = [];
+  for (const p of form.photos) {
+    if (!p.existing) await DB.putPhoto({id:p.id, locKey:key, blob:p.blob, w:p.w, h:p.h, createdAt:Date.now()});
+    photoIds.push(p.id);
+  }
+  if (form.editingKey) { // remove photos that were dropped
+    const old = await DB.photosFor(key); for (const op of old) if (!photoIds.includes(op.id)) await DB.deletePhoto(op.id);
+  }
+  const loc = { key, id, event:s.event, section, level:levelOf(section), seq, type, stand:$('#stand').value.trim(), cooler, taps, notes:$('#notes').value.trim(), photoIds, auditor:s.auditor, createdAt, updatedAt:Date.now() };
+  await DB.putLocation(loc);
+  locations = locations.filter(l => l.key!==key); locations.push(loc);
+  try { await navigator.storage?.persist?.(); } catch(e){}
+  toast(`${id} saved ✓`);
+  const wasEditing = !!form.editingKey;
+  resetForm(true);
+  if (wasEditing) showView('log');
+}
+$('#savebtn').onclick = () => saveLocation().catch(e => { console.error(e); $('#formerr').hidden=false; $('#formerr').textContent = 'Save failed: ' + e.message; });
+
+async function editLocation(key){
+  const l = locations.find(x => x.key===key); if (!l) { toast('That location is published, not on this device'); return; }
+  Settings.set({section:l.section});
+  $('#startcard').hidden = true; $('#formcard').hidden = false;
+  resetForm();
+  form.editingKey = key; form.editingId = l.id;
+  setType(l.type); form.cooler = l.cooler.map(r => ({...r})); form.taps = l.taps.map(r => ({...r}));
+  $('#stand').value = l.stand||''; $('#notes').value = l.notes||'';
+  const ph = await DB.photosFor(key);
+  form.photos = ph.map(p => ({id:p.id, blob:p.blob, w:p.w, h:p.h, url:URL.createObjectURL(p.blob), existing:true}));
+  $('#cancelEdit').hidden = false; $('#savebtn').textContent = `Save changes to ${l.id}`;
+  renderRows('cooler'); renderRows('taps'); renderPhotos(); refreshBanner();
+  showView('audit');
+}
+
+/* =====================================================================
+   LOG
+   ===================================================================== */
+const thumbCache = new Map();
+async function thumbUrl(loc){
+  if (!loc.photoIds?.length) { if (loc.photos?.length) return loc.photos[0].dataUrl; return null; }
+  const id = loc.photoIds[0];
+  if (thumbCache.has(id)) return thumbCache.get(id);
+  const p = await DB.getPhoto(id); if (!p) { if (loc.photos?.length) return loc.photos[0].dataUrl; return null; }
+  const u = URL.createObjectURL(p.blob); thumbCache.set(id, u); return u;
+}
+async function renderLog(){
+  const s = Settings.get();
+  const all = allLocations().sort((a,b) => (b.updatedAt||0)-(a.updatedAt||0));
+  const events = Array.from(new Set(all.map(l => l.event)));
+  const sel = $('#logfilter'); const cur = sel.value || s.event || '';
+  sel.innerHTML = `<option value="">All events</option>` + events.map(e => `<option value="${esc(e)}" ${e===cur?'selected':''}>${esc(e)}</option>`).join('');
+  sel.onchange = renderLog;
+  const list = sel.value ? all.filter(l => l.event===sel.value) : all;
+  $('#logsummary').textContent = `${list.length} location${list.length===1?'':'s'} · ${locations.length} on this device`;
+  $('#kohlerbrands').value = kohlerList().join('\n');
+  const el = $('#loglist');
+  if (!list.length) { el.innerHTML = '<div class="empty">Nothing saved yet.</div>'; return; }
+  el.innerHTML = list.map(l => {
+    const desc = [...l.cooler.map(r => `${r.brand} ${r.n}f`), ...l.taps.map(r => `${r.brand} ${r.n}t`)].join(' · ');
+    const onDevice = locations.some(x => x.key===l.key);
+    return `<div class="logitem" data-key="${esc(l.key)}">
+      <img class="th" alt="" hidden>
+      <div style="min-width:0;flex:1"><div class="id mono">${esc(l.id)}</div><div class="d">${esc(l.stand? l.stand+' · ':'')}${esc(desc)}</div><div class="d" style="font-size:11.5px">${esc(l.event)} · ${esc(l.auditor||'')} · ${new Date(l.updatedAt).toLocaleString()}${onDevice?'':' · published'}</div></div>
+      <div class="acts">${onDevice ? `<button data-act="edit">Edit</button><button data-act="del">Delete</button>` : ''}</div>
+    </div>`;
+  }).join('');
+  $$('.logitem', el).forEach(async it => {
+    const key = it.dataset.key; const l = list.find(x => x.key===key);
+    $$('button', it).forEach(b => b.onclick = async () => {
+      if (b.dataset.act==='edit') editLocation(key);
+      else if (confirm(`Delete ${l.id}? This cannot be undone.`)) {
+        const ph = await DB.photosFor(key); for (const p of ph) await DB.deletePhoto(p.id);
+        await DB.deleteLocation(key); locations = locations.filter(x => x.key!==key); renderLog(); refreshBanner(); toast(`${l.id} deleted`);
+      }
+    });
+    const u = await thumbUrl(l); if (u) { const im = $('img.th', it); im.src = u; im.hidden = false; im.onclick = () => openLightbox(u, l.id); }
+  });
+}
+$('#savekohler').onclick = () => { const list = $('#kohlerbrands').value.split('\n').map(s => s.trim()).filter(Boolean); Settings.set({kohler:list}); toast('Portfolio list saved'); };
+$('#wipebtn').onclick = async () => {
+  if (!confirm('Delete ALL audit data saved on this device? Export first if you need it.')) return;
+  if (!confirm('Really delete everything? This cannot be undone.')) return;
+  await DB.clear(); locations = []; Settings.set({started:false}); renderLog(); refreshBanner(); toast('Device data deleted');
+};
+
+/* ---------- export / import ---------- */
+async function buildExport(withPhotos){
+  const s = Settings.get();
+  const out = { format:'metlife-beer-audit', version:1, exportedAt:new Date().toISOString(), auditor:s.auditor||'', device:navigator.userAgent.slice(0,80), locations:[] };
+  for (const l of locations) {
+    const rec = {...l}; delete rec.photos;
+    if (withPhotos) {
+      rec.photos = [];
+      const ph = await DB.photosFor(l.key);
+      for (const p of ph) rec.photos.push({id:p.id, w:p.w, h:p.h, dataUrl: await blobToDataUrl(p.blob)});
+    }
+    out.locations.push(rec);
+  }
+  return out;
+}
+async function shareOrDownload(blob, filename){
+  const file = new File([blob], filename, {type:blob.type});
+  if (navigator.canShare && navigator.canShare({files:[file]})) {
+    try { await navigator.share({files:[file], title:filename}); return; } catch(e){ if (e.name==='AbortError') return; }
+  }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+}
+function stamp(){ const d = new Date(); return d.toISOString().slice(0,16).replace(/[:T]/g,'-'); }
+$('#exportbtn').onclick = async () => { if (!locations.length) return toast('Nothing to export'); toast('Packaging photos…'); const j = await buildExport(true); await shareOrDownload(new Blob([JSON.stringify(j)], {type:'application/json'}), `metlife-audit-${stamp()}.json`); };
+$('#exportlite').onclick = async () => { if (!locations.length) return toast('Nothing to export'); const j = await buildExport(false); await shareOrDownload(new Blob([JSON.stringify(j, null, 1)], {type:'application/json'}), `metlife-audit-${stamp()}-nophotos.json`); };
+$('#exportcsv').onclick = async () => {
+  const rows = [['Event','Location','Section','Level','Type','Stand','Kind','Brand','Count','Kohler','Notes','Auditor','Saved']];
+  for (const l of allLocations().sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric:true}))) {
+    for (const r of l.cooler) rows.push([l.event,l.id,l.section,levelShort(l.section),l.type,l.stand,'Cooler facings',r.brand,r.n,isKohler(r.brand)?'Y':'N',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
+    for (const r of l.taps) rows.push([l.event,l.id,l.section,levelShort(l.section),l.type,l.stand,'Taps',r.brand,r.n,isKohler(r.brand)?'Y':'N',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
+  }
+  const csv = rows.map(r => r.map(v => `"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  await shareOrDownload(new Blob([csv], {type:'text/csv'}), `metlife-audit-${stamp()}.csv`);
+};
+async function importData(json){
+  if (!json || json.format!=='metlife-beer-audit' || !Array.isArray(json.locations)) throw new Error('Not a MetLife audit export');
+  let added = 0, updated = 0, skipped = 0;
+  for (const rec of json.locations) {
+    const key = rec.key || locKey(rec.event, rec.id);
+    const existing = locations.find(l => l.key===key);
+    if (existing && (existing.updatedAt||0) >= (rec.updatedAt||0)) { skipped++; continue; }
+    const photoIds = [];
+    if (Array.isArray(rec.photos)) for (const p of rec.photos) { if (!p.dataUrl) continue; const blob = await dataUrlToBlob(p.dataUrl); const id = p.id || uid(); await DB.putPhoto({id, locKey:key, blob, w:p.w, h:p.h, createdAt:Date.now()}); photoIds.push(id); }
+    else if (Array.isArray(rec.photoIds) && existing) photoIds.push(...existing.photoIds);
+    const loc = {...rec, key, level:levelOf(rec.section), photoIds, cooler:rec.cooler||[], taps:rec.taps||[]}; delete loc.photos;
+    await DB.putLocation(loc);
+    locations = locations.filter(l => l.key!==key); locations.push(loc);
+    existing ? updated++ : added++;
+  }
+  return {added, updated, skipped};
+}
+$('#importinput').addEventListener('change', async e => {
+  const files = Array.from(e.target.files||[]); e.target.value = '';
+  let tot = {added:0, updated:0, skipped:0};
+  for (const f of files) { try { const r = await importData(JSON.parse(await f.text())); for (const k in tot) tot[k]+=r[k]; } catch(err){ alert(`${f.name}: ${err.message}`); } }
+  toast(`Imported: ${tot.added} new, ${tot.updated} updated, ${tot.skipped} unchanged`); renderLog(); refreshBanner();
+});
+
+/* =====================================================================
+   LIGHTBOX
+   ===================================================================== */
+function openLightbox(src, cap){ $('#lbimg').src = src; $('#lbcap').textContent = cap||''; $('#lightbox').hidden = false; }
+$('#lbclose').onclick = () => { $('#lightbox').hidden = true; };
+$('#lightbox').onclick = e => { if (e.target.id==='lightbox' || e.target.id==='lbimg') $('#lightbox').hidden = true; };
+document.addEventListener('keydown', e => { if (e.key==='Escape') $('#lightbox').hidden = true; });
+
+/* =====================================================================
+   ANALYTICS
+   ===================================================================== */
+function computeStats(locs){
+  const st = { total:locs.length, coolerLocs:0, tapLocs:0, facings:0, taps:0, brands:new Map(), sections:new Map(), levels:new Map(), auditors:new Set(), events:new Set(), photos:0 };
+  const B = name => { if (!st.brands.has(name)) st.brands.set(name, {name, facings:0, taps:0, locs:new Set(), coolerLocs:new Set(), tapLocs:new Set(), kohler:isKohler(name)}); return st.brands.get(name); };
+  const G = (map, key, extra) => { if (!map.has(key)) map.set(key, Object.assign({key, locs:0, coolerLocs:0, tapLocs:0, facings:0, taps:0, brands:new Map(), photos:0}, extra)); return map.get(key); };
+  for (const l of locs) {
+    st.auditors.add(l.auditor||''); st.events.add(l.event);
+    const nPh = (l.photoIds?.length || l.photos?.length || 0); st.photos += nPh;
+    const hasC = l.cooler?.length>0, hasT = l.taps?.length>0;
+    if (hasC) st.coolerLocs++; if (hasT) st.tapLocs++;
+    const sec = G(st.sections, l.section, {level:levelOf(l.section), locations:[]}); sec.locs++; sec.photos += nPh; sec.locations.push(l);
+    const lv = G(st.levels, levelOf(l.section), {sections:new Set()}); lv.locs++; lv.sections.add(l.section); lv.photos += nPh;
+    if (hasC) { sec.coolerLocs++; lv.coolerLocs++; } if (hasT) { sec.tapLocs++; lv.tapLocs++; }
+    const bump = (g, brand, f, t) => { const b = g.brands.get(brand) || {facings:0, taps:0, locs:new Set()}; b.facings+=f; b.taps+=t; b.locs.add(l.key); g.brands.set(brand, b); };
+    for (const r of l.cooler||[]) { const b = B(r.brand); b.facings += r.n; b.locs.add(l.key); b.coolerLocs.add(l.key); st.facings += r.n; sec.facings += r.n; lv.facings += r.n; bump(sec, r.brand, r.n, 0); bump(lv, r.brand, r.n, 0); }
+    for (const r of l.taps||[]) { const b = B(r.brand); b.taps += r.n; b.locs.add(l.key); b.tapLocs.add(l.key); st.taps += r.n; sec.taps += r.n; lv.taps += r.n; bump(sec, r.brand, 0, r.n); bump(lv, r.brand, 0, r.n); }
+  }
+  const tot = st.facings + st.taps;
+  st.brandList = Array.from(st.brands.values()).map(b => ({
+    ...b, total:b.facings+b.taps,
+    brandShare: tot ? (b.facings+b.taps)/tot : 0,
+    facingsShare: st.facings ? b.facings/st.facings : 0,
+    draftShare: st.taps ? b.taps/st.taps : 0,
+    coolerShare: st.coolerLocs ? b.coolerLocs.size/st.coolerLocs : 0,
+    distribution: st.total ? b.locs.size/st.total : 0,
+    draftDistribution: st.tapLocs ? b.tapLocs.size/st.tapLocs : 0,
+  })).sort((a,b) => b.total-a.total || a.name.localeCompare(b.name));
+  const kb = st.brandList.filter(b => b.kohler);
+  st.kohler = { facings:kb.reduce((a,b)=>a+b.facings,0), taps:kb.reduce((a,b)=>a+b.taps,0) };
+  st.kohler.share = tot ? (st.kohler.facings+st.kohler.taps)/tot : 0;
+  st.kohler.locs = new Set(kb.flatMap(b => Array.from(b.locs))).size;
+  for (const g of [...st.sections.values(), ...st.levels.values()]) {
+    const t = g.facings + g.taps; g.total = t;
+    g.shares = Array.from(g.brands.entries()).map(([name,b]) => ({name, facings:b.facings, taps:b.taps, total:b.facings+b.taps, share: t ? (b.facings+b.taps)/t : 0, locs:b.locs.size, kohler:isKohler(name)})).sort((a,b) => b.total-a.total);
+    g.leader = g.shares[0] || null;
+    g.kohlerShare = t ? g.shares.filter(s => s.kohler).reduce((a,s) => a+s.total, 0)/t : 0;
+  }
+  return st;
+}
+
+/* ---------- brand colors: fixed by overall rank, never re-cycled ---------- */
+let colorMap = new Map();
+function assignColors(brandList){
+  colorMap = new Map();
+  brandList.slice(0, 8).forEach((b,i) => colorMap.set(b.name, `var(${SERIES[i]})`));
+}
+function colorOf(brand){ return colorMap.get(brand) || 'var(--s0)'; }
+function seqFill(v){
+  if (!(v>0)) return 'var(--map-empty)';
+  // --seq1..6 run light->dark on the light theme and dark->bright on the dark theme, so index = magnitude in both
+  const i = Math.min(SEQ.length-1, Math.floor(v*SEQ.length));
+  return `var(${SEQ[i]})`;
+}
+
+/* =====================================================================
+   STADIUM MAP (schematic)
+   ===================================================================== */
+const MAP = { W:1000, H:700, cx:500, cy:350, half:150,   // capsule track: 300px straight sidelines + semicircular ends
+  rings:[
+    {name:'Lower', from:101, to:149, R:152, d:58},   // R = centerline radius from the sideline segment, d = ring depth
+    {name:'Mezz',  from:201, to:250, R:222, d:56},
+    {name:'Upper', from:301, to:350, R:294, d:66},
+  ]};
+let mapBuilt = false; let selectedSection = null;
+// Point + outward normal on the capsule centerline at arclength s (0 = top center, increasing counter-clockwise on screen)
+function trackPoint(R, s){
+  const {cx, cy, half} = MAP; const P = 4*half + 2*Math.PI*R; s = ((s % P) + P) % P;
+  if (s < half) return {x:cx - s, y:cy - R, nx:0, ny:-1};
+  s -= half;
+  if (s < Math.PI*R) { const t = s/R; return {x:cx - half - R*Math.sin(t), y:cy - R*Math.cos(t), nx:-Math.sin(t), ny:-Math.cos(t)}; }
+  s -= Math.PI*R;
+  if (s < 2*half) return {x:cx - half + s, y:cy + R, nx:0, ny:1};
+  s -= 2*half;
+  if (s < Math.PI*R) { const t = s/R; return {x:cx + half + R*Math.sin(t), y:cy + R*Math.cos(t), nx:Math.sin(t), ny:Math.cos(t)}; }
+  s -= Math.PI*R;
+  return {x:cx + half - s, y:cy - R, nx:0, ny:-1};
+}
+function slicePath(R, d, s0, s1){
+  const K = 7, outer = [], inner = [];
+  for (let k=0;k<=K;k++) { const q = trackPoint(R, s0 + (s1-s0)*k/K); outer.push(`${(q.x+q.nx*d/2).toFixed(1)},${(q.y+q.ny*d/2).toFixed(1)}`); inner.push(`${(q.x-q.nx*d/2).toFixed(1)},${(q.y-q.ny*d/2).toFixed(1)}`); }
+  return 'M' + outer.join('L') + 'L' + inner.reverse().join('L') + 'Z';
+}
+function buildMap(){
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns,'svg'); svg.setAttribute('viewBox', `0 0 ${MAP.W} ${MAP.H}`); svg.setAttribute('role','img'); svg.setAttribute('aria-label','MetLife Stadium section map');
+  // field
+  const g = document.createElementNS(ns,'g');
+  const fld = document.createElementNS(ns,'rect'); fld.setAttribute('x', MAP.cx-MAP.half); fld.setAttribute('y', MAP.cy-70); fld.setAttribute('width',2*MAP.half); fld.setAttribute('height',140); fld.setAttribute('rx',10); fld.setAttribute('fill','var(--field)'); g.appendChild(fld);
+  for (const x of [MAP.cx-120, MAP.cx+120]) { const ez = document.createElementNS(ns,'line'); ez.setAttribute('x1',x); ez.setAttribute('x2',x); ez.setAttribute('y1',MAP.cy-70); ez.setAttribute('y2',MAP.cy+70); ez.setAttribute('stroke','var(--map-stroke)'); ez.setAttribute('stroke-width',2); g.appendChild(ez); }
+  const ft = document.createElementNS(ns,'text'); ft.setAttribute('x',MAP.cx); ft.setAttribute('y',MAP.cy); ft.setAttribute('class','fieldlbl'); ft.textContent = 'METLIFE STADIUM'; g.appendChild(ft);
+  svg.appendChild(g);
+  for (const ring of MAP.rings) {
+    const n = ring.to - ring.from + 1; const P = 4*MAP.half + 2*Math.PI*ring.R; const step = P/n;
+    for (let i=0;i<n;i++) {
+      const num = String(ring.from + i);
+      const s0 = (i-0.5)*step, s1 = (i+0.5)*step;   // section .01 centered at top, numbers increase counter-clockwise
+      const p = document.createElementNS(ns,'path'); p.setAttribute('d', slicePath(ring.R, ring.d, s0, s1)); p.setAttribute('class','sec'); p.dataset.sec = num;
+      svg.appendChild(p);
+      const q = trackPoint(ring.R, i*step);
+      const t = document.createElementNS(ns,'text'); t.setAttribute('x',q.x.toFixed(1)); t.setAttribute('y',q.y.toFixed(1)); t.setAttribute('class','seclbl'); t.dataset.lbl = num; t.textContent = num; svg.appendChild(t);
+    }
+  }
+  $('#mapwrap').appendChild(svg);
+  // interactions
+  const tip = $('#tooltip');
+  svg.addEventListener('pointermove', e => {
+    const p = e.target.closest?.('.sec'); if (!p || !currentStats) { tip.style.display='none'; return; }
+    const sec = currentStats.sections.get(sectionForKey(p.dataset.sec));
+    tip.innerHTML = sec ? tooltipHtml(sec) : `<b>Section ${p.dataset.sec}</b><div class="muted">Not audited</div>`;
+    tip.style.display = 'block';
+    const x = Math.min(window.innerWidth - 250, e.clientX + 14), y = Math.min(window.innerHeight - 160, e.clientY + 14);
+    tip.style.left = x+'px'; tip.style.top = y+'px';
+  });
+  svg.addEventListener('pointerleave', () => tip.style.display='none');
+  svg.addEventListener('click', e => { const p = e.target.closest?.('.sec'); if (!p) return; tip.style.display='none'; selectSection(sectionForKey(p.dataset.sec) || p.dataset.sec); });
+  mapBuilt = true;
+}
+function sectionForKey(k){ if (!currentStats) return null; for (const s of currentStats.sections.keys()) if (mapKeyOf(s)===k) return s; return null; }
+function tooltipHtml(sec){
+  const top = sec.shares.slice(0,4).map(s => `<div class="r"><span><i style="background:${colorOf(s.name)}"></i>${esc(s.name)}</span><span>${pct(s.share)}</span></div>`).join('');
+  return `<b>Section ${esc(sec.key)}</b><div class="muted">${esc(sec.level.replace(/ \(.*\)/,''))} · ${sec.locs} location${sec.locs===1?'':'s'} · ${sec.facings} facings · ${sec.taps} taps</div>${top}<div class="muted" style="margin-top:4px">Tap for detail</div>`;
+}
+function paintMap(st){
+  if (!mapBuilt) buildMap();
+  const mode = $('#mapmode').value; const brand = $('#mapbrand').value;
+  $('#mapbrand').hidden = mode!=='brand';
+  const maxLocs = Math.max(1, ...Array.from(st.sections.values()).map(s => s.locs));
+  const legend = $('#maplegend');
+  $$('.sec').forEach(p => {
+    const sec = st.sections.get(sectionForKey(p.dataset.sec));
+    const lbl = $(`text[data-lbl="${p.dataset.sec}"]`);
+    p.classList.toggle('sel', !!sec && sec.key===selectedSection);
+    p.classList.toggle('has', !!sec); lbl.classList.toggle('has', !!sec);
+    if (!sec) { p.style.fill = ''; return; }
+    if (mode==='coverage') p.style.fill = seqFill(sec.locs/maxLocs);
+    else if (mode==='leader') p.style.fill = sec.leader ? colorOf(sec.leader.name) : 'var(--s0)';
+    else if (mode==='kohler') p.style.fill = seqFill(sec.kohlerShare || 0.001);
+    else { const s = sec.shares.find(x => x.name===brand); p.style.fill = s ? seqFill(Math.max(0.05, s.share)) : 'var(--s0)'; }
+  });
+  const ramp = `<span class="ramp">${SEQ.map(c => `<i style="background:var(${c})"></i>`).join('')}</span>`;
+  if (mode==='coverage') legend.innerHTML = `<span>Fewer ${ramp} more locations audited (max ${maxLocs})</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
+  else if (mode==='leader') legend.innerHTML = st.brandList.slice(0,8).map(b => `<span><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}</span>`).join('') + `<span><i style="background:var(--s0)"></i>Other</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
+  else if (mode==='kohler') legend.innerHTML = `<span>0% ${ramp} 100% Kohler portfolio share of facings + taps</span>`;
+  else legend.innerHTML = `<span>0% ${ramp} 100% ${esc(brand)} share of facings + taps</span><span><i style="background:var(--s0)"></i>Audited, brand absent</span>`;
+  // sections not on the ring map (clubs, named areas, or numbers outside the rings)
+  const others = Array.from(st.sections.values()).filter(s => !$(`.sec[data-sec="${mapKeyOf(s.key)}"]`)).sort((a,b) => a.key.localeCompare(b.key, undefined, {numeric:true}));
+  $('#otherareas').innerHTML = others.length ? `<span class="note" style="align-self:center">Other areas:</span>` + others.map(s => `<button class="${s.key===selectedSection?'sel':''}" data-sec="${esc(s.key)}">${esc(s.key)} <span class="muted">· ${s.locs}</span></button>`).join('') : '';
+  $$('#otherareas button').forEach(b => b.onclick = () => selectSection(b.dataset.sec));
+}
+$('#mapmode').onchange = () => { if (currentStats) paintMap(currentStats); };
+$('#secjump').onchange = e => { if (e.target.value) { selectSection(e.target.value); e.target.value=''; } };
+$('#mapbrand').onchange = () => { if (currentStats) paintMap(currentStats); };
+
+/* ---------- section detail ---------- */
+const photoUrlCache = new Map();
+async function photoUrls(loc){
+  const out = [];
+  if (loc.photoIds?.length) for (const id of loc.photoIds) {
+    if (!photoUrlCache.has(id)) { const p = await DB.getPhoto(id); if (p) photoUrlCache.set(id, URL.createObjectURL(p.blob)); }
+    if (photoUrlCache.has(id)) out.push(photoUrlCache.get(id));
+  }
+  if (!out.length && loc.photos?.length) for (const p of loc.photos) if (p.dataUrl) out.push(p.dataUrl);
+  return out;
+}
+async function selectSection(key){
+  selectedSection = key;
+  if (currentStats) paintMap(currentStats);
+  const el = $('#secdetail'); const sec = currentStats?.sections.get(key);
+  if (!sec) { el.innerHTML = `<div class="hdr"><h2>Section ${esc(key)}</h2><span class="lv">${esc(levelShort(key))}</span></div><div class="empty">No locations audited in this section yet.</div>`; return; }
+  const locs = sec.locations.slice().sort((a,b) => a.seq-b.seq);
+  el.innerHTML = `
+    <div class="hdr"><h2>Section ${esc(sec.key)}</h2><span class="lv">${esc(sec.level)}</span></div>
+    <div class="stats"><span><b>${sec.locs}</b> location${sec.locs===1?'':'s'}</span><span><b>${sec.facings}</b> facings</span><span><b>${sec.taps}</b> taps</span><span><b>${pct(sec.kohlerShare)}</b> Kohler</span></div>
+    <div class="bars" style="margin-bottom:6px">${sec.shares.slice(0,6).map(s => `<div class="bar"><span class="n"><i style="background:${colorOf(s.name)}"></i>${esc(s.name)}</span><span class="t"><b style="width:${(s.share*100).toFixed(1)}%;background:${colorOf(s.name)}"></b></span><span class="v mono">${pct(s.share)}</span></div>`).join('')}</div>
+    ${locs.map(l => `
+      <div class="loccard" data-key="${esc(l.key)}">
+        <div class="top"><span class="id mono">${esc(l.id)}</span><span class="ty">${l.type==='both'?'🧊🍺 Cooler + taps':l.type==='taps'?'🍺 Taps':'🧊 Cooler'}</span>${l.stand?`<span class="st">${esc(l.stand)}</span>`:''}</div>
+        <div class="lines">
+          ${l.cooler.length ? `<h4>Cooler · ${l.cooler.reduce((a,r)=>a+r.n,0)} facings</h4>` + l.cooler.map(r => `<div><span><i style="background:${colorOf(r.brand)}"></i>${esc(r.brand)}</span><span class="cnt mono">${r.n} <small>facing${r.n===1?'':'s'}</small></span></div>`).join('') : ''}
+          ${l.taps.length ? `<h4>Draft · ${l.taps.reduce((a,r)=>a+r.n,0)} taps</h4>` + l.taps.map(r => `<div><span><i style="background:${colorOf(r.brand)}"></i>${esc(r.brand)}</span><span class="cnt mono">${r.n} <small>tap${r.n===1?'':'s'}</small></span></div>`).join('') : ''}
+        </div>
+        <div class="pics"></div>
+        ${l.notes ? `<div class="note">“${esc(l.notes)}”</div>` : ''}
+        <div class="who">${esc(l.auditor||'')} · ${new Date(l.updatedAt).toLocaleString()}</div>
+      </div>`).join('')}`;
+  for (const l of locs) {
+    const urls = await photoUrls(l); const pics = $(`.loccard[data-key="${CSS.escape(l.key)}"] .pics`, el); if (!pics) continue;
+    pics.innerHTML = urls.map(u => `<img src="${u}" alt="${esc(l.id)} photo" loading="lazy">`).join('') || `<span class="note">📷 No photo</span>`;
+    $$('img', pics).forEach(im => im.onclick = () => openLightbox(im.src, `${l.id}${l.stand?' · '+l.stand:''}`));
+  }
+  if (window.innerWidth < 900) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* =====================================================================
+   DASHBOARD RENDER
+   ===================================================================== */
+let currentStats = null;
+const METRIC_NOTES = {
+  brandShare:'Share of all cooler facings + tap handles audited.',
+  facingsShare:'Share of cooler facings only.',
+  draftShare:'Share of tap handles only.',
+  coolerShare:'Percent of cooler locations where the brand has at least one facing.',
+  distribution:'Percent of all audited locations (cooler or tap) carrying the brand.'
+};
+function dashFilters(){
+  const all = allLocations();
+  const events = Array.from(new Set(all.map(l => l.event))).sort();
+  const ef = $('#eventfilter'); const cur = ef.dataset.set ? ef.value : (Settings.get().event && events.includes(Settings.get().event) ? Settings.get().event : '');
+  ef.innerHTML = `<option value="">All events</option>` + events.map(e => `<option value="${esc(e)}" ${e===cur?'selected':''}>${esc(e)}</option>`).join(''); ef.dataset.set = '1';
+  ef.hidden = events.length < 2;
+  const lf = $('#levelfilter'); if (!lf.dataset.set) { lf.innerHTML = `<option value="">All levels</option>` + LEVELS.map(l => `<option value="${esc(l)}">${esc(l)}</option>`).join(''); lf.dataset.set='1'; }
+  return all.filter(l => (!ef.value || l.event===ef.value) && (!lf.value || levelOf(l.section)===lf.value));
+}
+$('#eventfilter').onchange = renderDashboard; $('#levelfilter').onchange = renderDashboard;
+$('#metricsel').onchange = () => currentStats && renderBrandBars(currentStats);
+$('#printbtn').onclick = () => window.print();
+
+function renderDashboard(){
+  const locs = dashFilters();
+  const st = computeStats(locs); currentStats = st;
+  const globalStats = computeStats(allLocations().filter(l => !$('#eventfilter').value || l.event===$('#eventfilter').value));
+  assignColors(globalStats.brandList);   // colors follow the brand across level filters
+  $('#dashempty').hidden = locs.length>0; $('#dashbody').hidden = !locs.length;
+  const ev = $('#eventfilter').value || Array.from(st.events).join(', ');
+  $('#dashsub').textContent = locs.length ? `${ev || 'All events'} · ${Array.from(st.auditors).filter(Boolean).join(', ') || 'auditor n/a'} · last save ${new Date(Math.max(...locs.map(l => l.updatedAt||0))).toLocaleString()}` : '';
+  if (!locs.length) return;
+  // KPIs
+  const lead = st.brandList[0];
+  $('#kpis').innerHTML = [
+    ['Locations audited', fmt(st.total), `${st.sections.size} sections · ${st.levels.size} level${st.levels.size===1?'':'s'}`],
+    ['Cooler facings', fmt(st.facings), `${st.coolerLocs} cooler locations`],
+    ['Tap handles', fmt(st.taps), `${st.tapLocs} draft locations`],
+    ['Brands seen', fmt(st.brandList.length), lead ? `#1 ${lead.name} · ${pct(lead.brandShare)}` : ''],
+    ['Kohler portfolio share', pct(st.kohler.share), `${fmt(st.kohler.facings)} facings · ${fmt(st.kohler.taps)} taps · in ${pct(st.total? st.kohler.locs/st.total:0)} of locations`],
+    ['Photos', fmt(st.photos), `${st.total ? pct(locs.filter(l => (l.photoIds?.length||l.photos?.length)).length/st.total) : '—'} of locations`],
+  ].map(([l,v,h]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="h">${h}</div></div>`).join('');
+  // map brand selector
+  const mb = $('#mapbrand'); const prev = mb.value;
+  mb.innerHTML = globalStats.brandList.map(b => `<option value="${esc(b.name)}" ${b.name===prev?'selected':''}>${esc(b.name)}</option>`).join('');
+  $('#secjump').innerHTML = '<option value="">Jump to section…</option>' + Array.from(st.sections.keys()).sort((a,b) => a.localeCompare(b, undefined, {numeric:true})).map(k => `<option value="${esc(k)}">${esc(k)} (${st.sections.get(k).locs})</option>`).join('');
+  paintMap(st);
+  if (selectedSection && st.sections.has(selectedSection)) selectSection(selectedSection);
+  else if (selectedSection) { $('#secdetail').innerHTML = `<div class="empty">Section ${esc(selectedSection)} is outside the current filter. Select another section on the map.</div>`; }
+  renderBrandBars(st);
+  renderStacks(st);
+  renderBrandTable(st);
+}
+function renderBrandBars(st){
+  const m = $('#metricsel').value; $('#metricnote').textContent = METRIC_NOTES[m];
+  const list = st.brandList.slice().sort((a,b) => b[m]-a[m] || b.total-a.total).slice(0, 15);
+  const max = Math.max(0.0001, ...list.map(b => b[m]));
+  $('#brandbars').innerHTML = list.map(b => `<div class="bar ${b.kohler?'kohler':''}" title="${esc(b.name)}: ${b.facings} facings, ${b.taps} taps, in ${b.locs.size} locations"><span class="n"><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}${b.kohler?'<span class="kb">KD</span>':''}</span><span class="t"><b style="width:${(b[m]/max*100).toFixed(1)}%;background:${colorOf(b.name)}"></b></span><span class="v mono">${pct(b[m])}</span></div>`).join('') || '<div class="empty">No brands yet.</div>';
+}
+function stackRow(name, sub, g, onclick){
+  const top8 = new Set(Array.from(colorMap.keys()));
+  let other = 0; const segs = [];
+  for (const s of g.shares) { if (top8.has(s.name)) segs.push(s); else other += s.share; }
+  segs.sort((a,b) => Array.from(colorMap.keys()).indexOf(a.name) - Array.from(colorMap.keys()).indexOf(b.name));
+  const html = segs.map(s => `<i style="width:${(s.share*100).toFixed(2)}%;background:${colorOf(s.name)}" title="${esc(s.name)} ${pct(s.share)} (${s.facings}f / ${s.taps}t)"></i>`).join('') + (other>0 ? `<i style="width:${(other*100).toFixed(2)}%;background:var(--s0)" title="Other ${pct(other)}"></i>` : '');
+  return `<div class="stack" ${onclick?`data-sec="${esc(name)}" style="cursor:pointer"`:''}><span class="n">${esc(name)}<small>${esc(sub)}</small></span><span class="s">${html}</span><span class="v mono" title="Kohler portfolio share">${pct(g.kohlerShare)}</span></div>`;
+}
+function renderStacks(st){
+  const lv = LEVELS.filter(l => st.levels.has(l)).map(l => st.levels.get(l));
+  $('#levelstack').innerHTML = `<div class="stack" style="padding:0 0 2px;font-size:11px;color:var(--ink-mute)"><span></span><span>Brand share of facings + taps</span><span style="text-align:right">KD share</span></div>` + lv.map(g => stackRow(g.key.replace(/ \(.*\)/,''), `${g.locs} loc · ${g.sections.size} sec · ${g.facings}f / ${g.taps}t`, g, false)).join('');
+  $('#stacklegend').innerHTML = st.brandList.slice(0,8).map(b => `<span><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}</span>`).join('') + `<span><i style="background:var(--s0)"></i>Other</span>`;
+  const secs = Array.from(st.sections.values()).sort((a,b) => a.key.localeCompare(b.key, undefined, {numeric:true}));
+  $('#seccount').textContent = `${secs.length} sections`;
+  $('#sectionstack').innerHTML = secs.map(g => stackRow(g.key, `${levelShort(g.key)} · ${g.locs} loc · ${g.facings}f / ${g.taps}t`, g, true)).join('');
+  $$('#sectionstack .stack[data-sec]').forEach(r => r.onclick = () => { selectSection(r.dataset.sec); $('#mapwrap').scrollIntoView({behavior:'smooth', block:'center'}); });
+}
+function renderBrandTable(st){
+  const rows = st.brandList.map(b => `<tr class="${b.kohler?'kohler':''}"><td><span style="display:inline-flex;align-items:center;gap:7px"><i style="width:9px;height:9px;border-radius:50%;background:${colorOf(b.name)};display:inline-block"></i>${esc(b.name)}${b.kohler?' <span class="pill">KD</span>':''}</span></td><td class="num">${b.facings}</td><td class="num">${b.taps}</td><td class="num">${pct(b.brandShare,1)}</td><td class="num">${pct(b.facingsShare,1)}</td><td class="num">${pct(b.draftShare,1)}</td><td class="num">${pct(b.coolerShare,1)}</td><td class="num">${b.locs.size}</td><td class="num">${pct(b.distribution,1)}</td></tr>`).join('');
+  $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand share</th><th class="num">Facings share</th><th class="num">Draft share</th><th class="num">Cooler share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+/* =====================================================================
+   DEMO DATA (?demo=1) — in memory only, never saved
+   ===================================================================== */
+function demoData(){
+  let seed = 7; const rnd = () => { seed = (seed*9301 + 49297) % 233280; return seed/233280; };
+  const pick = (arr, w) => { let r = rnd()*w.reduce((a,b)=>a+b,0); for (let i=0;i<arr.length;i++){ r -= w[i]; if (r<=0) return arr[i]; } return arr[arr.length-1]; };
+  const coolerB = ['Michelob Ultra','Modelo Especial','Coors Light','Bud Light','Miller Lite','Corona Extra','Heineken','Stella Artois','Blue Moon','Yuengling','White Claw','High Noon','Truly','Budweiser','Guinness'];
+  const coolerW = [30,22,16,12,8,8,6,4,4,4,5,4,3,4,2];
+  const tapB = ['Michelob Ultra','Coors Light','Modelo Especial','Bud Light','Blue Moon','Stella Artois','Guinness','Yuengling','Heineken','Goose Island IPA','Brooklyn Lager','Miller Lite'];
+  const tapW = [28,20,18,12,8,6,4,4,4,3,3,4];
+  const out = []; const ev = 'Demo · Giants vs. Cowboys · Sep 10, 2026';
+  const secs = [];
+  for (let s=101;s<=149;s+=2) secs.push(String(s)); for (let s=201;s<=250;s+=3) secs.push(String(s)); for (let s=301;s<=350;s+=2) secs.push(String(s)); secs.push('Coaches Club','MetLife Central','Toyota Club');
+  let t = Date.now() - 6*3600e3;
+  for (const section of secs) {
+    const n = 1 + Math.floor(rnd()*4);
+    for (let i=1;i<=n;i++) {
+      const type = pick(['cooler','taps','both'], section.startsWith('3') ? [70,10,20] : [45,20,35]);
+      const cooler = [], taps = [];
+      if (type!=='taps') { const k = 3 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(coolerB, coolerW); if (used.has(b)) continue; used.add(b); cooler.push({brand:b, n:1+Math.floor(rnd()*(b==='Michelob Ultra'?8:5))}); } }
+      if (type!=='cooler') { const k = 2 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(tapB, tapW); if (used.has(b)) continue; used.add(b); taps.push({brand:b, n:1+Math.floor(rnd()*3)}); } }
+      if (!cooler.length && type!=='taps') cooler.push({brand:'Michelob Ultra', n:4}); if (!taps.length && type!=='cooler') taps.push({brand:'Coors Light', n:2});
+      const id = locId(section, i); t += 90e3 + rnd()*120e3;
+      out.push({ key:locKey(ev,id), id, event:ev, section, level:levelOf(section), seq:i, type, stand: pick(['','Concessions','Portable cart','Bud Light Bar','Corona Cantina','Craft stand',''],[3,3,2,1,1,1,3]), cooler, taps, notes: rnd()<0.12 ? 'Cooler half-stocked, competitor POS on door' : '', photoIds:[], photos:[], auditor:'Chris P.', createdAt:t, updatedAt:t });
+    }
+  }
+  return out;
+}
+
+/* =====================================================================
+   PUBLISHED DATA (data/audit.json) + SW + BOOT
+   ===================================================================== */
+async function loadPublished(){
+  try {
+    const r = await fetch('data/audit.json', {cache:'no-store'}); if (!r.ok) return;
+    const j = await r.json(); if (j.format!=='metlife-beer-audit') return;
+    published = (j.locations||[]).map(rec => ({...rec, key:rec.key||locKey(rec.event, rec.id), level:levelOf(rec.section), cooler:rec.cooler||[], taps:rec.taps||[], photoIds:[], photos:rec.photos||[]}));
+  } catch(e){ /* no published file — fine */ }
+}
+async function boot(){
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  try { locations = await DB.allLocations(); } catch(e){ console.error(e); toast('Storage unavailable — data will not persist'); }
+  await loadPublished();
+  if (demoMode) { published = demoData(); $('#dashtitle').textContent = 'MetLife Beer Audit — demo data'; }
+  const s = Settings.get();
+  $('#auditor').value = s.auditor||''; $('#event').value = s.event||''; $('#startsection').value = s.section||'';
+  if (s.started && s.auditor && s.event && s.section) { $('#startcard').hidden = true; $('#formcard').hidden = false; }
+  resetForm();
+  const hash = location.hash.replace('#','');
+  showView(demoMode ? 'dash' : (['audit','log','dash'].includes(hash) ? hash : (locations.length || published.length ? (window.innerWidth>900 ? 'dash' : 'audit') : 'audit')));
+}
+boot();
+</script>
+</body>
+</html>

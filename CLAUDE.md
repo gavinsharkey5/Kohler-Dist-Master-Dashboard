@@ -85,3 +85,17 @@ The tracker's `generate.py` has a `reconcile()` that re-derives every
 account's taps from the raw sheet and HARD-FAILS the build on a mismatch or
 a mixed-date account. If a future export changes the Date/Time format, that
 check is what fires -- fix the parsing, never loosen the check.
+
+## MetLife Beer Audit is device-first, no generator (2026-09-09)
+
+`metlife-audit/` is a single-file phone form + dashboard for Chris
+Politano's stadium beer audit (cooler facings, taps, photos per
+location, auto-numbered 125-01, 125-02...). There is NO `generate.py`
+and no CSV to overwrite: captured data lives in IndexedDB on the
+auditor's phone until they export a JSON from the Log tab. To publish
+results, save that export as `metlife-audit/data/audit.json`, commit
+and push -- the dashboard fetches it on load and merges it with
+whatever is on the viewing device. Multiple auditors = import each
+phone's export on one device (newest edit per location wins), then
+export the combined file. `?demo=1` previews the dashboard with fake
+data; nothing in demo mode is saved. See `metlife-audit/README.txt`.
