@@ -90,7 +90,8 @@ check is what fires -- fix the parsing, never loosen the check.
 
 `metlife-audit/` is a single-file phone form + dashboard for Chris
 Politano's stadium beer audit (cooler facings, taps, photos per
-location, auto-numbered 125-01, 125-02...). There is NO `generate.py`
+location, auto-lettered 125-A, 125-B...; fixed Ours/Theirs brand
+pickers and a location-description picker). There is NO `generate.py`
 and no CSV to overwrite: captured data lives in IndexedDB on the
 auditor's phone until they export a JSON from the Log tab. To publish
 results, save that export as `metlife-audit/data/audit.json`, commit

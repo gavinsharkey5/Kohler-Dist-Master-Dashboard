@@ -111,6 +111,16 @@
   .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
   .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 12px;font-size:13.5px;font-weight:600;white-space:nowrap}
   .chip.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 18%,var(--card));}
+  .pickrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .pickrow select{padding:11px 12px;font-size:15px;font-weight:600;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:32px}
+  .pickrow select.ours{border-color:color-mix(in srgb,var(--accent) 60%,var(--line))}
+  .addrow .who{flex:0 0 auto;width:auto;padding:11px 10px}
+  .brow .nm small{display:block;font-weight:500;font-size:11px;color:var(--ink-soft)}
+  .seclocs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .seclocs button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:600;color:var(--ink);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seclocs button b{font-family:"Space Grotesk"}
+  .seclocs .lbl{font-size:12px;color:var(--ink-soft);align-self:center}
+  .logitem .id .dsc{font-family:"Inter";font-weight:500;font-size:13px;color:var(--ink-soft)}
   .addrow{display:flex;gap:8px;margin-top:10px}
   .addrow .in{flex:1;padding:11px 12px}
   .addrow .btn{padding:0 16px}
@@ -284,7 +294,7 @@
     <label class="f" for="event">Event / game</label>
     <input class="in" id="event" placeholder="e.g. Giants vs. Cowboys · Sep 10, 2026">
     <label class="f" for="startsection">Starting section</label>
-    <input class="in mono" id="startsection" inputmode="numeric" pattern="[0-9A-Za-z ]*" placeholder="e.g. 125" style="font-size:22px;font-family:'Space Grotesk';font-weight:700">
+    <input class="in mono" id="startsection" inputmode="numeric" pattern="[0-9A-Za-z ]*" placeholder="e.g. 125 → first location is 125-A" style="font-size:22px;font-family:'Space Grotesk';font-weight:700">
     <div class="btnrow"><button class="btn primary block" id="startbtn">Start audit →</button></div>
     <p class="note" style="margin-top:12px">Everything you capture is saved on this phone as you go (works without signal). Export from the Log tab when you're done.</p>
   </div>
@@ -292,35 +302,40 @@
   <div id="formcard" hidden>
     <div class="locbanner">
       <div>
-        <div class="id mono" id="locid">125-01</div>
+        <div class="id mono" id="locid">125-A</div>
+        <div class="meta" id="locdesc" hidden></div>
         <div class="meta"><span id="loclevel">Lower Level</span> · <button class="btn ghost" id="changesec" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Change section</button> <button class="btn ghost" id="editid" style="padding:2px 8px;min-height:0;font-size:12.5px;border-radius:8px">Edit #</button></div>
       </div>
       <div class="rt"><div class="n mono" id="sectiondone">0</div><div class="meta">in this section</div><div class="n mono" id="totaldone" style="margin-top:6px">0</div><div class="meta">total saved</div></div>
     </div>
 
+    <div class="seclocs" id="seclocs"></div>
+
     <div class="card" style="margin-top:12px">
-      <h2>What's here?</h2>
+      <label class="f" for="desc" style="margin-top:0">Location description</label>
+      <select class="in" id="desc"></select>
+      <input class="in" id="descother" list="desclist" placeholder="Describe this location (required)" autocomplete="off" hidden style="margin-top:8px">
+      <datalist id="desclist"></datalist>
+
+      <h2 style="margin-top:16px">What's here?</h2>
       <div class="seg" id="typeseg" style="margin-top:10px">
         <button data-type="cooler" aria-pressed="false"><span class="ic">🧊</span>Cooler</button>
         <button data-type="taps" aria-pressed="false"><span class="ic">🍺</span>Taps</button>
         <button data-type="both" aria-pressed="false"><span class="ic">🧊🍺</span>Both</button>
       </div>
 
-      <label class="f" for="stand">Stand / bar name <span class="muted" style="font-weight:500">(optional)</span></label>
-      <input class="in" id="stand" placeholder="e.g. Bud Light Bar, Concessions 125, Portable cart">
-
       <div class="brandbox" id="coolerbox" hidden>
         <h3>🧊 Cooler brands <span class="tot">Facings: <b id="coolertot" class="mono">0</b></span></h3>
         <div id="coolerrows"></div>
-        <div class="chips" id="coolerchips"></div>
-        <div class="addrow"><input class="in" id="cooleradd" list="brandlist" placeholder="Add brand…" autocomplete="off"><button class="btn" id="cooleraddbtn">Add</button></div>
+        <div class="pickrow"><select class="in ours" id="cooler-ours" aria-label="Add one of our brands"></select><select class="in" id="cooler-theirs" aria-label="Add a competitor brand"></select></div>
+        <div class="addrow" id="cooler-otherrow" hidden><input class="in" id="cooler-other" list="brandlist" placeholder="Brand name (required)" autocomplete="off"><select class="in who" id="cooler-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="cooler-otheradd">Add</button></div>
       </div>
 
       <div class="brandbox" id="tapbox" hidden>
         <h3>🍺 Tap brands <span class="tot">Taps: <b id="taptot" class="mono">0</b></span></h3>
         <div id="taprows"></div>
-        <div class="chips" id="tapchips"></div>
-        <div class="addrow"><input class="in" id="tapadd" list="brandlist" placeholder="Add brand…" autocomplete="off"><button class="btn" id="tapaddbtn">Add</button></div>
+        <div class="pickrow"><select class="in ours" id="taps-ours" aria-label="Add one of our brands"></select><select class="in" id="taps-theirs" aria-label="Add a competitor brand"></select></div>
+        <div class="addrow" id="taps-otherrow" hidden><input class="in" id="taps-other" list="brandlist" placeholder="Brand name (required)" autocomplete="off"><select class="in who" id="taps-otherwho"><option value="theirs">Theirs</option><option value="ours">Ours</option></select><button class="btn" id="taps-otheradd">Add</button></div>
       </div>
       <datalist id="brandlist"></datalist>
 
@@ -359,9 +374,8 @@
   </div>
   <div class="card">
     <h2>Settings</h2>
-    <label class="f" for="kohlerbrands">Kohler portfolio brands (one per line) — highlighted on the dashboard</label>
-    <textarea class="in" id="kohlerbrands" style="min-height:120px;font-size:14px"></textarea>
-    <div class="btnrow"><button class="btn" id="savekohler">Save portfolio list</button><button class="btn danger" id="wipebtn">Delete all data on this device…</button></div>
+    <p class="note">Brand lists (ours / theirs, cooler / tap) and location descriptions are fixed in the app. "Other" on any picker opens a write-in.</p>
+    <div class="btnrow"><button class="btn danger" id="wipebtn">Delete all data on this device…</button></div>
   </div>
 </section>
 
@@ -401,7 +415,7 @@
                 <option value="coverage">Color: locations audited</option>
                 <option value="leader">Color: leading brand</option>
                 <option value="brand">Color: brand share of…</option>
-                <option value="kohler">Color: Kohler portfolio share</option>
+                <option value="kohler">Color: our brands' share</option>
               </select>
               <select id="mapbrand" hidden></select>
               <select id="secjump"><option value="">Jump to section…</option></select>
@@ -451,7 +465,7 @@
               <dt>Cooler share</dt><dd>% of cooler locations where the brand has at least one facing.</dd>
               <dt>Distribution</dt><dd>% of all audited locations (cooler or tap) carrying the brand.</dd>
               <dt>Share by section / level</dt><dd>Brand share recomputed inside that section or level only.</dd>
-              <dt>Kohler portfolio</dt><dd>Brands in the editable list under Log → Settings, combined.</dd>
+              <dt>Our brands</dt><dd>Every brand added from an "Ours" picker (or written in as ours), combined.</dd>
             </dl>
           </details>
         </div>
@@ -488,8 +502,15 @@ const pct = (x, d=0) => (isFinite(x) ? (x*100).toFixed(d) + '%' : '—');
 const fmt = n => Number(n||0).toLocaleString('en-US');
 
 /* ---------- constants ---------- */
-const COMMON_BRANDS = ['Michelob Ultra','Bud Light','Budweiser','Coors Light','Miller Lite','Modelo Especial','Corona Extra','Corona Premier','Heineken','Heineken 0.0','Stella Artois','Blue Moon','Yuengling','Samuel Adams','Guinness','Pacifico','Dos Equis','Goose Island IPA','Brooklyn Lager','Lagunitas IPA','Voodoo Ranger','Kona Big Wave','Athletic Brewing','White Claw','High Noon','Truly','Twisted Tea','Nutrl','Cutwater','Surfside','Sierra Nevada','Peroni'];
-const DEFAULT_KOHLER = ['Coors Light','Miller Lite','Coors Banquet','Blue Moon','Vizzy','Topo Chico Hard Seltzer','Heineken','Heineken 0.0','Dos Equis','Amstel Light','Tecate','Corona Extra','Corona Premier','Corona Familiar','Modelo Especial','Modelo Negra','Pacifico','Victoria','Samuel Adams','Truly','Twisted Tea','Angry Orchard','Yuengling','Yuengling Flight','White Claw',"Mike's Hard",'Cayman Jack','Carbliss','Garage Beer','Keystone Ice','Keystone Light','Montauk','Other Half','Evil Genius','Peroni'];
+const BRANDS = {
+  cooler: { ours:['Corona','Modelo','Coors Light','Miller Lite','Sun Cruiser','Blue Moon','Athletic','Heineken','White Claw','Twisted Tea','New Belgium','Sierra Nevada','Montauk'],
+            theirs:['Guinness','High Noon','Spiked Ade','Michelob Ultra','Bud Light','Budweiser','Stella','Goose Island'] },
+  taps:   { ours:['Montauk','Heineken','Pacifico','Coors Light','Miller Lite','Corona Light','Corona Extra','Blue Moon','Modelo','Modelo Negra','New Belgium Fat Tire','Peroni','Pilsner Urquell'],
+            theirs:['Michelob Ultra','Goose Island','Guinness','Brooklyn','Bud Light','Budweiser','Stella'] }
+};
+const OURS = new Set([...BRANDS.cooler.ours, ...BRANDS.taps.ours].map(b => b.toLowerCase()));
+const ALL_BRANDS = Array.from(new Set([...BRANDS.cooler.ours, ...BRANDS.cooler.theirs, ...BRANDS.taps.ours, ...BRANDS.taps.theirs]));
+const DESCS = ['Corona Bar','Miller Lite Bar','Modelo Cantina','Nacho Stand','Burger Stand','Concession Stand','Portable Bar','Beer Cart'];
 const SERIES = ['--s1','--s2','--s3','--s4','--s5','--s6','--s7','--s8'];
 const SEQ = ['--seq1','--seq2','--seq3','--seq4','--seq5','--seq6'];
 const LEVELS = ['Lower Level (100s)','Mezzanine (200s)','Upper Level (300s)','Clubs & Other'];
@@ -506,7 +527,13 @@ function levelOf(section){
 function levelShort(section){ return levelOf(section).replace(/ \(.*\)/,''); }
 function mapKeyOf(section){ const m = String(section).match(/^\s*([0-9]{3})/); return m ? m[1] : null; }
 function normSection(s){ return String(s||'').trim().toUpperCase().replace(/\s+/g,' '); }
-function locId(section, seq){ return `${section}-${String(seq).padStart(2,'0')}`; }
+function seqToLetter(n){ let out=''; n = Math.max(1, n|0); while (n>0) { n--; out = String.fromCharCode(65 + n%26) + out; n = Math.floor(n/26); } return out; }
+function letterToSeq(str){ let n=0; for (const ch of String(str).toUpperCase()) n = n*26 + (ch.charCodeAt(0)-64); return n; }
+function locId(section, seq){ return `${section}-${seqToLetter(seq)}`; }          // 125-A, 125-B, ... 125-Z, 125-AA
+function descOf(l){ return l.desc || l.stand || ''; }
+function locLabel(l){ const d = descOf(l); return d ? `${l.id} — ${d}` : l.id; }
+function isOurs(brand){ return OURS.has(String(brand||'').toLowerCase()); }
+function rowOurs(r){ return typeof r.ours === 'boolean' ? r.ours : isOurs(r.brand); }
 function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 
 /* ---------- settings (localStorage) ---------- */
@@ -628,17 +655,10 @@ function canonBrand(name){
   const low = n.toLowerCase();
   const seen = brandNames();
   if (seen.has(low)) return seen.get(low);
-  const c = COMMON_BRANDS.find(b => b.toLowerCase()===low); if (c) return c;
-  const k = kohlerList().find(b => b.toLowerCase()===low); if (k) return k;
+  const c = ALL_BRANDS.find(b => b.toLowerCase()===low); if (c) return c;
   return n;
 }
-function kohlerList(){ const s = Settings.get(); return Array.isArray(s.kohler) ? s.kohler : DEFAULT_KOHLER; }
-function isKohler(brand){ const set = new Set(kohlerList().map(b => b.toLowerCase())); return set.has(String(brand).toLowerCase()); }
-function recentBrands(kind){
-  const cnt = new Map();
-  for (const l of allLocations()) for (const r of (kind==='cooler' ? (l.cooler||[]) : (l.taps||[]))) cnt.set(r.brand, (cnt.get(r.brand)||0)+1);
-  return Array.from(cnt.entries()).sort((a,b) => b[1]-a[1]).map(e => e[0]);
-}
+function customDescs(){ const set = new Set(); for (const l of allLocations()) { const d = descOf(l); if (d && !DESCS.includes(d)) set.add(d); } return Array.from(set).sort(); }
 
 function nextSeq(event, section){
   let max = 0;
@@ -652,8 +672,12 @@ function refreshBanner(){
   form.currentId = id;
   $('#locid').textContent = id;
   $('#loclevel').textContent = levelShort(section) + (form.editingKey ? ' · editing' : '');
-  const inSec = allLocations().filter(l => l.event===event && l.section===section).length;
-  $('#sectiondone').textContent = inSec;
+  const inSec = allLocations().filter(l => l.event===event && l.section===section).sort((a,b) => a.seq-b.seq);
+  $('#sectiondone').textContent = inSec.length;
+  const ld = $('#locdesc'); const editing = form.editingKey ? locations.find(l => l.key===form.editingKey) : null;
+  ld.hidden = !editing; ld.textContent = editing ? descOf(editing) : '';
+  $('#seclocs').innerHTML = inSec.length ? `<span class="lbl">Saved in ${esc(section)}:</span>` + inSec.map(l => `<button type="button" data-key="${esc(l.key)}" title="Edit ${esc(l.id)}"><b>${esc(l.id)}</b>${descOf(l)?' · '+esc(descOf(l)):''}${locations.some(x => x.key===l.key)?' ✎':''}</button>`).join('') : '';
+  $$('#seclocs button').forEach(b => b.onclick = () => editLocation(b.dataset.key));
   $('#totaldone').textContent = allLocations().filter(l => l.event===event).length;
   $('#logcount').textContent = locations.length ? `(${locations.length})` : '';
 }
@@ -662,7 +686,7 @@ function setType(t){
   $$('#typeseg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.type===t ? 'true' : 'false'));
   $('#coolerbox').hidden = !(t==='cooler' || t==='both');
   $('#tapbox').hidden = !(t==='taps' || t==='both');
-  renderChips();
+  refreshLists();
 }
 $$('#typeseg button').forEach(b => b.onclick = () => setType(b.dataset.type));
 
@@ -672,7 +696,7 @@ function renderRows(kind){
   const unit = kind==='cooler' ? 'facings' : 'taps';
   el.innerHTML = rows.map((r,i) => `
     <div class="brow" data-i="${i}">
-      <span class="nm"><span class="k" style="background:${isKohler(r.brand)?'var(--accent)':'var(--ink-mute)'}"></span>${esc(r.brand)}</span>
+      <span class="nm"><span class="k" style="background:${rowOurs(r)?'var(--accent)':'var(--ink-mute)'}"></span>${esc(r.brand)}<small>${rowOurs(r)?'Ours':'Theirs'}</small></span>
       <span class="stepper"><button type="button" data-d="-1" aria-label="fewer ${unit}">−</button><input type="number" inputmode="numeric" min="0" value="${r.n}" aria-label="${unit}"><button type="button" data-d="1" aria-label="more ${unit}">+</button></span>
       <button type="button" class="rm" aria-label="remove">✕</button>
     </div>`).join('');
@@ -683,34 +707,49 @@ function renderRows(kind){
     const inp = $('input', row);
     $$('.stepper button', row).forEach(b => b.onclick = () => { rows[i].n = Math.max(0, (rows[i].n||0) + (+b.dataset.d)); renderRows(kind); });
     inp.onchange = () => { rows[i].n = Math.max(0, parseInt(inp.value,10)||0); renderRows(kind); };
-    $('.rm', row).onclick = () => { rows.splice(i,1); renderRows(kind); renderChips(); };
+    $('.rm', row).onclick = () => { rows.splice(i,1); renderRows(kind); refreshLists(); };
   });
 }
-function addBrand(kind, name){
-  const b = canonBrand(name); if (!b) return;
+function addBrand(kind, name, ours){
+  const b = canonBrand(name); if (!b) return false;
   const rows = kind==='cooler' ? form.cooler : form.taps;
-  if (rows.some(r => r.brand.toLowerCase()===b.toLowerCase())) { toast(`${b} already listed`); return; }
-  rows.push({brand:b, n:1});
-  renderRows(kind); renderChips();
+  if (rows.some(r => r.brand.toLowerCase()===b.toLowerCase())) { toast(`${b} already listed`); return false; }
+  rows.push({brand:b, n:1, ours:!!ours});
+  renderRows(kind); refreshLists(); return true;
 }
-function renderChips(){
+// Four fixed pickers: cooler ours / theirs, tap ours / theirs. "Other" opens a required write-in.
+function buildPickers(){
   for (const kind of ['cooler','taps']) {
-    const rows = kind==='cooler' ? form.cooler : form.taps;
-    const have = new Set(rows.map(r => r.brand.toLowerCase()));
-    const list = []; const seen = new Set();
-    for (const b of [...recentBrands(kind), ...COMMON_BRANDS]) { const k=b.toLowerCase(); if (!seen.has(k)) { seen.add(k); list.push(b); } }
-    const el = kind==='cooler' ? $('#coolerchips') : $('#tapchips');
-    el.innerHTML = list.slice(0, 14).filter(b => !have.has(b.toLowerCase())).map(b => `<button type="button" class="chip">${esc(b)}</button>`).join('');
-    $$('.chip', el).forEach(c => c.onclick = () => addBrand(kind, c.textContent));
+    const ours = $(`#${kind}-ours`), theirs = $(`#${kind}-theirs`);
+    ours.innerHTML = `<option value="">+ Ours…</option>` + BRANDS[kind].ours.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join('');
+    theirs.innerHTML = `<option value="">+ Theirs…</option>` + BRANDS[kind].theirs.map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join('') + `<option value="__other">Other (write in)…</option>`;
+    const otherRow = $(`#${kind}-otherrow`), otherIn = $(`#${kind}-other`), otherWho = $(`#${kind}-otherwho`);
+    ours.onchange = () => { if (ours.value) addBrand(kind, ours.value, true); ours.value = ''; };
+    theirs.onchange = () => {
+      if (theirs.value==='__other') { otherRow.hidden = false; otherIn.value = ''; otherWho.value = 'theirs'; setTimeout(() => otherIn.focus(), 50); }
+      else if (theirs.value) addBrand(kind, theirs.value, false);
+      theirs.value = '';
+    };
+    const commit = () => { const v = otherIn.value.trim(); if (!v) { toast('Type the brand name'); otherIn.focus(); return; } if (addBrand(kind, v, otherWho.value==='ours')) { otherRow.hidden = true; otherIn.value = ''; } };
+    $(`#${kind}-otheradd`).onclick = commit;
+    otherIn.addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); commit(); } });
   }
-  const dl = $('#brandlist'); const names = new Set([...brandNames().values(), ...COMMON_BRANDS, ...kohlerList()]);
-  dl.innerHTML = Array.from(names).sort().map(b => `<option value="${esc(b)}">`).join('');
+  const d = $('#desc');
+  d.innerHTML = `<option value="">Select a description…</option>` + DESCS.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join('') + `<option value="__other">Other (write in)…</option>`;
+  d.onchange = () => { const o = $('#descother'); o.hidden = d.value!=='__other'; if (!o.hidden) setTimeout(() => o.focus(), 50); };
 }
-$('#cooleraddbtn').onclick = () => { addBrand('cooler', $('#cooleradd').value); $('#cooleradd').value=''; };
-$('#tapaddbtn').onclick = () => { addBrand('taps', $('#tapadd').value); $('#tapadd').value=''; };
-$('#cooleradd').addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); $('#cooleraddbtn').click(); } });
-$('#tapadd').addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); $('#tapaddbtn').click(); } });
-
+function refreshLists(){
+  const dl = $('#brandlist'); const names = new Set([...brandNames().values(), ...ALL_BRANDS]);
+  dl.innerHTML = Array.from(names).sort().map(b => `<option value="${esc(b)}">`).join('');
+  $('#desclist').innerHTML = customDescs().map(x => `<option value="${esc(x)}">`).join('');
+}
+function descValue(){ const d = $('#desc').value; return d==='__other' ? $('#descother').value.trim() : d; }
+function setDesc(v){
+  const d = $('#desc'), o = $('#descother');
+  if (!v) { d.value = ''; o.value = ''; o.hidden = true; return; }
+  if (DESCS.includes(v)) { d.value = v; o.value = ''; o.hidden = true; }
+  else { d.value = '__other'; o.value = v; o.hidden = false; }
+}
 function renderPhotos(){
   const el = $('#photos');
   $$('.ph:not(.add)', el).forEach(n => n.remove());
@@ -718,7 +757,7 @@ function renderPhotos(){
     const d = document.createElement('div'); d.className = 'ph';
     d.innerHTML = `<img src="${p.url}" alt=""><button type="button" aria-label="remove photo">✕</button>`;
     $('button', d).onclick = () => { form.photos = form.photos.filter(x => x!==p); renderPhotos(); };
-    $('img', d).onclick = () => openLightbox(p.url, form.currentId);
+    $('img', d).onclick = () => openLightbox(p.url, form.currentId + (descValue() ? ' — ' + descValue() : ''));
     el.insertBefore(d, $('.ph.add', el));
   }
 }
@@ -733,9 +772,10 @@ $('#photoinput').addEventListener('change', async e => {
 
 function resetForm(keepType=false){
   form.cooler = []; form.taps = []; form.photos.forEach(p => { if (!p.existing) URL.revokeObjectURL(p.url); }); form.photos = [];
-  form.editingKey = null; form.editingId = null;
+  form.editingKey = null; form.editingId = null; form.overrideId = null;
   if (!keepType) setType(null); else setType(form.type);
-  $('#stand').value = ''; $('#notes').value = ''; $('#formerr').hidden = true;
+  setDesc(''); $('#notes').value = ''; $('#formerr').hidden = true;
+  for (const kind of ['cooler','taps']) { $(`#${kind}-otherrow`).hidden = true; $(`#${kind}-other`).value=''; }
   $('#cancelEdit').hidden = true; $('#savebtn').innerHTML = 'Save &amp; next location →';
   renderRows('cooler'); renderRows('taps'); renderPhotos(); refreshBanner();
 }
@@ -751,12 +791,15 @@ $('#startbtn').onclick = () => {
 $('#changesec').onclick = () => {
   const v = prompt('New section number (e.g. 126):', Settings.get().section||''); if (v==null) return;
   const s = normSection(v); if (!s) return;
-  Settings.set({section:s}); form.editingKey = null; refreshBanner(); toast(`Now in section ${s}`);
+  Settings.set({section:s}); form.editingKey = null; form.overrideId = null; refreshBanner(); toast(`Now in section ${s} — next is ${locId(s, nextSeq(Settings.get().event, s))}`);
 };
 $('#editid').onclick = () => {
-  const v = prompt('Override location number for this save (section-##):', form.currentId); if (v==null) return;
-  const m = String(v).trim().toUpperCase().match(/^([0-9A-Z ]+?)-(\d{1,3})$/); if (!m) { toast('Use the form 125-07'); return; }
-  form.overrideId = {section:normSection(m[1]), seq:parseInt(m[2],10)}; $('#locid').textContent = locId(form.overrideId.section, form.overrideId.seq); form.currentId = $('#locid').textContent;
+  const v = prompt('Location ID (section-letter, e.g. 125-C):', form.currentId); if (v==null) return;
+  const m = String(v).trim().toUpperCase().match(/^([0-9A-Z ]+?)-([A-Z]{1,2}|\d{1,3})$/); if (!m) { toast('Use the form 125-C'); return; }
+  const section = normSection(m[1]); const seq = /^\d+$/.test(m[2]) ? parseInt(m[2],10) : letterToSeq(m[2]);
+  const id = locId(section, seq); const key = locKey(Settings.get().event, id);
+  if (allLocations().some(l => l.key===key && l.key!==form.editingKey)) { toast(`${id} already exists — open it from the list to edit`); return; }
+  form.overrideId = {section, seq}; form.currentId = id; $('#locid').textContent = id; $('#loclevel').textContent = levelShort(section) + (form.editingKey ? ' · editing' : '');
 };
 
 async function saveLocation(){
@@ -768,27 +811,35 @@ async function saveLocation(){
   if (!type) problems.push('Pick what\'s here: Cooler, Taps or Both.');
   if ((type==='cooler'||type==='both') && !cooler.length) problems.push('Add at least one cooler brand with facings.');
   if ((type==='taps'||type==='both') && !taps.length) problems.push('Add at least one tap brand with taps.');
-  if (problems.length) { err.hidden = false; err.textContent = problems.join(' '); return; }
+  const desc = descValue();
+  if (!desc) problems.unshift($('#desc').value==='__other' ? 'Write in the location description.' : 'Pick a location description.');
+  if (problems.length) { err.hidden = false; err.textContent = problems.join(' '); err.scrollIntoView({block:'center'}); return; }
   err.hidden = true;
 
-  let section = s.section, seq, id, key, createdAt = Date.now();
-  if (form.editingKey) { const old = locations.find(l => l.key===form.editingKey); section = old.section; seq = old.seq; id = old.id; key = old.key; createdAt = old.createdAt; }
-  else if (form.overrideId) { section = form.overrideId.section; seq = form.overrideId.seq; id = locId(section, seq); key = locKey(s.event, id); form.overrideId = null; Settings.set({section}); }
-  else { seq = nextSeq(s.event, section); id = locId(section, seq); key = locKey(s.event, id); }
+  const old = form.editingKey ? locations.find(l => l.key===form.editingKey) : null;
+  const event = old ? old.event : s.event;
+  let section = s.section, seq, createdAt = Date.now(), auditor = s.auditor;
+  if (form.overrideId) { section = form.overrideId.section; seq = form.overrideId.seq; if (!old) Settings.set({section}); }
+  else if (old) { section = old.section; seq = old.seq; }
+  else seq = nextSeq(event, section);
+  if (old) { createdAt = old.createdAt; auditor = old.auditor || auditor; }
+  const id = locId(section, seq), key = locKey(event, id);
+  form.overrideId = null;
 
-  if (!form.editingKey && allLocations().some(l => l.key===key)) {
-    if (!confirm(`${id} already exists for this event. Overwrite it?`)) return;
-  }
-  // photos: persist new blobs
+  // never two locations with the same ID in one audit
+  if (allLocations().some(l => l.key===key && l.key!==(old && old.key))) { err.hidden = false; err.textContent = `${id} already exists in this audit. Pick another letter with "Edit #", or open ${id} from the saved list to change it.`; return; }
+
+  // photos: persist new blobs; re-point existing ones if the ID changed
   const photoIds = [];
   for (const p of form.photos) {
-    if (!p.existing) await DB.putPhoto({id:p.id, locKey:key, blob:p.blob, w:p.w, h:p.h, createdAt:Date.now()});
+    if (!p.existing || (old && old.key!==key)) await DB.putPhoto({id:p.id, locKey:key, blob:p.blob, w:p.w, h:p.h, createdAt:Date.now()});
     photoIds.push(p.id);
   }
-  if (form.editingKey) { // remove photos that were dropped
-    const old = await DB.photosFor(key); for (const op of old) if (!photoIds.includes(op.id)) await DB.deletePhoto(op.id);
+  if (old) { // remove photos that were dropped, and the old record if the ID changed
+    for (const k of new Set([old.key, key])) { const ph = await DB.photosFor(k); for (const op of ph) if (!photoIds.includes(op.id)) await DB.deletePhoto(op.id); }
+    if (old.key!==key) { await DB.deleteLocation(old.key); locations = locations.filter(l => l.key!==old.key); }
   }
-  const loc = { key, id, event:s.event, section, level:levelOf(section), seq, type, stand:$('#stand').value.trim(), cooler, taps, notes:$('#notes').value.trim(), photoIds, auditor:s.auditor, createdAt, updatedAt:Date.now() };
+  const loc = { key, id, event, section, level:levelOf(section), seq, type, desc, cooler, taps, notes:$('#notes').value.trim(), photoIds, auditor, createdAt, updatedAt:Date.now() };
   await DB.putLocation(loc);
   locations = locations.filter(l => l.key!==key); locations.push(loc);
   try { await navigator.storage?.persist?.(); } catch(e){}
@@ -805,8 +856,8 @@ async function editLocation(key){
   $('#startcard').hidden = true; $('#formcard').hidden = false;
   resetForm();
   form.editingKey = key; form.editingId = l.id;
-  setType(l.type); form.cooler = l.cooler.map(r => ({...r})); form.taps = l.taps.map(r => ({...r}));
-  $('#stand').value = l.stand||''; $('#notes').value = l.notes||'';
+  setType(l.type); form.cooler = l.cooler.map(r => ({...r, ours:rowOurs(r)})); form.taps = l.taps.map(r => ({...r, ours:rowOurs(r)}));
+  setDesc(descOf(l)); $('#notes').value = l.notes||'';
   const ph = await DB.photosFor(key);
   form.photos = ph.map(p => ({id:p.id, blob:p.blob, w:p.w, h:p.h, url:URL.createObjectURL(p.blob), existing:true}));
   $('#cancelEdit').hidden = false; $('#savebtn').textContent = `Save changes to ${l.id}`;
@@ -834,7 +885,6 @@ async function renderLog(){
   sel.onchange = renderLog;
   const list = sel.value ? all.filter(l => l.event===sel.value) : all;
   $('#logsummary').textContent = `${list.length} location${list.length===1?'':'s'} · ${locations.length} on this device`;
-  $('#kohlerbrands').value = kohlerList().join('\n');
   const el = $('#loglist');
   if (!list.length) { el.innerHTML = '<div class="empty">Nothing saved yet.</div>'; return; }
   el.innerHTML = list.map(l => {
@@ -842,7 +892,7 @@ async function renderLog(){
     const onDevice = locations.some(x => x.key===l.key);
     return `<div class="logitem" data-key="${esc(l.key)}">
       <img class="th" alt="" hidden>
-      <div style="min-width:0;flex:1"><div class="id mono">${esc(l.id)}</div><div class="d">${esc(l.stand? l.stand+' · ':'')}${esc(desc)}</div><div class="d" style="font-size:11.5px">${esc(l.event)} · ${esc(l.auditor||'')} · ${new Date(l.updatedAt).toLocaleString()}${onDevice?'':' · published'}</div></div>
+      <div style="min-width:0;flex:1"><div class="id mono">${esc(l.id)}${descOf(l)?` <span class="dsc">— ${esc(descOf(l))}</span>`:''}</div><div class="d">${esc(desc)}</div><div class="d" style="font-size:11.5px">${esc(l.event)} · ${esc(l.auditor||'')} · ${new Date(l.updatedAt).toLocaleString()}${onDevice?'':' · published'}</div></div>
       <div class="acts">${onDevice ? `<button data-act="edit">Edit</button><button data-act="del">Delete</button>` : ''}</div>
     </div>`;
   }).join('');
@@ -858,7 +908,6 @@ async function renderLog(){
     const u = await thumbUrl(l); if (u) { const im = $('img.th', it); im.src = u; im.hidden = false; im.onclick = () => openLightbox(u, l.id); }
   });
 }
-$('#savekohler').onclick = () => { const list = $('#kohlerbrands').value.split('\n').map(s => s.trim()).filter(Boolean); Settings.set({kohler:list}); toast('Portfolio list saved'); };
 $('#wipebtn').onclick = async () => {
   if (!confirm('Delete ALL audit data saved on this device? Export first if you need it.')) return;
   if (!confirm('Really delete everything? This cannot be undone.')) return;
@@ -891,10 +940,10 @@ function stamp(){ const d = new Date(); return d.toISOString().slice(0,16).repla
 $('#exportbtn').onclick = async () => { if (!locations.length) return toast('Nothing to export'); toast('Packaging photos…'); const j = await buildExport(true); await shareOrDownload(new Blob([JSON.stringify(j)], {type:'application/json'}), `metlife-audit-${stamp()}.json`); };
 $('#exportlite').onclick = async () => { if (!locations.length) return toast('Nothing to export'); const j = await buildExport(false); await shareOrDownload(new Blob([JSON.stringify(j, null, 1)], {type:'application/json'}), `metlife-audit-${stamp()}-nophotos.json`); };
 $('#exportcsv').onclick = async () => {
-  const rows = [['Event','Location','Section','Level','Type','Stand','Kind','Brand','Count','Kohler','Notes','Auditor','Saved']];
+  const rows = [['Event','Location','Description','Section','Level','Type','Kind','Brand','Count','Ours/Theirs','Notes','Auditor','Saved']];
   for (const l of allLocations().sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric:true}))) {
-    for (const r of l.cooler) rows.push([l.event,l.id,l.section,levelShort(l.section),l.type,l.stand,'Cooler facings',r.brand,r.n,isKohler(r.brand)?'Y':'N',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
-    for (const r of l.taps) rows.push([l.event,l.id,l.section,levelShort(l.section),l.type,l.stand,'Taps',r.brand,r.n,isKohler(r.brand)?'Y':'N',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
+    for (const r of l.cooler) rows.push([l.event,l.id,descOf(l),l.section,levelShort(l.section),l.type,'Cooler facings',r.brand,r.n,rowOurs(r)?'Ours':'Theirs',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
+    for (const r of l.taps) rows.push([l.event,l.id,descOf(l),l.section,levelShort(l.section),l.type,'Taps',r.brand,r.n,rowOurs(r)?'Ours':'Theirs',l.notes,l.auditor,new Date(l.updatedAt).toISOString()]);
   }
   const csv = rows.map(r => r.map(v => `"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
   await shareOrDownload(new Blob([csv], {type:'text/csv'}), `metlife-audit-${stamp()}.csv`);
@@ -936,7 +985,7 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') $('#lightbox')
    ===================================================================== */
 function computeStats(locs){
   const st = { total:locs.length, coolerLocs:0, tapLocs:0, facings:0, taps:0, brands:new Map(), sections:new Map(), levels:new Map(), auditors:new Set(), events:new Set(), photos:0 };
-  const B = name => { if (!st.brands.has(name)) st.brands.set(name, {name, facings:0, taps:0, locs:new Set(), coolerLocs:new Set(), tapLocs:new Set(), kohler:isKohler(name)}); return st.brands.get(name); };
+  const B = name => { if (!st.brands.has(name)) st.brands.set(name, {name, facings:0, taps:0, locs:new Set(), coolerLocs:new Set(), tapLocs:new Set(), kohler:isOurs(name)}); return st.brands.get(name); };
   const G = (map, key, extra) => { if (!map.has(key)) map.set(key, Object.assign({key, locs:0, coolerLocs:0, tapLocs:0, facings:0, taps:0, brands:new Map(), photos:0}, extra)); return map.get(key); };
   for (const l of locs) {
     st.auditors.add(l.auditor||''); st.events.add(l.event);
@@ -946,9 +995,9 @@ function computeStats(locs){
     const sec = G(st.sections, l.section, {level:levelOf(l.section), locations:[]}); sec.locs++; sec.photos += nPh; sec.locations.push(l);
     const lv = G(st.levels, levelOf(l.section), {sections:new Set()}); lv.locs++; lv.sections.add(l.section); lv.photos += nPh;
     if (hasC) { sec.coolerLocs++; lv.coolerLocs++; } if (hasT) { sec.tapLocs++; lv.tapLocs++; }
-    const bump = (g, brand, f, t) => { const b = g.brands.get(brand) || {facings:0, taps:0, locs:new Set()}; b.facings+=f; b.taps+=t; b.locs.add(l.key); g.brands.set(brand, b); };
-    for (const r of l.cooler||[]) { const b = B(r.brand); b.facings += r.n; b.locs.add(l.key); b.coolerLocs.add(l.key); st.facings += r.n; sec.facings += r.n; lv.facings += r.n; bump(sec, r.brand, r.n, 0); bump(lv, r.brand, r.n, 0); }
-    for (const r of l.taps||[]) { const b = B(r.brand); b.taps += r.n; b.locs.add(l.key); b.tapLocs.add(l.key); st.taps += r.n; sec.taps += r.n; lv.taps += r.n; bump(sec, r.brand, 0, r.n); bump(lv, r.brand, 0, r.n); }
+    const bump = (g, brand, f, t, ours) => { const b = g.brands.get(brand) || {facings:0, taps:0, locs:new Set(), ours:false}; b.facings+=f; b.taps+=t; b.locs.add(l.key); b.ours = b.ours || ours; g.brands.set(brand, b); };
+    for (const r of l.cooler||[]) { const b = B(r.brand); if (rowOurs(r)) b.kohler = true; b.facings += r.n; b.locs.add(l.key); b.coolerLocs.add(l.key); st.facings += r.n; sec.facings += r.n; lv.facings += r.n; bump(sec, r.brand, r.n, 0, rowOurs(r)); bump(lv, r.brand, r.n, 0, rowOurs(r)); }
+    for (const r of l.taps||[]) { const b = B(r.brand); if (rowOurs(r)) b.kohler = true; b.taps += r.n; b.locs.add(l.key); b.tapLocs.add(l.key); st.taps += r.n; sec.taps += r.n; lv.taps += r.n; bump(sec, r.brand, 0, r.n, rowOurs(r)); bump(lv, r.brand, 0, r.n, rowOurs(r)); }
   }
   const tot = st.facings + st.taps;
   st.brandList = Array.from(st.brands.values()).map(b => ({
@@ -966,7 +1015,7 @@ function computeStats(locs){
   st.kohler.locs = new Set(kb.flatMap(b => Array.from(b.locs))).size;
   for (const g of [...st.sections.values(), ...st.levels.values()]) {
     const t = g.facings + g.taps; g.total = t;
-    g.shares = Array.from(g.brands.entries()).map(([name,b]) => ({name, facings:b.facings, taps:b.taps, total:b.facings+b.taps, share: t ? (b.facings+b.taps)/t : 0, locs:b.locs.size, kohler:isKohler(name)})).sort((a,b) => b.total-a.total);
+    g.shares = Array.from(g.brands.entries()).map(([name,b]) => ({name, facings:b.facings, taps:b.taps, total:b.facings+b.taps, share: t ? (b.facings+b.taps)/t : 0, locs:b.locs.size, kohler:b.ours})).sort((a,b) => b.total-a.total);
     g.leader = g.shares[0] || null;
     g.kohlerShare = t ? g.shares.filter(s => s.kohler).reduce((a,s) => a+s.total, 0)/t : 0;
   }
@@ -1053,7 +1102,9 @@ function buildMap(){
 function sectionForKey(k){ if (!currentStats) return null; for (const s of currentStats.sections.keys()) if (mapKeyOf(s)===k) return s; return null; }
 function tooltipHtml(sec){
   const top = sec.shares.slice(0,4).map(s => `<div class="r"><span><i style="background:${colorOf(s.name)}"></i>${esc(s.name)}</span><span>${pct(s.share)}</span></div>`).join('');
-  return `<b>Section ${esc(sec.key)}</b><div class="muted">${esc(sec.level.replace(/ \(.*\)/,''))} · ${sec.locs} location${sec.locs===1?'':'s'} · ${sec.facings} facings · ${sec.taps} taps</div>${top}<div class="muted" style="margin-top:4px">Tap for detail</div>`;
+  const locs = sec.locations.slice().sort((a,b) => a.seq-b.seq);
+  const ll = locs.slice(0,6).map(l => `<div class="r"><span><b style="font-size:12px">${esc(l.id)}</b></span><span class="muted">${esc(descOf(l))||'—'}</span></div>`).join('') + (locs.length>6 ? `<div class="muted">+${locs.length-6} more</div>` : '');
+  return `<b>Section ${esc(sec.key)}</b><div class="muted">${esc(sec.level.replace(/ \(.*\)/,''))} · ${sec.locs} location${sec.locs===1?'':'s'} · ${sec.facings} facings · ${sec.taps} taps</div><div style="margin:4px 0 6px;border-top:1px solid var(--line);padding-top:4px">${ll}</div>${top}<div class="muted" style="margin-top:4px">Tap for detail</div>`;
 }
 function paintMap(st){
   if (!mapBuilt) buildMap();
@@ -1075,7 +1126,7 @@ function paintMap(st){
   const ramp = `<span class="ramp">${SEQ.map(c => `<i style="background:var(${c})"></i>`).join('')}</span>`;
   if (mode==='coverage') legend.innerHTML = `<span>Fewer ${ramp} more locations audited (max ${maxLocs})</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
   else if (mode==='leader') legend.innerHTML = st.brandList.slice(0,8).map(b => `<span><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}</span>`).join('') + `<span><i style="background:var(--s0)"></i>Other</span><span><i style="background:var(--map-empty)"></i>Not audited</span>`;
-  else if (mode==='kohler') legend.innerHTML = `<span>0% ${ramp} 100% Kohler portfolio share of facings + taps</span>`;
+  else if (mode==='kohler') legend.innerHTML = `<span>0% ${ramp} 100% our brands' share of facings + taps</span>`;
   else legend.innerHTML = `<span>0% ${ramp} 100% ${esc(brand)} share of facings + taps</span><span><i style="background:var(--s0)"></i>Audited, brand absent</span>`;
   // sections not on the ring map (clubs, named areas, or numbers outside the rings)
   const others = Array.from(st.sections.values()).filter(s => !$(`.sec[data-sec="${mapKeyOf(s.key)}"]`)).sort((a,b) => a.key.localeCompare(b.key, undefined, {numeric:true}));
@@ -1105,11 +1156,11 @@ async function selectSection(key){
   const locs = sec.locations.slice().sort((a,b) => a.seq-b.seq);
   el.innerHTML = `
     <div class="hdr"><h2>Section ${esc(sec.key)}</h2><span class="lv">${esc(sec.level)}</span></div>
-    <div class="stats"><span><b>${sec.locs}</b> location${sec.locs===1?'':'s'}</span><span><b>${sec.facings}</b> facings</span><span><b>${sec.taps}</b> taps</span><span><b>${pct(sec.kohlerShare)}</b> Kohler</span></div>
+    <div class="stats"><span><b>${sec.locs}</b> location${sec.locs===1?'':'s'}</span><span><b>${sec.facings}</b> facings</span><span><b>${sec.taps}</b> taps</span><span><b>${pct(sec.kohlerShare)}</b> ours</span></div>
     <div class="bars" style="margin-bottom:6px">${sec.shares.slice(0,6).map(s => `<div class="bar"><span class="n"><i style="background:${colorOf(s.name)}"></i>${esc(s.name)}</span><span class="t"><b style="width:${(s.share*100).toFixed(1)}%;background:${colorOf(s.name)}"></b></span><span class="v mono">${pct(s.share)}</span></div>`).join('')}</div>
     ${locs.map(l => `
       <div class="loccard" data-key="${esc(l.key)}">
-        <div class="top"><span class="id mono">${esc(l.id)}</span><span class="ty">${l.type==='both'?'🧊🍺 Cooler + taps':l.type==='taps'?'🍺 Taps':'🧊 Cooler'}</span>${l.stand?`<span class="st">${esc(l.stand)}</span>`:''}</div>
+        <div class="top"><span class="id mono">${esc(l.id)}</span>${descOf(l)?`<span class="st" style="font-weight:600;color:var(--ink)">— ${esc(descOf(l))}</span>`:''}<span class="ty">${l.type==='both'?'🧊🍺 Cooler + taps':l.type==='taps'?'🍺 Taps':'🧊 Cooler'}</span></div>
         <div class="lines">
           ${l.cooler.length ? `<h4>Cooler · ${l.cooler.reduce((a,r)=>a+r.n,0)} facings</h4>` + l.cooler.map(r => `<div><span><i style="background:${colorOf(r.brand)}"></i>${esc(r.brand)}</span><span class="cnt mono">${r.n} <small>facing${r.n===1?'':'s'}</small></span></div>`).join('') : ''}
           ${l.taps.length ? `<h4>Draft · ${l.taps.reduce((a,r)=>a+r.n,0)} taps</h4>` + l.taps.map(r => `<div><span><i style="background:${colorOf(r.brand)}"></i>${esc(r.brand)}</span><span class="cnt mono">${r.n} <small>tap${r.n===1?'':'s'}</small></span></div>`).join('') : ''}
@@ -1121,7 +1172,7 @@ async function selectSection(key){
   for (const l of locs) {
     const urls = await photoUrls(l); const pics = $(`.loccard[data-key="${CSS.escape(l.key)}"] .pics`, el); if (!pics) continue;
     pics.innerHTML = urls.map(u => `<img src="${u}" alt="${esc(l.id)} photo" loading="lazy">`).join('') || `<span class="note">📷 No photo</span>`;
-    $$('img', pics).forEach(im => im.onclick = () => openLightbox(im.src, `${l.id}${l.stand?' · '+l.stand:''}`));
+    $$('img', pics).forEach(im => im.onclick = () => openLightbox(im.src, locLabel(l)));
   }
   if (window.innerWidth < 900) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
@@ -1166,7 +1217,7 @@ function renderDashboard(){
     ['Cooler facings', fmt(st.facings), `${st.coolerLocs} cooler locations`],
     ['Tap handles', fmt(st.taps), `${st.tapLocs} draft locations`],
     ['Brands seen', fmt(st.brandList.length), lead ? `#1 ${lead.name} · ${pct(lead.brandShare)}` : ''],
-    ['Kohler portfolio share', pct(st.kohler.share), `${fmt(st.kohler.facings)} facings · ${fmt(st.kohler.taps)} taps · in ${pct(st.total? st.kohler.locs/st.total:0)} of locations`],
+    ['Our brands share', pct(st.kohler.share), `${fmt(st.kohler.facings)} facings · ${fmt(st.kohler.taps)} taps · in ${pct(st.total? st.kohler.locs/st.total:0)} of locations`],
     ['Photos', fmt(st.photos), `${st.total ? pct(locs.filter(l => (l.photoIds?.length||l.photos?.length)).length/st.total) : '—'} of locations`],
   ].map(([l,v,h]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="h">${h}</div></div>`).join('');
   // map brand selector
@@ -1184,7 +1235,7 @@ function renderBrandBars(st){
   const m = $('#metricsel').value; $('#metricnote').textContent = METRIC_NOTES[m];
   const list = st.brandList.slice().sort((a,b) => b[m]-a[m] || b.total-a.total).slice(0, 15);
   const max = Math.max(0.0001, ...list.map(b => b[m]));
-  $('#brandbars').innerHTML = list.map(b => `<div class="bar ${b.kohler?'kohler':''}" title="${esc(b.name)}: ${b.facings} facings, ${b.taps} taps, in ${b.locs.size} locations"><span class="n"><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}${b.kohler?'<span class="kb">KD</span>':''}</span><span class="t"><b style="width:${(b[m]/max*100).toFixed(1)}%;background:${colorOf(b.name)}"></b></span><span class="v mono">${pct(b[m])}</span></div>`).join('') || '<div class="empty">No brands yet.</div>';
+  $('#brandbars').innerHTML = list.map(b => `<div class="bar ${b.kohler?'kohler':''}" title="${esc(b.name)}: ${b.facings} facings, ${b.taps} taps, in ${b.locs.size} locations"><span class="n"><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}${b.kohler?'<span class="kb">OURS</span>':''}</span><span class="t"><b style="width:${(b[m]/max*100).toFixed(1)}%;background:${colorOf(b.name)}"></b></span><span class="v mono">${pct(b[m])}</span></div>`).join('') || '<div class="empty">No brands yet.</div>';
 }
 function stackRow(name, sub, g, onclick){
   const top8 = new Set(Array.from(colorMap.keys()));
@@ -1192,11 +1243,11 @@ function stackRow(name, sub, g, onclick){
   for (const s of g.shares) { if (top8.has(s.name)) segs.push(s); else other += s.share; }
   segs.sort((a,b) => Array.from(colorMap.keys()).indexOf(a.name) - Array.from(colorMap.keys()).indexOf(b.name));
   const html = segs.map(s => `<i style="width:${(s.share*100).toFixed(2)}%;background:${colorOf(s.name)}" title="${esc(s.name)} ${pct(s.share)} (${s.facings}f / ${s.taps}t)"></i>`).join('') + (other>0 ? `<i style="width:${(other*100).toFixed(2)}%;background:var(--s0)" title="Other ${pct(other)}"></i>` : '');
-  return `<div class="stack" ${onclick?`data-sec="${esc(name)}" style="cursor:pointer"`:''}><span class="n">${esc(name)}<small>${esc(sub)}</small></span><span class="s">${html}</span><span class="v mono" title="Kohler portfolio share">${pct(g.kohlerShare)}</span></div>`;
+  return `<div class="stack" ${onclick?`data-sec="${esc(name)}" style="cursor:pointer"`:''}><span class="n">${esc(name)}<small>${esc(sub)}</small></span><span class="s">${html}</span><span class="v mono" title="Our brands' share">${pct(g.kohlerShare)}</span></div>`;
 }
 function renderStacks(st){
   const lv = LEVELS.filter(l => st.levels.has(l)).map(l => st.levels.get(l));
-  $('#levelstack').innerHTML = `<div class="stack" style="padding:0 0 2px;font-size:11px;color:var(--ink-mute)"><span></span><span>Brand share of facings + taps</span><span style="text-align:right">KD share</span></div>` + lv.map(g => stackRow(g.key.replace(/ \(.*\)/,''), `${g.locs} loc · ${g.sections.size} sec · ${g.facings}f / ${g.taps}t`, g, false)).join('');
+  $('#levelstack').innerHTML = `<div class="stack" style="padding:0 0 2px;font-size:11px;color:var(--ink-mute)"><span></span><span>Brand share of facings + taps</span><span style="text-align:right">Ours</span></div>` + lv.map(g => stackRow(g.key.replace(/ \(.*\)/,''), `${g.locs} loc · ${g.sections.size} sec · ${g.facings}f / ${g.taps}t`, g, false)).join('');
   $('#stacklegend').innerHTML = st.brandList.slice(0,8).map(b => `<span><i style="background:${colorOf(b.name)}"></i>${esc(b.name)}</span>`).join('') + `<span><i style="background:var(--s0)"></i>Other</span>`;
   const secs = Array.from(st.sections.values()).sort((a,b) => a.key.localeCompare(b.key, undefined, {numeric:true}));
   $('#seccount').textContent = `${secs.length} sections`;
@@ -1204,7 +1255,7 @@ function renderStacks(st){
   $$('#sectionstack .stack[data-sec]').forEach(r => r.onclick = () => { selectSection(r.dataset.sec); $('#mapwrap').scrollIntoView({behavior:'smooth', block:'center'}); });
 }
 function renderBrandTable(st){
-  const rows = st.brandList.map(b => `<tr class="${b.kohler?'kohler':''}"><td><span style="display:inline-flex;align-items:center;gap:7px"><i style="width:9px;height:9px;border-radius:50%;background:${colorOf(b.name)};display:inline-block"></i>${esc(b.name)}${b.kohler?' <span class="pill">KD</span>':''}</span></td><td class="num">${b.facings}</td><td class="num">${b.taps}</td><td class="num">${pct(b.brandShare,1)}</td><td class="num">${pct(b.facingsShare,1)}</td><td class="num">${pct(b.draftShare,1)}</td><td class="num">${pct(b.coolerShare,1)}</td><td class="num">${b.locs.size}</td><td class="num">${pct(b.distribution,1)}</td></tr>`).join('');
+  const rows = st.brandList.map(b => `<tr class="${b.kohler?'kohler':''}"><td><span style="display:inline-flex;align-items:center;gap:7px"><i style="width:9px;height:9px;border-radius:50%;background:${colorOf(b.name)};display:inline-block"></i>${esc(b.name)}${b.kohler?' <span class="pill">Ours</span>':''}</span></td><td class="num">${b.facings}</td><td class="num">${b.taps}</td><td class="num">${pct(b.brandShare,1)}</td><td class="num">${pct(b.facingsShare,1)}</td><td class="num">${pct(b.draftShare,1)}</td><td class="num">${pct(b.coolerShare,1)}</td><td class="num">${b.locs.size}</td><td class="num">${pct(b.distribution,1)}</td></tr>`).join('');
   $('#brandtable').innerHTML = `<thead><tr><th>Brand</th><th class="num">Facings</th><th class="num">Taps</th><th class="num">Brand share</th><th class="num">Facings share</th><th class="num">Draft share</th><th class="num">Cooler share</th><th class="num">Locations</th><th class="num">Distribution</th></tr></thead><tbody>${rows}</tbody>`;
 }
 
@@ -1214,10 +1265,10 @@ function renderBrandTable(st){
 function demoData(){
   let seed = 7; const rnd = () => { seed = (seed*9301 + 49297) % 233280; return seed/233280; };
   const pick = (arr, w) => { let r = rnd()*w.reduce((a,b)=>a+b,0); for (let i=0;i<arr.length;i++){ r -= w[i]; if (r<=0) return arr[i]; } return arr[arr.length-1]; };
-  const coolerB = ['Michelob Ultra','Modelo Especial','Coors Light','Bud Light','Miller Lite','Corona Extra','Heineken','Stella Artois','Blue Moon','Yuengling','White Claw','High Noon','Truly','Budweiser','Guinness'];
-  const coolerW = [30,22,16,12,8,8,6,4,4,4,5,4,3,4,2];
-  const tapB = ['Michelob Ultra','Coors Light','Modelo Especial','Bud Light','Blue Moon','Stella Artois','Guinness','Yuengling','Heineken','Goose Island IPA','Brooklyn Lager','Miller Lite'];
-  const tapW = [28,20,18,12,8,6,4,4,4,3,3,4];
+  const coolerB = ['Michelob Ultra','Modelo','Coors Light','Bud Light','Miller Lite','Corona','Heineken','Stella','Blue Moon','White Claw','High Noon','Twisted Tea','Budweiser','Guinness','Sun Cruiser'];
+  const coolerW = [30,22,16,12,8,8,6,4,4,5,4,3,4,2,3];
+  const tapB = ['Michelob Ultra','Coors Light','Modelo','Bud Light','Blue Moon','Stella','Guinness','Heineken','Goose Island','Brooklyn','Miller Lite','Pacifico','Peroni'];
+  const tapW = [28,20,18,12,8,6,4,4,3,3,4,3,2];
   const out = []; const ev = 'Demo · Giants vs. Cowboys · Sep 10, 2026';
   const secs = [];
   for (let s=101;s<=149;s+=2) secs.push(String(s)); for (let s=201;s<=250;s+=3) secs.push(String(s)); for (let s=301;s<=350;s+=2) secs.push(String(s)); secs.push('Coaches Club','MetLife Central','Toyota Club');
@@ -1227,11 +1278,11 @@ function demoData(){
     for (let i=1;i<=n;i++) {
       const type = pick(['cooler','taps','both'], section.startsWith('3') ? [70,10,20] : [45,20,35]);
       const cooler = [], taps = [];
-      if (type!=='taps') { const k = 3 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(coolerB, coolerW); if (used.has(b)) continue; used.add(b); cooler.push({brand:b, n:1+Math.floor(rnd()*(b==='Michelob Ultra'?8:5))}); } }
-      if (type!=='cooler') { const k = 2 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(tapB, tapW); if (used.has(b)) continue; used.add(b); taps.push({brand:b, n:1+Math.floor(rnd()*3)}); } }
-      if (!cooler.length && type!=='taps') cooler.push({brand:'Michelob Ultra', n:4}); if (!taps.length && type!=='cooler') taps.push({brand:'Coors Light', n:2});
+      if (type!=='taps') { const k = 3 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(coolerB, coolerW); if (used.has(b)) continue; used.add(b); cooler.push({brand:b, n:1+Math.floor(rnd()*(b==='Michelob Ultra'?8:5)), ours:isOurs(b)}); } }
+      if (type!=='cooler') { const k = 2 + Math.floor(rnd()*5); const used = new Set(); for (let j=0;j<k;j++){ const b = pick(tapB, tapW); if (used.has(b)) continue; used.add(b); taps.push({brand:b, n:1+Math.floor(rnd()*3), ours:isOurs(b)}); } }
+      if (!cooler.length && type!=='taps') cooler.push({brand:'Michelob Ultra', n:4, ours:false}); if (!taps.length && type!=='cooler') taps.push({brand:'Coors Light', n:2, ours:true});
       const id = locId(section, i); t += 90e3 + rnd()*120e3;
-      out.push({ key:locKey(ev,id), id, event:ev, section, level:levelOf(section), seq:i, type, stand: pick(['','Concessions','Portable cart','Bud Light Bar','Corona Cantina','Craft stand',''],[3,3,2,1,1,1,3]), cooler, taps, notes: rnd()<0.12 ? 'Cooler half-stocked, competitor POS on door' : '', photoIds:[], photos:[], auditor:'Chris P.', createdAt:t, updatedAt:t });
+      out.push({ key:locKey(ev,id), id, event:ev, section, level:levelOf(section), seq:i, type, desc: pick([...DESCS,'Bud Light Bar','Craft Stand'],[2,1,2,2,2,5,3,3,1,1]), cooler, taps, notes: rnd()<0.12 ? 'Cooler half-stocked, competitor POS on door' : '', photoIds:[], photos:[], auditor:'Chris P.', createdAt:t, updatedAt:t });
     }
   }
   return out;
@@ -1244,12 +1295,28 @@ async function loadPublished(){
   try {
     const r = await fetch('data/audit.json', {cache:'no-store'}); if (!r.ok) return;
     const j = await r.json(); if (j.format!=='metlife-beer-audit') return;
-    published = (j.locations||[]).map(rec => ({...rec, key:rec.key||locKey(rec.event, rec.id), level:levelOf(rec.section), cooler:rec.cooler||[], taps:rec.taps||[], photoIds:[], photos:rec.photos||[]}));
+    published = (j.locations||[]).map(rec => ({...rec, key:rec.key||locKey(rec.event, rec.id), level:levelOf(rec.section), desc:descOf(rec), cooler:rec.cooler||[], taps:rec.taps||[], photoIds:[], photos:rec.photos||[]}));
   } catch(e){ /* no published file — fine */ }
 }
+// One-time upgrade of records saved by the first version (125-01 numbering, "stand" field).
+async function migrate(){
+  for (const l of locations) {
+    let changed = false;
+    if (/-\d+$/.test(l.id)) {
+      const newId = locId(l.section, l.seq), newKey = locKey(l.event, newId);
+      if (!locations.some(x => x.key===newKey)) {
+        const ph = await DB.photosFor(l.key); for (const p of ph) await DB.putPhoto({...p, locKey:newKey});
+        await DB.deleteLocation(l.key); l.id = newId; l.key = newKey; changed = true;
+      }
+    }
+    if (!l.desc && l.stand) { l.desc = l.stand; delete l.stand; changed = true; }
+    if (changed) await DB.putLocation(l);
+  }
+}
 async function boot(){
+  buildPickers();
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
-  try { locations = await DB.allLocations(); } catch(e){ console.error(e); toast('Storage unavailable — data will not persist'); }
+  try { locations = await DB.allLocations(); await migrate(); } catch(e){ console.error(e); toast('Storage unavailable — data will not persist'); }
   await loadPublished();
   if (demoMode) { published = demoData(); $('#dashtitle').textContent = 'MetLife Beer Audit — demo data'; }
   const s = Settings.get();
