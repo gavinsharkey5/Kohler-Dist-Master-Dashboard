@@ -699,6 +699,28 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 FIFTH REFRESH -- Constellation Fall, all four categories
+Impact, Modelo Gaintain and Innovation from today's exports; Corona Gaintain
+was NOT in this batch, but the same RDE export ("Constellation Corona
+Gaintain FALL 2026 OFF w/ Goals") had already been re-pulled this morning
+for MPOs/off-prem/constellation_corona_gaintain.csv, one pull newer than the
+copy here, so that file was copied across rather than leaving one leg a day
+behind the other three. Same header, same 122 rows, values only. Treat those
+two files like the Keystone pair: when one moves, move the other.
+
+  house        3,713 -> 4,002 of 8,580 placements
+               Corona Gaintain 671 -> 719 · Modelo Gaintain 1305 -> 1398 ·
+               Impact 1484 -> 1605 · Innovation 253 -> 280
+               still 0 of 22 reps holding every category, day 9 of 91
+
+Every rep's offPct rose; the largest moves were Jim Heaney 35.5 -> 41.2,
+Dan Lagala 37.7 -> 43.5 and Javier Melo 55.2 -> 60.4, and Robin Feldman
+opened at 20.0 from 0. Dave Ehlers still leads at 64.2. All four exports
+kept their row counts and restated values only, which is how these
+windowed-placement files behave -- a same-row-count pull is not a stale
+file. The reconciliation check (rep total vs its own product rows, both
+columns) passed on all four.
+
 2026-09-09 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs); 2XO no-op.
 Exports run through 9/10 (one Montauk row and one Other Half draft row dated
 9/11). Every rep grew or held. Headlines:
