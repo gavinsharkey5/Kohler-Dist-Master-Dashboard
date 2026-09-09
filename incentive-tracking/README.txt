@@ -539,6 +539,60 @@ what you would guess from the summer program:
      row ("Goal: 105 (your 3/1/2026 - 5/31/2026)"), so nobody has to remember
      which is which.
 
+CONSTELLATION FALL -- ON-PREMISE RETENTION FILES (dropped 2026-09-09, NOT YET
+BUILT; the card is still off-premise only). Gavin's rules for these, verbatim
+in spirit, so the build follows them:
+
+  * "Buyer Count 3/1/2026 - 5/31/2026" IS THE GOAL for the fall distribution
+    period. "Buyer Count 9/1/2026 - 11/30/2026" is current distribution. Same
+    base-column-is-the-goal convention as the off-premise files above, but
+    the base window is SPRING 2026 (3/1-5/31), not fall 2025.
+  * Tracked at BRAND FAMILY level (Corona Extra, Corona Light, Modelo
+    Especial, Pacifico, ...), per rep. Buyers are the measure.
+  * DRAFT carries Units next to Buyer Count; "we are measuring buyers, but
+    the units are there to show if there is an actual unit in the account
+    and it wasn't an empty that was picked up." A buyer-count row with zero
+    or negative units in the current window is an empty-keg pickup, not
+    distribution. Packages carries no Units column.
+  * Two shapes per channel, both from RDE:
+      data/constellation_fall_draft_on_goals.csv      brand-family level: rep,
+      data/constellation_fall_packages_on_goals.csv   brand family, the two
+                                                      Buyer Count columns (+ two
+                                                      Units columns on draft).
+                                                      THE GOALS -- Gavin's first
+                                                      two files.
+      data/constellation_fall_draft_on.csv            customer + product level:
+      data/constellation_fall_packages_on.csv         the same columns plus
+                                                      Customer Num Name, Product
+                                                      Num Name, Load Sheet Date.
+                                                      THE ONGOING UPLOADS --
+                                                      Gavin will drop these two
+                                                      to refresh.
+    On 2026-09-09 the detail files reconcile to the brand-family files
+    exactly: distinct customers per rep + brand family match on BOTH columns
+    for every row (46 draft, 121 package rows, 0 mismatches). The detail
+    files therefore carry the goal column too; whether the goal is read from
+    them each refresh or frozen from the first pull is an open question
+    below. The detail draft file shows 57 current-window buyers with net
+    units <= 0 -- the empty pickups the units rule is for.
+  * Off-roster names in both: Chris Politano (MetLife), Office Tell Sell;
+    Chris Politano has current-window draft buyers and no goal.
+
+OPEN WITH GAVIN before building (asked 2026-09-09):
+  1. Goal bar -- 100% of the spring buyers, like the off-premise fall
+     categories, or the deck's 90%?
+  2. Freeze the goal from the first pull (the _goals files) or re-read it
+     from each detail upload? The 3/1-5/31 window is closed, so the numbers
+     only move when RDE reassigns an account between reps (Blackjack
+     Mulligans moved from Nick Melissari to Allison Scott on 9/9).
+  3. Score per brand family (each family retained on its own, like the
+     off-premise categories) or per rep total (all on-premise buyers vs all
+     goals)?
+  4. Draft units rule -- exclude a current-window buyer whose net units in
+     the window are <= 0? Confirm.
+  5. One card with off-premise + on-premise package + on-premise draft, or
+     separate cards?
+
 THE EXPORTS CHANGED SHAPE from the summer files. Those carry an explicit
 "( ... ) Goals" column with the goal on the rep-total row; these carry TWO
 windowed placement columns and no goal column at all, so the summer builder
