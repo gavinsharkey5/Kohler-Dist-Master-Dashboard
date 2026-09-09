@@ -699,6 +699,46 @@ Everything else moved upward: Garage Beer 16 scalars, Evil Genius 12, all up,
 none down. The only metrics that fell anywhere in this refresh are Dave
 Ehlers' three (placements, payout, placementPayout) and Jayson's target count.
 
+2026-09-09 THIRD REFRESH -- Garage Beer, Touchdowns & Tea, Evil Genius (Le Grand
+Noir no-op). Exports run through 9/10 (one Evil Genius row dated 9/11).
+Headlines:
+
+  garage_beer_president  house CE 7,432.69 -> 7,537.14 of 9,305. Every rep
+                         restated (same 29 rows, values only, as this export
+                         always does). TWO GROWTH FIGURES WENT DOWN: Derrick
+                         Laws 10.67 -> 5.00 (this-year CE restated 34.00 ->
+                         28.33, the shape of a return or credit) and Allison
+                         Scott 44.75 -> 42.46 because her LAST-YEAR base rose
+                         11.17 -> 13.46 while Nick Melissari's fell 28.54 ->
+                         26.25 -- the Blackjack Mulligans (Hawthorne)
+                         reassignment moved prior-year volume along with the
+                         account. Nobody changed tier.
+  touchdowns_tea         46 -> 54 new off-prem 12pk placements, 545 -> 664
+                         on-prem cases, trackable payout $1,235 -> $1,474.
+                         Anthony Palmisano 10 -> 14 placements ($229 -> $311),
+                         Allison Scott on-prem 128 -> 174 cases. Dylan Rubino
+                         opens with his first placement ($15); Dan Lagala his
+                         first on-prem cases ($10). +55 off rows / +53 on
+                         rows; the 8 that left are benign (below).
+  evil_genius            2 -> 3 new placements and the FIRST QUALIFIER: Dave
+                         Ehlers reaches 3 on Joes Beer Wine & Spirits (Stacy's
+                         Mom, 9/9), $0 -> $30. CE 35 vs 98 last September.
+                         Jaime Colonna's Cork Wines (Harrison) row is dated
+                         9/11 -- future-dated, a scheduled load sheet -- and is
+                         a reorder, so it moves only his caseVolume 1 -> 2.
+  le_grand_noir          export set-identical (30 rows), 30 of 70 house
+                         cases, untouched.
+
+ROWS THAT LEFT, ALL BENIGN: Touchdowns off dropped Anthony Palmisano's
+Uncorked Twisted Tea Light 9/8 row but carries it back RESTATED, 20 -> 16
+cases (same key); Touchdowns on re-dated Robin Feldman's Davy's Dogs keg 9/9
+-> 9/10, and its six Blackjack Mulligans (Hawthorne) rows plus Evil Genius's
+four moved from Nick Melissari to Allison Scott -- the same reassignment
+every export today has carried. Evil Genius's Blackjack rows are all base
+period or zero-case, so they move no score. The only per-rep number that
+went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
+135 -> 134, which is his new placement leaving the prospect list.
+
 2026-09-09 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt Launch (Keystone no-op)
 Exports now run through 9/10. The Keystone file Gavin sent with this batch is
 byte-identical to the 124-row export both Keystone copies already hold, so
