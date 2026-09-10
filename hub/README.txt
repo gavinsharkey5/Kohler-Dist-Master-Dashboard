@@ -333,8 +333,10 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   draftBrands, off.brands/onPkg.brands ...) into one shape -- {label, now,
   goal, need, held} per family, grouped by side -- and brandGoalsHtml()
   draws it: name, "52 / 63 buyers", a bar, and ONE status line ("11 more
-  needed" or "✓ Retained"). It replaces the What-to-sell / Closed tabs in
-  the opened card (button reads "Open your brand goals") and the "What to
+  needed" or "✓ Retained"). Each side gets a banded header (icon, big
+  title in the channel colour, "2 of 3 held" pill) so off-premise and
+  on-premise never blur together (per Gavin, 2026-09-10). It replaces the
+  What-to-sell / Closed tabs in the opened card (button reads "Open your brand goals") and the "What to
   sell" section on the detail page; the collapsed card's GO line says how
   many goals still need attention. MABI Fall is the one program whose
   workbook sets ONE goal per rep, not per family, so its families show

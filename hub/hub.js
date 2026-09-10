@@ -1121,7 +1121,11 @@ function brandGoalsHtml(groups, opts){
   const oneGoal = opts.oneGoal || '';
   return `<div class="bg">
     ${opts.noTitle ? '' : `<div class="bg-h">Your brand goals</div>`}
-    ${groups.map(g=>`${many ? `<div class="bg-side">${E(g.title)}</div>` : ''}
+    ${groups.map(g=>{ const goaled = g.rows.filter(r=>r.goal!=null), held = goaled.filter(r=>r.held).length;
+      const cls = /Off/.test(g.title) ? 'off' : /Draft/.test(g.title) ? 'draft' : /On/.test(g.title) ? 'on' : 'any';
+      const ic = cls==='off' ? '🏪' : cls==='draft' ? '🍻' : cls==='on' ? '🍺' : '📦';
+      const count = goaled.length ? `${held} of ${goaled.length} held` : `${g.rows.length===1?'1 family':g.rows.length+' families'}`;
+      return `${many || cls!=='any' ? `<div class="bg-side ${cls}"><span class="bg-side-ic">${ic}</span><span class="bg-side-t">${E(g.title)}</span><span class="bg-side-n${goaled.length && held===goaled.length?' ok':''}">${count}</span></div>` : ''}
       <div class="bg-list">${g.rows.map(r=>{
         const st = r.goal==null ? (oneGoal ? `Counts toward your ${E(oneGoal)} goal` : 'No goal for this one')
                  : r.held ? '✓ Retained' : `${r.need.toLocaleString('en-US')} more needed`;
@@ -1130,7 +1134,7 @@ function brandGoalsHtml(groups, opts){
           <div class="bg-top"><span class="bg-name">${E(r.label)}</span><span class="bg-nums">${r.now.toLocaleString('en-US')}${r.goal!=null?` <span class="bg-sep">/</span> ${r.goal.toLocaleString('en-US')}`:''} <span class="bg-unit">${E(r.goal==null && r.now===1 ? r.unit.replace(/s$/,'') : r.unit)}</span></span></div>
           ${r.goal!=null ? `<div class="bg-bar"><div class="bg-fill" style="width:${Math.max(r.pct, r.pct>0?3:0)}%"></div></div>` : ''}
           <div class="bg-st">${st}</div>
-        </div>`; }).join('')}</div>`).join('')}
+        </div>`; }).join('')}</div>`; }).join('')}
   </div>`;
 }
 
