@@ -367,7 +367,7 @@ const PROGRAM_LIST_2026_09 = [
    getRep:sept('mabi_retention_fall'),
    metric:d=>d.pct, metricLabel:'% of MADE goal', fmt:v=>v.toFixed(0)+'%'},
   {key:'yuengling_retention_fall', group:'retention', title:'Yuengling Distro Rewards — Retention', shortTitle:'Yuengling', tag:'Sept–Nov',
-   pitch:`Hold every Yuengling brand goal through November — each one retained pays.`,
+   pitch:`Hold 95% of last fall's buyers for every Yuengling brand family — off-premise and on-premise — through November. Each goal held pays.`,
    getRep:sept('yuengling_retention_fall'),
    metric:d=>d.overallPct, metricLabel:'% of overall goal', fmt:v=>v.toFixed(0)+'%'},
   // MolsonCoors retention is the ONE retention program here that is not a
@@ -1010,6 +1010,7 @@ const PROGRAM_CARD_FN = {
   'other_half': cardOtherHalf,
   'mabi_retention_fall': cardMabiRetentionFall,
   'constellation_fall': cardConstellationFall,
+  'yuengling_retention_fall': cardYuenglingRetentionFall,
   'sam_adams_conversion': cardSamAdamsConversion,
 };
 
@@ -2507,6 +2508,58 @@ function cardMcRetention(rep){
   </div>`;
 }
 
+// Yuengling Fall (Sept-Nov): brand-family goals only, no overall goal and no
+// house goal (Gavin, 2026-09-10). Each goal is 95% of the rep's OWN fall-2025
+// buyer count for that family, rounded down; held when this fall's buyers
+// reach it. One block per side (off-premise, on-premise packages, on-premise
+// draft once its export lands) with the same brand rows MolsonCoors uses.
+const YUENGLING_FALL_SIDES = [
+  {key:'off',      icon:'📦', title:'Off-Premise — Hold Your Buyers',          board:'Off-Prem vs Goal'},
+  {key:'packages', icon:'🍺', title:'On-Premise Packages — Hold Your Buyers',  board:'On-Prem Packages vs Goal'},
+  {key:'draft',    icon:'🍻', title:'On-Premise Draft — Hold Your Taps',       board:'On-Prem Draft vs Goal'},
+];
+function cardYuenglingRetentionFall(rep){
+  const P = PROGRAM_DATA_2026_09['yuengling_retention_fall']||{};
+  const d = P.byRep?.[rep];
+  if(!d) return '';
+  if(d.territoryEligible===false) return territoryBlockedCard('yuengling_retention_fall','Yuengling Distro Rewards — Retention','Sept–Nov','Yuengling');
+  const thr = P.retainThresholdPct||95;
+  const loaded = new Set((P.sides||[]).filter(x=>x.loaded).map(x=>x.key));
+  const gt = d.goalsTotal, gr = d.goalsRetained;
+  const tiles = [gt>0
+      ? {num:`${gr} / ${gt}`, label:'Brand Goals Held', status:gr===gt?'good':'warn',
+         sub:gr===gt?'Every goal held — keep them there':`${gt-gr} more to hold · day ${P.daysElapsed} of ${P.periodDays}`}
+      : {num:'0', label:'Brand Goals Held', sub:'No goals on file'}];
+  YUENGLING_FALL_SIDES.forEach(S=>{
+    if(!loaded.has(S.key)) return;
+    const goal = d[S.key+'Goal']||0, pct = d[S.key+'Pct'];
+    tiles.push(goal>0
+      ? {num:pct.toFixed(0)+'%', label:S.board, status:pct>=100?'good':'warn', sub:`${d[S.key+'Actual']} / ${goal} buyers · ${d[S.key+'GoalsRetained']} of ${d[S.key+'GoalsTotal']} goals held`}
+      : {num:'N/A', label:S.board, sub:'No goals on this side'});
+  });
+  const blocks = YUENGLING_FALL_SIDES.map(S=>{
+    if(!loaded.has(S.key)) return naBlock(`${S.title.split(' — ')[0]} — Report Not In Yet`, 'The RDE export for this side has not arrived; its brand goals will appear here once it does.');
+    const brands = d[S.key+'Brands']||[];
+    if(!brands.length) return naBlock(`${S.title.split(' — ')[0]} — No Goals On File`, 'This report has no Yuengling buyers on your route last fall, so this side does not apply to you.');
+    return earnBlock({
+      icon:S.icon, title:S.title, rate:'RETAIN',
+      rateNote:`Up to $500 per brand goal held · goal = ${thr}% of your Sept–Nov 2025 buyers, rounded down · Sept 1 – Nov 30`,
+      whatToDo:`Keep each Yuengling brand family at or above its goal — ${thr}% of the accounts that bought it from you last fall. A family that ends November below goal costs you that payout.`,
+      extra:retentionBrandBlock(brands, 'buyers'),
+    });
+  });
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('yuengling_retention_fall')}<span class="prog-name">Yuengling Distro Rewards &mdash; Retention</span><span class="prog-tag">Sept&ndash;Nov</span>${terrTag('yuengling_retention_fall')}</div>
+      ${progPitch('yuengling_retention_fall')}
+    </div>
+    <div class="prog-body">
+      ${statBoard(tiles)}
+      ${blocks.join('')}
+    </div>
+  </div>`;
+}
+
 // MABI MADE retention: one overall placement goal per rep (not per brand
 // like MolsonCoors), retained at 90% rather than 100%, gated by a
 // company-wide 8,440-POD house goal.
@@ -3463,6 +3516,30 @@ const PROGRAM_SUMMARY = {
         ? `Boston Beer has every Summer Ale handle on your route switched to Octoberfest. Keep them pouring it through <strong>Sept 30</strong>.`
         : `Get an Octoberfest keg into the <strong>${pl(d.notConverted,'account')}</strong> on Boston Beer’s unconverted list by Sept 30${since?` — Encompass already shows ${since} first Octoberfest keg${since===1?'':'s'} since their ${asOf} report`:''}.`};
   },
+  // Yuengling Fall: brand-family goals, 95% of the rep's own fall-2025 buyers
+  // (rounded down), no overall goal. Hero = buyers counted toward every goal
+  // (capped per goal) vs the goals' sum, like constellation_fall; chip is
+  // period-aware early in the window for the same reason.
+  yuengling_retention_fall:(d,meta,P)=>{
+    if(!d.hasAnyGoal) return {goal:false, now:(d.offActual||0)+(d.packagesActual||0)+(d.draftActual||0),
+      label:'No Yuengling goal set for you',
+      next:`These reports show no Yuengling buyers on your route last fall, so there is nothing to retain.`};
+    const early = (P&&P.pacePct!=null) ? P.pacePct < 25 : false;
+    const statusOverride = !early ? null
+      : (d.goalsRetained===d.goalsTotal ? 'earned' : (d.overallHeld > 0 ? 'ontrack' : 'notstarted'));
+    const seg = (label, key) => (d[key+'Goal']||0)
+      ? {label, pct:(d[key+'Actual']/d[key+'Goal'])*100, line:`${d[key+'Actual']} of ${d[key+'Goal']} buyers · ${d[key+'GoalsRetained']} of ${d[key+'GoalsTotal']} goal${d[key+'GoalsTotal']===1?'':'s'} held`}
+      : {label, pct:null, line:(d[key+'Brands']||[]).length ? 'No goal on this side' : 'Report not in yet'};
+    const segments = [seg('Off-Premise','off'), seg('On-Prem Packages','packages')];
+    if(d.draftBrands) segments.push(seg('On-Prem Draft','draft'));
+    return {goal:true, now:d.overallHeld, target:d.overallGoal, unit:'buyers', segments, statusOverride,
+      label:`${d.overallHeld} of ${d.overallGoal} buyers · ${d.goalsRetained} of ${d.goalsTotal} goals held`,
+      sub:`${(d.overallPct||0).toFixed(0)}% of goal · off-prem ${d.offGoalsRetained||0}/${d.offGoalsTotal||0} · packages ${d.packagesGoalsRetained||0}/${d.packagesGoalsTotal||0}${d.draftBrands?` · draft ${d.draftGoalsRetained||0}/${d.draftGoalsTotal||0}`:''} · day ${P.daysElapsed} of ${P.periodDays}`,
+      remain:d.goalsRetained>=d.goalsTotal?null:`${pl(d.overallToGo,'buyer')} to go`,
+      next:d.goalsRetained>=d.goalsTotal
+        ? `You are holding every Yuengling brand goal. Keep them there through <strong>Nov 30</strong>.`
+        : `Hold ${(P.retainThresholdPct||95)}% of last fall's buyers on all ${d.goalsTotal} brand goals by Nov 30 — <strong>${pl(d.overallToGo,'buyer')}</strong> to go, with ${P.periodDays-P.daysElapsed} days left.`};
+  },
   mabi_retention_fall:(d,meta,P)=>{
     if(!d.hasGoal) return {goal:false, now:0, label:'No fall goal set for you',
       next:`Kohler&rsquo;s fall goals workbook has no MADE goal for you this period.`};
@@ -3752,12 +3829,11 @@ const PROGRAM_RULES = {
     'House goals must be achieved for full payout and bonus — otherwise qualifying reps are paid 50%',
   ],
   'yuengling_retention_fall': [
-    'Retain your Yuengling distribution goals from September through November',
+    'Hold 95% of the accounts that bought each Yuengling brand family from you last fall (Sept–Nov 2025), through Nov 30',
+    'Goals are per brand family, per side — off-premise, on-premise packages, on-premise draft — with no overall goal',
+    'Your goal for each family = 95% of your 2025 buyer count, rounded down (25 buyers last fall → hold 23)',
     'Up to $500 for every brand goal retained',
-    'Off-premise brands: Lager · Flight · Light Lager',
-    'On-premise: Lager and Flight packages, plus Lager and Flight draft',
-    'Reps who achieve all three periods earn an additional payout',
-    'House goals must be achieved for full payout — otherwise qualifying reps are paid 50%',
+    'Off-premise families: Lager · Flight · Light Lager · On-premise packages: Lager · Flight',
   ],
   'heineken_husa': [
     'Retain your Heineken distribution goals from September through November',
@@ -3785,6 +3861,18 @@ const PROGRAM_RULES = {
 // placement to go", "No activity yet"). cls on a metric or status:
 // good (green) / warn (amber) / bad (red) / gray-dim (neutral).
 const PROGRAM_BOARD = {
+  'yuengling_retention_fall': d=>({
+    metrics:[
+      {num:d.hasAnyGoal?`${d.goalsRetained} / ${d.goalsTotal}`:'—', label:'goals held', cls:d.hasAnyGoal&&d.goalsRetained===d.goalsTotal?'good':(d.goalsRetained>0?'warn':'dim')},
+      {num:d.overallPct!=null?`${d.overallPct.toFixed(0)}%`:'—', label:'of all goals'},
+      {num:d.offPct!=null?`${d.offPct.toFixed(0)}%`:'—', label:'off-prem'},
+      {num:d.packagesPct!=null?`${d.packagesPct.toFixed(0)}%`:'—', label:'on-prem pkgs'},
+    ],
+    status: !d.hasAnyGoal ? {cls:'gray', label:'No goal set'}
+      : d.goalsRetained===d.goalsTotal ? {cls:'good', label:'✅ Holding every goal'}
+      : d.overallHeld>0 ? {cls:'warn', label:`${d.goalsTotal-d.goalsRetained} goal${d.goalsTotal-d.goalsRetained===1?'':'s'} still building`}
+      : {cls:'gray', label:'Nothing on file yet'},
+  }),
   'constellation_fall': d=>({
     metrics:[
       {num:d.hasAnyGoal?`${d.goalsRetained} / ${d.goalsTotal}`:'—', label:'goals held', cls:d.hasAnyGoal&&d.goalsRetained===d.goalsTotal?'good':(d.goalsRetained>0?'warn':'dim')},

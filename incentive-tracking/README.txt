@@ -997,6 +997,58 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+YUENGLING FALL RETENTION IS LIVE (2026-09-10) -- off-premise + on-premise packages
+yuengling_retention_fall was a zero-state placeholder; it now has data on two
+of its three sides. Gavin's rules, 2026-09-10, in his words: "hit goals at
+brand family level for each sheet. the goal is 95% of BUYER COUNT IN 2025 ...
+this is only at brand family level for each, there is no overall goal."
+
+  1. ONE GOAL PER (REP, BRAND FAMILY, SIDE). Off-premise families: Lager,
+     Flight, Light Lager. On-premise packages: Lager, Flight. On-premise
+     DRAFT is a third report Gavin has not sent yet ("will explain after
+     these 2 files are loaded in") -- YUENGLING_FALL_FILES in generate.py
+     takes it as a third entry and the card/summary already carry a
+     "draft" slot, so it is a data drop plus whatever rule he explains.
+  2. THE GOAL IS 95% OF THE REP'S OWN FALL-2025 BUYER COUNT FOR THAT
+     FAMILY, ROUNDED DOWN. Gavin's worked example: "anthony palmisano goal
+     would be 23 for yuengling lager because he had 25 in 2025" -- 0.95 x 25
+     = 23.75, and he says 23, so the decimal is dropped (nearest would say
+     24). That is _yuengling_fall_goal(); a base of 1 or 2 floors to 0 / 1,
+     and a zero goal would be held by doing nothing, so the floor is 1 for
+     any rep with a base at all. CONFIRMED WITH HIM? Not yet -- asked on
+     2026-09-10 (it is a one-line change either way).
+  3. NO OVERALL GOAL, NO HOUSE GOAL, NO 90% LINE. The card and summary show
+     goals held out of goals total; the hero is buyers counted toward every
+     goal (capped per goal) vs the goals' sum, like constellation_fall, so a
+     rep mid-window sees ground covered rather than "0 of 5". Status chip is
+     period-aware for the first quarter of the window, same as the other
+     fall programs; the displayed number is never inflated.
+  4. THE EXPORTS ARE THE FLATTENED TREE: the first row of each rep block is
+     the rep's total (a DISTINCT buyer count mislabelled with a brand name)
+     -- visible in Gavin's screenshot of the report, where Anthony reads
+     25/19 on his own line and 16/5, 25/19, 14/5 on Light Lager, Lager,
+     Flight. _split_report_subtotals() peels it off; the builder then
+     checks every rep total sits between its biggest brand row and the sum
+     of them (both columns) and stops if not -- that is the shape-change
+     signature. All 24 + 15 reps reconciled on the first run.
+  5. A family with no 2025 buyers (Chris Politano's MetLife Lager, on-prem)
+     has no goal and is never scored. Reps with no row on either file are
+     not in the program. Off roster and dropped: Chris Politano, Default,
+     John Neukum, Office Tell Sell.
+
+  data/yuengling_retention_fall_off.csv           RDE "Yuengling Fall 2026:
+  data/yuengling_retention_fall_packages_on.csv   Off Premise Retention" and
+                                                  "... On Premise Retention
+                                                  Packages". THE ONGOING
+                                                  UPLOADS: save the new
+                                                  exports over these and run
+                                                  generate.py.
+
+FIRST RUN (day 10 of 91): 10 of 70 brand goals held across 24 reps, 1 rep
+holding every goal: Jaime Colonna (1 goal). House by
+family: off Flight 58/144, Lager 220/349, Light Lager 50/124; packages Lager
+114/265, Flight 0/5.
+
 2026-09-10 SIXTH REFRESH -- MABI Fall retention
 Actuals (MABI_Fall_2026_Retention_4.csv, 9/1-11/30 placements) converted
 through convert_mabi_fall.py against the goals workbook already on file
