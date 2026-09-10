@@ -1110,7 +1110,12 @@ function brandGoals(p, rep){
     case 'yuengling_retention_fall':
       push('Off-Premise', 'buyers', (d.offBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
       push('On-Premise Packages', 'buyers', (d.packagesBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
-      push('On-Premise Draft', 'buyers', (d.draftBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
+      push('On-Premise Draft', 'on tap', (d.draftBrands||[]).map(b=>{ const r = row(b.label, b.actual, b.goal, 'on tap');
+        // The draft account sheet says who is pouring, who is flagged with no
+        // keg, and who poured last fall but is not back -- the win-back list.
+        const A = b.accounts||[]; const lost = A.filter(a=>a.status==='lost'), empty = A.filter(a=>a.status==='empty');
+        const bits = []; if(lost.length) bits.push(`${lost.length} from last fall not back yet`); if(empty.length) bits.push(`${empty.length} flagged with no keg`);
+        r.extra = bits.join(' · '); r.winback = lost.map(a=>a.customer.replace(/^\d+\s+/, '')); return r; }));
       break;
     case 'mabi_retention_fall':
       // Kohler's workbook sets ONE MADE goal per rep, not one per family, so
@@ -1147,6 +1152,8 @@ function brandGoalsHtml(groups, opts){
           <div class="bg-top"><span class="bg-name">${E(r.label)}</span><span class="bg-nums">${r.now.toLocaleString('en-US')}${r.goal!=null?` <span class="bg-sep">/</span> ${r.goal.toLocaleString('en-US')}`:''} <span class="bg-unit">${E(r.goal==null && r.now===1 ? r.unit.replace(/s$/,'') : r.unit)}</span></span></div>
           ${r.goal!=null ? `<div class="bg-bar"><div class="bg-fill" style="width:${Math.max(r.pct, r.pct>0?3:0)}%"></div></div>` : ''}
           <div class="bg-st">${st}</div>
+          ${r.extra ? `<div class="bg-extra">${E(r.extra)}</div>` : ''}
+          ${r.winback && r.winback.length ? `<details class="bg-win"><summary>Win back: ${r.winback.length} account${r.winback.length===1?'':'s'} that poured it last fall</summary><ol class="bg-winlist">${r.winback.map(n=>`<li>${E(n)}</li>`).join('')}</ol></details>` : ''}
         </div>`; }).join('')}</div>`; }).join('')}
   </div>`;
 }

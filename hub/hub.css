@@ -856,3 +856,10 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .log-photo{display:inline-flex;align-items:center;gap:4px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:7px 12px;min-height:36px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;}
 .log-photo:hover{background:var(--accent);color:#fff;}
 .log-photo .ar{font-size:15px;line-height:1;}
+
+/* v9.3: draft brand goals -- empties / win-back lines */
+.bg-extra{margin-top:4px;font-size:13px;color:var(--text-mute);}
+.bg-win{margin-top:8px;}
+.bg-win summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--accent);padding:6px 0;list-style:none;}
+.bg-win summary::before{content:'▸ ';} .bg-win[open] summary::before{content:'▾ ';}
+.bg-winlist{margin:4px 0 0 18px;padding:0;font-size:14.5px;color:var(--text);line-height:1.7;}
