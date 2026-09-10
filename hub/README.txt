@@ -317,8 +317,9 @@ REP-MODE CARD LAYOUT (v7, 2026-09-10)
     GO    "Start with these 8 eligible accounts."
     CLOSED "5 placements credited so far."  (only when there are any)
     [ Open the account list ▾ ]         (one big button = the whole head)
-  Opening the card shows only the two tabs (What to sell = the numbered
-  visit list, Closed / Completed = the placement log) and the link to the
+  Opening the card shows only the two tabs (Targets = the numbered visit
+  list, Completed = the placement log; renamed from "What to sell" /
+  "Closed / Completed" per Gavin, 2026-09-10) and the link to the
   full page -- the sell / go lines are not repeated inside. planParts() in
   hub.js builds the pieces; cardPlan() is the opened card, repPlan() the
   detail page. Manager Mode cards keep the tiles and bar but not the
@@ -342,3 +343,11 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   workbook sets ONE goal per rep, not per family, so its families show
   placements "toward your N goal" with no per-row bar. Nothing is
   recomputed here beyond need = goal - now and the bar width.
+
+CACHE-BUSTING (2026-09-10)
+  hub/index.html loads every script and the stylesheet with a ?v=<tag>
+  query. GitHub Pages caches for 10 minutes and phones hold files longer,
+  so after shipping a change to hub.js / hub.css / accounts.js, BUMP THE
+  TAG in index.html (any new string) or reps keep the old copy. A change
+  Gavin "still can't see after a hard refresh" is either this or the Pages
+  deploy pipeline stalling (repo CLAUDE.md, "Deploy from a branch").

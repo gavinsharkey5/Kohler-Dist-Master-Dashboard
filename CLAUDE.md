@@ -137,9 +137,12 @@ Manager Mode (the full account tabs, tracker tables, rankings, Program
 View). Keep manager-level detail out of Rep Mode -- Gavin's bar is a rep
 who has never sold a beer understanding a card immediately. Manager Mode
 is desktop-only (phones and tablets are forced to Rep Mode); Rep Mode
-cards carry three short lines -- what to sell, where to go, next step --
-behind a WHAT TO SELL tab, beside a CLOSED / COMPLETED tab that logs the
+cards carry the sell / go lines on the collapsed card and open to a
+TARGETS tab (the numbered visit list) beside a COMPLETED tab that logs the
 rep's credited placements (customer, product, date) from the tracker data.
+`hub/index.html` loads its assets with `?v=` cache-busting tags -- bump
+the tag whenever hub.js / hub.css / accounts.js changes, or reps keep the
+old copy.
 A program whose brand cannot be sold anywhere on a rep's route (per the
 two workbooks) is greyed as "Unavailable based on account base/territory"
 and left out of that rep's counts and visit lists; rep-page MPOs are the
