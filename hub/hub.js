@@ -837,12 +837,12 @@ function closedFor(p, rep){
   // A blank product means the tracker counts the account, not a SKU -- name
   // the brand the program pays on so the row still says what was placed.
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
-  const brand = (fams && fams.length) ? fams[0] : (p.shortName||'');
+  const brand = (fams && fams.length) ? fams[0] : '';
   const add = (customer, product, date, note)=>{
     if(!customer) return;
     product = String(product||'');
-    if(!product) product = brand;
-    else if(/^\d/.test(product) && brand) product = brand+' · '+product;
+    if(!product) product = brand || (fams===null ? '' : p.shortName||'');
+    else if(brand && /^[\d.,]+\s*(cases?|SKUs?|bbl|bottles?)\b/i.test(product)) product = brand+' · '+product;   // a quantity, not a SKU name
     const k = HubAccounts.norm(customer)+'|'+HubAccounts.norm(product)+'|'+(date||'');
     if(seen.has(k)) return; seen.add(k);
     const when = date ? parseAny(date) : null;
