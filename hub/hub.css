@@ -778,3 +778,14 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .updated .livedot{margin-top:6px;}
 .updated > span:last-child{min-width:0;line-height:1.4;}
 .pcard.st-unavailable .pcard-name{color:var(--text-dim);}
+
+/* ---- v7.1: back buttons + Incentives/MPOs dropdown ---- */
+.pickview .back,.rep-head .back{width:auto;min-width:0;min-height:46px;padding:10px 18px 10px 14px;margin-bottom:12px;font-size:14px;}
+.pick-head{position:relative;}
+.mainsel-wrap{position:relative;display:inline-flex;align-items:center;}
+.mainsel{appearance:none;-webkit-appearance:none;background:var(--card);border:1px solid var(--border);border-radius:999px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:9px 38px 9px 16px;min-height:42px;cursor:pointer;}
+.mainsel:hover{border-color:var(--accent);}
+.mainsel:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+.mainsel-ar{position:absolute;right:15px;pointer-events:none;color:var(--accent);font-size:14px;}
+.rep-kick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+.rep-month{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);}
