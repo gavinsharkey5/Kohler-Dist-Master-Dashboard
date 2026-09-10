@@ -351,3 +351,11 @@ CACHE-BUSTING (2026-09-10)
   TAG in index.html (any new string) or reps keep the old copy. A change
   Gavin "still can't see after a hard refresh" is either this or the Pages
   deploy pipeline stalling (repo CLAUDE.md, "Deploy from a branch").
+
+VIEW PHOTO ON COMPLETED ROWS (2026-09-10)
+  Objectives verified from iSellBeer photos -- the off-prem Cooler Door
+  Stickers, the on-prem Bardstown menu placements, August's Lytt POS pics --
+  carry the photo URL on each tracker line (photo / photos[0]). closedFor()
+  now keeps it and the Completed log renders a "View photo ›" pill that
+  opens the picture in a new tab, mirroring the MPO board's "View Photo"
+  link, per Gavin. Rows without a photo show only the date.

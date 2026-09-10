@@ -1,5 +1,93 @@
 [
   {
+    "REP": "Matthew Powierski",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WINE GRAND (CARLSTADT)",
+    "CITY": "CARLSTADT",
+    "BRAND": "KEYSTONE ICE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/10/2026 11:46 AM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/0b7995b4-a714-462c-9f27-a944988e2423/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "ATHLETIC BREWING CO",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 8,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/36f5e28f-9c9d-4b07-a673-883578624e7b/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "TALKHOUSE ENCORE VARIETY PACK",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/bc60f9d6-4993-4dbc-a739-3c22b88d05f7/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "SUN CRUISER ICED TEA + VODKA, CLASSIC ICED TEA",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/eed4db8c-9cc0-4db2-9a2c-dcf750799195/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "SUN CRUISER ICED TEA + VODKA, HALF & HALF",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/eed4db8c-9cc0-4db2-9a2c-dcf750799195/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "SUN CRUISER ICED TEA VODKA VARIETY 18 PACK",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/eed4db8c-9cc0-4db2-9a2c-dcf750799195/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "SUN CRUISERS RTD",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/eed4db8c-9cc0-4db2-9a2c-dcf750799195/"
+  },
+  {
+    "REP": "Jayson Romine",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "USA WINE TRADERS CLUB OF NEWTON (A)",
+    "CITY": "NEWTON",
+    "BRAND": "CAPE MAY BREWING COMPANY",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 2,
+    "DATE": "09/09/2026 12:40 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/e4c4c78f-1fad-413c-8153-384ed4251a84/"
+  },
+  {
     "REP": "Chris Payton",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "WINELAND",
