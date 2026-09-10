@@ -9,6 +9,7 @@ loads them as a script instead of scraping this page.
 """
 import csv
 import datetime
+import math
 import json
 import re
 from collections import defaultdict
@@ -1653,16 +1654,12 @@ YUENGLING_FALL_FILES = [
 
 def _yuengling_fall_goal(base):
     """95% of the rep's fall-2025 buyer count for that brand family, ROUNDED
-    DOWN -- Gavin's own worked example (2026-09-10) was "anthony palmisano
-    goal would be 23 for yuengling lager because he had 25 in 2025", and
-    0.95 x 25 = 23.75, so the decimal is dropped, not rounded to nearest
-    (which would say 24). A base of 1 or 2 floors to 0 / 1; a goal of zero
-    would be held by doing nothing, so the floor is 1 for any rep with a
-    base at all. Change ONE line here if the rounding rule turns out to be
-    nearest instead."""
+    UP (Gavin, 2026-09-10: "I meant round up" -- 0.95 x 25 = 23.75 -> 24).
+    A base of 1 gives 1, so nobody holds a goal by doing nothing. Change ONE
+    line here if the rounding rule ever changes again."""
     if not base:
         return None
-    return max(1, int(base * YUENGLING_FALL_RETAIN))
+    return int(math.ceil(base * YUENGLING_FALL_RETAIN - 1e-9))
 
 
 def build_yuengling_retention_fall():
@@ -1682,7 +1679,7 @@ def build_yuengling_retention_fall():
     build stops if any rep's row breaks it, which is the signature of the
     export shape changing.
 
-    goal    = 95% of the 2025 count, rounded down (see _yuengling_fall_goal)
+    goal    = 95% of the 2025 count, rounded up (see _yuengling_fall_goal)
     actual  = the 2026 count (blank = 0)
     held    = actual >= goal
     A brand row with no 2025 count (a family the rep did not sell last
@@ -1779,7 +1776,7 @@ def build_yuengling_retention_fall():
         "byRep": by_rep,
         "house": house_rows,
         "retainThresholdPct": int(YUENGLING_FALL_RETAIN * 100),
-        "rounding": "down",
+        "rounding": "up",
         "sides": [{"key": side, "label": label, "loaded": (DATA_DIR / filename).exists()} for side, filename, label in YUENGLING_FALL_FILES],
         "periodStart": YUENGLING_FALL_START.isoformat(),
         "periodEnd": YUENGLING_FALL_END.isoformat(),

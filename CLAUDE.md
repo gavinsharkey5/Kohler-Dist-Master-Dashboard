@@ -147,4 +147,7 @@ current calendar month's only. The home screen asks only Incentives or
 MPOs; the next screen is the Incentive Tracker's own "choose a supplier"
 step for Incentives (one card per supplier, count + already earned, SEE
 THESE INCENTIVES) and On / Off-Premise tiles for MPOs. A supplier's page
-is one quiet column of cards -- no count boxes, no filter pills.
+is one quiet column of cards -- no count boxes, no filter pills. Retention
+programs open to a "Your brand goals" list (one row per brand family:
+current / goal, a bar, "N more needed" or "✓ Retained") instead of an
+account list; brandGoals() in `hub/hub.js` maps each tracker's rows.
