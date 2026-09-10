@@ -633,3 +633,16 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 
 .nbtn.home{background:var(--accent);color:#fff;border-color:var(--accent);}
 .nbtn.home:hover{background:#3C6AD8;color:#fff;}
+
+/* ---- v6: territory availability + three sections ---- */
+.chanhead.inc{border-left-color:var(--amber);background:linear-gradient(90deg,var(--amber-soft),var(--card) 60%);}
+.chanhead.inc .chanhead-t{color:var(--amber);}
+.pcard.st-unavailable{opacity:.62;border-left-color:var(--border);background:var(--card-alt);filter:grayscale(.6);}
+.pcard.st-unavailable .pcard-head{cursor:default;}
+.pcard.st-unavailable .pcard-head:hover{background:none;}
+.pcard.st-unavailable .mark{opacity:.7;}
+.chip.st-unavailable{background:var(--input-bg);color:var(--text-dim);border-color:var(--border);border-style:dashed;white-space:normal;text-align:left;}
+.unavail{display:flex;flex-direction:column;gap:3px;margin-top:12px;padding:11px 13px;border:1px dashed var(--border);border-radius:11px;}
+.unavail-t{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--text-dim);}
+.unavail-s{font-size:13.5px;color:var(--text-mute);line-height:1.4;}
+.dhero.st-unavailable{opacity:.8;}

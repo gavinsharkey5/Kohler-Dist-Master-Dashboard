@@ -46,6 +46,7 @@ const STATUS = {
   progress:   {label:'In Progress', ic:'▲'},
   notstarted: {label:'Not Started', ic:'○'},
   soon:       {label:'Coming Soon', ic:'⋯'},
+  unavailable:{label:'Not Available in Your Territory', ic:'⊘'},
 };
 const PACE = {earned:'Earned', close:'Almost there', ontrack:'On track', attention:'Needs attention', notstarted:'', soon:''};
 
@@ -162,7 +163,9 @@ function makeIncentive(entry, month){
   p.forRep = function(rep){
     const d = entry.getRep(rep);
     if(!d && anyData) return null;                       // program has data, none for this rep: not in it
-    if(d && (d.territoryEligible===false || d.programEligible===false)) return null;
+    if(d && d.programEligible===false) return null;
+    if(d && d.territoryEligible===false) return {status:'unavailable', pace:'notstarted', pct:null, openEnded:false, now:'', goal:'', remain:null, next:'', unavailable:true,
+      why:'Not Available in Your Territory', sub:'This program runs in the Core Market counties only.'};
     const s = summarize(entry, rep);
     if(s.soon) return {status:'soon', pace:'soon', pct:null, openEnded:false, now:'', goal:'', remain:null,
                        next: s.next, soon:true};
@@ -332,7 +335,7 @@ function makeMpo(scope, month, o){
   };
   p.ranking = function(){
     const D = data().DATA; if(!D || !o.hasData) return [];
-    const rows = ROSTER.map(rep=>{ const r = p.forRep(rep); return r ? {rep, r} : null; }).filter(Boolean);
+    const rows = ROSTER.map(rep=>{ const r = p.forRep(rep); return (r && r.status!=='unavailable' && availability(p, rep).ok) ? {rep, r} : null; }).filter(Boolean);
     rows.sort((a,b)=> (b.r.pct-a.r.pct) || (b.r.valueNum-a.r.valueNum) || a.rep.localeCompare(b.rep));
     return rows.map((x,i)=>({rep:x.rep, rank:i+1, valueText:x.r.now, metricLabel:o.unit ? o.unit+'s' : 'progress',
                              pct:x.r.pct, status:x.r.status, pace:x.r.pace, board:null}));
@@ -399,8 +402,33 @@ async function loadFor(programs){
 
 // Sort per the brief: closest to ending, closest to completion, the rest,
 // completed. Then anything with no feed yet, then programs already over.
+// MPOs on the rep page are THIS MONTH's only (the calendar month of the
+// viewing date); if the month's data has not been published yet, the newest
+// month stands in so the page is never empty on the 1st.
+function mpoRepMonth(scope){
+  const months = MPO_SCOPES[scope].mod.MONTHS;
+  const cur = TODAY.getFullYear()+'-'+String(TODAY.getMonth()+1).padStart(2,'0');
+  const hit = months.find(m=>m.key===cur);
+  return hit ? hit.key : months[months.length-1].key;
+}
+// Can this rep sell this program anywhere on their route? Uses the customer
+// base + brand territory (accounts.js): unavailable when every account in the
+// rep's book is NOT IN TERRITORY / BLOCKED for the brand, or the book has no
+// account of the program's premise at all. Provisional "yes" while an MPO
+// month is still loading.
+function availability(p, rep){
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
+  const A = accountsFor(p, rep);
+  if(A.any) return {ok:true};
+  if(A.eligible.length + A.buying.length > 0) return {ok:true};
+  const brands = A.families.length>2 ? `${A.families[0]} and ${A.families.length-1} more brands` : A.families.join(' and ');
+  if(A.excluded.length + A.unknown.length > 0) return {ok:false, why:'Not Available in Your Territory', sub:`${brands} can’t be sold at any account on your route.`};
+  if(A.universe===0) return {ok:false, why:'Not Available in Your Territory', sub:`No ${p.channel==='on'?'on-premise':p.channel==='off'?'off-premise':''} accounts on your route.`};
+  return {ok:true};
+}
 function sortGroup(p, r){
-  if(!isActive(p)) return 7;
+  if(!isActive(p)) return 8;
+  if(r && r.status==='unavailable') return 7;
   if(!r || r.status==='soon') return 6;
   if(r.status==='complete' || r.status==='exceeded') return 5;
   if(daysLeft(p.period.end) <= ENDING_SOON_DAYS) return 1;
@@ -415,20 +443,27 @@ const GROUP_META = {
   4:{title:'Not started yet', sub:'Active programs with nothing counted for you yet', cls:''},
   5:{title:'Completed', sub:'Goals you have already hit — keep them there through the period', cls:'g-done'},
   6:{title:'Coming soon', sub:'Programs you are in that have no data feed yet', cls:'g-soon'},
-  7:{title:'Ended', sub:'Past programs, kept for reference', cls:'g-over'},
+  7:{title:'Not available in your territory', sub:'Shown for awareness — not counted in your goals or totals', cls:'g-over'},
+  8:{title:'Ended', sub:'Past programs, kept for reference', cls:'g-over'},
 };
 function sortedForRep(rep, cat){
   const rows = [];
   PROGRAMS.forEach(p=>{
     if(!inCategory(p, cat)) return;
-    const r = p.forRep(rep);
+    if(p.type==='MPO' && p.monthKey!==mpoRepMonth(p.source)) return;   // this month's MPOs only
+    let r = p.forRep(rep);
     if(!r) return;
+    if(r.status!=='unavailable' && r.status!=='soon'){
+      const av = availability(p, rep);
+      if(!av.ok) r = Object.assign({}, r, {status:'unavailable', pace:'notstarted', pct:null, unavailable:true, why:av.why, sub:av.sub, next:'', remain:null});
+    }
     rows.push({p, r, g: sortGroup(p, r), days: daysLeft(p.period.end)});
   });
   rows.sort((a,b)=>{
     if(a.g!==b.g) return a.g-b.g;
     if(a.g===2) return (b.r.pct-a.r.pct) || (a.days-b.days);
-    if(a.g===5 || a.g===7) return (b.p.period.end-a.p.period.end) || a.p.name.localeCompare(b.p.name);
+    if(a.g===5 || a.g===8) return (b.p.period.end-a.p.period.end) || a.p.name.localeCompare(b.p.name);
+    if(a.g===7) return a.p.name.localeCompare(b.p.name);
     return (a.days-b.days) || ((b.r.pct||0)-(a.r.pct||0)) || a.p.name.localeCompare(b.p.name);
   });
   return rows;
@@ -618,10 +653,18 @@ function screenRep(){
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data…</div>`;
   if(!rows.length) html += `<div class="empty">No ${E(catMeta.label.toLowerCase())} apply to you right now.</div>`;
-  if(cat==='mpo'){
-    [['on','On-Premise MPOs','Bars & restaurants'],['off','Off-Premise MPOs','Liquor stores & retail']].forEach(([ch, title, sub])=>{
-      const sub_rows = rows.filter(x=>x.p.channel===ch);
-      html += `<div class="chanhead ${ch}"><span class="chanhead-t">${E(title)}</span><span class="chanhead-s">${E(sub)} · ${plw(sub_rows.filter(x=>x.g<7).length,'active program')}</span></div>`;
+  const SECTIONS = {
+    inc:['inc','Incentives','Supplier reward programs', x=>x.p.type==='Incentive'],
+    off:['off','Off-Premise MPOs','Liquor stores & retail', x=>x.p.type==='MPO' && x.p.channel==='off'],
+    on: ['on','On-Premise MPOs','Bars & restaurants', x=>x.p.type==='MPO' && x.p.channel==='on'],
+  };
+  const order = cat==='all' ? ['inc','off','on'] : cat==='mpo' ? ['off','on'] : null;
+  if(order){
+    order.forEach(k=>{
+      const [cls, title, sub, test] = SECTIONS[k];
+      const sub_rows = rows.filter(test);
+      const monthNote = k!=='inc' ? ' · '+mpoMonthLabel(k) : '';
+      html += `<div class="chanhead ${cls}"><span class="chanhead-t">${E(title)}</span><span class="chanhead-s">${E(sub)}${E(monthNote)} · ${plw(sub_rows.filter(x=>x.g<7).length,'active program')}</span></div>`;
       html += sub_rows.length ? renderGroups(sub_rows, rep) : `<div class="empty small">No ${E(title.toLowerCase())} for you right now.</div>`;
     });
     return `<div class="repview">${html}</div>`;
@@ -629,6 +672,7 @@ function screenRep(){
   html += renderGroups(rows, rep);
   return `<div class="repview">${html}</div>`;
 }
+function mpoMonthLabel(scope){ const mk = mpoRepMonth(scope); const m = MPO_SCOPES[scope].mod.MONTHS.find(x=>x.key===mk); return m ? m.label : mk; }
 function renderGroups(rows, rep){
   let html = '';
   let lastG = null, open = false;
@@ -637,14 +681,14 @@ function renderGroups(rows, rep){
       lastG = x.g;
       if(open){ html += '</div>'; open = false; }
       const gm = GROUP_META[x.g];
-      if(x.g===7){
-        const n = rows.filter(y=>y.g===7).length;
+      if(x.g===8){
+        const n = rows.filter(y=>y.g===8).length;
         html += `<button class="ghead toggle ${gm.cls}${state.showEnded?' open':''}" data-act="toggle-ended"><span class="ghead-t">${E(gm.title)} <span class="ghead-n">${n}</span></span><span class="ghead-s">${E(gm.sub)}</span><span class="ghead-ar">${state.showEnded?'▾':'▸'}</span></button>`;
       } else {
         html += `<div class="ghead ${gm.cls}"><span class="ghead-t">${E(gm.title)}</span><span class="ghead-s">${E(gm.sub)}</span></div>`;
       }
     }
-    if(x.g===7 && !state.showEnded) return;
+    if(x.g===8 && !state.showEnded) return;
     if(!open){ html += '<div class="cards">'; open = true; }
     html += programCard(x.p, x.r, rep);
   });
@@ -969,6 +1013,18 @@ function repPlan(p, r, rep, opts){
 }
 
 function programCard(p, r, rep){
+  if(r.status==='unavailable'){
+    return `<article class="pcard st-unavailable" id="card-${E(p.id)}">
+      <div class="pcard-head static">
+        <div class="pcard-top">
+          ${logoStrip(p)}
+          <div class="pcard-title"><div class="pcard-name">${E(p.shortName||p.name)}</div><div class="pcard-sup">${E(p.supplier)} · ${E(p.type==='MPO' ? p.channelLabel+' MPO' : 'Incentive')}</div></div>
+          <div class="pcard-status">${statusChip(r)}</div>
+        </div>
+        <div class="unavail"><span class="unavail-t">${E(r.why||'Not Available in Your Territory')}</span><span class="unavail-s">${E(r.sub||'')} Not counted in your goals.</span></div>
+      </div>
+    </article>`;
+  }
   const soon = r.status==='soon';
   const open = openCards.has(p.id);
   const done = r.status==='complete' || r.status==='exceeded';
@@ -1047,6 +1103,10 @@ function screenDetail(){
   if(!r) return `<div class="detail">${back}<div class="empty">${E(rep)} is not in ${E(p.name)}${p.type==='Incentive' && p.territory==='Core Market counties' ? ' — it runs in the Core Market counties only.' : '.'}</div></div>`;
   const rank = p.ranking(); const mine = rank.find(x=>x.rep===rep);
   const soon = r.status==='soon';
+  const av = (r.status==='unavailable' || r.status==='soon') ? {ok: r.status!=='unavailable'} : availability(p, rep);
+  if(!av.ok || r.status==='unavailable') return `<div class="detail">${back}<div class="dhero st-unavailable"><div class="dhero-top">${logoStrip(p,'lg')}</div><div class="dhero-sup">${E(p.supplier)}</div><h1 class="dhero-name">${E(p.name)}</h1>
+    <div class="dhero-line">${statusChip({status:'unavailable'})}</div><p class="dhero-pitch">${E(r.sub || av.sub || 'The brand can’t be sold at any account on your route.')} This program is shown for awareness only and is not counted in your goals or totals.</p></div>
+    <section class="dsec"><h2 class="dsec-h">How it pays</h2><ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul></section></div>`;
   if(!isMgr()) return screenDetailRep(p, r, rep, back);
   const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
   const cap = soon ? (r.loading ? 'Loading…' : 'Not being tracked yet') : (r.openEnded ? (r.sub || 'So far this period') : 'Complete');
@@ -1135,7 +1195,7 @@ function programStats(p){
   const parts = [], pcts = [];
   let complete = 0, started = 0;
   ROSTER.forEach(rep=>{
-    const r = p.forRep(rep); if(!r || r.status==='soon') return;
+    const r = p.forRep(rep); if(!r || r.status==='soon' || r.status==='unavailable' || !availability(p, rep).ok) return;
     parts.push(rep);
     if(r.status==='complete'||r.status==='exceeded') complete++;
     if(r.status!=='notstarted') started++;

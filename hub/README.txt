@@ -164,6 +164,23 @@ CLOSED / COMPLETED (v5, 2026-09-10)
   both sections stacked; Manager Mode gets the log as a fifth account
   tab. Programs that count by product only (Corona Gaintain) say so.
 
+TERRITORY AVAILABILITY + SECTIONS (v6, 2026-09-10)
+  availability(p, rep) in hub.js asks accounts.js whether the rep can sell
+  the program's brand ANYWHERE on their route. A program is "Not Available
+  in Your Territory" when every account in the rep's book is NOT IN
+  TERRITORY / BLOCKED for the brand (or the book has no account of the
+  program's premise). Such a card is greyed, labelled, listed in its own
+  group after Coming Soon, and left out of the counts, the goals and the
+  visit lists; the detail page explains why. A rep the incentive tracker
+  itself marks territoryEligible:false gets the same treatment. Partial
+  routes stay active and the lists simply hold the eligible accounts.
+  "All Programs" is three sections -- Incentives (amber), Off-Premise MPOs
+  (teal), On-Premise MPOs (purple); "MPOs" is the last two. MPOs on the
+  rep page are the CURRENT calendar month's only (mpoRepMonth: today's
+  YYYY-MM, or the newest published month if that one is not up yet), so
+  older months never appear for reps; Manager Mode's Program View keeps
+  its month filter. Incentives follow their own start/end dates.
+
 CARDS (v2)
   The rep page shows every card COLLAPSED: brand mark, name, status chip,
   and four quick facts -- Progress (with bar), Goal, Remaining, Deadline.
