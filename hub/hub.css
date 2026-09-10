@@ -630,3 +630,6 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .log-date{flex-shrink:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--good);white-space:nowrap;padding-top:2px;}
 .dsec-h.closed{color:var(--good);}
 @media (max-width:420px){ .ptab{min-height:64px;padding:11px 12px;} .ptab-n{font-size:12.5px;} }
+
+.nbtn.home{background:var(--accent);color:#fff;border-color:var(--accent);}
+.nbtn.home:hover{background:#3C6AD8;color:#fff;}
