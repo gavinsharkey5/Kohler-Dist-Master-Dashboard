@@ -129,3 +129,10 @@ eligible / already-buying / high-potential / can't-sell lists from it.
 Every target list respects both files. Program-to-brand-family mapping
 is PROGRAM_BRANDS in `hub/accounts.js`. "High potential" is by 2026 case
 volume only -- neither file carries brand-level sales.
+
+The hub has two modes: Rep Mode (default: goal / where you stand / still
+needed / where to go next / what to sell, one numbered visit list per
+program, SELL_ASK in `hub/hub.js` supplies the "what to sell" line) and
+Manager Mode (the full account tabs, tracker tables, rankings, Program
+View). Keep manager-level detail out of Rep Mode -- Gavin's bar is a rep
+who has never sold a beer understanding a card immediately.

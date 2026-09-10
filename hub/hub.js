@@ -170,7 +170,7 @@ function makeIncentive(entry, month){
     else               status = 'progress';
     const pct = openEnded ? null : Math.max(0, Math.min(100, s.pct||0));
     const goalText = openEnded ? 'Open-ended — every one pays'
-      : (s.house ? s.label.replace(/^House /,'House goal: ') : (s.target!=null ? fmtNum(s.target)+(s.unit?' '+s.unit:'') : ''));
+      : (s.house ? s.label.replace(/^House /,'House goal: ') : (s.target!=null ? (s.unit==='%' ? fmtNum(s.target)+'% of your accounts' : fmtNum(s.target)+(s.unit?' '+s.unit:'')) : ''));
     return {
       status, pace: openEnded ? (started?'earned':'notstarted') : s.status, pct, openEnded,
       now: s.label || '', sub: s.sub || '', goal: goalText, remain: s.remain || null, next: s.next || '',
@@ -434,9 +434,10 @@ function sortedForRep(rep, cat){
 const openCards = new Set();   // program ids expanded in place on the rep page
 const acctTabs = {};           // program id -> active account tab
 const acctMore = {};           // program id|tab -> show every row
-const state = {view:'home', rep:null, cat:'all', prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false};
-function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.rep, cat:state.cat})); }catch(e){} }
-function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.rep && ROSTER.includes(s.rep)) state.rep = s.rep; if(CATEGORIES.some(c=>c.key===s.cat)) state.cat = s.cat; }catch(e){} }
+const state = {mode:'rep', view:'home', rep:null, cat:'all', prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false};
+function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.rep, cat:state.cat, mode:state.mode})); }catch(e){} }
+const isMgr = () => state.mode==='manager';
+function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.rep && ROSTER.includes(s.rep)) state.rep = s.rep; if(CATEGORIES.some(c=>c.key===s.cat)) state.cat = s.cat; if(s.mode==='manager') state.mode = 'manager'; }catch(e){} }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
@@ -445,6 +446,7 @@ function hashOf(){
   if(state.prog && (state.view==='detail' || state.view==='program')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
   if(state.peek && state.view==='detail') p.push('who='+encodeURIComponent(state.peek));
+  if(state.mode==='manager') p.push('mode=manager');
   return p.length ? '#'+p.join('&') : '#';
 }
 function readHash(){
@@ -459,6 +461,7 @@ function applyHash(){
   state.prog = h.prog && PROGRAMS.some(p=>p.id===h.prog) ? h.prog : null;
   state.from = h.from || null;
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
+  if(h.mode==='manager') state.mode = 'manager'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
   if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home') state.view = v;
   else state.view = state.rep ? 'rep' : 'home';
@@ -527,7 +530,8 @@ function topbar(){
       <div class="navr">
         ${rep ? `<button class="nbtn" data-act="change-rep">Change rep</button>` : ''}
         ${onRep ? `<button class="nbtn" data-act="change-view">Change view</button>` : (rep ? `<button class="nbtn" data-act="my-programs">My programs</button>` : '')}
-        ${state.view==='programs' || state.view==='program' ? '' : `<button class="nbtn quiet" data-act="programs">Program view</button>`}
+        ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
+        <span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>
       </div>
     </div>` : ''}
   </div>`;
@@ -564,7 +568,7 @@ function screenHome(){
     </div>
     <button class="cta${pick.rep?'':' disabled'}" data-act="view-programs" ${pick.rep?'':'disabled'}>View My Programs <span class="ar">›</span></button>
     <button class="reset" data-act="reset-all">↺ Reset selections</button>
-    <div class="home-foot">Manager? <a href="#" data-act="programs">Browse by program instead</a></div>
+    <div class="home-foot">${isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode</a>`}</div>
   </div>`;
 }
 function repListHtml(q){
@@ -690,7 +694,7 @@ const ACCT_TABS = [
   {k:'high',     l:'High potential', sub:'Your biggest eligible accounts by 2026 cases — the fastest wins'},
   {k:'excluded', l:'Can’t sell here', sub:'In your book, but the brand is not sellable in that area'},
 ];
-const fmtCases = v => v==null ? '' : (v>=1000 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toLocaleString('en-US')) + ' cs';
+const fmtCases = v => v==null ? '' : (v>=1000 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toLocaleString('en-US')) + ' cases';
 function acctRow(a, kind){
   const meta = [a.city, a.area || (a.rawArea && a.rawArea!=='Sales' ? a.rawArea : ''), a.prem ? a.prem+'-premise' : ''].filter(Boolean).join(' · ');
   const right = kind==='excluded' ? `<span class="awhy">${E(a.why||'')}</span>`
@@ -726,6 +730,130 @@ function accountsPanel(p, rep){
   </div>`;
 }
 
+/* ====================================================================
+   REP MODE -- the plan. Plain words, one list, no tables.
+   ==================================================================== */
+// What to sell, per program, in the words a rep would use on the floor.
+// Fallback (any program not listed): the mapped brand families + the unit.
+const SELL_ASK = {
+  'inc:keystone_ice':'Keystone Ice 24oz cans — one case puts the account on the board. Shelve it next to Busch and Bud Ice.',
+  'inc:touchdowns_tea':'Sun Cruiser or Twisted Tea 12-packs in stores; Sun Cruiser by the case plus a football bucket special in bars.',
+  'inc:evil_genius':"Stacy's Mom, Adulting or 867-5309 packages — or a Stacy's Mom draft line.",
+  'inc:other_half':'Other Half core draft in bars; at least 3 core Other Half SKUs in stores.',
+  'inc:montauk':'Wave Chaser 6-packs, 12-packs or 19.2oz cans — or a Wave Chaser draft line.',
+  'inc:sam_adams_conversion':'Switch the Sam Adams Summer Ale handle to Sam Adams Octoberfest.',
+  'inc:printed_menu':'Get Bardstown Bourbon or Green River printed on a new menu — every mention pays.',
+  'inc:bardstown_display':'A 3-case stack of Bardstown or Green River in stores; 3 bottles for a branded feature drink in bars.',
+  'inc:two_xo':'A case of 2XO American Oak plus a case of French Oak in stores; a 2-bottle placement in bars.',
+  'inc:1911':"Any 1911 cider SKU the account hasn't bought since May — packages or a draft line.",
+  'inc:woodchuck':"Any Woodchuck SKU the account hasn't bought since May — 3 new placements unlock the payout.",
+  'inc:tona':'Tona 24oz cans — every case counts toward your 20.',
+  'inc:lytt':'Lytt — an account needs 3 or more Lytt SKUs to count.',
+  'inc:le_grand_noir':'Le Grand Noir — every case counts toward the house goal.',
+  'inc:garage_beer_president':'Garage Beer — more cases than the same time last year.',
+  'inc:garage_beer_summer_sequel':'Garage Beer — beat your own case goal.',
+  'inc:mc_retention':'Keep your Molson Coors brands (Coors, Peroni, Blue Moon…) on the shelf and on tap through October.',
+  'inc:constellation_fall':'Corona, Modelo and Pacifico — keep every account that bought them this spring buying, and win back any that dropped.',
+  'inc:constellation_retention':'Corona, Modelo and Pacifico — hold your placements.',
+  'inc:mabi_retention_fall':"White Claw, Mike's, Cayman Jack, MXD and Ole — hold your placements through November.",
+  'inc:mabi_retention':"White Claw, Mike's, Cayman Jack, MXD and Ole — hold your placements.",
+  'inc:yuengling_retention_fall':'Yuengling Lager, Flight and Light Lager — hold every account through November.',
+  'inc:yuengling_retention':'Yuengling Lager, Flight and Light Lager — hold every account.',
+  'inc:sun_cruiser':'Sun Cruiser — more cases than last year.', 'inc:yave':'YaVe Tequila — a first order at a new account.',
+  'inc:mollys':"Molly's 1.75L — a first order at an account that hasn't bought it in 90 days.",
+  'inc:path_to_victory':'Victory Monkey 6-packs (5+ per account) and 19.2oz cans.',
+  'inc:boston_beer':'An Angry Orchard or Dogfish Head draft line, or a new single-serve package.',
+  'inc:new_belgium':'A Juicy Haze or Two Hearted draft line.', 'inc:sam_adams':'Sam Adams — beat last August, especially Octoberfest.',
+  'inc:new_belgium_distribution':"Bell's, Kirin and Voodoo — more cases than your monthly average.",
+  'on:carbliss':'Carbliss — a first order makes the account a new buyer.',
+  'on:fever_tree':'Fever Tree mixers — each new SKU you place counts.',
+  'on:bardstown_menu':'Bardstown Bourbon or Green River on the printed menu — photograph it in iSellBeer.',
+  'on:husa_xx_draft':'A Dos Equis draft line (a keg on tap).',
+  'on:angry_orchard':'An Angry Orchard draft line.', 'on:molson_coors':'Peroni and Coors Banquet placements.',
+  'on:wine_spirits':'YaVe Tequila and Leyenda 1925.', 'on:sapporo_na':'Sapporo Premium Non-Alcoholic.',
+  'off:constellation_gaintain':"Corona — get back to 30% of what you placed last fall.",
+  'off:keystone_ice':'Keystone Ice 24oz cans — one order makes the account a buying account.',
+  'off:fever_tree':"Fever Tree — each new SKU in an account that hasn't bought it since June counts.",
+  'off:wine_spirits_any':"Any wine or spirits SKU the account hasn't bought since June.",
+  'off:pos_stickers':'Put a cooler door sticker up — any brand — and photograph it in iSellBeer.',
+  'off:corona_premier':'Corona Premier suitcases.', 'off:bbc_lytt':'Lytt — 3 or more SKUs in the account.', 'off:disruptors':'Lytt POS pieces, photographed in iSellBeer.',
+  'off:molson_coors':'Peroni and Coors Banquet placements.', 'off:wine_spirits':'Le Grand Noir, Leyenda 1925 and Green River 50mLs.',
+  'off:new_belgium':"Bell's, Voodoo and Kirin — 90% of your assigned goal.", 'off:ws_2xo':'2XO, Le Grand Pinot Noir and YaVe placements.',
+  'off:sapporo_light':'Sapporo Light placements.', 'off:famosa':'Famosa 7oz bottles.',
+};
+const RETENTION = /retention|_fall$|mc_retention/;
+function sellAsk(p){
+  const k = HubAccounts.brandKey(p);
+  if(SELL_ASK[k]) return SELL_ASK[k];
+  const fams = HubAccounts.PROGRAM_BRANDS[k];
+  if(fams && fams.length) return `${fams.slice(0,3).join(', ')}${fams.length>3?' and more':''} — each new ${p.objective && p.objective.unit ? p.objective.unit : 'placement'} counts.`;
+  return p.pitch || 'See the rules below.';
+}
+// The tracker's own opportunity lists for this rep -- warm leads that
+// should top the visit list: an account one SKU short, one oak short, a
+// handle still pouring Summer Ale, a big account that has never bought it.
+function warmTargets(p, rep){
+  const out = [];
+  const push = (name, why, warm)=>{ if(name) out.push({k:HubAccounts.norm(name), why, warm:!!warm}); };
+  if(p.source==='inc'){
+    const d = p.entry.getRep(rep); if(!d) return out;
+    (d.partialAccounts||[]).forEach(it=>push(it.customer, `Already has ${it.skus} SKU${it.skus===1?'':'s'} — needs ${it.need} more`, true));
+    (d.offPremSingles||[]).forEach(it=>push(it.customer, `Has ${(it.products||[]).join(' / ')} — add the other oak`, true));
+    (d.onPremBuilding||[]).forEach(it=>push(it.customer, 'Started — needs a 2nd bottle', true));
+    (d.unconvertedAccounts||[]).forEach(it=>push(it.account, 'Still on Summer Ale — switch the handle', true));
+    if(d.encompass) (d.encompass.notConvertedAccounts||[]).forEach(it=>push(it.customer, 'Still on Summer Ale — switch the handle', true));
+    Object.keys(d).forEach(k=>{ if(/Targets$|Whitespace$/.test(k) && Array.isArray(d[k])) d[k].forEach(it=>push(it.customer, it.cases2026 ? `Buys ${fmtCases(it.cases2026)} a year from you — never bought this` : 'Never bought this', false)); });
+    return out;
+  }
+  const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA; const d = D && D[p.key]; if(!d) return out;
+  const sets = d.subs ? d.subs : [d];
+  sets.forEach(sd=>{ const t = sd.targetsByRep && sd.targetsByRep[rep]; if(t) t.forEach(it=>push(it.customer, it.product ? `Missing ${it.product}` : "In your territory — doesn't carry it yet", false)); });
+  return out;
+}
+// Prioritised visit list: warm leads first, then the biggest eligible
+// accounts. Every row is in the rep's book and in territory (accounts.js
+// already removed the rest); retention programs list the accounts to HOLD.
+function nextAccounts(p, rep){
+  const A = accountsFor(p, rep);
+  if(RETENTION.test(p.key)) return {rows: A.buying.filter(a=>!a.foreign).map(a=>Object.assign({}, a, {why: a.note ? a.note : 'Keep them ordering'})), hold:true, A};
+  const byKey = new Map(); A.eligible.forEach(a=>byKey.set(HubAccounts.norm(a.name), a)); A.buying.forEach(a=>byKey.set(HubAccounts.norm(a.name), a));
+  const warm = warmTargets(p, rep); const seen = new Set(); const rows = [];
+  warm.filter(w=>w.warm).forEach(w=>{ const a = byKey.get(w.k); if(a && !seen.has(w.k)){ seen.add(w.k); rows.push(Object.assign({}, a, {why:w.why, warm:true})); } });
+  const cold = new Map(); warm.filter(w=>!w.warm).forEach(w=>{ if(!cold.has(w.k)) cold.set(w.k, w.why); });
+  A.eligible.forEach(a=>{ const k = HubAccounts.norm(a.name); if(seen.has(k)) return; seen.add(k);
+    rows.push(Object.assign({}, a, {why: cold.get(k) || (a.cases>0 ? `Buys ${fmtCases(a.cases)} a year from you — never bought this` : 'Never bought this')})); });
+  return {rows, hold:false, A};
+}
+const planMore = {};
+function repPlan(p, r, rep, opts){
+  opts = opts || {};
+  const soon = r.status==='soon';
+  const done = r.status==='complete' || r.status==='exceeded';
+  const dead = fmtDay(p.period.end);
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="soon-note">Loading this month’s accounts…</div>`;
+  const plan = nextAccounts(p, rep);
+  const key = p.id+'|plan'; const all = !!planMore[key];
+  const LIMIT = opts.limit || 10;
+  const rows = all ? plan.rows : plan.rows.slice(0, LIMIT);
+  let lead;
+  if(soon) lead = p.manual ? 'This one is checked by hand — there is nothing to count yet, but these are the accounts to work:' : 'No numbers yet — these are the accounts to work:';
+  else if(plan.hold) lead = !plan.rows.length ? '' : done ? 'You are holding your goal. Keep these accounts ordering:' : `You still need <strong>${E(r.remain || 'to hold every goal')}</strong>. Keep these accounts ordering and win back any that dropped:`;
+  else if(done) lead = `You hit your goal — keep going, it still pays. More accounts to try:`;
+  else if(r.openEnded) lead = `Every one pays. Start with these ${Math.min(rows.length, LIMIT)} accounts:`;
+  else lead = `You need <strong>${E(r.remain || 'more')}</strong>. Start with these ${Math.min(rows.length, LIMIT)} accounts:`;
+  const none = plan.hold ? 'This report tracks brand goals, not accounts — open Full program details to see which goals are short.' : (plan.A.universe===0 ? 'None of your accounts fit this program.' : 'Every account in your book that can take this brand is already buying it — nice.');
+  return `<div class="plan">
+    <div class="plan-ask"><span class="plan-ask-l">What to sell</span><span class="plan-ask-t">${E(sellAsk(p))}</span></div>
+    <div class="plan-go">
+      <div class="plan-go-h">Where to go next</div>
+      <div class="plan-go-s">${lead}</div>
+      ${rows.length ? `<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}</div><div class="plan-why">${a.warm?'🔥 ':''}${E(a.why||'')}</div></li>`).join('')}</ol>` : `<div class="aempty">${E(none)}</div>`}
+      ${plan.rows.length>LIMIT ? `<button class="amore" data-act="plan-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+plan.rows.length+' accounts'}</button>` : ''}
+    </div>
+    ${opts.noFull ? '' : `<div class="pcard-actions"><button class="fullbtn" data-act="open" data-prog="${E(p.id)}">Full program details <span class="ar">›</span></button></div>`}
+  </div>`;
+}
+
 function programCard(p, r, rep){
   const soon = r.status==='soon';
   const open = openCards.has(p.id);
@@ -740,7 +868,10 @@ function programCard(p, r, rep){
         <div class="q"><span class="ql">Remaining</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'No cap' : '—')))}</span></div>
         <div class="q"><span class="ql">Deadline</span><span class="qv${urgent?' urgent':''}">${E(endsLabel(p.period))}</span></div>
       </div>`;
-  const body = !open ? '' : `<div class="pcard-body">
+  const body = !open ? '' : !isMgr() ? `<div class="pcard-body">
+      ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
+      ${repPlan(p, r, rep)}
+    </div>` : `<div class="pcard-body">
       <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span><span class="chip">📅 ${E(p.period.label)}</span><span class="chip">Data ${E(p.refreshed ? 'refreshed '+p.refreshed : 'loading…')}</span></div>
       ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
       ${r.sub && !soon ? `<div class="psub">${E(r.sub)}</div>` : ''}
@@ -755,10 +886,41 @@ function programCard(p, r, rep){
         <div class="pcard-status">${statusChip(r)}${flags(p, r)}</div>
       </div>
       ${quick}
-      <div class="pcard-hint">${open ? 'Hide details ▴' : 'More details & accounts ▾'}</div>
+      <div class="pcard-hint">${open ? 'Hide ▴' : (isMgr() ? 'More details & accounts ▾' : 'What to sell & where to go ▾')}</div>
     </button>
     ${body}
   </article>`;
+}
+
+/* ---- program detail, Rep Mode: the plan, nothing else ---- */
+function screenDetailRep(p, r, rep, back){
+  const soon = r.status==='soon';
+  const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
+  const cap = soon ? (r.loading ? 'Loading…' : 'Nothing to count yet') : (r.openEnded ? (r.sub || 'So far') : 'of your goal');
+  const tl = soon ? null : p.timeline(rep);
+  return `<div class="detail">
+    ${back}
+    <div class="dhero st-${r.status}">
+      <div class="dhero-top">${logoStrip(p,'lg')}</div>
+      <div class="dhero-sup">${E(p.supplier)} · ${E(p.type)} · ${E(p.channelLabel)}</div>
+      <h1 class="dhero-name">${E(p.name)}</h1>
+      <div class="dhero-big ${r.pace}">${E(big)}</div>
+      <div class="dhero-cap">${E(cap)}</div>
+      ${soon ? '' : barHtml(r, true)}
+      <div class="dhero-line">${statusChip(r)}${flags(p, r)}</div>
+    </div>
+    <div class="dfacts three">
+      <div class="dfact"><span class="dfact-l">Your goal</span><span class="dfact-v">${E(r.goal||'—')}</span></div>
+      <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${r.sub?`<span class="dfact-s">${E(r.sub)}</span>`:''}</div>
+      <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
+    </div>
+    ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${r.next}</div></div>` : ''}
+    <section class="dsec">${repPlan(p, r, rep, {limit:15, noFull:true})}</section>
+    <section class="dsec"><h2 class="dsec-h">How it pays</h2>
+      <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
+      <p class="note">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p></section>
+    ${tl && tl.length ? `<section class="dsec"><h2 class="dsec-h">Your progress so far</h2>${chartHtml(tl, p, r)}</section>` : ''}
+  </div>`;
 }
 
 /* ---- program detail for one rep ---- */
@@ -773,6 +935,7 @@ function screenDetail(){
   if(!r) return `<div class="detail">${back}<div class="empty">${E(rep)} is not in ${E(p.name)}${p.type==='Incentive' && p.territory==='Core Market counties' ? ' — it runs in the Core Market counties only.' : '.'}</div></div>`;
   const rank = p.ranking(); const mine = rank.find(x=>x.rep===rep);
   const soon = r.status==='soon';
+  if(!isMgr()) return screenDetailRep(p, r, rep, back);
   const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
   const cap = soon ? (r.loading ? 'Loading…' : 'Not being tracked yet') : (r.openEnded ? (r.sub || 'So far this period') : 'Complete');
   const tl = soon ? null : p.timeline(rep);
@@ -997,6 +1160,8 @@ document.addEventListener('click', e=>{
       const el = document.getElementById('card-'+id); if(el && openCards.has(id)){ const y = el.getBoundingClientRect().top + window.pageYOffset - 8; if(y < window.pageYOffset) window.scrollTo({top:y}); } break; }
     case 'acct-tab': acctTabs[t.dataset.prog] = t.dataset.tab; render(); break;
     case 'acct-more': acctMore[t.dataset.key] = !acctMore[t.dataset.key]; render(); break;
+    case 'plan-more': planMore[t.dataset.key] = !planMore[t.dataset.key]; render(); break;
+    case 'set-mode': state.mode = t.dataset.mode==='manager' ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = 'all';
       pick = {rep:null, cat:'all', q:''}; go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
@@ -1067,6 +1232,6 @@ function boot(){
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor};
+window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts};
 boot();
 })();
