@@ -1,5 +1,18 @@
 [
   {
+    "SALES_REP_ASSIGNED": "Allison Scott",
+    "CUSTOMER_NUM": 15004,
+    "CUSTOMER_NAME": "BLACKJACK MULLIGAN'S PUBLIC HOUSE",
+    "BRAND_FAMILY": "GREEN RIVER KENTUCKY STRAIGHT WHEATED BOURBON WHISKEY",
+    "PRODUCT_NAME": "GREEN RIVER KENTUCKY STRAIGHT WHEATED BOURBON WHISKEY",
+    "DATE": "2026-09-09",
+    "PERIOD": "current",
+    "PROMOTION_TYPE": "Cocktail List Activation",
+    "ELEMENTS": "Menu",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/a9258b5b-f5f9-496b-a615-c0be5c74fe9d/",
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Robin Feldman",
     "CUSTOMER_NUM": 34018,
     "CUSTOMER_NAME": "HILTON HASBRK HTS #50591",

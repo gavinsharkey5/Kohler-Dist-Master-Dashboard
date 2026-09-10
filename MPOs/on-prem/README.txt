@@ -259,10 +259,34 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-09 refresh (RDE exports run
-through 9/9, Carbliss carrying two 9/10 load sheets): Bardstown 2 menu
-placements, Fever Tree 12 new placements, Carbliss 5 new buying accounts, HUSA
-1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-10 refresh (RDE exports run
+through 9/11): Bardstown 3 menu placements, Fever Tree 16 new placements,
+Carbliss 9 new buying accounts, HUSA 1 new draft line.
+
+2026-09-10 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_14
+Fever Tree 12 -> 16 (Brian Sengebush 1 -> 3, Paul Mclaughlin 4 -> 5, Robin
+Feldman 1 -> 2; +15 rows, none removed). Carbliss 5 -> 9: Paul Mclaughlin
+3 -> 6 (Knickerbocker Golf, Park Steakhouse, Fair Lawn Athletic Club, all
+9/10) and Nick Melissari 0 -> 1 (Portobello Feasts, 9/11); Allison's two
+9/10 load sheets from the previous note delivered. One Carbliss row went
+away -- Paul Mclaughlin / Andiamo 9/9 -- a repeat buyer either way (Andiamo
+bought 7/29), so no count moved. HUSA is set-identical again (85 rows).
+
+PROMOS_REPORT_14 WAS A MIXED PULL: the same four Yave table-tent rows as
+Report_12 (Casa Don Manuel, 9/8) plus ONE Bardstown row -- Allison Scott,
+Blackjack Mulligan's Public House, 9/9, a Menu carrying GREEN RIVER KENTUCKY
+STRAIGHT WHEATED BOURBON WHISKEY, Supplier BARDSTOWN BOURBON COMPANY. Only
+that row was merged: the report was filtered to Supplier = Bardstown into a
+fresh workbook (values + the photo hyperlink) and THAT was passed to
+--merge-bardstown, so the Yave rows never entered the archive (which stays
+Bardstown-only, 2 -> 3 rows, all three photo links intact). Bardstown menu
+is 2 -> 3: Robin Feldman 2 of 5, Allison Scott 1 of 5. Do it the same way
+next time a mixed pull arrives; do NOT delete rows in place with openpyxl
+(delete_rows leaves the deleted rows' hyperlink cells behind as phantom
+rows, and merge_export happily counts them -- caught and undone on this
+refresh before anything was committed). The merge's weekday-gap warning
+(09/03-09/08 with no rows) is the Yave pull's window, not missing menus.
+
 
 ALLISON SCOTT MOVED TO 4 OF 3 ON FEVER TREE (The Side Door took Ginger Beer
 150 mL cans on 9/9); Paul Mclaughlin holds at 4 of 3. Fever Tree gained 7 rows

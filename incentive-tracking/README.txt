@@ -997,6 +997,20 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 SIXTH REFRESH -- MABI Fall retention
+Actuals (MABI_Fall_2026_Retention_4.csv, 9/1-11/30 placements) converted
+through convert_mabi_fall.py against the goals workbook already on file
+(data/mabi_retention_fall_goals.xlsx -- not re-issued, not touched); every
+brand subtotal, rep total and the goals base reconciled.
+
+  house  2,412 -> 2,639 of 7,326 MADE placements (32.9% -> 36.0%), day 10 of
+         91; still 0 of 24 reps at their 90% goal, as expected this early.
+
+Every rep with activity moved up; nobody down. Biggest: Jim Heaney 174 -> 218
+(28.2% -> 35.4%), Phil Ernst 167 -> 197 (43.9%), Matt Powierski 183 -> 215,
+Brian Sengebush 53 -> 62 (50.4%, the high mark), Chris Payton 163 -> 182.
+Dylan Rubino and John O'Donoghue still have a goal but no 9/1-11/30 activity.
+
 2026-09-10 FIFTH REFRESH -- Molson Coors retention (on + off prem)
 Both grouped workbooks (report time 9/10 15:46) converted through
 convert_mc_retention.py; every rep, DM and report total reconciled, 0 new and
