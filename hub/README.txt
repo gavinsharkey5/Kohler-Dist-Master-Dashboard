@@ -113,6 +113,25 @@ ACCOUNT DRILL-DOWN (added 2026-09-10, v2)
   W&S MPO credits wine placements at restaurants -- and such rows are
   tagged "on-premise account".
 
+REP MODE vs MANAGER MODE (v3, 2026-09-10)
+  Rep Mode is the default. An expanded card (and the detail page) answers
+  only five things: your goal, where you stand, how much more you need,
+  which accounts to visit next, and what to sell there. "Where to go
+  next" is a numbered list -- warm leads first (accounts the tracker
+  flags as one SKU short, one oak short, still pouring Summer Ale,
+  missing a product), then the biggest eligible accounts by 2026 cases
+  -- every one in the rep's book and in territory (accounts.js). "What
+  to sell" is SELL_ASK in hub.js, one plain sentence per program; add a
+  line there for a new program or the fallback names the brand families.
+  Retention programs list the accounts to HOLD instead.
+  Manager Mode keeps the full v2 view: type/channel/supplier chips, the
+  four account tabs (Eligible / Already buying / High potential / Can't
+  sell here) with reasons and territory notes, the tracker's own tables,
+  rankings, payout exposure and the Program View. The Rep / Manager
+  toggle sits in the top-right of every inner page; the landing screen
+  links to it. The choice is remembered with the rep (localStorage) and
+  travels in the URL as mode=manager.
+
 CARDS (v2)
   The rep page shows every card COLLAPSED: brand mark, name, status chip,
   and four quick facts -- Progress (with bar), Goal, Remaining, Deadline.
