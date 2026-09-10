@@ -997,6 +997,31 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 THIRD REFRESH -- Montauk, 2XO, Other Half (on + off), Sam Adams keg export
+Exports run through 9/11. Headlines:
+
+  Montauk     10 -> 12 new placements ($205 -> $235): Alisa Acciardi's first
+             (a 19.2 oz + a draft handle) and Shane Barreca's third; six
+             reps added reorder cases.
+  Other Half  94 -> 104 off-premise accounts opened ($4,810 -> $5,330);
+             Michael Harboy 10 -> 12, John O'Donoghue 9 -> 11, Andrew Lundy
+             11 -> 12. On-premise 28 -> 30 accounts active (Brian Sengebush
+             past the 1/3 bbl floor), still not paid until October confirms.
+  Sam Adams   keg export only (no new Boston Beer workbook, so the scored
+             numbers did not move): Encompass keg loads 244 -> 247 of 335
+             (73.7%), 17 first Octoberfest kegs since the 9/8 report. Nick
+             Melissari 64 -> 67 converted, Shane Barreca 3 -> 4 (100%),
+             Allison Scott and Brian Sengebush +1 each.
+  2XO         still 0 pairs anywhere. Paul Mclaughlin is the ONE rep who went
+             down: his 9/9 Andiamo French Oak load (0.5 cs / 3 units) is gone
+             from the export -- not re-dated, appears nowhere else -- so his
+             on-premise units read 5.0 -> 2.0. A void, same shape as before.
+
+Other removed rows are benign: Dan Lagala's six Linwood Wine (Other Half
+off) rows came back dated 9/11 instead of 9/10, and John O'Donoghue's five
+Vine Republik rows came back dated 9/11 instead of the future 9/18 RDE had
+stamped them with -- both accounts still count once.
+
 2026-09-10 SECOND REFRESH -- Touchdowns & Tea, Evil Genius, Garage Beer President (Le Grand Noir no-op)
 Exports run through 9/11. The Le Grand Noir file is set-identical to the
 published one (30 rows, 30.0 / 70 house cases), so nothing moved there.
