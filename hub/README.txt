@@ -132,6 +132,25 @@ REP MODE vs MANAGER MODE (v3, 2026-09-10)
   links to it. The choice is remembered with the rep (localStorage) and
   travels in the URL as mode=manager.
 
+REFINEMENTS (v4, 2026-09-10)
+  * "MPOs" on the rep page splits into two colour-coded sections, On-
+    Premise MPOs (purple) and Off-Premise MPOs (teal), each with its own
+    ending-soon / almost-there / in-progress groups.
+  * The name picker groups reps under a District Manager header (team
+    card, DM name in amber, rep count).
+  * Manager Mode is DESKTOP-ONLY. isMobile() in hub.js (narrow window,
+    touch pointer under 1100px, or an iPhone/iPad/Android UA) forces Rep
+    Mode, hides the toggle and the Program View, and rewrites a
+    mode=manager link to Rep Mode.
+  * Rep Mode cards say three things in Space Grotesk at 18-21px: WHAT TO
+    SELL ("Place Corona Premier."), WHERE TO GO ("Start with these 8
+    eligible accounts."), NEXT STEP ("Open the account list." -- a button
+    that reveals the numbered list). The list is sized to about twice
+    what is still needed, 5-10 rows. Reasons on rows are two or three
+    words ("Never bought it", "2 SKUs short", "Still on Summer Ale").
+    The tracker's own next-step sentence stays on the detail page and in
+    Manager Mode.
+
 CARDS (v2)
   The rep page shows every card COLLAPSED: brand mark, name, status chip,
   and four quick facts -- Progress (with bar), Goal, Remaining, Deadline.

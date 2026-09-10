@@ -135,4 +135,6 @@ needed / where to go next / what to sell, one numbered visit list per
 program, SELL_ASK in `hub/hub.js` supplies the "what to sell" line) and
 Manager Mode (the full account tabs, tracker tables, rankings, Program
 View). Keep manager-level detail out of Rep Mode -- Gavin's bar is a rep
-who has never sold a beer understanding a card immediately.
+who has never sold a beer understanding a card immediately. Manager Mode
+is desktop-only (phones and tablets are forced to Rep Mode); Rep Mode
+cards carry three short lines -- what to sell, where to go, next step.
