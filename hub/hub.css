@@ -611,3 +611,22 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .team .name{margin-bottom:5px;font-size:16.5px;min-height:48px;background:var(--card-alt);}
 .team .name:last-child{margin-bottom:0;}
 .replist{max-height:380px;}
+
+/* ---- v5: What to sell / Closed tabs + placement log ---- */
+.ptabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2px;}
+.ptab{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:68px;padding:12px 14px;border-radius:14px;cursor:pointer;text-align:left;border:2px solid var(--border);background:var(--card-alt);transition:background .12s,border-color .12s;}
+.ptab-l{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(16px,4.3vw,19px);line-height:1.2;color:var(--text);}
+.ptab-n{font-size:13.5px;color:var(--text-dim);font-weight:600;}
+.ptab.sell.active{background:var(--amber-soft);border-color:var(--amber);} .ptab.sell.active .ptab-l{color:var(--amber);}
+.ptab.closed.active{background:var(--good-soft);border-color:var(--good);} .ptab.closed.active .ptab-l{color:var(--good);}
+.ptab:not(.active):hover{border-color:var(--text-mute);}
+.log-s{font-size:14px;color:var(--text-dim);margin:2px 0 10px;line-height:1.45;}
+.log-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.log-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;background:var(--card-alt);border:1px solid var(--line-soft);border-left:5px solid var(--good);border-radius:11px;padding:12px 14px;}
+.log-main{min-width:0;flex:1;}
+.log-cust{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text);line-height:1.25;}
+.log-prod{font-size:14.5px;color:var(--text-dim);margin-top:3px;line-height:1.35;}
+.log-note{font-size:12.5px;color:var(--good);font-weight:600;margin-top:2px;}
+.log-date{flex-shrink:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--good);white-space:nowrap;padding-top:2px;}
+.dsec-h.closed{color:var(--good);}
+@media (max-width:420px){ .ptab{min-height:64px;padding:11px 12px;} .ptab-n{font-size:12.5px;} }
