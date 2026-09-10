@@ -166,8 +166,9 @@ CLOSED / COMPLETED (v5, 2026-09-10)
 
 TERRITORY AVAILABILITY + SECTIONS (v6, 2026-09-10)
   availability(p, rep) in hub.js asks accounts.js whether the rep can sell
-  the program's brand ANYWHERE on their route. A program is "Not Available
-  in Your Territory" when every account in the rep's book is NOT IN
+  the program's brand ANYWHERE on their route. A program is "Unavailable based
+  on account base/territory" (UNAVAILABLE in hub.js; the label was "Not
+  Available in Your Territory" before v7) when every account in the rep's book is NOT IN
   TERRITORY / BLOCKED for the brand (or the book has no account of the
   program's premise). Such a card is greyed, labelled, listed in its own
   group after Coming Soon, and left out of the counts, the goals and the
@@ -252,18 +253,29 @@ SORT ORDER ON A REP'S PAGE (the brief's order, made explicit)
   7  Ended           past programs, collapsed until tapped
   ENDING_SOON_DAYS and ALMOST_PCT are constants at the top of hub.js.
 
-CATEGORIES ("What are you looking for?")
-  All Programs / Incentives / MPOs / On-Premise MPOs / Off-Premise MPOs.
-  On/Off filters MPOs only; incentives show their channel as a chip (On,
-  Off, or On & Off-Premise) and appear under Incentives and All.
+CATEGORIES ("What are you looking for?") -- v7, 2026-09-10
+  The home screen offers TWO choices, Incentives or MPOs (MAINS in hub.js).
+  "View My Programs" then opens a sub-category screen (view=pick) with one
+  big tile per sub-category and that rep's active count on each:
+    Incentives -> New / Ongoing / Retention  (the tracker's own `group` on
+                  each PROGRAM_LIST entry in incentive-tracking/programs.js;
+                  the newest month's registry decides, so a program that
+                  was New in August and is Ongoing in September is Ongoing)
+    MPOs       -> On-Premise / Off-Premise   (this month's only)
+  Tapping a tile opens the rep page for that sub-category; a pill bar at
+  the top switches between the siblings without going back. "Change
+  category" in the nav returns to the tile screen. The wider keys (all /
+  inc / mpo) are still accepted in the hash for Manager Mode links but no
+  longer appear on the home screen.
 
 STATE
   A reload ALWAYS starts over on the home screen with an empty picker
   (per Gavin, 2026-09-10: "every time I refresh it takes me to the home
   page") -- only the Rep / Manager mode is remembered (localStorage key
   kohler-hub). A 🏠 Home button sits first in the nav on every inner page
-  and starts over the same way; "Change rep" / "Change view" go back to
-  the landing screen with the current picks filled in.
+  and starts over the same way; "Change rep" goes back to the landing
+  screen with the name filled in; "Change category" goes back to the
+  sub-category tiles.
   Every screen has a URL hash (#view=rep&rep=...&cat=..., #view=detail&
   prog=inc:keystone_ice, #view=programs, #view=program&prog=off:2026-09:
   fever_tree) so a page can be shared or bookmarked. Opening another rep's
@@ -283,3 +295,18 @@ VERIFYING A CHANGE
   headless checks used on 2026-09-10 live in the session's scratchpad, not
   the repo: they load each tracker before and after a change and diff
   every rep x program result, and drive the hub at 390px and 1280px.
+
+REP-MODE CARD LAYOUT (v7, 2026-09-10)
+  Every collapsed card reads top to bottom in the order Gavin asked for:
+    name + supplier + sub-category  ->  status chip
+    GOAL | WHERE YOU ARE | STILL NEED   (three tiles, key numbers in colour)
+    progress bar + %  ->  deadline
+    SELL  "Place Corona Premier."       (SELL_ASK)
+    GO    "Start with these 8 eligible accounts."
+    [ Open the account list ▾ ]         (one big button = the whole head)
+  Opening the card shows only the two tabs (What to sell = the numbered
+  visit list, Closed / Completed = the placement log) and the link to the
+  full page -- the sell / go lines are not repeated inside. planParts() in
+  hub.js builds the pieces; cardPlan() is the opened card, repPlan() the
+  detail page. Manager Mode cards keep the tiles and bar but not the
+  sell / go lines; their opened body is the account tabs as before.
