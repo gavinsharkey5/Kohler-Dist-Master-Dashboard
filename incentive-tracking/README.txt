@@ -997,6 +997,33 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 FOURTH REFRESH -- Constellation Fall (5 of 6 files; Corona Gaintain not re-pulled)
+Impact, Modelo Gaintain and Innovation (off-premise) plus the two on-premise
+detail files, through 9/11. The Corona Gaintain export was not in this batch,
+so that category stays on the 9/9 pull (719/1,620). The builder reconciled
+every rep total against its product rows on every file, goal drift against
+the frozen on-premise goals is 0, and the detail files still carry the spring
+columns. Headlines:
+
+  off-prem house  Modelo Gaintain 1,398 -> 1,528 / 2,405 · Impact 1,605 ->
+                  1,747 / 3,136 · Innovation 280 -> 310 / 1,419
+  on-prem house   packages 747 -> 812 / 2,107 buyers · draft 98 -> 108 / 381
+                  (empty-keg pickups excluded 57 -> 54)
+  house total     4,002 -> 4,304 placements + buyers held; still 0 of 24 reps
+                  holding every goal, 3 of 20 holding every packages family
+
+EVERY REP MOVED UP, NOBODY DOWN. Biggest: Paul Mclaughlin 30.4% -> 36.7%
+overall (packages 85 -> 104 buyers held), Phil Ernst 42.3% -> 49.5%, Shane
+Barreca 46.6% -> 52.5%, John O'Donoghue 60.0% -> 66.7%, Brian Sengebush 40.3%
+-> 45.3%. Nick Melissari's off-premise went 0% -> 28.6% -- his first
+off-premise rows this period. Dave Ehlers still leads at 66.8% overall.
+
+Seven on-premise detail rows disappeared and all seven are re-dates, not
+losses: Nick Melissari's two Lodi Lanes lines and Allison Scott's Meadows
+Golf Club keg moved 9/10 -> 9/11, Robin Feldman's San Carlo line 9/9 -> 9/10,
+and the Blackjack Mulligans / Andiamo lines still count on their earlier
+loads (every affected rep's buyers-held went up).
+
 2026-09-10 THIRD REFRESH -- Montauk, 2XO, Other Half (on + off), Sam Adams keg export
 Exports run through 9/11. Headlines:
 
