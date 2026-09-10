@@ -119,3 +119,13 @@ Edit program logic THERE, not in index.html (which keeps only the data
 blobs / month tabs / rendering). Refresh steps are unchanged: run each
 tracker's generator as its README says and the hub picks the numbers up.
 See `hub/README.txt` for how statuses map and how sorting works.
+
+The one thing the hub builds itself is the ACCOUNT layer: `hub/generate.py`
+turns `hub/data/Sales_Reps_Customer_Base.xlsx` (each rep's assigned
+accounts) and `hub/data/Brand_Sellable_Unsellable.xlsx` (CAN SELL / NOT
+IN TERRITORY / BLOCKED per brand family and area) into
+`hub/data/accounts.js`; `hub/accounts.js` derives each program's
+eligible / already-buying / high-potential / can't-sell lists from it.
+Every target list respects both files. Program-to-brand-family mapping
+is PROGRAM_BRANDS in `hub/accounts.js`. "High potential" is by 2026 case
+volume only -- neither file carries brand-level sales.
