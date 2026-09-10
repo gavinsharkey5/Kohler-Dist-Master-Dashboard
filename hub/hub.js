@@ -448,7 +448,7 @@ function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.
 const isMobile = () => window.innerWidth < 760 || (window.matchMedia('(pointer:coarse)').matches && window.innerWidth < 1100) || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 const isMgr = () => state.mode==='manager' && !isMobile();
 window.addEventListener('resize', ()=>{ if(state.mode==='manager') render(); });
-function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.rep && ROSTER.includes(s.rep)) state.rep = s.rep; if(CATEGORIES.some(c=>c.key===s.cat)) state.cat = s.cat; if(s.mode==='manager' && !isMobile()) state.mode = 'manager'; }catch(e){} }
+function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.mode==='manager' && !isMobile()) state.mode = 'manager'; }catch(e){} }
 function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
@@ -475,7 +475,7 @@ function applyHash(){
   if(h.mode==='manager') state.mode = isMobile() ? 'rep' : 'manager'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
   if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home') state.view = v;
-  else state.view = state.rep ? 'rep' : 'home';
+  else state.view = 'home';
   if((state.view==='rep' || state.view==='detail') && !state.rep) state.view = 'home';
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
@@ -540,6 +540,7 @@ function topbar(){
     ${state.view!=='home' ? `<div class="navrow">
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
+        <button class="nbtn home" data-act="home">🏠 Home</button>
         ${rep ? `<button class="nbtn" data-act="change-rep">Change rep</button>` : ''}
         ${onRep ? `<button class="nbtn" data-act="change-view">Change view</button>` : (rep ? `<button class="nbtn" data-act="my-programs">My programs</button>` : '')}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
@@ -1257,7 +1258,7 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': go({view:'home'}); break;
+    case 'home': openCards.clear(); state.showEnded = false; pick = {rep:null, cat:'all', q:''}; go({view:'home', rep:null, cat:'all', prog:null, peek:null, from:null}); break;
     case 'pick-rep': pick.rep = t.dataset.rep; pick.q=''; rerenderHomeList(); break;
     case 'clear-rep': pick.rep = null; pick.q=''; rerenderHomeList(); { const i=$('#repSearch'); if(i){ i.value=''; i.focus(); } } break;
     case 'pick-cat': pick.cat = t.dataset.cat; document.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active', b.dataset.cat===pick.cat)); break;
@@ -1335,11 +1336,13 @@ document.addEventListener('click', e=>{
 /* ---- boot ---- */
 function boot(){
   buildPrograms();
-  restore();
-  applyHash();
-  if(location.hash.length<=1 && state.rep) state.view = 'rep';   // a returning rep lands on their programs
-  pick = {rep:state.rep, cat:state.cat, q:''};
-  history.replaceState(null, '', hashOf());
+  restore();                       // only the Rep / Manager mode survives a reload
+  // A reload ALWAYS starts over on the home screen with an empty picker (per
+  // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
+  // hash is still written during a visit so the Back button works.
+  state.view = 'home'; state.rep = null; state.cat = 'all'; state.prog = null; state.peek = null; state.from = null;
+  pick = {rep:null, cat:'all', q:''};
+  history.replaceState(null, '', '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.
   Object.keys(MPO_SCOPES).forEach(scope=>{

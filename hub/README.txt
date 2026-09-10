@@ -241,9 +241,12 @@ CATEGORIES ("What are you looking for?")
   Off, or On & Off-Premise) and appear under Incentives and All.
 
 STATE
-  The rep and category are remembered in localStorage (key kohler-hub) so
-  a returning rep lands straight on their programs; "Change rep" / "Change
-  view" go back to the landing screen with the current picks filled in.
+  A reload ALWAYS starts over on the home screen with an empty picker
+  (per Gavin, 2026-09-10: "every time I refresh it takes me to the home
+  page") -- only the Rep / Manager mode is remembered (localStorage key
+  kohler-hub). A 🏠 Home button sits first in the nav on every inner page
+  and starts over the same way; "Change rep" / "Change view" go back to
+  the landing screen with the current picks filled in.
   Every screen has a URL hash (#view=rep&rep=...&cat=..., #view=detail&
   prog=inc:keystone_ice, #view=programs, #view=program&prog=off:2026-09:
   fever_tree) so a page can be shared or bookmarked. Opening another rep's
