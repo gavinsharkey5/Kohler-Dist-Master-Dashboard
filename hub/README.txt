@@ -14,9 +14,10 @@ WHAT IT MERGES
   MPOs/on-prem/         the On-Prem MPO Tracker (every month in its MONTHS array)
   MPOs/off-prem/        the Off-Prem MPO Tracker (every month in its MONTHS array)
 
-THIS FOLDER COMPUTES NOTHING. There is no generate.py here and no data.
-The page loads the three trackers' own program libraries -- the same
-files those pages run -- and arranges their results:
+THE PROGRAM NUMBERS ARE NOT COMPUTED HERE. The page loads the three
+trackers' own program libraries -- the same files those pages run -- and
+arranges their results. The only thing this folder builds itself is the
+ACCOUNT layer (see ACCOUNT DRILL-DOWN below):
 
   ../incentive-tracking/data/program_data.js   the incentive data blobs
                                                (generate.py writes it beside
@@ -29,6 +30,12 @@ files those pages run -- and arranges their results:
                                                detailFor(), objPct(), atGoalFor()
   ../MPOs/off-prem/programs.js                 window.OffPremMPO, same shape
   hub.js                                       adapters, sorting, screens
+  accounts.js                                  eligible / buying / high-
+                                               potential / can't-sell logic
+  data/accounts.js                             each rep's customer base +
+                                               brand territory (generate.py)
+  generate.py                                  builds data/accounts.js from
+                                               the two workbooks in data/
   hub.css                                      Kohler navy tokens, the
                                                tracker's card CSS carried over
 
@@ -46,6 +53,76 @@ REFRESHING DATA
   refreshed" line shows the incentive generator's stamp and each MPO
   month's sync_meta.json.
 
+ACCOUNT DRILL-DOWN (added 2026-09-10, v2)
+  Every program card expands to four account lists for the rep, and the
+  detail page carries the same block. Two workbooks in data/ drive it:
+
+    Sales_Reps_Customer_Base.xlsx   the RDE "Sales Reps' Customer Base"
+                                    report: each rep's ASSIGNED accounts
+                                    (customer #, name, address, area,
+                                    county, city, premise, 2026 cases)
+    Brand_Sellable_Unsellable.xlsx  "Brand Permissions -- can we sell this
+                                    brand in this area?": one row per brand
+                                    family, CAN SELL / NOT IN TERRITORY /
+                                    BLOCKED for each Encompass area
+
+  Refresh: overwrite either file (keep the names), then
+      cd hub && python3 generate.py
+  which rewrites data/accounts.js. Commit and push.
+
+  The lists, per program x rep:
+    Eligible        in the rep's book, right premise for the program's
+                    channel, brand CAN SELL in the account's area, not
+                    already buying
+    Already buying  accounts the tracker's own data shows on the brand
+                    (new placements, rebuys, buying-account lists, MPO
+                    line items) -- matched to the book by name; a name the
+                    tracker has that the book does not is still listed,
+                    dashed, as "not in your assigned book"
+    High potential  the ten eligible accounts with the most 2026 cases.
+                    This is the proxy the two files support: the customer
+                    base carries TOTAL volume per account, not brand-level
+                    or "similar product" sales, so "does well with similar
+                    products" cannot be ranked from these sources. Add a
+                    brand-level sales export if that is wanted.
+    Can't sell here in the rep's book but NOT IN TERRITORY / BLOCKED for
+                    every brand the program pays on, with the reason; plus
+                    accounts whose area could not be resolved (Middlesex,
+                    a Morris account with no numbered area), listed but
+                    never counted as eligible
+
+  PROGRAM -> BRAND FAMILY is PROGRAM_BRANDS in accounts.js, keyed by the
+  program id (inc:<key>, on:<key>, off:<key>). A multi-brand program counts
+  an account as sellable if ANY of its families can be sold there. null
+  means "any brand" (house programs, the any-brand MPOs): no territory
+  rule, no buying list, just the rep's book. Brand families missing from
+  the Brand Permissions file (the wine & spirits brands, Tona, Lytt) fall
+  back to the tracker's own call -- Core Market for programs the incentive
+  tracker greys out of non-core counties, otherwise NO filter -- and the
+  list says so in an amber note. Add the family to the workbook and the
+  note disappears.
+
+  Area resolution: the brand file is keyed by Encompass AREA. ~110
+  accounts carry Area "Sales" (a routing bucket) -- generate.py resolves
+  those from COUNTY where that is unambiguous (Bergen, Passaic, Hudson,
+  Essex, Union, Sussex) and leaves Morris/Middlesex unresolved.
+
+  Premise: on-premise programs list On Premise accounts, off-premise
+  programs Off Premise, "On & Off" programs the whole book. "Already
+  buying" is matched against the whole book regardless -- the off-prem
+  W&S MPO credits wine placements at restaurants -- and such rows are
+  tagged "on-premise account".
+
+CARDS (v2)
+  The rep page shows every card COLLAPSED: brand mark, name, status chip,
+  and four quick facts -- Progress (with bar), Goal, Remaining, Deadline.
+  Tapping the card header expands it in place: type/channel/supplier
+  chips, period, data refresh, the "Next" sentence, the four account
+  lists, and "Full program details" to the detail page. Expanded cards
+  are remembered for the page visit only. "Reset selections" on the
+  landing screen clears the remembered rep, category and every expanded
+  card.
+
 ADDING A PROGRAM OR A MONTH
   Add it to the tracker as usual (a registry entry + builder/card in
   incentive-tracking/programs.js; an OBJECTIVES_* entry + MONTHS table row
@@ -61,6 +138,8 @@ ADDING A PROGRAM OR A MONTH
                       constellation_gaintain periodEnd:'2026-11-30'.
   Channel for an incentive (On / Off / both) is INC_CHANNEL in hub.js --
   add a key there when a new program is one-sided; the default is both.
+  Its brand families go in PROGRAM_BRANDS in accounts.js, or the account
+  lists apply no territory rule and say so.
 
 HOW THE HUB READS EACH TRACKER (hub.js)
   Incentives  forRep(rep) calls the tracker's summarize(entry, rep): the

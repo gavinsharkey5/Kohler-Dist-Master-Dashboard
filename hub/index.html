@@ -21,6 +21,8 @@
     ../incentive-tracking/programs.js           incentive registries, summaries, cards, rules
     ../MPOs/on-prem/programs.js                 on-premise MPO registry + builders  (window.OnPremMPO)
     ../MPOs/off-prem/programs.js                off-premise MPO registry + builders (window.OffPremMPO)
+    data/accounts.js                            each rep's customer base + brand territory (generate.py writes it)
+    accounts.js                                 eligible / buying / high-potential / can't-sell logic
     hub.js                                      this page: adapters, sorting, screens
 
   Refreshing data is unchanged: run the tracker generators as usual and
@@ -32,6 +34,8 @@
 <script src="../incentive-tracking/programs.js"></script>
 <script src="../MPOs/on-prem/programs.js"></script>
 <script src="../MPOs/off-prem/programs.js"></script>
+<script src="data/accounts.js"></script>
+<script src="accounts.js"></script>
 <script src="hub.js"></script>
 </body>
 </html>

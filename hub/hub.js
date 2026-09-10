@@ -431,6 +431,9 @@ function sortedForRep(rep, cat){
 /* ====================================================================
    STATE + ROUTING
    ==================================================================== */
+const openCards = new Set();   // program ids expanded in place on the rep page
+const acctTabs = {};           // program id -> active account tab
+const acctMore = {};           // program id|tab -> show every row
 const state = {view:'home', rep:null, cat:'all', prog:null, from:null, peek:null, filters:{type:'all', chan:'all', sup:'all', month:'active'}, showEnded:false};
 function persist(){ try{ localStorage.setItem(LS_KEY, JSON.stringify({rep:state.rep, cat:state.cat})); }catch(e){} }
 function restore(){ try{ const s = JSON.parse(localStorage.getItem(LS_KEY)||'{}'); if(s.rep && ROSTER.includes(s.rep)) state.rep = s.rep; if(CATEGORIES.some(c=>c.key===s.cat)) state.cat = s.cat; }catch(e){} }
@@ -468,7 +471,7 @@ function go(next, replace){
   const h = hashOf();
   if(replace) history.replaceState(null, '', h); else history.pushState(null, '', h);
   render();
-  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  if(next.view!==undefined) window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
 }
 window.addEventListener('popstate', ()=>{ applyHash(); render(); });
 
@@ -560,6 +563,7 @@ function screenHome(){
       <div class="cats">${CATEGORIES.map(c=>`<button class="cat${pick.cat===c.key?' active':''}" data-act="pick-cat" data-cat="${c.key}"><span class="cat-l">${E(c.label)}</span><span class="cat-s">${E(c.sub)}</span></button>`).join('')}</div>
     </div>
     <button class="cta${pick.rep?'':' disabled'}" data-act="view-programs" ${pick.rep?'':'disabled'}>View My Programs <span class="ar">›</span></button>
+    <button class="reset" data-act="reset-all">↺ Reset selections</button>
     <div class="home-foot">Manager? <a href="#" data-act="programs">Browse by program instead</a></div>
   </div>`;
 }
@@ -617,33 +621,143 @@ function screenRep(){
   if(open) html += '</div>';
   return `<div class="repview">${html}</div>`;
 }
+/* ====================================================================
+   ACCOUNT DRILL-DOWN -- eligible / already buying / high potential /
+   can't sell here. The universe and the territory rule live in
+   accounts.js (HubAccounts); this side only gathers "already buying" from
+   what the trackers already publish for the rep.
+   ==================================================================== */
+const BUY_KEY = /(New|Rebuy|Accounts|ByAccount|accountList|^lines$|buyingAccounts|partialAccounts|onPremSeptember|draftLines|newPod|^rebuy$|offPremSingles|onPremBuilding|convertedAccounts|gainedAccounts|convertedSinceReport)$/;
+const NOT_BUY = /Targets?$|Whitespace|Lapsed|unconverted|notConverted|gapSkus|Count$|Total$/i;
+function buyNote(key, it){
+  if(/New$|newPod|convertedSinceReport|gainedAccounts/.test(key)) return 'new this period';
+  if(/Rebuy|^rebuy$/.test(key)) return 'reorder';
+  if(/converted/.test(key)) return 'converted';
+  const d = it.date || it.lastDate || (it.products && it.products[0] && it.products[0].date);
+  return d ? 'bought '+d : '';
+}
+function buyingFor(p, rep){
+  const m = new Map();
+  const add = (name, note)=>{ if(!name) return; const k = HubAccounts.norm(name); if(!k) return;
+    if(!m.has(k) || (note && m.get(k)===true)) m.set(k, note||true); m.set('__label__'+k, String(name)); };
+  if(p.source==='inc'){
+    const d = p.entry.getRep(rep); if(!d) return m;
+    const walk = (obj, depth)=>{
+      if(!obj || typeof obj!=='object' || depth>4) return;
+      Object.keys(obj).forEach(k=>{
+        const v = obj[k];
+        if(Array.isArray(v)){
+          const take = BUY_KEY.test(k) && !NOT_BUY.test(k);
+          v.forEach(it=>{
+            if(!it || typeof it!=='object') return;
+            const name = it.customer || it.name || it.account;
+            if(take && name){ if(k==='octoberfestByAccount' && !(it.unitsThisYear>0)) return; add(name, buyNote(k, it)); }
+            walk(it, depth+1);
+          });
+        } else if(v && typeof v==='object') walk(v, depth+1);
+      });
+    };
+    walk(d, 0);
+    return m;
+  }
+  const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA;
+  if(!D || !D[p.key]) return m;
+  const d = D[p.key]; const sets = d.subs ? d.subs : [d];
+  sets.forEach(sd=>{
+    const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
+    r.lines.forEach(l=>{
+      const name = l.customer; if(!name) return;
+      let note = '';
+      if(p.objective.type==='photos') note = 'photo submitted';
+      else if(l.new_buyer==='1' || l.isNew) note = 'new this month';
+      else if(l.period==='base') note = 'bought in base period';
+      else if(l.period==='current') note = 'repeat buyer';
+      else if(l.date) note = 'bought '+l.date;
+      add(name, note);
+    });
+  });
+  return m;
+}
+const acctCache = new Map();
+function accountsFor(p, rep){
+  const k = p.id+'|'+rep;
+  if(!acctCache.has(k)) acctCache.set(k, HubAccounts.classify(p, rep, buyingFor(p, rep)));
+  return acctCache.get(k);
+}
+const ACCT_TABS = [
+  {k:'eligible', l:'Eligible', sub:'In your book, brand can be sold there, not buying it yet'},
+  {k:'buying',   l:'Already buying', sub:'Accounts the tracker shows on the brand'},
+  {k:'high',     l:'High potential', sub:'Your biggest eligible accounts by 2026 cases — the fastest wins'},
+  {k:'excluded', l:'Can’t sell here', sub:'In your book, but the brand is not sellable in that area'},
+];
+const fmtCases = v => v==null ? '' : (v>=1000 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toLocaleString('en-US')) + ' cs';
+function acctRow(a, kind){
+  const meta = [a.city, a.area || (a.rawArea && a.rawArea!=='Sales' ? a.rawArea : ''), a.prem ? a.prem+'-premise' : ''].filter(Boolean).join(' · ');
+  const right = kind==='excluded' ? `<span class="awhy">${E(a.why||'')}</span>`
+              : kind==='buying' ? `<span class="anote">${E(a.note||'')}</span>${a.cases!=null?`<span class="acases">${E(fmtCases(a.cases))}</span>`:''}`
+              : `<span class="acases">${E(fmtCases(a.cases))}</span>`;
+  return `<div class="arow${a.foreign?' foreign':''}"><div class="amain"><div class="aname">${E(a.name)}</div>${meta?`<div class="ameta">${E(meta)}</div>`:''}</div><div class="aright">${right}</div></div>`;
+}
+function accountsPanel(p, rep){
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="soon-note">Loading this month’s accounts…</div>`;
+  const A = accountsFor(p, rep);
+  const chanWord = p.channel==='on' ? 'on-premise' : p.channel==='off' ? 'off-premise' : '';
+  const tabs = A.any ? ACCT_TABS.filter(t=>t.k==='eligible'||t.k==='high') : ACCT_TABS;
+  const counts = {eligible:A.eligible.length, buying:A.buying.length, high:A.high.length, excluded:A.excluded.length + A.unknown.length};
+  let tab = acctTabs[p.id] || 'eligible';
+  if(!tabs.some(t=>t.k===tab)) tab = 'eligible';
+  const rows = tab==='excluded' ? A.excluded.concat(A.unknown) : A[tab];
+  const key = p.id+'|'+tab; const all = !!acctMore[key]; const LIMIT = 15;
+  const shown = all ? rows : rows.slice(0, LIMIT);
+  const tabMeta = tabs.find(t=>t.k===tab);
+  const empty = {eligible: A.any ? 'No '+chanWord+' accounts in your book.' : (A.universe ? 'Every sellable account in your book is already buying — nothing left to open here.' : 'No '+chanWord+' accounts in your assigned book.'),
+                 buying:'None of your accounts show on this brand yet.', high:'No eligible accounts with 2026 volume on file.', excluded:'None — the brand can be sold at every account in your book.'}[tab];
+  const brandLine = A.any ? 'Any brand counts here, so every account in your book is in play.'
+                  : `Brand${A.families.length>1?'s':''}: ${A.families.join(', ')} · Territory: ${A.territory.map(t=>t.split(': ')[1]).filter((v,i,arr)=>arr.indexOf(v)===i).join(' / ')}`;
+  return `<div class="acct" data-prog="${E(p.id)}">
+    <div class="asum"><strong>${A.universe}</strong> ${chanWord} account${A.universe===1?'':'s'} in your assigned book${A.any?'':` · <strong>${counts.eligible}</strong> eligible · <strong>${counts.buying}</strong> buying · <strong>${counts.excluded}</strong> can’t sell`}</div>
+    <div class="abrand">${E(brandLine)}</div>
+    <div class="atabs" role="tablist">${tabs.map(t=>`<button class="atab${t.k===tab?' active':''}" role="tab" data-act="acct-tab" data-prog="${E(p.id)}" data-tab="${t.k}">${E(t.l)}<span class="an">${counts[t.k]}</span></button>`).join('')}</div>
+    <div class="asub">${E(tabMeta.sub)}${tab==='high'?' · top 10':''}</div>
+    ${rows.length ? `<div class="alist">${shown.map(a=>acctRow(a, tab)).join('')}</div>` : `<div class="aempty">${E(empty)}</div>`}
+    ${rows.length>LIMIT ? `<button class="amore" data-act="acct-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
+    ${A.notes.length ? `<div class="anotes">${A.notes.map(n=>`<div>⚠ ${E(n)}</div>`).join('')}</div>` : ''}
+    <div class="afoot">Book as of ${E(HubAccounts.asOf)} · buying lists from the tracker's data refreshed ${E(p.refreshed||'—')}</div>
+  </div>`;
+}
+
 function programCard(p, r, rep){
   const soon = r.status==='soon';
-  const facts = soon ? '' : `
-    <div class="facts">
-      <div class="fact"><span class="fact-l">Where you are</span><span class="fact-v">${E(r.now)}</span>${r.sub?`<span class="fact-s">${E(r.sub)}</span>`:''}</div>
-      <div class="fact"><span class="fact-l">Goal</span><span class="fact-v">${E(r.goal||'—')}</span></div>
-      <div class="fact"><span class="fact-l">Still needed</span><span class="fact-v ${r.remain?'':'ok'}">${E(r.remain || (r.status==='complete'||r.status==='exceeded' ? 'Done ✓' : (r.openEnded ? 'No cap' : '—')))}</span></div>
-      <div class="fact"><span class="fact-l">Complete</span><span class="fact-v">${r.openEnded ? (r.status==='notstarted'?'0':'Paying') : Math.round(r.pct)+'%'}</span>${PACE[r.pace]?`<span class="fact-s pace ${r.pace}">${E(PACE[r.pace])}</span>`:''}</div>
-    </div>
-    ${barHtml(r)}`;
-  return `<article class="pcard st-${r.status}" data-act="open" data-prog="${E(p.id)}" tabindex="0" role="button">
-    <div class="pcard-top">
-      ${logoStrip(p)}
-      <div class="pcard-title">
-        <div class="pcard-name">${E(p.name)}</div>
-        <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span></div>
+  const open = openCards.has(p.id);
+  const done = r.status==='complete' || r.status==='exceeded';
+  const urgent = daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p);
+  const quick = soon
+    ? `<div class="quick"><div class="q wide"><span class="ql">Status</span><span class="qv dim">${E(r.loading ? 'Loading this month’s data…' : p.manual ? 'Verified by hand — nothing to track yet' : 'Waiting on the first export')}</span></div>
+       <div class="q"><span class="ql">Deadline</span><span class="qv${urgent?' urgent':''}">${E(endsLabel(p.period))}</span></div></div>`
+    : `<div class="quick">
+        <div class="q prog"><span class="ql">Progress</span><span class="qv">${E(r.now)}${!r.openEnded?`<span class="qpct">${Math.round(r.pct)}%</span>`:''}</span>${barHtml(r)}</div>
+        <div class="q"><span class="ql">Goal</span><span class="qv">${E(r.goal||'—')}</span></div>
+        <div class="q"><span class="ql">Remaining</span><span class="qv${r.remain?'':' ok'}">${E(r.remain || (done ? 'Done ✓' : (r.openEnded ? 'No cap' : '—')))}</span></div>
+        <div class="q"><span class="ql">Deadline</span><span class="qv${urgent?' urgent':''}">${E(endsLabel(p.period))}</span></div>
+      </div>`;
+  const body = !open ? '' : `<div class="pcard-body">
+      <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span><span class="chip">📅 ${E(p.period.label)}</span><span class="chip">Data ${E(p.refreshed ? 'refreshed '+p.refreshed : 'loading…')}</span></div>
+      ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
+      ${r.sub && !soon ? `<div class="psub">${E(r.sub)}</div>` : ''}
+      ${accountsPanel(p, rep)}
+      <div class="pcard-actions"><button class="fullbtn" data-act="open" data-prog="${E(p.id)}">Full program details <span class="ar">›</span></button></div>
+    </div>`;
+  return `<article class="pcard st-${r.status}${open?' open':''}" id="card-${E(p.id)}">
+    <button class="pcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+      <div class="pcard-top">
+        ${logoStrip(p)}
+        <div class="pcard-title"><div class="pcard-name">${E(p.name)}</div><div class="pcard-sup">${E(p.supplier)} · ${E(p.type)} · ${E(p.channelLabel)}</div></div>
+        <div class="pcard-status">${statusChip(r)}${flags(p, r)}</div>
       </div>
-      <div class="pcard-status">${statusChip(r)}${flags(p, r)}</div>
-    </div>
-    ${facts}
-    ${soon ? `<div class="soon-note">${E(r.loading ? 'Loading this month’s data…' : p.manual ? 'Submitted and verified by hand — nothing to track here yet.' : 'Waiting on the first export for this program.')}</div>` : ''}
-    ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
-    <div class="pcard-foot">
-      <span class="period ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p) ? 'urgent':''}">📅 ${E(p.period.label)} · ${E(endsLabel(p.period))}</span>
-      <span class="refreshed">Data ${E(p.refreshed ? 'refreshed '+p.refreshed : 'loading…')}</span>
-      <span class="viewbtn">View full details <span class="ar">›</span></span>
-    </div>
+      ${quick}
+      <div class="pcard-hint">${open ? 'Hide details ▴' : 'More details & accounts ▾'}</div>
+    </button>
+    ${body}
   </article>`;
 }
 
@@ -696,7 +810,8 @@ function screenDetail(){
                         : `<p class="note"><a href="${INC_ASSETS}index.html">Open the Incentive Tracker ›</a></p>`}
     </section>
     ${tl && tl.length ? `<section class="dsec"><h2 class="dsec-h">Your progress over time</h2>${chartHtml(tl, p, r)}</section>` : ''}
-    ${soon ? '' : `<section class="dsec"><h2 class="dsec-h">${p.type==='MPO' ? 'Your accounts, placements and targets' : 'Your accounts, products and opportunities'}</h2>
+    <section class="dsec"><h2 class="dsec-h">${state.peek ? E(first(rep))+'’s accounts for this program' : 'Your accounts for this program'}</h2>${accountsPanel(p, rep)}</section>
+    ${soon ? '' : `<section class="dsec"><h2 class="dsec-h">${p.type==='MPO' ? 'Tracker detail: placements and targets' : 'Tracker detail: products and opportunities'}</h2>
       <div class="ddetail ${p.type==='MPO'?'mpo':'inc'}">${p.detailHtml(rep) || '<div class="empty small">No detail on file yet.</div>'}</div></section>`}
     ${rank.length ? `<section class="dsec"><h2 class="dsec-h">${state.peek ? 'Where '+E(first(rep))+' ranks' : 'Where you rank'}</h2>${leaderboard(p, rank, rep, 5)}</section>` : ''}
     ${exp!=null ? `<p class="note">Tracked payout across all reps so far: <strong>$${exp.toLocaleString('en-US')}</strong>.</p>` : ''}
@@ -841,6 +956,7 @@ function screenProgram(){
 
 /* ---- main render ---- */
 function render(){
+  acctCache.clear();
   const root = app();
   let body;
   if(state.view==='home') body = screenHome();
@@ -877,7 +993,14 @@ document.addEventListener('click', e=>{
     case 'my-programs': if(state.rep) go({view:'rep', prog:null, from:null, peek:null}); else go({view:'home'}); break;
     case 'set-cat': go({cat:t.dataset.cat, view:'rep'}, true); break;
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
+    case 'toggle-card': { const id = t.dataset.prog; if(openCards.has(id)) openCards.delete(id); else openCards.add(id); render();
+      const el = document.getElementById('card-'+id); if(el && openCards.has(id)){ const y = el.getBoundingClientRect().top + window.pageYOffset - 8; if(y < window.pageYOffset) window.scrollTo({top:y}); } break; }
+    case 'acct-tab': acctTabs[t.dataset.prog] = t.dataset.tab; render(); break;
+    case 'acct-more': acctMore[t.dataset.key] = !acctMore[t.dataset.key]; render(); break;
+    case 'reset-all': try{ localStorage.removeItem(LS_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = 'all';
+      pick = {rep:null, cat:'all', q:''}; go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
+    case 'change-rep-home': pick = {rep:null, cat:state.cat, q:''}; go({view:'home'}); break;
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at
@@ -944,6 +1067,6 @@ function boot(){
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render};
+window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor};
 boot();
 })();
