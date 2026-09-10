@@ -41,17 +41,18 @@ const MAINS = [
   {key:'inc', label:'Incentives', ic:'🏆', sub:'Supplier reward programs'},
   {key:'mpo', label:'MPOs',       ic:'🎯', sub:'Monthly performance objectives'},
 ];
+// Incentives are split by SUPPLIER, exactly as the Incentive Tracker's own
+// "choose a supplier" step does (SUPPLIERS / PROGRAM_SUPPLIER in
+// incentive-tracking/programs.js); the category key is 'sup:<supplierKey>'.
 const SUBS = {
-  inc:[{key:'new',       label:'New',       ic:'✨', sub:'Just launched'},
-       {key:'ongoing',   label:'Ongoing',   ic:'🔁', sub:'Still running from last month'},
-       {key:'retention', label:'Retention', ic:'🛡️', sub:'Hold what you already sell'}],
+  inc: Object.keys(SUPPLIERS).map(sk=>({key:'sup:'+sk, sk, label:SUPPLIERS[sk].name, ic:'', sub:''})),
   mpo:[{key:'on',  label:'On-Premise',  ic:'🍺', sub:'Bars & restaurants'},
        {key:'off', label:'Off-Premise', ic:'🏪', sub:'Liquor stores & retail'}],
 };
 // Every category key the rep page accepts (the sub-categories, plus the
 // wider ones a Manager Mode link may still carry).
 const CATEGORIES = [{key:'all', label:'All Programs'}, {key:'inc', label:'Incentives'}, {key:'mpo', label:'MPOs'}]
-  .concat(SUBS.inc.map(x=>Object.assign({main:'inc'}, x, {label:x.label+' Incentives'})),
+  .concat(SUBS.inc.map(x=>Object.assign({main:'inc'}, x, {label:x.label+' incentives'})),
           SUBS.mpo.map(x=>Object.assign({main:'mpo'}, x, {label:x.label+' MPOs'})));
 const catMetaOf = cat => CATEGORIES.find(c=>c.key===cat) || CATEGORIES[0];
 const mainOf = cat => catMetaOf(cat).main || (cat==='inc'||cat==='mpo' ? cat : null);
@@ -169,7 +170,7 @@ function makeIncentive(entry, month){
   const p = {
     id: 'inc:'+entry.key, source:'inc', key: entry.key, monthKey: month.key, monthLabel: month.label,
     name: entry.title, shortName: entry.shortTitle || entry.title, pitch: entry.pitch || '',
-    type: 'Incentive', group: entry.group || 'new', channel: chan, channelLabel: CHANNEL_LABEL[chan],
+    type: 'Incentive', group: entry.group || 'new', supKey: PROGRAM_SUPPLIER[entry.key] || 'house', channel: chan, channelLabel: CHANNEL_LABEL[chan],
     supplier: sup.name, supplierLogo: assetPath(sup.logo), brandLogos: progLogos(entry.key).map(assetPath),
     period, refreshed: PROGRAM_DATA_REFRESHED, manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
     rules, reward: rules.find(r=>/\$|win|trip|ticket|bonus|commission/i.test(r)) || '',
@@ -402,6 +403,7 @@ function inCategory(p, cat){
   if(cat==='on')  return p.type==='MPO' && p.channel==='on';
   if(cat==='off') return p.type==='MPO' && p.channel==='off';
   if(cat==='new' || cat==='ongoing' || cat==='retention') return p.type==='Incentive' && p.group===cat;
+  if(cat.startsWith('sup:')) return p.type==='Incentive' && p.supKey===cat.slice(4);
   return true;
 }
 // Programs whose data must be in memory for a given selection.
@@ -668,8 +670,41 @@ function subStat(rep, sub){
 function mainSelect(main){
   return `<label class="mainsel-wrap"><select class="mainsel" data-sel="main" aria-label="Incentives or MPOs">${MAINS.map(m=>`<option value="${m.key}"${m.key===main?' selected':''}>${m.ic} ${E(m.label)}</option>`).join('')}</select><span class="mainsel-ar">▾</span></label>`;
 }
+// Incentives, grouped by supplier for the picker: suppliers with live
+// programs first, then alphabetical (the tracker's order). "Incentives" is
+// every active program the rep is in (a Coming Soon one counts, an
+// unavailable or ended one does not); "already earned" is Completed/Exceeded.
+// "Earned" the way the tracker's supplier step counts it: the goal is met,
+// or an open-ended program has already paid something.
+const isEarned = r => r.status==='complete' || r.status==='exceeded' || (r.openEnded && r.pace==='earned');
+function repSuppliers(rep){
+  const rows = sortedForRep(rep, 'inc').filter(x=>x.g<7);
+  const groups = new Map();
+  rows.forEach(x=>{ const sk = x.p.supKey; if(!groups.has(sk)) groups.set(sk, []); groups.get(sk).push(x); });
+  return [...groups.entries()].map(([sk, items])=>({sk, name:SUPPLIERS[sk].name, logo:assetPath(SUPPLIERS[sk].logo), items,
+      live: items.filter(x=>x.r.status!=='soon').length, earned: items.filter(x=>isEarned(x.r)).length}))
+    .sort((a,b)=>(b.live-a.live) || a.name.localeCompare(b.name));
+}
+function screenSuppliers(){
+  const rep = state.rep;
+  const sups = repSuppliers(rep);
+  const month = MONTHS[MONTHS.length-1];
+  return `<div class="pickview wide">
+    <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
+    <div class="pick-head left">${mainSelect('inc')}<h1>${E(first(rep))}, choose a supplier</h1><p class="pick-sub">Tap a supplier to see your ${E(month.label)} incentives for them.</p></div>
+    ${sups.length ? `<div class="supgrid">${sups.map(g=>`<button class="suppick" data-act="pick-sub" data-cat="sup:${E(g.sk)}">
+      <span class="suppick-top">
+        <span class="suppick-logo"><img src="${E(g.logo)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></span>
+        <span class="suppick-text"><span class="suppick-name">${E(g.name)}</span><span class="suppick-note">${plw(g.items.length,'incentive')}${g.earned?` · <strong>${g.earned} already earned</strong>`:''}</span></span>
+      </span>
+      <span class="supcta">See these incentives<span class="ar">→</span></span>
+    </button>`).join('')}</div>` : `<div class="empty">No incentives apply to you right now.</div>`}
+    ${refreshedLine()}
+  </div>`;
+}
 function screenPick(){
   const rep = state.rep, main = state.main;
+  if(main==='inc') return screenSuppliers();
   const M = MAINS.find(m=>m.key===main) || MAINS[0];
   const tiles = SUBS[M.key].map(s=>{
     const st = subStat(rep, s);
@@ -698,19 +733,23 @@ function screenRep(){
   const counts = {complete:0, progress:0, notstarted:0, ending:0, soon:0};
   active.forEach(x=>{ if(x.r.status==='complete'||x.r.status==='exceeded') counts.complete++; else if(x.r.status==='progress') counts.progress++; else if(x.r.status==='notstarted') counts.notstarted++; else counts.soon++; if(x.g===1) counts.ending++; });
   const pending = neededMonths(active.map(x=>x.p));
+  const bySup = cat.startsWith('sup:');
   const kicker = main ? mainSelect(main) + (main==='mpo' ? `<span class="rep-month">${E(mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off'))}</span>` : '') : '<div class="rep-kicker">All programs</div>';
+  const subline = bySup
+    ? `${plw(active.length,'incentive')}${active.filter(x=>isEarned(x.r)).length?` · <strong class="ok">${active.filter(x=>isEarned(x.r)).length} already earned</strong>`:''}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`
+    : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     ${main ? `<button class="back" data-act="back-pick"><span class="ar">‹</span> Back</button>` : ''}
     <div class="rep-title"><div class="rep-kick">${kicker}</div><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
-      <div class="rep-sub">${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}</div>
+      <div class="rep-sub">${subline}</div>
       ${refreshedLine()}</div>
-    <div class="counts">
+    ${bySup ? '' : `<div class="counts">
       <div class="count good"><div class="count-n">${counts.complete}</div><div class="count-l">Completed</div></div>
       <div class="count accent"><div class="count-n">${counts.progress}</div><div class="count-l">In progress</div></div>
       <div class="count"><div class="count-n">${counts.notstarted}</div><div class="count-l">Not started</div></div>
       <div class="count amber"><div class="count-n">${counts.ending}</div><div class="count-l">Ending soon</div></div>
-    </div>
-    ${subs.length ? `<div class="catbar" role="tablist">${subs.map(c=>{ const st = cat===c.key ? {n:active.length} : subStat(rep, c);
+    </div>`}
+    ${subs.length && !bySup ? `<div class="catbar" role="tablist">${subs.map(c=>{ const st = cat===c.key ? {n:active.length} : subStat(rep, c);
       return `<button class="catpill${cat===c.key?' active':''}" data-act="set-cat" data-cat="${c.key}" role="tab" aria-selected="${cat===c.key?'true':'false'}"><span class="pi">${c.ic}</span>${E(c.label)}<span class="pn">${st.n===null?'…':st.n}</span></button>`; }).join('')}</div>` : ''}
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data…</div>`;
@@ -731,19 +770,24 @@ function screenRep(){
     });
     return `<div class="repview">${html}</div>`;
   }
-  html += renderGroups(rows, rep);
-  return `<div class="repview">${html}</div>`;
+  html += renderGroups(rows, rep, {quiet: bySup});
+  return `<div class="repview${bySup?' single':''}">${html}</div>`;
 }
 function mpoMonthLabel(scope){ const mk = mpoRepMonth(scope); const m = MPO_SCOPES[scope].mod.MONTHS.find(x=>x.key===mk); return m ? m.label : mk; }
-function renderGroups(rows, rep){
+function renderGroups(rows, rep, opts){
+  opts = opts || {};
   let html = '';
   let lastG = null, open = false;
   rows.forEach(x=>{
-    if(x.g!==lastG){
-      lastG = x.g;
+    // Quiet mode (a supplier's page): one plain list in the usual order, with
+    // headings only where the reader needs a warning -- unavailable or ended.
+    const g = opts.quiet && x.g<7 ? 0 : x.g;
+    if(g!==lastG){
+      lastG = g;
       if(open){ html += '</div>'; open = false; }
       const gm = GROUP_META[x.g];
-      if(x.g===8){
+      if(g===0){ /* no heading */ }
+      else if(x.g===8){
         const n = rows.filter(y=>y.g===8).length;
         html += `<button class="ghead toggle ${gm.cls}${state.showEnded?' open':''}" data-act="toggle-ended"><span class="ghead-t">${E(gm.title)} <span class="ghead-n">${n}</span></span><span class="ghead-s">${E(gm.sub)}</span><span class="ghead-ar">${state.showEnded?'▾':'▸'}</span></button>`;
       } else {
@@ -1090,7 +1134,9 @@ function repPlan(p, r, rep, opts){
 }
 
 function programCard(p, r, rep){
-  const sup = `${E(p.supplier)} · ${p.type==='MPO' ? E(p.channelLabel)+' MPO' : E((SUBS.inc.find(x=>x.key===p.group)||{}).label||'')+' incentive'}`;
+  const bySup = String(state.cat||'').startsWith('sup:');
+  const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
+  const sup = bySup ? kind : `${E(p.supplier)} · ${kind}`;
   if(r.status==='unavailable'){
     return `<article class="pcard st-unavailable" id="card-${E(p.id)}">
       <div class="pcard-head static">
@@ -1125,9 +1171,11 @@ function programCard(p, r, rep){
   let lines = '', hasList = true;
   if(!soon && !isMgr()){
     const P = planParts(p, r, rep); hasList = P.loading || P.total>0;
+    const closedN = P.loading ? 0 : closedFor(p, rep).length;
     lines = `<div class="lines">
       <div class="line sell"><span class="line-ic">${RETENTION.test(p.key)?'🛡️':'🍺'}</span><span class="line-l">Sell</span><span class="line-t">${E(P.sell)}</span></div>
       <div class="line go"><span class="line-ic">📍</span><span class="line-l">Go</span><span class="line-t">${E(P.go)}</span></div>
+      ${closedN ? `<div class="line done"><span class="line-ic">✓</span><span class="line-l">Closed</span><span class="line-t">${plw(closedN,'placement')} credited so far.</span></div>` : ''}
     </div>`;
   }
   const hint = open ? 'Close ▴' : isMgr() ? 'Details & accounts ▾' : (soon || !hasList) ? 'Details ▾' : 'Open the account list ▾';

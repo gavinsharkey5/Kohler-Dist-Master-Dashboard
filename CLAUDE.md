@@ -144,5 +144,7 @@ A program whose brand cannot be sold anywhere on a rep's route (per the
 two workbooks) is greyed as "Unavailable based on account base/territory"
 and left out of that rep's counts and visit lists; rep-page MPOs are the
 current calendar month's only. The home screen asks only Incentives or
-MPOs; the next screen splits Incentives into New / Ongoing / Retention
-(the tracker registry's own `group` field) and MPOs into On / Off-Premise.
+MPOs; the next screen is the Incentive Tracker's own "choose a supplier"
+step for Incentives (one card per supplier, count + already earned, SEE
+THESE INCENTIVES) and On / Off-Premise tiles for MPOs. A supplier's page
+is one quiet column of cards -- no count boxes, no filter pills.
