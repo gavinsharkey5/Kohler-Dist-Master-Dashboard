@@ -869,7 +869,7 @@ const ACCT_TABS = [
   {k:'buying',   l:'Already buying', sub:'Accounts the tracker shows on the brand'},
   {k:'high',     l:'High potential', sub:'Your biggest eligible accounts by 2026 cases — the fastest wins'},
   {k:'excluded', l:'Can’t sell here', sub:'In your book, but the brand is not sellable in that area'},
-  {k:'closed',   l:'Closed / Completed', sub:'Placements the tracker credits to this rep — customer, product, date'},
+  {k:'closed',   l:'Completed', sub:'Placements the tracker credits to this rep — customer, product, date'},
 ];
 const fmtCases = v => v==null ? '' : (v>=1000 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toLocaleString('en-US')) + ' cases';
 function acctRow(a, kind){
@@ -1179,8 +1179,8 @@ function planParts(p, r, rep, opts){
 function planTabs(p, rep, P, tab){
   const closedN = P.loading ? null : closedFor(p, rep).length;
   return `<div class="ptabs">
-      <button class="ptab sell${tab==='sell'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="sell"><span class="ptab-l">What to sell</span><span class="ptab-n">${P.loading ? '…' : P.total ? (P.hold ? plw(P.total,'account')+' to hold' : plw(P.total,'account')+' to visit') : 'nothing open'}</span></button>
-      <button class="ptab closed${tab==='closed'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="closed"><span class="ptab-l">Closed / Completed</span><span class="ptab-n">${closedN==null?'…':plw(closedN,'placement')}</span></button>
+      <button class="ptab sell${tab==='sell'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="sell"><span class="ptab-l">Targets</span><span class="ptab-n">${P.loading ? '…' : P.total ? (P.hold ? plw(P.total,'account')+' to hold' : plw(P.total,'account')+' to visit') : 'nothing open'}</span></button>
+      <button class="ptab closed${tab==='closed'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="closed"><span class="ptab-l">Completed</span><span class="ptab-n">${closedN==null?'…':plw(closedN,'placement')}</span></button>
     </div>`;
 }
 // Expanded card, Rep Mode: the list behind the two tabs, then the link to
@@ -1205,7 +1205,7 @@ function repPlan(p, r, rep, opts){
   const P = planParts(p, r, rep, opts);
   if(P.loading) return `<div class="soon-note">Loading…</div>`;
   return `<div class="plan">
-    <div class="plan-line sell"><span class="plan-l">What to sell</span><span class="plan-t">${E(P.sell)}</span></div>
+    <div class="plan-line sell"><span class="plan-l">Sell</span><span class="plan-t">${E(P.sell)}</span></div>
     <div class="plan-line go"><span class="plan-l">Where to go</span><span class="plan-t">${E(P.go)}</span></div>
     <div class="plan-line step"><span class="plan-l">Next step</span><span class="plan-t">${E(P.step)}</span></div>
     ${P.list ? `<div class="plan-listwrap open">${P.list}</div>` : ''}
@@ -1306,8 +1306,8 @@ function screenDetailRep(p, r, rep, back){
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${r.next}</div></div>` : ''}
     ${(()=>{ const BG = brandGoals(p, rep); return BG.length
       ? `<section class="dsec"><h2 class="dsec-h">Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>`
-      : `<section class="dsec"><h2 class="dsec-h">What to sell</h2>${repPlan(p, r, rep, {limit:15})}</section>
-    <section class="dsec"><h2 class="dsec-h closed">Closed / Completed</h2>${closedLog(p, rep, {limit:25})}</section>`; })()}
+      : `<section class="dsec"><h2 class="dsec-h">Targets</h2>${repPlan(p, r, rep, {limit:15})}</section>
+    <section class="dsec"><h2 class="dsec-h closed">Completed</h2>${closedLog(p, rep, {limit:25})}</section>`; })()}
     <section class="dsec"><h2 class="dsec-h">How it pays</h2>
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       <p class="note">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p></section>
