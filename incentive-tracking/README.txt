@@ -997,6 +997,29 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 FIFTH REFRESH -- Molson Coors retention (on + off prem)
+Both grouped workbooks (report time 9/10 15:46) converted through
+convert_mc_retention.py; every rep, DM and report total reconciled, 0 new and
+0 gone rep/brand pairs, so only values moved.
+
+  brand goals retained   27 -> 30 of 100: Dan Lagala 1 -> 2 (off-prem Fever
+                         Tree 30 -> 36 of 36), Derrick Laws 2 -> 3 (off-prem
+                         Coors 53 -> 54 of 54), Phil Ernst 0 -> 1 (off-prem
+                         Peroni 75 -> 78 of 78)
+  off-prem placements    2,545 -> 2,588 of 2,912
+  on-prem buyers         708 -> 718 of 840
+
+Brian Sengebush crossed 100% overall (97.8% -> 101.4%, draft 116.5% ->
+121.4%), joining Dave Ehlers (110.1%), Derrick Laws (103.0%) and Allison
+Scott (104.9%). Matt Powierski's Fever Tree 36 -> 43 of 44 is one placement
+from his third goal; Klejdi Lamo 91.4% -> 94.1%.
+
+ONE THING WENT DOWN: Phil Ernst's off-prem Fever Tree 69 -> 68 of 85 (81.2%
+-> 80.0%). It is the value on his own brand row in the workbook, not a
+levelling error -- his rep total still reconciles -- so a placement dropped
+out of the retain window on RDE's side. He gained a goal on Peroni the same
+pull, so his overall still rose 90.0% -> 91.1%.
+
 2026-09-10 FOURTH REFRESH -- Constellation Fall (5 of 6 files; Corona Gaintain not re-pulled)
 Impact, Modelo Gaintain and Innovation (off-premise) plus the two on-premise
 detail files, through 9/11. The Corona Gaintain export was not in this batch,
