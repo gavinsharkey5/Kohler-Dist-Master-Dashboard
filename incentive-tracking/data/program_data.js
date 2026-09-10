@@ -132476,6 +132476,1258 @@ const PROGRAM_DATA_2026_09 = {
       "onBaseWindow": "3/1/2026 - 5/31/2026"
     }
   },
+  "yuengling_retention_fall": {
+    "byRep": {
+      "Alisa Acciardi": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          }
+        ],
+        "offActual": 1,
+        "offGoal": 2,
+        "offPct": 50.0,
+        "offGoalsTotal": 2,
+        "offGoalsRetained": 1,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 2,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 2,
+        "overallHeld": 1,
+        "overallToGo": 1,
+        "overallPct": 50.0
+      },
+      "Allison Scott": {
+        "offBrands": [],
+        "offActual": 0,
+        "offGoal": 0,
+        "offPct": null,
+        "offGoalsTotal": 0,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 28,
+            "actual": 6,
+            "goal": 26,
+            "pct": 23.1,
+            "held": false,
+            "toGo": 20
+          }
+        ],
+        "packagesActual": 6,
+        "packagesGoal": 27,
+        "packagesPct": 22.2,
+        "packagesGoalsTotal": 2,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 2,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 27,
+        "overallHeld": 6,
+        "overallToGo": 21,
+        "overallPct": 22.2
+      },
+      "Anthony Palmisano": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 14,
+            "actual": 5,
+            "goal": 13,
+            "pct": 38.5,
+            "held": false,
+            "toGo": 8
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 25,
+            "actual": 19,
+            "goal": 23,
+            "pct": 82.6,
+            "held": false,
+            "toGo": 4
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 16,
+            "actual": 5,
+            "goal": 15,
+            "pct": 33.3,
+            "held": false,
+            "toGo": 10
+          }
+        ],
+        "offActual": 29,
+        "offGoal": 51,
+        "offPct": 56.9,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 30,
+            "actual": 19,
+            "goal": 28,
+            "pct": 67.9,
+            "held": false,
+            "toGo": 9
+          }
+        ],
+        "packagesActual": 19,
+        "packagesGoal": 29,
+        "packagesPct": 65.5,
+        "packagesGoalsTotal": 2,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 5,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 80,
+        "overallHeld": 48,
+        "overallToGo": 32,
+        "overallPct": 60.0
+      },
+      "Brian Sengebush": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 2,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 5,
+            "actual": 3,
+            "goal": 4,
+            "pct": 75.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 2,
+            "actual": 2,
+            "goal": 1,
+            "pct": 200.0,
+            "held": true,
+            "toGo": 0
+          }
+        ],
+        "offActual": 6,
+        "offGoal": 6,
+        "offPct": 100.0,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 2,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 55,
+            "actual": 31,
+            "goal": 52,
+            "pct": 59.6,
+            "held": false,
+            "toGo": 21
+          }
+        ],
+        "packagesActual": 31,
+        "packagesGoal": 53,
+        "packagesPct": 58.5,
+        "packagesGoalsTotal": 2,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 5,
+        "goalsRetained": 2,
+        "hasAnyGoal": true,
+        "overallGoal": 59,
+        "overallHeld": 36,
+        "overallToGo": 23,
+        "overallPct": 61.0
+      },
+      "Chris Payton": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 8,
+            "actual": 2,
+            "goal": 7,
+            "pct": 28.6,
+            "held": false,
+            "toGo": 5
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 36,
+            "actual": 22,
+            "goal": 34,
+            "pct": 64.7,
+            "held": false,
+            "toGo": 12
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 7,
+            "actual": 0,
+            "goal": 6,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 6
+          }
+        ],
+        "offActual": 24,
+        "offGoal": 47,
+        "offPct": 51.1,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 5,
+            "actual": 3,
+            "goal": 4,
+            "pct": 75.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "packagesActual": 3,
+        "packagesGoal": 4,
+        "packagesPct": 75.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 51,
+        "overallHeld": 27,
+        "overallToGo": 24,
+        "overallPct": 52.9
+      },
+      "Dan Lagala": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 6,
+            "actual": 1,
+            "goal": 5,
+            "pct": 20.0,
+            "held": false,
+            "toGo": 4
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 30,
+            "actual": 9,
+            "goal": 28,
+            "pct": 32.1,
+            "held": false,
+            "toGo": 19
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 2,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          }
+        ],
+        "offActual": 11,
+        "offGoal": 34,
+        "offPct": 32.4,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 1,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 4,
+            "actual": 1,
+            "goal": 3,
+            "pct": 33.3,
+            "held": false,
+            "toGo": 2
+          }
+        ],
+        "packagesActual": 1,
+        "packagesGoal": 3,
+        "packagesPct": 33.3,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 37,
+        "overallHeld": 12,
+        "overallToGo": 25,
+        "overallPct": 32.4
+      },
+      "Dave Ehlers": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 9,
+            "actual": 3,
+            "goal": 8,
+            "pct": 37.5,
+            "held": false,
+            "toGo": 5
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 32,
+            "actual": 16,
+            "goal": 30,
+            "pct": 53.3,
+            "held": false,
+            "toGo": 14
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 9,
+            "actual": 7,
+            "goal": 8,
+            "pct": 87.5,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 26,
+        "offGoal": 46,
+        "offPct": 56.5,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 46,
+        "overallHeld": 26,
+        "overallToGo": 20,
+        "overallPct": 56.5
+      },
+      "Derrick Laws": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 11,
+            "actual": 5,
+            "goal": 10,
+            "pct": 50.0,
+            "held": false,
+            "toGo": 5
+          }
+        ],
+        "offActual": 6,
+        "offGoal": 11,
+        "offPct": 54.5,
+        "offGoalsTotal": 2,
+        "offGoalsRetained": 1,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "packagesActual": 0,
+        "packagesGoal": 1,
+        "packagesPct": 0.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 12,
+        "overallHeld": 6,
+        "overallToGo": 6,
+        "overallPct": 50.0
+      },
+      "Dylan Rubino": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 1,
+        "offGoal": 2,
+        "offPct": 50.0,
+        "offGoalsTotal": 2,
+        "offGoalsRetained": 1,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 2,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 2,
+        "overallHeld": 1,
+        "overallToGo": 1,
+        "overallPct": 50.0
+      },
+      "Jaime Colonna": {
+        "offBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          }
+        ],
+        "offActual": 1,
+        "offGoal": 1,
+        "offPct": 100.0,
+        "offGoalsTotal": 1,
+        "offGoalsRetained": 1,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 1,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 1,
+        "overallHeld": 1,
+        "overallToGo": 0,
+        "overallPct": 100.0
+      },
+      "Javier Melo": {
+        "offBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 7,
+            "actual": 4,
+            "goal": 6,
+            "pct": 66.7,
+            "held": false,
+            "toGo": 2
+          }
+        ],
+        "offActual": 4,
+        "offGoal": 6,
+        "offPct": 66.7,
+        "offGoalsTotal": 1,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 1,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 6,
+        "overallHeld": 4,
+        "overallToGo": 2,
+        "overallPct": 66.7
+      },
+      "Jayson Romine": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 28,
+            "actual": 14,
+            "goal": 26,
+            "pct": 53.8,
+            "held": false,
+            "toGo": 12
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 32,
+            "actual": 28,
+            "goal": 30,
+            "pct": 93.3,
+            "held": false,
+            "toGo": 2
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 29,
+            "actual": 16,
+            "goal": 27,
+            "pct": 59.3,
+            "held": false,
+            "toGo": 11
+          }
+        ],
+        "offActual": 58,
+        "offGoal": 83,
+        "offPct": 69.9,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 83,
+        "overallHeld": 58,
+        "overallToGo": 25,
+        "overallPct": 69.9
+      },
+      "Jim Heaney": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 11,
+            "actual": 4,
+            "goal": 10,
+            "pct": 40.0,
+            "held": false,
+            "toGo": 6
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 40,
+            "actual": 22,
+            "goal": 38,
+            "pct": 57.9,
+            "held": false,
+            "toGo": 16
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 9,
+            "actual": 2,
+            "goal": 8,
+            "pct": 25.0,
+            "held": false,
+            "toGo": 6
+          }
+        ],
+        "offActual": 28,
+        "offGoal": 56,
+        "offPct": 50.0,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 56,
+        "overallHeld": 28,
+        "overallToGo": 28,
+        "overallPct": 50.0
+      },
+      "John O'Donoghue": {
+        "offBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 2,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 0,
+        "offGoal": 1,
+        "offPct": 0.0,
+        "offGoalsTotal": 1,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 1,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 1,
+        "overallHeld": 0,
+        "overallToGo": 1,
+        "overallPct": 0.0
+      },
+      "Klejdi Lamo": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 19,
+            "actual": 11,
+            "goal": 18,
+            "pct": 61.1,
+            "held": false,
+            "toGo": 7
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 26,
+            "actual": 19,
+            "goal": 24,
+            "pct": 79.2,
+            "held": false,
+            "toGo": 5
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 12,
+            "actual": 6,
+            "goal": 11,
+            "pct": 54.5,
+            "held": false,
+            "toGo": 5
+          }
+        ],
+        "offActual": 36,
+        "offGoal": 53,
+        "offPct": 67.9,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          }
+        ],
+        "packagesActual": 1,
+        "packagesGoal": 1,
+        "packagesPct": 100.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 1,
+        "goalsTotal": 4,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 54,
+        "overallHeld": 37,
+        "overallToGo": 17,
+        "overallPct": 68.5
+      },
+      "Matt Powierski": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 9,
+            "actual": 3,
+            "goal": 8,
+            "pct": 37.5,
+            "held": false,
+            "toGo": 5
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 35,
+            "actual": 16,
+            "goal": 33,
+            "pct": 48.5,
+            "held": false,
+            "toGo": 17
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 7,
+            "actual": 3,
+            "goal": 6,
+            "pct": 50.0,
+            "held": false,
+            "toGo": 3
+          }
+        ],
+        "offActual": 22,
+        "offGoal": 47,
+        "offPct": 46.8,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 3,
+            "actual": 1,
+            "goal": 2,
+            "pct": 50.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "packagesActual": 1,
+        "packagesGoal": 2,
+        "packagesPct": 50.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 49,
+        "overallHeld": 23,
+        "overallToGo": 26,
+        "overallPct": 46.9
+      },
+      "Michael Harboy": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 3,
+            "actual": 1,
+            "goal": 2,
+            "pct": 50.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 6,
+            "actual": 5,
+            "goal": 5,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 3,
+            "actual": 1,
+            "goal": 2,
+            "pct": 50.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 7,
+        "offGoal": 9,
+        "offPct": 77.8,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 1,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 9,
+        "overallHeld": 7,
+        "overallToGo": 2,
+        "overallPct": 77.8
+      },
+      "Mike Ast": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 12,
+            "actual": 2,
+            "goal": 11,
+            "pct": 18.2,
+            "held": false,
+            "toGo": 9
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 27,
+            "actual": 18,
+            "goal": 25,
+            "pct": 72.0,
+            "held": false,
+            "toGo": 7
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 14,
+            "actual": 3,
+            "goal": 13,
+            "pct": 23.1,
+            "held": false,
+            "toGo": 10
+          }
+        ],
+        "offActual": 23,
+        "offGoal": 49,
+        "offPct": 46.9,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "packagesActual": 0,
+        "packagesGoal": 1,
+        "packagesPct": 0.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 50,
+        "overallHeld": 23,
+        "overallToGo": 27,
+        "overallPct": 46.0
+      },
+      "Nick Melissari": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 1,
+            "goal": 1,
+            "pct": 100.0,
+            "held": true,
+            "toGo": 0
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 1,
+        "offGoal": 3,
+        "offPct": 33.3,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 1,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 34,
+            "actual": 12,
+            "goal": 32,
+            "pct": 37.5,
+            "held": false,
+            "toGo": 20
+          }
+        ],
+        "packagesActual": 12,
+        "packagesGoal": 32,
+        "packagesPct": 37.5,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 1,
+        "hasAnyGoal": true,
+        "overallGoal": 35,
+        "overallHeld": 13,
+        "overallToGo": 22,
+        "overallPct": 37.1
+      },
+      "Pablo Lopez": {
+        "offBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 8,
+            "actual": 3,
+            "goal": 7,
+            "pct": 42.9,
+            "held": false,
+            "toGo": 4
+          }
+        ],
+        "offActual": 3,
+        "offGoal": 7,
+        "offPct": 42.9,
+        "offGoalsTotal": 1,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 1,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 7,
+        "overallHeld": 3,
+        "overallToGo": 4,
+        "overallPct": 42.9
+      },
+      "Paul Mclaughlin": {
+        "offBrands": [],
+        "offActual": 0,
+        "offGoal": 0,
+        "offPct": null,
+        "offGoalsTotal": 0,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 21,
+            "actual": 9,
+            "goal": 19,
+            "pct": 47.4,
+            "held": false,
+            "toGo": 10
+          }
+        ],
+        "packagesActual": 9,
+        "packagesGoal": 19,
+        "packagesPct": 47.4,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 1,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 19,
+        "overallHeld": 9,
+        "overallToGo": 10,
+        "overallPct": 47.4
+      },
+      "Phil Ernst": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 18,
+            "actual": 8,
+            "goal": 17,
+            "pct": 47.1,
+            "held": false,
+            "toGo": 9
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 24,
+            "actual": 15,
+            "goal": 22,
+            "pct": 68.2,
+            "held": false,
+            "toGo": 7
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 11,
+            "actual": 3,
+            "goal": 10,
+            "pct": 30.0,
+            "held": false,
+            "toGo": 7
+          }
+        ],
+        "offActual": 26,
+        "offGoal": 49,
+        "offPct": 53.1,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "packagesActual": 0,
+        "packagesGoal": 1,
+        "packagesPct": 0.0,
+        "packagesGoalsTotal": 1,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 4,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 50,
+        "overallHeld": 26,
+        "overallToGo": 24,
+        "overallPct": 52.0
+      },
+      "Robin Feldman": {
+        "offBrands": [
+          {
+            "label": "Yuengling Lager",
+            "base": 1,
+            "actual": 0,
+            "goal": 1,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 1
+          }
+        ],
+        "offActual": 0,
+        "offGoal": 1,
+        "offPct": 0.0,
+        "offGoalsTotal": 1,
+        "offGoalsRetained": 0,
+        "packagesBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 3,
+            "actual": 0,
+            "goal": 2,
+            "pct": 0.0,
+            "held": false,
+            "toGo": 2
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 101,
+            "actual": 31,
+            "goal": 95,
+            "pct": 32.6,
+            "held": false,
+            "toGo": 64
+          }
+        ],
+        "packagesActual": 31,
+        "packagesGoal": 97,
+        "packagesPct": 32.0,
+        "packagesGoalsTotal": 2,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 98,
+        "overallHeld": 31,
+        "overallToGo": 67,
+        "overallPct": 31.6
+      },
+      "Shane Barreca": {
+        "offBrands": [
+          {
+            "label": "Yuengling Flight",
+            "base": 15,
+            "actual": 1,
+            "goal": 14,
+            "pct": 7.1,
+            "held": false,
+            "toGo": 13
+          },
+          {
+            "label": "Yuengling Lager",
+            "base": 26,
+            "actual": 13,
+            "goal": 24,
+            "pct": 54.2,
+            "held": false,
+            "toGo": 11
+          },
+          {
+            "label": "Yuengling Light Lager",
+            "base": 16,
+            "actual": 1,
+            "goal": 15,
+            "pct": 6.7,
+            "held": false,
+            "toGo": 14
+          }
+        ],
+        "offActual": 15,
+        "offGoal": 53,
+        "offPct": 28.3,
+        "offGoalsTotal": 3,
+        "offGoalsRetained": 0,
+        "packagesBrands": [],
+        "packagesActual": 0,
+        "packagesGoal": 0,
+        "packagesPct": null,
+        "packagesGoalsTotal": 0,
+        "packagesGoalsRetained": 0,
+        "goalsTotal": 3,
+        "goalsRetained": 0,
+        "hasAnyGoal": true,
+        "overallGoal": 53,
+        "overallHeld": 15,
+        "overallToGo": 38,
+        "overallPct": 28.3
+      }
+    },
+    "house": [
+      {
+        "side": "off",
+        "label": "Yuengling Flight",
+        "base": 158,
+        "goal": 144,
+        "actual": 58,
+        "repsHeld": 3,
+        "repsWithGoal": 17,
+        "pct": 40.3
+      },
+      {
+        "side": "off",
+        "label": "Yuengling Lager",
+        "base": 377,
+        "goal": 349,
+        "actual": 220,
+        "repsHeld": 4,
+        "repsWithGoal": 22,
+        "pct": 63.0
+      },
+      {
+        "side": "off",
+        "label": "Yuengling Light Lager",
+        "base": 138,
+        "goal": 124,
+        "actual": 50,
+        "repsHeld": 2,
+        "repsWithGoal": 14,
+        "pct": 40.3
+      },
+      {
+        "side": "packages",
+        "label": "Yuengling Flight",
+        "base": 6,
+        "goal": 5,
+        "actual": 0,
+        "repsHeld": 0,
+        "repsWithGoal": 4,
+        "pct": 0.0
+      },
+      {
+        "side": "packages",
+        "label": "Yuengling Lager",
+        "base": 285,
+        "goal": 265,
+        "actual": 114,
+        "repsHeld": 1,
+        "repsWithGoal": 13,
+        "pct": 43.0
+      }
+    ],
+    "retainThresholdPct": 95,
+    "rounding": "down",
+    "sides": [
+      {
+        "key": "off",
+        "label": "Off-Premise",
+        "loaded": true
+      },
+      {
+        "key": "packages",
+        "label": "On-Premise Packages",
+        "loaded": true
+      }
+    ],
+    "periodStart": "2026-09-01",
+    "periodEnd": "2026-11-30",
+    "periodDays": 91,
+    "daysElapsed": 10,
+    "pacePct": 11.0,
+    "meta": {
+      "offRoster": [
+        "Chris Politano",
+        "Default",
+        "John Neukum",
+        "Office Tell Sell"
+      ]
+    }
+  },
   "sam_adams_conversion": {
     "byRep": {
       "Alex Rodriguez": {

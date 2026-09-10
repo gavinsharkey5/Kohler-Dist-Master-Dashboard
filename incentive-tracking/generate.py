@@ -1640,6 +1640,154 @@ def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None,
     return out
 
 
+YUENGLING_FALL_START = datetime.date(2026, 9, 1)
+YUENGLING_FALL_END = datetime.date(2026, 11, 30)
+YUENGLING_FALL_RETAIN = 0.95      # per Gavin, 2026-09-10: "the goal is 95% of BUYER COUNT IN 2025"
+# Each side of the program is one RDE report; the on-premise DRAFT report is
+# still to come (Gavin, 2026-09-10) and slots in here as a third entry.
+YUENGLING_FALL_FILES = [
+    ("off", "yuengling_retention_fall_off.csv", "Off-Premise"),
+    ("packages", "yuengling_retention_fall_packages_on.csv", "On-Premise Packages"),
+]
+
+
+def _yuengling_fall_goal(base):
+    """95% of the rep's fall-2025 buyer count for that brand family, ROUNDED
+    DOWN -- Gavin's own worked example (2026-09-10) was "anthony palmisano
+    goal would be 23 for yuengling lager because he had 25 in 2025", and
+    0.95 x 25 = 23.75, so the decimal is dropped, not rounded to nearest
+    (which would say 24). A base of 1 or 2 floors to 0 / 1; a goal of zero
+    would be held by doing nothing, so the floor is 1 for any rep with a
+    base at all. Change ONE line here if the rounding rule turns out to be
+    nearest instead."""
+    if not base:
+        return None
+    return max(1, int(base * YUENGLING_FALL_RETAIN))
+
+
+def build_yuengling_retention_fall():
+    """Yuengling Distro Rewards -- Retention, Sept-Nov 2026 (per Gavin,
+    2026-09-10). Brand-FAMILY goals only, one per (rep, brand family, side);
+    there is NO overall goal and no house goal. Two RDE reports so far,
+    off-premise and on-premise packages (draft to follow), each with a
+    2025 (9/1-11/30/2025) and a 2026 (9/1-11/30/2026) Buyer Count column.
+
+    The exports are the familiar flattened tree: the FIRST row of each
+    rep's block is that rep's total (a DISTINCT-buyer count, mislabelled
+    with whichever brand sorts first), and the rows beneath are the brand
+    families. _split_report_subtotals() peels the total off; because it is a
+    distinct count it does not sum from the brand rows, but it must sit
+    between the biggest single brand and the sum of them all -- the same
+    bound convert_mc_retention.py checks on MolsonCoors on-prem -- and the
+    build stops if any rep's row breaks it, which is the signature of the
+    export shape changing.
+
+    goal    = 95% of the 2025 count, rounded down (see _yuengling_fall_goal)
+    actual  = the 2026 count (blank = 0)
+    held    = actual >= goal
+    A brand row with no 2025 count (a family the rep did not sell last
+    fall) has no goal and is shown but never scored. Reps with no row on
+    either file are not in the program; off-roster names are dropped and
+    listed in meta.offRoster."""
+    today = datetime.date.today()
+    span = (YUENGLING_FALL_END - YUENGLING_FALL_START).days + 1
+    elapsed = min(max((today - YUENGLING_FALL_START).days + 1, 0), span)
+    pace = elapsed / span * 100 if span else 0.0
+
+    sides = {}
+    off_roster = set()
+    house = {}
+    for side, filename, label in YUENGLING_FALL_FILES:
+        if not (DATA_DIR / filename).exists():
+            print(f"yuengling_retention_fall: {filename} not on file yet -- {label} skipped")
+            continue
+        rows = read_rows(filename)
+        cols = list(rows[0].keys())
+        base_col = next(c for c in cols if c.startswith("Buyer Count") and "2025" in c)
+        cur_col = next(c for c in cols if c.startswith("Buyer Count") and "2026" in c)
+        totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
+        per_rep = defaultdict(dict)
+        for r in detail:
+            rep = (r["Sales Rep Assigned"] or "").strip()
+            fam = (r["Brand Family"] or "").strip()
+            if rep not in ROSTER:
+                off_roster.add(rep)
+                continue
+            base = to_num(r.get(base_col)) if (r.get(base_col) or "").strip() else 0.0
+            cur = to_num(r.get(cur_col)) if (r.get(cur_col) or "").strip() else 0.0
+            if fam in per_rep[rep]:
+                raise SystemExit(f"{filename}: two '{fam}' rows for {rep} -- export shape changed?")
+            per_rep[rep][fam] = {"label": fam, "base": round(base), "actual": round(cur)}
+        # Reconcile every rep's total row against its own brand rows, both columns.
+        for rep, fams in per_rep.items():
+            t = totals.get(rep)
+            if not t:
+                continue
+            for col, key in ((base_col, "base"), (cur_col, "actual")):
+                tv = to_num(t.get(col)) if (t.get(col) or "").strip() else 0.0
+                vals = [b[key] for b in fams.values()]
+                lo, hi = (max(vals) if vals else 0), sum(vals)
+                if not (lo - 0.5 <= tv <= hi + 0.5):
+                    raise SystemExit(f"{filename}: {rep} total {tv} on '{col}' is outside its brand rows "
+                                     f"[{lo}, {hi}] -- the export shape has changed; not writing.")
+        for rep, fams in per_rep.items():
+            brands = []
+            for fam in sorted(fams):
+                b = fams[fam]
+                b["goal"] = _yuengling_fall_goal(b["base"])
+                b["pct"] = round(b["actual"] / b["goal"] * 100, 1) if b["goal"] else None
+                b["held"] = bool(b["goal"] and b["actual"] >= b["goal"])
+                b["toGo"] = max(0, b["goal"] - b["actual"]) if b["goal"] else 0
+                brands.append(b)
+                h = house.setdefault((side, fam), {"side": side, "label": fam, "base": 0, "goal": 0, "actual": 0, "repsHeld": 0, "repsWithGoal": 0})
+                h["base"] += b["base"]; h["actual"] += b["actual"]
+                if b["goal"]:
+                    h["goal"] += b["goal"]; h["repsWithGoal"] += 1; h["repsHeld"] += 1 if b["held"] else 0
+            sides.setdefault(side, {})[rep] = brands
+
+    by_rep = {}
+    for rep in ROSTER:
+        if not any(rep in sides.get(side, {}) for side, _, _ in YUENGLING_FALL_FILES):
+            continue
+        d = {}
+        goaled_all = []
+        for side, _, _ in YUENGLING_FALL_FILES:
+            brands = sides.get(side, {}).get(rep, [])
+            goaled = [b for b in brands if b["goal"]]
+            actual = sum(b["actual"] for b in goaled)
+            goal = sum(b["goal"] for b in goaled)
+            d[side + "Brands"] = brands
+            d[side + "Actual"] = actual
+            d[side + "Goal"] = goal
+            d[side + "Pct"] = round(actual / goal * 100, 1) if goal else None
+            d[side + "GoalsTotal"] = len(goaled)
+            d[side + "GoalsRetained"] = sum(1 for b in goaled if b["held"])
+            goaled_all += goaled
+        d["goalsTotal"] = len(goaled_all)
+        d["goalsRetained"] = sum(1 for b in goaled_all if b["held"])
+        d["hasAnyGoal"] = bool(goaled_all)
+        d["overallGoal"] = sum(b["goal"] for b in goaled_all)
+        d["overallHeld"] = sum(min(b["actual"], b["goal"]) for b in goaled_all)   # buyers counted toward goals, capped per goal
+        d["overallToGo"] = sum(b["toGo"] for b in goaled_all)
+        d["overallPct"] = round(d["overallHeld"] / d["overallGoal"] * 100, 1) if d["overallGoal"] else None
+        by_rep[rep] = d
+
+    house_rows = sorted(house.values(), key=lambda h: (h["side"], h["label"]))
+    for h in house_rows:
+        h["pct"] = round(h["actual"] / h["goal"] * 100, 1) if h["goal"] else None
+    return {
+        "byRep": by_rep,
+        "house": house_rows,
+        "retainThresholdPct": int(YUENGLING_FALL_RETAIN * 100),
+        "rounding": "down",
+        "sides": [{"key": side, "label": label, "loaded": (DATA_DIR / filename).exists()} for side, filename, label in YUENGLING_FALL_FILES],
+        "periodStart": YUENGLING_FALL_START.isoformat(),
+        "periodEnd": YUENGLING_FALL_END.isoformat(),
+        "periodDays": span, "daysElapsed": elapsed, "pacePct": round(pace, 1),
+        "meta": {"offRoster": sorted(off_roster)},
+    }
+
+
 def build_le_grand_noir():
     """Le Grand Noir Volume Incentive (program 11 of the original deck)
     -- went live 2026-08-20 when the first RDE file arrived (it was HELD
@@ -3969,8 +4117,17 @@ def main():
         "other_half": build_other_half(),
         "mabi_retention_fall": build_mabi_retention_fall(),
         "constellation_fall": build_constellation_fall(),
+        "yuengling_retention_fall": build_yuengling_retention_fall(),
         "sam_adams_conversion": build_sam_adams_conversion(),
     }
+    yf = data_09["yuengling_retention_fall"]
+    yf_reps = yf["byRep"].values()
+    print("yuengling_retention_fall: " + " · ".join(
+        f"{h['side']} {h['label']} {h['actual']}/{h['goal']} ({h['repsHeld']}/{h['repsWithGoal']} reps holding)" for h in yf["house"])
+        + f" | {sum(d['goalsRetained'] for d in yf_reps)} / {sum(d['goalsTotal'] for d in yf_reps)} brand goals held across {len(yf['byRep'])} reps"
+        + f" | {sum(1 for d in yf_reps if d['hasAnyGoal'] and d['goalsRetained']==d['goalsTotal'])} reps holding every goal"
+        + f" | day {yf['daysElapsed']} of {yf['periodDays']}"
+        + (f" | off-roster, not shown: {', '.join(yf['meta']['offRoster'])}" if yf['meta']['offRoster'] else ""))
     sc = data_09["sam_adams_conversion"]
     print(f"sam_adams_conversion (Boston Beer scoreboard as of {sc['meta']['officialAsOf']}): house "
           f"{sc['house']['converted']} of {sc['house']['prevSeason']} Summer Ale lines converted "
