@@ -997,6 +997,28 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt Launch
+Five exports, all strict supersets of the published files (no rows removed,
+nothing re-dated), so every change below is a gain. Keystone moved this time:
+the 139-row export went onto keystone-ice/actuals.csv AND
+MPOs/off-prem/keystone_ice_24oz.csv (sync rule), keystone-ice rebuilt first,
+then the off-prem September board, then this page. Headlines:
+
+  Keystone   109 -> 119 accounts, 3 -> 4 qualified, $195 -> $300 projected.
+             DAN LAGALA QUALIFIED (17 -> 20 of 18, 47% of 43) and took rank
+             #1 from Javier Melo; Derrick Laws 14 -> 15; Chris Payton 11 ->
+             13 (3 to go); Anthony Palmisano 3 -> 5; Matt Powierski 7 -> 8;
+             Shane Barreca 1 -> 2.
+  1911       263 -> 269 new placements: Andrew Lundy 37 -> 39, Chris Payton
+             9 -> 11, Paul Mclaughlin 0 -> 2 (his first, both draft).
+  Woodchuck   31 -> 35 new placements: John O'Donoghue 6 -> 9, Phil Ernst
+             0 -> 1. Dave Ehlers's Total Wine cases came back (32 -> 37).
+  Tona        12 -> 12 new 24 oz placements; only Dylan Rubino's other-
+             package volume moved (62 -> 65 cases).
+  Lytt        Phil Ernst 9 -> 10 accounts, 36% -> 40% (now at the 40% rate);
+             Pablo Lopez 5 -> 6, 19% -> 23%. No tier change for anyone else.
+No rep went down on any program.
+
 2026-09-09 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt Launch (Keystone no-op)
 Exports now run through 9/10. The Keystone file Gavin sent with this batch is
 byte-identical to the 124-row export both Keystone copies already hold, so

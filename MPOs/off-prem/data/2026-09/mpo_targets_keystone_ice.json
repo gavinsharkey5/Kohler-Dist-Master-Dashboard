@@ -97,12 +97,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 2002,
-    "CUSTOMER_NAME": "Ringwood Discount Liquors",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 2003,
     "CUSTOMER_NAME": "Ringwood W&L",
     "AREA": "Passaic-FF"
@@ -129,12 +123,6 @@
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 1012,
     "CUSTOMER_NAME": "Uncorked Wines & Spirits (West Milford)",
-    "AREA": "Passaic-FF"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 3005,
-    "CUSTOMER_NAME": "Usa Wine Traders (Wanaque)",
     "AREA": "Passaic-FF"
   },
   {
@@ -283,12 +271,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 34001,
-    "CUSTOMER_NAME": "Meadowland Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 81010,
     "CUSTOMER_NAME": "Morlot W & L (A)",
     "AREA": "Bergen"
@@ -321,12 +303,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38008,
     "CUSTOMER_NAME": "Shop Rite Liq.(A)Lodi",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 34009,
-    "CUSTOMER_NAME": "The Wine Rack Hasbrouck Hts",
     "AREA": "Bergen"
   },
   {
@@ -463,12 +439,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44016,
-    "CUSTOMER_NAME": "Liquor City(A)Cliffside",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48002,
     "CUSTOMER_NAME": "Manor Wine & Liquor",
     "AREA": "Bergen"
@@ -489,18 +459,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46003,
     "CUSTOMER_NAME": "Palisades Park Liq(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44049,
-    "CUSTOMER_NAME": "Rome Liquor (Cliffside Park)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44040,
-    "CUSTOMER_NAME": "Stop N Go Conven. (P)",
     "AREA": "Bergen"
   },
   {
@@ -1603,12 +1561,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36007,
-    "CUSTOMER_NAME": "Shop Rite Of Wallington",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 36038,
     "CUSTOMER_NAME": "Tatra Haus Restaurant",
     "AREA": "Bergen"
@@ -2217,12 +2169,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 92008,
     "CUSTOMER_NAME": "Ramsey Wine & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 71006,
-    "CUSTOMER_NAME": "Ridgemont Liquors (A)",
     "AREA": "Bergen"
   },
   {

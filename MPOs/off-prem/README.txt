@@ -885,6 +885,13 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-10 REFRESH -- Keystone only, riding the incentive-tracker refresh
+keystone_ice_24oz.csv and keystone-ice/actuals.csv moved together onto the
+139-row export (15 rows added, none removed): 109 -> 119 distinct buying
+accounts, 3 -> 4 reps at 40% penetration (Dan Lagala joins at 44.4% of 45).
+Nothing else on this board was re-pulled; Constellation, Fever Tree, W&S and
+the cooler doors rebuilt from the files already here and did not move.
+
 2026-09-09 REFRESH -- all four exports moved, plus Promos_Report_13
 Exports now run through 9/11 (Keystone, one future-dated C Town load sheet
 for Derrick Laws), 9/10 (Wine & Spirits) and 9/9 (Fever Tree). Keystone,

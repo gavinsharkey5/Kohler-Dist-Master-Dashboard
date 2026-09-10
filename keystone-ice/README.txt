@@ -98,6 +98,13 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-10 REFRESH: actuals.csv onto the 139-row export (15 new rows, none
+removed), 109 -> 119 distinct accounts, 3 -> 4 qualified, $195 -> $300
+projected. Dan Lagala qualified (17 -> 20 of 18, 47% of 43) and is rank #1;
+Derrick Laws 14 -> 15 (1 from bonus), Chris Payton 11 -> 13. Same export
+applied to MPOs/off-prem/keystone_ice_24oz.csv in the same commit; both
+boards read 119. incentive-tracking rebuilt afterwards.
+
 2026-09-09 REFRESH: actuals.csv onto the 124-row export (through 9/11 -- one
 future-dated C Town load sheet for Derrick Laws), 101 -> 109 distinct
 accounts, still 3 qualified (Javier Melo 13, Derrick Laws 14, Pablo Lopez
