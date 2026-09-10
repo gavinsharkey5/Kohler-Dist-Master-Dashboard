@@ -141,6 +141,8 @@ cards carry three short lines -- what to sell, where to go, next step --
 behind a WHAT TO SELL tab, beside a CLOSED / COMPLETED tab that logs the
 rep's credited placements (customer, product, date) from the tracker data.
 A program whose brand cannot be sold anywhere on a rep's route (per the
-two workbooks) is greyed as "Not Available in Your Territory" and left
-out of that rep's counts and visit lists; rep-page MPOs are the current
-calendar month's only.
+two workbooks) is greyed as "Unavailable based on account base/territory"
+and left out of that rep's counts and visit lists; rep-page MPOs are the
+current calendar month's only. The home screen asks only Incentives or
+MPOs; the next screen splits Incentives into New / Ongoing / Retention
+(the tracker registry's own `group` field) and MPOs into On / Off-Premise.
