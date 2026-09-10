@@ -598,7 +598,7 @@ function topbar(){
       <div class="navr">
         <button class="nbtn home" data-act="home">🏠 Home</button>
         ${rep ? `<button class="nbtn" data-act="change-rep">Change rep</button>` : ''}
-        ${state.view==='rep' || state.view==='detail' ? `<button class="nbtn" data-act="change-view">Change category</button>` : (rep && state.view!=='pick' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : '')}
+        ${state.view==='detail' ? `<button class="nbtn" data-act="change-view">Change category</button>` : (rep && state.view!=='pick' && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : '')}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
         ${isMobile() ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
       </div>
@@ -663,6 +663,11 @@ function subStat(rep, sub){
   const ending = act.filter(x=>x.g===1).length;
   return {n:act.length, text:[plw(act.length,'active program'), done ? done+' done' : '', ending ? ending+' ending soon' : ''].filter(Boolean).join(' · ')};
 }
+// The kicker above the title is a dropdown: flip Incentives <-> MPOs
+// without going back to the home screen.
+function mainSelect(main){
+  return `<label class="mainsel-wrap"><select class="mainsel" data-sel="main" aria-label="Incentives or MPOs">${MAINS.map(m=>`<option value="${m.key}"${m.key===main?' selected':''}>${m.ic} ${E(m.label)}</option>`).join('')}</select><span class="mainsel-ar">▾</span></label>`;
+}
 function screenPick(){
   const rep = state.rep, main = state.main;
   const M = MAINS.find(m=>m.key===main) || MAINS[0];
@@ -675,7 +680,8 @@ function screenPick(){
       <span class="sub-ar">›</span></button>`;
   }).join('');
   return `<div class="pickview">
-    <div class="pick-head"><div class="pick-k">${M.ic} ${E(M.label)}</div><h1>${E(possessive(rep))} ${E(M.label)}</h1><p class="pick-sub">Which ones do you want to see?</p></div>
+    <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
+    <div class="pick-head">${mainSelect(M.key)}<h1>${E(possessive(rep))} ${E(M.label)}</h1><p class="pick-sub">Which ones do you want to see?</p></div>
     <div class="subs">${tiles}</div>
     ${refreshedLine()}
   </div>`;
@@ -692,9 +698,10 @@ function screenRep(){
   const counts = {complete:0, progress:0, notstarted:0, ending:0, soon:0};
   active.forEach(x=>{ if(x.r.status==='complete'||x.r.status==='exceeded') counts.complete++; else if(x.r.status==='progress') counts.progress++; else if(x.r.status==='notstarted') counts.notstarted++; else counts.soon++; if(x.g===1) counts.ending++; });
   const pending = neededMonths(active.map(x=>x.p));
-  const kicker = main==='mpo' ? `🎯 MPOs · ${mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off')}` : main==='inc' ? '🏆 Incentives' : 'All programs';
+  const kicker = main ? mainSelect(main) + (main==='mpo' ? `<span class="rep-month">${E(mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off'))}</span>` : '') : '<div class="rep-kicker">All programs</div>';
   let html = `<div class="rep-head">
-    <div class="rep-title"><div class="rep-kicker">${E(kicker)}</div><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
+    ${main ? `<button class="back" data-act="back-pick"><span class="ar">‹</span> Back</button>` : ''}
+    <div class="rep-title"><div class="rep-kick">${kicker}</div><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
       <div class="rep-sub">${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}</div>
       ${refreshedLine()}</div>
     <div class="counts">
@@ -1414,6 +1421,8 @@ document.addEventListener('click', e=>{
     case 'view-programs': if(pickReady()){ openCards.clear(); go({view:'pick', rep:pick.rep, main:pick.main, cat:null, prog:null, peek:null, from:null}); } break;
     case 'pick-sub': openCards.clear(); state.showEnded = false; go({view:'rep', cat:t.dataset.cat, main:mainOf(t.dataset.cat), prog:null, peek:null, from:null}); break;
     case 'change-rep': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home'}); break;
+    case 'back-home': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home', prog:null, peek:null, from:null}); break;
+    case 'back-pick': openCards.clear(); go({view:'pick', main: state.main || mainOf(state.cat) || 'inc', prog:null, peek:null, from:null}); break;
     case 'change-view': openCards.clear(); go({view:'pick', main: state.main || mainOf(state.cat) || 'inc', prog:null, peek:null, from:null}); break;
     case 'my-programs': if(state.rep && state.cat) go({view:'rep', prog:null, from:null, peek:null}); else if(state.rep && state.main) go({view:'pick', prog:null, from:null, peek:null}); else go({view:'home'}); break;
     case 'set-cat': openCards.clear(); go({cat:t.dataset.cat, main:mainOf(t.dataset.cat), view:'rep'}, true); break;
@@ -1459,6 +1468,8 @@ document.addEventListener('keydown', e=>{
   const firstBtn = document.querySelector('#repList .name'); if(firstBtn){ firstBtn.click(); }
 });
 document.addEventListener('change', e=>{
+  const m = e.target.closest('.mainsel');
+  if(m){ openCards.clear(); state.showEnded = false; go({view:'pick', main:m.value, cat:null, prog:null, peek:null, from:null}); return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
 });
