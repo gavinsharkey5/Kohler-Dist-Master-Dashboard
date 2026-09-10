@@ -100,3 +100,22 @@ whatever is on the viewing device. Multiple auditors = import each
 phone's export on one device (newest edit per location wins), then
 export the combined file. `?demo=1` previews the dashboard with fake
 data; nothing in demo mode is saved. See `metlife-audit/README.txt`.
+
+## Incentives & MPO Hub reads the trackers' shared program libraries (2026-09-10)
+
+`hub/` is one page for reps (pick your name -> every incentive and MPO
+you are in, sorted by what ends soonest / is closest to done) and a
+by-program view for managers. It has NO generator and NO data of its
+own: it loads `incentive-tracking/data/program_data.js` (which
+`incentive-tracking/generate.py` now writes beside the inline blob in
+index.html), `incentive-tracking/programs.js`, `MPOs/on-prem/programs.js`
+and `MPOs/off-prem/programs.js`, and calls the same `summarize()` /
+`cardFor()` / `metricFor()` / `detailFor()` those trackers run.
+
+Those `programs.js` files are where each tracker's registries, builders,
+summaries, rules and cards now live -- moved verbatim out of the three
+index.html files so both the original page and the hub read one copy.
+Edit program logic THERE, not in index.html (which keeps only the data
+blobs / month tabs / rendering). Refresh steps are unchanged: run each
+tracker's generator as its README says and the hub picks the numbers up.
+See `hub/README.txt` for how statuses map and how sorting works.

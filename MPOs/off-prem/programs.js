@@ -90,8 +90,12 @@ const OBJECTIVES_2026_08 = [
 // Tree's export is account-level, so one newly-opened account can be
 // several placements). See buildNewPlacementsDataset().
 const OBJECTIVES_2026_09 = [
-  {key:'constellation_gaintain', name:'Constellation – 30% Corona Gaintain Distro', shortName:'Corona Gaintain', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'30% of last fall\u2019s distro'},
-  {key:'keystone_ice', name:'Molson Coors – Keystone Ice 40% Buying Account', shortName:'Keystone Ice', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'40% of account base', accountsLabel:'Buying Accounts', brandLabel:'Keystone Ice'},
+  // periodStart/periodEnd are read only by hub/index.html (the Incentives &
+  // MPO Hub) to say when an objective ends and which month it belongs to;
+  // this tracker ignores them. Constellation runs the full fall (9/1-11/30),
+  // Keystone's RDE window opened 8/1 -- see the notes above.
+  {key:'constellation_gaintain', name:'Constellation – 30% Corona Gaintain Distro', shortName:'Corona Gaintain', unit:'placement', weight:0.30, type:'pct_of_goal', hasData:true, goalLabel:'30% of last fall\u2019s distro', periodEnd:'2026-11-30'},
+  {key:'keystone_ice', name:'Molson Coors – Keystone Ice 40% Buying Account', shortName:'Keystone Ice', unit:'buying account', weight:0.30, type:'pct_of_base', hasData:true, goalLabel:'40% of account base', accountsLabel:'Buying Accounts', brandLabel:'Keystone Ice', periodStart:'2026-08-01'},
   {key:'fever_tree', name:'Molson Coors – Fever Tree (10) New Placements (90-Day Non-Buy)', shortName:'Fever Tree', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'10 new placements each'},
   {key:'wine_spirits_any', name:'Wine & Spirits – (5) New Placements, Any Brand (90-Day Non-Buy)', shortName:'W&S Any Brand', unit:'new placement', weight:0.15, type:'new_placements', hasData:true, goalLabel:'5 new placements each'},
   // Live since 2026-09-04, from an iSellBeer Promos_Report (not RDE). Scored on

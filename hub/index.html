@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incentives & MPO Hub | Kohler Distributing</title>
+<meta name="description" content="Every Kohler Distributing incentive and MPO program in one place: pick your name, see which programs apply to you, where you stand, what you still need and when each one ends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hub.css">
+</head>
+<body>
+<!--
+  Incentives & MPO Hub -- one link for every incentive and MPO program.
+
+  This page renders nothing of its own: it loads the three trackers' own
+  program libraries (the same files those pages run) and arranges their
+  results in one design. No number here is computed in this folder.
+
+    ../incentive-tracking/data/program_data.js  the incentive data blobs (generate.py writes it)
+    ../incentive-tracking/programs.js           incentive registries, summaries, cards, rules
+    ../MPOs/on-prem/programs.js                 on-premise MPO registry + builders  (window.OnPremMPO)
+    ../MPOs/off-prem/programs.js                off-premise MPO registry + builders (window.OffPremMPO)
+    hub.js                                      this page: adapters, sorting, screens
+
+  Refreshing data is unchanged: run the tracker generators as usual and
+  this page picks the new numbers up. See README.txt.
+-->
+<div id="app"><main class="wrap"><div class="loading">Loading your programs…</div></main></div>
+
+<script src="../incentive-tracking/data/program_data.js"></script>
+<script src="../incentive-tracking/programs.js"></script>
+<script src="../MPOs/on-prem/programs.js"></script>
+<script src="../MPOs/off-prem/programs.js"></script>
+<script src="hub.js"></script>
+</body>
+</html>
