@@ -257,13 +257,23 @@ CATEGORIES ("What are you looking for?") -- v7, 2026-09-10
   The home screen offers TWO choices, Incentives or MPOs (MAINS in hub.js).
   "View My Programs" then opens a sub-category screen (view=pick) with one
   big tile per sub-category and that rep's active count on each:
-    Incentives -> New / Ongoing / Retention  (the tracker's own `group` on
-                  each PROGRAM_LIST entry in incentive-tracking/programs.js;
-                  the newest month's registry decides, so a program that
-                  was New in August and is Ongoing in September is Ongoing)
+    Incentives -> one card per SUPPLIER (v8, 2026-09-10 -- the New /
+                  Ongoing / Retention split was replaced at Gavin's request
+                  with the Incentive Tracker's own "choose a supplier" step:
+                  "<First name>, choose a supplier", logo + name, "n
+                  incentives · n already earned", one SEE THESE INCENTIVES
+                  button; repSuppliers() in hub.js, same order as the
+                  tracker -- suppliers with live programs first, then A-Z;
+                  "already earned" counts a met goal OR an open-ended
+                  program that has paid, like the tracker's `earned`).
+                  Category key is sup:<supplierKey> from SUPPLIERS /
+                  PROGRAM_SUPPLIER in incentive-tracking/programs.js.
     MPOs       -> On-Premise / Off-Premise   (this month's only)
-  Tapping a tile opens the rep page for that sub-category; a pill bar at
-  the top switches between the siblings without going back. "Change
+  Tapping a tile opens the rep page for that sub-category. A supplier's
+  page is deliberately quiet: no status count boxes, no filter pills, one
+  column of cards, no group headings (Unavailable and Ended still get
+  theirs), and the card drops the supplier line since the page is the
+  supplier. MPO pages keep the count boxes and the On / Off pill bar. "Change
   category" in the nav returns to the tile screen. The wider keys (all /
   inc / mpo) are still accepted in the hash for Manager Mode links but no
   longer appear on the home screen.
@@ -305,6 +315,7 @@ REP-MODE CARD LAYOUT (v7, 2026-09-10)
     progress bar + %  ->  deadline
     SELL  "Place Corona Premier."       (SELL_ASK)
     GO    "Start with these 8 eligible accounts."
+    CLOSED "5 placements credited so far."  (only when there are any)
     [ Open the account list ▾ ]         (one big button = the whole head)
   Opening the card shows only the two tabs (What to sell = the numbered
   visit list, Closed / Completed = the placement log) and the link to the

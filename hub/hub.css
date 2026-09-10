@@ -789,3 +789,32 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .mainsel-ar{position:absolute;right:15px;pointer-events:none;color:var(--accent);font-size:14px;}
 .rep-kick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
 .rep-month{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);}
+
+/* ---- v8: incentives by supplier (the tracker's "choose a supplier" step) ---- */
+.pickview.wide{max-width:1100px;}
+.pick-head.left{text-align:left;margin:6px 0 20px;}
+.pick-head.left h1{font-size:clamp(27px,6.4vw,38px);}
+.supgrid{display:grid;grid-template-columns:1fr;gap:12px;}
+@media (min-width:760px){ .supgrid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));} }
+.suppick{display:block;width:100%;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;cursor:pointer;text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:border-color .13s,transform .08s,background .13s;}
+.suppick:hover{border-color:var(--accent);background:var(--card-alt);}
+.suppick:active{transform:scale(.988);}
+.suppick-top{display:flex;align-items:center;gap:14px;}
+.suppick-logo{width:64px;height:44px;flex-shrink:0;background:#fff;border-radius:9px;padding:4px;display:flex;align-items:center;justify-content:center;}
+.suppick-logo img{max-width:100%;max-height:100%;object-fit:contain;}
+.suppick-logo.blank{background:var(--input-bg);border:1px solid var(--border);}
+.suppick-text{flex:1;min-width:0;}
+.suppick-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(19px,4.8vw,23px);color:var(--text);line-height:1.22;}
+.suppick-note{display:block;color:var(--text-dim);font-size:16px;margin-top:5px;line-height:1.45;}
+.suppick-note strong{color:var(--text);font-weight:700;}
+.supcta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;background:var(--accent);color:#fff;border-radius:11px;padding:15px 18px;min-height:58px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase;}
+.suppick:hover .supcta{background:#3C6AD8;}
+.supcta .ar{font-size:21px;line-height:1;}
+.pickview.wide .updated{justify-content:flex-start;}
+/* a supplier's page: one column, no group headings, quieter cards */
+.repview.single .cards{grid-template-columns:1fr;max-width:720px;}
+.repview.single .rep-head{margin-bottom:22px;}
+.repview.single .rep-sub .ok{color:var(--good);}
+.repview.single .cards{margin-top:4px;}
+.line.done{border-left:5px solid var(--good);background:var(--good-soft);} .line.done .line-l{color:var(--good);} .line.done .line-ic{color:var(--good);font-weight:700;}
+.line.done .line-t{font-family:'Inter',sans-serif;font-weight:600;font-size:16px;color:var(--text-dim);}
