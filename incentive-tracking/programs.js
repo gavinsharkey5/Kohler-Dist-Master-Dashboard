@@ -2541,11 +2541,22 @@ function cardYuenglingRetentionFall(rep){
     if(!loaded.has(S.key)) return naBlock(`${S.title.split(' — ')[0]} — Report Not In Yet`, 'The RDE export for this side has not arrived; its brand goals will appear here once it does.');
     const brands = d[S.key+'Brands']||[];
     if(!brands.length) return naBlock(`${S.title.split(' — ')[0]} — No Goals On File`, 'This report has no Yuengling buyers on your route last fall, so this side does not apply to you.');
+    const isDraft = S.key==='draft';
+    // Draft: the account sheet is the record (buyer + kegs in the account),
+    // so the block lists who is pouring, who is flagged with no keg, and who
+    // poured last fall but is not back yet -- the win-back list.
+    const accts = isDraft ? brands.flatMap(b=>(b.accounts||[]).map(a=>Object.assign({fam:b.label}, a))) : [];
+    const on = accts.filter(a=>a.status==='on'||a.status==='new'), lost = accts.filter(a=>a.status==='lost'), empty = accts.filter(a=>a.status==='empty');
+    const nm = a => a.customer.replace(/^\d+\s+/, '');
     return earnBlock({
       icon:S.icon, title:S.title, rate:'RETAIN',
-      rateNote:`Up to $500 per brand goal held · goal = ${thr}% of your Sept–Nov 2025 buyers, rounded up · Sept 1 – Nov 30`,
-      whatToDo:`Keep each Yuengling brand family at or above its goal — ${thr}% of the accounts that bought it from you last fall. A family that ends November below goal costs you that payout.`,
+      rateNote:`Up to $500 per brand goal held · goal = ${thr}% of your Sept–Nov 2025 buyers, rounded up · Sept 1 – Nov 30${isDraft?' · a line counts once a keg is in the account, not on an empty pickup':''}`,
+      whatToDo:isDraft
+        ? `Keep each Yuengling draft family at or above its goal — ${thr}% of the accounts pouring it last fall. Only accounts with a keg on the books this fall count${empty.length?`; ${empty.length} of yours ${empty.length===1?'is':'are'} flagged as a buyer with no net kegs yet`:''}.${lost.length?` ${lost.length} account${lost.length===1?'':'s'} that poured it last fall ${lost.length===1?'has':'have'} not taken a keg yet — that is the list to work.`:''}`
+        : `Keep each Yuengling brand family at or above its goal — ${thr}% of the accounts that bought it from you last fall. A family that ends November below goal costs you that payout.`,
       extra:retentionBrandBlock(brands, 'buyers'),
+      detail: isDraft ? {label:'Accounts Pouring It This Fall', items:on.map(a=>({name:nm(a), sub:`${a.fam}${a.status==='new'?' · new this fall':''}${a.lastDate?' · last keg '+a.lastDate:''}`, stat:`${a.units} keg${a.units===1?'':'s'}`})), emptyMsg:'No Yuengling kegs on the books for you yet this fall.'} : undefined,
+      opportunity: isDraft ? {label:'Poured It Last Fall — Not Back Yet', count:lost.length, note:'Accounts on your route that had this family on draft Sept–Nov 2025 with no keg yet this fall. Getting these back is the shortest path to the goal.', items:lost.map(a=>({name:nm(a), stat:a.fam})), moreCount:0, emptyMsg:'Every last-fall draft account is back on — nothing to win back.'} : undefined,
     });
   });
   return `<div class="prog-card">
@@ -3833,7 +3844,8 @@ const PROGRAM_RULES = {
     'Goals are per brand family, per side — off-premise, on-premise packages, on-premise draft — with no overall goal',
     'Your goal for each family = 95% of your 2025 buyer count, rounded up (25 buyers last fall → hold 24)',
     'Up to $500 for every brand goal retained',
-    'Off-premise families: Lager · Flight · Light Lager · On-premise packages: Lager · Flight',
+    'Off-premise families: Lager · Flight · Light Lager · On-premise packages: Lager · Flight · On-premise draft: Lager · Flight',
+    'Draft counts an account only once a keg is on the books this fall — a buyer flagged on an empty pickup does not count',
   ],
   'heineken_husa': [
     'Retain your Heineken distribution goals from September through November',

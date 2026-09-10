@@ -1005,10 +1005,7 @@ this is only at brand family level for each, there is no overall goal."
 
   1. ONE GOAL PER (REP, BRAND FAMILY, SIDE). Off-premise families: Lager,
      Flight, Light Lager. On-premise packages: Lager, Flight. On-premise
-     DRAFT is a third report Gavin has not sent yet ("will explain after
-     these 2 files are loaded in") -- YUENGLING_FALL_FILES in generate.py
-     takes it as a third entry and the card/summary already carry a
-     "draft" slot, so it is a data drop plus whatever rule he explains.
+     draft: Lager, Flight (added later on 2026-09-10 -- see 6 below).
   2. THE GOAL IS 95% OF THE REP'S OWN FALL-2025 BUYER COUNT FOR THAT
      FAMILY, ROUNDED UP. Gavin's first worked example said "23 for
      yuengling lager because he had 25 in 2025", which reads as round-down
@@ -1031,6 +1028,36 @@ this is only at brand family level for each, there is no overall goal."
      checks every rep total sits between its biggest brand row and the sum
      of them (both columns) and stops if not -- that is the shape-change
      signature. All 24 + 15 reps reconciled on the first run.
+  6. ON-PREMISE DRAFT HAS TWO FILES (Gavin, 2026-09-10: "the rde sheet has
+     buyers and units. that sheet is the source of truth for if a rep got a
+     draft line at an account. 1 buyer and 1 unit means it is there").
+       data/yuengling_retention_fall_draft_on.csv          brand-level summary,
+                                                           same shape as the
+                                                           other two: the 2025
+                                                           Buyer Count is the
+                                                           GOAL BASE (x 0.95,
+                                                           rounded up).
+       data/yuengling_retention_fall_draft_on_detail.csv   RDE account sheet:
+                                                           rep / family /
+                                                           account / load-sheet
+                                                           date, Buyer Count +
+                                                           Units in both
+                                                           windows. CURRENT =
+                                                           distinct accounts
+                                                           with a 2026 buyer
+                                                           flag AND net 2026
+                                                           units > 0.
+     A buyer row with 0 or negative units is an empty keg picked up, not a
+     line -- the same rule Constellation Fall draft uses -- and 54 such
+     accounts sat in the first pull (Allison Scott's Lager reads 31 on tap
+     against the summary's 44 buyers). The summary's 2025 buyers matched
+     the account sheet's distinct 2025 buyers on every rep+family (the
+     build warns if they ever drift); its 2026 column is one off for Nick
+     Melissari and Paul Mclaughlin, which is why the account sheet, not
+     the summary, is the current count. Each draft brand row carries its
+     accounts with a status -- on / new / empty / lost (poured it last fall,
+     no keg yet) -- so the card and the hub list who is pouring and who to
+     win back. Refresh: save both exports over both files, generate.py.
   5. A family with no 2025 buyers (Chris Politano's MetLife Lager, on-prem)
      has no goal and is never scored. Reps with no row on either file are
      not in the program. Off roster and dropped: Chris Politano, Default,
@@ -1045,8 +1072,9 @@ this is only at brand family level for each, there is no overall goal."
                                                   generate.py.
 
 FIRST RUN (day 10 of 91, round-up goals): see the generate.py line for the
-current house numbers; on 9/10 it was 9 of 70 brand goals held across 24
-reps, 1 rep (Jaime Colonna, a single one-buyer goal) holding every goal. House by
+current house numbers; on 9/10 with all three sides in it was 8 of 87 brand
+goals held across 24 reps, 1 rep (Jaime Colonna, a single one-buyer goal)
+holding every goal; draft house Lager 157/316, Flight 3/8. House by
 family: off Flight 58/144, Lager 220/349, Light Lager 50/124; packages Lager
 114/265, Flight 0/5.
 

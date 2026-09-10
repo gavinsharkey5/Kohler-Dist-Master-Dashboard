@@ -1649,7 +1649,68 @@ YUENGLING_FALL_RETAIN = 0.95      # per Gavin, 2026-09-10: "the goal is 95% of B
 YUENGLING_FALL_FILES = [
     ("off", "yuengling_retention_fall_off.csv", "Off-Premise"),
     ("packages", "yuengling_retention_fall_packages_on.csv", "On-Premise Packages"),
+    ("draft", "yuengling_retention_fall_draft_on.csv", "On-Premise Draft"),
 ]
+# The draft side has a SECOND file: the RDE account-level sheet (one row per
+# rep / brand family / account / load-sheet date with Buyer Count and Units
+# in both windows). Per Gavin, 2026-09-10, THAT sheet is the source of truth
+# for whether a draft line is actually in an account -- "1 buyer and 1 unit
+# means it is there" -- so the draft side's CURRENT count is distinct
+# accounts with a 9/1-11/30/2026 buyer flag AND net 2026 units > 0 (an empty
+# keg picked up is a buyer row with 0 or negative units and does not count,
+# same rule as Constellation Fall draft). The GOAL still comes from the
+# brand-level summary's 2025 Buyer Count, as Gavin specified.
+YUENGLING_FALL_DRAFT_DETAIL = "yuengling_retention_fall_draft_on_detail.csv"
+
+
+def _yuengling_fall_draft_accounts():
+    """{(rep, family): {'current': n, 'accounts': [...], 'base': n, 'empties': n}}
+    from the account-level draft sheet. accounts carries every account
+    that appears in either window with its status: 'on' (buyer + kegs this
+    fall), 'empty' (flagged a buyer this fall but net units <= 0), 'lost'
+    (a fall-2025 buyer not back yet), 'new' (on this fall, not a 2025 buyer)."""
+    if not (DATA_DIR / YUENGLING_FALL_DRAFT_DETAIL).exists():
+        return None
+    rows = read_rows(YUENGLING_FALL_DRAFT_DETAIL)
+    cols = list(rows[0].keys())
+    b25 = next(c for c in cols if c.startswith("Buyer Count") and "2025" in c)
+    u25 = next(c for c in cols if c.startswith("Units") and "2025" in c)
+    b26 = next(c for c in cols if c.startswith("Buyer Count") and "2026" in c)
+    u26 = next(c for c in cols if c.startswith("Units") and "2026" in c)
+    acc = defaultdict(lambda: defaultdict(lambda: {"b25": False, "u25": 0.0, "b26": False, "u26": 0.0, "last": ""}))
+    val = lambda r, c: to_num(r[c]) if (r.get(c) or "").strip() else 0.0
+    for r in rows:
+        key = ((r["Sales Rep Assigned"] or "").strip(), (r["Brand Family"] or "").strip())
+        a = acc[key][(r["Customer Num Name"] or "").strip()]
+        if val(r, b25): a["b25"] = True
+        if val(r, b26): a["b26"] = True
+        a["u25"] += val(r, u25); a["u26"] += val(r, u26)
+        d = (r.get("Load Sheet Date") or "").strip()
+        if val(r, b26) and d and (not a["last"] or _mdy_key(d) > _mdy_key(a["last"])):
+            a["last"] = d
+    out = {}
+    for key, accounts in acc.items():
+        lst = []
+        for name, a in accounts.items():
+            on = a["b26"] and a["u26"] > 0
+            status = "on" if on else ("empty" if a["b26"] else ("lost" if a["b25"] else None))
+            if status is None:
+                continue
+            if on and not a["b25"]:
+                status = "new"
+            lst.append({"customer": name, "status": status, "units": round(a["u26"], 2), "lastDate": a["last"]})
+        order = {"on": 0, "new": 1, "empty": 2, "lost": 3}
+        lst.sort(key=lambda x: (order[x["status"]], -x["units"], x["customer"]))
+        out[key] = {"current": sum(1 for x in lst if x["status"] in ("on", "new")),
+                    "base": sum(1 for a in accounts.values() if a["b25"]),
+                    "empties": sum(1 for x in lst if x["status"] == "empty"),
+                    "accounts": lst}
+    return out
+
+
+def _mdy_key(d):
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", d)
+    return (int(m.group(3)), int(m.group(1)), int(m.group(2))) if m else (0, 0, 0)
 
 
 def _yuengling_fall_goal(base):
@@ -1727,10 +1788,26 @@ def build_yuengling_retention_fall():
                 if not (lo - 0.5 <= tv <= hi + 0.5):
                     raise SystemExit(f"{filename}: {rep} total {tv} on '{col}' is outside its brand rows "
                                      f"[{lo}, {hi}] -- the export shape has changed; not writing.")
+        detail = _yuengling_fall_draft_accounts() if side == "draft" else None
+        if side == "draft" and detail is None:
+            print(f"yuengling_retention_fall: {YUENGLING_FALL_DRAFT_DETAIL} not on file -- draft current counts fall back to the summary's Buyer Count")
+        excluded_empties = 0
         for rep, fams in per_rep.items():
             brands = []
             for fam in sorted(fams):
                 b = fams[fam]
+                if detail is not None:
+                    det = detail.get((rep, fam))
+                    if det:
+                        if det["base"] != b["base"]:
+                            print(f"WARNING: yuengling draft {rep} / {fam}: summary 2025 buyers {b['base']} vs account sheet {det['base']} -- goal uses the summary, as specified")
+                        b["summaryActual"] = b["actual"]
+                        b["actual"] = det["current"]
+                        b["emptyPickups"] = det["empties"]
+                        b["accounts"] = det["accounts"]
+                        excluded_empties += det["empties"]
+                    else:
+                        b["accounts"] = []
                 b["goal"] = _yuengling_fall_goal(b["base"])
                 b["pct"] = round(b["actual"] / b["goal"] * 100, 1) if b["goal"] else None
                 b["held"] = bool(b["goal"] and b["actual"] >= b["goal"])
@@ -1741,6 +1818,9 @@ def build_yuengling_retention_fall():
                 if b["goal"]:
                     h["goal"] += b["goal"]; h["repsWithGoal"] += 1; h["repsHeld"] += 1 if b["held"] else 0
             sides.setdefault(side, {})[rep] = brands
+        if side == "draft" and detail is not None:
+            print(f"yuengling_retention_fall draft: current counted on the account sheet (buyer + net kegs > 0); "
+                  f"{excluded_empties} flagged buyers with no kegs excluded across the roster")
 
     by_rep = {}
     for rep in ROSTER:
