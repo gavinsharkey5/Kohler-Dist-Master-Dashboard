@@ -838,3 +838,15 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .bg-st{margin-top:7px;font-size:14px;font-weight:600;color:var(--text-dim);}
 .bg-row.held .bg-st{color:var(--good);} .bg-row.zero .bg-st{color:var(--red);}
 .bg-row.nogoal .bg-st{color:var(--text-mute);font-weight:500;}
+/* v9.1: the off / on premise grouping on retention cards, made prominent */
+.bg-side{display:flex;align-items:center;gap:10px;margin:10px 0 2px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);border-left:6px solid var(--border);background:var(--card);text-transform:none;letter-spacing:0;}
+.bg-side.off{border-left-color:#3EC4B8;background:linear-gradient(90deg,rgba(60,190,180,.18),var(--card) 65%);}
+.bg-side.on{border-left-color:#B58CFF;background:linear-gradient(90deg,rgba(170,120,255,.18),var(--card) 65%);}
+.bg-side.draft{border-left-color:#B58CFF;background:linear-gradient(90deg,rgba(170,120,255,.12),var(--card) 65%);}
+.bg-side.any{border-left-color:var(--amber);background:linear-gradient(90deg,var(--amber-soft),var(--card) 65%);}
+.bg-side-ic{font-size:22px;line-height:1;flex-shrink:0;}
+.bg-side-t{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(18px,4.8vw,21px);color:var(--text);flex:1;min-width:0;}
+.bg-side.off .bg-side-t{color:#7EE0D8;} .bg-side.on .bg-side-t,.bg-side.draft .bg-side-t{color:#D9B6FF;}
+.bg-side-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:var(--text-dim);background:var(--input-bg);border:1px solid var(--line-soft);border-radius:999px;padding:5px 11px;white-space:nowrap;}
+.bg-side-n.ok{color:var(--good);border-color:rgba(76,201,122,.45);background:var(--good-soft);}
+.bg-side + .bg-list{margin-bottom:6px;}
