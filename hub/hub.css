@@ -863,3 +863,13 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .bg-win summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--accent);padding:6px 0;list-style:none;}
 .bg-win summary::before{content:'▸ ';} .bg-win[open] summary::before{content:'▾ ';}
 .bg-winlist{margin:4px 0 0 18px;padding:0;font-size:14.5px;color:var(--text);line-height:1.7;}
+
+/* v9.4: the Goal / Where you are / Still need headers pop */
+.q{border-top:4px solid var(--border);background:var(--card-alt);padding:12px 13px 14px;}
+.q.goal{border-top-color:#EEF2F9;} .q.prog{border-top-color:#4E7CE8;} .q.need{border-top-color:var(--amber);}
+.q.need .qv.ok ~ .ql,.q.need:has(.qv.ok){border-top-color:var(--good);}
+.ql{display:flex;align-items:center;gap:6px;font-size:13.5px;letter-spacing:.08em;font-weight:800;color:var(--text);opacity:1;text-transform:uppercase;line-height:1.2;}
+.q.goal .ql{color:#EEF2F9;} .q.prog .ql{color:#9BC1FF;} .q.need .ql{color:var(--amber);} .q.need:has(.qv.ok) .ql{color:var(--good);}
+.qi{font-size:15px;line-height:1;}
+.qv{margin-top:7px;}
+@media (max-width:400px){ .ql{font-size:12.5px;letter-spacing:.06em;} }
