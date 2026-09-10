@@ -114,7 +114,7 @@ per-rep qualifier goals, and it names BRAND GROUPS ("Modelo/Corona") where
 sales.csv names suppliers; the qualifier rows' own "Qualifier: <brands>" tag
 is what ties the two together. Same trick joins the amplify goals.
 
-Managers come from incentive-tracking/index.html's DM_GROUPS, the repo's one
+Managers come from incentive-tracking/programs.js's DM_GROUPS, the repo's one
 rep->DM roster -- if that constant is renamed or moved, this script raises
 rather than silently emptying the Manager column.
 

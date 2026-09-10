@@ -41,7 +41,7 @@ Program Setup rules 6 and 7): Default / Office Tell Sell / Chris Politano
 are excluded to match the dashboard, and supplier "Bell's" is rolled into
 "New Belgium Brewing Company".
 
-Managers come from incentive-tracking/index.html's DM_GROUPS, the repo's one
+Managers come from incentive-tracking/programs.js's DM_GROUPS, the repo's one
 rep->DM roster. A rep missing from it gets a blank manager rather than being
 dropped.
 
@@ -61,7 +61,7 @@ from openpyxl.utils import get_column_letter as gl
 HERE = Path(__file__).parent
 SALES = HERE / "sales.csv"
 GOALS = HERE / "goals.csv"
-DM_SOURCE = HERE.parent / "incentive-tracking" / "index.html"
+DM_SOURCE = HERE.parent / "incentive-tracking" / "programs.js"
 OUT = HERE / "Summer_of_Success_Recap.xlsx"
 
 SEASON = "6/1/2026–8/31/2026"
@@ -112,7 +112,8 @@ def table_head(ws, headers, widths):
 
 
 def load_managers():
-    """rep -> DM, from incentive-tracking/index.html's DM_GROUPS roster."""
+    """rep -> DM, from incentive-tracking/programs.js's DM_GROUPS roster (the
+    program library split out of index.html on 2026-09-10)."""
     text = DM_SOURCE.read_text()
     block = re.search(r"const DM_GROUPS = \[(.*?)\n\];", text, re.S)
     if not block:
