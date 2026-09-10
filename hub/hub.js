@@ -1071,6 +1071,69 @@ function closedLog(p, rep, opts){
 }
 const cardTab = {};   // program id -> 'sell' | 'closed'
 const planMore = {};
+/* ---- Brand-family goals: the retention programs' breakdown ---- */
+// One list per side (off-premise, on-premise packages, draft ...) of
+// {label, now, goal, need, held, pct}. Read straight from each tracker's
+// per-rep data; nothing recomputed except "need" and the bar. A family
+// with no goal (MABI's one-goal program, a summer package list) still
+// shows its number with a plain status line so nothing is hidden.
+function brandGoals(p, rep){
+  if(p.source!=='inc') return [];
+  const d = p.entry.getRep(rep); if(!d) return [];
+  const row = (label, now, goal, unit) => { now = now||0; const has = goal!=null && goal>0;
+    return {label, now, goal: has ? goal : null, unit, need: has ? Math.max(0, goal-now) : null, held: has ? now>=goal : null, pct: has ? Math.min(100, now/goal*100) : null}; };
+  const G = [];
+  const push = (title, unit, rows) => { if(rows && rows.length) G.push({title, unit, rows}); };
+  switch(p.key){
+    case 'mc_retention':
+      push('Off-Premise', 'placements', (d.offBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'placements')));
+      push('On-Premise Draft', 'buyers', (d.onBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
+      break;
+    case 'constellation_fall':
+      push('Off-Premise', 'placements', (d.offCategories||[]).filter(c=>c.goal||c.placements).map(c=>row(c.label, c.placements, c.goal, 'placements')));
+      push('On-Premise Packages', 'buyers', ((d.on_packages||{}).families||[]).map(f=>row(f.label, f.buyers, f.goal, 'buyers')));
+      push('On-Premise Draft', 'buyers', ((d.on_draft||{}).families||[]).map(f=>row(f.label, f.buyers, f.goal, 'buyers')));
+      break;
+    case 'yuengling_retention_fall':
+      push('Off-Premise', 'buyers', (d.offBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
+      push('On-Premise Packages', 'buyers', (d.packagesBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
+      push('On-Premise Draft', 'buyers', (d.draftBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
+      break;
+    case 'mabi_retention_fall':
+      // Kohler's workbook sets ONE MADE goal per rep, not one per family, so
+      // the families show their placements toward that single goal.
+      push('MADE brand families', 'placements', (d.brands||[]).map(b=>row(b.brand, b.placements, null, 'placements')));
+      break;
+    case 'constellation_retention':
+      push('Off-Premise', 'placements', (d.offCategories||[]).map(c=>row(c.label, c.placements, c.goal, 'placements')));
+      push('On-Premise Packages', 'buyers', (d.onPkgBrands||[]).map(b=>row(b.label, b.buyers, null, 'buyers')));
+      break;
+    case 'yuengling_retention':
+      push('Off-Premise', 'placements', ((d.off||{}).brands||[]).map(b=>row(b.label, b.placements, b.goal, 'placements')));
+      push('On-Premise Packages', 'placements', ((d.onPkg||{}).brands||[]).map(b=>row(b.label, b.placements, b.goal, 'placements')));
+      break;
+  }
+  return G;
+}
+function brandGoalsHtml(groups, opts){
+  opts = opts || {};
+  const many = groups.length > 1;
+  const oneGoal = opts.oneGoal || '';
+  return `<div class="bg">
+    ${opts.noTitle ? '' : `<div class="bg-h">Your brand goals</div>`}
+    ${groups.map(g=>`${many ? `<div class="bg-side">${E(g.title)}</div>` : ''}
+      <div class="bg-list">${g.rows.map(r=>{
+        const st = r.goal==null ? (oneGoal ? `Counts toward your ${E(oneGoal)} goal` : 'No goal for this one')
+                 : r.held ? '✓ Retained' : `${r.need.toLocaleString('en-US')} more needed`;
+        const cls = r.goal==null ? 'nogoal' : r.held ? 'held' : (r.pct>=75 ? 'close' : r.pct>0 ? 'building' : 'zero');
+        return `<div class="bg-row ${cls}">
+          <div class="bg-top"><span class="bg-name">${E(r.label)}</span><span class="bg-nums">${r.now.toLocaleString('en-US')}${r.goal!=null?` <span class="bg-sep">/</span> ${r.goal.toLocaleString('en-US')}`:''} <span class="bg-unit">${E(r.goal==null && r.now===1 ? r.unit.replace(/s$/,'') : r.unit)}</span></span></div>
+          ${r.goal!=null ? `<div class="bg-bar"><div class="bg-fill" style="width:${Math.max(r.pct, r.pct>0?3:0)}%"></div></div>` : ''}
+          <div class="bg-st">${st}</div>
+        </div>`; }).join('')}</div>`).join('')}
+  </div>`;
+}
+
 // The three short answers a card gives (what to sell / where to go / next
 // step) plus the numbered visit list. How many to suggest: about twice
 // what is still needed, between 5 and 10 (15 on the detail page), so "1
@@ -1080,6 +1143,15 @@ function planParts(p, r, rep, opts){
   const done = r.status==='complete' || r.status==='exceeded';
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {loading:true, sell:sellAsk(p), go:'Loading…', step:'', n:0, total:0, hold:false, list:''};
   const plan = nextAccounts(p, rep);
+  const BG = brandGoals(p, rep);
+  if(BG.length){
+    // A brand-goal program: the "where to go" answer is the goal list itself.
+    const rows = BG.flatMap(g=>g.rows); const goaled = rows.filter(x=>x.goal!=null); const open = goaled.filter(x=>!x.held);
+    const go = !goaled.length ? `${rows.length===1 ? '1 brand family' : rows.length+' brand families'} on your route.`
+      : !open.length ? `Every brand goal is held — keep them there.`
+      : `${open.length===1 ? '1 brand goal still needs' : open.length+' brand goals still need'} attention.`;
+    return {loading:false, sell:sellAsk(p), go, step:'Open your brand goals.', n:open.length, total:0, hold:true, list:'', goals:BG, goalsOpen:open.length};
+  }
   const needN = parseInt(String(r.remain||'').replace(/,/g,''), 10);
   const LIMIT = opts.limit || (needN>0 ? Math.max(5, Math.min(10, needN*2)) : 10);
   const key = p.id+'|plan'; const all = !!planMore[key];
@@ -1112,6 +1184,9 @@ function planTabs(p, rep, P, tab){
 // collapsed card, so they are not repeated here.)
 function cardPlan(p, r, rep){
   const P = planParts(p, r, rep);
+  if(P.goals) return `<div class="plan">${brandGoalsHtml(P.goals, {oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}
+    <div class="pcard-actions"><button class="fullbtn quiet" data-act="open" data-prog="${E(p.id)}">Full program details <span class="ar">›</span></button></div>
+  </div>`;
   const tab = cardTab[p.id] || 'sell';
   const body = tab==='closed' ? closedLog(p, rep)
     : P.loading ? `<div class="soon-note">Loading…</div>`
@@ -1170,15 +1245,16 @@ function programCard(p, r, rep){
   }
   let lines = '', hasList = true;
   if(!soon && !isMgr()){
-    const P = planParts(p, r, rep); hasList = P.loading || P.total>0;
-    const closedN = P.loading ? 0 : closedFor(p, rep).length;
+    const P = planParts(p, r, rep); hasList = P.loading || P.total>0 || !!P.goals;
+    const closedN = (P.loading || P.goals) ? 0 : closedFor(p, rep).length;
     lines = `<div class="lines">
       <div class="line sell"><span class="line-ic">${RETENTION.test(p.key)?'🛡️':'🍺'}</span><span class="line-l">Sell</span><span class="line-t">${E(P.sell)}</span></div>
       <div class="line go"><span class="line-ic">📍</span><span class="line-l">Go</span><span class="line-t">${E(P.go)}</span></div>
       ${closedN ? `<div class="line done"><span class="line-ic">✓</span><span class="line-l">Closed</span><span class="line-t">${plw(closedN,'placement')} credited so far.</span></div>` : ''}
     </div>`;
   }
-  const hint = open ? 'Close ▴' : isMgr() ? 'Details & accounts ▾' : (soon || !hasList) ? 'Details ▾' : 'Open the account list ▾';
+  const hasGoals = !soon && !isMgr() && brandGoals(p, rep).length > 0;
+  const hint = open ? 'Close ▴' : isMgr() ? 'Details & accounts ▾' : hasGoals ? 'Open your brand goals ▾' : (soon || !hasList) ? 'Details ▾' : 'Open the account list ▾';
   const body = !open ? '' : !isMgr() ? `<div class="pcard-body">${cardPlan(p, r, rep)}</div>` : `<div class="pcard-body">
       <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span><span class="chip">📅 ${E(p.period.label)}</span><span class="chip">Data ${E(p.refreshed ? 'refreshed '+p.refreshed : 'loading…')}</span></div>
       ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
@@ -1224,8 +1300,10 @@ function screenDetailRep(p, r, rep, back){
       <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${r.next}</div></div>` : ''}
-    <section class="dsec"><h2 class="dsec-h">What to sell</h2>${repPlan(p, r, rep, {limit:15})}</section>
-    <section class="dsec"><h2 class="dsec-h closed">Closed / Completed</h2>${closedLog(p, rep, {limit:25})}</section>
+    ${(()=>{ const BG = brandGoals(p, rep); return BG.length
+      ? `<section class="dsec"><h2 class="dsec-h">Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>`
+      : `<section class="dsec"><h2 class="dsec-h">What to sell</h2>${repPlan(p, r, rep, {limit:15})}</section>
+    <section class="dsec"><h2 class="dsec-h closed">Closed / Completed</h2>${closedLog(p, rep, {limit:25})}</section>`; })()}
     <section class="dsec"><h2 class="dsec-h">How it pays</h2>
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       <p class="note">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p></section>

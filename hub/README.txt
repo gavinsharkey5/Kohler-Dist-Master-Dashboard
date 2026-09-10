@@ -323,3 +323,20 @@ REP-MODE CARD LAYOUT (v7, 2026-09-10)
   hub.js builds the pieces; cardPlan() is the opened card, repPlan() the
   detail page. Manager Mode cards keep the tiles and bar but not the
   sell / go lines; their opened body is the account tabs as before.
+
+BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
+  The retention programs (MolsonCoors, Constellation Fall, Yuengling Fall,
+  the summer Constellation / Yuengling, and MABI Fall) have no account list
+  to visit -- their "where to go" is the list of brand goals. brandGoals(p,
+  rep) in hub.js reads each tracker's own per-rep brand rows (offBrands /
+  onBrands, offCategories + on_packages/on_draft families, off/packages/
+  draftBrands, off.brands/onPkg.brands ...) into one shape -- {label, now,
+  goal, need, held} per family, grouped by side -- and brandGoalsHtml()
+  draws it: name, "52 / 63 buyers", a bar, and ONE status line ("11 more
+  needed" or "✓ Retained"). It replaces the What-to-sell / Closed tabs in
+  the opened card (button reads "Open your brand goals") and the "What to
+  sell" section on the detail page; the collapsed card's GO line says how
+  many goals still need attention. MABI Fall is the one program whose
+  workbook sets ONE goal per rep, not per family, so its families show
+  placements "toward your N goal" with no per-row bar. Nothing is
+  recomputed here beyond need = goal - now and the bar width.

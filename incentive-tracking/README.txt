@@ -1010,13 +1010,13 @@ this is only at brand family level for each, there is no overall goal."
      takes it as a third entry and the card/summary already carry a
      "draft" slot, so it is a data drop plus whatever rule he explains.
   2. THE GOAL IS 95% OF THE REP'S OWN FALL-2025 BUYER COUNT FOR THAT
-     FAMILY, ROUNDED DOWN. Gavin's worked example: "anthony palmisano goal
-     would be 23 for yuengling lager because he had 25 in 2025" -- 0.95 x 25
-     = 23.75, and he says 23, so the decimal is dropped (nearest would say
-     24). That is _yuengling_fall_goal(); a base of 1 or 2 floors to 0 / 1,
-     and a zero goal would be held by doing nothing, so the floor is 1 for
-     any rep with a base at all. CONFIRMED WITH HIM? Not yet -- asked on
-     2026-09-10 (it is a one-line change either way).
+     FAMILY, ROUNDED UP. Gavin's first worked example said "23 for
+     yuengling lager because he had 25 in 2025", which reads as round-down
+     (0.95 x 25 = 23.75); asked, he corrected it the same day: "I meant
+     round up" -- so Anthony's Lager goal is 24. That is
+     _yuengling_fall_goal() (math.ceil); a base of 1 gives 1, so nobody
+     holds a goal by doing nothing. The first build shipped round-down for
+     about an hour; nothing else changed between the two.
   3. NO OVERALL GOAL, NO HOUSE GOAL, NO 90% LINE. The card and summary show
      goals held out of goals total; the hero is buyers counted toward every
      goal (capped per goal) vs the goals' sum, like constellation_fall, so a
@@ -1044,8 +1044,9 @@ this is only at brand family level for each, there is no overall goal."
                                                   exports over these and run
                                                   generate.py.
 
-FIRST RUN (day 10 of 91): 10 of 70 brand goals held across 24 reps, 1 rep
-holding every goal: Jaime Colonna (1 goal). House by
+FIRST RUN (day 10 of 91, round-up goals): see the generate.py line for the
+current house numbers; on 9/10 it was 9 of 70 brand goals held across 24
+reps, 1 rep (Jaime Colonna, a single one-buyer goal) holding every goal. House by
 family: off Flight 58/144, Lager 220/349, Light Lager 50/124; packages Lager
 114/265, Flight 0/5.
 

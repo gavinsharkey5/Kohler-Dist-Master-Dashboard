@@ -818,3 +818,23 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .repview.single .cards{margin-top:4px;}
 .line.done{border-left:5px solid var(--good);background:var(--good-soft);} .line.done .line-l{color:var(--good);} .line.done .line-ic{color:var(--good);font-weight:700;}
 .line.done .line-t{font-family:'Inter',sans-serif;font-weight:600;font-size:16px;color:var(--text-dim);}
+
+/* ---- v9: brand-family goals on retention cards ---- */
+.bg{display:flex;flex-direction:column;gap:10px;}
+.bg-h{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);}
+.bg-side{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-top:6px;}
+.bg-list{display:flex;flex-direction:column;gap:8px;}
+.bg-row{background:var(--card-alt);border:1px solid var(--line-soft);border-left:5px solid var(--border);border-radius:12px;padding:12px 14px;}
+.bg-row.held{border-left-color:var(--good);} .bg-row.close{border-left-color:var(--amber);} .bg-row.building{border-left-color:var(--accent);} .bg-row.zero{border-left-color:var(--red);}
+.bg-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.bg-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text);min-width:0;}
+.bg-nums{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--text);white-space:nowrap;}
+.bg-row.held .bg-nums{color:var(--good);}
+.bg-sep{color:var(--text-mute);font-weight:500;margin:0 2px;}
+.bg-unit{font-size:12.5px;color:var(--text-mute);font-weight:600;}
+.bg-bar{height:8px;background:var(--input-bg);border-radius:999px;overflow:hidden;border:1px solid var(--line-soft);margin-top:9px;}
+.bg-fill{height:100%;border-radius:999px;background:var(--accent);}
+.bg-row.held .bg-fill{background:var(--good);} .bg-row.close .bg-fill{background:var(--amber);} .bg-row.zero .bg-fill{background:var(--red);}
+.bg-st{margin-top:7px;font-size:14px;font-weight:600;color:var(--text-dim);}
+.bg-row.held .bg-st{color:var(--good);} .bg-row.zero .bg-st{color:var(--red);}
+.bg-row.nogoal .bg-st{color:var(--text-mute);font-weight:500;}

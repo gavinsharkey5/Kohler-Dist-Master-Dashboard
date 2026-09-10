@@ -2510,7 +2510,7 @@ function cardMcRetention(rep){
 
 // Yuengling Fall (Sept-Nov): brand-family goals only, no overall goal and no
 // house goal (Gavin, 2026-09-10). Each goal is 95% of the rep's OWN fall-2025
-// buyer count for that family, rounded down; held when this fall's buyers
+// buyer count for that family, rounded up; held when this fall's buyers
 // reach it. One block per side (off-premise, on-premise packages, on-premise
 // draft once its export lands) with the same brand rows MolsonCoors uses.
 const YUENGLING_FALL_SIDES = [
@@ -2543,7 +2543,7 @@ function cardYuenglingRetentionFall(rep){
     if(!brands.length) return naBlock(`${S.title.split(' — ')[0]} — No Goals On File`, 'This report has no Yuengling buyers on your route last fall, so this side does not apply to you.');
     return earnBlock({
       icon:S.icon, title:S.title, rate:'RETAIN',
-      rateNote:`Up to $500 per brand goal held · goal = ${thr}% of your Sept–Nov 2025 buyers, rounded down · Sept 1 – Nov 30`,
+      rateNote:`Up to $500 per brand goal held · goal = ${thr}% of your Sept–Nov 2025 buyers, rounded up · Sept 1 – Nov 30`,
       whatToDo:`Keep each Yuengling brand family at or above its goal — ${thr}% of the accounts that bought it from you last fall. A family that ends November below goal costs you that payout.`,
       extra:retentionBrandBlock(brands, 'buyers'),
     });
@@ -3517,7 +3517,7 @@ const PROGRAM_SUMMARY = {
         : `Get an Octoberfest keg into the <strong>${pl(d.notConverted,'account')}</strong> on Boston Beer’s unconverted list by Sept 30${since?` — Encompass already shows ${since} first Octoberfest keg${since===1?'':'s'} since their ${asOf} report`:''}.`};
   },
   // Yuengling Fall: brand-family goals, 95% of the rep's own fall-2025 buyers
-  // (rounded down), no overall goal. Hero = buyers counted toward every goal
+  // (rounded up), no overall goal. Hero = buyers counted toward every goal
   // (capped per goal) vs the goals' sum, like constellation_fall; chip is
   // period-aware early in the window for the same reason.
   yuengling_retention_fall:(d,meta,P)=>{
@@ -3831,7 +3831,7 @@ const PROGRAM_RULES = {
   'yuengling_retention_fall': [
     'Hold 95% of the accounts that bought each Yuengling brand family from you last fall (Sept–Nov 2025), through Nov 30',
     'Goals are per brand family, per side — off-premise, on-premise packages, on-premise draft — with no overall goal',
-    'Your goal for each family = 95% of your 2025 buyer count, rounded down (25 buyers last fall → hold 23)',
+    'Your goal for each family = 95% of your 2025 buyer count, rounded up (25 buyers last fall → hold 24)',
     'Up to $500 for every brand goal retained',
     'Off-premise families: Lager · Flight · Light Lager · On-premise packages: Lager · Flight',
   ],
