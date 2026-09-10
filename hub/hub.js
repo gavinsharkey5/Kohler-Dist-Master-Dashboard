@@ -1033,6 +1033,7 @@ function closedFor(p, rep){
     if(!D || !D[p.key]) return out;
     const d = D[p.key]; const sets = d.subs ? d.subs.map(sd=>({sd, label:sd.label})) : [{sd:d, label:''}];
     const t = p.objective.type;
+    const photoRows = new Map(), photoList = [];
     sets.forEach(({sd, label})=>{
       const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
       r.lines.forEach(l=>{
@@ -1041,12 +1042,20 @@ function closedFor(p, rep){
         // menu) carry the photo URL on the line; it rides along so the row can
         // open the picture, exactly as the MPO board's "View Photo" does.
         const photo = l.photo || (Array.isArray(l.photos) && l.photos[0]) || '';
-        if(t==='photos') add(l.customer, [l.brand, l.detail].filter(Boolean).join(' '), l.date, 'photo', photo);
+        if(t==='photos'){
+          // One photo = one sticker / one POS pic (the board counts DISTINCT
+          // photos): several brand rows share a photo, so fold them into one
+          // row naming every brand, and the log count matches the card.
+          if(photo && photoRows.has(photo)){ const pr = photoRows.get(photo); if(l.brand && !pr.brands.includes(l.brand)) pr.brands.push(l.brand); return; }
+          const pr = {customer:l.customer, brands: l.brand ? [l.brand] : [], detail:l.detail||'', date:l.date, photo};
+          if(photo) photoRows.set(photo, pr); photoList.push(pr);
+        }
         else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : '', photo); }
         else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf', photo);
         else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '', photo);
       });
     });
+    photoList.forEach(pr=>add(pr.customer, [pr.brands.join(', '), pr.detail].filter(Boolean).join(' · '), pr.date, 'photo', pr.photo));
   }
   // The same placement can appear twice in a card's data, once dated and
   // once not (a draft line in draftNew and in draftAccounts): keep the dated one.
