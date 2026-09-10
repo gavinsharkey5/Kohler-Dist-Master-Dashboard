@@ -137,4 +137,6 @@ Manager Mode (the full account tabs, tracker tables, rankings, Program
 View). Keep manager-level detail out of Rep Mode -- Gavin's bar is a rep
 who has never sold a beer understanding a card immediately. Manager Mode
 is desktop-only (phones and tablets are forced to Rep Mode); Rep Mode
-cards carry three short lines -- what to sell, where to go, next step.
+cards carry three short lines -- what to sell, where to go, next step --
+behind a WHAT TO SELL tab, beside a CLOSED / COMPLETED tab that logs the
+rep's credited placements (customer, product, date) from the tracker data.

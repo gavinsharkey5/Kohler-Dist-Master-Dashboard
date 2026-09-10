@@ -151,6 +151,19 @@ REFINEMENTS (v4, 2026-09-10)
     The tracker's own next-step sentence stays on the detail page and in
     Manager Mode.
 
+CLOSED / COMPLETED (v5, 2026-09-10)
+  Every Rep Mode card opens on two large tabs: WHAT TO SELL (the plan
+  above) and CLOSED / COMPLETED -- a log of the placements the tracker
+  already credits to the rep: customer, product/SKU, date, newest first.
+  closedFor() in hub.js reads it straight from the tracker's own per-rep
+  lists (offPremNew, draftNew, new24ozNew, accountList, buyingAccounts,
+  lines, rebuys ... and MPO line items flagged new / on the shelf /
+  photographed). A blank product means the tracker counts the account,
+  not a SKU, so the row names the program's brand instead. Undated
+  duplicates of a dated placement are dropped. The detail page shows
+  both sections stacked; Manager Mode gets the log as a fifth account
+  tab. Programs that count by product only (Corona Gaintain) say so.
+
 CARDS (v2)
   The rep page shows every card COLLAPSED: brand mark, name, status chip,
   and four quick facts -- Progress (with bar), Goal, Remaining, Deadline.

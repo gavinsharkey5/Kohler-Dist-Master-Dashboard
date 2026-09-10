@@ -718,6 +718,7 @@ const ACCT_TABS = [
   {k:'buying',   l:'Already buying', sub:'Accounts the tracker shows on the brand'},
   {k:'high',     l:'High potential', sub:'Your biggest eligible accounts by 2026 cases — the fastest wins'},
   {k:'excluded', l:'Can’t sell here', sub:'In your book, but the brand is not sellable in that area'},
+  {k:'closed',   l:'Closed / Completed', sub:'Placements the tracker credits to this rep — customer, product, date'},
 ];
 const fmtCases = v => v==null ? '' : (v>=1000 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toLocaleString('en-US')) + ' cases';
 function acctRow(a, kind){
@@ -732,15 +733,16 @@ function accountsPanel(p, rep){
   const A = accountsFor(p, rep);
   const chanWord = p.channel==='on' ? 'on-premise' : p.channel==='off' ? 'off-premise' : '';
   const tabs = A.any ? ACCT_TABS.filter(t=>t.k==='eligible'||t.k==='high') : ACCT_TABS;
-  const counts = {eligible:A.eligible.length, buying:A.buying.length, high:A.high.length, excluded:A.excluded.length + A.unknown.length};
+  const closedRows = closedFor(p, rep);
+  const counts = {eligible:A.eligible.length, buying:A.buying.length, high:A.high.length, excluded:A.excluded.length + A.unknown.length, closed:closedRows.length};
   let tab = acctTabs[p.id] || 'eligible';
   if(!tabs.some(t=>t.k===tab)) tab = 'eligible';
-  const rows = tab==='excluded' ? A.excluded.concat(A.unknown) : A[tab];
+  const rows = tab==='excluded' ? A.excluded.concat(A.unknown) : tab==='closed' ? closedRows : A[tab];
   const key = p.id+'|'+tab; const all = !!acctMore[key]; const LIMIT = 15;
   const shown = all ? rows : rows.slice(0, LIMIT);
   const tabMeta = tabs.find(t=>t.k===tab);
   const empty = {eligible: A.any ? 'No '+chanWord+' accounts in your book.' : (A.universe ? 'Every sellable account in your book is already buying — nothing left to open here.' : 'No '+chanWord+' accounts in your assigned book.'),
-                 buying:'None of your accounts show on this brand yet.', high:'No eligible accounts with 2026 volume on file.', excluded:'None — the brand can be sold at every account in your book.'}[tab];
+                 buying:'None of your accounts show on this brand yet.', high:'No eligible accounts with 2026 volume on file.', excluded:'None — the brand can be sold at every account in your book.', closed:''}[tab];
   const brandLine = A.any ? 'Any brand counts here, so every account in your book is in play.'
                   : `Brand${A.families.length>1?'s':''}: ${A.families.join(', ')} · Territory: ${A.territory.map(t=>t.split(': ')[1]).filter((v,i,arr)=>arr.indexOf(v)===i).join(' / ')}`;
   return `<div class="acct" data-prog="${E(p.id)}">
@@ -748,7 +750,7 @@ function accountsPanel(p, rep){
     <div class="abrand">${E(brandLine)}</div>
     <div class="atabs" role="tablist">${tabs.map(t=>`<button class="atab${t.k===tab?' active':''}" role="tab" data-act="acct-tab" data-prog="${E(p.id)}" data-tab="${t.k}">${E(t.l)}<span class="an">${counts[t.k]}</span></button>`).join('')}</div>
     <div class="asub">${E(tabMeta.sub)}${tab==='high'?' · top 10':''}</div>
-    ${rows.length ? `<div class="alist">${shown.map(a=>acctRow(a, tab)).join('')}</div>` : `<div class="aempty">${E(empty)}</div>`}
+    ${tab==='closed' ? closedLog(p, rep, {limit:all?9999:LIMIT}).replace(/<button class="amore"[^]*?<\/button>/,'') : rows.length ? `<div class="alist">${shown.map(a=>acctRow(a, tab)).join('')}</div>` : `<div class="aempty">${E(empty)}</div>`}
     ${rows.length>LIMIT ? `<button class="amore" data-act="acct-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
     ${A.notes.length ? `<div class="anotes">${A.notes.map(n=>`<div>⚠ ${E(n)}</div>`).join('')}</div>` : ''}
     <div class="afoot">Book as of ${E(HubAccounts.asOf)} · buying lists from the tracker's data refreshed ${E(p.refreshed||'—')}</div>
@@ -827,6 +829,96 @@ function nextAccounts(p, rep){
     rows.push(Object.assign({}, a, {why: cold.get(k) || 'Never bought it'})); });
   return {rows, hold:false, A};
 }
+/* ---- Closed / Completed: the placements the tracker already credits ---- */
+const CLOSED_KEY = /New$|newPod|^accountList$|convertedSinceReport|^convertedAccounts$|gainedAccounts|buyingAccounts|sixPackAccounts|nineteenTwoAccounts|onPremAccounts|^lines$|Rebuy$|^rebuy$|^draftNewLines$|^draftAccounts$/;
+const parseAny = s => parseUS(s) || parseISO(s);
+function closedFor(p, rep){
+  const out = []; const seen = new Set();
+  // A blank product means the tracker counts the account, not a SKU -- name
+  // the brand the program pays on so the row still says what was placed.
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  const brand = (fams && fams.length) ? fams[0] : (p.shortName||'');
+  const add = (customer, product, date, note)=>{
+    if(!customer) return;
+    product = String(product||'');
+    if(!product) product = brand;
+    else if(/^\d/.test(product) && brand) product = brand+' · '+product;
+    const k = HubAccounts.norm(customer)+'|'+HubAccounts.norm(product)+'|'+(date||'');
+    if(seen.has(k)) return; seen.add(k);
+    const when = date ? parseAny(date) : null;
+    out.push({customer:String(customer), product, date: when ? fmtDay(when) : (date||''), when, note:note||''});
+  };
+  if(p.source==='inc'){
+    const d = p.entry.getRep(rep); if(!d) return out;
+    const walk = (obj, depth)=>{
+      if(!obj || typeof obj!=='object' || depth>4) return;
+      Object.keys(obj).forEach(k=>{
+        const v = obj[k];
+        if(Array.isArray(v)){
+          const take = CLOSED_KEY.test(k) && !NOT_BUY.test(k);
+          v.forEach(it=>{
+            if(!it || typeof it!=='object') return;
+            if(take){
+              const cust = it.customer || it.name || it.account;
+              if(k==='draftAccounts' && it.status && it.status!=='new') return;
+              const note = /Rebuy$|^rebuy$/.test(k) ? 'reorder' : (/^converted/.test(k) ? 'converted' : (k==='gainedAccounts' ? 'new line' : ''));
+              if(Array.isArray(it.products) && it.products.length){
+                it.products.forEach(pr=>{ if(typeof pr==='string') add(cust, pr, it.date, note); else if(pr) add(cust, pr.product, pr.date||it.date, note); });
+              } else {
+                const prod = it.product || (it.brands && it.brands.join(', ')) || (it.tier ? 'Wave Chaser '+it.tier : '') || (it.brand ? it.brand+(it.package?' · '+it.package:'') : '')
+                  || (it.skus!=null ? it.skus+' SKU'+(it.skus===1?'':'s') : '') || (it.skuCount!=null ? it.skuCount+' SKUs' : '') || (it.bottles ? it.bottles+' bottles' : '')
+                  || (it.bbl ? it.bbl+' bbl on tap' : '') || (it.cases ? Math.round(it.cases)+' cases' : '') || '';
+                add(cust, prod, it.date || it.lastDate || '', note);
+              }
+            }
+            walk(it, depth+1);
+          });
+        } else if(v && typeof v==='object') walk(v, depth+1);
+      });
+    };
+    walk(d, 0);
+  } else {
+    const slot = mpoState[p.source] && mpoState[p.source][p.monthKey]; const D = slot && slot.DATA;
+    if(!D || !D[p.key]) return out;
+    const d = D[p.key]; const sets = d.subs ? d.subs.map(sd=>({sd, label:sd.label})) : [{sd:d, label:''}];
+    const t = p.objective.type;
+    sets.forEach(({sd, label})=>{
+      const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
+      r.lines.forEach(l=>{
+        if(!l || !l.customer) return;
+        if(t==='photos') add(l.customer, [l.brand, l.detail].filter(Boolean).join(' '), l.date, 'photo');
+        else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : ''); }
+        else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf');
+        else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '');
+      });
+    });
+  }
+  // The same placement can appear twice in a card's data, once dated and
+  // once not (a draft line in draftNew and in draftAccounts): keep the dated one.
+  const dated = new Set(out.filter(r=>r.when).map(r=>HubAccounts.norm(r.customer)+'|'+HubAccounts.norm(r.product)));
+  const rows = out.filter(r=>r.when || !dated.has(HubAccounts.norm(r.customer)+'|'+HubAccounts.norm(r.product)));
+  rows.sort((a,b)=>((b.when?b.when.getTime():0)-(a.when?a.when.getTime():0)) || a.customer.localeCompare(b.customer));
+  return rows;
+}
+const logMore = {};
+function closedLog(p, rep, opts){
+  opts = opts || {};
+  if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return `<div class="soon-note">Loading…</div>`;
+  const rows = closedFor(p, rep);
+  const key = p.id+'|log'; const all = !!logMore[key]; const LIMIT = opts.limit || 12;
+  const shown = all ? rows : rows.slice(0, LIMIT);
+  if(!rows.length){
+    const why = p.type==='MPO' && p.objective.type==='pct_of_goal' ? 'This report counts placements by product, not by account.'
+      : (p.manual ? 'Checked by hand — nothing is logged here.' : 'Nothing placed yet for this program.');
+    return `<div class="log"><div class="aempty">${E(why)}</div></div>`;
+  }
+  return `<div class="log">
+    <div class="log-s">${plw(rows.length, 'placement')} the tracker credits to you${rows.some(r=>r.when)?', newest first':''}.</div>
+    <ol class="log-list">${shown.map(r=>`<li class="log-row"><div class="log-main"><div class="log-cust">${E(r.customer)}</div>${r.product?`<div class="log-prod">${E(r.product)}</div>`:''}${r.note?`<div class="log-note">${E(r.note)}</div>`:''}</div><div class="log-date">${E(r.date||'—')}</div></li>`).join('')}</ol>
+    ${rows.length>LIMIT ? `<button class="amore" data-act="log-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
+  </div>`;
+}
+const cardTab = {};   // program id -> 'sell' | 'closed'
 const planMore = {};
 const planOpen = new Set();   // program ids whose account list is open inside the card
 function repPlan(p, r, rep, opts){
@@ -857,7 +949,16 @@ function repPlan(p, r, rep, opts){
       <ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div><div class="plan-why">${a.warm?'🔥 ':''}${E(a.why||'')}</div></li>`).join('')}</ol>
       ${plan.rows.length>LIMIT ? `<button class="amore" data-act="plan-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+plan.rows.length}</button>` : ''}
     </div>`;
-  return `<div class="plan">
+  const closedN = (p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) ? null : closedFor(p, rep).length;
+  const tab = opts.both ? 'both' : (cardTab[p.id] || 'sell');
+  const tabs = opts.both ? '' : `<div class="ptabs">
+      <button class="ptab sell${tab==='sell'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="sell"><span class="ptab-l">What to sell</span><span class="ptab-n">${plan.rows.length ? (plan.hold ? plw(plan.rows.length,'account')+' to hold' : plw(plan.rows.length,'open account')) : 'nothing open'}</span></button>
+      <button class="ptab closed${tab==='closed'?' active':''}" data-act="card-tab" data-prog="${E(p.id)}" data-tab="closed"><span class="ptab-l">Closed / Completed</span><span class="ptab-n">${closedN==null?'…':plw(closedN,'placement')}</span></button>
+    </div>`;
+  if(tab==='closed') return `<div class="plan">${tabs}${closedLog(p, rep)}
+    ${opts.noFull ? '' : `<div class="pcard-actions"><button class="fullbtn quiet" data-act="open" data-prog="${E(p.id)}">Full program details <span class="ar">›</span></button></div>`}
+  </div>`;
+  return `<div class="plan">${tabs}
     <div class="plan-line sell"><span class="plan-l">What to sell</span><span class="plan-t">${E(sellAsk(p))}</span></div>
     <div class="plan-line go"><span class="plan-l">Where to go</span><span class="plan-t">${E(go)}</span></div>
     <div class="plan-line step"><span class="plan-l">Next step</span>${plan.rows.length && !listOpen ? `<button class="plan-btn" data-act="plan-open" data-prog="${E(p.id)}">${E(step)} <span class="ar">›</span></button>` : `<span class="plan-t">${E(step)}</span>`}</div>
@@ -924,7 +1025,8 @@ function screenDetailRep(p, r, rep, back){
       <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${r.next}</div></div>` : ''}
-    <section class="dsec">${repPlan(p, r, rep, {limit:15, noFull:true, listOpen:true})}</section>
+    <section class="dsec"><h2 class="dsec-h">What to sell</h2>${repPlan(p, r, rep, {limit:15, noFull:true, listOpen:true, both:true})}</section>
+    <section class="dsec"><h2 class="dsec-h closed">Closed / Completed</h2>${closedLog(p, rep, {limit:25})}</section>
     <section class="dsec"><h2 class="dsec-h">How it pays</h2>
       <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
       <p class="note">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p></section>
@@ -1171,6 +1273,8 @@ document.addEventListener('click', e=>{
     case 'acct-more': acctMore[t.dataset.key] = !acctMore[t.dataset.key]; render(); break;
     case 'plan-more': planMore[t.dataset.key] = !planMore[t.dataset.key]; render(); break;
     case 'plan-open': planOpen.add(t.dataset.prog); render(); break;
+    case 'card-tab': cardTab[t.dataset.prog] = t.dataset.tab; render(); break;
+    case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
     case 'set-mode': state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = 'all';
       pick = {rep:null, cat:'all', q:''}; go({view:'home'}, true); break;
@@ -1242,6 +1346,6 @@ function boot(){
     MPO_SCOPES[scope].mod.MONTHS.forEach(m=>{ if(mpoMonthActive(scope, m)) ensureMpoMonth(scope, m.key).then(()=>{ if(state.view!=='home') render(); }); });
   });
 }
-window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts};
+window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor};
 boot();
 })();
