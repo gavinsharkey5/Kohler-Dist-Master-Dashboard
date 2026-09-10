@@ -997,6 +997,34 @@ period or zero-case, so they move no score. The only per-rep number that
 went down outside Garage Beer is Dylan Rubino's Touchdowns offPremTargetCount
 135 -> 134, which is his new placement leaving the prospect list.
 
+2026-09-10 SECOND REFRESH -- Touchdowns & Tea, Evil Genius, Garage Beer President (Le Grand Noir no-op)
+Exports run through 9/11. The Le Grand Noir file is set-identical to the
+published one (30 rows, 30.0 / 70 house cases), so nothing moved there.
+Headlines:
+
+  Touchdowns  54 -> 63 new off-prem 12-pack placements, 664 -> 789 on-prem
+             cases, trackable $1,474 -> $1,734. Dave Ehlers 17 -> 21
+             placements ($255 -> $315), Chris Payton 3 -> 5, Phil Ernst
+             1 -> 3, Matt Powierski 1 -> 2 plus his first on-prem cases.
+             On-prem: Brian Sengebush 122 -> 151 cs, Anthony Palmisano
+             101 -> 122, Nick Melissari 54 -> 79, Allison Scott 174 -> 193.
+  Evil Genius 3 -> 4 new placements (Dave Ehlers 3 -> 4, $30 -> $40, still
+             the only rep past the 3-placement qualifier); CE 35 -> 40.
+  Garage Beer house 7,537 -> 7,642 / 9,305 CE (82%). Eleven reps moved;
+             Paul Mclaughlin is the one who went DOWN (189.97 -> 183.08
+             growth), a return on the comparison side, nobody else fell.
+
+Removed rows, all benign: Anthony Palmisano's Highland Wine 9/10 Half & Half
+load, Klejdi Lamo's Island Of Spirits 9/9 Twisted Tea load and Mike Ast's
+Wine & Spirit World 9/10 Sampler load each came back one case lighter (15 ->
+14, 8 -> 7, 15 -> 14) -- same account, product and date, just requantified.
+Nick Melissari's House of Que (East Rutherford) 9/9 rows are gone from BOTH
+exports (Sun Cruiser Lemonade 4 cs on Touchdowns, a Stacy's Mom keg on Evil
+Genius) and appear nowhere else in either file -- a voided order, the same
+shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
+CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
+still rose on other accounts.
+
 2026-09-10 REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt Launch
 Five exports, all strict supersets of the published files (no rows removed,
 nothing re-dated), so every change below is a gain. Keystone moved this time:
