@@ -274,8 +274,10 @@ STATE
   page") -- only the Rep / Manager mode is remembered (localStorage key
   kohler-hub). A 🏠 Home button sits first in the nav on every inner page
   and starts over the same way; "Change rep" goes back to the landing
-  screen with the name filled in; "Change category" goes back to the
-  sub-category tiles.
+  screen with the name filled in. The sub-category screen and the program
+  list each carry a "‹ Back" button (tiles -> home with the picks kept,
+  list -> tiles), and the kicker above the title on both is a dropdown
+  that flips Incentives <-> MPOs in place (v7.1).
   Every screen has a URL hash (#view=rep&rep=...&cat=..., #view=detail&
   prog=inc:keystone_ice, #view=programs, #view=program&prog=off:2026-09:
   fever_tree) so a page can be shared or bookmarked. Opening another rep's
