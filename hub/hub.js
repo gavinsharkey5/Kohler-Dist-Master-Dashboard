@@ -989,7 +989,7 @@ function closedFor(p, rep){
   // the brand the program pays on so the row still says what was placed.
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
   const brand = (fams && fams.length) ? fams[0] : '';
-  const add = (customer, product, date, note)=>{
+  const add = (customer, product, date, note, photo)=>{
     if(!customer) return;
     product = String(product||'');
     if(!product) product = brand || (fams===null ? '' : p.shortName||'');
@@ -997,7 +997,7 @@ function closedFor(p, rep){
     const k = HubAccounts.norm(customer)+'|'+HubAccounts.norm(product)+'|'+(date||'');
     if(seen.has(k)) return; seen.add(k);
     const when = date ? parseAny(date) : null;
-    out.push({customer:String(customer), product, date: when ? fmtDay(when) : (date||''), when, note:note||''});
+    out.push({customer:String(customer), product, date: when ? fmtDay(when) : (date||''), when, note:note||'', photo: photo ? String(photo) : ''});
   };
   if(p.source==='inc'){
     const d = p.entry.getRep(rep); if(!d) return out;
@@ -1033,16 +1033,29 @@ function closedFor(p, rep){
     if(!D || !D[p.key]) return out;
     const d = D[p.key]; const sets = d.subs ? d.subs.map(sd=>({sd, label:sd.label})) : [{sd:d, label:''}];
     const t = p.objective.type;
+    const photoRows = new Map(), photoList = [];
     sets.forEach(({sd, label})=>{
       const r = (sd.reps||[]).find(x=>x.rep===rep); if(!r || !Array.isArray(r.lines)) return;
       r.lines.forEach(l=>{
         if(!l || !l.customer) return;
-        if(t==='photos') add(l.customer, [l.brand, l.detail].filter(Boolean).join(' '), l.date, 'photo');
-        else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : ''); }
-        else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf');
-        else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '');
+        // iSellBeer-verified objectives (cooler door stickers, the Bardstown
+        // menu) carry the photo URL on the line; it rides along so the row can
+        // open the picture, exactly as the MPO board's "View Photo" does.
+        const photo = l.photo || (Array.isArray(l.photos) && l.photos[0]) || '';
+        if(t==='photos'){
+          // One photo = one sticker / one POS pic (the board counts DISTINCT
+          // photos): several brand rows share a photo, so fold them into one
+          // row naming every brand, and the log count matches the card.
+          if(photo && photoRows.has(photo)){ const pr = photoRows.get(photo); if(l.brand && !pr.brands.includes(l.brand)) pr.brands.push(l.brand); return; }
+          const pr = {customer:l.customer, brands: l.brand ? [l.brand] : [], detail:l.detail||'', date:l.date, photo};
+          if(photo) photoRows.set(photo, pr); photoList.push(pr);
+        }
+        else if(t==='new_placements'){ if(l.isNew) add(l.customer, l.product, '', l.current ? l.current+' placement'+(l.current===1?'':'s') : '', photo); }
+        else if(t==='pct_of_base') add(l.customer, l.product, '', 'on the shelf', photo);
+        else if(l.new_buyer==='1') add(l.customer, l.product || label, l.date, '', photo);
       });
     });
+    photoList.forEach(pr=>add(pr.customer, [pr.brands.join(', '), pr.detail].filter(Boolean).join(' · '), pr.date, 'photo', pr.photo));
   }
   // The same placement can appear twice in a card's data, once dated and
   // once not (a draft line in draftNew and in draftAccounts): keep the dated one.
@@ -1065,7 +1078,7 @@ function closedLog(p, rep, opts){
   }
   return `<div class="log">
     <div class="log-s">${plw(rows.length, 'placement')} the tracker credits to you${rows.some(r=>r.when)?', newest first':''}.</div>
-    <ol class="log-list">${shown.map(r=>`<li class="log-row"><div class="log-main"><div class="log-cust">${E(r.customer)}</div>${r.product?`<div class="log-prod">${E(r.product)}</div>`:''}${r.note?`<div class="log-note">${E(r.note)}</div>`:''}</div><div class="log-date">${E(r.date||'—')}</div></li>`).join('')}</ol>
+    <ol class="log-list">${shown.map(r=>`<li class="log-row"><div class="log-main"><div class="log-cust">${E(r.customer)}</div>${r.product?`<div class="log-prod">${E(r.product)}</div>`:''}${r.note?`<div class="log-note">${E(r.note)}</div>`:''}</div><div class="log-right"><div class="log-date">${E(r.date||'—')}</div>${r.photo?`<a class="log-photo" href="${E(r.photo)}" target="_blank" rel="noopener">View photo <span class="ar">›</span></a>`:''}</div></li>`).join('')}</ol>
     ${rows.length>LIMIT ? `<button class="amore" data-act="log-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
   </div>`;
 }

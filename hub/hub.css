@@ -850,3 +850,9 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .bg-side-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:var(--text-dim);background:var(--input-bg);border:1px solid var(--line-soft);border-radius:999px;padding:5px 11px;white-space:nowrap;}
 .bg-side-n.ok{color:var(--good);border-color:rgba(76,201,122,.45);background:var(--good-soft);}
 .bg-side + .bg-list{margin-bottom:6px;}
+
+/* v9.2: photo link on Completed rows (cooler door stickers, menu placements) */
+.log-right{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.log-photo{display:inline-flex;align-items:center;gap:4px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:7px 12px;min-height:36px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap;}
+.log-photo:hover{background:var(--accent);color:#fff;}
+.log-photo .ar{font-size:15px;line-height:1;}

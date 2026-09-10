@@ -885,6 +885,18 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-10 REFRESH -- cooler doors from Promos_Report_15
+python3 generate_2026-09.py --merge-cooler-doors Promos_Report_15.xlsx: the
+report carried 48 rows of every element type (on-prem menus, posters, table
+tents, window signs, signage, the two Bardstown table tents already on the
+on-prem archive); the merge kept the 30 Cooler Door Wrap rows, 8 new and 22
+already published, 22 -> 30 archive rows. Distinct stickers 20 -> 25:
+Jayson Romine 0 -> 4 (USA Wine Traders Club of Newton, 9/9 -- Athletic,
+Talkhouse, Sun Cruiser, Cape May) and Matthew Powierski 0 -> 1 (Wine Grand
+Carlstadt, Keystone Ice, 9/10). Still 2 reps at the goal of 5. Nothing else
+on this board was re-pulled. The report's on-premise rows carried no NEW
+Bardstown line, so MPOs/on-prem's menu archive was left alone.
+
 2026-09-10 REFRESH -- Keystone only, riding the incentive-tracker refresh
 keystone_ice_24oz.csv and keystone-ice/actuals.csv moved together onto the
 139-row export (15 rows added, none removed): 109 -> 119 distinct buying
