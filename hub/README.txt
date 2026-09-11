@@ -266,8 +266,11 @@ ONE TAP TO THE DASHBOARD + TABS -- v12, 2026-09-11
     * left-aligned title "Choose your name" in plain white (the amber
       gradient belonged to the old "Incentives & MPO Hub" title), with
       "Tap your name to see your incentives and MPOs." under it;
-    * one quiet uppercase label per District Manager -- no team card, no
-      👥 icon, no "District Manager" kicker, no rep-count badge;
+    * one label per District Manager, their NAME in amber at title size
+      with a hairline carrying across the row (v12.2, 2026-09-11 -- it was
+      a small grey uppercase label and Gavin asked for more prominence);
+      still no team card, no 👥 icon, no "District Manager" kicker and no
+      rep-count badge;
     * names as a grid of 66px-tall buttons with a blue arrow, one column on
       a phone and auto-fill from 300px up on desktop (.dmlabel / .namegrid /
       .name in hub.css; repListHtml() in hub.js).

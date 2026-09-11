@@ -81,8 +81,13 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--card-alt);border:1px solid var(--border);color:var(--text-dim);font-size:20px;cursor:pointer;line-height:1;}
 .clear:hover{color:var(--text);border-color:var(--accent);}
 .replist{margin:0;}
-.dmlabel{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
-.dmlabel:first-child{margin-top:4px;}
+/* The DM's name is the section header for their team: amber (the hub's
+   colour for a DM), title-size, with a hairline carrying it across. */
+.dmlabel{display:flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(18px,4.6vw,21px);letter-spacing:.005em;text-transform:none;
+  color:var(--amber);font-weight:700;line-height:1.2;margin:30px 0 12px;}
+.dmlabel::after{content:'';flex:1;height:1px;background:var(--line-soft);}
+.dmlabel:first-child{margin-top:6px;}
 .namegrid{display:grid;grid-template-columns:1fr;gap:10px;}
 .name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text);transition:border-color .13s,background .13s,transform .08s;}
 .name:hover{border-color:var(--accent);background:var(--card-alt);}
