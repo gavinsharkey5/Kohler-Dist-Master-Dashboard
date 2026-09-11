@@ -34,7 +34,7 @@
   .lede b{color:var(--accent)}
   .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
 
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:11px;margin:18px 0 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:11px;margin:18px 0 0}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
   .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
@@ -102,6 +102,7 @@
   .brow .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
   .brow .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
   .brow .tag.free{background:color-mix(in srgb,var(--good) 18%,transparent);color:#5fdc8c}
+  .brow .tag.roll{background:color-mix(in srgb,var(--ink) 13%,transparent);color:var(--ink)}
   /* a category this account has NOT bought yet -- shown as "+ Free" so the gap is visible */
   .brow .tag.off,.note .tag.off{background:transparent;color:var(--ink-soft);border:1px dashed var(--line);opacity:.8}
   .brow .chk{color:var(--good);margin-right:5px}
@@ -115,6 +116,7 @@
   .rule .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
   .rule .tag.free{background:color-mix(in srgb,var(--good) 18%,transparent);color:#5fdc8c}
   .rule .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+  .rule .tag.roll{background:color-mix(in srgb,var(--ink) 13%,transparent);color:var(--ink)}
   .stat.hi{border-color:color-mix(in srgb,var(--good) 45%,var(--line))}
   .stat.hi .v{color:#5fdc8c}
 
@@ -152,14 +154,24 @@ const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke
 const CHECK='<svg viewBox="0 0 24 24" width="15" height="15" style="vertical-align:-2px" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
 const medalColor=r=>r===1?"var(--gold)":r===2?"#C3CAD6":"#C07B43";
 
-// The three tags a buying account can earn. Edit here and in generate.py's
-// CORE_PRODUCTS / FREE_PRODUCTS / COREPLUS_PRODUCTS together.
+// The three tags a buying account can earn -- these are what data.csv holds.
+// Edit here and in generate.py's REGULAR_PRODUCTS / FREE_PRODUCTS /
+// COREPLUS_PRODUCTS together.
 const CATS=[
-  {key:'Core', label:'Core', cls:'core', blurb:'Red Bull Regular'},
-  {key:'Free', label:'Free', cls:'free', blurb:'Sugar Free'},
+  {key:'Regular', label:'Regular', cls:'core', blurb:'Red Bull 1/24/8.4 oz Can'},
+  {key:'Free', label:'Free', cls:'free', blurb:'Red Bull Sugar Free'},
   {key:'Core+', label:'Core+', cls:'plus', blurb:'all other flavor editions'}
 ];
 const CAT_KEYS=CATS.map(c=>c.key);
+// Rollups are DERIVED, never in data.csv: an account counts toward one if it
+// bought any of its categories. Core exists because Kohler's 155 Core goal
+// was always set on Regular and Sugar Free together.
+const ROLLUPS=[
+  {key:'Core', label:'Core', cls:'roll', blurb:'Regular or Sugar Free', of:['Regular','Free']}
+];
+const ALL_KEYS=[...CAT_KEYS,...ROLLUPS.map(r=>r.key)];
+// data.csv called Regular "Core" before 2026-09-11; keep a stale copy readable.
+const LEGACY={'Core':'Regular'};
 const blankAcct=()=>{const o={};CAT_KEYS.forEach(k=>o[k]=false);return o;};
 // THE RULE: an account only counts as complete when it buys all three categories.
 const isComplete=a=>CAT_KEYS.every(k=>a[k]);
@@ -171,7 +183,8 @@ function ingestData(text){
   const H=rows[0];
   const ci=col(H,"customer"), cati=col(H,"category"), ri=col(H,"sales rep","rep");
   for(let i=1;i<rows.length;i++){
-    const r=rows[i]; const rep=(r[ri]||"").trim(), cat=(r[cati]||"").trim(), cust=(r[ci]||"").trim();
+    const r=rows[i]; const rep=(r[ri]||"").trim(), cust=(r[ci]||"").trim();
+    let cat=(r[cati]||"").trim(); cat=LEGACY[cat]||cat;
     if(!rep||!cat||!cust) continue;
     REPS[rep]=REPS[rep]||{accounts:{}};
     if(!CAT_KEYS.includes(cat)) continue;
@@ -186,23 +199,31 @@ function ingestGoals(text){
 }
 function repStats(rep){
   const accts=REPS[rep]?REPS[rep].accounts:{};
-  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
-  Object.values(accts).forEach(a=>{ CAT_KEYS.forEach(k=>{ if(a[k])by[k]++; }); total++; if(isComplete(a))complete++; });
+  const by={}; ALL_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
+  Object.values(accts).forEach(a=>{
+    CAT_KEYS.forEach(k=>{ if(a[k])by[k]++; });
+    ROLLUPS.forEach(r=>{ if(r.of.some(k=>a[k]))by[r.key]++; });
+    total++; if(isComplete(a))complete++;
+  });
   return {by,total,complete};
 }
 function teamStats(){
-  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
-  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); CAT_KEYS.forEach(k=>by[k]+=s.by[k]); total+=s.total; complete+=s.complete; });
+  const by={}; ALL_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
+  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); ALL_KEYS.forEach(k=>by[k]+=s.by[k]); total+=s.total; complete+=s.complete; });
   return {by,total,complete};
 }
 // "12 Core · 9 Free · 4 Core+"
 const catLine=s=>CATS.map(c=>`${s.by[c.key]} ${c.label}`).join(" · ");
+// Goal cards, rollups first. has() says whether one account counts for the card.
+const CARDS=[...ROLLUPS.map(r=>({...r,has:a=>r.of.some(k=>a[k])})),
+             ...CATS.map(c=>({...c,has:a=>a[c.key]}))];
 // Reps are ranked on complete accounts; total accounts only breaks ties.
 const byComplete=(a,b)=>b.complete-a.complete||b.total-a.total;
 const tagStrip=CATS.map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("");
 const COMPLETE_RULE=`<div class="rule"><span class="rk">What counts as complete</span>
   <span class="rt">An account is <b>complete</b> only when it buys <b>all three</b> — ${tagStrip} — together.
-  Buying two of the three is <b>not complete</b>; sell the missing one to finish the account.</span></div>`;
+  Buying two of the three is <b>not complete</b>; sell the missing one to finish the account.
+  ${ROLLUPS.map(r=>`<span class="tag ${r.cls}">${r.label}</span> is a rollup, not a fourth sale — an account counts for it as soon as it buys ${r.blurb.replace(" or "," <b>or</b> ")}.`).join(" ")}</span></div>`;
 
 function render(){
   const app=document.getElementById("body"); const reps=Object.keys(REPS);
@@ -211,9 +232,10 @@ function render(){
     const pct=GOAL.Overall? (t.total/GOAL.Overall*100):0;
     const catTiles=CATS.map(c=>{const g=GOAL[c.key]||0;return statTile(c.label,t.by[c.key]+(g?"<small>/"+g+"</small>":""),"");}).join("");
     const donePct=t.total? (t.complete/t.total*100):0;
+    const rollTiles=ROLLUPS.map(r=>{const g=GOAL[r.key]||0;return statTile(r.label,t.by[r.key]+(g?"<small>/"+g+"</small>":""),"");}).join("");
     const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}`
       +`<div class="stat hi"><p class="k">Complete (all 3)</p><p class="v num">${t.complete}<small>/${t.total}</small></p></div>`
-      +`${catTiles}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
+      +`${rollTiles}${catTiles}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
     const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort(byComplete).map((r,i)=>({...r,rank:i+1}));
     const rows=ranked.map(R=>{
       const share=R.total? (R.complete/R.total*100):0;   // this rep's own accounts that are complete
@@ -239,14 +261,14 @@ function render(){
       const teamActual=t.by[c.key], mine=s.by[c.key];
       const pct=goal?Math.min(teamActual/goal*100,100):0;
       const hit=goal&&teamActual>=goal;
-      const accts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).filter(([n,f])=>f[c.key]).map(([n])=>n).sort();
+      const accts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).filter(([n,f])=>c.has(f)).map(([n])=>n).sort();
       const list=accts.length?accts.map(n=>`<div class="brow">${esc(n)}<span class="tag ${c.cls}">${mine} of my ${accts.length}</span></div>`).join(""):'<div class="brow">No accounts yet.</div>';
       return `<details class="quest"><summary style="cursor:pointer;list-style:none"><div class="sup"><span>${c.label} (${c.blurb})${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">Team: ${teamActual}${goal?" / "+goal:""}</span></div>
         <div class="qline"><span>My accounts in this category</span><span class="num">${mine}</span></div>
         ${goal?`<div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>`:''}</summary>
         <div class="brk"><div class="cap">${accts.length} of my accounts bought this category</div>${list}</div></details>`;
     }
-    const cards=CATS.map(catCard).join("");
+    const cards=CARDS.map(catCard).join("");
 
     // Headline card: complete accounts, the number that actually counts.
     const donePct=s.total? (s.complete/s.total*100):0;
@@ -273,7 +295,7 @@ function render(){
     app.innerHTML=hero+COMPLETE_RULE+doneCard+
       `<div class="shead"><h2>Still to finish</h2><span class="meta">${todo.length} account${todo.length===1?'':'s'} · closest first</span></div>`+
       group(todo,"Every account is complete — nice.")+
-      `<p class="note">A <span class="tag off" style="font-size:10.5px;padding:2px 7px;border-radius:999px">+ Core</span>-style tag is a category that account has <b>not</b> bought yet. Sell it and the account turns complete.</p>`+
+      `<p class="note">A <span class="tag off" style="font-size:10.5px;padding:2px 7px;border-radius:999px">+ ${CATS[CATS.length-1].label}</span>-style tag is a category that account has <b>not</b> bought yet. Sell it and the account turns complete.</p>`+
       `<div class="shead"><h2>Complete accounts</h2><span class="meta">${done.length} buying all three</span></div>`+
       group(done,"No complete accounts yet — an account needs Core, Free and Core+ together.")+
       `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards;
@@ -294,11 +316,12 @@ async function boot(){
   renderChips();render();
   // Lede and footer are built from goals.csv so adding a goal there (e.g. Free)
   // shows up without editing this file.
-  const goalParts=CATS.filter(c=>GOAL[c.key]>0).map(c=>`<b>${GOAL[c.key]} ${c.label}</b>`);
+  const goalParts=[...ROLLUPS,...CATS].filter(c=>GOAL[c.key]>0).map(c=>`<b>${GOAL[c.key]} ${c.label}</b>`);
   const goalPhrase=GOAL.Overall?`Team goal of <b>${GOAL.Overall} buying accounts</b>${goalParts.length?" — "+goalParts.join(", "):""}.`:"";
-  const key=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
-  const rule=`An account is <b>complete</b> only when it buys <b>all three</b> — two out of three doesn't count.`;
-  document.getElementById("lede").innerHTML=`${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
+  const key=[...ROLLUPS,...CATS].map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
+  const rule=`An account is <b>complete</b> only when it buys <b>all three</b> — ${CATS.map(c=>`<b>${c.label}</b>`).join(", ")} — two out of three doesn't count.`;
+  const rollKey=ROLLUPS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
+  document.getElementById("lede").innerHTML=`${goalPhrase} ${rollKey} ${rule} Tap your name to see your accounts.`;
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
   document.getElementById("foot").innerHTML=`${goalPhrase} ${key} ${rule} Each rep's category tally is unique buying accounts that ordered at least one Red Bull SKU in that category; <b>complete</b> counts only accounts buying all three. Reps are ranked by complete accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }
