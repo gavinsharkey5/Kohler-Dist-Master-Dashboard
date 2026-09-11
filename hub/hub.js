@@ -632,38 +632,35 @@ function refreshedLine(){
 }
 
 /* ---- landing ---- */
-let pick = {rep:null, q:''};
-// One question, one tap: choosing a name opens that rep's dashboard. There is
-// no category step and no confirm button (per Gavin, 2026-09-11).
+// One question, one tap: choosing a name opens that rep's dashboard. The
+// screen is the Incentive Tracker's own "Choose your name" step (its v3
+// screenName()) rebuilt on the hub's tokens, so both pages open the same
+// way: a left-aligned title, one label per District Manager, and a grid of
+// names. No card wrapper and no search box -- every name is on screen.
 function screenHome(){
-  pick.rep = pick.rep || state.rep;
   return `<div class="home">
     <div class="home-head">
-      <h1>Incentives &amp; MPO Hub</h1>
-      <p class="home-sub">Select your name to view all of your Incentives and MPOs.</p>
-      ${refreshedLine()}
+      <h1>Choose your name</h1>
+      <p class="home-sub">Tap your name to see your incentives and MPOs.</p>
     </div>
-    <div class="step solo">
-      <div class="step-h"><span class="step-t">What is your name?</span></div>
-      <div class="search-wrap">
-        <input id="repSearch" class="search" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Type or pick your name…" value="${E(pick.rep||'')}" aria-label="Search your name">
-        ${pick.rep ? `<button class="clear" data-act="clear-rep" aria-label="Clear name">×</button>` : ''}
-      </div>
-      <div id="repList" class="replist">${repListHtml(pick.q)}</div>
-    </div>
+    <div id="repList" class="replist">${repListHtml()}</div>
+    ${refreshedLine()}
     <button class="reset" data-act="reset-all">↺ Start over</button>
     <div class="home-foot">${isMobile() ? '' : isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
   </div>`;
 }
-function repListHtml(q){
-  q = String(q||'').trim().toLowerCase();
-  const match = r => !q || r.toLowerCase().includes(q) || r.toLowerCase().split(' ').some(w=>w.startsWith(q));
+// Reps under their District Manager, in DM_GROUPS order; anyone on the
+// roster without a DM lands in "Other" so nobody is unreachable.
+function repListHtml(){
   const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
-  const groups = DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r) && match(r))}));
-  const other = ROSTER.filter(r=>!grouped.has(r) && match(r));
-  if(other.length) groups.push({dm:'Other', reps:other});
-  const html = groups.filter(g=>g.reps.length).map(g=>`<div class="team"><div class="dm"><span class="dm-ic">👥</span><span class="dm-t"><span class="dm-k">District Manager</span><span class="dm-n">${E(g.dm)}</span></span><span class="dm-c">${g.reps.length}</span></div>${g.reps.map(r=>`<button class="name${pick.rep===r?' active':''}" data-act="pick-rep" data-rep="${E(r)}">${E(r)}<span class="ar">›</span></button>`).join('')}</div>`).join('');
-  return html || `<div class="noname">No name matches “${E(q)}”. Try just your first or last name.</div>`;
+  const other = ROSTER.filter(r=>!grouped.has(r));
+  const groups = DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))}))
+    .concat(other.length ? [{dm:'Other', reps:other}] : [])
+    .filter(g=>g.reps.length);
+  return groups.map(g=>`<div class="dmlabel">${E(g.dm)}</div>
+    <div class="namegrid">${g.reps.map(r=>
+      `<button class="name" data-act="pick-rep" data-rep="${E(r)}">${E(r)}<span class="ar">&#8594;</span></button>`
+    ).join('')}</div>`).join('');
 }
 
 /* ====================================================================
@@ -2116,7 +2113,6 @@ function render(){
   else if(state.view==='detail' || state.view==='program'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
   else if(state.view==='programs'){ const f=state.filters; needed = PROGRAMS.filter(p=>p.type==='MPO' && (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month)); }
   if(needed.length){ const token = ++renderToken; loadFor(needed).then(did=>{ if(did && token===renderToken) render(); }); }
-  if(state.view==='home'){ const inp = $('#repSearch'); if(inp && !pick.rep && window.innerWidth>760) inp.focus(); }
 }
 let renderToken = 0;
 
@@ -2126,14 +2122,13 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': openCards.clear(); state.showEnded = false; pick = {rep:null, q:''}; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
+    case 'home': openCards.clear(); state.showEnded = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
     case 'pick-rep': { const who = t.dataset.rep, tab = lastTab();
-      openCards.clear(); state.showEnded = false; pick = {rep:who, q:''};
+      openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:mainOf(tab), prog:null, peek:null, from:null}); break; }
-    case 'clear-rep': pick.rep = null; pick.q=''; rerenderHomeList(); { const i=$('#repSearch'); if(i){ i.value=''; i.focus(); } } break;
-    case 'change-rep': pick = {rep:state.rep, q:''}; go({view:'home'}); break;
-    case 'back-home': pick = {rep:state.rep, q:''}; go({view:'home', prog:null, peek:null, from:null}); break;
+    case 'change-rep': go({view:'home'}); break;
+    case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
     case 'my-programs': if(state.rep) go({view:'rep', cat: state.cat || lastTab(), main: mainOf(state.cat || lastTab()), prog:null, from:null, peek:null}); else go({view:'home'}); break;
     case 'set-cat': openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:mainOf(t.dataset.cat), view:'rep'}, true); break;
     case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
@@ -2147,9 +2142,9 @@ document.addEventListener('click', e=>{
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
     case 'set-mode': state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
-      pick = {rep:null, q:''}; go({view:'home'}, true); break;
+      go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
-    case 'change-rep-home': pick = {rep:null, q:''}; go({view:'home'}); break;
+    case 'change-rep-home': go({view:'home'}); break;
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at
@@ -2166,17 +2161,6 @@ document.addEventListener('keydown', e=>{
   const t = e.target.closest('article[data-act]'); if(!t) return;
   e.preventDefault(); t.click();
 });
-document.addEventListener('input', e=>{
-  if(e.target.id!=='repSearch') return;
-  pick.q = e.target.value;
-  const exact = ROSTER.find(r=>r.toLowerCase()===pick.q.trim().toLowerCase());
-  pick.rep = exact || null;
-  const list = $('#repList'); if(list) list.innerHTML = repListHtml(pick.q);
-});
-document.addEventListener('keydown', e=>{
-  if(e.target.id!=='repSearch' || e.key!=='Enter') return;
-  const firstBtn = document.querySelector('#repList .name'); if(firstBtn){ firstBtn.click(); }
-});
 document.addEventListener('change', e=>{
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
@@ -2185,11 +2169,6 @@ document.addEventListener('click', e=>{
   const t = e.target.closest('.fpill'); if(!t) return;
   state.filters[t.dataset.filter] = t.dataset.v; render();
 });
-function rerenderHomeList(){
-  const inp = $('#repSearch'); if(inp) inp.value = pick.rep || '';
-  const wrap = $('.search-wrap'); if(wrap){ const c = wrap.querySelector('.clear'); if(pick.rep && !c) wrap.insertAdjacentHTML('beforeend','<button class="clear" data-act="clear-rep" aria-label="Clear name">×</button>'); if(!pick.rep && c) c.remove(); }
-  const list = $('#repList'); if(list) list.innerHTML = repListHtml(pick.q);
-}
 // The drill-down markup the MPO libraries render carries its own toggles
 // (.targets-toggle etc.); those listeners are registered by programs.js.
 // The incentive cards' toggles (.js-toggle) are handled in the tracker's
@@ -2208,7 +2187,7 @@ function boot(){
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
   // hash is still written during a visit so the Back button works.
   state.view = 'home'; state.rep = null; state.main = null; state.cat = null; state.prog = null; state.peek = null; state.from = null;
-  pick = {rep:null, q:''};
+ 
   history.replaceState(null, '', '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.

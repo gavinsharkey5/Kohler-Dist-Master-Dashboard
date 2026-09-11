@@ -61,14 +61,15 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .note strong{color:var(--text);}
 
 /* ---- landing ---- */
-.home{max-width:640px;margin:0 auto;}
-.home-head{text-align:center;margin:10px 0 22px;}
-.home-head h1{font-size:clamp(30px,7.5vw,44px);color:var(--amber);}
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  .home-head h1{background:linear-gradient(115deg,var(--amber) 20%,#FCE3A1 50%,var(--amber) 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-}
-.home-sub{color:var(--text-dim);font-size:clamp(16px,4.2vw,18px);margin-top:8px;line-height:1.5;}
-.home-head .updated{justify-content:center;margin-top:12px;}
+/* The landing screen is the Incentive Tracker's "Choose your name" step:
+   left-aligned title, a DM label, a grid of names. No card, no search. */
+.home{width:100%;}
+.home-head{text-align:left;margin:4px 0 18px;}
+/* Plain white, like the tracker's step title and like every other h1 in the
+   hub -- the amber gradient belonged to the old "Incentives & MPO Hub" title. */
+.home-head h1{font-size:clamp(27px,6.4vw,38px);line-height:1.18;color:var(--text);}
+.home-sub{color:var(--text-dim);font-size:clamp(16px,4vw,18px);margin-top:8px;line-height:1.5;}
+.home > .updated{margin-top:22px;}
 .step{background:var(--card);border:1px solid var(--accent-deep);border-radius:16px;padding:18px 16px;box-shadow:var(--shadow);margin-bottom:14px;}
 .step-h{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
 .step-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;flex-shrink:0;}
@@ -79,16 +80,17 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .search::placeholder{color:var(--text-mute);}
 .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--card-alt);border:1px solid var(--border);color:var(--text-dim);font-size:20px;cursor:pointer;line-height:1;}
 .clear:hover{color:var(--text);border-color:var(--accent);}
-.replist{margin-top:10px;max-height:330px;overflow-y:auto;border:1px solid var(--line-soft);border-radius:12px;background:var(--card-alt);padding:8px;}
-.replist.picked{max-height:200px;}
-.dm{font-family:'Space Grotesk',sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:10px 6px 5px;}
-.dm:first-child{margin-top:2px;}
-.name{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:0 14px;min-height:50px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text);margin-bottom:6px;transition:border-color .13s,background .13s;}
-.name:hover{border-color:var(--accent);}
-.name.active{background:var(--accent);border-color:var(--accent);color:#fff;}
-.name .ar{color:var(--accent);font-size:20px;}
-.name.active .ar{color:#fff;}
-.noname{color:var(--text-dim);padding:12px;font-size:15px;}
+.replist{margin:0;}
+.dmlabel{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
+.dmlabel:first-child{margin-top:4px;}
+.namegrid{display:grid;grid-template-columns:1fr;gap:10px;}
+.name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text);transition:border-color .13s,background .13s,transform .08s;}
+.name:hover{border-color:var(--accent);background:var(--card-alt);}
+.name:active{transform:scale(.988);}
+.name .ar{color:var(--accent);font-size:22px;line-height:1;}
+/* Desktop gets more columns, nothing else: the type scale and the tap
+   targets stay the phone's, exactly as the tracker does it. */
+@media (min-width:760px){ .namegrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;} }
 .cats{display:grid;grid-template-columns:1fr;gap:8px;}
 @media (min-width:560px){ .cats{grid-template-columns:1fr 1fr;} .cats .cat:first-child{grid-column:1 / -1;} }
 .cat{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--card-alt);border:1px solid var(--border);border-radius:12px;padding:13px 15px;min-height:60px;cursor:pointer;transition:border-color .13s,background .13s;}
@@ -625,17 +627,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .chanhead.on .chanhead-t{color:#D9B6FF;} .chanhead.off .chanhead-t{color:#7EE0D8;}
 .chanhead-s{color:var(--text-dim);font-size:14px;}
 .chanhead + .ghead{margin-top:8px;border-top:0;}
-.team{border:1px solid var(--border);border-radius:12px;background:var(--card);padding:8px;margin-bottom:10px;}
-.team:last-child{margin-bottom:0;}
-.dm{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:8px 8px 10px;border-bottom:1px solid var(--line-soft);text-transform:none;letter-spacing:0;}
-.dm-ic{font-size:20px;}
-.dm-t{display:flex;flex-direction:column;flex:1;min-width:0;}
-.dm-k{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);font-weight:700;}
-.dm-n{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--amber);}
-.dm-c{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--text-dim);background:var(--input-bg);border:1px solid var(--border);border-radius:999px;padding:3px 10px;}
-.team .name{margin-bottom:5px;font-size:16.5px;min-height:48px;background:var(--card-alt);}
-.team .name:last-child{margin-bottom:0;}
-.replist{max-height:380px;}
+
 
 /* ---- v5: What to sell / Closed tabs + placement log ---- */
 .ptabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2px;}

@@ -257,8 +257,28 @@ SORT ORDER ON A REP'S PAGE (the brief's order, made explicit)
   ENDING_SOON_DAYS and ALMOST_PCT are constants at the top of hub.js.
 
 ONE TAP TO THE DASHBOARD + TABS -- v12, 2026-09-11
-  The home screen asks ONE question: "What is your name?". Tapping a name
-  opens that rep's dashboard immediately. The "What are you looking for?"
+  The home screen asks ONE question: "Choose your name". Tapping a name
+  opens that rep's dashboard immediately.
+
+  THE PICKER IS THE INCENTIVE TRACKER'S OWN "Choose your name" step (v12.1,
+  2026-09-11) -- its v3 screenName(), rebuilt on the hub's tokens so both
+  pages open the same way and a rep sees one screen, not two designs:
+    * left-aligned title "Choose your name" in plain white (the amber
+      gradient belonged to the old "Incentives & MPO Hub" title), with
+      "Tap your name to see your incentives and MPOs." under it;
+    * one quiet uppercase label per District Manager -- no team card, no
+      👥 icon, no "District Manager" kicker, no rep-count badge;
+    * names as a grid of 66px-tall buttons with a blue arrow, one column on
+      a phone and auto-fill from 300px up on desktop (.dmlabel / .namegrid /
+      .name in hub.css; repListHtml() in hub.js).
+  There is NO search box any more: every name fits on one screen in the
+  grid, and the tracker's step has never had one. repSearch, its input and
+  Enter handlers, rerenderHomeList() and the `pick` scratch state are gone
+  with it -- a name button is the only control. Anyone on ROSTER without a
+  DM_GROUPS entry still appears under "Other".
+  The "Data refreshed" line now sits at the FOOT of the picker, under the
+  last group, so the top of the screen is title -> names with nothing
+  between. The "What are you looking for?"
   step, the "View My Programs" button and the whole sub-category screen
   (view=pick, screenPick/screenSuppliers, the mainSelect kicker dropdown)
   are GONE -- removed at Gavin's request, 2026-09-11, after v11 had already
