@@ -373,6 +373,33 @@ PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
   incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
   RETENTION", for which exports can and cannot support this.
 
+MPO REP CARDS WEAR THE DASHBOARDS' OBJECTIVE CARD (v9.8, 2026-09-11)
+  Per Gavin, after v9.7 only changed Manager Mode: "I still see the boxes
+  for MPOs" -- he meant the REP cards' boxed Goal / Where you are / Still
+  need tiles (.q). An MPO card's head is now guided.js's repObjectiveCard()
+  instead: the FULL objective name (not shortName), the tag row (weight
+  pill, Goal, status pill), the flat MY GOAL / WHERE I AM / STILL NEEDED /
+  CREDIT EARNED strip, the bar with its "N% of goal" caption, and on a dual
+  objective the per-sub bars. Same .g-* classes from MPOs/shared/guided.css,
+  so hub and dashboard cannot drift. mpoQuickHtml() in hub.js builds it.
+  INCENTIVE cards are untouched and keep the .q boxes.
+
+  WHAT DELIBERATELY STAYS is the hub's own layer below the strip: the brand
+  logo, the supplier line, the Sell / Go lines and the Targets / Completed
+  account list. Those are why the hub exists (CLAUDE.md: Rep Mode is the
+  numbered visit list) and the dashboards have no equivalent -- "look like
+  the dashboards" is about how the card reads, not about deleting the plan
+  under it. The hub's own status chip IS dropped on MPO cards, because the
+  .g-pill states it now and printing "Not Started" twice is worse than
+  either alone.
+
+  r.segments gained valueText and status (its `line` is still there for the
+  detail screen) so the sub-bars can be drawn the dashboards' way. Verified
+  against the live off-prem board on August's two dual objectives -- Wine &
+  Spirits reads "Le Grand Noir 4 / 2 · Leyenda 1925 1 / 2 · Green River
+  1 / 1" on both pages. A clock override is how to see those on the rep
+  page at all: rep-page MPOs are the CURRENT calendar month's only.
+
 PROGRAM VIEW'S MPO HALF IS THE DASHBOARDS' OWN CARD (v9.7, 2026-09-11)
   Per Gavin: the MPO portion of Program View should mirror the individual
   cards on the On-Prem / Off-Prem dashboards. It now renders the same

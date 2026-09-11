@@ -924,3 +924,18 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .pv-inc-head{margin:6px 0 16px;}
 .pv-inc-head .g-title{font-size:clamp(22px,3.4vw,28px);}
 .pv-inc-head .g-sub{font-size:15.5px;}
+
+
+/* v9.8: MPO rep cards wear guided.css's objective card (.g-tags / .g-facts /
+   .g-bar / .g-pill), loaded from MPOs/shared/. Only the seams with the hub's
+   own card chrome live here -- the strip itself is the dashboards'. */
+.pcard .mpo-tags{margin:14px 0 12px;}
+.pcard .g-facts{margin-bottom:12px;}
+.pcard .g-bar{margin-bottom:0;}
+.pcard .g-barcap{margin-bottom:2px;}
+/* The card head is a <button>, so its centred/inherited text rules have to be
+   undone for the strip to read the way it does on the dashboards. */
+.pcard-head .g-facts,.pcard-head .g-tags,.pcard-head .g-barcap{text-align:left;}
+.pcard .mpo-subs{margin-top:12px;}
+.pcard .mpo-sub{margin-bottom:10px;}
+.pcard .mpo-sub:last-child{margin-bottom:0;}

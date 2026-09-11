@@ -342,7 +342,11 @@ function makeMpo(scope, month, o){
     return {
       status, pace: paceFromPct(pct, done, started), pct, openEnded:false,
       now: m.valueText, sub: '', goal: m.goalText, remain: m.remainText || null, next,
-      segments: m.subs ? m.subs.map(s=>({label:s.label, pct:s.pct, line:`${s.value} of ${s.goal}`})) : null,
+      // valueText/status ride along so an MPO card can draw the dashboards'
+      // per-sub bars on a dual objective (August's Molson Coors and Wine &
+      // Spirits); `line` stays for the detail screen's existing renderer.
+      segments: m.subs ? m.subs.map(s=>({label:s.label, pct:s.pct, line:`${s.value} of ${s.goal}`,
+                                         valueText:s.valueText || `${s.value} / ${s.goal}`, status:s.status})) : null,
       valueNum: m.value, goalNum: m.goal, weight: weightPct,
     };
   };
@@ -1290,6 +1294,49 @@ function repPlan(p, r, rep, opts){
   </div>`;
 }
 
+/* ---- MPO cards wear the MPO dashboards' objective card (v9.8, 2026-09-11)
+   Per Gavin, twice: the hub's MPO cards should look like the solo On-Prem /
+   Off-Prem dashboards, not like the hub's boxed Goal / Where you are / Still
+   need tiles. So an MPO card's head is now guided.js's repObjectiveCard()
+   verbatim -- the full objective name, the tag row (weight pill, Goal,
+   status pill), the FLAT My Goal / Where I Am / Still Needed / Credit Earned
+   strip, and the bar with its "N% of goal" caption -- using guided.css's own
+   .g-* classes, which hub/index.html already loads. Incentive cards keep the
+   hub's .q boxes; nothing about them changed.
+
+   WHAT STAYS IS THE HUB'S OWN LAYER: the brand logo, the supplier line, the
+   Sell / Go lines and the Targets / Completed account list underneath. Those
+   are why the hub exists (CLAUDE.md: Rep Mode is the numbered visit list) and
+   the dashboards have no equivalent, so "look like the dashboards" is about
+   the card's read, not about deleting the plan below it. The hub's own status
+   chip IS dropped on these cards -- the .g-pill states it now, and printing
+   "Not Started" twice on one card is worse than either alone. */
+const G_STATUS_TEXT = {achieved:'Goal Achieved', inprogress:'In Progress', notstarted:'Not Started'};
+const G_STATUS_MARK = {achieved:'\u2713', inprogress:'\u25CF', notstarted:'\u25CB'};
+const gStatusOf = r => (r.status==='complete'||r.status==='exceeded') ? 'achieved'
+                     : r.status==='notstarted' ? 'notstarted' : 'inprogress';
+function mpoQuickHtml(p, r){
+  const st = gStatusOf(r), done = st==='achieved';
+  const weight = r.weight!=null ? r.weight : Math.round((p.objective.weight||0)*100);
+  return `<div class="g-tags mpo-tags">
+      <span class="g-tag weight">${weight}% of MPO</span>
+      ${r.goal?`<span class="g-tag">Goal: ${E(r.goal)}</span>`:''}
+      <span class="g-pill ${st}">${G_STATUS_MARK[st]} ${G_STATUS_TEXT[st]}</span>
+    </div>
+    <div class="g-facts">
+      <div><div class="g-fact-l">My Goal</div><div class="g-fact-v">${E(r.goal||'\u2014')}</div></div>
+      <div><div class="g-fact-l">Where I Am</div><div class="g-fact-v${done?' good':''}">${E(r.now||'\u2014')}</div></div>
+      <div><div class="g-fact-l">Still Needed</div><div class="g-fact-v${r.remain?'':' good'}">${E(r.remain || 'Goal met')}</div></div>
+      <div><div class="g-fact-l">Credit Earned</div><div class="g-fact-v${done?' good':' mute'}">${done?'Yes':'Not yet'}</div></div>
+    </div>
+    <div class="g-bar"><div class="g-bar-fill ${st}" style="width:${Math.max(0,Math.min(100,r.pct||0))}%"></div></div>
+    <div class="g-barcap"><span>${Math.round(r.pct||0)}% of goal</span></div>
+    ${(r.segments && r.segments.length) ? `<div class="mpo-subs">${r.segments.map(g=>`<div class="mpo-sub">
+        <div class="g-barcap"><span>${E(g.label)}</span><strong>${E(g.valueText)}</strong></div>
+        <div class="g-bar"><div class="g-bar-fill ${E(g.status||'inprogress')}" style="width:${Math.max(0,Math.min(100,g.pct||0))}%"></div></div>
+      </div>`).join('')}</div>` : ''}`;
+}
+
 function programCard(p, r, rep){
   const bySup = String(state.cat||'').startsWith('sup:');
   const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
@@ -1315,6 +1362,8 @@ function programCard(p, r, rep){
   let quick;
   if(soon){
     quick = `<div class="quick two"><div class="q wide"><span class="ql">Status</span><span class="qv dim">${E(r.loading ? 'Loading this month’s data…' : p.manual ? 'Verified by hand — nothing to track yet' : 'Waiting on the first export')}</span></div></div>${dead}`;
+  } else if(p.type==='MPO'){
+    quick = mpoQuickHtml(p, r) + dead;
   } else {
     const pctTxt = r.openEnded ? '' : Math.round(r.pct)+'%';
     quick = `<div class="quick">
@@ -1348,8 +1397,8 @@ function programCard(p, r, rep){
     <button class="pcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
       <div class="pcard-top">
         ${logoStrip(p)}
-        <div class="pcard-title"><div class="pcard-name">${E(p.shortName||p.name)}</div><div class="pcard-sup">${sup}</div></div>
-        <div class="pcard-status">${statusChip(r)}${flags(p, r)}</div>
+        <div class="pcard-title"><div class="pcard-name">${E(p.type==='MPO' ? p.name : (p.shortName||p.name))}</div><div class="pcard-sup">${sup}</div></div>
+        <div class="pcard-status">${(p.type==='MPO' && !soon) ? '' : statusChip(r)}${flags(p, r)}</div>
       </div>
       ${quick}
       ${lines}
