@@ -882,3 +882,27 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .pcard-body{border-top-color:#2A3650;}
 .cards{gap:20px;}
 .repview.single .cards{gap:22px;}
+
+/* v9.6: product-level goals inside a brand-goal row (Constellation retention).
+   Deliberately quieter than .bg-row -- the category is still the headline and
+   the SKU list is what you open when you want to know which product to sell. */
+.bg-sku{margin-top:9px;}
+.bg-sku summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;line-height:1.4;color:var(--accent);padding:9px 0;list-style:none;}
+.bg-sku summary::-webkit-details-marker{display:none;}
+.bg-sku summary::before{content:'\25B8\00a0';} .bg-sku[open] summary::before{content:'\25BE\00a0';}
+.bg-skunote{font-size:13px;color:var(--text-mute);margin:0 0 8px;}
+.bg-skulist{display:flex;flex-direction:column;gap:7px;margin-top:2px;}
+.bg-sku-row{background:var(--input-bg);border:1px solid var(--line-soft);border-left:4px solid var(--border);border-radius:10px;padding:9px 11px;}
+.bg-sku-row.held{border-left-color:var(--good);} .bg-sku-row.close{border-left-color:var(--amber);}
+.bg-sku-row.building{border-left-color:var(--accent);} .bg-sku-row.zero{border-left-color:var(--red);}
+.bg-sku-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.bg-sku-name{font-size:14.5px;font-weight:600;color:var(--text);min-width:0;line-height:1.35;}
+.bg-sku-nums{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--text);white-space:nowrap;}
+.bg-sku-row.held .bg-sku-nums{color:var(--good);} .bg-sku-row.zero .bg-sku-nums{color:var(--red);}
+.bg-sku-bar{height:5px;background:var(--card-alt);border-radius:999px;overflow:hidden;border:1px solid var(--line-soft);margin-top:7px;}
+.bg-sku-fill{height:100%;border-radius:999px;background:var(--accent);}
+.bg-sku-row.held .bg-sku-fill{background:var(--good);} .bg-sku-row.close .bg-sku-fill{background:var(--amber);} .bg-sku-row.zero .bg-sku-fill{background:var(--red);}
+.bg-sku-st{margin-top:6px;font-size:13px;font-weight:600;color:var(--text-dim);}
+.bg-sku-row.held .bg-sku-st{color:var(--good);} .bg-sku-row.zero .bg-sku-st{color:var(--red);}
+.bg-sku-row.nogoal .bg-sku-st{color:var(--text-mute);font-weight:500;}
+.pcard .bg-sku-row{background:#0B111E;}

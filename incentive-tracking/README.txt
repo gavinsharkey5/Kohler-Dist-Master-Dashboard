@@ -622,6 +622,53 @@ board, where they are the right summary at the END of the period.
 Off-premise only, same as the summer program -- the on-premise package and
 draft goals are a separate export that has not arrived.
 
+PRODUCT-LEVEL GOALS ON CONSTELLATION RETENTION (2026-09-11)
+===========================================================
+Per Gavin: a Constellation retention category is a bag of SKUs, so Corona
+Gaintain should open to the products inside it, each with its own current
+distribution and its own goal -- not just a category total.
+
+ONLY THE FALL PROGRAM CAN DO THIS, and the difference is in the exports, not
+the code:
+
+  constellation_fall_*_off.csv (Sept-Nov)   TWO windowed placement columns on
+                                            EVERY row, so the base column is a
+                                            goal at the SKU grain exactly as it
+                                            is at the category grain. Per-SKU
+                                            goal, bar and status.
+  constellation_*_off.csv (Jun-Aug)         One placements column plus a Goals
+                                            column that is populated ONLY on
+                                            the rep-total row (every detail
+                                            row's Goals cell is blank), and no
+                                            prior-window column to read a base
+                                            from. Its products carry goal:None
+                                            and the card says the goal is set
+                                            at the category level, rather than
+                                            drawing a bar that has nothing
+                                            behind it. Do not "fix" this by
+                                            splitting the category goal across
+                                            its SKUs -- that number is not in
+                                            the file.
+
+THE ZERO ROWS ARE THE POINT. build_constellation_fall() filtered its product
+list on `placements > 0` until now, which hid the one thing a retention rep
+most needs to see: a SKU that placed in the base window and has NOT been
+reordered this period is distribution already lost, and it is what the
+category's shortfall is made of (129 such rows across the four fall files on
+the 9/11 pull -- Alisa Acciardi's Impact category is 1 of 12 SKUs held, 11
+never reordered). Those rows are now kept, flagged `lost`, and sorted to the
+TOP of the list with everything else short of goal, biggest gap first, so the
+top of a category is the call list. If a future change re-filters this list on
+current placements, it puts that blindness back.
+
+Each product carries placements / base / goal / pct / retained / toGo / lost,
+and each category carries skusTotal / skusHeld / skusLost / skusShort /
+skusNew (`base` is the original key name and still holds the same number, so
+nothing that read it broke). The category rows gained a "N/M SKUs held" tail,
+the accordion became "Your SKU Goals By Category", and the hub's rep-facing
+"Your brand goals" list opens each category to the same rows -- see
+hub/README.txt.
+
 MABI FALL RETENTION IS LIVE (2026-09-08)
 mabi_retention_fall was a zero-state placeholder; it now has data. The Sept-Nov
 period is a NEW program with NEW goals -- the summer mabi_retention (Jun-Aug)

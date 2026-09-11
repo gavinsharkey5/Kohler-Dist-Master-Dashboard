@@ -344,6 +344,32 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   placements "toward your N goal" with no per-row bar. Nothing is
   recomputed here beyond need = goal - now and the bar width.
 
+PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
+  Per Gavin: a Constellation retention category is a bag of SKUs, so Corona
+  Gaintain opens to the products inside it, each with its own current
+  distribution and goal. brandGoals() hangs skuRows(c.products) off the
+  Constellation rows and skuHtml() draws them as a <details> that is CLOSED
+  by default -- the category stays the headline and a rep still reads the
+  card in one glance; the SKU list is what they open when they want to know
+  which product to sell. Summary line: "3 of 7 product goals held · 2 not
+  reordered yet".
+
+  The rows come straight from the tracker; nothing is recomputed but need
+  and the bar. SKUs short of goal are listed first (the generator sorts
+  them that way), so the top of an opened list is the call list, and a SKU
+  at 0 against a real goal reads "Not reordered yet" in red -- that is
+  distribution the rep has LOST, and it is what the category's shortfall is
+  made of.
+
+  ONLY CONSTELLATION FALL HAS PER-SKU GOALS. The summer Constellation
+  export sets its goal at the category level only, so its products render
+  with no bar, a "Currently placed" status and a productsNote saying so.
+  Any other retention program can join in the same way the moment its
+  export carries a per-product base -- give its rows a `products` array
+  through skuRows() and the rendering is already there. See
+  incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
+  RETENTION", for which exports can and cannot support this.
+
 CACHE-BUSTING (2026-09-10)
   hub/index.html loads every script and the stylesheet with a ?v=<tag>
   query. GitHub Pages caches for 10 minutes and phones hold files longer,

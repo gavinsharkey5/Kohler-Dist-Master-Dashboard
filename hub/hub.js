@@ -1090,6 +1090,20 @@ const planMore = {};
 // per-rep data; nothing recomputed except "need" and the bar. A family
 // with no goal (MABI's one-goal program, a summer package list) still
 // shows its number with a plain status line so nothing is hidden.
+// The products inside one goal row. A SKU with its own goal gets the same
+// current / goal / bar treatment the category gets; one without (either a
+// brand-new SKU, or an export that only goals at the category level) shows
+// its current distribution and says which.
+function skuRows(products, unit){
+  return (products||[]).map(p=>{
+    const now = p.placements||0, goal = p.goal||null;
+    return {label:p.product, now, goal, unit,
+      need: goal ? Math.max(0, goal-now) : null,
+      held: goal ? now>=goal : null,
+      lost: !!(goal && now===0),
+      pct: goal ? Math.min(100, now/goal*100) : null};
+  });
+}
 function brandGoals(p, rep){
   if(p.source!=='inc') return [];
   const d = p.entry.getRep(rep); if(!d) return [];
@@ -1103,7 +1117,14 @@ function brandGoals(p, rep){
       push('On-Premise Draft', 'buyers', (d.onBrands||[]).map(b=>row(b.label, b.actual, b.goal, 'buyers')));
       break;
     case 'constellation_fall':
-      push('Off-Premise', 'placements', (d.offCategories||[]).filter(c=>c.goal||c.placements).map(c=>row(c.label, c.placements, c.goal, 'placements')));
+      // Product level, per Gavin 2026-09-11: a category is a bag of SKUs and
+      // each SKU carries its own base, so Corona Gaintain opens to the
+      // products inside it with their own current / goal. The zero rows stay
+      // -- a SKU placed last fall and not reordered IS the shortfall.
+      push('Off-Premise', 'placements', (d.offCategories||[]).filter(c=>c.goal||c.placements).map(c=>{
+        const r = row(c.label, c.placements, c.goal, 'placements');
+        r.products = skuRows(c.products, 'placements');
+        return r; }));
       push('On-Premise Packages', 'buyers', ((d.on_packages||{}).families||[]).map(f=>row(f.label, f.buyers, f.goal, 'buyers')));
       push('On-Premise Draft', 'buyers', ((d.on_draft||{}).families||[]).map(f=>row(f.label, f.buyers, f.goal, 'buyers')));
       break;
@@ -1123,7 +1144,14 @@ function brandGoals(p, rep){
       push('MADE brand families', 'placements', (d.brands||[]).map(b=>row(b.brand, b.placements, null, 'placements')));
       break;
     case 'constellation_retention':
-      push('Off-Premise', 'placements', (d.offCategories||[]).map(c=>row(c.label, c.placements, c.goal, 'placements')));
+      // Same product breakdown, but this window's export carries no per-SKU
+      // base -- the goal is the category total only -- so the products show
+      // current distribution and say so rather than faking a bar.
+      push('Off-Premise', 'placements', (d.offCategories||[]).map(c=>{
+        const r = row(c.label, c.placements, c.goal, 'placements');
+        r.products = skuRows(c.products, 'placements');
+        r.productsNote = 'This period sets the goal by category, not by product.';
+        return r; }));
       push('On-Premise Packages', 'buyers', (d.onPkgBrands||[]).map(b=>row(b.label, b.buyers, null, 'buyers')));
       break;
     case 'yuengling_retention':
@@ -1132,6 +1160,31 @@ function brandGoals(p, rep){
       break;
   }
   return G;
+}
+// The product breakdown that hangs off one goal row: closed by default so a
+// rep still reads the card in one glance, and opens to every SKU inside the
+// goal with its own current / goal. SKUs short of their goal are listed first
+// by the generator, so the top of the list is the call list.
+function skuHtml(r){
+  const P = r.products || [];
+  if(!P.length) return '';
+  const goaled = P.filter(x=>x.goal!=null);
+  const held = goaled.filter(x=>x.held).length;
+  const lost = goaled.filter(x=>x.lost).length;
+  const sum = goaled.length
+    ? `${held} of ${goaled.length} product goal${goaled.length===1?'':'s'} held${lost?` · ${lost} not reordered yet`:''}`
+    : `${P.length} product${P.length===1?'':'s'} in this goal`;
+  return `<details class="bg-sku"><summary>${E(sum)}</summary>
+    ${r.productsNote ? `<div class="bg-skunote">${E(r.productsNote)}</div>` : ''}
+    <div class="bg-skulist">${P.map(x=>{
+      const cls = x.goal==null ? 'nogoal' : x.held ? 'held' : x.lost ? 'zero' : (x.pct>=75 ? 'close' : 'building');
+      const st = x.goal==null ? 'Currently placed' : x.held ? '\u2713 Held' : x.lost ? 'Not reordered yet' : `${x.need.toLocaleString('en-US')} more needed`;
+      return `<div class="bg-sku-row ${cls}">
+        <div class="bg-sku-top"><span class="bg-sku-name">${E(x.label)}</span><span class="bg-sku-nums">${x.now.toLocaleString('en-US')}${x.goal!=null?` <span class="bg-sep">/</span> ${x.goal.toLocaleString('en-US')}`:''}</span></div>
+        ${x.goal!=null ? `<div class="bg-sku-bar"><div class="bg-sku-fill" style="width:${Math.max(x.pct, x.pct>0?3:0)}%"></div></div>` : ''}
+        <div class="bg-sku-st">${E(st)}</div>
+      </div>`; }).join('')}</div>
+  </details>`;
 }
 function brandGoalsHtml(groups, opts){
   opts = opts || {};
@@ -1153,6 +1206,7 @@ function brandGoalsHtml(groups, opts){
           ${r.goal!=null ? `<div class="bg-bar"><div class="bg-fill" style="width:${Math.max(r.pct, r.pct>0?3:0)}%"></div></div>` : ''}
           <div class="bg-st">${st}</div>
           ${r.extra ? `<div class="bg-extra">${E(r.extra)}</div>` : ''}
+          ${skuHtml(r)}
           ${r.winback && r.winback.length ? `<details class="bg-win"><summary>Win back: ${r.winback.length} account${r.winback.length===1?'':'s'} that poured it last fall</summary><ol class="bg-winlist">${r.winback.map(n=>`<li>${E(n)}</li>`).join('')}</ol></details>` : ''}
         </div>`; }).join('')}</div>`; }).join('')}
   </div>`;

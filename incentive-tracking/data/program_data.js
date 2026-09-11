@@ -72480,23 +72480,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -72512,31 +72517,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -72552,51 +72564,63 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -72612,19 +72636,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -73903,23 +73931,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               }
             ]
           },
@@ -73935,31 +73968,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               }
             ]
           },
@@ -73975,71 +74015,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -74055,43 +74112,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -74445,19 +74512,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -74473,27 +74544,33 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -74509,27 +74586,33 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -74545,11 +74628,13 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           }
@@ -75195,23 +75280,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 36
+                "placements": 36,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               }
             ]
           },
@@ -75227,31 +75317,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 37
+                "placements": 37,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               }
             ]
           },
@@ -75267,71 +75364,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 37
+                "placements": 37,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -75347,47 +75461,58 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -75761,23 +75886,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 40
+                "placements": 40,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 34
+                "placements": 34,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               }
             ]
           },
@@ -75793,31 +75923,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 42
+                "placements": 42,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 40
+                "placements": 40,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               }
             ]
           },
@@ -75833,71 +75970,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 37
+                "placements": 37,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -75913,43 +76067,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -76151,23 +76315,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 33
+                "placements": 33,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               }
             ]
           },
@@ -76183,31 +76352,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 34
+                "placements": 34,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               }
             ]
           },
@@ -76223,71 +76399,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -76303,43 +76496,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           }
@@ -76500,23 +76703,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -76532,31 +76740,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -76572,71 +76787,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 30
+                "placements": 30,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -76652,43 +76884,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -76755,19 +76997,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -76783,27 +77029,33 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -76819,27 +77071,33 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -76855,15 +77113,18 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -76975,11 +77236,13 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -76995,19 +77258,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -77023,19 +77290,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -77051,7 +77322,8 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -77102,23 +77374,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               }
             ]
           },
@@ -77134,31 +77411,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               }
             ]
           },
@@ -77174,63 +77458,78 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           },
@@ -77246,43 +77545,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -77375,23 +77684,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 30
+                "placements": 30,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               }
             ]
           },
@@ -77407,31 +77721,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               }
             ]
           },
@@ -77447,71 +77768,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           },
@@ -77527,43 +77865,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -77715,23 +78063,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 33
+                "placements": 33,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               }
             ]
           },
@@ -77747,31 +78100,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 40
+                "placements": 40,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 40
+                "placements": 40,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               }
             ]
           },
@@ -77787,71 +78147,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 39
+                "placements": 39,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -77867,47 +78244,58 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -78024,19 +78412,23 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -78052,23 +78444,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -78084,31 +78481,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -78124,11 +78528,13 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -78179,23 +78585,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               }
             ]
           },
@@ -78211,31 +78622,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               }
             ]
           },
@@ -78251,71 +78669,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           },
@@ -78331,47 +78766,58 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -78620,23 +79066,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 38
+                "placements": 38,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 36
+                "placements": 36,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 31
+                "placements": 31,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               }
             ]
           },
@@ -78652,31 +79103,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 36
+                "placements": 36,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 36
+                "placements": 36,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 36
+                "placements": 36,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 32
+                "placements": 32,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               }
             ]
           },
@@ -78692,71 +79150,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 34
+                "placements": 34,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 34
+                "placements": 34,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 30
+                "placements": 30,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -78772,47 +79247,58 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           }
@@ -79034,23 +79520,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           },
@@ -79066,31 +79557,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -79106,67 +79604,83 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -79182,27 +79696,33 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -79249,23 +79769,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 30
+                "placements": 30,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 27
+                "placements": 27,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -79281,31 +79806,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -79321,67 +79853,83 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -79397,39 +79945,48 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -79851,7 +80408,8 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -79867,11 +80425,13 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -79887,15 +80447,18 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -81104,23 +81667,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               }
             ]
           },
@@ -81136,31 +81704,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -81176,59 +81751,73 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -81244,39 +81833,48 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -82427,23 +83025,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 23
+                "placements": 23,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 21
+                "placements": 21,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               }
             ]
           },
@@ -82459,31 +83062,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               }
             ]
           },
@@ -82499,71 +83109,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 24
+                "placements": 24,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -82579,47 +83206,58 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 13
+                "placements": 13,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 12
+                "placements": 12,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 11
+                "placements": 11,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -82812,7 +83450,8 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               }
             ]
           },
@@ -82828,11 +83467,13 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -82859,7 +83500,8 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -83317,23 +83959,28 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 17
+                "placements": 17,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               }
             ]
           },
@@ -83349,31 +83996,38 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 29
+                "placements": 29,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 28
+                "placements": 28,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 26
+                "placements": 26,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 16
+                "placements": 16,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 8
+                "placements": 8,
+                "goal": null
               }
             ]
           },
@@ -83389,71 +84043,88 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 25
+                "placements": 25,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 22
+                "placements": 22,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 20
+                "placements": 20,
+                "goal": null
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 18
+                "placements": 18,
+                "goal": null
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 14
+                "placements": 14,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
-                "placements": 10
+                "placements": 10,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
-                "placements": 9
+                "placements": 9,
+                "goal": null
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 6
+                "placements": 6,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           },
@@ -83469,43 +84140,53 @@ const PROGRAM_DATA = {
             "products": [
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 19
+                "placements": 19,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 15
+                "placements": 15,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 7
+                "placements": 7,
+                "goal": null
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 5
+                "placements": 5,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 4
+                "placements": 4,
+                "goal": null
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 3
+                "placements": 3,
+                "goal": null
               },
               {
                 "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 2
+                "placements": 2,
+                "goal": null
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 1
+                "placements": 1,
+                "goal": null
               }
             ]
           }
@@ -112936,7 +113617,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 19,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 45.5,
+        "pctOfPace": 41.4,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -112960,7 +113641,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 59,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 247.5,
+        "pctOfPace": 225.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -113037,7 +113718,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 346,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 384.0,
+        "pctOfPace": 349.1,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -113292,7 +113973,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 61,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 458.6,
+        "pctOfPace": 416.9,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -113410,7 +114091,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 435,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 268.4,
+        "pctOfPace": 244.0,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -113660,7 +114341,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 280,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 210.2,
+        "pctOfPace": 191.1,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -113821,7 +114502,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 295,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 447.7,
+        "pctOfPace": 407.0,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -114095,7 +114776,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 195,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 295.8,
+        "pctOfPace": 268.9,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -114356,7 +115037,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 489.6,
+        "pctOfPace": 445.1,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -114414,7 +115095,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 166,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 288.5,
+        "pctOfPace": 262.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -114590,7 +115271,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 405,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 374.9,
+        "pctOfPace": 340.8,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -114826,7 +115507,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 398,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 322.1,
+        "pctOfPace": 292.9,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115084,7 +115765,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 361,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 383.1,
+        "pctOfPace": 348.3,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -115348,7 +116029,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 421,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 307.6,
+        "pctOfPace": 279.6,
         "products": [
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
@@ -115589,7 +116270,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 66,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 392.2,
+        "pctOfPace": 356.6,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115770,7 +116451,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 250,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 341.2,
+        "pctOfPace": 310.2,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -115995,7 +116676,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 54,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 217.5,
+        "pctOfPace": 197.7,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -116043,7 +116724,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 156,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 243.9,
+        "pctOfPace": 221.7,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -116184,7 +116865,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 36,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 197.5,
+        "pctOfPace": 179.5,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -116218,7 +116899,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 252,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 399.5,
+        "pctOfPace": 363.2,
         "products": [
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
@@ -116458,7 +117139,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 65,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 222.0,
+        "pctOfPace": 201.9,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -116507,7 +117188,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 334,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 192.9,
+        "pctOfPace": 175.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -116704,8 +117385,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 10,
-    "pacePct": 11.0,
+    "daysElapsed": 11,
+    "pacePct": 12.1,
     "meta": {
       "offRoster": [
         "Default",
@@ -116726,7 +117407,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -116737,7 +117423,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -116748,7 +117439,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -116759,7 +117455,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": false,
@@ -116814,25 +117515,50 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 4,
+            "skusHeld": 4,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -116845,32 +117571,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 2,
-                "base": 1
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 2
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 2,
-                "base": 1
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 3,
+            "skusLost": 2,
+            "skusShort": 4,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -116883,12 +117659,132 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 12,
+            "skusHeld": 1,
+            "skusLost": 11,
+            "skusShort": 11,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -116899,8 +117795,54 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 4,
             "inReport": true,
-            "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "products": [
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              }
+            ],
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 4,
+            "skusHeld": 0,
+            "skusLost": 4,
+            "skusShort": 4,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -116976,7 +117918,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -116987,7 +117934,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -116998,7 +117950,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -117009,7 +117966,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": false,
@@ -118681,7 +119643,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -118692,7 +119659,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -118703,7 +119675,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -118714,7 +119691,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": false,
@@ -118767,27 +119749,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 7,
-                "base": 26
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 4,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 20,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 7,
+                "base": 26,
+                "goal": 26,
+                "pct": 26.9,
+                "retained": false,
+                "toGo": 19,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 0,
+                "base": 10,
+                "goal": 10,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": true
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 3,
-                "base": 12
+                "base": 12,
+                "goal": 12,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 2,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -118800,42 +119817,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 14,
-                "base": 26
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 10,
+                "base": 24,
+                "goal": 24,
+                "pct": 41.7,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 13,
-                "base": 24
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 14,
+                "base": 26,
+                "goal": 26,
+                "pct": 53.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 13,
-                "base": 25
+                "base": 25,
+                "goal": 25,
+                "pct": 52.0,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 10,
-                "base": 24
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 13,
+                "base": 24,
+                "goal": 24,
+                "pct": 54.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 7,
-                "base": 13
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 5,
-                "base": 6
+                "base": 13,
+                "goal": 13,
+                "pct": 53.8,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 4,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 5,
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -118848,82 +119905,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 12,
-                "base": 15
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 11,
-                "base": 10
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 10,
-                "base": 13
-              },
-              {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 10,
-                "base": 23
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 9,
-                "base": 19
-              },
-              {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 9,
-                "base": 15
+                "base": 23,
+                "goal": 23,
+                "pct": 43.5,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 8,
-                "base": 21
+                "base": 21,
+                "goal": 21,
+                "pct": 38.1,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 8,
-                "base": 10
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 5,
-                "base": 10
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 5,
-                "base": 12
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 2,
-                "base": 3
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 2,
-                "base": 1
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 9,
+                "base": 19,
+                "goal": 19,
+                "pct": 47.4,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 2,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 18.2,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 5,
+                "base": 12,
+                "goal": 12,
+                "pct": 41.7,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 9,
+                "base": 15,
+                "goal": 15,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 2,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 5,
+                "base": 10,
+                "goal": 10,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 12,
+                "base": 15,
+                "goal": 15,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 10,
+                "base": 13,
+                "goal": 13,
+                "pct": 76.9,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 8,
+                "base": 10,
+                "goal": 10,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 11,
+                "base": 10,
+                "goal": 10,
+                "pct": 110.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 2,
+            "skusLost": 1,
+            "skusShort": 14,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -118938,35 +120085,110 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 5,
-                "base": 19
+                "base": 19,
+                "goal": 19,
+                "pct": 26.3,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 4,
-                "base": 17
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 3,
-                "base": 5
+                "base": 17,
+                "goal": 17,
+                "pct": 23.5,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 2,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 15.4,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 11,
+                "goal": 11,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 10,
+            "skusHeld": 1,
+            "skusLost": 4,
+            "skusShort": 9,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -119522,17 +120744,52 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 3,
-                "base": 4
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 2,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 4,
+            "skusHeld": 0,
+            "skusLost": 2,
+            "skusShort": 4,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -119545,22 +120802,72 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 1,
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 3,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 1,
-                "base": 5
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 6,
+            "skusHeld": 1,
+            "skusLost": 3,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -119573,17 +120880,72 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 2,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 1,
-                "base": 0
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 1,
+            "skusLost": 4,
+            "skusShort": 4,
+            "skusNew": 1
           },
           {
             "key": "innovation",
@@ -119596,12 +120958,32 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
+              },
+              {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 2,
+            "skusHeld": 1,
+            "skusLost": 1,
+            "skusShort": 1,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -120962,32 +122344,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 18,
-                "base": 33
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 16,
-                "base": 37
+                "base": 37,
+                "goal": 37,
+                "pct": 43.2,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
               },
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 13,
-                "base": 23
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 18,
+                "base": 33,
+                "goal": 33,
+                "pct": 54.5,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 11,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 42.3,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 13,
+                "base": 23,
+                "goal": 23,
+                "pct": 56.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 4,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -121000,42 +122412,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 27,
-                "base": 38
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 27,
-                "base": 38
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 18,
+                "base": 36,
+                "goal": 36,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 23,
-                "base": 36
+                "base": 36,
+                "goal": 36,
+                "pct": 63.9,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 18,
-                "base": 24
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 27,
+                "base": 38,
+                "goal": 38,
+                "pct": 71.1,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 18,
-                "base": 36
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 15,
-                "base": 22
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 27,
+                "base": 38,
+                "goal": 38,
+                "pct": 71.1,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 7,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 43.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 15,
+                "base": 22,
+                "goal": 22,
+                "pct": 68.2,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 18,
+                "base": 24,
+                "goal": 24,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -121048,82 +122500,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 8,
+                "base": 25,
+                "goal": 25,
+                "pct": 32.0,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 22,
-                "base": 38
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 22,
-                "base": 36
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 14,
-                "base": 21
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 13,
-                "base": 24
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 12,
-                "base": 23
+                "base": 38,
+                "goal": 38,
+                "pct": 57.9,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
                 "placements": 11,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 42.3,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 8,
-                "base": 25
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 22,
+                "base": 36,
+                "goal": 36,
+                "pct": 61.1,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 7,
-                "base": 16
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 13,
+                "base": 24,
+                "goal": 24,
+                "pct": 54.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 7,
-                "base": 15
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 12,
+                "base": 23,
+                "goal": 23,
+                "pct": 52.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 5,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 31.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
                 "placements": 4,
-                "base": 15
+                "base": 15,
+                "goal": 15,
+                "pct": 26.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 3,
-                "base": 6
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 7,
+                "base": 16,
+                "goal": 16,
+                "pct": 43.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 7,
+                "base": 15,
+                "goal": 15,
+                "pct": 46.7,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 14,
+                "base": 21,
+                "goal": 21,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 3,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 30.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 2,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 16,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -121136,52 +122678,122 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 6,
-                "base": 22
-              },
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 4,
-                "base": 22
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 4
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 1,
+                "base": 25,
+                "goal": 25,
+                "pct": 4.0,
+                "retained": false,
+                "toGo": 24,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 2,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 8.3,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 4,
+                "base": 22,
+                "goal": 22,
+                "pct": 18.2,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 6,
+                "base": 22,
+                "goal": 22,
+                "pct": 27.3,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 8,
+                "goal": 8,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": true
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
                 "placements": 2,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 1
-              },
-              {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 1,
-                "base": 25
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 1,
+            "skusLost": 2,
+            "skusShort": 10,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -121507,30 +123119,60 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 13,
-                "base": 42
+                "base": 42,
+                "goal": 42,
+                "pct": 31.0,
+                "retained": false,
+                "toGo": 29,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 10,
-                "base": 38
+                "base": 38,
+                "goal": 38,
+                "pct": 26.3,
+                "retained": false,
+                "toGo": 28,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 7,
-                "base": 20
+                "base": 20,
+                "goal": 20,
+                "pct": 35.0,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 5,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 31.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 1,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 10.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -121543,42 +123185,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 32,
-                "base": 42
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 29,
-                "base": 42
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 26,
-                "base": 41
+                "base": 41,
+                "goal": 41,
+                "pct": 63.4,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 20,
-                "base": 35
+                "base": 35,
+                "goal": 35,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 29,
+                "base": 42,
+                "goal": 42,
+                "pct": 69.0,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 32,
+                "base": 42,
+                "goal": 42,
+                "pct": 76.2,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 17,
-                "base": 27
-              },
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 7,
-                "base": 9
+                "base": 27,
+                "goal": 27,
+                "pct": 63.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
                 "placements": 6,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 7,
+                "base": 9,
+                "goal": 9,
+                "pct": 77.8,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -121591,82 +123273,162 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 33,
-                "base": 42
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 27,
-                "base": 36
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 16,
-                "base": 25
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 9,
-                "base": 10
-              },
-              {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 8,
-                "base": 26
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 7,
-                "base": 8
+                "base": 26,
+                "goal": 26,
+                "pct": 30.8,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 5,
-                "base": 21
+                "base": 21,
+                "goal": 21,
+                "pct": 23.8,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 33,
+                "base": 42,
+                "goal": 42,
+                "pct": 78.6,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 27,
+                "base": 36,
+                "goal": 36,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 16,
+                "base": 25,
+                "goal": 25,
+                "pct": 64.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 3,
-                "base": 6
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 3,
-                "base": 4
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 5
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 2,
-                "base": 1
-              },
-              {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 3
-              },
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 1,
-                "base": 2
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 3
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 1,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 9,
+                "base": 10,
+                "goal": 10,
+                "pct": 90.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 7,
+                "base": 8,
+                "goal": 8,
+                "pct": 87.5,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 15,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 14,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -121681,35 +123443,100 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 5,
-                "base": 33
-              },
-              {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 4,
-                "base": 16
-              },
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 3,
-                "base": 20
+                "base": 33,
+                "goal": 33,
+                "pct": 15.2,
+                "retained": false,
+                "toGo": 28,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 2,
-                "base": 30
+                "base": 30,
+                "goal": 30,
+                "pct": 6.7,
+                "retained": false,
+                "toGo": 28,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 3,
+                "base": 20,
+                "goal": 20,
+                "pct": 15.0,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 4,
+                "base": 16,
+                "goal": 16,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 0,
+                "base": 11,
+                "goal": 11,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 0,
+                "base": 5,
+                "goal": 5,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 9,
+            "skusHeld": 0,
+            "skusLost": 3,
+            "skusShort": 9,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -122144,32 +123971,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 10,
+                "base": 21,
+                "goal": 21,
+                "pct": 47.6,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 23,
-                "base": 33
+                "base": 33,
+                "goal": 33,
+                "pct": 69.7,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 21,
-                "base": 31
+                "base": 31,
+                "goal": 31,
+                "pct": 67.7,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 17,
-                "base": 20
+                "base": 20,
+                "goal": 20,
+                "pct": 85.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 17,
-                "base": 20
-              },
-              {
-                "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 10,
-                "base": 21
+                "base": 20,
+                "goal": 20,
+                "pct": 85.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -122182,42 +124039,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 27,
-                "base": 32
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 23,
+                "base": 34,
+                "goal": 34,
+                "pct": 67.6,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 24,
-                "base": 32
+                "base": 32,
+                "goal": 32,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 23,
-                "base": 31
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 23,
-                "base": 34
-              },
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 16,
-                "base": 20
+                "base": 31,
+                "goal": 31,
+                "pct": 74.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
                 "placements": 14,
-                "base": 20
+                "base": 20,
+                "goal": 20,
+                "pct": 70.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 27,
+                "base": 32,
+                "goal": 32,
+                "pct": 84.4,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 12,
-                "base": 17
+                "base": 17,
+                "goal": 17,
+                "pct": 70.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 16,
+                "base": 20,
+                "goal": 20,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -122230,92 +124127,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 20,
-                "base": 28
-              },
-              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 19,
-                "base": 31
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 17,
-                "base": 24
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 16,
-                "base": 19
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 15,
-                "base": 20
+                "base": 31,
+                "goal": 31,
+                "pct": 61.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 14,
-                "base": 23
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 22
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 13,
-                "base": 7
+                "base": 23,
+                "goal": 23,
+                "pct": 60.9,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
                 "placements": 11,
-                "base": 20
+                "base": 20,
+                "goal": 20,
+                "pct": 55.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 10,
-                "base": 14
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 20,
+                "base": 28,
+                "goal": 28,
+                "pct": 71.4,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 14,
+                "base": 22,
+                "goal": 22,
+                "pct": 63.6,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 7,
-                "base": 15
+                "base": 15,
+                "goal": 15,
+                "pct": 46.7,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 17,
+                "base": 24,
+                "goal": 24,
+                "pct": 70.8,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 15,
+                "base": 20,
+                "goal": 20,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 10,
+                "base": 14,
+                "goal": 14,
+                "pct": 71.4,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 6,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 16,
+                "base": 19,
+                "goal": 19,
+                "pct": 84.2,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 4,
-                "base": 7
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 3,
-                "base": 2
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 2,
-                "base": 3
-              },
-              {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 2,
-                "base": 2
+                "base": 7,
+                "goal": 7,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 2,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 13,
+                "base": 7,
+                "goal": 7,
+                "pct": 185.7,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 3,
+                "base": 2,
+                "goal": 2,
+                "pct": 150.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 17,
+            "skusHeld": 3,
+            "skusLost": 0,
+            "skusShort": 14,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -122328,62 +124315,122 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 10,
-                "base": 16
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 4,
+                "base": 24,
+                "goal": 24,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 20,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 10,
-                "base": 24
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 5,
-                "base": 10
+                "base": 24,
+                "goal": 24,
+                "pct": 41.7,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 4,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 4,
-                "base": 24
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 10,
+                "base": 16,
+                "goal": 16,
+                "pct": 62.5,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
-                "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 4,
-                "base": 4
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 5,
+                "base": 10,
+                "goal": 10,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 3,
-                "base": 5
-              },
-              {
-                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 3
-              },
-              {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1,
-                "base": 2
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 0
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 4,
+                "base": 4,
+                "goal": 4,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 10,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 9,
+            "skusNew": 1
           }
         ],
         "inReport": true,
@@ -122461,32 +124508,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 24,
-                "base": 27
-              },
-              {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 15,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 53.6,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 15,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 53.6,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 13,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 5,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 35.7,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 24,
+                "base": 27,
+                "goal": 27,
+                "pct": 88.9,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -122499,37 +124576,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 22,
-                "base": 29
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 21,
-                "base": 23
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 21,
-                "base": 27
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 16,
+                "base": 28,
+                "goal": 28,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 17,
-                "base": 27
+                "base": 27,
+                "goal": 27,
+                "pct": 63.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 16,
-                "base": 28
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 22,
+                "base": 29,
+                "goal": 29,
+                "pct": 75.9,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 21,
+                "base": 27,
+                "goal": 27,
+                "pct": 77.8,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 14,
-                "base": 18
+                "base": 18,
+                "goal": 18,
+                "pct": 77.8,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 0,
+                "base": 4,
+                "goal": 4,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 21,
+                "base": 23,
+                "goal": 23,
+                "pct": 91.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -122542,77 +124664,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 26,
-                "base": 28
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 19,
-                "base": 29
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 17,
-                "base": 29
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 16,
-                "base": 24
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
-                "base": 13
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 13,
-                "base": 17
-              },
-              {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 10,
-                "base": 25
+                "base": 25,
+                "goal": 25,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 10,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 41.7,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 8,
-                "base": 17
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 17,
+                "base": 29,
+                "goal": 29,
+                "pct": 58.6,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 19,
+                "base": 29,
+                "goal": 29,
+                "pct": 65.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
                 "placements": 6,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 8,
+                "base": 17,
+                "goal": 17,
+                "pct": 47.1,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 16,
+                "base": 24,
+                "goal": 24,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 5,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 38.5,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 3,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 27.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 2,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 28.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 13,
+                "base": 17,
+                "goal": 17,
+                "pct": 76.5,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 2,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 26,
+                "base": 28,
+                "goal": 28,
+                "pct": 92.9,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 15,
+                "base": 13,
+                "goal": 13,
+                "pct": 115.4,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 1,
+            "skusLost": 2,
+            "skusShort": 15,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -122625,37 +124842,112 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 2,
+                "base": 20,
+                "goal": 20,
+                "pct": 10.0,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 18,
+                "goal": 18,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 18,
+                "lost": true
+              },
+              {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 5,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 31.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 9,
+                "goal": 9,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 3,
-                "base": 11
-              },
-              {
-                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 2,
-                "base": 20
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2,
-                "base": 2
+                "base": 11,
+                "goal": 11,
+                "pct": 27.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 2,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 10,
+            "skusHeld": 1,
+            "skusLost": 4,
+            "skusShort": 9,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -122950,25 +125242,50 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 4,
+            "skusHeld": 4,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -122981,27 +125298,72 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 6,
+            "skusHeld": 4,
+            "skusLost": 2,
+            "skusShort": 2,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -123012,8 +125374,74 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 6,
             "inReport": true,
-            "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "products": [
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              }
+            ],
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 6,
+            "skusHeld": 0,
+            "skusLost": 6,
+            "skusShort": 6,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -123028,10 +125456,20 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 1,
-                "base": 0
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 1
           }
         ],
         "inReport": true,
@@ -123082,7 +125520,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -123093,7 +125536,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -123104,7 +125552,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -123115,7 +125568,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": false,
@@ -123170,15 +125628,30 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 2,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -123191,17 +125664,52 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 4,
+            "skusHeld": 2,
+            "skusLost": 2,
+            "skusShort": 2,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -123214,27 +125722,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelito Especial 1/24/7 oz Loose Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 4,
+            "skusLost": 1,
+            "skusShort": 1,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -123245,7 +125788,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -123343,32 +125891,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 22,
-                "base": 25
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 10,
+                "base": 24,
+                "goal": 24,
+                "pct": 41.7,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 15,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 53.6,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 14,
-                "base": 26
-              },
-              {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 10,
-                "base": 24
+                "base": 26,
+                "goal": 26,
+                "pct": 53.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 2,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 22,
+                "base": 25,
+                "goal": 25,
+                "pct": 88.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -123381,42 +125959,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 23,
-                "base": 25
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 22,
-                "base": 28
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 21,
-                "base": 26
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 17,
-                "base": 24
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 16,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 61.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 13,
-                "base": 22
+                "base": 22,
+                "goal": 22,
+                "pct": 59.1,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 17,
+                "base": 24,
+                "goal": 24,
+                "pct": 70.8,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 22,
+                "base": 28,
+                "goal": 28,
+                "pct": 78.6,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 21,
+                "base": 26,
+                "goal": 26,
+                "pct": 80.8,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 3,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 23,
+                "base": 25,
+                "goal": 25,
+                "pct": 92.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -123429,72 +126047,162 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 20,
-                "base": 27
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 17,
+                "base": 28,
+                "goal": 28,
+                "pct": 60.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 20,
-                "base": 29
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 19,
-                "base": 22
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 18,
-                "base": 26
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 17,
-                "base": 28
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
-                "base": 20
+                "base": 29,
+                "goal": 29,
+                "pct": 69.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 14,
-                "base": 23
+                "base": 23,
+                "goal": 23,
+                "pct": 60.9,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 14,
-                "base": 19
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 13,
-                "base": 17
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 12,
-                "base": 17
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 18,
+                "base": 26,
+                "goal": 26,
+                "pct": 69.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 9,
-                "base": 17
+                "base": 17,
+                "goal": 17,
+                "pct": 52.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 7,
-                "base": 15
+                "base": 15,
+                "goal": 15,
+                "pct": 46.7,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 1,
-                "base": 9
+                "base": 9,
+                "goal": 9,
+                "pct": 11.1,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 20,
+                "base": 27,
+                "goal": 27,
+                "pct": 74.1,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 15,
+                "base": 20,
+                "goal": 20,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 14,
+                "base": 19,
+                "goal": 19,
+                "pct": 73.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 12,
+                "base": 17,
+                "goal": 17,
+                "pct": 70.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 13,
+                "base": 17,
+                "goal": 17,
+                "pct": 76.5,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 19,
+                "base": 22,
+                "goal": 22,
+                "pct": 86.4,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 15,
+            "skusHeld": 0,
+            "skusLost": 2,
+            "skusShort": 15,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -123507,52 +126215,112 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 6,
-                "base": 15
-              },
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 5,
-                "base": 7
-              },
-              {
-                "product": "Pacifico 1/24/7 oz Btl",
-                "placements": 5,
-                "base": 5
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 2,
+                "base": 17,
+                "goal": 17,
+                "pct": 11.8,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 4,
-                "base": 18
+                "base": 18,
+                "goal": 18,
+                "pct": 22.2,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 6,
+                "base": 15,
+                "goal": 15,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 3,
-                "base": 12
-              },
-              {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
-                "base": 17
+                "base": 12,
+                "goal": 12,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 1,
-                "base": 5
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 0
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
                 "placements": 1,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 5,
+                "base": 7,
+                "goal": 7,
+                "pct": 71.4,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 5,
+                "base": 5,
+                "goal": 5,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 9,
+            "skusHeld": 1,
+            "skusLost": 1,
+            "skusShort": 8,
+            "skusNew": 1
           }
         ],
         "inReport": true,
@@ -124183,27 +126951,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 9,
-                "base": 28
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 9,
-                "base": 30
+                "base": 30,
+                "goal": 30,
+                "pct": 30.0,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 9,
+                "base": 28,
+                "goal": 28,
+                "pct": 32.1,
+                "retained": false,
+                "toGo": 19,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 4,
-                "base": 18
+                "base": 18,
+                "goal": 18,
+                "pct": 22.2,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 3,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 27.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 0,
+                "base": 7,
+                "goal": 7,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -124216,42 +127019,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 16,
-                "base": 28
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 10,
+                "base": 27,
+                "goal": 27,
+                "pct": 37.0,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 15,
-                "base": 31
+                "base": 31,
+                "goal": 31,
+                "pct": 48.4,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 12,
-                "base": 14
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 16,
+                "base": 28,
+                "goal": 28,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 12,
-                "base": 23
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 10,
-                "base": 27
-              },
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 3,
-                "base": 5
+                "base": 23,
+                "goal": 23,
+                "pct": 52.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
                 "placements": 3,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 12,
+                "base": 14,
+                "goal": 14,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -124264,87 +127107,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 9,
-                "base": 24
-              },
-              {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 7,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 29.2,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 9,
+                "base": 24,
+                "goal": 24,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 5,
-                "base": 13
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 5,
-                "base": 5
+                "base": 13,
+                "goal": 13,
+                "pct": 38.5,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 4,
-                "base": 12
+                "base": 12,
+                "goal": 12,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 3,
-                "base": 6
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 3,
-                "base": 7
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 0,
+                "base": 7,
+                "goal": 7,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": true
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 3,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 2,
-                "base": 4
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 2,
-                "base": 5
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 1
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 3,
+                "base": 7,
+                "goal": 7,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 1,
-                "base": 5
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 3
-              },
-              {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 1
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 1,
-                "base": 2
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 1,
-                "base": 5
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 2,
+                "base": 5,
+                "goal": 5,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 2,
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 5,
+                "base": 5,
+                "goal": 5,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 17,
+            "skusHeld": 3,
+            "skusLost": 1,
+            "skusShort": 14,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -124357,22 +127295,102 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 6,
-                "base": 19
-              },
-              {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 8.3,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 6,
+                "base": 19,
+                "goal": 19,
+                "pct": 31.6,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 7,
+                "goal": 7,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 0,
+                "base": 6,
+                "goal": 6,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 9,
+            "skusHeld": 0,
+            "skusLost": 6,
+            "skusShort": 9,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -124425,32 +127443,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 18,
-                "base": 31
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 16,
-                "base": 39
+                "base": 39,
+                "goal": 39,
+                "pct": 41.0,
+                "retained": false,
+                "toGo": 23,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 15,
-                "base": 38
+                "base": 38,
+                "goal": 38,
+                "pct": 39.5,
+                "retained": false,
+                "toGo": 23,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 9,
-                "base": 30
+                "base": 30,
+                "goal": 30,
+                "pct": 30.0,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 18,
+                "base": 31,
+                "goal": 31,
+                "pct": 58.1,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 1,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 10.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -124463,42 +127511,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 27,
-                "base": 41
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 27,
-                "base": 43
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 19,
+                "base": 41,
+                "goal": 41,
+                "pct": 46.3,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 24,
-                "base": 42
+                "base": 42,
+                "goal": 42,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 19,
-                "base": 41
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 27,
+                "base": 43,
+                "goal": 43,
+                "pct": 62.8,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
                 "placements": 12,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 27,
+                "base": 41,
+                "goal": 41,
+                "pct": 65.9,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 12,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 46.2,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 2,
-                "base": 12
+                "base": 12,
+                "goal": 12,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -124511,92 +127599,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 23,
-                "base": 39
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 9,
+                "base": 31,
+                "goal": 31,
+                "pct": 29.0,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 22,
-                "base": 39
+                "base": 39,
+                "goal": 39,
+                "pct": 56.4,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
               },
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 18,
-                "base": 26
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 17,
-                "base": 31
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 23,
+                "base": 39,
+                "goal": 39,
+                "pct": 59.0,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
                 "placements": 16,
-                "base": 32
+                "base": 32,
+                "goal": 32,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 15,
-                "base": 13
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 12,
-                "base": 17
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 10,
-                "base": 23
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 10,
-                "base": 23
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 9,
-                "base": 31
-              },
-              {
-                "product": "Victoria 2/12/12 oz Can",
-                "placements": 8,
-                "base": 19
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 17,
+                "base": 31,
+                "goal": 31,
+                "pct": 54.8,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 7,
-                "base": 21
+                "base": 21,
+                "goal": 21,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 6,
-                "base": 9
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 10,
+                "base": 23,
+                "goal": 23,
+                "pct": 43.5,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 10,
+                "base": 23,
+                "goal": 23,
+                "pct": 43.5,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Can",
+                "placements": 8,
+                "base": 19,
+                "goal": 19,
+                "pct": 42.1,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 2,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 15.4,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 18,
+                "base": 26,
+                "goal": 26,
+                "pct": 69.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 12,
+                "base": 17,
+                "goal": 17,
+                "pct": 70.6,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 6,
+                "base": 9,
+                "goal": 9,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 1,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 15,
+                "base": 13,
+                "goal": 13,
+                "pct": 115.4,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 17,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 16,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -124609,37 +127787,122 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 7,
-                "base": 21
-              },
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 5,
-                "base": 17
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 2,
+                "base": 24,
+                "goal": 24,
+                "pct": 8.3,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 3,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 12.5,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
-                "base": 24
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 7,
+                "base": 21,
+                "goal": 21,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 5,
+                "base": 17,
+                "goal": 17,
+                "pct": 29.4,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 0,
+                "base": 8,
+                "goal": 8,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": true
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Can",
                 "placements": 2,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 6,
+                "goal": 6,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": true
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 4,
+                "goal": 4,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": true
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 2,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 0,
+            "skusLost": 5,
+            "skusShort": 11,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -124739,15 +128002,40 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 0
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 2,
+            "skusNew": 1
           },
           {
             "key": "modelo_gaintain",
@@ -124760,32 +128048,72 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 3,
-                "base": 3
-              },
-              {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 0
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 3,
+                "base": 3,
+                "goal": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 3,
+            "skusLost": 1,
+            "skusShort": 2,
+            "skusNew": 1
           },
           {
             "key": "impact",
@@ -124796,8 +128124,34 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 3,
             "inReport": true,
-            "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "products": [
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              }
+            ],
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 0,
+            "skusLost": 2,
+            "skusShort": 2,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -124808,7 +128162,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -124861,32 +128220,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 16,
-                "base": 26
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 9,
+                "base": 21,
+                "goal": 21,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 15,
-                "base": 26
+                "base": 26,
+                "goal": 26,
+                "pct": 57.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 9,
-                "base": 21
-              },
-              {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 9,
-                "base": 14
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 16,
+                "base": 26,
+                "goal": 26,
+                "pct": 61.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 1,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 9.1,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 9,
+                "base": 14,
+                "goal": 14,
+                "pct": 64.3,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -124899,42 +128288,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 22,
-                "base": 27
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 20,
-                "base": 27
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 18,
-                "base": 26
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 16,
-                "base": 26
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 10,
-                "base": 11
+                "base": 26,
+                "goal": 26,
+                "pct": 61.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 10,
-                "base": 19
+                "base": 19,
+                "goal": 19,
+                "pct": 52.6,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 18,
+                "base": 26,
+                "goal": 26,
+                "pct": 69.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 20,
+                "base": 27,
+                "goal": 27,
+                "pct": 74.1,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 7,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 22,
+                "base": 27,
+                "goal": 27,
+                "pct": 81.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 10,
+                "base": 11,
+                "goal": 11,
+                "pct": 90.9,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -124947,82 +128376,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 21,
-                "base": 24
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 18,
-                "base": 24
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 14,
-                "base": 18
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 13,
-                "base": 4
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 10,
-                "base": 16
-              },
-              {
                 "product": "Modelo Especial 1/12/32 oz Btl",
                 "placements": 10,
-                "base": 20
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 9,
-                "base": 17
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 8,
-                "base": 15
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 7,
-                "base": 8
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 5,
-                "base": 9
+                "base": 20,
+                "goal": 20,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 5,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 35.7,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 3,
-                "base": 2
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 9,
+                "base": 17,
+                "goal": 17,
+                "pct": 52.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 5
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 8,
+                "base": 15,
+                "goal": 15,
+                "pct": 53.3,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 12.5,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 18,
+                "base": 24,
+                "goal": 24,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 10,
+                "base": 16,
+                "goal": 16,
+                "pct": 62.5,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 14,
+                "base": 18,
+                "goal": 18,
+                "pct": 77.8,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 5,
+                "base": 9,
+                "goal": 9,
+                "pct": 55.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 1,
-                "base": 5
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 21,
+                "base": 24,
+                "goal": 24,
+                "pct": 87.5,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 5,
+                "goal": 5,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 7,
+                "base": 8,
+                "goal": 8,
+                "pct": 87.5,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 13,
+                "base": 4,
+                "goal": 4,
+                "pct": 325.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 3,
+                "base": 2,
+                "goal": 2,
+                "pct": 150.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 17,
+            "skusHeld": 2,
+            "skusLost": 2,
+            "skusShort": 15,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -125037,40 +128566,120 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 4,
-                "base": 21
-              },
-              {
-                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 4,
-                "base": 19
+                "base": 21,
+                "goal": 21,
+                "pct": 19.0,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 4,
-                "base": 20
+                "base": 20,
+                "goal": 20,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 3,
-                "base": 6
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 4,
+                "base": 19,
+                "goal": 19,
+                "pct": 21.1,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 17
+                "base": 17,
+                "goal": 17,
+                "pct": 11.8,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 2,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 5,
+                "goal": 5,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 0,
+            "skusLost": 4,
+            "skusShort": 11,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -125169,32 +128778,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 10,
+                "base": 32,
+                "goal": 32,
+                "pct": 31.2,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
+              },
+              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 16,
-                "base": 37
+                "base": 37,
+                "goal": 37,
+                "pct": 43.2,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
               },
               {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 16,
-                "base": 37
-              },
-              {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 16,
-                "base": 28
-              },
-              {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 10,
-                "base": 32
+                "base": 37,
+                "goal": 37,
+                "pct": 43.2,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 4,
-                "base": 19
+                "base": 19,
+                "goal": 19,
+                "pct": 21.1,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 16,
+                "base": 28,
+                "goal": 28,
+                "pct": 57.1,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -125207,42 +128846,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 27,
-                "base": 35
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 23,
-                "base": 35
-              },
-              {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 23,
-                "base": 36
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 12,
+                "base": 30,
+                "goal": 30,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 17,
-                "base": 31
+                "base": 31,
+                "goal": 31,
+                "pct": 54.8,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 15,
-                "base": 29
+                "base": 29,
+                "goal": 29,
+                "pct": 51.7,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 13,
-                "base": 27
+                "base": 27,
+                "goal": 27,
+                "pct": 48.1,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 12,
-                "base": 30
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 23,
+                "base": 36,
+                "goal": 36,
+                "pct": 63.9,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 23,
+                "base": 35,
+                "goal": 35,
+                "pct": 65.7,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 27,
+                "base": 35,
+                "goal": 35,
+                "pct": 77.1,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -125255,87 +128934,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 23,
-                "base": 32
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 4,
+                "base": 19,
+                "goal": 19,
+                "pct": 21.1,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 22,
-                "base": 34
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 16,
-                "base": 21
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 16,
-                "base": 22
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 15,
-                "base": 26
+                "base": 34,
+                "goal": 34,
+                "pct": 64.7,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Familiar 1/12/32 oz Btl",
                 "placements": 11,
-                "base": 23
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 11,
-                "base": 22
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 11,
-                "base": 21
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 9,
-                "base": 17
-              },
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 6,
-                "base": 15
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 6,
-                "base": 17
+                "base": 23,
+                "goal": 23,
+                "pct": 47.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 6,
-                "base": 18
+                "base": 18,
+                "goal": 18,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 15,
+                "base": 26,
+                "goal": 26,
+                "pct": 57.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 11,
+                "base": 22,
+                "goal": 22,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 6,
+                "base": 17,
+                "goal": 17,
+                "pct": 35.3,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 11,
+                "base": 21,
+                "goal": 21,
+                "pct": 52.4,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 23,
+                "base": 32,
+                "goal": 32,
+                "pct": 71.9,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 6,
+                "base": 15,
+                "goal": 15,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 9,
+                "base": 17,
+                "goal": 17,
+                "pct": 52.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 4,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 36.4,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
-                "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 4,
-                "base": 19
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 16,
+                "base": 22,
+                "goal": 22,
+                "pct": 72.7,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 16,
+                "base": 21,
+                "goal": 21,
+                "pct": 76.2,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 3,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 150.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 2,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 2,
+            "skusLost": 0,
+            "skusShort": 14,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -125348,57 +129112,122 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 7,
-                "base": 25
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 2,
+                "base": 26,
+                "goal": 26,
+                "pct": 7.7,
+                "retained": false,
+                "toGo": 24,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 6,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 21.4,
+                "retained": false,
+                "toGo": 22,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 7,
+                "base": 25,
+                "goal": 25,
+                "pct": 28.0,
+                "retained": false,
+                "toGo": 18,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 5,
-                "base": 18
+                "base": 18,
+                "goal": 18,
+                "pct": 27.8,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
                 "placements": 5,
-                "base": 16
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 4,
-                "base": 8
+                "base": 16,
+                "goal": 16,
+                "pct": 31.2,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Btl",
                 "placements": 3,
-                "base": 11
-              },
-              {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
-                "base": 26
+                "base": 11,
+                "goal": 11,
+                "pct": 27.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 1/12/24 oz Can",
                 "placements": 1,
-                "base": 9
+                "base": 9,
+                "goal": 9,
+                "pct": 11.1,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 2/12/12 oz Can",
                 "placements": 1,
-                "base": 9
+                "base": 9,
+                "goal": 9,
+                "pct": 11.1,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Victoria Vicky Mango 1/12/24 oz Can",
                 "placements": 1,
-                "base": 9
+                "base": 9,
+                "goal": 9,
+                "pct": 11.1,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 5,
+                "goal": 5,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 4,
+                "base": 8,
+                "goal": 8,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 11,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -125688,32 +129517,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 4,
-                "base": 6
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 3,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
-                "product": "Corona Extra 1/18/12 oz Btl",
-                "placements": 2,
-                "base": 2
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 4,
+                "base": 6,
+                "goal": 6,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 4,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -125726,42 +129585,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 6,
-                "base": 5
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 5,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 5,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 6,
+                "base": 5,
+                "goal": 5,
+                "pct": 120.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 4,
-                "base": 2
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 3,
-                "base": 6
+                "base": 2,
+                "goal": 2,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Btl",
                 "placements": 2,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 4,
+            "skusLost": 0,
+            "skusShort": 3,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -125774,77 +129673,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 5,
-                "base": 6
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 1,
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 4,
-                "base": 6
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 4
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 3,
-                "base": 4
-              },
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 3,
-                "base": 3
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 1
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 1,
-                "base": 1
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 1,
-                "base": 1
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 1,
-                "base": 1
+                "base": 6,
+                "goal": 6,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
                 "placements": 1,
-                "base": 3
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 1,
-                "base": 4
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
                 "placements": 1,
-                "base": 3
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 2
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 5,
+                "base": 6,
+                "goal": 6,
+                "pct": 83.3,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 3,
+                "base": 3,
+                "goal": 3,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 5,
+            "skusLost": 2,
+            "skusShort": 11,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -125857,22 +129851,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 2,
-                "base": 3
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2,
-                "base": 1
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 0,
+                "base": 5,
+                "goal": 5,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 4
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
+              },
+              {
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 2,
+                "base": 1,
+                "goal": 1,
+                "pct": 200.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 5,
+            "skusHeld": 1,
+            "skusLost": 2,
+            "skusShort": 4,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -125938,27 +129972,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 2/12/12 oz Btl",
-                "placements": 8,
-                "base": 25
-              },
-              {
                 "product": "Corona Extra 4/6/12 oz Btl",
                 "placements": 7,
-                "base": 28
+                "base": 28,
+                "goal": 28,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 21,
+                "lost": false
               },
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 5,
-                "base": 9
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 8,
+                "base": 25,
+                "goal": 25,
+                "pct": 32.0,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 3,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 23.1,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 0,
+                "base": 10,
+                "goal": 10,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 10,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 5,
+                "base": 9,
+                "goal": 9,
+                "pct": 55.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -125971,42 +130040,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 18,
-                "base": 26
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 11,
+                "base": 28,
+                "goal": 28,
+                "pct": 39.3,
+                "retained": false,
+                "toGo": 17,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 13,
-                "base": 29
+                "base": 29,
+                "goal": 29,
+                "pct": 44.8,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 11,
-                "base": 23
+                "base": 23,
+                "goal": 23,
+                "pct": 47.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 11,
-                "base": 28
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 6,
-                "base": 11
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 18,
+                "base": 26,
+                "goal": 26,
+                "pct": 69.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 4,
-                "base": 12
+                "base": 12,
+                "goal": 12,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 6,
+                "base": 11,
+                "goal": 11,
+                "pct": 54.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 1,
-                "base": 5
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -126021,75 +130130,180 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Extra 1/12/24 oz Can",
                 "placements": 9,
-                "base": 24
+                "base": 24,
+                "goal": 24,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 9,
-                "base": 21
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 8,
-                "base": 5
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 5,
-                "base": 10
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 4,
-                "base": 10
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 6
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 2,
-                "base": 6
-              },
-              {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 2,
-                "base": 2
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 2,
-                "base": 2
-              },
-              {
-                "product": "Corona Premier 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 0
-              },
-              {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 1,
-                "base": 2
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 1,
-                "base": 4
+                "base": 21,
+                "goal": 21,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Btl",
                 "placements": 1,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 12.5,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 7,
+                "goal": 7,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": true
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 4,
+                "base": 10,
+                "goal": 10,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 1,
-                "base": 7
+                "base": 7,
+                "goal": 7,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 0,
+                "base": 6,
+                "goal": 6,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 5,
+                "base": 10,
+                "goal": 10,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 2,
+                "base": 6,
+                "goal": 6,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 1,
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 8,
+                "base": 5,
+                "goal": 5,
+                "pct": 160.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Premier 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 3,
+            "skusLost": 3,
+            "skusShort": 13,
+            "skusNew": 1
           },
           {
             "key": "innovation",
@@ -126104,35 +130318,110 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 3,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 18.8,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 14
-              },
-              {
-                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 2
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 4
+                "base": 14,
+                "goal": 14,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 1,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 7.7,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 12,
+                "goal": 12,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 12,
+                "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 0,
+                "base": 4,
+                "goal": 4,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 4,
+                "goal": 4,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 10,
+            "skusHeld": 0,
+            "skusLost": 4,
+            "skusShort": 10,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -126450,8 +130739,34 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 2,
             "inReport": true,
-            "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "products": [
+              {
+                "product": "Corona Extra 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              }
+            ],
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 0,
+            "skusLost": 2,
+            "skusShort": 2,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -126466,15 +130781,30 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 2,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -126485,8 +130815,44 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 3,
             "inReport": true,
-            "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "products": [
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
+              }
+            ],
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 3,
+            "skusHeld": 0,
+            "skusLost": 3,
+            "skusShort": 3,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -126497,7 +130863,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -128287,27 +132658,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 13,
-                "base": 21
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 11,
-                "base": 24
-              },
-              {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 11,
-                "base": 23
+                "base": 24,
+                "goal": 24,
+                "pct": 45.8,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 10,
-                "base": 23
+                "base": 23,
+                "goal": 23,
+                "pct": 43.5,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 11,
+                "base": 23,
+                "goal": 23,
+                "pct": 47.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 13,
+                "base": 21,
+                "goal": 21,
+                "pct": 61.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/18/12 oz Btl",
+                "placements": 0,
+                "base": 7,
+                "goal": 7,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -128320,42 +132726,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 19,
-                "base": 23
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 9,
+                "base": 20,
+                "goal": 20,
+                "pct": 45.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 16,
-                "base": 25
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 15,
-                "base": 20
+                "base": 25,
+                "goal": 25,
+                "pct": 64.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 2/12/12 oz Btl",
                 "placements": 13,
-                "base": 21
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 9,
-                "base": 20
+                "base": 21,
+                "goal": 21,
+                "pct": 61.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 8,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 15,
+                "base": 20,
+                "goal": 20,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 19,
+                "base": 23,
+                "goal": 23,
+                "pct": 82.6,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 3,
-                "base": 5
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -128368,72 +132814,172 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 18,
-                "base": 23
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 13,
-                "base": 16
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 9,
+                "base": 19,
+                "goal": 19,
+                "pct": 47.4,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
                 "placements": 13,
-                "base": 22
-              },
-              {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 12,
-                "base": 19
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 12,
-                "base": 19
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 10,
-                "base": 17
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 10,
-                "base": 14
-              },
-              {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 9,
-                "base": 19
-              },
-              {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 9,
-                "base": 15
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 6,
-                "base": 11
+                "base": 22,
+                "goal": 22,
+                "pct": 59.1,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 4,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 30.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 12,
+                "base": 19,
+                "goal": 19,
+                "pct": 63.2,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 12,
+                "base": 19,
+                "goal": 19,
+                "pct": 63.2,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 10,
+                "base": 17,
+                "goal": 17,
+                "pct": 58.8,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 9,
+                "base": 15,
+                "goal": 15,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 3,
-                "base": 9
+                "base": 9,
+                "goal": 9,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 18,
+                "base": 23,
+                "goal": 23,
+                "pct": 78.3,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 6,
+                "base": 11,
+                "goal": 11,
+                "pct": 54.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 10,
+                "base": 14,
+                "goal": 14,
+                "pct": 71.4,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 0,
+                "base": 4,
+                "goal": 4,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": true
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 13,
+                "base": 16,
+                "goal": 16,
+                "pct": 81.2,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 2,
-                "base": 0
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 15,
+            "skusHeld": 0,
+            "skusLost": 3,
+            "skusShort": 15,
+            "skusNew": 1
           },
           {
             "key": "innovation",
@@ -128446,47 +132992,102 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 2,
+                "base": 18,
+                "goal": 18,
+                "pct": 11.1,
+                "retained": false,
+                "toGo": 16,
+                "lost": false
+              },
+              {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 6,
-                "base": 19
+                "base": 19,
+                "goal": 19,
+                "pct": 31.6,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 2,
-                "base": 8
-              },
-              {
-                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
-                "placements": 2,
-                "base": 18
-              },
-              {
-                "product": "Victoria Vicky Mango 1/12/24 oz Can",
-                "placements": 2,
-                "base": 6
-              },
-              {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1,
-                "base": 2
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 1,
-                "base": 0
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 2,
+                "base": 6,
+                "goal": 6,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 0,
+                "base": 3,
+                "goal": 3,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": true
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 1,
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 8,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 8,
+            "skusNew": 1
           }
         ],
         "inReport": true,
@@ -129252,7 +133853,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -129263,7 +133869,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -129274,7 +133885,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -129285,7 +133901,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": false,
@@ -130605,32 +135226,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 15,
-                "base": 26
-              },
-              {
-                "product": "Corona Extra 1/24/12 oz Loose Btl",
-                "placements": 11,
-                "base": 22
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 11,
-                "base": 25
-              },
-              {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 11,
-                "base": 22
+                "base": 25,
+                "goal": 25,
+                "pct": 44.0,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 2,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 15,
+                "base": 26,
+                "goal": 26,
+                "pct": 57.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/24/12 oz Loose Btl",
+                "placements": 11,
+                "base": 22,
+                "goal": 22,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 11,
+                "base": 22,
+                "goal": 22,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -130643,42 +135294,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 20,
-                "base": 26
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 18,
-                "base": 26
-              },
-              {
                 "product": "Modelo Especial 2/12/12 oz Can",
                 "placements": 17,
-                "base": 26
-              },
-              {
-                "product": "Modelo Especial 1/12/24 oz Can",
-                "placements": 16,
-                "base": 23
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 11,
-                "base": 13
-              },
-              {
-                "product": "Modelo Especial 1/18/12 oz Can",
-                "placements": 10,
-                "base": 9
+                "base": 26,
+                "goal": 26,
+                "pct": 65.4,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 6,
-                "base": 15
+                "base": 15,
+                "goal": 15,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 18,
+                "base": 26,
+                "goal": 26,
+                "pct": 69.2,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 16,
+                "base": 23,
+                "goal": 23,
+                "pct": 69.6,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 20,
+                "base": 26,
+                "goal": 26,
+                "pct": 76.9,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 11,
+                "base": 13,
+                "goal": 13,
+                "pct": 84.6,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/18/12 oz Can",
+                "placements": 10,
+                "base": 9,
+                "goal": 9,
+                "pct": 111.1,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 6,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -130691,92 +135382,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 13,
-                "base": 23
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 13,
-                "base": 21
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 10,
-                "base": 16
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 9,
-                "base": 9
-              },
-              {
-                "product": "Coronita Extra 2/12/7 oz Btl",
-                "placements": 6,
-                "base": 7
-              },
-              {
-                "product": "Modelo Especial 1/12/32 oz Btl",
-                "placements": 6,
-                "base": 9
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 5,
-                "base": 13
+                "product": "Modelo Oro 2/12/12 oz Can",
+                "placements": 2,
+                "base": 14,
+                "goal": 14,
+                "pct": 14.3,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Modelo Negra 2/12/12 oz Btl",
                 "placements": 4,
-                "base": 15
+                "base": 15,
+                "goal": 15,
+                "pct": 26.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada 2/12/12 oz Can",
-                "placements": 3,
-                "base": 5
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 13,
+                "base": 23,
+                "goal": 23,
+                "pct": 56.5,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
               },
               {
-                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
-                "placements": 3,
-                "base": 8
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 13,
+                "base": 21,
+                "goal": 21,
+                "pct": 61.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
-                "product": "Victoria 1/12/32 oz Btl",
-                "placements": 3,
-                "base": 4
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 5,
+                "base": 13,
+                "goal": 13,
+                "pct": 38.5,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
               },
               {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 3,
-                "base": 6
-              },
-              {
-                "product": "Modelo Oro 2/12/12 oz Can",
-                "placements": 2,
-                "base": 14
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 10,
+                "base": 16,
+                "goal": 16,
+                "pct": 62.5,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 2,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 25.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
+                "placements": 3,
+                "base": 8,
+                "goal": 8,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
                 "product": "Corona Light 1/24/12 oz Loose Btl",
                 "placements": 1,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 16.7,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
               },
               {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 1,
-                "base": 2
+                "product": "Modelo Especial 1/12/32 oz Btl",
+                "placements": 6,
+                "base": 9,
+                "goal": 9,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada 2/12/12 oz Can",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 2/12/7 oz Btl",
+                "placements": 6,
+                "base": 7,
+                "goal": 7,
+                "pct": 85.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Victoria 1/12/32 oz Btl",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 9,
+                "base": 9,
+                "goal": 9,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 17,
+            "skusHeld": 1,
+            "skusLost": 0,
+            "skusShort": 16,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -130789,52 +135570,122 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
-                "placements": 7,
-                "base": 16
+                "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
+                "placements": 0,
+                "base": 14,
+                "goal": 14,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 14,
+                "lost": true
               },
               {
                 "product": "Corona Sunbrew 4/6/12 oz Btl",
                 "placements": 7,
-                "base": 20
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 4,
-                "base": 11
-              },
-              {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 3,
-                "base": 10
-              },
-              {
-                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
-                "placements": 2,
-                "base": 5
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 5
+                "base": 20,
+                "goal": 20,
+                "pct": 35.0,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
                 "placements": 1,
-                "base": 13
+                "base": 13,
+                "goal": 13,
+                "pct": 7.7,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
-                "product": "Modelo Negra 2/12/12 oz Can",
+                "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
+                "placements": 7,
+                "base": 16,
+                "goal": 16,
+                "pct": 43.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 4,
+                "base": 11,
+                "goal": 11,
+                "pct": 36.4,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 3,
+                "base": 10,
+                "goal": 10,
+                "pct": 30.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
                 "placements": 1,
-                "base": 1
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               },
               {
                 "product": "Pacifico 1/24/7 oz Btl",
                 "placements": 1,
-                "base": 5
+                "base": 5,
+                "goal": 5,
+                "pct": 20.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 2,
+                "base": 5,
+                "goal": 5,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 1,
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 1,
+            "skusLost": 2,
+            "skusShort": 10,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -130970,8 +135821,24 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "toGo": 2,
             "inReport": true,
-            "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "products": [
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              }
+            ],
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 1,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 1,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -130986,10 +135853,30 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Modelo Especial 4/6/12 oz Btl",
                 "placements": 1,
-                "base": 2
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/12/24 oz Can",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 2,
+            "skusHeld": 0,
+            "skusLost": 1,
+            "skusShort": 2,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -131000,7 +135887,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           },
           {
             "key": "innovation",
@@ -131011,7 +135903,12 @@ const PROGRAM_DATA_2026_09 = {
             "retained": false,
             "inReport": false,
             "products": [],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 0,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 0,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -132023,32 +136920,62 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 4/6/12 oz Btl",
-                "placements": 14,
-                "base": 26
-              },
-              {
                 "product": "Corona Extra 2/12/12 oz Btl",
                 "placements": 13,
-                "base": 27
+                "base": 27,
+                "goal": 27,
+                "pct": 48.1,
+                "retained": false,
+                "toGo": 14,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 4/6/12 oz Btl",
+                "placements": 14,
+                "base": 26,
+                "goal": 26,
+                "pct": 53.8,
+                "retained": false,
+                "toGo": 12,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/24/12 oz Loose Btl",
                 "placements": 7,
-                "base": 16
-              },
-              {
-                "product": "Coronita Extra 1/24/7 oz Btl",
-                "placements": 4,
-                "base": 8
+                "base": 16,
+                "goal": 16,
+                "pct": 43.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Corona Extra 1/18/12 oz Btl",
                 "placements": 1,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 12.5,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
+              },
+              {
+                "product": "Coronita Extra 1/24/7 oz Btl",
+                "placements": 4,
+                "base": 8,
+                "goal": 8,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 4,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 5,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 5,
+            "skusNew": 0
           },
           {
             "key": "modelo_gaintain",
@@ -132061,42 +136988,82 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Modelo Especial 4/6/12 oz Btl",
-                "placements": 23,
-                "base": 29
+                "product": "Modelo Especial 2/12/12 oz Can",
+                "placements": 17,
+                "base": 28,
+                "goal": 28,
+                "pct": 60.7,
+                "retained": false,
+                "toGo": 11,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/24 oz Can",
                 "placements": 19,
-                "base": 28
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Btl",
-                "placements": 19,
-                "base": 27
-              },
-              {
-                "product": "Modelo Especial 2/12/12 oz Can",
-                "placements": 17,
-                "base": 28
-              },
-              {
-                "product": "Modelo Especial 1/24/12 oz Loose Btl",
-                "placements": 8,
-                "base": 9
+                "base": 28,
+                "goal": 28,
+                "pct": 67.9,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/24/12 oz Loose Can",
                 "placements": 7,
-                "base": 16
+                "base": 16,
+                "goal": 16,
+                "pct": 43.8,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 2/12/12 oz Btl",
+                "placements": 19,
+                "base": 27,
+                "goal": 27,
+                "pct": 70.4,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 4/6/12 oz Btl",
+                "placements": 23,
+                "base": 29,
+                "goal": 29,
+                "pct": 79.3,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/18/12 oz Can",
                 "placements": 5,
-                "base": 8
+                "base": 8,
+                "goal": 8,
+                "pct": 62.5,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
+              },
+              {
+                "product": "Modelo Especial 1/24/12 oz Loose Btl",
+                "placements": 8,
+                "base": 9,
+                "goal": 9,
+                "pct": 88.9,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 7,
+            "skusHeld": 0,
+            "skusLost": 0,
+            "skusShort": 7,
+            "skusNew": 0
           },
           {
             "key": "impact",
@@ -132109,87 +137076,182 @@ const PROGRAM_DATA_2026_09 = {
             "inReport": true,
             "products": [
               {
-                "product": "Corona Extra 1/12/24 oz Can",
-                "placements": 14,
-                "base": 22
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
-                "placements": 13,
-                "base": 20
-              },
-              {
-                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
-                "placements": 8,
-                "base": 6
+                "product": "Corona Familiar 1/12/32 oz Btl",
+                "placements": 4,
+                "base": 19,
+                "goal": 19,
+                "pct": 21.1,
+                "retained": false,
+                "toGo": 15,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Pina Picante 1/12/24 oz Can",
                 "placements": 8,
-                "base": 17
+                "base": 17,
+                "goal": 17,
+                "pct": 47.1,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
               },
               {
                 "product": "Modelo Especial 1/12/32 oz Btl",
                 "placements": 5,
-                "base": 14
+                "base": 14,
+                "goal": 14,
+                "pct": 35.7,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Corona Extra 1/12/24 oz Can",
+                "placements": 14,
+                "base": 22,
+                "goal": 22,
+                "pct": 63.6,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 1/12/24 oz Can",
+                "placements": 13,
+                "base": 20,
+                "goal": 20,
+                "pct": 65.0,
+                "retained": false,
+                "toGo": 7,
+                "lost": false
               },
               {
                 "product": "Victoria 1/12/32 oz Btl",
                 "placements": 5,
-                "base": 11
-              },
-              {
-                "product": "Corona Familiar 1/12/32 oz Btl",
-                "placements": 4,
-                "base": 19
-              },
-              {
-                "product": "Modelito Especial 1/24/7 oz Loose Btl",
-                "placements": 4,
-                "base": 5
+                "base": 11,
+                "goal": 11,
+                "pct": 45.5,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
                 "product": "Modelo Oro 2/12/12 oz Can",
                 "placements": 4,
-                "base": 10
+                "base": 10,
+                "goal": 10,
+                "pct": 40.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": false
               },
               {
-                "product": "Corona Light 1/24/12 oz Loose Btl",
-                "placements": 3,
-                "base": 4
-              },
-              {
-                "product": "Victoria 2/12/12 oz Btl",
-                "placements": 3,
-                "base": 5
+                "product": "Modelo Negra 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 6,
+                "goal": 6,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 6,
+                "lost": true
               },
               {
                 "product": "Victoria 2/12/12 oz Can",
                 "placements": 3,
-                "base": 6
+                "base": 6,
+                "goal": 6,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 3,
+                "lost": false
               },
               {
-                "product": "Corona Light 1/24/12 oz Loose Can",
-                "placements": 2,
-                "base": 2
+                "product": "Victoria 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 5,
+                "goal": 5,
+                "pct": 60.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Modelito Especial 1/24/7 oz Loose Btl",
+                "placements": 4,
+                "base": 5,
+                "goal": 5,
+                "pct": 80.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Btl",
+                "placements": 3,
+                "base": 4,
+                "goal": 4,
+                "pct": 75.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada 2/12/12 oz Can",
                 "placements": 2,
-                "base": 3
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Limon y Sal 2/12/12 oz Can",
+                "placements": 8,
+                "base": 6,
+                "goal": 6,
+                "pct": 133.3,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
+              },
+              {
+                "product": "Corona Light 1/24/12 oz Loose Can",
+                "placements": 2,
+                "base": 2,
+                "goal": 2,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Corona Premier 1/24/12 oz Loose Can",
                 "placements": 1,
-                "base": 1
+                "base": 1,
+                "goal": 1,
+                "pct": 100.0,
+                "retained": true,
+                "toGo": 0,
+                "lost": false
               },
               {
                 "product": "Coronita Extra 2/12/7 oz Btl",
                 "placements": 1,
-                "base": 0
+                "base": 0,
+                "goal": null,
+                "pct": null,
+                "retained": false,
+                "toGo": 0,
+                "lost": false
               }
             ],
-            "baseWindow": "9/1/2025 - 11/30/2025"
+            "baseWindow": "9/1/2025 - 11/30/2025",
+            "skusTotal": 16,
+            "skusHeld": 3,
+            "skusLost": 1,
+            "skusShort": 13,
+            "skusNew": 1
           },
           {
             "key": "innovation",
@@ -132204,45 +137266,120 @@ const PROGRAM_DATA_2026_09 = {
               {
                 "product": "Corona Non-Alcoholic 4/6/12 oz Btl",
                 "placements": 8,
-                "base": 21
-              },
-              {
-                "product": "Corona Sunbrew 4/6/12 oz Btl",
-                "placements": 6,
-                "base": 14
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Btl",
-                "placements": 3,
-                "base": 8
-              },
-              {
-                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
-                "placements": 2,
-                "base": 11
-              },
-              {
-                "product": "Modelo Negra 2/12/12 oz Can",
-                "placements": 2,
-                "base": 3
-              },
-              {
-                "product": "Corona Sunbrew 1/12/24 oz Can",
-                "placements": 1,
-                "base": 3
-              },
-              {
-                "product": "Corona Sunbrew 2/12/12 oz Can",
-                "placements": 1,
-                "base": 2
+                "base": 21,
+                "goal": 21,
+                "pct": 38.1,
+                "retained": false,
+                "toGo": 13,
+                "lost": false
               },
               {
                 "product": "Modelo Chelada Suprema Tropical 1/12/24 oz Can",
                 "placements": 1,
-                "base": 11
+                "base": 11,
+                "goal": 11,
+                "pct": 9.1,
+                "retained": false,
+                "toGo": 10,
+                "lost": false
+              },
+              {
+                "product": "Modelo Chelada Suprema Mangonada 1/12/24 oz Can",
+                "placements": 2,
+                "base": 11,
+                "goal": 11,
+                "pct": 18.2,
+                "retained": false,
+                "toGo": 9,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 4/6/12 oz Btl",
+                "placements": 6,
+                "base": 14,
+                "goal": 14,
+                "pct": 42.9,
+                "retained": false,
+                "toGo": 8,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Btl",
+                "placements": 3,
+                "base": 8,
+                "goal": 8,
+                "pct": 37.5,
+                "retained": false,
+                "toGo": 5,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 1/12/24 oz Can",
+                "placements": 1,
+                "base": 3,
+                "goal": 3,
+                "pct": 33.3,
+                "retained": false,
+                "toGo": 2,
+                "lost": false
+              },
+              {
+                "product": "Corona Non-Alcohol 2/12/12 oz Btl",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Victoria Vicky Mango 1/12/24 oz Can",
+                "placements": 0,
+                "base": 2,
+                "goal": 2,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 2,
+                "lost": true
+              },
+              {
+                "product": "Modelo Negra 2/12/12 oz Can",
+                "placements": 2,
+                "base": 3,
+                "goal": 3,
+                "pct": 66.7,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Corona Sunbrew 2/12/12 oz Can",
+                "placements": 1,
+                "base": 2,
+                "goal": 2,
+                "pct": 50.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": false
+              },
+              {
+                "product": "Pacifico 1/24/7 oz Btl",
+                "placements": 0,
+                "base": 1,
+                "goal": 1,
+                "pct": 0.0,
+                "retained": false,
+                "toGo": 1,
+                "lost": true
               }
             ],
-            "baseWindow": "3/1/2026 - 5/31/2026"
+            "baseWindow": "3/1/2026 - 5/31/2026",
+            "skusTotal": 11,
+            "skusHeld": 0,
+            "skusLost": 3,
+            "skusShort": 11,
+            "skusNew": 0
           }
         ],
         "inReport": true,
@@ -132450,8 +137587,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 10,
-    "pacePct": 11.0,
+    "daysElapsed": 11,
+    "pacePct": 12.1,
     "meta": {
       "onPrem": {
         "packages": {
@@ -136201,8 +141338,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 10,
-    "pacePct": 11.0,
+    "daysElapsed": 11,
+    "pacePct": 12.1,
     "meta": {
       "offRoster": [
         "Chris Politano",
@@ -140569,8 +145706,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-07-20",
     "periodEnd": "2026-09-30",
     "periodDays": 73,
-    "daysElapsed": 53,
-    "pacePct": 72.6,
+    "daysElapsed": 54,
+    "pacePct": 74.0,
     "meta": {
       "source": "Boston Beer Seasonal Conversion Fall workbook",
       "officialAsOf": "2026-09-08",
@@ -140591,4 +145728,4 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 10, 2026";
+const PROGRAM_DATA_REFRESHED = "Sep 11, 2026";
