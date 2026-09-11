@@ -34,7 +34,7 @@
   .lede b{color:var(--accent)}
   .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px;margin:18px 0 0}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
   .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
@@ -96,6 +96,7 @@
   .brow .tag{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:600;margin-left:6px}
   .brow .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
   .brow .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+  .brow .tag.free{background:color-mix(in srgb,var(--good) 18%,transparent);color:#5fdc8c}
 
   .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
   .empty h2{font-family:"Space Grotesk";color:var(--ink)}
@@ -108,7 +109,7 @@
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
   <h1>Distribution Tracker</h1>
-  <p class="lede">Team goal of <b>239 buying accounts</b> — <b>155 Core</b> (Regular / Sugar Free) and <b>84 Core+</b> (all other Red Bull flavors). Tap your name to see your accounts.</p>
+  <p class="lede" id="lede"></p>
   <p class="updated" id="updated"></p>
 </div></div>
 <div id="app"><div class="wrap">
@@ -123,9 +124,18 @@ function parseCSV(t){const firstLine=t.split(/\r?\n/,1)[0]||"";const delim=(firs
 function col(H,...n){const h=H.map(x=>x.toLowerCase().trim());for(const k of n){const i=h.findIndex(x=>x.includes(k));if(i>=0)return i;}return -1;}
 function statTile(k,v,s){return `<div class="stat"><p class="k">${k}</p><p class="v num">${v}${s||""}</p></div>`;}
 const TROPHY='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/><path d="M6 5H4a2 2 0 0 0 2 2M18 5h2a2 2 0 0 1-2 2M9 20h6M12 13v7"/></svg>';
-const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+const CHECK='<svg viewBox="0 0 24 24" width="15" height="15" style="vertical-align:-2px" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
 const medalColor=r=>r===1?"var(--gold)":r===2?"#C3CAD6":"#C07B43";
 
+// The three tags a buying account can earn. Edit here and in generate.py's
+// CORE_PRODUCTS / FREE_PRODUCTS / COREPLUS_PRODUCTS together.
+const CATS=[
+  {key:'Core', label:'Core', cls:'core', blurb:'Red Bull Regular'},
+  {key:'Free', label:'Free', cls:'free', blurb:'Sugar Free'},
+  {key:'Core+', label:'Core+', cls:'plus', blurb:'all other flavor editions'}
+];
+const CAT_KEYS=CATS.map(c=>c.key);
+const blankAcct=()=>{const o={};CAT_KEYS.forEach(k=>o[k]=false);return o;};
 let REPS={}, GOAL={Core:155,'Core+':84,Overall:239}, activeRep="ALL";
 
 function ingestData(text){
@@ -136,7 +146,8 @@ function ingestData(text){
     const r=rows[i]; const rep=(r[ri]||"").trim(), cat=(r[cati]||"").trim(), cust=(r[ci]||"").trim();
     if(!rep||!cat||!cust) continue;
     REPS[rep]=REPS[rep]||{accounts:{}};
-    REPS[rep].accounts[cust]=REPS[rep].accounts[cust]||{Core:false,'Core+':false};
+    if(!CAT_KEYS.includes(cat)) continue;
+    REPS[rep].accounts[cust]=REPS[rep].accounts[cust]||blankAcct();
     REPS[rep].accounts[cust][cat]=true;
   }
 }
@@ -147,28 +158,31 @@ function ingestGoals(text){
 }
 function repStats(rep){
   const accts=REPS[rep]?REPS[rep].accounts:{};
-  let core=0, plus=0, total=0;
-  Object.values(accts).forEach(a=>{ if(a.Core)core++; if(a['Core+'])plus++; total++; });
-  return {core,plus,total};
+  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0;
+  Object.values(accts).forEach(a=>{ CAT_KEYS.forEach(k=>{ if(a[k])by[k]++; }); total++; });
+  return {by,total};
 }
 function teamStats(){
-  let core=0, plus=0, total=0;
-  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); core+=s.core; plus+=s.plus; total+=s.total; });
-  return {core,plus,total};
+  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0;
+  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); CAT_KEYS.forEach(k=>by[k]+=s.by[k]); total+=s.total; });
+  return {by,total};
 }
+// "12 Core · 9 Free · 4 Core+"
+const catLine=s=>CATS.map(c=>`${s.by[c.key]} ${c.label}`).join(" · ");
 
 function render(){
   const app=document.getElementById("body"); const reps=Object.keys(REPS);
   if(activeRep==="ALL"){
     const t=teamStats();
     const pct=GOAL.Overall? (t.total/GOAL.Overall*100):0;
-    const stats=`<div class="stats">${statTile("Team Total",t.total,"")}${statTile("Core",t.core+"<small>/"+GOAL.Core+"</small>","")}${statTile("Core+",t.plus+"<small>/"+GOAL['Core+']+"</small>","")}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
+    const catTiles=CATS.map(c=>{const g=GOAL[c.key]||0;return statTile(c.label,t.by[c.key]+(g?"<small>/"+g+"</small>":""),"");}).join("");
+    const stats=`<div class="stats">${statTile("Team Total",t.total,"")}${catTiles}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
     const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map((r,i)=>({...r,rank:i+1}));
     const rows=ranked.map(R=>{
       const share=t.total? (R.total/t.total*100):0;
       return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
         <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
-        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.core} Core · ${R.plus} Core+ · ${R.total} total accounts</div>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${catLine(R)} · ${R.total} total accounts</div>
         <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
         <span class="win">${R.total}<small>accounts</small></span></div>`;
     }).join("");
@@ -179,26 +193,25 @@ function render(){
     const t=teamStats();
     const rank=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map(x=>x.rep).indexOf(activeRep)+1;
     const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
-      <div class="nm">${esc(activeRep)}<small>${s.total} buying accounts · ${s.core} Core · ${s.plus} Core+</small></div>
+      <div class="nm">${esc(activeRep)}<small>${s.total} buying accounts · ${catLine(s)}</small></div>
       <div class="win2"><div class="b num">${s.total}</div><div class="l">accounts</div></div></div></div>`;
 
-    function catCard(catKey,label){
-      const goal=GOAL[catKey]||0;
-      const teamActual=catKey==='Core'?t.core:t.plus;
-      const mine=catKey==='Core'?s.core:s.plus;
+    function catCard(c){
+      const goal=GOAL[c.key]||0;              // 0 = no goal set for this category yet
+      const teamActual=t.by[c.key], mine=s.by[c.key];
       const pct=goal?Math.min(teamActual/goal*100,100):0;
       const hit=goal&&teamActual>=goal;
-      const accts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).filter(([n,f])=>f[catKey]).map(([n])=>n).sort();
-      const list=accts.length?accts.map(n=>`<div class="brow">${esc(n)}<span class="tag ${catKey==='Core'?'core':'plus'}">${mine} of my ${accts.length}</span></div>`).join(""):'<div class="brow">No accounts yet.</div>';
-      return `<details class="quest"><summary style="cursor:pointer;list-style:none"><div class="sup"><span>${label}${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">Team: ${teamActual} / ${goal}</span></div>
+      const accts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).filter(([n,f])=>f[c.key]).map(([n])=>n).sort();
+      const list=accts.length?accts.map(n=>`<div class="brow">${esc(n)}<span class="tag ${c.cls}">${mine} of my ${accts.length}</span></div>`).join(""):'<div class="brow">No accounts yet.</div>';
+      return `<details class="quest"><summary style="cursor:pointer;list-style:none"><div class="sup"><span>${c.label} (${c.blurb})${hit?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">Team: ${teamActual}${goal?" / "+goal:""}</span></div>
         <div class="qline"><span>My accounts in this category</span><span class="num">${mine}</span></div>
-        <div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div></summary>
+        ${goal?`<div class="bar ${hit?'done':''}"><i style="width:${pct.toFixed(1)}%"></i></div>`:''}</summary>
         <div class="brk"><div class="cap">${accts.length} of my accounts bought this category</div>${list}</div></details>`;
     }
-    const cards=catCard('Core','Core (Regular / Sugar Free)')+catCard('Core+','Core+ (all other flavors)');
+    const cards=CATS.map(catCard).join("");
 
     const allAccts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).sort((a,b)=>a[0].localeCompare(b[0]));
-    const fullList=allAccts.map(([n,f])=>`<div class="brow"><b>${esc(n)}</b><span>${f.Core?'<span class="tag core">Core</span>':''}${f['Core+']?'<span class="tag plus">Core+</span>':''}</span></div>`).join("");
+    const fullList=allAccts.map(([n,f])=>`<div class="brow"><b>${esc(n)}</b><span>${CATS.filter(c=>f[c.key]).map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("")}</span></div>`).join("");
 
     app.innerHTML=hero+`<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
       `<div class="shead"><h2>My buying accounts</h2><span class="meta">${allAccts.length} total</span></div><div class="board" style="padding:6px 14px">${fullList}</div>`;
@@ -217,8 +230,14 @@ async function boot(){
   ingestData(dText); if(gText)ingestGoals(gText);
   if(!Object.keys(REPS).length){showEmpty("Couldn't read the data file — check it has Customer Name, Category and Sales Rep columns.");return;}
   renderChips();render();
+  // Lede and footer are built from goals.csv so adding a goal there (e.g. Free)
+  // shows up without editing this file.
+  const goalParts=CATS.filter(c=>GOAL[c.key]>0).map(c=>`<b>${GOAL[c.key]} ${c.label}</b>`);
+  const goalPhrase=GOAL.Overall?`Team goal of <b>${GOAL.Overall} buying accounts</b>${goalParts.length?" — "+goalParts.join(", "):""}.`:"";
+  const key=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
+  document.getElementById("lede").innerHTML=`${goalPhrase} ${key} Tap your name to see your accounts.`;
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML="Team goal: <b>239 buying accounts</b> (155 Core, 84 Core+). Each rep's tally is unique buying accounts (Customer Num) that ordered any Core or Core+ Red Bull SKU. Refresh by re-exporting the Encompass comparison report as <b>data.csv</b> (Customer Name, Category, Sales Rep, Bought).";
+  document.getElementById("foot").innerHTML=`${goalPhrase} ${key} Each rep's tally is unique buying accounts that ordered at least one Red Bull SKU in that category. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }
 boot();
 </script></body></html>
