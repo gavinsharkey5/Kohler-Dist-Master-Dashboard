@@ -165,6 +165,11 @@ function extractProductNum(s){const m=String(s||"").match(/\d{3,}/);return m?m[0
 
 const REP_COLS=[["rep","name"],["rep"]];
 const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["account"],["location"]];
+// The account NUMBER, carried onto each line purely so a consumer can match an
+// account exactly rather than by its spelling (the hub's "already buying" test,
+// which decides whether an account is offered as a target). Nothing in this
+// file's arithmetic reads it.
+const CUSTNUM_COLS=[["customer","num"],["account","num"],["cust","num"]];
 const CUSTOMER_NUM_COLS=[["customer","num"],["customer","id"],["account","num"]];
 const DATE_COLS=[["date"]];
 const NEWBUYER_COLS=[["new","buyer"],["is","new"],["new","placement"]];
@@ -226,13 +231,14 @@ function buildNewAccountsDataset(rows, target){
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
         dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
-        periodCol=findCol(rows[0],PERIOD_COLS), prodCol=findCol(rows[0],PRODUCT_COLS);
+        periodCol=findCol(rows[0],PERIOD_COLS), prodCol=findCol(rows[0],PRODUCT_COLS),
+        numCol=findCol(rows[0],CUSTNUM_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", product: prodCol?String(r[prodCol]||"").trim():""});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), num: numCol?String(r[numCol]||"").trim():"", date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", product: prodCol?String(r[prodCol]||"").trim():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{
@@ -369,6 +375,7 @@ function buildNewPlacementsDataset(rows, target){
     byRep.get(rep).push({
       product:String(r.PRODUCT_NAME||"").trim(),
       customer:String(r.CUSTOMER_NAME||"").trim(),
+      num:String(r.CUSTOMER_NUM==null?"":r.CUSTOMER_NUM).trim(),
       base:Number(r.BASE_PLACEMENTS)||0,
       current:Number(r.CURRENT_PLACEMENTS)||0,
       isNew:String(r.NEW_PLACEMENT)==="1",

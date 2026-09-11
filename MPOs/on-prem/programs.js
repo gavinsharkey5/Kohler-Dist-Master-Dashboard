@@ -130,6 +130,11 @@ function truthyFlag(v){const s=String(v==null?"":v).trim().toLowerCase();return 
 // "*_ID"/"*_NUM" column that would otherwise match first.
 const REP_COLS=[["rep","name"],["rep"]];
 const CUSTOMER_COLS=[["customer","name"],["account","name"],["customer"],["account"],["location"]];
+// The account NUMBER, carried onto each line purely so a consumer can match an
+// account exactly rather than by its spelling (the hub's "already buying" test,
+// which decides whether an account is offered as a target). Nothing in this
+// file's arithmetic reads it.
+const CUSTNUM_COLS=[["customer","num"],["account","num"],["cust","num"]];
 const DATE_COLS=[["date"]];
 const NEWBUYER_COLS=[["new","buyer"],["is","new"],["new","placement"]];
 const PERIOD_COLS=[["period"]];
@@ -153,13 +158,13 @@ function buildNewAccountsDataset(rows, target){
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
         dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
         periodCol=findCol(rows[0],PERIOD_COLS), photoCol=findCol(rows[0],PHOTO_COLS),
-        skuCol=findCol(rows[0],SKU_COLS);
+        skuCol=findCol(rows[0],SKU_COLS), numCol=findCol(rows[0],CUSTNUM_COLS);
   if(!repCol||!custCol||!dateCol||!flagCol) return null;
   const byRep=new Map();
   rows.forEach(r=>{
     const rep=String(r[repCol]||"").trim(); if(!rep) return;
     if(!byRep.has(rep)) byRep.set(rep,[]);
-    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", photo: photoCol?String(r[photoCol]||"").trim():"", product: skuCol?String(r[skuCol]||"").trim():""});
+    byRep.get(rep).push({customer:String(r[custCol]||"").trim(), num: numCol?String(r[numCol]||"").trim():"", date:String(r[dateCol]||"").trim(), new_buyer: truthyFlag(r[flagCol])?"1":"0", period: periodCol?String(r[periodCol]||"").trim().toLowerCase():"", photo: photoCol?String(r[photoCol]||"").trim():"", product: skuCol?String(r[skuCol]||"").trim():""});
   });
   const reps=[];
   byRep.forEach((lines,rep)=>{

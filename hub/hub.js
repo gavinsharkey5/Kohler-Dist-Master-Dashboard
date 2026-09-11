@@ -1104,6 +1104,12 @@ function buyingFor(p, rep){
       else if(l.period==='current') note = 'repeat buyer';
       else if(l.date) note = 'bought '+l.date;
       add(name, note);
+      // ...and by ACCOUNT NUMBER, which classify() also looks up. An account
+      // the tracker shows buying must never be offered back as a target
+      // ("only include target accounts if they are GOING TO BE A NEW BUYER" --
+      // Gavin, 2026-09-11), and matching on the spelling alone would leak one
+      // through the day RDE and the customer base disagree about a name.
+      if(l.num) m.set(String(l.num), note || true);
     });
   });
   return m;

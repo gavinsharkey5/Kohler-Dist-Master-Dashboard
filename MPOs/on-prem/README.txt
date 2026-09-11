@@ -263,6 +263,64 @@ All four are data-backed. Numbers as of the 2026-09-10 refresh (RDE exports run
 through 9/11): Bardstown 3 menu placements, Fever Tree 16 new placements,
 Carbliss 9 new buying accounts, HUSA 1 new draft line.
 
+2026-09-11 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_17
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_17.xlsx
+Carbliss 9 -> 12 new buying accounts: Allison Scott 2 -> 4 (The Little Falls
+Tavern and WAYNE ALE HOUSE & PIZZA, both 9/11) and Brian Sengebush 0 -> 1
+(Lola's Restaurant, 9/11); +4 rows, none removed. Bardstown menu 3 -> 5.
+Fever Tree is set-identical in effect (521 rows, re-sorted; the same 16
+placements, nobody up or down) and HUSA holds at 1 of 1 (+1 row). Nothing
+was lost on any objective -- checked key by key against the previous build.
+
+THE MERGE NOW FILTERS, so a mixed Promos_Report can no longer pollute the
+archive. Promos_Report_17 held 7 rows: 3 Bardstown and 4 YAVE TEQUILA table
+tents. Merged unfiltered (as --merge-bardstown did until now) all 7 went in;
+build_bardstown_menu() skips non-Bardstown rows when COUNTING so the figure
+was never wrong, but the archive is meant to be Bardstown-only and the
+README's fix for that was to hand-filter the report into a fresh workbook
+first. is_bardstown() + merge_export(row_filter=) does it in code now, the
+same way off-prem's is_cooler_door() has -- the fix both READMEs said was
+worth making the next time this path was touched. Archive: 3 -> 5 rows, all
+Bardstown, 4 Yave rows skipped on the way in.
+
+NICK MELISSARI'S TWO MENU PLACEMENTS WERE REACHING NOBODY. iSellBeer filed
+them under "Nicholas Melissari"; the roster (the RDE spelling) says "Nick
+Melissari", and the photo-taker lookup was exact-lowercase only, so his rows
+were credited to a rep who does not exist on the board. build_bardstown_menu()
+now also matches on SURNAME + first initial, and only when exactly one roster
+name fits, so it can never hand one rep another's photo. It prints what it
+aliased, and warns about any photo taker still matching nobody. Bardstown is
+now Nick Melissari 2 of 5, Robin Feldman 2 of 5, Allison Scott 1 of 5.
+NOTE: off-prem has the SAME class of mismatch open -- its cooler-door export
+spells one rep "Matthew Powierski" against the roster's "Matt Powierski", so
+that rep's September sticker reaches nobody there. Left alone because fixing
+it moves a figure already published; ask Gavin before changing it.
+
+ONE ODD ROW, LEFT IN: Nick's second placement is account #120001, DBA "RED
+BULL VENDING MACHINE", a GREEN RIVER HONEY FINISHED BOURBON feature. It is a
+real submitted photo against a real account number and the objective counts
+brand mentions, so it counts. Worth a word with Gavin if that account should
+not be scoreable.
+
+TARGET ACCOUNTS MUST BE POSSIBLE NEW BUYERS (Gavin, 2026-09-11): "only
+include target accounts for carbliss and fever tree if they are GOING TO BE A
+NEW BUYER... they have not yet bought fever tree product in june, july august
+or carbliss brand in june, july, august".
+  This already held, and the check is now recorded rather than assumed: 1,580
+  target rows across 12 reps and both objectives, ZERO that appear anywhere in
+  the export -- base window or current. The hub's "already buying" map
+  (buyingFor() in hub/hub.js) reads every line including PERIOD='base', and
+  classify() keeps those accounts out of `eligible`, which is what the target
+  list is built from. The on-prem board itself shows no target list for these
+  two objectives at all (no targetsFile -- see programs.js).
+  What WAS fragile is that the exclusion matched on the account's SPELLING.
+  Both programs.js builders now carry the account NUMBER onto each line (a
+  new `num` field; no arithmetic reads it) and buyingFor() keys the map by
+  number as well as name, so the rule holds by identity rather than by the
+  two systems happening to agree on a name. They do agree today -- 295 export
+  accounts checked, 0 spelling mismatches -- which is exactly why this needed
+  closing before they stop.
+
 2026-09-10 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_14
 Fever Tree 12 -> 16 (Brian Sengebush 1 -> 3, Paul Mclaughlin 4 -> 5, Robin
 Feldman 1 -> 2; +15 rows, none removed). Carbliss 5 -> 9: Paul Mclaughlin

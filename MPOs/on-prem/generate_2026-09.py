@@ -333,6 +333,19 @@ def build_bardstown_menu():
     header = [c.value for c in ws[1]]
     idx = {h: i for i, h in enumerate(header) if h}
     roster_by_lower = {r.lower(): r for r in ROSTER}
+    # ...and by SURNAME + first initial, for the nickname case. iSellBeer took
+    # "Nicholas Melissari" on 2026-09-11; the roster (the RDE spelling) says
+    # "Nick Melissari", so the exact-lowercase lookup below missed and his two
+    # Bardstown menu placements were credited to a rep nobody on the board is.
+    # Only used when EXACTLY ONE roster name shares that surname and initial,
+    # so it can never silently hand one rep another's photo.
+    by_surname = {}
+    for r in ROSTER:
+        parts = r.lower().split()
+        if len(parts) >= 2:
+            by_surname.setdefault((parts[-1], parts[0][0]), []).append(r)
+    roster_by_surname = {k: v[0] for k, v in by_surname.items() if len(v) == 1}
+    aliased = {}
 
     seen, out, mentions, submissions, skipped = set(), [], 0, set(), 0
     for row in ws.iter_rows(min_row=2):
@@ -347,7 +360,14 @@ def build_bardstown_menu():
         # iSellBeer spells names its own way ("robin feldman"); the roster is
         # the RDE spelling. Unmatched names are kept as-is so they surface
         # rather than vanish.
-        rep = roster_by_lower.get(raw_rep.lower(), raw_rep)
+        rep = roster_by_lower.get(raw_rep.lower())
+        if rep is None:
+            parts = raw_rep.lower().split()
+            rep = roster_by_surname.get((parts[-1], parts[0][0])) if len(parts) >= 2 else None
+            if rep:
+                aliased[raw_rep] = rep
+            else:
+                rep = raw_rep          # kept as-is so it surfaces rather than vanishing
         dt = str(vals[idx["Date/Time"]]).strip()
         acct = str(vals[idx["Account #"]] or "").strip()
         brand = str(vals[idx["Brand"]] or "").strip()
@@ -373,10 +393,38 @@ def build_bardstown_menu():
         })
         seen.add(key)
     out.sort(key=lambda r: r["DATE"], reverse=True)
+    if aliased:
+        print("  Bardstown menu: matched iSellBeer name(s) to the roster by surname -- "
+              + ", ".join(f"{k!r} -> {v!r}" for k, v in sorted(aliased.items())))
+    unmatched = sorted({r["SALES_REP_ASSIGNED"] for r in out} - set(ROSTER))
+    if unmatched:
+        print(f"  Bardstown menu: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
+              f"and their placements reach nobody: {unmatched}")
     if skipped:
         print(f"  Bardstown menu: {skipped} non-Bardstown promo row(s) in the archive "
               f"skipped -- check what brand filter the last Promos_Report was pulled with")
     return out, len(seen), len(submissions)
+
+
+def is_bardstown(vals):
+    """A Promos_Report row belonging to THIS objective.
+
+    ONE PROMOS_REPORT CARRIES EVERY OBJECTIVE IN ITS WINDOW, so merging one
+    unfiltered imports other programs' rows -- Promos_Report_17 held 4 YAVE
+    TEQUILA table tents beside its 3 Bardstown rows, and Report_12 and _14
+    were pure Yave pulls. build_bardstown_menu() already skips non-Bardstown
+    rows when COUNTING, so the figure was never wrong, but the archive is
+    meant to stay Bardstown-only (README, 2026-09-10) and until now that was
+    done by hand-filtering the report into a fresh workbook before merging.
+    This closes it in code, the same way off-prem's is_cooler_door() does --
+    the fix both READMEs said was worth making the next time this path was
+    touched.
+
+    Matched on SUPPLIER, not Elements: the objective is Bardstown menu
+    placements whether the element reads "Menu", "Table Tent, Menu" or the
+    occasional blank, and matching on the element would take Yave's table
+    tents straight back in."""
+    return "bardstown" in str(vals.get("Supplier") or "").lower()
 
 
 def main():
@@ -386,7 +434,8 @@ def main():
         # window. "Promo #" is a per-export counter like PODS' "POD #", so it is
         # excluded from the dedupe key or every overlapping row reads as new.
         _lytt_pos().merge_export(BARDSTOWN_XLSX, Path(sys.argv[2]),
-                                 date_col="Date/Time", volatile_cols=("Promo #",))
+                                 date_col="Date/Time", volatile_cols=("Promo #",),
+                                 row_filter=is_bardstown)
 
     off_premise_ids = load_off_premise_only_ids()
     fever_rows, fever_new, fever_total, fever_ph = build_fever_tree(off_premise_ids)
