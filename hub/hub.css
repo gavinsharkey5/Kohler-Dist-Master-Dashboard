@@ -906,3 +906,21 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .bg-sku-row.held .bg-sku-st{color:var(--good);} .bg-sku-row.zero .bg-sku-st{color:var(--red);}
 .bg-sku-row.nogoal .bg-sku-st{color:var(--text-mute);font-weight:500;}
 .pcard .bg-sku-row{background:#0B111E;}
+
+/* v9.7: MPO sections in Program View. The cards themselves are guided.css's
+   (.g-prog / .g-sum / .g-tag / .g-bar) -- loaded from MPOs/shared/ so the hub
+   and the two MPO dashboards cannot drift apart. Only the seams between a
+   section and the rest of Program View live here. */
+.pv-mpo{margin:0 0 34px;}
+.pv-mpo .g-step-head{margin:4px 0 16px;}
+.pv-mpo .g-title{font-size:clamp(22px,3.4vw,28px);}
+.pv-mpo .g-sub{font-size:15.5px;}
+.pv-mpo-filtered{display:block;margin-top:5px;color:var(--text-mute);font-size:14px;}
+/* The card is a <button> here (it navigates to rep rankings) rather than the
+   dashboards' expand-in-place toggle, so it needs the pointer affordances a
+   plain .g-prog-head gets from its own page. */
+.pv-mpo .g-prog-head{cursor:pointer;}
+.pv-mpo .g-prog-head:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.pv-inc-head{margin:6px 0 16px;}
+.pv-inc-head .g-title{font-size:clamp(22px,3.4vw,28px);}
+.pv-inc-head .g-sub{font-size:15.5px;}

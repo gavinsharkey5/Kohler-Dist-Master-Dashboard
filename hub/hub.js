@@ -359,6 +359,10 @@ function makeMpo(scope, month, o){
   };
   p.exposure = () => null;
   p.atGoal = function(){ const D = data().DATA; return (D && o.hasData) ? M.atGoalFor(o, D) : null; };
+  // Company-level % for the objective -- reps at goal over reps scored. The
+  // MPO dashboards' own bar reads this, so Program View reads it too rather
+  // than deriving a second number that could disagree with the board.
+  p.objPct = function(){ const D = data().DATA; return (D && o.hasData) ? M.objPct(o, D) : 0; };
   p.timeline = function(rep){
     const D = data().DATA; if(!D || !o.hasData) return null;
     const d = D[o.key]; if(!d) return null;
@@ -1502,6 +1506,92 @@ function programStats(p){
   const avg = pcts.length ? pcts.reduce((a,b)=>a+b,0)/pcts.length : null;
   return {participants:parts.length, complete, incomplete:parts.length-complete, started, avg, pctComplete: parts.length ? complete/parts.length*100 : 0};
 }
+/* ---- MPO sections in Program View (v9.7, 2026-09-11) ----------------
+   Per Gavin: the MPO half of Program View should be the SAME card the
+   On-Prem / Off-Prem dashboards already show, not a second design saying
+   similar things differently. So this renders MPOs/shared/guided.js's
+   screenProgram() shape -- the weighted summary strip, then one full-width
+   objective card carrying "N / M reps at goal", the weight, the goal, the
+   eligible-rep count and the company bar -- using guided.css's own .g-*
+   classes (hub/index.html loads that stylesheet; every rule in it is .g-
+   scoped and it only consumes variables the hub already defines, so the two
+   pages cannot drift apart visually).
+
+   AND THE NUMBERS NOW MATCH THE BOARD. The old .pvcard counted reps the
+   hub's own way -- participants filtered by account base / territory,
+   "completed" from each rep's status -- which disagreed with the dashboard
+   a manager had open in the next tab (Fever Tree read "3 of 21 completed"
+   here and "2 / 27 reps at goal" there). These cards read atGoalFor() and
+   objPct() straight from the MPO module, so Program View and the trackers
+   state one number. The hub's territory logic still governs the REP side,
+   where it belongs. */
+function mpoDataFor(scope, mk){ const s = mpoState[scope]||{}; return (s[mk] && s[mk].DATA) || null; }
+
+// One objective card. Clicking it goes to the hub's own program detail (the
+// rep rankings) rather than expanding in place -- the dashboards expand, the
+// hub navigates, and that is the hub's existing pattern for every card here.
+function mpoProgramCardHtml(p){
+  const o = p.objective, M = MPO_SCOPES[p.source].mod;
+  const loaded = mpoMonthLoaded(p.source, p.monthKey);
+  const g = loaded ? p.atGoal() : null;
+  const pct = loaded ? p.objPct() : 0;
+  const all = !!(g && g.total && g.n === g.total);
+  return `<div class="g-prog"><button class="g-prog-head" data-act="open-program" data-prog="${E(p.id)}">
+      <div class="g-prog-top">
+        <span class="g-prog-name">${E(o.name)}${o.supplier?`<span class="g-reprow-dm">${E(o.supplier)}</span>`:''}</span>
+        <span class="g-prog-right">
+          <span><span class="g-prog-atgoal${all?' good':''}">${g ? g.n+' / '+g.total : '—'}</span>
+            <span class="g-prog-atgoal-l">reps at goal</span></span>
+          <span class="g-chev">&#9656;</span>
+        </span>
+      </div>
+      <div class="g-tags" style="margin:12px 0 0">
+        <span class="g-tag weight">${Math.round((o.weight||0)*100)}% of MPO</span>
+        ${o.goalLabel?`<span class="g-tag">Goal: ${E(o.goalLabel)}</span>`:''}
+        <span class="g-tag">${plw(M.ROSTER.length,'eligible rep')}</span>
+        ${g?`<span class="g-tag">${Math.round(g.total?(g.n/g.total)*100:0)}% at goal</span>`
+           :`<span class="g-tag">${loaded?'Not tracked with data':'Loading…'}</span>`}
+      </div>
+      <div class="g-bar"><div class="g-bar-fill ${all?'achieved':pct>0?'inprogress':'notstarted'}" style="width:${Math.max(0,Math.min(100,pct))}%"></div></div>
+    </button></div>`;
+}
+
+// One scope+month block: header, weighted summary strip, then the cards.
+// THE SUMMARY IS ALWAYS THE WHOLE MONTH, never the filtered subset -- the
+// weights sum to 1 across a month's objectives, so a supplier filter would
+// otherwise print a weighted percentage that means nothing. Its first tile
+// says "across all N objectives" for exactly that reason, same as the board.
+function mpoSectionHtml(scope, mk, progs){
+  const S = MPO_SCOPES[scope], M = S.mod;
+  const month = M.MONTHS.find(m=>m.key===mk);
+  const objs = month ? month.objectives : [];
+  const D = mpoDataFor(scope, mk);
+  const objPct = o => (D && o.hasData) ? M.objPct(o, D) : 0;
+  const atGoal = o => (D && o.hasData) ? M.atGoalFor(o, D) : null;
+  const weighted = objs.reduce((t,o)=> t + (o.weight||0)*objPct(o), 0);
+  const sums = [{l:'Overall Weighted MPO', n:D?Math.round(weighted)+'%':'—',
+    cls: !D ? 'mute' : weighted>=90 ? 'good' : weighted>=50 ? 'accent' : '',
+    s:`across all ${objs.length} objective${objs.length===1?'':'s'}`}];
+  objs.forEach(o=>{
+    const g = atGoal(o);
+    if(!g){ sums.push({l:E(o.shortName||o.name), n:'—', cls:'mute', s:D?'not tracked yet':'loading…'}); return; }
+    sums.push({l:E(o.shortName||o.name)+(g.headline?'':' – Reps at Goal'),
+      n: g.headline || (g.n+' / '+g.total),
+      cls: g.cls || (g.total && g.n===g.total ? 'good' : (g.n ? 'accent' : 'mute')),
+      s: g.sub || o.goalLabel || ''});
+  });
+  const hidden = objs.length - progs.length;
+  return `<section class="g pv-mpo">
+    <div class="g-step-head">
+      <div class="g-title">${E(S.label)} MPO</div>
+      <div class="g-sub">${E(month?month.label:mk)} · tap a program to see every rep&rsquo;s result.${hidden>0?` <span class="pv-mpo-filtered">${hidden} more objective${hidden===1?'':'s'} hidden by your filters — the summary still covers all ${objs.length}.</span>`:''}</div>
+    </div>
+    <div class="g-sum-grid">${sums.map(k=>`<div class="g-sum"><div class="g-sum-l">${k.l}</div>
+      <div class="g-sum-n ${k.cls}">${k.n}</div><div class="g-sum-s">${E(k.s)}</div></div>`).join('')}</div>
+    ${progs.map(mpoProgramCardHtml).join('')}
+  </section>`;
+}
+
 function screenPrograms(){
   const f = state.filters;
   const sups = [...new Set(PROGRAMS.map(p=>p.supplier))].sort((a,b)=>a.localeCompare(b));
@@ -1528,7 +1618,35 @@ function screenPrograms(){
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data for ${pending.map(x=>MPO_SCOPES[x[0]].label+' '+monthLabel(x[1])).join(', ')}…</div>`;
   if(!list.length) html += `<div class="empty">No programs match those filters.</div>`;
-  html += `<div class="pgrid">${list.map(p=>{
+
+  // MPOs render as the dashboards' own objective cards, grouped by scope and
+  // month (a month's weights sum to 1 within ONE scope, so on- and
+  // off-premise can never share a summary strip). Incentives keep the
+  // participation grid below them -- they have no weight, no house goal and
+  // no reps-at-goal number for these cards to show.
+  const mpos = list.filter(p=>p.type==='MPO');
+  const incs = list.filter(p=>p.type!=='MPO');
+  const groups = [];
+  mpos.forEach(p=>{
+    let g = groups.find(x=>x.scope===p.source && x.mk===p.monthKey);
+    if(!g) groups.push(g = {scope:p.source, mk:p.monthKey, progs:[]});
+    g.progs.push(p);
+  });
+  // Newest month first, then the scope order MPO_SCOPES declares (on, off).
+  const scopeOrder = Object.keys(MPO_SCOPES);
+  groups.sort((a,b)=> b.mk.localeCompare(a.mk) || (scopeOrder.indexOf(a.scope)-scopeOrder.indexOf(b.scope)));
+  // Inside a section, keep the month's own objective order (heaviest first,
+  // as the deck writes it) rather than this screen's active/end-date sort --
+  // the board a manager is comparing against lists them that way.
+  groups.forEach(g=>{
+    const month = MPO_SCOPES[g.scope].mod.MONTHS.find(m=>m.key===g.mk);
+    const order = month ? month.objectives.map(o=>o.key) : [];
+    g.progs.sort((a,b)=> order.indexOf(a.key) - order.indexOf(b.key));
+    html += mpoSectionHtml(g.scope, g.mk, g.progs);
+  });
+  if(groups.length && incs.length) html += `<div class="g-step-head pv-inc-head"><div class="g-title">Incentives</div>
+    <div class="g-sub">Supplier programs — participation and completion across the roster.</div></div>`;
+  if(incs.length) html += `<div class="pgrid">${incs.map(p=>{
     const loaded = p.type!=='MPO' || mpoMonthLoaded(p.source, p.monthKey);
     const st = loaded ? programStats(p) : null;
     const exp = loaded ? p.exposure() : null;

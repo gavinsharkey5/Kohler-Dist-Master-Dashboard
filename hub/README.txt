@@ -29,6 +29,9 @@ ACCOUNT layer (see ACCOUNT DRILL-DOWN below):
                                                MONTHS, builders, metricFor(),
                                                detailFor(), objPct(), atGoalFor()
   ../MPOs/off-prem/programs.js                 window.OffPremMPO, same shape
+  ../MPOs/shared/guided.css                    the MPO dashboards' own card
+                                               styles (.g-*), reused for the
+                                               MPO half of Program View
   hub.js                                       adapters, sorting, screens
   accounts.js                                  eligible / buying / high-
                                                potential / can't-sell logic
@@ -370,10 +373,49 @@ PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
   incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
   RETENTION", for which exports can and cannot support this.
 
+PROGRAM VIEW'S MPO HALF IS THE DASHBOARDS' OWN CARD (v9.7, 2026-09-11)
+  Per Gavin: the MPO portion of Program View should mirror the individual
+  cards on the On-Prem / Off-Prem dashboards. It now renders the same
+  screenProgram() shape MPOs/shared/guided.js draws -- a weighted summary
+  strip, then one full-width objective card carrying "N / M reps at goal",
+  the weight pill, the goal, the eligible-rep count and the company bar --
+  using guided.css's own .g-* classes. hub/index.html LOADS
+  ../MPOs/shared/guided.css for this, so there is ONE copy of that design
+  and the pages cannot drift apart. It is safe because every selector in
+  guided.css is .g-* scoped and it only consumes palette variables the hub
+  already defines; if you ever add a rule there that reaches outside .g-*,
+  it lands on this page too.
+
+  THE NUMBERS NOW MATCH THE BOARD, and that is a real change. The old
+  .pvcard counted reps the hub's way -- participants filtered by account
+  base / territory, "completed" from each rep's status -- which disagreed
+  with the dashboard a manager had open in the next tab: Fever Tree read
+  "3 of 21 completed" here and "2 / 27 reps at goal" there. mpoProgramCardHtml()
+  reads atGoalFor() and objPct() straight from the MPO module (p.objPct()
+  was added beside p.atGoal() for this), so Program View and the trackers
+  state one number. The hub's territory/account-base logic still governs
+  the REP side, which is where it belongs -- nothing about Rep Mode changed.
+
+  SECTIONS ARE PER SCOPE + MONTH, never mixed: a month's weights sum to 1
+  within ONE scope, so On- and Off-Premise can never share a summary strip.
+  Cards inside a section follow the month's own objective order (heaviest
+  first, as the deck writes it), not this screen's active/end-date sort.
+
+  THE SUMMARY STRIP ALWAYS DESCRIBES THE WHOLE MONTH, never the filtered
+  subset -- a supplier filter would otherwise print a weighted percentage
+  that means nothing. Its first tile says "across all N objectives" for
+  exactly that reason, and when a filter hides cards the sub-line says how
+  many. Incentives keep the participation grid, under their own heading;
+  they have no weight, no house goal and no reps-at-goal number for these
+  cards to show. Clicking an MPO card still goes to the hub's program
+  detail (rep rankings) -- the dashboards expand in place, the hub
+  navigates, and navigating is the hub's existing pattern here.
+
 CACHE-BUSTING (2026-09-10)
   hub/index.html loads every script and the stylesheet with a ?v=<tag>
   query. GitHub Pages caches for 10 minutes and phones hold files longer,
-  so after shipping a change to hub.js / hub.css / accounts.js, BUMP THE
+  so after shipping a change to hub.js / hub.css / accounts.js -- or to
+  ../MPOs/shared/guided.css, which this page now loads too -- BUMP THE
   TAG in index.html (any new string) or reps keep the old copy. A change
   Gavin "still can't see after a hard refresh" is either this or the Pages
   deploy pipeline stalling (repo CLAUDE.md, "Deploy from a branch").
