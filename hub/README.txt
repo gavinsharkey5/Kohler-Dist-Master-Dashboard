@@ -287,23 +287,68 @@ ONE TAP TO THE DASHBOARD + TABS -- v12, 2026-09-11
   are GONE -- removed at Gavin's request, 2026-09-11, after v11 had already
   cut the supplier step out of Incentives.
 
-  What organises the results instead is two TABS at the top of the rep page
-  (tabbar() in hub.js). They only re-group what is already rendered -- no
-  extra screen, no menu, no confirm:
+  What organises the results instead is three TABS at the top of the rep
+  page (TABS / tabbar() in hub.js). They only re-group what is already
+  rendered -- no extra screen, no menu, no confirm:
 
-    Incentives  (default) screenRepIncentives() unchanged from v11: every
-                incentive on one scrollable page, grouped by supplier,
-                each supplier heading collapsible and open by default,
-                each program row showing Current | Goal | Still Needed, a
-                bar and a status word with no click at all.
-    MPOs        this month's On-Premise AND Off-Premise MPOs, both stacked
-                on the one tab. The On / Off pill bar (.catbar) is gone --
-                it was a second level of navigation over the same programs,
-                and the two sections were always rendered anyway.
+    Incentives  (default) screenRepIncentives(): every incentive on one
+                scrollable page, grouped by supplier, each program row
+                showing Current | Goal | Still Needed, a bar and a status
+                word with no click at all. Supplier headings are CLOSED by
+                default (v13, 2026-09-11 -- openSups now holds the EXPANDED
+                keys, the opposite of v11) so the page opens as a short
+                list of suppliers a rep can scan.
+    On-Premise MPOs / Off-Premise MPOs
+                one tab each (v13, 2026-09-11 -- they shared a tab in v12
+                and the On/Off pill bar was dropped then; Gavin asked for
+                the split so a rep never scrolls past the other premise).
+                The tab key IS the category key, so tabOf() replaces
+                mainOf() through the whole tab flow. The labels carry
+                NON-BREAKING hyphens (U+2011): "On-Premise" has to wrap as
+                one word or a narrow phone breaks it over three lines.
 
   Each tab shows the rep's program count (tabCount(): incRows() for
-  Incentives -- the same list the page renders -- and this month's scored
-  objectives for MPOs; "…" while a month is still loading).
+  Incentives -- the same list the page renders -- and the shown month's
+  scored objectives for an MPO tab; the badge is hidden while a month is
+  still loading).
+
+MONTH HISTORY ON THE MPO TABS (v13, 2026-09-11)
+  Each MPO tab carries a strip of that scope's published months, newest
+  first, the live one tagged "Now" (monthStrip() in hub.js). Tapping one
+  shows that month instead: mpoViewMonth(scope) is state.month when the
+  scope has it, else mpoRepMonth(scope). The month rides in the hash
+  (&month=2026-08) and is cleared when a rep is picked.
+  A month a rep stepped BACK into is history, not a pile of "Ended":
+  sortGroup(p, r, past) regroups it by how each objective finished
+  (Completed / In progress / Not started), because the live groups would
+  put every closed program behind the "Ended" toggle and leave the page
+  looking empty, and "Ending soon" would fire on a negative day count. The
+  subline reads "3 at goal · 1 missed" rather than "still open", and
+  render() loads exactly the shown month -- the old isActive() filter would
+  never have fetched a closed one. Older months are still fetched ON DEMAND
+  (August off-prem is ~6 MB), so a rep who never opens one never downloads
+  it.
+
+CARD LEGIBILITY PASS (v13, 2026-09-11)
+  Both card types now read in the same shape, at Gavin's sizes:
+    * the program NAME is the biggest thing on the card (21px on an MPO
+      card, 19px on an incentive row), over a quiet uppercase
+      supplier/channel line;
+    * Current | Goal | Still Needed is one three-column band between
+      hairlines on BOTH cards -- the incentive row's inline "0 | 25 | 25"
+      with pipe separators is gone -- with 12.5px uppercase labels and
+      25px figures, Still Needed larger again and in colour;
+    * "View potential accounts (N)" moved OFF the MPO card's footer and
+      onto the "Potential accounts · N" heading, where the rep is already
+      looking; the footer keeps only the end date;
+    * the expanded account list and the incentive detail table were
+      cramped -- rows, sections and table cells all got their padding
+      back, and the table has a min-width so it scrolls rather than
+      crushing five columns onto a phone.
+  NOTE for whoever edits hub.css next: the landing screen's container is
+  .homeview, NOT .home -- the nav's Home button carries class "home" too,
+  and a width rule on the bare class stretched it across the whole nav bar
+  until this was caught.
 
   The tab a rep last used is remembered for the BROWSER SESSION only
   (sessionStorage 'kohler-hub-tab', lastTab() / rememberTab()), so the next
