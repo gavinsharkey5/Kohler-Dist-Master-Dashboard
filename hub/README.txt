@@ -373,6 +373,72 @@ PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
   incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
   RETENTION", for which exports can and cannot support this.
 
+INCENTIVES ARE ONE PAGE, NO DRILL-DOWN (v11, 2026-09-11)
+  Rep testing in Gavin's office: too much clicking. A rep picked a name,
+  then a supplier, then a program, then a detail page, to learn ONE number.
+  Incentives is now a single scrollable action list -- screenRepIncentives()
+  in hub.js -- reached in ONE click from the name (the supplier chooser is
+  skipped for main==='inc' in both 'view-programs' and the Incentives/MPOs
+  switcher; screenSuppliers() is left in place for old hash links).
+
+  Every supplier the rep is in is a plain heading, open by default,
+  collapsible (openSups holds the COLLAPSED ones, so default is open per the
+  brief). Under it, one row per program showing without any click: name,
+  On/Off-Premise, end date, Current | Goal | Still Needed, a bar, and a
+  status word. A click is only ever spent on potential accounts or rules.
+
+  NOTHING IN THE UNDERLYING LOGIC MOVED. Figures come from the tracker's own
+  summarize() via p.forRep(); accounts from nextAccounts(); eligibility,
+  territory and the On/Off split are untouched. Layout and ordering only.
+
+  STILL NEEDED = MAX(Goal - Current, 0) from r.valueNum / r.goalNum.
+
+  THE DATA LIMIT, MEASURED ACROSS FIVE REPS: about 40% of a rep's incentives
+  HAVE NO REP GOAL. Of ~33 that apply, ~13 are open-ended ("every placement
+  pays"), 3 carry a HOUSE goal rather than a per-rep one, and 3 await a
+  first export or are verified by hand; only 14-18 have a numeric rep goal.
+  Current / Goal / Still Needed cannot be invented for those, so incBand()
+  gives them an honest fourth status, "No set goal", and sorts them below
+  the goal-bearing programs rather than faking a countdown.
+
+  THE SUMMARY STRIP's "Still Needed" EXCLUDES TWO THINGS, and must keep
+  doing so:
+    - HOUSE goals. Garage Beer President's is ~1,663 CE short COMPANY-WIDE.
+      Including it put 2,285 on Dave Ehlers' screen when only ~571 was his.
+      House rows also render their number in neutral, never amber (.if.need
+      .house) -- a rep cannot close a house gap alone.
+    - PERCENTAGE goals (Lytt's "50% of your accounts"). A percentage point
+      is not a thing a rep can go place.
+  What survives STILL MIXES UNITS across programs (placements, accounts,
+  cases, buyers). It is a workload signal, not a quantity -- which is why
+  the sub-label says "across N goals of your own" rather than naming a unit.
+  Do not "fix" it by adding the excluded rows back.
+
+  SORTING, per the brief: inside a supplier, gap programs first by soonest
+  end date then by largest share still needed, then on-track, then met, then
+  no-goal, then awaiting-data, then not-in-territory. Suppliers are ordered
+  by their best band, so whatever needs attention floats to the top.
+
+  RETENTION PROGRAMS KEEP THEIR BRAND GOALS. incRowDetail() checks
+  brandGoals() first and renders brandGoalsHtml() -- including the per-SKU
+  current/goal rows from v9.6 -- above an "Accounts to hold" table, and the
+  row's link reads "View your brand goals". Without that branch the
+  Constellation product-level work would have been unreachable from the new
+  page.
+
+  ACCOUNTS TABLE: name, account number, town · territory, 2026 cases, and
+  why it is an opportunity. PER-ACCOUNT BRAND-LEVEL DISTRIBUTION IS NOT IN
+  THE DATA -- Sales_Reps_Customer_Base.xlsx carries total 2026 cases only,
+  no brand-level sales -- so "current distribution" and "which product is
+  missing" cannot be given per account. The brands a program pays on are
+  named at PROGRAM level under "What to sell" instead. This is the one
+  requested field the data cannot support; it needs a brand-level sales
+  export to fix.
+
+  Verified at 430 / 768 / 1024 / 1366px across six reps: one click from the
+  name to the full list, no horizontal overflow, supplier collapse works,
+  and the MPO worklist and Manager Mode are untouched.
+
 THE MPO REP CARD IS A WORKLIST, NOT A DASHBOARD (v10, 2026-09-11)
   Rep feedback via Gavin: too many colours, icons, badges and competing
   elements to scan. A rep opening the MPO page has four questions and

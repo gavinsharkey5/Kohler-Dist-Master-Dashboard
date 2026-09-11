@@ -1030,3 +1030,97 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
   .mcard-body{padding:2px 22px 20px;}
   .mcard-name{font-size:19px;}
 }
+
+/* ====================================================================
+   v11: the incentive action list. One page, supplier headings, one row
+   per program. Colour budget: --accent for progress, --good ONLY for a
+   met goal, --amber ONLY for needs-attention. Nothing else is coloured.
+   Compact by design -- a rep on an iPad in the field should get a whole
+   supplier on screen at once.
+   ==================================================================== */
+.iview .rep-head{margin-bottom:14px;}
+.isum{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;margin-top:12px;
+  padding:11px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;}
+.isum-i{font-size:13.5px;color:var(--text-dim);white-space:nowrap;}
+.isum-i b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;
+  color:var(--text);margin-right:5px;}
+.isum-i.met b{color:var(--good);} .isum-i.ontrack b{color:var(--accent);} .isum-i.attn b{color:var(--amber);}
+.isum-s{display:block;font-size:11.5px;color:var(--text-mute);margin-top:1px;}
+
+.isup{margin-bottom:18px;}
+.isup-h{display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;
+  background:none;border:0;border-bottom:1px solid var(--border);padding:10px 2px 8px;
+  cursor:pointer;color:inherit;font:inherit;}
+.isup-h:hover{background:var(--card-alt);}
+.isup-h:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.isup-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--text);}
+.isup-s{flex:1;font-size:12.5px;color:var(--text-mute);}
+.isup-ar{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text-mute);}
+.isup-b{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+
+.irow{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.irow-head{display:block;width:100%;text-align:left;background:none;border:0;
+  padding:13px 15px 12px;cursor:pointer;color:inherit;font:inherit;}
+.irow-head:hover{background:var(--card-alt);}
+.irow-head:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
+.irow-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.irow-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
+  line-height:1.3;color:var(--text);min-width:0;}
+.ist{font-size:11.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap;color:var(--text-mute);}
+.ist.met{color:var(--good);} .ist.ontrack{color:var(--accent);} .ist.attn{color:var(--amber);}
+.irow-meta{display:block;margin-top:3px;font-size:12.5px;color:var(--text-mute);}
+
+/* Current | Goal | Still Needed -- the strongest thing on the row. */
+.ifig{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:10px;}
+.if{display:inline-flex;align-items:baseline;gap:6px;}
+.if-k{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-mute);font-weight:600;}
+.if-v{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text-dim);}
+.if.need .if-v{font-size:24px;color:var(--amber);}
+.if.need.met .if-v{color:var(--good);}
+.if-sep{color:var(--line-soft);}
+.if-tag{font-size:11px;color:var(--text-mute);border:1px solid var(--line-soft);
+  border-radius:999px;padding:2px 8px;}
+.ifig.open .if-v{font-size:17px;}
+.if-note{font-size:12.5px;color:var(--text-mute);}
+
+.ibar{height:5px;margin-top:10px;background:var(--input-bg);border-radius:999px;overflow:hidden;}
+.ibar-fill{height:100%;border-radius:999px;background:var(--accent);}
+.ibar.met .ibar-fill{background:var(--good);}
+.ibar.attn .ibar-fill{background:var(--amber);}
+.irow-foot{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:8px;}
+.ipct{font-size:12px;color:var(--text-mute);}
+.imore{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:var(--accent);}
+.irow.b5{opacity:.55;}
+
+/* Opened: accounts table first, then the supporting detail. */
+.irow-body{padding:2px 15px 15px;border-top:1px solid var(--line-soft);background:var(--card-alt);}
+.isec{margin-top:14px;}
+.isec-h{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute);
+  font-weight:600;margin-bottom:7px;}
+.it-wrap{overflow-x:auto;}
+.it{width:100%;border-collapse:collapse;font-size:13.5px;}
+.it th{text-align:left;font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;padding:0 10px 6px 0;white-space:nowrap;}
+.it td{padding:7px 10px 7px 0;border-top:1px solid var(--line-soft);color:var(--text-dim);
+  vertical-align:top;}
+.it .num, .it th.num{text-align:right;padding-right:0;}
+.it-n{color:var(--text);font-weight:600;}
+.it-num{font-variant-numeric:tabular-nums;color:var(--text-mute);white-space:nowrap;}
+.it-why{color:var(--text-dim);}
+.it-note{margin-top:8px;font-size:12.5px;color:var(--text-mute);}
+.itext{font-size:14px;color:var(--text-dim);line-height:1.5;}
+.iquiet{color:var(--text-mute);}
+.ibul{margin:0;padding-left:18px;font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.ilink{background:none;border:0;padding:0;cursor:pointer;color:var(--accent);
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;}
+.ilink:hover{text-decoration:underline;}
+
+@media (min-width:760px){
+  .irow-head{padding:15px 18px 14px;}
+  .irow-body{padding:2px 18px 18px;}
+  .irow-name{font-size:17px;}
+}
+/* A house goal is the company's gap, not this rep's -- never amber. */
+.if.need.house .if-v{color:var(--text-dim);}
+.irow-body .bg{margin-top:2px;}
