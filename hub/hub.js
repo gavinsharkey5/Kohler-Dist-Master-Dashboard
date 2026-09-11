@@ -41,6 +41,13 @@ const MAINS = [
   {key:'inc', label:'Incentives', ic:'🏆', sub:'Supplier reward programs'},
   {key:'mpo', label:'MPOs',       ic:'🎯', sub:'Monthly performance objectives'},
 ];
+// v12, 2026-09-11: MAINS are no longer a question on the home screen -- they
+// are the two TABS at the top of a rep's results. Picking a name opens the
+// dashboard directly. The tab a rep last used is remembered for the browser
+// session only; a reload still starts over on the home screen.
+const TAB_KEY = 'kohler-hub-tab';
+function lastTab(){ try{ const v = sessionStorage.getItem(TAB_KEY); if(v==='inc'||v==='mpo') return v; }catch(e){} return 'inc'; }
+function rememberTab(cat){ const m = mainOf(cat); if(m){ try{ sessionStorage.setItem(TAB_KEY, m); }catch(e){} } }
 // Incentives are split by SUPPLIER, exactly as the Incentive Tracker's own
 // "choose a supplier" step does (SUPPLIERS / PROGRAM_SUPPLIER in
 // incentive-tracking/programs.js); the category key is 'sup:<supplierKey>'.
@@ -515,7 +522,6 @@ function hashOf(){
   const p = [];
   if(state.view!=='home') p.push('view='+state.view);
   if(state.rep && state.view!=='programs' && state.view!=='program') p.push('rep='+encodeURIComponent(state.rep));
-  if(state.main && state.view==='pick') p.push('main='+state.main);
   if(state.cat && (state.view==='rep' || state.view==='detail')) p.push('cat='+state.cat);
   if(state.prog && (state.view==='detail' || state.view==='program')) p.push('prog='+encodeURIComponent(state.prog));
   if(state.from && state.view==='detail') p.push('from='+state.from);
@@ -538,11 +544,13 @@ function applyHash(){
   state.peek = (h.who && ROSTER.includes(h.who) && h.who!==state.rep) ? h.who : null;
   if(h.mode==='manager') state.mode = isMobile() ? 'rep' : 'manager'; else if(h.mode==='rep') state.mode = 'rep';
   const v = h.view;
-  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='pick' || v==='home') state.view = v;
+  // view=pick was the old "what are you looking for?" / supplier step -- an
+  // old link now lands straight on the rep's dashboard with that tab open.
+  if(v==='programs' || v==='program' || v==='rep' || v==='detail' || v==='home') state.view = v;
+  else if(v==='pick'){ state.view = 'rep'; state.cat = (h.main && mainOf(h.main)) || state.cat || lastTab(); }
   else state.view = 'home';
-  if((state.view==='rep' || state.view==='detail' || state.view==='pick') && !state.rep) state.view = 'home';
-  if(state.view==='rep' && !state.cat) state.view = state.main ? 'pick' : 'home';
-  if(state.view==='pick' && !state.main) state.view = 'home';
+  if((state.view==='rep' || state.view==='detail') && !state.rep) state.view = 'home';
+  if(state.view==='rep' && !state.cat){ state.cat = state.main || lastTab(); state.main = mainOf(state.cat); }
   if((state.view==='detail' || state.view==='program') && !state.prog) state.view = state.rep ? 'rep' : 'programs';
   if(isMobile() && (state.view==='programs' || state.view==='program')) state.view = state.rep ? 'rep' : 'home';
 }
@@ -596,7 +604,7 @@ const pl = plw;
 /* ---- topbar ---- */
 function topbar(){
   const rep = state.rep;
-  const onRep = state.view==='rep' || state.view==='detail' || state.view==='pick';
+  const onRep = state.view==='rep' || state.view==='detail';
   return `<div class="topbar">
     <div class="crumb"><a href="../index.html">Kohler Dashboard</a> &nbsp;/&nbsp; <a href="#" data-act="home">Incentives &amp; MPO Hub</a></div>
     <div class="hero-banner nj-hero"><div class="nj-hero-inner">
@@ -608,7 +616,7 @@ function topbar(){
       <div class="navr">
         <button class="nbtn home" data-act="home">🏠 Home</button>
         ${rep ? `<button class="nbtn" data-act="change-rep">Change rep</button>` : ''}
-        ${state.view==='detail' ? `<button class="nbtn" data-act="change-view">Change category</button>` : (rep && state.view!=='pick' && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : '')}
+        ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : ''}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
         ${isMobile() ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
       </div>
@@ -624,30 +632,26 @@ function refreshedLine(){
 }
 
 /* ---- landing ---- */
-let pick = {rep:null, main:null, q:''};
-const pickReady = () => !!(pick.rep && pick.main);
+let pick = {rep:null, q:''};
+// One question, one tap: choosing a name opens that rep's dashboard. There is
+// no category step and no confirm button (per Gavin, 2026-09-11).
 function screenHome(){
-  pick.rep = pick.rep || state.rep; pick.main = pick.main || state.main || null;
+  pick.rep = pick.rep || state.rep;
   return `<div class="home">
     <div class="home-head">
       <h1>Incentives &amp; MPO Hub</h1>
-      <p class="home-sub">Pick your name, then choose Incentives or MPOs.</p>
+      <p class="home-sub">Select your name to view all of your Incentives and MPOs.</p>
       ${refreshedLine()}
     </div>
-    <div class="step">
-      <div class="step-h"><span class="step-n">1</span><span class="step-t">What is your name?</span></div>
+    <div class="step solo">
+      <div class="step-h"><span class="step-t">What is your name?</span></div>
       <div class="search-wrap">
         <input id="repSearch" class="search" type="text" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Type or pick your name…" value="${E(pick.rep||'')}" aria-label="Search your name">
         ${pick.rep ? `<button class="clear" data-act="clear-rep" aria-label="Clear name">×</button>` : ''}
       </div>
-      <div id="repList" class="replist${pick.rep?' picked':''}">${repListHtml(pick.q)}</div>
+      <div id="repList" class="replist">${repListHtml(pick.q)}</div>
     </div>
-    <div class="step">
-      <div class="step-h"><span class="step-n">2</span><span class="step-t">What are you looking for?</span></div>
-      <div class="cats">${MAINS.map(c=>`<button class="cat ${c.key}${pick.main===c.key?' active':''}" data-act="pick-main" data-main="${c.key}" aria-pressed="${pick.main===c.key?'true':'false'}"><span class="cat-ic">${c.ic}</span><span class="cat-t"><span class="cat-l">${E(c.label)}</span><span class="cat-s">${E(c.sub)}</span></span><span class="cat-check">${pick.main===c.key?'✓':'›'}</span></button>`).join('')}</div>
-    </div>
-    <button class="cta${pickReady()?'':' disabled'}" data-act="view-programs" ${pickReady()?'':'disabled'}>View My Programs <span class="ar">›</span></button>
-    <button class="reset" data-act="reset-all">↺ Reset selections</button>
+    <button class="reset" data-act="reset-all">↺ Start over</button>
     <div class="home-foot">${isMobile() ? '' : isMgr() ? `Manager Mode is on · <a href="#" data-act="programs">Browse by program</a> · <a href="#" data-act="set-mode" data-mode="rep">Back to Rep Mode</a>` : `Manager? <a href="#" data-act="set-mode" data-mode="manager">Switch to Manager Mode (desktop)</a>`}</div>
   </div>`;
 }
@@ -686,6 +690,15 @@ function repListHtml(q){
    programs instead of faking a countdown.
    ==================================================================== */
 const openSups = new Set();    // supplier keys collapsed on the incentive page
+// Supplier marks are one fixed box everywhere. A supplier with no logo file --
+// or whose image 404s -- falls back to its INITIALS, not a placeholder icon.
+const abbr = name => String(name||'').split(/[\s&]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+function supLogoHtml(name, logo, cls){
+  const mono = `<i class="suplogo-abbr">${E(abbr(name))}</i>`;
+  return logo
+    ? `<span class="suplogo ${cls||''}"><img src="${E(logo)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()">${mono}</span>`
+    : `<span class="suplogo blank ${cls||''}">${mono}</span>`;
+}
 function incNums(r){
   const cur = Number(r.valueNum), goal = Number(r.goalNum);
   if(r.openEnded || !isFinite(cur) || !isFinite(goal) || goal<=0) return null;
@@ -789,8 +802,9 @@ function incRowDetail(p, r, rep, targets){
     + (r.next ? sec('Next step', `<div class="itext">${r.next}</div>`) : '')
     + `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
 }
-function screenRepIncentives(rep){
-  // One entry per program the rep is actually in, grouped by supplier.
+// One entry per incentive the rep is actually in -- the incentive page's
+// own list, shared with the tab counter.
+function incRows(rep){
   const rows = [];
   PROGRAMS.forEach(p=>{
     if(p.type!=='Incentive' || !isActive(p)) return;
@@ -799,6 +813,10 @@ function screenRepIncentives(rep){
     const b = incBand(p, r); if(!b) return;
     rows.push({p, r, b});
   });
+  return rows;
+}
+function screenRepIncentives(rep){
+  const rows = incRows(rep);
   const sups = new Map();
   rows.forEach(x=>{ const k = x.p.supplier;
     if(!sups.has(k)) sups.set(k, []); sups.get(k).push(x); });
@@ -836,12 +854,13 @@ function screenRepIncentives(rep){
 
   const body = groups.map(g=>{
     const key = 'sup:'+g.name;
+    const logo = (g.list[0] && g.list[0].p.supplierLogo) || '';
     const collapsed = openSups.has(key);          // default OPEN, per the brief
     const a = g.list.filter(x=>x.b.band===0).length;
     const note = [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
     return `<section class="isup${collapsed?' collapsed':''}">
       <button class="isup-h" data-act="toggle-sup" data-sup="${E(key)}" aria-expanded="${collapsed?'false':'true'}">
-        <span class="isup-n">${E(g.name)}</span><span class="isup-s">${E(note)}</span><span class="isup-ar">${collapsed?'+':'–'}</span>
+        ${supLogoHtml(g.name, logo)}<span class="isup-n">${E(g.name)}</span><span class="isup-s">${E(note)}</span><span class="isup-ar">${collapsed?'+':'–'}</span>
       </button>
       ${collapsed ? '' : `<div class="isup-b">${g.list.map(x=>incRowHtml(x.p, x.r, x.b, rep)).join('')}</div>`}
     </section>`;
@@ -849,11 +868,10 @@ function screenRepIncentives(rep){
 
   return `<div class="repview iview">
     <div class="rep-head">
-      <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
-      <div class="rep-title"><div class="rep-kick">${mainSelect('inc')}</div>
-        <h1>${E(possessive(rep))} Incentives</h1>
+      <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
         <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} — everything on one page.</div>
         ${refreshedLine()}</div>
+      ${tabbar(rep, 'inc')}
       ${summary}
     </div>
     ${rows.length ? body : `<div class="empty">No incentives apply to you right now.</div>`}
@@ -871,10 +889,22 @@ function subStat(rep, sub){
   const ending = act.filter(x=>x.g===1).length;
   return {n:act.length, text:[plw(act.length,'active program'), done ? done+' done' : '', ending ? ending+' ending soon' : ''].filter(Boolean).join(' · ')};
 }
-// The kicker above the title is a dropdown: flip Incentives <-> MPOs
-// without going back to the home screen.
-function mainSelect(main){
-  return `<label class="mainsel-wrap"><select class="mainsel" data-sel="main" aria-label="Incentives or MPOs">${MAINS.map(m=>`<option value="${m.key}"${m.key===main?' selected':''}>${m.ic} ${E(m.label)}</option>`).join('')}</select><span class="mainsel-ar">▾</span></label>`;
+// The two tabs at the top of a rep's results. They only re-group what is
+// already on the page -- no extra screen, no menu, no confirm.
+function tabbar(rep, cat){
+  const cur = mainOf(cat) || 'inc';
+  return `<div class="tabbar" role="tablist">${MAINS.map(m=>{
+    const on = m.key===cur, n = tabCount(rep, m.key);
+    return `<button class="tab${on?' active':''}" data-act="set-cat" data-cat="${m.key}" role="tab" aria-selected="${on?'true':'false'}">
+      <span class="tab-ic">${m.ic}</span><span class="tab-l">${E(m.label)}</span>${n===null?'':`<span class="tab-n">${n}</span>`}</button>`;
+  }).join('')}</div>`;
+}
+// Programs behind a tab. Incentives counts what the incentive page itself
+// lists (incRows); MPOs counts this month's scored objectives.
+function tabCount(rep, key){
+  if(key==='inc') return incRows(rep).length;
+  const rows = sortedForRep(rep, 'mpo').filter(x=>x.g<7);
+  return neededMonths(rows.map(x=>x.p)).length ? null : rows.length;
 }
 // Incentives, grouped by supplier for the picker: suppliers with live
 // programs first, then alphabetical (the tracker's order). "Incentives" is
@@ -891,43 +921,6 @@ function repSuppliers(rep){
       live: items.filter(x=>x.r.status!=='soon').length, earned: items.filter(x=>isEarned(x.r)).length}))
     .sort((a,b)=>(b.live-a.live) || a.name.localeCompare(b.name));
 }
-function screenSuppliers(){
-  const rep = state.rep;
-  const sups = repSuppliers(rep);
-  const month = MONTHS[MONTHS.length-1];
-  return `<div class="pickview wide">
-    <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
-    <div class="pick-head left">${mainSelect('inc')}<h1>${E(first(rep))}, choose a supplier</h1><p class="pick-sub">Tap a supplier to see your ${E(month.label)} incentives for them.</p></div>
-    ${sups.length ? `<div class="supgrid">${sups.map(g=>`<button class="suppick" data-act="pick-sub" data-cat="sup:${E(g.sk)}">
-      <span class="suppick-top">
-        <span class="suppick-logo"><img src="${E(g.logo)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('blank');this.remove()"></span>
-        <span class="suppick-text"><span class="suppick-name">${E(g.name)}</span><span class="suppick-note">${plw(g.items.length,'incentive')}${g.earned?` · <strong>${g.earned} already earned</strong>`:''}</span></span>
-      </span>
-      <span class="supcta">See these incentives<span class="ar">→</span></span>
-    </button>`).join('')}</div>` : `<div class="empty">No incentives apply to you right now.</div>`}
-    ${refreshedLine()}
-  </div>`;
-}
-function screenPick(){
-  const rep = state.rep, main = state.main;
-  if(main==='inc') return screenSuppliers();
-  const M = MAINS.find(m=>m.key===main) || MAINS[0];
-  const tiles = SUBS[M.key].map(s=>{
-    const st = subStat(rep, s);
-    const sub = M.key==='mpo' ? `${s.sub} · ${mpoMonthLabel(s.key)}` : s.sub;
-    return `<button class="sub ${s.key}${st.n===0?' none':''}" data-act="pick-sub" data-cat="${s.key}">
-      <span class="sub-ic">${s.ic}</span>
-      <span class="sub-t"><span class="sub-l">${E(s.label)}</span><span class="sub-s">${E(sub)}</span><span class="sub-n${st.n===null?' dim':''}">${E(st.text)}</span></span>
-      <span class="sub-ar">›</span></button>`;
-  }).join('');
-  return `<div class="pickview">
-    <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
-    <div class="pick-head">${mainSelect(M.key)}<h1>${E(possessive(rep))} ${E(M.label)}</h1><p class="pick-sub">Which ones do you want to see?</p></div>
-    <div class="subs">${tiles}</div>
-    ${refreshedLine()}
-  </div>`;
-}
-
 /* ---- rep program list ---- */
 function screenRep(){
   const rep = state.rep, cat = state.cat || 'all';
@@ -936,7 +929,6 @@ function screenRep(){
   const rows = sortedForRep(rep, cat);
   const catMeta = catMetaOf(cat);
   const main = mainOf(cat);
-  const subs = main ? SUBS[main] : [];
   const active = rows.filter(x=>x.g<7);
   const counts = {complete:0, progress:0, notstarted:0, ending:0, soon:0};
   active.forEach(x=>{ if(x.r.status==='complete'||x.r.status==='exceeded') counts.complete++; else if(x.r.status==='progress') counts.progress++; else if(x.r.status==='notstarted') counts.notstarted++; else counts.soon++; if(x.g===1) counts.ending++; });
@@ -944,25 +936,23 @@ function screenRep(){
   const bySup = cat.startsWith('sup:');
   // An MPO page is a worklist: one line of context, no count tiles (v10).
   const isMpoCat = cat==='on' || cat==='off' || cat==='mpo';
-  const kicker = main ? mainSelect(main) + (main==='mpo' ? `<span class="rep-month">${E(mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off'))}</span>` : '') : '<div class="rep-kicker">All programs</div>';
+  const monthNote = isMpoCat ? ` · ${mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off')}` : '';
   const subline = bySup
     ? `${plw(active.length,'incentive')}${active.filter(x=>isEarned(x.r)).length?` · <strong class="ok">${active.filter(x=>isEarned(x.r)).length} already earned</strong>`:''}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`
     : isMpoCat
-      ? `${plw(active.length,'program')} · ${counts.complete} at goal · ${active.length-counts.complete} still open`
+      ? `${plw(active.length,'program')} · ${counts.complete} at goal · ${active.length-counts.complete} still open${E(monthNote)}`
       : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
-    ${main ? `<button class="back" data-act="back-pick"><span class="ar">‹</span> Back</button>` : ''}
-    <div class="rep-title"><div class="rep-kick">${kicker}</div><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
+    <div class="rep-title"><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
       <div class="rep-sub">${subline}</div>
       ${refreshedLine()}</div>
+    ${tabbar(rep, cat)}
     ${(bySup || isMpoCat) ? '' : `<div class="counts">
       <div class="count good"><div class="count-n">${counts.complete}</div><div class="count-l">Completed</div></div>
       <div class="count accent"><div class="count-n">${counts.progress}</div><div class="count-l">In progress</div></div>
       <div class="count"><div class="count-n">${counts.notstarted}</div><div class="count-l">Not started</div></div>
       <div class="count amber"><div class="count-n">${counts.ending}</div><div class="count-l">Ending soon</div></div>
     </div>`}
-    ${subs.length && !bySup ? `<div class="catbar" role="tablist">${subs.map(c=>{ const st = cat===c.key ? {n:active.length} : subStat(rep, c);
-      return `<button class="catpill${cat===c.key?' active':''}" data-act="set-cat" data-cat="${c.key}" role="tab" aria-selected="${cat===c.key?'true':'false'}">${(c.ic && !isMpoCat)?`<span class="pi">${c.ic}</span>`:''}${E(c.label)}<span class="pn">${st.n===null?'…':st.n}</span></button>`; }).join('')}</div>` : ''}
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data…</div>`;
   if(!rows.length) html += `<div class="empty">No ${E(catMeta.label.toLowerCase())} apply to you right now.</div>`;
@@ -2113,18 +2103,16 @@ function render(){
   const root = app();
   let body;
   if(state.view==='home') body = screenHome();
-  else if(state.view==='pick') body = screenPick();
   else if(state.view==='rep') body = screenRep();
   else if(state.view==='detail') body = screenDetail();
   else if(state.view==='programs') body = screenPrograms();
   else if(state.view==='program') body = screenProgram();
   document.body.classList.toggle('is-home', state.view==='home');
   root.innerHTML = topbar() + `<main class="wrap">${body}</main>`;
-  document.title = (state.view==='rep' || state.view==='pick') && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
+  document.title = state.view==='rep' && state.rep ? `${possessive(state.rep)} Incentives & MPOs | Kohler` : 'Incentives & MPO Hub | Kohler Distributing';
   // Kick off any MPO month this screen needs, then re-render once it lands.
   let needed = [];
   if(state.view==='rep') needed = PROGRAMS.filter(p=>inCategory(p, state.cat||'all') && (isActive(p) || state.showEnded));
-  else if(state.view==='pick') needed = PROGRAMS.filter(p=>inCategory(p, state.main||'all') && isActive(p));
   else if(state.view==='detail' || state.view==='program'){ const p = PROGRAMS.find(x=>x.id===state.prog); if(p) needed=[p]; }
   else if(state.view==='programs'){ const f=state.filters; needed = PROGRAMS.filter(p=>p.type==='MPO' && (f.month==='all' ? true : f.month==='active' ? isActive(p) : p.monthKey===f.month)); }
   if(needed.length){ const token = ++renderToken; loadFor(needed).then(did=>{ if(did && token===renderToken) render(); }); }
@@ -2138,27 +2126,16 @@ document.addEventListener('click', e=>{
   const act = t.dataset.act;
   if(t.tagName==='A') e.preventDefault();
   switch(act){
-    case 'home': openCards.clear(); state.showEnded = false; pick = {rep:null, main:null, q:''}; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
-    case 'pick-rep': pick.rep = t.dataset.rep; pick.q=''; rerenderHomeList();
-      // On a phone the picker fills the screen, so bring step 2 up once a
-      // name is chosen (per Gavin, 2026-09-11); desktop already shows both.
-      if(isMobile()){ const step2 = document.querySelectorAll('.step')[1]; if(step2) setTimeout(()=>step2.scrollIntoView({behavior:'smooth', block:'start'}), 60); }
-      break;
+    case 'home': openCards.clear(); state.showEnded = false; pick = {rep:null, q:''}; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
+    // Picking a name IS the whole landing step: open that rep's dashboard.
+    case 'pick-rep': { const who = t.dataset.rep, tab = lastTab();
+      openCards.clear(); state.showEnded = false; pick = {rep:who, q:''};
+      go({view:'rep', rep:who, cat:tab, main:mainOf(tab), prog:null, peek:null, from:null}); break; }
     case 'clear-rep': pick.rep = null; pick.q=''; rerenderHomeList(); { const i=$('#repSearch'); if(i){ i.value=''; i.focus(); } } break;
-    case 'pick-main': pick.main = t.dataset.main; rerenderHomeCats(); break;
-    case 'view-programs': if(pickReady()){ openCards.clear();
-      // Incentives skip the supplier chooser entirely -- that click was the
-      // whole complaint (v11). MPOs still pick On- or Off-Premise first.
-      if(pick.main==='inc') go({view:'rep', rep:pick.rep, main:'inc', cat:'inc', prog:null, peek:null, from:null});
-      else go({view:'pick', rep:pick.rep, main:pick.main, cat:null, prog:null, peek:null, from:null});
-    } break;
-    case 'pick-sub': openCards.clear(); state.showEnded = false; go({view:'rep', cat:t.dataset.cat, main:mainOf(t.dataset.cat), prog:null, peek:null, from:null}); break;
-    case 'change-rep': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home'}); break;
-    case 'back-home': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home', prog:null, peek:null, from:null}); break;
-    case 'back-pick': openCards.clear(); go({view:'pick', main: state.main || mainOf(state.cat) || 'inc', prog:null, peek:null, from:null}); break;
-    case 'change-view': openCards.clear(); go({view:'pick', main: state.main || mainOf(state.cat) || 'inc', prog:null, peek:null, from:null}); break;
-    case 'my-programs': if(state.rep && state.cat) go({view:'rep', prog:null, from:null, peek:null}); else if(state.rep && state.main) go({view:'pick', prog:null, from:null, peek:null}); else go({view:'home'}); break;
-    case 'set-cat': openCards.clear(); go({cat:t.dataset.cat, main:mainOf(t.dataset.cat), view:'rep'}, true); break;
+    case 'change-rep': pick = {rep:state.rep, q:''}; go({view:'home'}); break;
+    case 'back-home': pick = {rep:state.rep, q:''}; go({view:'home', prog:null, peek:null, from:null}); break;
+    case 'my-programs': if(state.rep) go({view:'rep', cat: state.cat || lastTab(), main: mainOf(state.cat || lastTab()), prog:null, from:null, peek:null}); else go({view:'home'}); break;
+    case 'set-cat': openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:mainOf(t.dataset.cat), view:'rep'}, true); break;
     case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
     case 'toggle-card': { const id = t.dataset.prog; if(openCards.has(id)) openCards.delete(id); else openCards.add(id); render();
@@ -2169,10 +2146,10 @@ document.addEventListener('click', e=>{
     case 'card-tab': cardTab[t.dataset.prog] = t.dataset.tab; render(); break;
     case 'log-more': logMore[t.dataset.key] = !logMore[t.dataset.key]; render(); break;
     case 'set-mode': state.mode = (t.dataset.mode==='manager' && !isMobile()) ? 'manager' : 'rep'; persist(); history.replaceState(null, '', hashOf()); render(); break;
-    case 'reset-all': try{ localStorage.removeItem(LS_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
-      pick = {rep:null, main:null, q:''}; go({view:'home'}, true); break;
+    case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
+      pick = {rep:null, q:''}; go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
-    case 'change-rep-home': pick = {rep:null, main:state.main, q:''}; go({view:'home'}); break;
+    case 'change-rep-home': pick = {rep:null, q:''}; go({view:'home'}); break;
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at
@@ -2194,20 +2171,13 @@ document.addEventListener('input', e=>{
   pick.q = e.target.value;
   const exact = ROSTER.find(r=>r.toLowerCase()===pick.q.trim().toLowerCase());
   pick.rep = exact || null;
-  const list = $('#repList'); if(list){ list.innerHTML = repListHtml(pick.q); list.classList.toggle('picked', !!pick.rep); }
-  syncCta();
+  const list = $('#repList'); if(list) list.innerHTML = repListHtml(pick.q);
 });
 document.addEventListener('keydown', e=>{
   if(e.target.id!=='repSearch' || e.key!=='Enter') return;
   const firstBtn = document.querySelector('#repList .name'); if(firstBtn){ firstBtn.click(); }
 });
 document.addEventListener('change', e=>{
-  const m = e.target.closest('.mainsel');
-  if(m){ openCards.clear(); state.showEnded = false;
-    // Switching to Incentives lands on the one-page list, not a chooser (v11).
-    if(m.value==='inc') go({view:'rep', main:'inc', cat:'inc', prog:null, peek:null, from:null});
-    else go({view:'pick', main:m.value, cat:null, prog:null, peek:null, from:null});
-    return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
 });
@@ -2218,13 +2188,7 @@ document.addEventListener('click', e=>{
 function rerenderHomeList(){
   const inp = $('#repSearch'); if(inp) inp.value = pick.rep || '';
   const wrap = $('.search-wrap'); if(wrap){ const c = wrap.querySelector('.clear'); if(pick.rep && !c) wrap.insertAdjacentHTML('beforeend','<button class="clear" data-act="clear-rep" aria-label="Clear name">×</button>'); if(!pick.rep && c) c.remove(); }
-  const list = $('#repList'); if(list){ list.innerHTML = repListHtml(pick.q); list.classList.toggle('picked', !!pick.rep); }
-  syncCta();
-}
-function syncCta(){ const cta = $('.cta'); if(cta){ cta.classList.toggle('disabled', !pickReady()); cta.disabled = !pickReady(); } }
-function rerenderHomeCats(){
-  document.querySelectorAll('.cat').forEach(b=>{ const on = b.dataset.main===pick.main; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on?'true':'false'); const c = b.querySelector('.cat-check'); if(c) c.textContent = on ? '✓' : '›'; });
-  syncCta();
+  const list = $('#repList'); if(list) list.innerHTML = repListHtml(pick.q);
 }
 // The drill-down markup the MPO libraries render carries its own toggles
 // (.targets-toggle etc.); those listeners are registered by programs.js.
@@ -2244,7 +2208,7 @@ function boot(){
   // Gavin, 2026-09-10) -- whatever the URL hash or the last visit said. The
   // hash is still written during a visit so the Back button works.
   state.view = 'home'; state.rep = null; state.main = null; state.cat = null; state.prog = null; state.peek = null; state.from = null;
-  pick = {rep:null, main:null, q:''};
+  pick = {rep:null, q:''};
   history.replaceState(null, '', '#');
   render();
   // Warm the active MPO months in the background so the first tap is instant.

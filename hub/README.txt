@@ -1,8 +1,8 @@
 Incentives & MPO Hub
 ====================
 
-One link for reps: pick your name, pick what you are looking for, and see
-every incentive and MPO program you are in -- where you stand, what you
+One link for reps: pick your name and you are looking at every incentive
+and MPO program you are in -- where you stand, what you
 still need, when each one ends and what it pays -- in one design.
 Managers get the same board by program (Program View), with participation,
 completion, payout exposure where the data carries it, and rep rankings.
@@ -256,42 +256,64 @@ SORT ORDER ON A REP'S PAGE (the brief's order, made explicit)
   7  Ended           past programs, collapsed until tapped
   ENDING_SOON_DAYS and ALMOST_PCT are constants at the top of hub.js.
 
-CATEGORIES ("What are you looking for?") -- v7, 2026-09-10
-  The home screen offers TWO choices, Incentives or MPOs (MAINS in hub.js).
-  "View My Programs" then opens a sub-category screen (view=pick) with one
-  big tile per sub-category and that rep's active count on each:
-    Incentives -> one card per SUPPLIER (v8, 2026-09-10 -- the New /
-                  Ongoing / Retention split was replaced at Gavin's request
-                  with the Incentive Tracker's own "choose a supplier" step:
-                  "<First name>, choose a supplier", logo + name, "n
-                  incentives · n already earned", one SEE THESE INCENTIVES
-                  button; repSuppliers() in hub.js, same order as the
-                  tracker -- suppliers with live programs first, then A-Z;
-                  "already earned" counts a met goal OR an open-ended
-                  program that has paid, like the tracker's `earned`).
-                  Category key is sup:<supplierKey> from SUPPLIERS /
-                  PROGRAM_SUPPLIER in incentive-tracking/programs.js.
-    MPOs       -> On-Premise / Off-Premise   (this month's only)
-  Tapping a tile opens the rep page for that sub-category. A supplier's
-  page is deliberately quiet: no status count boxes, no filter pills, one
-  column of cards, no group headings (Unavailable and Ended still get
-  theirs), and the card drops the supplier line since the page is the
-  supplier. MPO pages keep the count boxes and the On / Off pill bar. "Change
-  category" in the nav returns to the tile screen. The wider keys (all /
-  inc / mpo) are still accepted in the hash for Manager Mode links but no
-  longer appear on the home screen.
+ONE TAP TO THE DASHBOARD + TABS -- v12, 2026-09-11
+  The home screen asks ONE question: "What is your name?". Tapping a name
+  opens that rep's dashboard immediately. The "What are you looking for?"
+  step, the "View My Programs" button and the whole sub-category screen
+  (view=pick, screenPick/screenSuppliers, the mainSelect kicker dropdown)
+  are GONE -- removed at Gavin's request, 2026-09-11, after v11 had already
+  cut the supplier step out of Incentives.
+
+  What organises the results instead is two TABS at the top of the rep page
+  (tabbar() in hub.js). They only re-group what is already rendered -- no
+  extra screen, no menu, no confirm:
+
+    Incentives  (default) screenRepIncentives() unchanged from v11: every
+                incentive on one scrollable page, grouped by supplier,
+                each supplier heading collapsible and open by default,
+                each program row showing Current | Goal | Still Needed, a
+                bar and a status word with no click at all.
+    MPOs        this month's On-Premise AND Off-Premise MPOs, both stacked
+                on the one tab. The On / Off pill bar (.catbar) is gone --
+                it was a second level of navigation over the same programs,
+                and the two sections were always rendered anyway.
+
+  Each tab shows the rep's program count (tabCount(): incRows() for
+  Incentives -- the same list the page renders -- and this month's scored
+  objectives for MPOs; "…" while a month is still loading).
+
+  The tab a rep last used is remembered for the BROWSER SESSION only
+  (sessionStorage 'kohler-hub-tab', lastTab() / rememberTab()), so the next
+  name they pick opens on the same tab. A reload still starts over on the
+  home screen, as it has since v5.
+
+  There is no Back button on the results page any more: the tabs re-group
+  it, and 🏠 Home / Change rep are the ways out.
+
+  OLD LINKS still work. #view=pick lands on the rep page with that tab
+  open (main=inc|mpo is honoured), and a Manager Mode link carrying
+  cat=sup:<key>, cat=on or cat=off still renders that narrower list --
+  CATEGORIES, SUBS and inCategory() are untouched, those keys simply no
+  longer have a screen that produces them.
+
+SUPPLIER LOGOS (v12, 2026-09-11)
+  Logos are back as small identifiers, not decoration. Every supplier
+  heading on the Incentives tab carries its mark in ONE fixed 46x30 box
+  (.suplogo in hub.css) -- never a banner, a tile or an oversized card.
+  A supplier with no logo file, or whose image 404s, falls back to its
+  INITIALS in the same box (supLogoHtml() in hub.js, .suplogo.blank): a
+  text fallback, deliberately not a generic placeholder icon. Program-level
+  brand marks (logoStrip()) are unchanged.
 
 STATE
   A reload ALWAYS starts over on the home screen with an empty picker
   (per Gavin, 2026-09-10: "every time I refresh it takes me to the home
   page") -- only the Rep / Manager mode is remembered (localStorage key
-  kohler-hub). A 🏠 Home button sits first in the nav on every inner page
-  and starts over the same way; "Change rep" goes back to the landing
-  screen with the name filled in. The sub-category screen and the program
-  list each carry a "‹ Back" button (tiles -> home with the picks kept,
-  list -> tiles), and the kicker above the title on both is a dropdown
-  that flips Incentives <-> MPOs in place (v7.1).
-  Every screen has a URL hash (#view=rep&rep=...&cat=..., #view=detail&
+  kohler-hub) and, for the browser session only, the last tab
+  (sessionStorage kohler-hub-tab). A 🏠 Home button sits first in the nav
+  on every inner page and starts over the same way; "Change rep" goes back
+  to the landing screen with the name filled in.
+  Every screen has a URL hash (#view=rep&rep=...&cat=inc|mpo, #view=detail&
   prog=inc:keystone_ice, #view=programs, #view=program&prog=off:2026-09:
   fever_tree) so a page can be shared or bookmarked. Opening another rep's
   row from a leaderboard "peeks" at them (who=) without changing the

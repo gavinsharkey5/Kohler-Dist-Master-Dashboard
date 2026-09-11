@@ -140,6 +140,31 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .count-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;line-height:1.1;}
 .count-l{font-size:12px;color:var(--text-dim);margin-top:3px;font-weight:600;}
 .count.good .count-n{color:var(--good);} .count.accent .count-n{color:var(--accent);} .count.amber .count-n{color:var(--amber);}
+/* Results tabs -- Incentives | MPOs. The only navigation on a rep's page. */
+.tabbar{display:flex;gap:8px;margin:16px 0 2px;}
+.tab{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--card);border:1px solid var(--border);color:var(--text-dim);
+  padding:13px 12px;min-height:52px;border-radius:14px;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;}
+.tab:hover{border-color:var(--accent);color:var(--text);}
+.tab.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent);}
+.tab-ic{font-size:17px;line-height:1;}
+.tab-l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tab-n{background:var(--card-alt);border:1px solid var(--line-soft);color:var(--text-mute);
+  border-radius:999px;padding:1px 8px;font-size:13px;font-weight:700;flex-shrink:0;}
+.tab.active .tab-n{background:rgba(255,255,255,.08);border-color:transparent;color:var(--accent);}
+/* On the narrowest phones the word has to win: the emoji goes, not the label. */
+@media (max-width:365px){ .tab{font-size:14px;padding:12px 7px;gap:6px;} .tab-ic{display:none;} .tab-n{padding:1px 6px;font-size:12px;} }
+
+/* One fixed supplier mark, image or initials -- never a banner or a tile. */
+.suplogo{width:46px;height:30px;flex-shrink:0;background:#fff;border-radius:7px;padding:3px;
+  display:flex;align-items:center;justify-content:center;}
+.suplogo img{max-width:100%;max-height:100%;object-fit:contain;}
+.suplogo .suplogo-abbr{display:none;}
+.suplogo.blank{background:var(--card-alt);border:1px solid var(--line-soft);}
+.suplogo.blank .suplogo-abbr{display:block;font-style:normal;font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--text-mute);}
+
 .catbar{display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
 .catpill{flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:9px 15px;min-height:42px;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;cursor:pointer;}
 .catpill:hover{border-color:var(--accent);color:var(--text);}
@@ -1048,7 +1073,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .isum-s{display:block;font-size:11.5px;color:var(--text-mute);margin-top:1px;}
 
 .isup{margin-bottom:18px;}
-.isup-h{display:flex;align-items:baseline;gap:12px;width:100%;text-align:left;
+.isup-h{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
   background:none;border:0;border-bottom:1px solid var(--border);padding:10px 2px 8px;
   cursor:pointer;color:inherit;font:inherit;}
 .isup-h:hover{background:var(--card-alt);}
