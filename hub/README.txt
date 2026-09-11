@@ -373,6 +373,68 @@ PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
   incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
   RETENTION", for which exports can and cannot support this.
 
+THE MPO REP CARD IS A WORKLIST, NOT A DASHBOARD (v10, 2026-09-11)
+  Rep feedback via Gavin: too many colours, icons, badges and competing
+  elements to scan. A rep opening the MPO page has four questions and
+  nothing else -- what is my goal, where am I, how many more, which
+  accounts -- so mpoRepCard() in hub.js answers exactly those:
+
+    program name
+    supplier · premise                       (quiet)
+    CURRENT | GOAL | STILL NEEDED            (one row, read left to right)
+    a plain bar + "N% of goal" + the goal wording
+    POTENTIAL ACCOUNTS -- top 3, then "View potential accounts (N)"
+
+  STILL NEEDED IS MAX(GOAL - CURRENT, 0) off the tracker's own numbers.
+  r.valueNum / r.goalNum are plain COUNTS on every objective type,
+  including the percentage ones -- Keystone Ice's "40% of my account base
+  (14 of 33)" carries 6 and 14 BUYING ACCOUNTS, not 18.2 and 40 -- so one
+  subtraction is right across all of them and matches the tracker's own
+  remainText ("8 buying accounts"). The percentage wording stays as the
+  quiet caption beside the bar. If a future objective type carries
+  something other than counts there, mpoNums() returns null and the card
+  falls back to the tracker's own text.
+
+  WHAT WAS REMOVED, on purpose: the brand logo, the decorative icons
+  (target / pin / hourglass / beer / calendar), the status pill, the "N% of
+  MPO" weight pill, the ending-soon / almost-there / over-goal flags, the
+  Sell and Go lines (the program name says what to sell; "Go" IS the
+  accounts list now), the "Credit Earned" fact, the four count tiles above
+  the list, the status group headings (the list is flat), and the icons on
+  the On / Off pills. The header line is now one sentence: "5 programs ·
+  2 at goal · 3 still open".
+
+  ONE ACCENT COLOUR. --accent carries two things and nothing else: the
+  progress fill and the Still Needed number. A card at goal goes GREY, not
+  green -- "Goal met" replaces the number, the bar mutes, and the account
+  preview collapses to a one-line count so a finished card stops competing
+  for attention. Hierarchy everywhere else is size, weight and spacing. If
+  you add a colour to .mcard you are undoing the point of the redesign.
+
+  POTENTIAL ACCOUNTS come from the same nextAccounts() the rest of the hub
+  uses, so territory and account-base rules are UNCHANGED -- v10 only
+  changed what a row shows: account name, account number (#n), territory
+  (area) and the gap ("Never bought it"). Sorted biggest-opportunity first
+  (warm targets, then eligible by 2026 case volume). With none the card
+  says "No potential accounts currently identified." (verified: Allison
+  Scott, off-premise).
+
+  THE EXPAND holds everything that is not one of the four answers:
+  qualifying brands, the rep's account-base counts, how the objective is
+  scored (p.rules, which is where the weight went), the placements already
+  credited, and the link to the MPO tracker. The whole card is the toggle.
+
+  SCOPE: REP MODE ONLY. Manager Mode still shows the MPO dashboards' own
+  objective card (v9.8) and Program View still shows their Program Results
+  cards (v9.7) -- "reps at goal" and the weight are a manager's
+  information, and the brief says not to make them dominant for a rep.
+  Incentive cards are untouched and keep the .q boxes.
+
+  Verified at 430 / 768 / 1024 / 1366px (phone, iPad portrait and
+  landscape, desktop): no horizontal overflow and the three figures stay on
+  one row at every width, so the card never reflows into a shape a rep has
+  to re-learn.
+
 MPO REP CARDS WEAR THE DASHBOARDS' OBJECTIVE CARD (v9.8, 2026-09-11)
   Per Gavin, after v9.7 only changed Manager Mode: "I still see the boxes
   for MPOs" -- he meant the REP cards' boxed Goal / Where you are / Still
@@ -382,7 +444,9 @@ MPO REP CARDS WEAR THE DASHBOARDS' OBJECTIVE CARD (v9.8, 2026-09-11)
   CREDIT EARNED strip, the bar with its "N% of goal" caption, and on a dual
   objective the per-sub bars. Same .g-* classes from MPOs/shared/guided.css,
   so hub and dashboard cannot drift. mpoQuickHtml() in hub.js builds it.
-  INCENTIVE cards are untouched and keep the .q boxes.
+  INCENTIVE cards are untouched and keep the .q boxes. SUPERSEDED IN REP
+  MODE BY v10 above (2026-09-11, same day): this card is now what MANAGER
+  MODE shows. The reasoning below still explains that card.
 
   WHAT DELIBERATELY STAYS is the hub's own layer below the strip: the brand
   logo, the supplier line, the Sell / Go lines and the Targets / Completed

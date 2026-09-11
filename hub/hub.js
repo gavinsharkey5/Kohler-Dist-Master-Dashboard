@@ -742,23 +742,27 @@ function screenRep(){
   active.forEach(x=>{ if(x.r.status==='complete'||x.r.status==='exceeded') counts.complete++; else if(x.r.status==='progress') counts.progress++; else if(x.r.status==='notstarted') counts.notstarted++; else counts.soon++; if(x.g===1) counts.ending++; });
   const pending = neededMonths(active.map(x=>x.p));
   const bySup = cat.startsWith('sup:');
+  // An MPO page is a worklist: one line of context, no count tiles (v10).
+  const isMpoCat = cat==='on' || cat==='off' || cat==='mpo';
   const kicker = main ? mainSelect(main) + (main==='mpo' ? `<span class="rep-month">${E(mpoMonthLabel(cat==='on'||cat==='off' ? cat : 'off'))}</span>` : '') : '<div class="rep-kicker">All programs</div>';
   const subline = bySup
     ? `${plw(active.length,'incentive')}${active.filter(x=>isEarned(x.r)).length?` · <strong class="ok">${active.filter(x=>isEarned(x.r)).length} already earned</strong>`:''}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`
-    : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
+    : isMpoCat
+      ? `${plw(active.length,'program')} · ${counts.complete} at goal · ${active.length-counts.complete} still open`
+      : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     ${main ? `<button class="back" data-act="back-pick"><span class="ar">‹</span> Back</button>` : ''}
     <div class="rep-title"><div class="rep-kick">${kicker}</div><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
       <div class="rep-sub">${subline}</div>
       ${refreshedLine()}</div>
-    ${bySup ? '' : `<div class="counts">
+    ${(bySup || isMpoCat) ? '' : `<div class="counts">
       <div class="count good"><div class="count-n">${counts.complete}</div><div class="count-l">Completed</div></div>
       <div class="count accent"><div class="count-n">${counts.progress}</div><div class="count-l">In progress</div></div>
       <div class="count"><div class="count-n">${counts.notstarted}</div><div class="count-l">Not started</div></div>
       <div class="count amber"><div class="count-n">${counts.ending}</div><div class="count-l">Ending soon</div></div>
     </div>`}
     ${subs.length && !bySup ? `<div class="catbar" role="tablist">${subs.map(c=>{ const st = cat===c.key ? {n:active.length} : subStat(rep, c);
-      return `<button class="catpill${cat===c.key?' active':''}" data-act="set-cat" data-cat="${c.key}" role="tab" aria-selected="${cat===c.key?'true':'false'}"><span class="pi">${c.ic}</span>${E(c.label)}<span class="pn">${st.n===null?'…':st.n}</span></button>`; }).join('')}</div>` : ''}
+      return `<button class="catpill${cat===c.key?' active':''}" data-act="set-cat" data-cat="${c.key}" role="tab" aria-selected="${cat===c.key?'true':'false'}">${(c.ic && !isMpoCat)?`<span class="pi">${c.ic}</span>`:''}${E(c.label)}<span class="pn">${st.n===null?'…':st.n}</span></button>`; }).join('')}</div>` : ''}
   </div>`;
   if(pending.length) html += `<div class="loading">Loading MPO data…</div>`;
   if(!rows.length) html += `<div class="empty">No ${E(catMeta.label.toLowerCase())} apply to you right now.</div>`;
@@ -778,7 +782,7 @@ function screenRep(){
     });
     return `<div class="repview">${html}</div>`;
   }
-  html += renderGroups(rows, rep, {quiet: bySup});
+  html += renderGroups(rows, rep, {quiet: bySup || isMpoCat});
   return `<div class="repview${bySup?' single':''}">${html}</div>`;
 }
 function mpoMonthLabel(scope){ const mk = mpoRepMonth(scope); const m = MPO_SCOPES[scope].mod.MONTHS.find(x=>x.key===mk); return m ? m.label : mk; }
@@ -1337,7 +1341,156 @@ function mpoQuickHtml(p, r){
       </div>`).join('')}</div>` : ''}`;
 }
 
+/* ====================================================================
+   MPO REP CARD -- a worklist row, not a dashboard tile (v10, 2026-09-11)
+   --------------------------------------------------------------------
+   Rep feedback, via Gavin: the MPO cards carried too many colours, icons,
+   badges and competing elements. A rep opening this page has four
+   questions and nothing else:
+
+       What is my goal?  Where am I?  How many more?  Which accounts?
+
+   So an MPO card in REP MODE is now: the program name, the supplier line,
+   one CURRENT / GOAL / STILL NEEDED row, one plain bar, and the accounts
+   that can close the gap. Everything else -- the weight, the rules, the
+   qualifying brands, the eligible-account counts, the placements already
+   credited -- moved behind the card's own expand.
+
+   WHAT WAS REMOVED, deliberately: the brand logo, the 🎯/📍/⏳/🍺 icons,
+   the status pill, the "N% of MPO" weight pill, the ⏰/🔥/★ flags, the
+   Sell and Go lines (the program name already says what to sell; "Go" is
+   now the accounts list itself), the "Credit Earned" fact, and the
+   four count tiles above the list. One accent colour (--accent) carries
+   progress and the Still Needed number; nothing else is coloured.
+
+   MANAGER MODE IS UNCHANGED and still shows the MPO dashboards' own
+   objective card (v9.8) -- "reps at goal" and the weight are a manager's
+   information, and the brief says not to make them dominant for a rep.
+
+   STILL NEEDED IS MAX(GOAL - CURRENT, 0) from the tracker's own numbers.
+   valueNum/goalNum are plain COUNTS on every objective type, including the
+   percentage ones -- Keystone Ice's "40% of my account base (14 of 33)"
+   carries 6 and 14 buying accounts, not 18.2 and 40 -- so one subtraction
+   is right across all of them, and the percentage wording stays as the
+   quiet goal caption underneath.
+   ==================================================================== */
+const fmtN = v => { const n = Number(v); if(!isFinite(n)) return '—';
+  return (Math.round(n*10)/10).toLocaleString('en-US'); };
+function mpoNums(r){
+  const cur = Number(r.valueNum), goal = Number(r.goalNum);
+  if(!isFinite(cur) || !isFinite(goal) || goal<=0) return null;
+  return {cur, goal, need: Math.max(goal-cur, 0)};
+}
+// The accounts that can close the gap. Same nextAccounts() the rest of the
+// hub uses, so territory and account-base rules are unchanged -- this only
+// decides what a row shows: name, account number, territory, and the gap.
+function mpoTargetRows(p, rep){
+  if(!mpoMonthLoaded(p.source, p.monthKey)) return null;
+  return nextAccounts(p, rep).rows.filter(a=>!a.foreign);
+}
+function mpoTargetRowHtml(a){
+  const meta = [a.n ? '#'+a.n : '', a.area || a.rawArea || ''].filter(Boolean).join(' · ');
+  return `<li class="mt-row"><div class="mt-name">${E(a.name)}</div>` +
+    `${meta?`<div class="mt-meta">${E(meta)}</div>`:''}` +
+    `${a.why?`<div class="mt-gap">${E(a.why)}</div>`:''}</li>`;
+}
+const MT_PREVIEW = 3;
+function mpoRepCard(p, r, rep){
+  const soon = r.status==='soon';
+  const open = openCards.has(p.id);
+  const o = p.objective;
+  const sup = `${E(p.supplier)} · ${E(p.channelLabel)}`;
+  const ends = E(endsLabel(p.period));   // already reads "Ends Sep 30 · 19 days left" 
+
+  if(r.status==='unavailable'){
+    return `<article class="mcard off" id="card-${E(p.id)}">
+      <div class="mcard-head static"><div class="mcard-name">${E(o.name)}</div><div class="mcard-sup">${sup}</div>
+      <div class="mcard-note">${E(r.why||UNAVAILABLE)} Not counted in your goals.</div></div></article>`;
+  }
+  if(soon){
+    return `<article class="mcard" id="card-${E(p.id)}">
+      <div class="mcard-head static"><div class="mcard-name">${E(o.name)}</div><div class="mcard-sup">${sup}</div>
+      <div class="mcard-note">${E(r.loading ? 'Loading this month’s data…' : p.manual ? 'Verified by hand from iSellBeer photos — no numbers to track here.' : 'Waiting on the first export.')}</div>
+      <div class="mcard-ends">${ends}</div></div></article>`;
+  }
+
+  const N = mpoNums(r);
+  const met = N ? N.need===0 : (r.status==='complete' || r.status==='exceeded');
+  const unit = o.unit ? (o.unit + ((N ? N.need : 0)===1 ? '' : 's')) : '';
+  const pct = Math.max(0, Math.min(100, r.pct||0));
+  const targets = mpoTargetRows(p, rep);
+  const nT = targets ? targets.length : null;
+
+  const figures = `<div class="mfig">
+      <div class="mf"><div class="mf-l">Current</div><div class="mf-v">${N?fmtN(N.cur):E(r.now||'—')}</div></div>
+      <div class="mf"><div class="mf-l">Goal</div><div class="mf-v">${N?fmtN(N.goal):E(r.goal||'—')}</div></div>
+      <div class="mf need${met?' met':''}"><div class="mf-l">${met?'Status':'Still Needed'}</div>
+        <div class="mf-v">${met?'Goal met':(N?fmtN(N.need):E(r.remain||'—'))}</div>
+        ${!met && unit ? `<div class="mf-u">${E(unit)}</div>` : ''}</div>
+    </div>`;
+  const bar = `<div class="mbar"><div class="mbar-fill" style="width:${pct}%"></div></div>
+    <div class="mbar-cap"><span>${Math.round(pct)}% of goal</span>${o.goalLabel?`<span class="mbar-goal">${E(o.goalLabel)}</span>`:''}</div>`;
+
+  // Collapsed: the first few accounts. Expanded: all of them, then the
+  // supporting detail. Both come from the same list.
+  // A card already at goal does not need three account rows shouting at a
+  // rep who has nothing left to close -- it keeps the count and the expander
+  // (you can still keep building) and gives back the vertical space.
+  const preview = targets===null
+    ? `<div class="mt-note">Loading accounts…</div>`
+    : !targets.length
+      ? `<div class="mt-note">No potential accounts currently identified.</div>`
+      : (met && !open)
+        ? `<div class="mt-note">Goal met — ${plw(nT,'account')} still open if you want to keep building.</div>`
+        : `<ul class="mt-list">${targets.slice(0, open ? targets.length : MT_PREVIEW).map(mpoTargetRowHtml).join('')}</ul>`;
+
+  const hint = !targets || !targets.length
+    ? (open ? 'Hide details' : 'View details')
+    : open ? 'Hide potential accounts' : `View potential accounts (${nT})`;
+
+  return `<article class="mcard${open?' open':''}${met?' met':''}" id="card-${E(p.id)}">
+    <button class="mcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+      <div class="mcard-name">${E(o.name)}</div>
+      <div class="mcard-sup">${sup}</div>
+      ${figures}
+      ${bar}
+      <div class="mt-head">Potential accounts${nT?` · ${nT}`:''}</div>
+      ${preview}
+      <div class="mcard-foot"><span class="mcard-ends">${ends}</span><span class="mcard-more">${E(hint)}<span class="mcard-ar">${open?'▴':'▾'}</span></span></div>
+    </button>
+    ${open ? `<div class="mcard-body">${mpoRepCardDetail(p, r, rep)}</div>` : ''}
+  </article>`;
+}
+// Everything that is not one of the four questions lives here.
+function mpoRepCardDetail(p, r, rep){
+  const o = p.objective;
+  const A = mpoMonthLoaded(p.source, p.monthKey) ? accountsFor(p, rep) : null;
+  const closed = closedFor(p, rep);
+  const sec = (title, body) => body ? `<div class="msec"><div class="msec-h">${E(title)}</div>${body}</div>` : '';
+  const counts = A ? `<ul class="mkv">
+      <li><span>In your book, this premise</span><span>${A.universe}</span></li>
+      <li><span>Eligible, not buying yet</span><span>${A.eligible.length}</span></li>
+      <li><span>Already buying</span><span>${A.buying.length}</span></li>
+      ${(A.excluded.length+A.unknown.length)?`<li><span>Brand not sellable there</span><span>${A.excluded.length+A.unknown.length}</span></li>`:''}
+    </ul>` : '';
+  const brands = (A && !A.any && A.families.length)
+    ? `<div class="mtext">${E(A.families.join(' · '))}</div>`
+    : (A && A.any ? `<div class="mtext">Any brand counts toward this objective.</div>` : '');
+  const rules = (p.rules && p.rules.length) ? `<ul class="mbul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : '';
+  const done = closed.length
+    ? `<ul class="mdone">${closed.slice(0,15).map(x=>`<li><span class="md-c">${E(x.customer)}</span><span class="md-p">${E(x.product||'')}</span><span class="md-d">${E(x.date||'')}</span></li>`).join('')}${closed.length>15?`<li class="md-more">+ ${closed.length-15} more</li>`:''}</ul>`
+    : `<div class="mtext quiet">Nothing credited to you on this objective yet.</div>`;
+  return sec('Qualifying brands', brands)
+    + sec('Your account base', counts)
+    + sec('How it is scored', rules)
+    + sec(`Already credited${closed.length?' · '+closed.length:''}`, done)
+    + `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
+}
+
 function programCard(p, r, rep){
+  // Rep Mode MPO cards are the streamlined worklist card above. Manager Mode
+  // keeps the dashboards' objective card, and incentives are untouched.
+  if(p.type==='MPO' && !isMgr()) return mpoRepCard(p, r, rep);
   const bySup = String(state.cat||'').startsWith('sup:');
   const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
   const sup = bySup ? kind : `${E(p.supplier)} · ${kind}`;
