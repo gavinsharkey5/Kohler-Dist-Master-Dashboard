@@ -662,6 +662,204 @@ function repListHtml(q){
   return html || `<div class="noname">No name matches “${E(q)}”. Try just your first or last name.</div>`;
 }
 
+/* ====================================================================
+   THE INCENTIVE ACTION LIST -- one page, no drill-down (v11, 2026-09-11)
+   --------------------------------------------------------------------
+   Rep testing in Gavin's office: too much clicking. A rep picked a name,
+   then a supplier, then a program, then a detail page, to learn one
+   number. So Incentives is now ONE scrollable page: pick your name and
+   every supplier you are in is already open, every program under it
+   already shows Current / Goal / Still Needed / status / bar, and a click
+   is only ever spent on potential accounts or program rules.
+
+   NOTHING ABOUT THE UNDERLYING LOGIC MOVED. Every figure still comes from
+   the tracker's own summarize() through p.forRep(), the account lists
+   still come from nextAccounts(), and eligibility, territory and the
+   On/Off-Premise split are untouched. This is layout and ordering only.
+
+   WHAT THE DATA CANNOT DO, verified across five reps (see hub/README.txt):
+   about 40% of a rep's incentives HAVE NO REP GOAL -- roughly 13 of 33 are
+   open-ended ("every placement pays"), 3 carry a house goal rather than a
+   per-rep one, and 3 are awaiting a first export or are verified by hand.
+   Current / Goal / Still Needed cannot be invented for those, so they get
+   an honest fourth status ("No set goal") and sort below the goal-bearing
+   programs instead of faking a countdown.
+   ==================================================================== */
+const openSups = new Set();    // supplier keys collapsed on the incentive page
+function incNums(r){
+  const cur = Number(r.valueNum), goal = Number(r.goalNum);
+  if(r.openEnded || !isFinite(cur) || !isFinite(goal) || goal<=0) return null;
+  return {cur, goal, need: Math.max(goal-cur, 0)};   // MAX(Goal - Current, 0)
+}
+// Bands drive BOTH the status word and the sort. 0 is what a rep should do
+// something about today; 5 is what does not apply to them at all.
+function incBand(p, r){
+  if(!r) return null;
+  if(r.status==='unavailable') return {band:5, label:'Not in your territory', cls:'na'};
+  if(r.soon) return {band:4, label:'Awaiting data', cls:'na'};
+  const N = incNums(r);
+  if(!N) return {band:3, label:'No set goal', cls:'open'};
+  if(N.need<=0) return {band:2, label:'Goal Met', cls:'met'};
+  if(r.pace==='close' || r.pace==='ontrack') return {band:1, label:'On Track', cls:'ontrack'};
+  return {band:0, label:'Needs Attention', cls:'attn'};
+}
+// Within a supplier: gap programs first, soonest to end, then the biggest
+// share still needed; then on-track, then met, then the rest.
+function incSortKey(x){
+  const N = incNums(x.r);
+  const days = daysLeft(x.p.period.end);
+  const shortPct = N ? (N.need / N.goal) : 0;
+  return [x.b.band, x.b.band<=1 ? days : 0, x.b.band<=1 ? -shortPct : 0, x.p.name];
+}
+function cmpKey(a, b){
+  for(let i=0;i<a.length;i++){ if(a[i]<b[i]) return -1; if(a[i]>b[i]) return 1; }
+  return 0;
+}
+function incRowHtml(p, r, b, rep){
+  const open = openCards.has(p.id);
+  const N = incNums(r);
+  const pct = N ? Math.max(0, Math.min(100, (N.cur/N.goal)*100)) : (r.pct||0);
+  const targets = (r.status==='unavailable' || r.soon) ? [] : nextAccounts(p, rep).rows.filter(a=>!a.foreign);
+  const meta = [p.channelLabel, endsLabel(p.period)].filter(Boolean).join(' · ');
+
+  const figures = N
+    ? `<div class="ifig">
+        <span class="if"><span class="if-k">Current</span><span class="if-v">${fmtN(N.cur)}</span></span>
+        <span class="if-sep">|</span>
+        <span class="if"><span class="if-k">Goal</span><span class="if-v">${fmtN(N.goal)}</span></span>
+        <span class="if-sep">|</span>
+        <span class="if need${N.need<=0?' met':r.house?' house':''}"><span class="if-k">Still Needed</span><span class="if-v">${N.need<=0?'0':fmtN(N.need)}</span></span>
+        ${r.house?`<span class="if-tag">house goal</span>`:''}
+      </div>`
+    : `<div class="ifig open"><span class="if"><span class="if-k">${r.soon?'Status':'So far'}</span><span class="if-v">${E(r.now || (r.soon ? 'Awaiting data' : '—'))}</span></span>
+        ${r.openEnded?`<span class="if-note">Open-ended — every one pays, no goal to count down</span>`:''}</div>`;
+
+  const bar = N ? `<div class="ibar ${b.cls}"><div class="ibar-fill" style="width:${pct}%"></div></div>` : '';
+  const hasBG = !(r.status==='unavailable' || r.soon) && brandGoals(p, rep).length>0;
+  const more = (r.status==='unavailable') ? ''
+    : hasBG ? `${open?'Hide':'View'} your brand goals`
+    : targets.length ? `${open?'Hide':'View'} ${targets.length} potential account${targets.length===1?'':'s'}`
+    : (open ? 'Hide details' : 'View details');
+
+  return `<div class="irow b${b.band}${open?' open':''}" id="card-${E(p.id)}">
+    <button class="irow-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+      <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${E(b.label)}</span></span>
+      <span class="irow-meta">${E(meta)}</span>
+      ${figures}
+      ${bar}
+      <span class="irow-foot">${N?`<span class="ipct">${Math.round(pct)}% of goal</span>`:'<span class="ipct"></span>'}<span class="imore">${E(more)}</span></span>
+    </button>
+    ${open ? `<div class="irow-body">${incRowDetail(p, r, rep, targets)}</div>` : ''}
+  </div>`;
+}
+// Opened: the accounts table first (it is why a rep clicked), then the
+// supporting detail. Per-account brand-level distribution is NOT in the
+// customer base -- it carries total 2026 cases only -- so the missing
+// product is named at PROGRAM level and each row carries the volume and
+// the reason instead. See hub/README.txt.
+function incRowDetail(p, r, rep, targets){
+  const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
+  const ask = sellAsk(p);
+  // A retention program's detail is its BRAND GOALS, not a prospect list --
+  // including the per-SKU current/goal rows added in v9.6. Dropping these
+  // would lose the Constellation product-level work, so they come first.
+  const BG = brandGoals(p, rep);
+  const rows = targets.slice(0, 25);
+  const table = !targets.length
+    ? `<div class="it-note">No potential accounts currently identified.</div>`
+    : `<div class="it-wrap"><table class="it">
+        <thead><tr><th>Account</th><th>Acct #</th><th>Town · Territory</th><th class="num">2026 cases</th><th>Why it is an opportunity</th></tr></thead>
+        <tbody>${rows.map(a=>`<tr>
+          <td class="it-n">${E(a.name)}</td>
+          <td class="it-num">${E(a.n!=null?String(a.n):'—')}</td>
+          <td>${E([a.city, a.area || a.rawArea].filter(Boolean).join(' · ') || '—')}</td>
+          <td class="num">${E(a.cases!=null?fmtCases(a.cases):'—')}</td>
+          <td class="it-why">${E(a.why||'')}</td></tr>`).join('')}</tbody>
+      </table>${targets.length>rows.length?`<div class="it-note">Showing the top 25 of ${targets.length} by 2026 volume.</div>`:''}</div>`;
+  const sec = (t, body) => body ? `<div class="isec"><div class="isec-h">${E(t)}</div>${body}</div>` : '';
+  if(BG.length){
+    return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
+      + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table)
+      + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
+      + `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
+  }
+  return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table)
+    + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
+    + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
+    + (r.next ? sec('Next step', `<div class="itext">${r.next}</div>`) : '')
+    + `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
+}
+function screenRepIncentives(rep){
+  // One entry per program the rep is actually in, grouped by supplier.
+  const rows = [];
+  PROGRAMS.forEach(p=>{
+    if(p.type!=='Incentive' || !isActive(p)) return;
+    const r = p.forRep(rep); if(!r) return;
+    if(!availability(p, rep).ok && r.status!=='unavailable') return;
+    const b = incBand(p, r); if(!b) return;
+    rows.push({p, r, b});
+  });
+  const sups = new Map();
+  rows.forEach(x=>{ const k = x.p.supplier;
+    if(!sups.has(k)) sups.set(k, []); sups.get(k).push(x); });
+  sups.forEach(list=>list.sort((a,b)=>cmpKey(incSortKey(a), incSortKey(b))));
+  // Suppliers with something to act on come first.
+  const groups = [...sups.entries()].map(([name, list])=>({name, list,
+    best: Math.min(...list.map(x=>x.b.band)),
+    soonest: Math.min(...list.filter(x=>x.b.band<=1).map(x=>daysLeft(x.p.period.end)).concat([9e9]))}));
+  groups.sort((a,b)=> a.best-b.best || a.soonest-b.soonest || a.name.localeCompare(b.name));
+
+  const scored = rows.filter(x=>x.b.band<=2);
+  const met = rows.filter(x=>x.b.band===2).length;
+  const onTrack = rows.filter(x=>x.b.band===1).length;
+  const attn = rows.filter(x=>x.b.band===0).length;
+  // "Total Still Needed", with two exclusions that keep it from lying:
+  //   - HOUSE goals (Garage Beer President's is 1,663 CE short COMPANY-WIDE,
+  //     not Dave's gap -- including it put 2,285 on a rep's screen and 1,663
+  //     of that was not his).
+  //   - PERCENTAGE goals (Lytt's "50% of your accounts"): a percentage point
+  //     is not a thing a rep can go place.
+  // What is left still mixes units across programs (placements, accounts,
+  // cases, buyers), so it is a workload signal rather than a quantity --
+  // the sub-label says how many goals it covers for exactly that reason.
+  const counts = x => { const N = incNums(x.r);
+    return (N && !x.r.house && !/%/.test(String(x.r.goal||''))) ? N : null; };
+  const counted = rows.filter(x=>counts(x));
+  const stillNeeded = counted.reduce((t,x)=>t + counts(x).need, 0);
+
+  const summary = `<div class="isum">
+      <span class="isum-i met"><b>${met}</b> Goals Met</span>
+      <span class="isum-i ontrack"><b>${onTrack}</b> On Track</span>
+      <span class="isum-i attn"><b>${attn}</b> Need Attention</span>
+      <span class="isum-i"><b>${fmtN(stillNeeded)}</b> Still Needed<span class="isum-s">across ${plw(counted.length,'goal')} of your own</span></span>
+    </div>`;
+
+  const body = groups.map(g=>{
+    const key = 'sup:'+g.name;
+    const collapsed = openSups.has(key);          // default OPEN, per the brief
+    const a = g.list.filter(x=>x.b.band===0).length;
+    const note = [plw(g.list.length,'program'), a?`${a} need${a===1?'s':''} attention`:''].filter(Boolean).join(' · ');
+    return `<section class="isup${collapsed?' collapsed':''}">
+      <button class="isup-h" data-act="toggle-sup" data-sup="${E(key)}" aria-expanded="${collapsed?'false':'true'}">
+        <span class="isup-n">${E(g.name)}</span><span class="isup-s">${E(note)}</span><span class="isup-ar">${collapsed?'+':'–'}</span>
+      </button>
+      ${collapsed ? '' : `<div class="isup-b">${g.list.map(x=>incRowHtml(x.p, x.r, x.b, rep)).join('')}</div>`}
+    </section>`;
+  }).join('');
+
+  return `<div class="repview iview">
+    <div class="rep-head">
+      <button class="back" data-act="back-home"><span class="ar">‹</span> Back</button>
+      <div class="rep-title"><div class="rep-kick">${mainSelect('inc')}</div>
+        <h1>${E(possessive(rep))} Incentives</h1>
+        <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} — everything on one page.</div>
+        ${refreshedLine()}</div>
+      ${summary}
+    </div>
+    ${rows.length ? body : `<div class="empty">No incentives apply to you right now.</div>`}
+  </div>`;
+}
+
 /* ---- rep program list ---- */
 /* ---- sub-category screen: New / Ongoing / Retention, or On / Off ---- */
 function subStat(rep, sub){
@@ -733,6 +931,8 @@ function screenPick(){
 /* ---- rep program list ---- */
 function screenRep(){
   const rep = state.rep, cat = state.cat || 'all';
+  // Incentives are one page now -- no supplier step, no program step (v11).
+  if(cat==='inc') return screenRepIncentives(rep);
   const rows = sortedForRep(rep, cat);
   const catMeta = catMetaOf(cat);
   const main = mainOf(cat);
@@ -1946,7 +2146,12 @@ document.addEventListener('click', e=>{
       break;
     case 'clear-rep': pick.rep = null; pick.q=''; rerenderHomeList(); { const i=$('#repSearch'); if(i){ i.value=''; i.focus(); } } break;
     case 'pick-main': pick.main = t.dataset.main; rerenderHomeCats(); break;
-    case 'view-programs': if(pickReady()){ openCards.clear(); go({view:'pick', rep:pick.rep, main:pick.main, cat:null, prog:null, peek:null, from:null}); } break;
+    case 'view-programs': if(pickReady()){ openCards.clear();
+      // Incentives skip the supplier chooser entirely -- that click was the
+      // whole complaint (v11). MPOs still pick On- or Off-Premise first.
+      if(pick.main==='inc') go({view:'rep', rep:pick.rep, main:'inc', cat:'inc', prog:null, peek:null, from:null});
+      else go({view:'pick', rep:pick.rep, main:pick.main, cat:null, prog:null, peek:null, from:null});
+    } break;
     case 'pick-sub': openCards.clear(); state.showEnded = false; go({view:'rep', cat:t.dataset.cat, main:mainOf(t.dataset.cat), prog:null, peek:null, from:null}); break;
     case 'change-rep': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home'}); break;
     case 'back-home': pick = {rep:state.rep, main:state.main, q:''}; go({view:'home', prog:null, peek:null, from:null}); break;
@@ -1954,6 +2159,7 @@ document.addEventListener('click', e=>{
     case 'change-view': openCards.clear(); go({view:'pick', main: state.main || mainOf(state.cat) || 'inc', prog:null, peek:null, from:null}); break;
     case 'my-programs': if(state.rep && state.cat) go({view:'rep', prog:null, from:null, peek:null}); else if(state.rep && state.main) go({view:'pick', prog:null, from:null, peek:null}); else go({view:'home'}); break;
     case 'set-cat': openCards.clear(); go({cat:t.dataset.cat, main:mainOf(t.dataset.cat), view:'rep'}, true); break;
+    case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
     case 'toggle-card': { const id = t.dataset.prog; if(openCards.has(id)) openCards.delete(id); else openCards.add(id); render();
       const el = document.getElementById('card-'+id); if(el && openCards.has(id)){ const y = el.getBoundingClientRect().top + window.pageYOffset - 8; if(y < window.pageYOffset) window.scrollTo({top:y}); } break; }
@@ -1997,7 +2203,11 @@ document.addEventListener('keydown', e=>{
 });
 document.addEventListener('change', e=>{
   const m = e.target.closest('.mainsel');
-  if(m){ openCards.clear(); state.showEnded = false; go({view:'pick', main:m.value, cat:null, prog:null, peek:null, from:null}); return; }
+  if(m){ openCards.clear(); state.showEnded = false;
+    // Switching to Incentives lands on the one-page list, not a chooser (v11).
+    if(m.value==='inc') go({view:'rep', main:'inc', cat:'inc', prog:null, peek:null, from:null});
+    else go({view:'pick', main:m.value, cat:null, prog:null, peek:null, from:null});
+    return; }
   const t = e.target.closest('.fsel'); if(!t) return;
   state.filters[t.dataset.filter] = t.value; render();
 });
