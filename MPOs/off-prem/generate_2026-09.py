@@ -527,7 +527,22 @@ def build_pos_cooler_doors():
     idx = {h: i for i, h in enumerate(header) if h}
     # Borrow the roster from generate_lytt_pos.py rather than re-listing it --
     # a second copy is one more thing to drift when a rep joins or leaves.
-    roster_by_lower = {r.lower(): r for r in _lytt_pos().ROSTER}
+    ROSTER = _lytt_pos().ROSTER
+    roster_by_lower = {r.lower(): r for r in ROSTER}
+    # ...and by SURNAME + first initial, for the nickname case. iSellBeer files
+    # "Matthew Powierski"; the roster (the RDE spelling) says "Matt Powierski",
+    # so the exact-lowercase lookup missed and his cooler doors were credited
+    # to a rep nobody on the board is -- his September sticker reached no one
+    # until 2026-09-11. Only used when EXACTLY ONE roster name shares that
+    # surname and initial, so it can never hand one rep another's photo.
+    # Same fix as on-prem's build_bardstown_menu(); keep the two in step.
+    _by_surname = {}
+    for r in ROSTER:
+        parts = r.lower().split()
+        if len(parts) >= 2:
+            _by_surname.setdefault((parts[-1], parts[0][0]), []).append(r)
+    roster_by_surname = {k: v[0] for k, v in _by_surname.items() if len(v) == 1}
+    aliased = {}
 
     out, elements = [], set()
     for row in ws.iter_rows(min_row=2):
@@ -542,9 +557,17 @@ def build_pos_cooler_doors():
         # the RDE spelling. Unmatched names are kept as-is so they surface on
         # the board rather than vanish.
         raw_rep = str(vals[idx["Photo taker"]] or "").strip()
+        who = roster_by_lower.get(raw_rep.lower())
+        if who is None:
+            parts = raw_rep.lower().split()
+            who = roster_by_surname.get((parts[-1], parts[0][0])) if len(parts) >= 2 else None
+            if who:
+                aliased[raw_rep] = who
+            else:
+                who = raw_rep          # kept as-is so it surfaces rather than vanishing
         photo_cell = row[idx["Photo"]]
         out.append({
-            "REP": roster_by_lower.get(raw_rep.lower(), raw_rep),
+            "REP": who,
             "SOURCE": "Promo",
             "CUSTOMER_NAME": str(vals[idx["DBA"]] or "").strip(),
             "CITY": str(vals[idx["City"]] or "").strip(),
@@ -554,6 +577,17 @@ def build_pos_cooler_doors():
             "DATE": str(vals[idx["Date/Time"]]).strip(),
             "PHOTO_URL": photo_cell.hyperlink.target if photo_cell.hyperlink else None,
         })
+    if aliased:
+        print("  POS cooler doors: matched iSellBeer name(s) to the roster by surname -- "
+              + ", ".join(f"{k!r} -> {v!r}" for k, v in sorted(aliased.items())))
+    unmatched = sorted({r["REP"] for r in out} - set(ROSTER))
+    if unmatched:
+        print(f"  POS cooler doors: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
+              f"and their stickers reach nobody: {unmatched}")
+    missing_photo = sum(1 for r in out if not r["PHOTO_URL"])
+    if missing_photo:
+        print(f"  POS cooler doors: WARNING -- {missing_photo} archive row(s) carry no photo link "
+              f"(the cell lost its hyperlink); those rows cannot be opened from the board")
     photos = len({r["PHOTO_URL"] for r in out if r["PHOTO_URL"]})
     return out, photos, len(out), elements
 

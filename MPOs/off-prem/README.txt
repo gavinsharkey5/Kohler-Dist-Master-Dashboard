@@ -885,6 +885,32 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-11 -- Promos_Report_18 merged; Matt Powierski's stickers recovered
+  python3 generate_2026-09.py --merge-cooler-doors Promos_Report_18.xlsx
+The report is 31 rows, ALL of them Cooler Door Wraps (nothing filtered out),
+all 31 carrying a photo link -- and all 31 were ALREADY in the archive from
+Reports 16 and 17: "31 row(s) in, 0 new, 31 already published". So no sticker
+was missing; 26 distinct photos and 2 reps at goal, unchanged.
+
+WHAT WAS MISSING WAS A REP. iSellBeer files "Matthew Powierski" and the
+roster (the RDE spelling) says "Matt Powierski", so the exact-lowercase
+photo-taker lookup missed and his 2 stickers were credited to a rep who does
+not exist on the board -- flagged on the 2026-09-11 refresh and left alone
+then because fixing it moves a published figure. Gavin asked for all of
+Report_18 to show, so build_pos_cooler_doors() now also matches on SURNAME +
+first initial, and only when exactly one roster name fits, so it can never
+hand one rep another's photo. Same fix as on-prem's build_bardstown_menu();
+keep the two in step. Matt Powierski 0 -> 2 stickers, "Matthew Powierski"
+gone from the board. Nobody else moved and the distinct-photo total is the
+same 26, because the count never depended on the spelling -- only the
+attribution did.
+
+The builder now also prints what it aliased, warns about any photo taker
+still matching no roster rep, and warns if an archive row has lost its photo
+hyperlink (all 31 have one today). Verified end to end: every one of
+Report_18's 26 distinct photo links is in the archive, and Matt's two open
+from both the off-prem board's Rep View and the hub's card.
+
 2026-09-11 REFRESH -- all four exports plus Promos_Report_16
 All four RDE exports re-pulled and merged in one pass:
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_16.xlsx
