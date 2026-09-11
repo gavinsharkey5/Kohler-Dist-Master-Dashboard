@@ -331,12 +331,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 43007,
-    "CUSTOMER_NAME": "American Classic Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 48006,
     "CUSTOMER_NAME": "Andres Wine & Spirits",
     "AREA": "Bergen"
@@ -759,12 +753,6 @@
     "SALES_REP_ASSIGNED": "Derrick Laws",
     "CUSTOMER_NUM": 21033,
     "CUSTOMER_NAME": "The Liquor Shop",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Derrick Laws",
-    "CUSTOMER_NUM": 20037,
-    "CUSTOMER_NAME": "The Point Liquor & Bar",
     "AREA": "Passaic"
   },
   {
@@ -1857,12 +1845,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20014,
     "CUSTOMER_NAME": "Bombolon Liquor & Grocery",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 15061,
-    "CUSTOMER_NAME": "Boulevard Wine & Spirits",
     "AREA": "Passaic"
   },
   {

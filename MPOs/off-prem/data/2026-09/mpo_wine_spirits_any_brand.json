@@ -331,6 +331,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Alex Rodriguez",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 250129,
+    "CUSTOMER_NAME": "Super Value Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Alex Rodriguez",
     "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 250047,
@@ -1741,16 +1751,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "PRODUCT_NAME": "200151 American Fruit Black Currant Liqueur 12/375 mL",
-    "BRAND_FAMILY": "American Fruit",
-    "CUSTOMER_NUM": 2003,
-    "CUSTOMER_NAME": "Ringwood W&L",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "PRODUCT_NAME": "200152 American Fruit Bartlett Pear Liqueur 12/375 mL",
     "BRAND_FAMILY": "American Fruit",
     "CUSTOMER_NUM": 2003,
@@ -3021,6 +3021,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 49044,
+    "CUSTOMER_NAME": "Linwood Wine-Hudson Light",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 49044,
+    "CUSTOMER_NAME": "Linwood Wine-Hudson Light",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
     "PRODUCT_NAME": "9409 Terredirai Bloom Bubbles Sparkling Non-Alcoholic 1/12/750 ML Btl",
     "BRAND_FAMILY": "Bloom Bubbles",
     "CUSTOMER_NUM": 49044,
@@ -3391,6 +3411,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 41012,
+    "CUSTOMER_NAME": "Deli Mart (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 41012,
@@ -3418,6 +3448,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 40017,
+    "CUSTOMER_NAME": "Essex St Liquor and Wine",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
@@ -4086,7 +4126,7 @@
     "CUSTOMER_NUM": 20040,
     "CUSTOMER_NAME": "Hiciano Liquor Store",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4821,6 +4861,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 20037,
+    "CUSTOMER_NAME": "The Point Liquor & Bar",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
     "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "Pride & Clarke",
     "CUSTOMER_NUM": 20037,
@@ -5076,7 +5126,7 @@
     "CUSTOMER_NUM": 170041,
     "CUSTOMER_NAME": "Binny's Liquors (306 Jersey City)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5086,7 +5136,7 @@
     "CUSTOMER_NUM": 170041,
     "CUSTOMER_NAME": "Binny's Liquors (306 Jersey City)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5316,7 +5366,7 @@
     "CUSTOMER_NUM": 170222,
     "CUSTOMER_NAME": "E & E Wine & Liq (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5326,7 +5376,7 @@
     "CUSTOMER_NUM": 170222,
     "CUSTOMER_NAME": "E & E Wine & Liq (P)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5786,8 +5836,18 @@
     "CUSTOMER_NUM": 170024,
     "CUSTOMER_NAME": "Manhatten Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dylan Rubino",
+    "PRODUCT_NAME": "200314 Pride & Clarke Vodka 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 170024,
+    "CUSTOMER_NAME": "Manhatten Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Dylan Rubino",
@@ -7086,7 +7146,7 @@
     "CUSTOMER_NUM": 150668,
     "CUSTOMER_NAME": "Chancellor Irvington",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8091,12 +8151,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 150221,
+    "CUSTOMER_NAME": "Jonathan's Liquor Store",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
     "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 150221,
     "CUSTOMER_NAME": "Jonathan's Liquor Store",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8356,7 +8426,7 @@
     "CUSTOMER_NUM": 152025,
     "CUSTOMER_NAME": "New Owl Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8501,6 +8571,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 152017,
+    "CUSTOMER_NAME": "Pennsylvania Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 152017,
+    "CUSTOMER_NAME": "Pennsylvania Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
     "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 152017,
@@ -8518,6 +8608,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Hakan Sadik",
+    "PRODUCT_NAME": "200293 Molly's Irish Cream 60/50 mL Btl",
+    "BRAND_FAMILY": "Molly's",
+    "CUSTOMER_NUM": 150169,
+    "CUSTOMER_NAME": "Pueblo Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Hakan Sadik",
@@ -9321,6 +9421,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jaime Colonna",
+    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
+    "BRAND_FAMILY": "Lo Secco",
+    "CUSTOMER_NUM": 171014,
+    "CUSTOMER_NAME": "Giannone Wines & Liq.(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jaime Colonna",
     "PRODUCT_NAME": "100912 OVO Vodka 1/12/750 mL Btl",
     "BRAND_FAMILY": "OVO Vodka",
     "CUSTOMER_NUM": 170294,
@@ -9436,7 +9546,7 @@
     "CUSTOMER_NUM": 170300,
     "CUSTOMER_NAME": "Ray's Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9446,7 +9556,7 @@
     "CUSTOMER_NUM": 170300,
     "CUSTOMER_NAME": "Ray's Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9456,7 +9566,7 @@
     "CUSTOMER_NUM": 170300,
     "CUSTOMER_NAME": "Ray's Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9861,6 +9971,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
+    "BRAND_FAMILY": "Leyenda 1925",
+    "CUSTOMER_NUM": 27001,
+    "CUSTOMER_NAME": "Fiesta Night Club(P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
     "PRODUCT_NAME": "200771 Desquite Artesanal 6/750 mL Btl",
     "BRAND_FAMILY": "Desquite",
     "CUSTOMER_NUM": 27001,
@@ -10246,7 +10366,7 @@
     "CUSTOMER_NUM": 20061,
     "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -10256,7 +10376,7 @@
     "CUSTOMER_NUM": 20061,
     "CUSTOMER_NAME": "Seguidilla 56 Lounge & Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -10688,6 +10808,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -11686,7 +11826,7 @@
     "CUSTOMER_NUM": 25042,
     "CUSTOMER_NAME": "Town Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -11696,7 +11836,7 @@
     "CUSTOMER_NUM": 25042,
     "CUSTOMER_NAME": "Town Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -12071,6 +12211,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "John O'Donoghue",
+    "PRODUCT_NAME": "11062 New Holland Dragon's Milk Reserve Coconut Rum 6/4/12 oz Btl",
+    "BRAND_FAMILY": "New Holland Brewing Co",
+    "CUSTOMER_NUM": 190711,
+    "CUSTOMER_NAME": "Shop Rite Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "John O'Donoghue",
     "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 190711,
@@ -12156,7 +12306,7 @@
     "CUSTOMER_NUM": 190208,
     "CUSTOMER_NAME": "Boonton Liquor Locker",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -12181,6 +12331,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190208,
+    "CUSTOMER_NAME": "Boonton Liquor Locker",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190208,
+    "CUSTOMER_NAME": "Boonton Liquor Locker",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "PRODUCT_NAME": "100122 Le Grand Noir Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "Le Grand Noir",
     "CUSTOMER_NUM": 190603,
@@ -12238,6 +12408,56 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201052 Green River Full Proof 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190216,
+    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -12358,6 +12578,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190207,
+    "CUSTOMER_NAME": "Liquor Outlet",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 190207,
+    "CUSTOMER_NAME": "Liquor Outlet",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -12548,6 +12788,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -13411,16 +13671,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "PRODUCT_NAME": "101091 Lo Secco Prosecco 1/12/750 mL Btl",
-    "BRAND_FAMILY": "Lo Secco",
-    "CUSTOMER_NUM": 150041,
-    "CUSTOMER_NAME": "A&M Liquor",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
     "PRODUCT_NAME": "200171 Chateau Diana Caberner Sauvigon 12/750 mL Btl",
     "BRAND_FAMILY": "Chateau Diana",
     "CUSTOMER_NUM": 150041,
@@ -13442,16 +13692,6 @@
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
     "PRODUCT_NAME": "200173 Chateau Diana Merlot 12/750 mL Btl",
-    "BRAND_FAMILY": "Chateau Diana",
-    "CUSTOMER_NUM": 150041,
-    "CUSTOMER_NAME": "A&M Liquor",
-    "BASE_PLACEMENTS": 0.0,
-    "CURRENT_PLACEMENTS": 1.0,
-    "NEW_PLACEMENT": 1
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
-    "PRODUCT_NAME": "200176 Chateau Diana Sangria 12/750 mL Btl",
     "BRAND_FAMILY": "Chateau Diana",
     "CUSTOMER_NUM": 150041,
     "CUSTOMER_NAME": "A&M Liquor",
@@ -13981,12 +14221,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "200401 Travelers Club Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Travelers Club",
+    "CUSTOMER_NUM": 81006,
+    "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
     "PRODUCT_NAME": "200402 Travelers Club Vodka 24/375 mL Btl",
     "BRAND_FAMILY": "Travelers Club",
     "CUSTOMER_NUM": 81006,
     "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -13996,7 +14246,7 @@
     "CUSTOMER_NUM": 81006,
     "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14006,7 +14256,7 @@
     "CUSTOMER_NUM": 81006,
     "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14356,7 +14606,7 @@
     "CUSTOMER_NUM": 84022,
     "CUSTOMER_NAME": "Park West Tavern",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -14928,6 +15178,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200312 Pride & Clarke Vodka 48/200 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 27005,
+    "CUSTOMER_NAME": "#1 Liqrs (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "200313 Pride & Clarke Vodka 24/375 mL Btl",
+    "BRAND_FAMILY": "Pride & Clarke",
+    "CUSTOMER_NUM": 27005,
+    "CUSTOMER_NAME": "#1 Liqrs (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
@@ -16281,6 +16551,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "201072 Green River Bourbon 250th Army Anniversary 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 83010,
+    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "201073 Bardstown Collaboration Series Pierre Ferrand 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 83010,
@@ -16298,6 +16578,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 83010,
+    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 83010,
+    "CUSTOMER_NAME": "Bottle King (A) Glen Rock",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -16501,6 +16801,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "201078 Green River Honey 1/10/50 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 83001,
+    "CUSTOMER_NAME": "Food Universe Marketplace",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "200291 Molly's Irish Cream 6/1.75 L Btl",
     "BRAND_FAMILY": "Molly's",
     "CUSTOMER_NUM": 39001,
@@ -16576,7 +16886,7 @@
     "CUSTOMER_NUM": 80005,
     "CUSTOMER_NAME": "Shop Rite Liq (Paramus)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -16588,6 +16898,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "200742 Poggio Torselli Chianti Classico Riserva 1/6/750 mL Btl",
+    "BRAND_FAMILY": "Poggio Torselli",
+    "CUSTOMER_NUM": 80005,
+    "CUSTOMER_NAME": "Shop Rite Liq (Paramus)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
@@ -17136,8 +17456,28 @@
     "CUSTOMER_NUM": 191406,
     "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191406,
+    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 191406,
+    "CUSTOMER_NAME": "Courtyard Marriott Mt Arl",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -17198,6 +17538,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Robin Feldman",
+    "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 191301,
+    "CUSTOMER_NAME": "Lake Hopatcong Yacht Club",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Robin Feldman",
@@ -17561,6 +17911,26 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201052 Green River Full Proof 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Bottle King (A) Ramsey",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
+    "PRODUCT_NAME": "201053 Green River Rye 1/750 mL",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 92011,
+    "CUSTOMER_NAME": "Bottle King (A) Ramsey",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Shane Barreca",
     "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 92011,
@@ -17606,7 +17976,7 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17686,7 +18056,7 @@
     "CUSTOMER_NUM": 55001,
     "CUSTOMER_NAME": "Coasters Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17706,7 +18076,7 @@
     "CUSTOMER_NUM": 55001,
     "CUSTOMER_NAME": "Coasters Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17716,7 +18086,7 @@
     "CUSTOMER_NUM": 55001,
     "CUSTOMER_NAME": "Coasters Liquors",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

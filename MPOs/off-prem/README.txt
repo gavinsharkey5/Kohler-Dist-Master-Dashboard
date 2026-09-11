@@ -885,6 +885,41 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-11 REFRESH -- all four exports plus Promos_Report_16
+All four RDE exports re-pulled and merged in one pass:
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_16.xlsx
+Row counts: Constellation 122 (unchanged), Keystone 139 -> 144, Fever Tree
+2,009 -> 2,049, Wine & Spirits 2,508 -> 2,577. Promos_Report_16 held 64 rows
+of every element type; the filter kept 31 Cooler Door Wraps, 1 new and 30
+already published, 30 -> 31 archive rows.
+
+  Constellation   726 -> 839 placements this fall against an UNCHANGED 1,628
+                  last fall (goals are history and must never move -- checked
+                  per rep, all 24 identical); 17 -> 21 of 24 reps at 30%.
+  Keystone Ice    119 -> 122 distinct buying accounts; still 4 of 26 at 40%.
+  Fever Tree      60 -> 74 new placements; 2 -> 3 reps at the goal of 10.
+  Wine & Spirits  147 -> 184 new placements; 13 -> 17 reps at the goal of 5.
+  Cooler doors    25 -> 26 distinct stickers from 31 brand rows; still 2 reps
+                  at the goal of 5.
+  Target lists    Keystone 372 -> 369, Fever Tree 352 -> 350 prospects --
+                  these SHRINK as prospects convert, which is correct.
+
+NINE PLACEMENTS WENT AWAY, AND IT IS NOT A RECLASSIFICATION. The README's
+step-3 rule ("numbers should only ever GROW within a month") fired on three
+reps. Checked row by row: these keys are not misread, they are ABSENT from
+the new export -- RDE withdrew the load-sheet rows it had published before.
+  Derrick Laws     Fever Tree 9 -> 3. His six 9/11 rows at Shop Rite
+                   Wines/Spirits #23004 (Ginger Beer, Club Soda, Tonic,
+                   Tonic Light, Espresso Martini, Bloody Mary) are in the
+                   previous export and gone from this one; the account's row
+                   count fell 32 -> 26 and its latest load sheet is now 8/14.
+                   He drops from 9 of 10 to 3 of 10 and will notice.
+  Anthony Palmisano  Wine & Spirits 6 -> 5 (account #2003, 6 rows -> 5).
+  Michael Harboy     Wine & Spirits 12 -> 10 (account #150041, 7 rows -> 5).
+Both W&S reps stay above their goal of 5. Nothing was patched here: the
+board shows what the current export says. If those loads were real, the fix
+is a corrected RDE pull, not a change on this side.
+
 2026-09-10 REFRESH -- cooler doors from Promos_Report_15
 python3 generate_2026-09.py --merge-cooler-doors Promos_Report_15.xlsx: the
 report carried 48 rows of every element type (on-prem menus, posters, table

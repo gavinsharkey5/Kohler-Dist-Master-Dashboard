@@ -901,12 +901,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
-    "CUSTOMER_NUM": 21044,
-    "CUSTOMER_NAME": "Farm Boy",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Javier Melo",
     "CUSTOMER_NUM": 20031,
     "CUSTOMER_NAME": "La Joya Liquors",
     "AREA": "Passaic"
@@ -1743,12 +1737,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 201099,
     "CUSTOMER_NAME": "Whole Foods #10106 (Ridgewood)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 87002,
-    "CUSTOMER_NAME": "Wine & Spirits World (Hohokus)",
     "AREA": "Bergen"
   },
   {
