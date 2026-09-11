@@ -5,17 +5,19 @@ transaction-level report (one row per account x SKU x order date), not
 the pre-aggregated (Customer Name, Category, Sales Rep, Bought) shape
 index.html actually reads.
 
-Classification (per Kohler, 2026-09-11):
+Classification (per Kohler, 2026-09-11). These are the three things an
+account can buy, and the only categories written to data.csv:
     Regular = Red Bull Regular
     Free    = Red Bull Sugar Free
-    Core+   = every other flavor edition
+    Flavor  = every other flavor edition
 Explicit product lists below, not a keyword guess -- the script raises if
 an unrecognized product shows up so a new flavor gets a deliberate
-Regular/Free/Core+ call instead of a silent guess.
+Regular/Free/Flavor call instead of a silent guess.
 
-"Core" is NOT written to data.csv -- it is a rollup the page derives
-(an account is Core if it bought Regular OR Free), because Kohler's 155
-Core goal was always set on Regular-or-Sugar-Free together.
+The program TIERS are NOT written here -- index.html derives them, because
+each one requires a combination rather than a single purchase:
+    Core  = Regular AND Free
+    Core+ = Regular AND Free AND Flavor   (the "all 3" account)
 
 Usage:
     python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start.csv
@@ -47,7 +49,7 @@ FREE_PRODUCTS = {
     # without confirming that changed.
     'Red Bull Sugar Free 1/24/8.4 oz Can',
 }
-COREPLUS_PRODUCTS = {
+FLAVOR_PRODUCTS = {
     'Red Bull Orange Edition 1/24/8.4 oz Can',
     'Red Bull Sea Blue-Juneberry 1/24/8.4 oz Can',
     'Red Bull Blue Edition 1/24/8.4 oz Can',
@@ -58,7 +60,7 @@ COREPLUS_PRODUCTS = {
 }
 
 # Rendered in this order in data.csv and on the page.
-CATEGORIES = ('Regular', 'Free', 'Core+')
+CATEGORIES = ('Regular', 'Free', 'Flavor')
 
 
 def normalize(product):
@@ -73,7 +75,7 @@ def normalize(product):
 
 LOOKUP = {}
 for _cat, _names in (('Regular', REGULAR_PRODUCTS), ('Free', FREE_PRODUCTS),
-                     ('Core+', COREPLUS_PRODUCTS)):
+                     ('Flavor', FLAVOR_PRODUCTS)):
     for _n in _names:
         LOOKUP[normalize(_n)] = _cat
 
@@ -126,7 +128,7 @@ def main():
     if unknown:
         raise SystemExit(
             f"Unclassified Red Bull product(s) -- add to REGULAR_PRODUCTS, FREE_PRODUCTS "
-            f"or COREPLUS_PRODUCTS in this script after confirming with the user: "
+            f"or FLAVOR_PRODUCTS in this script after confirming with the user: "
             f"{sorted(unknown)}"
         )
 
