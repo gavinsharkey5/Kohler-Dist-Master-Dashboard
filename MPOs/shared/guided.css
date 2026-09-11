@@ -16,6 +16,15 @@
 
    Phone is the primary layout: desktop rules live in the min-width media
    query at the bottom, not the other way round.
+
+   THIRD CONSUMER (2026-09-11): hub/index.html also loads this file. The
+   hub's Manager Mode "Program View" renders the Program Results cards
+   (.g-step-head, .g-sum*, .g-prog*, .g-tag, .g-bar) so its MPO half is the
+   same card these two dashboards show rather than a look-alike that drifts.
+   That works because every selector in here is .g-* scoped and this file
+   only consumes palette variables, never defines them -- KEEP IT THAT WAY.
+   A rule that reaches outside .g-* (styling body, a bare element, or a
+   class the hub also uses) would now leak into a third page.
    ==================================================================== */
 
 /* ---- Segmented view toggle: Rep vs Program ------------------------- */

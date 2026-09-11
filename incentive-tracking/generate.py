@@ -2280,13 +2280,35 @@ def build_constellation_fall():
         prods = defaultdict(list)
         for r in detail:
             rep = r["Sales Rep Assigned"]
-            sums[rep][0] += to_num(r[base_col])
-            sums[rep][1] += to_num(r[val_col])
+            b = to_num(r[base_col])
             n = to_num(r[val_col])
-            if n > 0:
-                prods[rep].append({"product": r["Product Name"].strip(),
-                                   "placements": round(n),
-                                   "base": round(to_num(r[base_col]))})
+            sums[rep][0] += b
+            sums[rep][1] += n
+            # PER-SKU GOALS (2026-09-11, per Gavin: show the products inside a
+            # category with their own current/goal). The base column is the
+            # goal at the SKU grain exactly as it is at the category grain, so
+            # every product row carries its own bar.
+            #
+            # KEEP THE BASE-ONLY ROWS. This list was filtered on
+            # `placements > 0` until now, which hid the one thing a retention
+            # rep most needs: a SKU that placed in the base window and has NOT
+            # been reordered this period is distribution already LOST, and it
+            # is the whole of the category's shortfall. 129 such rows exist
+            # across the four fall files on the 9/11 pull.
+            if n > 0 or b > 0:
+                goal, placed = round(b), round(n)
+                prods[rep].append({
+                    "product": r["Product Name"].strip(),
+                    "placements": placed,
+                    "base": goal,                      # original key, unchanged
+                    "goal": goal or None,
+                    "pct": round(placed / goal * 100, 1) if goal else None,
+                    # 100% of the SKU's own base, matching the category bar --
+                    # deliberately not the 90% other retention programs use.
+                    "retained": bool(goal and placed >= goal),
+                    "toGo": max(0, goal - placed) if goal else 0,
+                    "lost": bool(goal and placed == 0),
+                })
         for rep, trow in totals.items():
             b, v = sums.get(rep, [0.0, 0.0])
             if abs(to_num(trow[base_col]) - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
@@ -2303,6 +2325,8 @@ def build_constellation_fall():
                     "key": cat["key"], "label": cat["label"], "placements": 0,
                     "goal": None, "pct": None, "retained": False,
                     "inReport": False, "products": [], "baseWindow": cat["baseWindow"],
+                    "skusTotal": 0, "skusHeld": 0, "skusLost": 0, "skusShort": 0,
+                    "skusNew": 0,
                 })
                 continue
             by_rep[rep]["inReport"] = True
@@ -2310,7 +2334,13 @@ def build_constellation_fall():
             goal = to_num(trow[base_col])
             house_total += placements
             house_goal += goal
-            plist = sorted(prods.get(rep, []), key=lambda p: (-p["placements"], p["product"]))
+            # SKUs short of their own goal first, biggest gap first, so what
+            # needs a call this week sits at the top; held SKUs follow, and
+            # SKUs with no base (new distribution this period) come last.
+            plist = sorted(prods.get(rep, []),
+                           key=lambda p: (p["goal"] is None, p["retained"],
+                                          -p["toGo"], -p["placements"], p["product"]))
+            goaled_skus = [p for p in plist if p["goal"]]
             by_rep[rep]["offCategories"].append({
                 "key": cat["key"], "label": cat["label"], "placements": round(placements),
                 "goal": round(goal) if goal else None,
@@ -2319,6 +2349,11 @@ def build_constellation_fall():
                 "retained": bool(goal and placements >= goal),
                 "toGo": round(goal - placements) if goal and placements < goal else 0,
                 "inReport": True, "products": plist, "baseWindow": cat["baseWindow"],
+                "skusTotal": len(goaled_skus),
+                "skusHeld": sum(1 for p in goaled_skus if p["retained"]),
+                "skusLost": sum(1 for p in goaled_skus if p["lost"]),
+                "skusShort": sum(1 for p in goaled_skus if not p["retained"]),
+                "skusNew": sum(1 for p in plist if not p["goal"]),
             })
 
         house.append({"key": cat["key"], "label": cat["label"],
@@ -2704,8 +2739,17 @@ def build_constellation_retention():
         for r in detail:
             n = to_num(r[val_col])
             if n > 0:
+                # NO PER-SKU GOAL IS POSSIBLE HERE, unlike the fall program.
+                # These summer exports carry one placements column plus a
+                # Goals column that is populated ONLY on the rep-total row
+                # (verified on the 2026-08-19 pull: every detail row's Goals
+                # cell is blank), and there is no prior-window column to read
+                # a base from. So a product row is current distribution only;
+                # goal is carried as None so the cards can say so rather than
+                # imply a bar that does not exist.
                 prods[r["Sales Rep Assigned"]].append(
-                    {"product": r["Product Name"].strip(), "placements": round(n)})
+                    {"product": r["Product Name"].strip(), "placements": round(n),
+                     "goal": None})
 
         house_total = 0
         for rep in ROSTER:

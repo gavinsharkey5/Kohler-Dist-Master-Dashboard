@@ -29,6 +29,9 @@ ACCOUNT layer (see ACCOUNT DRILL-DOWN below):
                                                MONTHS, builders, metricFor(),
                                                detailFor(), objPct(), atGoalFor()
   ../MPOs/off-prem/programs.js                 window.OffPremMPO, same shape
+  ../MPOs/shared/guided.css                    the MPO dashboards' own card
+                                               styles (.g-*), reused for the
+                                               MPO half of Program View
   hub.js                                       adapters, sorting, screens
   accounts.js                                  eligible / buying / high-
                                                potential / can't-sell logic
@@ -344,10 +347,166 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   placements "toward your N goal" with no per-row bar. Nothing is
   recomputed here beyond need = goal - now and the bar width.
 
+PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
+  Per Gavin: a Constellation retention category is a bag of SKUs, so Corona
+  Gaintain opens to the products inside it, each with its own current
+  distribution and goal. brandGoals() hangs skuRows(c.products) off the
+  Constellation rows and skuHtml() draws them as a <details> that is CLOSED
+  by default -- the category stays the headline and a rep still reads the
+  card in one glance; the SKU list is what they open when they want to know
+  which product to sell. Summary line: "3 of 7 product goals held · 2 not
+  reordered yet".
+
+  The rows come straight from the tracker; nothing is recomputed but need
+  and the bar. SKUs short of goal are listed first (the generator sorts
+  them that way), so the top of an opened list is the call list, and a SKU
+  at 0 against a real goal reads "Not reordered yet" in red -- that is
+  distribution the rep has LOST, and it is what the category's shortfall is
+  made of.
+
+  ONLY CONSTELLATION FALL HAS PER-SKU GOALS. The summer Constellation
+  export sets its goal at the category level only, so its products render
+  with no bar, a "Currently placed" status and a productsNote saying so.
+  Any other retention program can join in the same way the moment its
+  export carries a per-product base -- give its rows a `products` array
+  through skuRows() and the rendering is already there. See
+  incentive-tracking/README.txt, "PRODUCT-LEVEL GOALS ON CONSTELLATION
+  RETENTION", for which exports can and cannot support this.
+
+THE MPO REP CARD IS A WORKLIST, NOT A DASHBOARD (v10, 2026-09-11)
+  Rep feedback via Gavin: too many colours, icons, badges and competing
+  elements to scan. A rep opening the MPO page has four questions and
+  nothing else -- what is my goal, where am I, how many more, which
+  accounts -- so mpoRepCard() in hub.js answers exactly those:
+
+    program name
+    supplier · premise                       (quiet)
+    CURRENT | GOAL | STILL NEEDED            (one row, read left to right)
+    a plain bar + "N% of goal" + the goal wording
+    POTENTIAL ACCOUNTS -- top 3, then "View potential accounts (N)"
+
+  STILL NEEDED IS MAX(GOAL - CURRENT, 0) off the tracker's own numbers.
+  r.valueNum / r.goalNum are plain COUNTS on every objective type,
+  including the percentage ones -- Keystone Ice's "40% of my account base
+  (14 of 33)" carries 6 and 14 BUYING ACCOUNTS, not 18.2 and 40 -- so one
+  subtraction is right across all of them and matches the tracker's own
+  remainText ("8 buying accounts"). The percentage wording stays as the
+  quiet caption beside the bar. If a future objective type carries
+  something other than counts there, mpoNums() returns null and the card
+  falls back to the tracker's own text.
+
+  WHAT WAS REMOVED, on purpose: the brand logo, the decorative icons
+  (target / pin / hourglass / beer / calendar), the status pill, the "N% of
+  MPO" weight pill, the ending-soon / almost-there / over-goal flags, the
+  Sell and Go lines (the program name says what to sell; "Go" IS the
+  accounts list now), the "Credit Earned" fact, the four count tiles above
+  the list, the status group headings (the list is flat), and the icons on
+  the On / Off pills. The header line is now one sentence: "5 programs ·
+  2 at goal · 3 still open".
+
+  ONE ACCENT COLOUR. --accent carries two things and nothing else: the
+  progress fill and the Still Needed number. A card at goal goes GREY, not
+  green -- "Goal met" replaces the number, the bar mutes, and the account
+  preview collapses to a one-line count so a finished card stops competing
+  for attention. Hierarchy everywhere else is size, weight and spacing. If
+  you add a colour to .mcard you are undoing the point of the redesign.
+
+  POTENTIAL ACCOUNTS come from the same nextAccounts() the rest of the hub
+  uses, so territory and account-base rules are UNCHANGED -- v10 only
+  changed what a row shows: account name, account number (#n), territory
+  (area) and the gap ("Never bought it"). Sorted biggest-opportunity first
+  (warm targets, then eligible by 2026 case volume). With none the card
+  says "No potential accounts currently identified." (verified: Allison
+  Scott, off-premise).
+
+  THE EXPAND holds everything that is not one of the four answers:
+  qualifying brands, the rep's account-base counts, how the objective is
+  scored (p.rules, which is where the weight went), the placements already
+  credited, and the link to the MPO tracker. The whole card is the toggle.
+
+  SCOPE: REP MODE ONLY. Manager Mode still shows the MPO dashboards' own
+  objective card (v9.8) and Program View still shows their Program Results
+  cards (v9.7) -- "reps at goal" and the weight are a manager's
+  information, and the brief says not to make them dominant for a rep.
+  Incentive cards are untouched and keep the .q boxes.
+
+  Verified at 430 / 768 / 1024 / 1366px (phone, iPad portrait and
+  landscape, desktop): no horizontal overflow and the three figures stay on
+  one row at every width, so the card never reflows into a shape a rep has
+  to re-learn.
+
+MPO REP CARDS WEAR THE DASHBOARDS' OBJECTIVE CARD (v9.8, 2026-09-11)
+  Per Gavin, after v9.7 only changed Manager Mode: "I still see the boxes
+  for MPOs" -- he meant the REP cards' boxed Goal / Where you are / Still
+  need tiles (.q). An MPO card's head is now guided.js's repObjectiveCard()
+  instead: the FULL objective name (not shortName), the tag row (weight
+  pill, Goal, status pill), the flat MY GOAL / WHERE I AM / STILL NEEDED /
+  CREDIT EARNED strip, the bar with its "N% of goal" caption, and on a dual
+  objective the per-sub bars. Same .g-* classes from MPOs/shared/guided.css,
+  so hub and dashboard cannot drift. mpoQuickHtml() in hub.js builds it.
+  INCENTIVE cards are untouched and keep the .q boxes. SUPERSEDED IN REP
+  MODE BY v10 above (2026-09-11, same day): this card is now what MANAGER
+  MODE shows. The reasoning below still explains that card.
+
+  WHAT DELIBERATELY STAYS is the hub's own layer below the strip: the brand
+  logo, the supplier line, the Sell / Go lines and the Targets / Completed
+  account list. Those are why the hub exists (CLAUDE.md: Rep Mode is the
+  numbered visit list) and the dashboards have no equivalent -- "look like
+  the dashboards" is about how the card reads, not about deleting the plan
+  under it. The hub's own status chip IS dropped on MPO cards, because the
+  .g-pill states it now and printing "Not Started" twice is worse than
+  either alone.
+
+  r.segments gained valueText and status (its `line` is still there for the
+  detail screen) so the sub-bars can be drawn the dashboards' way. Verified
+  against the live off-prem board on August's two dual objectives -- Wine &
+  Spirits reads "Le Grand Noir 4 / 2 · Leyenda 1925 1 / 2 · Green River
+  1 / 1" on both pages. A clock override is how to see those on the rep
+  page at all: rep-page MPOs are the CURRENT calendar month's only.
+
+PROGRAM VIEW'S MPO HALF IS THE DASHBOARDS' OWN CARD (v9.7, 2026-09-11)
+  Per Gavin: the MPO portion of Program View should mirror the individual
+  cards on the On-Prem / Off-Prem dashboards. It now renders the same
+  screenProgram() shape MPOs/shared/guided.js draws -- a weighted summary
+  strip, then one full-width objective card carrying "N / M reps at goal",
+  the weight pill, the goal, the eligible-rep count and the company bar --
+  using guided.css's own .g-* classes. hub/index.html LOADS
+  ../MPOs/shared/guided.css for this, so there is ONE copy of that design
+  and the pages cannot drift apart. It is safe because every selector in
+  guided.css is .g-* scoped and it only consumes palette variables the hub
+  already defines; if you ever add a rule there that reaches outside .g-*,
+  it lands on this page too.
+
+  THE NUMBERS NOW MATCH THE BOARD, and that is a real change. The old
+  .pvcard counted reps the hub's way -- participants filtered by account
+  base / territory, "completed" from each rep's status -- which disagreed
+  with the dashboard a manager had open in the next tab: Fever Tree read
+  "3 of 21 completed" here and "2 / 27 reps at goal" there. mpoProgramCardHtml()
+  reads atGoalFor() and objPct() straight from the MPO module (p.objPct()
+  was added beside p.atGoal() for this), so Program View and the trackers
+  state one number. The hub's territory/account-base logic still governs
+  the REP side, which is where it belongs -- nothing about Rep Mode changed.
+
+  SECTIONS ARE PER SCOPE + MONTH, never mixed: a month's weights sum to 1
+  within ONE scope, so On- and Off-Premise can never share a summary strip.
+  Cards inside a section follow the month's own objective order (heaviest
+  first, as the deck writes it), not this screen's active/end-date sort.
+
+  THE SUMMARY STRIP ALWAYS DESCRIBES THE WHOLE MONTH, never the filtered
+  subset -- a supplier filter would otherwise print a weighted percentage
+  that means nothing. Its first tile says "across all N objectives" for
+  exactly that reason, and when a filter hides cards the sub-line says how
+  many. Incentives keep the participation grid, under their own heading;
+  they have no weight, no house goal and no reps-at-goal number for these
+  cards to show. Clicking an MPO card still goes to the hub's program
+  detail (rep rankings) -- the dashboards expand in place, the hub
+  navigates, and navigating is the hub's existing pattern here.
+
 CACHE-BUSTING (2026-09-10)
   hub/index.html loads every script and the stylesheet with a ?v=<tag>
   query. GitHub Pages caches for 10 minutes and phones hold files longer,
-  so after shipping a change to hub.js / hub.css / accounts.js, BUMP THE
+  so after shipping a change to hub.js / hub.css / accounts.js -- or to
+  ../MPOs/shared/guided.css, which this page now loads too -- BUMP THE
   TAG in index.html (any new string) or reps keep the old copy. A change
   Gavin "still can't see after a hard refresh" is either this or the Pages
   deploy pipeline stalling (repo CLAUDE.md, "Deploy from a branch").

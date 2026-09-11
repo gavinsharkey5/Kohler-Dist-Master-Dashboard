@@ -2722,19 +2722,41 @@ function cardConstellationFall(rep){
     if(!c.goal){
       return detailRow({name:c.label, sub:'No goal set for this category', stat:`${n(c.placements)} placements`});
     }
+    const skuBit = c.skusTotal ? ` · ${n(c.skusHeld)}/${n(c.skusTotal)} SKUs held` : '';
     return detailRow({
       name:c.label,
-      sub:c.retained
-        ? `Goal: ${n(c.goal)} (your ${esc(c.baseWindow)}) · holding at ${c.pct.toFixed(0)}%`
-        : `Goal: ${n(c.goal)} (your ${esc(c.baseWindow)}) · ${n(c.toGo)} more to match it`,
+      sub:(c.retained
+        ? `Goal: ${n(c.goal)} (your ${c.baseWindow}) · holding at ${c.pct.toFixed(0)}%`
+        : `Goal: ${n(c.goal)} (your ${c.baseWindow}) · ${n(c.toGo)} more to match it`) + skuBit,
       stat:`${n(c.placements)} / ${n(c.goal)}`, statCls:c.retained?'pos':'', status:c.retained?'retained':undefined, barPct:c.pct,
     });
   }).join('');
-  const skuGroups = cats.filter(c=>c.products && c.products.length).map(c=>({
-    name:c.label, sub:`${c.products.length} SKU${c.products.length===1?'':'s'} placed`,
-    stat:`${n(c.placements)} placements`, statCls:c.retained?'pos':'',
-    accounts:c.products.map(p=>({name:p.product, stat:`${n(p.placements)} of ${n(p.base)}`})),
-  }));
+  // PRODUCT-LEVEL GOALS (2026-09-11, per Gavin). The base column is a goal at
+  // the SKU grain just as it is at the category grain, so every product under
+  // a category gets its own current / goal, bar and status -- including the
+  // SKUs at zero, which are the distribution the rep has already lost and are
+  // exactly what the category's shortfall is made of.
+  const skuRow = (p, baseWindow) => p.goal ? ({
+    name:p.product,
+    sub:p.retained ? `Goal: ${n(p.goal)} (your ${baseWindow}) · holding at ${p.pct.toFixed(0)}%`
+      : p.lost ? `Goal: ${n(p.goal)} (your ${baseWindow}) · not reordered yet this period`
+      : `Goal: ${n(p.goal)} (your ${baseWindow}) · ${n(p.toGo)} more to match it`,
+    stat:`${n(p.placements)} / ${n(p.goal)}`, statCls:p.retained?'pos':(p.lost?'neg':''),
+    status:p.retained?'retained':undefined, barPct:p.pct,
+  }) : ({name:p.product, sub:'New this period — you had none of this SKU in the base window',
+         stat:`${n(p.placements)} placement${p.placements===1?'':'s'}`, statCls:'pos'});
+  const skuGroups = cats.filter(c=>c.products && c.products.length).map(c=>{
+    const bits = [];
+    if(c.skusTotal) bits.push(`${n(c.skusHeld)} of ${n(c.skusTotal)} SKU goals held`);
+    if(c.skusLost) bits.push(`${n(c.skusLost)} not reordered yet`);
+    if(c.skusNew) bits.push(`${n(c.skusNew)} new SKU${c.skusNew===1?'':'s'}`);
+    return {
+      name:c.label, sub:bits.join(' · ') || `${c.products.length} SKU${c.products.length===1?'':'s'} placed`,
+      stat:c.goal?`${n(c.placements)} / ${n(c.goal)}`:`${n(c.placements)} placements`,
+      statCls:c.retained?'pos':'',
+      accounts:c.products.map(p=>skuRow(p, c.baseWindow)),
+    };
+  });
   const offBlock = !d.offGoalsTotal
     ? naBlock('Off-Premise — No Goal For You', 'These reports carry no Constellation off-premise goal for you this period. Your on-premise goals are below.')
     : earnBlock({
@@ -2743,7 +2765,7 @@ function cardConstellationFall(rep){
     whatToDo,
     progress:{pct:offPct, caption:`${n(heldPlacements)} of ${n(d.offGoal)} placements · ${dayLine}`},
     extra:(catRows ? `<div class="detail-list-wrap"><div class="earn-section-label">Your Category Goals</div><div class="detail-list">${catRows}</div></div>` : '')
-      + productAccordion({label:'Your Placements By Category', note:'Tap a category to see the SKUs behind its number, each against its own prior placements.', groups:skuGroups, emptyMsg:'No Constellation off-premise placements on file for you yet this period.'}),
+      + productAccordion({label:'Your SKU Goals By Category', note:'Tap a category to see every product inside it — current placements against that SKU\u2019s own prior placements. SKUs still at zero are ones you placed last period and have not reordered.', groups:skuGroups, emptyMsg:'No Constellation off-premise placements on file for you yet this period.'}),
   });
 
   // ---- on-premise sections: packages and draft, each brand family its own goal ----
@@ -3070,12 +3092,17 @@ function cardConstellationRetention(rep){
     });
   }).join('');
 
+  // Product level is CURRENT DISTRIBUTION ONLY on this program -- the summer
+  // exports carry the Goals column on the rep-total row alone and no prior
+  // window to read a per-SKU base from, so there is nothing to draw a SKU bar
+  // against. The fall program (cardConstellationFall) does have per-SKU goals.
   const skuGroups = cats.filter(c=>c.products && c.products.length).map(c=>({
     name:c.label,
-    sub:`${c.products.length} SKU${c.products.length===1?'':'s'} placed`,
-    stat:`${c.placements.toLocaleString('en-US')} placements`,
+    sub:`${c.products.length} SKU${c.products.length===1?'':'s'} placed${c.goal?` · category goal ${c.goal.toLocaleString('en-US')}`:''}`,
+    stat:c.goal?`${c.placements.toLocaleString('en-US')} / ${c.goal.toLocaleString('en-US')}`
+        :`${c.placements.toLocaleString('en-US')} placements`,
     statCls:c.retained?'pos':'',
-    accounts:c.products.map(p=>({name:p.product, stat:`${p.placements.toLocaleString('en-US')} placements`})),
+    accounts:c.products.map(p=>({name:p.product, stat:`${p.placements.toLocaleString('en-US')} placement${p.placements===1?'':'s'}`})),
   }));
 
   const offBlock = !d.inReport
@@ -3088,8 +3115,8 @@ function cardConstellationRetention(rep){
     extra:(catRows
       ? `<div class="detail-list-wrap"><div class="earn-section-label">Your Category Goals</div><div class="detail-list">${catRows}</div></div>`
       : '') + productAccordion({
-        label:'Your Placements By Category',
-        note:'Tap a category to see the SKUs behind its number.',
+        label:'Your Products By Category',
+        note:'Tap a category to see every product inside it. This period\u2019s export sets the goal at the category level only \u2014 there is no per-SKU goal to hold, so each product shows its current distribution.',
         groups:skuGroups,
         emptyMsg:'No Constellation off-premise placements on file for you this window.',
       }),
