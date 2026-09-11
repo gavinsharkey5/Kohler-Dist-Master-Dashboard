@@ -1370,34 +1370,47 @@ const SHOW_FIRST = 10;
 const secMore = {};   // "<program id>|<section>" -> showing every row
 function acctList(key, cols, rows){
   if(!rows.length) return '';
+  // A column every row leaves blank is noise -- "Date: —" on every card of a
+  // program the tracker publishes no dates for. Drop it, on both layouts.
+  cols = cols.filter((c,i)=>i===0 || rows.some(rw=>{ const v=c.get(rw); return v!=null && v!==''; }));
   const all = !!secMore[key];
   const shown = all ? rows : rows.slice(0, SHOW_FIRST);
   const head = `<li class="ar ar-h">${cols.map(c=>`<span class="ar-c${c.num?' num':''}">${E(c.label)}</span>`).join('')}</li>`;
   const body = shown.map(rw=>`<li class="ar">${cols.map((c,i)=>{
       const v = c.get(rw);
+      const inner = (v==null||v==='') ? '—' : (c.raw ? v : E(v));
       return i===0
-        ? `<span class="ar-c ar-name">${(v==null||v==='')?'—':E(v)}</span>`
-        : `<span class="ar-c${c.num?' num':''}" data-l="${E(c.short||c.label)}">${(v==null||v==='')?'—':E(v)}</span>`;
+        ? `<span class="ar-c ar-name">${inner}</span>`
+        : `<span class="ar-c${c.num?' num':''}${c.cls?' '+c.cls:''}" data-l="${E(c.short==null?c.label:c.short)}">${inner}</span>`;
     }).join('')}</li>`).join('');
   const more = rows.length > SHOW_FIRST
     ? `<button class="ar-more" data-act="sec-more" data-key="${E(key)}">${all ? 'Show fewer' : `Show all ${rows.length} accounts`}</button>`
     : '';
-  return `<ul class="alist c${cols.length}">${head}${body}</ul>${more}`;
+  // Track widths ride on the element so a 4-, 5- or 6-column list all line up.
+  return `<ul class="alist" style="--cols:${cols.map(c=>c.w||'minmax(120px,1fr)').join(' ')}">${head}${body}</ul>${more}`;
 }
 const ACCT_COLS = {
   targets: [
-    {label:'Account',          get:x=>x.name},
-    {label:'Acct #',           short:'Account #', get:x=>x.n!=null?String(x.n):''},
-    {label:'Town · Territory', get:x=>[x.city, x.area || x.rawArea].filter(Boolean).join(' · ')},
-    {label:'2026 cases',       get:x=>x.cases!=null?fmtCases(x.cases):'', num:true},
-    {label:'Why it is an opportunity', short:'Opportunity', get:x=>x.why||''},
+    {label:'Account',          w:'minmax(150px,1.7fr)', get:x=>x.name},
+    {label:'Acct #',           w:'86px', short:'Account #', get:x=>x.n!=null?String(x.n):''},
+    {label:'Town · Territory', w:'minmax(120px,1fr)', get:x=>[x.city, x.area || x.rawArea].filter(Boolean).join(' · ')},
+    {label:'2026 cases',       w:'104px', get:x=>x.cases!=null?fmtCases(x.cases):'', num:true},
+    {label:'Why it is an opportunity', w:'minmax(140px,1.3fr)', short:'Opportunity', get:x=>x.why||''},
   ],
   dist: [
-    {label:'Account',           get:x=>x.name},
-    {label:'Acct #',            short:'Account #', get:x=>x.n!=null?String(x.n):''},
-    {label:'Town · Territory',  get:x=>[x.city, x.area].filter(Boolean).join(' · ')},
-    {label:'What was credited', short:'Credited', get:x=>[x.what, x.note].filter(Boolean).join(' · ')},
-    {label:'Date',              get:x=>x.date},
+    {label:'Account',           w:'minmax(150px,1.6fr)', get:x=>x.name},
+    {label:'Acct #',            w:'86px', short:'Account #', get:x=>x.n!=null?String(x.n):''},
+    {label:'Town · Territory',  w:'minmax(120px,1fr)', get:x=>[x.city, x.area].filter(Boolean).join(' · ')},
+    // "· photo" beside a View photo button is noise -- drop that one note.
+    {label:'What was credited', w:'minmax(150px,1.6fr)', short:'Credited',
+     get:x=>[x.what, (x.note==='photo' && x.photo) ? '' : x.note].filter(Boolean).join(' · ')},
+    {label:'Date',              w:'96px', get:x=>x.date},
+    // Photo-verified objectives (off-prem cooler doors, the on-prem Bardstown
+    // menu, Lytt POS pics) carry the picture on the line. v14 dropped this
+    // link when the credited log became the distribution list -- restored,
+    // and it is the only reason a rep can check their own MPO photo.
+    {label:'Photo', w:'104px', short:'', raw:true, cls:'ar-photo',
+     get:x=>x.photo ? `<a href="${E(x.photo)}" target="_blank" rel="noopener">View photo ›</a>` : ''},
   ],
 };
 // The two expanders every rep-mode card carries, collapsed until asked.

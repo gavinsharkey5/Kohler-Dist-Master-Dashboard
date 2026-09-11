@@ -365,6 +365,19 @@ TWO SECTIONS PER CARD, NO DOLLARS (v14, 2026-09-11)
   change. The trackers themselves, Manager Mode and every underlying figure
   are untouched -- this is a rep-page filter, not a data change.
 
+PHOTOS ON THE DISTRIBUTION LIST (v14.1, 2026-09-11)
+  Photo-verified objectives -- the off-prem Cooler Door Stickers, the on-prem
+  Bardstown menu placements, August's Lytt POS pics -- carry the picture URL
+  on each tracker line. v14 dropped that link when the MPO card's "Already
+  credited" log became the Distribution section, so a rep could no longer
+  open their own photo on a phone; it is back as a Photo column in
+  ACCT_COLS.dist, rendered as a 42px tappable pill on a phone and a plain
+  link in the desktop grid. It is the ONLY way a rep checks an MPO photo
+  from the hub -- do not drop it again.
+  NOTE, not a hub bug: mpo_pos_cooler_doors.json spells one rep "Matthew
+  Powierski" while the roster says "Matt Powierski", so that rep's September
+  sticker row reaches nobody. The trackers own that matching.
+
 THE ACCOUNT LIST IS ONE WIDGET, TWO LAYOUTS (v14, 2026-09-11)
   acctList(key, cols, rows) + ACCT_COLS in hub.js, .alist / .ar in hub.css.
   The old 5-column <table class="it"> is gone: it needed a horizontal
@@ -373,9 +386,17 @@ THE ACCOUNT LIST IS ONE WIDGET, TWO LAYOUTS (v14, 2026-09-11)
     phone     a stacked card per account: name, then every value with its own
               label ("Account #: 190707", "Opportunity: Still on Summer Ale").
               Columns can carry a `short` label used only here.
-    >= 760px  a real CSS grid (li{display:contents}) with a header row,
+    >= 880px  a real CSS grid (li{display:contents}) with a header row,
               per-cell right padding so the row hairlines stay continuous,
-              and no wrapper to scroll sideways.
+              and no wrapper to scroll sideways. The breakpoint was 760px
+              and a 5-column grid at ~800px squeezed the headers into each
+              other ("WHAT WAS CREDITEDDATE", Gavin 2026-09-11) -- a laptop
+              at that width now gets the stacked cards, which read fine.
+              Column track widths ride on the element as --cols, so a 4-,
+              5- or 6-column list all line up, and acctList() DROPS any
+              column every row leaves blank (no "Date: —" on every card).
+              All .ar rules are scoped under .alist: the bare class once
+              styled a "›" chevron inside a link into a full card.
   Under 380px the Current | Goal | Still Needed band stacks to one column
   instead of shrinking the type (per Gavin: do not shrink text to preserve
   the desktop layout). Every expander and "Show all" button is >= 44px tall.

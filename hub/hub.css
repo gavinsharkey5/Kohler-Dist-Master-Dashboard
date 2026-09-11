@@ -1171,37 +1171,51 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
    and a hairline per row. No <table>, so nothing scrolls sideways and no
    two columns can ever run together ("2026 CasesWHY IT IS AN...").
    ==================================================================== */
-.alist{list-style:none;margin:10px 0 0;padding:0;}
-.ar{display:block;background:var(--card);border:1px solid var(--line-soft);
-  border-radius:12px;padding:13px 15px;margin-bottom:10px;}
-.ar-h{display:none;}
-.ar-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;
-  font-size:16px;line-height:1.35;color:var(--text);margin-bottom:7px;}
-.ar-c{display:block;font-size:13.5px;line-height:1.5;color:var(--text-dim);}
-.ar-c + .ar-c{margin-top:4px;}
-.ar-c[data-l]::before{content:attr(data-l) ": ";color:var(--text-mute);font-weight:600;}
+.alist{list-style:none;margin:12px 0 0;padding:0;}
+.alist .ar{display:block;background:var(--card);border:1px solid var(--line-soft);
+  border-radius:12px;padding:15px 16px;margin-bottom:12px;}
+.alist .ar-h{display:none;}
+.alist .ar-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:16.5px;line-height:1.35;color:var(--text);
+  margin:0 0 11px;padding-bottom:11px;border-bottom:1px solid var(--line-soft);}
+.alist .ar-c{display:block;font-size:14px;line-height:1.55;color:var(--text);overflow-wrap:anywhere;}
+.alist .ar-c + .ar-c{margin-top:8px;}
+.alist .ar-c[data-l]::before{content:attr(data-l) ": ";color:var(--text-mute);font-weight:600;}
+.alist .ar-c[data-l=""]::before{content:none;}
+/* Tappable on a phone -- this is how a rep opens their own MPO photo. */
+.alist .ar-photo a{display:inline-flex;align-items:center;gap:6px;min-height:42px;
+  padding:9px 15px;margin-top:3px;border:1px solid var(--accent);border-radius:999px;
+  color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;}
+.alist .ar-photo a:hover{background:var(--accent-soft);}
 .ar-more{display:block;width:100%;margin-top:4px;min-height:48px;padding:12px 16px;
   background:var(--card);border:1px solid var(--border);border-radius:12px;
   color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;
   font-size:14.5px;cursor:pointer;}
 .ar-more:hover{border-color:var(--accent);background:var(--card-alt);}
-@media (min-width:760px){
-  .alist{display:grid;column-gap:0;margin-top:12px;}
-  .alist.c5{grid-template-columns:minmax(170px,1.7fr) 88px minmax(130px,1fr) 104px minmax(150px,1.5fr);}
-  .ar{display:contents;}
-  .ar-h{display:contents;}
-  .ar-h .ar-c{font-size:11px;letter-spacing:.07em;text-transform:uppercase;
-    color:var(--text-mute);font-weight:700;padding:0 26px 9px 0;border-bottom:1px solid var(--line-soft);
-    white-space:nowrap;}
-  .ar-h .ar-c:last-child,.ar .ar-c:last-child{padding-right:0;}
-  .ar-h .ar-c::before{content:none;}
-  .ar .ar-c{padding:12px 26px 12px 0;border-top:1px solid var(--line-soft);font-size:13.5px;
-    overflow-wrap:anywhere;}
-  .ar-h + .ar .ar-c{border-top:0;}
-  .ar .ar-c::before{content:none;}
-  .ar .ar-name{margin:0;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text);}
-  .ar .ar-c.num{text-align:right;font-variant-numeric:tabular-nums;}
-  .ar-more{width:auto;min-height:44px;margin-top:12px;}
+/* The grid only earns its keep with room for every column. Below this a
+   phone, a landscape phone and a narrow tablet all get the stacked cards --
+   a squeezed five-column grid is what made the headers collide
+   ("WHAT WAS CREDITEDDATE", Gavin 2026-09-11). */
+@media (min-width:880px){
+  .alist{display:grid;grid-template-columns:var(--cols);column-gap:0;margin-top:14px;}
+  .alist .ar{display:contents;}
+  .alist .ar-h{display:contents;}
+  .alist .ar-h .ar-c{font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--text-mute);font-weight:700;padding:0 22px 10px 0;
+    border-bottom:1px solid var(--line-soft);line-height:1.35;}
+  .alist .ar-h .ar-c:last-child,.alist .ar .ar-c:last-child{padding-right:0;}
+  .alist .ar-h .ar-c::before{content:none;}
+  .alist .ar .ar-c{padding:13px 22px 13px 0;border-top:1px solid var(--line-soft);
+    font-size:13.5px;line-height:1.5;overflow-wrap:anywhere;}
+  .alist .ar-h + .ar .ar-c{border-top:0;}
+  .alist .ar .ar-c::before{content:none;}
+  .alist .ar .ar-name{margin:0;padding-bottom:13px;border-bottom:0;font-size:14px;font-weight:600;
+    font-family:'Inter',sans-serif;color:var(--text);}
+  .alist .ar .ar-c.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .alist .ar-photo a{min-height:0;margin:0;padding:0;border:0;border-radius:0;font-size:13px;
+    font-family:'Inter',sans-serif;font-weight:600;}
+  .alist .ar-photo a:hover{background:none;text-decoration:underline;}
+  .ar-more{width:auto;min-height:44px;margin-top:14px;}
 }
 
 /* The two expanders: big tap targets, collapsed until asked. */
