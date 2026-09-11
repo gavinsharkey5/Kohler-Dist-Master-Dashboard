@@ -1565,7 +1565,11 @@ document.addEventListener('click', e=>{
   if(t.tagName==='A') e.preventDefault();
   switch(act){
     case 'home': openCards.clear(); state.showEnded = false; pick = {rep:null, main:null, q:''}; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
-    case 'pick-rep': pick.rep = t.dataset.rep; pick.q=''; rerenderHomeList(); break;
+    case 'pick-rep': pick.rep = t.dataset.rep; pick.q=''; rerenderHomeList();
+      // On a phone the picker fills the screen, so bring step 2 up once a
+      // name is chosen (per Gavin, 2026-09-11); desktop already shows both.
+      if(isMobile()){ const step2 = document.querySelectorAll('.step')[1]; if(step2) setTimeout(()=>step2.scrollIntoView({behavior:'smooth', block:'start'}), 60); }
+      break;
     case 'clear-rep': pick.rep = null; pick.q=''; rerenderHomeList(); { const i=$('#repSearch'); if(i){ i.value=''; i.focus(); } } break;
     case 'pick-main': pick.main = t.dataset.main; rerenderHomeCats(); break;
     case 'view-programs': if(pickReady()){ openCards.clear(); go({view:'pick', rep:pick.rep, main:pick.main, cat:null, prog:null, peek:null, from:null}); } break;
