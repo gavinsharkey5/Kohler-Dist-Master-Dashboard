@@ -991,8 +991,8 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .mcard-head{display:block;width:100%;text-align:left;background:none;border:0;
   padding:18px 18px 16px;cursor:pointer;color:inherit;font:inherit;}
 .mcard-head.static{cursor:default;}
-.mcard-head:hover{background:var(--card-alt);}
-.mcard-head:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
+.mcard-head,.irow-head{cursor:default;}
+
 .mcard-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;
   line-height:1.25;color:var(--text);letter-spacing:-.005em;}
 .mcard-sup{margin-top:5px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;
@@ -1002,6 +1002,15 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 /* Current | Goal | Still Needed -- the three numbers, read left to right. */
 .mfig{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;
   padding:16px 0 15px;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+/* Under ~380px three columns squeeze the 31px "Still Needed" figure, and
+   Gavin does not want the type shrunk to save the layout: stack instead. */
+@media (max-width:379px){
+  .mfig,.ifig{grid-template-columns:1fr;gap:14px;}
+  .mfig .mf,.ifig .if{display:flex;flex-direction:row;align-items:baseline;
+    justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .mf-v,.if-v{margin-top:0;}
+  .mf-u{width:100%;margin-top:0;}
+}
 .mf-l{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);
   font-weight:700;line-height:1.3;}
 .mf-v{margin-top:5px;font-family:'Space Grotesk',sans-serif;font-weight:700;
@@ -1102,8 +1111,7 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .irow{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 .irow-head{display:block;width:100%;text-align:left;background:none;border:0;
   padding:13px 15px 12px;cursor:pointer;color:inherit;font:inherit;}
-.irow-head:hover{background:var(--card-alt);}
-.irow-head:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;}
+
 .irow-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
 .irow-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.005em;
   line-height:1.3;color:var(--text);min-width:0;}
@@ -1155,6 +1163,64 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .it-num{font-variant-numeric:tabular-nums;color:var(--text-mute);white-space:nowrap;}
 .it-why{color:var(--text-dim);}
 .it-note{margin-top:8px;font-size:12.5px;color:var(--text-mute);}
+
+/* ====================================================================
+   ACCOUNT LIST -- one markup, two layouts (v14, 2026-09-11).
+   Phone: a stacked card per account, every value carrying its own label.
+   Desktop (>=760px): a real grid with a header row, generous column gaps
+   and a hairline per row. No <table>, so nothing scrolls sideways and no
+   two columns can ever run together ("2026 CasesWHY IT IS AN...").
+   ==================================================================== */
+.alist{list-style:none;margin:10px 0 0;padding:0;}
+.ar{display:block;background:var(--card);border:1px solid var(--line-soft);
+  border-radius:12px;padding:13px 15px;margin-bottom:10px;}
+.ar-h{display:none;}
+.ar-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:16px;line-height:1.35;color:var(--text);margin-bottom:7px;}
+.ar-c{display:block;font-size:13.5px;line-height:1.5;color:var(--text-dim);}
+.ar-c + .ar-c{margin-top:4px;}
+.ar-c[data-l]::before{content:attr(data-l) ": ";color:var(--text-mute);font-weight:600;}
+.ar-more{display:block;width:100%;margin-top:4px;min-height:48px;padding:12px 16px;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  color:var(--accent);font-family:'Space Grotesk',sans-serif;font-weight:700;
+  font-size:14.5px;cursor:pointer;}
+.ar-more:hover{border-color:var(--accent);background:var(--card-alt);}
+@media (min-width:760px){
+  .alist{display:grid;column-gap:0;margin-top:12px;}
+  .alist.c5{grid-template-columns:minmax(170px,1.7fr) 88px minmax(130px,1fr) 104px minmax(150px,1.5fr);}
+  .ar{display:contents;}
+  .ar-h{display:contents;}
+  .ar-h .ar-c{font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--text-mute);font-weight:700;padding:0 26px 9px 0;border-bottom:1px solid var(--line-soft);
+    white-space:nowrap;}
+  .ar-h .ar-c:last-child,.ar .ar-c:last-child{padding-right:0;}
+  .ar-h .ar-c::before{content:none;}
+  .ar .ar-c{padding:12px 26px 12px 0;border-top:1px solid var(--line-soft);font-size:13.5px;
+    overflow-wrap:anywhere;}
+  .ar-h + .ar .ar-c{border-top:0;}
+  .ar .ar-c::before{content:none;}
+  .ar .ar-name{margin:0;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text);}
+  .ar .ar-c.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .ar-more{width:auto;min-height:44px;margin-top:12px;}
+}
+
+/* The two expanders: big tap targets, collapsed until asked. */
+.seclinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.seclink{flex:1 1 240px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:11px 16px;background:var(--card-alt);border:1px solid var(--border);
+  border-radius:12px;color:var(--accent);cursor:pointer;text-align:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;line-height:1.25;}
+.seclink:hover{border-color:var(--accent);}
+.seclink:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.seclink.on{background:var(--accent-soft);border-color:var(--accent);}
+.seclink-n{background:var(--input-bg);border:1px solid var(--line-soft);border-radius:999px;
+  padding:1px 8px;font-size:12px;color:var(--text-dim);}
+.seclink-ar{font-size:11px;}
+/* What the credited list does and does not add up to. */
+.recon{font-size:13px;line-height:1.55;color:var(--text-dim);background:var(--card);
+  border:1px solid var(--line-soft);border-left:3px solid var(--text-mute);
+  border-radius:10px;padding:10px 13px;}
+.recon.ok{border-left-color:var(--good);}
 .itext{font-size:14px;color:var(--text-dim);line-height:1.5;}
 .iquiet{color:var(--text-mute);}
 .ibul{margin:0;padding-left:18px;font-size:13.5px;color:var(--text-dim);line-height:1.6;}

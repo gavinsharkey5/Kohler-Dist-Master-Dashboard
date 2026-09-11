@@ -767,7 +767,7 @@ function cmpKey(a, b){
   return 0;
 }
 function incRowHtml(p, r, b, rep){
-  const open = openCards.has(p.id);
+  const sec = cardSec[p.id] || null;
   const N = incNums(r);
   const pct = N ? Math.max(0, Math.min(100, (N.cur/N.goal)*100)) : (r.pct||0);
   const targets = (r.status==='unavailable' || r.soon) ? [] : nextAccounts(p, rep).rows.filter(a=>!a.foreign);
@@ -784,21 +784,20 @@ function incRowHtml(p, r, b, rep){
         ${r.openEnded?`<span class="if-note">Open-ended — every one pays, no goal to count down</span>`:''}</div>`;
 
   const bar = N ? `<div class="ibar ${b.cls}"><div class="ibar-fill" style="width:${pct}%"></div></div>` : '';
-  const hasBG = !(r.status==='unavailable' || r.soon) && brandGoals(p, rep).length>0;
-  const more = (r.status==='unavailable') ? ''
-    : hasBG ? `${open?'Hide':'View'} your brand goals`
-    : targets.length ? `${open?'Hide':'View'} ${targets.length} potential account${targets.length===1?'':'s'}`
-    : (open ? 'Hide details' : 'View details');
+  const off = r.status==='unavailable' || r.soon;
+  const dist = off ? [] : distFor(p, rep);
+  const counts = {dist: dist.length || null, targets: off ? null : targets.length};
 
-  return `<div class="irow b${b.band}${open?' open':''}" id="card-${E(p.id)}">
-    <button class="irow-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+  return `<div class="irow b${b.band}${sec?' open':''}" id="card-${E(p.id)}">
+    <div class="irow-head">
       <span class="irow-top"><span class="irow-name">${E(p.shortName||p.name)}</span><span class="ist ${b.cls}">${E(b.label)}</span></span>
       <span class="irow-meta">${E(meta)}</span>
       ${figures}
       ${bar}
-      <span class="irow-foot">${N?`<span class="ipct">${Math.round(pct)}% of goal</span>`:'<span class="ipct"></span>'}<span class="imore">${E(more)}</span></span>
-    </button>
-    ${open ? `<div class="irow-body">${incRowDetail(p, r, rep, targets)}</div>` : ''}
+      ${N?`<div class="irow-foot"><span class="ipct">${Math.round(pct)}% of goal</span></div>`:''}
+      ${secLinks(p, sec, counts)}
+    </div>
+    ${sec ? `<div class="irow-body">${incRowDetail(p, r, rep, targets, dist, sec)}</div>` : ''}
   </div>`;
 }
 // Opened: the accounts table first (it is why a rep clicked), then the
@@ -806,37 +805,37 @@ function incRowHtml(p, r, b, rep){
 // customer base -- it carries total 2026 cases only -- so the missing
 // product is named at PROGRAM level and each row carries the volume and
 // the reason instead. See hub/README.txt.
-function incRowDetail(p, r, rep, targets){
+function incRowDetail(p, r, rep, targets, dist, which){
   const fams = HubAccounts.PROGRAM_BRANDS[HubAccounts.brandKey(p)];
   const ask = sellAsk(p);
   // A retention program's detail is its BRAND GOALS, not a prospect list --
   // including the per-SKU current/goal rows added in v9.6. Dropping these
   // would lose the Constellation product-level work, so they come first.
   const BG = brandGoals(p, rep);
-  const rows = targets.slice(0, 25);
+  const sec = (t, body) => body ? `<div class="isec"><div class="isec-h">${E(t)}</div>${body}</div>` : '';
+  const key = p.id+'|'+which;
+  const full = `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
+  // CURRENT-PERIOD DISTRIBUTION -- where the credited activity came from,
+  // inside this program's own dates, straight from the tracker's own lines.
+  if(which==='dist'){
+    const rc = reconLine(p, r, dist);
+    return sec(`Credited in ${E(periodLabel(p.period))}`,
+      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist)) + full;
+  }
   const table = !targets.length
     ? `<div class="it-note">No potential accounts currently identified.</div>`
-    : `<div class="it-wrap"><table class="it">
-        <thead><tr><th>Account</th><th>Acct #</th><th>Town · Territory</th><th class="num">2026 cases</th><th>Why it is an opportunity</th></tr></thead>
-        <tbody>${rows.map(a=>`<tr>
-          <td class="it-n">${E(a.name)}</td>
-          <td class="it-num">${E(a.n!=null?String(a.n):'—')}</td>
-          <td>${E([a.city, a.area || a.rawArea].filter(Boolean).join(' · ') || '—')}</td>
-          <td class="num">${E(a.cases!=null?fmtCases(a.cases):'—')}</td>
-          <td class="it-why">${E(a.why||'')}</td></tr>`).join('')}</tbody>
-      </table>${targets.length>rows.length?`<div class="it-note">Showing the top 25 of ${targets.length} by 2026 volume.</div>`:''}</div>`;
-  const sec = (t, body) => body ? `<div class="isec"><div class="isec-h">${E(t)}</div>${body}</div>` : '';
+    : acctList(key, ACCT_COLS.targets, targets);
   if(BG.length){
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
       + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table)
       + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
-      + `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
+      + full;
   }
   return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table)
     + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
     + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
     + (r.next ? sec('Next step', `<div class="itext">${r.next}</div>`) : '')
-    + `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
+    + full;
 }
 // One entry per incentive the rep is actually in -- the incentive page's
 // own list, shared with the tab counter.
@@ -845,6 +844,7 @@ function incRows(rep){
   PROGRAMS.forEach(p=>{
     if(p.type!=='Incentive' || !isActive(p)) return;
     const r = p.forRep(rep); if(!r) return;
+    if(isDollarProgram(r)) return;             // money is not a field metric
     if(!availability(p, rep).ok && r.status!=='unavailable') return;
     const b = incBand(p, r); if(!b) return;
     rows.push({p, r, b});
@@ -1314,6 +1314,101 @@ function closedFor(p, rep){
   rows.sort((a,b)=>((b.when?b.when.getTime():0)-(a.when?a.when.getTime():0)) || a.customer.localeCompare(b.customer));
   return rows;
 }
+/* ====================================================================
+   v14, 2026-09-11 -- dollars out, distribution in, one account list.
+   ==================================================================== */
+// A program whose result is MONEY is not something a rep can go place, and
+// Gavin does not want dollars on the rep page. Read off the tracker's own
+// summary text, so a new dollar program disappears without a code change --
+// the trackers themselves and Manager Mode keep every figure.
+const isDollarProgram = r => !!r && /\$/.test([r.now, r.goal, r.remain, r.sub].filter(Boolean).join(' '));
+
+// name / account number -> the rep's own customer-base row.
+const bookCache = new Map();
+function bookIndex(rep){
+  if(bookCache.has(rep)) return bookCache.get(rep);
+  const m = new Map();
+  ((typeof HUB_ACCOUNTS!=='undefined' && HUB_ACCOUNTS.reps[rep]) || []).forEach(a=>{
+    m.set(HubAccounts.norm(a.name), a);
+    if(a.n!=null) m.set(String(a.n), a);
+  });
+  bookCache.set(rep, m);
+  return m;
+}
+// CURRENT-PERIOD DISTRIBUTION: the credited lines the tracker publishes for
+// this rep on this program (closedFor, which reads only that program's own
+// period), with account number, town and territory filled in from the rep's
+// book. Nothing is recomputed here.
+function distFor(p, rep){
+  const idx = bookIndex(rep);
+  return closedFor(p, rep).map(x=>{
+    const a = idx.get(HubAccounts.norm(x.customer));
+    return {name:x.customer, n: a?a.n:null, city: a?a.city:'', area: a?(a.area||a.rawArea):'',
+            what:x.product, date:x.date, note:x.note, photo:x.photo};
+  });
+}
+// HOW FAR THIS LIST RECONCILES. The trackers publish a summary number AND,
+// for some programs, the lines behind it -- but they are not the same feed.
+// Measured 2026-09-11 for one rep: Sam Adams Conversion read 39 with 50
+// published lines; 1911 read 3 with 8 lines across 3 accounts; several
+// programs publish a number and no lines at all. So the label states the
+// count, says so when it genuinely reconciles, and otherwise says plainly
+// that it does not, rather than implying a tie-out that is not there.
+function reconLine(p, r, rows){
+  const lines = rows.length;
+  const accts = new Set(rows.map(x=>HubAccounts.norm(x.name))).size;
+  const base = `${plw(lines,'credited line')} across ${plw(accts,'account')}`;
+  const cur = (r && typeof r.valueNum==='number') ? Math.round(r.valueNum) : null;
+  if(cur!=null && (cur===lines || cur===accts)) return {t:`${base} — matches your current result of ${E(r.now||cur)}.`, ok:true};
+  return {t:`${base}. Your current result (${E((r&&r.now)||'—')}) is calculated from the supplier’s own feed, so it will not always equal this count.`, ok:false};
+}
+
+// ONE ACCOUNT LIST, TWO LAYOUTS. A grid with a header row on a desktop,
+// a stacked card per account on a phone (.alist / .ar in hub.css). No
+// <table>, so nothing scrolls sideways and no two columns can run together.
+const SHOW_FIRST = 10;
+const secMore = {};   // "<program id>|<section>" -> showing every row
+function acctList(key, cols, rows){
+  if(!rows.length) return '';
+  const all = !!secMore[key];
+  const shown = all ? rows : rows.slice(0, SHOW_FIRST);
+  const head = `<li class="ar ar-h">${cols.map(c=>`<span class="ar-c${c.num?' num':''}">${E(c.label)}</span>`).join('')}</li>`;
+  const body = shown.map(rw=>`<li class="ar">${cols.map((c,i)=>{
+      const v = c.get(rw);
+      return i===0
+        ? `<span class="ar-c ar-name">${(v==null||v==='')?'—':E(v)}</span>`
+        : `<span class="ar-c${c.num?' num':''}" data-l="${E(c.short||c.label)}">${(v==null||v==='')?'—':E(v)}</span>`;
+    }).join('')}</li>`).join('');
+  const more = rows.length > SHOW_FIRST
+    ? `<button class="ar-more" data-act="sec-more" data-key="${E(key)}">${all ? 'Show fewer' : `Show all ${rows.length} accounts`}</button>`
+    : '';
+  return `<ul class="alist c${cols.length}">${head}${body}</ul>${more}`;
+}
+const ACCT_COLS = {
+  targets: [
+    {label:'Account',          get:x=>x.name},
+    {label:'Acct #',           short:'Account #', get:x=>x.n!=null?String(x.n):''},
+    {label:'Town · Territory', get:x=>[x.city, x.area || x.rawArea].filter(Boolean).join(' · ')},
+    {label:'2026 cases',       get:x=>x.cases!=null?fmtCases(x.cases):'', num:true},
+    {label:'Why it is an opportunity', short:'Opportunity', get:x=>x.why||''},
+  ],
+  dist: [
+    {label:'Account',           get:x=>x.name},
+    {label:'Acct #',            short:'Account #', get:x=>x.n!=null?String(x.n):''},
+    {label:'Town · Territory',  get:x=>[x.city, x.area].filter(Boolean).join(' · ')},
+    {label:'What was credited', short:'Credited', get:x=>[x.what, x.note].filter(Boolean).join(' · ')},
+    {label:'Date',              get:x=>x.date},
+  ],
+};
+// The two expanders every rep-mode card carries, collapsed until asked.
+const cardSec = {};   // program id -> 'dist' | 'targets' (one open at a time)
+const SEC_LABEL = {dist:'Current-Period Distribution', targets:'Potential Accounts'};
+function secLinks(p, sec, counts){
+  const btn = (k, n)=>n==null ? '' :
+    `<button class="seclink${sec===k?' on':''}" data-act="card-sec" data-prog="${E(p.id)}" data-sec="${k}" aria-expanded="${sec===k?'true':'false'}">${sec===k?'Hide':'View'} ${E(SEC_LABEL[k])}${n?` <span class="seclink-n">${n}</span>`:''}<span class="seclink-ar">${sec===k?'▴':'▾'}</span></button>`;
+  const html = btn('dist', counts.dist) + btn('targets', counts.targets);
+  return html ? `<div class="seclinks">${html}</div>` : '';
+}
 const logMore = {};
 function closedLog(p, rep, opts){
   opts = opts || {};
@@ -1635,7 +1730,7 @@ function mpoTargetRowHtml(a){
 const MT_PREVIEW = 3;
 function mpoRepCard(p, r, rep){
   const soon = r.status==='soon';
-  const open = openCards.has(p.id);
+  const sec = cardSec[p.id] || null;
   const o = p.objective;
   const sup = `${E(p.supplier)} · ${E(p.channelLabel)}`;
   const ends = E(endsLabel(p.period));   // already reads "Ends Sep 30 · 19 days left" 
@@ -1652,6 +1747,7 @@ function mpoRepCard(p, r, rep){
       <div class="mcard-ends">${ends}</div></div></article>`;
   }
 
+  if(isDollarProgram(r)) return '';            // money is not a field metric
   const N = mpoNums(r);
   const met = N ? N.need===0 : (r.status==='complete' || r.status==='exceeded');
   const unit = o.unit ? (o.unit + ((N ? N.need : 0)===1 ? '' : 's')) : '';
@@ -1674,41 +1770,43 @@ function mpoRepCard(p, r, rep){
   // A card already at goal does not need three account rows shouting at a
   // rep who has nothing left to close -- it keeps the count and the expander
   // (you can still keep building) and gives back the vertical space.
-  const preview = targets===null
-    ? `<div class="mt-note">Loading accounts…</div>`
-    : !targets.length
-      ? `<div class="mt-note">No potential accounts currently identified.</div>`
-      : (met && !open)
-        ? `<div class="mt-note">Goal met — ${plw(nT,'account')} still open if you want to keep building.</div>`
-        : `<ul class="mt-list">${targets.slice(0, open ? targets.length : MT_PREVIEW).map(mpoTargetRowHtml).join('')}</ul>`;
+  // Same shape as an incentive row: the numbers, the bar, then two
+  // collapsed sections. No inline preview -- it made the card tall and
+  // duplicated the section a tap away (per Gavin, 2026-09-11).
+  const dist = distFor(p, rep);
+  const counts = {dist: dist.length || null, targets: targets===null ? null : targets.length};
+  const loading = targets===null ? `<div class="mt-note">Loading accounts…</div>` : '';
 
-  const hint = !targets || !targets.length
-    ? (open ? 'Hide details' : 'View details')
-    : open ? 'Hide accounts' : `View potential accounts (${nT})`;
-  // The expander sits ON the accounts heading, where a rep is already
-  // looking, instead of down in the footer (per Gavin, 2026-09-11).
-  const headRow = `<div class="mt-head"><span class="mt-head-t">${targets&&targets.length?`Potential accounts · ${nT}`:'Program details'}</span>
-      <span class="mcard-more">${E(hint)}<span class="mcard-ar">${open?'▴':'▾'}</span></span></div>`;
-
-  return `<article class="mcard${open?' open':''}${met?' met':''}" id="card-${E(p.id)}">
-    <button class="mcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+  return `<article class="mcard${sec?' open':''}${met?' met':''}" id="card-${E(p.id)}">
+    <div class="mcard-head">
       <div class="mcard-name">${E(o.name)}</div>
       <div class="mcard-sup">${sup}</div>
       ${figures}
       ${bar}
-      ${headRow}
-      ${preview}
+      ${loading}
+      ${secLinks(p, sec, counts)}
       <div class="mcard-foot"><span class="mcard-ends">${ends}</span></div>
-    </button>
-    ${open ? `<div class="mcard-body">${mpoRepCardDetail(p, r, rep)}</div>` : ''}
+    </div>
+    ${sec ? `<div class="mcard-body">${mpoRepCardDetail(p, r, rep, targets, dist, sec)}</div>` : ''}
   </article>`;
 }
 // Everything that is not one of the four questions lives here.
-function mpoRepCardDetail(p, r, rep){
+function mpoRepCardDetail(p, r, rep, targets, dist, which){
   const o = p.objective;
   const A = mpoMonthLoaded(p.source, p.monthKey) ? accountsFor(p, rep) : null;
-  const closed = closedFor(p, rep);
   const sec = (title, body) => body ? `<div class="msec"><div class="msec-h">${E(title)}</div>${body}</div>` : '';
+  const key = p.id+'|'+which;
+  const tail = `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
+  if(which==='dist'){
+    const rc = reconLine(p, r, dist);
+    return sec(`Credited in ${E(periodLabel(p.period))}`,
+      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist)) + tail;
+  }
+  if(which==='targets'){
+    return sec(`Potential accounts${(targets&&targets.length)?' · '+targets.length:''}`,
+      (targets && targets.length) ? acctList(key, ACCT_COLS.targets, targets)
+        : `<div class="mt-note">No potential accounts currently identified.</div>`) + tail;
+  }
   const counts = A ? `<ul class="mkv">
       <li><span>In your book, this premise</span><span>${A.universe}</span></li>
       <li><span>Eligible, not buying yet</span><span>${A.eligible.length}</span></li>
@@ -1719,14 +1817,7 @@ function mpoRepCardDetail(p, r, rep){
     ? `<div class="mtext">${E(A.families.join(' · '))}</div>`
     : (A && A.any ? `<div class="mtext">Any brand counts toward this objective.</div>` : '');
   const rules = (p.rules && p.rules.length) ? `<ul class="mbul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : '';
-  const done = closed.length
-    ? `<ul class="mdone">${closed.slice(0,15).map(x=>`<li><span class="md-c">${E(x.customer)}</span><span class="md-p">${E(x.product||'')}</span><span class="md-d">${E(x.date||'')}</span></li>`).join('')}${closed.length>15?`<li class="md-more">+ ${closed.length-15} more</li>`:''}</ul>`
-    : `<div class="mtext quiet">Nothing credited to you on this objective yet.</div>`;
-  return sec('Qualifying brands', brands)
-    + sec('Your account base', counts)
-    + sec('How it is scored', rules)
-    + sec(`Already credited${closed.length?' · '+closed.length:''}`, done)
-    + `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
+  return sec('Qualifying brands', brands) + sec('Your account base', counts) + sec('How it is scored', rules) + tail;
 }
 
 function programCard(p, r, rep){
@@ -2190,6 +2281,14 @@ document.addEventListener('click', e=>{
     case 'set-month': openCards.clear(); state.showEnded = false; go({month:t.dataset.month, view:'rep'}, true); break;
     case 'toggle-sup': { const k = t.dataset.sup; if(openSups.has(k)) openSups.delete(k); else openSups.add(k); render(); break; }
     case 'toggle-ended': state.showEnded = !state.showEnded; render(); break;
+    case 'card-sec': { const id = t.dataset.prog, k = t.dataset.sec;
+      // One section at a time per card, so a phone never stacks two long lists.
+      if(cardSec[id]===k) delete cardSec[id]; else cardSec[id] = k;
+      render();
+      const el = document.getElementById('card-'+id);
+      if(el && cardSec[id]){ const y = el.getBoundingClientRect().top + window.pageYOffset - 8; if(y < window.pageYOffset) window.scrollTo({top:y}); }
+      break; }
+    case 'sec-more': secMore[t.dataset.key] = !secMore[t.dataset.key]; render(); break;
     case 'toggle-card': { const id = t.dataset.prog; if(openCards.has(id)) openCards.delete(id); else openCards.add(id); render();
       const el = document.getElementById('card-'+id); if(el && openCards.has(id)){ const y = el.getBoundingClientRect().top + window.pageYOffset - 8; if(y < window.pageYOffset) window.scrollTo({top:y}); } break; }
     case 'acct-tab': acctTabs[t.dataset.prog] = t.dataset.tab; render(); break;

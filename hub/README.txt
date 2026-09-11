@@ -329,6 +329,57 @@ MONTH HISTORY ON THE MPO TABS (v13, 2026-09-11)
   (August off-prem is ~6 MB), so a rep who never opens one never downloads
   it.
 
+TWO SECTIONS PER CARD, NO DOLLARS (v14, 2026-09-11)
+  Every rep-mode card -- incentive row and MPO card alike -- now ends in the
+  same two collapsed expanders (secLinks() in hub.js), in this order:
+
+    View Current-Period Distribution   where the credited activity came from
+    View Potential Accounts            where to go next (unchanged logic)
+
+  ONE AT A TIME per card (cardSec[p.id]); tapping the open one closes it, so
+  a phone never stacks two long lists. Each opens to the first 10 accounts
+  with a "Show all N accounts" button (SHOW_FIRST / secMore), so a 93-account
+  program never renders 93 rows unasked. The MPO card's inline 3-row preview
+  is gone -- it duplicated a section one tap away and made the card tall.
+
+  CURRENT-PERIOD DISTRIBUTION is distFor(): the tracker's own credited lines
+  for this rep on this program (closedFor(), which only ever reads that
+  program's own period), with account number, town and territory filled in
+  from the rep's customer base (bookIndex()). Nothing is recomputed here.
+
+  HOW FAR IT RECONCILES -- read this before "fixing" the label. The trackers
+  publish a summary number AND, for some programs, lines behind it, but they
+  are NOT the same feed. Measured for one rep on 2026-09-11: Sam Adams
+  Conversion read 39 with 50 published lines; 1911 read 3 with 8 lines across
+  3 accounts; Molson Coors retention, Sun Cruiser, Le Grand Noir and others
+  publish a number with no lines at all. So reconLine() states the count,
+  says "matches your current result" only when the line count OR the distinct
+  account count actually equals it, and otherwise says plainly that the
+  supplier's feed drives the number. Do not reword that into a claim the data
+  does not support. A program with no published lines shows no Distribution
+  link at all rather than an empty section.
+
+  DOLLAR PROGRAMS ARE HIDDEN from the rep page: isDollarProgram() tests the
+  tracker's own summary text for a "$", so Touchdowns & Tea ("$151 earned")
+  and Montauk drop out, and a future dollar program drops out without a code
+  change. The trackers themselves, Manager Mode and every underlying figure
+  are untouched -- this is a rep-page filter, not a data change.
+
+THE ACCOUNT LIST IS ONE WIDGET, TWO LAYOUTS (v14, 2026-09-11)
+  acctList(key, cols, rows) + ACCT_COLS in hub.js, .alist / .ar in hub.css.
+  The old 5-column <table class="it"> is gone: it needed a horizontal
+  scroller, and its headers collided ("2026 CasesWHY IT IS AN OPPORTUNITY").
+  Now one markup renders two ways --
+    phone     a stacked card per account: name, then every value with its own
+              label ("Account #: 190707", "Opportunity: Still on Summer Ale").
+              Columns can carry a `short` label used only here.
+    >= 760px  a real CSS grid (li{display:contents}) with a header row,
+              per-cell right padding so the row hairlines stay continuous,
+              and no wrapper to scroll sideways.
+  Under 380px the Current | Goal | Still Needed band stacks to one column
+  instead of shrinking the type (per Gavin: do not shrink text to preserve
+  the desktop layout). Every expander and "Show all" button is >= 44px tall.
+
 CARD LEGIBILITY PASS (v13, 2026-09-11)
   Both card types now read in the same shape, at Gavin's sizes:
     * the program NAME is the biggest thing on the card (21px on an MPO
