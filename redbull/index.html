@@ -34,7 +34,7 @@
   .lede b{color:var(--accent)}
   .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
 
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px;margin:18px 0 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:11px;margin:18px 0 0}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
   .stat .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0}
   .stat .v{font-family:"Space Grotesk";font-weight:700;font-size:23px;margin:6px 0 0;line-height:1}
@@ -80,6 +80,9 @@
   .hero .win2 .l{font-size:10.5px;color:var(--ink-soft);text-transform:uppercase}
 
   .quest{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;margin:0 0 11px;box-shadow:var(--shadow)}
+  .quest.head{border-left:3px solid var(--good)}
+  .note{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin:12px 2px 0}
+  .note b{color:var(--ink)}
   .quest .sup{font-family:"Space Grotesk";font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
   .badge{font-family:"Space Grotesk";font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
   .badge.ok{background:var(--good-soft);color:#5fdc8c;border:1px solid #245834}
@@ -93,10 +96,27 @@
   .brow{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;color:var(--ink-soft);padding:5px 0;border-bottom:1px solid var(--line-soft)}
   .brow:last-child{border-bottom:none}
   .brow b{color:var(--ink);font-weight:600}
-  .brow .tag{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:600;margin-left:6px}
+  .brow .tag{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:600;margin-left:6px;white-space:nowrap}
+  .brow .tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+  .brow .tags .tag{margin-left:0}
   .brow .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
   .brow .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
   .brow .tag.free{background:color-mix(in srgb,var(--good) 18%,transparent);color:#5fdc8c}
+  /* a category this account has NOT bought yet -- shown as "+ Free" so the gap is visible */
+  .brow .tag.off,.note .tag.off{background:transparent;color:var(--ink-soft);border:1px dashed var(--line);opacity:.8}
+  .brow .chk{color:var(--good);margin-right:5px}
+  /* the "what counts as complete" band */
+  .rule{display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+        border-left:3px solid var(--good);border-radius:14px;padding:12px 15px;margin:18px 0 0;box-shadow:var(--shadow)}
+  .rule .rk{font-family:"Space Grotesk";font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good)}
+  .rule .rt{font-size:13px;color:var(--ink-soft);line-height:1.7}
+  .rule .rt b{color:var(--ink)}
+  .rule .tag{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:600;margin:0 2px}
+  .rule .tag.core{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+  .rule .tag.free{background:color-mix(in srgb,var(--good) 18%,transparent);color:#5fdc8c}
+  .rule .tag.plus{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+  .stat.hi{border-color:color-mix(in srgb,var(--good) 45%,var(--line))}
+  .stat.hi .v{color:#5fdc8c}
 
   .empty{max-width:540px;margin:70px auto;text-align:center;color:var(--ink-soft)}
   .empty h2{font-family:"Space Grotesk";color:var(--ink)}
@@ -104,7 +124,12 @@
   footer{margin:26px 0 46px;color:var(--ink-soft);font-size:12px}
   footer hr{border:none;border-top:1px solid var(--line);margin:0 0 13px}
   footer b{color:var(--ink)}
-  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    /* stack name over tags so a three-tag row never breaks mid-tag */
+    .brow{flex-direction:column;align-items:flex-start;gap:5px}
+    .brow .tags{justify-content:flex-start}
+  }
 </style></head><body>
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
@@ -136,6 +161,9 @@ const CATS=[
 ];
 const CAT_KEYS=CATS.map(c=>c.key);
 const blankAcct=()=>{const o={};CAT_KEYS.forEach(k=>o[k]=false);return o;};
+// THE RULE: an account only counts as complete when it buys all three categories.
+const isComplete=a=>CAT_KEYS.every(k=>a[k]);
+const missingFor=a=>CATS.filter(c=>!a[c.key]);
 let REPS={}, GOAL={Core:155,'Core+':84,Overall:239}, activeRep="ALL";
 
 function ingestData(text){
@@ -158,17 +186,23 @@ function ingestGoals(text){
 }
 function repStats(rep){
   const accts=REPS[rep]?REPS[rep].accounts:{};
-  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0;
-  Object.values(accts).forEach(a=>{ CAT_KEYS.forEach(k=>{ if(a[k])by[k]++; }); total++; });
-  return {by,total};
+  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
+  Object.values(accts).forEach(a=>{ CAT_KEYS.forEach(k=>{ if(a[k])by[k]++; }); total++; if(isComplete(a))complete++; });
+  return {by,total,complete};
 }
 function teamStats(){
-  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0;
-  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); CAT_KEYS.forEach(k=>by[k]+=s.by[k]); total+=s.total; });
-  return {by,total};
+  const by={}; CAT_KEYS.forEach(k=>by[k]=0); let total=0, complete=0;
+  Object.keys(REPS).forEach(rep=>{ const s=repStats(rep); CAT_KEYS.forEach(k=>by[k]+=s.by[k]); total+=s.total; complete+=s.complete; });
+  return {by,total,complete};
 }
 // "12 Core · 9 Free · 4 Core+"
 const catLine=s=>CATS.map(c=>`${s.by[c.key]} ${c.label}`).join(" · ");
+// Reps are ranked on complete accounts; total accounts only breaks ties.
+const byComplete=(a,b)=>b.complete-a.complete||b.total-a.total;
+const tagStrip=CATS.map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("");
+const COMPLETE_RULE=`<div class="rule"><span class="rk">What counts as complete</span>
+  <span class="rt">An account is <b>complete</b> only when it buys <b>all three</b> — ${tagStrip} — together.
+  Buying two of the three is <b>not complete</b>; sell the missing one to finish the account.</span></div>`;
 
 function render(){
   const app=document.getElementById("body"); const reps=Object.keys(REPS);
@@ -176,25 +210,29 @@ function render(){
     const t=teamStats();
     const pct=GOAL.Overall? (t.total/GOAL.Overall*100):0;
     const catTiles=CATS.map(c=>{const g=GOAL[c.key]||0;return statTile(c.label,t.by[c.key]+(g?"<small>/"+g+"</small>":""),"");}).join("");
-    const stats=`<div class="stats">${statTile("Team Total",t.total,"")}${catTiles}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
-    const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map((r,i)=>({...r,rank:i+1}));
+    const donePct=t.total? (t.complete/t.total*100):0;
+    const stats=`<div class="stats">${statTile("Buying Accounts",t.total,"")}`
+      +`<div class="stat hi"><p class="k">Complete (all 3)</p><p class="v num">${t.complete}<small>/${t.total}</small></p></div>`
+      +`${catTiles}${statTile("% of Goal",pct.toFixed(0)+"%","")}</div>`;
+    const ranked=reps.map(r=>({rep:r,...repStats(r)})).sort(byComplete).map((r,i)=>({...r,rank:i+1}));
     const rows=ranked.map(R=>{
-      const share=t.total? (R.total/t.total*100):0;
+      const share=R.total? (R.complete/R.total*100):0;   // this rep's own accounts that are complete
       return `<div class="lrow${R.rank<=3?' top':''}" style="--mc:${medalColor(R.rank)}" role="button" tabindex="0" data-rep="${esc(R.rep)}">
         <span class="medal ${R.rank<=3?'m'+R.rank:''}">${R.rank}</span>
-        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${catLine(R)} · ${R.total} total accounts</div>
+        <span class="who"><b>${esc(R.rep)}</b><div class="sub">${R.complete} of ${R.total} accounts complete · ${catLine(R)}</div>
         <div class="track"><i style="width:${Math.min(share,100).toFixed(1)}%"></i></div></span>
-        <span class="win">${R.total}<small>accounts</small></span></div>`;
+        <span class="win">${R.complete}<small>complete</small></span></div>`;
     }).join("");
-    app.innerHTML=stats+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${ranked.length} reps · by total accounts</span></div><div class="board">${rows}</div>`;
+    app.innerHTML=stats+COMPLETE_RULE+`<div class="shead"><span class="tr">${TROPHY}</span><h2>Rep leaderboard</h2><span class="meta">${ranked.length} reps · by complete accounts</span></div><div class="board">${rows}</div>`
+      +`<p class="note">Bar shows the share of each rep's own accounts that are complete. Team-wide, <b>${t.complete} of ${t.total}</b> buying accounts (${donePct.toFixed(0)}%) buy all three.</p>`;
     app.querySelectorAll(".lrow[data-rep]").forEach(el=>{const go=()=>setRep(el.dataset.rep);el.addEventListener("click",go);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
   } else {
     const s=repStats(activeRep);
     const t=teamStats();
-    const rank=reps.map(r=>({rep:r,...repStats(r)})).sort((a,b)=>b.total-a.total).map(x=>x.rep).indexOf(activeRep)+1;
+    const rank=reps.map(r=>({rep:r,...repStats(r)})).sort(byComplete).map(x=>x.rep).indexOf(activeRep)+1;
     const hero=`<div class="hero"><div class="top"><div class="rankbox"><div class="big num">${rank||"–"}</div><div class="lab">Rank</div></div>
-      <div class="nm">${esc(activeRep)}<small>${s.total} buying accounts · ${catLine(s)}</small></div>
-      <div class="win2"><div class="b num">${s.total}</div><div class="l">accounts</div></div></div></div>`;
+      <div class="nm">${esc(activeRep)}<small>${s.complete} of ${s.total} accounts complete · ${catLine(s)}</small></div>
+      <div class="win2"><div class="b num">${s.complete}</div><div class="l">complete</div></div></div></div>`;
 
     function catCard(c){
       const goal=GOAL[c.key]||0;              // 0 = no goal set for this category yet
@@ -210,11 +248,35 @@ function render(){
     }
     const cards=CATS.map(catCard).join("");
 
-    const allAccts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{}).sort((a,b)=>a[0].localeCompare(b[0]));
-    const fullList=allAccts.map(([n,f])=>`<div class="brow"><b>${esc(n)}</b><span>${CATS.filter(c=>f[c.key]).map(c=>`<span class="tag ${c.cls}">${c.label}</span>`).join("")}</span></div>`).join("");
+    // Headline card: complete accounts, the number that actually counts.
+    const donePct=s.total? (s.complete/s.total*100):0;
+    const allDone=s.total&&s.complete===s.total;
+    const doneCard=`<div class="quest head"><div class="sup"><span>Complete accounts${allDone?` <span style="color:var(--good)">${CHECK}</span>`:''}</span><span class="num">${s.complete} / ${s.total}</span></div>
+      <div class="qline"><span>My accounts buying all three (${CAT_KEYS.join(" + ")})</span><span class="num">${donePct.toFixed(0)}%</span></div>
+      <div class="bar ${allDone?'done':''}"><i style="width:${donePct.toFixed(1)}%"></i></div></div>`;
 
-    app.innerHTML=hero+`<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards+
-      `<div class="shead"><h2>My buying accounts</h2><span class="meta">${allAccts.length} total</span></div><div class="board" style="padding:6px 14px">${fullList}</div>`;
+    // Account list, split by the rule: finished vs still missing something.
+    // Every row shows all three tags -- the ones an account hasn't bought read
+    // as "+ Free", so the rep sees exactly what's left to sell.
+    const allAccts=Object.entries(REPS[activeRep]?REPS[activeRep].accounts:{});
+    const rowFor=([n,f])=>{
+      const done=isComplete(f);
+      const tags=CATS.map(c=>`<span class="tag ${f[c.key]?c.cls:'off'}">${f[c.key]?'':'+ '}${c.label}</span>`).join("");
+      return `<div class="brow${done?' done':''}"><b>${done?`<span class="chk">${CHECK}</span>`:''}${esc(n)}</b><span class="tags">${tags}</span></div>`;
+    };
+    const done=allAccts.filter(([n,f])=>isComplete(f)).sort((a,b)=>a[0].localeCompare(b[0]));
+    // Closest to complete first -- one missing category is the easiest next sale.
+    const todo=allAccts.filter(([n,f])=>!isComplete(f))
+      .sort((a,b)=>missingFor(a[1]).length-missingFor(b[1]).length||a[0].localeCompare(b[0]));
+    const group=(rows,empty)=>`<div class="board" style="padding:6px 14px">${rows.length?rows.map(rowFor).join(""):`<div class="brow">${empty}</div>`}</div>`;
+
+    app.innerHTML=hero+COMPLETE_RULE+doneCard+
+      `<div class="shead"><h2>Still to finish</h2><span class="meta">${todo.length} account${todo.length===1?'':'s'} · closest first</span></div>`+
+      group(todo,"Every account is complete — nice.")+
+      `<p class="note">A <span class="tag off" style="font-size:10.5px;padding:2px 7px;border-radius:999px">+ Core</span>-style tag is a category that account has <b>not</b> bought yet. Sell it and the account turns complete.</p>`+
+      `<div class="shead"><h2>Complete accounts</h2><span class="meta">${done.length} buying all three</span></div>`+
+      group(done,"No complete accounts yet — an account needs Core, Free and Core+ together.")+
+      `<div class="shead"><h2>Progress vs team goal</h2><span class="meta">tap a category for accounts</span></div>`+cards;
   }
 }
 function setRep(v){activeRep=v;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.v===activeRep));render();window.scrollTo({top:0,behavior:"smooth"});}
@@ -235,9 +297,10 @@ async function boot(){
   const goalParts=CATS.filter(c=>GOAL[c.key]>0).map(c=>`<b>${GOAL[c.key]} ${c.label}</b>`);
   const goalPhrase=GOAL.Overall?`Team goal of <b>${GOAL.Overall} buying accounts</b>${goalParts.length?" — "+goalParts.join(", "):""}.`:"";
   const key=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
-  document.getElementById("lede").innerHTML=`${goalPhrase} ${key} Tap your name to see your accounts.`;
+  const rule=`An account is <b>complete</b> only when it buys <b>all three</b> — two out of three doesn't count.`;
+  document.getElementById("lede").innerHTML=`${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
   document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
-  document.getElementById("foot").innerHTML=`${goalPhrase} ${key} Each rep's tally is unique buying accounts that ordered at least one Red Bull SKU in that category. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
+  document.getElementById("foot").innerHTML=`${goalPhrase} ${key} ${rule} Each rep's category tally is unique buying accounts that ordered at least one Red Bull SKU in that category; <b>complete</b> counts only accounts buying all three. Reps are ranked by complete accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }
 boot();
 </script></body></html>

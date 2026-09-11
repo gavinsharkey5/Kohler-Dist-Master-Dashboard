@@ -10,6 +10,18 @@ Core into its own "Free" tag):
   Core+  Orange Edition, Sea Blue-Juneberry, Blue Edition, Coconut,
          Yellow Edition, White Peach Edition, Red Edition
 
+COMPLETE ACCOUNTS (the number that counts): an account is complete only
+when it buys ALL THREE categories -- Core AND Free AND Core+. Two of the
+three is not complete. The page is built around that rule: a "Complete
+(all 3)" stat tile, a green "what counts as complete" band, the rep
+leaderboard ranked by complete accounts (total accounts only breaks
+ties), and each rep's account list split into "Still to finish"
+(closest-to-complete first, with the missing categories shown as "+ Free"
+/ "+ Core+" tags) and "Complete accounts". Completeness is derived in
+index.html (isComplete()) from the category rows -- data.csv carries no
+complete flag, so nothing to regenerate when the rule is explained
+differently.
+
 Files:
   data.csv        Customer Name, Category (Core/Free/Core+), Sales Rep,
                   Bought -- one row per (customer, category, rep) with a
