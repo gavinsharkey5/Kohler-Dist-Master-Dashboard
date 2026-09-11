@@ -873,3 +873,12 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 .qi{font-size:15px;line-height:1;}
 .qv{margin-top:7px;}
 @media (max-width:400px){ .ql{font-size:12.5px;letter-spacing:.06em;} }
+/* v9.5: cards lift off the page */
+.pcard{background:#162037;border-color:#3A4B72;box-shadow:0 2px 4px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.6);}
+.pcard:hover{background:#182340;border-color:#5570B0;}
+.pcard.st-unavailable{background:#101827;border-color:#2A3650;}
+.pcard .q,.pcard .line,.pcard .bg-row{background:#0E1524;}
+.pcard .line.sell{background:rgba(244,184,62,.14);} .pcard .line.go{background:rgba(78,124,232,.16);} .pcard .line.done{background:rgba(76,201,122,.14);}
+.pcard-body{border-top-color:#2A3650;}
+.cards{gap:20px;}
+.repview.single .cards{gap:22px;}
