@@ -329,6 +329,48 @@ MONTH HISTORY ON THE MPO TABS (v13, 2026-09-11)
   (August off-prem is ~6 MB), so a rep who never opens one never downloads
   it.
 
+NO DOLLAR FIGURES ANYWHERE IN REP MODE (v15, 2026-09-14)
+  Gavin: "remove any $ figures that have to do with the hub dashboard. i
+  dont want to create discrepancies." v14 had already kept whole DOLLAR
+  PROGRAMS off the rep page (isDollarProgram); what stayed behind was the
+  rate text their neighbours carry -- rule bullets ("$15 for every new
+  placement") and the next-move line ("every new 12pk placement pays $15").
+  Those are now scrubbed too, so a rep sees no money on this page at all.
+
+  WHY IT MATTERS: a dollar amount on a rep card is a SECOND COPY of a
+  number the hub never computed. The tracker owns the payout maths; the hub
+  re-prints prose beside its own counts, and the two can only ever agree by
+  luck. A rep reading two different amounts trusts neither, and the one
+  they act on is the one that is wrong.
+
+  THE MONEY COMES OUT, THE RULE STAYS. ruleNoMoney() / nextNoMoney() in
+  hub.js rewrite the sentence rather than deleting the bullet, because the
+  conditions a rep must hit live in the same line as the rate:
+    "$100 per new draft placement -- pays once that account hits 2 barrels"
+      -> "New draft placement -- pays once that account hits 2 barrels"
+    "Off-premise: $1 per case on the floor with football POS -- 25 case
+     minimum, cannot be co-branded"
+      -> "Off-premise: case on the floor with football POS -- 25 case
+          minimum, cannot be co-branded"
+  Deleting those bullets would have taken the 2-barrel trigger and the
+  25-case minimum with them. A bullet that was only ever about money (a
+  tier table, a prize split) returns null and IS dropped -- there is no
+  rule left in it to keep.
+
+  Verb number is preserved ("pays $15" -> "counts", "pay $3" -> "count", or
+  "the SKUs counts"), and a prize ("earns $300") becomes "earns a bonus"
+  rather than a count, because it is not a per-unit rate.
+
+  CHECKED, NOT ASSUMED: run against all 162 bullets in the tracker library
+  on 2026-09-14 -- 158 rewritten, 4 dropped, ZERO still carrying a "$".
+  Re-run that check if the tracker's rule text changes shape.
+
+  MANAGER MODE AND BOTH TRACKERS ARE DELIBERATELY UNTOUCHED (Gavin chose
+  "Rep Mode only"). Program View keeps "Payout exposure", the program page
+  keeps "Payout / reward", and their rule lists still render through
+  ruleHl() with the amounts highlighted. That is the point: ONE place
+  computes the money, and it is not this page.
+
 TWO SECTIONS PER CARD, NO DOLLARS (v14, 2026-09-11)
   Every rep-mode card -- incentive row and MPO card alike -- now ends in the
   same two collapsed expanders (secLinks() in hub.js), in this order:

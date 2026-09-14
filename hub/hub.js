@@ -828,13 +828,13 @@ function incRowDetail(p, r, rep, targets, dist, which){
   if(BG.length){
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
       + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table)
-      + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
+      + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
   return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table)
     + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
-    + sec('How it is scored', (p.rules&&p.rules.length)?`<ul class="ibul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'')
-    + (r.next ? sec('Next step', `<div class="itext">${r.next}</div>`) : '')
+    + sec('How it is scored', repRulesHtml(p, 'ibul'))
+    + (r.next ? sec('Next step', `<div class="itext">${nextNoMoney(r.next)}</div>`) : '')
     + full;
 }
 // One entry per incentive the rep is actually in -- the incentive page's
@@ -1328,6 +1328,85 @@ function closedFor(p, rep){
 // summary text, so a new dollar program disappears without a code change --
 // the trackers themselves and Manager Mode keep every figure.
 const isDollarProgram = r => !!r && /\$/.test([r.now, r.goal, r.remain, r.sub].filter(Boolean).join(' '));
+
+/* ---- v15, 2026-09-14 -- NO DOLLAR FIGURES IN REP MODE ----------------
+   Gavin: "remove any $ figures that have to do with the hub dashboard. i
+   dont want to create discrepancies." A dollar amount on a rep card is a
+   second copy of a number this page never computed -- it can only ever
+   agree with the tracker by luck, and a rep who reads two amounts trusts
+   neither. v14 already kept whole dollar PROGRAMS off Rep Mode
+   (isDollarProgram above); what stayed behind was the RATE text their
+   neighbours carry, in the rule bullets ("$15 for every new placement")
+   and the next-move line ("every new 12pk placement pays $15").
+
+   These take the money OUT of that prose and leave what a rep can act on
+   -- the placement, the pack size, the minimum -- rather than deleting
+   the bullet and losing the rule with it. A bullet that was only ever
+   about money (a tier table, a prize split) returns null and is dropped.
+   MANAGER MODE AND BOTH TRACKERS ARE UNTOUCHED: every figure still lives
+   there, which is the point -- one place computes the money.
+   Checked against all 73 dollar-carrying bullets in the tracker library
+   on 2026-09-14: 69 rewritten, 4 dropped, none left carrying a "$".   */
+const MONEY_PAT  = '\\$\\s?[\\d,]+(?:\\.\\d+)?(?:\\s*[\u2013\u2014-]\\s*\\$?\\s?[\\d,]+(?:\\.\\d+)?)?\\+?';
+const MONEY_ONE  = new RegExp(MONEY_PAT);
+const MONEY_RATE = new RegExp('^\\s*(?:up to\\s+|another\\s+|then\\s+|plus\\s+)?' + MONEY_PAT +
+                              '(?:\\s*\\/\\s*[A-Za-z.]+)?\\s*(?:per|for every|for|on)?\\s+', 'i');
+const MONEY_PAYS = new RegExp('\\b(pays|pay|paying|earns|earn|adds|add)\\s*(?:out\\s*)?' +
+                              '(?:<strong>)?\\s*' + MONEY_PAT + '\\s*(?:<\\/strong>)?\\s*(?:each|instead|apiece)?', 'gi');
+const MONEY_AND  = new RegExp('\\s+and\\s+(?:<strong>)?\\s*' + MONEY_PAT +
+                              '\\s*(?:<\\/strong>)?\\s*(?:each|apiece)?', 'gi');
+const MONEY_XTRA = new RegExp('\\s+(?:for|earns?|pays?|adds?)\\s+(?:an\\s+extra|another|an\\s+additional)\\s+' +
+                              '(?:<strong>)?\\s*' + MONEY_PAT + '\\s*(?:<\\/strong>)?', 'gi');
+const MONEY_LABEL = /^\s*([A-Za-z][A-Za-z0-9\-\/ ]{0,24}:)\s*/;
+const CONNECTOR   = /^\s*(?:then|plus|and|also|another)\s+/i;
+const hasMoney = s => !!s && MONEY_ONE.test(String(s));
+// "pays $15" -> "counts", "pay $3" -> "count" (a plural subject must not end
+// up reading "the SKUs counts"). A prize -- "earns $300" -- is not a per-unit
+// count, so it stays a bonus.
+const moneyVerb = v => /^(earn|add)/i.test(v) ? (/s$/i.test(v) ? 'earns a bonus' : 'earn a bonus')
+                                              : (/s$/i.test(v) ? 'counts' : 'count');
+const moneyTidy = t => t
+  .replace(/\b(counts|bonus)(?=[A-Za-z\u201c"'(\u2014\u2013])/g, '$1 ')
+  .replace(/\b(pays?|earns?)\s+out\s*(?=[.,;]|$)/gi, '')
+  .replace(/\bcounts?\s+instead\b/gi, m => m.split(/\s+/)[0])
+  .replace(/\s+and\s+[^.;\u00b7]*$/i, m => /\bcounts?\b/i.test(m) ? m : '')
+  .replace(/\s{2,}/g, ' ').replace(/\s+([.,;])/g, '$1').trim();
+const moneyScrub = t => moneyTidy(String(t).replace(MONEY_XTRA, '').replace(MONEY_AND, '')
+                                           .replace(MONEY_PAYS, (m, v) => moneyVerb(v)));
+// One rule bullet without its money, or null when the bullet was only money.
+function ruleNoMoney(s){
+  if(!hasMoney(s)) return s;
+  const lm = String(s).match(MONEY_LABEL);
+  const label = lm ? lm[1] + ' ' : '';
+  const body  = lm ? String(s).slice(lm[0].length) : String(s);
+  const segs = body.split('\u00b7').map(part=>{
+    let t = moneyScrub(part.trim().replace(CONNECTOR, ''));
+    if(MONEY_RATE.test(t)) t = t.replace(MONEY_RATE, '').trim();
+    if(hasMoney(t)) t = t.split(/\s+[\u2014\u2013]\s+|;\s+|,\s+and\s+/).filter(x=>x && !hasMoney(x)).join(' \u2014 ');
+    t = moneyTidy(t);
+    return t && !/^(and|or|per|for|the|a|an|counts?)$/i.test(t) ? t : null;
+  }).filter(Boolean);
+  if(!segs.length) return null;
+  let out = segs.join(' \u00b7 ');
+  if(!label) out = out.charAt(0).toUpperCase() + out.slice(1);
+  return (label + out).trim();
+}
+// The next-move line is a whole sentence (and carries <strong> markup), so it
+// is scrubbed in place rather than reshaped into a fragment.
+function nextNoMoney(s){
+  if(!hasMoney(s)) return s;
+  let t = moneyScrub(s);
+  if(MONEY_RATE.test(t)){ t = t.replace(MONEY_RATE, ''); t = t.charAt(0).toUpperCase() + t.slice(1); }
+  if(hasMoney(t)){
+    const parts = t.split(/\s+[\u2014\u2013]\s+/).filter(x=>!hasMoney(x));
+    t = parts.length ? parts.join(' \u2014 ') : t.replace(new RegExp(MONEY_PAT, 'g'), '');
+  }
+  return moneyTidy(t).replace(/[,;\u2014\u2013]\s*$/, '').replace(/(^|[^.])$/, '$1.');
+}
+// Rep Mode's rule list: the tracker's bullets with the money taken out.
+const repRules = p => ((p && p.rules) || []).map(ruleNoMoney).filter(Boolean);
+const repRulesHtml = (p, cls) => { const R = repRules(p);
+  return R.length ? `<ul class="${cls}">${R.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : ''; };
 
 // name / account number -> the rep's own customer-base row.
 const bookCache = new Map();
@@ -1835,7 +1914,7 @@ function mpoRepCardDetail(p, r, rep, targets, dist, which){
   const brands = (A && !A.any && A.families.length)
     ? `<div class="mtext">${E(A.families.join(' · '))}</div>`
     : (A && A.any ? `<div class="mtext">Any brand counts toward this objective.</div>` : '');
-  const rules = (p.rules && p.rules.length) ? `<ul class="mbul">${p.rules.map(x=>`<li>${E(x)}</li>`).join('')}</ul>` : '';
+  const rules = repRulesHtml(p, 'mbul');
   return sec('Qualifying brands', brands) + sec('Your account base', counts) + sec('How it is scored', rules) + tail;
 }
 
@@ -1935,13 +2014,13 @@ function screenDetailRep(p, r, rep, back){
       <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${r.sub?`<span class="dfact-s">${E(r.sub)}</span>`:''}</div>
       <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
-    ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${r.next}</div></div>` : ''}
+    ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${nextNoMoney(r.next)}</div></div>` : ''}
     ${(()=>{ const BG = brandGoals(p, rep); return BG.length
       ? `<section class="dsec"><h2 class="dsec-h">Your brand goals</h2>${brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''})}</section>`
       : `<section class="dsec"><h2 class="dsec-h">Targets</h2>${repPlan(p, r, rep, {limit:15})}</section>
     <section class="dsec"><h2 class="dsec-h closed">Completed</h2>${closedLog(p, rep, {limit:25})}</section>`; })()}
-    <section class="dsec"><h2 class="dsec-h">How it pays</h2>
-      <ul class="rules">${p.rules.map(x=>`<li>${p.type==='Incentive' ? ruleHl(x) : E(x)}</li>`).join('')}</ul>
+    <section class="dsec"><h2 class="dsec-h">How it is scored</h2>
+      ${repRulesHtml(p, 'rules')}
       <p class="note">Runs ${E(p.period.label)} · numbers as of ${E(p.refreshed||'—')}</p></section>
     ${tl && tl.length ? `<section class="dsec"><h2 class="dsec-h">Your progress so far</h2>${chartHtml(tl, p, r)}</section>` : ''}
   </div>`;

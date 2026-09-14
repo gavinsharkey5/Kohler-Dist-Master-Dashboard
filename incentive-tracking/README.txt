@@ -1242,6 +1242,158 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 SIXTH REFRESH -- Molson Coors retention (both premises) + MABI Fall
+Both MC workbooks converted through convert_mc_retention.py and the MABI
+actuals through convert_mabi_fall.py against the goals workbook already on
+file (data/mabi_retention_fall_goals.xlsx -- not re-issued, not touched).
+Every rep, DM and report total reconciled on both sides.
+
+  MC retention   off 2,588 -> 2,632 placements, on 718 -> 722 buyers, and
+                 brand goals retained 30 -> 29. NO GOAL MOVED anywhere in
+                 either workbook -- checked per rep+brand, all 121 rows.
+  MABI Fall      house 2,639 -> 2,951 of 7,326 MADE placements (36.0% ->
+                 40.3%), day 14 of 91; still 0 of 24 reps at their 90% goal.
+                 Every rep with a goal moved UP; biggest movers Shane Barreca
+                 90 -> 130, Chris Payton 182 -> 213, Dave Ehlers 286 -> 315,
+                 Allison Scott 22 -> 33. Default, Dylan Rubino and John
+                 O'Donoghue still have a goal and no 9/1-11/30 activity.
+
+DERRICK LAWS LOSES A RETAINED BRAND GOAL, and it is the only figure on either
+program that went backwards: off-premise FEVER TREE 18 -> 12 placements
+against an UNCHANGED goal of 15. That is what takes the house from 30 to 29;
+every other rep+brand row on both premises rose or held, and no goal was
+reissued. It is also not new -- the off-prem MPO board's 2026-09-11 note has
+RDE withdrawing six of his 9/11 Fever Tree rows at Shop Rite Wines/Spirits
+#23004, and this is that same withdrawal reaching the retention report. If
+those loads were real the fix is a corrected RDE pull, not a change here, but
+he is one placement pattern away from noticing twice.
+
+THE MC SHEET NAMES CHANGED AND STOPPED THE RUN DEAD. These arrived as "Molson
+Coors Fall 2026 On Prem" / "...Off Pre" where convert_mc_retention.py expected
+"Molson Coors ON Retention..." / "2026 MC Off...", so load_grouped() raised
+before reading a cell. The report itself was unchanged -- same grouped tree,
+same columns, same 07/27-10/31 distribution window as the file already on
+disk, which is what says this is the SAME program period and not a new one.
+The prefix is now a first guess, and a sheet naming its PREMISE is accepted
+after it, printing which rule matched. Two details worth keeping: the match is
+on "on pre" / "off pre", not a bare "on"/"off", because "Molson" contains
+"on"; and on the PREFIX of "premise" because Excel caps a sheet name at 31
+characters, which is exactly what clipped "...Fall 2026 Off Pre".
+hub/index.html's ?v= tag went 20260914f -> 20260914g.
+
+2026-09-14 FIFTH REFRESH -- Constellation Fall, all five exports
+Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Innovation OFF. Only
+the constellation_fall block moved; house total 4,304 -> 4,816 held goals.
+
+  Off-premise   Modelo Gaintain 1,528 -> 1,654 · Impact 1,747 -> 1,924 ·
+                Innovation 310 -> 356. Still 0 of 22 reps holding every
+                off-prem category -- day 14 of 91.
+  On-prem pkg   812 -> 891 buyers across 8 brand families; still 3 of 20 reps
+                holding every family.
+  On-prem draft 108 -> 122 buyers across 5 families; still 0 of 12.
+
+EVERY BASELINE IS FROZEN AND WAS CHECKED, not assumed. The three off-prem
+exports carry their own comparison column (last fall for Impact and Modelo
+Gaintain, SPRING for Innovation -- 3/1-5/31/2026, which is the shape this
+README already notes). Totalled per rep against the published files: ZERO
+reps moved on any baseline. Both on-prem legs print "goal drift vs frozen
+goals on 0 rep+family rows". Nothing that pays moved backwards either -- the
+only per-rep figures that fell are offToGo / overallToGo, the REMAINING gap,
+which falling is the whole point.
+
+CORONA GAINTAIN WAS NOT IN THIS BATCH AND WAS STALE, so it was synced rather
+than left to disagree. incentive-tracking's copy was an older pull than
+MPOs/off-prem/constellation_corona_gaintain.csv, which was refreshed this
+morning: identical frozen baseline (3,256 both sides, per rep), but the MPO
+copy read higher for 15 reps on this fall and lower for none, i.e. strictly
+newer. The two boards were publishing different Corona Gaintain numbers for
+the same program. The MPO copy is now on both, and the tracker reads
+719 -> 882. Same class of drift as the Keystone pair above -- when a
+Constellation export lands on one board, check the other.
+
+ONE FIGURE WORTH A GLANCE NEXT PULL: the draft leg's excluded empty-keg
+pickups went 54 -> 47 while the export itself GREW by 18 rows. No rep's buyer
+count fell, so nothing is lost on the board, but a shrinking exclusion count
+on a growing file means RDE reclassified or withdrew pickup rows. If it moves
+again, check what changed in those rows before trusting the draft totals.
+hub/index.html's ?v= tag went 20260914e -> 20260914f.
+
+2026-09-14 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs)
+Additive again: no row was withdrawn, and the only removals in any diff are
+four more of the Klejdi Lamo / #190216 rename (Montauk). Three blocks moved.
+
+  Other Half   the batch's money: 104 -> 116 off-premise accounts opened,
+               $5,330 -> $5,930 (50 of them at the Southern District $50 flat
+               rate, still the unconfirmed reading flagged below). John
+               O'Donoghue 11 -> 13 ($560 -> $660), Shane Barreca 5 -> 8
+               ($290 -> $430), Alisa Acciardi 4 -> 7 ($200 -> $350), Jayson
+               Romine 5 -> 6, Dylan Rubino 4 -> 5, Mike Ast 3 -> 4, Phil
+               Ernst 2 -> 3. On-premise: 30 accounts active, 17 -> 18 at the
+               1/3 bbl floor, and STILL NOT PAID -- that leg needs October to
+               confirm the two-month hold.
+  Montauk      12 -> 13 new placements, 6 -> 7 distinct new accounts,
+               $235 -> $245. JAIME COLONNA OPENS HIS ACCOUNT (0 -> 1, $0 ->
+               $10) on a Giannone Wines 9/11 6-pack.
+  2XO          0 new off-premise pairs and $0 paid, UNCHANGED. The single new
+               row is Paul Mclaughlin / Andiamo 9/11, a French Oak reorder at
+               an account he already opened, so his on-premise units go
+               2 -> 5 and nothing else moves. The pair rule still leaves one
+               single-oak open unpaid.
+
+ONE FIGURE FELL AND IT IS A CONVERSION, not a loss: Jaime Colonna's Montauk
+off-prem TARGET count 13 -> 12, in the same pull that took his placements
+0 -> 1. Same shape as Jayson Romine's Touchdowns target in the refresh above
+-- a target list shrinking is the list working.
+
+ONE FUTURE-DATED ROW, harmless: Paul Mclaughlin / Lou's Montauk draft keg
+9/15. It is a draft reorder at an account already carrying the brand, so no
+placement count moves on it.
+hub/index.html's ?v= tag went 20260914c -> 20260914d.
+
+2026-09-14 THIRD REFRESH -- Le Grand Noir, Garage Beer President,
+Touchdowns & Tea (both legs), Evil Genius
+NOTHING WAS WITHDRAWN IN THIS BATCH. Every apparent removal in the raw diffs
+resolves to a rename, a re-sort or a re-valued row -- checked account by
+account before the run. Only these four programs' blocks changed.
+
+  Touchdowns & Tea   the batch's real movement: 63 -> 71 new off-prem 12pk
+                     placements, on-prem 789 -> 890 cases across 11 reps,
+                     trackable $1,734 -> $1,955. Klejdi Lamo 5 -> 8 new
+                     placements ($80 -> $125), Dave Ehlers 21 -> 23 ($315 ->
+                     $345), Jayson Romine 1 -> 3 ($15 -> $45), Phil Ernst
+                     3 -> 4 ($62 -> $77). On-prem case payouts follow the
+                     cases: Allison Scott 193 -> 240, Brian Sengebush
+                     151 -> 171, Paul Mclaughlin 131 -> 141, Robin Feldman
+                     59 -> 77, Nick Melissari 79 -> 85.
+  Garage Beer Pres.  house 7,641.58 -> 7,722.24 CE against an UNCHANGED 9,305
+                     goal and an UNCHANGED last-year column (checked per rep,
+                     all 24 identical -- that column is history).
+  Evil Genius        4 new placements and 1 of 27 reps past the qualifier,
+                     BOTH UNCHANGED. The two new rows are reorders at
+                     accounts already carrying the brand: Jayson Romine /
+                     Liquor Factory VI Byram 9/14 off-prem and Nick Melissari
+                     / House of Que 9/11 draft. CE 40 -> 44 vs last
+                     September's 98; still 5 reps ahead, 9 bonus CE, $0 paid
+                     (qualifier-gated).
+  Le Grand Noir      30 of 70 house cases, UNCHANGED. The export was merely
+                     re-sorted, so only drill-down line ORDER moved.
+
+TWO FIGURES FELL, AND NEITHER IS A LOST PLACEMENT:
+  Chris Payton's Garage Beer growth 86.22 -> 81.22 CE, because his Wineland
+  line came back 5 cases lighter -- a return, the same shape as the 1911
+  Raspberry credit in the refresh above. Last year's column did not move.
+  Jayson Romine's Touchdowns off-prem TARGET count 5 -> 4, which is a target
+  list doing its job: he converted one, and his new-placement count rose
+  1 -> 3 in the same pull. Target lists shrink as prospects convert.
+
+THE RENAME IS NOW IN FOUR FILES. Klejdi Lamo / #190216 "House of Wine &
+Liquor" -> "House of Wine & Liquor - Boonton" accounts for 70 of Touchdowns
+off-prem's 71 removals, the single Le Grand Noir removal and the single Evil
+Genius one. The 71st Touchdowns removal is Phil Ernst / Shop Rite Liq
+(Paramus) 9/14, whose Sun Cruiser Sampler row was re-valued 3 -> 5 cases and
+gained a Lemonade Variety Pack SKU beside it. Nothing lost there either.
+hub/index.html's ?v= tag went 20260914b -> 20260914c.
+
 2026-09-14 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone a no-op)
 Five exports arrived; the Keystone one is BYTE-IDENTICAL to the 149-row file
 both Keystone copies already hold from this morning's refresh, so nothing was
