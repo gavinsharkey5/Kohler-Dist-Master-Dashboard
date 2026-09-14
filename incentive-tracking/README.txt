@@ -1242,6 +1242,67 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 SEVENTH REFRESH -- Yuengling Fall, and the roster NARROWS on purpose
+All three reports re-pulled. Two things happened at once: the numbers moved up,
+and the program got smaller.
+
+  3 / 58 brand goals held across 18 reps (was 8 / 87 across 24), 0 reps holding
+  every goal (was 1). Day 14 of 91. By family: off Lager 223/338, Flight 66/152,
+  Light Lager 57/134; packages Lager 116/258, Flight 0/6; draft Lager 150/293,
+  Flight 3/7.
+
+THE SHRINK IS THE POINT, NOT A BAD PULL (Gavin, 2026-09-14: "My manager asked to
+remove reps who should not be involved in the program. If they are not in those
+files, they are not included in the incentives"). It was worth asking, because
+the pull looked exactly like a filtered export: off-premise kept every rep with
+a 2025 base of 12+ and dropped every rep at 9 or under, packages kept 21+ and
+dropped 5 or under, draft kept 27+ and dropped 9 or under.
+
+  GONE FROM THE PROGRAM ENTIRELY (6): Alisa Acciardi, Dylan Rubino, Jaime
+  Colonna, Javier Melo, John O'Donoghue, Pablo Lopez.
+  GONE FROM A SIDE but still in the program: Chris Payton, Dan Lagala, Matt
+  Powierski and Mike Ast lose packages AND draft; Derrick Laws, Klejdi Lamo,
+  Phil Ernst lose packages; Brian Sengebush and Nick Melissari lose off-prem;
+  Robin Feldman loses off-prem.
+  Six HELD goals left with them, which is most of the 8 -> 3 drop -- Jaime
+  Colonna's single one-buyer goal (he was the one rep holding every goal),
+  Brian Sengebush and Nick Melissari off-prem, Klejdi Lamo packages. Nobody
+  lost a goal they still have: MICHAEL HARBOY GAINED one (off Lager 7 -> 10 of
+  10), the only movement in the held count that is about performance.
+
+NOTHING THAT STAYED WENT BACKWARDS. Every rep+brand row present in both the new
+workbooks and the published files carries an IDENTICAL 2025 base (checked all
+58) and a 2026 count that rose or held -- 29 rows up, none down. Biggest movers:
+Shane Barreca off 15 -> 24, Jim Heaney 28 -> 33, Jayson Romine 58 -> 62.
+
+THE EXPORTS WENT GROUPED, so convert_yuengling_fall.py is new -- same shape
+change Molson Coors made on 2026-09-04, arriving here as one combined "Sales Rep
+Assigned / Brand Family" column with the level implied by position. It writes
+the FLAT layout back out (rep-total row first, carrying the first brand's label
+the way the flat export borrowed it, then the brand rows), because
+build_yuengling_retention_fall() reads that shape via _split_report_subtotals().
+Levels resolve structurally here rather than by a name set -- every brand row
+starts with "Yuengling" -- so a new rep needs no list updating. Every rep total
+and the report total are still bounded against their parts before anything is
+written (buyer counts are DISTINCT, so a total sits between its biggest brand
+and their sum, never equals it), and the script refuses to write otherwise.
+
+KOHLER'S OWN GOAL COLUMN IS NOW IN THE WORKBOOKS AND IS NOT PUBLISHED. It
+disagrees with ours on 37 rows -- Kohler truncates 0.95 x base where we round
+up, per Gavin on 2026-09-10 ("I meant round up"): Anthony's off Lager base 25
+reads 23 in the workbook and 24 here. The converter prints the mismatches as a
+cross-check every run. If that column ever becomes the bar, that is a decision
+to take with Gavin, not a silent switch.
+
+THE DRAFT ACCOUNT SHEET WAS NOT RE-SENT, so draft CURRENT counts still come
+from the 2026-09-10 account sheet (yuengling_retention_fall_draft_on_detail.csv)
+while off and packages are current to 9/14. Only the draft SUMMARY arrived, and
+per rule 6 above the account sheet -- not the summary -- is the source of truth
+for whether a line is actually pouring. Draft's 150/293 Lager is therefore a
+9/10 number on a 9/14 roster. Ask Gavin for the RDE draft account export to
+move it.
+hub/index.html's ?v= tag went 20260914g -> 20260914h.
+
 2026-09-14 SIXTH REFRESH -- Molson Coors retention (both premises) + MABI Fall
 Both MC workbooks converted through convert_mc_retention.py and the MABI
 actuals through convert_mabi_fall.py against the goals workbook already on
