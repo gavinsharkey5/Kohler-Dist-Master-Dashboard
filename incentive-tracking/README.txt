@@ -1242,6 +1242,25 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 REFRESH -- Keystone only, riding the off-prem MPO refresh
+The 149-row Keystone export went onto keystone-ice/actuals.csv AND
+MPOs/off-prem/keystone_ice_24oz.csv (sync rule -- the two had drifted apart
+again, 139 vs 144, since the 2026-09-11 MPO-only refresh), keystone-ice
+rebuilt first, then the off-prem September board, then this page.
+  Keystone   119 -> 123 accounts, still 4 qualified, but 0 -> 2 at BONUS
+             (Derrick Laws 16 of 13, Pablo Lopez 14 of 12) and $300 -> $470
+             projected. Pablo's 14th account is a 9/15 load sheet, a day in
+             the future -- see keystone-ice/README.txt.
+No other incentive export was re-pulled and no other program's data moved.
+FOUR OTHER PROGRAMS CHANGED IN program_data.js ANYWAY, and it is only the
+calendar: daysElapsed 11 -> 14 with the pacePct and per-rep pctOfPace that
+derive from it, on constellation_fall, mabi_retention_fall,
+yuengling_retention_fall and sam_adams_conversion (54 -> 57 days). Those
+fields are computed against today's date at build time, so any rebuild on a
+new day moves them. Checked field by field: nothing else differs.
+hub/index.html's ?v= tag went 20260911k -> 20260914a, since the hub reads
+program_data.js and the old copy would otherwise stick.
+
 2026-09-10 REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt Launch
 Five exports, all strict supersets of the published files (no rows removed,
 nothing re-dated), so every change below is a gain. Keystone moved this time:

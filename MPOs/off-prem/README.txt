@@ -885,6 +885,50 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-14 REFRESH -- all four exports plus Promos_Report_21
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_21.xlsx
+Row counts: Constellation 122 (unchanged), Keystone 144 -> 149, Fever Tree
+2,049 -> 2,071, Wine & Spirits 2,577 -> 2,589. Report_21 held 39 rows, all
+Cooler Door Wraps, 1 new: 38 -> 39 archive rows, all 39 keeping a photo link.
+
+  Constellation   839 -> 889 placements this fall against an UNCHANGED 1,628
+                  last fall (checked per rep, all 24 identical); still 21 of
+                  24 reps at 30%. Twelve reps grew, none fell.
+  Keystone Ice    122 -> 123 distinct buying accounts (Pablo Lopez 13 -> 14);
+                  still 4 of 26 at 40%. The same 149-row export also went onto
+                  keystone-ice/actuals.csv, which had drifted a pull behind
+                  (139 rows) since the 2026-09-11 refresh touched only this
+                  copy -- that is the sync rule below, and both boards now
+                  read 123. keystone-ice rebuilt first, then this board, then
+                  incentive-tracking (Derrick Laws and Pablo Lopez reach the
+                  bonus tier there, $300 -> $470).
+  Fever Tree      74 -> 87 new placements and 3 -> 5 reps at the goal of 10:
+                  SHANE BARRECA 3 -> 10 and DAN LAGALA 7 -> 11 both arrive at
+                  goal in one pull, with Jayson Romine 11 -> 12 and Mike Ast
+                  10 -> 11 already there.
+  Wine & Spirits  184 -> 186 new placements (Dan Lagala 5 -> 6, Jayson Romine
+                  10 -> 11); still 17 reps at the goal of 5.
+  Cooler doors    30 -> 31 distinct stickers from 39 brand rows, and a THIRD
+                  rep reaches the goal of 5: Shane Barreca 4 -> 5 on a Twisted
+                  Tea Original wrap at Shop Rite Liq (A) Hillsdale, 9/14.
+  Target lists    Keystone 369 -> 368, Fever Tree 350 -> 349 -- they SHRINK as
+                  prospects convert, which is correct.
+
+NOTHING DROPPED THIS TIME. The step-3 rule ("numbers should only ever GROW
+within a month") holds on every objective, per rep -- worth saying plainly
+because the 2026-09-11 refresh below is the one where RDE withdrew nine
+placements, and that is what this check exists to catch.
+
+THE ELEVEN ROWS THAT LOOK WITHDRAWN ARE A RENAME, NOT A LOSS. A raw diff of
+the Fever Tree and Wine & Spirits exports shows 3 and 8 rows gone, all of them
+Klejdi Lamo / #190216 "House of Wine & Liquor" -- and the same 11 rows back
+under "House of Wine & Liquor - Boonton". RDE relabelled the account; the
+number, the rep, the dates and the placement counts are identical. No count
+moves because build_new_placements() keys on (rep, account NUMBER, product),
+never on the spelling. The board now shows the new name. If a future diff
+shows rows leaving, check for this before treating it as a withdrawal: match
+the removals against the additions by account number first.
+
 2026-09-14 -- Promos_Report_19 merged; Shane Barreca opens his account
   python3 generate_2026-09.py --merge-cooler-doors Promos_Report_19.xlsx
 The report is 38 rows, ALL of them Cooler Door Wraps again (nothing filtered

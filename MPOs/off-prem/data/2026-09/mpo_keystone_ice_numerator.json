@@ -392,6 +392,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 49031,
     "CUSTOMER_NAME": "Top Shelf Liquors",
+    "DATE": "9/14/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 49031,
+    "CUSTOMER_NAME": "Top Shelf Liquors",
     "DATE": "9/8/2026",
     "CASES": 2.0
   },
@@ -680,6 +689,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 25012,
     "CUSTOMER_NAME": "Bottle Liquor (P)",
+    "DATE": "9/14/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 25012,
+    "CUSTOMER_NAME": "Bottle Liquor (P)",
     "DATE": "9/8/2026",
     "CASES": 2.0
   },
@@ -736,6 +754,15 @@
     "CUSTOMER_NAME": "Mariana's Liquors",
     "DATE": "8/27/2026",
     "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Javier Melo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 27046,
+    "CUSTOMER_NAME": "New Eagle Liquors",
+    "DATE": "9/14/2026",
+    "CASES": 5.0
   },
   {
     "SALES_REP_ASSIGNED": "Javier Melo",
@@ -924,6 +951,15 @@
     "CUSTOMER_NUM": 25017,
     "CUSTOMER_NAME": "Savers Club Liquor Locker",
     "DATE": "8/14/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jim Heaney",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 23002,
+    "CUSTOMER_NAME": "Valley Liquors (A)",
+    "DATE": "9/14/2026",
     "CASES": 2.0
   },
   {
@@ -1249,6 +1285,15 @@
     "CUSTOMER_NAME": "Schulman's (P) Deli",
     "DATE": "8/4/2026",
     "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Pablo Lopez",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 27066,
+    "CUSTOMER_NAME": "Sunny's Liqs.(P)",
+    "DATE": "9/15/2026",
+    "CASES": 50.0
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",

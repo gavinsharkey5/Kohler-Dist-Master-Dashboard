@@ -3290,6 +3290,16 @@
     "NEW_PLACEMENT": 0
   },
   {
+    "SALES_REP_ASSIGNED": "Dan Lagala",
+    "PRODUCT_NAME": "201055 Bardstown Origin Series Bottle-In-Bond 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Bourbon",
+    "CUSTOMER_NUM": 54007,
+    "CUSTOMER_NAME": "Wine Ventures",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "201051 Green River Bourbon 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Green River",
@@ -5306,7 +5316,7 @@
     "CUSTOMER_NUM": 170049,
     "CUSTOMER_NAME": "Cosmo Liquors & Grocery",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -7826,7 +7836,7 @@
     "CUSTOMER_NUM": 150191,
     "CUSTOMER_NAME": "Home Wines & Liquors (927 Newark)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -11016,7 +11026,7 @@
     "CUSTOMER_NUM": 230412,
     "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -11048,6 +11058,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "201077 Green River Honey 1/750 mL Btl",
+    "BRAND_FAMILY": "Bardstown Green River",
+    "CUSTOMER_NUM": 230412,
+    "CUSTOMER_NAME": "USA Wine Traders Club Of Newton (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -12384,7 +12404,7 @@
     "PRODUCT_NAME": "100122 Le Grand Noir Pinot Noir 1/12/750 mL Btl",
     "BRAND_FAMILY": "Le Grand Noir",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
@@ -12394,7 +12414,7 @@
     "PRODUCT_NAME": "200217 Leyenda 1925 Blanco Tequila 1/750 ML Btl",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
@@ -12404,7 +12424,7 @@
     "PRODUCT_NAME": "200218 Leyenda 1925 Reposado Tequila 1/750 ML Btl",
     "BRAND_FAMILY": "Leyenda 1925",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
@@ -12414,7 +12434,7 @@
     "PRODUCT_NAME": "201052 Green River Full Proof 1/750 mL",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1
@@ -12424,7 +12444,7 @@
     "PRODUCT_NAME": "201054 Green River Wheated 1/750 mL",
     "BRAND_FAMILY": "Bardstown Green River",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1
@@ -12434,7 +12454,7 @@
     "PRODUCT_NAME": "201056 Bardstown Origin Series Bourbon 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1
@@ -12444,7 +12464,7 @@
     "PRODUCT_NAME": "201080 Bardstown Discovery 2026 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1
@@ -12454,7 +12474,7 @@
     "PRODUCT_NAME": "201081 Bardstown Collaboration Series Lochs Of Jura 1/750 mL Btl",
     "BRAND_FAMILY": "Bardstown Bourbon",
     "CUSTOMER_NUM": 190216,
-    "CUSTOMER_NAME": "House of Wine & Liquor",
+    "CUSTOMER_NAME": "House of Wine & Liquor - Boonton",
     "BASE_PLACEMENTS": 0.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 1
@@ -17946,7 +17966,7 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17956,7 +17976,7 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -17966,7 +17986,7 @@
     "CUSTOMER_NUM": 92011,
     "CUSTOMER_NAME": "Bottle King (A) Ramsey",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

@@ -98,6 +98,23 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-14 REFRESH: actuals.csv onto the 149-row export (10 new rows, none
+removed), 119 -> 123 distinct accounts, still 4 qualified but TWO REACH BONUS
+for the first time: Derrick Laws 15 -> 16 of 13 (50% of 32) and Pablo Lopez
+12 -> 14 of 12 (50% of 28), so projected payout goes $300 -> $470. Dan Lagala
+20 -> 21 of 18, one account from bonus. Nobody else moved.
+  PABLO'S BONUS RIDES A FUTURE-DATED LOAD SHEET: Sunny's Liqs.(P) #27066 is
+  dated 9/15/2026, a day ahead of this refresh. It is a scheduled load sheet
+  and the export is the record, the same call the off-prem board has made all
+  month -- but it is the account that takes him from 13 to 14, i.e. from
+  qualified to bonus. If that delivery falls through, the next pull drops him
+  back and the payout with it.
+  actuals.csv here had drifted a pull behind again (139 rows vs the off-prem
+  board's 144) since 2026-09-11, when only the MPO copy was refreshed. Both
+  now hold the same 149-row export.
+Same export applied to MPOs/off-prem/keystone_ice_24oz.csv in the same commit;
+both boards read 123. incentive-tracking rebuilt afterwards.
+
 2026-09-10 REFRESH: actuals.csv onto the 139-row export (15 new rows, none
 removed), 109 -> 119 distinct accounts, 3 -> 4 qualified, $195 -> $300
 projected. Dan Lagala qualified (17 -> 20 of 18, 47% of 43) and is rank #1;
