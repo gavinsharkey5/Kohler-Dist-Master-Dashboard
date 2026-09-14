@@ -63,6 +63,24 @@ Files:
                   export as .csv or .xlsx.
   index.html      The page itself.
 
+2026-09-14 REFRESH -- RDE_Red_Bull_Tracker_Apr_1_Start_4.csv (1,764 rows,
+4/1 through 9/16). One account joins and nothing was lost: 196 -> 197 buying
+accounts, Regular 184 -> 185, Free and Flavor unchanged at 96 and 62. The new
+one is Paul Mclaughlin's Shoti Bread House #81002, a Regular-only first order.
+
+BOTH TIERS HOLD: Core 88 of 155, Core+ 49 of 84, with no account gaining or
+losing a tier. That is the arithmetic, not a stale file -- a Regular-only
+account is two categories short of Core+, so a new buyer moves the account
+count without moving either tier. Core+ leaderboard unchanged: Nick Melissari
+and Allison Scott 11 each, Paul Mclaughlin 10, Brian Sengebush 8.
+
+NINE ROWS ARE DATED AHEAD of the pull (9/15 and 9/16 -- Paul Mclaughlin's
+Players Club and Shoti Bread House, five of Allison Scott's, one of Nick
+Melissari's). Scheduled load sheets, the same thing every RDE export carried
+this week; they are left in because the export is the record. Only one of them
+opens a new account, so if that delivery falls through the next pull drops the
+account count back to 196 by itself.
+
 To refresh with a new export:
   1. Re-export the RDE Red Bull Tracker report.
   2. Run: python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start.csv
