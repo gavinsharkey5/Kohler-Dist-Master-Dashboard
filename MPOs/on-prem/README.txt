@@ -260,7 +260,7 @@ Four objectives at 25% each:
   4. HUSA - (1) New XX Draft Line
 
 All four are data-backed. Numbers as of the 2026-09-14 refresh (RDE exports run
-through 9/17): Bardstown 5 menu placements, Fever Tree 16 new placements,
+through 9/17): Bardstown 4 menu placements, Fever Tree 16 new placements,
 Carbliss 12 new buying accounts, HUSA 1 new draft line.
 
 2026-09-14 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_20
@@ -289,7 +289,10 @@ still be right -- but the archive is Bardstown-only by design, so it went
 where it belongs. Promos_Report_20 followed as the Bardstown pull Gavin meant
 to send: 6 rows, all Supplier BARDSTOWN BOURBON COMPANY, merged here (5 -> 8
 archive rows, 3 new, 3 already published, all 8 keeping their photo link).
-Bardstown still reads 5: Nick Melissari 2, Robin Feldman 2, Allison Scott 1.
+Bardstown read 5 on that merge -- Nick Melissari 2, Robin Feldman 2, Allison
+Scott 1 -- and then 4 the same day, when Gavin identified one of Nick's two as
+a double entry (see "THE ODD ROW IS SETTLED" below): Nick Melissari 1, Robin
+Feldman 2, Allison Scott 1.
 
 ALL THREE OF REPORT_20'S NEW ROWS ARE AN OFF-PREMISE ACCOUNT, AND THEY DO NOT
 COUNT HERE. They are one submission by Adam Badalamenti (a Sales ASSOCIATE,
@@ -346,11 +349,31 @@ spells one rep "Matthew Powierski" against the roster's "Matt Powierski", so
 that rep's September sticker reaches nobody there. Left alone because fixing
 it moves a figure already published; ask Gavin before changing it.
 
-ONE ODD ROW, LEFT IN: Nick's second placement is account #120001, DBA "RED
-BULL VENDING MACHINE", a GREEN RIVER HONEY FINISHED BOURBON feature. It is a
-real submitted photo against a real account number and the objective counts
-brand mentions, so it counts. Worth a word with Gavin if that account should
-not be scoreable.
+THE ODD ROW IS SETTLED, AND IT WAS A DOUBLE ENTRY (Gavin, 2026-09-14).
+Account #120001, DBA "RED BULL VENDING MACHINE", carried a GREEN RIVER HONEY
+FINISHED BOURBON feature by Nick Melissari at 08:51 on 9/11 -- two minutes
+before his NEW PARK TAV (A) #31027 cocktail list, same brand, same day. It is
+not a second placement: it is the SAME menu submitted twice, the second time
+against a placeholder account rather than the venue. Gavin's call is one
+placement, on New Park Tav (A). Nick Melissari goes 2 -> 1 and the objective
+4 of 5.
+
+The tells were all there in the row: Promotion type "Feature Activation" with
+an EMPTY Elements cell, against the New Park Tav row's "Cocktail List
+Activation" carrying "Table Tent, Menu". A menu placement that names no menu
+is worth a second look.
+
+SUPPRESSED IN CODE, NOT BY DELETING THE ARCHIVE ROW. BARDSTOWN_EXCLUDED_
+ACCOUNTS in generate_2026-09.py maps the account number to the reason, and
+build_bardstown_menu() skips it and prints what it dropped. Deleting the row
+from bardstown_menu_promos.xlsx would not hold: the archive is the iSellBeer
+record, and re-merging Promos_Report_20 (or any later pull carrying that
+window) would put it straight back -- and this README already warns against
+openpyxl delete_rows, which leaves phantom hyperlink rows behind. Keyed on the
+ACCOUNT NUMBER, so a genuine placement at any other account is untouched.
+A general "same rep + same brand + same day is one placement" rule was
+deliberately NOT written: a rep can legitimately put one brand on two
+different venues' menus in a day, and that is two payouts.
 
 TARGET ACCOUNTS MUST BE POSSIBLE NEW BUYERS (Gavin, 2026-09-11): "only
 include target accounts for carbliss and fever tree if they are GOING TO BE A

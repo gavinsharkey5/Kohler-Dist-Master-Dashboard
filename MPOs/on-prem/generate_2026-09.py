@@ -75,6 +75,19 @@ HUSA_DATE_COL = "Date"
 # Cumulative iSellBeer promo ARCHIVE for objective 1, not a scratch copy of the
 # latest pull -- see build_bardstown_menu().
 BARDSTOWN_XLSX = HERE / "bardstown_menu_promos.xlsx"
+# Promo rows that iSellBeer carries but that are NOT their own menu placement.
+# Per Gavin, 2026-09-14: Nick Melissari's two September rows are ONE menu, the
+# New Park Tav (A) cocktail list, entered twice -- the second submission, two
+# minutes later, was filed against account #120001 "RED BULL VENDING MACHINE"
+# (a placeholder, not a venue with a menu) carrying the same brand on the same
+# day. The New Park Tav row is the real one and is the one that scores.
+# Suppressed HERE rather than by deleting the archive row, because the archive
+# is the iSellBeer record and re-merging the Promos_Report that carried it
+# would simply put it back. Keyed on the account number so a genuine future
+# placement at a different account is untouched.
+BARDSTOWN_EXCLUDED_ACCOUNTS = {
+    "120001": "RED BULL VENDING MACHINE -- duplicate of the New Park Tav (A) menu (Gavin, 2026-09-14)",
+}
 # The off-prem Lytt POS tracker already solved partial-iSellBeer merging
 # (hyperlinks preserved, header-name column matching, volatile counter columns
 # ignored). Reused rather than reimplemented.
@@ -363,6 +376,7 @@ def build_bardstown_menu(off_premise_ids):
 
     seen, out, mentions, submissions, skipped = set(), [], 0, set(), 0
     off_prem_skipped = []
+    excluded_accts = []
     for row in ws.iter_rows(min_row=2):
         vals = [c.value for c in row]
         if not vals or not vals[idx["Date/Time"]]:
@@ -374,6 +388,9 @@ def build_bardstown_menu(off_premise_ids):
         acct_raw = str(vals[idx["Account #"]] or "").strip()
         if acct_raw in off_premise_ids:
             off_prem_skipped.append(f"{str(vals[idx['DBA']] or '').strip()} #{acct_raw}")
+            continue
+        if acct_raw in BARDSTOWN_EXCLUDED_ACCOUNTS:
+            excluded_accts.append(acct_raw)
             continue
         raw_rep = str(vals[idx["Photo taker"]] or "").strip()
         # iSellBeer spells names its own way ("robin feldman"); the roster is
@@ -419,6 +436,9 @@ def build_bardstown_menu(off_premise_ids):
     if unmatched:
         print(f"  Bardstown menu: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
               f"and their placements reach nobody: {unmatched}")
+    for acct in sorted(set(excluded_accts)):
+        print(f"  Bardstown menu: {excluded_accts.count(acct)} promo row(s) at #{acct} "
+              f"excluded -- {BARDSTOWN_EXCLUDED_ACCOUNTS[acct]}")
     if off_prem_skipped:
         uniq = sorted(set(off_prem_skipped))
         print(f"  Bardstown menu: {len(off_prem_skipped)} promo row(s) at off-premise "
