@@ -1242,6 +1242,59 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone a no-op)
+Five exports arrived; the Keystone one is BYTE-IDENTICAL to the 149-row file
+both Keystone copies already hold from this morning's refresh, so nothing was
+rewritten there and keystone_ice is unchanged at 123 accounts, 4 qualified,
+2 at bonus, $470. The other four moved. Only those four blocks of
+PROGRAM_DATA changed -- nothing else, not even the pace fields, since the
+page was already rebuilt today.
+
+  1911       269 total placements, UNCHANGED, but three reps moved inside it:
+             Andrew Lundy 39 -> 37, Mike Ast 25 -> 26, Dan Lagala 1 -> 2.
+             Andrew holds rank 1 and Mike rank 3. Case volume shuffled four
+             more reps a rank apart on the tiebreak (Allison Scott 19 -> 18,
+             Dan Lagala 24 -> 23, Paul Mclaughlin 18 -> 19, Nick Melissari
+             23 -> 24) with no placement change behind it.
+  Woodchuck  35 -> 34 placements. John O'Donoghue 9 -> 8 and still rank 1.
+  Tona       12 new 24 oz placements, UNCHANGED. Only case volume moved:
+             Derrick Laws 173 -> 178, Dylan Rubino 65 -> 62.
+  Lytt       no placement or penetration change; Jim Heaney's case volume
+             79 -> 85 on six Lytt SKUs at Lexington Liquors (Z) on 9/14, an
+             account already in his buying count.
+
+THREE ROWS WERE GENUINELY WITHDRAWN BY RDE, the same voided-order shape as
+the 2026-09-10 note's Tona and Total Wine removals, and they are what the
+two placement drops are:
+  Andrew Lundy / 250071 Total Wine & More (Union) -- two 9/11 rows (Maple
+    Bourbon, Candy Corn), 1911. His account row count fell 39 -> 37.
+  John O'Donoghue / 190711 Shop Rite Liquors -- one 9/11 Blueberry Keg row,
+    Woodchuck.
+Nothing was patched here: the page shows what the current export says. If
+those loads were real, the fix is a corrected RDE pull, not a change on
+this side.
+
+TWO MORE "DROPS" ARE RETURNS, NOT WITHDRAWALS -- the row is still there with
+a NEGATIVE case count, so the placement stands and only volume falls:
+Chris Payton / Wineland 1911 Raspberry 9/11 went +1 case -> -1 (his volume
+14 -> 12), and Dylan Rubino / Union Liquors Tona 9/11 came in at -3 cases.
+Read a case-volume drop against the row before calling it a lost placement.
+
+AND SEVENTEEN MORE ARE THE RENAME AGAIN. 1911's raw diff shows 20 rows gone,
+but 17 of them are Klejdi Lamo / #190216 "House of Wine & Liquor" coming back
+as "House of Wine & Liquor - Boonton" -- the same RDE relabel the off-prem
+MPO board hit this morning. His numbers do not move, because the builder keys
+on the account number. Match removals to additions by account number before
+treating any of them as a withdrawal; that check is what leaves exactly three.
+
+FUTURE-DATED ROWS came in again, and none of them moved a placement count:
+Derrick Laws / Ferraro's Liquor Tona 9/15 (+5 cases at an account he already
+had) and Allison Scott / 3007 Kitchen & Beer Bar 1911 9/18 -- four SKUs at an
+account that already carried 1911 in the base window, so her count holds at 2
+and only her case volume moves, 7 -> 12. Worth a glance next pull if a
+future-dated row ever lands somewhere that WOULD qualify as new.
+hub/index.html's ?v= tag went 20260914a -> 20260914b.
+
 2026-09-14 REFRESH -- Keystone only, riding the off-prem MPO refresh
 The 149-row Keystone export went onto keystone-ice/actuals.csv AND
 MPOs/off-prem/keystone_ice_24oz.csv (sync rule -- the two had drifted apart
