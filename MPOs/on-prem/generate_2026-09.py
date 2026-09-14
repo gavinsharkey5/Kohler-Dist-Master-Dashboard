@@ -290,7 +290,7 @@ def _lytt_pos():
     return mod
 
 
-def build_bardstown_menu():
+def build_bardstown_menu(off_premise_ids):
     """Objective 1 -- (5) New Bardstown Menu Placements, from iSellBeer promos.
 
     COUNTS DISTINCT BRAND MENTIONS, NOT SUBMISSIONS (confirmed with Gavin,
@@ -325,6 +325,20 @@ def build_bardstown_menu():
     Bardstown menu placements. Rows whose Supplier is not Bardstown are skipped
     and counted in the build log, so a mis-filtered pull surfaces as a number
     rather than as credit on the board.
+
+    OFF-PREMISE ACCOUNTS ARE SKIPPED TOO, the same as every other dataset on
+    this board (Kohler, 2026-08-07: "off premise accounts should not be
+    included in this dashboard ever"). This builder was the only one not
+    taking off_premise_ids, because until Promos_Report_20 (2026-09-14) every
+    promo row had been an on-premise account. That pull carried three
+    Bardstown brand rows at SHOP RITE WINE & SPIRITS STANHOPE (#191710), a
+    liquor store -- Off Premise on the customer base, Klejdi Lamo's account --
+    submitted by a Sales Associate who is not on this board's ROSTER. Merged
+    unguarded they would have read as three menu placements credited to
+    nobody: the company figure would have said 8 while every rep's card still
+    totalled 5. They stay in the archive (they are genuinely Bardstown, which
+    is what is_bardstown() gates on) and are skipped here, with the accounts
+    named in the build log so a wrongly-excluded one surfaces.
     """
     if not BARDSTOWN_XLSX.exists():
         print("  Bardstown menu: no bardstown_menu_promos.xlsx -- objective stays rules-only")
@@ -348,6 +362,7 @@ def build_bardstown_menu():
     aliased = {}
 
     seen, out, mentions, submissions, skipped = set(), [], 0, set(), 0
+    off_prem_skipped = []
     for row in ws.iter_rows(min_row=2):
         vals = [c.value for c in row]
         if not vals or not vals[idx["Date/Time"]]:
@@ -355,6 +370,10 @@ def build_bardstown_menu():
         supplier = str(vals[idx["Supplier"]] or "").strip()
         if "BARDSTOWN" not in supplier.upper():
             skipped += 1
+            continue
+        acct_raw = str(vals[idx["Account #"]] or "").strip()
+        if acct_raw in off_premise_ids:
+            off_prem_skipped.append(f"{str(vals[idx['DBA']] or '').strip()} #{acct_raw}")
             continue
         raw_rep = str(vals[idx["Photo taker"]] or "").strip()
         # iSellBeer spells names its own way ("robin feldman"); the roster is
@@ -369,7 +388,7 @@ def build_bardstown_menu():
             else:
                 rep = raw_rep          # kept as-is so it surfaces rather than vanishing
         dt = str(vals[idx["Date/Time"]]).strip()
-        acct = str(vals[idx["Account #"]] or "").strip()
+        acct = acct_raw
         brand = str(vals[idx["Brand"]] or "").strip()
         # Brand is part of the key: two brands on one menu are two placements.
         key = (rep, acct, dt, brand)
@@ -400,6 +419,11 @@ def build_bardstown_menu():
     if unmatched:
         print(f"  Bardstown menu: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
               f"and their placements reach nobody: {unmatched}")
+    if off_prem_skipped:
+        uniq = sorted(set(off_prem_skipped))
+        print(f"  Bardstown menu: {len(off_prem_skipped)} promo row(s) at off-premise "
+              f"account(s) skipped -- this board is on-premise only (Kohler, "
+              f"2026-08-07): {', '.join(uniq)}")
     if skipped:
         print(f"  Bardstown menu: {skipped} non-Bardstown promo row(s) in the archive "
               f"skipped -- check what brand filter the last Promos_Report was pulled with")
@@ -441,7 +465,7 @@ def main():
     fever_rows, fever_new, fever_total, fever_ph = build_fever_tree(off_premise_ids)
     carb_rows, carb_new, carb_total, carb_ph = build_carbliss(off_premise_ids)
     husa_rows, husa_new, husa_total, husa_ph = build_husa(off_premise_ids)
-    bard_rows, bard_placements, bard_submissions = build_bardstown_menu()
+    bard_rows, bard_placements, bard_submissions = build_bardstown_menu(off_premise_ids)
 
     month_dir = DATA_DIR / MONTH_KEY
     month_dir.mkdir(parents=True, exist_ok=True)

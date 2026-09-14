@@ -263,8 +263,8 @@ All four are data-backed. Numbers as of the 2026-09-14 refresh (RDE exports run
 through 9/17): Bardstown 5 menu placements, Fever Tree 16 new placements,
 Carbliss 12 new buying accounts, HUSA 1 new draft line.
 
-2026-09-14 REFRESH -- Fever Tree, Carbliss, HUSA exports; no new Bardstown
-  python3 generate_2026-09.py
+2026-09-14 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_20
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_20.xlsx
 NOTHING MOVED, AND THE EXPORTS ARE WHY. Carbliss (269 rows) and HUSA (85 rows)
 are SET-IDENTICAL to the 9/11 pull -- same rows, merely re-sorted, verified
 before the run, exactly the case this README keeps telling you to check before
@@ -279,15 +279,39 @@ load sheets, the same case as Allison Scott's 9/10 rows on the 2026-09-10 note.
 They are left in (the export is the record) and they change no count either
 way, since Pazza is a repeat buyer regardless.
 
-THE PROMOS REPORT THAT CAME WITH THIS REFRESH WAS NOT BARDSTOWN, AGAIN.
-Promos_Report_19 is 38 rows, every one of them a Cooler Door Wrap -- it is the
+TWO PROMOS REPORTS CAME WITH THIS REFRESH, ONE FOR EACH BOARD.
+Promos_Report_19 is 38 rows, every one of them a Cooler Door Wrap -- the
 OFF-PREM sticker pull, not a menu pull. It was merged onto
 MPOs/off-prem/pos_cooler_door_promos.xlsx (7 new rows, Shane Barreca 0 -> 4
-stickers) and NOT onto bardstown_menu_promos.xlsx, which is untouched. Had it
-been merged here, is_bardstown() would have skipped all 38 on the way in and
-the count would still be right -- but the archive is Bardstown-only by design,
-so it goes where it belongs. Bardstown holds at 5: Nick Melissari 2, Robin
-Feldman 2, Allison Scott 1.
+stickers) and NOT onto bardstown_menu_promos.xlsx. Had it been merged here,
+is_bardstown() would have skipped all 38 on the way in and the count would
+still be right -- but the archive is Bardstown-only by design, so it went
+where it belongs. Promos_Report_20 followed as the Bardstown pull Gavin meant
+to send: 6 rows, all Supplier BARDSTOWN BOURBON COMPANY, merged here (5 -> 8
+archive rows, 3 new, 3 already published, all 8 keeping their photo link).
+Bardstown still reads 5: Nick Melissari 2, Robin Feldman 2, Allison Scott 1.
+
+ALL THREE OF REPORT_20'S NEW ROWS ARE AN OFF-PREMISE ACCOUNT, AND THEY DO NOT
+COUNT HERE. They are one submission by Adam Badalamenti (a Sales ASSOCIATE,
+not a rep on this board's ROSTER) at SHOP RITE WINE & SPIRITS STANHOPE
+#191710 on 9/12, carrying three Bardstown brands: 2026 Discovery,
+Collaboration Series Lochs of Ju, and Green River Honey Finished. #191710 is
+Off Premise on sales_reps_customer_base.csv -- a liquor store, Klejdi Lamo's
+account -- and Kohler's standing rule (2026-08-07) is that off-premise
+accounts are never shown on this dashboard.
+
+build_bardstown_menu() was the ONE builder that never took off_premise_ids,
+because until this pull every promo row had been on-premise; it does now, and
+prints the accounts it skipped. Without that the board would have said 8
+menu placements company-wide while the reps' cards still totalled 5, since
+"Adam Badalamenti" matches no ROSTER name and renders nowhere -- a figure
+disagreeing with every card under it, which is worse than either answer.
+The rows stay in the archive (they are genuinely Bardstown, which is what
+is_bardstown() gates on) so nothing is lost if this is reversed.
+ASK GAVIN if that submission is meant to score: it is a real photo against a
+real account, but it belongs to an off-premise program, not this one. Same
+class of question as the RED BULL VENDING MACHINE row already noted below,
+except that one at least sits on an on-premise account number.
 
 2026-09-11 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_17
   python3 generate_2026-09.py --merge-bardstown Promos_Report_17.xlsx
