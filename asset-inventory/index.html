@@ -120,7 +120,7 @@
 <div class="wrap">
 <a class="back" href="../">&larr; Kohler dashboards</a>
 <h1>Asset Inventory</h1>
-<p class="sub">Everything upstairs at Hawthorne — and everything we have loaned out.</p>
+<p class="sub">Everything upstairs at Hawthorne — and everything we have out in the market.</p>
 <p class="updated" id="updated"></p>
 
 <div class="kpis" id="kpis"></div>
@@ -144,7 +144,7 @@
 </section>
 
 <section id="pane-loans" role="tabpanel" hidden>
-  <h2>Out on loan</h2>
+  <h2>Out in market</h2>
   <p class="lead" id="loan-lead"></p>
   <input type="search" id="q-loans" placeholder="Search account or item…" autocomplete="off">
   <div class="chips" id="chips-loans"></div>
@@ -203,14 +203,14 @@ $('updated').textContent = 'Updated ' + fdate(S.refreshed) + ' from Encompass';
 var kpis = [
   [n(S.units), 'units upstairs', ''],
   [n(S.openRequests), 'waiting on a request', ''],
-  [n(S.loanUnits), 'out on loan', ''],
+  [n(S.loanUnits), 'out in market', ''],
   [n(S.low + S.out), 'items low or out', 'color:#E9A93B']
 ];
 $('kpis').innerHTML = kpis.map(function(k){
   return '<div class="kpi"><div class="kpi-num" style="'+k[2]+'">'+k[0]+'</div>'
        + '<div class="kpi-label">'+esc(k[1])+'</div></div>'; }).join('');
 
-var TABS = [['stock','What we have'],['requests','Requests'],['loans','Out on loan'],
+var TABS = [['stock','What we have'],['requests','Requests'],['loans','Out in market'],
             ['activity','In &amp; out'],['check','Worth a look']];
 $('tabs').innerHTML = TABS.map(function(t,i){
   return '<button class="tab" role="tab" id="tab-'+t[0]+'" aria-controls="pane-'+t[0]+'" aria-selected="'
@@ -305,12 +305,12 @@ function drawRequests(){
 $('q-requests').addEventListener('input', drawRequests);
 drawRequests();
 
-/* ---- out on loan (the retrieval list) --------------------------------- */
-$('loan-lead').innerHTML = 'Placed assets are <b>loans</b>, so this is everyone holding our things — '
-  + '<b>oldest first</b>, because the oldest loan is the one worth chasing. Encompass keeps no return '
-  + 'record, so anything already collected is still listed until it is marked back in.'
+/* ---- out in market (the retrieval list) -------------------------------- */
+$('loan-lead').innerHTML = 'Our assets come back, so this is every account holding something of ours — '
+  + '<b>oldest first</b>, because the one that has been out longest is the one worth chasing. Encompass '
+  + 'keeps no return record, so anything already collected is still listed until it is marked back in.'
   + (S.internalUnits ? ' Internal sample write-offs (' + n(S.internalUnits) + ' units) are left out.' : '');
-var LOAN_FILTERS = [['all','Everything'],['old','Out over a year']];
+var LOAN_FILTERS = [['all','Everything'],['old','Out over a year']];  /* label reads the same either way */
 var lf = 'all';
 $('chips-loans').innerHTML = LOAN_FILTERS.map(function(f){
   return '<button class="chip" data-f="'+f[0]+'" aria-pressed="'+(f[0]==='all')+'">'+esc(f[1])+'</button>'; }).join('');
@@ -335,7 +335,7 @@ function drawLoans(){
     return '<div class="row"><div class="row-main">'
       + '<div class="row-name">'+esc(l.customer)+'</div>'
       + '<div class="row-sub">'+esc(l.type)+(l.date ? ' · since '+fdate(l.date) : '')+'</div></div>'
-      + '<div class="row-num">'+n(l.qty)+'<small>out</small></div>'
+      + '<div class="row-num">'+n(l.qty)+'<small>in market</small></div>'
       + (l.date == null ? '<span class="tag t-mute">No date</span>'
          : l.old ? '<span class="tag t-out">'+esc(since(l.age))+'</span>'
                  : '<span class="tag t-mute">'+esc(since(l.age))+'</span>') + '</div>';
@@ -392,7 +392,7 @@ function detail(i){
       + (i.pending ? ' — '+n(i.onHand)+' upstairs, '+n(i.pending)+' already spoken for' : '')+'</div></div>'
     + '<div><div class="qq">Where is it?</div><div class="qa">'
       + (i.onHand ? esc(i.location)+(i.shelf ? ', bin '+esc(i.shelf) : '') : 'Nothing upstairs right now')+'</div></div>'
-    + '<div><div class="qq">Where has it gone?</div><div class="qa">'+n(i.onLoan)+' out on loan at '
+    + '<div><div class="qq">Where has it gone?</div><div class="qa">'+n(i.onLoan)+' out in market at '
       + n(loanTotal.length)+' accounts</div></div>'
     + '<div><div class="qq">Supplier</div><div class="qa">'+esc(i.supplier || 'Not in the export')+'</div></div>'
     + '<div><div class="qq">Last came in</div><div class="qa">'+fdate(i.lastReceived)+'</div></div>'
@@ -401,13 +401,13 @@ function detail(i){
     + open.slice(0,8).map(function(r){
         return '<div class="mini"><span>'+esc(r.rep)+' — '+n(r.qty)+'</span><span>'+fdate(r.date)+'</span></div>';
       }).join('');
-  if(loans.length) h += '<h4>Out on loan — oldest first</h4>'
+  if(loans.length) h += '<h4>Out in market — longest out first</h4>'
     + loans.slice().sort(function(a,b){ return (a.date||'') < (b.date||'') ? -1 : 1; }).map(function(l){
         return '<div class="mini"><span>'+esc(l.customer)+' — '+n(l.qty)+'</span><span>'
              + (l.date ? esc(since(l.age)) : 'no date')+'</span></div>';
       }).join('')
     + (loanTotal.length > 12 ? '<div class="row-sub" style="margin-top:8px">+'
-        + n(loanTotal.length-12)+' more accounts — search this item under Out on loan</div>' : '');
+        + n(loanTotal.length-12)+' more accounts — search this item under Out in market</div>' : '');
   $('dlg').innerHTML = h;
   $('ov').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -424,8 +424,8 @@ $('foot').innerHTML =
   + 'so the count is already up to date. The number you can take is what is upstairs minus what others '
   + 'have already asked for.</p>'
   + '<p><b>Two things it cannot tell you.</b> A request shows who asked but not which account it was for, '
-  + 'so In &amp; out and Out on loan cannot be matched up. And nothing records a loan coming back, so Out '
-  + 'on loan keeps listing things until Encompass is updated.</p>'
+  + 'so In &amp; out and Out in market cannot be matched up. And nothing records an asset coming back, so '
+  + 'Out in market keeps listing things until Encompass is updated.</p>'
   + '<p>Run <code>generate.py</code> after dropping new exports into <code>data/</code>. See README.txt.</p>';
 })();
 </script>
