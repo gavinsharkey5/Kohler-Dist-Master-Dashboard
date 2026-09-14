@@ -1242,6 +1242,50 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 THIRD REFRESH -- Le Grand Noir, Garage Beer President,
+Touchdowns & Tea (both legs), Evil Genius
+NOTHING WAS WITHDRAWN IN THIS BATCH. Every apparent removal in the raw diffs
+resolves to a rename, a re-sort or a re-valued row -- checked account by
+account before the run. Only these four programs' blocks changed.
+
+  Touchdowns & Tea   the batch's real movement: 63 -> 71 new off-prem 12pk
+                     placements, on-prem 789 -> 890 cases across 11 reps,
+                     trackable $1,734 -> $1,955. Klejdi Lamo 5 -> 8 new
+                     placements ($80 -> $125), Dave Ehlers 21 -> 23 ($315 ->
+                     $345), Jayson Romine 1 -> 3 ($15 -> $45), Phil Ernst
+                     3 -> 4 ($62 -> $77). On-prem case payouts follow the
+                     cases: Allison Scott 193 -> 240, Brian Sengebush
+                     151 -> 171, Paul Mclaughlin 131 -> 141, Robin Feldman
+                     59 -> 77, Nick Melissari 79 -> 85.
+  Garage Beer Pres.  house 7,641.58 -> 7,722.24 CE against an UNCHANGED 9,305
+                     goal and an UNCHANGED last-year column (checked per rep,
+                     all 24 identical -- that column is history).
+  Evil Genius        4 new placements and 1 of 27 reps past the qualifier,
+                     BOTH UNCHANGED. The two new rows are reorders at
+                     accounts already carrying the brand: Jayson Romine /
+                     Liquor Factory VI Byram 9/14 off-prem and Nick Melissari
+                     / House of Que 9/11 draft. CE 40 -> 44 vs last
+                     September's 98; still 5 reps ahead, 9 bonus CE, $0 paid
+                     (qualifier-gated).
+  Le Grand Noir      30 of 70 house cases, UNCHANGED. The export was merely
+                     re-sorted, so only drill-down line ORDER moved.
+
+TWO FIGURES FELL, AND NEITHER IS A LOST PLACEMENT:
+  Chris Payton's Garage Beer growth 86.22 -> 81.22 CE, because his Wineland
+  line came back 5 cases lighter -- a return, the same shape as the 1911
+  Raspberry credit in the refresh above. Last year's column did not move.
+  Jayson Romine's Touchdowns off-prem TARGET count 5 -> 4, which is a target
+  list doing its job: he converted one, and his new-placement count rose
+  1 -> 3 in the same pull. Target lists shrink as prospects convert.
+
+THE RENAME IS NOW IN FOUR FILES. Klejdi Lamo / #190216 "House of Wine &
+Liquor" -> "House of Wine & Liquor - Boonton" accounts for 70 of Touchdowns
+off-prem's 71 removals, the single Le Grand Noir removal and the single Evil
+Genius one. The 71st Touchdowns removal is Phil Ernst / Shop Rite Liq
+(Paramus) 9/14, whose Sun Cruiser Sampler row was re-valued 3 -> 5 cases and
+gained a Lemonade Variety Pack SKU beside it. Nothing lost there either.
+hub/index.html's ?v= tag went 20260914b -> 20260914c.
+
 2026-09-14 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt (Keystone a no-op)
 Five exports arrived; the Keystone one is BYTE-IDENTICAL to the 149-row file
 both Keystone copies already hold from this morning's refresh, so nothing was
