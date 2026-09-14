@@ -259,9 +259,35 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-10 refresh (RDE exports run
-through 9/11): Bardstown 3 menu placements, Fever Tree 16 new placements,
-Carbliss 9 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-14 refresh (RDE exports run
+through 9/17): Bardstown 5 menu placements, Fever Tree 16 new placements,
+Carbliss 12 new buying accounts, HUSA 1 new draft line.
+
+2026-09-14 REFRESH -- Fever Tree, Carbliss, HUSA exports; no new Bardstown
+  python3 generate_2026-09.py
+NOTHING MOVED, AND THE EXPORTS ARE WHY. Carbliss (269 rows) and HUSA (85 rows)
+are SET-IDENTICAL to the 9/11 pull -- same rows, merely re-sorted, verified
+before the run, exactly the case this README keeps telling you to check before
+hunting for a bug in classify(). Fever Tree gained exactly 2 rows and both are
+repeats: Mike Ast / 95001 Pazza took Ginger Beer and Pink Grapefruit Soda, an
+account that bought both SKUs in the base window (6/2 through 8/21), so it
+reads as reorder, not placement. Counts hold at 16 / 12 / 1 with no rep up or
+down; diffed per rep, key by key, against the previous build.
+
+BOTH OF THOSE PAZZA ROWS ARE DATED 9/17, THREE DAYS IN THE FUTURE -- scheduled
+load sheets, the same case as Allison Scott's 9/10 rows on the 2026-09-10 note.
+They are left in (the export is the record) and they change no count either
+way, since Pazza is a repeat buyer regardless.
+
+THE PROMOS REPORT THAT CAME WITH THIS REFRESH WAS NOT BARDSTOWN, AGAIN.
+Promos_Report_19 is 38 rows, every one of them a Cooler Door Wrap -- it is the
+OFF-PREM sticker pull, not a menu pull. It was merged onto
+MPOs/off-prem/pos_cooler_door_promos.xlsx (7 new rows, Shane Barreca 0 -> 4
+stickers) and NOT onto bardstown_menu_promos.xlsx, which is untouched. Had it
+been merged here, is_bardstown() would have skipped all 38 on the way in and
+the count would still be right -- but the archive is Bardstown-only by design,
+so it goes where it belongs. Bardstown holds at 5: Nick Melissari 2, Robin
+Feldman 2, Allison Scott 1.
 
 2026-09-11 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_17
   python3 generate_2026-09.py --merge-bardstown Promos_Report_17.xlsx

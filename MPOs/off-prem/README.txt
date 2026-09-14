@@ -885,6 +885,26 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-14 -- Promos_Report_19 merged; Shane Barreca opens his account
+  python3 generate_2026-09.py --merge-cooler-doors Promos_Report_19.xlsx
+The report is 38 rows, ALL of them Cooler Door Wraps again (nothing filtered
+out), 7 of them new: 31 -> 38 archive rows. Distinct stickers 26 -> 30, all
+four of the gain Shane Barreca's, dated 9/14 -- Winemart Discount (Night Shift
+x Cape May Brewberry), Westwood Wine and Liquors twice (Athletic Brewing, Cape
+May) and Garden State Deli, whose one photo carries four Constellation brand
+rows and is still ONE sticker. He goes 0 -> 4 of 5, one short. Still 2 reps at
+goal (Chris Payton 12, Derrick Laws 5); nobody else moved and Matt Powierski
+holds at 2, the surname alias from Report_18 still doing its job.
+
+NOTHING ELSE ON THIS BOARD WAS RE-PULLED. Constellation, Keystone, Fever Tree,
+Wine & Spirits and both Target lists rebuilt from the files already here and
+came out byte-identical -- 839 placements, 122 buying accounts, 74 and 184 new
+placements, 369 and 350 prospects. Only the cooler-door JSON changed.
+
+THIS REPORT WAS PULLED FOR THE OFF-PREM STICKERS, NOT FOR BARDSTOWN. It
+carries no Bardstown row at all, so MPOs/on-prem's menu archive was left alone
+(that board was refreshed the same day off its own three RDE exports).
+
 2026-09-11 -- Promos_Report_18 merged; Matt Powierski's stickers recovered
   python3 generate_2026-09.py --merge-cooler-doors Promos_Report_18.xlsx
 The report is 31 rows, ALL of them Cooler Door Wraps (nothing filtered out),
