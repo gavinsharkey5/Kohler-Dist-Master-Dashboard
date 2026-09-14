@@ -1242,6 +1242,43 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 FIFTH REFRESH -- Constellation Fall, all five exports
+Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Innovation OFF. Only
+the constellation_fall block moved; house total 4,304 -> 4,816 held goals.
+
+  Off-premise   Modelo Gaintain 1,528 -> 1,654 · Impact 1,747 -> 1,924 ·
+                Innovation 310 -> 356. Still 0 of 22 reps holding every
+                off-prem category -- day 14 of 91.
+  On-prem pkg   812 -> 891 buyers across 8 brand families; still 3 of 20 reps
+                holding every family.
+  On-prem draft 108 -> 122 buyers across 5 families; still 0 of 12.
+
+EVERY BASELINE IS FROZEN AND WAS CHECKED, not assumed. The three off-prem
+exports carry their own comparison column (last fall for Impact and Modelo
+Gaintain, SPRING for Innovation -- 3/1-5/31/2026, which is the shape this
+README already notes). Totalled per rep against the published files: ZERO
+reps moved on any baseline. Both on-prem legs print "goal drift vs frozen
+goals on 0 rep+family rows". Nothing that pays moved backwards either -- the
+only per-rep figures that fell are offToGo / overallToGo, the REMAINING gap,
+which falling is the whole point.
+
+CORONA GAINTAIN WAS NOT IN THIS BATCH AND WAS STALE, so it was synced rather
+than left to disagree. incentive-tracking's copy was an older pull than
+MPOs/off-prem/constellation_corona_gaintain.csv, which was refreshed this
+morning: identical frozen baseline (3,256 both sides, per rep), but the MPO
+copy read higher for 15 reps on this fall and lower for none, i.e. strictly
+newer. The two boards were publishing different Corona Gaintain numbers for
+the same program. The MPO copy is now on both, and the tracker reads
+719 -> 882. Same class of drift as the Keystone pair above -- when a
+Constellation export lands on one board, check the other.
+
+ONE FIGURE WORTH A GLANCE NEXT PULL: the draft leg's excluded empty-keg
+pickups went 54 -> 47 while the export itself GREW by 18 rows. No rep's buyer
+count fell, so nothing is lost on the board, but a shrinking exclusion count
+on a growing file means RDE reclassified or withdrew pickup rows. If it moves
+again, check what changed in those rows before trusting the draft totals.
+hub/index.html's ?v= tag went 20260914e -> 20260914f.
+
 2026-09-14 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs)
 Additive again: no row was withdrawn, and the only removals in any diff are
 four more of the Klejdi Lamo / #190216 rename (Montauk). Three blocks moved.
