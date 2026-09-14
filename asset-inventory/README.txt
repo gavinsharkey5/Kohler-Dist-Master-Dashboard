@@ -3,9 +3,22 @@ Asset Inventory -- the upstairs stockroom
 
 Built 2026-09-14 for the POS materials, signage, glassware, displays and
 equipment held upstairs at Hawthorne. A CURRENT-STATE operational page: what
-we have, how many, what came in, what went out, what has been requested, where
-placed assets went, and what is low or out. Deliberately not a historical
+we have, how many, what came in, what went out, what has been requested, WHO
+STILL HAS OUR STUFF, and what is low or out. Deliberately not a historical
 analytics page -- no trend charts, no valuation, no aging curves.
+
+PLACED ASSETS ARE LOANED, NOT GIVEN AWAY (Gavin, 2026-09-14). The placement
+data is therefore a LOAN BOOK, and the "Out on loan" tab is a retrieval list.
+
+KEEP IT PLAIN. The first build was rejected as too sophisticated and was cut
+back hard on the same day: sortable columns, four filter dropdowns, unit-ID
+lists, request-ID ranges, a lifetime-vs-2026 double column, six KPI tiles and a
+three-paragraph footer are all GONE. What is left is four numbers, five tabs,
+one search box per tab, one number per row and plain words -- "waiting" not
+"pending out", "out on loan" not "placements", "can take" not "available".
+Separate Received and Sent tabs became one "In & out" feed, because in and out
+of the same room is one story. Do not add controls back. The reader is standing
+upstairs holding a phone.
 
 Files:
   generate.py   Reads the four exports in data/ and writes the embedded JSON
@@ -42,8 +55,8 @@ Source summary
 |--------------------------------|----------------|--------------------------------------------|--------------------------------------------------------------------------------------------------|-----------------|
 | Assets export                  | Yes            | Asset master + current on-hand quantity     | Asset ID, Asset Type, Asset Description, Bin, Location, Time Created                              | --              |
 | Asset Requests export          | Yes            | Open requests, outgoing activity, supplier/brand | Asset Request ID, Asset Type, Asset, Supplier, BrandFamily/Brand, Delivery Date, Time Created, Time Updated, Created By, Updated By | -- |
-| Asset Placement Report by Date | Yes, partially | 2026 share of each placement ONLY           | Customer Name, Asset Type, Num Of Placed Assets                                                  | Its Purchased Date and Sold Date columns are 100% empty on every row, so despite the report's name it supplies no dates. Everything else in it is a strict subset of the by-customer report. |
-| Placed Assets by Customer      | Yes            | Customer-level placements + last placed date | Customer, Asset Type, Number of Assets, Time Placed                                              | -- |
+| Asset Placement Report by Date | Yes, barely    | The "went out this year" figure ONLY        | Customer Name, Asset Type, Num Of Placed Assets                                                  | Its Purchased Date and Sold Date columns are 100% empty on every row, so despite the report's name it supplies no dates. Everything else in it is a strict subset of the by-customer report. Simplifying the page cut its double column, so it now feeds one sentence. If it ever stops being exported, delete the ytd lines in generate.py and nothing else breaks. |
+| Placed Assets by Customer      | Yes            | THE LOAN BOOK -- who has what, since when   | Customer, Asset Type, Number of Assets, Time Placed                                              | -- |
 | Assets table-map screenshot    | Reference only | Relationships and future exports            | N/A                                                                                              | Not a data source |
 
 Nothing was excluded outright. The by-date report came closest: it holds no
@@ -192,29 +205,45 @@ Known limitations
   * CATEGORY IS DERIVED from the text after the last dash in the asset name
     (GLASSES, LED, DEALER LOADER, PLASTIC CUPS...). It parses on most items;
     the rest read "Uncategorised". No export carries a real category field.
-  * WHETHER PLACED ASSETS COME BACK IS UNKNOWN. Nothing in these exports
-    distinguishes a permanent giveaway from a loan, and there is no return or
-    retrieval record, so the page treats every placement as a one-way movement.
+  * NOTHING RECORDS A LOAN COMING BACK. Assets are loaned, but no export has a
+    return, retrieval or collection field, so "Out on loan" lists everything
+    ever placed and not yet removed in Encompass. Anything already collected
+    stays on the list until Encompass is updated. This is the single biggest
+    gap in the page and the reason the retrieval list runs long (11,985 units
+    at 990 accounts). A return date would fix it outright.
+  * 967 PLACEMENT ROWS (1,218 units) HAVE NO DATE, so their age is unknown.
+    They sort LAST in the retrieval list, not first -- a missing date is not
+    evidence of an old loan, and putting them on top would bury the 3,445 units
+    genuinely out over a year.
+  * INTERNAL SAMPLE BUCKETS ARE NOT ACCOUNTS. "Kohler Samples Taken 100%",
+    "Kohler Samples Taken 50%", "Kohler Distributing Co." and "Kohler" hold 906
+    units between them and are write-offs, not loans -- nobody is driving out to
+    collect from them. They are excluded from the retrieval list and counted
+    separately. The list is INTERNAL at the top of generate.py; add to it if
+    more such buckets appear.
 
 
 Additional Encompass exports that would help
 --------------------------------------------
 In rough order of value:
-  1. ASSET TYPES table -- real supplier, brand family and category per type.
+  1. A RETURN / COLLECTION DATE on the placement record. Assets are loaned, and
+     nothing currently records one coming back, so the retrieval list can only
+     grow. This is now the most valuable missing field by a wide margin.
+  2. ASSET TYPES table -- real supplier, brand family and category per type.
      Would fix the 98 items with no supplier and replace the derived category.
      The table map shows Assets linking to Asset Types, Asset Categories,
      Suppliers, Supplier Families, Brands and Brand Families.
-  2. A REQUEST STATUS FIELD, or an Asset Requests export that includes
+  3. A REQUEST STATUS FIELD, or an Asset Requests export that includes
      cancelled/closed rows. Would turn the 75 ageing open units into a real
      open/cancelled split instead of an age heuristic.
-  3. CUSTOMER on the Asset Request (the table map shows Assets -> Customers).
+  4. CUSTOMER on the Asset Request (the table map shows Assets -> Customers).
      This is the single field that would let an outgoing unit be traced from
      rep to account, and it would make the placement files largely redundant.
-  4. PURCHASE TRANSACTIONS for assets (Assets -> Purchase Transactions on the
+  5. PURCHASE TRANSACTIONS for assets (Assets -> Purchase Transactions on the
      map) -- a real receiving log with dates, quantities, supplier and a
      reference number, replacing the record-creation proxy.
-  5. SHELVES / STORE LOCATIONS (both on the map) once bins are actually in use.
-  6. A par level or reorder point per asset type, to replace the flat
+  6. SHELVES / STORE LOCATIONS (both on the map) once bins are actually in use.
+  7. A par level or reorder point per asset type, to replace the flat
      low-stock threshold.
 
 
@@ -230,6 +259,9 @@ Decisions worth not re-litigating
   * THE SHORTAGE COUNT BELONGS IN "OUT OF STOCK", not in its own KPI tile --
     every short item is by definition out of stock, and a separate tile said
     the same thing twice.
+  * THE RETRIEVAL LIST SORTS OLDEST KNOWN LOAN FIRST, undated rows last. See
+    the limitation above -- this order is the whole point of the tab.
+  * INTERNAL SAMPLE BUCKETS STAY OUT OF THE RETRIEVAL LIST. They are write-offs.
   * COLOUR: green available / amber low / red out, reusing
     ../inventory-overview/'s already-validated severity tiers rather than
     re-picking them. Every status also carries its label as text, so nothing

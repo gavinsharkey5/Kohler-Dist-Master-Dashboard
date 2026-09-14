@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
 """Builds the embedded JSON for index.html -- the ASSET INVENTORY dashboard.
 
-One question: WHAT IS UPSTAIRS RIGHT NOW, and what is moving in and out of it.
-This is a current-state stockroom page, not a historical analytics page.
+One question: WHAT IS UPSTAIRS RIGHT NOW, what is moving in and out of it, and
+WHO STILL HAS OUR STUFF. A current-state stockroom page, not an analytics page.
+
+Placed assets are LOANED, not given away (Gavin, 2026-09-14), so the placement
+data is a loan book and the page's "Out on loan" tab is a retrieval list --
+oldest first, because the oldest loan is the one worth chasing.
+
+Kept deliberately plain. The first build was too clever: sortable columns,
+four filter dropdowns, unit-ID lists, request-ID ranges and a lifetime-vs-2026
+double column. All of it went. One search box per tab, one number per row, and
+plain words -- "waiting" not "pending out", "out on loan" not "placements".
+Resist adding controls back; the audience is whoever is standing upstairs
+holding a phone.
 
 Reads THREE of the four exports in data/ (see README.txt for why the fourth is
 only used for one field):
@@ -78,6 +89,13 @@ import csv, json, os, re, collections, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, 'data')
+
+# These are not accounts and must never appear on a retrieval list -- they are
+# internal sample/write-off buckets in Encompass. Nobody is driving to "Kohler
+# Samples Taken 100%" to collect 654 units. Add to this list if more appear.
+INTERNAL = {'Kohler Samples Taken 100%', 'Kohler Samples Taken 50%',
+            'Kohler Distributing Co.', 'Kohler'}
+OLD_LOAN_DAYS  = 365  # a loan out longer than this is worth chasing
 
 LOW_STOCK_AT   = 2    # available <= this (and > 0) reads as Low Stock
 OPEN_STALE_DAYS = 30  # an open request older than this is flagged as ageing
@@ -285,9 +303,7 @@ for t in sorted(types):
         'onHand': oh, 'pending': po, 'available': avail, 'status': status, 'flag': flag, 'short': short,
         'lastReceived': iso(recv[-1]) if recv else None,
         'received30': sum(1 for d in recv if (today - d.date()).days <= RECENT_DAYS),
-        'ids': sorted((r['Asset ID'] for r in units if r['Asset Type'] == t), key=lambda x: -int(x))[:40],
-        'placedLifetime': placed_lifetime.get(t, 0), 'placedYtd': placed_ytd.get(t, 0),
-        'lastPlaced': last_placed.get(t),
+        'onLoan': placed_lifetime.get(t, 0), 'lastPlaced': last_placed.get(t),
     })
 by_type = {i['type']: i for i in items}
 
@@ -335,6 +351,33 @@ recv_rows.sort(key=lambda x: x['date'], reverse=True)
 
 placements.sort(key=lambda p: (p['date'] or '', p['qty']), reverse=True)
 
+# LOANS. Placed assets come back, so every placement is a loan until someone
+# collects it. Encompass has no return record, so this is everything ever
+# placed and not known to be back -- the page says so rather than implying the
+# list is current. Oldest first: that is the retrieval order.
+loans = []
+for p in placements:
+    if p['customer'] in INTERNAL:
+        continue
+    age = (today - datetime.date.fromisoformat(p['date'])).days if p['date'] else None
+    loans.append({'customer': p['customer'], 'type': p['type'], 'qty': p['qty'],
+                  'date': p['date'], 'age': age,
+                  'old': age is not None and age > OLD_LOAN_DAYS})
+# Oldest KNOWN loan first -- that is the retrieval order. Undated rows go last:
+# a missing date is not evidence of age, and 967 of them at the top would bury
+# every loan actually worth chasing.
+loans.sort(key=lambda l: (l['date'] is None, l['date'] or '', -l['qty']))
+
+internal_units = sum(p['qty'] for p in placements if p['customer'] in INTERNAL)
+
+# ONE activity feed rather than a Received tab and a Sent tab. In and out of the
+# same room is the same story, and a stockroom reads it chronologically.
+activity = [{'date': r['date'], 'dir': 'in', 'type': r['type'], 'qty': r['qty'],
+             'who': r['supplier'] or ''} for r in recv_rows]
+activity += [{'date': r['date'], 'dir': 'out', 'type': r['type'], 'qty': r['qty'],
+              'who': r['rep'] or ''} for r in sent_rows if r['date']]
+activity.sort(key=lambda a: a['date'], reverse=True)
+
 # ---------------------------------------------------------------- validate
 tot_units = sum(i['onHand'] for i in items)
 assert tot_units == len(units), f'unit total {tot_units} != {len(units)} asset rows'
@@ -351,12 +394,22 @@ assert ytd_page + sum(ytd[k] for k in unmatched_ytd) == ytd_raw, \
 assert sum(p['qty'] for p in placements) == sum(int(r['Number of Assets']) for r in by_cust if r['Number of Assets'].strip().isdigit()), \
     'lifetime placement units do not match the by-customer export'
 
+assert sum(l['qty'] for l in loans) + internal_units == sum(p['qty'] for p in placements), \
+    'loan units + internal units != placement units'
+
 refreshed = max([d for ds in created_at.values() for d in ds] +
                 [pdate(r['Time Updated']) for r in requests if pdate(r['Time Updated'])])
 
 summary = {
     'items': len(items), 'stocked': sum(1 for i in items if i['onHand']),
     'units': tot_units, 'available': sum(i['available'] for i in items),
+    'loanUnits': sum(l['qty'] for l in loans), 'loanRows': len(loans),
+    'loanCustomers': len({l['customer'] for l in loans}),
+    'oldLoanUnits': sum(l['qty'] for l in loans if l['old']),
+    'oldLoanRows': sum(1 for l in loans if l['old']),
+    'undatedLoanUnits': sum(l['qty'] for l in loans if not l['date']),
+    'internalUnits': internal_units, 'oldLoanDays': OLD_LOAN_DAYS,
+    'loanYtd': sum(p['ytd'] for p in placements if p['customer'] not in INTERNAL),
     'openRequests': sum(r['qty'] for r in open_rows), 'openLines': len(open_rows),
     'staleRequests': sum(r['qty'] for r in open_rows if r['stale']),
     'low': sum(1 for i in items if i['status'] == 'Low Stock'),
@@ -372,8 +425,7 @@ summary = {
 }
 
 payload = {'summary': summary, 'items': items, 'open': open_rows,
-           'sent': sent_rows[:400], 'received': recv_rows[:400],
-           'placements': placements, 'issues': issues}
+           'activity': activity[:300], 'loans': loans, 'issues': issues}
 
 blob = json.dumps(payload, separators=(',', ':'))
 page = os.path.join(HERE, 'index.html')
@@ -396,7 +448,8 @@ print(f"""asset-inventory rebuilt  ({len(blob):,} bytes embedded)
   short items        {summary['short']:>6}   ({summary['shortUnits']} units of unmet open demand)
   received /{RECENT_DAYS}d      {summary['received30']:>6} units
   sent out /{RECENT_DAYS}d      {summary['sent30']:>6} units
-  placements         {len(placements):>6} rows across {summary['customers']} customers
+  out on loan        {summary['loanUnits']:>6} units at {summary['loanCustomers']} accounts ({summary['oldLoanUnits']} out over {OLD_LOAN_DAYS} days)
+  internal samples   {summary['internalUnits']:>6} units excluded from the loan list
   data issues        {summary['dataIssues']:>6}""")
 for k, n in collections.Counter(i['kind'] for i in issues).most_common():
     print(f"     {n:>4}  {k}")
