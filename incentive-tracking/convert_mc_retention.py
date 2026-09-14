@@ -31,6 +31,7 @@ pre_stripped=True for these two files. Nothing else changes downstream.
 Run: python3 convert_mc_retention.py <on.xlsx> <off.xlsx> [--dry-run]
 """
 import csv
+import re
 import sys
 from pathlib import Path
 
@@ -45,11 +46,38 @@ OFF_CSV = DATA / "mc_retention_off_prem.csv"
 TOTAL_LABELS = {"Total"}
 
 
-def load_grouped(path, sheet_prefix):
+def load_grouped(path, sheet_prefix, side=None):
+    """The report sheet, found by name prefix or -- failing that -- by premise.
+
+    THE SHEET NAME IS NOT STABLE. It was "Molson Coors ON Retention..." /
+    "2026 MC Off..." when this script was written and arrived as "Molson Coors
+    Fall 2026 On Prem" / "...Off Pre" on 2026-09-14, which stopped the run
+    dead. The report itself had not changed at all -- same grouped tree, same
+    columns, same 07/27-10/31 distribution window -- so the prefix is now a
+    first guess rather than a requirement, and a sheet naming its PREMISE is
+    accepted after it. Matched on "on pre" / "off pre" rather than a bare
+    "on"/"off", because "Molson" contains "on" and would match everything --
+    and on the PREFIX of "premise" because Excel caps a sheet name at 31
+    characters, which is what clipped this one to "...Fall 2026 Off Pre".
+    The `Details` sheet never matches either test.
+    """
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     sheet = next((s for s in wb.sheetnames if s.startswith(sheet_prefix)), None)
+    if sheet is None and side:
+        pat = re.compile(r"\boff[-\s]?pre" if side == "OFF" else r"\bon[-\s]?pre", re.I)
+        matches = [s for s in wb.sheetnames if pat.search(s)]
+        if side == "ON":
+            matches = [s for s in matches if not re.search(r"\boff[-\s]?pre", s, re.I)]
+        if len(matches) == 1:
+            sheet = matches[0]
+            print(f"  {path.name}: sheet {sheet!r} matched by premise, not by the "
+                  f"{sheet_prefix!r} prefix -- the report was renamed, not changed")
+        elif len(matches) > 1:
+            raise SystemExit(f"{path.name}: {len(matches)} sheets look {side}-premise ({matches}); "
+                             f"name them apart or pass the right workbook")
     if sheet is None:
-        raise SystemExit(f"{path.name}: no sheet starting {sheet_prefix!r}; found {wb.sheetnames}")
+        raise SystemExit(f"{path.name}: no sheet starting {sheet_prefix!r} and none naming a "
+                         f"premise; found {wb.sheetnames}")
     ws = wb[sheet]
     rows = [r for r in ws.iter_rows(values_only=True) if r and r[0] is not None and str(r[0]).strip()]
     return rows[0], rows[1:]
@@ -92,7 +120,7 @@ def convert_on(path, roster):
     the thing worth guarding. Off-prem's metric is Placements, which is
     additive, so that side is reconciled by exact sum.
     """
-    header, rows = load_grouped(path, "Molson Coors ON Retention")
+    header, rows = load_grouped(path, "Molson Coors ON Retention", side="ON")
     val_col, goal_col, pct_col = header[2], header[3], header[4]
     out, problems = [], []
     rep = None
@@ -131,7 +159,7 @@ def convert_on(path, roster):
 def convert_off(path, dm_names, rep_names):
     """3-level: DM, its reps, their brands. No structural marker at all, so
     levels come from the name sets and are proven by the reconciliation."""
-    header, rows = load_grouped(path, "2026 MC Off")
+    header, rows = load_grouped(path, "2026 MC Off", side="OFF")
     val_col, goal_col, pct_col = header[1], header[2], header[3]
     out, problems = [], []
     grand_total = None

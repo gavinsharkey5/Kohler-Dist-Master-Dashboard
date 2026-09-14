@@ -1242,6 +1242,45 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 SIXTH REFRESH -- Molson Coors retention (both premises) + MABI Fall
+Both MC workbooks converted through convert_mc_retention.py and the MABI
+actuals through convert_mabi_fall.py against the goals workbook already on
+file (data/mabi_retention_fall_goals.xlsx -- not re-issued, not touched).
+Every rep, DM and report total reconciled on both sides.
+
+  MC retention   off 2,588 -> 2,632 placements, on 718 -> 722 buyers, and
+                 brand goals retained 30 -> 29. NO GOAL MOVED anywhere in
+                 either workbook -- checked per rep+brand, all 121 rows.
+  MABI Fall      house 2,639 -> 2,951 of 7,326 MADE placements (36.0% ->
+                 40.3%), day 14 of 91; still 0 of 24 reps at their 90% goal.
+                 Every rep with a goal moved UP; biggest movers Shane Barreca
+                 90 -> 130, Chris Payton 182 -> 213, Dave Ehlers 286 -> 315,
+                 Allison Scott 22 -> 33. Default, Dylan Rubino and John
+                 O'Donoghue still have a goal and no 9/1-11/30 activity.
+
+DERRICK LAWS LOSES A RETAINED BRAND GOAL, and it is the only figure on either
+program that went backwards: off-premise FEVER TREE 18 -> 12 placements
+against an UNCHANGED goal of 15. That is what takes the house from 30 to 29;
+every other rep+brand row on both premises rose or held, and no goal was
+reissued. It is also not new -- the off-prem MPO board's 2026-09-11 note has
+RDE withdrawing six of his 9/11 Fever Tree rows at Shop Rite Wines/Spirits
+#23004, and this is that same withdrawal reaching the retention report. If
+those loads were real the fix is a corrected RDE pull, not a change here, but
+he is one placement pattern away from noticing twice.
+
+THE MC SHEET NAMES CHANGED AND STOPPED THE RUN DEAD. These arrived as "Molson
+Coors Fall 2026 On Prem" / "...Off Pre" where convert_mc_retention.py expected
+"Molson Coors ON Retention..." / "2026 MC Off...", so load_grouped() raised
+before reading a cell. The report itself was unchanged -- same grouped tree,
+same columns, same 07/27-10/31 distribution window as the file already on
+disk, which is what says this is the SAME program period and not a new one.
+The prefix is now a first guess, and a sheet naming its PREMISE is accepted
+after it, printing which rule matched. Two details worth keeping: the match is
+on "on pre" / "off pre", not a bare "on"/"off", because "Molson" contains
+"on"; and on the PREFIX of "premise" because Excel caps a sheet name at 31
+characters, which is exactly what clipped "...Fall 2026 Off Pre".
+hub/index.html's ?v= tag went 20260914f -> 20260914g.
+
 2026-09-14 FIFTH REFRESH -- Constellation Fall, all five exports
 Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Innovation OFF. Only
 the constellation_fall block moved; house total 4,304 -> 4,816 held goals.
