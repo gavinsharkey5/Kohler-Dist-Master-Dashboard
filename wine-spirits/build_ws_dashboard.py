@@ -190,9 +190,64 @@ def to_cases(units, pnum):
 
 
 # ---------------------------------------------------------------------------
+# 1b. Product -> segment, and the account-area / brand-family territory layer
+# ---------------------------------------------------------------------------
+# SEGMENT (Wine / Spirits / ...) is only carried by the invoice export, never by
+# the monthly grid, so it is mapped product-number -> segment here and stamped
+# onto every item. Products that never appear on an invoice line fall back to
+# 'Unknown' rather than being guessed at.
+segments = Interner()
+PRODUCT_SEGMENT = {}
+_seg_votes = defaultdict(lambda: defaultdict(int))
+for r in invoice_rows:
+    m = prod_pat.match(r['Product'])
+    seg = (r.get('Segment') or '').strip()
+    if m and seg:
+        _seg_votes[m.group(1)][seg] += 1
+for pnum, votes in _seg_votes.items():
+    PRODUCT_SEGMENT[pnum] = max(votes.items(), key=lambda kv: kv[1])[0]
+
+# TERRITORY. The W&S roster carries a rep, a city and a premise but no area and
+# no brand authorization, so the Opportunity Tracker would have no defensible
+# "can we even sell this here?" test on its own. The hub already derives both
+# from the two Encompass workbooks it owns (hub/data/Sales_Reps_Customer_Base
+# .xlsx and Brand_Sellable_Unsellable.xlsx) and writes them to hub/data/
+# accounts.js -- HUB_ACCOUNTS gives every account its area and its 2026 case
+# volume across ALL Kohler products, HUB_BRANDS gives each brand family a
+# CAN SELL / NOT IN TERRITORY / BLOCKED verdict per area. Both are read here
+# rather than re-derived, so the hub and this dashboard can never disagree.
+# Re-run hub/generate.py when either workbook is re-exported.
+HUB_JS = os.path.join(HERE, '..', 'hub', 'data', 'accounts.js')
+AREAS, ACCOUNT_AREA, ACCOUNT_VOLUME, FAMILY_AREAS = [], {}, {}, {}
+if os.path.exists(HUB_JS):
+    def _hub_const(name):
+        for line in open(HUB_JS, encoding='utf-8'):
+            if line.startswith('const ' + name):
+                body = line[line.index('{'):].rstrip()
+                return json.loads(body[:-1] if body.endswith(';') else body)
+        return None
+    _acc = _hub_const('HUB_ACCOUNTS') or {}
+    _brd = _hub_const('HUB_BRANDS') or {}
+    AREAS = _acc.get('areas') or _brd.get('areas') or []
+    for _rep, _lst in (_acc.get('reps') or {}).items():
+        for _a in _lst:
+            cid = str(_a.get('n', '')).strip()
+            if not cid:
+                continue
+            ACCOUNT_AREA[cid] = _a.get('area') or ''
+            ACCOUNT_VOLUME[cid] = _a.get('cases') or 0.0
+    FAMILY_AREAS = _brd.get('families') or {}
+
+# CAN SELL -> 0, NOT IN TERRITORY -> 1, BLOCKED -> 2, no row on file -> 3.
+PERM_CODE = {'CAN SELL': 0, 'NOT IN TERRITORY': 1, 'BLOCKED': 2}
+PERM_UNKNOWN = 3
+
+
+# ---------------------------------------------------------------------------
 # 2. Assigned roster -- the account universe, rep / city / premise
 # ---------------------------------------------------------------------------
 reps, cities, premises = Interner(), Interner(), Interner()
+areas_i = Interner()
 roster = {}
 with open(ROSTER_CSV, newline='', encoding='utf-8-sig') as f:
     for r in csv.DictReader(f):
@@ -245,7 +300,9 @@ with open(ACCOUNT_MONTH_CSV, newline='', encoding='utf-8-sig') as f:
         city = (info or {}).get('city') or 'Unknown'
         prem = (info or {}).get('premise') or fallback_premise or 'Unknown'
         acct_index[cust] = len(accounts)
-        accounts.append({'c': cust, 'n': name, 'r': reps(rep), 'y': cities(city), 'p': premises(prem)})
+        accounts.append({'c': cust, 'n': name, 'r': reps(rep), 'y': cities(city), 'p': premises(prem),
+                         'ar': areas_i(ACCOUNT_AREA.get(cust, '')),
+                         'tv': round(ACCOUNT_VOLUME.get(cust, 0.0), 1)})
         return acct_index[cust]
 
     for row in reader:
@@ -264,6 +321,7 @@ with open(ACCOUNT_MONTH_CSV, newline='', encoding='utf-8-sig') as f:
                 's': suppliers(row[idx['Supplier']].strip()),
                 'k': row[idx['Package']].strip(),
                 'ch': channels(channel),
+                'g': segments(PRODUCT_SEGMENT.get(pnum, 'Unknown')),
             })
         ii = item_index[key]
         ai = account_slot(row[idx['Customer ID']].strip(),
@@ -288,7 +346,6 @@ missing_ratio = sorted({it['p'] for it in items if it['p'] not in UNITS_PER_CASE
 # ---------------------------------------------------------------------------
 # 4. Invoice transactions -> per (margin item, month) cases / revenue / cost
 # ---------------------------------------------------------------------------
-segments = Interner()
 margin_items, margin_index = [], {}
 inv_acc = defaultdict(lambda: {'cases': 0.0, 'revenue': 0.0, 'cost': 0.0, 'discount': 0.0})
 invoice_dates, skipped_zero_price = [], 0
@@ -369,6 +426,61 @@ else:
     P_START = P_ANCHOR = None
 
 # ---------------------------------------------------------------------------
+# 5a. Goals -- OPTIONAL, and absent by design
+# ---------------------------------------------------------------------------
+# There are no approved goals for this portfolio, so no goal, progress figure or
+# "still needed" number is shown anywhere. The SHAPE is defined here so that the
+# day real goals exist they only have to be dropped in as a CSV -- no code
+# changes, and nothing invented in the meantime.
+#
+# ws_goals.csv (create it only when goals are actually approved):
+#     level      supplier | family | brand | item | segment
+#     name       the exact value at that level, e.g. "Bardstown Green River"
+#     metric     cases | ap
+#     period     YYYY for an annual goal, or YYYY-MM for a monthly one
+#     goal       the number
+#     rep        optional; blank = company-wide
+#     territory  optional; blank = every area
+#
+# The page shows Goal / Progress % / Still needed columns ONLY for rows that
+# match a goal in this file, and computes them as:
+#     progress % = actual / goal          still needed = MAX(goal - actual, 0)
+GOALS_CSV = os.path.join(HERE, 'ws_goals.csv')
+GOAL_FIELDS = ['level', 'name', 'metric', 'period', 'goal', 'rep', 'territory']
+goals = []
+if os.path.exists(GOALS_CSV):
+    with open(GOALS_CSV, newline='', encoding='utf-8-sig') as f:
+        for r in csv.DictReader(f):
+            level = (r.get('level') or '').strip().lower()
+            name = (r.get('name') or '').strip()
+            metric = (r.get('metric') or '').strip().lower()
+            period = (r.get('period') or '').strip()
+            value = num(r.get('goal'))
+            if not (level and name and metric and period) or value <= 0:
+                continue
+            goals.append({'l': level, 'n': name, 'm': metric, 'p': period,
+                          'g': value, 'r': (r.get('rep') or '').strip(),
+                          't': (r.get('territory') or '').strip()})
+
+# ---------------------------------------------------------------------------
+# 5b. Brand family -> per-area authorization, indexed like `families`
+# ---------------------------------------------------------------------------
+# One row per brand family in the interner, one code per area in AREAS. A
+# family with no row in the hub workbook is PERM_UNKNOWN across the board --
+# treated as "not proven unsellable" downstream, never as an authorization.
+fam_areas = []
+fams_without_permission = []
+for fam_name in families.items:
+    row = FAMILY_AREAS.get(fam_name)
+    if not row:
+        fam_areas.append([PERM_UNKNOWN] * len(AREAS))
+        if fam_name:
+            fams_without_permission.append(fam_name)
+        continue
+    per = row.get('areas') or {}
+    fam_areas.append([PERM_CODE.get((per.get(a) or '').strip().upper(), PERM_UNKNOWN) for a in AREAS])
+
+# ---------------------------------------------------------------------------
 # 6. Assemble
 # ---------------------------------------------------------------------------
 data = {
@@ -386,8 +498,12 @@ data = {
         'gapFamilies': GAP_MATRIX_FAMILIES,
         'productsMissingCaseRatio': missing_ratio,
         'conflictingCaseRatios': conflicting,
+        'familiesWithoutPermission': sorted(fams_without_permission),
+        'territorySource': 'hub/data/accounts.js' if AREAS else None,
     },
     'reps': reps.items, 'cities': cities.items, 'premises': premises.items,
+    'areas': areas_i.items, 'areaNames': AREAS, 'famAreas': fam_areas,
+    'goals': goals,
     'suppliers': suppliers.items, 'families': families.items, 'brands': brands.items,
     'channels': channels.items, 'segments': segments.items, 'dms': dms.items,
     'accounts': accounts,
