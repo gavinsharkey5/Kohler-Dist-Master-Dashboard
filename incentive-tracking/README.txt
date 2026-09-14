@@ -1242,6 +1242,38 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-14 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs)
+Additive again: no row was withdrawn, and the only removals in any diff are
+four more of the Klejdi Lamo / #190216 rename (Montauk). Three blocks moved.
+
+  Other Half   the batch's money: 104 -> 116 off-premise accounts opened,
+               $5,330 -> $5,930 (50 of them at the Southern District $50 flat
+               rate, still the unconfirmed reading flagged below). John
+               O'Donoghue 11 -> 13 ($560 -> $660), Shane Barreca 5 -> 8
+               ($290 -> $430), Alisa Acciardi 4 -> 7 ($200 -> $350), Jayson
+               Romine 5 -> 6, Dylan Rubino 4 -> 5, Mike Ast 3 -> 4, Phil
+               Ernst 2 -> 3. On-premise: 30 accounts active, 17 -> 18 at the
+               1/3 bbl floor, and STILL NOT PAID -- that leg needs October to
+               confirm the two-month hold.
+  Montauk      12 -> 13 new placements, 6 -> 7 distinct new accounts,
+               $235 -> $245. JAIME COLONNA OPENS HIS ACCOUNT (0 -> 1, $0 ->
+               $10) on a Giannone Wines 9/11 6-pack.
+  2XO          0 new off-premise pairs and $0 paid, UNCHANGED. The single new
+               row is Paul Mclaughlin / Andiamo 9/11, a French Oak reorder at
+               an account he already opened, so his on-premise units go
+               2 -> 5 and nothing else moves. The pair rule still leaves one
+               single-oak open unpaid.
+
+ONE FIGURE FELL AND IT IS A CONVERSION, not a loss: Jaime Colonna's Montauk
+off-prem TARGET count 13 -> 12, in the same pull that took his placements
+0 -> 1. Same shape as Jayson Romine's Touchdowns target in the refresh above
+-- a target list shrinking is the list working.
+
+ONE FUTURE-DATED ROW, harmless: Paul Mclaughlin / Lou's Montauk draft keg
+9/15. It is a draft reorder at an account already carrying the brand, so no
+placement count moves on it.
+hub/index.html's ?v= tag went 20260914c -> 20260914d.
+
 2026-09-14 THIRD REFRESH -- Le Grand Noir, Garage Beer President,
 Touchdowns & Tea (both legs), Evil Genius
 NOTHING WAS WITHDRAWN IN THIS BATCH. Every apparent removal in the raw diffs
