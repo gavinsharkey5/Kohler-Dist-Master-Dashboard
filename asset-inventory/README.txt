@@ -7,15 +7,18 @@ we have, how many, what came in, what went out, what has been requested, WHO
 STILL HAS OUR STUFF, and what is low or out. Deliberately not a historical
 analytics page -- no trend charts, no valuation, no aging curves.
 
-PLACED ASSETS ARE LOANED, NOT GIVEN AWAY (Gavin, 2026-09-14). The placement
-data is therefore a LOAN BOOK, and the "Out on loan" tab is a retrieval list.
+PLACED ASSETS COME BACK -- they are loaned, not given away (Gavin, 2026-09-14).
+The placement data is therefore a retrieval list, and the tab is called
+"OUT IN MARKET" (Gavin's wording -- the page says nothing about "loans"
+anywhere the team can see it, though the code still uses loan* names
+internally; renaming those buys nothing and only churns the diff).
 
 KEEP IT PLAIN. The first build was rejected as too sophisticated and was cut
 back hard on the same day: sortable columns, four filter dropdowns, unit-ID
 lists, request-ID ranges, a lifetime-vs-2026 double column, six KPI tiles and a
 three-paragraph footer are all GONE. What is left is four numbers, five tabs,
 one search box per tab, one number per row and plain words -- "waiting" not
-"pending out", "out on loan" not "placements", "can take" not "available".
+"pending out", "out in market" not "placements", "can take" not "available".
 Separate Received and Sent tabs became one "In & out" feed, because in and out
 of the same room is one story. Do not add controls back. The reader is standing
 upstairs holding a phone.
@@ -56,7 +59,7 @@ Source summary
 | Assets export                  | Yes            | Asset master + current on-hand quantity     | Asset ID, Asset Type, Asset Description, Bin, Location, Time Created                              | --              |
 | Asset Requests export          | Yes            | Open requests, outgoing activity, supplier/brand | Asset Request ID, Asset Type, Asset, Supplier, BrandFamily/Brand, Delivery Date, Time Created, Time Updated, Created By, Updated By | -- |
 | Asset Placement Report by Date | Yes, barely    | The "went out this year" figure ONLY        | Customer Name, Asset Type, Num Of Placed Assets                                                  | Its Purchased Date and Sold Date columns are 100% empty on every row, so despite the report's name it supplies no dates. Everything else in it is a strict subset of the by-customer report. Simplifying the page cut its double column, so it now feeds one sentence. If it ever stops being exported, delete the ytd lines in generate.py and nothing else breaks. |
-| Placed Assets by Customer      | Yes            | THE LOAN BOOK -- who has what, since when   | Customer, Asset Type, Number of Assets, Time Placed                                              | -- |
+| Placed Assets by Customer      | Yes            | WHAT IS OUT IN MARKET -- who has what, since when | Customer, Asset Type, Number of Assets, Time Placed                                              | -- |
 | Assets table-map screenshot    | Reference only | Relationships and future exports            | N/A                                                                                              | Not a data source |
 
 Nothing was excluded outright. The by-date report came closest: it holds no
@@ -205,8 +208,8 @@ Known limitations
   * CATEGORY IS DERIVED from the text after the last dash in the asset name
     (GLASSES, LED, DEALER LOADER, PLASTIC CUPS...). It parses on most items;
     the rest read "Uncategorised". No export carries a real category field.
-  * NOTHING RECORDS A LOAN COMING BACK. Assets are loaned, but no export has a
-    return, retrieval or collection field, so "Out on loan" lists everything
+  * NOTHING RECORDS AN ASSET COMING BACK. Assets are loaned, but no export has a
+    return, retrieval or collection field, so "Out in market" lists everything
     ever placed and not yet removed in Encompass. Anything already collected
     stays on the list until Encompass is updated. This is the single biggest
     gap in the page and the reason the retrieval list runs long (11,985 units
@@ -226,8 +229,8 @@ Known limitations
 Additional Encompass exports that would help
 --------------------------------------------
 In rough order of value:
-  1. A RETURN / COLLECTION DATE on the placement record. Assets are loaned, and
-     nothing currently records one coming back, so the retrieval list can only
+  1. A RETURN / COLLECTION DATE on the placement record. Assets come back, and
+     nothing currently records one doing so, so the retrieval list can only
      grow. This is now the most valuable missing field by a wide margin.
   2. ASSET TYPES table -- real supplier, brand family and category per type.
      Would fix the 98 items with no supplier and replace the derived category.
@@ -259,7 +262,7 @@ Decisions worth not re-litigating
   * THE SHORTAGE COUNT BELONGS IN "OUT OF STOCK", not in its own KPI tile --
     every short item is by definition out of stock, and a separate tile said
     the same thing twice.
-  * THE RETRIEVAL LIST SORTS OLDEST KNOWN LOAN FIRST, undated rows last. See
+  * THE RETRIEVAL LIST SORTS LONGEST-OUT FIRST, undated rows last. See
     the limitation above -- this order is the whole point of the tab.
   * INTERNAL SAMPLE BUCKETS STAY OUT OF THE RETRIEVAL LIST. They are write-offs.
   * COLOUR: green available / amber low / red out, reusing
