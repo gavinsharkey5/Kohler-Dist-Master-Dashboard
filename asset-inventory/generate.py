@@ -4,9 +4,11 @@
 One question: WHAT IS UPSTAIRS RIGHT NOW, what is moving in and out of it, and
 WHO STILL HAS OUR STUFF. A current-state stockroom page, not an analytics page.
 
-Placed assets are LOANED, not given away (Gavin, 2026-09-14), so the placement
-data is a loan book and the page's "Out on loan" tab is a retrieval list --
-oldest first, because the oldest loan is the one worth chasing.
+Placed assets COME BACK -- loaned, not given away (Gavin, 2026-09-14) -- so the
+placement data is a retrieval list. The tab is called "OUT IN MARKET" (Gavin's
+wording; nothing user-facing says "loan"). Longest-out first, because the asset
+that has been sitting in an account longest is the one worth chasing. The code
+still uses loan* names internally -- renaming them buys nothing.
 
 Kept deliberately plain. The first build was too clever: sortable columns,
 four filter dropdowns, unit-ID lists, request-ID ranges and a lifetime-vs-2026
@@ -90,12 +92,12 @@ import csv, json, os, re, collections, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, 'data')
 
-# These are not accounts and must never appear on a retrieval list -- they are
+# These are not accounts and must never appear on the retrieval list -- they are
 # internal sample/write-off buckets in Encompass. Nobody is driving to "Kohler
 # Samples Taken 100%" to collect 654 units. Add to this list if more appear.
 INTERNAL = {'Kohler Samples Taken 100%', 'Kohler Samples Taken 50%',
             'Kohler Distributing Co.', 'Kohler'}
-OLD_LOAN_DAYS  = 365  # a loan out longer than this is worth chasing
+OLD_LOAN_DAYS  = 365  # out in market longer than this is worth chasing
 
 LOW_STOCK_AT   = 2    # available <= this (and > 0) reads as Low Stock
 OPEN_STALE_DAYS = 30  # an open request older than this is flagged as ageing
@@ -351,10 +353,10 @@ recv_rows.sort(key=lambda x: x['date'], reverse=True)
 
 placements.sort(key=lambda p: (p['date'] or '', p['qty']), reverse=True)
 
-# LOANS. Placed assets come back, so every placement is a loan until someone
-# collects it. Encompass has no return record, so this is everything ever
-# placed and not known to be back -- the page says so rather than implying the
-# list is current. Oldest first: that is the retrieval order.
+# OUT IN MARKET. Placed assets come back, so every placement stays on this list
+# until someone collects it. Encompass has no return record, so this is
+# everything ever placed and not known to be back -- the page says so rather
+# than implying the list is current. Longest-out first: the retrieval order.
 loans = []
 for p in placements:
     if p['customer'] in INTERNAL:
@@ -363,9 +365,9 @@ for p in placements:
     loans.append({'customer': p['customer'], 'type': p['type'], 'qty': p['qty'],
                   'date': p['date'], 'age': age,
                   'old': age is not None and age > OLD_LOAN_DAYS})
-# Oldest KNOWN loan first -- that is the retrieval order. Undated rows go last:
-# a missing date is not evidence of age, and 967 of them at the top would bury
-# every loan actually worth chasing.
+# Longest-out KNOWN placement first -- the retrieval order. Undated rows go
+# last: a missing date is not evidence of age, and 967 of them at the top would
+# bury everything actually worth chasing.
 loans.sort(key=lambda l: (l['date'] is None, l['date'] or '', -l['qty']))
 
 internal_units = sum(p['qty'] for p in placements if p['customer'] in INTERNAL)
@@ -448,8 +450,8 @@ print(f"""asset-inventory rebuilt  ({len(blob):,} bytes embedded)
   short items        {summary['short']:>6}   ({summary['shortUnits']} units of unmet open demand)
   received /{RECENT_DAYS}d      {summary['received30']:>6} units
   sent out /{RECENT_DAYS}d      {summary['sent30']:>6} units
-  out on loan        {summary['loanUnits']:>6} units at {summary['loanCustomers']} accounts ({summary['oldLoanUnits']} out over {OLD_LOAN_DAYS} days)
-  internal samples   {summary['internalUnits']:>6} units excluded from the loan list
+  out in market      {summary['loanUnits']:>6} units at {summary['loanCustomers']} accounts ({summary['oldLoanUnits']} out over {OLD_LOAN_DAYS} days)
+  internal samples   {summary['internalUnits']:>6} units excluded from the retrieval list
   data issues        {summary['dataIssues']:>6}""")
 for k, n in collections.Counter(i['kind'] for i in issues).most_common():
     print(f"     {n:>4}  {k}")
