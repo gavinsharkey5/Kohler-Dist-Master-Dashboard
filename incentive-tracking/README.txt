@@ -1242,6 +1242,48 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 SEVENTH REFRESH -- Yuengling Fall, all three reports
+All three workbooks re-pulled and converted through convert_yuengling_fall.py
+(sheets "Yuengling Fall 2026 Off Premis" / "...On Premise", grouped export,
+same 9/1-11/30 window). THE ROSTER DID NOT MOVE THIS TIME: 13 reps off-prem,
+6 packages, 6 draft, 58 brand rows, exactly the 9/14 cut, so this is the
+same program on the same reps. Every rep total and the report total bounded
+by their parts; every 2025 base identical to the published files (all 58).
+
+  4 / 58 brand goals held across 18 reps (was 3 / 58), 0 reps holding every
+  goal. Day 15 of 91. By family: off Lager 223 -> 245/338, Flight 66 -> 82/152,
+  Light Lager 57 -> 61/134; packages Lager 116 -> 127/258, Flight 0 -> 1/6;
+  draft Lager 150/293 and Flight 3/7 UNCHANGED (see below).
+
+JAYSON ROMINE HOLDS HIS FIRST GOAL: off-prem Flight 16 -> 20 against a goal of
+27, the only movement in the held count. He also leads off-prem at 70 of 86
+(81.4%). Twenty off-prem rows rose and none fell: Klejdi Lamo 37 -> 44 (78.6%),
+Jim Heaney 33 -> 39, Anthony Palmisano 32 -> 37, Mike Ast 26 -> 31, Phil Ernst
+27 -> 31, Chris Payton 24 -> 27, Dan Lagala 12 -> 15. Packages: Robin Feldman
+33 -> 40 (and her first Flight buyer), Anthony Palmisano 19 -> 23, Brian
+Sengebush 32 -> 34.
+
+ONE FIGURE FELL, BY ONE, NOT AGAINST A HELD GOAL: Paul Mclaughlin's packages
+Lager 11 -> 10 buyers (base unchanged, he was at 55% of goal). A buyer count
+falling by one is an account whose fall purchases net to nothing after a
+return or a withdrawn load -- same shape as the Molson Coors drops logged
+today.
+
+THE DRAFT ACCOUNT SHEET STILL HAS NOT BEEN RE-SENT. The draft SUMMARY moved
+(Anthony Palmisano Lager 18 -> 21, Brian Sengebush 55 -> 56, Nick Melissari
+46 -> 47), and the converted CSV carries those numbers, but per rule 6 the
+page counts draft CURRENT from the account sheet
+(yuengling_retention_fall_draft_on_detail.csv, buyer + net kegs > 0), and
+that sheet is still the 2026-09-10 export. So draft reads exactly what it read
+on 9/14 -- 150/293 Lager, 3/7 Flight, 49 flagged buyers with no kegs excluded
+-- while off and packages are current to 9/15. Ask Gavin for the RDE draft
+account export to move it; the summary alone cannot, by design.
+
+Kohler's own goal column still disagrees with ceil(0.95 x base) on 37 rows
+(34 off, 2 packages, 1 draft -- Kohler truncates, we round up), printed as a
+cross-check and not published, unchanged from 9/14.
+hub/index.html's ?v= tag went 20260915f -> 20260915g.
+
 2026-09-15 SIXTH REFRESH -- Molson Coors retention (both premises) + MABI Fall
 Both MC workbooks converted through convert_mc_retention.py (sheets matched by
 premise again -- "Molson Coors Fall 2026 On Prem" / "...Off Pre", the rule
