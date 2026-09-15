@@ -1242,6 +1242,60 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 THIRD REFRESH -- Touchdowns & Tea (both legs), Evil Genius,
+Garage Beer President, Le Grand Noir
+NOTHING WAS WITHDRAWN. Diffed row by row against the committed files before
+the run: Touchdowns on +44 rows, Touchdowns off +67 with ONE row re-valued
+(Jayson Romine / Liquor Factory III Sparta 9/14 Sun Cruiser Sampler, 10 -> 9
+cases, same account/product/date), Evil Genius +4, Garage Beer the same 24
+reps with 15 growth figures restated upward, Le Grand Noir set-identical and
+merely re-sorted (30 rows, 30.0 / 70 house cases, nothing moved). Only these
+four programs' blocks changed; no pace fields, the page was already on
+today's stamp.
+
+  Touchdowns & Tea   71 -> 78 new off-prem 12pk placements, on-prem 890 ->
+                     999 cases across 11 reps, trackable $1,955 -> $2,169.
+                     ANTHONY PALMISANO TAKES RANK 1 from Dave Ehlers: 14 -> 15
+                     placements plus on-prem 122 -> 145 cs, $332 -> $370
+                     against Dave's 23 -> 24 placements, $345 -> $360.
+                     Phil Ernst 4 -> 6 placements ($77 -> $107, rank 9 -> 7),
+                     Shane Barreca 2 -> 4 ($30 -> $60, rank 16 -> 12: Westwood
+                     Wine 9/16 and Ramsey Wine & Liquor 9/17), Pablo Lopez
+                     2 -> 3 ($30 -> $45). On-prem case payouts: Allison Scott
+                     240 -> 282, Paul Mclaughlin 141 -> 159, Brian Sengebush
+                     171 -> 186, Nick Melissari 85 -> 92, Robin Feldman
+                     77 -> 81. Off-prem reorder volume rose for nine more reps
+                     with no placement change (Jayson Romine 299 -> 341 cs,
+                     Jim Heaney 185 -> 218, Mike Ast 157 -> 182).
+  Evil Genius        4 -> 6 new placements: MICHAEL HARBOY 0 -> 2 (Shays
+                     Liquors 9/15, 19.2 oz and 4/6 cans), one short of the
+                     3-placement qualifier and rank 20 -> 2 on the board.
+                     Dave Ehlers still the only rep past it. CE 44 -> 50 vs
+                     last September's 98; 5 -> 6 reps ahead, 9 -> 11 bonus
+                     CE, $0 paid (qualifier-gated). The other two new rows
+                     are on-prem cases at accounts already carrying the brand
+                     (Brian Sengebush / Skyview Golf 9/16 keg, Robin Feldman /
+                     Upper Ridgewood Tennis 9/15).
+  Garage Beer Pres.  house 7,722.24 -> 8,010.35 CE against the UNCHANGED
+                     9,305 goal (86%), last-year column unchanged for all 24.
+                     Fifteen reps moved, every one UP -- Chris Payton's
+                     Wineland return from the 9/14 pull is back (81.22 ->
+                     86.22). Biggest: John O'Donoghue 210.71 -> 257.37, Jaime
+                     Colonna 18.80 -> 53.57, Mike Ast 88.46 -> 117.79,
+                     Michael Harboy 140.04 -> 170.04, Klejdi Lamo 179.95 ->
+                     206.95.
+  Le Grand Noir      UNCHANGED, 30 of 70 house cases. File replaced anyway so
+                     the repo carries the latest pull; only drill-down line
+                     order moved.
+
+FUTURE-DATED ROWS run through 9/18 (Shane Barreca / Ridgemont Liquors
+Twisted Tea Half & Half 9/18 at -1 case -- a return on a load sheet that has
+not shipped yet, which is a first; Matt Powierski / Garfield Discount 9/17;
+Phil Ernst / Stew Leonard's Clifton 9/17; Shane's Ramsey rows 9/17; Evil
+Genius Skyview 9/16). Both of Shane's new Touchdowns placements are 9/16-9/17
+load sheets. Same call as every refresh this month: the export is the record.
+hub/index.html's ?v= tag went 20260915b -> 20260915c.
+
 2026-09-15 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
 Five exports, every one a clean SUPERSET of what was published (diffed row by
 row against the committed files before anything ran: Keystone +8 rows, 1911
