@@ -177,6 +177,18 @@ To refresh with a new export:
      YTD cases. Worth a glance if any of those look off.
   4. Commit and push.
 
+THEME (2026-09-15): re-skinned to match Bardstown Bourbon Co.'s own look --
+near-black canvas, warm cream type, copper accent, spaced uppercase labels,
+thin rules and square corners -- and the whole page is set in Calibri
+(Carlito, the metric-identical open font, is the fallback on Mac / Linux /
+Android; no web font is loaded any more). Every colour is a CSS variable in
+:root at the top of index.html's <style>; nothing in the data, the JS or the
+layout changed, and generate.py only rewrites the bg-data script tag, so a
+data refresh never touches the theme. bardstownbourbon.com itself could not
+be fetched from the build environment (egress-blocked), so the palette is
+the brand's black / cream / copper read from memory -- adjust :root if it
+needs to sit closer to the site.
+
 2026-09-15 REFRESH: full-window re-export (1/15/2025 - 9/17/2026) saved
 over the master, option 1 above. 3,673 -> 3,966 rows, 347 -> 368 accounts.
 Green River YTD 637.4 cases vs 470.4 prior year (+35.5%), 194 buying
