@@ -259,9 +259,46 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-14 refresh (RDE exports run
-through 9/17): Bardstown 4 menu placements, Fever Tree 16 new placements,
-Carbliss 12 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-15 refresh (RDE exports run
+through 9/17): Bardstown 4 menu placements, Fever Tree 19 new placements (18 on
+the board -- see below), Carbliss 13 new buying accounts, HUSA 1 new draft line.
+
+2026-09-15 REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
+  python3 generate_2026-09.py
+Every export is a clean superset of the 9/14 pull (diffed row by row before the
+run): Fever Tree +9 rows, Carbliss +2, HUSA set-identical (85 rows). Every new
+row is dated 9/15. No Bardstown pull came with this refresh, so the archive and
+its count of 4 are untouched.
+
+FEVER TREE 16 -> 19 on three of the nine rows:
+  Paul Mclaughlin 5 -> 6   40038 Forte Ristorante took Sicilian Lemonade, a
+                           SKU it had not bought in 6/1-8/31 (its Ginger Beer
+                           150 mL can the same day is a repeat).
+  Javier Melo     0 -> 1   27094 El Anochecer, Ginger Beer 200 mL -- a new
+                           Fever Tree account outright.
+  Chris Politano  0 -> 1   31037 Delaware North MetLife Stadium, Ginger Beer
+                           150 mL can (the stadium already bought the Bloody
+                           Mary mix in the base window; the can is new).
+The other six are repeats: J. Alexander's (three SKUs, all bought June-August),
+Anthony's CF Pizza Ramsey (Mediterranean Tonic), Forte's Ginger Beer can, and
+The Oak House's Bloody Mary mix.
+
+CHRIS POLITANO IS NOT ON ROSTER, so his placement is in mpo_fever_tree.json
+and in the build log's 19 but renders on no card: the Rep View chooser and
+the Program View table are both built from ROSTER, and there is no
+company-wide placement total on this page, so nothing on the board disagrees
+with itself -- the cards total 18. Same class as Adam Badalamenti on the
+2026-09-14 note. He is the MetLife stadium account (see metlife-audit/),
+not a rep this board scores. ASK GAVIN whether he should be added to ROSTER
+(and a DM_GROUPS entry) for September; nothing else has to change.
+
+CARBLISS 12 -> 13: Brian Sengebush 1 -> 2 on 190709 Adams (P), first Carbliss
+buy on record. Robin Feldman's other 9/15 row (American Lgn Oak Ridge Post
+423) is a repeat -- it bought 7/14 and 8/11 -- so she holds at 0.
+
+HUSA holds at 1 (Paul Mclaughlin, Whiskey Priest Hackensack). Fever Tree at
+goal: Allison Scott 4, Brian Sengebush 3, Paul Mclaughlin 6. Carbliss: Paul
+Mclaughlin 6 of 10 remains the closest.
 
 2026-09-14 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_20
   python3 generate_2026-09.py --merge-bardstown Promos_Report_20.xlsx
