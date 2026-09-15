@@ -885,6 +885,25 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-15 SECOND REFRESH -- Keystone only, riding the incentive-tracker refresh
+Keystone 175 -> 183 rows, a clean superset (diffed before the run: 8 rows
+added, none removed, none renamed). Nothing else on this board was re-pulled:
+Constellation, Fever Tree, Wine & Spirits and the cooler-door archive are
+byte-for-byte what the morning refresh published, and only
+mpo_keystone_ice_numerator.json, mpo_targets_keystone_ice.json and
+sync_meta.json changed.
+  Keystone Ice    146 -> 154 distinct buying accounts and a SIXTH rep reaches
+                  40%: MATT POWIERSKI 12 -> 14 of 35 (40.0%, exactly the bar).
+                  Pablo Lopez 14 -> 16 of 26, Chris Payton 14 -> 15 of 39
+                  (one short of 16), Dave Ehlers 6 -> 8, Jim Heaney 11 -> 12.
+  Target lists    Keystone 347 -> 339 (the eight new buyers converting).
+                  Fever Tree unchanged at 349.
+ALL EIGHT NEW ROWS ARE FUTURE-DATED -- six 9/16 and two 9/17 on a 9/15 pull,
+so Matt's crossing rides two of them (Capri Deli 9/16, Garfield Discount
+9/17). Same call as this morning: the export is the record.
+The same 183-row export went onto keystone-ice/actuals.csv per the sync rule;
+keystone-ice rebuilt first, then this board, then incentive-tracking.
+
 2026-09-15 REFRESH -- all four exports plus Promos_Report_22
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_22.xlsx
 Row counts: Constellation 122 (restated in place, see below), Keystone

@@ -98,6 +98,20 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-15 SECOND REFRESH: actuals.csv onto the 183-row export (8 new rows,
+none removed), 146 -> 154 distinct accounts, still 5 qualified and 2 at
+bonus, $530 -> $550 projected: PABLO LOPEZ 14 -> 16 of 12 (57% of 28) and
+takes the top line from Derrick Laws (16 of 13, 50%) on percentage. Matt
+Powierski 12 -> 14 (two from his 16), Chris Payton 14 -> 15 (one from 16),
+Dave Ehlers 6 -> 8, Jim Heaney 11 -> 12. Everyone else holds exactly.
+  ALL EIGHT NEW ROWS ARE FUTURE-DATED: six 9/16 (Monroe Wine & Liq and
+  Bombolon for Pablo, Capri Deli for Matt, Teaneck Liquors and Bottle & Cork
+  for Dave, Krauszers Food for Jim, Hollywd Liq & Deli for Chris) and two
+  9/17 (Garfield Discount Liquors for Matt). Same call as Klejdi's Sandy's
+  row this morning: the export is the record, the next pull settles it.
+Same export applied to MPOs/off-prem/keystone_ice_24oz.csv in the same commit;
+both boards read 154. incentive-tracking rebuilt afterwards.
+
 2026-09-15 REFRESH: actuals.csv onto the 175-row export (26 new rows, none
 removed), 123 -> 146 distinct accounts, 4 -> 5 qualified, $470 -> $530
 projected: KLEJDI LAMO qualifies, 8 -> 12 of 11 (44% of 27), two from bonus.

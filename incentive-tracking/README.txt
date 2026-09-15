@@ -1242,6 +1242,52 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
+Five exports, every one a clean SUPERSET of what was published (diffed row by
+row against the committed files before anything ran: Keystone +8 rows, 1911
++42, Woodchuck +9, Tona +8, Lytt +1, nothing removed, nothing renamed). The
+Keystone export went onto keystone-ice/actuals.csv AND
+MPOs/off-prem/keystone_ice_24oz.csv (sync rule), keystone-ice rebuilt first,
+then the off-prem September board, then this page. Only the five blocks
+below changed in PROGRAM_DATA -- no pace fields moved, since the page had
+already been rebuilt today.
+
+  Keystone   146 -> 154 accounts, still 5 qualified and 2 at bonus, $530 ->
+             $550 projected: PABLO LOPEZ 14 -> 16 of 12 (57%) takes rank 1
+             from Derrick Laws (16 of 13, 50%) on the percentage tiebreak.
+             Matt Powierski 12 -> 14 (two from his 16), Chris Payton 14 -> 15
+             (one from his 16), Dave Ehlers 6 -> 8, Jim Heaney 11 -> 12.
+             ALL EIGHT NEW ROWS ARE FUTURE-DATED (six 9/16, two 9/17) load
+             sheets on a 9/15 pull -- Pablo's two extra accounts included.
+             Same call as every refresh this month: the export is the record.
+  1911       269 -> 286 placements. Michael Harboy 20 -> 25 (Shays Liquors,
+             Merit), Jayson Romine 19 -> 22 (The Right Bottle), Andrew Lundy
+             37 -> 39 (Park Beverage, Jersey Fine Wines, Buyrite), John
+             O'Donoghue 29 -> 31 (Village Liquor Store_2, Joe Canal's 9/18),
+             Phil Ernst 16 -> 18 (Stew Leonard's Paramus 9/17), Shane Barreca
+             17 -> 19 (Gary's Closter, Montvale), Klejdi Lamo 17 -> 18
+             (Sandy's Budd Lake). Phil Ernst and Klejdi Lamo swap ranks 7/8.
+             Two Shays Liquors lines came in NEGATIVE (Cranberry -2, Sugar
+             Plum -1) -- returns, not withdrawals; the placement rows stand.
+  Woodchuck  34 -> 37 placements: Anthony Palmisano 4 -> 5 (Buy Rite Pompton,
+             moves rank 4 -> 3 past Hakan Sadik), Andrew Lundy 1 -> 2
+             (Pointe Grande, rank 9 -> 7), Phil Ernst 1 -> 2 (Stew Leonard's
+             Clifton). Case volume only: Dave Ehlers 32 -> 40, Hakan Sadik
+             26 -> 30, Jaime Colonna 8 -> 10, Alisa Acciardi 7 -> 9.
+  Tona       12 -> 13 new 24 oz placements: Alex Rodriguez 2 -> 3 (Super
+             Value Liquors). Non-24oz case volume: John O'Donoghue 7 -> 17
+             (Dover Liquors), Alisa Acciardi 37 -> 42, Hakan Sadik 50 -> 55,
+             Alex Rodriguez 41 -> 46, Andrew Lundy 118 -> 121.
+  Lytt       one row, a -1 case Blue Raspberry return at Ridgewood Super
+             Cellar for Mike Ast (32 -> 31 cases). No placement, penetration
+             or tier change for anyone.
+
+FUTURE-DATED ROWS run through 9/21 in this batch (1911: Paul Mclaughlin's
+101 Pub keg 9/21, John O'Donoghue's Joe Canal's 9/18, Phil Ernst's Stew
+Leonard's 9/17; Keystone as above). None of them was patched out; a delivery
+that falls through drops from the next pull and the count with it.
+hub/index.html's ?v= tag went 20260915a -> 20260915b.
+
 2026-09-15 REFRESH -- Keystone only, riding the off-prem MPO refresh
 The 175-row Keystone export went onto keystone-ice/actuals.csv AND
 MPOs/off-prem/keystone_ice_24oz.csv (sync rule), keystone-ice rebuilt first,

@@ -199,12 +199,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79002,
-    "CUSTOMER_NAME": "Hollywd Liq&Deli (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 47009,
     "CUSTOMER_NAME": "Iga Supermarkets (A)",
     "AREA": "Bergen"
@@ -481,12 +475,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 40001,
-    "CUSTOMER_NAME": "Bottle & Cork",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 40022,
     "CUSTOMER_NAME": "Buy Rite Of Hackensack",
     "AREA": "Bergen"
@@ -585,12 +573,6 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "CUSTOMER_NUM": 51018,
     "CUSTOMER_NAME": "Teaneck Discount Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dave Ehlers",
-    "CUSTOMER_NUM": 51012,
-    "CUSTOMER_NAME": "Teaneck Liquors",
     "AREA": "Bergen"
   },
   {
@@ -1075,12 +1057,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 29008,
-    "CUSTOMER_NAME": "Krauszers Food",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 25032,
     "CUSTOMER_NAME": "Liquor Mart 46",
     "AREA": "Passaic"
@@ -1393,12 +1369,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 31033,
-    "CUSTOMER_NAME": "Capri Deli&Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77001,
     "CUSTOMER_NAME": "Food Mart Liquor",
     "AREA": "Bergen"
@@ -1407,12 +1377,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37002,
     "CUSTOMER_NAME": "Garfield Bar & Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 37006,
-    "CUSTOMER_NAME": "Garfield Discount Liquors",
     "AREA": "Bergen"
   },
   {
@@ -1765,12 +1729,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20014,
-    "CUSTOMER_NAME": "Bombolon Liquor & Grocery",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20022,
     "CUSTOMER_NAME": "Caraballo's",
     "AREA": "Passaic"
@@ -1803,12 +1761,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 25015,
     "CUSTOMER_NAME": "Limonta Liqs (A)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 27043,
-    "CUSTOMER_NAME": "Monroe Wine & Liq(P)",
     "AREA": "Passaic"
   },
   {
