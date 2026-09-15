@@ -1480,7 +1480,9 @@ const ACCT_COLS = {
     {label:'Acct #',           w:'86px', short:'Account #', get:x=>x.n!=null?String(x.n):''},
     {label:'Town · Territory', w:'minmax(120px,1fr)', get:x=>[x.city, x.area || x.rawArea].filter(Boolean).join(' · ')},
     {label:'2026 cases',       w:'104px', get:x=>x.cases!=null?fmtCases(x.cases):'', num:true},
-    {label:'Why it is an opportunity', w:'minmax(140px,1.3fr)', short:'Opportunity', get:x=>x.why||''},
+    // "Why it is an opportunity" used to be a fifth column here. Removed on
+    // every program per Gavin (2026-09-15: redundant). The gap text still
+    // rides the Rep Mode visit list (.plan-why) and MPO card preview (.mt-gap).
   ],
   dist: [
     {label:'Account',           w:'minmax(150px,1.6fr)', get:x=>x.name},

@@ -630,8 +630,10 @@ INCENTIVES ARE ONE PAGE, NO DRILL-DOWN (v11, 2026-09-11)
   Constellation product-level work would have been unreachable from the new
   page.
 
-  ACCOUNTS TABLE: name, account number, town · territory, 2026 cases, and
-  why it is an opportunity. PER-ACCOUNT BRAND-LEVEL DISTRIBUTION IS NOT IN
+  ACCOUNTS TABLE: name, account number, town · territory and 2026 cases.
+  (The fifth column, "Why it is an opportunity", was removed from every
+  program's Potential Accounts list on 2026-09-15 per Gavin -- redundant.
+  ACCT_COLS.targets in hub.js is the one place it lived.) PER-ACCOUNT BRAND-LEVEL DISTRIBUTION IS NOT IN
   THE DATA -- Sales_Reps_Customer_Base.xlsx carries total 2026 cases only,
   no brand-level sales -- so "current distribution" and "which product is
   missing" cannot be given per account. The brands a program pays on are
