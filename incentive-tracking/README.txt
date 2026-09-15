@@ -1242,6 +1242,61 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 FIFTH REFRESH -- Constellation Fall, five exports + Corona Gaintain sync
+Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Innovation OFF. Only
+the constellation_fall block moved; house total 4,816 -> 5,205, goals held.
+
+  Off-premise   Corona Gaintain 882 -> 964 (see the sync below) · Modelo
+                Gaintain 1,654 -> 1,751 · Impact 1,924 -> 2,083 · Innovation
+                356 -> 407. Still 0 of 22 reps holding every off-prem
+                category -- day 15 of 91. Every rep with an off-prem goal
+                moved UP; the biggest are Matt Powierski 425 -> 492 placements
+                (50.5% -> 58.4%), Jim Heaney 412 -> 459, Mike Ast 161 -> 201
+                (his first retained category), Shane Barreca 277 -> 307,
+                Anthony Palmisano 231 -> 262. Michael Harboy now holds 2 of
+                his categories, 81.9% overall.
+  On-prem pkg   891 -> 960 buyers across 8 brand families; 3 -> 4 of 20 reps
+                holding every family (Michael Harboy: Corona NA 0 -> 1 of 1).
+  On-prem draft 122 -> 133 buyers across 5 families; still 0 of 12.
+
+EVERY BASELINE IS FROZEN AND WAS CHECKED. The three off-prem exports were
+totalled per rep against the published files: zero reps moved on any
+baseline (Impact 6,290, Modelo Gaintain 4,830, Innovation 2,842 on its spring
+window), and no rep's this-fall column fell. Both on-prem legs print "goal
+drift vs frozen goals on 0 rep+family rows".
+
+ONE ROW WAS GENUINELY WITHDRAWN, the first on this program: Paul Mclaughlin /
+81002 Shoti Bread House, Corona Extra 1/24/12 oz Loose Btl, a 9/15 load
+sheet that was in the 9/14 pull and is gone from this one (the account's two
+spring rows are untouched). It was his only fall row at that account, so
+Shoti drops out of his Corona Extra buyers; his packages total still rose
+129 -> 141 on other accounts. Nothing was patched: the export is the record,
+and this is exactly the "future-dated row that falls through" case every
+refresh this month has warned about.
+
+CORONA GAINTAIN WAS NOT IN THIS BATCH AND HAD DRIFTED AGAIN, so it was synced
+per the 9/14 rule. MPOs/off-prem/constellation_corona_gaintain.csv was
+refreshed this morning (Constellation 889 -> 971 on that board) while this
+tracker's Fall copy still held the 9/14 pull. Checked per rep before copying:
+identical frozen baseline (3,256 both sides, all 24 reps), 14 reps higher on
+the MPO copy, one lower -- Javier Melo 160 -> 158, the same Coronita 7 oz
+restatement the off-prem README logged this morning, not a lost account. The
+MPO copy is now on both boards; the tracker reads 882 -> 964.
+
+THE EMPTY-KEG PICKUP COUNT MOVED AGAIN, 47 -> 44 on a draft export that grew
+by 33 rows with none removed, and this time it was run down: the count is
+accounts whose net fall units are <= 0, and three of them took a delivery
+(Mike Ast / Glen Rock Inn 0 -> 1 Modelo Especial, Nick Melissari / COV 0 -> 3
+and Olive Garden Paramus 0 -> 1). A pickup-only account becoming a buyer is
+the count doing its job, not RDE withdrawing rows. The 9/14 note's 54 -> 47
+was most likely the same shape.
+
+FUTURE-DATED ROWS: Packages ON carries 88 rows dated 9/16, 5 dated 9/17 and 2
+dated 9/18; Draft ON 11 dated 9/16 -- load sheets on a 9/15 pull. Same call
+as every refresh this month. The Shoti withdrawal above is what one of them
+looks like when it does not ship.
+hub/index.html's ?v= tag went 20260915d -> 20260915e.
+
 2026-09-15 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs)
 NOTHING WAS WITHDRAWN. Diffed row by row before the run: Montauk +44 rows,
 Other Half on-prem +8, Other Half off-prem +117 with FIVE rows re-valued
