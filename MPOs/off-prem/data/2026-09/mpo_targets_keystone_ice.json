@@ -13,18 +13,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 8009,
-    "CUSTOMER_NAME": "Appio's Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
-    "CUSTOMER_NUM": 9003,
-    "CUSTOMER_NAME": "B & B Wine&Liq",
-    "AREA": "Morris 3"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 3001,
     "CUSTOMER_NAME": "Best Cellars (Wanaque)",
     "AREA": "Passaic-FF"
@@ -255,12 +243,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 50012,
     "CUSTOMER_NAME": "Ma'adan Catering",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 79007,
-    "CUSTOMER_NAME": "Maywood Market(A)",
     "AREA": "Bergen"
   },
   {
@@ -1044,12 +1026,6 @@
     "AREA": "Sussex"
   },
   {
-    "SALES_REP_ASSIGNED": "Jayson Romine",
-    "CUSTOMER_NUM": 231315,
-    "CUSTOMER_NAME": "Woody's Liq Shop (A)",
-    "AREA": "Sussex"
-  },
-  {
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24015,
     "CUSTOMER_NAME": "Allwood Liquor Store",
@@ -1129,12 +1105,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 27016,
-    "CUSTOMER_NAME": "Marina's Wine & Spirits",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 30003,
     "CUSTOMER_NAME": "Mason's Cellar (A)",
     "AREA": "Bergen"
@@ -1173,12 +1143,6 @@
     "SALES_REP_ASSIGNED": "Jim Heaney",
     "CUSTOMER_NUM": 24009,
     "CUSTOMER_NAME": "Quik Stop Conv(Z)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Jim Heaney",
-    "CUSTOMER_NUM": 24017,
-    "CUSTOMER_NAME": "Rainbow Liquor (P)",
     "AREA": "Passaic"
   },
   {
@@ -1321,12 +1285,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 190302,
-    "CUSTOMER_NAME": "Basket Of Cheer Ii (Lake Hiawatha)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190901,
     "CUSTOMER_NAME": "Berkshire(P) Bot. Shop",
     "AREA": "Morris 1"
@@ -1381,12 +1339,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191812,
-    "CUSTOMER_NAME": "Patel Liqr & Gro(P)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190705,
     "CUSTOMER_NAME": "Rockaway W/L",
     "AREA": "Morris 1"
@@ -1395,12 +1347,6 @@
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 190802,
     "CUSTOMER_NAME": "Sam's Liq Wine (P)",
-    "AREA": "Morris 1"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191814,
-    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
     "AREA": "Morris 1"
   },
   {
@@ -1417,12 +1363,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
-    "CUSTOMER_NUM": 191713,
-    "CUSTOMER_NAME": "Stanhope Liquors",
-    "AREA": "Sussex"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Klejdi Lamo",
     "CUSTOMER_NUM": 191604,
     "CUSTOMER_NAME": "The Village Place",
     "AREA": "Morris 1"
@@ -1431,12 +1371,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37025,
     "CUSTOMER_NAME": "All Nations Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 77022,
-    "CUSTOMER_NAME": "All Star Wine & Liquor",
     "AREA": "Bergen"
   },
   {
@@ -1461,12 +1395,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 31033,
     "CUSTOMER_NAME": "Capri Deli&Liq (P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 32016,
-    "CUSTOMER_NAME": "Cobblestone Hill Deli",
     "AREA": "Bergen"
   },
   {
@@ -1497,12 +1425,6 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 37013,
     "CUSTOMER_NAME": "Joe's Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36016,
-    "CUSTOMER_NAME": "King Liquors",
     "AREA": "Bergen"
   },
   {
@@ -1933,18 +1855,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 40019,
-    "CUSTOMER_NAME": "Budy's Wine & Liq (A)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 43001,
-    "CUSTOMER_NAME": "City Supermarket",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 83001,
     "CUSTOMER_NAME": "Food Universe Marketplace",
     "AREA": "Bergen"
@@ -2005,18 +1915,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 29004,
-    "CUSTOMER_NAME": "Shop-Rite Liq Lyndhurst",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 25010,
-    "CUSTOMER_NAME": "Stew Leonard's Wines & Spirits of Clifton",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 25075,
     "CUSTOMER_NAME": "Stew Leonard's Wines & Spirits of Clifton (NA)",
     "AREA": "Passaic"
@@ -2025,12 +1923,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 208026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramu (NA)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 80026,
-    "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "AREA": "Bergen"
   },
   {
@@ -2125,12 +2017,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 70003,
-    "CUSTOMER_NAME": "Montvale Wines & Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 62006,
     "CUSTOMER_NAME": "Murphy's Fine Wines & Liquors (UNI 4H Inc.)",
     "AREA": "Bergen"
@@ -2185,12 +2071,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 74009,
-    "CUSTOMER_NAME": "Westwood Wine and Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 65001,
     "CUSTOMER_NAME": "Wine & Whiskey (A)",
     "AREA": "Bergen"
@@ -2199,12 +2079,6 @@
     "SALES_REP_ASSIGNED": "Shane Barreca",
     "CUSTOMER_NUM": 68002,
     "CUSTOMER_NAME": "Wine And Beverage Spirits",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Shane Barreca",
-    "CUSTOMER_NUM": 74005,
-    "CUSTOMER_NAME": "Winemart Discount",
     "AREA": "Bergen"
   }
 ]

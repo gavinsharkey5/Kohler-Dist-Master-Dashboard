@@ -98,6 +98,20 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-15 REFRESH: actuals.csv onto the 175-row export (26 new rows, none
+removed), 123 -> 146 distinct accounts, 4 -> 5 qualified, $470 -> $530
+projected: KLEJDI LAMO qualifies, 8 -> 12 of 11 (44% of 27), two from bonus.
+The top four hold exactly (Derrick Laws 16, Pablo Lopez 14, Dan Lagala 21,
+Javier Melo 13). Below the line Phil Ernst 2 -> 8, Matt Powierski 8 -> 12
+(four short), Shane Barreca 2 -> 5, Anthony Palmisano 5 -> 7, Jim Heaney
+9 -> 11, Chris Payton 13 -> 14, Jayson Romine 4 -> 5.
+  KLEJDI'S QUALIFICATION RIDES A FUTURE-DATED LOAD SHEET: Sandy's Wine &
+  Spirit (P) Budd Lake #191814 is dated 9/16, a day ahead of this pull, and
+  it is the account that takes him from 11 to 12. Same call as Pablo's
+  Sunny's row on 9/14: the export is the record, and the next pull settles it.
+Same export applied to MPOs/off-prem/keystone_ice_24oz.csv in the same commit;
+both boards read 146. incentive-tracking rebuilt afterwards.
+
 2026-09-14 REFRESH: actuals.csv onto the 149-row export (10 new rows, none
 removed), 119 -> 123 distinct accounts, still 4 qualified but TWO REACH BONUS
 for the first time: Derrick Laws 15 -> 16 of 13 (50% of 32) and Pablo Lopez

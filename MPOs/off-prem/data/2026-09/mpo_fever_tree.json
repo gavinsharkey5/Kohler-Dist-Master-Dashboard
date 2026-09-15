@@ -591,6 +591,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "1155 Fever Tree Ginger Beer 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 47005,
@@ -638,6 +648,46 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1169 Fever Tree Ginger Ale 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1170 Fever Tree Ginger Ale 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1172 Fever Tree Pink Grapefruit Soda 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1173 Fever Tree Pink Grapefruit Soda 3/8/150 mL Can",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 47005,
+    "CUSTOMER_NAME": "Exquisite W & L (A)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -808,6 +858,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34007,
+    "CUSTOMER_NAME": "Liquor Masters (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1181 Fever Tree Classic Bloody Mary Mix 6/750 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 34007,
+    "CUSTOMER_NAME": "Liquor Masters (P)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1051,6 +1121,16 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1153 Fever Tree Blood Orange Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 76010,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
     "PRODUCT_NAME": "1154 Fever Tree Ginger Beer 8/500 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 76010,
@@ -1116,7 +1196,7 @@
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1128,6 +1208,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Chris Payton",
+    "PRODUCT_NAME": "1168 Fever Tree mediterranean Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 76010,
+    "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
@@ -1166,7 +1256,7 @@
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1186,7 +1276,7 @@
     "CUSTOMER_NUM": 76010,
     "CUSTOMER_NAME": "Usa Wine Traders Club (Saddle Brook)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4886,7 +4976,7 @@
     "CUSTOMER_NUM": 191814,
     "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4898,6 +4988,16 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 0.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "1178 Fever Tree Expresso Martini Mix 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 191814,
+    "CUSTOMER_NAME": "Sandy's Wine & Spirit (P) (Budd Lake)",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Klejdi Lamo",
@@ -9066,7 +9166,7 @@
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9086,7 +9186,7 @@
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9146,7 +9246,7 @@
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9176,7 +9276,7 @@
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -9186,7 +9286,7 @@
     "CUSTOMER_NUM": 62009,
     "CUSTOMER_NAME": "Gary's Wine & Marketplace (Closter)",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

@@ -102151,13 +102151,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/5/2026"
           },
           {
-            "num": "20080",
-            "name": "Raphael & Angel Liq (A)",
+            "num": "20025",
+            "name": "Mercer Bar & Liquors",
             "date": "8/5/2026"
           },
           {
-            "num": "20025",
-            "name": "Mercer Bar & Liquors",
+            "num": "20080",
+            "name": "Raphael & Angel Liq (A)",
             "date": "8/5/2026"
           },
           {
@@ -102216,13 +102216,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/10/2026"
           },
           {
-            "num": "22022",
-            "name": "C Town (A)",
+            "num": "20037",
+            "name": "The Point Liquor & Bar",
             "date": "9/11/2026"
           },
           {
-            "num": "20037",
-            "name": "The Point Liquor & Bar",
+            "num": "22022",
+            "name": "C Town (A)",
             "date": "9/11/2026"
           }
         ],
@@ -102246,13 +102246,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/4/2026"
           },
           {
-            "num": "27069",
-            "name": "Broadway W&L",
+            "num": "15016",
+            "name": "Gene's Liquor",
             "date": "8/4/2026"
           },
           {
-            "num": "27021",
-            "name": "Johnny's Liqs (P)",
+            "num": "27069",
+            "name": "Broadway W&L",
             "date": "8/4/2026"
           },
           {
@@ -102261,8 +102261,8 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/4/2026"
           },
           {
-            "num": "15016",
-            "name": "Gene's Liquor",
+            "num": "27021",
+            "name": "Johnny's Liqs (P)",
             "date": "8/4/2026"
           },
           {
@@ -102286,13 +102286,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "20032",
-            "name": "Riverside Liquors (Paterson)",
+            "num": "15047",
+            "name": "Freddie's Corner",
             "date": "9/4/2026"
           },
           {
-            "num": "15047",
-            "name": "Freddie's Corner",
+            "num": "20032",
+            "name": "Riverside Liquors (Paterson)",
             "date": "9/4/2026"
           },
           {
@@ -102351,11 +102351,6 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/8/2026"
           },
           {
-            "num": "44052",
-            "name": "Minit Mart_2",
-            "date": "9/8/2026"
-          },
-          {
             "num": "43013",
             "name": "Buy Rite Of Fairview",
             "date": "9/8/2026"
@@ -102366,38 +102361,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/8/2026"
           },
           {
-            "num": "43005",
-            "name": "Rome Liquors (Fairview)",
-            "date": "9/9/2026"
+            "num": "44052",
+            "name": "Minit Mart_2",
+            "date": "9/8/2026"
           },
           {
             "num": "43004",
             "name": "Boulevard Liq.(Fairview)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "49019",
-            "name": "Bp Gas Station",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "43015",
-            "name": "Kikos Liquors Ii",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "46011",
-            "name": "Han Mi Supermkt (A)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "45004",
-            "name": "Ridgefield Liq (Z)",
-            "date": "9/9/2026"
-          },
-          {
-            "num": "44002",
-            "name": "Wine And Food Mart (Z)",
             "date": "9/9/2026"
           },
           {
@@ -102406,18 +102376,48 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "num": "45004",
+            "name": "Ridgefield Liq (Z)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "46011",
+            "name": "Han Mi Supermkt (A)",
+            "date": "9/9/2026"
+          },
+          {
             "num": "44009",
             "name": "Metro Liquor (Cliffside Park)",
             "date": "9/9/2026"
           },
           {
-            "num": "44016",
-            "name": "Liquor City(A)Cliffside",
-            "date": "9/10/2026"
+            "num": "43005",
+            "name": "Rome Liquors (Fairview)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "43015",
+            "name": "Kikos Liquors Ii",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "49019",
+            "name": "Bp Gas Station",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "44002",
+            "name": "Wine And Food Mart (Z)",
+            "date": "9/9/2026"
           },
           {
             "num": "44049",
             "name": "Rome Liquor (Cliffside Park)",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "44016",
+            "name": "Liquor City(A)Cliffside",
             "date": "9/10/2026"
           },
           {
@@ -102451,13 +102451,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/5/2026"
           },
           {
-            "num": "15014",
-            "name": "Deli Parchardo Liquors",
+            "num": "27008",
+            "name": "Bermuda Liquors (P)",
             "date": "8/7/2026"
           },
           {
-            "num": "27008",
-            "name": "Bermuda Liquors (P)",
+            "num": "15014",
+            "name": "Deli Parchardo Liquors",
             "date": "8/7/2026"
           },
           {
@@ -102481,13 +102481,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/25/2026"
           },
           {
-            "num": "20117",
-            "name": "El Cantaro Liquors",
+            "num": "27071",
+            "name": "Mariana's Liquors",
             "date": "8/27/2026"
           },
           {
-            "num": "27071",
-            "name": "Mariana's Liquors",
+            "num": "20117",
+            "name": "El Cantaro Liquors",
             "date": "8/27/2026"
           },
           {
@@ -102513,16 +102513,91 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "rank": 4
       },
+      "Klejdi Lamo": {
+        "base": 27,
+        "qualifier": 11,
+        "bonus": 14,
+        "accounts": 12,
+        "pct": 44,
+        "qualified": true,
+        "bonusHit": false,
+        "toQualifier": 0,
+        "toBonus": 2,
+        "payout": 60,
+        "accountList": [
+          {
+            "num": "190917",
+            "name": "Shop Rite Liq (A)Wharton",
+            "date": "8/10/2026"
+          },
+          {
+            "num": "190804",
+            "name": "Midtown Liq",
+            "date": "8/17/2026"
+          },
+          {
+            "num": "190207",
+            "name": "Liquor Outlet",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "191710",
+            "name": "Shop Rite Wine & Spirits Stanhope",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "190913",
+            "name": "Main Street Liquor",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "190907",
+            "name": "Wharton Liquor Store",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "190208",
+            "name": "Boonton Liquor Locker",
+            "date": "9/4/2026"
+          },
+          {
+            "num": "191606",
+            "name": "Quick Check Liquor (A)",
+            "date": "9/9/2026"
+          },
+          {
+            "num": "191713",
+            "name": "Stanhope Liquors",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "191812",
+            "name": "Patel Liqr & Gro(P)",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "190302",
+            "name": "Basket Of Cheer Ii (Lake Hiawatha)",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "191814",
+            "name": "Sandy's Wine & Spirit (P) (Budd Lake)",
+            "date": "9/16/2026"
+          }
+        ],
+        "rank": 5
+      },
       "Chris Payton": {
         "base": 40,
         "qualifier": 16,
         "bonus": 20,
-        "accounts": 13,
-        "pct": 32,
+        "accounts": 14,
+        "pct": 35,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 3,
-        "toBonus": 7,
+        "toQualifier": 2,
+        "toBonus": 6,
         "payout": 0,
         "accountList": [
           {
@@ -102551,11 +102626,6 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/24/2026"
           },
           {
-            "num": "38021",
-            "name": "Buy Rite Of Main St Lodi",
-            "date": "9/1/2026"
-          },
-          {
             "num": "76010",
             "name": "Usa Wine Traders Club (Saddle Brook)",
             "date": "9/1/2026"
@@ -102563,6 +102633,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "num": "80025",
             "name": "Paramus Food Center",
+            "date": "9/1/2026"
+          },
+          {
+            "num": "38021",
+            "name": "Buy Rite Of Main St Lodi",
             "date": "9/1/2026"
           },
           {
@@ -102589,11 +102664,91 @@ const PROGRAM_DATA_2026_09 = {
             "num": "34001",
             "name": "Meadowland Wine & Liquor",
             "date": "9/11/2026"
+          },
+          {
+            "num": "79007",
+            "name": "Maywood Market(A)",
+            "date": "9/15/2026"
           }
         ],
-        "rank": 5
+        "rank": 6
       },
-      "Klejdi Lamo": {
+      "Matt Powierski": {
+        "base": 40,
+        "qualifier": 16,
+        "bonus": 20,
+        "accounts": 12,
+        "pct": 30,
+        "qualified": false,
+        "bonusHit": false,
+        "toQualifier": 4,
+        "toBonus": 8,
+        "payout": 0,
+        "accountList": [
+          {
+            "num": "26001",
+            "name": "Luigi's Liquor (A)",
+            "date": "8/10/2026"
+          },
+          {
+            "num": "27031",
+            "name": "Home Wine Liquor (Passaic)",
+            "date": "8/11/2026"
+          },
+          {
+            "num": "37068",
+            "name": "Whoopee Liq (A)",
+            "date": "9/2/2026"
+          },
+          {
+            "num": "77016",
+            "name": "Metro Liquor (Elmwood Park)",
+            "date": "9/3/2026"
+          },
+          {
+            "num": "77009",
+            "name": "M & M Wine & Spirits",
+            "date": "9/4/2026"
+          },
+          {
+            "num": "32017",
+            "name": "Wine Grand (Carlstadt)",
+            "date": "9/4/2026"
+          },
+          {
+            "num": "31004",
+            "name": "Metro Liquors (East Rutherford)",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "36007",
+            "name": "Shop Rite Of Wallington",
+            "date": "9/11/2026"
+          },
+          {
+            "num": "36016",
+            "name": "King Liquors",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "36006",
+            "name": "Wallington Liquor and Wine",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "32016",
+            "name": "Cobblestone Hill Deli",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "77022",
+            "name": "All Star Wine & Liquor",
+            "date": "9/15/2026"
+          }
+        ],
+        "rank": 7
+      },
+      "Phil Ernst": {
         "base": 27,
         "qualifier": 11,
         "bonus": 14,
@@ -102606,58 +102761,58 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 0,
         "accountList": [
           {
-            "num": "190917",
-            "name": "Shop Rite Liq (A)Wharton",
-            "date": "8/10/2026"
+            "num": "20106",
+            "name": "Super Wine Warehse(P)Pate",
+            "date": "8/18/2026"
           },
           {
-            "num": "190804",
-            "name": "Midtown Liq",
-            "date": "8/17/2026"
+            "num": "83010",
+            "name": "Bottle King (A) Glen Rock",
+            "date": "8/26/2026"
           },
           {
-            "num": "190207",
-            "name": "Liquor Outlet",
-            "date": "9/2/2026"
+            "num": "29004",
+            "name": "Shop-Rite Liq Lyndhurst",
+            "date": "9/15/2026"
           },
           {
-            "num": "191710",
-            "name": "Shop Rite Wine & Spirits Stanhope",
-            "date": "9/2/2026"
+            "num": "38018",
+            "name": "THE BOTTLE SHOP",
+            "date": "9/15/2026"
           },
           {
-            "num": "190907",
-            "name": "Wharton Liquor Store",
-            "date": "9/3/2026"
+            "num": "43001",
+            "name": "City Supermarket",
+            "date": "9/15/2026"
           },
           {
-            "num": "190913",
-            "name": "Main Street Liquor",
-            "date": "9/3/2026"
+            "num": "40019",
+            "name": "Budy's Wine & Liq (A)",
+            "date": "9/15/2026"
           },
           {
-            "num": "190208",
-            "name": "Boonton Liquor Locker",
-            "date": "9/4/2026"
+            "num": "80026",
+            "name": "Stew Leonard's(A) Paramus Wine",
+            "date": "9/17/2026"
           },
           {
-            "num": "191606",
-            "name": "Quick Check Liquor (A)",
-            "date": "9/9/2026"
+            "num": "25010",
+            "name": "Stew Leonard's Wines & Spirits of Clifton",
+            "date": "9/17/2026"
           }
         ],
-        "rank": 6
+        "rank": 8
       },
       "Jim Heaney": {
         "base": 43,
         "qualifier": 18,
         "bonus": 22,
-        "accounts": 9,
-        "pct": 21,
+        "accounts": 11,
+        "pct": 26,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 9,
-        "toBonus": 13,
+        "toQualifier": 7,
+        "toBonus": 11,
         "payout": 0,
         "accountList": [
           {
@@ -102704,66 +102859,71 @@ const PROGRAM_DATA_2026_09 = {
             "num": "30010",
             "name": "Krauser Food & Liq(A)",
             "date": "9/10/2026"
+          },
+          {
+            "num": "24017",
+            "name": "Rainbow Liquor (P)",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "27016",
+            "name": "Marina's Wine & Spirits",
+            "date": "9/15/2026"
           }
         ],
-        "rank": 7
+        "rank": 9
       },
-      "Matt Powierski": {
-        "base": 40,
-        "qualifier": 16,
-        "bonus": 20,
-        "accounts": 8,
-        "pct": 20,
+      "Anthony Palmisano": {
+        "base": 27,
+        "qualifier": 11,
+        "bonus": 14,
+        "accounts": 7,
+        "pct": 26,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 8,
-        "toBonus": 12,
+        "toQualifier": 4,
+        "toBonus": 7,
         "payout": 0,
         "accountList": [
           {
-            "num": "26001",
-            "name": "Luigi's Liquor (A)",
-            "date": "8/10/2026"
+            "num": "8008",
+            "name": "Shoppers Disc(A)Pompton",
+            "date": "9/1/2026"
           },
           {
-            "num": "27031",
-            "name": "Home Wine Liquor (Passaic)",
-            "date": "8/11/2026"
+            "num": "8007",
+            "name": "Krauszer's Liquor Wine and Spirits",
+            "date": "9/1/2026"
           },
           {
-            "num": "37068",
-            "name": "Whoopee Liq (A)",
-            "date": "9/2/2026"
+            "num": "5006",
+            "name": "Roserne Pkg Store South",
+            "date": "9/8/2026"
           },
           {
-            "num": "77016",
-            "name": "Metro Liquor (Elmwood Park)",
-            "date": "9/3/2026"
-          },
-          {
-            "num": "77009",
-            "name": "M & M Wine & Spirits",
-            "date": "9/4/2026"
-          },
-          {
-            "num": "32017",
-            "name": "Wine Grand (Carlstadt)",
-            "date": "9/4/2026"
-          },
-          {
-            "num": "31004",
-            "name": "Metro Liquors (East Rutherford)",
+            "num": "2002",
+            "name": "Ringwood Discount Liquors",
             "date": "9/10/2026"
           },
           {
-            "num": "36007",
-            "name": "Shop Rite Of Wallington",
-            "date": "9/11/2026"
+            "num": "3005",
+            "name": "Usa Wine Traders (Wanaque)",
+            "date": "9/10/2026"
+          },
+          {
+            "num": "9003",
+            "name": "B & B Wine&Liq",
+            "date": "9/15/2026"
+          },
+          {
+            "num": "8009",
+            "name": "Appio's Liquors",
+            "date": "9/15/2026"
           }
         ],
-        "rank": 8
+        "rank": 10
       },
-      "Anthony Palmisano": {
+      "Shane Barreca": {
         "base": 27,
         "qualifier": 11,
         "bonus": 14,
@@ -102776,32 +102936,32 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 0,
         "accountList": [
           {
-            "num": "8007",
-            "name": "Krauszer's Liquor Wine and Spirits",
-            "date": "9/1/2026"
+            "num": "62001",
+            "name": "Garden State Deli (A)",
+            "date": "9/4/2026"
           },
           {
-            "num": "8008",
-            "name": "Shoppers Disc(A)Pompton",
-            "date": "9/1/2026"
+            "num": "71006",
+            "name": "Ridgemont Liquors (A)",
+            "date": "9/11/2026"
           },
           {
-            "num": "5006",
-            "name": "Roserne Pkg Store South",
-            "date": "9/8/2026"
+            "num": "74005",
+            "name": "Winemart Discount",
+            "date": "9/15/2026"
           },
           {
-            "num": "3005",
-            "name": "Usa Wine Traders (Wanaque)",
-            "date": "9/10/2026"
+            "num": "74009",
+            "name": "Westwood Wine and Liquors",
+            "date": "9/16/2026"
           },
           {
-            "num": "2002",
-            "name": "Ringwood Discount Liquors",
-            "date": "9/10/2026"
+            "num": "70003",
+            "name": "Montvale Wines & Spirits",
+            "date": "9/16/2026"
           }
         ],
-        "rank": 9
+        "rank": 11
       },
       "Dave Ehlers": {
         "base": 35,
@@ -102831,13 +102991,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           },
           {
-            "num": "51013",
-            "name": "G & G Liquors & Bar",
+            "num": "39012",
+            "name": "Wine And Liq Depot(A)",
             "date": "9/2/2026"
           },
           {
-            "num": "39012",
-            "name": "Wine And Liq Depot(A)",
+            "num": "51013",
+            "name": "G & G Liquors & Bar",
             "date": "9/2/2026"
           },
           {
@@ -102846,7 +103006,7 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           }
         ],
-        "rank": 10
+        "rank": 12
       },
       "Brian Sengebush": {
         "base": 6,
@@ -102866,18 +103026,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "8/18/2026"
           }
         ],
-        "rank": 11
+        "rank": 13
       },
       "Jayson Romine": {
         "base": 35,
         "qualifier": 14,
         "bonus": 18,
-        "accounts": 4,
-        "pct": 11,
+        "accounts": 5,
+        "pct": 14,
         "qualified": false,
         "bonusHit": false,
-        "toQualifier": 10,
-        "toBonus": 14,
+        "toQualifier": 9,
+        "toBonus": 13,
         "payout": 0,
         "accountList": [
           {
@@ -102899,56 +103059,11 @@ const PROGRAM_DATA_2026_09 = {
             "num": "408",
             "name": "Fredon Liquor (Fredon Deli)",
             "date": "9/4/2026"
-          }
-        ],
-        "rank": 12
-      },
-      "Phil Ernst": {
-        "base": 27,
-        "qualifier": 11,
-        "bonus": 14,
-        "accounts": 2,
-        "pct": 7,
-        "qualified": false,
-        "bonusHit": false,
-        "toQualifier": 9,
-        "toBonus": 12,
-        "payout": 0,
-        "accountList": [
-          {
-            "num": "20106",
-            "name": "Super Wine Warehse(P)Pate",
-            "date": "8/18/2026"
           },
           {
-            "num": "83010",
-            "name": "Bottle King (A) Glen Rock",
-            "date": "8/26/2026"
-          }
-        ],
-        "rank": 13
-      },
-      "Shane Barreca": {
-        "base": 27,
-        "qualifier": 11,
-        "bonus": 14,
-        "accounts": 2,
-        "pct": 7,
-        "qualified": false,
-        "bonusHit": false,
-        "toQualifier": 9,
-        "toBonus": 12,
-        "payout": 0,
-        "accountList": [
-          {
-            "num": "62001",
-            "name": "Garden State Deli (A)",
-            "date": "9/4/2026"
-          },
-          {
-            "num": "71006",
-            "name": "Ridgemont Liquors (A)",
-            "date": "9/11/2026"
+            "num": "231315",
+            "name": "Woody's Liq Shop (A)",
+            "date": "9/16/2026"
           }
         ],
         "rank": 14
@@ -103004,7 +103119,7 @@ const PROGRAM_DATA_2026_09 = {
     },
     "meta": {
       "window": "8/1/2026 \u2013 9/30/2026",
-      "houseAccounts": 123,
+      "houseAccounts": 146,
       "repCount": 17,
       "offRoster": [
         "John Neukum"
@@ -113794,7 +113909,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 97.5,
+        "pctOfPace": 91.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -113828,7 +113943,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 48,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 264.6,
+        "pctOfPace": 246.9,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -113910,7 +114025,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 329,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 293.2,
+        "pctOfPace": 273.6,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -114165,7 +114280,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 61,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 327.6,
+        "pctOfPace": 305.8,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -114283,7 +114398,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 404,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 224.3,
+        "pctOfPace": 209.3,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -114533,7 +114648,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 273,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 162.5,
+        "pctOfPace": 151.7,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -114694,7 +114809,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 266,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 352.3,
+        "pctOfPace": 328.8,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -114968,7 +115083,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 179,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 247.7,
+        "pctOfPace": 231.1,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -115234,7 +115349,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 349.7,
+        "pctOfPace": 326.4,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -115292,7 +115407,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 148,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 254.2,
+        "pctOfPace": 237.2,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -115488,7 +115603,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 381,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 290.6,
+        "pctOfPace": 271.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115724,7 +115839,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 385,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 243.8,
+        "pctOfPace": 227.5,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115982,7 +116097,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 337,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 298.3,
+        "pctOfPace": 278.5,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -116251,7 +116366,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 395,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 246.3,
+        "pctOfPace": 229.9,
         "products": [
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
@@ -116511,7 +116626,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 62,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 302.9,
+        "pctOfPace": 282.7,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -116692,7 +116807,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 235,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 267.8,
+        "pctOfPace": 249.9,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -116917,7 +117032,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 53,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 165.1,
+        "pctOfPace": 154.1,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -116965,7 +117080,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 140,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 222.9,
+        "pctOfPace": 208.1,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -117121,7 +117236,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 34,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 169.7,
+        "pctOfPace": 158.3,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -117160,7 +117275,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 238,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 305.5,
+        "pctOfPace": 285.1,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -117410,7 +117525,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 63,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 173.5,
+        "pctOfPace": 162.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -117459,7 +117574,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 294,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 199.5,
+        "pctOfPace": 186.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -117661,8 +117776,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 14,
-    "pacePct": 15.4,
+    "daysElapsed": 15,
+    "pacePct": 16.5,
     "meta": {
       "offRoster": [
         "Default",
@@ -138743,8 +138858,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 14,
-    "pacePct": 15.4,
+    "daysElapsed": 15,
+    "pacePct": 16.5,
     "meta": {
       "onPrem": {
         "packages": {
@@ -141871,8 +141986,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 14,
-    "pacePct": 15.4,
+    "daysElapsed": 15,
+    "pacePct": 16.5,
     "meta": {
       "offRoster": []
     }
@@ -146234,8 +146349,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-07-20",
     "periodEnd": "2026-09-30",
     "periodDays": 73,
-    "daysElapsed": 57,
-    "pacePct": 78.1,
+    "daysElapsed": 58,
+    "pacePct": 79.5,
     "meta": {
       "source": "Boston Beer Seasonal Conversion Fall workbook",
       "officialAsOf": "2026-09-08",
@@ -146256,4 +146371,4 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 14, 2026";
+const PROGRAM_DATA_REFRESHED = "Sep 15, 2026";

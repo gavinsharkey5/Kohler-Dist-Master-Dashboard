@@ -1242,6 +1242,24 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 REFRESH -- Keystone only, riding the off-prem MPO refresh
+The 175-row Keystone export went onto keystone-ice/actuals.csv AND
+MPOs/off-prem/keystone_ice_24oz.csv (sync rule), keystone-ice rebuilt first,
+then the off-prem September board, then this page.
+  Keystone   123 -> 146 accounts, 4 -> 5 qualified: Klejdi Lamo 12 of 11
+             (44%), $470 -> $530 projected. Still 2 at bonus (Derrick Laws
+             16 of 13, Pablo Lopez 14 of 12). Klejdi's 12th account is a
+             9/16 load sheet, a day in the future -- see
+             keystone-ice/README.txt.
+No other incentive export was re-pulled and no other program's data moved.
+The same four calendar-driven programs changed in program_data.js anyway
+(daysElapsed 14 -> 15 on constellation_fall, mabi_retention_fall and
+yuengling_retention_fall, 57 -> 58 on sam_adams_conversion, plus the
+pacePct / pctOfPace fields derived from it). Checked field by field: nothing
+else differs.
+hub/index.html's ?v= tag went 20260914h -> 20260915a, since the hub reads
+program_data.js and the old copy would otherwise stick.
+
 2026-09-14 SEVENTH REFRESH -- Yuengling Fall, and the roster NARROWS on purpose
 All three reports re-pulled. Two things happened at once: the numbers moved up,
 and the program got smaller.

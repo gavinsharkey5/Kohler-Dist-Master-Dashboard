@@ -1,5 +1,60 @@
 [
   {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WALDWICK WINE/SPIRITS",
+    "CITY": "WALDWICK",
+    "BRAND": "POP SIPS GINGER LIME",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/15/2026 12:07 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b85ff84d-ef9c-4cb8-a0af-693ecd15f11f/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WALDWICK WINE/SPIRITS",
+    "CITY": "WALDWICK",
+    "BRAND": "POP SIPS RASPBERRY ROSE",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/15/2026 12:07 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b85ff84d-ef9c-4cb8-a0af-693ecd15f11f/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WALDWICK WINE/SPIRITS",
+    "CITY": "WALDWICK",
+    "BRAND": "POP SIPS VARIETY 8PK",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/15/2026 12:07 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/b85ff84d-ef9c-4cb8-a0af-693ecd15f11f/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WALDWICK WINE/SPIRITS",
+    "CITY": "WALDWICK",
+    "BRAND": "COORS LIGHT BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/15/2026 12:05 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1c36beb2-964a-4d84-ac2d-0d4c797505db/"
+  },
+  {
+    "REP": "Mike Ast",
+    "SOURCE": "Promo",
+    "CUSTOMER_NAME": "WALDWICK WINE/SPIRITS",
+    "CITY": "WALDWICK",
+    "BRAND": "MILLER LITE BEER",
+    "DETAIL": "Cooler Door Wrap",
+    "QUANTITY": 1,
+    "DATE": "09/15/2026 12:05 PM",
+    "PHOTO_URL": "https://ep.cpgdata.com/external-api/view-photo/promos/1c36beb2-964a-4d84-ac2d-0d4c797505db/"
+  },
+  {
     "REP": "Shane Barreca",
     "SOURCE": "Promo",
     "CUSTOMER_NAME": "SHOP RITE LIQ (A)HILLSDAL",

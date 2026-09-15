@@ -885,6 +885,62 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-15 REFRESH -- all four exports plus Promos_Report_22
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_22.xlsx
+Row counts: Constellation 122 (restated in place, see below), Keystone
+149 -> 175, Fever Tree 2,071 -> 2,094, Wine & Spirits 2,589 -> 2,626. Every
+RDE export is a clean SUPERSET of the 9/14 pull -- diffed row by row before
+the run, nothing withdrawn, nothing renamed. Report_22 held 44 rows, all
+Cooler Door Wraps (window 9/1-9/18), 5 new: 39 -> 44 archive rows, all 44
+keeping a photo link. No Bardstown row in it, so on-prem's menu archive was
+left alone.
+
+  Constellation   889 -> 971 placements this fall against the same 1,628
+                  last fall (per rep, all 24 identical). Fourteen reps grew;
+                  JAVIER MELO FELL 80 -> 79 (one Coronita 7 oz line 25 -> 24,
+                  a return netting out of a restated month, not a
+                  reclassification). Still 21 of 24 reps at 30%. Matt
+                  Powierski is the big mover, 75 -> 95.
+  Keystone Ice    123 -> 146 distinct buying accounts and a FIFTH rep reaches
+                  40%: Klejdi Lamo 8 -> 12 of 27 (44%). Phil Ernst 2 -> 8,
+                  Matt Powierski 8 -> 12, Shane Barreca 2 -> 5, Anthony
+                  Palmisano 5 -> 7, Jim Heaney 9 -> 11, Chris Payton 13 -> 14,
+                  Jayson Romine 4 -> 5. The same 175-row export went onto
+                  keystone-ice/actuals.csv per the sync rule; keystone-ice
+                  rebuilt first, then this board, then incentive-tracking
+                  (Klejdi qualifies there too, projected $470 -> $530).
+  Fever Tree      87 -> 97 new placements, still 5 reps at the goal of 10.
+                  CHRIS PAYTON 0 -> 9, one short, on three accounts in one
+                  day (9/15): Exquisite W & L five SKUs, USA Wine Traders
+                  Club two, Liquor Masters two mixers. Klejdi Lamo 2 -> 3
+                  (Sandy's Budd Lake, Espresso Martini mix).
+  Wine & Spirits  186 -> 213 new placements and an EIGHTEENTH rep at the goal
+                  of 5: Alex Rodriguez 1 -> 5 on four Pride & Clarke Vodka
+                  sizes at Home Liquors. Shane Barreca 17 -> 24 (seven
+                  Bardstown / Green River bottles at Gary's Closter), Hakan
+                  Sadik 17 -> 24, Dan Lagala 6 -> 9, Chris Payton 5 -> 7,
+                  Anthony Palmisano 5 -> 6, Michael Harboy 10 -> 11, Phil
+                  Ernst 8 -> 9, Jaime Colonna 1 -> 2.
+  Cooler doors    31 -> 33 distinct stickers from 44 brand rows, and a FOURTH
+                  rep reaches the goal of 5: Mike Ast 3 -> 5 on two photos at
+                  Waldwick Wine/Spirits, 9/15 -- one carrying three Pop Sips
+                  rows, the other Coors Light + Miller Lite. Chris Payton,
+                  Derrick Laws and Shane Barreca hold.
+  Target lists    Keystone 368 -> 347 (prospects converting); Fever Tree
+                  holds at 349 -- Chris Payton's three accounts were already
+                  Fever Tree buyers on other SKUs, so none was a prospect.
+
+NOTHING DROPPED. The step-3 rule holds per rep on every new-placement
+objective; the only figure that went down anywhere is Javier Melo's one
+Constellation case above, which is a restated volume, not a lost account.
+
+FUTURE-DATED ROWS AGAIN, and more of them: Keystone carries four 9/16 and two
+9/17 rows, Fever Tree four 9/16, Wine & Spirits eight 9/17 -- scheduled load
+sheets on a 9/15 pull, the same call as every refresh this month. The export
+is the record; if a delivery falls through the next pull drops it and the
+count with it. Klejdi Lamo's Keystone qualification rides one of them
+(Sandy's Wine & Spirit, 9/16).
+
 2026-09-14 REFRESH -- all four exports plus Promos_Report_21
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_21.xlsx
 Row counts: Constellation 122 (unchanged), Keystone 144 -> 149, Fever Tree
