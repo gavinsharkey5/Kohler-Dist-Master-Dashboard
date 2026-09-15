@@ -1253,7 +1253,8 @@ sides. Only the mc_retention and mabi_retention_fall blocks changed.
 
   MC retention   off 2,632 -> 2,680 placements, on 722 -> 728 buyers, and
                  brand goals retained 29 -> 31: ALLISON SCOTT retains a fourth
-                 (a fourth brand) and CHRIS PAYTON a second (a second brand), which takes Chris
+                 (Peroni on-prem 17 -> 18 of 18) and CHRIS PAYTON a second
+                 (Coors off-prem 81 -> 85 of 85), which takes Chris
                  to 103.0% off-prem and 99.2% overall. NO GOAL MOVED in either
                  workbook -- checked per rep+brand, all 121 rows. Fifteen reps
                  moved, thirteen up; Shane Barreca 295 -> 302 (97.1%), Jayson
