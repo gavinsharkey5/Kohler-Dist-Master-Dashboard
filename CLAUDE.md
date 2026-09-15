@@ -185,3 +185,24 @@ pairs -- it deliberately does not sum across items) and the fact that
 the dashboard holds NO goals: the Opportunity Tracker is deliberately
 not a goal tracker, and `ws_goals.csv` is the drop-in that would turn
 Goal / Progress / Still needed on if goals are ever approved.
+
+## Pricing / deal-level workbook is Excel, not a dashboard (2026-09-15)
+
+`pricing-analysis/` turns the Encompass "Pricing Analysis RDE by Month"
+export into `Pricing_Deal_Levels_<month>.xlsx` via
+`build_pricing_workbook.py` (see its README.txt). Three things future
+refreshes must keep straight:
+
+  * Gross $ and Margin % are taken AS REPORTED. Spirits sold by the
+    bottle carry per-BOTTLE FOB / laid-in against a per-CASE price, so
+    Cases x (Price - Laid-in) is wrong for them. Don't "fix" the
+    workbook by recomputing gross from the cost columns.
+  * The export has NO mix-and-match / deal-group field. The families in
+    the workbook are inferred from shared 20+ case ladders within a
+    supplier and are labelled inferred everywhere. The real answer is
+    the supplier deal sheets / Encompass deal groups -- ask Gavin for
+    those rather than tightening the heuristic.
+  * Recalc needs LibreOffice Calc, which the web container does NOT
+    ship (only libreoffice-core -- `soffice --convert-to` says "source
+    file could not be loaded" and the xlsx skill's recalc.py just times
+    out). `apt-get install -y libreoffice-calc` fixes it in ~1 minute.
