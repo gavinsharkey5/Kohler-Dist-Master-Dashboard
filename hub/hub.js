@@ -656,7 +656,6 @@ function topbar(){
       <div class="navl">${rep && onRep ? `<span class="nav-rep">👤 ${E(state.peek && state.view==='detail' ? state.peek : rep)}</span>` : ''}</div>
       <div class="navr">
         <button class="nbtn home" data-act="home">🏠 Home</button>
-        ${rep ? `<button class="nbtn" data-act="change-rep">Change rep</button>` : ''}
         ${rep && state.view!=='rep' ? `<button class="nbtn" data-act="my-programs">My programs</button>` : ''}
         ${isMgr() && !(state.view==='programs' || state.view==='program') ? `<button class="nbtn quiet" data-act="programs">Program view</button>` : ''}
         ${isMobile() ? '' : `<span class="modeseg" role="group" aria-label="View mode"><button class="mseg${isMgr()?'':' active'}" data-act="set-mode" data-mode="rep">Rep</button><button class="mseg${isMgr()?' active':''}" data-act="set-mode" data-mode="manager">Manager</button></span>`}
@@ -2373,7 +2372,6 @@ document.addEventListener('click', e=>{
     case 'pick-rep': { const who = t.dataset.rep, tab = lastTab();
       openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
-    case 'change-rep': go({view:'home'}); break;
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
     case 'my-programs': if(state.rep) go({view:'rep', cat: state.cat || lastTab(), main: tabOf(state.cat || lastTab()), prog:null, from:null, peek:null}); else go({view:'home'}); break;
     case 'set-cat': openCards.clear(); rememberTab(t.dataset.cat); go({cat:t.dataset.cat, main:tabOf(t.dataset.cat), view:'rep'}, true); break;
@@ -2399,7 +2397,6 @@ document.addEventListener('click', e=>{
     case 'reset-all': try{ localStorage.removeItem(LS_KEY); sessionStorage.removeItem(TAB_KEY); }catch(e){} openCards.clear(); state.showEnded = false; state.peek = null; state.prog = null; state.rep = null; state.cat = null; state.main = null;
       go({view:'home'}, true); break;
     case 'open': go({view:'detail', prog:t.dataset.prog, from:null, peek:null}); break;
-    case 'change-rep-home': go({view:'home'}); break;
     case 'open-for-rep': {
       const who = t.dataset.rep;
       // A manager (or a curious rep) opening someone else's row peeks at

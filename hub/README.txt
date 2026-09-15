@@ -470,7 +470,7 @@ CARD LEGIBILITY PASS (v13, 2026-09-11)
   home screen, as it has since v5.
 
   There is no Back button on the results page any more: the tabs re-group
-  it, and 🏠 Home / Change rep are the ways out.
+  it, and 🏠 Home is the way out.
 
   OLD LINKS still work. #view=pick lands on the rep page with that tab
   open (main=inc|mpo is honoured), and a Manager Mode link carrying
@@ -493,8 +493,8 @@ STATE
   page") -- only the Rep / Manager mode is remembered (localStorage key
   kohler-hub) and, for the browser session only, the last tab
   (sessionStorage kohler-hub-tab). A 🏠 Home button sits first in the nav
-  on every inner page and starts over the same way; "Change rep" goes back
-  to the landing screen with the name filled in.
+  on every inner page and starts over the same way. ("Change rep" used to
+  sit beside it and do the same thing; removed 2026-09-15 per Gavin.)
   Every screen has a URL hash (#view=rep&rep=...&cat=inc|mpo, #view=detail&
   prog=inc:keystone_ice, #view=programs, #view=program&prog=off:2026-09:
   fever_tree) so a page can be shared or bookmarked. Opening another rep's
