@@ -1479,10 +1479,10 @@ const ACCT_COLS = {
     {label:'Account',          w:'minmax(150px,1.7fr)', get:x=>x.name},
     {label:'Acct #',           w:'86px', short:'Account #', get:x=>x.n!=null?String(x.n):''},
     {label:'Town · Territory', w:'minmax(120px,1fr)', get:x=>[x.city, x.area || x.rawArea].filter(Boolean).join(' · ')},
-    {label:'2026 cases',       w:'104px', get:x=>x.cases!=null?fmtCases(x.cases):'', num:true},
-    // "Why it is an opportunity" used to be a fifth column here. Removed on
-    // every program per Gavin (2026-09-15: redundant). The gap text still
-    // rides the Rep Mode visit list (.plan-why) and MPO card preview (.mt-gap).
+    // "2026 cases" and "Why it is an opportunity" used to be the fourth and
+    // fifth columns here. Both removed on every program per Gavin (2026-09-15:
+    // redundant), along with the same gap line on the Rep Mode visit list and
+    // the MPO card preview. The why/cases fields stay on the row data for sorting.
   ],
   dist: [
     {label:'Account',           w:'minmax(150px,1.6fr)', get:x=>x.name},
@@ -1689,7 +1689,7 @@ function planParts(p, r, rep, opts){
   } else {
     go = `Start with these ${n} eligible account${n===1?'':'s'}.`; step = 'Open the account list.';
   }
-  const list = !plan.rows.length ? '' : `<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div><div class="plan-why">${a.warm?'🔥 ':''}${E(a.why||'')}</div></li>`).join('')}</ol>
+  const list = !plan.rows.length ? '' : `<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div></li>`).join('')}</ol>
       ${plan.rows.length>LIMIT ? `<button class="amore" data-act="plan-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+plan.rows.length}</button>` : ''}`;
   return {loading:false, sell:sellAsk(p), go, step, n, total:plan.rows.length, hold:plan.hold, list};
 }
@@ -1824,8 +1824,7 @@ function mpoTargetRows(p, rep){
 function mpoTargetRowHtml(a){
   const meta = [a.n ? '#'+a.n : '', a.area || a.rawArea || ''].filter(Boolean).join(' · ');
   return `<li class="mt-row"><div class="mt-name">${E(a.name)}</div>` +
-    `${meta?`<div class="mt-meta">${E(meta)}</div>`:''}` +
-    `${a.why?`<div class="mt-gap">${E(a.why)}</div>`:''}</li>`;
+    `${meta?`<div class="mt-meta">${E(meta)}</div>`:''}</li>`;
 }
 const MT_PREVIEW = 3;
 function mpoRepCard(p, r, rep){
