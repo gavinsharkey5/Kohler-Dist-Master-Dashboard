@@ -177,6 +177,21 @@ To refresh with a new export:
      YTD cases. Worth a glance if any of those look off.
   4. Commit and push.
 
+2026-09-15 REFRESH: full-window re-export (1/15/2025 - 9/17/2026) saved
+over the master, option 1 above. 3,673 -> 3,966 rows, 347 -> 368 accounts.
+Green River YTD 637.4 cases vs 470.4 prior year (+35.5%), 194 buying
+accounts; Bardstown Bourbon 612.6 vs 1,069.2 (-42.7%), 154. Both prior-year
+figures moved too because the like-for-like range now runs to 9/17.
+  A RAW DIFF SHOWS 59 ROWS LEAVING AND NONE OF THEM IS A LOST ORDER. Matched
+  by (customer, product, date): 40 are #190216 renamed "House of Wine &
+  Liquor - Boonton" (same rename RDE made on the MPO boards on 9/14), 11 are
+  #19006 Blackjack Mulligans (Hawthorne) REASSIGNED from Nick Melissari to
+  Allison Scott back to its first 2025 order, so her history and his both
+  move, and 4 are #190501 Mountain Lakes with a corrected street number.
+  Check for this before reading a shrinking diff as withdrawn orders.
+  The export runs two days past the pull date (rows dated 9/16 and 9/17):
+  scheduled load sheets, left in, same call as the MPO boards all month.
+
 Velocity is cases per month, averaged over the whole report window (the
 earliest to latest date across the export) rather than per-account tenure, so
 a brand-new account isn't artificially inflated just because it's only been

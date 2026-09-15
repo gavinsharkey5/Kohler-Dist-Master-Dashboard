@@ -284,6 +284,17 @@ Caveats worth knowing
     the header), which is wider than the YTD window used everywhere else.
   * Accounts on the roster with no rep are shown as "Unassigned".
 
+THE 2026-09-15 REFRESH -- Lost / At-Risk only
+--------------------------------------------
+Only ws_l6_months.csv (now 3/2 - 8/31/2026, 4,407 rows) and ws_l90_days.csv
+(now 6/16 - 9/14/2026, 2,251 rows) arrived, overwritten in place as the
+rolling-window rule above says. The Lost / At-Risk tab is anchored at
+2026-09-14 instead of 2026-08-24; placement rows after dedupe 5,425 -> 4,765,
+which is the older months rolling out of both windows, not a loss. The
+monthly grid, the invoice file and every YTD figure are untouched
+(11,750.6 cases, 776 buying accounts). Same-day refresh of the Bardstown /
+Green River board off its own full-window export.
+
 THE 2026-09-14 REFRESH -- read this before the next one
 -------------------------------------------------------
 Three RDE exports arrived covering only the recent stretch, with the note that
