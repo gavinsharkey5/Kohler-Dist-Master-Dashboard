@@ -154,3 +154,34 @@ is one quiet column of cards -- no count boxes, no filter pills. Retention
 programs open to a "Your brand goals" list (one row per brand family:
 current / goal, a bar, "N more needed" or "✓ Retained") instead of an
 account list; brandGoals() in `hub/hub.js` maps each tracker's rows.
+
+## W&S monthly grid: partial-looking exports are RESTATEMENTS (2026-09-14)
+
+The Wine & Spirits RDE pulls now arrive as a recent slice, and the
+covering note can say they exclude older months when they don't. On
+2026-09-14 the "Account Level by Month" export carried 2026/8 and
+2026/9 only -- but its August was a fuller restatement of the whole
+month, not a top-up of the days after the 24th: every master August row
+was present, 660 matched exactly, 85 had grown, none were missing, and
+the month went 1,543 -> 2,089 units. `--overlap replace` was right;
+`add` would have double-counted 660 rows.
+
+So don't infer the mode from the column headers. CHECK: for the
+overlapping month, compare the export against the master per key. If
+every master row with volume reappears and values only go up, it's a
+restatement -> `--overlap replace`. If the export holds only the days
+the master lacks, it's a top-up -> `--overlap add`. The invoice-style
+export (Portfolio Overview) is always safe in `rows` mode -- it dedupes
+whole rows as a multiset.
+
+Duplicate keys, for the record: the monthly grid matches on
+(On-Off Premise, Product Num, Customer ID) -- verified unique in both
+files; the invoice file matches on the entire row, because it has no
+customer column and identical lines are legitimate.
+
+`wine-spirits/README.md` carries the full write-up, including the AP
+definition (AP = DISTINCT ACCOUNTS everywhere, never customer x item
+pairs -- it deliberately does not sum across items) and the fact that
+the dashboard holds NO goals: the Opportunity Tracker is deliberately
+not a goal tracker, and `ws_goals.csv` is the drop-in that would turn
+Goal / Progress / Still needed on if goals are ever approved.

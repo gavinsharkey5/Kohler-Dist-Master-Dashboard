@@ -3,3 +3,8 @@ __pycache__/
 
 # merge_export.py / update_data.py safety copies — local only
 *.csv.bak
+
+# wine-spirits/backups/<timestamp>/ — pre-merge copies of the masters. Local
+# only: git history is the durable backup (the previous CSVs are in the last
+# commit), so there is no reason to carry ~7 MB of duplicates in the repo.
+wine-spirits/backups/
