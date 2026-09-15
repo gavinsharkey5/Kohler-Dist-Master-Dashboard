@@ -1242,6 +1242,40 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 SIXTH REFRESH -- Molson Coors retention (both premises) + MABI Fall
+Both MC workbooks converted through convert_mc_retention.py (sheets matched by
+premise again -- "Molson Coors Fall 2026 On Prem" / "...Off Pre", the rule
+added 9/14 -- same 07/27-10/31 distribution window, so the same program
+period) and the MABI actuals through convert_mabi_fall.py against the goals
+workbook already on file (data/mabi_retention_fall_goals.xlsx -- not
+re-issued, not touched). Every rep, DM and report total reconciled on both
+sides. Only the mc_retention and mabi_retention_fall blocks changed.
+
+  MC retention   off 2,632 -> 2,680 placements, on 722 -> 728 buyers, and
+                 brand goals retained 29 -> 31: ALLISON SCOTT retains a fourth
+                 (a fourth brand) and CHRIS PAYTON a second (a second brand), which takes Chris
+                 to 103.0% off-prem and 99.2% overall. NO GOAL MOVED in either
+                 workbook -- checked per rep+brand, all 121 rows. Fifteen reps
+                 moved, thirteen up; Shane Barreca 295 -> 302 (97.1%), Jayson
+                 Romine 288 -> 296, Anthony Palmisano off 157 -> 161.
+  MABI Fall      house 2,951 -> 3,334 of 7,326 MADE placements (40.3% ->
+                 45.5%), day 15 of 91; still 0 of 24 reps at their 90% goal.
+                 Every rep with a goal moved UP; biggest movers Anthony
+                 Palmisano 270 -> 319, Klejdi Lamo 286 -> 333, Jim Heaney
+                 231 -> 268, Dave Ehlers 315 -> 347 (59.7%, still the leader),
+                 Dan Lagala 91 -> 116, Chris Payton 213 -> 239. Default, Dylan
+                 Rubino and John O'Donoghue still have a goal and no 9/1-11/30
+                 activity. The converter's raw house is 3,338; the 4-placement
+                 gap to the page's 3,334 is off-roster (Default, John Neukum).
+
+TWO FIGURES FELL, BOTH BY ONE, NEITHER AGAINST A RETAINED GOAL: Paul
+Mclaughlin's on-prem Coors Light 22 -> 21 buyers (goal unchanged; he was not
+at it, 83.6% -> 82.7%) and Javier Melo's off-prem Peroni 14 -> 13 placements
+(75.0% -> 73.7%). Both are the same shape as Derrick Laws' Fever Tree drop on
+9/14 -- a withdrawn or re-valued row reaching the retention report -- and
+neither changes a retained count. Derrick's Fever Tree held at 12 of 15.
+hub/index.html's ?v= tag went 20260915e -> 20260915f.
+
 2026-09-15 FIFTH REFRESH -- Constellation Fall, five exports + Corona Gaintain sync
 Packages ON, Draft ON, Impact OFF, Modelo Gaintain OFF, Innovation OFF. Only
 the constellation_fall block moved; house total 4,816 -> 5,205, goals held.
