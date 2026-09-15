@@ -1242,6 +1242,53 @@ shape as the Tona 9/8 and Total Wine 9/9 removals. It costs him Evil Genius
 CE 2 -> 0 (he was not near the qualifier); his Touchdowns on-prem cases
 still rose on other accounts.
 
+2026-09-15 FOURTH REFRESH -- Montauk, 2XO, Other Half (both legs)
+NOTHING WAS WITHDRAWN. Diffed row by row before the run: Montauk +44 rows,
+Other Half on-prem +8, Other Half off-prem +117 with FIVE rows re-valued
+(each removal pairs with an added row at the same account, product and date
+and a different case count: Anthony Palmisano / Shoppers Disc Pompton 9/15
+2 -> 1, John O'Donoghue / Buyrite Of Chatham 9/14 2 -> 1, Michael Harboy /
+Verona Wine Cellar 9/16 1 -> 2, Shane Barreca / Montvale 9/15 1 -> 3 and
+Westwood 9/16 1 -> 2), 2XO set-identical and merely re-sorted (72 rows, 0
+pairs, $0, unchanged). Only montauk and other_half moved in PROGRAM_DATA.
+
+  Other Half   the batch's money again: 116 -> 138 off-premise accounts
+               opened, $5,930 -> $7,000 (64 of them at the Southern District
+               $50 flat rate, still the unconfirmed reading flagged below).
+               MICHAEL HARBOY TAKES RANK 1 from John O'Donoghue: 12 -> 15
+               accounts ($590 -> $740; ShopRite Wine & Spirits, Fairchilds,
+               ShopRite West Caldwell) against John's 13 -> 14 ($660 -> $730).
+               Alisa Acciardi 7 -> 11 ($350 -> $550, rank 7 -> 4), Mike Ast
+               4 -> 8 ($210 -> $380, rank 15 -> 8), Jaime Colonna 8 -> 10,
+               Alex Rodriguez and Matt Powierski open their accounts (0 -> 2
+               and 0 -> 1), Andrew Lundy, Dan Lagala, Dave Ehlers, Dylan
+               Rubino and Klejdi Lamo +1 each. On-premise: 30 -> 34 accounts
+               active, 18 -> 22 at the 1/3 bbl floor (Paul Mclaughlin 2 -> 5
+               qualifying, Mike Ast 1 -> 2), and STILL NOT PAID -- that leg
+               needs October to confirm the two-month hold.
+  Montauk      13 -> 27 new placements, 7 -> 9 distinct new accounts, $245 ->
+               $445. PHIL ERNST GOES FROM ZERO TO THE TOP OF THE BOARD: 0 -> 10
+               placements, $0 -> $150, rank 26 -> 1, on 12-packs and 19.2 oz
+               cans at seven accounts he already carried the 6-pack in (Stew
+               Leonard's x2, Shop-Rite Lyndhurst, Budy's, City Supermarket,
+               The Bottle Shop, Acme Allendale) -- new SKUs, not new accounts,
+               which is why his account count holds. Shane Barreca 3 -> 4
+               ($40 -> $55, rank 1 -> 2), Mike Ast 1 -> 2 ($15 -> $25), Andrew
+               Lundy and Chris Payton open theirs (0 -> 1, $15 and $10).
+  2XO          0 new off-premise pairs and $0 paid, UNCHANGED. File replaced so
+               the repo carries the latest pull; only drill-down order moved.
+
+TWO TARGET COUNTS FELL AND BOTH ARE CONVERSIONS: Chris Payton's Montauk
+off-prem targets 30 -> 29 and Mike Ast's 16 -> 15, in the same pull that took
+their placements up. Target lists shrink as prospects convert.
+
+FUTURE-DATED ROWS run through 9/17 (Montauk: Phil Ernst's three Stew Leonard's
+Clifton rows and three Paramus rows, Jaime Colonna / Sparrow's, Shane
+Barreca / Ramsey; Other Half: Shane / Gary's Closter 9/17 and a spread of
+9/16 loads). Six of Phil's ten Montauk placements are 9/17 load sheets.
+Same call as every refresh this month: the export is the record.
+hub/index.html's ?v= tag went 20260915c -> 20260915d.
+
 2026-09-15 THIRD REFRESH -- Touchdowns & Tea (both legs), Evil Genius,
 Garage Beer President, Le Grand Noir
 NOTHING WAS WITHDRAWN. Diffed row by row against the committed files before
