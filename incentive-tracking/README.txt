@@ -1255,9 +1255,9 @@ by their parts; every 2025 base identical to the published files (all 58).
   Light Lager 57 -> 61/134; packages Lager 116 -> 127/258, Flight 0 -> 1/6;
   draft Lager 150/293 and Flight 3/7 UNCHANGED (see below).
 
-JAYSON ROMINE HOLDS HIS FIRST GOAL: off-prem Flight 16 -> 20 against a goal of
-27, the only movement in the held count. He also leads off-prem at 70 of 86
-(81.4%). Twenty off-prem rows rose and none fell: Klejdi Lamo 37 -> 44 (78.6%),
+JAYSON ROMINE HOLDS HIS FIRST GOAL: off-prem Lager 28 -> 31 against a goal of
+31 (2025 base 32), the only movement in the held count. His Flight went 16 -> 20
+but sits at 20 of 27, not held. He also leads off-prem at 70 of 86 (81.4%). Twenty off-prem rows rose and none fell: Klejdi Lamo 37 -> 44 (78.6%),
 Jim Heaney 33 -> 39, Anthony Palmisano 32 -> 37, Mike Ast 26 -> 31, Phil Ernst
 27 -> 31, Chris Payton 24 -> 27, Dan Lagala 12 -> 15. Packages: Robin Feldman
 33 -> 40 (and her first Flight buyer), Anthony Palmisano 19 -> 23, Brian
