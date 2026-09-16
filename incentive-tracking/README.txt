@@ -3731,3 +3731,30 @@ report total reconciled, no (rep, brand) pair added or gone. Off-prem
 62 -> 63 of 70 (90.0%).
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-16 SEVENTH REFRESH -- Yuengling Fall, all three reports
+THESE CAME AS FLAT CSVs, NOT THE GROUPED .XLSX. "Yuengling Fall 2026 Off
+Premise Retention with 95% Goals" / "On Premise Retention Packages" / "On
+Premise Retention Draft" arrived in the flat layout build_yuengling_
+retention_fall() was built on (rep-total row first, brand rows beneath),
+so they went straight over yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv -- no convert_yuengling_fall.py, which
+exists only to turn the grouped workbook back into this layout. They carry
+two extra columns ("( Buyer Count ... ) Goals" and "% of Goals"); the builder
+picks its columns with startswith("Buyer Count"), so those ride along
+unread and the goal is still ceil(0.95 x base). Same 13 / 6 / 6 reps and 58
+brand rows as 9/15, every 2025 base identical.
+  4 / 58 brand goals held across 18 reps, unchanged; 0 reps holding every
+  goal; day 16 of 91. Off Lager 245 -> 249/338 (Dan Lagala, Dave Ehlers,
+  Matt Powierski, Shane Barreca +1 each), Flight 82 -> 83/152 (Anthony
+  Palmisano 8 -> 9), Light Lager 61/134 unchanged. Packages Lager 127 ->
+  133/258 (Robin Feldman 39 -> 42, Brian Sengebush 34 -> 35, Nick
+  Melissari 13 -> 14, Paul Mclaughlin 10 -> 11), Flight 1/6 unchanged.
+  Nothing fell.
+DRAFT STILL READS THE 9/10 ACCOUNT SHEET (rule 6): the draft summary moved
+again (Brian Sengebush 56 -> 59, Nick Melissari 47 -> 49, Paul Mclaughlin
+25 -> 26, Robin Feldman 17 -> 19) and the CSV carries it, but the page counts
+draft current from yuengling_retention_fall_draft_on_detail.csv, which is
+still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
+with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
+Hub cache tag bumped for the new program_data.js.
+
