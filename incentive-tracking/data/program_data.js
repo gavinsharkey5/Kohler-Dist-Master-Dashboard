@@ -114552,7 +114552,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 17,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 91.0,
+        "pctOfPace": 85.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -114586,7 +114586,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 41,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 299.7,
+        "pctOfPace": 281.0,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -114691,7 +114691,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 280,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 323.4,
+        "pctOfPace": 303.1,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -114946,7 +114946,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 57,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 325.8,
+        "pctOfPace": 305.4,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -115064,7 +115064,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 378,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 234.8,
+        "pctOfPace": 220.1,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115314,7 +115314,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 248,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 193.5,
+        "pctOfPace": 181.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -115490,7 +115490,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 234,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 362.2,
+        "pctOfPace": 339.5,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -115764,7 +115764,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 167,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 256.0,
+        "pctOfPace": 240.0,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -116035,7 +116035,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 6,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 326.4,
+        "pctOfPace": 306.0,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -116093,7 +116093,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 141,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 254.8,
+        "pctOfPace": 238.9,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -116299,7 +116299,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 357,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 292.4,
+        "pctOfPace": 274.1,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -116535,7 +116535,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 348,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 263.9,
+        "pctOfPace": 247.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -116798,7 +116798,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 290,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 324.6,
+        "pctOfPace": 304.3,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -117077,7 +117077,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 369,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 254.8,
+        "pctOfPace": 238.9,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -117337,7 +117337,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 54,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 324.0,
+        "pctOfPace": 303.7,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -117523,7 +117523,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 214,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 282.1,
+        "pctOfPace": 264.5,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -117748,7 +117748,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 50,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 179.6,
+        "pctOfPace": 168.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -117796,7 +117796,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 136,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 219.6,
+        "pctOfPace": 205.9,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -117952,7 +117952,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 30,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 211.1,
+        "pctOfPace": 197.9,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -118001,7 +118001,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 217,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 313.6,
+        "pctOfPace": 294.0,
         "products": [
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -118256,7 +118256,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 60,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 183.2,
+        "pctOfPace": 171.8,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -118305,7 +118305,7 @@ const PROGRAM_DATA_2026_09 = {
         "toGo": 271,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 219.0,
+        "pctOfPace": 205.3,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -118527,8 +118527,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 15,
-    "pacePct": 16.5,
+    "daysElapsed": 16,
+    "pacePct": 17.6,
     "meta": {
       "offRoster": [
         "Default",
@@ -118696,6 +118696,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 4,
             "skusHeld": 4,
             "skusLost": 0,
@@ -118784,6 +118786,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 12,
             "skusTotal": 7,
             "skusHeld": 3,
             "skusLost": 2,
@@ -118922,6 +118926,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 15,
             "skusTotal": 12,
             "skusHeld": 1,
             "skusLost": 11,
@@ -118980,6 +118986,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 4,
             "skusHeld": 0,
             "skusLost": 4,
@@ -121331,6 +121339,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 80,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -121419,6 +121429,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 125,
             "skusTotal": 7,
             "skusHeld": 1,
             "skusLost": 0,
@@ -121597,6 +121609,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 174,
             "skusTotal": 16,
             "skusHeld": 3,
             "skusLost": 1,
@@ -121715,6 +121729,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 79,
             "skusTotal": 10,
             "skusHeld": 1,
             "skusLost": 2,
@@ -122465,6 +122481,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 10,
             "skusTotal": 4,
             "skusHeld": 0,
             "skusLost": 2,
@@ -122543,6 +122561,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 13,
             "skusTotal": 6,
             "skusHeld": 1,
             "skusLost": 3,
@@ -122621,6 +122641,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 6,
             "skusTotal": 5,
             "skusHeld": 1,
             "skusLost": 4,
@@ -122659,6 +122681,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 2,
             "skusHeld": 1,
             "skusLost": 1,
@@ -124206,6 +124230,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 133,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -124294,6 +124320,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 210,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -124472,6 +124500,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 282,
             "skusTotal": 16,
             "skusHeld": 0,
             "skusLost": 1,
@@ -124600,6 +124630,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 120,
             "skusTotal": 11,
             "skusHeld": 1,
             "skusLost": 1,
@@ -125007,6 +125039,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 126,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -125095,6 +125129,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 206,
             "skusTotal": 7,
             "skusHeld": 1,
             "skusLost": 0,
@@ -125263,6 +125299,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 196,
             "skusTotal": 15,
             "skusHeld": 3,
             "skusLost": 0,
@@ -125371,6 +125409,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 130,
             "skusTotal": 9,
             "skusHeld": 0,
             "skusLost": 3,
@@ -125858,10 +125898,10 @@ const PROGRAM_DATA_2026_09 = {
             "key": "corona_gaintain",
             "label": "Corona Gaintain",
             "placements": 100,
-            "goal": 125,
-            "pct": 80.0,
+            "goal": 115,
+            "pct": 87.0,
             "retained": false,
-            "toGo": 25,
+            "toGo": 15,
             "inReport": true,
             "products": [
               {
@@ -125916,6 +125956,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": true,
+            "baseGoal": 125,
             "skusTotal": 5,
             "skusHeld": 1,
             "skusLost": 0,
@@ -125926,10 +125968,10 @@ const PROGRAM_DATA_2026_09 = {
             "key": "modelo_gaintain",
             "label": "Modelo Gaintain",
             "placements": 156,
-            "goal": 186,
-            "pct": 83.9,
+            "goal": 176,
+            "pct": 88.6,
             "retained": false,
-            "toGo": 30,
+            "toGo": 20,
             "inReport": true,
             "products": [
               {
@@ -126004,6 +126046,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": true,
+            "baseGoal": 186,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -126014,10 +126058,10 @@ const PROGRAM_DATA_2026_09 = {
             "key": "impact",
             "label": "Impact",
             "placements": 198,
-            "goal": 251,
-            "pct": 78.9,
+            "goal": 250,
+            "pct": 79.2,
             "retained": false,
-            "toGo": 53,
+            "toGo": 52,
             "inReport": true,
             "products": [
               {
@@ -126192,6 +126236,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": true,
+            "baseGoal": 251,
             "skusTotal": 17,
             "skusHeld": 6,
             "skusLost": 0,
@@ -126320,6 +126366,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 105,
             "skusTotal": 10,
             "skusHeld": 2,
             "skusLost": 0,
@@ -126331,9 +126379,9 @@ const PROGRAM_DATA_2026_09 = {
         "offGoalsTotal": 4,
         "offGoalsRetained": 0,
         "offPlacements": 512,
-        "offGoal": 667,
-        "offPct": 76.8,
-        "offToGo": 155,
+        "offGoal": 646,
+        "offPct": 79.3,
+        "offToGo": 134,
         "on_packages": {
           "families": [
             {
@@ -126384,9 +126432,9 @@ const PROGRAM_DATA_2026_09 = {
         "goalsTotal": 6,
         "goalsRetained": 0,
         "overallHeld": 512,
-        "overallGoal": 669,
-        "overallPct": 76.5,
-        "overallToGo": 157,
+        "overallGoal": 648,
+        "overallPct": 79.0,
+        "overallToGo": 136,
         "hasAnyGoal": true
       },
       "Derrick Laws": {
@@ -126453,6 +126501,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 123,
             "skusTotal": 5,
             "skusHeld": 1,
             "skusLost": 0,
@@ -126541,6 +126591,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 156,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 1,
@@ -126719,6 +126771,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 261,
             "skusTotal": 16,
             "skusHeld": 1,
             "skusLost": 2,
@@ -126837,6 +126891,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 91,
             "skusTotal": 10,
             "skusHeld": 1,
             "skusLost": 3,
@@ -127213,6 +127269,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 4,
             "skusHeld": 4,
             "skusLost": 0,
@@ -127291,6 +127349,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 6,
             "skusTotal": 6,
             "skusHeld": 4,
             "skusLost": 2,
@@ -127369,6 +127429,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 6,
             "skusTotal": 6,
             "skusHeld": 2,
             "skusLost": 4,
@@ -127397,6 +127459,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": null,
             "skusTotal": 0,
             "skusHeld": 0,
             "skusLost": 0,
@@ -127579,6 +127643,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 2,
             "skusTotal": 2,
             "skusHeld": 2,
             "skusLost": 0,
@@ -127637,6 +127703,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 4,
             "skusHeld": 3,
             "skusLost": 1,
@@ -127705,6 +127773,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 5,
             "skusTotal": 5,
             "skusHeld": 4,
             "skusLost": 1,
@@ -127874,6 +127944,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 117,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -127962,6 +128034,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 158,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -128130,6 +128204,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 273,
             "skusTotal": 15,
             "skusHeld": 0,
             "skusLost": 2,
@@ -128248,6 +128324,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 84,
             "skusTotal": 9,
             "skusHeld": 1,
             "skusLost": 1,
@@ -129017,6 +129095,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 94,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -129105,6 +129185,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 136,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -129293,6 +129375,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 132,
             "skusTotal": 17,
             "skusHeld": 4,
             "skusLost": 1,
@@ -129401,6 +129485,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 69,
             "skusTotal": 9,
             "skusHeld": 0,
             "skusLost": 5,
@@ -129509,6 +129595,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 148,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -129597,6 +129685,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 233,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -129785,6 +129875,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 346,
             "skusTotal": 17,
             "skusHeld": 1,
             "skusLost": 0,
@@ -129913,6 +130005,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 118,
             "skusTotal": 11,
             "skusHeld": 0,
             "skusLost": 2,
@@ -130046,6 +130140,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 4,
             "skusTotal": 2,
             "skusHeld": 1,
             "skusLost": 1,
@@ -130124,6 +130220,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 8,
             "skusTotal": 5,
             "skusHeld": 3,
             "skusLost": 1,
@@ -130162,6 +130260,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 3,
             "skusTotal": 2,
             "skusHeld": 0,
             "skusLost": 2,
@@ -130286,6 +130386,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 98,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -130374,6 +130476,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 150,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -130562,6 +130666,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 192,
             "skusTotal": 17,
             "skusHeld": 3,
             "skusLost": 0,
@@ -130690,6 +130796,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 106,
             "skusTotal": 11,
             "skusHeld": 1,
             "skusLost": 3,
@@ -130844,6 +130952,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 153,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -130932,6 +131042,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 223,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -131110,6 +131222,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 302,
             "skusTotal": 16,
             "skusHeld": 2,
             "skusLost": 0,
@@ -131238,6 +131352,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 164,
             "skusTotal": 11,
             "skusHeld": 0,
             "skusLost": 1,
@@ -131610,6 +131726,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 18,
             "skusTotal": 5,
             "skusHeld": 1,
             "skusLost": 0,
@@ -131698,6 +131816,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 27,
             "skusTotal": 7,
             "skusHeld": 6,
             "skusLost": 0,
@@ -131876,6 +131996,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 44,
             "skusTotal": 16,
             "skusHeld": 6,
             "skusLost": 2,
@@ -131944,6 +132066,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 16,
             "skusTotal": 5,
             "skusHeld": 1,
             "skusLost": 0,
@@ -132075,6 +132199,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 85,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -132163,6 +132289,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 134,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -132351,6 +132479,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 121,
             "skusTotal": 16,
             "skusHeld": 3,
             "skusLost": 2,
@@ -132469,6 +132599,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 73,
             "skusTotal": 10,
             "skusHeld": 0,
             "skusLost": 3,
@@ -132832,6 +132964,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 2,
             "skusTotal": 2,
             "skusHeld": 0,
             "skusLost": 2,
@@ -132870,6 +133004,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 2,
             "skusTotal": 2,
             "skusHeld": 2,
             "skusLost": 0,
@@ -132918,6 +133054,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 3,
             "skusTotal": 3,
             "skusHeld": 0,
             "skusLost": 3,
@@ -135036,6 +135174,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 98,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -135124,6 +135264,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 130,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -135302,6 +135444,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 204,
             "skusTotal": 15,
             "skusHeld": 1,
             "skusLost": 3,
@@ -135410,6 +135554,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 76,
             "skusTotal": 8,
             "skusHeld": 0,
             "skusLost": 0,
@@ -137819,6 +137965,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 109,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -137907,6 +138055,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 138,
             "skusTotal": 7,
             "skusHeld": 1,
             "skusLost": 0,
@@ -138095,6 +138245,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 169,
             "skusTotal": 17,
             "skusHeld": 2,
             "skusLost": 0,
@@ -138223,6 +138375,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 102,
             "skusTotal": 11,
             "skusHeld": 1,
             "skusLost": 2,
@@ -138423,6 +138577,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 2,
             "skusTotal": 1,
             "skusHeld": 0,
             "skusLost": 1,
@@ -138461,6 +138617,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 3,
             "skusTotal": 2,
             "skusHeld": 0,
             "skusLost": 1,
@@ -139732,6 +139890,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 85,
             "skusTotal": 5,
             "skusHeld": 0,
             "skusLost": 0,
@@ -139820,6 +139980,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 145,
             "skusTotal": 7,
             "skusHeld": 0,
             "skusLost": 0,
@@ -140008,6 +140170,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "9/1/2025 - 11/30/2025",
+            "goalOverride": false,
+            "baseGoal": 151,
             "skusTotal": 16,
             "skusHeld": 5,
             "skusLost": 0,
@@ -140136,6 +140300,8 @@ const PROGRAM_DATA_2026_09 = {
               }
             ],
             "baseWindow": "3/1/2026 - 5/31/2026",
+            "goalOverride": false,
+            "baseGoal": 78,
             "skusTotal": 11,
             "skusHeld": 0,
             "skusLost": 3,
@@ -140186,27 +140352,27 @@ const PROGRAM_DATA_2026_09 = {
         "key": "corona_gaintain",
         "label": "Corona Gaintain",
         "total": 964,
-        "goal": 1620,
+        "goal": 1610,
         "met": false,
-        "short": 656,
+        "short": 646,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "modelo_gaintain",
         "label": "Modelo Gaintain",
         "total": 1751,
-        "goal": 2405,
+        "goal": 2395,
         "met": false,
-        "short": 654,
+        "short": 644,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
         "key": "impact",
         "label": "Impact",
         "total": 2083,
-        "goal": 3136,
+        "goal": 3135,
         "met": false,
-        "short": 1053,
+        "short": 1052,
         "baseWindow": "9/1/2025 - 11/30/2025"
       },
       {
@@ -140343,13 +140509,13 @@ const PROGRAM_DATA_2026_09 = {
       ]
     },
     "houseTotal": 5205,
-    "houseGoal": 8580,
+    "houseGoal": 8559,
     "retainThresholdPct": 100,
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 15,
-    "pacePct": 16.5,
+    "daysElapsed": 16,
+    "pacePct": 17.6,
     "meta": {
       "onPrem": {
         "packages": {
@@ -143476,8 +143642,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-09-01",
     "periodEnd": "2026-11-30",
     "periodDays": 91,
-    "daysElapsed": 15,
-    "pacePct": 16.5,
+    "daysElapsed": 16,
+    "pacePct": 17.6,
     "meta": {
       "offRoster": []
     }
@@ -147839,8 +148005,8 @@ const PROGRAM_DATA_2026_09 = {
     "periodStart": "2026-07-20",
     "periodEnd": "2026-09-30",
     "periodDays": 73,
-    "daysElapsed": 58,
-    "pacePct": 79.5,
+    "daysElapsed": 59,
+    "pacePct": 80.8,
     "meta": {
       "source": "Boston Beer Seasonal Conversion Fall workbook",
       "officialAsOf": "2026-09-08",
@@ -147861,4 +148027,4 @@ const PROGRAM_DATA_2026_09 = {
     }
   }
 };
-const PROGRAM_DATA_REFRESHED = "Sep 15, 2026";
+const PROGRAM_DATA_REFRESHED = "Sep 16, 2026";

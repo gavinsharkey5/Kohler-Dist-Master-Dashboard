@@ -2111,6 +2111,42 @@ CONSTELLATION_FALL_ON_PREM = [
 ]
 CONSTELLATION_FALL_ON_BASE_WINDOW = "3/1/2026 - 5/31/2026"
 
+# OFF-PREMISE GOAL OVERRIDES (2026-09-16, per Gavin). The goal is normally
+# the rep's own base-window placements, read from the export. When Gavin
+# sets a different number for a rep's category, it goes in this file --
+# NOT in the export CSV, which the next RDE pull overwrites -- and it
+# replaces the base as that category's goal. The house goal is the sum of
+# rep goals, so it moves with it. Per-SKU goals stay what the export says:
+# the file carries one number per category, not a split across products.
+# Columns: Sales Rep Assigned, Category (a CONSTELLATION_FALL_CATEGORIES
+# key), Goal. Missing file = no overrides.
+CONSTELLATION_FALL_GOAL_OVERRIDES = "constellation_fall_goal_overrides.csv"
+
+
+def _constellation_fall_goal_overrides():
+    """{(rep, category key): goal} from CONSTELLATION_FALL_GOAL_OVERRIDES.
+    Refuses a rep not on the roster or a category that does not exist, so a
+    typo cannot silently set nothing."""
+    path = DATA_DIR / CONSTELLATION_FALL_GOAL_OVERRIDES
+    if not path.exists():
+        return {}
+    keys = {c["key"] for c in CONSTELLATION_FALL_CATEGORIES}
+    out = {}
+    for r in read_rows(CONSTELLATION_FALL_GOAL_OVERRIDES):
+        rep = (r.get("Sales Rep Assigned") or "").strip()
+        cat = (r.get("Category") or "").strip()
+        if not rep and not cat:
+            continue
+        if rep not in ROSTER:
+            raise SystemExit(f"{CONSTELLATION_FALL_GOAL_OVERRIDES}: unknown rep {rep!r}")
+        if cat not in keys:
+            raise SystemExit(f"{CONSTELLATION_FALL_GOAL_OVERRIDES}: unknown category {cat!r} (want one of {sorted(keys)})")
+        goal = to_num(r.get("Goal"))
+        if goal <= 0:
+            raise SystemExit(f"{CONSTELLATION_FALL_GOAL_OVERRIDES}: {rep} / {cat} needs a goal > 0")
+        out[(rep, cat)] = goal
+    return out
+
 
 def _build_constellation_fall_on_prem(channel):
     """One on-premise channel (packages or draft) of Constellation Fall, per
@@ -2256,6 +2292,8 @@ def build_constellation_fall():
     overall % across all of them."""
     by_rep = {rep: {"offCategories": [], "inReport": False} for rep in ROSTER}
     house = []
+    overrides = _constellation_fall_goal_overrides()
+    overrides_used = set()
 
     today = datetime.date.today()
     span = (CONSTELLATION_FALL_END - CONSTELLATION_FALL_START).days + 1
@@ -2331,7 +2369,15 @@ def build_constellation_fall():
                 continue
             by_rep[rep]["inReport"] = True
             placements = to_num(trow[val_col])
-            goal = to_num(trow[base_col])
+            base = to_num(trow[base_col])
+            goal = base
+            # A goal Gavin set by hand replaces the base (see
+            # CONSTELLATION_FALL_GOAL_OVERRIDES); the base is kept on the row
+            # so the card can say what it replaced.
+            override = overrides.get((rep, cat["key"]))
+            if override is not None:
+                goal = override
+                overrides_used.add((rep, cat["key"]))
             house_total += placements
             house_goal += goal
             # SKUs short of their own goal first, biggest gap first, so what
@@ -2349,6 +2395,8 @@ def build_constellation_fall():
                 "retained": bool(goal and placements >= goal),
                 "toGo": round(goal - placements) if goal and placements < goal else 0,
                 "inReport": True, "products": plist, "baseWindow": cat["baseWindow"],
+                "goalOverride": override is not None,
+                "baseGoal": round(base) if base else None,
                 "skusTotal": len(goaled_skus),
                 "skusHeld": sum(1 for p in goaled_skus if p["retained"]),
                 "skusLost": sum(1 for p in goaled_skus if p["lost"]),
@@ -2361,6 +2409,12 @@ def build_constellation_fall():
                       "met": house_total >= house_goal,
                       "short": max(0, round(house_goal - house_total)),
                       "baseWindow": cat["baseWindow"]})
+
+    unused = set(overrides) - overrides_used
+    if unused:
+        raise SystemExit(f"{CONSTELLATION_FALL_GOAL_OVERRIDES}: no export row to apply these to: {sorted(unused)}")
+    for (rep, key), g in sorted(overrides.items()):
+        print(f"constellation_fall: {rep} {key} goal overridden to {g:g}")
 
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]

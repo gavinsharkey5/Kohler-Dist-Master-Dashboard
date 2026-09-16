@@ -3577,3 +3577,44 @@ and the tap tracker has its own variable names plus a fourth surface
 hardcoded photo-tile backgrounds. Grep for stray hex values, not just
 :root, if this palette changes again. (summer26 and the display auction
 tracker were never brown; they use a neutral #0C0D11.)
+
+CONSTELLATION FALL: PER-REP GOAL OVERRIDES (2026-09-16)
+=======================================================
+Gavin set Dave Ehlers' off-premise Constellation Fall goals by hand:
+Modelo Gaintain 176 (base was 186), Corona Gaintain 115 (was 125), Impact
+250 (was 251). The goal on this program is normally the rep's own
+base-window placements straight from the export, and the export is
+overwritten on every RDE pull, so a hand-set number cannot live there.
+
+It lives in data/constellation_fall_goal_overrides.csv instead:
+
+  Sales Rep Assigned,Category,Goal,Set by,Note
+  Dave Ehlers,modelo_gaintain,176,Gavin 2026-09-16,...
+
+  Category is the CONSTELLATION_FALL_CATEGORIES key (corona_gaintain,
+  modelo_gaintain, impact, innovation). Set by / Note are for the record
+  only. The file survives refreshes: overwrite the exports, run
+  python3 generate.py, and the override is re-applied every time.
+
+What it does (build_constellation_fall, _constellation_fall_goal_overrides):
+  - The rep's category goal becomes the override; pct / toGo / retained,
+    the rep's offGoal / overallGoal and the hub's brand-goal rows all
+    follow from it. The row carries goalOverride: true and baseGoal (what
+    the export said) so a card can say what was replaced.
+  - THE HOUSE GOAL MOVES WITH IT, because the house goal is the sum of the
+    rep goals (per Gavin, 2026-09-08): Corona 1,620 -> 1,610, Modelo
+    2,405 -> 2,395, Impact 3,136 -> 3,135 on the 9/15 data.
+  - PER-SKU GOALS ARE NOT TOUCHED. The file carries one number per
+    category, not a split across products, so the product rows inside the
+    category still show the export's own base per SKU. Do not "fix" this
+    by scaling the SKUs to the new total -- that number is not in any file.
+  - The build refuses a rep not on the roster, a category key that does
+    not exist, a goal <= 0, or an override for a rep/category with no
+    export row, rather than silently applying nothing.
+  - Every applied override is printed on the run
+    ("constellation_fall: Dave Ehlers modelo_gaintain goal overridden to 176").
+
+The off-premise MPO "Constellation - 30% Corona Gaintain Distro"
+(MPOs/off-prem) is a different program with its own 30%-of-last-fall goal
+and is NOT changed by this file.
+
