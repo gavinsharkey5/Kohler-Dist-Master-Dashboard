@@ -500,6 +500,18 @@ step of the refresh and check for these defects EVERY time:
            5,823 / Review 201 / MISMATCH 14, same character as 8.27's
            5,707/188/10 over more rows. Same repaired workbook used for
            both dashboards, as on 8.21 and 8.27.
+  9.13.26  ("vF1") 6,238 raw rows, 239 duplicate "#", Import Template
+           populated for 191. Repaired as usual: OK 6,019 / Review 204 /
+           MISMATCH 15. Same workbook for both dashboards.
+  9.15.26  ("vF1") 6,498 raw rows with 1,156 duplicate "#" -- the most
+           yet -- but for the first time the Import Template arrived FULLY
+           populated (all 6,498 rows carry a Corrected Distributor). The
+           duplicate keys alone would still have collapsed rows in
+           generate.py's join, so build_mediator.py ran as usual: OK 6,274
+           / Review 220 / MISMATCH 4. Same repaired workbook for both
+           dashboards. Tracker 746 accounts / 6,237 taps (129 re-surveyed,
+           1,062 superseded taps in history); exec core market 5,535 taps
+           at 718 accounts, 51.7% ours. Survey data now through 9/15.
 
 Original write-up (2026-08-21):
 the 8.20.26 delivery ("iSellBeer_TAPS__US_THEM_Audit_Matrix_vF1_8.20.26.xlsx")
