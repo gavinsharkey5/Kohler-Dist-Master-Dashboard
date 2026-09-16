@@ -811,7 +811,7 @@ function incRowDetail(p, r, rep, targets, dist, which){
   // including the per-SKU current/goal rows added in v9.6. Dropping these
   // would lose the Constellation product-level work, so they come first.
   const BG = brandGoals(p, rep);
-  const sec = (t, body) => body ? `<div class="isec"><div class="isec-h">${E(t)}</div>${body}</div>` : '';
+  const sec = (t, body, right) => body ? `<div class="isec"><div class="isec-h${right?' lhead':''}"><span>${E(t)}</span>${right||''}</div>${body}</div>` : '';
   const key = p.id+'|'+which;
   const full = `<div class="isec"><button class="ilink" data-act="open" data-prog="${E(p.id)}">Full program details and rankings</button></div>`;
   // CURRENT-PERIOD DISTRIBUTION -- where the credited activity came from,
@@ -819,18 +819,18 @@ function incRowDetail(p, r, rep, targets, dist, which){
   if(which==='dist'){
     const rc = reconLine(p, r, dist);
     return sec(`Credited in ${E(periodLabel(p.period))}`,
-      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist)) + full;
+      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist), listMore(key, dist)) + full;
   }
   const table = !targets.length
     ? `<div class="it-note">No potential accounts currently identified.</div>`
     : acctList(key, ACCT_COLS.targets, targets);
   if(BG.length){
     return sec('Your brand goals', brandGoalsHtml(BG, {noTitle:true, oneGoal: p.key==='mabi_retention_fall' ? (r.goal||'goal') : ''}))
-      + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table)
+      + sec(`Accounts to hold${targets.length?' · '+targets.length:''}`, table, listMore(key, targets))
       + sec('How it is scored', repRulesHtml(p, 'ibul'))
       + full;
   }
-  return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table)
+  return sec(`Potential accounts${targets.length?' · '+targets.length:''}`, table, listMore(key, targets))
     + sec('What to sell', `<div class="itext">${E(ask)}${(fams && fams.length)?` <span class="iquiet">Pays on: ${E(fams.join(' · '))}.</span>`:''}</div>`)
     + sec('How it is scored', repRulesHtml(p, 'ibul'))
     + (r.next ? sec('Next step', `<div class="itext">${nextNoMoney(r.next)}</div>`) : '')
@@ -1155,9 +1155,8 @@ function accountsPanel(p, rep){
     <div class="asum"><strong>${A.universe}</strong> ${chanWord} account${A.universe===1?'':'s'} in your assigned book${A.any?'':` · <strong>${counts.eligible}</strong> eligible · <strong>${counts.buying}</strong> buying · <strong>${counts.excluded}</strong> can’t sell`}</div>
     <div class="abrand">${E(brandLine)}</div>
     <div class="atabs" role="tablist">${tabs.map(t=>`<button class="atab${t.k===tab?' active':''}" role="tab" data-act="acct-tab" data-prog="${E(p.id)}" data-tab="${t.k}">${E(t.l)}<span class="an">${counts[t.k]}</span></button>`).join('')}</div>
-    <div class="asub">${E(tabMeta.sub)}${tab==='high'?' · top 10':''}</div>
-    ${tab==='closed' ? closedLog(p, rep, {limit:all?9999:LIMIT}).replace(/<button class="amore"[^]*?<\/button>/,'') : rows.length ? `<div class="alist">${shown.map(a=>acctRow(a, tab)).join('')}</div>` : `<div class="aempty">${E(empty)}</div>`}
-    ${rows.length>LIMIT ? `<button class="amore" data-act="acct-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
+    <div class="asub lhead"><span>${E(tabMeta.sub)}${tab==='high'?' · top 10':''}</span>${rows.length>LIMIT ? moreBtn('acct-more', key, all, rows.length) : ''}</div>
+    ${tab==='closed' ? closedLog(p, rep, {limit:all?9999:LIMIT, noMore:true}) : rows.length ? `<div class="alist">${shown.map(a=>acctRow(a, tab)).join('')}</div>` : `<div class="aempty">${E(empty)}</div>`}
     ${A.notes.length ? `<div class="anotes">${A.notes.map(n=>`<div>⚠ ${E(n)}</div>`).join('')}</div>` : ''}
     <div class="afoot">Book as of ${E(HubAccounts.asOf)} · buying lists from the tracker's data refreshed ${E(p.refreshed||'—')}</div>
   </div>`;
@@ -1452,6 +1451,20 @@ function reconLine(p, r, rows){
 // <table>, so nothing scrolls sideways and no two columns can run together.
 const SHOW_FIRST = 10;
 const secMore = {};   // "<program id>|<section>" -> showing every row
+// THE SHOW ALL / SHOW FEWER TOGGLE lives in the list's HEADER, top right,
+// never under the list (Gavin 2026-09-16: a rep with 90 accounts had to
+// scroll the whole list to find "Show fewer"). Every long list on the hub
+// -- potential accounts, credited distribution, the visit list, the
+// completed log, the manager account tabs -- renders its toggle through
+// this one builder, sitting beside the list's title in a .lhead row.
+function moreBtn(act, key, all, n, word){
+  return `<button class="amore top" data-act="${act}" data-key="${E(key)}" aria-expanded="${all?'true':'false'}">${all ? 'Show fewer' : 'Show all '+n+(word?' '+word:'')}</button>`;
+}
+// The toggle for an acctList() -- rendered by the CALLER, in its section
+// header, so the list itself carries no button.
+function listMore(key, rows){
+  return rows.length > SHOW_FIRST ? moreBtn('sec-more', key, !!secMore[key], rows.length, rows.length===1?'account':'accounts') : '';
+}
 function acctList(key, cols, rows){
   if(!rows.length) return '';
   // A column every row leaves blank is noise -- "Date: —" on every card of a
@@ -1467,11 +1480,9 @@ function acctList(key, cols, rows){
         ? `<span class="ar-c ar-name">${inner}</span>`
         : `<span class="ar-c${c.num?' num':''}${c.cls?' '+c.cls:''}" data-l="${E(c.short==null?c.label:c.short)}">${inner}</span>`;
     }).join('')}</li>`).join('');
-  const more = rows.length > SHOW_FIRST
-    ? `<button class="ar-more" data-act="sec-more" data-key="${E(key)}">${all ? 'Show fewer' : `Show all ${rows.length} accounts`}</button>`
-    : '';
   // Track widths ride on the element so a 4-, 5- or 6-column list all line up.
-  return `<ul class="alist" style="--cols:${cols.map(c=>c.w||'minmax(120px,1fr)').join(' ')}">${head}${body}</ul>${more}`;
+  // The Show all / Show fewer toggle is listMore(), placed by the caller.
+  return `<ul class="alist" style="--cols:${cols.map(c=>c.w||'minmax(120px,1fr)').join(' ')}">${head}${body}</ul>`;
 }
 const ACCT_COLS = {
   targets: [
@@ -1521,9 +1532,8 @@ function closedLog(p, rep, opts){
     return `<div class="log"><div class="aempty">${E(why)}</div></div>`;
   }
   return `<div class="log">
-    <div class="log-s">${plw(rows.length, 'placement')} the tracker credits to you${rows.some(r=>r.when)?', newest first':''}.</div>
+    <div class="log-s lhead"><span>${plw(rows.length, 'placement')} the tracker credits to you${rows.some(r=>r.when)?', newest first':''}.</span>${rows.length>LIMIT && !opts.noMore ? moreBtn('log-more', key, all, rows.length) : ''}</div>
     <ol class="log-list">${shown.map(r=>`<li class="log-row"><div class="log-main"><div class="log-cust">${E(r.customer)}</div>${r.product?`<div class="log-prod">${E(r.product)}</div>`:''}${r.note?`<div class="log-note">${E(r.note)}</div>`:''}</div><div class="log-right"><div class="log-date">${E(r.date||'—')}</div>${r.photo?`<a class="log-photo" href="${E(r.photo)}" target="_blank" rel="noopener">View photo <span class="ar">›</span></a>`:''}</div></li>`).join('')}</ol>
-    ${rows.length>LIMIT ? `<button class="amore" data-act="log-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+rows.length}</button>` : ''}
   </div>`;
 }
 const cardTab = {};   // program id -> 'sell' | 'closed'
@@ -1688,8 +1698,11 @@ function planParts(p, r, rep, opts){
   } else {
     go = `Start with these ${n} eligible account${n===1?'':'s'}.`; step = 'Open the account list.';
   }
-  const list = !plan.rows.length ? '' : `<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div></li>`).join('')}</ol>
-      ${plan.rows.length>LIMIT ? `<button class="amore" data-act="plan-more" data-key="${E(key)}">${all?'Show fewer':'Show all '+plan.rows.length}</button>` : ''}`;
+  // More rows than the card shows: a header line above the list says so and
+  // carries the Show all / Show fewer toggle, top right (never under the list).
+  const head = plan.rows.length>LIMIT
+    ? `<div class="plan-top lhead"><span>${all ? plw(plan.rows.length,'account') : `Top ${n} of ${plan.rows.length} accounts`}</span>${moreBtn('plan-more', key, all, plan.rows.length)}</div>` : '';
+  const list = !plan.rows.length ? '' : `${head}<ol class="plan-list">${rows.map(a=>`<li class="plan-row${a.warm?' warm':''}"><div class="plan-name">${E(a.name)}</div><div class="plan-meta">${E([a.city, a.area].filter(Boolean).join(' · '))}${a.cases>0?` · ${E(fmtCases(a.cases))}/yr`:''}</div></li>`).join('')}</ol>`;
   return {loading:false, sell:sellAsk(p), go, step, n, total:plan.rows.length, hold:plan.hold, list};
 }
 // The two big tabs inside an opened card: the visit list, and the log of
@@ -1892,18 +1905,19 @@ function mpoRepCard(p, r, rep){
 function mpoRepCardDetail(p, r, rep, targets, dist, which){
   const o = p.objective;
   const A = mpoMonthLoaded(p.source, p.monthKey) ? accountsFor(p, rep) : null;
-  const sec = (title, body) => body ? `<div class="msec"><div class="msec-h">${E(title)}</div>${body}</div>` : '';
+  const sec = (title, body, right) => body ? `<div class="msec"><div class="msec-h${right?' lhead':''}"><span>${E(title)}</span>${right||''}</div>${body}</div>` : '';
   const key = p.id+'|'+which;
   const tail = `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
   if(which==='dist'){
     const rc = reconLine(p, r, dist);
     return sec(`Credited in ${E(periodLabel(p.period))}`,
-      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist)) + tail;
+      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist), listMore(key, dist)) + tail;
   }
   if(which==='targets'){
     return sec(`Potential accounts${(targets&&targets.length)?' · '+targets.length:''}`,
       (targets && targets.length) ? acctList(key, ACCT_COLS.targets, targets)
-        : `<div class="mt-note">No potential accounts currently identified.</div>`) + tail;
+        : `<div class="mt-note">No potential accounts currently identified.</div>`,
+      listMore(key, targets||[])) + tail;
   }
   const counts = A ? `<ul class="mkv">
       <li><span>In your book, this premise</span><span>${A.universe}</span></li>

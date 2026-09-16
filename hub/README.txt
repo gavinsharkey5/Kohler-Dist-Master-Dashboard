@@ -380,7 +380,8 @@ TWO SECTIONS PER CARD, NO DOLLARS (v14, 2026-09-11)
 
   ONE AT A TIME per card (cardSec[p.id]); tapping the open one closes it, so
   a phone never stacks two long lists. Each opens to the first 10 accounts
-  with a "Show all N accounts" button (SHOW_FIRST / secMore), so a 93-account
+  with a "Show all N accounts" button (SHOW_FIRST / secMore) in the section
+  header, top right (see SHOW ALL SITS TOP RIGHT below), so a 93-account
   program never renders 93 rows unasked. The MPO card's inline 3-row preview
   is gone -- it duplicated a section one tap away and made the card tall.
 
@@ -793,3 +794,21 @@ VIEW PHOTO ON COMPLETED ROWS (2026-09-10)
   now keeps it and the Completed log renders a "View photo ›" pill that
   opens the picture in a new tab, mirroring the MPO board's "View Photo"
   link, per Gavin. Rows without a photo show only the date.
+
+SHOW ALL / SHOW FEWER SITS TOP RIGHT (2026-09-16)
+  Every long list on the hub used to put its "Show all N" button UNDER the
+  list, so hiding a 138-account list meant scrolling all the way down to
+  find "Show fewer" (Gavin, 2026-09-16). The toggle now sits in the list's
+  HEADER, on the right, beside the title -- one place, every list:
+    - Potential accounts / Credited-in-period on a rep-mode card
+      (incRowDetail / mpoRepCardDetail: sec(title, body, listMore(...)))
+    - The numbered visit list on the detail page (planParts: a "Top N of M
+      accounts" line above the list carries it)
+    - The Completed log (closedLog: on the "N placements..." line)
+    - Manager Mode account tabs on the detail page (accountsPanel: on the
+      tab's one-line description)
+  One builder, moreBtn(act, key, all, n, word), renders all of them;
+  acctList() no longer emits a button of its own -- the caller places
+  listMore(key, rows) in its header. CSS: .lhead is the header row
+  (flex, space-between, wraps on a narrow phone), .amore.top the toggle.
+  The old .ar-more rule is gone with the under-list button.
