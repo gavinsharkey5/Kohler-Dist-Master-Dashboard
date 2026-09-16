@@ -3686,3 +3686,27 @@ Flowers restated 1 -> 2 units, same row otherwise).
                floor), still not paid -- needs October's hold.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-16 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain not re-pulled)
+Packages ON 10,017 -> 10,118 rows and Draft ON 1,823 -> 1,832, both clean
+supersets (diffed before the run, nothing removed). Impact 310 -> 312, Modelo
+167 (restated in place), Innovation 177 -> 179 -- every rep's BASE column is
+identical to the 9/16 morning file, so no goal moved; only the 2026 column
+grew. The one figure that went down is Mike Ast's Impact 70 -> 69, a return
+netting out of a restated month, not a lost SKU. Corona Gaintain was not in
+this batch and still reads the 9/16 morning pull (999 / 1,610).
+  off-prem house  Modelo Gaintain 1,751 -> 1,804 / 2,395 · Impact 2,083 ->
+                  2,135 / 3,135 · Innovation 407 -> 421 / 1,419. Biggest
+                  movers: Klejdi Lamo Modelo 113 -> 123, Matt Powierski
+                  Modelo 153 -> 163, Javier Melo Impact 197 -> 205, Dave
+                  Ehlers Impact 198 -> 205 (of his hand-set 250; the
+                  override file re-applied on this run as on every run).
+                  John O'Donoghue's Modelo 7 -> 9 clears his goal of 8 --
+                  the first Modelo category held this fall.
+  on-prem         packages 960 -> 997 / 2,107 buyers (Paul Mclaughlin
+                  119 -> 127, Nick Melissari 166 -> 173, Mike Ast 13 -> 18);
+                  draft 133 -> 137 / 381 (Pablo Lopez 2 -> 3 of 5 -- his
+                  first family held). Still 4 of 20 reps holding every
+                  packages family, 0 of 12 on draft.
+  goals retained  17 -> 19 across the roster; 0 of 24 reps hold every goal.
+Hub cache tag bumped for the new program_data.js.
+
