@@ -263,6 +263,22 @@ All four are data-backed. Numbers as of the 2026-09-15 refresh (RDE exports run
 through 9/17): Bardstown 4 menu placements, Fever Tree 19 new placements (18 on
 the board -- see below), Carbliss 13 new buying accounts, HUSA 1 new draft line.
 
+2026-09-16 SECOND REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
+  python3 generate_2026-09.py
+Diffed row by row before the run: Fever Tree 532 -> 539 (+7, none removed),
+Carbliss 271 -> 276 (+5, none removed) onto carbliss_new_on_prem_buyers.csv,
+HUSA set-identical at 85 rows. Bardstown archive untouched at 11 rows / 10.
+FEVER TREE 19 -> 20: Allison Scott 4 -> 5 (19012 Bottagra Rest, Ginger Beer
+200 mL, 9/16). The other six new rows are repeats -- Cheesecake Factory's two
+mixers, PF Chang's Wayne, Four Leaves' Bloody Mary mix all bought the SKU in
+the base window.
+CARBLISS 13 -> 17: Paul Mclaughlin 6 -> 8 (QB's Bar and Grill 9/17, Side Bar
+9/16), Allison Scott 4 -> 5 (Murph's Bar & Liquor 9/16), Brian Sengebush
+2 -> 3 (Pub 199 9/16). Nick Melissari's Holiday Bowl row (9/18) is a repeat
+-- it bought 7/24 -- so he holds at 3. HUSA holds at 1.
+Future-dated rows again: Cheesecake Factory 9/17, QB's 9/17, Holiday Bowl
+9/18 on a 9/16 pull -- the export is the record, same call as every refresh.
+
 2026-09-16 REFRESH -- Promos_Report_23 (Bardstown), no RDE exports
   python3 generate_2026-09.py --merge-bardstown Promos_Report_23.xlsx
 Report_23 held 13 rows: 9 BARDSTOWN BOURBON COMPANY, 4 YAVE TEQUILA (filtered
@@ -291,8 +307,10 @@ Ashley Furman, role Sales Associate). What changed:
                 and rosterFor(objKey) keeps him out of the other objectives'
                 reps_total / reps_at_goal (28 eligible on Bardstown, 27
                 elsewhere).
-  guided.js     The chooser nests a group with `under` beneath its DM
-                (Ashley's header under Paul Deady's grid, .g-dm-sub);
+  guided.js     The chooser places a group with `under` directly after its
+                DM's grid (Ashley's header after Paul Deady's names), styled
+                like every other DM header -- per Gavin the same day, it must
+                match the others, so there is no indent or sub-style;
                 Program View drops hidden rows and counts eligible reps
                 per objective; the rep head prints the role line. The
                 off-prem board loads the same file and has no `under`

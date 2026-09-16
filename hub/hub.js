@@ -717,11 +717,13 @@ function repListHtml(){
   const grid = reps => `<div class="namegrid">${reps.map(r=>
       `<button class="name" data-act="pick-rep" data-rep="${E(r)}">${E(r)}<span class="ar">&#8594;</span></button>`
     ).join('')}</div>`;
-  // A group `under` another manager (sales support under a DM) nests beneath
-  // that DM's names, in the same orange, indented -- not a top-level group.
+  // A group `under` another manager (sales support under a DM) is placed
+  // directly after that DM's names, and looks exactly like every other DM
+  // group -- same orange label, same grid (per Gavin, 2026-09-16: "match the
+  // format of the others"). `under` only fixes its position.
   const tops = groups.filter(g=>!g.under || !groups.some(x=>x.dm===g.under));
   return tops.map(g=>`<div class="dmlabel">${E(g.dm)}</div>${grid(g.reps)}` +
-    groups.filter(x=>x.under===g.dm).map(x=>`<div class="dmlabel dm-sub">${E(x.dm)}</div>${grid(x.reps)}`).join('')).join('');
+    groups.filter(x=>x.under===g.dm).map(x=>`<div class="dmlabel">${E(x.dm)}</div>${grid(x.reps)}`).join('')).join('');
 }
 
 /* ====================================================================

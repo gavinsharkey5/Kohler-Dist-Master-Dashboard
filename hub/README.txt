@@ -816,8 +816,10 @@ SHOW ALL / SHOW FEWER SITS TOP RIGHT (2026-09-16)
 SALES SUPPORT ON THE HUB (2026-09-16, per Gavin)
 Adam Badalamenti (Sales Support, wines & spirits, no route) is on the hub for
 ONE program: the on-prem Bardstown menu MPO. He sits under Ashley Furman, who
-sits under Paul Deady -- Ashley is an orange sub-label (.dmlabel.sub) nested
-beneath Paul's names on the home screen, Adam the one name under her.
+sits under Paul Deady -- Ashley's group is placed directly after Paul's
+names on the home screen and looks exactly like every other DM group (same
+orange label, same grid; per Gavin 2026-09-16 it must match the others, so
+no indent or sub-style), Adam the one name under her.
 Where it comes from: NOT incentive-tracking/programs.js (the tracker has
 nothing for him and he must not appear there). hub.js reads
 window.OnPremMPO.SUPPORT_REPS and the DM_GROUPS entry carrying `under` from

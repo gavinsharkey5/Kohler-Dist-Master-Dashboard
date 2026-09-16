@@ -231,7 +231,8 @@ function screenRepPicker(){
     if(!mine.length) return;
     grouped[g.dm] = mine.slice().sort();
     // A group `under` another manager (sales support under a DM, 2026-09-16)
-    // nests beneath that manager's grid instead of taking a top-level slot.
+    // renders directly after that manager's grid, styled like any other DM
+    // header, instead of taking a top-level slot of its own.
     if(g.under){ (under[g.under] = under[g.under] || []).push(g.dm); } else { order.push(g.dm); }
   });
   Object.keys(under).forEach(function(k){ if(order.indexOf(k)<0) order = order.concat(under[k]); });

@@ -90,9 +90,6 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
   color:var(--amber);font-weight:700;line-height:1.2;margin:30px 0 12px;}
 .dmlabel::after{content:'';flex:1;height:1px;background:var(--line-soft);}
 .dmlabel:first-child{margin-top:6px;}
-/* A manager nested under a DM (sales support): same orange, indented, a
-   short rule tying it to the group above. */
-.dmlabel.dm-sub{margin:14px 0 10px 16px;padding-left:12px;border-left:3px solid var(--amber);font-size:clamp(16px,4.2vw,18px);}
 .rep-role{display:inline-block;margin:2px 0 6px;padding:4px 10px;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;line-height:1.3;}
 .namegrid{display:grid;grid-template-columns:1fr;gap:10px;}
 .name{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0 20px;min-height:66px;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text);transition:border-color .13s,background .13s,transform .08s;}

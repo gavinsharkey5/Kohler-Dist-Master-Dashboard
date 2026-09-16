@@ -80,9 +80,9 @@
 .g-dm{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--text-mute);font-weight:700;margin:20px 0 9px;}
 .g-dm:first-of-type{margin-top:4px;}
-/* A manager nested under another (sales support under a DM): same header
-   voice, indented, with a short rule marking it as part of the group above. */
-.g-dm.g-dm-sub{margin:12px 0 9px 14px;padding-left:12px;border-left:2px solid var(--amber);color:var(--amber);}
+/* A manager nested under another (sales support under a DM) keeps the
+   plain DM header look -- only its position marks it as part of the group
+   above (per Gavin, 2026-09-16). The class is kept for anyone who needs it. */
 
 /* ---- Summary cards -------------------------------------------------- */
 .g-sum-grid{display:grid;grid-template-columns:1fr;gap:11px;margin-bottom:22px;}
