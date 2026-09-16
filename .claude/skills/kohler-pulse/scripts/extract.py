@@ -306,46 +306,98 @@ def section_mpo():
 
 
 def section_ws():
+    """Wine & Spirits.
+
+    Rebuilt 2026-08-25 into ONE dashboard (wine-spirits/index.html) holding a
+    compressed columnar payload: lookup tables plus sales cells (account x item
+    x month, in cases), so nothing is pre-aggregated -- the page sums whatever
+    range you pick. That rebuild also fixed the old full-year-vs-YTD artifact,
+    so year-over-year here is real. Compare COMPLETE months only: the current
+    month is partial on one side and will read as a collapse if you include it.
+    """
     head('WINE & SPIRITS')
-    d = blob('wine-spirits/wine-spirits-tracker.html', 'ws-data')
-    o = d['overview']
-    print('generated %s' % d.get('generatedAt'))
-    print('assigned accounts %d | activated 2026 %d (%.1f%%) | never bought %d'
-          % (o['assignedAccounts'], o['activated26'], o['pctActivated26'], o['neverBought']))
-    print('new buyers %d vs lapsed %d  -- %.1f accounts go quiet per new one'
-          % (o['newBuyers'], o['lapsedBuyers'], o['lapsedBuyers'] / o['newBuyers'] if o['newBuyers'] else 0))
-    print('IGNORE the yoy/vol25/vol26 fields -- full-year 2025 vs YTD 2026, not comparable.')
+    d = blob('wine-spirits/index.html', 'ws-data')
+    mk = d['meta']['monthKeys']
+    S, accounts, items = d['sales'], d['accounts'], d['items']
+    fams, reps, areaNames = d['families'], d['reps'], d['areaNames']
 
-    lo = d['lostOverview']
-    print('\nreorder gap: %d of %d tracked placements lost (%.1f%%) across %d accounts'
-          % (lo['totalLost'], lo['totalTracked'], lo['pctLost'], lo['distinctAccountsLost']))
-    print('   window: %d days, anchored %s' % (lo['windowDays'], lo['anchorDate']))
+    complete = [k for k in mk if k < max(mk)]          # drop the in-progress month
+    year = max(complete)[:4]
+    cur_keys = [k for k in complete if k.startswith(year)]
+    pri_keys = [str(int(year) - 1) + k[4:] for k in cur_keys]
+    cur = {i for i, k in enumerate(mk) if k in set(cur_keys)}
+    pri = {i for i, k in enumerate(mk) if k in set(pri_keys)}
+    print('equal windows: %s..%s vs %s..%s' % (cur_keys[0], cur_keys[-1], pri_keys[0], pri_keys[-1]))
 
-    prof = customer_base()
-    print('\nactivation by district (opportunity-adjusted):')
-    g = collections.defaultdict(lambda: [0, 0])
-    for r in d['repSummary']:
-        if r['assignedAccounts'] < 20 or r['rep'] in SKIP_REPS:
-            continue
-        grp = group_of(prof[r['rep']]) if r['rep'] in prof else 'CORE'
-        g[grp][0] += r['assignedAccounts']
-        g[grp][1] += r['activated26']
-    for k, (n, a) in g.items():
-        print('   %-6s %4d assigned, %3d activated = %.0f%%' % (k, n, a, a / n * 100 if n else 0))
+    cc = pc = 0.0
+    buy_c, buy_p = set(), set()
+    fam_c, fam_p = collections.Counter(), collections.Counter()
+    for n in range(len(S['a'])):
+        m, c, a, f = S['m'][n], S['c'][n], S['a'][n], items[S['i'][n]]['f']
+        if m in cur:
+            cc += c; buy_c.add(a); fam_c[f] += c
+        elif m in pri:
+            pc += c; buy_p.add(a); fam_p[f] += c
+    print('CASES            %.0f -> %.0f  (%+.1f%%)' % (pc, cc, (cc - pc) / pc * 100 if pc else 0))
+    print('BUYING ACCOUNTS  %d -> %d   (roster %d, %.0f%% activated)'
+          % (len(buy_p), len(buy_c), len(accounts), len(buy_c) / len(accounts) * 100))
+    print('new this year %d | went quiet %d' % (len(buy_c - buy_p), len(buy_p - buy_c)))
 
-    pre = collections.defaultdict(lambda: [0, 0])
-    for a in d['byAccount']:
-        pre[a['onOff']][0] += 1
-        if (a.get('vol26') or 0) > 0:
-            pre[a['onOff']][1] += 1
-    print('\nactivation by premise (explains low on-prem rep numbers):')
-    for k, (n, a) in pre.items():
-        print('   %-14s %4d assigned, %3d activated = %.0f%%' % (k, n, a, a / n * 100 if n else 0))
+    rows = [(fam_c[i], fam_p[i], fams[i]) for i in set(list(fam_c) + list(fam_p))]
+    tot = sum(r[0] for r in rows)
+    print('\nconcentration -- check whether one family is carrying the whole trend:')
+    for c, pv, n in sorted(rows, reverse=True)[:6]:
+        print('   %-26s %7.0f cs = %4.1f%% of book  (%+.0f%% YoY)'
+              % (n[:26], c, c / tot * 100 if tot else 0, ((c - pv) / pv * 100) if pv else 0))
+    top = max(rows)[2] if rows else None
+    if top:
+        tc = sum(c for c, pv, n in rows if n == top)
+        tp = sum(pv for c, pv, n in rows if n == top)
+        if pc - tp:
+            print('   excluding %s: %.0f -> %.0f  (%+.1f%%)'
+                  % (top, pc - tp, cc - tc, ((cc - tc) - (pc - tp)) / (pc - tp) * 100))
 
-    print('\ntop reps by activation rate:')
-    for r in sorted([x for x in d['repSummary'] if x['assignedAccounts'] >= 20],
-                    key=lambda x: -x['pctActivated26'])[:6]:
-        print('   %-20s %3d of %3d (%.0f%%)' % (r['rep'], r['activated26'], r['assignedAccounts'], r['pctActivated26']))
+    big = [(c, pv, n) for c, pv, n in rows if c >= 100 or pv >= 100]
+    print('\ngrowing:')
+    for c, pv, n in sorted(big, key=lambda x: -(x[0] - x[1]))[:5]:
+        print('   %-26s %+7.0f cs  (%.0f -> %.0f)' % (n[:26], c - pv, pv, c))
+    print('declining:')
+    for c, pv, n in sorted(big, key=lambda x: (x[0] - x[1]))[:5]:
+        print('   %-26s %+7.0f cs  (%.0f -> %.0f)' % (n[:26], c - pv, pv, c))
+
+    # Activation against each rep's own assigned book, and by district --
+    # this is the scoreboard Southern District is reported on (never taps).
+    CORE = {'Bergen', 'Passaic', 'Passaic-FF', 'Sussex', 'Morris 1', 'Morris 3'}
+    SOUTH = {'Morris 2', 'Essex', 'Hudson', 'Union'}
+    roster, active = collections.Counter(), collections.Counter()
+    g_r, g_a = collections.Counter(), collections.Counter()
+    for idx, a in enumerate(accounts):
+        rep = reps[a['r']] if a.get('r') is not None and a['r'] < len(reps) else '?'
+        roster[rep] += 1
+        area = areaNames[a['ar']] if a.get('ar') is not None and a['ar'] < len(areaNames) else None
+        grp = 'CORE' if area in CORE else ('SOUTH' if area in SOUTH else None)
+        if grp:
+            g_r[grp] += 1
+        if idx in buy_c:
+            active[rep] += 1
+            if grp:
+                g_a[grp] += 1
+    print('\nactivation by district (Southern is reported here, not on taps):')
+    for g in ('CORE', 'SOUTH'):
+        if g_r[g]:
+            print('   %-6s %4d assigned, %3d buying = %.0f%%' % (g, g_r[g], g_a[g], g_a[g] / g_r[g] * 100))
+    print('\ntop reps by activation rate (own book, min 20 accounts):')
+    rr = [(active[r] / roster[r] * 100, r, active[r], roster[r]) for r in roster if roster[r] >= 20]
+    for p_, r, a, t in sorted(rr, reverse=True)[:6]:
+        print('   %5.0f%%  %-20s %3d of %3d' % (p_, r, a, t))
+    print('   (on-premise reps sit structurally lower -- spirits in a bar is a different sell)')
+
+    P, W = d['placements'], d['meta']['lostWindowDays']
+    lost = [i for i in range(len(P['d'])) if P['d'][i] > W]
+    print('\nreorder gap: %d of %d placements have no order in %d+ days (%.0f%%)'
+          % (len(lost), len(P['d']), W, len(lost) / len(P['d']) * 100 if P['d'] else 0))
+    print('   %d distinct accounts, %.0f cases behind them, anchored %s'
+          % (len({P['cust'][i] for i in lost}), sum(P['c'][i] for i in lost), d['meta']['placementAnchor']))
 
 
 def section_displays():
@@ -386,13 +438,17 @@ def section_displays():
 
 def section_inventory():
     head('INVENTORY -- CONTEXT FOR MOLSON COORS')
-    p = path('inventory/data/InventoryProjections.csv')
-    rows = list(csv.DictReader(open(p)))
+    # Inventory data moved to inventory-data/ (lowercase filenames) in Sept 2026.
+    p = path('inventory-data/inventory_projections.csv')
+    if not os.path.exists(p):
+        p = path('inventory/data/InventoryProjections.csv')
+    rows = list(csv.DictReader(open(p, encoding='utf-8-sig')))
     k = list(rows[0].keys())
-    mc = [r for r in rows if re.search(r'peroni|coors|blue moon|miller|molson|banquet|fever tree|leinenkugel',
+    mc = [r for r in rows if re.search(r'peroni|coors|blue moon|miller|molson|banquet|fever tree|leinenkugel|keystone',
                                        str(r[k[1]]), re.I)]
     bo = [r for r in mc if num(r['Backordered']) > 0]
-    low = [r for r in mc if 0 <= num(r['Days of Inventory']) <= 7 and num(r['Jun 26']) > 50]
+    mcol = [c for c in k if re.match(r'^[A-Z][a-z]{2} \d\d$', c)][-1]   # newest actual month column
+    low = [r for r in mc if 0 <= num(r['Days of Inventory']) <= 7 and num(r[mcol]) > 50]
     print('%d Molson-family SKUs backordered; %d moving SKUs at <=7 days on hand' % (len(bo), len(low)))
     for r in sorted(bo, key=lambda x: -num(x['Backordered']))[:6]:
         print('   BO %8.0f  %-46s' % (num(r['Backordered']), str(r[k[1]])[:46]))
