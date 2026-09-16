@@ -3643,3 +3643,24 @@ the off-prem board were not rebuilt. The other three are clean supersets:
               nobody at the qualifier.
 Hub cache tag bumped so the new program_data.js is picked up.
 
+2026-09-16 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius (Le Grand Noir re-sent, unchanged)
+Diffed row by row before the run. Le Grand Noir (30 rows) was byte-identical
+and left alone. The Comparison export is the President's file
+(garage_beer_president_comparison.csv): same 29 rows, 12 restated upward.
+Touchdowns OFF 4,018 -> 4,044 (+26, none removed); Touchdowns ON 2,220 ->
+2,239 (+20, one removed: Anthony Palmisano / 191103 Whistle Stop, one case of
+Sun Cruiser Classic 19.2 oz dated 9/16 -- a scheduled load sheet that fell
+off, the export is the record). Evil Genius 339 -> 341 (+2).
+  Garage President  house 8,010.35 -> 8,108.24 of 9,305 CE. Biggest growth
+                    moves: Michael Harboy +170 -> +202, Klejdi Lamo +207 ->
+                    +227, John O'Donoghue +257 -> +269.
+  Touchdowns & Tea  78 -> 79 new off-prem 12pk placements (Klejdi Lamo
+                    8 -> 9); on-prem cases 999 -> 1,059 (Allison Scott 282 ->
+                    304, Brian Sengebush 186 -> 201, Nick Melissari 92 -> 106);
+                    trackable $2,169 -> $2,244.
+  Evil Genius       6 -> 7 new placements (Jayson Romine's first, Sussex
+                    County), still 1 of 27 reps past the 3-placement
+                    qualifier; CE 50 -> 55 vs 98 baseline, bonus CE 11 -> 13
+                    (Klejdi Lamo 1 -> 3), $0 paid (qualifier-gated).
+Hub cache tag bumped for the new program_data.js.
+
