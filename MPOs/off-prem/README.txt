@@ -885,6 +885,16 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-16 -- Promos_Report_25 merged; Matt Powierski 2 -> 3 stickers
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_25.xlsx
+Report_25 held 45 rows, all Cooler Door Wrap (window 9/3-9/16), 1 new: 44 -> 45
+archive rows, every one keeping its photo link. 33 -> 34 distinct stickers;
+the new one is Matt Powierski at 31004 Metro Liquors (East Rutherford), a
+Keystone Ice wrap, 9/16 ("Matthew Powierski" in iSellBeer, matched to the
+roster by surname as usual). Still 4 reps at the goal of 5: Chris Payton,
+Derrick Laws, Mike Ast, Shane Barreca. No RDE export was re-pulled, so the
+other four objectives are byte-for-byte what the morning refresh published.
+
 2026-09-16 REFRESH -- all four exports, no Promos_Report for this board
     python3 generate_2026-09.py
 Row counts: Constellation 122 (restated in place, values only up), Keystone
