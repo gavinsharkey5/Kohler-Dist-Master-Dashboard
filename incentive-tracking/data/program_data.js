@@ -63776,9 +63776,9 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 91,
+            "actual": 94,
             "goal": 87,
-            "pct": 104.6
+            "pct": 108.0
           },
           {
             "label": "Fever Tree",
@@ -63793,15 +63793,15 @@ const PROGRAM_DATA = {
             "pct": 84.1
           }
         ],
-        "offActual": 161,
+        "offActual": 164,
         "offGoal": 156,
-        "offPct": 103.2,
+        "offPct": 105.1,
         "onBrands": [
           {
             "label": "Blue Moon",
-            "actual": 20,
+            "actual": 21,
             "goal": 36,
-            "pct": 55.6
+            "pct": 58.3
           },
           {
             "label": "Coors Banquet",
@@ -63817,9 +63817,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Miller Lite",
-            "actual": 25,
+            "actual": 26,
             "goal": 33,
-            "pct": 75.8
+            "pct": 78.8
           },
           {
             "label": "Peroni",
@@ -63828,12 +63828,12 @@ const PROGRAM_DATA = {
             "pct": 100.0
           }
         ],
-        "onActual": 55,
+        "onActual": 57,
         "onGoal": 88,
-        "onPct": 62.5,
+        "onPct": 64.8,
         "goalsTotal": 7,
         "goalsRetained": 3,
-        "overallPct": 88.5,
+        "overallPct": 90.6,
         "territoryEligible": true
       },
       "Brian Sengebush": {
@@ -63916,14 +63916,14 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 79,
+            "actual": 80,
             "goal": 85,
-            "pct": 92.9
+            "pct": 94.1
           }
         ],
-        "offActual": 237,
+        "offActual": 238,
         "offGoal": 230,
-        "offPct": 103.0,
+        "offPct": 103.5,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -63955,7 +63955,7 @@ const PROGRAM_DATA = {
         "onPct": 35.7,
         "goalsTotal": 7,
         "goalsRetained": 2,
-        "overallPct": 99.2,
+        "overallPct": 99.6,
         "territoryEligible": true
       },
       "Dan Lagala": {
@@ -63968,20 +63968,20 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 40,
+            "actual": 41,
             "goal": 36,
-            "pct": 111.1
+            "pct": 113.9
           },
           {
             "label": "Peroni",
-            "actual": 57,
+            "actual": 59,
             "goal": 90,
-            "pct": 63.3
+            "pct": 65.6
           }
         ],
-        "offActual": 143,
+        "offActual": 146,
         "offGoal": 176,
-        "offPct": 81.2,
+        "offPct": 83.0,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64013,7 +64013,7 @@ const PROGRAM_DATA = {
         "onPct": 52.9,
         "goalsTotal": 7,
         "goalsRetained": 2,
-        "overallPct": 76.7,
+        "overallPct": 78.1,
         "territoryEligible": true
       },
       "Dave Ehlers": {
@@ -64167,21 +64167,21 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 13,
+            "actual": 14,
             "goal": 22,
-            "pct": 59.1
+            "pct": 63.6
           }
         ],
-        "offActual": 56,
+        "offActual": 57,
         "offGoal": 76,
-        "offPct": 73.7,
+        "offPct": 75.0,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 2,
         "goalsRetained": 0,
-        "overallPct": 73.7,
+        "overallPct": 75.0,
         "territoryEligible": true
       },
       "Jayson Romine": {
@@ -64194,9 +64194,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 81,
+            "actual": 83,
             "goal": 85,
-            "pct": 95.3
+            "pct": 97.6
           },
           {
             "label": "Peroni",
@@ -64205,16 +64205,16 @@ const PROGRAM_DATA = {
             "pct": 113.6
           }
         ],
-        "offActual": 296,
+        "offActual": 298,
         "offGoal": 283,
-        "offPct": 104.6,
+        "offPct": 105.3,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 2,
-        "overallPct": 104.6,
+        "overallPct": 105.3,
         "territoryEligible": true
       },
       "Jim Heaney": {
@@ -64320,20 +64320,20 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 43,
+            "actual": 42,
             "goal": 44,
-            "pct": 97.7
+            "pct": 95.5
           },
           {
             "label": "Peroni",
-            "actual": 81,
+            "actual": 83,
             "goal": 89,
-            "pct": 91.0
+            "pct": 93.3
           }
         ],
-        "offActual": 205,
+        "offActual": 206,
         "offGoal": 215,
-        "offPct": 95.3,
+        "offPct": 95.8,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64371,7 +64371,7 @@ const PROGRAM_DATA = {
         "onPct": 61.5,
         "goalsTotal": 6,
         "goalsRetained": 0,
-        "overallPct": 93.4,
+        "overallPct": 93.9,
         "territoryEligible": true
       },
       "Michael Harboy": {
@@ -64514,9 +64514,9 @@ const PROGRAM_DATA = {
         "offBrands": [
           {
             "label": "Coors",
-            "actual": 36,
+            "actual": 37,
             "goal": 31,
-            "pct": 116.1
+            "pct": 119.4
           },
           {
             "label": "Fever Tree",
@@ -64526,14 +64526,14 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 9,
+            "actual": 10,
             "goal": 17,
-            "pct": 52.9
+            "pct": 58.8
           }
         ],
-        "offActual": 45,
+        "offActual": 47,
         "offGoal": 48,
-        "offPct": 93.8,
+        "offPct": 97.9,
         "onBrands": [
           {
             "label": "Blue Moon",
@@ -64553,7 +64553,7 @@ const PROGRAM_DATA = {
         "onPct": 133.3,
         "goalsTotal": 4,
         "goalsRetained": 3,
-        "overallPct": 96.1,
+        "overallPct": 100.0,
         "territoryEligible": true
       },
       "Paul Mclaughlin": {
@@ -64612,9 +64612,9 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Fever Tree",
-            "actual": 68,
+            "actual": 71,
             "goal": 85,
-            "pct": 80.0
+            "pct": 83.5
           },
           {
             "label": "Peroni",
@@ -64623,16 +64623,16 @@ const PROGRAM_DATA = {
             "pct": 102.6
           }
         ],
-        "offActual": 240,
+        "offActual": 243,
         "offGoal": 259,
-        "offPct": 92.7,
+        "offPct": 93.8,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 1,
-        "overallPct": 92.7,
+        "overallPct": 93.8,
         "territoryEligible": true
       },
       "Robin Feldman": {
@@ -64674,17 +64674,17 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 11,
+            "actual": 12,
             "goal": 16,
-            "pct": 68.8
+            "pct": 75.0
           }
         ],
-        "onActual": 62,
+        "onActual": 63,
         "onGoal": 70,
-        "onPct": 88.6,
+        "onPct": 90.0,
         "goalsTotal": 4,
         "goalsRetained": 0,
-        "overallPct": 83.5,
+        "overallPct": 84.8,
         "territoryEligible": true
       },
       "Shane Barreca": {
@@ -64703,21 +64703,21 @@ const PROGRAM_DATA = {
           },
           {
             "label": "Peroni",
-            "actual": 96,
+            "actual": 97,
             "goal": 101,
-            "pct": 95.0
+            "pct": 96.0
           }
         ],
-        "offActual": 302,
+        "offActual": 303,
         "offGoal": 311,
-        "offPct": 97.1,
+        "offPct": 97.4,
         "onBrands": [],
         "onActual": 0,
         "onGoal": 0,
         "onPct": null,
         "goalsTotal": 3,
         "goalsRetained": 1,
-        "overallPct": 97.1,
+        "overallPct": 97.4,
         "territoryEligible": true
       }
     }
@@ -114908,14 +114908,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 0
       },
       "Anthony Palmisano": {
-        "placements": 319,
+        "placements": 337,
         "base": 666,
         "goal": 599,
-        "pct": 53.3,
-        "toGo": 280,
+        "pct": 56.3,
+        "toGo": 262,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 303.1,
+        "pctOfPace": 320.2,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -114925,40 +114925,40 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 21
+            "placements": 22
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 20
+            "placements": 21
           },
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 18
+            "placements": 19
           },
           {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 15
+            "placements": 16
           },
           {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 15
+            "placements": 16
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 14
-          },
-          {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 14
+            "placements": 15
           },
           {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 14
           },
@@ -114970,7 +114970,22 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
             "brand": "White Claw",
+            "placements": 12
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 11
+          },
+          {
+            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 10
+          },
+          {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 10
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
@@ -114978,14 +114993,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 10
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 10
-          },
-          {
-            "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 8
+            "placements": 9
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
@@ -114993,19 +115003,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 8
-          },
-          {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 7
           },
           {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
@@ -115020,7 +115020,7 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 5
+            "placements": 6
           },
           {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
@@ -115063,6 +115063,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
             "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 3
@@ -115083,11 +115088,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
-            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
             "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 2
@@ -115106,6 +115106,11 @@ const PROGRAM_DATA_2026_09 = {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 2
+          },
+          {
+            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 1
           },
           {
             "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
@@ -115141,11 +115146,11 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 250
+            "placements": 260
           },
           {
             "brand": "Cayman Jack",
-            "placements": 31
+            "placements": 36
           },
           {
             "brand": "Mike's Hard Lemonade",
@@ -115153,29 +115158,29 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "brand": "Mike's Harder",
-            "placements": 15
+            "placements": 18
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
             "placements": 1
           }
         ],
-        "skusHeld": 44
+        "skusHeld": 45
       },
       "Brian Sengebush": {
-        "placements": 66,
+        "placements": 67,
         "base": 137,
         "goal": 123,
-        "pct": 53.7,
-        "toGo": 57,
+        "pct": 54.5,
+        "toGo": 56,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 305.4,
+        "pctOfPace": 310.0,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 18
+            "placements": 19
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -115271,7 +115276,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 64
+            "placements": 65
           },
           {
             "brand": "Mike's Hard Lemonade",
@@ -115281,37 +115286,42 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 19
       },
       "Chris Payton": {
-        "placements": 239,
+        "placements": 258,
         "base": 685,
         "goal": 617,
-        "pct": 38.7,
-        "toGo": 378,
+        "pct": 41.8,
+        "toGo": 359,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 220.1,
+        "pctOfPace": 237.7,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 18
+            "placements": 19
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 18
+            "placements": 19
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 14
           },
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 12
+            "placements": 13
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 13
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 12
           },
@@ -115321,13 +115331,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 11
           },
           {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
             "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
             "brand": "Cayman Jack",
+            "placements": 10
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 10
           },
           {
@@ -115336,23 +115351,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 9
+          },
+          {
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 8
           },
           {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
-            "placements": 8
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 8
           },
           {
@@ -115371,23 +115381,23 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 6
-          },
-          {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 6
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 4
-          },
-          {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
             "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 5
+          },
+          {
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
             "placements": 4
           },
           {
@@ -115401,9 +115411,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 4
+          },
+          {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
           },
           {
             "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
@@ -115416,22 +115431,22 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
           {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
           {
             "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 2
           },
@@ -115456,11 +115471,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 2
@@ -115476,12 +115486,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 1
           },
           {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 1
           },
@@ -115509,41 +115519,41 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 147
+            "placements": 160
           },
           {
             "brand": "Cayman Jack",
-            "placements": 53
+            "placements": 54
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 25
+            "placements": 26
           },
           {
             "brand": "Mike's Harder",
-            "placements": 13
+            "placements": 17
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
             "placements": 1
           }
         ],
-        "skusHeld": 43
+        "skusHeld": 44
       },
       "Dan Lagala": {
-        "placements": 116,
+        "placements": 120,
         "base": 404,
         "goal": 364,
-        "pct": 31.9,
-        "toGo": 248,
+        "pct": 33.0,
+        "toGo": 244,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 181.4,
+        "pctOfPace": 187.7,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 12
+            "placements": 13
           },
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
@@ -115553,7 +115563,7 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 11
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -115596,14 +115606,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 4
           },
           {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 3
+            "placements": 4
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
@@ -115689,7 +115699,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 105
+            "placements": 109
           },
           {
             "brand": "Cayman Jack",
@@ -115707,14 +115717,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 29
       },
       "Dave Ehlers": {
-        "placements": 347,
+        "placements": 355,
         "base": 645,
         "goal": 581,
-        "pct": 59.7,
-        "toGo": 234,
+        "pct": 61.1,
+        "toGo": 226,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 339.5,
+        "pctOfPace": 347.5,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -115757,14 +115767,19 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 12
           },
           {
+            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 11
+          },
+          {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
             "placements": 11
           },
           {
-            "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 10
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 11
           },
           {
             "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
@@ -115773,6 +115788,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 10
           },
@@ -115787,13 +115807,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 10
           },
           {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 10
-          },
-          {
             "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
+            "placements": 9
+          },
+          {
+            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 9
           },
           {
@@ -115802,23 +115822,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
-            "brand": "White Claw",
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 9
           },
           {
             "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 8
-          },
-          {
-            "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 8
-          },
-          {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
             "placements": 8
           },
           {
@@ -115852,6 +115862,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
+            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 6
+          },
+          {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 6
@@ -115877,9 +115892,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 5
+            "placements": 4
           },
           {
             "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
@@ -115907,19 +115922,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
+            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
             "placements": 3
           },
           {
             "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
             "brand": "Mike's Hard Dirty Lemonade",
             "placements": 3
-          },
-          {
-            "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
           },
           {
             "product": "8530 Cayman Jack Sweet Heat Margarita Variety 2/12/12 oz Can",
@@ -115955,7 +115965,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 205
+            "placements": 208
           },
           {
             "brand": "Cayman Jack",
@@ -115963,11 +115973,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 42
+            "placements": 46
           },
           {
             "brand": "Mike's Harder",
-            "placements": 29
+            "placements": 30
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
@@ -115981,14 +115991,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 47
       },
       "Derrick Laws": {
-        "placements": 122,
+        "placements": 123,
         "base": 321,
         "goal": 289,
-        "pct": 42.2,
-        "toGo": 167,
+        "pct": 42.6,
+        "toGo": 166,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 240.0,
+        "pctOfPace": 242.3,
         "products": [
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
@@ -116071,6 +116081,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
+            "brand": "Cayman Jack",
+            "placements": 3
+          },
+          {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 3
@@ -116103,11 +116118,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8522 MXD Long Island Iced Tea 6/4/12 oz Can",
             "brand": "Mxd Cocktails",
-            "placements": 2
-          },
-          {
-            "product": "8538 Cayman Jacked Strawberry Margarita 1/12/19.2 oz Can",
-            "brand": "Cayman Jack",
             "placements": 2
           },
           {
@@ -116208,7 +116218,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "brand": "Cayman Jack",
-            "placements": 30
+            "placements": 31
           },
           {
             "brand": "Mike's Hard Lemonade",
@@ -116516,19 +116526,19 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 35
       },
       "Jayson Romine": {
-        "placements": 332,
+        "placements": 348,
         "base": 766,
         "goal": 689,
-        "pct": 48.2,
-        "toGo": 357,
+        "pct": 50.5,
+        "toGo": 341,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 274.1,
+        "pctOfPace": 287.2,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 24
+            "placements": 25
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -116536,19 +116546,19 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 19
           },
           {
-            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
             "brand": "White Claw",
             "placements": 19
           },
           {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 18
-          },
-          {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 17
+            "placements": 19
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 19
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
@@ -116568,7 +116578,12 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 13
+            "placements": 14
+          },
+          {
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 12
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
@@ -116581,14 +116596,9 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 12
           },
           {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 11
-          },
-          {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 11
+            "placements": 12
           },
           {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
@@ -116606,7 +116616,17 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 9
           },
           {
+            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 9
           },
@@ -116621,14 +116641,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8596 White Claw Hard Seltzer Variety 1/24/12 oz Loose Can",
-            "brand": "White Claw",
-            "placements": 7
+            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 6
           },
           {
-            "product": "8637 White Claw Clawtails Variety 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 7
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 6
           },
           {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
@@ -116636,7 +116656,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
+            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 6
+          },
+          {
+            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 5
           },
@@ -116644,21 +116669,6 @@ const PROGRAM_DATA_2026_09 = {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
             "placements": 5
-          },
-          {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 5
-          },
-          {
-            "product": "8639 White Claw Pineapple 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 5
-          },
-          {
-            "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 4
           },
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -116686,6 +116696,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 3
           },
           {
+            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
             "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 3
@@ -116703,11 +116718,6 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8539 Cayman Jack Zero Sugar Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
-            "placements": 2
-          },
-          {
-            "product": "8626 White Claw Blackberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
             "placements": 2
           },
           {
@@ -116734,15 +116744,15 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 247
+            "placements": 260
           },
           {
             "brand": "Mike's Harder",
-            "placements": 43
+            "placements": 45
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 22
+            "placements": 23
           },
           {
             "brand": "Cayman Jack",
@@ -117015,17 +117025,22 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 0
       },
       "Klejdi Lamo": {
-        "placements": 333,
+        "placements": 351,
         "base": 692,
         "goal": 623,
-        "pct": 53.5,
-        "toGo": 290,
+        "pct": 56.3,
+        "toGo": 272,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 304.3,
+        "pctOfPace": 320.2,
         "products": [
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 18
+          },
+          {
+            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 17
           },
@@ -117035,7 +117050,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 16
           },
           {
-            "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 15
+          },
+          {
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 15
           },
@@ -117045,17 +117065,12 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 14
           },
           {
-            "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
-            "brand": "White Claw",
-            "placements": 14
-          },
-          {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 14
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 14
           },
@@ -117065,58 +117080,53 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 13
           },
           {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 13
-          },
-          {
             "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 12
           },
           {
+            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 12
+          },
+          {
             "product": "8619 White Claw Blackberry 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 11
+            "placements": 12
           },
           {
             "product": "8623 White Claw Surge 8% Blood Orange 19.2 oz Can",
             "brand": "White Claw",
-            "placements": 11
-          },
-          {
-            "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 10
-          },
-          {
-            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 9
+            "placements": 12
           },
           {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
-            "placements": 9
+            "placements": 11
           },
           {
-            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "product": "8409 Mikes Harder Pink Lemonade 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8624 White Claw Surge 8% Cranberry 19.2 oz Can",
             "brand": "White Claw",
+            "placements": 10
+          },
+          {
+            "product": "8481 Mikes Harder Lemonade 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
             "placements": 9
           },
           {
@@ -117130,13 +117140,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 8
           },
           {
-            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
-            "brand": "Cayman Jack",
-            "placements": 7
-          },
-          {
             "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
             "brand": "White Claw",
+            "placements": 8
+          },
+          {
+            "product": "8546 Cayman Jack Mango Margarita 4/6/12 oz Btl",
+            "brand": "Cayman Jack",
             "placements": 7
           },
           {
@@ -117180,6 +117190,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 4
+          },
+          {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 4
@@ -117188,11 +117203,6 @@ const PROGRAM_DATA_2026_09 = {
             "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 4
-          },
-          {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 3
           },
           {
             "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
@@ -117268,15 +117278,15 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 231
+            "placements": 242
           },
           {
             "brand": "Mike's Harder",
-            "placements": 36
+            "placements": 38
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 32
+            "placements": 37
           },
           {
             "brand": "Cayman Jack",
@@ -117294,24 +117304,24 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 48
       },
       "Matt Powierski": {
-        "placements": 267,
+        "placements": 272,
         "base": 707,
         "goal": 636,
-        "pct": 42.0,
-        "toGo": 369,
+        "pct": 42.8,
+        "toGo": 364,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 238.9,
+        "pctOfPace": 243.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 16
+            "placements": 17
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 16
+            "placements": 17
           },
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -117346,7 +117356,7 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8631 White Claw Peach 1/12/19.2 oz Can",
             "brand": "White Claw",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
@@ -117459,6 +117469,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
             "product": "8460 Mikes Harder Strawberry Pineapple 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 3
@@ -117484,11 +117499,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
-            "brand": "Mike's Harder",
-            "placements": 2
-          },
-          {
             "product": "8466 Mikes Harder Mango 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 2
@@ -117509,6 +117519,11 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
+            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 2
+          },
+          {
             "product": "8634 White Claw Hard Seltzer Peach 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 2
@@ -117522,17 +117537,12 @@ const PROGRAM_DATA_2026_09 = {
             "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
             "brand": "Mike's Hard Dirty Lemonade",
             "placements": 1
-          },
-          {
-            "product": "8632 White Claw Surge Blueberry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 1
           }
         ],
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 175
+            "placements": 179
           },
           {
             "brand": "Cayman Jack",
@@ -117544,7 +117554,7 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "brand": "Mike's Harder",
-            "placements": 14
+            "placements": 15
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
@@ -117965,14 +117975,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 38
       },
       "Nick Melissari": {
-        "placements": 21,
+        "placements": 22,
         "base": 79,
         "goal": 71,
-        "pct": 29.6,
-        "toGo": 50,
+        "pct": 31.0,
+        "toGo": 49,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 168.3,
+        "pctOfPace": 176.3,
         "products": [
           {
             "product": "8581 White Claw Hard Seltzer Black Cherry 4/6/12 oz Can",
@@ -117982,7 +117992,7 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 4
+            "placements": 5
           },
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
@@ -118003,7 +118013,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 20
+            "placements": 21
           },
           {
             "brand": "Mike's Hard Lemonade",
@@ -118013,14 +118023,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 5
       },
       "Pablo Lopez": {
-        "placements": 77,
+        "placements": 89,
         "base": 237,
         "goal": 213,
-        "pct": 36.2,
-        "toGo": 136,
+        "pct": 41.8,
+        "toGo": 124,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 205.9,
+        "pctOfPace": 237.7,
         "products": [
           {
             "product": "8532 Cayman Jack Strawberry Margarita 4/6/11.2 oz Btl",
@@ -118030,10 +118040,15 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
             "brand": "Cayman Jack",
-            "placements": 9
+            "placements": 10
           },
           {
             "product": "8592 White Claw Hard Seltzer Mango 1/12/19.2 oz Can",
+            "brand": "White Claw",
+            "placements": 9
+          },
+          {
+            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 7
           },
@@ -118043,14 +118058,14 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 6
           },
           {
-            "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 6
-          },
-          {
             "product": "8559 Cayman Jack Margarita Variety 2/12/12 oz Can",
             "brand": "Cayman Jack",
             "placements": 5
+          },
+          {
+            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 4
           },
           {
             "product": "86004 Mike's Hard Pink Lemonade 4/6/12 oz Can",
@@ -118058,7 +118073,17 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 4
           },
           {
-            "product": "8583 White Claw Hard Seltzer Variety #1 2/12/12 oz Can",
+            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
+            "brand": "Mike's Hard Lemonade",
+            "placements": 3
+          },
+          {
+            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 3
+          },
+          {
+            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 3
           },
@@ -118073,22 +118098,7 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "8454 Mikes Hard Party Kit Variety 2/12/11.2 oz Btl",
-            "brand": "Mike's Hard Lemonade",
-            "placements": 2
-          },
-          {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8597 White Claw Hard Seltzer Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 2
-          },
-          {
-            "product": "8600 White Claw Hard Seltzer Variety #3 2/12/12 oz Can",
             "brand": "White Claw",
             "placements": 2
           },
@@ -118109,6 +118119,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "8427 Mikes Harder Variety 2/12/12 oz Can",
+            "brand": "Mike's Harder",
+            "placements": 1
+          },
+          {
+            "product": "8458 Mikes Harder Black Cherry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
             "placements": 1
           },
@@ -118138,8 +118153,23 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
+            "product": "8582 White Claw Hard Seltzer Ruby Grapefruit 4/6/12 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          },
+          {
+            "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
+            "brand": "White Claw",
+            "placements": 1
+          },
+          {
             "product": "86002 Mike's Hard Black Cherry Lemonade 4/6/12 oz Can",
             "brand": "Mike's Hard Lemonade",
+            "placements": 1
+          },
+          {
+            "product": "8619 White Claw Blackberry 4/6/12 oz Can",
+            "brand": "White Claw",
             "placements": 1
           },
           {
@@ -118150,38 +118180,38 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "brands": [
           {
-            "brand": "Cayman Jack",
-            "placements": 33
+            "brand": "White Claw",
+            "placements": 39
           },
           {
-            "brand": "White Claw",
-            "placements": 30
+            "brand": "Cayman Jack",
+            "placements": 34
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 12
+            "placements": 13
           },
           {
             "brand": "Mike's Harder",
-            "placements": 2
+            "placements": 3
           }
         ],
-        "skusHeld": 25
+        "skusHeld": 29
       },
       "Paul Mclaughlin": {
-        "placements": 16,
+        "placements": 18,
         "base": 51,
         "goal": 46,
-        "pct": 34.8,
-        "toGo": 30,
+        "pct": 39.1,
+        "toGo": 28,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 197.9,
+        "pctOfPace": 222.4,
         "products": [
           {
             "product": "8588 White Claw Hard Seltzer Black Cherry 2/12/12 oz Can",
             "brand": "White Claw",
-            "placements": 10
+            "placements": 12
           },
           {
             "product": "8580 White Claw Hard Seltzer Natural Lime 4/6/12 oz Can",
@@ -118212,7 +118242,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 16
+            "placements": 18
           }
         ],
         "skusHeld": 6
@@ -118522,14 +118552,14 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 6
       },
       "Shane Barreca": {
-        "placements": 153,
+        "placements": 157,
         "base": 471,
         "goal": 424,
-        "pct": 36.1,
-        "toGo": 271,
+        "pct": 37.0,
+        "toGo": 267,
         "retained": false,
         "hasGoal": true,
-        "pctOfPace": 205.3,
+        "pctOfPace": 210.4,
         "products": [
           {
             "product": "8585 White Claw Hard Seltzer Black Cherry 1/12/19.2 oz Can",
@@ -118582,13 +118612,18 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 7
           },
           {
+            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
+            "brand": "Cayman Jack",
+            "placements": 6
+          },
+          {
             "product": "8410 Mikes Hard Lemonade 4/6/11.2 oz Btl",
             "brand": "Mike's Hard Lemonade",
             "placements": 5
           },
           {
-            "product": "8550 Cayman Jack Margarita 4/6/11.2 oz Btl",
-            "brand": "Cayman Jack",
+            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 5
           },
           {
@@ -118607,11 +118642,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 5
           },
           {
-            "product": "8577 White Claw Hard Seltzer Surge Variety #1 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 4
-          },
-          {
             "product": "8586 White Claw Hard Seltzer Ruby Grapefruit 1/12/19.2 oz Can",
             "brand": "White Claw",
             "placements": 4
@@ -118624,6 +118654,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "8480 Mikes Harder Cranberry 1/12/23.5 oz Can",
             "brand": "Mike's Harder",
+            "placements": 3
+          },
+          {
+            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
+            "brand": "Mike's Hard Lemonade",
             "placements": 3
           },
           {
@@ -118652,13 +118687,13 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 2
           },
           {
-            "product": "86006 Mike's Hard Strawberry Lemonade 4/6/12 oz Can",
-            "brand": "Mike's Hard Lemonade",
+            "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
+            "brand": "Mike's Hard Dirty Lemonade",
             "placements": 2
           },
           {
-            "product": "86011 Mikes Hard Dirty Lemonade Variety 2/12/12 oz Can",
-            "brand": "Mike's Hard Dirty Lemonade",
+            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
+            "brand": "White Claw",
             "placements": 2
           },
           {
@@ -118702,11 +118737,6 @@ const PROGRAM_DATA_2026_09 = {
             "placements": 1
           },
           {
-            "product": "8628 White Claw Surge Variety #2 2/12/12 oz Can",
-            "brand": "White Claw",
-            "placements": 1
-          },
-          {
             "product": "8638 White Claw Surge Grape 1/12/19.2oz Can",
             "brand": "White Claw",
             "placements": 1
@@ -118720,7 +118750,7 @@ const PROGRAM_DATA_2026_09 = {
         "brands": [
           {
             "brand": "White Claw",
-            "placements": 115
+            "placements": 117
           },
           {
             "brand": "Mike's Harder",
@@ -118728,11 +118758,11 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "brand": "Cayman Jack",
-            "placements": 10
+            "placements": 11
           },
           {
             "brand": "Mike's Hard Lemonade",
-            "placements": 10
+            "placements": 11
           },
           {
             "brand": "Mike's Hard Dirty Lemonade",
@@ -118742,10 +118772,10 @@ const PROGRAM_DATA_2026_09 = {
         "skusHeld": 37
       }
     },
-    "houseTotal": 3334,
+    "houseTotal": 3443,
     "houseGoal": 7326,
     "houseBase": 8140,
-    "housePct": 45.5,
+    "housePct": 47.0,
     "repsRetained": 0,
     "repsWithGoal": 24,
     "periodStart": "2026-09-01",

@@ -3710,3 +3710,24 @@ this batch and still reads the 9/16 morning pull (999 / 1,610).
   goals retained  17 -> 19 across the roster; 0 of 24 reps hold every goal.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-16 SIXTH REFRESH -- MABI Fall actuals + Molson Coors retention (on + off)
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_7.csv data/mabi_retention_fall_goals.xlsx
+  python3 convert_mc_retention.py <On_Premise ... w_Goals_2.xlsx> <Off_Premise ... w_Goals_2.xlsx>
+  python3 generate.py
+MABI actuals: 660 product rows across 23 reps, reconciled against the frozen
+goals workbook (26 reps, house base 8,140 / goal 7,326); Default, Dylan
+Rubino and John O'Donoghue still have a goal and no 9/1-11/30 activity.
+House 3,334 -> 3,443 of 7,326 MADE placements (45.5% -> 47.0%), 0 of 24 reps
+at their 90% goal on day 16 of 91. Movers: Chris Payton 239 -> 258, Anthony
+Palmisano 319 -> 337, Klejdi Lamo 333 -> 351, Jayson Romine 332 -> 348,
+Pablo Lopez 77 -> 89 (25 -> 29 SKUs held).
+Molson Coors: the "Fall 2026" workbooks are the SAME August-October program
+re-pulled (README, 2026-09-04) -- sheets matched by premise since the report
+was renamed, same grouped tree, same 07/27-10/31 window; every rep, DM and
+report total reconciled, no (rep, brand) pair added or gone. Off-prem
+2,680 -> 2,697 of 2,912 placements, on-prem 728 -> 731 of 840 buyers, still
+31 of 100 brand goals retained and 24 reps with goals. Pablo Lopez's overall
+96.1% -> 100.0%, Anthony Palmisano 88.5% -> 90.6%, Robin Feldman on-prem
+62 -> 63 of 70 (90.0%).
+Hub cache tag bumped for the new program_data.js.
+
