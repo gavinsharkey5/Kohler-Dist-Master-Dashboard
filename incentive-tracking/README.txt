@@ -3664,3 +3664,25 @@ off, the export is the record). Evil Genius 339 -> 341 (+2).
                     (Klejdi Lamo 1 -> 3), $0 paid (qualifier-gated).
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-16 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
+Diffed row by row before the run. Montauk 1,334 -> 1,341 (+10, -3: Jaime
+Colonna's Madison Bar keg moved 9/16 -> 9/17, and Dylan Rubino's two Food
+Bazaar rows dated 9/15 fell off -- both were REORDERS, so no placement
+count moved); 2XO 71 -> 74 (+3); Other Half draft ("CORE DRAFT") onto
+other_half_on.csv 43 -> 46 (+3); Other Half off ("3 CORE SKUs OFF") onto
+other_half_off.csv 624 -> 677 (+54, -1: Jaime Colonna / Hoboken Vine Green
+Flowers restated 1 -> 2 units, same row otherwise).
+  Montauk      27 new placements and $445, unchanged; reorder counts and
+               case volume moved (Jaime Colonna 60 -> 68 cases, Dylan
+               Rubino 19 -> 14 on the dropped Food Bazaar rows).
+  2XO          0 -> 1 new off-premise pair: JIM HEANEY, 13008 Little Falls
+               Liquor, American Oak + French Oak (+ White Oak Rye) on 9/17,
+               $75 paid. 1 single-oak open still unpaid (pair rule).
+  Other Half   138 -> 149 off-premise accounts opened, $7,000 -> $7,600:
+               Jayson Romine 6 -> 10, John O'Donoghue 14 -> 16, Alex
+               Rodriguez 2 -> 3, Alisa Acciardi 11 -> 12, Andrew Lundy
+               13 -> 14, Michael Harboy 15 -> 16, Mike Ast 8 -> 9. On-prem
+               34 -> 36 accounts active in September (22 at the 1/3 bbl
+               floor), still not paid -- needs October's hold.
+Hub cache tag bumped for the new program_data.js.
+
