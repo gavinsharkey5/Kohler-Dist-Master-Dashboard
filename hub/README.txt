@@ -812,3 +812,26 @@ SHOW ALL / SHOW FEWER SITS TOP RIGHT (2026-09-16)
   listMore(key, rows) in its header. CSS: .lhead is the header row
   (flex, space-between, wraps on a narrow phone), .amore.top the toggle.
   The old .ar-more rule is gone with the under-list button.
+
+SALES SUPPORT ON THE HUB (2026-09-16, per Gavin)
+Adam Badalamenti (Sales Support, wines & spirits, no route) is on the hub for
+ONE program: the on-prem Bardstown menu MPO. He sits under Ashley Furman, who
+sits under Paul Deady -- Ashley is an orange sub-label (.dmlabel.sub) nested
+beneath Paul's names on the home screen, Adam the one name under her.
+Where it comes from: NOT incentive-tracking/programs.js (the tracker has
+nothing for him and he must not appear there). hub.js reads
+window.OnPremMPO.SUPPORT_REPS and the DM_GROUPS entry carrying `under` from
+MPOs/on-prem/programs.js, joins them onto the tracker's ROSTER / DM_GROUPS
+before its IIFE, and passes the result in as the IIFE's ROSTER / DM_GROUPS.
+Inside: supportAllows(rep, p) keeps a support rep to their named on-prem
+objectives in sortedForRep, incRows, rankings, programStats and the
+"not in this program" list; availability() is always ok for them (no route,
+any account counts); picking their name lands on the On-Premise tab; the rep
+page prints a role pill ("Sales Support · Wine & Spirits · reports to Ashley
+Furman · no assigned route"); the visit list says there is no route rather
+than "no eligible accounts". Program View's "eligible reps" tag uses
+M.rosterFor(objKey) so he pads only the Bardstown denominator.
+To add another support person: one SUPPORT_REPS entry + one DM_GROUPS line
+in MPOs/on-prem/programs.js (and generate_2026-09.py's SUPPORT_REPS if their
+placements need the off-premise bypass). Nothing in the hub changes.
+

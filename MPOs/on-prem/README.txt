@@ -263,6 +263,56 @@ All four are data-backed. Numbers as of the 2026-09-15 refresh (RDE exports run
 through 9/17): Bardstown 4 menu placements, Fever Tree 19 new placements (18 on
 the board -- see below), Carbliss 13 new buying accounts, HUSA 1 new draft line.
 
+2026-09-16 REFRESH -- Promos_Report_23 (Bardstown), no RDE exports
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_23.xlsx
+Report_23 held 13 rows: 9 BARDSTOWN BOURBON COMPANY, 4 YAVE TEQUILA (filtered
+out on the way in, as is_bardstown() does). 3 new archive rows, 6 already
+published: 8 -> 11 archive rows, all keeping a photo link. Fever Tree,
+Carbliss and HUSA were not re-pulled -- their counts hold at 19 / 13 / 1.
+BARDSTOWN MENU 4 -> 10: Allison Scott 1 -> 2 (19012 Bottagra Rest, Origin
+Bourbon on the cocktail list, 9/15), and ADAM BADALAMENTI 0 -> 5 -- new to the
+board, see SALES SUPPORT below. Robin Feldman 2 and Nick Melissari 1 hold.
+The merge warned of a WEEKDAY GAP: the archive's last row was 9/12 and this
+export's first new one 9/15, so nothing submitted on Monday 9/14 is on the
+board. Re-pull from 9/14 if that day was not simply quiet.
+
+SALES SUPPORT ON THIS BOARD (2026-09-16, per Gavin)
+Adam Badalamenti is Sales Support -- no route, no account base -- working the
+wines & spirits portfolio, and he is on this board for ONE objective only: the
+Bardstown menu placements. He reports to Ashley Furman under Paul Deady, and
+the promos export says the same (District Manager Paul Deady, Sales Manager
+Ashley Furman, role Sales Associate). What changed:
+  programs.js   ROSTER carries him; DM_GROUPS has {dm:'Ashley Furman',
+                under:'Paul Deady', reps:['Adam Badalamenti']}; SUPPORT_REPS
+                names his objectives (['bardstown_menu']) and his role label.
+                metricFor() answers {notScored:true, hidden:true} for any
+                other objective, so his card shows the one, his weighted %
+                is over that one ("Excludes 3 objectives outside this role"),
+                and rosterFor(objKey) keeps him out of the other objectives'
+                reps_total / reps_at_goal (28 eligible on Bardstown, 27
+                elsewhere).
+  guided.js     The chooser nests a group with `under` beneath its DM
+                (Ashley's header under Paul Deady's grid, .g-dm-sub);
+                Program View drops hidden rows and counts eligible reps
+                per objective; the rep head prints the role line. The
+                off-prem board loads the same file and has no `under`
+                groups, so it renders exactly as before.
+  generate_2026-09.py
+                SUPPORT_REPS mirrors the map. His iSellBeer name matches the
+                roster, and THE OFF-PREMISE ACCOUNT RULE IS BYPASSED FOR HIM
+                ONLY: both of his September submissions are liquor stores
+                (ShopRite Sparta #230105, Shop Rite Stanhope #191710), and
+                with no route his placements are wherever he made them.
+                Every bypassed row prints on the build ("KEPT for sales
+                support"). Kohler's 2026-08-07 rule is unchanged for every
+                rostered rep. This is the one ASSUMPTION in the change --
+                flagged to Gavin on 2026-09-16; if his off-premise photos are
+                not meant to score, delete "Adam Badalamenti" from
+                SUPPORT_REPS in generate_2026-09.py and he reads 0 of 5.
+The hub (hub/hub.js) reads SUPPORT_REPS and the `under` group from this
+programs.js, so he appears there the same way without touching the
+incentive tracker's roster. See hub/README.txt.
+
 2026-09-15 REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
   python3 generate_2026-09.py
 Every export is a clean superset of the 9/14 pull (diffed row by row before the

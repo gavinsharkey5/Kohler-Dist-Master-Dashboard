@@ -13,6 +13,12 @@
   },
   {
     "SALES_REP_ASSIGNED": "Anthony Palmisano",
+    "CUSTOMER_NUM": 8009,
+    "CUSTOMER_NAME": "Appio's Liquors",
+    "AREA": "Passaic"
+  },
+  {
+    "SALES_REP_ASSIGNED": "Anthony Palmisano",
     "CUSTOMER_NUM": 3001,
     "CUSTOMER_NAME": "Best Cellars (Wanaque)",
     "AREA": "Passaic-FF"
@@ -337,12 +343,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 44014,
-    "CUSTOMER_NAME": "Campbell's Wines & Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 43002,
     "CUSTOMER_NAME": "Checo Supermarket",
     "AREA": "Bergen"
@@ -429,12 +429,6 @@
     "SALES_REP_ASSIGNED": "Dan Lagala",
     "CUSTOMER_NUM": 46003,
     "CUSTOMER_NAME": "Palisades Park Liq(P)",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Dan Lagala",
-    "CUSTOMER_NUM": 54006,
-    "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
     "AREA": "Bergen"
   },
   {
@@ -1351,12 +1345,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 27063,
-    "CUSTOMER_NAME": "Archies (P)",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 77002,
     "CUSTOMER_NAME": "Birchwood Liq & Deli (Z)",
     "AREA": "Bergen"
@@ -1741,18 +1729,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20051,
-    "CUSTOMER_NAME": "Costambar Bar & Liquor Corp.",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 20062,
-    "CUSTOMER_NAME": "Intensity Lounge/Angie's Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 20070,
     "CUSTOMER_NAME": "Joe's Liquor (A)",
     "AREA": "Passaic"
@@ -1803,12 +1779,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 49082,
     "CUSTOMER_NAME": "Beverage Depot",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 83001,
-    "CUSTOMER_NAME": "Food Universe Marketplace",
     "AREA": "Bergen"
   },
   {

@@ -23,8 +23,23 @@
    (Close / On Track / Needs Attention) survives as the bar colour and the
    "pace" note, so nothing a rep read on the original page is contradicted.
    ==================================================================== */
-(function(){
+/* SALES SUPPORT ON THE HUB (2026-09-16, per Gavin). The hub's roster and DM
+   groups come from incentive-tracking/programs.js. A sales-support person
+   (Adam Badalamenti: no route, works the wines & spirits portfolio, scored on
+   the on-prem Bardstown menu objective only) is NOT added there -- the
+   incentive tracker has nothing for him -- but the hub shows him, under
+   Ashley Furman under Paul Deady, exactly as MPOs/on-prem/programs.js
+   defines him (SUPPORT_REPS + the DM_GROUPS entry with `under`). The two
+   are joined here and passed in as the IIFE's ROSTER / DM_GROUPS. */
+const HUB_SUPPORT = (window.OnPremMPO && window.OnPremMPO.SUPPORT_REPS) || {};
+const HUB_ROSTER = ROSTER.concat(Object.keys(HUB_SUPPORT).filter(r=>!ROSTER.includes(r)));
+const HUB_DM_GROUPS = DM_GROUPS.concat(((window.OnPremMPO && window.OnPremMPO.DM_GROUPS) || []).filter(g=>g.under && !DM_GROUPS.some(x=>x.dm===g.dm)));
+(function(ROSTER, DM_GROUPS){
 'use strict';
+// A support rep is in the hub for a named set of on-prem objectives only.
+const isSupport = rep => Object.prototype.hasOwnProperty.call(HUB_SUPPORT, rep);
+const supportAllows = (rep, p) => !isSupport(rep) || (p.type==='MPO' && p.source==='on' && HUB_SUPPORT[rep].objectives.includes(p.key));
+const roleLine = rep => isSupport(rep) ? `<div class="rep-role">${E(HUB_SUPPORT[rep].label||'Sales Support')}${HUB_SUPPORT[rep].manager?` · reports to ${E(HUB_SUPPORT[rep].manager)}`:''} · no assigned route</div>` : '';
 
 const $ = s => document.querySelector(s);
 const E = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -381,7 +396,7 @@ function makeMpo(scope, month, o){
   };
   p.ranking = function(){
     const D = data().DATA; if(!D || !o.hasData) return [];
-    const rows = ROSTER.map(rep=>{ const r = p.forRep(rep); return (r && r.status!=='unavailable' && availability(p, rep).ok) ? {rep, r} : null; }).filter(Boolean);
+    const rows = ROSTER.map(rep=>{ if(!supportAllows(rep, p)) return null; const r = p.forRep(rep); return (r && r.status!=='unavailable' && availability(p, rep).ok) ? {rep, r} : null; }).filter(Boolean);
     rows.sort((a,b)=> (b.r.pct-a.r.pct) || (b.r.valueNum-a.r.valueNum) || a.rep.localeCompare(b.rep));
     return rows.map((x,i)=>({rep:x.rep, rank:i+1, valueText:x.r.now, metricLabel:o.unit ? o.unit+'s' : 'progress',
                              pct:x.r.pct, status:x.r.status, pace:x.r.pace, board:null}));
@@ -480,6 +495,7 @@ const viewingPast = scope => mpoViewMonth(scope) !== mpoRepMonth(scope);
 // account of the program's premise at all. Provisional "yes" while an MPO
 // month is still loading.
 function availability(p, rep){
+  if(isSupport(rep)) return {ok:true};          // no route: any account counts
   if(p.type==='MPO' && !mpoMonthLoaded(p.source, p.monthKey)) return {ok:true};
   const A = accountsFor(p, rep);
   if(A.any) return {ok:true};
@@ -521,6 +537,7 @@ function sortedForRep(rep, cat){
   const rows = [];
   PROGRAMS.forEach(p=>{
     if(!inCategory(p, cat)) return;
+    if(!supportAllows(rep, p)) return;            // support: named objectives only
     if(p.type==='MPO' && p.monthKey!==mpoViewMonth(p.source)) return;  // one month at a time
     let r = p.forRep(rep);
     if(!r) return;
@@ -694,13 +711,17 @@ function screenHome(){
 function repListHtml(){
   const grouped = new Set(DM_GROUPS.flatMap(g=>g.reps));
   const other = ROSTER.filter(r=>!grouped.has(r));
-  const groups = DM_GROUPS.map(g=>({dm:g.dm, reps:g.reps.filter(r=>ROSTER.includes(r))}))
+  const groups = DM_GROUPS.map(g=>({dm:g.dm, under:g.under, reps:g.reps.filter(r=>ROSTER.includes(r))}))
     .concat(other.length ? [{dm:'Other', reps:other}] : [])
     .filter(g=>g.reps.length);
-  return groups.map(g=>`<div class="dmlabel">${E(g.dm)}</div>
-    <div class="namegrid">${g.reps.map(r=>
+  const grid = reps => `<div class="namegrid">${reps.map(r=>
       `<button class="name" data-act="pick-rep" data-rep="${E(r)}">${E(r)}<span class="ar">&#8594;</span></button>`
-    ).join('')}</div>`).join('');
+    ).join('')}</div>`;
+  // A group `under` another manager (sales support under a DM) nests beneath
+  // that DM's names, in the same orange, indented -- not a top-level group.
+  const tops = groups.filter(g=>!g.under || !groups.some(x=>x.dm===g.under));
+  return tops.map(g=>`<div class="dmlabel">${E(g.dm)}</div>${grid(g.reps)}` +
+    groups.filter(x=>x.under===g.dm).map(x=>`<div class="dmlabel dm-sub">${E(x.dm)}</div>${grid(x.reps)}`).join('')).join('');
 }
 
 /* ====================================================================
@@ -842,6 +863,7 @@ function incRows(rep){
   const rows = [];
   PROGRAMS.forEach(p=>{
     if(p.type!=='Incentive' || !isActive(p)) return;
+    if(!supportAllows(rep, p)) return;
     const r = p.forRep(rep); if(!r) return;
     if(isDollarProgram(r)) return;             // money is not a field metric
     if(!availability(p, rep).ok && r.status!=='unavailable') return;
@@ -904,6 +926,7 @@ function screenRepIncentives(rep){
   return `<div class="repview iview">
     <div class="rep-head">
       <div class="rep-title"><h1>${E(possessive(rep))} Incentives</h1>
+        ${roleLine(rep)}
         <div class="rep-sub">${plw(rows.length,'program')} across ${plw(groups.length,'supplier')} — everything on one page.</div>
         ${refreshedLine()}</div>
       ${tabbar(rep, 'inc')}
@@ -990,6 +1013,7 @@ function screenRep(){
       : `${plw(active.length,'active program')}${counts.ending?` · <strong>${counts.ending} ending soon</strong>`:''}`;
   let html = `<div class="rep-head">
     <div class="rep-title"><h1>${E(possessive(rep))} ${E(catMeta.label)}</h1>
+      ${roleLine(rep)}
       <div class="rep-sub">${subline}</div>
       ${refreshedLine()}</div>
     ${tabbar(rep, cat)}
@@ -1690,7 +1714,10 @@ function planParts(p, r, rep, opts){
   const rows = all ? plan.rows : plan.rows.slice(0, LIMIT);
   const n = Math.min(plan.rows.length, LIMIT);
   let go, step;
-  if(!plan.rows.length){
+  if(!plan.rows.length && isSupport(rep)){
+    go = 'No assigned route — any account you place it in counts.';
+    step = done ? 'Keep it up.' : 'Submit the menu photo in iSellBeer.';
+  } else if(!plan.rows.length){
     go = plan.hold ? 'No account list for this one.' : (plan.A.universe===0 ? 'No eligible accounts.' : 'Every eligible account already buys it.');
     step = plan.hold ? 'Hold every brand goal.' : (done ? 'Keep it up.' : 'Check with your manager.');
   } else if(plan.hold){
@@ -2144,6 +2171,7 @@ function programStats(p){
   const parts = [], pcts = [];
   let complete = 0, started = 0;
   ROSTER.forEach(rep=>{
+    if(!supportAllows(rep, p)) return;
     const r = p.forRep(rep); if(!r || r.status==='soon' || r.status==='unavailable' || !availability(p, rep).ok) return;
     parts.push(rep);
     if(r.status==='complete'||r.status==='exceeded') complete++;
@@ -2195,7 +2223,7 @@ function mpoProgramCardHtml(p){
       <div class="g-tags" style="margin:12px 0 0">
         <span class="g-tag weight">${Math.round((o.weight||0)*100)}% of MPO</span>
         ${o.goalLabel?`<span class="g-tag">Goal: ${E(o.goalLabel)}</span>`:''}
-        <span class="g-tag">${plw(M.ROSTER.length,'eligible rep')}</span>
+        <span class="g-tag">${plw((M.rosterFor ? M.rosterFor(o.key) : M.ROSTER).length,'eligible rep')}</span>
         ${g?`<span class="g-tag">${Math.round(g.total?(g.n/g.total)*100:0)}% at goal</span>`
            :`<span class="g-tag">${loaded?'Not tracked with data':'Loading…'}</span>`}
       </div>
@@ -2321,7 +2349,7 @@ function screenProgram(){
   const rank = loaded ? p.ranking() : [];
   const exp = loaded ? p.exposure() : null;
   const ag = (loaded && p.atGoal) ? p.atGoal() : null;
-  const notIn = loaded ? ROSTER.filter(rep=>!p.forRep(rep)) : [];
+  const notIn = loaded ? ROSTER.filter(rep=>supportAllows(rep, p) && !p.forRep(rep)) : [];
   return `<div class="detail pdetail">
     <button class="back" data-act="programs"><span class="ar">‹</span> Back to Program View</button>
     <div class="dhero">
@@ -2383,7 +2411,7 @@ document.addEventListener('click', e=>{
   switch(act){
     case 'home': openCards.clear(); state.showEnded = false; go({view:'home', rep:null, main:null, cat:null, prog:null, peek:null, from:null}); break;
     // Picking a name IS the whole landing step: open that rep's dashboard.
-    case 'pick-rep': { const who = t.dataset.rep, tab = lastTab();
+    case 'pick-rep': { const who = t.dataset.rep, tab = isSupport(who) ? 'on' : lastTab();   // support lands on the on-prem MPO
       openCards.clear(); state.showEnded = false;
       go({view:'rep', rep:who, cat:tab, main:tabOf(tab), month:null, prog:null, peek:null, from:null}); break; }
     case 'back-home': go({view:'home', prog:null, peek:null, from:null}); break;
@@ -2463,4 +2491,4 @@ function boot(){
 }
 window.KohlerHub = {state, programs:()=>PROGRAMS, sortedForRep, programStats, render, buyingFor, accountsFor, nextAccounts, closedFor};
 boot();
-})();
+})(HUB_ROSTER, HUB_DM_GROUPS);

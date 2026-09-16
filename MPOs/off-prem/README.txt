@@ -885,6 +885,32 @@ export; a per-rep cross-check then agreed exactly (101 accounts on each). A
 disagreement between this board's Keystone objective and the keystone-ice page
 means these two CSVs differ -- diff them first.
 
+2026-09-16 REFRESH -- all four exports, no Promos_Report for this board
+    python3 generate_2026-09.py
+Row counts: Constellation 122 (restated in place, values only up), Keystone
+183 -> 189, Fever Tree 2,094 -> 2,109, Wine & Spirits 2,626 -> 2,675. Diffed
+row by row before the run: Fever Tree +15/-0; Wine & Spirits +53/-4, the four
+"removed" rows being future-dated load sheets pushed back a day (Jayson
+Romine / USA Wine Traders Club of Newton 9/16 -> 9/17, Dan Lagala / Linwood
+Wine 9/15 -> 9/16), same accounts, same SKUs; Keystone +7/-1, the one drop
+being Anthony Palmisano / 8009 Appio's Liquors dated 9/15 -- a scheduled
+delivery that fell off, the case this README predicted ("if a delivery falls
+through the next pull drops it"). Promos_Report_23 came with this batch but
+is the on-prem Bardstown pull (9 Bardstown + 4 Yave rows, no Cooler Door
+Wrap), so the cooler-door archive was left alone at 33 stickers.
+  Constellation   971 -> 1,006 placements this fall against the same 1,628
+                  last fall; still 21 of 24 reps at 30%.
+  Keystone Ice    154 -> 159 distinct buying accounts, 6 of 26 reps at 40%.
+                  Same 189-row export onto keystone-ice/actuals.csv (sync
+                  rule); keystone-ice rebuilt first, then this board, then
+                  incentive-tracking.
+  Fever Tree      97 -> 98 new placements.
+  Wine & Spirits  213 -> 240 new placements.
+  Target lists    Keystone 339 -> 334; Fever Tree holds at 349.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule): Constellation Fall's Corona house 964 -> 999 of 1,610.
+
 2026-09-15 SECOND REFRESH -- Keystone only, riding the incentive-tracker refresh
 Keystone 175 -> 183 rows, a clean superset (diffed before the run: 8 rows
 added, none removed, none renamed). Nothing else on this board was re-pulled:

@@ -1886,7 +1886,7 @@
     "CUSTOMER_NUM": 54006,
     "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1906,7 +1906,7 @@
     "CUSTOMER_NUM": 54006,
     "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -1916,7 +1916,7 @@
     "CUSTOMER_NUM": 54006,
     "CUSTOMER_NAME": "Tenafly Fine Wine & Spirits",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3576,7 +3576,7 @@
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3616,7 +3616,7 @@
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3646,7 +3646,7 @@
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -3676,7 +3676,7 @@
     "CUSTOMER_NUM": 230427,
     "CUSTOMER_NAME": "ShopRite Wine & Spirits of Newton#830",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8206,7 +8206,7 @@
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8226,7 +8226,7 @@
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -8331,12 +8331,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "1177 Fever Tree Distillers Cola 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 80026,
+    "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
     "PRODUCT_NAME": "1179 Fever Tree Classic Margarita Mix 6/750 mL Btl",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 80026,
     "CUSTOMER_NAME": "Stew Leonard's(A) Paramus Wine",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {

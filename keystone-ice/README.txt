@@ -98,6 +98,12 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-16 REFRESH: actuals.csv onto the 189-row export (7 new rows, one
+dropped -- Anthony Palmisano / 8009 Appio's Liquors 9/15, a scheduled delivery
+that fell off). 154 -> 159 distinct buying accounts house-wide. Same export
+onto MPOs/off-prem/keystone_ice_24oz.csv in the same commit; off-prem and
+incentive-tracking rebuilt afterwards.
+
 2026-09-15 SECOND REFRESH: actuals.csv onto the 183-row export (8 new rows,
 none removed), 146 -> 154 distinct accounts, still 5 qualified and 2 at
 bonus, $530 -> $550 projected: PABLO LOPEZ 14 -> 16 of 12 (57% of 28) and

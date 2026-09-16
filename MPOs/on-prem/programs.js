@@ -32,9 +32,32 @@ const DM_GROUPS = [
   {dm:'Mike Engel', reps:['Chris Payton','Dan Lagala','Dave Ehlers','Phil Ernst']},
   {dm:'Mike Kennedy', reps:['Alex Rodriguez','Alisa Acciardi','Andrew Lundy','Dylan Rubino','Hakan Sadik','Jaime Colonna',"John O'Donoghue",'Michael Harboy']},
   {dm:'Paul Deady', reps:['Jayson Romine','Klejdi Lamo','Mike Ast','Shane Barreca']},
+  // SALES SUPPORT (2026-09-16, per Gavin): Ashley Furman sits UNDER Paul
+  // Deady, shown like a DM, with Adam Badalamenti under her. `under` is how
+  // the chooser (guided.js) and the hub nest this group beneath Paul's; every
+  // other consumer reads it as a flat group, so dmOf() still answers Ashley.
+  {dm:'Ashley Furman', under:'Paul Deady', reps:['Adam Badalamenti']},
 ];
 
-const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca"];
+// SALES SUPPORT: on the roster for a NAMED SET of objectives only. Adam
+// Badalamenti has no route and no account base; he works the wines & spirits
+// portfolio and is scored on Bardstown menu placements alone (per Gavin,
+// 2026-09-16). metricFor() answers notScored+hidden for anything else, so his
+// card shows the one objective, his weighted % is over that one, and he is
+// left out of the other objectives' rep counts and Program View tables.
+// generate_2026-09.py carries the same map for the build side.
+const SUPPORT_REPS = {
+  'Adam Badalamenti': {objectives:['bardstown_menu'], label:'Sales Support · Wine & Spirits', manager:'Ashley Furman'},
+};
+const isSupport = rep => Object.prototype.hasOwnProperty.call(SUPPORT_REPS, rep);
+const supportScored = (rep, objKey) => !isSupport(rep) || SUPPORT_REPS[rep].objectives.includes(objKey);
+// The reps an objective is scored over: the roster minus any support rep it
+// does not apply to. Drives reps_total / reps_at_goal and the hub's
+// "eligible rep" tag, so a one-objective rep never pads the other denominators.
+function rosterFor(objKey){ return ROSTER.filter(r=>supportScored(r, objKey)); }
+
+const ROSTER = ["Alex Rodriguez","Alisa Acciardi","Allison Scott","Andrew Lundy","Anthony Palmisano","Brian Sengebush","Chris Payton","Dan Lagala","Dave Ehlers","Derrick Laws","Dylan Rubino","Hakan Sadik","Jaime Colonna","Javier Melo","Jayson Romine","Jim Heaney","John O'Donoghue","Klejdi Lamo","Matt Powierski","Michael Harboy","Mike Ast","Nick Melissari","Pablo Lopez","Paul Mclaughlin","Phil Ernst","Robin Feldman","Shane Barreca",
+  "Adam Badalamenti"];   // sales support -- see SUPPORT_REPS below
 
 const OBJECTIVES_2026_07 = [
   {key:'carbliss', name:'Carbliss – (15) New Buying Accounts per Rep', shortName:'Carbliss', unit:'new account', weight:0.60, type:'new_accounts', hasData:true, goalLabel:'15 new accounts each'},
@@ -153,7 +176,8 @@ const PHOTO_COLS=[["photo","url"],["photo","link"],["photo"]];
 // classify(product_col=) and build_bardstown_menu().
 const SKU_COLS=[["product","name"]];
 
-function buildNewAccountsDataset(rows, target){
+function buildNewAccountsDataset(rows, target, roster){
+  roster = roster || ROSTER;
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS),
         dateCol=findCol(rows[0],DATE_COLS), flagCol=findCol(rows[0],NEWBUYER_COLS),
@@ -172,11 +196,12 @@ function buildNewAccountsDataset(rows, target){
     const qualLines=lines.filter(l=>l.new_buyer==="1");
     reps.push({rep, qualifying:qualLines.length, accounts:qualLines.map(l=>l.customer), lines});
   });
-  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
-  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+  const reps_at_goal=roster.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
 }
 
-function buildPlacementsDataset(rows, target){
+function buildPlacementsDataset(rows, target, roster){
+  roster = roster || ROSTER;
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), prodCol=findCol(rows[0],PRODUCT_COLS),
         custCol=findCol(rows[0],CUSTOMER_COLS), dateCol=findCol(rows[0],DATE_COLS),
@@ -195,8 +220,8 @@ function buildPlacementsDataset(rows, target){
     const count=lines.reduce((s,l)=>s+l.count,0);
     reps.push({rep, count, lines});
   });
-  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.count>=target:false;}).length;
-  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+  const reps_at_goal=roster.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.count>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
 }
 
 // Plain distinct-buying-account count per rep, no new-vs-repeat
@@ -204,7 +229,8 @@ function buildPlacementsDataset(rows, target){
 // where the source window IS the current month -- every row already
 // qualifies). Every line is marked new_buyer:"1" so it reuses
 // lineTableNewAccounts()'s rendering, just with a different flagLabel.
-function buildBuyerCountDataset(rows, target){
+function buildBuyerCountDataset(rows, target, roster){
+  roster = roster || ROSTER;
   if(!Array.isArray(rows)||!rows.length) return null;
   const repCol=findCol(rows[0],REP_COLS), custCol=findCol(rows[0],CUSTOMER_COLS), dateCol=findCol(rows[0],DATE_COLS);
   if(!repCol||!custCol) return null;
@@ -220,8 +246,8 @@ function buildBuyerCountDataset(rows, target){
     const distinct=new Set(lines.map(l=>l.customer));
     reps.push({rep, qualifying:distinct.size, accounts:[...distinct], lines});
   });
-  const reps_at_goal=ROSTER.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
-  return {target_per_rep:target, reps, reps_at_goal, reps_total:ROSTER.length};
+  const reps_at_goal=roster.filter(name=>{const r=reps.find(x=>x.rep===name);return r?r.qualifying>=target:false;}).length;
+  return {target_per_rep:target, reps, reps_at_goal, reps_total:roster.length};
 }
 
 const BUILDERS = {new_accounts: buildNewAccountsDataset, placements: buildPlacementsDataset, buyer_count: buildBuyerCountDataset};
@@ -310,19 +336,20 @@ async function loadMonthData(monthKey, baseDir){
       if(!res.ok) continue;
       const rows=await res.json();
       const builder=BUILDERS[t.builder];
+      const roster=rosterFor(t.objKey);
       if(t.dual){
         const subs=t.subs.map(s=>{
           const subRows=rows.filter(r=>String(r[t.brandField]||"").toLowerCase().includes(s.match));
-          const built=builder(subRows, s.target);
-          return {...s, ...(built||{reps:[],reps_at_goal:0,reps_total:ROSTER.length,target_per_rep:s.target})};
+          const built=builder(subRows, s.target, roster);
+          return {...s, ...(built||{reps:[],reps_at_goal:0,reps_total:roster.length,target_per_rep:s.target})};
         });
-        const reps_at_goal=ROSTER.filter(name=>subs.every(s=>{
+        const reps_at_goal=roster.filter(name=>subs.every(s=>{
           const r=s.reps.find(x=>x.rep===name);
           return r?r.qualifying>=s.target:false;
         })).length;
-        DATA[t.objKey]={subs, reps_at_goal, reps_total:ROSTER.length};
+        DATA[t.objKey]={subs, reps_at_goal, reps_total:roster.length};
       } else {
-        const built=builder(rows, t.target);
+        const built=builder(rows, t.target, roster);
         if(built) DATA[t.objKey]=built;
       }
       if(t.targetsFile && DATA[t.objKey]){
@@ -503,6 +530,9 @@ function unitFor(o, n){
 
 function metricFor(o, rep, DATA){
   if(!o.hasData || !DATA[o.key]) return null;
+  // A support rep is scored on their named objectives only; the rest do not
+  // apply (notScored) and stay off their card and out of the tables (hidden).
+  if(!supportScored(rep, o.key)) return {notScored:true, hidden:true};
   const d = DATA[o.key];
 
   if(o.type === 'dual'){
@@ -589,5 +619,5 @@ function atGoalFor(o, DATA){
   return {n: DATA[o.key].reps_at_goal, total: DATA[o.key].reps_total};
 }
 
-global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor};
+global.OnPremMPO = {ROSTER, DM_GROUPS, MONTHS, SUPPORT_REPS, rosterFor, loadMonthData, objPct, metricFor, detailFor, atGoalFor, unitFor};
 })(window);

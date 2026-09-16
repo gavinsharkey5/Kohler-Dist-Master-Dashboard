@@ -204,9 +204,20 @@ function stepHead(step, title, sub){
     (sub?'<div class="g-sub">'+sub+'</div>':'')+
   '</div>';
 }
+// The reps an objective is scored over: the roster minus anyone whose metric
+// marks the objective hidden (a support rep off it, 2026-09-16).
+function eligibleRoster(o){
+  return H.roster.filter(function(rep){ var m = H.metric(o, rep); return !(m && m.hidden); });
+}
 function dmOf(rep){
   var g = (H.dmGroups||[]).find(function(x){return x.reps.indexOf(rep)>=0;});
   return g ? g.dm : '';
+}
+// A role line for reps who are not route reps (sales support), supplied by
+// the host's supportReps map; '' for everyone else.
+function roleOf(rep){
+  var m = H.supportReps || {};
+  return (m[rep] && m[rep].label) || '';
 }
 
 /* ==================================================================
@@ -214,21 +225,31 @@ function dmOf(rep){
    ================================================================== */
 function screenRepPicker(){
   var roster = H.roster.slice();
-  var grouped = {};
+  var grouped = {}, order = [], under = {};
   (H.dmGroups||[]).forEach(function(g){
     var mine = g.reps.filter(function(r){return roster.indexOf(r)>=0;});
-    if(mine.length) grouped[g.dm] = mine.slice().sort();
+    if(!mine.length) return;
+    grouped[g.dm] = mine.slice().sort();
+    // A group `under` another manager (sales support under a DM, 2026-09-16)
+    // nests beneath that manager's grid instead of taking a top-level slot.
+    if(g.under){ (under[g.under] = under[g.under] || []).push(g.dm); } else { order.push(g.dm); }
   });
+  Object.keys(under).forEach(function(k){ if(order.indexOf(k)<0) order = order.concat(under[k]); });
   var seen = Object.keys(grouped).reduce(function(a,k){return a.concat(grouped[k]);},[]);
   var leftovers = roster.filter(function(r){return seen.indexOf(r)<0;}).sort();
-  if(leftovers.length) grouped['Other'] = leftovers;
+  if(leftovers.length){ grouped['Other'] = leftovers; order.push('Other'); }
 
-  var body = Object.keys(grouped).map(function(dm){
-    return '<div class="g-dm">'+esc(dm)+'</div>'+
-      '<div class="g-grid">'+grouped[dm].map(function(r){
-        return '<button class="g-name js-rep" data-rep="'+esc(r)+'">'+esc(r)+
-          '<span class="ar">&#8594;</span></button>';
-      }).join('')+'</div>';
+  var grid = function(names){
+    return '<div class="g-grid">'+names.map(function(r){
+      return '<button class="g-name js-rep" data-rep="'+esc(r)+'">'+esc(r)+
+        '<span class="ar">&#8594;</span></button>';
+    }).join('')+'</div>';
+  };
+  var body = order.map(function(dm){
+    return '<div class="g-dm">'+esc(dm)+'</div>'+grid(grouped[dm])+
+      (under[dm]||[]).map(function(sub){
+        return '<div class="g-dm g-dm-sub">'+esc(sub)+'</div>'+grid(grouped[sub]);
+      }).join('');
   }).join('');
 
   return '<div class="g g-fade">'+
@@ -249,7 +270,7 @@ function screenRepDetail(){
   var objs = H.objectives();
 
   var excluded = [];
-  if(w.notscored) excluded.push(pl(w.notscored,'objective')+' with no goal for this rep');
+  if(w.notscored) excluded.push(pl(w.notscored,'objective')+(roleOf(rep)?' outside this role':' with no goal for this rep'));
   if(w.nodata) excluded.push(pl(w.nodata,'objective')+' not tracked yet');
 
   var sums = [
@@ -265,7 +286,10 @@ function screenRepDetail(){
      s:'no activity recorded yet'}
   ];
 
-  var cards = objs.map(function(o){ return repObjectiveCard(o, rep); }).join('');
+  // An objective the metric marks hidden (a support rep's non-objective)
+  // is left off the card entirely -- "all he needs to see is that one".
+  var cards = objs.filter(function(o){ var m = H.metric(o, rep); return !(m && m.hidden); })
+    .map(function(o){ return repObjectiveCard(o, rep); }).join('');
 
   return '<div class="g g-fade">'+
     '<div class="g-actions">'+
@@ -274,7 +298,8 @@ function screenRepDetail(){
     '</div>'+
     stepHead(2, esc(first)+'’s MPO Progress',
       esc(H.scope)+' · '+esc(H.monthLabel())+
-      (dmOf(rep)?' · Sales manager: '+esc(dmOf(rep)):''))+
+      (dmOf(rep)?' · Sales manager: '+esc(dmOf(rep)):'')+
+      (roleOf(rep)?' · '+esc(roleOf(rep)):''))+
     '<div class="g-sum-grid">'+sums.map(function(k){
       return '<div class="g-sum"><div class="g-sum-l">'+k.l+'</div>'+
         '<div class="g-sum-n '+k.cls+'">'+k.n+'</div>'+
@@ -397,7 +422,7 @@ function programCard(o){
   var g = H.atGoal(o);
   var open = openProgram === o.key;
   var pct = H.programPct(o);
-  var eligible = H.roster.length;
+  var eligible = eligibleRoster(o).length;   // support reps off this objective do not count
 
   var head =
     '<button class="g-prog-head js-prog'+(open?' open':'')+'" data-key="'+esc(o.key)+'" '+
@@ -430,7 +455,7 @@ function programBody(o){
   var rows = H.roster.map(function(rep){
     var m = H.metric(o, rep);
     return {rep: rep, dm: dmOf(rep), m: m};
-  });
+  }).filter(function(r){ return !(r.m && r.m.hidden); });   // a support rep off this objective
   if(!rows.some(function(r){return r.m && !r.m.notScored;})){
     return '<div class="g-note">This objective isn’t being tracked with data yet. '+
       'Its goal and weight still count toward the month.</div>';

@@ -94,6 +94,22 @@ BARDSTOWN_EXCLUDED_ACCOUNTS = {
 LYTT_POS_PY = HERE.parent / "off-prem" / "generate_lytt_pos.py"
 CUSTOMER_BASE_CSV = HERE / "sales_reps_customer_base.csv"
 
+# SALES SUPPORT (2026-09-16, per Gavin). Adam Badalamenti is Sales Support --
+# no route, no account base -- who works the wines & spirits portfolio, and
+# he is on this board for ONE objective only: Bardstown menu placements.
+# He reports to Ashley Furman under Paul Deady (the promos export says the
+# same: District Manager Paul Deady, Sales Manager Ashley Furman). Because
+# he has no route, his placements are wherever he made them: BOTH of his
+# September submissions are at liquor stores (ShopRite Sparta #230105 and
+# Shop Rite Stanhope #191710, Off Premise on the customer base), so the
+# on-premise-only account rule that gates every other rep on this board is
+# NOT applied to him -- with it he would read 0 of 5 and the point of adding
+# him is lost. Every bypassed row is printed on the build. Kohler's rule
+# (2026-08-07) still holds for every rostered rep. programs.js carries the
+# same map (SUPPORT_REPS) so the page scores him on that one objective.
+SUPPORT_REPS = {"Adam Badalamenti": {"manager": "Ashley Furman", "under": "Paul Deady",
+                                     "objectives": ["bardstown_menu"]}}
+
 ROSTER = ["Alex Rodriguez", "Alisa Acciardi", "Allison Scott", "Andrew Lundy",
           "Anthony Palmisano", "Brian Sengebush", "Chris Payton", "Dan Lagala",
           "Dave Ehlers", "Derrick Laws", "Dylan Rubino", "Hakan Sadik",
@@ -359,7 +375,8 @@ def build_bardstown_menu(off_premise_ids):
     ws = openpyxl.load_workbook(BARDSTOWN_XLSX)["Report"]
     header = [c.value for c in ws[1]]
     idx = {h: i for i, h in enumerate(header) if h}
-    roster_by_lower = {r.lower(): r for r in ROSTER}
+    names = ROSTER + [r for r in SUPPORT_REPS if "bardstown_menu" in SUPPORT_REPS[r]["objectives"]]
+    roster_by_lower = {r.lower(): r for r in names}
     # ...and by SURNAME + first initial, for the nickname case. iSellBeer took
     # "Nicholas Melissari" on 2026-09-11; the roster (the RDE spelling) says
     # "Nick Melissari", so the exact-lowercase lookup below missed and his two
@@ -367,7 +384,7 @@ def build_bardstown_menu(off_premise_ids):
     # Only used when EXACTLY ONE roster name shares that surname and initial,
     # so it can never silently hand one rep another's photo.
     by_surname = {}
-    for r in ROSTER:
+    for r in names:
         parts = r.lower().split()
         if len(parts) >= 2:
             by_surname.setdefault((parts[-1], parts[0][0]), []).append(r)
@@ -376,6 +393,7 @@ def build_bardstown_menu(off_premise_ids):
 
     seen, out, mentions, submissions, skipped = set(), [], 0, set(), 0
     off_prem_skipped = []
+    support_off_prem = []
     excluded_accts = []
     for row in ws.iter_rows(min_row=2):
         vals = [c.value for c in row]
@@ -386,12 +404,6 @@ def build_bardstown_menu(off_premise_ids):
             skipped += 1
             continue
         acct_raw = str(vals[idx["Account #"]] or "").strip()
-        if acct_raw in off_premise_ids:
-            off_prem_skipped.append(f"{str(vals[idx['DBA']] or '').strip()} #{acct_raw}")
-            continue
-        if acct_raw in BARDSTOWN_EXCLUDED_ACCOUNTS:
-            excluded_accts.append(acct_raw)
-            continue
         raw_rep = str(vals[idx["Photo taker"]] or "").strip()
         # iSellBeer spells names its own way ("robin feldman"); the roster is
         # the RDE spelling. Unmatched names are kept as-is so they surface
@@ -404,6 +416,17 @@ def build_bardstown_menu(off_premise_ids):
                 aliased[raw_rep] = rep
             else:
                 rep = raw_rep          # kept as-is so it surfaces rather than vanishing
+        if acct_raw in off_premise_ids:
+            if rep in SUPPORT_REPS:
+                # No route: a support rep's placement counts wherever it was
+                # made (see SUPPORT_REPS). Logged, never silent.
+                support_off_prem.append(f"{rep} at {str(vals[idx['DBA']] or '').strip()} #{acct_raw}")
+            else:
+                off_prem_skipped.append(f"{str(vals[idx['DBA']] or '').strip()} #{acct_raw}")
+                continue
+        if acct_raw in BARDSTOWN_EXCLUDED_ACCOUNTS:
+            excluded_accts.append(acct_raw)
+            continue
         dt = str(vals[idx["Date/Time"]]).strip()
         acct = acct_raw
         brand = str(vals[idx["Brand"]] or "").strip()
@@ -432,13 +455,17 @@ def build_bardstown_menu(off_premise_ids):
     if aliased:
         print("  Bardstown menu: matched iSellBeer name(s) to the roster by surname -- "
               + ", ".join(f"{k!r} -> {v!r}" for k, v in sorted(aliased.items())))
-    unmatched = sorted({r["SALES_REP_ASSIGNED"] for r in out} - set(ROSTER))
+    unmatched = sorted({r["SALES_REP_ASSIGNED"] for r in out} - set(names))
     if unmatched:
         print(f"  Bardstown menu: WARNING -- {len(unmatched)} photo taker(s) match no roster rep "
               f"and their placements reach nobody: {unmatched}")
     for acct in sorted(set(excluded_accts)):
         print(f"  Bardstown menu: {excluded_accts.count(acct)} promo row(s) at #{acct} "
               f"excluded -- {BARDSTOWN_EXCLUDED_ACCOUNTS[acct]}")
+    if support_off_prem:
+        uniq = sorted(set(support_off_prem))
+        print(f"  Bardstown menu: {len(support_off_prem)} promo row(s) at off-premise account(s) "
+              f"KEPT for sales support (no route, per Gavin 2026-09-16): {', '.join(uniq)}")
     if off_prem_skipped:
         uniq = sorted(set(off_prem_skipped))
         print(f"  Bardstown menu: {len(off_prem_skipped)} promo row(s) at off-premise "
