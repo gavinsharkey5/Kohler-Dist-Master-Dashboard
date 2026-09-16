@@ -3628,3 +3628,18 @@ build_keystone_ice(). Constellation Fall Corona house 964 -> 999 of 1,610
 Modelo / Impact / Innovation not re-pulled. Keystone 154 -> 159 accounts,
 5 of 17 reps qualified. Nothing else on this page was re-pulled.
 
+2026-09-16 SECOND REFRESH -- 1911, Woodchuck, Tona (Keystone and Lytt re-sent, unchanged)
+Five exports came; two were byte-identical to what is published (Keystone
+189 rows, Lytt Launch 721 rows) and were left alone, so keystone-ice and
+the off-prem board were not rebuilt. The other three are clean supersets:
+1911 1,712 -> 1,729 rows, Woodchuck 524 -> 526, Tona 326 -> 330.
+  1911        286 -> 289 new placements: Anthony Palmisano 9 -> 11, Michael
+              Harboy 25 -> 26; case volume 972 -> 1,002 (Michael Harboy
+              55 -> 65, Klejdi Lamo 74 -> 79, Alisa Acciardi 57 -> 62).
+  Woodchuck   37 -> 38 new placements: Jaime Colonna 0 -> 1 (first one);
+              case volume 285 -> 287.
+  Tona        24oz placements hold at 13; 24oz cases 46 -> 53 (Hakan Sadik
+              5 -> 10, Dylan Rubino 6 -> 8), other cases 604 -> 609. Still
+              nobody at the qualifier.
+Hub cache tag bumped so the new program_data.js is picked up.
+
