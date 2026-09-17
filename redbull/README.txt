@@ -16,8 +16,8 @@ briefly and removed. Don't add it back without confirming that changed.
 THE TIERS an account climbs. Both are DERIVED in index.html (the TIERS
 list) and never written to data.csv, because each needs a COMBINATION
 rather than one purchase -- a tier requires EVERY category it lists:
-  Core   = Regular AND Free                 goal 155, currently 88
-  Core+  = Regular AND Free AND Flavor      goal  84, currently 49
+  Core   = Regular AND Free                 goal 155, currently 91
+  Core+  = Regular AND Free AND Flavor      goal  84, currently 53
            ("all 3" -- the finish line)
 
 Core+ accounts are a SUBSET of Core accounts, so the two tiers do not add
@@ -63,23 +63,28 @@ Files:
                   export as .csv or .xlsx.
   index.html      The page itself.
 
+2026-09-17 REFRESH -- RDE_Red_Bull_Tracker_Apr_1_Start_5.csv (1,827 rows,
+4/1 through 9/17, nothing dated ahead of the pull this time). Buying accounts
+hold at 197 -- no account joined or dropped -- but four existing accounts
+finished a tier: Free 96 -> 99, Flavor 62 -> 65, Core 88 -> 91, Core+ 49 -> 53.
+The 9/15-9/16 scheduled loads from the last pull all landed.
+
+The four that moved (all straight to Core+ except one already Core):
+  Anthony Palmisano  Bally Owen Golf Club   Regular only -> all 3
+  Anthony Palmisano  Black Bear Golf (A)    Regular only -> all 3
+  Paul Mclaughlin    Club Flamingo (A)      Regular+Flavor -> all 3 (+ Free)
+  Paul Mclaughlin    Tommy Fox's Pub Hse(P) Core -> all 3 (+ Flavor)
+
+Core+ leaderboard: Paul Mclaughlin takes the lead at 12, Nick Melissari and
+Allison Scott 11 each, Brian Sengebush 8, Robin Feldman 5, Anthony Palmisano 3.
+
 2026-09-14 REFRESH -- RDE_Red_Bull_Tracker_Apr_1_Start_4.csv (1,764 rows,
-4/1 through 9/16). One account joins and nothing was lost: 196 -> 197 buying
-accounts, Regular 184 -> 185, Free and Flavor unchanged at 96 and 62. The new
-one is Paul Mclaughlin's Shoti Bread House #81002, a Regular-only first order.
-
-BOTH TIERS HOLD: Core 88 of 155, Core+ 49 of 84, with no account gaining or
-losing a tier. That is the arithmetic, not a stale file -- a Regular-only
-account is two categories short of Core+, so a new buyer moves the account
-count without moving either tier. Core+ leaderboard unchanged: Nick Melissari
-and Allison Scott 11 each, Paul Mclaughlin 10, Brian Sengebush 8.
-
-NINE ROWS ARE DATED AHEAD of the pull (9/15 and 9/16 -- Paul Mclaughlin's
-Players Club and Shoti Bread House, five of Allison Scott's, one of Nick
-Melissari's). Scheduled load sheets, the same thing every RDE export carried
-this week; they are left in because the export is the record. Only one of them
-opens a new account, so if that delivery falls through the next pull drops the
-account count back to 196 by itself.
+4/1 through 9/16). One account joined and nothing was lost: 196 -> 197 buying
+accounts, Regular 184 -> 185, Free and Flavor unchanged at 96 and 62. Core
+88 of 155, Core+ 49 of 84 held -- a Regular-only account is two categories
+short of Core+, so a new buyer moves the account count without moving either
+tier. Nine rows were dated ahead of that pull (scheduled load sheets); all
+of them landed by the 9/17 export.
 
 To refresh with a new export:
   1. Re-export the RDE Red Bull Tracker report.
