@@ -866,23 +866,3 @@ v17, 2026-09-17 -- MONTAUK ON REP PAGES
   gets no card ("not in this program"), the way a rep outside a Core
   Market program does. No hub code changed beyond SELL_ASK / PROGRAM_BRANDS
   / INC_CHANNEL entries for the two keys.
-
-v18, 2026-09-17 -- MPO REP CARDS BACK TO THE SEPT 11 MORNING LAYOUT
-  Gavin: "revert the off and on premise cards for each rep on the HUB
-  dashboard as the old way it was displayed. the simpler view ... do not
-  touch on off prem dashboards." Asked which version: the Sept 11 morning
-  one. mpoRepCard() and mpoRepCardDetail() are restored verbatim from
-  c052386 (v13, 2026-09-11 18:04): Current / Goal / Still Needed figures,
-  the bar, "Potential accounts · N" with the top three on the collapsed
-  card, and one expander that opens the full list plus the qualifying
-  brands, account-base counts, rules and "Already credited" panels. The
-  only edit on the way back is the rules list going through repRulesHtml()
-  so v15's no-dollar rule still holds. The v14 two-expander layout
-  ("View Current-Period Distribution" / "View Potential Accounts") stays in
-  the file for incentive cards and Manager Mode; only Rep Mode MPO cards
-  changed. Every later fix rides along untouched (targets keyed by account
-  number, the dropped why/cases columns, sales-support reps, month
-  history). MPOs/on-prem and MPOs/off-prem were not touched. Verified
-  headless on Chris Payton's off-prem tab and Allison Scott's on-prem tab,
-  collapsed and expanded, zero "$" figures, no horizontal scroll at 390px.
-  Cache tag 20260917l.

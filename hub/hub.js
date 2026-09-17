@@ -1882,21 +1882,9 @@ function mpoTargetRowHtml(a){
     `${meta?`<div class="mt-meta">${E(meta)}</div>`:''}</li>`;
 }
 const MT_PREVIEW = 3;
-/* ====================================================================
-   v18, 2026-09-17 -- MPO REP CARDS BACK TO THE SEPT 11 MORNING LAYOUT
-   Gavin: "revert the off and on premise cards for each rep on the HUB
-   dashboard as the old way it was displayed. the simpler view." This is
-   mpoRepCard() / mpoRepCardDetail() exactly as they stood at c052386
-   (v13, 2026-09-11 18:04): figures, bar, the top three potential accounts
-   on the collapsed card, one expander that opens the full list plus the
-   brands / account-base / rules / credited panels. The v14 "two sections
-   per card" layout (Current-Period Distribution + Potential Accounts
-   expanders) stays in the file for the incentive cards and Manager Mode;
-   only Rep Mode MPO cards use this. The MPO dashboards are untouched.
-   ==================================================================== */
 function mpoRepCard(p, r, rep){
   const soon = r.status==='soon';
-  const open = openCards.has(p.id);
+  const sec = cardSec[p.id] || null;
   const o = p.objective;
   const sup = `${E(p.supplier)} · ${E(p.channelLabel)}`;
   const ends = E(endsLabel(p.period));   // already reads "Ends Sep 30 · 19 days left" 
@@ -1913,6 +1901,7 @@ function mpoRepCard(p, r, rep){
       <div class="mcard-ends">${ends}</div></div></article>`;
   }
 
+  if(isDollarProgram(r)) return '';            // money is not a field metric
   const N = mpoNums(r);
   const met = N ? N.need===0 : (r.status==='complete' || r.status==='exceeded');
   const unit = o.unit ? (o.unit + ((N ? N.need : 0)===1 ? '' : 's')) : '';
@@ -1935,41 +1924,44 @@ function mpoRepCard(p, r, rep){
   // A card already at goal does not need three account rows shouting at a
   // rep who has nothing left to close -- it keeps the count and the expander
   // (you can still keep building) and gives back the vertical space.
-  const preview = targets===null
-    ? `<div class="mt-note">Loading accounts…</div>`
-    : !targets.length
-      ? `<div class="mt-note">No potential accounts currently identified.</div>`
-      : (met && !open)
-        ? `<div class="mt-note">Goal met — ${plw(nT,'account')} still open if you want to keep building.</div>`
-        : `<ul class="mt-list">${targets.slice(0, open ? targets.length : MT_PREVIEW).map(mpoTargetRowHtml).join('')}</ul>`;
+  // Same shape as an incentive row: the numbers, the bar, then two
+  // collapsed sections. No inline preview -- it made the card tall and
+  // duplicated the section a tap away (per Gavin, 2026-09-11).
+  const dist = distFor(p, rep);
+  const counts = {dist: dist.length || null, targets: targets===null ? null : targets.length};
+  const loading = targets===null ? `<div class="mt-note">Loading accounts…</div>` : '';
 
-  const hint = !targets || !targets.length
-    ? (open ? 'Hide details' : 'View details')
-    : open ? 'Hide accounts' : `View potential accounts (${nT})`;
-  // The expander sits ON the accounts heading, where a rep is already
-  // looking, instead of down in the footer (per Gavin, 2026-09-11).
-  const headRow = `<div class="mt-head"><span class="mt-head-t">${targets&&targets.length?`Potential accounts · ${nT}`:'Program details'}</span>
-      <span class="mcard-more">${E(hint)}<span class="mcard-ar">${open?'▴':'▾'}</span></span></div>`;
-
-  return `<article class="mcard${open?' open':''}${met?' met':''}" id="card-${E(p.id)}">
-    <button class="mcard-head" data-act="toggle-card" data-prog="${E(p.id)}" aria-expanded="${open?'true':'false'}">
+  return `<article class="mcard${sec?' open':''}${met?' met':''}" id="card-${E(p.id)}">
+    <div class="mcard-head">
       <div class="mcard-name">${E(o.name)}</div>
       <div class="mcard-sup">${sup}</div>
       ${figures}
       ${bar}
-      ${headRow}
-      ${preview}
+      ${loading}
+      ${secLinks(p, sec, counts)}
       <div class="mcard-foot"><span class="mcard-ends">${ends}</span></div>
-    </button>
-    ${open ? `<div class="mcard-body">${mpoRepCardDetail(p, r, rep)}</div>` : ''}
+    </div>
+    ${sec ? `<div class="mcard-body">${mpoRepCardDetail(p, r, rep, targets, dist, sec)}</div>` : ''}
   </article>`;
 }
 // Everything that is not one of the four questions lives here.
-function mpoRepCardDetail(p, r, rep){
+function mpoRepCardDetail(p, r, rep, targets, dist, which){
   const o = p.objective;
   const A = mpoMonthLoaded(p.source, p.monthKey) ? accountsFor(p, rep) : null;
-  const closed = closedFor(p, rep);
-  const sec = (title, body) => body ? `<div class="msec"><div class="msec-h">${E(title)}</div>${body}</div>` : '';
+  const sec = (title, body, right) => body ? `<div class="msec"><div class="msec-h${right?' lhead':''}"><span>${E(title)}</span>${right||''}</div>${body}</div>` : '';
+  const key = p.id+'|'+which;
+  const tail = `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
+  if(which==='dist'){
+    const rc = reconLine(p, r, dist);
+    return sec(`Credited in ${E(periodLabel(p.period))}`,
+      `<div class="recon${rc.ok?' ok':''}">${rc.t}</div>` + acctList(key, ACCT_COLS.dist, dist), listMore(key, dist)) + tail;
+  }
+  if(which==='targets'){
+    return sec(`Potential accounts${(targets&&targets.length)?' · '+targets.length:''}`,
+      (targets && targets.length) ? acctList(key, ACCT_COLS.targets, targets)
+        : `<div class="mt-note">No potential accounts currently identified.</div>`,
+      listMore(key, targets||[])) + tail;
+  }
   const counts = A ? `<ul class="mkv">
       <li><span>In your book, this premise</span><span>${A.universe}</span></li>
       <li><span>Eligible, not buying yet</span><span>${A.eligible.length}</span></li>
@@ -1979,15 +1971,8 @@ function mpoRepCardDetail(p, r, rep){
   const brands = (A && !A.any && A.families.length)
     ? `<div class="mtext">${E(A.families.join(' · '))}</div>`
     : (A && A.any ? `<div class="mtext">Any brand counts toward this objective.</div>` : '');
-  const rules = repRulesHtml(p, 'mbul');   // v15: no dollar figures in Rep Mode
-  const done = closed.length
-    ? `<ul class="mdone">${closed.slice(0,15).map(x=>`<li><span class="md-c">${E(x.customer)}</span><span class="md-p">${E(x.product||'')}</span><span class="md-d">${E(x.date||'')}</span></li>`).join('')}${closed.length>15?`<li class="md-more">+ ${closed.length-15} more</li>`:''}</ul>`
-    : `<div class="mtext quiet">Nothing credited to you on this objective yet.</div>`;
-  return sec('Qualifying brands', brands)
-    + sec('Your account base', counts)
-    + sec('How it is scored', rules)
-    + sec(`Already credited${closed.length?' · '+closed.length:''}`, done)
-    + `<div class="msec"><a class="mlink" href="${E(MPO_SCOPES[p.source].page)}#rep=${encodeURIComponent(rep)}&month=${E(p.monthKey)}">Open on the ${E(p.channelLabel)} MPO tracker</a></div>`;
+  const rules = repRulesHtml(p, 'mbul');
+  return sec('Qualifying brands', brands) + sec('Your account base', counts) + sec('How it is scored', rules) + tail;
 }
 
 function programCard(p, r, rep){
