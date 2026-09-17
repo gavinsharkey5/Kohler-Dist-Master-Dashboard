@@ -1,9 +1,9 @@
 {
-  "start": "2026-06-01",
+  "start": "2026-07-01",
   "end": "2026-09-30",
-  "label": "Jun 1 \u2013 Sep 30, 2026",
+  "label": "Jul 1 \u2013 Sep 30, 2026",
   "export_rows": 1158,
-  "rows_in_period": 1158,
+  "rows_in_period": 841,
   "export_first_date": "2026-06-01",
   "export_last_date": "2026-09-17"
 }

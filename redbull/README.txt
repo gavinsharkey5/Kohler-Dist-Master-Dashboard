@@ -96,47 +96,44 @@ To refresh with a new export:
      generate.py.
   4. Commit and push.
 
-BUYING PERIOD: JUNE 1 - SEPTEMBER 30, 2026 (Gavin, 2026-09-17)
+BUYING PERIOD: JULY 1 - SEPTEMBER 30, 2026 (Gavin, 2026-09-17)
 The tracker counted every order from the export's first day (the RDE
 report is pulled "Apr 1 Start"), so an account that bought once in April
 and never again still read as buying. The window is now PERIOD_START /
-PERIOD_END in generate.py (2026-06-01 to 2026-09-30, inclusive): rows
+PERIOD_END in generate.py (2026-07-01 to 2026-09-30, inclusive): rows
 dated outside it are dropped on the build and the counts printed
-("kept N, dropped N before the window and N after it"). The export must
-carry its date column (the first header containing "date"); the build
-refuses to run without one rather than quietly count April again.
+("kept N, dropped N before the window and N after it"). The export can
+start earlier -- the script does the cutting -- and it must carry its date
+column (the first header containing "date"); the build refuses to run
+without one rather than quietly count April again.
 generate.py also writes period.json (start, end, label, how many export
 rows fell inside) and index.html shows it as a "Buying period" pill under
 the title plus a line in the lede and footer. No period.json = no pill,
 so the page never claims a window the data was not built with.
-    python3 generate.py EXPORT.csv                      Jun 1 - Sep 30
-    python3 generate.py EXPORT.csv --start 2026-07-01   Jul 1 - Sep 30
+    python3 generate.py EXPORT.csv                      Jul 1 - Sep 30
     python3 generate.py EXPORT.csv --start 2026-10-01 --end 2026-12-31
                                                         next period
-WHY JUNE, NOT JULY: the ask on 2026-09-17 was "July August and September",
-and the code went in with a July 1 start. The export Gavin then pulled for
-it (RDE_Red_Bull_Tracker_Apr_1_Start_6.csv, 1,158 rows) runs 6/1 through
-9/17 and came with "here is updated file for just june july sept", so the
-board follows the file: June 1 start. If July was meant, run the line
-above with --start 2026-07-01 and set PERIOD_START to match -- the
-July-start build of the same export reads 161 buying accounts, Core 63,
-Core+ 34 (Paul Mclaughlin 10, Allison Scott 8, Nick Melissari 6, Brian
-Sengebush 3, Robin Feldman 4, Anthony Palmisano 2, Dan Lagala 1).
+JUNE WAS BRIEFLY IN: the 9/17 export ran from June 1 with the note "just
+june july sept", so one build (commit 6ea9fa0) counted June and read 177
+accounts / Core 71 / Core+ 38. Gavin the same day: "make this start in
+july ignore june my apologies" -- July 1 it is, and June rows are dropped
+on every build from here.
 
 2026-09-17 REBUILD FOR THE BUYING PERIOD -- RDE_Red_Bull_Tracker_Apr_1_Start_6.csv
   python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start_6.csv
-1,158 rows, 6/1 through 9/17, all inside the window (317 June, 345 July,
+1,158 rows, 6/1 through 9/17; 317 June rows dropped, 841 kept (345 July,
 293 August, 203 September). Against the April-start board: buying accounts
-197 -> 177, Core 91 -> 71, Core+ 53 -> 38. Twenty accounts left the board
-(April-May-only buyers) and none joined -- the drop IS the change, not a
-bad build. Core+ by rep: Paul Mclaughlin 12 -> 10, Allison Scott 11 -> 9,
-Nick Melissari 11 -> 6, Brian Sengebush 8 -> 4, Robin Feldman 5, Anthony
-Palmisano 3, Dan Lagala 1 hold; Javier Melo and Pablo Lopez 1 -> 0 (their
-all-three account bought a category only before June). Goals in goals.csv
-(Core 155, Core+ 84, Overall 239) are untouched -- Kohler set them, and
-whether they move with the shorter window is Kohler's call.
+197 -> 161, Core 91 -> 63, Core+ 53 -> 34. Thirty-six accounts left the
+board (April-June-only buyers) and none joined -- the drop IS the change,
+not a bad build. Core+ by rep: Paul Mclaughlin 12 -> 10, Allison Scott
+11 -> 8, Nick Melissari 11 -> 6, Brian Sengebush 8 -> 3, Robin Feldman
+5 -> 4, Anthony Palmisano 3 -> 2, Dan Lagala 1 holds; Javier Melo and
+Pablo Lopez 1 -> 0 (their all-three account bought a category only before
+July). Goals in goals.csv (Core 155, Core+ 84, Overall 239) are untouched
+-- Kohler set them, and whether they move with the shorter window is
+Kohler's call.
 
-NOTE: the export must cover the whole buying period (Jun 1 on).
+NOTE: the export must cover the whole buying period (Jul 1 on).
 generate.py REBUILDS data.csv from whatever file it's handed -- it does
 not merge -- so a partial/current-week export would silently drop every
 account outside its window.

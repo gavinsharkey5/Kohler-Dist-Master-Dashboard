@@ -19,11 +19,10 @@ each one requires a combination rather than a single purchase:
     Core  = Regular AND Free
     Core+ = Regular AND Free AND Flavor   (the "all 3" account)
 
-BUYING PERIOD (Gavin, 2026-09-17): June 1 through September 30, 2026 --
-asked for as "July, August and September" first, then the export he
-pulled for it ran from June 1 with the note "just june july sept", so the
-window follows the file (the July-start figures are in README.txt if
-that reading was wrong). The tracker used to count every order from the
+BUYING PERIOD (Gavin, 2026-09-17): July 1 through September 30, 2026.
+The export he pulls for it may start earlier (the 9/17 file ran from
+June 1) -- June rows are dropped here, per Gavin the same day ("start in
+july, ignore june"). The tracker used to count every order from the
 export's first day (the RDE report is pulled "Apr 1 Start"), so an
 account that bought once in April and never again still read as buying. Now only rows dated inside
 PERIOD_START..PERIOD_END count -- the export can still be pulled from
@@ -58,7 +57,7 @@ OUT_CSV = HERE / "data.csv"
 OUT_PERIOD = HERE / "period.json"
 
 # The buying period. Inclusive on both ends.
-PERIOD_START = date(2026, 6, 1)
+PERIOD_START = date(2026, 7, 1)
 PERIOD_END = date(2026, 9, 30)
 
 # Product names WITHOUT the leading product number -- new flavors get new
