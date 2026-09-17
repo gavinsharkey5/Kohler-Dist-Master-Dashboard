@@ -3758,3 +3758,32 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-17 REFRESH -- Other Half (draft + off), no other exports
+  python3 generate.py
+Diffed row by row before the run. Other Half draft ("CORE DRAFT 1st HALF")
+onto other_half_on.csv 46 -> 50 (+4, none removed: Andrew Lundy / Millburn
+Standard Broccoli and a -1 Forever Ever return 9/17, Michael Harboy / DOUGH
+9/17, Paul Mclaughlin / Eleven Central 9/18 -- future-dated on a 9/17 pull,
+kept as always). Other Half off ("3 CORE SKUs OFF") onto other_half_off.csv
+677 -> 704 (+33, -6: Jaime Colonna's two Central Ave Liquors rows dated 9/16
+and Jayson Romine's Super Saver Forever Ever row 9/17 fell off, and his three
+White Deer Inn rows moved 9/23 -> 9/17). None of the six moved an account:
+Central Ave still stands on its other SKUs (2 -> 2 SKUs shown), Super Saver
+holds at 5, White Deer Inn at 3.
+  Other Half   149 -> 153 off-premise accounts opened, $7,600 -> $7,790:
+               Dylan Rubino 6 -> 7 (Waterfront Wine & Liq), Jayson Romine
+               10 -> 11 (The Right Bottle), Klejdi Lamo 8 -> 9 (Kingston
+               Liquors), Michael Harboy 16 -> 17 (Wine Village). On-prem
+               36 -> 37 accounts active in September (Michael Harboy's
+               DOUGH), 22 at the 1/3 bbl floor, still not paid -- needs
+               October's hold.
+THE PROGRAM HAD FALLEN OFF THE HUB'S REP PAGES (Gavin, 2026-09-17: "the
+program fell off and the reps need to see where they stand"). Not a data
+problem -- program_data.js carried every rep -- but hub/hub.js's
+isDollarProgram() hid any incentive whose summary text carried a "$", and
+Other Half's PROGRAM_SUMMARY sub reads "$7,790 earned" (the only rule that
+puts money in the sub). Fixed in the hub (v16): the test now reads the
+metric only, and Rep Mode drops the money sub. This file's PROGRAM_SUMMARY
+is unchanged, so the tracker page still shows the dollars. See hub/README.txt.
+Hub cache tag bumped for the new program_data.js and hub.js.
+

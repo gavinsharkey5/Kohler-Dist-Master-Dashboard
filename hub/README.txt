@@ -837,3 +837,16 @@ To add another support person: one SUPPORT_REPS entry + one DM_GROUPS line
 in MPOs/on-prem/programs.js (and generate_2026-09.py's SUPPORT_REPS if their
 placements need the off-premise bypass). Nothing in the hub changes.
 
+v16, 2026-09-17 -- OTHER HALF BACK ON REP PAGES
+  Gavin: "the program fell off and the reps need to see where they stand."
+  isDollarProgram() (v14) hid any incentive whose summary carried a "$",
+  reading the headline, goal, still-needed AND the one-line sub. Other Half
+  is a field metric ("N accounts opened") whose sub is money ("$7,790
+  earned") -- the only rule in the tracker's PROGRAM_SUMMARY that puts a
+  dollar figure in the sub -- so the whole program vanished from Rep Mode
+  and its tab count. Now: the test reads the metric only (now / goal /
+  remain), and subNoMoney() / repSub() drop a money segment from the sub in
+  Rep Mode (the card falls back to "So far"). Manager Mode and both trackers
+  are untouched and still print the dollars. Montauk, whose HEADLINE is
+  money, stays off rep pages as before. Verified headless on three rep pages:
+  Other Half listed, tab count up by one, zero "$" figures in Rep Mode.

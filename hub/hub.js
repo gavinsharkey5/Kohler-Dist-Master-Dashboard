@@ -1351,7 +1351,12 @@ function closedFor(p, rep){
 // Gavin does not want dollars on the rep page. Read off the tracker's own
 // summary text, so a new dollar program disappears without a code change --
 // the trackers themselves and Manager Mode keep every figure.
-const isDollarProgram = r => !!r && /\$/.test([r.now, r.goal, r.remain, r.sub].filter(Boolean).join(' '));
+// v16, 2026-09-17: judged on the METRIC (headline, goal, still-needed), not
+// the one-line sub under it. Other Half's headline is "N accounts opened" --
+// a field metric -- but its sub reads "$7,790 earned", and testing the sub
+// took the whole program off every rep's page (Gavin: "the program fell
+// off"). The sub is scrubbed for Rep Mode by subNoMoney() below instead.
+const isDollarProgram = r => !!r && /\$/.test([r.now, r.goal, r.remain].filter(Boolean).join(' '));
 
 /* ---- v15, 2026-09-14 -- NO DOLLAR FIGURES IN REP MODE ----------------
    Gavin: "remove any $ figures that have to do with the hub dashboard. i
@@ -1415,6 +1420,15 @@ function ruleNoMoney(s){
   if(!label) out = out.charAt(0).toUpperCase() + out.slice(1);
   return (label + out).trim();
 }
+// The one-line sub under a headline ("$7,790 earned", "12 cases · $180").
+// Segment by segment: a money segment is dropped, and when nothing is left
+// the card falls back to its own caption ("So far"). Rep Mode only -- see
+// repSub(); Manager Mode shows the tracker's line as written.
+function subNoMoney(s){
+  if(!hasMoney(s)) return s || '';
+  return String(s).split('\u00b7').map(x=>x.trim()).filter(x=>x && !hasMoney(x)).join(' \u00b7 ');
+}
+const repSub = r => isMgr() ? (r.sub || '') : subNoMoney(r.sub);
 // The next-move line is a whole sentence (and carries <strong> markup), so it
 // is scrubbed in place rather than reshaped into a fragment.
 function nextNoMoney(s){
@@ -2016,7 +2030,7 @@ function programCard(p, r, rep){
   const body = !open ? '' : !isMgr() ? `<div class="pcard-body">${cardPlan(p, r, rep)}</div>` : `<div class="pcard-body">
       <div class="pcard-meta">${typeChips(p)}<span class="chip sup">${E(p.supplier)}</span><span class="chip">📅 ${E(p.period.label)}</span><span class="chip">Data ${E(p.refreshed ? 'refreshed '+p.refreshed : 'loading…')}</span></div>
       ${r.next && !soon ? `<div class="next"><span class="next-l">Next</span><span class="next-t">${r.next}</span></div>` : ''}
-      ${r.sub && !soon ? `<div class="psub">${E(r.sub)}</div>` : ''}
+      ${repSub(r) && !soon ? `<div class="psub">${E(repSub(r))}</div>` : ''}
       ${accountsPanel(p, rep)}
       <div class="pcard-actions"><button class="fullbtn" data-act="open" data-prog="${E(p.id)}">Full program details <span class="ar">›</span></button></div>
     </div>`;
@@ -2039,7 +2053,7 @@ function programCard(p, r, rep){
 function screenDetailRep(p, r, rep, back){
   const soon = r.status==='soon';
   const big = soon ? '—' : (r.openEnded ? r.now : Math.round(r.pct)+'%');
-  const cap = soon ? (r.loading ? 'Loading…' : 'Nothing to count yet') : (r.openEnded ? (r.sub || 'So far') : 'of your goal');
+  const cap = soon ? (r.loading ? 'Loading…' : 'Nothing to count yet') : (r.openEnded ? (repSub(r) || 'So far') : 'of your goal');
   const tl = soon ? null : p.timeline(rep);
   return `<div class="detail">
     ${back}
@@ -2054,7 +2068,7 @@ function screenDetailRep(p, r, rep, back){
     </div>
     <div class="dfacts three">
       <div class="dfact"><span class="dfact-l">Your goal</span><span class="dfact-v">${E(r.goal||'—')}</span></div>
-      <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${r.sub?`<span class="dfact-s">${E(r.sub)}</span>`:''}</div>
+      <div class="dfact"><span class="dfact-l">Where you stand</span><span class="dfact-v">${E(r.now||'—')}</span>${repSub(r)?`<span class="dfact-s">${E(repSub(r))}</span>`:''}</div>
       <div class="dfact"><span class="dfact-l">Still needed</span><span class="dfact-v">${E(r.remain || (r.openEnded ? 'No cap — every one pays' : (soon ? '—' : 'Done ✓')))}</span><span class="dfact-s ${daysLeft(p.period.end)<=ENDING_SOON_DAYS && isActive(p)?'urgent':''}">${E(endsLabel(p.period))}</span></div>
     </div>
     ${r.next ? `<div class="nextbox"><div class="nextbox-l">Your next move</div><div class="nextbox-t">${nextNoMoney(r.next)}</div></div>` : ''}
