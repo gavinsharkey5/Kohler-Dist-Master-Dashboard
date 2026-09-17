@@ -142,6 +142,7 @@
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
   <h1>Distribution Tracker</h1>
+  <p class="updated" id="period"></p>
   <p class="updated" id="updated"></p>
   <p class="lede" id="lede"></p>
 </div></div>
@@ -320,9 +321,13 @@ function renderChips(){const reps=Object.keys(REPS).sort();
   document.querySelectorAll("#chips .chip").forEach(b=>b.addEventListener("click",()=>setRep(b.dataset.v)));}
 function showEmpty(m){document.getElementById("app").innerHTML=`<div class="empty"><h2>No data yet</h2><p>${m}</p></div>`;}
 async function boot(){
-  let dText=null,gText=null,lastMod=null;
+  let dText=null,gText=null,lastMod=null,period=null;
   try{const r=await fetch("data.csv",{cache:"no-store"});if(r.ok){lastMod=r.headers.get("last-modified");dText=await r.text();}}catch(e){}
   try{const r=await fetch("goals.csv",{cache:"no-store"});if(r.ok)gText=await r.text();}catch(e){}
+  // period.json is written by generate.py with the buying window data.csv was
+  // cut to (Jul 1 - Sep 30, 2026 as of 2026-09-17). No file = no pill, so the
+  // page never claims a window the data was not built with.
+  try{const r=await fetch("period.json",{cache:"no-store"});if(r.ok)period=await r.json();}catch(e){}
   if(!dText){showEmpty("Upload <code>data.csv</code> (Customer Name, Category, Sales Rep, Bought) and <code>goals.csv</code> next to this page.");return;}
   ingestData(dText); if(gText)ingestGoals(gText);
   if(!Object.keys(REPS).length){showEmpty("Couldn't read the data file — check it has Customer Name, Category and Sales Rep columns.");return;}
@@ -333,10 +338,12 @@ async function boot(){
   const goalPhrase=GOAL.Overall?`Team goal of <b>${GOAL.Overall} buying accounts</b>${goalParts.length?" — "+goalParts.join(", "):""}.`:"";
   const key=TIERS.map(t=>`<b>${t.label}</b> = ${t.of.join(" + ")}`).join(", ")+".";
   const rule=`<b>${TOP.label}</b> is the all-three account — two out of three doesn't count.`;
-  document.getElementById("lede").innerHTML=`${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
+  const periodPhrase=period&&period.label?`Buying period <b>${esc(period.label)}</b> — only orders in that window count.`:"";
+  document.getElementById("lede").innerHTML=`${periodPhrase} ${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
+  document.getElementById("period").innerHTML=period&&period.label?`<span class="lbl">Buying period</span><b>${esc(period.label)}</b>`:"";
   document.getElementById("updated").innerHTML=lastMod?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</b>`:"";
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
-  document.getElementById("foot").innerHTML=`${goalPhrase} ${catKey} ${key} ${rule} Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up. Reps are ranked by ${TOP.label} accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
+  document.getElementById("foot").innerHTML=`${goalPhrase} ${catKey} ${key} ${rule} ${periodPhrase} Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up. Reps are ranked by ${TOP.label} accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }
 boot();
 </script></body></html>

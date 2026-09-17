@@ -96,7 +96,33 @@ To refresh with a new export:
      generate.py.
   4. Commit and push.
 
-NOTE: the export must cover the whole tracked period (Apr 1 on).
+BUYING PERIOD: JULY, AUGUST, SEPTEMBER 2026 (Gavin, 2026-09-17)
+The tracker counted every order from the export's first day (the RDE
+report is pulled "Apr 1 Start"), so an account that bought once in April
+and never again still read as buying. The window is now PERIOD_START /
+PERIOD_END in generate.py (2026-07-01 to 2026-09-30, inclusive): rows
+dated outside it are dropped on the build and the counts printed
+("kept N, dropped N before the window and N after it"). The export can
+still be pulled from April 1 -- the script does the cutting -- and it must
+carry its date column (the first header containing "date"); the build
+refuses to run without one rather than quietly count April again.
+generate.py also writes period.json (start, end, label, how many export
+rows fell inside) and index.html shows it as a "Buying period" pill under
+the title plus a line in the lede and footer. No period.json = no pill,
+so the page never claims a window the data was not built with.
+    python3 generate.py EXPORT.csv                      Jul 1 - Sep 30
+    python3 generate.py EXPORT.csv --start 2026-10-01 --end 2026-12-31
+                                                        next period
+NOT YET RUN ON REAL DATA: the 9/17 export was not in the repo (raw exports
+are never committed) and none was uploaded with the request, so data.csv
+on this commit is still the April-start build (197 buying accounts) and
+period.json does not exist yet. The next run of generate.py against any
+Red Bull Tracker export (April-start is fine) rebuilds data.csv for
+July-September and creates period.json; expect the account count to DROP,
+since April-June-only buyers leave the board -- that is the change, not a
+bad build.
+
+NOTE: the export must cover the whole buying period (Jul 1 on).
 generate.py REBUILDS data.csv from whatever file it's handed -- it does
 not merge -- so a partial/current-week export would silently drop every
 account outside its window.
