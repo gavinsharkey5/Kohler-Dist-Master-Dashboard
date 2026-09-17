@@ -277,12 +277,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 47011,
-    "CUSTOMER_NAME": "Ridgefield Deli & Liq",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 38008,
     "CUSTOMER_NAME": "Shop Rite Liq.(A)Lodi",
     "AREA": "Bergen"
@@ -297,12 +291,6 @@
     "SALES_REP_ASSIGNED": "Chris Payton",
     "CUSTOMER_NUM": 35001,
     "CUSTOMER_NAME": "Westmont Liquors 64",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Chris Payton",
-    "CUSTOMER_NUM": 50020,
-    "CUSTOMER_NAME": "Wineland",
     "AREA": "Bergen"
   },
   {
@@ -1801,20 +1789,8 @@
   },
   {
     "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 50005,
-    "CUSTOMER_NAME": "Megha Liquor & Grocery",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 46019,
     "CUSTOMER_NAME": "Palisades Wine And Liquor",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 50009,
-    "CUSTOMER_NAME": "Riverview Liq (P)",
     "AREA": "Bergen"
   },
   {
@@ -1827,12 +1803,6 @@
     "SALES_REP_ASSIGNED": "Phil Ernst",
     "CUSTOMER_NUM": 81014,
     "CUSTOMER_NAME": "Shop Rite Liq(A) Fair Lwn",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Phil Ernst",
-    "CUSTOMER_NUM": 78008,
-    "CUSTOMER_NAME": "Shop Rite Liq(A) Roch Pk",
     "AREA": "Bergen"
   },
   {

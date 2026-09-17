@@ -895,6 +895,47 @@ roster by surname as usual). Still 4 reps at the goal of 5: Chris Payton,
 Derrick Laws, Mike Ast, Shane Barreca. No RDE export was re-pulled, so the
 other four objectives are byte-for-byte what the morning refresh published.
 
+2026-09-17 REFRESH -- all four exports plus Promos_Report_27
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_27.xlsx
+Row counts: Constellation 122 (restated in place), Keystone 189 -> 200,
+Fever Tree 2,109 -> 2,120, Wine & Spirits 2,675 -> 2,704. Diffed row by row
+before the run: Fever Tree +11/-0, Wine & Spirits +29/-0, Keystone +11/-0 --
+every new row dated 9/17 or 9/18 (Dan Lagala / Top Shelf and Dave Ehlers /
+Deli Mart 9/18, and Mike Ast / Fair Lawn Wine 9/18 on Fever Tree: scheduled
+loads a day ahead of the pull, kept as always). Constellation's restatement
+moved 43 of 122 rows, all but two upward -- Derrick Laws lost one 4/6 12 oz
+and one Coronita placement (98 -> 97 either way), the returns netting out.
+Promos_Report_27 held 45 rows, all Cooler Door Wrap (window 9/1-9/18), and
+EVERY ONE WAS ALREADY PUBLISHED: 0 new, archive holds at 45 rows / 34
+stickers, the same 4 reps at the goal of 5.
+  Constellation   1,006 -> 1,043 placements this fall against the same 1,628
+                  last fall; 21 -> 23 of 24 reps at 30%: Nick Melissari and
+                  Robin Feldman each landed their first (1 of 2). Dan Lagala
+                  55 -> 65 and Dave Ehlers 106 -> 113 (90%) are the big moves.
+  Keystone Ice    159 -> 164 distinct buying accounts, 6 -> 8 of 26 reps at
+                  40%: CHRIS PAYTON 15 -> 17 (42%, Garden Liquors, Quick
+                  Stop, Ridgefield Deli, Wineland all 9/17) and PHIL ERNST
+                  9 -> 12 (44%, Megha, Riverview, ShopRite Rochelle Park
+                  9/17) both cross. Same 200-row export onto
+                  keystone-ice/actuals.csv (sync rule); keystone-ice rebuilt
+                  first, then this board, then incentive-tracking.
+  Fever Tree      98 -> 103 new placements: Jayson Romine 12 -> 14 (ShopRite
+                  Sparta club soda + elderflower tonic), Mike Ast 11 -> 13
+                  (Fair Lawn Wine, 9/18), Matt Powierski 19 -> 20 (King
+                  Liquors). Jim Heaney's three Clifton Commons rows are
+                  repeats.
+  Wine & Spirits  240 -> 259 new placements, most of it Pride & Clarke Vodka
+                  landing across the Southern district: Dylan Rubino 17 -> 24
+                  (Heights Liquors, West Side Liquors), Hakan Sadik 30 -> 34,
+                  Jim Heaney 8 -> 12 (Little Falls Liquor: 2XO x3 + Traveler's
+                  Club), Dan Lagala 9 -> 10, Matt Powierski 3 -> 4, Phil Ernst
+                  11 -> 12, Robin Feldman 7 -> 8 (K of C Dumont, Green River).
+  Target lists    Keystone 334 -> 329; Fever Tree 349 -> 347.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule): Constellation Fall's Corona house 999 -> 1,036 of 1,610.
+Hub cache tag bumped for the new program_data.js.
+
 2026-09-16 REFRESH -- all four exports, no Promos_Report for this board
     python3 generate_2026-09.py
 Row counts: Constellation 122 (restated in place, values only up), Keystone

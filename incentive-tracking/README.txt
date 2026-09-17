@@ -3787,3 +3787,14 @@ metric only, and Rep Mode drops the money sub. This file's PROGRAM_SUMMARY
 is unchanged, so the tracker page still shows the dollars. See hub/README.txt.
 Hub cache tag bumped for the new program_data.js and hub.js.
 
+2026-09-17 REFRESH -- Corona Gaintain + Keystone sync only (riding the off-prem refresh)
+  python3 generate.py
+Off-prem's 2026-09-17 batch brought a restated Corona Gaintain export and the
+200-row Keystone export. Per the sync rules both went here too: the Corona
+file onto data/constellation_fall_corona_gaintain_off.csv, Keystone through
+keystone-ice/data/keystone_ice.json into build_keystone_ice(). Constellation
+Fall Corona house 999 -> 1,036 of 1,610 (Dave Ehlers 106 -> 113 of his
+hand-set 115; Dan Lagala 55 -> 65). Keystone 159 -> 164 accounts, 5 -> 7 of
+17 reps qualified (Chris Payton 42%, Phil Ernst 44% cross), leader Pablo
+Lopez 18 of 12. Nothing else was re-pulled.
+Hub cache tag bumped for the new program_data.js.

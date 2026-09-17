@@ -3816,8 +3816,18 @@
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1158 Fever Tree Club Soda 8/500 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
@@ -3891,12 +3901,22 @@
   },
   {
     "SALES_REP_ASSIGNED": "Jayson Romine",
+    "PRODUCT_NAME": "1166 Fever Tree Elderflower Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 230105,
+    "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Jayson Romine",
     "PRODUCT_NAME": "1167 Fever Tree Elderflower Tonic Water 3/8/150 mL Can",
     "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 230105,
     "CUSTOMER_NAME": "ShopRite Wines & Spirits of Sparta",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4126,7 +4146,7 @@
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4156,7 +4176,7 @@
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -4176,7 +4196,7 @@
     "CUSTOMER_NUM": 25008,
     "CUSTOMER_NAME": "Clifton Commons S & W",
     "BASE_PLACEMENTS": 1.0,
-    "CURRENT_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
   },
   {
@@ -5733,6 +5753,16 @@
     "SALES_REP_ASSIGNED": "Matt Powierski",
     "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
     "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 36016,
+    "CUSTOMER_NAME": "King Liquors",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
     "CUSTOMER_NUM": 36007,
     "CUSTOMER_NAME": "Shop Rite Of Wallington",
     "BASE_PLACEMENTS": 1.0,
@@ -6458,6 +6488,26 @@
     "BASE_PLACEMENTS": 1.0,
     "CURRENT_PLACEMENTS": 1.0,
     "NEW_PLACEMENT": 0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1151 Fever Tree Ginger Beer 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 81006,
+    "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
+  },
+  {
+    "SALES_REP_ASSIGNED": "Mike Ast",
+    "PRODUCT_NAME": "1160 Fever Tree Tonic Water 6/4/200 mL Btl",
+    "BRAND_FAMILY": "",
+    "CUSTOMER_NUM": 81006,
+    "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
+    "BASE_PLACEMENTS": 0.0,
+    "CURRENT_PLACEMENTS": 1.0,
+    "NEW_PLACEMENT": 1
   },
   {
     "SALES_REP_ASSIGNED": "Mike Ast",

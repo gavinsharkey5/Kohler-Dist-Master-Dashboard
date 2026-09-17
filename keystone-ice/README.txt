@@ -98,6 +98,14 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-17 REFRESH: actuals.csv onto the 200-row export (11 new rows, none
+  removed -- diffed before the run). 159 -> 164 distinct accounts house-wide;
+  7 qualified (was 5), 3 at bonus, $840 projected. CHRIS PAYTON 15 -> 17 of
+  39 (42%) and PHIL ERNST 9 -> 12 of 27 (44%) both cross the 40% qualifier
+  on 9/17 rows. Three rows are dated 9/18, a day ahead of the pull
+  (scheduled loads) -- the export is the record, as before. The same file
+  went onto MPOs/off-prem/keystone_ice_24oz.csv (sync rule).
+
 2026-09-16 REFRESH: actuals.csv onto the 189-row export (7 new rows, one
 dropped -- Anthony Palmisano / 8009 Appio's Liquors 9/15, a scheduled delivery
 that fell off). 154 -> 159 distinct buying accounts house-wide. Same export

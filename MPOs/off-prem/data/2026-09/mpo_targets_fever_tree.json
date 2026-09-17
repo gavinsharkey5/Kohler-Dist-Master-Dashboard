@@ -1495,12 +1495,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
-    "CUSTOMER_NUM": 36016,
-    "CUSTOMER_NAME": "King Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Matt Powierski",
     "CUSTOMER_NUM": 42002,
     "CUSTOMER_NAME": "L. F. Wine Country (P)",
     "AREA": "Bergen"
@@ -1635,12 +1629,6 @@
     "SALES_REP_ASSIGNED": "Mike Ast",
     "CUSTOMER_NUM": 83003,
     "CUSTOMER_NAME": "Beekman's Wines and Liquors",
-    "AREA": "Bergen"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Mike Ast",
-    "CUSTOMER_NUM": 81006,
-    "CUSTOMER_NAME": "Fair Lawn Wine & Spirits",
     "AREA": "Bergen"
   },
   {
