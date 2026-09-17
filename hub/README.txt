@@ -886,3 +886,8 @@ v18, 2026-09-17 -- MPO REP CARDS BACK TO THE SEPT 11 MORNING LAYOUT
   headless on Chris Payton's off-prem tab and Allison Scott's on-prem tab,
   collapsed and expanded, zero "$" figures, no horizontal scroll at 390px.
   Cache tag 20260917l.
+  v18.1 (same day): Gavin opened a rep's page with the Manager toggle on and
+  still saw the dashboards' objective card ("Details & accounts"). The
+  simple v13 MPO card now renders on a rep's page in BOTH modes; Manager
+  Mode's Program View and the incentive cards are unchanged. Cache tag
+  20260917m.
