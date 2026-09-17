@@ -866,3 +866,12 @@ v17, 2026-09-17 -- MONTAUK ON REP PAGES
   gets no card ("not in this program"), the way a rep outside a Core
   Market program does. No hub code changed beyond SELL_ASK / PROGRAM_BRANDS
   / INC_CHANNEL entries for the two keys.
+
+v18 / v18.1 UNDONE, 2026-09-17 (same evening)
+  Gavin had the Manager toggle on the whole time; the cards he wanted back
+  were the Rep Mode ones as they stood this morning, which had never
+  changed. Both commits reverted (d941fc8, dc4d347): Rep Mode MPO cards
+  are the v14 two-expander layout again ("View Current-Period
+  Distribution" / "View Potential Accounts"), Manager Mode keeps the
+  dashboards' objective card. hub.js is byte-identical to e529aad. Cache
+  tag 20260917n so nobody keeps the interim build.
