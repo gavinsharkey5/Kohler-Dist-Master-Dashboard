@@ -850,3 +850,12 @@ v16, 2026-09-17 -- OTHER HALF BACK ON REP PAGES
   are untouched and still print the dollars. Montauk, whose HEADLINE is
   money, stays off rep pages as before. Verified headless on three rep pages:
   Other Half listed, tab count up by one, zero "$" figures in Rep Mode.
+
+v17, 2026-09-17 -- MONTAUK ON REP PAGES
+  Gavin: "make sure montauk incentive is showing on hub dashboard." It was
+  the one program whose tracker summary HEADLINE is money, so v16's
+  isDollarProgram() (headline / goal / remaining) still hid it. Fixed in the
+  tracker's PROGRAM_SUMMARY, not here: montauk now leads with "N new
+  placements" and puts "$X earned" in the sub, which Rep Mode drops via
+  repSub(). No hub code changed. Every incentive with a field metric is now
+  on rep pages; the hub hides nothing by that test today.

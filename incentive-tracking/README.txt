@@ -3968,3 +3968,26 @@ yuengling_retention_fall_draft_on_detail.csv, still the 2026-09-10 export --
 150/293 Lager, 3/7 Flight, 49 flagged buyers with no kegs excluded. Ask Gavin
 for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 -- MONTAUK BACK ON THE HUB (Gavin: "make sure montauk incentive is
+showing on hub dashboard"), plus Montauk export _9 (byte-identical to _8, no
+data change -- 38 new placements, $590).
+Montauk was the one program whose PROGRAM_SUMMARY HEADLINE was money
+("$590 earned", unit '$') with the placements in the sub, so hub/hub.js's
+isDollarProgram() -- which since v16 reads the headline / goal / remaining --
+kept it off every rep's page and out of the tab count. The registry entry
+has always said the metric is totalNewPlacements, so the summary now
+matches it: montauk leads with "N new placements" (unit 'placements') and
+carries "$X earned" in the sub, the same shape as other_half. Effects:
+  hub Rep Mode     Montauk listed under its own supplier group (Phil Ernst
+                   17 -> 18 programs across 14 suppliers), the card and
+                   detail page read "21 new placements / So far", zero "$"
+                   figures -- the sub is scrubbed by repSub() as for Other
+                   Half. Verified headless on three reps.
+  hub Manager Mode "21 new placements / $295 earned" -- dollars kept.
+  this tracker     the Montauk summary line now leads with placements and
+                   shows the earnings as the smaller caption beneath;
+                   cardMontauk() and the leaderboard (still ranked on
+                   payout) are untouched.
+No other rule leads with money now, so nothing else is hidden by that test.
+Hub cache tag bumped for the new programs.js.

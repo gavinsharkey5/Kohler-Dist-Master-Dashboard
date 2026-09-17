@@ -3392,8 +3392,14 @@ const PROGRAM_SUMMARY = {
       ? `You are past the qualifier — every new placement is paying.`
       : `Land <strong>${pl(d.toQualifier,'more placement')}</strong>. Nothing pays until you reach ${(m&&m.qualifier)||3}.`}),
 
-  montauk:(d)=>({goal:false, now:d.payout, unit:'$',
-    label:money(d.payout)+' earned', sub:`${pl(d.totalNewPlacements,'new placement')}`,
+  // Leads with PLACEMENTS, not dollars (2026-09-17, Gavin: "make sure
+  // montauk incentive is showing on hub"): the registry's metric is
+  // totalNewPlacements, and a money headline is what the hub's Rep Mode
+  // hides (isDollarProgram in hub/hub.js). Same shape as other_half --
+  // the count up top, the earnings in the sub, which the tracker and
+  // Manager Mode still print and Rep Mode drops.
+  montauk:(d)=>({goal:false, now:d.totalNewPlacements, unit:'placements',
+    label:`${pl(d.totalNewPlacements,'new placement')}`, sub:money(d.payout)+' earned',
     next:`Every new Wave Chaser placement pays <strong>$10–$15</strong>, and a new draught line pays <strong>$100</strong>.`}),
 
   two_xo:(d)=>({goal:false, now:d.offPremNewCount+d.onPremNewCount, unit:'PODs',
