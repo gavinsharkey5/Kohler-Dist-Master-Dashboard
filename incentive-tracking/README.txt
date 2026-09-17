@@ -3938,3 +3938,33 @@ of 70, 92.9%). Chris Payton's overall 99.6% -> 101.2% -- past his combined
 goal; Anthony Palmisano 90.6% -> 91.8%, Shane Barreca 97.4% -> 98.7%, Dave
 Ehlers 111.9% -> 113.2%.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 SEVENTH REFRESH -- Yuengling Fall, all three reports
+  python3 generate.py
+Flat CSVs again, straight over yuengling_retention_fall_off.csv /
+_packages_on.csv / _draft_on.csv (no convert_yuengling_fall.py). The brand
+rows inside each rep came back in a different ORDER than the 9/16 files --
+a positional diff shows dozens of "changes", a diff keyed on (rep, brand,
+base) shows the truth: same 13 / 6 / 6 reps and 58 brand rows, every 2025
+base identical, the rep-total row still first per rep, and only these
+current counts moved (none down):
+  off       Lager 249 -> 256/338 (Mike Ast 21 -> 23, Chris Payton, Dan
+            Lagala, Dave Ehlers, Jim Heaney, Phil Ernst +1 each), Flight
+            83 -> 87/152 (Jayson Romine 20 -> 22, Dan Lagala 1 -> 2, Shane
+            Barreca 4 -> 5), Light Lager 61 -> 64/134 (Phil Ernst 3 -> 5,
+            Mike Ast 4 -> 5).
+  packages  Lager 133 -> 148/258 (Robin Feldman 42 -> 47, Brian Sengebush
+            35 -> 39, Anthony Palmisano 23 -> 25, Nick Melissari 14 -> 16,
+            Allison Scott 8 -> 9, Paul Mclaughlin 11 -> 12), Flight 1/6
+            unchanged.
+  4 / 58 brand goals held across 18 reps, unchanged; 0 reps holding every
+  goal; day 17 of 91. Closest: Mike Ast off Lager 23 of 24 (88.5%), Phil
+  Ernst off Lager 20 of 22 (87.0%), Anthony Palmisano packages Lager 25 of
+  29 (86.2%).
+DRAFT STILL READS THE 9/10 ACCOUNT SHEET (rule 6): the draft summary moved
+again (Brian Sengebush 59 -> 60, Paul Mclaughlin 26 -> 27, Robin Feldman
+19 -> 21) and the CSV carries it, but the page counts draft current from
+yuengling_retention_fall_draft_on_detail.csv, still the 2026-09-10 export --
+150/293 Lager, 3/7 Flight, 49 flagged buyers with no kegs excluded. Ask Gavin
+for the RDE draft ACCOUNT export to move it.
+Hub cache tag bumped for the new program_data.js.
