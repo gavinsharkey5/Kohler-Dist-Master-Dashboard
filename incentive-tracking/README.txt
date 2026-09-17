@@ -3856,3 +3856,34 @@ and 9/18 -- scheduled loads a day ahead of the pull, kept as always.
                     O'Donoghue 3 -> 8. Still 1 of 27 reps past the
                     3-placement qualifier.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
+  python3 generate.py
+Diffed row by row before the run. 2XO (74 rows) is the same row set as
+published, only reordered -- overwritten, nothing moved (1 pair, $75; 1
+single-oak open). Montauk 1,341 -> 1,362 (+22, -1: Phil Ernst / Stew
+Leonard's Clifton 12pk dated 9/17 fell off -- a scheduled load that did not
+land, the export is the record). Other Half draft onto other_half_on.csv
+50 -> 54 (+4, all Nick Melissari 9/18); Other Half off onto other_half_off.csv
+704 -> 714 (+13, -3: Andrew Lundy's three Dittrick's rows moved 9/17 -> 9/18,
+same SKUs). Klejdi Lamo's two Midtown Liq rows are dated 9/21 -- four days
+ahead of the pull, further out than usual; kept, and Midtown was already on
+his list so nothing moved on it.
+  Montauk      27 -> 38 new placements, $445 -> $590: PHIL ERNST 10 -> 21
+               (Wides Deli, Megha Liquor, Riverview, ShopRite Rochelle Park
+               each took the 6pk + 12pk (+ 19.2 oz at three of them), plus
+               Whole Foods Paramus and ShopRite Paramus -- 3 new accounts).
+               Everything else is reorders: John O'Donoghue 12 -> 15 (cases
+               29 -> 43), Dylan Rubino, Jaime Colonna, Mike Ast, Shane
+               Barreca +1 each.
+  2XO          unchanged.
+  Other Half   153 -> 154 off-premise accounts opened, $7,790 -> $7,830:
+               John O'Donoghue 16 -> 17 (Florham Park Liquors, three SKUs
+               9/18). Andrew Lundy's Dittrick's and Total Wine Union, Jaime
+               Colonna's Village Wine II and John's ShopRite Chester were
+               already on the board. On-prem 37 -> 41 accounts active in
+               September (26 at the 1/3 bbl floor): NICK MELISSARI 2 -> 6 at
+               the floor -- Blarney Station (1 bbl), Dream Bar, House of Que,
+               Lodi Lanes (1/2 bbl each), all 9/18. Still not paid -- needs
+               October's hold.
+Hub cache tag bumped for the new program_data.js.
