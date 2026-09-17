@@ -32,7 +32,13 @@
   h1{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.015em;font-size:clamp(30px,8vw,46px);line-height:.96;margin:0}
   .lede{margin:13px 0 0;max-width:60ch;color:var(--ink-soft);font-size:14px}
   .lede b{color:var(--accent)}
-  .updated{margin:10px 0 0;font-size:11px;color:#6B7280;font-family:"Space Grotesk";letter-spacing:.04em}
+  .updated{display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;padding:8px 14px;border-radius:999px;
+    background:var(--card);border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:var(--shadow);
+    font-family:"Space Grotesk";font-size:14px;font-weight:500;color:var(--ink);letter-spacing:.02em}
+  .updated:empty{display:none}
+  .updated .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px var(--good-soft);flex:none}
+  .updated .lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .updated b{font-weight:700;font-size:16px;color:var(--gold)}
 
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:11px;margin:18px 0 0}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:var(--shadow)}
@@ -136,8 +142,8 @@
 <div class="gx-head"><div class="wrap">
   <p class="eyebrow"><span class="pulse"></span> Kohler Distributing · Red Bull · 2026</p>
   <h1>Distribution Tracker</h1>
-  <p class="lede" id="lede"></p>
   <p class="updated" id="updated"></p>
+  <p class="lede" id="lede"></p>
 </div></div>
 <div id="app"><div class="wrap">
   <div class="seg"><p class="lbl">Pick a rep</p><div class="chips" id="chips"></div></div>
@@ -328,7 +334,7 @@ async function boot(){
   const key=TIERS.map(t=>`<b>${t.label}</b> = ${t.of.join(" + ")}`).join(", ")+".";
   const rule=`<b>${TOP.label}</b> is the all-three account — two out of three doesn't count.`;
   document.getElementById("lede").innerHTML=`${goalPhrase} ${key} ${rule} Tap your name to see your accounts.`;
-  document.getElementById("updated").textContent=lastMod?"Updated "+new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):"";
+  document.getElementById("updated").innerHTML=lastMod?`<span class="dot"></span><span class="lbl">Data updated</span><b>${esc(new Date(lastMod).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}</b>`:"";
   const catKey=CATS.map(c=>`<b>${c.label}</b> = ${c.blurb}`).join(", ")+".";
   document.getElementById("foot").innerHTML=`${goalPhrase} ${catKey} ${key} ${rule} Each tally is unique buying accounts, so an account buying two ${CATS[0].label} SKUs still counts once, and <b>${TOP.label}</b> accounts are a subset of <b>${TIERS[0].label}</b> — the two tiers don't add up. Reps are ranked by ${TOP.label} accounts. Refresh by re-exporting the RDE Red Bull Tracker report and running <b>generate.py</b> — see README.txt.`;
 }
