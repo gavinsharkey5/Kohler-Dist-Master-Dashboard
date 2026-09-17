@@ -3827,3 +3827,32 @@ kept as always.
               (68%, Altiero Liquors 9/18), Michael Harboy 0 -> 1 (Wayne Liquor
               Locker, his first). Derrick Laws / Hiciano 9/18 is a repeat.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius, Le Grand Noir
+  python3 generate.py
+Diffed row by row before the run. Le Grand Noir (30 rows) is the same row
+set as published, only reordered -- overwritten, nothing moved (30 of 70
+house cases). The Comparison export is the President's file: same 29 rows,
+7 restated -- six up, Matt Powierski down one case (103.78 -> 102.78).
+Touchdowns OFF 4,044 -> 4,067 (+23, none removed); Touchdowns ON 2,239 ->
+2,281 (+42, none removed); Evil Genius 341 -> 348 (+7). New rows are 9/17
+and 9/18 -- scheduled loads a day ahead of the pull, kept as always.
+  Garage President  house 8,108.24 -> 8,164.01 of 9,305 CE. Growth moves:
+                    John O'Donoghue +269 -> +291, Hakan Sadik +365 -> +384,
+                    Andrew Lundy +137 -> +143, Anthony Palmisano +59 -> +64.
+  Touchdowns & Tea  79 -> 80 new off-prem 12pk placements (Jim Heaney 4 -> 5,
+                    Quick Buy); on-prem cases 1,059 -> 1,154 -- Anthony
+                    Palmisano 147 -> 200 (Old School Pub, Doc's Place, Great
+                    Gorge, Thirsty Farmer, River of Beer), Robin Feldman
+                    86 -> 103, Paul Mclaughlin 161 -> 169, Allison Scott
+                    304 -> 310, Chris Payton 17 -> 22. Chris Politano's three
+                    200-case MetLife loads are in the export but he is not
+                    on the roster, so they reach nobody's card -- as before.
+                    Trackable $2,354.
+  Evil Genius       7 new placements hold (the seven new rows are all
+                    reorders); CE 73 vs 98 last September. Dave Ehlers
+                    10 -> 15 cases, first past his baseline (3 bonus CE,
+                    $3); Michael Harboy 3 -> 6 (5 bonus CE); John
+                    O'Donoghue 3 -> 8. Still 1 of 27 reps past the
+                    3-placement qualifier.
+Hub cache tag bumped for the new program_data.js.

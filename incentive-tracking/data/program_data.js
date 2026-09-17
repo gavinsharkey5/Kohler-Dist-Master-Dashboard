@@ -55348,10 +55348,10 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 63.12
       },
       "Andrew Lundy": {
-        "caseGrowthOverLastYear": 137.33
+        "caseGrowthOverLastYear": 143.33
       },
       "Anthony Palmisano": {
-        "caseGrowthOverLastYear": 58.51
+        "caseGrowthOverLastYear": 63.51
       },
       "Brian Sengebush": {
         "caseGrowthOverLastYear": 99.21
@@ -55360,7 +55360,7 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 87.22
       },
       "Dan Lagala": {
-        "caseGrowthOverLastYear": 29.33
+        "caseGrowthOverLastYear": 32.33
       },
       "Dave Ehlers": {
         "caseGrowthOverLastYear": -11.66
@@ -55372,7 +55372,7 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": -59.0
       },
       "Hakan Sadik": {
-        "caseGrowthOverLastYear": 365.11
+        "caseGrowthOverLastYear": 384.23
       },
       "Jaime Colonna": {
         "caseGrowthOverLastYear": 61.46
@@ -55387,13 +55387,13 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 63.67
       },
       "John O'Donoghue": {
-        "caseGrowthOverLastYear": 268.71
+        "caseGrowthOverLastYear": 291.37
       },
       "Klejdi Lamo": {
         "caseGrowthOverLastYear": 226.95
       },
       "Matt Powierski": {
-        "caseGrowthOverLastYear": 72.78
+        "caseGrowthOverLastYear": 71.78
       },
       "Michael Harboy": {
         "caseGrowthOverLastYear": 202.04
@@ -55417,10 +55417,10 @@ const PROGRAM_DATA = {
         "caseGrowthOverLastYear": 0.0
       },
       "Shane Barreca": {
-        "caseGrowthOverLastYear": 217.34
+        "caseGrowthOverLastYear": 218.34
       }
     },
-    "companyTotalThisYear": 8108.24,
+    "companyTotalThisYear": 8164.01,
     "houseGoal": 9305
   },
   "le_grand_noir": {
@@ -55457,15 +55457,15 @@ const PROGRAM_DATA = {
         "cases": 3.0,
         "lines": [
           {
-            "customer": "Ridgefield Liq (Z)",
-            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-            "date": "8/25/2026",
-            "cases": 1.0
-          },
-          {
             "customer": "Liquor City(A)Cliffside",
             "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
             "date": "8/28/2026",
+            "cases": 1.0
+          },
+          {
+            "customer": "Ridgefield Liq (Z)",
+            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+            "date": "8/25/2026",
             "cases": 1.0
           },
           {
@@ -55479,12 +55479,6 @@ const PROGRAM_DATA = {
       "Dave Ehlers": {
         "cases": 5.0,
         "lines": [
-          {
-            "customer": "G & G Liquors & Bar",
-            "product": "Le Grand Noir Rose 1/12/750 mL Btl",
-            "date": "8/26/2026",
-            "cases": 1.0
-          },
           {
             "customer": "Simple Simon's (Z)",
             "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
@@ -55501,6 +55495,12 @@ const PROGRAM_DATA = {
             "customer": "Simple Simon's (Z)",
             "product": "Le Grand Noir Chardonnay 1/12/750 mL Btl",
             "date": "8/28/2026",
+            "cases": 1.0
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "product": "Le Grand Noir Rose 1/12/750 mL Btl",
+            "date": "8/26/2026",
             "cases": 1.0
           },
           {
@@ -55586,15 +55586,15 @@ const PROGRAM_DATA = {
         "cases": 2.0,
         "lines": [
           {
-            "customer": "House of Wine & Liquor - Boonton",
-            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
-            "date": "8/27/2026",
-            "cases": 1.0
-          },
-          {
             "customer": "Denville W & L",
             "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
             "date": "8/28/2026",
+            "cases": 1.0
+          },
+          {
+            "customer": "House of Wine & Liquor - Boonton",
+            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+            "date": "8/27/2026",
             "cases": 1.0
           }
         ]
@@ -55647,6 +55647,12 @@ const PROGRAM_DATA = {
           {
             "customer": "Passaic Discount Liquors",
             "product": "Le Grand Noir Rose 1/12/750 mL Btl",
+            "date": "9/2/2026",
+            "cases": 1.0
+          },
+          {
+            "customer": "Passaic Discount Liquors",
+            "product": "Le Grand Noir Rose 1/12/750 mL Btl",
             "date": "8/26/2026",
             "cases": 1.0
           },
@@ -55654,12 +55660,6 @@ const PROGRAM_DATA = {
             "customer": "Passaic Discount Liquors",
             "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
             "date": "8/26/2026",
-            "cases": 1.0
-          },
-          {
-            "customer": "Passaic Discount Liquors",
-            "product": "Le Grand Noir Rose 1/12/750 mL Btl",
-            "date": "9/2/2026",
             "cases": 1.0
           },
           {
@@ -55685,13 +55685,13 @@ const PROGRAM_DATA = {
           },
           {
             "customer": "Food Universe Marketplace",
-            "product": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+            "product": "Le Grand Noir Chardonnay 1/12/750 mL Btl",
             "date": "8/24/2026",
             "cases": 1.0
           },
           {
             "customer": "Food Universe Marketplace",
-            "product": "Le Grand Noir Chardonnay 1/12/750 mL Btl",
+            "product": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
             "date": "8/24/2026",
             "cases": 1.0
           }
@@ -55706,13 +55706,13 @@ const PROGRAM_DATA = {
         "lines": [
           {
             "customer": "Beverage Barn (A)",
-            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
+            "product": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
             "date": "8/27/2026",
             "cases": 1.0
           },
           {
             "customer": "Beverage Barn (A)",
-            "product": "Le Grand Noir Cabernet Sauvignon 1/12/750 mL Btl",
+            "product": "Le Grand Noir Pinot Noir 1/12/750 mL Btl",
             "date": "8/27/2026",
             "cases": 1.0
           },
@@ -103907,7 +103907,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 304.0,
+        "onPremCases": 310.0,
         "onPremAccounts": [
           {
             "customer": "Thatcher Mc Ghees (A)",
@@ -103962,19 +103962,19 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 10.0
           },
           {
+            "customer": "The Celtic Knot",
+            "cases": 9.0
+          },
+          {
             "customer": "cherry's",
             "cases": 9.0
           },
           {
-            "customer": "The Celtic Knot",
-            "cases": 8.0
-          },
-          {
-            "customer": "The Side Door (P)",
+            "customer": "Duffy's Tavern (Z)",
             "cases": 7.0
           },
           {
-            "customer": "Duffy's Tavern (Z)",
+            "customer": "The Side Door (P)",
             "cases": 7.0
           },
           {
@@ -103986,12 +103986,20 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 7.0
           },
           {
+            "customer": "Dave & Buster's Nj, Inc",
+            "cases": 5.0
+          },
+          {
             "customer": "Sunset Valley G C (A)",
             "cases": 5.0
           },
           {
             "customer": "Shortways' Barn (A)",
             "cases": 5.0
+          },
+          {
+            "customer": "Celtic Crossings",
+            "cases": 4.0
           },
           {
             "customer": "Blu Ale House",
@@ -104002,16 +104010,12 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "Celtic Crossings",
-            "cases": 3.0
-          },
-          {
             "customer": "WAYNE ALE HOUSE & PIZZA",
             "cases": 3.0
           },
           {
-            "customer": "Dave & Buster's Nj, Inc",
-            "cases": 3.0
+            "customer": "Rock Bar",
+            "cases": 2.0
           },
           {
             "customer": "Murph's Bar & Liquor",
@@ -104050,15 +104054,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Vfw 7165 (P)",
-            "cases": 1.0
-          },
-          {
             "customer": "Breaker Billiards",
             "cases": 1.0
           },
           {
-            "customer": "Sportzone B&G (P)",
+            "customer": "Vfw 7165 (P)",
             "cases": 1.0
           },
           {
@@ -104066,14 +104066,18 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
+            "customer": "Sportzone B&G (P)",
+            "cases": 1.0
+          },
+          {
             "customer": "Tommy's Tavern + Tap (Wayne)",
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 40,
+        "onPremAccountCount": 41,
         "placementPayout": 0,
-        "onPremCasePayout": 304,
-        "payout": 304,
+        "onPremCasePayout": 310,
+        "payout": 310,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -104291,7 +104295,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 15,
         "offPremReorderCount": 65,
         "offPremCases": 524.0,
-        "onPremCases": 147.0,
+        "onPremCases": 200.0,
         "onPremAccounts": [
           {
             "customer": "Airport Pub & Pkg",
@@ -104302,12 +104306,32 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 26.0
           },
           {
+            "customer": "The New Jessies Kettle(P)",
+            "cases": 16.0
+          },
+          {
+            "customer": "Thirsty Farmer",
+            "cases": 15.0
+          },
+          {
+            "customer": "Old School Pub P)",
+            "cases": 14.0
+          },
+          {
             "customer": "Whiskey Wolf Tavern (P)",
             "cases": 12.0
           },
           {
-            "customer": "The New Jessies Kettle(P)",
-            "cases": 11.0
+            "customer": "Doc's Place (P)",
+            "cases": 10.0
+          },
+          {
+            "customer": "The River Of Beer",
+            "cases": 10.0
+          },
+          {
+            "customer": "Great Gorge Golf (A) Club",
+            "cases": 8.0
           },
           {
             "customer": "High Point Gc/Rest (P)",
@@ -104334,15 +104358,7 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Thirsty Farmer",
-            "cases": 5.0
-          },
-          {
             "customer": "J & S Roadhouse",
-            "cases": 4.0
-          },
-          {
-            "customer": "Old School Pub P)",
             "cases": 4.0
           },
           {
@@ -104350,11 +104366,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 3.0
           },
           {
-            "customer": "Valley Tavern",
+            "customer": "Chido Mexican Kitchen",
             "cases": 2.0
           },
           {
-            "customer": "Great Gorge Golf (A) Club",
+            "customer": "Valley Tavern",
             "cases": 2.0
           },
           {
@@ -104374,10 +104390,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 20,
+        "onPremAccountCount": 23,
         "placementPayout": 225,
-        "onPremCasePayout": 147,
-        "payout": 372,
+        "onPremCasePayout": 200,
+        "payout": 425,
         "byBrand": {
           "Sun Cruiser": 3,
           "Twisted Tea": 12
@@ -104390,7 +104406,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 5,
         "offPremCases": 33.0,
-        "onPremCases": 201.0,
+        "onPremCases": 202.0,
         "onPremAccounts": [
           {
             "customer": "Charley's Tavern",
@@ -104433,11 +104449,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 5.0
           },
           {
-            "customer": "Adams (P)",
+            "customer": "Gatwyns II (P)",
             "cases": 5.0
           },
           {
-            "customer": "Gatwyns II (P)",
+            "customer": "Adams (P)",
             "cases": 5.0
           },
           {
@@ -104477,6 +104493,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
+            "customer": "Flatbrook Tap House (P)",
+            "cases": 1.0
+          },
+          {
             "customer": "Pat's Bar (P)",
             "cases": 1.0
           },
@@ -104497,10 +104517,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 26,
+        "onPremAccountCount": 27,
         "placementPayout": 0,
-        "onPremCasePayout": 201,
-        "payout": 201,
+        "onPremCasePayout": 202,
+        "payout": 202,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -104554,7 +104574,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 5,
         "offPremReorderCount": 30,
         "offPremCases": 163.0,
-        "onPremCases": 17.0,
+        "onPremCases": 22.0,
         "onPremAccounts": [
           {
             "customer": "Ridgewood Country Club",
@@ -104562,13 +104582,13 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Colonial Bar",
-            "cases": 5.0
+            "cases": 10.0
           }
         ],
         "onPremAccountCount": 2,
         "placementPayout": 75,
-        "onPremCasePayout": 17,
-        "payout": 92,
+        "onPremCasePayout": 22,
+        "payout": 97,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 5
@@ -104723,16 +104743,30 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
-            "customer": "Time Lounge And Liq (A)",
+            "customer": "Simple Simon's (Z)",
             "brands": [
-              "Sun Cruiser"
+              "Twisted Tea"
             ],
             "date": "9/4/2026"
           },
           {
-            "customer": "Simple Simon's (Z)",
+            "customer": "New Milford Liquors",
             "brands": [
               "Twisted Tea"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "George's Liq",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/4/2026"
+          },
+          {
+            "customer": "Time Lounge And Liq (A)",
+            "brands": [
+              "Sun Cruiser"
             ],
             "date": "9/4/2026"
           },
@@ -104751,21 +104785,7 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "George's Liq",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/4/2026"
-          },
-          {
             "customer": "Simple Simon's (Z)",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/4/2026"
-          },
-          {
-            "customer": "New Milford Liquors",
             "brands": [
               "Twisted Tea"
             ],
@@ -104786,21 +104806,21 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/3/2026"
           },
           {
+            "customer": "VINEYARD",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/3/2026"
+          },
+          {
+            "customer": "VINEYARD",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/3/2026"
+          },
+          {
             "customer": "Teaneck Discount Liquor",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/3/2026"
-          },
-          {
-            "customer": "VINEYARD",
-            "brands": [
-              "Twisted Tea"
-            ],
-            "date": "9/3/2026"
-          },
-          {
-            "customer": "VINEYARD",
             "brands": [
               "Twisted Tea"
             ],
@@ -104842,13 +104862,6 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/14/2026"
           },
           {
-            "customer": "Time Lounge And Liq (A)",
-            "brands": [
-              "Sun Cruiser"
-            ],
-            "date": "9/11/2026"
-          },
-          {
             "customer": "New Milford Liquors",
             "brands": [
               "Twisted Tea"
@@ -104856,16 +104869,23 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/11/2026"
           },
           {
-            "customer": "G & G Liquors & Bar",
+            "customer": "Time Lounge And Liq (A)",
             "brands": [
-              "Twisted Tea"
+              "Sun Cruiser"
             ],
-            "date": "9/10/2026"
+            "date": "9/11/2026"
           },
           {
             "customer": "VINEYARD",
             "brands": [
               "Sun Cruiser"
+            ],
+            "date": "9/10/2026"
+          },
+          {
+            "customer": "G & G Liquors & Bar",
+            "brands": [
+              "Twisted Tea"
             ],
             "date": "9/10/2026"
           },
@@ -104885,8 +104905,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 24,
-        "offPremReorderCount": 35,
-        "offPremCases": 209.0,
+        "offPremReorderCount": 38,
+        "offPremCases": 219.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -105507,6 +105527,13 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/9/2026"
           },
           {
+            "customer": "Henry's Liquors",
+            "brands": [
+              "Twisted Tea"
+            ],
+            "date": "9/4/2026"
+          },
+          {
             "customer": "Pete's Liquors",
             "brands": [
               "Sun Cruiser"
@@ -105514,11 +105541,11 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/4/2026"
           },
           {
-            "customer": "Henry's Liquors",
+            "customer": "Quick Buy",
             "brands": [
               "Twisted Tea"
             ],
-            "date": "9/4/2026"
+            "date": "9/18/2026"
           },
           {
             "customer": "Broad Liquors (A)",
@@ -105528,18 +105555,18 @@ const PROGRAM_DATA_2026_09 = {
             "date": "9/1/2026"
           }
         ],
-        "offPremNewCount": 4,
-        "offPremReorderCount": 33,
-        "offPremCases": 218.0,
+        "offPremNewCount": 5,
+        "offPremReorderCount": 34,
+        "offPremCases": 228.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
-        "placementPayout": 60,
+        "placementPayout": 75,
         "onPremCasePayout": 0,
-        "payout": 60,
+        "payout": 75,
         "byBrand": {
           "Sun Cruiser": 2,
-          "Twisted Tea": 2
+          "Twisted Tea": 3
         },
         "offPremTargets": [
           {
@@ -105771,8 +105798,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 9,
-        "offPremReorderCount": 58,
-        "offPremCases": 431.0,
+        "offPremReorderCount": 59,
+        "offPremCases": 443.0,
         "onPremCases": 5.0,
         "onPremAccounts": [
           {
@@ -105818,19 +105845,23 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 25,
-        "offPremCases": 127.0,
-        "onPremCases": 5.0,
+        "offPremReorderCount": 29,
+        "offPremCases": 140.0,
+        "onPremCases": 6.0,
         "onPremAccounts": [
           {
             "customer": "Wisla Center (Z)",
             "cases": 5.0
+          },
+          {
+            "customer": "Blvd Bar & Grill (Z)",
+            "cases": 1.0
           }
         ],
-        "onPremAccountCount": 1,
+        "onPremAccountCount": 2,
         "placementPayout": 30,
-        "onPremCasePayout": 5,
-        "payout": 35,
+        "onPremCasePayout": 6,
+        "payout": 36,
         "byBrand": {
           "Sun Cruiser": 1,
           "Twisted Tea": 1
@@ -106005,7 +106036,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNew": [],
         "offPremNewCount": 0,
         "offPremReorderCount": 24,
-        "offPremCases": 182.0,
+        "offPremCases": 192.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -106065,7 +106096,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 106.0,
+        "onPremCases": 109.0,
         "onPremAccounts": [
           {
             "customer": "Ramsey Country Clb",
@@ -106090,6 +106121,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "W's Village Grille",
             "cases": 7.0
+          },
+          {
+            "customer": "N Arlington Bowl O Drome",
+            "cases": 5.0
           },
           {
             "customer": "Mahwah B & G (A)",
@@ -106124,15 +106159,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "N Arlington Bowl O Drome",
+            "customer": "Blue 42 Restaurant & Bar",
             "cases": 2.0
           },
           {
             "customer": "Charlie's Place",
-            "cases": 2.0
-          },
-          {
-            "customer": "Blue 42 Restaurant & Bar",
             "cases": 2.0
           },
           {
@@ -106154,8 +106185,8 @@ const PROGRAM_DATA_2026_09 = {
         ],
         "onPremAccountCount": 21,
         "placementPayout": 0,
-        "onPremCasePayout": 106,
-        "payout": 106,
+        "onPremCasePayout": 109,
+        "payout": 109,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -106290,7 +106321,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 161.0,
+        "onPremCases": 169.0,
         "onPremAccounts": [
           {
             "customer": "The Cornerstone (P)",
@@ -106325,6 +106356,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 8.0
           },
           {
+            "customer": "Edgewood Country Club",
+            "cases": 6.0
+          },
+          {
             "customer": "Grant Street Cafe (A)",
             "cases": 6.0
           },
@@ -106335,6 +106370,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "White Beeches Golf Club",
             "cases": 5.0
+          },
+          {
+            "customer": "Lenoras Bar (P)",
+            "cases": 4.0
           },
           {
             "customer": "The Plank Pizza And Bar",
@@ -106353,10 +106392,6 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 2.0
           },
           {
-            "customer": "Lenoras Bar (P)",
-            "cases": 2.0
-          },
-          {
             "customer": "Club Flamingo (A)",
             "cases": 1.0
           },
@@ -106365,10 +106400,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 18,
+        "onPremAccountCount": 19,
         "placementPayout": 0,
-        "onPremCasePayout": 161,
-        "payout": 161,
+        "onPremCasePayout": 169,
+        "payout": 169,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -106431,19 +106466,19 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 6,
-        "offPremReorderCount": 19,
-        "offPremCases": 105.0,
-        "onPremCases": 17.0,
+        "offPremReorderCount": 20,
+        "offPremCases": 108.0,
+        "onPremCases": 18.0,
         "onPremAccounts": [
           {
             "customer": "Saddle Brook Liquor & Bar",
-            "cases": 17.0
+            "cases": 18.0
           }
         ],
         "onPremAccountCount": 1,
         "placementPayout": 90,
-        "onPremCasePayout": 17,
-        "payout": 107,
+        "onPremCasePayout": 18,
+        "payout": 108,
         "byBrand": {
           "Sun Cruiser": 5,
           "Twisted Tea": 1
@@ -106493,11 +106528,15 @@ const PROGRAM_DATA_2026_09 = {
         "offPremNewCount": 0,
         "offPremReorderCount": 0,
         "offPremCases": 0.0,
-        "onPremCases": 86.0,
+        "onPremCases": 103.0,
         "onPremAccounts": [
           {
             "customer": "Elks Post 1562",
             "cases": 18.0
+          },
+          {
+            "customer": "American Lgn Lyndhurst #139",
+            "cases": 10.0
           },
           {
             "customer": "American Lgn 174 Wayne",
@@ -106506,6 +106545,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Amer Lgn Of Wharton 91",
             "cases": 9.0
+          },
+          {
+            "customer": "Moose Lodge (Z)",
+            "cases": 6.0
           },
           {
             "customer": "Elks Post 2236 (P)",
@@ -106524,11 +106567,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 4.0
           },
           {
-            "customer": "82 OAK BAR & BISTRO",
-            "cases": 3.0
+            "customer": "K Of C Dumont",
+            "cases": 4.0
           },
           {
-            "customer": "Moose Lodge (Z)",
+            "customer": "82 OAK BAR & BISTRO",
             "cases": 3.0
           },
           {
@@ -106568,11 +106611,11 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           },
           {
-            "customer": "Hyatt Place Fair Lawn (A)",
+            "customer": "Courtyard Marriott(A)",
             "cases": 1.0
           },
           {
-            "customer": "Courtyard Marriott(A)",
+            "customer": "Hyatt Place Fair Lawn (A)",
             "cases": 1.0
           },
           {
@@ -106584,10 +106627,10 @@ const PROGRAM_DATA_2026_09 = {
             "cases": 1.0
           }
         ],
-        "onPremAccountCount": 22,
+        "onPremAccountCount": 24,
         "placementPayout": 0,
-        "onPremCasePayout": 86,
-        "payout": 86,
+        "onPremCasePayout": 103,
+        "payout": 103,
         "byBrand": {
           "Sun Cruiser": 0,
           "Twisted Tea": 0
@@ -106632,8 +106675,8 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "offPremNewCount": 4,
-        "offPremReorderCount": 22,
-        "offPremCases": 195.0,
+        "offPremReorderCount": 26,
+        "offPremCases": 205.0,
         "onPremCases": 0.0,
         "onPremAccounts": [],
         "onPremAccountCount": 0,
@@ -106680,7 +106723,7 @@ const PROGRAM_DATA_2026_09 = {
     "leaderboard": [
       {
         "rep": "Anthony Palmisano",
-        "payout": 372,
+        "payout": 425,
         "newPlacements": 15,
         "rank": 1
       },
@@ -106692,19 +106735,19 @@ const PROGRAM_DATA_2026_09 = {
       },
       {
         "rep": "Allison Scott",
-        "payout": 304,
+        "payout": 310,
         "newPlacements": 0,
         "rank": 3
       },
       {
         "rep": "Brian Sengebush",
-        "payout": 201,
+        "payout": 202,
         "newPlacements": 0,
         "rank": 4
       },
       {
         "rep": "Paul Mclaughlin",
-        "payout": 161,
+        "payout": 169,
         "newPlacements": 0,
         "rank": 5
       },
@@ -106715,33 +106758,33 @@ const PROGRAM_DATA_2026_09 = {
         "rank": 6
       },
       {
-        "rep": "Phil Ernst",
-        "payout": 107,
-        "newPlacements": 6,
+        "rep": "Nick Melissari",
+        "payout": 109,
+        "newPlacements": 0,
         "rank": 7
       },
       {
-        "rep": "Nick Melissari",
-        "payout": 106,
-        "newPlacements": 0,
+        "rep": "Phil Ernst",
+        "payout": 108,
+        "newPlacements": 6,
         "rank": 8
       },
       {
-        "rep": "Chris Payton",
-        "payout": 92,
-        "newPlacements": 5,
+        "rep": "Robin Feldman",
+        "payout": 103,
+        "newPlacements": 0,
         "rank": 9
       },
       {
-        "rep": "Robin Feldman",
-        "payout": 86,
-        "newPlacements": 0,
+        "rep": "Chris Payton",
+        "payout": 97,
+        "newPlacements": 5,
         "rank": 10
       },
       {
         "rep": "Jim Heaney",
-        "payout": 60,
-        "newPlacements": 4,
+        "payout": 75,
+        "newPlacements": 5,
         "rank": 11
       },
       {
@@ -106764,7 +106807,7 @@ const PROGRAM_DATA_2026_09 = {
       },
       {
         "rep": "Matt Powierski",
-        "payout": 35,
+        "payout": 36,
         "newPlacements": 2,
         "rank": 15
       },
@@ -107093,13 +107136,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Blackjack Mulligans (Hawthorne)",
+            "customer": "The Yard",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
           },
           {
-            "customer": "The Yard",
+            "customer": "Blackjack Mulligans (Hawthorne)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -107369,6 +107412,12 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
+            "customer": "Thatcher Mcghee's (A)",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "reorder"
+          },
+          {
             "customer": "Skyview Golf Course (A)",
             "bbl": 0.5,
             "qualifies": true,
@@ -107376,12 +107425,6 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "customer": "Sharky's West (P)",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "reorder"
-          },
-          {
-            "customer": "Thatcher Mcghee's (A)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "reorder"
@@ -107396,7 +107439,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 7.0,
+        "caseVolume": 8.0,
         "casesBaseline": 15.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -107675,11 +107718,11 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 4,
         "qualified": true,
         "toQualifier": 0,
-        "caseVolume": 10.0,
+        "caseVolume": 15.0,
         "casesBaseline": 12.0,
-        "bonusCe": 0.0,
-        "bonusPayout": 0,
-        "payout": 40,
+        "bonusCe": 3.0,
+        "bonusPayout": 3,
+        "payout": 43,
         "draftChannelOk": false,
         "offPremTargets": [
           {
@@ -108089,7 +108132,7 @@ const PROGRAM_DATA_2026_09 = {
         "draftAccounts": [
           {
             "customer": "Zeppelin Hall (Z)",
-            "bbl": 1.0,
+            "bbl": 2.5,
             "qualifies": true,
             "status": "reorder"
           },
@@ -108121,7 +108164,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 3.0,
+        "caseVolume": 6.0,
         "casesBaseline": 10.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -108550,7 +108593,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 3.0,
+        "caseVolume": 8.0,
         "casesBaseline": 9.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -108849,20 +108892,20 @@ const PROGRAM_DATA_2026_09 = {
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
             ],
             "date": "9/15/2026"
           },
           {
             "customer": "Shays Liquors",
             "products": [
-              "Evil Genius Stacy's Mom Citra IPA 1/12/19.2 oz Can"
+              "Evil Genius Stacy's Mom Citra IPA 4/6/12 oz Can"
             ],
             "date": "9/15/2026"
           }
         ],
         "offPremNewCount": 2,
-        "offPremReorderCount": 0,
+        "offPremReorderCount": 1,
         "draftNew": [],
         "draftNewCount": 0,
         "draftReorderCount": 0,
@@ -108884,9 +108927,9 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 2,
         "qualified": false,
         "toQualifier": 1,
-        "caseVolume": 3.0,
+        "caseVolume": 6.0,
         "casesBaseline": 1.0,
-        "bonusCe": 2.0,
+        "bonusCe": 5.0,
         "bonusPayout": 0,
         "payout": 0,
         "draftChannelOk": true,
@@ -109082,7 +109125,7 @@ const PROGRAM_DATA_2026_09 = {
         "offPremReorderCount": 0,
         "draftNew": [],
         "draftNewCount": 0,
-        "draftReorderCount": 1,
+        "draftReorderCount": 2,
         "draftQualifiedCount": 0,
         "draftAccounts": [
           {
@@ -109092,13 +109135,13 @@ const PROGRAM_DATA_2026_09 = {
             "status": "reorder"
           },
           {
-            "customer": "Lodi Lanes (A)",
-            "bbl": 0.0,
-            "qualifies": false,
-            "status": "lapsed"
+            "customer": "Millers Paramus Ale House",
+            "bbl": 0.5,
+            "qualifies": true,
+            "status": "reorder"
           },
           {
-            "customer": "Millers Paramus Ale House",
+            "customer": "Lodi Lanes (A)",
             "bbl": 0.0,
             "qualifies": false,
             "status": "lapsed"
@@ -109107,7 +109150,7 @@ const PROGRAM_DATA_2026_09 = {
         "totalNewPlacements": 0,
         "qualified": false,
         "toQualifier": 3,
-        "caseVolume": 2.0,
+        "caseVolume": 3.0,
         "casesBaseline": 13.0,
         "bonusCe": 0.0,
         "bonusPayout": 0,
@@ -109524,7 +109567,7 @@ const PROGRAM_DATA_2026_09 = {
       {
         "rep": "Dave Ehlers",
         "newPlacements": 4,
-        "payout": 40,
+        "payout": 43,
         "rank": 1
       },
       {
