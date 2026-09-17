@@ -19,10 +19,13 @@ each one requires a combination rather than a single purchase:
     Core  = Regular AND Free
     Core+ = Regular AND Free AND Flavor   (the "all 3" account)
 
-BUYING PERIOD (Gavin, 2026-09-17): July, August and September 2026. The
-tracker used to count every order from the export's first day (the RDE
-report is pulled "Apr 1 Start"), so an account that bought once in April
-and never again still read as buying. Now only rows dated inside
+BUYING PERIOD (Gavin, 2026-09-17): June 1 through September 30, 2026 --
+asked for as "July, August and September" first, then the export he
+pulled for it ran from June 1 with the note "just june july sept", so the
+window follows the file (the July-start figures are in README.txt if
+that reading was wrong). The tracker used to count every order from the
+export's first day (the RDE report is pulled "Apr 1 Start"), so an
+account that bought once in April and never again still read as buying. Now only rows dated inside
 PERIOD_START..PERIOD_END count -- the export can still be pulled from
 April 1; everything outside the window is dropped here and reported on
 the build. The window is written to period.json beside data.csv so the
@@ -33,6 +36,7 @@ Usage:
     python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start.csv
     python3 generate.py RDE_Red_Bull_Tracker_Apr_1_Start.xlsx   (needs openpyxl)
     python3 generate.py EXPORT --start 2026-07-01 --end 2026-09-30   (override)
+    (default window: PERIOD_START..PERIOD_END below)
 
 Output: data.csv, tab-separated, one row per (Customer Name, Category,
 Sales Rep) with at least one qualifying order -- matching the existing
@@ -54,7 +58,7 @@ OUT_CSV = HERE / "data.csv"
 OUT_PERIOD = HERE / "period.json"
 
 # The buying period. Inclusive on both ends.
-PERIOD_START = date(2026, 7, 1)
+PERIOD_START = date(2026, 6, 1)
 PERIOD_END = date(2026, 9, 30)
 
 # Product names WITHOUT the leading product number -- new flavors get new
