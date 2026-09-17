@@ -1477,12 +1477,6 @@
   },
   {
     "SALES_REP_ASSIGNED": "Michael Harboy",
-    "CUSTOMER_NUM": 11014,
-    "CUSTOMER_NAME": "Wayne Liquor Locker",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Michael Harboy",
     "CUSTOMER_NUM": 11005,
     "CUSTOMER_NAME": "Wolfson Market",
     "AREA": "Morris 3"
@@ -1695,12 +1689,6 @@
     "SALES_REP_ASSIGNED": "Pablo Lopez",
     "CUSTOMER_NUM": 15034,
     "CUSTOMER_NAME": "Allen's Liquors",
-    "AREA": "Passaic"
-  },
-  {
-    "SALES_REP_ASSIGNED": "Pablo Lopez",
-    "CUSTOMER_NUM": 21024,
-    "CUSTOMER_NAME": "Altiero Liquors",
     "AREA": "Passaic"
   },
   {

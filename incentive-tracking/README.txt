@@ -3798,3 +3798,32 @@ hand-set 115; Dan Lagala 55 -> 65). Keystone 159 -> 164 accounts, 5 -> 7 of
 17 reps qualified (Chris Payton 42%, Phil Ernst 44% cross), leader Pablo
 Lopez 18 of 12. Nothing else was re-pulled.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 SECOND REFRESH -- 1911, Woodchuck, Tona, Lytt Launch, Keystone
+  python3 generate.py    (after keystone-ice and MPOs/off-prem, sync rule)
+Diffed row by row before the run; every export is a clean superset of what was
+published. 1911 1,729 -> 1,750 (+22, one row restated: Michael Harboy / Total
+Wine West Orange 1911 Original 9/17, 2 -> 1 cases), Woodchuck 526 -> 530 (+4),
+Tona 330 -> 332 (+2), Lytt Launch 721 -> 725 (+4), Keystone 200 -> 203 (+3).
+Most new rows are 9/17 and 9/18 -- a day ahead of the pull, scheduled loads,
+kept as always.
+  1911        289 -> 295 new placements: Mike Ast 26 -> 29 (Fair Lawn Wine:
+              Honey Crisp, Original, Cider Donut, 9/18), Shane Barreca 19 -> 21
+              (Beverage Barn + Bottle King Ramsey: Honey Crisp, Cider Donut,
+              Haunted Hayride), John O'Donoghue 31 -> 32 (Florham Park
+              Liquors). Case volume 1,002 -> 1,035 (Shane Barreca 90 -> 100,
+              John O'Donoghue 120 -> 129, Andrew Lundy 83 -> 90).
+  Woodchuck   38 -> 40 new placements: Dave Ehlers 0 -> 1 (New Milford
+              Liquors, Amber -- his first), Matt Powierski 3 -> 4 (M & M Wine
+              & Spirits, Amber cans). Case volume 287 -> 295.
+  Tona        24oz placements hold at 13; other cases 609 -> 619 (Dylan Rubino
+              67 -> 72 at Heights Liquors, Hakan Sadik 55 -> 60 at Express
+              Two). Still nobody at the qualifier.
+  Lytt        no account moved -- both new stores (Wineland, Stop N Go) were
+              already buying; cases only (Chris Payton 57 -> 59, Dan Lagala
+              57 -> 60). Top penetration holds at 40.0%, 10 reps in a tier.
+  Keystone    164 -> 166 accounts house-wide, still 7 of 17 reps qualified and
+              3 at bonus, $840 -> $850 projected: Pablo Lopez 18 -> 19 of 12
+              (68%, Altiero Liquors 9/18), Michael Harboy 0 -> 1 (Wayne Liquor
+              Locker, his first). Derrick Laws / Hiciano 9/18 is a repeat.
+Hub cache tag bumped for the new program_data.js.

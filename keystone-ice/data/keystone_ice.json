@@ -4,10 +4,10 @@
     "window": "8/1/2026 \u2013 9/30/2026",
     "repLevel": true,
     "repCount": 18,
-    "houseBuyers": 164,
+    "houseBuyers": 166,
     "qualifiedCount": 7,
     "bonusCount": 3,
-    "totalPayout": 840
+    "totalPayout": 850
   },
   "rewards": {
     "perPlacement": 5,
@@ -26,22 +26,17 @@
       "bonus": 14,
       "qualifierRaw": 11.2,
       "bonusRaw": 14.0,
-      "buyers": 18,
-      "pct": 64,
+      "buyers": 19,
+      "pct": 68,
       "qualified": true,
       "bonusHit": true,
       "toQualifier": 0,
       "toBonus": 0,
-      "payout": 180,
+      "payout": 190,
       "accounts": [
         {
-          "num": "26014",
-          "name": "Regalado Liq",
-          "date": "8/4/2026"
-        },
-        {
-          "num": "21034",
-          "name": "Schulman's (P) Deli",
+          "num": "15016",
+          "name": "Gene's Liquor",
           "date": "8/4/2026"
         },
         {
@@ -50,13 +45,18 @@
           "date": "8/4/2026"
         },
         {
+          "num": "26014",
+          "name": "Regalado Liq",
+          "date": "8/4/2026"
+        },
+        {
           "num": "27021",
           "name": "Johnny's Liqs (P)",
           "date": "8/4/2026"
         },
         {
-          "num": "15016",
-          "name": "Gene's Liquor",
+          "num": "21034",
+          "name": "Schulman's (P) Deli",
           "date": "8/4/2026"
         },
         {
@@ -80,13 +80,13 @@
           "date": "9/1/2026"
         },
         {
-          "num": "20032",
-          "name": "Riverside Liquors (Paterson)",
+          "num": "20068",
+          "name": "Florida Drugs (A)",
           "date": "9/4/2026"
         },
         {
-          "num": "20068",
-          "name": "Florida Drugs (A)",
+          "num": "20032",
+          "name": "Riverside Liquors (Paterson)",
           "date": "9/4/2026"
         },
         {
@@ -105,19 +105,24 @@
           "date": "9/15/2026"
         },
         {
-          "num": "20014",
-          "name": "Bombolon Liquor & Grocery",
+          "num": "27043",
+          "name": "Monroe Wine & Liq(P)",
           "date": "9/16/2026"
         },
         {
-          "num": "27043",
-          "name": "Monroe Wine & Liq(P)",
+          "num": "20014",
+          "name": "Bombolon Liquor & Grocery",
           "date": "9/16/2026"
         },
         {
           "num": "20062",
           "name": "Intensity Lounge/Angie's Liquors",
           "date": "9/17/2026"
+        },
+        {
+          "num": "21024",
+          "name": "Altiero Liquors",
+          "date": "9/18/2026"
         },
         {
           "num": "20051",
@@ -157,18 +162,8 @@
           "date": "9/8/2026"
         },
         {
-          "num": "43006",
-          "name": "Fairview Liq & Groc.(A)",
-          "date": "9/8/2026"
-        },
-        {
           "num": "44052",
           "name": "Minit Mart_2",
-          "date": "9/8/2026"
-        },
-        {
-          "num": "43013",
-          "name": "Buy Rite Of Fairview",
           "date": "9/8/2026"
         },
         {
@@ -182,8 +177,18 @@
           "date": "9/8/2026"
         },
         {
-          "num": "46011",
-          "name": "Han Mi Supermkt (A)",
+          "num": "43013",
+          "name": "Buy Rite Of Fairview",
+          "date": "9/8/2026"
+        },
+        {
+          "num": "43006",
+          "name": "Fairview Liq & Groc.(A)",
+          "date": "9/8/2026"
+        },
+        {
+          "num": "44002",
+          "name": "Wine And Food Mart (Z)",
           "date": "9/9/2026"
         },
         {
@@ -192,18 +197,13 @@
           "date": "9/9/2026"
         },
         {
-          "num": "44002",
-          "name": "Wine And Food Mart (Z)",
-          "date": "9/9/2026"
-        },
-        {
-          "num": "43005",
-          "name": "Rome Liquors (Fairview)",
-          "date": "9/9/2026"
-        },
-        {
           "num": "43004",
           "name": "Boulevard Liq.(Fairview)",
+          "date": "9/9/2026"
+        },
+        {
+          "num": "46011",
+          "name": "Han Mi Supermkt (A)",
           "date": "9/9/2026"
         },
         {
@@ -227,13 +227,18 @@
           "date": "9/9/2026"
         },
         {
-          "num": "44049",
-          "name": "Rome Liquor (Cliffside Park)",
-          "date": "9/10/2026"
+          "num": "43005",
+          "name": "Rome Liquors (Fairview)",
+          "date": "9/9/2026"
         },
         {
           "num": "44016",
           "name": "Liquor City(A)Cliffside",
+          "date": "9/10/2026"
+        },
+        {
+          "num": "44049",
+          "name": "Rome Liquor (Cliffside Park)",
           "date": "9/10/2026"
         },
         {
@@ -319,13 +324,13 @@
           "date": "8/28/2026"
         },
         {
-          "num": "21035",
-          "name": "M & R Disc (A) Liqs.",
+          "num": "20027",
+          "name": "230 Liq & Groc.(A)",
           "date": "9/2/2026"
         },
         {
-          "num": "20027",
-          "name": "230 Liq & Groc.(A)",
+          "num": "21035",
+          "name": "M & R Disc (A) Liqs.",
           "date": "9/2/2026"
         },
         {
@@ -344,13 +349,13 @@
           "date": "9/10/2026"
         },
         {
-          "num": "20037",
-          "name": "The Point Liquor & Bar",
+          "num": "22022",
+          "name": "C Town (A)",
           "date": "9/11/2026"
         },
         {
-          "num": "22022",
-          "name": "C Town (A)",
+          "num": "20037",
+          "name": "The Point Liquor & Bar",
           "date": "9/11/2026"
         }
       ]
@@ -406,13 +411,13 @@
           "date": "8/25/2026"
         },
         {
-          "num": "20117",
-          "name": "El Cantaro Liquors",
+          "num": "27071",
+          "name": "Mariana's Liquors",
           "date": "8/27/2026"
         },
         {
-          "num": "27071",
-          "name": "Mariana's Liquors",
+          "num": "20117",
+          "name": "El Cantaro Liquors",
           "date": "8/27/2026"
         },
         {
@@ -473,13 +478,13 @@
           "date": "9/2/2026"
         },
         {
-          "num": "190907",
-          "name": "Wharton Liquor Store",
+          "num": "190913",
+          "name": "Main Street Liquor",
           "date": "9/3/2026"
         },
         {
-          "num": "190913",
-          "name": "Main Street Liquor",
+          "num": "190907",
+          "name": "Wharton Liquor Store",
           "date": "9/3/2026"
         },
         {
@@ -493,11 +498,6 @@
           "date": "9/9/2026"
         },
         {
-          "num": "191812",
-          "name": "Patel Liqr & Gro(P)",
-          "date": "9/15/2026"
-        },
-        {
           "num": "191713",
           "name": "Stanhope Liquors",
           "date": "9/15/2026"
@@ -505,6 +505,11 @@
         {
           "num": "190302",
           "name": "Basket Of Cheer Ii (Lake Hiawatha)",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "191812",
+          "name": "Patel Liqr & Gro(P)",
           "date": "9/15/2026"
         },
         {
@@ -540,8 +545,8 @@
           "date": "8/26/2026"
         },
         {
-          "num": "43001",
-          "name": "City Supermarket",
+          "num": "40019",
+          "name": "Budy's Wine & Liq (A)",
           "date": "9/15/2026"
         },
         {
@@ -550,13 +555,13 @@
           "date": "9/15/2026"
         },
         {
-          "num": "29004",
-          "name": "Shop-Rite Liq Lyndhurst",
+          "num": "43001",
+          "name": "City Supermarket",
           "date": "9/15/2026"
         },
         {
-          "num": "40019",
-          "name": "Budy's Wine & Liq (A)",
+          "num": "29004",
+          "name": "Shop-Rite Liq Lyndhurst",
           "date": "9/15/2026"
         },
         {
@@ -565,13 +570,18 @@
           "date": "9/16/2026"
         },
         {
+          "num": "50009",
+          "name": "Riverview Liq (P)",
+          "date": "9/17/2026"
+        },
+        {
           "num": "50005",
           "name": "Megha Liquor & Grocery",
           "date": "9/17/2026"
         },
         {
-          "num": "78008",
-          "name": "Shop Rite Liq(A) Roch Pk",
+          "num": "80026",
+          "name": "Stew Leonard's(A) Paramus Wine",
           "date": "9/17/2026"
         },
         {
@@ -580,13 +590,8 @@
           "date": "9/17/2026"
         },
         {
-          "num": "50009",
-          "name": "Riverview Liq (P)",
-          "date": "9/17/2026"
-        },
-        {
-          "num": "80026",
-          "name": "Stew Leonard's(A) Paramus Wine",
+          "num": "78008",
+          "name": "Shop Rite Liq(A) Roch Pk",
           "date": "9/17/2026"
         }
       ]
@@ -647,13 +652,13 @@
           "date": "9/1/2026"
         },
         {
-          "num": "50016",
-          "name": "Teaneck Quickshop(P)Conv",
+          "num": "35002",
+          "name": "Woodridge Wines & Liq(A)",
           "date": "9/2/2026"
         },
         {
-          "num": "35002",
-          "name": "Woodridge Wines & Liq(A)",
+          "num": "50016",
+          "name": "Teaneck Quickshop(P)Conv",
           "date": "9/2/2026"
         },
         {
@@ -729,13 +734,13 @@
           "date": "9/3/2026"
         },
         {
-          "num": "32017",
-          "name": "Wine Grand (Carlstadt)",
+          "num": "77009",
+          "name": "M & M Wine & Spirits",
           "date": "9/4/2026"
         },
         {
-          "num": "77009",
-          "name": "M & M Wine & Spirits",
+          "num": "32017",
+          "name": "Wine Grand (Carlstadt)",
           "date": "9/4/2026"
         },
         {
@@ -749,11 +754,6 @@
           "date": "9/11/2026"
         },
         {
-          "num": "32016",
-          "name": "Cobblestone Hill Deli",
-          "date": "9/15/2026"
-        },
-        {
           "num": "36016",
           "name": "King Liquors",
           "date": "9/15/2026"
@@ -761,6 +761,11 @@
         {
           "num": "77022",
           "name": "All Star Wine & Liquor",
+          "date": "9/15/2026"
+        },
+        {
+          "num": "32016",
+          "name": "Cobblestone Hill Deli",
           "date": "9/15/2026"
         },
         {
@@ -908,13 +913,13 @@
           "date": "9/3/2026"
         },
         {
-          "num": "40001",
-          "name": "Bottle & Cork",
+          "num": "51012",
+          "name": "Teaneck Liquors",
           "date": "9/16/2026"
         },
         {
-          "num": "51012",
-          "name": "Teaneck Liquors",
+          "num": "40001",
+          "name": "Bottle & Cork",
           "date": "9/16/2026"
         }
       ]
@@ -997,13 +1002,13 @@
           "date": "9/15/2026"
         },
         {
-          "num": "70003",
-          "name": "Montvale Wines & Spirits",
+          "num": "74009",
+          "name": "Westwood Wine and Liquors",
           "date": "9/16/2026"
         },
         {
-          "num": "74009",
-          "name": "Westwood Wine and Liquors",
+          "num": "70003",
+          "name": "Montvale Wines & Spirits",
           "date": "9/16/2026"
         }
       ]
@@ -1027,6 +1032,28 @@
           "num": "191003",
           "name": "Chabons Ii Liq/Bar (A)",
           "date": "8/18/2026"
+        }
+      ]
+    },
+    {
+      "rep": "Michael Harboy",
+      "base": 6,
+      "qualifier": 3,
+      "bonus": 3,
+      "qualifierRaw": 2.4,
+      "bonusRaw": 3.0,
+      "buyers": 1,
+      "pct": 17,
+      "qualified": false,
+      "bonusHit": false,
+      "toQualifier": 2,
+      "toBonus": 2,
+      "payout": 0,
+      "accounts": [
+        {
+          "num": "11014",
+          "name": "Wayne Liquor Locker",
+          "date": "9/18/2026"
         }
       ]
     },
@@ -1093,22 +1120,6 @@
           "date": "8/13/2026"
         }
       ]
-    },
-    {
-      "rep": "Michael Harboy",
-      "base": 6,
-      "qualifier": 3,
-      "bonus": 3,
-      "qualifierRaw": 2.4,
-      "bonusRaw": 3.0,
-      "buyers": 0,
-      "pct": 0,
-      "qualified": false,
-      "bonusHit": false,
-      "toQualifier": 3,
-      "toBonus": 3,
-      "payout": 0,
-      "accounts": []
     },
     {
       "rep": "John O'Donoghue",
@@ -1270,7 +1281,7 @@
     },
     {
       "date": "9/18/2026",
-      "buyers": 3
+      "buyers": 6
     }
   ]
 }

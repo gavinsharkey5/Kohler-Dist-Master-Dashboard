@@ -895,6 +895,17 @@ roster by surname as usual). Still 4 reps at the goal of 5: Chris Payton,
 Derrick Laws, Mike Ast, Shane Barreca. No RDE export was re-pulled, so the
 other four objectives are byte-for-byte what the morning refresh published.
 
+2026-09-17 SECOND REFRESH -- Keystone only, riding the incentive-tracker refresh
+    python3 generate_2026-09.py
+Keystone 200 -> 203 rows, a clean superset (3 new, all dated 9/18). Nothing
+else on this board was re-pulled; only mpo_keystone_ice_numerator.json,
+mpo_targets_keystone_ice.json and sync_meta.json changed.
+  Keystone Ice    164 -> 166 distinct buying accounts, still 8 of 26 reps at
+                  40%: Pablo Lopez +1 (Altiero Liquors), Michael Harboy 0 -> 1
+                  (Wayne Liquor Locker). Target list 329 -> 327.
+Same 203-row export onto keystone-ice/actuals.csv; keystone-ice rebuilt
+first, then this board, then incentive-tracking.
+
 2026-09-17 REFRESH -- all four exports plus Promos_Report_27
     python3 generate_2026-09.py --merge-cooler-doors Promos_Report_27.xlsx
 Row counts: Constellation 122 (restated in place), Keystone 189 -> 200,

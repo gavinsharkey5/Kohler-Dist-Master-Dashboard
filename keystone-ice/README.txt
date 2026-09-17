@@ -98,6 +98,13 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-17 SECOND REFRESH: actuals.csv onto the 203-row export (3 new rows,
+  none removed, all dated 9/18 -- scheduled loads a day ahead of the pull).
+  164 -> 166 distinct accounts house-wide; 7 qualified, 3 at bonus, $840 ->
+  $850 projected. Pablo Lopez 18 -> 19 of 12 (68%, Altiero Liquors); Michael
+  Harboy 0 -> 1 (Wayne Liquor Locker). Derrick Laws / Hiciano is a repeat.
+  Same file onto MPOs/off-prem/keystone_ice_24oz.csv (sync rule).
+
 2026-09-17 REFRESH: actuals.csv onto the 200-row export (11 new rows, none
   removed -- diffed before the run). 159 -> 164 distinct accounts house-wide;
   7 qualified (was 5), 3 at bonus, $840 projected. CHRIS PAYTON 15 -> 17 of
