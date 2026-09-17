@@ -1991,11 +1991,9 @@ function mpoRepCardDetail(p, r, rep){
 }
 
 function programCard(p, r, rep){
-  // MPO cards on a rep's page are the streamlined worklist card above in
-  // BOTH modes (v18.1, 2026-09-17 -- Gavin saw the Manager Mode card after
-  // the revert and wanted the simple one there too). Manager Mode's
-  // by-program screen and the incentive cards are untouched.
-  if(p.type==='MPO') return mpoRepCard(p, r, rep);
+  // Rep Mode MPO cards are the streamlined worklist card above. Manager Mode
+  // keeps the dashboards' objective card, and incentives are untouched.
+  if(p.type==='MPO' && !isMgr()) return mpoRepCard(p, r, rep);
   const bySup = String(state.cat||'').startsWith('sup:');
   const kind = p.type==='MPO' ? E(p.channelLabel)+' MPO' : ({new:'New', ongoing:'Ongoing', retention:'Retention'}[p.group]||'')+' incentive';
   const sup = bySup ? kind : `${E(p.supplier)} · ${kind}`;
