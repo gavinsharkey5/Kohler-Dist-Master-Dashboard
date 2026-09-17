@@ -509,6 +509,12 @@ function programBody(o){
       '</div>';
     }
     var st = m.status;
+    // Program View detail (2026-09-17, per Gavin: managers should see the
+    // customer / product / date / photo lines without leaving this screen).
+    // The toggle renders the SAME drill-down Rep View puts behind "See My
+    // Progress" -- H.detailHtml() -- and fills it lazily on first open, so a
+    // 27-rep objective does not build 27 tables it may never show.
+    var did = 'gd'+(uid++);
     return '<div class="g-reprow '+st+'">'+
       '<span class="g-reprow-name">'+esc(row.rep)+
         '<span class="g-reprow-dm">'+esc(row.dm)+'</span></span>'+
@@ -521,6 +527,9 @@ function programBody(o){
         '</span>'+
       '</span>'+
       pillHtml(st)+
+      '<button class="g-reprow-more js-repdetail" data-target="'+did+'" data-key="'+esc(o.key)+
+        '" data-rep="'+esc(row.rep)+'" aria-expanded="false">Details<span class="ar">&#9656;</span></button>'+
+      '<div class="g-reprow-detail" id="'+did+'"></div>'+
     '</div>';
   }).join('');
 
@@ -565,6 +574,23 @@ function wire(){
 
     var sortBtn = e.target.closest('.js-sort');
     if(sortBtn){ sortMode = sortBtn.dataset.sort; render(); return; }
+
+    var rd = e.target.closest('.js-repdetail');
+    if(rd){
+      var rbody = document.getElementById(rd.dataset.target);
+      var ropen = rd.classList.toggle('open');
+      rd.setAttribute('aria-expanded', ropen?'true':'false');
+      if(rbody){
+        if(ropen && !rbody.dataset.filled){
+          var obj = H.objectives().filter(function(x){return x.key===rd.dataset.key;})[0];
+          rbody.innerHTML = (obj && H.detailHtml(obj, rd.dataset.rep)) ||
+            '<div class="g-note">No line-level detail for this rep this month.</div>';
+          rbody.dataset.filled = '1';
+        }
+        rbody.classList.toggle('open', ropen);
+      }
+      return;
+    }
 
     var more = e.target.closest('.js-more');
     if(more){

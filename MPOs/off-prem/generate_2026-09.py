@@ -433,9 +433,26 @@ def build_new_placements(path, product_col=None):
     single load sheet's count, and the summed alternative is returned
     alongside it so main() can print both.
 
+    DATES (2026-09-17, per Gavin: the board should show "product, customer,
+    date of execution"): every row carries a load sheet Date, so each key
+    also records the EARLIEST current-window date -- the day the placement
+    was executed -- as PLACED_DATE, and the latest as LAST_DATE. Neither
+    feeds a count; they are for the drill-down only.
+
     Returns (rows, new_placements, new_keys, total_keys, summed_alt)."""
     rows = load_csv(path)
     base_col, current_col = window_cols(rows[0].keys(), "Placement Count")
+    # "Load Sheet Date" on the 2026-09 exports; "Date" on older ones.
+    date_col = next((c for c in rows[0].keys() if c and "date" in c.strip().lower()), None)
+
+    def parse_dt(v):
+        v = (v or "").strip().split()[0] if (v or "").strip() else ""
+        for fmt in ("%m/%d/%Y", "%Y-%m-%d"):
+            try:
+                return datetime.strptime(v, fmt)
+            except ValueError:
+                pass
+        return None
     check_window(base_col, datetime(2026, 6, 1), f"{path.name} base window")
     check_window(current_col, ACTUAL_WINDOW_START, f"{path.name} current window")
 
@@ -452,9 +469,11 @@ def build_new_placements(path, product_col=None):
                         "brand": (r.get("Brand Family") or "").strip(),
                         "base": 0.0, "current": 0.0,
                         "base_sum": 0.0, "current_sum": 0.0,
-                        "has_base": False, "has_current": False}
+                        "has_base": False, "has_current": False,
+                        "first_dt": None, "last_dt": None}
             order.append(key)
         a = agg[key]
+        dt = parse_dt(r.get(date_col)) if date_col else None
         # Populated-ness, not quantity: an account whose base row happens to
         # read 0 still transacted in the base window.
         if (r[base_col] or "").strip() != "":
@@ -465,6 +484,9 @@ def build_new_placements(path, product_col=None):
             a["has_current"] = True
             a["current"] = max(a["current"], to_num(r[current_col]))
             a["current_sum"] += to_num(r[current_col])
+            if dt is not None:
+                a["first_dt"] = dt if a["first_dt"] is None or dt < a["first_dt"] else a["first_dt"]
+                a["last_dt"] = dt if a["last_dt"] is None or dt > a["last_dt"] else a["last_dt"]
 
     out = []
     new_placements = 0.0
@@ -486,6 +508,8 @@ def build_new_placements(path, product_col=None):
             "BASE_PLACEMENTS": a["base"],
             "CURRENT_PLACEMENTS": a["current"],
             "NEW_PLACEMENT": is_new,
+            "PLACED_DATE": a["first_dt"].strftime("%-m/%-d/%Y") if a["first_dt"] else "",
+            "LAST_DATE": a["last_dt"].strftime("%-m/%-d/%Y") if a["last_dt"] else "",
         })
     out.sort(key=lambda row: (row["SALES_REP_ASSIGNED"], row["CUSTOMER_NAME"], row["PRODUCT_NAME"]))
     return out, new_placements, new_keys, len(out), summed_alt

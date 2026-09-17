@@ -278,7 +278,8 @@ function buildPctOfBaseDataset(baseRows, numRows, pct, minSkus){
   const numByRep=new Map();
   if(Array.isArray(numRows)&&numRows.length){
     const nRepCol=findCol(numRows[0],REP_COLS), nNumCol=findCol(numRows[0],CUSTOMER_NUM_COLS),
-          nNameCol=findCol(numRows[0],CUSTOMER_COLS), nProdCol=findCol(numRows[0],PRODUCT_COLS);
+          nNameCol=findCol(numRows[0],CUSTOMER_COLS), nProdCol=findCol(numRows[0],PRODUCT_COLS),
+          nDateCol=findCol(numRows[0],DATE_COLS), nCasesCol=findCol(numRows[0],[["cases"],["count"]]);
     numRows.forEach(r=>{
       const rep=String(r[nRepCol]||"").trim(); if(!rep) return;
       if(!numByRep.has(rep)) numByRep.set(rep,[]);
@@ -286,6 +287,10 @@ function buildPctOfBaseDataset(baseRows, numRows, pct, minSkus){
         customer_num: nNumCol?String(r[nNumCol]||"").trim():"",
         customer: nNameCol?String(r[nNameCol]||"").trim():"",
         product: nProdCol?String(r[nProdCol]||"").trim():"",
+        // Per-purchase date + cases (Keystone's numerator is one row per
+        // load sheet); August's Lytt numerator has neither and reads ''.
+        date: nDateCol?String(r[nDateCol]||"").trim():"",
+        cases: nCasesCol&&r[nCasesCol]!=null&&r[nCasesCol]!==""?Number(r[nCasesCol]):null,
       });
     });
   }
@@ -379,6 +384,10 @@ function buildNewPlacementsDataset(rows, target){
       base:Number(r.BASE_PLACEMENTS)||0,
       current:Number(r.CURRENT_PLACEMENTS)||0,
       isNew:String(r.NEW_PLACEMENT)==="1",
+      // Execution dates (generate_2026-09.py, 2026-09-17): earliest and
+      // latest current-window load sheet for this key. Display only.
+      placed:String(r.PLACED_DATE||"").trim(),
+      last:String(r.LAST_DATE||"").trim(),
     });
   });
   const reps=[];
@@ -921,22 +930,39 @@ function lineTableLytt(lines, minSkus, brandLabel){
   brandLabel = brandLabel || 'Lytt';
   if(!lines || lines.length===0) return `<div class="no-lines">No ${brandLabel}-carrying accounts recorded this month.</div>`;
   const min = minSkus||1;
+  // Since 2026-09-17 the numerator may carry a date and case count per
+  // purchase (Keystone Ice). When it does, each account's header reads its
+  // first and latest order and total cases, and the expanded table lists
+  // every load sheet (Product · Date · Cases) instead of a bare SKU list.
+  // Lytt's August numerator has neither, so it renders exactly as before.
+  const hasDates = lines.some(l=>l.date);
   const byCustomer = new Map();
   lines.forEach(l=>{
-    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, new Set());
-    byCustomer.get(l.customer).add(l.product);
+    if(!byCustomer.has(l.customer)) byCustomer.set(l.customer, {skus:new Set(), rows:[]});
+    const c = byCustomer.get(l.customer);
+    c.skus.add(l.product); c.rows.push(l);
   });
   const customers = [...byCustomer.entries()]
-    .map(([customer, skus])=>[customer, [...skus]])
+    .map(([customer, c])=>[customer, [...c.skus], c.rows])
     .sort((a,b)=>a[0].localeCompare(b[0]));
-  const block = ([customer, products], short)=>{
+  const block = ([customer, products, rows], short)=>{
     const gid = 'tgtc'+(uid++);
-    const prodRows = products.slice().sort().map(p=>`<tr><td>${p}</td></tr>`).join('');
     const need = min - products.length;
     const tag = short ? `<span class="lytt-short">${need} more SKU${need===1?'':'s'} to qualify</span>` : '';
+    let meta = '', table;
+    if(hasDates){
+      const dated = rows.filter(r=>r.date).sort((a,b)=>parseDateMs(b.date)-parseDateMs(a.date));
+      const first = dated.length ? dated[dated.length-1].date : '', last = dated.length ? dated[0].date : '';
+      const cases = rows.reduce((s,r)=>s+(r.cases||0),0);
+      meta = `<span class="lytt-meta">${first===last ? first : `${first} – ${last}`}${cases?` · ${cases%1?cases.toFixed(2):cases} case${cases===1?'':'s'}`:''}</span>`;
+      table = `<table><thead><tr><th>Product</th><th>Date</th><th class="num">Cases</th></tr></thead><tbody>${
+        dated.concat(rows.filter(r=>!r.date)).map(r=>`<tr><td>${r.product}</td><td>${r.date||'—'}</td><td class="num">${r.cases==null?'—':r.cases}</td></tr>`).join('')}</tbody></table>`;
+    } else {
+      table = `<table><thead><tr><th>Product</th></tr></thead><tbody>${products.slice().sort().map(p=>`<tr><td>${p}</td></tr>`).join('')}</tbody></table>`;
+    }
     return `<div class="tgt-county">
-      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}${tag}<span class="tgt-county-count">${products.length}</span></div>
-      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px"><table><thead><tr><th>Product</th></tr></thead><tbody>${prodRows}</tbody></table></div></div>
+      <div class="tgt-county-toggle" data-target="${gid}"><span class="tgt-county-chev">▶</span>${customer}${tag}${meta}<span class="tgt-county-count">${products.length}</span></div>
+      <div class="tgt-county-table" id="${gid}"><div class="rep-sub-inner" style="padding-left:2px">${table}</div></div>
     </div>`;
   };
   const qualifying = customers.filter(([,p])=>p.length>=min);
@@ -979,17 +1005,22 @@ function lineTablePhotos(lines, o){
 // September's new-placement drill-down. Same shape as lineTableNewAccounts()
 // -- qualifying rows up top, everything that already carries the brand
 // tucked behind a collapsed "N Existing Accounts" dropdown -- but the two
-// middle columns are PLACEMENT COUNTS, not dates: these exports have no
-// per-row date to show (see buildNewPlacementsDataset()), and the counts are
-// what the objective is actually scored on.
+// middle columns are PLACEMENT COUNTS, not dates, and the counts are what
+// the objective is actually scored on. Since 2026-09-17 the generator also
+// folds each key's load sheet dates down to PLACED_DATE (earliest this
+// month -- the day the placement was executed) and LAST_DATE, so a "Placed"
+// column sits between Customer and the counts whenever the data carries it
+// (Gavin: the board should show product, customer and date of execution).
+// Existing accounts show their latest order date in the same column.
 function lineTableNewPlacements(lines, flagLabel, targetsHtml){
   flagLabel = flagLabel || 'New Placement';
   targetsHtml = targetsHtml || '';
   if(!lines || lines.length===0) return `<div class="no-lines">No activity recorded this month.</div>${targetsHtml}`;
   const hasProduct = lines.some(l=>l.product);
-  const cols = `${hasProduct?'<th>Product</th>':''}<th>Customer</th><th class="num">Base Period</th><th class="num">This Month</th><th>Status</th>`;
-  const row = (l,status)=>`<tr>${hasProduct?`<td>${l.product}</td>`:''}<td>${l.customer}</td><td class="num">${l.base||'—'}</td><td class="num">${l.current||'—'}</td><td>${status}</td></tr>`;
-  const bySize = (a,b)=> b.current-a.current || a.customer.localeCompare(b.customer);
+  const hasDates = lines.some(l=>l.placed||l.last);
+  const cols = `${hasProduct?'<th>Product</th>':''}<th>Customer</th>${hasDates?'<th>Placed</th>':''}<th class="num">Base Period</th><th class="num">This Month</th><th>Status</th>`;
+  const row = (l,status)=>`<tr>${hasProduct?`<td>${l.product}</td>`:''}<td>${l.customer}</td>${hasDates?`<td>${l.placed||l.last||'—'}</td>`:''}<td class="num">${l.base||'—'}</td><td class="num">${l.current||'—'}</td><td>${status}</td></tr>`;
+  const bySize = (a,b)=> parseDateMs(b.placed)-parseDateMs(a.placed) || b.current-a.current || a.customer.localeCompare(b.customer);
   const newOnes = lines.filter(l=>l.isNew).sort(bySize);
   const existing = lines.filter(l=>!l.isNew).sort(bySize);
 

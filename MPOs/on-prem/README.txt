@@ -263,6 +263,17 @@ All four are data-backed. Numbers as of the 2026-09-17 refresh (RDE exports run
 through 9/18): Bardstown 15 menu placements, Fever Tree 21 new placements,
 Carbliss 20 new buying accounts, HUSA 1 new draft line.
 
+2026-09-17 -- PROGRAM VIEW DETAIL (shared/guided.js, per Gavin)
+Every rep row under an opened objective in Program View now has a
+"Details ▸" toggle that renders the same drill-down Rep View shows behind
+SEE MY PROGRESS (customer, product, base / this-month dates, status, and
+the photo link on Bardstown menu placements). Nothing about this board's
+own tables changed -- they already carried dates -- and Adam Badalamenti's
+one-objective detail renders under Bardstown like everyone else's. See
+MPOs/off-prem/README.txt (same date) for the off-prem date columns that
+came with it. guided.css / guided.js / programs.js load with ?v= tags now
+(20260917i); bump them whenever those files change.
+
 2026-09-17 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_26
   python3 generate_2026-09.py --merge-bardstown Promos_Report_26.xlsx
 Diffed row by row before the run: every export is a clean superset of the 9/16

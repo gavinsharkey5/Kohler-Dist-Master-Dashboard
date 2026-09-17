@@ -238,3 +238,15 @@
 @media (min-width:1100px){
   .g-grid{grid-template-columns:repeat(3,1fr);}
 }
+
+
+/* Program View per-rep detail (2026-09-17): a small toggle on every rep
+   row that opens the same drill-down Rep View shows, full width under the
+   row. .g-reprow is a two-column grid, so both span it. */
+.g-reprow-more{grid-column:1/-1;justify-self:start;background:none;border:0;padding:2px 0 0;
+  color:var(--accent);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;}
+.g-reprow-more .ar{transition:transform .18s;font-size:13px;}
+.g-reprow-more.open .ar{transform:rotate(90deg);}
+.g-reprow-detail{grid-column:1/-1;display:none;margin-top:6px;}
+.g-reprow-detail.open{display:block;}
+.lytt-meta{font-size:12px;font-weight:400;color:var(--ink-soft);margin-left:8px;}

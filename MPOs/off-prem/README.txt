@@ -895,6 +895,39 @@ roster by surname as usual). Still 4 reps at the goal of 5: Chris Payton,
 Derrick Laws, Mike Ast, Shane Barreca. No RDE export was re-pulled, so the
 other four objectives are byte-for-byte what the morning refresh published.
 
+2026-09-17 -- DETAIL EVERYWHERE: execution dates + Program View drill-downs (Gavin)
+Gavin: "update on and off premise dashboard to show the details of each
+program, ie product, customer, date of execution etc. Include photos where
+relevant for iSellBeer MPOs." Rep View already had customer / product /
+status (and photos on the cooler-door objective) behind SEE MY PROGRESS;
+two things were missing and are now in:
+  1. DATES on the three objectives that had none.
+     generate_2026-09.py build_new_placements() now folds each key's load
+     sheet dates into PLACED_DATE (earliest current-window date -- the day
+     the placement was executed) and LAST_DATE, read off the "Load Sheet
+     Date" column (any header containing "date"). mpo_fever_tree.json and
+     mpo_wine_spirits_any_brand.json carry both; NO COUNT CHANGED (103 / 259,
+     rebuilt from the same CSVs). programs.js lineTableNewPlacements() shows
+     a "Placed" column between Customer and the counts whenever any line
+     has a date (existing accounts show their latest order there), newest
+     first. Keystone: buildPctOfBaseDataset() now keeps each numerator row's
+     DATE and CASES, and lineTableLytt() prints "first – last · N cases"
+     beside each account and lists every load sheet (Product · Date ·
+     Cases) when expanded. August's Lytt numerator has neither column and
+     renders exactly as before.
+  2. PROGRAM VIEW DETAIL (shared/guided.js, both boards). Every rep row
+     under an opened objective has a "Details ▸" toggle that renders the
+     SAME drill-down Rep View shows -- H.detailHtml(), so photos, targets
+     and existing-account dropdowns come along. Filled lazily on first
+     open. Managers no longer have to switch to Rep View and pick each rep.
+  Constellation's export is rep x product only, so that drill-down stays a
+  per-product table until Kohler can pull an account-level version.
+guided.css / guided.js / programs.js now load with ?v= tags on both MPO
+pages (they had none), bumped with the hub's to 20260917i. Verified headless
+on both boards: dated tables, Details toggles with photo links (cooler
+doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
+at 390px, and the hub's off-prem tab still renders.
+
 2026-09-17 SECOND REFRESH -- Keystone only, riding the incentive-tracker refresh
     python3 generate_2026-09.py
 Keystone 200 -> 203 rows, a clean superset (3 new, all dated 9/18). Nothing
