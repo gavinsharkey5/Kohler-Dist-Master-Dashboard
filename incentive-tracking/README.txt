@@ -3887,3 +3887,31 @@ his list so nothing moved on it.
                Lodi Lanes (1/2 bbl each), all 9/18. Still not paid -- needs
                October's hold.
 Hub cache tag bumped for the new program_data.js.
+
+2026-09-17 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain not re-pulled)
+  python3 generate.py
+Packages ON 10,118 -> 10,295 rows (+178, -1: Paul Mclaughlin / Players Club
+Modelo Especial loose bottle dated 9/16, a scheduled load that did not land)
+and Draft ON 1,832 -> 1,843 (+11, none removed). Impact 312 (restated in
+place), Modelo 167 (restated in place), Innovation 179 -> 180 -- every rep's
+BASE column is identical to the morning file on all three, so no goal
+moved; only the 2026 column grew, and no rep's category went down. Corona
+Gaintain was not in this batch and still reads the 9/17 morning pull
+(1,036 / 1,610).
+  off-prem house  Modelo Gaintain 1,804 -> 1,843 / 2,395 · Impact 2,135 ->
+                  2,203 / 3,135 · Innovation 421 -> 445 / 1,419. Biggest
+                  movers: Chris Payton 438 -> 458 off-prem placements, Jim
+                  Heaney 464 -> 483, Dan Lagala 390 -> 405, Matt Powierski
+                  517 -> 527. Michael Harboy 87 -> 93 of his 105 (88.6%) is
+                  the closest to holding every off-prem category.
+  on-prem         packages 997 -> 1,060 / 2,107 buyers (Paul Mclaughlin
+                  127 -> 140, Nick Melissari 173 -> 185, Robin Feldman 105 ->
+                  113, Pablo Lopez 66 -> 71, Anthony Palmisano 58 -> 63,
+                  Chris Payton 19 -> 23); draft 137 -> 141 / 381 (Allison
+                  Scott, Nick Melissari, Paul Mclaughlin, Robin Feldman +1
+                  each; empty-keg pickups 43 -> 40). PHIL ERNST 2 -> 6 of his
+                  7 packages families held (3 -> 7 buyers), Mike Ast 0 -> 1.
+                  Still 4 of 20 reps holding every packages family, 0 of 12
+                  on draft.
+  goals retained  19 -> 24 of 238 across the roster; 0 of 24 reps hold every goal.
+Hub cache tag bumped for the new program_data.js.
