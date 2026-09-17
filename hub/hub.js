@@ -173,7 +173,7 @@ function paceFromPct(pct, done, started){
 // Channel per incentive, read off each program's deck rules. "both" is the
 // default: most programs pay on packages and draft alike.
 const INC_CHANNEL = {
-  keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', mollys:'off',
+  keystone_ice:'off', lytt:'off', tona:'off', sun_cruiser:'off', path_to_victory:'off', path_to_victory_sd:'off', mollys:'off',
   display_auction:'off', mabi_retention:'off', mabi_retention_fall:'off',
   sam_adams_conversion:'on', printed_menu:'on', new_belgium:'on',
 };
@@ -1205,7 +1205,7 @@ const SELL_ASK = {
   'inc:constellation_retention':'Keep Corona, Modelo and Pacifico placed.', 'inc:mabi_retention_fall':"Keep White Claw, Mike's and Cayman Jack placed.",
   'inc:mabi_retention':"Keep White Claw, Mike's and Cayman Jack placed.", 'inc:yuengling_retention_fall':'Keep Yuengling Lager and Flight placed.',
   'inc:yuengling_retention':'Keep Yuengling Lager and Flight placed.', 'inc:sun_cruiser':'Sell more Sun Cruiser than last year.',
-  'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.',
+  'inc:yave':'Open a new YaVe account.', 'inc:mollys':"Place Molly's 1.75L.", 'inc:path_to_victory':'Sell Victory Monkey 6-packs.', 'inc:path_to_victory_sd':'Open a new Victory Monkey 6-pack POD.', 'inc:fall_seasonal_sd':'Sell Fall Seasonal packages and kegs.',
   'inc:boston_beer':'Place an Angry Orchard or Dogfish Head tap.', 'inc:new_belgium':'Place a Juicy Haze or Two Hearted tap.',
   'inc:sam_adams':'Sell more Sam Adams than last August.', 'inc:new_belgium_distribution':"Sell more Bell's, Kirin and Voodoo.",
   'on:carbliss':'Open a new Carbliss account.', 'on:fever_tree':'Place Fever Tree.', 'on:bardstown_menu':'Get Bardstown or Green River on the menu.',

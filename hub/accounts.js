@@ -60,6 +60,7 @@ const PROGRAM_BRANDS = {
   'inc:new_belgium':['Voodoo Family',"Bell's Hearted Family"], 'inc:boston_beer':['Angry Orchard','Dogfish Head Beer'], 'inc:sam_adams':['Samuel Adams'],
   'inc:path_to_victory':['Victory'], 'inc:sun_cruiser':['Sun Cruiser'], 'inc:yave':['YaVe'], 'inc:mollys':["Molly's"],
   'inc:fall_seasonal':null, 'inc:display_auction':null,
+  'inc:path_to_victory_sd':['Victory'], 'inc:fall_seasonal_sd':null,
   // --- on-premise MPO objectives (MPOs/on-prem/programs.js keys) ---
   'on:bardstown_menu':BARDSTOWN, 'on:fever_tree':['Fever Tree'], 'on:carbliss':['Carbliss'], 'on:husa_xx_draft':['Dos Equis'],
   'on:angry_orchard':['Angry Orchard'], 'on:molson_coors':['Peroni','Coors'], 'on:wine_spirits':['YaVe','Leyenda 1925'],

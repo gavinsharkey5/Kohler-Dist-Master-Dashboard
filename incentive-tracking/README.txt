@@ -3991,3 +3991,78 @@ carries "$X earned" in the sub, the same shape as other_half. Effects:
                    payout) are untouched.
 No other rule leads with money now, so nothing else is hidden by that test.
 Hub cache tag bumped for the new programs.js.
+
+2026-09-17 -- MIKE KENNEDY'S TEAM: PATH TO VICTORY + FALL SEASONAL, AUG 1 - SEP 30
+Gavin: "For Mike Kennedy's team, can you please also implement these 2
+incentives" -- the same two August decks (Path to Victory; Fall Seasonal
+Fast Start) kept open through September for the Southern District, with
+two new exports:
+  data/path_to_victory_sd.csv   "THE PATH TO VICTORY - AUGUST to SEPT 2026 vSD"
+  data/fall_seasonal_sd.csv     "2026 Fall Seasonal Fast Start vSD"
+THESE ARE GROUPED SUMMARIES, NOT TRANSACTION FILES: one row per rep x
+product for 8/1-9/30, no accounts, no dates, with RDE's subtotal rows
+inline. Path to Victory opens every rep with two identical rows (rep total
+and the single package subtotal); Fall Seasonal opens every rep with a
+total row, then each Product Type group with its subtotal row (labelled
+with the group's first product; the rep-total row's type label is
+arbitrary). build_path_to_victory_sd() / build_fall_seasonal_sd() drop
+those rows and HARD-FAIL if the products do not add up to the subtotals
+and the subtotals to the total (every rep reconciled on this pull).
+What the columns mean (checked 2026-09-17):
+  Path to Victory   Placements = PODs (account x product with volume),
+                    New Placements = PODs new this window -> $10 each for
+                    6pk cans; Current Units. 6pk cans only in this export;
+                    a 1/15/19.2oz Can package is bucketed ($10 new / $5
+                    current) if it ever appears. The $25 for an account
+                    buying 5+ 6pks is an iSellBeer submission -- not in
+                    RDE, not tracked (same as the August program).
+  Fall Seasonal     "Cases" is CASES for package rows, KEGS for Keg rows
+                    (Jaime Colonna's Pumking half-kegs: 24 units in the
+                    August transaction file, 27 here for Aug-Sep; the CE
+                    reading would be 165), spirits cases for Liquor rows.
+                    The deck pays $0.50 per CASE EQUIVALENT and this export
+                    has no CE column, so package_case_equivalents() reads
+                    the pack size off the product name (4/6/11.2 oz = 0.93,
+                    6/4/16 oz = 1.33, 2/5 L mini keg = 1.17 -- RDE's own
+                    288 oz definition); an unreadable pack string counts 1
+                    CE per case and is flagged on the card (none on this
+                    pull). Kegs: 5.2 Gal sixtel $5, 15.5 Gal half-keg $10,
+                    7.75 Gal quarter and 13.2 Gal / 50L "other" with no
+                    assumed rate -- the August builder's convention.
+                    Liquor (Southern Tier Pumking Whiskey) $5 a case.
+Registry: path_to_victory_sd (supplier Victory, metric new 6pk PODs) and
+fall_seasonal_sd (Kohler House Programs, metric package CE) in
+PROGRAM_LIST_2026_09, tag Aug-Sept, cards cardPathToVictorySD() /
+cardFallSeasonalSD() (detail lists are PRODUCTS, not accounts), summaries
+lead with the field metric and carry earnings in the sub (the hub's Rep
+Mode drops the sub's money segment; Manager Mode and this page keep it).
+Reps off the team have no byRep entry: no card, no leaderboard row, and
+the hub reads "not in this program" -- not a zero. Andrew Lundy is not in
+the Path to Victory export (no Victory Monkey activity) and so is not on
+that program; he is on Fall Seasonal.
+Numbers on this pull (8/1-9/30):
+  Path to Victory   66 new 6pk PODs of 226 active, 598 units, $660
+                    trackable: Dylan Rubino 25, Alisa Acciardi 14, Jaime
+                    Colonna 14, Hakan Sadik 7, Michael Harboy 3, Alex
+                    Rodriguez 2, John O'Donoghue 1.
+  Fall Seasonal     4,576 package CE from 4,405 cases, 46 sixtels, 67
+                    half-kegs, 114 other-size kegs, 5 spirits cases,
+                    $3,213 trackable: Jaime Colonna 1,066 CE / 67 paid
+                    kegs ($1,103), Michael Harboy 935 CE, John O'Donoghue
+                    824 CE / 23 kegs, Alisa Acciardi 600 CE, Andrew Lundy
+                    571 CE, Dylan Rubino 317 CE, Hakan Sadik 231 CE / 9
+                    kegs, Alex Rodriguez 33 CE.
+BUG FOUND AND FIXED ON THE WAY -- AUGUST FALL SEASONAL SIXTELS. The keg
+tier lookup was FALL_KEG_TIERS.get(round(bbl, 4)); round(1/6, 4) is 0.1667
+and the dict key is 0.16666..., so no sixtel ever matched and every 5.2
+Gal keg fell into the "other sizes, no rate" bucket. keg_tier() now
+matches with a tolerance. The AUGUST tab moved: sixtels 0 -> 54, other
+kegs 98 -> 44 (the 5.2 Gal ones), half-kegs 25 unchanged -- $270 of
+sixtel money that was never shown. Both builders use keg_tier().
+Hub: SELL_ASK lines and PROGRAM_BRANDS (Victory / null) added for the two
+keys, INC_CHANNEL path_to_victory_sd 'off'. Verified headless: Jaime
+Colonna's hub page lists both under Victory Brewing / Kohler House
+Programs with zero "$" in Rep Mode, Chris Payton has neither, detail
+pages read "1065.8 package CE / 67 kegs" and "25 new 6pk PODs / 55 PODs
+active"; the tracker's September rep view shows both cards.
+Hub cache tag bumped for the new programs.js / program_data.js.

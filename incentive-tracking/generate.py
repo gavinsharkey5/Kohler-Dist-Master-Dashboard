@@ -952,6 +952,20 @@ def build_lytt_launch():
 FALL_KEG_TIERS = {1.0 / 6.0: ("sixtel", 5.0), 0.5: ("half-keg", 10.0)}
 
 
+def keg_tier(bbl):
+    """The deck's draft tier for a keg size, matched with a tolerance.
+    FOUND 2026-09-17 while building the Southern District copy: the lookup
+    used to be FALL_KEG_TIERS.get(round(bbl, 4)), and round(1/6, 4) is
+    0.1667 while the dict key is 0.16666..., so NO sixtel ever matched --
+    every 5.2 Gal keg fell into the "other sizes, no rate" bucket and the
+    August tab paid $0 on 54 sixtels that the deck pays $5 each. Half-kegs
+    (0.5 exactly) were never affected."""
+    for key, tier in FALL_KEG_TIERS.items():
+        if abs((bbl or 0.0) - key) < 0.001:
+            return tier
+    return None
+
+
 def build_fall_seasonal_bucket(filename, has_units):
     """Shared logic for both Fall Seasonal files -- single-period (Aug
     2026 only), no new-vs-rebuy split. Package rows (Product Type
@@ -990,7 +1004,7 @@ def build_fall_seasonal_bucket(filename, has_units):
             unit_count = sum(to_num(r[units_col]) for r in krows)
             keg_volume = round(bbl_each * unit_count, 2)
             keg_entry = {"customer": sample["Customer Name"], "product": sample["Product Name"], "volumeBbl": keg_volume}
-            bucket = FALL_KEG_TIERS.get(round(bbl_each, 4))
+            bucket = keg_tier(bbl_each)
             if bucket and bucket[0] == "sixtel":
                 by_rep[rep]["sixtelCount"] += 1
                 by_rep[rep]["sixtelVolumeBbl"] += bbl_each * unit_count
@@ -1029,6 +1043,213 @@ def build_fall_seasonal():
         "package_only": build_fall_seasonal_bucket("fall_seasonal_packages_only.csv", has_units=False),
         "packages_and_draft": build_fall_seasonal_bucket("fall_seasonal_packages_and_draft.csv", has_units=True),
     }
+
+
+# ---------------------------------------------------------------------------
+# Mike Kennedy's team (Southern District) runs THE PATH TO VICTORY and FALL
+# SEASONAL FAST START through September (Gavin, 2026-09-17: "for Mike
+# Kennedy's team, can you please also implement these 2 incentives"). The
+# northern reps' August programs above read transaction-level RDE files;
+# these two "vSD" exports are GROUPED SUMMARIES -- one row per rep x product
+# for 8/1-9/30, no accounts, no dates -- with RDE's subtotal rows inline:
+#   Path to Victory   the first TWO rows of every rep are the rep total and the
+#                     (single) package subtotal, identical; product rows follow.
+#   Fall Seasonal     the first row of every rep is the rep total; then each
+#                     Product Type group opens with its subtotal row (labelled
+#                     with the group's first product) and its product rows
+#                     follow. The rep-total row carries an arbitrary type label.
+# Both builders drop those rows and HARD-FAIL if the products do not add up to
+# the subtotals and the subtotals to the total -- the same stance as the
+# Constellation grouped exports. Reps outside the team get no byRep entry, so
+# the tracker card, leaderboard and the hub all treat them as not in the
+# program (getRep -> undefined), the way a Core Market blackout does.
+MIKE_KENNEDY_TEAM = ["Alex Rodriguez", "Alisa Acciardi", "Andrew Lundy", "Dylan Rubino",
+                     "Hakan Sadik", "Jaime Colonna", "John O'Donoghue", "Michael Harboy"]
+SD_WINDOW = "8/1/2026 - 9/30/2026"
+
+
+def _grouped_by_rep(rows, rep_col):
+    """Rows per rep, in file order (RDE emits each rep as one contiguous block)."""
+    order, by_rep = [], {}
+    for r in rows:
+        rep = (r.get(rep_col) or "").strip()
+        if not rep:
+            continue
+        if rep not in by_rep:
+            by_rep[rep] = []
+            order.append(rep)
+        by_rep[rep].append(r)
+    return order, by_rep
+
+
+def package_case_equivalents(product_name):
+    """RDE's case-equivalent (288 oz = 1 CE) read off the pack string in the
+    product name -- "4/6/11.2 oz Btl" -> 0.93, "6/4/16 oz Can" -> 1.33,
+    "2/5 L Keg Can" -> 1.17, "1/12/22 oz Btl" -> 0.92 -- because the SD
+    Fall Seasonal export carries CASES, not the Case Equivalents column the
+    August files had, and the deck pays $0.50 per CE. Returns (ce, exact):
+    exact=False means the pack string could not be read and 1 CE per case
+    was assumed (flagged on the card)."""
+    name = product_name or ""
+    m = re.search(r"(\d+)/(\d+)/([\d.]+)\s*oz", name, re.I)
+    if m:
+        return round(int(m.group(1)) * int(m.group(2)) * float(m.group(3)) / 288.0, 4), True
+    m = re.search(r"(\d+)/(\d+)/([\d.]+)\s*mL", name, re.I)
+    if m:
+        return round(int(m.group(1)) * int(m.group(2)) * float(m.group(3)) * 33.814 / 1000 / 288.0, 4), True
+    m = re.search(r"(\d+)/([\d.]+)\s*L\b", name, re.I)
+    if m:
+        return round(int(m.group(1)) * float(m.group(2)) * 33.814 / 288.0, 4), True
+    m = re.search(r"(\d+)/([\d.]+)\s*mL", name, re.I)
+    if m:
+        return round(int(m.group(1)) * float(m.group(2)) * 33.814 / 1000 / 288.0, 4), True
+    return 1.0, False
+
+
+def _close(a, b):
+    return abs(a - b) < 0.01
+
+
+PTV_SD_PACKAGES = {"4/6/12oz Can": "sixPack", "1/15/19.2oz Can": "nineteenTwo"}
+PTV_SD_RATES = {"sixPack": {"new": 10.0, "current": 0.0}, "nineteenTwo": {"new": 10.0, "current": 5.0}}
+
+
+def build_path_to_victory_sd():
+    """Path to Victory, Southern District, 8/1-9/30. Columns: Placements
+    (PODs -- account x product pairs with volume), New Placements (PODs
+    new this window -> $10 each for 6pk cans; $10 new / $5 current for
+    19.2oz), Current Units. The 2026-09-17 export carries 6pk cans only;
+    a 19.2oz package is bucketed if it ever appears. The $25 for an account
+    buying 5+ 6pks is an iSellBeer submission and is not in RDE (same as
+    the August program)."""
+    rows = read_rows("path_to_victory_sd.csv")
+    order, by_rep_rows = _grouped_by_rep(rows, "Sales Rep Name")
+    by_rep = {}
+    for rep in order:
+        if rep not in MIKE_KENNEDY_TEAM:
+            print(f"path_to_victory_sd: {rep} is not on Mike Kennedy's team -- skipped")
+            continue
+        block = by_rep_rows[rep]
+        if len(block) < 3:
+            raise SystemExit(f"path_to_victory_sd: {rep} has {len(block)} rows -- expected total + subtotal + products")
+        total, subtotal, products = block[0], block[1], block[2:]
+        cols = ("Placements", "New Placements", "Current Units")
+        for c in cols:
+            if not _close(to_num(total[c]), to_num(subtotal[c])):
+                raise SystemExit(f"path_to_victory_sd: {rep} rows 1-2 differ on {c} -- export layout changed, refusing to build")
+            if not _close(sum(to_num(r[c]) for r in products), to_num(total[c])):
+                raise SystemExit(f"path_to_victory_sd: {rep} products sum to {sum(to_num(r[c]) for r in products)} on {c}, total row says {to_num(total[c])}")
+        d = {"team": "Mike Kennedy", "window": SD_WINDOW, "packages": {}, "products": [], "payout": 0.0}
+        for k in PTV_SD_PACKAGES.values():
+            d["packages"][k] = {"pods": 0.0, "newPods": 0.0, "units": 0.0, "payout": 0.0}
+        for r in products:
+            pkg = (r.get("Package") or "").strip()
+            bucket = PTV_SD_PACKAGES.get(pkg)
+            if bucket is None:
+                raise SystemExit(f"path_to_victory_sd: unknown package {pkg!r} for {rep} -- add it to PTV_SD_PACKAGES with its rate")
+            pods, new, units = to_num(r["Placements"]), to_num(r["New Placements"]), to_num(r["Current Units"])
+            b = d["packages"][bucket]
+            b["pods"] += pods; b["newPods"] += new; b["units"] += units
+            d["products"].append({"product": (r.get("Product Num Name") or "").strip(), "package": pkg, "bucket": bucket,
+                                  "pods": pods, "newPods": new, "units": units})
+        for k, b in d["packages"].items():
+            rate = PTV_SD_RATES[k]
+            b["payout"] = round(b["newPods"] * rate["new"] + max(0.0, b["pods"] - b["newPods"]) * rate["current"], 2)
+            d["payout"] += b["payout"]
+        d["products"].sort(key=lambda x: (-x["newPods"], -x["pods"]))
+        six, n192 = d["packages"]["sixPack"], d["packages"]["nineteenTwo"]
+        d.update({"sixPackPods": six["pods"], "sixPackNewPods": six["newPods"], "sixPackUnits": six["units"],
+                  "nineteenTwoPods": n192["pods"], "nineteenTwoNewPods": n192["newPods"], "nineteenTwoUnits": n192["units"],
+                  "has192": any(x["bucket"] == "nineteenTwo" for x in d["products"]),
+                  "payout": round(d["payout"], 2)})
+        by_rep[rep] = d
+    missing = [r for r in MIKE_KENNEDY_TEAM if r not in by_rep]
+    return {"byRep": by_rep, "meta": {"team": "Mike Kennedy", "window": SD_WINDOW, "notInExport": missing,
+                                      "has192": any(d["has192"] for d in by_rep.values())}}
+
+
+FALL_SD_RATES = {"packageCe": 0.5, "sixtel": 5.0, "halfKeg": 10.0, "spiritsCase": 5.0}
+
+
+def build_fall_seasonal_sd():
+    """Fall Seasonal Fast Start, Southern District, 8/1-9/30. One "Cases"
+    column: for package rows it is cases (converted to CE off the pack
+    string, $0.50/CE), for Keg rows it is KEGS (checked 2026-09-17 against
+    the August transaction file: Jaime Colonna's Pumking half-kegs read 24
+    units in August and 27 here for Aug-Sep; the CE reading would have been
+    165), for Liquor rows it is cases of spirits ($5 each). Kegs are
+    bucketed by size exactly as build_fall_seasonal_bucket(): 5.2 Gal
+    sixtel $5, 15.5 Gal half-keg $10, anything else (7.75 Gal quarter,
+    13.2 Gal / 50L) an "other" bucket with no assumed rate."""
+    rows = read_rows("fall_seasonal_sd.csv")
+    cases_col = find_single_col(rows[0].keys(), "Cases")
+    order, by_rep_rows = _grouped_by_rep(rows, "Sales Rep Assigned")
+    by_rep = {}
+    for rep in order:
+        if rep not in MIKE_KENNEDY_TEAM:
+            print(f"fall_seasonal_sd: {rep} is not on Mike Kennedy's team -- skipped")
+            continue
+        block = by_rep_rows[rep]
+        total_row, rest = block[0], block[1:]
+        groups, i = [], 0
+        while i < len(rest):
+            sub = rest[i]
+            ptype = (sub.get("Product Type") or "").strip()
+            j = i + 1
+            while j < len(rest) and (rest[j].get("Product Type") or "").strip() == ptype:
+                j += 1
+            prods = rest[i + 1:j]
+            if not prods or not _close(sum(to_num(r[cases_col]) for r in prods), to_num(sub[cases_col])):
+                raise SystemExit(f"fall_seasonal_sd: {rep} / {ptype}: subtotal {to_num(sub[cases_col])} vs products "
+                                 f"{sum(to_num(r[cases_col]) for r in prods)} -- grouped layout changed, refusing to build")
+            groups.append((ptype, prods, to_num(sub[cases_col])))
+            i = j
+        if not _close(sum(g[2] for g in groups), to_num(total_row[cases_col])):
+            raise SystemExit(f"fall_seasonal_sd: {rep} subtotals {sum(g[2] for g in groups)} vs total {to_num(total_row[cases_col])}")
+        d = {"team": "Mike Kennedy", "window": SD_WINDOW,
+             "packageCases": 0.0, "packageCE": 0.0, "packagePayout": 0.0, "packages": [], "ceEstimatedLines": 0,
+             "sixtelCount": 0.0, "halfKegCount": 0.0, "otherKegCount": 0.0, "kegPayout": 0.0, "kegs": [],
+             "spiritsCases": 0.0, "spiritsPayout": 0.0, "spirits": [], "payout": 0.0}
+        for ptype, prods, _ in groups:
+            for r in prods:
+                name = (r.get("Product Name") or r.get("Product Num & Name") or "").strip()
+                n = to_num(r[cases_col])
+                if n == 0:
+                    continue
+                if ptype.startswith("Keg"):
+                    bbl = keg_bbl(name) or 0.0
+                    tier = keg_tier(bbl)
+                    if tier and tier[0] == "sixtel":
+                        d["sixtelCount"] += n; pay = n * FALL_SD_RATES["sixtel"]; label = "sixtel"
+                    elif tier and tier[0] == "half-keg":
+                        d["halfKegCount"] += n; pay = n * FALL_SD_RATES["halfKeg"]; label = "half-keg"
+                    else:
+                        d["otherKegCount"] += n; pay = 0.0; label = "other size"
+                    d["kegPayout"] += pay
+                    d["kegs"].append({"product": name, "type": ptype, "kegs": n, "bbl": round(bbl * n, 2), "tier": label, "payout": round(pay, 2)})
+                elif ptype == "Liquor":
+                    pay = n * FALL_SD_RATES["spiritsCase"]
+                    d["spiritsCases"] += n; d["spiritsPayout"] += pay
+                    d["spirits"].append({"product": name, "cases": n, "payout": round(pay, 2)})
+                else:
+                    ce_each, exact = package_case_equivalents(name)
+                    ce = n * ce_each
+                    pay = ce * FALL_SD_RATES["packageCe"]
+                    d["packageCases"] += n; d["packageCE"] += ce; d["packagePayout"] += pay
+                    if not exact:
+                        d["ceEstimatedLines"] += 1
+                    d["packages"].append({"product": name, "type": ptype, "cases": n, "ce": round(ce, 2), "ceEach": ce_each,
+                                          "ceExact": exact, "payout": round(pay, 2)})
+        for k in ("packageCases", "packageCE", "packagePayout", "sixtelCount", "halfKegCount", "otherKegCount",
+                  "kegPayout", "spiritsCases", "spiritsPayout"):
+            d[k] = round(d[k], 2)
+        d["payout"] = round(d["packagePayout"] + d["kegPayout"] + d["spiritsPayout"], 2)
+        d["packages"].sort(key=lambda x: -x["ce"])
+        d["kegs"].sort(key=lambda x: -x["kegs"])
+        d["spirits"].sort(key=lambda x: -x["cases"])
+        by_rep[rep] = d
+    missing = [r for r in MIKE_KENNEDY_TEAM if r not in by_rep]
+    return {"byRep": by_rep, "meta": {"team": "Mike Kennedy", "window": SD_WINDOW, "notInExport": missing}}
 
 
 SUN_CRUISER_RATE1_GROUPS = {"12pk Can + 8pk Can + 18pk Can", "12oz 24pk Can"}
@@ -4294,7 +4515,26 @@ def main():
         "constellation_fall": build_constellation_fall(),
         "yuengling_retention_fall": build_yuengling_retention_fall(),
         "sam_adams_conversion": build_sam_adams_conversion(),
+        # Mike Kennedy's team only (Southern District), 8/1-9/30 -- see the
+        # builders' docstrings. Every other rep reads "not in this program".
+        "path_to_victory_sd": build_path_to_victory_sd(),
+        "fall_seasonal_sd": build_fall_seasonal_sd(),
     }
+    ptv = data_09["path_to_victory_sd"]["byRep"]
+    print(f"path_to_victory_sd (Mike Kennedy's team, {SD_WINDOW}): "
+          f"{sum(d['sixPackNewPods'] for d in ptv.values()):.0f} new 6pk PODs of "
+          f"{sum(d['sixPackPods'] for d in ptv.values()):.0f} total, "
+          f"{sum(d['sixPackUnits'] for d in ptv.values()):.0f} units, ${sum(d['payout'] for d in ptv.values()):,.0f} trackable | "
+          + ", ".join(f"{r} {d['sixPackNewPods']:.0f}" for r, d in sorted(ptv.items(), key=lambda x: -x[1]['sixPackNewPods']))
+          + (f" | not in export: {data_09['path_to_victory_sd']['meta']['notInExport']}" if data_09['path_to_victory_sd']['meta']['notInExport'] else ""))
+    fs = data_09["fall_seasonal_sd"]["byRep"]
+    print(f"fall_seasonal_sd (Mike Kennedy's team, {SD_WINDOW}): "
+          f"{sum(d['packageCE'] for d in fs.values()):,.1f} package CE from {sum(d['packageCases'] for d in fs.values()):,.0f} cases, "
+          f"{sum(d['sixtelCount'] for d in fs.values()):.0f} sixtels, {sum(d['halfKegCount'] for d in fs.values()):.0f} half-kegs, "
+          f"{sum(d['otherKegCount'] for d in fs.values()):.0f} other kegs, {sum(d['spiritsCases'] for d in fs.values()):.0f} spirits cases, "
+          f"${sum(d['payout'] for d in fs.values()):,.0f} trackable"
+          + (f" | {sum(d['ceEstimatedLines'] for d in fs.values())} line(s) with an unreadable pack string counted at 1 CE/case" if any(d['ceEstimatedLines'] for d in fs.values()) else "")
+          + " | " + ", ".join(f"{r} {d['packageCE']:.0f} CE / {d['sixtelCount']+d['halfKegCount']:.0f} kegs" for r, d in sorted(fs.items(), key=lambda x: -x[1]['payout'])))
     yf = data_09["yuengling_retention_fall"]
     yf_reps = yf["byRep"].values()
     print("yuengling_retention_fall: " + " · ".join(

@@ -859,3 +859,10 @@ v17, 2026-09-17 -- MONTAUK ON REP PAGES
   placements" and puts "$X earned" in the sub, which Rep Mode drops via
   repSub(). No hub code changed. Every incentive with a field metric is now
   on rep pages; the hub hides nothing by that test today.
+
+2026-09-17 -- SOUTHERN DISTRICT PROGRAMS (Mike Kennedy's team)
+  path_to_victory_sd and fall_seasonal_sd (incentive-tracking/README.txt,
+  same date) appear only for the eight reps in the exports; everyone else
+  gets no card ("not in this program"), the way a rep outside a Core
+  Market program does. No hub code changed beyond SELL_ASK / PROGRAM_BRANDS
+  / INC_CHANNEL entries for the two keys.

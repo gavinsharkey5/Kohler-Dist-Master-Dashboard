@@ -105,6 +105,8 @@ const PROGRAM_LOGOS = {
   'new_belgium': 'assets/logos/new_belgium.png',
   'lytt': 'assets/logos/lytt.png',
   'fall_seasonal': '../assets/kohler-logo-badge.png',
+  'path_to_victory_sd': 'assets/logos/victory.png',
+  'fall_seasonal_sd': '../assets/kohler-logo-badge.png',
   'sun_cruiser': 'assets/logos/sun_cruiser.png',
   'yave': 'assets/logos/yave.png',
   'mollys': 'assets/logos/mollys.png',
@@ -295,6 +297,21 @@ const PROGRAM_LIST_2026_09 = [
    pitch:`Every new Wave Chaser package placement pays, and a new draught line pays $100.`,
    getRep:sept('montauk'),
    metric:d=>d.totalNewPlacements, metricLabel:'new placements', fmt:v=>v.toFixed(0)},
+  // MIKE KENNEDY'S TEAM ONLY (Southern District), Aug 1 - Sep 30 (Gavin,
+  // 2026-09-17): the same two August programs the northern reps ran, kept
+  // open through September for the Southern District and fed by grouped
+  // "vSD" summaries (rep x product, no accounts) -- see generate.py's
+  // build_path_to_victory_sd() / build_fall_seasonal_sd(). Reps off the
+  // team have no byRep entry, so their card, leaderboard row and hub card
+  // simply do not exist ("not in this program"), not a zero.
+  {key:'path_to_victory_sd', group:'new', title:'The Path to Victory — Southern District', shortTitle:'Path to Victory (SD)', tag:'Aug–Sept',
+   pitch:`Mike Kennedy's team: open new Victory Monkey Family 6pk PODs through September — every new POD pays.`,
+   getRep:sept('path_to_victory_sd'),
+   metric:d=>d.sixPackNewPods, metricLabel:'new 6pk PODs', fmt:v=>v.toFixed(0)},
+  {key:'fall_seasonal_sd', group:'new', title:'Fall Seasonal Fast Start — Southern District', shortTitle:'Fall Seasonal (SD)', tag:'Aug–Sept',
+   pitch:`Mike Kennedy's team: be first to market with the Fall Seasonals through September — every case and keg pays.`,
+   getRep:sept('fall_seasonal_sd'),
+   metric:d=>d.packageCE, metricLabel:'package CE', fmt:v=>v.toFixed(1)},
   // Sam Adams Summer Ale -> Octoberfest draft conversion (Boston Beer, on
   // premise). SCORED FROM BOSTON BEER'S OWN SCOREBOARD WORKBOOK (per Gavin,
   // 2026-09-09) and ranked on its "Converted %", so a 4-line book competes
@@ -409,7 +426,7 @@ const MONTHS = [
   {key:'2026-09', label:'September 2026', newLabel:'September 2026 programs',
    programs:PROGRAM_LIST_2026_09,
    repCards:{
-     new:['keystone_ice','touchdowns_tea','evil_genius','other_half','montauk','sam_adams_conversion','printed_menu','bardstown_display','two_xo'],
+     new:['keystone_ice','touchdowns_tea','evil_genius','other_half','montauk','sam_adams_conversion','printed_menu','bardstown_display','two_xo','path_to_victory_sd','fall_seasonal_sd'],
      ongoing:['1911','woodchuck','tona','lytt','le_grand_noir','garage_beer_president'],
      retention:['mc_retention','constellation_fall','mabi_retention_fall','yuengling_retention_fall'],
    }},
@@ -998,6 +1015,7 @@ const PROGRAM_CARD_FN = {
   '1911': card1911, 'woodchuck': cardWoodchuck, 'tona': cardTona,
   'path_to_victory': cardPathToVictory, 'sam_adams': cardSamAdams, 'boston_beer': cardBostonBeer,
   'new_belgium': cardNewBelgium, 'lytt': cardLytt, 'fall_seasonal': cardFallSeasonal,
+  'path_to_victory_sd': cardPathToVictorySD, 'fall_seasonal_sd': cardFallSeasonalSD,
   'le_grand_noir': cardLeGrandNoir,
   'sun_cruiser': cardSunCruiser, 'yave': cardYave, 'mollys': cardMollys,
   'garage_beer_summer_sequel': cardGarageBeerSummerSequel, 'garage_beer_president': cardGarageBeerPresident,
@@ -2005,6 +2023,114 @@ function cardFallSeasonal(rep){
       ${board}
       ${ceBlock}
       ${kegBlock}
+    </div>
+  </div>`;
+}
+
+// ---- Mike Kennedy's team, Aug 1 - Sep 30 (2026-09-17) --------------------
+// Both read PROGRAM_DATA_2026_09 and render only for reps with a byRep entry
+// (the Southern District team); the exports are rep x product summaries, so
+// the detail lists are PRODUCTS, not accounts.
+function cardPathToVictorySD(rep){
+  const d = (PROGRAM_DATA_2026_09['path_to_victory_sd']||{}).byRep?.[rep];
+  if(!d) return '';
+  const six = d.packages.sixPack, n192 = d.packages.nineteenTwo;
+  const board = statBoard([
+    {num:six.newPods.toFixed(0), label:'New 6pk PODs', status:cntStatus(six.newPods), sub:'$10 each'},
+    {num:six.pods.toFixed(0), label:'6pk PODs', sub:'active this period'},
+    {num:six.units.toFixed(0), label:'6pk Units'},
+    {num:money(d.payout), label:'Trackable Earnings', status:cntStatus(d.payout)},
+  ]);
+  const sixBlock = earnBlock({
+    icon:'🥫', title:'Five For Fighting 6pk Cans',
+    rate:'EARN $10', rateNote:'per NEW 6pk can POD (Aug 1 – Sep 30). $25 per account buying 5+ Victory Monkey 6pks is submitted and paid through iSellBeer — not tracked here.',
+    whatToDo:'Open Victory Monkey Family 6pk cans in accounts that have not carried them this period.',
+    stats:[
+      {num:six.newPods.toFixed(0), label:'New PODs'},
+      {num:six.pods.toFixed(0), label:'PODs Active'},
+      {num:six.units.toFixed(0), label:'Units This Period'},
+    ],
+    detail:{
+      label:'By Product — New PODs · PODs · Units',
+      items:d.products.filter(x=>x.bucket==='sixPack').map(x=>({name:x.product, stat:`${x.newPods.toFixed(0)} new · ${x.pods.toFixed(0)} PODs · ${x.units.toFixed(0)} units`})),
+      emptyMsg:'No 6pk can activity yet this period.',
+    },
+  });
+  const nineteenBlock = d.has192 ? earnBlock({
+    icon:'🥤', title:'19.2oz Can Bonus',
+    rate:'$10 / $5', rateNote:'$10 per new 19.2oz POD, $5 per current 19.2oz POD',
+    stats:[
+      {num:n192.newPods.toFixed(0), label:'New PODs'},
+      {num:n192.pods.toFixed(0), label:'PODs Active'},
+      {num:n192.units.toFixed(0), label:'Units'},
+    ],
+    detail:{
+      label:'By Product',
+      items:d.products.filter(x=>x.bucket==='nineteenTwo').map(x=>({name:x.product, stat:`${x.newPods.toFixed(0)} new · ${x.pods.toFixed(0)} PODs · ${x.units.toFixed(0)} units`})),
+      emptyMsg:'No 19.2oz activity yet this period.',
+    },
+  }) : `<div class="prog-foot-note">19.2oz cans ($10 new POD / $5 current POD) are not in the Southern District export yet — only 6pk cans are on this card.</div>`;
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('path_to_victory_sd')}<span class="prog-name">The Path to Victory — Southern District</span><span class="prog-tag">Aug–Sept</span><span class="prog-tag">Mike Kennedy's team</span></div>
+      ${progPitch('path_to_victory_sd')}
+    </div>
+    <div class="prog-body">
+      ${board}
+      ${sixBlock}
+      ${nineteenBlock}
+    </div>
+  </div>`;
+}
+
+function cardFallSeasonalSD(rep){
+  const d = (PROGRAM_DATA_2026_09['fall_seasonal_sd']||{}).byRep?.[rep];
+  if(!d) return '';
+  const kegs = d.sixtelCount + d.halfKegCount;
+  const board = statBoard([
+    {num:d.packageCE.toFixed(1), label:'Package CE', status:cntStatus(d.packageCE), sub:'$0.50 each'},
+    {num:d.sixtelCount.toFixed(0), label:'Sixtels', status:cntStatus(d.sixtelCount), sub:'$5 each'},
+    {num:d.halfKegCount.toFixed(0), label:'Half-Kegs', status:cntStatus(d.halfKegCount), sub:'$10 each'},
+    {num:d.spiritsCases.toFixed(0), label:'Spirits Cases', status:cntStatus(d.spiritsCases), sub:'$5 each'},
+    {num:money(d.payout), label:'Trackable Earnings', status:cntStatus(d.payout)},
+  ]);
+  const ceBlock = earnBlock({
+    icon:'🎃', title:'Package',
+    rate:'EARN $0.50', rateNote:`per case-equivalent on every qualifying Fall Seasonal package (Aug 1 – Sep 30). CE is read off each pack size (a 4/6/11.2 oz case is 0.93 CE)${d.ceEstimatedLines?`; ${d.ceEstimatedLines} line(s) had an unreadable pack size and count 1 CE per case`:''}.`,
+    whatToDo:'Be first to market: get Fall Seasonal packages selling everywhere you can.',
+    stats:[{num:d.packageCases.toFixed(0), label:'Cases'}, {num:d.packageCE.toFixed(1), label:'Case Equivalents'}, {num:money(d.packagePayout), label:'Earned'}],
+    detail:{
+      label:'Package Products — Cases · CE',
+      items:d.packages.map(x=>({name:x.product, sub:x.type, stat:`${x.cases.toFixed(0)} cs · ${x.ce.toFixed(1)} CE`})),
+      emptyMsg:'No Fall Seasonal package activity yet this period.',
+    },
+  });
+  const kegBlock = earnBlock({
+    icon:'🛢️', title:'Draft',
+    rate:'$5 / $10', rateNote:`$5.00 per sixtel (5.2 Gal), $10.00 per half-keg (15.5 Gal)${d.otherKegCount?`. ${d.otherKegCount.toFixed(0)} keg(s) this period were other sizes (7.75 Gal quarter, 13.2 Gal / 50L) with no rate stated in the deck.`:''}`,
+    stats:[{num:d.sixtelCount.toFixed(0), label:'Sixtels'}, {num:d.halfKegCount.toFixed(0), label:'Half-Kegs'}, {num:money(d.kegPayout), label:'Earned'}],
+    detail:{
+      label:'Draft Products — Kegs',
+      items:d.kegs.map(x=>({name:x.product, sub:x.tier, stat:`${x.kegs.toFixed(0)} keg${x.kegs===1?'':'s'}`})),
+      emptyMsg:'No Fall Seasonal draft activity yet this period.',
+    },
+  });
+  const spiritsBlock = d.spirits.length ? earnBlock({
+    icon:'🥃', title:'Spirits',
+    rate:'EARN $5', rateNote:'per case of qualifying Fall Seasonal spirits (Southern Tier Pumking Whiskey)',
+    stats:[{num:d.spiritsCases.toFixed(0), label:'Cases'}, {num:money(d.spiritsPayout), label:'Earned'}],
+    detail:{label:'Spirits — Cases', items:d.spirits.map(x=>({name:x.product, stat:`${x.cases.toFixed(0)} cs`})), emptyMsg:''},
+  }) : '';
+  return `<div class="prog-card">
+    <div class="prog-head">
+      <div class="prog-name-row">${progLogo('fall_seasonal_sd')}<span class="prog-name">Fall Seasonal Fast Start — Southern District</span><span class="prog-tag">Aug–Sept</span><span class="prog-tag">Mike Kennedy's team</span></div>
+      ${progPitch('fall_seasonal_sd')}
+    </div>
+    <div class="prog-body">
+      ${board}
+      ${ceBlock}
+      ${kegBlock}
+      ${spiritsBlock}
     </div>
   </div>`;
 }
@@ -3350,6 +3476,7 @@ const PROGRAM_SUPPLIER = {
   evil_genius:'evil_genius', other_half:'other_half', montauk:'montauk',
   path_to_victory:'victory', yave:'cruz', mollys:'mollys',
   fall_seasonal:'house', display_auction:'house',
+  path_to_victory_sd:'victory', fall_seasonal_sd:'house',
 };
 function supplierOf(key){ return SUPPLIERS[PROGRAM_SUPPLIER[key]] || SUPPLIERS.house; }
 
@@ -3470,6 +3597,14 @@ const PROGRAM_SUMMARY = {
   path_to_victory:(d)=>({goal:false, now:d.sixPackAccountCount+d.nineteenTwoAccountCount, unit:'accounts',
     label:`${pl(d.sixPackAccountCount+d.nineteenTwoAccountCount,'account')}`,
     next:`$25 per account buying 5+ Victory Monkey 6pks, plus <strong>$10</strong> a new POD. Submit through iSellBeer to get paid.`}),
+  // Southern District copies (Mike Kennedy's team, Aug 1 - Sep 30): field
+  // metric up top, earnings in the sub -- the shape the hub's Rep Mode keeps.
+  path_to_victory_sd:(d)=>({goal:false, now:d.sixPackNewPods, unit:'new PODs',
+    label:`${pl(d.sixPackNewPods,'new 6pk POD')}`, sub:`${d.sixPackPods} PODs active · ${money(d.payout)} earned`,
+    next:`Open another Victory Monkey 6pk POD — each new one pays <strong>$10</strong>; 5+ 6pks in one account pays <strong>$25</strong> through iSellBeer.`}),
+  fall_seasonal_sd:(d)=>({goal:false, now:d.packageCE, unit:'CE',
+    label:`${d.packageCE.toFixed(1)} package CE`, sub:`${d.sixtelCount+d.halfKegCount} kegs · ${money(d.payout)} earned`,
+    next:`Sell every Fall Seasonal package, sixtel, half-keg and case of Pumking Whiskey — each one pays: <strong>$0.50</strong> a CE, <strong>$5</strong> a sixtel, <strong>$10</strong> a half-keg, <strong>$5</strong> a spirits case.`}),
   sam_adams:(d)=>({goal:true, now:d.allSkuUnitsThisYear, target:d.allSkuUnitsLastYear, unit:'cases',
     label:`${Math.round(d.allSkuUnitsThisYear)} vs ${Math.round(d.allSkuUnitsLastYear)} last year`,
     remain:d.isPositive?null:`${Math.round(d.allSkuUnitsLastYear-d.allSkuUnitsThisYear)} cases behind`,
@@ -3725,6 +3860,18 @@ const PROGRAM_RULES = {
     'Be first to market with the Fall Seasonal lineup',
     '$0.50 per case-equivalent on qualifying packages',
     '$5 per sixtel · $10 per half-keg',
+  ],
+  'path_to_victory_sd': [
+    "Mike Kennedy's team · Aug 1 – Sep 30",
+    '$10 per new Victory Monkey Family 6pk can POD',
+    '$25 per account buying 5+ 6pk cans — submit through iSellBeer',
+    '$10 per new 19.2oz POD · $5 per current 19.2oz POD',
+  ],
+  'fall_seasonal_sd': [
+    "Mike Kennedy's team · Aug 1 – Sep 30",
+    'Be first to market with the Fall Seasonal lineup',
+    '$0.50 per case-equivalent on qualifying packages',
+    '$5 per sixtel · $10 per half-keg · $5 per case of spirits',
   ],
   'sun_cruiser': [
     "Beat last year's May–Aug volume — payout starts once you're positive",
@@ -4085,6 +4232,22 @@ const PROGRAM_BOARD = {
       status: (ce>0||kegs>0) ? {cls:'good', label:'✓ On the board'} : {cls:'gray', label:'No activity yet'},
     };
   },
+  'path_to_victory_sd': d=>({
+    metrics:[
+      {num:d.sixPackNewPods.toFixed(0), label:'new 6pk PODs', cls:d.sixPackNewPods>0?'good':'dim'},
+      {num:d.sixPackPods.toFixed(0), label:'PODs active'},
+      {num:d.sixPackUnits.toFixed(0), label:'units'},
+    ],
+    status: d.sixPackNewPods>0 ? {cls:'good', label:`✓ ${money(d.payout)} trackable`} : {cls:'gray', label:'No new PODs yet'},
+  }),
+  'fall_seasonal_sd': d=>({
+    metrics:[
+      {num:d.packageCE.toFixed(1), label:'package CE', cls:d.packageCE>0?'good':'dim'},
+      {num:(d.sixtelCount+d.halfKegCount).toFixed(0), label:'kegs'},
+      {num:d.spiritsCases.toFixed(0), label:'spirits cs'},
+    ],
+    status: d.payout>0 ? {cls:'good', label:`✓ ${money(d.payout)} trackable`} : {cls:'gray', label:'No activity yet'},
+  }),
   'sun_cruiser': d=>{
     const diff = d.totalCasesThisYear - d.totalCasesLastYear;
     return {
