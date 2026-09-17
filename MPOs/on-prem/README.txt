@@ -259,9 +259,41 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-15 refresh (RDE exports run
-through 9/17): Bardstown 4 menu placements, Fever Tree 19 new placements (18 on
-the board -- see below), Carbliss 13 new buying accounts, HUSA 1 new draft line.
+All four are data-backed. Numbers as of the 2026-09-17 refresh (RDE exports run
+through 9/18): Bardstown 15 menu placements, Fever Tree 21 new placements,
+Carbliss 20 new buying accounts, HUSA 1 new draft line.
+
+2026-09-17 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_26
+  python3 generate_2026-09.py --merge-bardstown Promos_Report_26.xlsx
+Diffed row by row before the run: every export is a clean superset of the 9/16
+pull. Fever Tree 539 -> 552 (+13, none removed), Carbliss 276 -> 280 (+4),
+HUSA 85 -> 87 (+2). Every new RDE row is dated 9/17 except Pancho Burrito's
+(HUSA, 9/18) -- future-dated on a 9/17 pull, kept as every refresh does.
+Report_26 held 18 rows: 14 Bardstown, 4 Yave (filtered out by is_bardstown()).
+5 new archive rows, 9 already published: 11 -> 16 archive rows. No weekday-gap
+warning this time. Robin Feldman's two 9/02 Hilton rows are not in Report_26
+even though its window is 9/1-9/18; the merge never drops, so they stay.
+FEVER TREE 20 -> 21: Robin Feldman 2 -> 3 (12068 Courtyard by Marriott Wayne
+Fairfield, Tonic Water 200 mL, 9/17 -- her Ginger Beer and Pink Grapefruit at
+the same account the same day are repeats). The other ten new rows are repeats
+(Cheesecake Factory Wayne and Hackensack, Feathers, Double Ai, White Owl,
+MetLife Bloody Mary mix, Bonefish) -- each bought that SKU in 6/1-8/31.
+CARBLISS 17 -> 20: Allison Scott 5 -> 7 (15006 Great Notch Inn, 58005
+Feathers, both 9/17), Brian Sengebush 3 -> 4 (230123 Sparta Lanes, 9/17).
+Chris Payton's Colonial Bar row is a repeat (bought 6/11 onward); he holds.
+HUSA holds at 1: BWW Wayne (9/17) and Pancho Burrito's (9/18) both bought
+the keg in the base window.
+BARDSTOWN MENU 10 -> 15: BRIAN SENGEBUSH 0 -> 5, all at 230122 Krogh's
+Restaurant & Brew Pub on 9/16 -- Origin Rye, Origin Bottled in Bond, Origin
+Bourbon, Origin Wheated, and ORIGIN RYE A SECOND TIME (2:01 PM and 2:11 PM
+submissions, ten minutes apart). The per-brand-mention rule keys on
+(rep, account, date/time, brand), so the repeated Rye counts as his fifth and
+he reads 5 of 5 -- achieved. FLAGGED TO GAVIN 2026-09-17: if that second Rye
+photo is a re-shoot of the same menu line rather than a second placement, he
+is 4 of 5, the same call as Nick's Red Bull vending duplicate (2026-09-14).
+The two rows are in the archive; to drop the duplicate, treat it the way
+BARDSTOWN_EXCLUDED_ACCOUNTS does or fold the key to (rep, account, brand).
+Adam Badalamenti 5, Allison Scott 2, Robin Feldman 2, Nick Melissari 1 hold.
 
 2026-09-16 SECOND REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
   python3 generate_2026-09.py
