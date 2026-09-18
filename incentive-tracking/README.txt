@@ -3758,6 +3758,43 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius, Le Grand Noir
+  python3 generate.py
+Diffed row by row before the run. Le Grand Noir 30 -> 31 rows (+1). The
+Comparison export is the President's file: same 29 rows, 2 restated upward
+(Nick Melissari 94.56 -> 115.22, Phil Ernst 337.00 -> 346.00). Touchdowns OFF
+4,067 -> 4,079 (+12, none removed); Touchdowns ON 2,281 -> 2,305 (+24, none
+removed). EVIL GENIUS SET-IDENTICAL to the published 348 rows -- overwritten,
+nothing moved. New rows are dated 9/18 except Jayson Romine / Liquor Factory
+III Sparta (9/21, three days ahead) and PHIL ERNST / 80004 USA WINE TRADERS
+PARAMUS (9/30 -- four Touchdowns off-prem 12pks, the same month-end load
+sheet flagged twice already today; now 44 rows across seven programs). Kept,
+as always: the export is the record.
+  Garage President  house 8,164.01 -> 8,193.68 of 9,305 CE. Nick Melissari
+                    +68 -> +89, Phil Ernst +13 -> +22. Nobody else moved.
+  Le Grand Noir     30 -> 31 of 70 house cases: Jim Heaney 0 -> 1 (Little
+                    Falls Liq, Rose, 9/18) -- his first on the board.
+  Touchdowns & Tea  80 -> 86 new off-prem 12pk placements: PHIL ERNST 6 -> 10
+                    (all four USA Wine Traders 9/30 rows: Iced Tea Variety,
+                    Lemonade Variety, Sampler Variety, Twisted Tea Party
+                    Pack; $90 -> $150 placement money), Chris Payton 5 -> 6
+                    (Woodridge Wines & Liq, Iced Tea Variety -- its Lemonade
+                    Variety row is a -6 return), Jim Heaney 5 -> 6 (Henry's
+                    Liquors, Party Pack). On-prem cases 1,154 -> 1,218:
+                    Allison Scott 310 -> 333 (Bardis, Bask 46, Neighbors,
+                    cherry's, Feathers, Wayne Ale House), Paul Mclaughlin
+                    169 -> 189 (Straphanger Saloon, Cozy Tavern), Nick
+                    Melissari 109 -> 116 (Blue Moon Mexican Cafe is his 22nd
+                    account), Anthony Palmisano 200 -> 204, Brian Sengebush
+                    202 -> 206, Robin Feldman 103 -> 105, MIKE AST 0 -> 4 (The
+                    Office 2131 Ridgewood, his first on-prem account). Chris
+                    Politano's three 100-case MetLife loads are in the export
+                    but he is not on the roster -- as before, they reach
+                    nobody's card. Trackable $2,354 -> $2,508.
+  Evil Genius       unchanged: 7 new placements, CE 73 vs 98, 1 of 27 past
+                    the qualifier, $3.
+Hub cache tag bumped (20260918d) for the new program_data.js.
+
 2026-09-18 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
   python3 generate.py
 Diffed row by row against the committed files before anything ran: Keystone
