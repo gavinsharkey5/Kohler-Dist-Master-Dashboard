@@ -3758,6 +3758,51 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain not re-pulled)
+  python3 generate.py
+*** SEPTEMBER 17 IS MISSING FROM THIS PULL -- ASK GAVIN TO RE-PULL ALL FIVE ***
+Diffed row by row before the run, and this batch is NOT a superset. Packages
+ON 10,295 -> 10,187: +86 rows (84 dated 9/18, 2 dated 9/21) and -194 -- EVERY
+ONE OF THE 194 IS DATED 9/17, the new file holds ZERO 9/17 rows, 9/16 is
+intact at 141 rows on both sides, and not one of the 194 reappears re-dated
+to 9/18. Draft ON 1,843 -> 1,843: +10 (9/18) and -10, again every 9/17 row.
+The three off-prem w/Goals files (no date column) fell in step: Impact 313
+(restated), Modelo 168 -> 169, Innovation 181 -> 180 -- every rep's BASE
+column is identical so no goal moved, but 7 / 8 / 9 reps' 2026 columns went
+DOWN, which has not happened on any earlier restatement (Chris Payton Impact
+376 -> 348, Matt Powierski 414 -> 398, Jayson Romine Modelo 188 -> 174).
+Every OTHER export pulled today still carries its 9/17 rows (1911 25,
+Other Half off 80, Touchdowns on 44, Keystone 14, W&S 49), so this is the
+Constellation FALL report family alone. Either the 9/17 invoices were
+voided in iSellBeer (and the day is really gone) or the export window
+skipped a day -- only a re-pull tells them apart. PUBLISHED AS-IS under the
+standing rule (the export is the record; same call as the single 9/16 and
+9/17 rows that fell off earlier this week), flagged to Gavin 2026-09-18. If
+the re-pull brings 9/17 back, rerun generate.py and every number below
+recovers; nothing in the generator changed.
+  off-prem house  Modelo Gaintain 1,843 -> 1,824 / 2,395 · Impact 2,203 ->
+                  2,192 / 3,135 · Innovation 445 -> 434 / 1,419. Corona
+                  Gaintain still reads this morning's pull (1,051 / 1,610).
+                  Up despite the gap: Derrick Laws 422 -> 442 off-prem
+                  placements, Phil Ernst 339 -> 357, Alisa Acciardi 13 -> 16.
+                  Down: Chris Payton 459 -> 436, Anthony Palmisano 283 ->
+                  266, Matt Powierski 529 -> 518, Dan Lagala 408 -> 398,
+                  Jayson Romine 224 -> 214, Michael Harboy 93 -> 87 (88.6% ->
+                  82.9%, no longer closest to holding every category).
+  on-prem         packages 1,060 -> 1,029 / 2,107 buyers -- the 9/17 hole:
+                  Nick Melissari 185 -> 179, Allison Scott 168 -> 166, Pablo
+                  Lopez 71 -> 67, Anthony Palmisano 63 -> 59, Robin Feldman
+                  113 -> 110, Paul Mclaughlin 140 -> 138. PHIL ERNST 6 -> 2 of
+                  his 7 packages families held (7 -> 3 buyers) -- four of his
+                  families were held on 9/17 rows alone. Javier Melo 57 -> 58
+                  is the only gain. Draft holds at 141 / 381 (Nick Melissari
+                  39 -> 40, Robin Feldman 8 -> 7; empty-keg pickups 40).
+                  Still 4 of 20 reps holding every packages family, 0 of 12
+                  on draft.
+  goals retained  24 -> 20 of 238 across the roster (Phil Ernst's four);
+                  0 of 24 reps hold every goal.
+Hub cache tag bumped (20260918f) for the new program_data.js.
+
 2026-09-18 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
   python3 generate.py
 Diffed row by row before the run. Montauk 1,362 -> 1,366 (+4, none removed);
