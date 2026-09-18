@@ -543,6 +543,15 @@
     "SALES_REP_ASSIGNED": "Dave Ehlers",
     "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
     "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 40017,
+    "CUSTOMER_NAME": "Essex St Liquor and Wine",
+    "DATE": "9/18/2026",
+    "CASES": 5.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Dave Ehlers",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 51013,
     "CUSTOMER_NAME": "G & G Liquors & Bar",
     "DATE": "9/2/2026",
@@ -637,6 +646,15 @@
     "CUSTOMER_NAME": "Angel's Wine & Liquors",
     "DATE": "8/5/2026",
     "CASES": 30.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Derrick Laws",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 22006,
+    "CUSTOMER_NAME": "Ant's Bar & Liquors",
+    "DATE": "9/18/2026",
+    "CASES": 1.0
   },
   {
     "SALES_REP_ASSIGNED": "Derrick Laws",
@@ -1220,6 +1238,15 @@
     "BRAND_FAMILY": "Keystone Ice",
     "CUSTOMER_NUM": 190208,
     "CUSTOMER_NAME": "Boonton Liquor Locker",
+    "DATE": "9/18/2026",
+    "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Klejdi Lamo",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 190208,
+    "CUSTOMER_NAME": "Boonton Liquor Locker",
     "DATE": "9/4/2026",
     "CASES": 2.0
   },
@@ -1393,6 +1420,15 @@
     "CUSTOMER_NAME": "M & M Wine & Spirits",
     "DATE": "9/4/2026",
     "CASES": 2.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Matt Powierski",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 77016,
+    "CUSTOMER_NAME": "Metro Liquor (Elmwood Park)",
+    "DATE": "9/18/2026",
+    "CASES": 4.0
   },
   {
     "SALES_REP_ASSIGNED": "Matt Powierski",
@@ -1779,6 +1815,15 @@
     "CUSTOMER_NUM": 38018,
     "CUSTOMER_NAME": "THE BOTTLE SHOP",
     "DATE": "9/15/2026",
+    "CASES": 1.0
+  },
+  {
+    "SALES_REP_ASSIGNED": "Phil Ernst",
+    "PRODUCT_NAME": "622 Keystone Ice 1/12/24 oz Can",
+    "BRAND_FAMILY": "Keystone Ice",
+    "CUSTOMER_NUM": 80004,
+    "CUSTOMER_NAME": "USA Wine Traders Paramus",
+    "DATE": "9/30/2026",
     "CASES": 1.0
   },
   {

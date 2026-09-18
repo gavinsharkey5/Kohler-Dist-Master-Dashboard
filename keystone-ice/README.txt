@@ -98,6 +98,18 @@ the two boards were cross-checked per rep afterwards (101 accounts each, zero
 differences). Whenever this file changes, change that one to match in the same
 commit.
 
+2026-09-18 REFRESH: actuals.csv onto the 208-row export (5 new rows, none
+  removed -- diffed before the run). 166 -> 168 distinct accounts house-wide;
+  still 7 qualified, 3 at bonus, $850 -> $855 projected. Dave Ehlers 8 -> 9
+  (Essex St Liquor and Wine, 9/18), Phil Ernst 12 -> 13 of 27 (48%, USA Wine
+  Traders Paramus). THAT ROW IS DATED 9/30 -- twelve days ahead of the pull,
+  not the usual one -- and the same account carries 31 more 9/30 rows on the
+  off-prem board's Fever Tree and Wine & Spirits exports; kept as the export
+  is the record, flagged to Gavin in MPOs/off-prem/README.txt. Derrick Laws /
+  Ant's, Klejdi Lamo / Boonton Liquor Locker and Matt Powierski / Metro Elmwood
+  Park are repeats. Same file onto MPOs/off-prem/keystone_ice_24oz.csv (sync
+  rule).
+
 2026-09-17 SECOND REFRESH: actuals.csv onto the 203-row export (3 new rows,
   none removed, all dated 9/18 -- scheduled loads a day ahead of the pull).
   164 -> 166 distinct accounts house-wide; 7 qualified, 3 at bonus, $840 ->

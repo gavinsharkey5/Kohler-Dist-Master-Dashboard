@@ -3758,6 +3758,21 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
+  python3 generate.py    (after keystone-ice and MPOs/off-prem, sync rule)
+Only the two shared exports moved (diffed row by row first): Keystone
+203 -> 208 (+5, none removed) and Corona Gaintain restated in place, 122 -> 123
+rows, 24 values moved, all upward. Nothing else on this board was re-pulled.
+  Keystone    166 -> 168 accounts house-wide, still 7 of 17 reps qualified and
+              3 at bonus, $850 -> $855: Dave Ehlers 8 -> 9 (Essex St Liquor),
+              Phil Ernst 12 -> 13 (USA Wine Traders Paramus -- a row dated
+              9/30, twelve days ahead of the pull; kept, flagged to Gavin in
+              MPOs/off-prem/README.txt).
+  Constellation Fall   Corona Gaintain house off-prem 1,036 -> 1,051 of 1,610.
+              Phil Ernst 79 -> 84, Dan Lagala 65 -> 68, Matt Powierski
+              104 -> 106, six others +1. Modelo / Impact / Innovation untouched.
+Hub cache tag bumped (20260918b) for the new program_data.js.
+
 2026-09-17 REFRESH -- Other Half (draft + off), no other exports
   python3 generate.py
 Diffed row by row before the run. Other Half draft ("CORE DRAFT 1st HALF")

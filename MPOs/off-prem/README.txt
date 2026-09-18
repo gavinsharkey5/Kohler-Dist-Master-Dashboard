@@ -928,6 +928,63 @@ on both boards: dated tables, Details toggles with photo links (cooler
 doors, Bardstown), Adam Badalamenti's Bardstown detail, no horizontal scroll
 at 390px, and the hub's off-prem tab still renders.
 
+2026-09-18 REFRESH -- all four exports plus Promos_Report_28
+    python3 generate_2026-09.py --merge-cooler-doors Promos_Report_28.xlsx
+Row counts: Constellation 122 -> 123 (restated in place), Keystone 203 -> 208,
+Fever Tree 2,120 -> 2,145, Wine & Spirits 2,704 -> 2,767. Diffed row by row
+before the run: Keystone +5/-0, Fever Tree +25/-0, Wine & Spirits +68/-5.
+The five W&S rows "removed" are Dylan Rubino's account #170086 RENAMED in the
+export (Bottles Jersey City -> Westside Wine and Spirits, same customer number,
+same five rows) -- nothing actually left. Constellation's restatement moved 24
+of its rows, every one upward, and John Neukum picked up a 2/12 line.
+PHIL ERNST HAS 32 ROWS DATED 9/30 -- twelve days ahead of a 9/18 pull, all at
+80004 USA Wine Traders Paramus: 13 Fever Tree SKUs, 18 Wine & Spirits SKUs
+(2XO x3, Leyenda, YaVe x5, Green River x6, Bardstown Origin x4) and 1 Keystone
+Ice. Every earlier refresh kept rows a day ahead of the pull (scheduled loads)
+and this one keeps these too -- the export is the record -- but 9/30 is not a
+day ahead, it is a month-end load sheet for one account, and it alone carries
+him from 6 to 19 Fever Tree placements (goal 10) and 12 to 30 W&S. FLAGGED TO
+GAVIN 2026-09-18: if that order does not ship, or ships as fewer SKUs, he reads
+6 / 12 again on the next pull that drops it. Nothing in the generator changed.
+Promos_Report_28 held 46 rows, all Cooler Door Wrap (window 9/1-9/18): 1 new
+(Pablo Lopez, Intensity Lounge/Angie's Liquors, Keystone Ice, 9/17 12:44 PM),
+45 already published. Archive 45 -> 46 rows / 35 stickers, still 4 reps at 5.
+  Constellation   1,043 -> 1,059 placements this fall against 1,628 last fall;
+                  still 23 of 24 reps at 30%. Phil Ernst 79 -> 84 (77%), Dan
+                  Lagala 65 -> 68, Matt Powierski 104 -> 106, Anthony
+                  Palmisano, Chris Payton, Javier Melo, Jim Heaney, John
+                  Neukum, Shane Barreca each +1.
+  Keystone Ice    166 -> 168 distinct buying accounts, still 8 of 26 reps at
+                  40%: Dave Ehlers 8 -> 9 (Essex St Liquor and Wine, 9/18),
+                  Phil Ernst 12 -> 13 (USA Wine Traders Paramus, the 9/30 row).
+                  Derrick Laws / Ant's, Klejdi Lamo / Boonton Liquor Locker and
+                  Matt Powierski / Metro Elmwood Park are repeats. Same 208-row
+                  export onto keystone-ice/actuals.csv (sync rule); keystone-ice
+                  rebuilt, then this board, then incentive-tracking.
+  Fever Tree      103 -> 124 new placements, 5 -> 7 reps at the goal of 10:
+                  PHIL ERNST 6 -> 19 (the 9/30 USA Wine Traders rows above),
+                  CHRIS PAYTON 9 -> 13 (Buy Rite Discount Liquor Lodi, four
+                  new SKUs 9/18), Klejdi Lamo 3 -> 7 (Boonton Liquor Locker,
+                  four 150 mL cans). Derrick Laws / ShopRite and Shane
+                  Barreca / Ridgemont are repeats.
+  Wine & Spirits  259 -> 290 new placements, 19 -> 21 reps at the goal of 5:
+                  JAVIER MELO 3 -> 5 (Segundo's: Pride & Clarke x2, Traveler's
+                  Club; Estevez Leyenda is a repeat) and MATT POWIERSKI 4 -> 6
+                  (Wine Grand Carlstadt: Origin BiB, Green River Honey) cross.
+                  Phil Ernst 12 -> 30 (9/30 rows), Dylan Rubino 24 -> 26 (Stop &
+                  Go: Hetman, Ukrainian Spirit), Chris Payton 7 -> 9 (Molly's
+                  x2, Buy Rite Lodi), Robin Feldman 8 -> 10 (Il Vero Westwood,
+                  Origin BiB + Bourbon -- on-premise rows the any-brand rule
+                  counts as always), Alisa Acciardi 8 -> 9, Derrick Laws 8 -> 9,
+                  Mike Ast 11 -> 12. Hakan Sadik's ten Pride & Clarke /
+                  Traveler's Club rows are all repeats at accounts already
+                  counted.
+  Target lists    Keystone 327 -> 326; Fever Tree 347 -> 346.
+The Corona Gaintain export also went onto
+incentive-tracking/data/constellation_fall_corona_gaintain_off.csv (sync
+rule): Constellation Fall's Corona house 1,036 -> 1,051 of 1,610.
+Hub cache tag bumped (20260918b) for the new program_data.js.
+
 2026-09-17 SECOND REFRESH -- Keystone only, riding the incentive-tracker refresh
     python3 generate_2026-09.py
 Keystone 200 -> 203 rows, a clean superset (3 new, all dated 9/18). Nothing
