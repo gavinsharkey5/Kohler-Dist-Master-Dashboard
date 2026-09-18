@@ -3758,6 +3758,55 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 SIXTH REFRESH -- MABI Fall actuals + Molson Coors retention (on + off)
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_9.csv data/mabi_retention_fall_goals.xlsx
+  python3 convert_mc_retention.py <On_Premise ... w_Goals_4.xlsx> <Off_Premise ... w_Goals_4.xlsx>
+  python3 generate.py
+Both converters reconciled clean (every subtotal, rep, DM and report total
+adds up; MC 0 (rep, brand) pairs added or gone; the Fall 2026 sheets matched
+by premise as before). BUT BOTH REPORTS WENT BACKWARDS IN PLACES, which
+neither had done on any earlier pull ("Nothing fell" on 9/17). Neither file
+carries a date column, so this cannot be pinned to a day -- but it lands in
+the same batch as the Constellation Fall pull that lost every 9/17 row (see
+the FIFTH REFRESH above), and MABI's drops are concentrated in the same
+9/17-heavy accounts. SAME ASK TO GAVIN: re-pull these three with the
+Constellation five; if 9/17 comes back the drops below should reverse.
+Published as-is under the standing rule.
+MABI actuals: 665 product rows across 23 reps (was 671), against the frozen
+goals workbook (26 reps, house base 8,140 / goal 7,326); Default, Dylan
+Rubino and John O'Donoghue still have a goal and no activity. House 3,608 ->
+3,580 of 7,326 MADE placements (49.2% -> 48.9%), 0 of 24 reps at their 90%
+goal on day 18 of 91.
+  up    MATT POWIERSKI 279 -> 334 (45 -> 48 SKUs held -- White Claw, Cayman
+        Jack, Mike's Hard Lemonade all up), Phil Ernst 253 -> 265, Derrick
+        Laws 128 -> 137 (42 -> 43 SKUs), Jim Heaney 288 -> 292, Dave Ehlers
+        362 -> 364 (47 -> 48 SKUs).
+  down  Jayson Romine 353 -> 328, Chris Payton 285 -> 266 (44 -> 43 SKUs),
+        Anthony Palmisano 344 -> 325, Shane Barreca 163 -> 149 (37 -> 35),
+        Klejdi Lamo 362 -> 353, Pablo Lopez 91 -> 85 (29 -> 27), Robin
+        Feldman 33 -> 28, Brian Sengebush 70 -> 67, Nick Melissari 27 -> 25,
+        Javier Melo, Michael Harboy, Mike Ast -2 each, Allison Scott, Dan
+        Lagala -1. Almost all of it White Claw Black Cherry 2/12 and 4/6.
+Molson Coors: off-prem 2,726 -> 2,732 of 2,912 placements, on-prem 738 ->
+734 of 840 buyers; 35 -> 34 of 100 brand goals retained across the same 24
+reps with goals.
+  gained  PHIL ERNST Coors 92 -> 96 of 96 (100.0%, retained; 1 -> 2 goals),
+          Fever Tree 71 -> 81 of 85, Peroni 82 -> 86 -- overall 94.6% ->
+          101.5%, past his combined goal (the USA Wine Traders 9/30 rows
+          flagged all day are the likely source; no dates in this report to
+          prove it).
+  lost    Jayson Romine Fever Tree 86 -> 81 of 85 (101.2% -> 95.3%; 3 -> 2
+          goals, Coors 148 -> 150 does not offset), Robin Feldman Miller Lite
+          31 -> 29 of 30 (103.3% -> 96.7%; 1 -> 0 goals, on-prem 65 -> 63 of
+          70, 92.9% -> 90.0%).
+  other   Klejdi Lamo Fever Tree 53 -> 57 (99.5% overall), Mike Ast Coors
+          93 -> 94; down one or two each: Anthony Palmisano Coors 95 -> 92
+          and Peroni 54 -> 53 (Blue Moon keg 22 -> 23), Shane Barreca Coors
+          and Peroni, Matt Powierski Coors and Fever Tree, Jim Heaney Fever
+          Tree 33 -> 31, Paul Mclaughlin Blue Moon 38 -> 36, Nick Melissari
+          Blue Moon 77 -> 76, Dan Lagala, Dave Ehlers, Pablo Lopez.
+Hub cache tag bumped (20260918g) for the new program_data.js.
+
 2026-09-18 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain not re-pulled)
   python3 generate.py
 *** SEPTEMBER 17 IS MISSING FROM THIS PULL -- ASK GAVIN TO RE-PULL ALL FIVE ***
