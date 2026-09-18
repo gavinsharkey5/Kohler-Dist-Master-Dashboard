@@ -149974,7 +149974,7 @@ const PROGRAM_DATA_2026_09 = {
           "sixPack": {
             "pods": 59.0,
             "newPods": 14.0,
-            "units": 158.0,
+            "units": 157.0,
             "payout": 140.0
           },
           "nineteenTwo": {
@@ -149999,7 +149999,7 @@ const PROGRAM_DATA_2026_09 = {
             "bucket": "sixPack",
             "pods": 18.0,
             "newPods": 4.0,
-            "units": 46.0
+            "units": 45.0
           },
           {
             "product": "11586 Victory Juicy Monkey Hazy Imperial IPA 4/6/12 oz Can",
@@ -150029,7 +150029,7 @@ const PROGRAM_DATA_2026_09 = {
         "payout": 140.0,
         "sixPackPods": 59.0,
         "sixPackNewPods": 14.0,
-        "sixPackUnits": 158.0,
+        "sixPackUnits": 157.0,
         "nineteenTwoPods": 0.0,
         "nineteenTwoNewPods": 0.0,
         "nineteenTwoUnits": 0.0,
@@ -150374,9 +150374,9 @@ const PROGRAM_DATA_2026_09 = {
       "Jaime Colonna": {
         "team": "Mike Kennedy",
         "window": "8/1/2026 - 9/30/2026",
-        "packageCases": 1020.0,
-        "packageCE": 1065.77,
-        "packagePayout": 532.89,
+        "packageCases": 1023.0,
+        "packageCE": 1068.57,
+        "packagePayout": 534.29,
         "packages": [
           {
             "product": "5949 Shipyard Pumpkin Head 4/6/12 oz Btl",
@@ -150462,11 +150462,11 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10417 Paulaner Oktoberfest Marzen 4/6/11.2 oz Btl",
             "type": "Case Beer",
-            "cases": 34.0,
-            "ce": 31.73,
+            "cases": 37.0,
+            "ce": 34.53,
             "ceEach": 0.9333,
             "ceExact": true,
-            "payout": 15.87
+            "payout": 17.27
           },
           {
             "product": "10404 Hacker-Pschorr Oktoberfest 4/6/11.2 oz Btl",
@@ -150514,7 +150514,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 9.0
           },
           {
-            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
+            "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
             "type": "Case Cider",
             "cases": 13.0,
             "ce": 17.33,
@@ -150523,7 +150523,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 8.67
           },
           {
-            "product": "9161 1911 Haunted Hayride 6/4/16 oz Can",
+            "product": "9125 1911 Cider Donut 6/4/16 oz Can",
             "type": "Case Cider",
             "cases": 13.0,
             "ce": 17.33,
@@ -150659,10 +150659,10 @@ const PROGRAM_DATA_2026_09 = {
           }
         ],
         "ceEstimatedLines": 0,
-        "sixtelCount": 23.0,
+        "sixtelCount": 24.0,
         "halfKegCount": 44.0,
         "otherKegCount": 58.0,
-        "kegPayout": 555.0,
+        "kegPayout": 560.0,
         "kegs": [
           {
             "product": "3304 Hofbrau Oktoberfest 13.2 Gal Keg",
@@ -150699,10 +150699,10 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "4378 Southern Tier Pumking Imperial Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 7.0,
-            "bbl": 1.17,
+            "kegs": 8.0,
+            "bbl": 1.33,
             "tier": "sixtel",
-            "payout": 35.0
+            "payout": 40.0
           },
           {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
@@ -150802,7 +150802,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 15.0
           }
         ],
-        "payout": 1102.89
+        "payout": 1109.29
       },
       "Michael Harboy": {
         "team": "Mike Kennedy",
@@ -150938,7 +150938,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 9.98
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "3954 Sam Adams Jack-O Pumpkin Ale 2/12/12 oz Btl",
             "type": "Case Beer",
             "cases": 16.0,
             "ce": 16.0,
@@ -150947,7 +150947,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 8.0
           },
           {
-            "product": "3954 Sam Adams Jack-O Pumpkin Ale 2/12/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 16.0,
             "ce": 16.0,
@@ -151037,7 +151037,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.5
           },
           {
-            "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
+            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
             "type": "Case Beer",
             "cases": 10.0,
             "ce": 10.0,
@@ -151046,7 +151046,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 5.0
           },
           {
-            "product": "7559 Saranac 12 Beers of October 2/12/12 oz Btl",
+            "product": "11639 Southern Tier Harvest Autumn IPA 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 10.0,
             "ce": 10.0,
@@ -151118,7 +151118,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.8
           },
           {
-            "product": "5607 Flying Fish Oktoberfish 4/6/12 oz Can",
+            "product": "930 Leinenkugel Oktoberfest 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -151136,7 +151136,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "930 Leinenkugel Oktoberfest 4/6/12 oz Btl",
+            "product": "5607 Flying Fish Oktoberfish 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 4.0,
             "ce": 4.0,
@@ -151145,7 +151145,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "13137 Cape May Pick of The Batch Pumpkin Ale 4/6/12 oz Can",
+            "product": "4748 Yuengling Oktoberfest 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -151154,7 +151154,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.5
           },
           {
-            "product": "4748 Yuengling Oktoberfest 4/6/12 oz Btl",
+            "product": "13137 Cape May Pick of The Batch Pumpkin Ale 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -151172,7 +151172,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.33
           },
           {
-            "product": "4824 Shiner Oktoberfest 4/6/12 oz Btl",
+            "product": "13134 Cape May Oktoberfest 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 2.0,
             "ce": 2.0,
@@ -151181,7 +151181,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.0
           },
           {
-            "product": "13134 Cape May Oktoberfest 4/6/12 oz Can",
+            "product": "4824 Shiner Oktoberfest 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 2.0,
             "ce": 2.0,
@@ -151229,24 +151229,32 @@ const PROGRAM_DATA_2026_09 = {
         "ceEstimatedLines": 0,
         "sixtelCount": 0.0,
         "halfKegCount": 5.0,
-        "otherKegCount": 15.0,
+        "otherKegCount": 20.0,
         "kegPayout": 50.0,
         "kegs": [
           {
             "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 8.0,
-            "bbl": 2.0,
+            "kegs": 12.0,
+            "bbl": 3.0,
             "tier": "other size",
             "payout": 0.0
           },
           {
             "product": "10403 Hacker-Pschorr Oktoberfest 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 4.0,
-            "bbl": 1.7,
+            "kegs": 5.0,
+            "bbl": 2.13,
             "tier": "other size",
             "payout": 0.0
+          },
+          {
+            "product": "4377 Southern Tier Pumking Imperial Pumpkin Ale Keg 15.5 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 2.0,
+            "bbl": 1.0,
+            "tier": "half-keg",
+            "payout": 20.0
           },
           {
             "product": "5947 Shipyard Pumpkin Head Keg 15.5 Gal Keg",
@@ -151263,14 +151271,6 @@ const PROGRAM_DATA_2026_09 = {
             "bbl": 0.85,
             "tier": "other size",
             "payout": 0.0
-          },
-          {
-            "product": "4377 Southern Tier Pumking Imperial Pumpkin Ale Keg 15.5 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 1.0,
-            "tier": "half-keg",
-            "payout": 20.0
           },
           {
             "product": "10409 Paulaner Oktoberfest Marzen 13.2 Gal Keg",
@@ -151754,7 +151754,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.33
           },
           {
-            "product": "10418 Paulaner Oktoberfest Marzen 2/12/11.2 oz Btl",
+            "product": "10407 Paulaner Oktoberfest Bier 2/12/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 7.0,
             "ce": 6.53,
@@ -151763,7 +151763,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 3.27
           },
           {
-            "product": "10407 Paulaner Oktoberfest Bier 2/12/11.2 oz Btl",
+            "product": "10418 Paulaner Oktoberfest Marzen 2/12/11.2 oz Btl",
             "type": "Case Beer",
             "cases": 7.0,
             "ce": 6.53,
@@ -151781,15 +151781,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.5
           },
           {
-            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
-            "type": "Case Beer",
-            "cases": 3.0,
-            "ce": 3.0,
-            "ceEach": 1.0,
-            "ceExact": true,
-            "payout": 1.5
-          },
-          {
             "product": "5607 Flying Fish Oktoberfish 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 3.0,
@@ -151800,6 +151791,15 @@ const PROGRAM_DATA_2026_09 = {
           },
           {
             "product": "5344 Great Lakes Biergarten Party Pack 2/12/12 oz Can",
+            "type": "Case Beer",
+            "cases": 3.0,
+            "ce": 3.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 1.5
+          },
+          {
+            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 3.0,
             "ce": 3.0,
@@ -152009,20 +152009,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 1.0,
-            "bbl": 0.17,
-            "tier": "sixtel",
-            "payout": 5.0
-          },
-          {
             "product": "5213 Great Lakes Oktoberfest Keg 15.5 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.5,
             "tier": "half-keg",
             "payout": 10.0
+          },
+          {
+            "product": "5214 Great Lakes Oktoberfest 5.2 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 1.0,
+            "bbl": 0.17,
+            "tier": "sixtel",
+            "payout": 5.0
           }
         ],
         "spiritsCases": 0.0,
@@ -152233,20 +152233,20 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.0
           },
           {
-            "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
-            "type": "Keg Beer",
-            "kegs": 1.0,
-            "bbl": 0.25,
-            "tier": "other size",
-            "payout": 0.0
-          },
-          {
             "product": "4378 Southern Tier Pumking Imperial Pumpkin Ale 5.2 Gal Keg",
             "type": "Keg Beer",
             "kegs": 1.0,
             "bbl": 0.17,
             "tier": "sixtel",
             "payout": 5.0
+          },
+          {
+            "product": "5805 Point Whole Hog Pumpkin Ale 7.75 Gal Keg",
+            "type": "Keg Beer",
+            "kegs": 1.0,
+            "bbl": 0.25,
+            "tier": "other size",
+            "payout": 0.0
           }
         ],
         "spiritsCases": 1.0,
@@ -152403,7 +152403,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.5
           },
           {
-            "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
+            "product": "11640 Victory FestBier 4/6/12 oz Can",
             "type": "Case Beer",
             "cases": 5.0,
             "ce": 5.0,
@@ -152412,7 +152412,7 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.5
           },
           {
-            "product": "11640 Victory FestBier 4/6/12 oz Can",
+            "product": "7552 Saranac Pumpkin Ale 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 5.0,
             "ce": 5.0,
@@ -152439,15 +152439,6 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 2.0
           },
           {
-            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
-            "type": "Case Beer",
-            "cases": 2.0,
-            "ce": 2.67,
-            "ceEach": 1.3333,
-            "ceExact": true,
-            "payout": 1.33
-          },
-          {
             "product": "11682 Southern Tier Pumqueen 6/4/16 oz Can",
             "type": "Case Beer",
             "cases": 2.0,
@@ -152457,13 +152448,13 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 1.33
           },
           {
-            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
+            "product": "11684 Southern Tier Nitro Warlock 6/4/16 oz Can",
             "type": "Case Beer",
-            "cases": 1.0,
-            "ce": 1.0,
-            "ceEach": 1.0,
+            "cases": 2.0,
+            "ce": 2.67,
+            "ceEach": 1.3333,
             "ceExact": true,
-            "payout": 0.5
+            "payout": 1.33
           },
           {
             "product": "7766 Evil Genius Trick or Treat Chocolate Pumpkin Porter 4/6/12 oz Can",
@@ -152484,6 +152475,15 @@ const PROGRAM_DATA_2026_09 = {
             "payout": 0.5
           },
           {
+            "product": "7641 Long Trail Harvest Ale 4/6/12 oz Btl",
+            "type": "Case Beer",
+            "cases": 1.0,
+            "ce": 1.0,
+            "ceEach": 1.0,
+            "ceExact": true,
+            "payout": 0.5
+          },
+          {
             "product": "11236 Flying Dog The Fear 4/6/12 oz Btl",
             "type": "Case Beer",
             "cases": 1.0,
@@ -152496,7 +152496,7 @@ const PROGRAM_DATA_2026_09 = {
         "ceEstimatedLines": 0,
         "sixtelCount": 0.0,
         "halfKegCount": 9.0,
-        "otherKegCount": 8.0,
+        "otherKegCount": 9.0,
         "kegPayout": 90.0,
         "kegs": [
           {
@@ -152518,8 +152518,8 @@ const PROGRAM_DATA_2026_09 = {
           {
             "product": "10408 Paulaner Oktoberfest Bier 13.2 Gal Keg",
             "type": "Keg Beer",
-            "kegs": 2.0,
-            "bbl": 0.85,
+            "kegs": 3.0,
+            "bbl": 1.28,
             "tier": "other size",
             "payout": 0.0
           },

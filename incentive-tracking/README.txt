@@ -3758,6 +3758,25 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 TENTH REFRESH -- Southern District: Fall Seasonal Fast Start + Path to Victory (vSD)
+  python3 generate.py
+Both vSD exports straight over data/fall_seasonal_sd.csv and
+data/path_to_victory_sd.csv (same headers, same 280 / 47 rows, per-type
+subtotal rows reconciled). Diffed row by row first -- only case counts moved.
+  Fall Seasonal  4,579 package CE, $3,220 trackable. Jaime Colonna 1,020 ->
+                 1,023 cases (Paulaner Oktoberfest Marzen 34 -> 37), 23 -> 24
+                 sixtels (Pumking 5.2 gal), payout $1,102.89 -> $1,109.29.
+                 Michael Harboy 15 -> 20 other kegs (Point Whole Hog 7.75 gal
+                 8 -> 12, Hacker-Pschorr 13.2 gal 4 -> 5), Hakan Sadik 8 -> 9
+                 (Paulaner Oktoberfest Bier 13.2 gal) -- neither size is
+                 paid, so their payouts hold. Nobody else moved.
+  Path to Victory  66 new 6pk PODs of 226, $660 trackable -- unchanged:
+                 Dylan Rubino 25, Alisa Acciardi 14, Jaime Colonna 14, Hakan
+                 Sadik 7, Michael Harboy 3, Alex Rodriguez 2, John O'Donoghue
+                 1; Andrew Lundy still not in the export. The one moved cell
+                 is Alisa Acciardi's Sour Monkey units 158 -> 157 (a return).
+Hub cache tag bumped (20260918j) for the new program_data.js.
+
 2026-09-18 NINTH REFRESH -- Constellation Impact re-sent in the DEFAULT two-column shape
   python3 generate.py
 Gavin re-issued Impact as "..._OFF_w_Goals_9.csv" in the original two-column
