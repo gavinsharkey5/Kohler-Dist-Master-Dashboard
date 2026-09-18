@@ -3758,6 +3758,25 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 NINTH REFRESH -- Constellation Impact re-sent in the DEFAULT two-column shape
+  python3 generate.py
+Gavin re-issued Impact as "..._OFF_w_Goals_9.csv" in the original two-column
+shape (Product Name; base 9/1/2025-11/30/2025; current 9/1/2026-11/30/2026),
+so the base-is-goal path handled it with no code change. THE BASE COLUMN NOW
+CARRIES THE ASSIGNED GOALS: every rep's subtotal base equals the Goals value
+of the _8 file (Jim Heaney 393, Matt Powierski 344, Chris Payton 312, ...)
+and the per-SKU base rows sum to it, so reconciliation passed on both
+columns and every SKU has its own goal again (skusHeld / skusLost are back;
+the _8 run had none). Placements identical to the _8 run, house Impact 2,388
+of 3,452 (was 3,449 on _8: Nick Melissari is in this file at 0 of 3 and was
+absent from _8). The Pacifico 2/12 SKUs stay in the list.
+DAVE EHLERS: base column reads 276, the override in
+constellation_fall_goal_overrides.csv keeps his goal at 250 (223 of 250,
+89.2%, closest to holding Impact), the same 250 the _8 Goals column carried.
+The goals-shape code from the SEVENTH REFRESH stays in place for whichever
+shape the next pull takes. The 9/17 gap and the re-pull ask stand.
+Hub cache tag bumped (20260918i) for the new program_data.js.
+
 2026-09-18 SEVENTH REFRESH -- Constellation Impact RE-RUN on the "w/ Goals" export (new shape)
   python3 generate.py
 Gavin re-sent Impact as "Constellation Impact Fall 2026 OFF w Goals_8.csv"
