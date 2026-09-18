@@ -3758,6 +3758,43 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
+  python3 generate.py
+Diffed row by row against the committed files before anything ran: Keystone
+SET-IDENTICAL to the 208-row export already applied this morning (so
+keystone-ice and MPOs/off-prem did not move -- same bytes copied over, no
+rebuild needed), 1911 1,750 -> 1,762 (+12, none removed), Woodchuck 530 -> 534
+(+4), Tona 332 -> 337 (+5), Lytt 725 -> 731 (+6). Only these blocks changed in
+PROGRAM_DATA.
+PHIL ERNST / 80004 USA WINE TRADERS PARAMUS DATED 9/30 AGAIN: two Woodchuck
+rows and six Lytt rows here, on top of the 32 Keystone / Fever Tree / W&S rows
+flagged this morning in MPOs/off-prem/README.txt -- one month-end load sheet
+for one account, twelve days ahead of the pull. Kept, as every future-dated
+row has been (the export is the record); it is what moves him on Woodchuck
+and Lytt below. If it does not ship as written he falls back on the next pull.
+  1911       295 -> 296 placements: John O'Donoghue 32 -> 33 (Partners
+             Discount Liquors, six 16 oz SKUs on 9/18, one account). Mike
+             Ast's three Wine & Spirit World rows, Shane Barreca's two Cork &
+             Keg rows and Michael Harboy's Grasshopper Cedar Grove Honey Crisp
+             keg are reorders -- case volume only (Mike 77 -> 81, Shane
+             100 -> 103, Michael 65 -> 68, John 129 -> 136). No rank change.
+  Woodchuck  40 -> 43 placements: PHIL ERNST 2 -> 4 (Variety 2/12 and Amber
+             4/6 at USA Wine Traders, the 9/30 rows) climbs rank 9 -> 6;
+             Matt Powierski 4 -> 5 (Metro Wine And Liq, Spiced Apple, 9/18)
+             rank 5 -> 4. Hakan Sadik, Chris Payton, Andrew Lundy, Jayson
+             Romine each slip one rank; Allison Scott's Yard House Pineapple
+             keg is volume only (4 -> 5, rank 19 -> 18).
+  Tona       holds at 13 new 24 oz placements: Dylan Rubino's five rows at
+             Bergenline Liquor and J & L Liquors (9/18) are reorders -- 24 oz
+             volume 8 -> 12, other 72 -> 81.
+  Lytt       Phil Ernst 10 -> 11 buying accounts of 25 (40% -> 44%, all six
+             Lytt SKUs at USA Wine Traders, 9/30), still Gettin' Lytt at $0.50;
+             he now holds the top penetration on the board. Cases 54 -> 60.
+             Nobody else moved; still 10 reps in a tier.
+  Keystone   unchanged from this morning: 168 accounts, 7 of 17 qualified,
+             3 at bonus, $855.
+Hub cache tag bumped (20260918c) for the new program_data.js.
+
 2026-09-18 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py    (after keystone-ice and MPOs/off-prem, sync rule)
 Only the two shared exports moved (diffed row by row first): Keystone
