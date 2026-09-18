@@ -1027,7 +1027,9 @@ h1{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.01em;
 
 .mbar{height:6px;margin-top:16px;background:var(--input-bg);border-radius:999px;overflow:hidden;}
 .mbar-fill{height:100%;border-radius:999px;background:var(--accent);}
-.mcard.met .mbar-fill{background:var(--text-mute);}
+/* A card at goal fills GREEN (per Gavin, 2026-09-18) -- it was muted grey
+   before; the "Goal met" text and collapsed preview still quiet the card. */
+.mcard.met .mbar-fill{background:var(--good);}
 .mbar-cap{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:space-between;
   margin-top:8px;font-size:12.5px;color:var(--text-mute);}
 .mbar-goal{color:var(--text-mute);}

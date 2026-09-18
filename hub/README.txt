@@ -681,11 +681,14 @@ THE MPO REP CARD IS A WORKLIST, NOT A DASHBOARD (v10, 2026-09-11)
   2 at goal · 3 still open".
 
   ONE ACCENT COLOUR. --accent carries two things and nothing else: the
-  progress fill and the Still Needed number. A card at goal goes GREY, not
-  green -- "Goal met" replaces the number, the bar mutes, and the account
-  preview collapses to a one-line count so a finished card stops competing
-  for attention. Hierarchy everywhere else is size, weight and spacing. If
-  you add a colour to .mcard you are undoing the point of the redesign.
+  progress fill and the Still Needed number. A card at goal: "Goal met"
+  replaces the number and the account preview collapses to a one-line
+  count so a finished card stops competing for attention. Its BAR FILLS
+  GREEN (--good) -- it was muted grey from v10 until 2026-09-18, when
+  Gavin asked for completed MPO objectives to read green (.mcard.met
+  .mbar-fill in hub.css). Hierarchy everywhere else is size, weight and
+  spacing. If you add any other colour to .mcard you are undoing the
+  point of the redesign.
 
   POTENTIAL ACCOUNTS come from the same nextAccounts() the rest of the hub
   uses, so territory and account-base rules are UNCHANGED -- v10 only

@@ -259,7 +259,7 @@ Four objectives at 25% each:
   3. Spirits - Carbliss (10) New On Premise Buying Accounts
   4. HUSA - (1) New XX Draft Line
 
-All four are data-backed. Numbers as of the 2026-09-17 refresh (RDE exports run
+All four are data-backed. Numbers as of the 2026-09-18 refresh (RDE exports run
 through 9/18): Bardstown 15 menu placements, Fever Tree 21 new placements,
 Carbliss 20 new buying accounts, HUSA 1 new draft line.
 
@@ -273,6 +273,23 @@ one-objective detail renders under Bardstown like everyone else's. See
 MPOs/off-prem/README.txt (same date) for the off-prem date columns that
 came with it. guided.css / guided.js / programs.js load with ?v= tags now
 (20260917i); bump them whenever those files change.
+
+2026-09-18 REFRESH -- Fever Tree, Carbliss, HUSA exports (no Promos_Report)
+  python3 generate_2026-09.py
+Diffed row by row before the run. Fever Tree 552 -> 556: five new rows, all
+dated 9/18 (Paul Mclaughlin: Sofia took Club Soda, Tonic Light and Cucumber,
+Stosh's Craft Bar took Lime-Yuzu; Anthony Palmisano: Crystal Springs took
+Pink Grapefruit) -- EVERY ONE A REPEAT, each account bought that SKU in
+6/1-8/31 -- and ONE ROW GONE: Allison Scott's 58005 Feathers Ginger Beer
+200 mL (9/17), itself a repeat, so nothing scored changes. The first refresh
+where the export dropped a row; the export is the record. Carbliss 280 -> 280
+but two rows re-dated: Allison Scott's Great Notch Inn and Feathers moved
+from 9/17 to 9/18 (same accounts, still her two newest buyers). HUSA
+set-identical at 87 rows. No Promos_Report came with this pull, so the
+Bardstown archive holds at 16 rows / 15.
+NO PER-REP COUNT CHANGED: Fever Tree 21, Carbliss 20, HUSA 1, Bardstown 15,
+every rep exactly where the 2026-09-17 note left them. Brian Sengebush's
+second Krogh's Origin Rye (flagged 9/17) is still counted.
 
 2026-09-17 REFRESH -- Fever Tree, Carbliss, HUSA exports + Promos_Report_26
   python3 generate_2026-09.py --merge-bardstown Promos_Report_26.xlsx
