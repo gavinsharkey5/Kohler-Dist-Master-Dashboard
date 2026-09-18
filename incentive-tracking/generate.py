@@ -2294,12 +2294,18 @@ def build_mabi_retention():
 CONSTELLATION_FALL_START = datetime.date(2026, 9, 1)
 CONSTELLATION_FALL_END = datetime.date(2026, 11, 30)
 
-# Each file carries TWO windowed placement columns and NO goal column, unlike
-# the summer files' explicit "( ... ) Goals". The BASE column is the goal (per
-# Gavin, 2026-09-08: "their goals are placements they accomplished in 2025").
-# Innovation is the one exception -- its base window is spring 2026, not fall
-# 2025 -- which is why the base window is named per category rather than
-# assumed.
+# Each file ORIGINALLY carried TWO windowed placement columns and NO goal
+# column, unlike the summer files' explicit "( ... ) Goals". The BASE column
+# is the goal (per Gavin, 2026-09-08: "their goals are placements they
+# accomplished in 2025"). Innovation is the one exception -- its base window
+# is spring 2026, not fall 2025 -- which is why the base window is named per
+# category rather than assumed.
+# SINCE 2026-09-18 a category's export may instead come in the "w/ Goals"
+# shape (Impact was the first): ONE placement column plus an explicit
+# "( <prefix> ... ) Goals" column, the goal on the rep's subtotal row. The
+# build detects the shape per file (see build_constellation_fall) -- that
+# Goals column IS the goal, the per-SKU rows carry none, and the category's
+# baseWindow label reads "Fall 2026 goal" instead of a window.
 CONSTELLATION_FALL_CATEGORIES = [
     {"key": "corona_gaintain", "label": "Corona Gaintain",
      "file": "constellation_fall_corona_gaintain_off.csv",
@@ -2515,6 +2521,7 @@ def build_constellation_fall():
     house = []
     overrides = _constellation_fall_goal_overrides()
     overrides_used = set()
+    overrides_applied = set()
 
     today = datetime.date.today()
     span = (CONSTELLATION_FALL_END - CONSTELLATION_FALL_START).days + 1
@@ -2524,12 +2531,29 @@ def build_constellation_fall():
         rows = read_rows(cat["file"])
         fieldnames = list(rows[0].keys()) if rows else []
         cols = [f for f in fieldnames if f.startswith(cat["prefix"])]
-        if len(cols) != 2:
-            raise SystemExit(f"{cat['file']}: expected 2 '{cat['prefix']}' columns, got {len(cols)}")
-        base_col = next((f for f in cols if cat["baseWindow"] in f), None)
-        if base_col is None:
-            raise SystemExit(f"{cat['file']}: no column for base window {cat['baseWindow']}")
-        val_col = next(f for f in cols if f != base_col)
+        prod_col = "Product Name" if "Product Name" in fieldnames else "Product Num Name"
+        # TWO SHAPES (2026-09-18, per Gavin, Impact first). The original
+        # fall files carry two windowed placement columns and the BASE is
+        # the goal. The "w/ Goals" shape carries ONE placement column ("the
+        # distribution") plus an explicit "( ... ) Goals" column whose value
+        # sits on the rep's subtotal row only -- that number IS the goal,
+        # and the per-SKU rows beneath it have no goal of their own.
+        goal_col = next((f for f in fieldnames
+                         if f.lstrip().startswith("(") and cat["prefix"] in f
+                         and f.rstrip().endswith("Goals")), None)
+        if goal_col is not None:
+            if len(cols) != 1:
+                raise SystemExit(f"{cat['file']}: goals shape expects 1 '{cat['prefix']}' column, got {len(cols)}")
+            val_col, base_col = cols[0], None
+            goal_label = "Fall 2026 goal"
+        else:
+            if len(cols) != 2:
+                raise SystemExit(f"{cat['file']}: expected 2 '{cat['prefix']}' columns, got {len(cols)}")
+            base_col = next((f for f in cols if cat["baseWindow"] in f), None)
+            if base_col is None:
+                raise SystemExit(f"{cat['file']}: no column for base window {cat['baseWindow']}")
+            val_col = next(f for f in cols if f != base_col)
+            goal_label = cat["baseWindow"]
 
         totals, detail = _split_report_subtotals(rows, "Sales Rep Assigned")
 
@@ -2539,7 +2563,7 @@ def build_constellation_fall():
         prods = defaultdict(list)
         for r in detail:
             rep = r["Sales Rep Assigned"]
-            b = to_num(r[base_col])
+            b = to_num(r[base_col]) if base_col else 0.0
             n = to_num(r[val_col])
             sums[rep][0] += b
             sums[rep][1] += n
@@ -2557,7 +2581,7 @@ def build_constellation_fall():
             if n > 0 or b > 0:
                 goal, placed = round(b), round(n)
                 prods[rep].append({
-                    "product": r["Product Name"].strip(),
+                    "product": r[prod_col].strip(),
                     "placements": placed,
                     "base": goal,                      # original key, unchanged
                     "goal": goal or None,
@@ -2570,10 +2594,11 @@ def build_constellation_fall():
                 })
         for rep, trow in totals.items():
             b, v = sums.get(rep, [0.0, 0.0])
-            if abs(to_num(trow[base_col]) - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
+            tb = to_num(trow[base_col]) if base_col else 0.0
+            if abs(tb - b) > 1e-6 or abs(to_num(trow[val_col]) - v) > 1e-6:
                 raise SystemExit(
                     f"{cat['file']}: {rep}'s total row does not equal its product rows "
-                    f"({to_num(trow[base_col]):g}/{to_num(trow[val_col]):g} vs {b:g}/{v:g}) "
+                    f"({tb:g}/{to_num(trow[val_col]):g} vs {b:g}/{v:g}) "
                     f"-- the export's subtotal layout has changed, refusing to publish.")
 
         house_total = house_goal = 0.0
@@ -2590,17 +2615,30 @@ def build_constellation_fall():
                 continue
             by_rep[rep]["inReport"] = True
             placements = to_num(trow[val_col])
-            base = to_num(trow[base_col])
-            goal = base
+            base = to_num(trow[base_col]) if base_col else None
+            # Goals shape: the subtotal row's Goals cell is the goal (empty =
+            # no goal, e.g. an off-roster rep). Base shape: the base is.
+            goal = to_num(trow[goal_col]) if goal_col else base
+            if goal is not None and goal <= 0:
+                goal = None
             # A goal Gavin set by hand replaces the base (see
             # CONSTELLATION_FALL_GOAL_OVERRIDES); the base is kept on the row
-            # so the card can say what it replaced.
+            # so the card can say what it replaced. When the export itself
+            # carries a Goals column, THAT number wins (Gavin, 2026-09-18)
+            # and a differing override is only reported, never applied.
             override = overrides.get((rep, cat["key"]))
             if override is not None:
-                goal = override
                 overrides_used.add((rep, cat["key"]))
+                if goal_col is None:
+                    goal = override
+                    overrides_applied.add((rep, cat["key"]))
+                elif goal is None or abs(goal - override) > 1e-6:
+                    print(f"constellation_fall: NOTE {rep} {cat['key']} export goal {goal} "
+                          f"wins over the override {override:g}")
+                else:
+                    print(f"constellation_fall: {rep} {cat['key']} export goal {goal:g} matches the override")
             house_total += placements
-            house_goal += goal
+            house_goal += goal or 0
             # SKUs short of their own goal first, biggest gap first, so what
             # needs a call this week sits at the top; held SKUs follow, and
             # SKUs with no base (new distribution this period) come last.
@@ -2615,8 +2653,8 @@ def build_constellation_fall():
                 # 100% of the base, per Gavin -- deliberately not the 90% bar.
                 "retained": bool(goal and placements >= goal),
                 "toGo": round(goal - placements) if goal and placements < goal else 0,
-                "inReport": True, "products": plist, "baseWindow": cat["baseWindow"],
-                "goalOverride": override is not None,
+                "inReport": True, "products": plist, "baseWindow": goal_label,
+                "goalOverride": override is not None and goal_col is None,
                 "baseGoal": round(base) if base else None,
                 "skusTotal": len(goaled_skus),
                 "skusHeld": sum(1 for p in goaled_skus if p["retained"]),
@@ -2629,13 +2667,14 @@ def build_constellation_fall():
                       "total": round(house_total), "goal": round(house_goal),
                       "met": house_total >= house_goal,
                       "short": max(0, round(house_goal - house_total)),
-                      "baseWindow": cat["baseWindow"]})
+                      "baseWindow": goal_label})
 
     unused = set(overrides) - overrides_used
     if unused:
         raise SystemExit(f"{CONSTELLATION_FALL_GOAL_OVERRIDES}: no export row to apply these to: {sorted(unused)}")
     for (rep, key), g in sorted(overrides.items()):
-        print(f"constellation_fall: {rep} {key} goal overridden to {g:g}")
+        if (rep, key) in overrides_applied:
+            print(f"constellation_fall: {rep} {key} goal overridden to {g:g}")
 
     for rep, d in by_rep.items():
         goaled = [c for c in d["offCategories"] if c["goal"]]

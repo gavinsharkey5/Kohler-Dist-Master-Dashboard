@@ -3758,6 +3758,77 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 SEVENTH REFRESH -- Constellation Impact RE-RUN on the "w/ Goals" export (new shape)
+  python3 generate.py
+Gavin re-sent Impact as "Constellation Impact Fall 2026 OFF w Goals_8.csv"
+with the instruction: "distribution is 1st column 'Impact SKUs Placements
+9/1/2026 - 11/30/2026' and the goal is the column over '( ... ) Goals'".
+This is the summer files' shape, not the fall one: ONE placement column, an
+explicit Goals column whose value sits on the rep's subtotal row only, a
+"% of Goals" column, "Product Num Name" instead of "Product Name", and NO
+fall-2025 base column at all. build_constellation_fall() now detects the
+shape per category file:
+  goals shape  the Goals cell on the subtotal row is the goal (empty = no
+               goal; John Neukum), the per-SKU rows carry no goal of their
+               own (products list still shows what is placed, hub rows read
+               "Currently placed"), reconciliation checks the placement
+               column only, and the row's baseWindow label reads "Fall 2026
+               goal" so the card says "Goal: 393 (your Fall 2026 goal)".
+  base shape   unchanged for Corona Gaintain, Modelo Gaintain, Innovation.
+  overrides    when the export carries a Goals column THAT number wins; a
+               matching override prints "export goal 250 matches the
+               override", a differing one would print a NOTE and be ignored.
+               Dave Ehlers' Impact row in constellation_fall_goal_overrides.csv
+               (250) matches the file exactly, so nothing changed for him
+               beyond the print. His Corona / Modelo overrides still apply.
+THE GOALS ARE NOT THE FALL-2025 BASE. Jim Heaney 346 -> 393, Chris Payton
+282 -> 312, Matt Powierski 302 -> 344, Javier Melo 273 -> 298, Klejdi Lamo
+192 -> 212, Anthony Palmisano 174 -> 200, Phil Ernst 169 -> 194, Shane
+Barreca 151 -> 174, Mike Ast 121 -> 142, Jayson Romine 132 -> 144; every
+rep's goal moved. House Impact goal 3,135 -> 3,449 (sum of rep goals, as
+always). THE SKU LIST GREW TOO: Pacifico 2/12 can and 2/12 btl are Impact
+SKUs in this report and were not in the two-column file, so placements rose
+on the same day's data -- house 2,192 -> 2,388, Jim Heaney 221 -> 249, Matt
+Powierski 199 -> 224, Chris Payton 174 -> 191, Javier Melo 208 -> 225,
+Dave Ehlers 208 -> 223 (89.2%, closest to holding Impact), Derrick Laws
+197 -> 204, Phil Ernst 111 -> 125. Percentages barely moved (house 69.9%
+-> 69.2%). Nick Melissari is not in this file (was 0 of 3). Goals retained
+across the roster hold at 20 of 238; 0 of 24 reps hold every goal.
+The 9/17 gap flagged on the FIFTH REFRESH is still in this file (it is the
+same day's pull, just the other report shape) -- the re-pull ask stands for
+all five.
+
+2026-09-18 EIGHTH REFRESH -- Yuengling Fall, all three reports
+  python3 generate.py
+Flat CSVs straight over yuengling_retention_fall_off.csv / _packages_on.csv
+/ _draft_on.csv, same headers, same 13 / 6 / 6 reps and 58 brand rows, every
+2025 base and every goal identical -- only current counts moved, keyed on
+(rep, brand, base). AND MOST OF THEM MOVED DOWN, for the first time on this
+program: the packages and off-prem counts sit at or near the 9/16 values,
+the same 9/17 hole as Constellation Fall and MABI / Molson Coors above. Same
+re-pull ask. Published as-is under the standing rule.
+  off       Lager 256 -> 253/338 (Mike Ast 23 -> 21, Dave Ehlers 20 -> 19,
+            JAYSON ROMINE 31 -> 30 OF 29 -- drops below his goal, 100% ->
+            96.8%, the one lost brand goal; Phil Ernst 20 -> 21 of 22, 91.3%,
+            now the closest), Flight 87 -> 81/152 (Jayson Romine 22 -> 19,
+            Anthony Palmisano 9 -> 8, Dan Lagala 2 -> 1, Jim Heaney 7 -> 6,
+            Shane Barreca 5 -> 4; Phil Ernst 9 -> 10), Light Lager 64 -> 64
+            /134 (Jim Heaney 5 -> 4, Phil Ernst 5 -> 6).
+  packages  Lager 148 -> 140/258 (Brian Sengebush 39 -> 36, Anthony
+            Palmisano 25 -> 23, Robin Feldman 47 -> 45, Allison Scott 9 -> 8),
+            Flight 1/6 unchanged.
+  draft     still reads the 9/10 account sheet (rule 6): 150/293 Lager, 3/7
+            Flight, 49 flagged buyers with no kegs excluded. The summary CSV
+            moved (Allison Scott 46 -> 47, Anthony Palmisano 21 -> 22, Brian
+            Sengebush 60 -> 57, Nick Melissari 49 -> 48, Robin Feldman
+            21 -> 19) and the CSV carries it, but nothing on the page does.
+            Ask Gavin for the RDE draft ACCOUNT export to move it.
+  4 -> 3 / 58 brand goals held across 18 reps (Jayson Romine's off Lager);
+  0 reps holding every goal; day 18 of 91. Closest: Phil Ernst off Lager 21
+  of 22 (91.3%), Brian Sengebush packages Lager 36 of 52 is no longer close
+  (67.9%); Mike Ast off Lager 21 of 24 (80.8%).
+Hub cache tag bumped (20260918h) for the new program_data.js.
+
 2026-09-18 SIXTH REFRESH -- MABI Fall actuals + Molson Coors retention (on + off)
   python3 convert_mabi_fall.py MABI_Fall_2026_Retention_9.csv data/mabi_retention_fall_goals.xlsx
   python3 convert_mc_retention.py <On_Premise ... w_Goals_4.xlsx> <Off_Premise ... w_Goals_4.xlsx>
