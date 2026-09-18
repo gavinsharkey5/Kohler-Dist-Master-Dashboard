@@ -3758,6 +3758,36 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-18 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
+  python3 generate.py
+Diffed row by row before the run. Montauk 1,362 -> 1,366 (+4, none removed);
+2XO 74 -> 77 (+3); Other Half draft onto other_half_on.csv 54 -> 58 (+4, all
+9/18); Other Half off onto other_half_off.csv 714 -> 725 (+12, -1: Michael
+Harboy's B & B Liquors West Orange All Citra row dated 9/17 fell off -- a
+scheduled load that did not land; B & B stays on the board on its other two
+SKUs). PHIL ERNST / 80004 USA WINE TRADERS PARAMUS DATED 9/30 AGAIN: two
+Montauk, three 2XO and six Other Half rows here -- the same month-end load
+sheet flagged three times today, now 55 rows across ten programs. Kept, as
+always: the export is the record. It is what moves him on all three below.
+  Montauk      38 -> 40 new placements, $590 -> $615: Phil Ernst 21 -> 23
+               (USA Wine Traders 6pk + 19.2 oz, his 4th new account, 9/30).
+               Nick Melissari opens the board's first DRAFT placement (Mr.
+               Bruno's, 5.2 gal, 9/18) -- one line, not scored for package
+               money. Dan Lagala / Winston Wine 19.2 oz is a reorder.
+  2XO          1 -> 2 off-premise pairs, $75 -> $150: PHIL ERNST pairs
+               American + French Oak (plus White Oak Rye) at USA Wine Traders,
+               9/30. Jim Heaney's Little Falls single-oak open still unpaid.
+  Other Half   154 -> 156 off-premise accounts opened, $7,830 -> $7,950:
+               Alisa Acciardi 12 -> 13 (ShopRite Bayonne, four SKUs 9/18),
+               Phil Ernst 3 -> 4 (USA Wine Traders, all six SKUs, 9/30).
+               Michael Harboy's Krauser's and Dan Lagala's Winston Wine rows
+               are reorders. On-prem 41 -> 45 accounts active in September
+               (26 -> 30 at the 1/3 bbl floor): Nick Melissari 6 -> 8
+               (Biagio's, Nellie's Place), Paul Mclaughlin 5 -> 6 (The
+               Cornerstone), HAKAN SADIK 0 -> 1 (Village Hall) -- all 1/2 bbl
+               Green City on 9/18. Still not paid -- needs October's hold.
+Hub cache tag bumped (20260918e) for the new program_data.js.
+
 2026-09-18 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius, Le Grand Noir
   python3 generate.py
 Diffed row by row before the run. Le Grand Noir 30 -> 31 rows (+1). The
