@@ -3758,6 +3758,46 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius, Le Grand Noir
+  python3 generate.py
+Diffed row by row before the run. Le Grand Noir 31 -> 32 rows (+1). The
+Comparison export is the President's file: same 29 rows, 4 restated upward
+(John O'Donoghue 1,087.44 -> 1,101.44, Jayson Romine 868.11 -> 880.11, Hakan
+Sadik 509.56 -> 514.89, Dylan Rubino 182.00 -> 188.00). Touchdowns OFF
+4,079 -> 4,099 (+20, none removed); Touchdowns ON 2,305 -> 2,320 (+15, none
+removed). EVIL GENIUS SET-IDENTICAL to the published 348 rows -- overwritten,
+nothing moved. Every new row is dated 9/21 except two Brian Sengebush on-prem
+rows dated 9/18 carrying -1 cases (Knotty Pine Pub Twisted Tea 4/6, Mason
+Street Grille Sun Cruiser Classic) -- pickups, which the on-prem leg counts
+as accounts but nets out of the case money. Phil Ernst's 9/30 USA Wine
+Traders rows are all still in the exports and still counted.
+  Garage President  house 8,193.68 -> 8,231.01 of 9,305 CE. John O'Donoghue
+                    +291 -> +305, Jayson Romine +227 -> +239, Hakan Sadik
+                    +384 -> +390, Dylan Rubino -59 -> -53. Nobody else moved.
+  Le Grand Noir     31 -> 32 of 70 house cases: Jayson Romine 4 -> 5 (USA
+                    Wine Traders Club of Newton, Pinot Noir, 9/21).
+  Touchdowns & Tea  86 -> 93 new off-prem 12pk placements: JAYSON ROMINE
+                    3 -> 8 (Liquor Factory IV Hopatcong: Twisted Tea Party
+                    Pack, Light, Half & Half, Light Party Pack; Liquor Factory
+                    II Jefferson: Sun Cruiser Sampler; $45 -> $120), Jim
+                    Heaney 6 -> 7 (Clifton Commons, Party Pack), Phil Ernst
+                    10 -> 11 (Home Wines & Liq 75, Half & Half; $150 -> $165).
+                    Matt Powierski's seven Metro rows and Klejdi Lamo's
+                    ShopRite Wharton Iced Tea Variety are reorders -- cases
+                    only (Matt 140 -> 170, Klejdi 443 -> 464). On-prem cases
+                    1,218 -> 1,241: Brian Sengebush 206 -> 215 (Charley's
+                    Tavern is his 28th account; Millers Ale House), Robin
+                    Feldman 105 -> 112 (Elks Post 1477 is her 25th; Wallkill
+                    Golf, Eastern Asian Bistro keg), Allison Scott 333 -> 339
+                    (Celtic Corner is her 42nd; Outback Wayne), Nick Melissari
+                    116 -> 117 (Rockafella's keg, his 23rd). Chris Politano's
+                    three 100-case MetLife loads (9/21) are in the export but
+                    he is not on the roster -- as before, they reach nobody's
+                    card. Trackable $2,508 -> $2,636.
+  Evil Genius       unchanged: 7 new placements, CE 73 vs 98, 1 of 27 past
+                    the qualifier, $3.
+Hub cache tag bumped (20260921c) for the new program_data.js.
+
 2026-09-21 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
   python3 generate.py
 Diffed row by row against the committed files before anything ran: Keystone
