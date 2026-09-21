@@ -3758,6 +3758,47 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 FOURTH REFRESH -- Montauk, 2XO, Other Half (draft + off)
+  python3 generate.py
+Diffed row by row before the run. Montauk 1,366 -> 1,373 (+7, none removed);
+2XO 77 -> 79 (+2); Other Half draft SET-IDENTICAL to the published 58 rows
+(overwritten, nothing moved); Other Half off 725 -> 752 (+33, -6). THE SIX
+ROWS GONE ARE JOHN O'DONOGHUE'S: Florham Park Liquors (three SKUs, 9/18) fell
+off entirely -- a scheduled load that did not land, the same case as Michael
+Harboy's B & B on 9/18 -- and ShopRite Chester was RESTATED (Forever Ever
+dropped; Green Flowers 2 -> 1, All Citra 3 -> 2). Florham Park leaves his
+board; Chester stays on its two remaining SKUs. The export is the record.
+Seven new rows are dated ahead of the pull (9/22: Andrew Lundy / Trader
+Joe's Westfield, Dave Ehlers / Total Wine River Edge, Jayson Romine / Super
+Saver, John O'Donoghue / ShopRite Roxbury, Shane Barreca / ShopRite Northvale;
+9/23: Alisa Acciardi / High Spirits of Bayonne) -- kept, as always. Phil
+Ernst's 9/30 USA Wine Traders rows are all still in the exports.
+  Montauk      holds at 40 new placements, $615: every one of the seven new
+               rows is a reorder at an account already counted (Dylan Rubino
+               / Cool Vines + Food Bazaar, Jaime Colonna / Delite Market,
+               John O'Donoghue / Buyrite of Chatham, Shane Barreca / Cork &
+               Keg keg + Bottle King Ramsey 12pk) -- case volume only (Dylan
+               19 -> 27, Shane 46 -> 52, John 43 -> 46, Jaime 70 -> 72).
+  2XO          holds at 2 off-premise pairs, $150: Klejdi Lamo's American +
+               French Oak at ShopRite Wharton (9/21) repeats the pair he
+               opened there on 7/10, so it is a reorder, not a new pair.
+               Jim Heaney's Little Falls single-oak open still unpaid.
+  Other Half   156 -> 160 off-premise accounts opened, $7,950 -> $8,190:
+               SHANE BARRECA 8 -> 9 (ShopRite Northvale, all six SKUs incl.
+               the Green City sixtel, $70), Jayson Romine 11 -> 12 (ShopRite
+               Sparta, three SKUs, $40), Alisa Acciardi 13 -> 14 (High
+               Spirits of Bayonne, Southern $50), Jaime Colonna 10 -> 11
+               (Delite Market, Southern $50). John O'Donoghue nets 17 -> 17:
+               Florham Park out, ShopRite Roxbury in (six SKUs, $70), $880 ->
+               $910; his Sandy's Hackettstown rows are a reorder. Jim Heaney's
+               Clifton Commons, Michael Harboy's Total Wine West Orange,
+               Andrew Lundy's Total Wine Union + Trader Joe's, Dave Ehlers'
+               Total Wine River Edge and Klejdi Lamo's Liquor Outlet kegs are
+               all reorders at accounts already opened. On-prem unchanged: 45
+               accounts active in September (30 at the 1/3 bbl floor), still
+               not paid -- needs October's hold.
+Hub cache tag bumped (20260921d) for the new program_data.js.
+
 2026-09-21 THIRD REFRESH -- Garage Beer President, Touchdowns & Tea (off + on), Evil Genius, Le Grand Noir
   python3 generate.py
 Diffed row by row before the run. Le Grand Noir 31 -> 32 rows (+1). The
