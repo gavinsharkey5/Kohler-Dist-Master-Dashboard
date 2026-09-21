@@ -148,10 +148,19 @@ function shortEnds(p){
   if(n === 0) return 'Today';
   return `${fmtDay(p.end)} · ${n} day${n===1?'':'s'}`;
 }
+// Date AND time (2026-09-21, per Gavin): the boards refresh several times a
+// day, so the stamp says which pull this is. Printed in the viewer's own
+// zone from the ISO instant each generator writes.
 function fmtSynced(iso){
   if(!iso) return '';
   const d = new Date(iso);
-  return isNaN(d) ? '' : d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return isNaN(d) ? '' : d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
+    + ', ' + d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+}
+// The Incentive Tracker's stamp: the ISO instant when program_data.js
+// carries one (2026-09-21 on), else the date string it always carried.
+function incRefreshed(){
+  return (typeof PROGRAM_DATA_REFRESHED_AT !== 'undefined' && fmtSynced(PROGRAM_DATA_REFRESHED_AT)) || PROGRAM_DATA_REFRESHED;
 }
 const fixAssets = html => String(html||'').replace(/src="assets\//g, 'src="'+INC_ASSETS+'assets/');
 const assetPath = p => !p ? '' : (p.startsWith('assets/') ? INC_ASSETS+p : p);
@@ -212,7 +221,7 @@ function makeIncentive(entry, month){
     name: entry.title, shortName: entry.shortTitle || entry.title, pitch: entry.pitch || '',
     type: 'Incentive', group: entry.group || 'new', supKey: PROGRAM_SUPPLIER[entry.key] || 'house', channel: chan, channelLabel: CHANNEL_LABEL[chan],
     supplier: sup.name, supplierLogo: assetPath(sup.logo), brandLogos: progLogos(entry.key).map(assetPath),
-    period, refreshed: PROGRAM_DATA_REFRESHED, manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
+    period, refreshed: incRefreshed(), manual: !!entry.manual, awaitingNote: entry.awaitingNote || '',
     rules, reward: rules.find(r=>/\$|win|trip|ticket|bonus|commission/i.test(r)) || '',
     territory: CORE_MARKET_PROGRAM_KEYS.has(entry.key) ? 'Core Market counties' : 'All counties',
     entry, month,
@@ -681,7 +690,7 @@ function topbar(){
   </div>`;
 }
 function refreshedLine(){
-  const inc = PROGRAM_DATA_REFRESHED;
+  const inc = incRefreshed();
   const mp = [];
   Object.keys(MPO_SCOPES).forEach(s=>{ const st = mpoState[s]||{}; Object.keys(st).forEach(mk=>{ if(st[mk].syncedAt) mp.push(fmtSynced(st[mk].syncedAt)); }); });
   const mpoTxt = mp.length ? [...new Set(mp)].join(' / ') : '';
@@ -1633,9 +1642,12 @@ function brandGoals(p, rep){
         r.extra = bits.join(' · '); r.winback = lost.map(a=>a.customer.replace(/^\d+\s+/, '')); return r; }));
       break;
     case 'mabi_retention_fall':
-      // Kohler's workbook sets ONE MADE goal per rep, not one per family, so
-      // the families show their placements toward that single goal.
-      push('MADE brand families', 'placements', (d.brands||[]).map(b=>row(b.brand, b.placements, null, 'placements')));
+      // Per-brand goals since 2026-09-21 (Gavin: same format as Constellation
+      // / Yuengling / Molson Coors): the workbook's own 90% goal for each MADE
+      // family, so every row reads current / goal with a bar. A family the
+      // workbook set no goal for (Mxd Cocktails) still counts toward the
+      // rep's single MADE goal and says so.
+      push('MADE brand families', 'placements', (d.brands||[]).map(b=>row(b.brand, b.placements, b.goal, 'placements')));
       break;
     case 'constellation_retention':
       // Same product breakdown, but this window's export carries no per-SKU
@@ -2061,7 +2073,7 @@ function screenDetailRep(p, r, rep, back){
       <div class="dhero-top">${logoStrip(p,'lg')}</div>
       <div class="dhero-sup">${E(p.supplier)} · ${E(p.type)} · ${E(p.channelLabel)}</div>
       <h1 class="dhero-name">${E(p.name)}</h1>
-      <div class="dhero-big ${r.pace}">${E(big)}</div>
+      <div class="dhero-big ${r.pace}${r.openEnded && !soon ? ' sofar' : ''}">${E(big)}</div>
       <div class="dhero-cap">${E(cap)}</div>
       ${soon ? '' : barHtml(r, true)}
       <div class="dhero-line">${statusChip(r)}${flags(p, r)}</div>

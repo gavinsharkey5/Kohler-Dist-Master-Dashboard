@@ -547,10 +547,15 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   on-premise never blur together (per Gavin, 2026-09-10). It replaces the
   What-to-sell / Closed tabs in the opened card (button reads "Open your brand goals") and the "What to
   sell" section on the detail page; the collapsed card's GO line says how
-  many goals still need attention. MABI Fall is the one program whose
-  workbook sets ONE goal per rep, not per family, so its families show
-  placements "toward your N goal" with no per-row bar. Nothing is
-  recomputed here beyond need = goal - now and the bar width.
+  many goals still need attention. MABI Fall showed its families with no
+  per-row bar until 2026-09-21 (its workbook sets one goal per rep); per
+  Gavin it now reads like the other three -- the workbook's own per-brand
+  90% goal on every family (d.brands[].goal, written by
+  incentive-tracking/convert_mabi_fall.py into mabi_retention_fall_brand_
+  goals.csv), "188 / 385 placements", a bar and "197 more needed". A family
+  the workbook set no goal for (Mxd Cocktails) keeps the "counts toward
+  your N goal" line. The rep is still SCORED on the single rep goal.
+  Nothing is recomputed here beyond need = goal - now and the bar width.
 
 PRODUCT-LEVEL GOALS INSIDE A BRAND GOAL (v9.6, 2026-09-11)
   Per Gavin: a Constellation retention category is a bag of SKUs, so Corona
@@ -878,3 +883,20 @@ v18 / v18.1 UNDONE, 2026-09-17 (same evening)
   Distribution" / "View Potential Accounts"), Manager Mode keeps the
   dashboards' objective card. hub.js is byte-identical to e529aad. Cache
   tag 20260917n so nobody keeps the interim build.
+
+TIMESTAMPS AND THE "SO FAR" FIGURE (2026-09-21, per Gavin)
+  Every "refreshed" stamp on the hub now carries the TIME, not just the
+  date, because the boards refresh several times a day: fmtSynced() prints
+  "Sep 21, 2026, 11:00 AM" in the viewer's own zone from an ISO instant.
+  For MPOs that instant is each board's sync_meta.json (as before); for
+  incentives it is PROGRAM_DATA_REFRESHED_AT, which
+  incentive-tracking/generate.py now writes into program_data.js beside
+  the old PROGRAM_DATA_REFRESHED string (incRefreshed() falls back to the
+  string if an older program_data.js has no instant). The line under a
+  rep's name reads "Incentives refreshed <when> · MPOs refreshed <when>";
+  the same stamp sits on every program card and detail page.
+  On an open-ended card (1911, Montauk, Other Half ...) the "So far"
+  figure is the only number, so it now takes the amber the goal cards
+  give Still Needed (.ifig.open .if-v), and the detail hero's big number
+  gets the same colour (.dhero-big.sofar). Cache tag 20260921h.
+

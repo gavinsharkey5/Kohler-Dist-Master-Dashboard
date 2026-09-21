@@ -3758,6 +3758,54 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 TENTH REFRESH -- MABI Fall "w/ Goals" export; BRAND-LEVEL GOALS + TIMESTAMPS
+  python3 convert_mabi_fall.py MABI_Fall_2026_Retention_with_Goals.csv data/mabi_retention_fall_goals.xlsx
+  python3 generate.py
+THREE CHANGES FOR GAVIN, one refresh:
+1. MABI SHOWS ITS GOALS PER BRAND FAMILY on the hub, the way Constellation,
+   Yuengling and Molson Coors do. The frozen goals workbook has always
+   carried a base and a 90% goal on every brand row under every rep;
+   convert_mabi_fall.py now lifts those into a third CSV
+   (data/mabi_retention_fall_brand_goals.csv, 104 rows) and
+   build_mabi_retention_fall() attaches goal / base / pct / toGo / retained
+   to each rep's brands[] (plus brandGoalsTotal / brandGoalsRetained per
+   rep). A brand the workbook goaled that a rep has not placed yet is
+   listed at zero -- that IS the shortfall. The rep is still SCORED on the
+   single rep-level goal; nothing about pct / retained / the leaderboard
+   changed. 8 of 101 brand goals held across the roster today.
+   THE EXPORT'S OWN GOAL COLUMN IS A CROSS-CHECK, NOT THE SOURCE. The
+   "w/ Goals" export carries "( Placement Count ... ) Goals" on its rep and
+   brand subtotal rows, and RDE recomputes it from a LIVE base, so it drifts
+   as summer invoices restate while the workbook (the number Gavin approved
+   and the rep goal on the page) stays put. The converter now prints the
+   comparison: 79 of 84 export brand goals match the workbook. The five
+   that do not, published from the workbook and FLAGGED TO GAVIN 2026-09-21:
+     Chris Payton / Mike's Harder          workbook 44   export 77
+     Dave Ehlers / Mike's Harder           workbook 64   export 48
+     Dave Ehlers / Mike's Hard Dirty Lem.  workbook  2   export  5
+     Derrick Laws / Cayman Jack            workbook 81   export 85
+     Allison Scott / White Claw            workbook 78   export 79
+   (The export's brand goals do not sum to its own rep goals on those reps
+   -- Chris Payton 650 vs 617 -- while the workbook's do, which is the
+   other reason the workbook wins.) The export also goals Mxd Cocktails
+   for nobody, so Dave Ehlers' and Matt Powierski's Mxd rows show without
+   a goal. If Gavin says the export's numbers are the ones to use, the
+   swap is in convert_mabi_fall.py (write export_goals instead of
+   brand_goals); the page needs nothing else.
+2. THE REFRESH STAMP CARRIES THE TIME. generate.py stamps index.html
+   "Sep 21, 2026, 11:00 AM ET" (zoneinfo America/New_York) and writes
+   PROGRAM_DATA_REFRESHED_AT (ISO, UTC) into program_data.js beside the
+   old PROGRAM_DATA_REFRESHED string, which the hub prints in the viewer's
+   zone next to the MPO boards' sync_meta times. See hub/README.txt.
+3. The hub's open-ended "So far" figure is amber. See hub/README.txt.
+THE EXPORT IS ALSO THE NEWEST PULL: 687 product rows (was 685), house
+3,941 -> 3,961 raw / 3,937 -> 3,957 of 7,326 on the roster (53.7% ->
+54.0%), a clean superset -- Michael Harboy 64 -> 73 (Mikes Harder Lemonade
+23.5 oz is a new SKU for him, 41 -> 42 held), Shane Barreca 193 -> 198,
+Mike Ast 215 -> 219 (43 -> 45 SKUs), Chris Payton 302 -> 303, Matt
+Powierski 346 -> 347. Still 0 of 24 reps at their 90% goal, day 21 of 91.
+Hub cache tag bumped (20260921h).
+
 2026-09-21 NINTH REFRESH -- Southern District: Fall Seasonal Fast Start + Path to Victory (vSD)
   python3 generate.py
 Both vSD exports straight over data/fall_seasonal_sd.csv and

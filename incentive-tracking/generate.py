@@ -2786,6 +2786,17 @@ def build_mabi_retention_fall():
         if rep:
             goals[rep] = (to_num(row["Base Placements"]), to_num(row["Goal"]))
 
+    # Brand-level goals (2026-09-21, per Gavin): the same workbook's per-brand
+    # base and 90% goal, written by the converter. A rep is still SCORED on
+    # the single rep-level goal above; the brand goals are the breakdown the
+    # hub shows the way it shows Constellation / Yuengling / Molson Coors.
+    brand_goals = defaultdict(dict)
+    for row in read_rows("mabi_retention_fall_brand_goals.csv"):
+        rep = (row["Sales Rep Name"] or "").strip()
+        if rep:
+            brand_goals[rep][(row["Brand Family"] or "").strip()] = (
+                to_num(row["Base Placements"]), to_num(row["Goal"]))
+
     by_prod = defaultdict(list)
     for row in read_rows("mabi_retention_fall.csv"):
         by_prod[(row["Sales Rep Name"] or "").strip()].append(row)
@@ -2811,9 +2822,27 @@ def build_mabi_retention_fall():
         brands = defaultdict(float)
         for r in rows:
             brands[r["Brand Family"].strip()] += to_num(r["Placements"])
-        brand_rows = sorted(({"brand": b, "placements": round(v)}
-                             for b, v in brands.items()),
-                            key=lambda x: (-x["placements"], x["brand"]))
+        # Every brand the workbook set a goal for is listed, even at zero --
+        # a family held over the summer and not reordered IS the shortfall.
+        for b in brand_goals.get(rep, {}):
+            brands.setdefault(b, 0.0)
+        brand_rows = []
+        for b, v in brands.items():
+            bb, bg = brand_goals.get(rep, {}).get(b, (None, None))
+            has = bool(bg)
+            brand_rows.append({
+                "brand": b, "label": b, "placements": round(v), "actual": round(v),
+                "base": round(bb) if bb is not None else None,
+                "goal": round(bg) if has else None,
+                "pct": round(v / bg * 100, 1) if has else None,
+                "toGo": round(bg - v) if has and v < bg else 0,
+                "retained": bool(has and v >= bg),
+            })
+        # Short of goal first (the call list), then held, then the no-goal
+        # families -- and by placements within each.
+        brand_rows.sort(key=lambda x: (0 if x["goal"] and not x["retained"] else 1 if x["goal"] else 2,
+                                       -x["placements"], x["brand"]))
+        goaled = [x for x in brand_rows if x["goal"]]
 
         by_rep[rep] = {
             "placements": round(placements),
@@ -2825,6 +2854,8 @@ def build_mabi_retention_fall():
             "hasGoal": goal is not None,
             "pctOfPace": round(pct / pace * 100, 1) if (pct is not None and pace) else None,
             "products": prods, "brands": brand_rows,
+            "brandGoalsTotal": len(goaled),
+            "brandGoalsRetained": sum(1 for x in goaled if x["retained"]),
             "skusHeld": len(prods),
         }
 
@@ -4785,7 +4816,19 @@ def main():
     j09 = html.index(e09)
     html = html[:i09] + f"\nconst PROGRAM_DATA_2026_09 = {json.dumps(data_09, indent=2)};\n" + html[j09:]
 
-    today = datetime.date.today().strftime("%b %-d, %Y")
+    # Stamped with the TIME as well as the date (2026-09-21, per Gavin: reps
+    # refresh several times a day now, so "Sep 21" alone no longer says
+    # which pull a page shows). index.html gets Eastern time spelled out;
+    # program_data.js also gets the ISO instant so the hub can print it in
+    # the viewer's own zone next to the MPO boards' sync_meta timestamps.
+    now_utc = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+    try:
+        from zoneinfo import ZoneInfo
+        now_et = now_utc.astimezone(ZoneInfo("America/New_York"))
+        today = now_et.strftime("%b %-d, %Y, %-I:%M %p ET")
+    except Exception:
+        today = now_utc.strftime("%b %-d, %Y, %-I:%M %p UTC")
+    refreshed_at = now_utc.isoformat().replace("+00:00", "Z")
     date_start_marker = "<!-- DATA_REFRESHED_START -->"
     date_end_marker = "<!-- DATA_REFRESHED_END -->"
     date_start = html.index(date_start_marker) + len(date_start_marker)
@@ -4809,7 +4852,8 @@ def main():
         f"const PROGRAM_DATA = {payload};\n"
         f"const CORE_MARKET_PROGRAM_KEYS = new Set({core_keys});\n"
         f"const PROGRAM_DATA_2026_09 = {json.dumps(data_09, indent=2)};\n"
-        f"const PROGRAM_DATA_REFRESHED = {json.dumps(today)};\n")
+        f"const PROGRAM_DATA_REFRESHED = {json.dumps(today)};\n"
+        f"const PROGRAM_DATA_REFRESHED_AT = {json.dumps(refreshed_at)};\n")
     print(f"Wrote {PROGRAM_DATA_JS.relative_to(Path(__file__).parent)} for the hub")
 
 
