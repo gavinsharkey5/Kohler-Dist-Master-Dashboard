@@ -3758,6 +3758,73 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 SEVENTH REFRESH -- Yuengling Fall, all three reports
+  python3 generate.py
+Flat CSVs straight over yuengling_retention_fall_off.csv / _packages_on.csv
+/ _draft_on.csv, same headers, same 13 / 6 / 6 reps and 58 brand rows, every
+2025 base and every goal identical -- only current counts moved, and EVERY
+ONE MOVED UP. This is the 9/17 hole closing (see the FIFTH REFRESH above):
+the packages and off-prem counts are back above their 9/17 values.
+  off       Lager 253 -> 270/338 (JAYSON ROMINE 30 -> 31 OF 29 -- back over
+            his goal, 96.8% -> 100%, the brand goal he lost on 9/18; Mike Ast
+            21 -> 23, Dave Ehlers 19 -> 21, Chris Payton 25 -> 28, Dan Lagala
+            15 -> 17, Matt Powierski 20 -> 22, Phil Ernst 21 -> 22 of 22 at
+            100%, Anthony Palmisano 22 -> 23 of 23 at 100%), Flight 81 -> 95
+            /152 (Jayson Romine 19 -> 23, Shane Barreca 4 -> 7, Jim Heaney
+            6 -> 8, Dan Lagala 1 -> 2, Anthony Palmisano 8 -> 9, Phil Ernst
+            10 -> 11, Matt Powierski 4 -> 5, Mike Ast 6 -> 7), Light Lager
+            64 -> 68/134 (Jim Heaney 4 -> 5, Jayson Romine 19 -> 20, Mike Ast
+            5 -> 6, Shane Barreca 3 -> 4).
+  packages  Lager 140 -> 157/258 (Robin Feldman 45 -> 52, Brian Sengebush
+            36 -> 40, Nick Melissari 16 -> 19, Anthony Palmisano 23 -> 25,
+            Allison Scott 8 -> 9), Flight 1/6 unchanged.
+  draft     still reads the 9/10 account sheet (rule 6): 150/293 Lager, 3/7
+            Flight, 49 flagged buyers with no kegs excluded. The summary CSV
+            moved up (Brian Sengebush 57 -> 60 and Flight 0 -> 1, Nick
+            Melissari 48 -> 50, Paul Mclaughlin 27 -> 29, Robin Feldman
+            19 -> 21) and the CSV carries it, but nothing on the page does.
+            Ask Gavin for the RDE draft ACCOUNT export to move it.
+  3 -> 4 / 58 brand goals held across 18 reps (Jayson Romine's off Lager
+  back); 0 reps holding every goal; day 21 of 91. Closest: Mike Ast off
+  Lager 23 of 24 (95.8%), Chris Payton off Lager 28 of 32 (87.5%).
+Hub cache tag bumped (20260921f) for the new program_data.js.
+
+2026-09-21 SIXTH REFRESH -- Molson Coors retention (on + off), FLAT CSV export this time
+  python3 generate.py
+THE EXPORT SHAPE CHANGED BACK. Since 2026-09-04 these two reports arrived as
+grouped workbooks that convert_mc_retention.py resolved into clean CSVs read
+with pre_stripped=True. This pull came as the FLAT CSV export -- District
+Manager Name / Sales Rep Name / Brand Family columns with the on-screen
+subtotal rows flattened in (a DM row and a rep row each borrowing a brand
+label, no "Total" row) -- the shape the pipeline was originally built on.
+Rather than flip the flag and break the next grouped pull, build_mc_
+retention() now passes pre_stripped="auto": _parse_retention_goals() treats
+a file as flat when any (rep, brand) pair repeats (only a subtotal row can
+do that) and strips positionally, otherwise as pre-stripped. Both shapes
+were verified: the flat files parse to the same 57 off / 50 on (rep, brand)
+pairs as the 9/18 converted files with 0 goals moved, and the 9/18 converted
+files parse identically under "auto" and pre_stripped=True. The build log
+prints which way each file was read. No converter run this time; the flat
+CSVs went straight over mc_retention_off_prem.csv / _on_prem.csv.
+Molson Coors: off-prem 2,732 -> 2,787 of 2,912 placements, on-prem 734 ->
+739 of 840 buyers; 34 -> 37 of 100 brand goals retained across the same 24
+reps with goals. Every change is UP -- the 9/17 hole closing, and the two
+goals lost on 9/18 are back:
+  regained  JAYSON ROMINE Fever Tree 81 -> 88 of 85 (2 -> 3 goals; Coors
+            150 -> 152, Peroni 67 -> 71 -- 105.3% -> 109.9% overall), ROBIN
+            FELDMAN Miller Lite 29 -> 31 of 30 (0 -> 1; on-prem 63 -> 65 of
+            70, 90.0% -> 92.9%), plus SHANE BARRECA Peroni 98 -> 103 of 101
+            (1 -> 2 goals; Fever Tree 107 -> 111 of 115, Coors 99 -> 100 --
+            97.7% -> 101.0% overall, past his combined goal).
+  other     Phil Ernst Fever Tree 81 -> 84 of 85 (98.8%), Coors 96 -> 97;
+            Anthony Palmisano Coors 92 -> 97 of 87, Peroni 53 -> 54; Dave
+            Ehlers Peroni 70 -> 72; Mike Ast Fever Tree 65 -> 67 of 98;
+            John O'Donoghue Coors 0 -> 3 of 6; Paul Mclaughlin Blue Moon
+            36 -> 38 of 46; Nick Melissari Blue Moon 76 -> 77; Pablo Lopez
+            Peroni 9 -> 10 (98.0% -> 100.0% overall); Chris Payton, Dan
+            Lagala, Derrick Laws, Jim Heaney, Matt Powierski +1 to +3 each.
+Hub cache tag bumped (20260921f) for the new program_data.js.
+
 2026-09-21 FIFTH REFRESH -- Constellation Fall, five exports (Corona Gaintain applied this morning)
   python3 generate.py
 *** SEPTEMBER 17 IS BACK. *** The 9/18 note flagged that every 9/17 row had

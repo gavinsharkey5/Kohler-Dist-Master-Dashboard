@@ -1813,6 +1813,20 @@ def _parse_retention_goals(filename, value_prefix, dm_col=None, label_map=None,
     fieldnames = list(rows[0].keys())
     val_col = next(f for f in fieldnames if f.startswith(value_prefix))
     goal_col = next(f for f in fieldnames if f.rstrip().endswith(") Goals"))
+    if pre_stripped == "auto":
+        # The flat export flattens subtotal rows in, and a subtotal row
+        # borrows a real (rep, brand) label -- so a repeated pair means the
+        # subtotals are present and the positional strip is needed. A file
+        # from convert_mc_retention.py holds each pair exactly once.
+        seen, dup = set(), False
+        for r in rows:
+            k = (r["Sales Rep Name"], r["Brand Family"])
+            if k in seen:
+                dup = True
+                break
+            seen.add(k)
+        pre_stripped = not dup
+        print(f"  {filename}: read as {'FLAT export (subtotals stripped positionally)' if dup else 'pre-stripped (one row per rep+brand)'}")
     if not pre_stripped:
         rows = _strip_report_subtotals(rows, "Sales Rep Name", dm_col=dm_col)
     roster = set(ROSTER)
@@ -2135,15 +2149,19 @@ def build_mc_retention():
     Miller Lite, Blue Moon, Peroni -- pins the mapping); relabeled for
     display. Off-prem "Coors" is left as-is (the deck's off-prem list
     doesn't disambiguate it)."""
-    # Both files come from convert_mc_retention.py as of 2026-09-04 (Kohler
-    # switched these two reports to the grouped export), so they arrive with
-    # subtotals already resolved away -- hence pre_stripped. The other three
-    # retention programs still get the flat export and keep the positional strip.
+    # These two files have arrived BOTH ways: from convert_mc_retention.py
+    # (2026-09-04 to 2026-09-18, Kohler's grouped export resolved into clean
+    # rows with no subtotals) and, since 2026-09-21, as the FLAT CSV export
+    # again (subtotal rows flattened in, which the positional strip removes).
+    # Neither shape is safe to read with the other's setting -- stripping a
+    # clean file eats every rep's first brand row, and not stripping a flat
+    # file triples the totals -- so pre_stripped="auto" lets the file say:
+    # a (rep, brand) pair that repeats can only be a subtotal row.
     off = _parse_retention_goals("mc_retention_off_prem.csv", "Placements",
-                                 dm_col="District Manager Name", pre_stripped=True)
+                                 dm_col="District Manager Name", pre_stripped="auto")
     on = _parse_retention_goals("mc_retention_on_prem.csv", "Buyers",
                                 label_map={"Coors": "Coors Banquet", "Lite": "Miller Lite"},
-                                pre_stripped=True)
+                                pre_stripped="auto")
 
     by_rep = {}
     for rep in ROSTER:
