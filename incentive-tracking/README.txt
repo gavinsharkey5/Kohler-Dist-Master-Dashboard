@@ -3758,6 +3758,55 @@ still the 2026-09-10 export -- 150/293 Lager, 3/7 Flight, 49 flagged buyers
 with no kegs excluded. Ask Gavin for the RDE draft ACCOUNT export to move it.
 Hub cache tag bumped for the new program_data.js.
 
+2026-09-21 SECOND REFRESH -- Keystone, 1911, Woodchuck, Tona, Lytt
+  python3 generate.py
+Diffed row by row against the committed files before anything ran: Keystone
+SET-IDENTICAL to the 214-row export already applied this morning (same bytes;
+keystone-ice and MPOs/off-prem did not move, no rebuild needed), 1911
+1,762 -> 1,782 (+20, none removed), Woodchuck 534 -> 539 (+5), Tona 337 -> 339
+(+5 / -3), Lytt 731 -> 736 (+5). Only these blocks changed in PROGRAM_DATA.
+THREE TONA ROWS WERE WITHDRAWN: Dylan Rubino's Bergenline Liquor (Z) 4/6 Btl,
+2/12 Can and 24 oz Can rows dated 9/18 are gone from this pull. The 24 oz row
+was a REORDER (not a new placement), so nothing scored fell -- his 24 oz volume
+reads 12 -> 11 and Bergenline is back on his 24 oz target list (130 -> 129 ->
+the account is a target again). The export is the record; if Bergenline
+returns on a later pull it comes back the same way.
+MICHAEL HARBOY'S WOODCHUCK PLACEMENT IS A CREDIT ROW: Fairchilds Market Place
+/ Woodchuck Blueberry 4/6, 9/18, Cases -1.00 with Buyer Count 1. The builder
+keys new placements on the buyer flag, so it reads 0 -> 1 placements while his
+case volume falls 12 -> 11. FLAGGED TO GAVIN 2026-09-21: a pickup/credit is
+not a placement; if he agrees, the fix is to require positive cases on the
+placement leg (the same call as Phil's 9/30 rows -- the export is the record
+until Gavin rules).
+Shane Barreca's six 1911 rows at ShopRite Northvale are dated 9/25, four days
+ahead of a 9/21 pull -- kept, as every future-dated row has been.
+  1911       296 -> 298 placements: Phil Ernst 18 -> 19 (Home Wines & Liq 75
+             South Hackensack: Cider Donut is new, Honey Crisp and Black
+             Cherry reorders) climbs rank 8 -> 7 over Klejdi Lamo; Jim Heaney
+             4 -> 5 (Liquor Mart North Arlington, Tropical Pineapple Mango).
+             Jayson Romine's seven rows at Liquor Factory III / VI, Dylan
+             Rubino's two at Best Liquors, Shane Barreca's six at ShopRite
+             Northvale (9/25) and Allison Scott's Maggie's keg are all
+             reorders -- volume only (Jayson 67 -> 78, Shane 103 -> 109, Phil
+             79 -> 83, Dylan 11 -> 14, Allison 12 -> 15, Jim 11 -> 12).
+  Woodchuck  43 -> 47 placements: KLEJDI LAMO 5 -> 8 (Midtown Liq, 9/21:
+             Variety 2/12, Chuck's Imperials 4/6 and Deck Days 2/12 are new,
+             Great Gathering a reorder), now tied with John O'Donoghue at 8
+             for the top of the board (rank 2 on volume, 28 vs 31). Michael
+             Harboy 0 -> 1 (the credit row above), rank 14 -> 13 past Jim
+             Heaney.
+  Tona       13 -> 14 new 24 oz placements: Dylan Rubino 1 -> 2 (Universal
+             Liquors, 24 oz Can, 9/21; his 4/6 and 2/12 rows there and the
+             Golden Liquors 4/6 are other-package volume, 81 -> 85). Derrick
+             Laws / The Liquor Shop 4/6 Btl is volume only (178 -> 183).
+  Lytt       nobody moved on accounts: Chris Payton's five Discount Liq & Bar
+             SKUs (9/21) are at an account already buying -- cases 59 -> 64,
+             penetration holds at 35.9%. Phil Ernst still tops the board at
+             44.0%; 10 reps in a tier.
+  Keystone   unchanged from this morning: 173 accounts, 7 of 17 qualified,
+             3 at bonus, $855.
+Hub cache tag bumped (20260921b) for the new program_data.js.
+
 2026-09-21 REFRESH -- Keystone + Corona Gaintain, riding the off-prem MPO refresh
   python3 generate.py
 Only the two shared exports moved (diffed row by row first): Keystone
