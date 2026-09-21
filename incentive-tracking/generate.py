@@ -2784,7 +2784,8 @@ def build_mabi_retention_fall():
             house_base, house_goal = to_num(row["Base Placements"]), to_num(row["Goal"])
             continue
         if rep:
-            goals[rep] = (to_num(row["Base Placements"]), to_num(row["Goal"]))
+            goals[rep] = (to_num(row["Base Placements"]) if (row["Base Placements"] or "").strip() else None,
+                          to_num(row["Goal"]))
 
     # Brand-level goals (2026-09-21, per Gavin): the same workbook's per-brand
     # base and 90% goal, written by the converter. A rep is still SCORED on
@@ -2795,7 +2796,8 @@ def build_mabi_retention_fall():
         rep = (row["Sales Rep Name"] or "").strip()
         if rep:
             brand_goals[rep][(row["Brand Family"] or "").strip()] = (
-                to_num(row["Base Placements"]), to_num(row["Goal"]))
+                to_num(row["Base Placements"]) if (row["Base Placements"] or "").strip() else None,
+                to_num(row["Goal"]))
 
     by_prod = defaultdict(list)
     for row in read_rows("mabi_retention_fall.csv"):

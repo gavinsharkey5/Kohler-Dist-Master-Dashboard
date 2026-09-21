@@ -549,11 +549,12 @@ BRAND-FAMILY GOALS ON RETENTION CARDS (v9, 2026-09-10)
   sell" section on the detail page; the collapsed card's GO line says how
   many goals still need attention. MABI Fall showed its families with no
   per-row bar until 2026-09-21 (its workbook sets one goal per rep); per
-  Gavin it now reads like the other three -- the workbook's own per-brand
-  90% goal on every family (d.brands[].goal, written by
+  Gavin it now reads like the other three -- the per-brand goal from the
+  RDE "w/ Goals" export (d.brands[].goal, written by
   incentive-tracking/convert_mabi_fall.py into mabi_retention_fall_brand_
-  goals.csv), "188 / 385 placements", a bar and "197 more needed". A family
-  the workbook set no goal for (Mxd Cocktails) keeps the "counts toward
+  goals.csv; the frozen workbook only fills what the export lacks, per
+  Gavin the same day), "188 / 385 placements", a bar and "197 more
+  needed". A family with no goal (Mxd Cocktails) keeps the "counts toward
   your N goal" line. The rep is still SCORED on the single rep goal.
   Nothing is recomputed here beyond need = goal - now and the bar width.
 
@@ -898,5 +899,5 @@ TIMESTAMPS AND THE "SO FAR" FIGURE (2026-09-21, per Gavin)
   On an open-ended card (1911, Montauk, Other Half ...) the "So far"
   figure is the only number, so it now takes the amber the goal cards
   give Still Needed (.ifig.open .if-v), and the detail hero's big number
-  gets the same colour (.dhero-big.sofar). Cache tag 20260921h.
+  gets the same colour (.dhero-big.sofar). Cache tag 20260921i.
 

@@ -3773,25 +3773,31 @@ THREE CHANGES FOR GAVIN, one refresh:
    listed at zero -- that IS the shortfall. The rep is still SCORED on the
    single rep-level goal; nothing about pct / retained / the leaderboard
    changed. 8 of 101 brand goals held across the roster today.
-   THE EXPORT'S OWN GOAL COLUMN IS A CROSS-CHECK, NOT THE SOURCE. The
-   "w/ Goals" export carries "( Placement Count ... ) Goals" on its rep and
-   brand subtotal rows, and RDE recomputes it from a LIVE base, so it drifts
-   as summer invoices restate while the workbook (the number Gavin approved
-   and the rep goal on the page) stays put. The converter now prints the
-   comparison: 79 of 84 export brand goals match the workbook. The five
-   that do not, published from the workbook and FLAGGED TO GAVIN 2026-09-21:
-     Chris Payton / Mike's Harder          workbook 44   export 77
-     Dave Ehlers / Mike's Harder           workbook 64   export 48
-     Dave Ehlers / Mike's Hard Dirty Lem.  workbook  2   export  5
-     Derrick Laws / Cayman Jack            workbook 81   export 85
-     Allison Scott / White Claw            workbook 78   export 79
-   (The export's brand goals do not sum to its own rep goals on those reps
-   -- Chris Payton 650 vs 617 -- while the workbook's do, which is the
-   other reason the workbook wins.) The export also goals Mxd Cocktails
-   for nobody, so Dave Ehlers' and Matt Powierski's Mxd rows show without
-   a goal. If Gavin says the export's numbers are the ones to use, the
-   swap is in convert_mabi_fall.py (write export_goals instead of
-   brand_goals); the page needs nothing else.
+   THE EXPORT'S GOAL COLUMN IS THE SOURCE (Gavin, 2026-09-21: "use the
+   export's goals for mabi, not the workbook" -- it was published from the
+   workbook for about fifteen minutes first, dc614c0). The "w/ Goals"
+   export carries "( Placement Count ... ) Goals" on its rep-total and
+   brand-subtotal rows, and convert_mabi_fall.py now applies those at BOTH
+   levels, so a rep's goal and brand goals come from one file. The frozen
+   workbook fills in only what the export lacks: the BASE columns, the
+   house Total row (7,326), and the goal of any rep the export leaves out
+   (a goal with no 9/1-11/30 activity yet -- Dylan Rubino, John
+   O'Donoghue, Default). Every value that differs is printed in the build
+   log; on this pull 22 rep goals + 84 brand goals applied, 7 differ:
+     Allison Scott rep goal 81 -> 82 · Nick Melissari rep goal 71 -> 70
+     Chris Payton / Mike's Harder 44 -> 77 · Dave Ehlers / Mike's Harder
+     64 -> 48 · Dave Ehlers / Mike's Hard Dirty Lemonade 2 -> 5 · Derrick
+     Laws / Cayman Jack 81 -> 85 · Allison Scott / White Claw 78 -> 79
+   Consequences: Dave Ehlers' Mike's Hard Dirty Lemonade (3 placed) held
+   its workbook goal of 2 and does not hold 5 -- brand goals held across
+   the roster 8 -> 7 of 101; Allison Scott 54.3% -> 53.7%, Nick Melissari
+   40.8% -> 41.4%; nobody's retained status moved. RDE recomputes these
+   goals from a live base, so expect them to move between pulls -- the
+   build log will say. The workbook's brand goals do not sum to the
+   export's rep goals on the reps above (Chris Payton 650 vs 617), which
+   is RDE's rounding at each level, not an error. A pull WITHOUT the goal
+   column (the plain Retention_NN export) falls back to the workbook for
+   everything, as before.
 2. THE REFRESH STAMP CARRIES THE TIME. generate.py stamps index.html
    "Sep 21, 2026, 11:00 AM ET" (zoneinfo America/New_York) and writes
    PROGRAM_DATA_REFRESHED_AT (ISO, UTC) into program_data.js beside the
